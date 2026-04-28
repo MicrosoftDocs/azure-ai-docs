@@ -13,6 +13,7 @@ ms.custom:
   - ignite-2024-understanding-release
   - references_regions
   - build-2025
+zone_pivot_groups: programming-languages-content-understanding
 ---
 
 # Copy custom analyzers
@@ -27,59 +28,46 @@ The copy operation on analyzers supports a few different scenarios:
 >
 > The copy operation for copying across resources supports copying analyzers across subscriptions and even Azure tenants.
 
-## Copy within a Foundry resource
+::: zone pivot="programming-language-rest"
 
-The copy operation within a Foundry resource is a single-step operation. Specify the target analyzer ID in the request URL and provide the source analyzer ID in the request body.
+[!INCLUDE [REST API copy analyzers](./includes/rest-copy-analyzers.md)]
 
-```http
-POST https://{resource}.ai.azure.com/contentunderstanding/analyzers/{targetAnalyzer}:copy?api-version=2025-11-01
-Content-Type: application/json
-Ocp-Apim-Subscription-Key: {Auth key}
+::: zone-end
 
-{
-  "sourceAnalyzerId": "{sourceAnalyzerId}"
+::: zone pivot="programming-language-python"
 
-}
-```
+[!INCLUDE [Python SDK copy analyzers](./includes/python-copy-analyzers.md)]
 
-## Copy across Foundry resources
+::: zone-end
 
-Copying an analyzer across Foundry resources is a multi-step process because a service principal might not have permissions on both resources:
+::: zone pivot="programming-language-csharp"
 
-1. Call the [Grant Copy Authorization](/rest/api/contentunderstanding/content-analyzers/grant-copy-authorization?view=rest-contentunderstanding-2025-11-01) API on the source analyzer, providing the fully qualified resource ID of the copy target and the target region. The response contains a copy authorization token with an expiration time (`expiresAt`).
-1. Copy the resulting response body and use it as the body of the copy request in the next step.
-1. Call the copy API on the target resource, providing the fully qualified source resource ID, the source analyzer ID, and the source region.
+[!INCLUDE [.NET SDK copy analyzers](./includes/csharp-copy-analyzers.md)]
 
-```http
-POST https://{source resource}.services.ai.azure.com/contentunderstanding/analyzers/{source analyzer id}:grantCopyAuthorization?api-version=2025-11-01
-Content-Type: application/json
-Ocp-Apim-Subscription-Key: {Auth key}
+::: zone-end
 
-{ 
-  "targetAzureResourceId":"/subscriptions/{subscription guid}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{target resource}",
-  "targetRegion":"{region}"
-}
+::: zone pivot="programming-language-java"
 
+[!INCLUDE [Java SDK copy analyzers](./includes/java-copy-analyzers.md)]
 
-POST https://{target resource}.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}:copy?api-version=2025-11-01
-Content-Type: application/json
-Ocp-Apim-Subscription-Key: {Auth key}
+::: zone-end
 
-{
-    "sourceAzureResourceId":"/subscriptions/{subscription guid}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{source resource}",
-    "sourceAnalyzerId":"{source analyzer id}",
-    "sourceRegion":"{region}"
-}
-```
+::: zone pivot="programming-language-javascript"
 
- > [!NOTE]
->
-> Analyzers now support classification/segmentation and analysis of each of the identified classes and segments in a single request. When copying an analyzer that uses this feature, you need to copy any referenced analyzers as well.
+[!INCLUDE [JavaScript SDK copy analyzers](./includes/javascript-copy-analyzers.md)]
 
-You can then validate that the analyzer was copied by calling the GET analyzer on the resource if this copy was within the resource, or on the target resource if this copy was across resources.
+::: zone-end
 
-```http
-GET https://{target resource}.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}?api-version=2025-11-01
-Ocp-Apim-Subscription-Key: {Auth key}
+::: zone pivot="programming-language-typescript"
 
-```
+[!INCLUDE [TypeScript SDK copy analyzers](./includes/typescript-copy-analyzers.md)]
+
+::: zone-end
+
+## Related content
+
+* Explore more [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples)
+* Explore more [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples)
+* Explore more [Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding)
+* Explore more [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript)
+* Explore more [TypeScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript)

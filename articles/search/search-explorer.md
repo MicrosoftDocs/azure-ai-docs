@@ -3,9 +3,10 @@ title: "Quickstart: Search Explorer Query Tool"
 description: Search explorer is a query tool in the Azure portal that sends query requests to a search index in Azure AI Search. Use it to learn syntax, test query expressions, or inspect a search document.
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 12/04/2025
+ms.date: 04/27/2026
 ms.custom:
   - mode-ui
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Use Search explorer to run queries in the Azure portal
@@ -67,7 +68,7 @@ The following are examples of JSON queries you can run using Search explorer. To
 
 ### Run an unspecified query
 
-In Search explorer, POST requests are formulated internally using [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true), with responses returned as verbose JSON documents.
+In Search explorer, POST requests are formulated internally using [Documents - Search Post](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-09-01&preserve-view=true) (REST API), with responses returned as verbose JSON documents.
 
 For a first look at content, execute an empty search by selecting **Search** with no terms provided. An empty search is useful as a first query because it returns entire documents so that you can review document composition. On an empty search, there's no search score, and documents are returned in arbitrary order (`"@search.score": 1` for all documents). By default, 50 documents are returned per search request.
 
@@ -195,7 +196,7 @@ In this quickstart, you used **Search explorer** to query an index using the RES
 
 ## Next step
 
-To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the REST API. [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is especially helpful for learning and exploration.
+To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the REST API. [Documents - Search Post](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-09-01&preserve-view=true) (REST API) is especially helpful for learning and exploration.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Full-text search](search-get-started-text.md)

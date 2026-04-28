@@ -70,6 +70,7 @@ Fine-tuning large language models can be a powerful technique to adapt them to s
 - Formatting input/output pairs used to fine-tune a large language model can be crucial to its performance and usability.
 - Fine-tuning may need to be repeated whenever the data is updated, or when an updated base model is released. This involves monitoring and updating regularly.
 - Fine-tuning is a repetitive task (trial and error) so, the hyperparameters need to be carefully set. Fine-tuning requires much experimentation and testing to find the best combination of hyperparameters and settings to achieve desired performance and quality.
+- Importing training data from Azure Blob Storage requires the storage account to have public network access enabled. If your enterprise environment restricts public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method or the SDK to upload training data directly.
 
 ## Next steps
 

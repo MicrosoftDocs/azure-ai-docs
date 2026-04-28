@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 04/14/2026
+ms.date: 04/27/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -12,8 +12,8 @@ ms.custom: doc-kit-assisted
 zone_pivot_groups: foundry-portal-and-cli
 ---
 
-# Bring your own model to Foundry Agent Service (preview)
-Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model* (preview), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
+# Bring your own model to Foundry Agent Service
+Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model*, allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
 > For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
@@ -81,7 +81,7 @@ To add a model connection in the Foundry portal:
 
    * **API key**: Enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
     
-   * **Managed Identity**: In **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
+   * **Managed Identity**: In **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`. For required API Management setup, see [Configure managed identity authentication for API Management](#configure-managed-identity-authentication-for-api-management).
 1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
@@ -91,10 +91,48 @@ To add a model connection in the Foundry portal:
     Repeat the preceding steps to add more models to the connection if needed.
 1. On the **Advanced** page, optionally do the following steps:
     1. Enter an **API version** if required by your model deployments.
-    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
-       Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an Azure OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+       Leave the setting disabled if your gateway uses an OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
+
+### Configure managed identity authentication for API Management
+
+To configure **Managed Identity** authentication to API Management, complete the following setup in Azure:
+
+1. Enable managed identity on the Foundry project resource.
+
+    1. In the [Azure portal](https://portal.azure.com/), go to your Foundry resource.
+    1. Go to **Projects** > select your project > **Identity**. 
+    1. Enable either:
+
+        - **System assigned** managed identity, or
+        - **User assigned** managed identity.
+       
+    1. For token validation in API Management, get the application (client) ID of the managed identity.
+        1. First, get the managed identity *object ID* from the managed identity configuration in your project. 
+        1. Search that object ID in Microsoft Entra ID enterprise applications to locate the corresponding application (client) ID.
+
+1. Validate the managed identity token in API Management.
+
+    In your API Management inbound policy, use the [validate-azure-ad-token](/azure/api-management/validate-azure-ad-token-policy) policy to enforce token validation for requests from Microsoft Foundry.
+
+    - Set the `audience` element to the same value you configured in the Foundry connection **Audience** field.
+    - Configure the managed identity app ID in `client-application-ids`.
+
+    Example:
+
+    ```xml
+    <validate-azure-ad-token tenant-id="{{your-tenant-id}}" header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+       <client-application-ids>
+          <application-id>{{managed-identity-client-id}}</application-id>
+       </client-application-ids>
+       <audiences>
+          <audience>{{audience-configured-in-foundry-connection}}</audience>
+       </audiences>
+    </validate-azure-ad-token>
+    ```
+
 
 # [Other source](#tab/other-sources)
 
@@ -127,8 +165,8 @@ To add a model connection in the Foundry portal:
 
 1. On the **Advanced** page, optionally do the following steps:
     1. Enter an **API version** if required by your model deployments.
-    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
-       Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an Azure OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+       Leave the setting disabled if your gateway uses an OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
 

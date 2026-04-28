@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry/agents/how-to/publish-agent.md",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
+      "redirect_document_id": true
+    },
+    {
       "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
       "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
       "redirect_document_id": false
@@ -1296,6 +1301,26 @@
       "redirect_url": "/azure/foundry/whats-new-foundry",
       "redirect_document_id": false
     },
+    {
+      "source_path": "articles/foundry-classic/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry-classic/concepts/model-retirement-managed-compute",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry/openai/concepts/model-retirement-schedule",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry-classic/openai/concepts/retired-models",
+      "redirect_document_id": false
+    }, 
+    {
+      "source_path": "articles/foundry/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry/openai/concepts/retired-models",
+      "redirect_document_id": false
+    },       
     {
       "source_path": "articles/ai-services/create-account-resource-manager-template.md",
       "redirect_url": "/azure/foundry-classic/how-to/create-resource-template",
