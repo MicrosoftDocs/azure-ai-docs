@@ -36,6 +36,18 @@ Choose a feature:
 
 The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
 
+**In this section**
+- [Speech to text locales](#speech-to-text-locales)
+- [Custom speech](#custom-speech)
+- [Custom speech display support](#custom-speech-display-support)
+- [LLM speech translation](#llm-speech-translation)
+- [MAI Transcribe-1 supported languages](#mai-transcribe-1-supported-languages)
+
+> [!TIP]
+> To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+
+### Speech to text locales
+
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
 ### MAI Transcribe-1 supported languages
@@ -43,9 +55,6 @@ The table in this section summarizes the locales supported for [real-time transc
 The following table summarizes the languages supported by [MAI Transcribe-1](mai-transcribe.md) for speech recognition.
 
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
-
-> [!TIP]
-> To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 # [Text to speech](#tab/tts)
 
