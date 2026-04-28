@@ -8,6 +8,8 @@ ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/01/2026
+zone_pivot_groups: llm-speech-quickstart
+
 # Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
 ---
 
@@ -27,26 +29,19 @@ MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI
 
 ## Use the MAI-Transcribe-1 model
 
-### Upload audio
+First note the following limitations using the MAI-Transcribe-1 model:
+- Diarization isn't supported.
+- Prompt-tuning isn't supported.
 
-You can provide audio data in the following ways:
+::: zone pivot="ai-foundry"
 
-- Pass inline audio data.
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=ai-foundry) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the **Model**.
 
-```
-  --form 'audio=@"YourAudioFile"'
-```
+::: zone-end
 
-- Upload audio file from a public `audioUrl`.
+::: zone pivot="programming-language-rest"
 
-```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
-```
-
-In the sections below, inline audio upload is used as an example.
-
-
-### Create transcription
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-rest) to start using transcription with enhanced mode.
 
 To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
 
@@ -63,9 +58,37 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
   }
 }'
 ```
-Note the following limitations using the MAI-Transcribe-1 model:
-- Diarization isn't supported.
-- Prompt isn't supported.
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the `model` in the `enhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-csharp) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the `Model` in the `EnhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-javascript) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the model in the `enhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-java) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the model in the `EnhancedModeOptions` object.
+
+::: zone-end
+
+
+
+
+## Language support
 
 Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
 
@@ -97,9 +120,9 @@ Optionally, specify a language code in `locales` to force recognition in a singl
 | `tr` | Turkish |
 | `vi` | Vietnamese |
 
-> [!TIP]
-> For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
+
 
 ## Related content
 
+- For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
 - [MAI-Voice-1 in Azure Speech](mai-voices.md)
