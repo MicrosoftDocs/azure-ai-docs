@@ -59,7 +59,7 @@ The Voice Live SDK introduces typed configuration classes that replace the raw q
 
 ### Before and after: Python connection setup
 
-**Classic (v1)** — raw query parameters in `connect()`:
+**Classic (v1)—raw query parameters in `connect()`:
 
 ```python
 async with connect(
