@@ -193,6 +193,201 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
+## Filter at query time (Search index)
+
+When retrieving from a search index knowledge source, you can apply an [OData filter](search-query-odata-filter.md) at query time to narrow the results to specific documents or fields. The filter expression uses OData syntax and is passed via the `filterAddOn` parameter.
+
+### Filter syntax and examples
+
+The `filterAddOn` parameter accepts OData filter expressions. Example patterns include:
+
+- **Metadata fields**: `city eq 'Phoenix'`, `status eq 'active'`
+- **Date ranges**: `publishDate ge 2024-01-01 and publishDate le 2024-12-31`
+- **Numeric ranges**: `price ge 100 and price le 5000`
+- **Text matching**: `substringof('climate', description)`, `indexof(title, 'urgent') ge 0`
+- **Logical operators**: `(category eq 'News' or category eq 'Analysis') and status eq 'published'`
+
+**Example filter expressions:**
+
+- `status eq 'published'`
+- `created ge 2025-01-01`
+- `city eq 'Redmond' and department eq 'Engineering'`
+- `(priority eq 'High' or priority eq 'Critical') and resolved eq false`
+
+### Examples by language
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.Identity;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+var kbClient = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
+    knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
+    tokenCredential: new DefaultAzureCredential()
+);
+
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "You are a support agent. Answer questions based on published documentation. "
+                + "If you don't know the answer, say so."
+            )
+        }
+    ) { Role = "assistant" }
+);
+
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "What is the process for submitting an expense report?"
+            )
+        }
+    ) { Role = "user" }
+);
+
+// Apply a filter to search only published documents
+var searchIndexParams = new SearchIndexKnowledgeSourceParams(
+    knowledgeSourceName: "internal-documentation-ks"
+);
+searchIndexParams.FilterAddOn = "status eq 'published'";
+
+retrievalRequest.KnowledgeSourceParams.Add(searchIndexParams);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+    SearchIndexKnowledgeSourceParams,
+)
+
+kb_client = KnowledgeBaseRetrievalClient(
+    endpoint="<YOUR SEARCH SERVICE URL>",
+    knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
+    credential=DefaultAzureCredential(),
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="assistant",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="You are a support agent. Answer questions based on published documentation. "
+                    "If you don't know the answer, say so."
+                )
+            ],
+        ),
+        KnowledgeBaseMessage(
+            role="user",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="What is the process for submitting an expense report?"
+                )
+            ],
+        ),
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="internal-documentation-ks",
+            # Apply a filter to search only published documents
+            filter_add_on="status eq 'published'",
+        )
+    ],
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+POST https://<YOUR SEARCH SERVICE>.search.windows.net/knowledgebases/<YOUR KNOWLEDGE BASE NAME>/retrieve?api-version=2025-11-01-preview
+Content-Type: application/json
+Authorization: Bearer <YOUR ACCESS TOKEN>
+
+{
+    "messages": [
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "You are a support agent. Answer questions based on published documentation. If you don't know the answer, say so."
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is the process for submitting an expense report?"
+                }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "internal-documentation-ks",
+            "filterAddOn": "status eq 'published'"
+        }
+    ]
+}
+```
+
+:::zone-end
+
+### Multi-filter example
+
+You can combine multiple filters to refine results further:
+
+:::zone pivot="csharp"
+
+```csharp
+searchIndexParams.FilterAddOn = "(status eq 'published' or status eq 'internal') and created ge 2025-01-01";
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+filter_add_on="(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```json
+"filterAddOn": "(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+```
+
+:::zone-end
+
 ### Request parameters
 
 Pass the following parameters to call the retrieve action.
