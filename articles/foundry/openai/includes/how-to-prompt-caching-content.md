@@ -24,6 +24,7 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 Extended prompt cache retention is available for the following models:
 
+- `gpt-5.5`
 - `gpt-5.4`
 - `gpt-5.3-codex`
 - `gpt-5.2`
@@ -40,7 +41,7 @@ Extended prompt cache retention keeps cached prefixes active for longer, up to a
 
 ### Configure per request
 
-If you don’t specify a retention policy, for most models the default is `in_memory`. For gpt-5.5, gpt-5.5-pro, and all future models, the default is `24h` and `in_memory` is not supported. Allowed values are `in_memory` and `24h`.
+If you don’t specify a retention policy, for most models the default is `in_memory`. For `gpt-5.5` and all future models, the default is `24h` and `in_memory` is not supported. Allowed values are `in_memory` and `24h`.
 
 ```json
 {
