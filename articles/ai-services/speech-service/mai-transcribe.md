@@ -90,35 +90,7 @@ First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-s
 
 ## Language support
 
-Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
-
-| Language code | Language |
-| ----- | ----- |
-| `ar` | Arabic |
-| `zh` | Chinese |
-| `cs` | Czech |
-| `da` | Danish |
-| `nl` | Dutch |
-| `en` | English |
-| `fi` | Finnish |
-| `fr` | French |
-| `de` | German |
-| `hi` | Hindi |
-| `hu` | Hungarian |
-| `id` | Indonesian |
-| `it` | Italian |
-| `ja` | Japanese |
-| `ko` | Korean |
-| `nb` | Norwegian Bokmål |
-| `pl` | Polish |
-| `pt` | Portuguese |
-| `ro` | Romanian |
-| `ru` | Russian |
-| `es` | Spanish |
-| `sv` | Swedish |
-| `th` | Thai |
-| `tr` | Turkish |
-| `vi` | Vietnamese |
+Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. For the supported languages, see [MAI Transcribe-1 supported languages](language-support.md?tabs=stt#mai-transcribe-1-supported-languages).
 
 
 

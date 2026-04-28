@@ -38,6 +38,11 @@ The table in this section summarizes the locales supported for [real-time transc
 
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
+### MAI Transcribe-1 supported languages
+
+The following table summarizes the languages supported by [MAI Transcribe-1](mai-transcribe.md) for speech recognition.
+
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 > [!TIP]
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).

@@ -15,9 +15,7 @@ recommendations: false
 ai-usage: ai-assisted
 ---
 
-# How to build a voice agent (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# How to build a voice agent
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-agents/python.md)]

@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 # Quickstart: Voice Agent with Foundry Agent Service (new)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
 ::: zone-end

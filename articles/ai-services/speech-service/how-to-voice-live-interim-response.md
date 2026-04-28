@@ -12,9 +12,7 @@ zone_pivot_groups: how-to-voice-live-interim-response
 ai-usage: ai-assisted
 ---
 
-# Improve tool calling and latency wait times (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Improve tool calling and latency wait times
 
 When a voice agent calls external tools or takes time to generate a response, users experience silence. Interim responses bridge these wait times with short spoken messages—keeping the conversation flowing naturally while work happens in the background.
 

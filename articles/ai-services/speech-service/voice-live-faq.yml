@@ -159,7 +159,7 @@ sections:
       - question: |
           Can you modify or disable the content filtering in Voice Live API?
         answer: |
-          No. If you need custom content filtering, you can use the bring-your-own-model (PREVIEW) feature.
+          No. If you need custom content filtering, you can use the bring-your-own-model feature.
       - question: |
           Does Voice Live API support WebRTC?
         answer: |
