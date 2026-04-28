@@ -2,6 +2,7 @@
 title: "Tool best practices for Microsoft Foundry Agent Service"
 description: "Learn tool best practices for Foundry Agent Service: configure tool_choice, secure tool usage, and troubleshoot tool-calling issues."
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.date: 03/09/2026

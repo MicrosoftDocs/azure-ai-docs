@@ -8,6 +8,7 @@ ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted

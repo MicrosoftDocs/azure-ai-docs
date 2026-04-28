@@ -7,6 +7,7 @@ ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/08/2026
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.custom: 
