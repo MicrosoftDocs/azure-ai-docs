@@ -25,7 +25,7 @@ Follow the how-to below or get the full sample code:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- `Azure.AI.VoiceLive` package (MCP support requires API version `2026-04-15`).
+- `Azure.AI.VoiceLive` package version 1.1.0 or later (MCP support requires API version `2026-04-15`).
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 > [!TIP]

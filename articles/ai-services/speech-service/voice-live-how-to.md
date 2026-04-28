@@ -484,4 +484,3 @@ Then you can connect the avatar with the server SDP.
 
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
 - See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
-- See the [Voice Live API reference (2026-01-01-preview)](./voice-live-api-reference-2026-01-01-preview.md)
