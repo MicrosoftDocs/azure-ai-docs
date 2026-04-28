@@ -1,8 +1,9 @@
 ---
 title: "Deep research tool (classic)"
 description: "Learn how to use the deep research tool with agents. (classic)"
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 manager: nitinme
 ms.date: 02/27/2026
 ms.service: microsoft-foundry

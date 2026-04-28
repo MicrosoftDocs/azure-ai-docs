@@ -6,8 +6,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/08/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
