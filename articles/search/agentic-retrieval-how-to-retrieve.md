@@ -352,6 +352,7 @@ Authorization: Bearer <YOUR ACCESS TOKEN>
     "knowledgeSourceParams": [
         {
             "knowledgeSourceName": "internal-documentation-ks",
+            "kind": "searchIndex",
             "filterAddOn": "status eq 'published'"
         }
     ]
@@ -383,7 +384,11 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 :::zone pivot="rest"
 
 ```json
-"filterAddOn": "(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+{
+    "knowledgeSourceName": "internal-documentation-ks",
+    "kind": "searchIndex",
+    "filterAddOn": "(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+}
 ```
 
 :::zone-end
