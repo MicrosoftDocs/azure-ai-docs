@@ -3,11 +3,12 @@ title: 'Tutorial: Debug Skillsets'
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/31/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions

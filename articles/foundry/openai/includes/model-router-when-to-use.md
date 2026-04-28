@@ -26,14 +26,11 @@ Choosing between model router and a direct model deployment depends on your work
 
 ### When to use direct deployment
 
-- **You need the same model on every request.** Model router always reveals which model handled a request (via the `model` response field), but it might select different models for different prompts. If your workflow requires identical model behavior across all requests — for reproducibility, regression testing, or contractual reasons — pin to a specific model.
-- **Your application depends on model-specific capabilities.** Different models support different parameters (for example, reasoning models don't support `temperature` or `top_p`) and different context windows. If your logic depends on specific parameter behavior or you consistently send prompts that exceed the context window of the smallest model in the router's pool, deploy a specific model.
-- **Your workload requires a fine-tuned or domain-specialized model.** Model router optimizes across general-purpose models. It doesn't route to custom fine-tuned models or specialized models outside its pool. If a fine-tuned model materially outperforms general-purpose models on your task, deploy it directly.
+- **You need the same model on every request.** Model router always reveals which model handled a request (via the model response field), but it might select different models for different prompts. If your workflow requires same model across all— pin to a specific model.
 
 ### The hybrid pattern
 
 The most effective architecture uses both:
-
 - **Model router** as the default path for general API traffic, capturing cost savings across the majority of requests.
 - **Direct deployments** for specialized, compliance-mandated, or parameter-sensitive workloads.
 
