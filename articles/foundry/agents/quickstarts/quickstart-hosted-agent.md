@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
+In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
 **In this quickstart, you:**
 

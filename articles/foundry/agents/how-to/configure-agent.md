@@ -15,7 +15,7 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 # Configure and share your agent
 
-Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
+Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
 - **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
 - **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotService or BotServiceRbac authorization scheme.
 

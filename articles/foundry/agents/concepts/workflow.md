@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 # Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
-Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
+Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each powered by a Foundry model with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
