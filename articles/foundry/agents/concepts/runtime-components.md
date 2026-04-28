@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Build with agents, conversations, and responses
 
-Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent defines what model, instructions, and tools to use. A conversation persists history across turns. A response is the output the agent produces when it processes input.
+Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent defines which model from the Foundry model catalog to use, along with instructions and tools. A conversation persists history across turns. A response is the output the agent produces when it processes input.
 
 This article walks through each component and shows how to use them together in code. You'll learn how to create an agent, start a conversation, generate responses (with or without an agent), add follow-up messages, and stream results—with examples in Python, C#, JavaScript, Java, and REST API.
 
@@ -25,7 +25,7 @@ When you work with an agent, you follow a consistent pattern:
 
 - **Create an agent**: Define an agent to start sending messages and receiving responses.
 - **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
+- **Generate a response**: The agent's Foundry model processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
 - **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
 - **Retrieve the response**: Display the generated response to the user.
 
