@@ -12,21 +12,19 @@ ms.custom: include, classic-and-new
 
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
-## Global quotas and Data Zone quotas 
+## Cross-endpoint quotas
 
-Microsoft Foundry is introducing Global quotas and Data Zone quotas to bring consistency and predictability to how quota is managed across deployments. Starting with Mistral Medium 3.5, quota for Global Standard and Data Zone Standard deployments is tracked at the subscription level — shared across all resources and regions — rather than being allocated separately per resource or per region.
+Microsoft Foundry is introducing Cross-endpoint quotas to bring consistency and predictability to how quota is managed across deployments. Starting with Mistral Medium 3.5, quota for Cross-endpoint deployments is tracked at the subscription level — shared across all resources and regions — rather than being allocated separately per resource or per region.
 
 This change consolidates quota into shared pools:
 
-* **Global Standard deployments**: Deployments of the same model and version share one quota pool across all regions in a subscription.
-* **Data Zone Standard deployments**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
+* **Cross-endpoint quotas**: Deployments of the same model and version share one quota pool across all regions in a subscription.
 
 ## What’s changing for me?
 
 For the models that are onboarded to Global and Data Zone quotas:
 
-* All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
-* All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
+* All Cross-endpoint quotas of the same model and version under a subscription now draw from a single shared quota pool across all regions.
 * Existing approved quota is retained and automatically applies at the subscription level — no action required.
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
