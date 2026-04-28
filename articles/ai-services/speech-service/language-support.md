@@ -176,6 +176,10 @@ If you're interested in languages not listed in the following table, fill out [t
 
 # [Speech translation](#tab/speech-translation)
 
+**In this section**
+- [Real-time speech translation](#real-time-speech-translation)
+- [Video translation](#video-translation)
+
 > [!TIP]
 > To build and run samples on Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
