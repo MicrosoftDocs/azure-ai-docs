@@ -101,7 +101,7 @@ The Voice Live API supports three BYOM integration modes:
 Update the endpoint URL in your API call to include your BYOM configuration:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
@@ -109,13 +109,13 @@ Get the `<your-model-deployment>` value from the Foundry portal. It corresponds 
 For example, to use an Anthropic Claude model deployed in Azure Foundry:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
 ```
 
 To use a model deployment from a different Foundry resource, add the `foundry-resource-override` parameter:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>&foundry-resource-override=<foundry-resource>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&profile=<your-byom-mode>&model=<your-model-deployment>&foundry-resource-override=<foundry-resource>
 ```
 
 The `<foundry-resource>` value is the resource name without the domain suffix. For example, if the Foundry resource endpoint is `https://my-foundry-resource.services.ai.azure.com`, then use `my-foundry-resource`.
@@ -722,4 +722,4 @@ See each tab in the [Integrate BYOM](#integrate-byom) section for implementation
 
 - Try the [Voice Live quickstart](./voice-live-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)

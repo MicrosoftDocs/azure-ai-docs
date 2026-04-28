@@ -9,8 +9,9 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 02/05/2026
+ms.date: 04/28/2026
 ms.custom: languages
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---
 
@@ -78,7 +79,7 @@ To configure a single or multiple languages not supported by the multimodal mode
 }
 ```
 
-### MAI Transcribe-1 supported languages
+### MAI Transcribe-1 supported languages (preview)
 
 MAI Transcribe-1 (`mai-transcribe-1`) is an alternative transcription model that can be paired with any text-based chat model.
 
@@ -227,4 +228,4 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)

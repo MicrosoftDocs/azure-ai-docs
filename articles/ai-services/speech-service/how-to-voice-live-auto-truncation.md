@@ -7,14 +7,12 @@ reviewer: patrickfarley
 ms-reviewer: pafarley
 ms.topic: how-to
 ms.service: azure-ai-speech
-ms.date: 01/28/2026
+ms.date: 04/28/2026
 zone_pivot_groups: how-to-voice-live-auto-truncation
 ai-usage: ai-assisted
 ---
 
-# Handle voice interruptions in chat history (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Handle voice interruptions in chat history
 
 A common scenario with voice agents is when users interrupt the audio playback of agent responses. The Voice Live service generates and returns audio responses to the client, but users might not listen to complete responses—they often interrupt by speaking again before the response finishes. This creates a mismatch between the actual audio conversation and the transcribed conversation results used to log conversation history.
 
@@ -27,62 +25,6 @@ Before you start, complete the following:
 - Complete the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
-
-::: zone pivot="programming-language-python"
-
-> [!IMPORTANT]
-> Auto truncation requires `azure-ai-voicelive >= 1.2.0b2` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```bash
-> pip install azure-ai-voicelive --pre
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
-
-> [!IMPORTANT]
-> Auto truncation requires `Azure.AI.VoiceLive >= 1.1.0-beta.1` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```dotnetcli
-> dotnet add package Azure.AI.VoiceLive --prerelease
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-java"
-
-> [!IMPORTANT]
-> Auto truncation requires `azure-ai-voicelive >= 1.0.0-beta.3` and API version `2026-01-01-preview`. Add the preview dependency to your `pom.xml`:
->
-> ```xml
-> <dependency>
->     <groupId>com.azure</groupId>
->     <artifactId>azure-ai-voicelive</artifactId>
->     <version>1.0.0-beta.3</version>
-> </dependency>
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-> [!IMPORTANT]
-> Auto truncation requires `@azure/ai-voicelive >= 1.0.0-beta.2` and API version `2026-01-01-preview`. This SDK requires Node.js 20 or later. Install the preview SDK with:
->
-> ```bash
-> npm install @azure/ai-voicelive@1.0.0-beta.2
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
 
 ## Parameters
 
@@ -400,6 +342,6 @@ const subscription = session.subscribe({
 ## Next steps
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2026-01-01-preview.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
 - Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

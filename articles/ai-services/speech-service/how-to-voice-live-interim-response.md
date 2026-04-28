@@ -7,7 +7,7 @@ reviewer: patrickfarley
 ms-reviewer: pafarley
 ms.topic: how-to
 ms.service: azure-ai-speech
-ms.date: 01/28/2026
+ms.date: 04/28/2026
 zone_pivot_groups: how-to-voice-live-interim-response
 ai-usage: ai-assisted
 ---
@@ -42,62 +42,6 @@ Before you start, complete the following:
 - Complete the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-agents-quickstart.md) or the [Quickstart: Get started with Voice Live](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
-
-::: zone pivot="programming-language-python"
-
-> [!IMPORTANT]
-> Interim responses require `azure-ai-voicelive >= 1.0.0b5` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```bash
-> pip install azure-ai-voicelive --pre
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
-
-> [!IMPORTANT]
-> Interim responses require `Azure.AI.VoiceLive >= 1.1.0-beta.3` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```dotnetcli
-> dotnet add package Azure.AI.VoiceLive --prerelease
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-java"
-
-> [!IMPORTANT]
-> Interim responses require `azure-ai-voicelive >= 1.0.0-beta.5` and API version `2026-01-01-preview`. Add the dependency with:
->
-> ```xml
-> <dependency>
->     <groupId>com.azure</groupId>
->     <artifactId>azure-ai-voicelive</artifactId>
->     <version>1.0.0-beta.5</version>
-> </dependency>
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-> [!IMPORTANT]
-> Interim responses require `@azure/ai-voicelive >= 1.0.0-beta.3` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```bash
-> npm install @azure/ai-voicelive@1.0.0-beta.3
-> ```
->
-> This SDK is currently in preview. Features and APIs might change before general availability.
-
-::: zone-end
 
 ## Configure LLM-generated interim responses
 
@@ -341,6 +285,6 @@ await session.updateSession({
 ## Next steps
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2026-01-01-preview.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
 - Explore [How to handle voice interruptions](./how-to-voice-live-auto-truncation.md)

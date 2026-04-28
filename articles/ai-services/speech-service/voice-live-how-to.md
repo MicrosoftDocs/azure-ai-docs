@@ -35,10 +35,10 @@ A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech 
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01`.
+The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-04-15`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01&model=gpt-realtime`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&model=gpt-realtime`
 
 ### Credentials
 
@@ -149,7 +149,7 @@ The Voice Live API supports multiple transcription models for input audio. Set t
 | Transcription model | Compatible chat models | Description |
 |---|---|---|
 | `azure-speech` | All non-multimodal models and agents | Azure speech to text. Automatically active with non-multimodal models. Supports [phrase list and custom speech](./voice-live-how-to-customize.md). |
-| `mai-transcribe-1` | All non-multimodal models and agents | MAI Transcribe-1 speech recognition model. |
+| `mai-transcribe-1` | All non-multimodal models and agents | MAI Transcribe-1 speech recognition model (preview). |
 | `whisper-1` | `gpt-realtime`, `gpt-realtime-mini` | OpenAI Whisper transcription model. |
 | `gpt-4o-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o based transcription model. |
 | `gpt-4o-mini-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o mini based transcription model. |
@@ -174,7 +174,7 @@ Azure speech to text is automatically active when you're using a non-multimodal 
 
 For speech input customization options such as phrase list and custom speech, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md).
 
-### MAI Transcribe-1
+### MAI Transcribe-1 (preview)
 
 MAI Transcribe-1 is a transcription model that can be used as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe-1` in a `session.update` message:
 
@@ -483,5 +483,5 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
 - See the [Voice Live API reference (2026-01-01-preview)](./voice-live-api-reference-2026-01-01-preview.md)

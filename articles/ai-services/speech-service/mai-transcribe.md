@@ -7,8 +7,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/28/2026
 zone_pivot_groups: llm-speech-quickstart
+ai-usage: ai-assisted
 
 # Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
 ---
@@ -90,9 +91,9 @@ First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-s
 
 ## Language support
 
-Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. For the supported languages, see [MAI Transcribe-1 supported languages](language-support.md?tabs=stt#mai-transcribe-1-supported-languages).
+Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
 
-
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 ## Related content
 

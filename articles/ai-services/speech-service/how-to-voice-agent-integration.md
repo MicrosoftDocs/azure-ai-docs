@@ -52,10 +52,10 @@ The Voice Live SDK introduces typed configuration classes that replace the raw q
 
 | Language | Package | Minimum version |
 |---|---|---|
-| Python | `azure-ai-voicelive` | 1.0.0b5 |
-| C# | `Azure.AI.VoiceLive` | 1.1.0-beta.2 |
-| Java | `azure-ai-voicelive` | 1.0.0-beta.5 |
-| JavaScript | `@azure/ai-voicelive` | 1.0.0-beta.3 |
+| Python | `azure-ai-voicelive` | 1.0.0 |
+| C# | `Azure.AI.VoiceLive` | 1.1.0 |
+| Java | `azure-ai-voicelive` | 1.0.0 |
+| JavaScript | `@azure/ai-voicelive` | 1.0.0 |
 
 ### Before and after: Python connection setup
 
@@ -94,4 +94,4 @@ For complete code examples, see the [new agent quickstart](voice-live-agents-qui
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
 - Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)

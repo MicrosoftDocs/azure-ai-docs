@@ -26,7 +26,7 @@ Follow the how-to below or get the full sample code:
 - [Java Development Kit (JDK)](/java/azure/jdk/) version 11 or later.
 - [Apache Maven](https://maven.apache.org/download.cgi) installed.
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- `azure-ai-voicelive` package version 1.0.0-beta.5 or later (MCP support requires API version `2026-01-01-preview`).
+- `azure-ai-voicelive` package (MCP support requires API version `2026-04-15`).
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 > [!TIP]
@@ -51,7 +51,7 @@ Control whether MCP tool calls require user approval before execution:
 
 ### API version requirement
 
-MCP support requires API version `2026-01-01-preview` or later.
+MCP support requires API version `2026-04-15` or later.
 
 ## Define MCP servers
 
@@ -154,4 +154,4 @@ In this sample:
 | `headers` | No | Extra HTTP headers to include in MCP requests. |
 | `authorization` | No | Authorization token for MCP requests. |
 
-For the complete REST API type definition, see [MCPTool](../../../voice-live-api-reference-2026-01-01-preview.md#mcptool) in the Voice Live API reference.
+For the complete REST API type definition, see [MCPTool](../../../voice-live-api-reference-2026-04-15.md#mcptool) in the Voice Live API reference.
