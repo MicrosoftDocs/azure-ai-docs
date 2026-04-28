@@ -38,6 +38,18 @@ Extended prompt cache retention is available for the following models:
 
 Extended prompt cache retention keeps cached prefixes active for longer, up to a maximum of 24 hours. Extended Prompt Caching works by offloading the key/value tensors to GPU-local storage when memory is full, significantly increasing the storage capacity available for caching.
 
+### Configure per request
+
+If you don’t specify a retention policy, for most models the default is `in_memory`. For gpt-5.5, gpt-5.5-pro, and all future models, the default is `24h` and `in_memory` is not supported. Allowed values are `in_memory` and `24h`.
+
+```json
+{
+  "model": "gpt-5.5",
+  "input": "Your prompt goes here...",
+  "prompt_cache_retention": "24h"
+}
+```
+
 ## Getting started
 
 To take advantage of prompt caching, a request must meet both of these requirements:
