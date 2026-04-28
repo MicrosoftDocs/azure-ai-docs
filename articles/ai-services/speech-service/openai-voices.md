@@ -45,7 +45,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 
 | Feature | Azure OpenAI (OpenAI voices) | Azure Speech (OpenAI voices) | Azure Speech voices |
 |---------|---------------|------------------------|------------------------|
-| **Region** | See the [Foundry Models regions table](https://learn.microsoft.com/en-us/azure/foundry-classic/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cglobal-standard&pivots=azure-openai#global-standard-model-availability) | See the [Foundry Models regions table](https://learn.microsoft.com/en-us/azure/foundry-classic/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cglobal-standard&pivots=azure-openai#global-standard-model-availability)  | Available in dozens of regions. See the [region list](regions.md#regions).|
+| **Region** | See the [Foundry Models regions table](/azure/foundry-classic/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cglobal-standard&pivots=azure-openai#global-standard-model-availability) | See the [Foundry Models regions table](/azure/foundry-classic/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cglobal-standard&pivots=azure-openai#global-standard-model-availability)  | Available in dozens of regions. See the [region list](regions.md#regions).|
 | **Voice variety** | 6 | 12 | More than 500 |
 | **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |
