@@ -17,7 +17,7 @@ When your model or agent costs start increasing, use **Ask AI** (preview) to qui
 In this article, you identify cost spikes, switch to a cost-efficient model, and validate performance improvements by using the Foundry portal.
 
 > [!NOTE]
-> When you ask Ask AI to perform tasks that modify your Azure resources, such as deploying a model or changing a deployment, Ask AI proposes actions for you to review and approve before it runs them. You can configure approval settings by selecting the settings icon in the Ask AI prompt chat. For more information, see [Ask AI for help (preview)](../concepts/ask-ai.md).
+> When you direct Ask AI to perform tasks that modify your Azure resources, such as deploying a model or changing a deployment, Ask AI proposes actions for you to review and approve before it runs them. You can configure approval settings by selecting the settings icon in the Ask AI prompt chat. For more information, see [Ask AI for help (preview)](../concepts/ask-ai.md).
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ In this article, you identify cost spikes, switch to a cost-efficient model, and
 - Application Insights configured for your Foundry project. For more information, see [Configure monitoring](monitoring-across-fleet.md#configure-monitoring).
 - At least one deployed or published agent with cost data. For meaningful trend analysis, you need a minimum of seven days of usage data.
 
-- The Ask AI agent enabled in your Foundry project. The Ask AI agent is available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
+- The Ask AI agent enabled in your Foundry project. It's available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
 
 - An evaluation dataset that represents your agent's typical workload. Use this dataset to compare model performance after switching models.
 
@@ -61,7 +61,7 @@ You can also select **Assets** on the left pane. Then, select **View Agent detai
 
 When you identify a model as a cost driver, use Ask AI to find a more cost-efficient alternative.
 
-1. In Ask AI, enter a prompt such as "Recommend a cheaper model with similar performance" or "Compare cost and quality for models similar to \[current model\]."
+1. In Ask AI, enter a prompt such as "Recommend a cheaper model with similar performance" or "Compare cost and quality for models similar to [current model]."
 
 1. Review the response. Ask AI recommends alternative models from the model catalog with performance and cost comparisons. Review the recommendations and select a model that meets your requirements.
 
@@ -70,7 +70,7 @@ When you identify a model as a cost driver, use Ask AI to find a more cost-effic
 1. After deployment completes, verify that the new model appears in your agent's deployment list with a **Succeeded** status.
 
 > [!TIP]
-> If Ask AI is unavailable, [compare models using the model leaderboard ](../how-to/benchmark-model-in-catalog.md).
+> If Ask AI is unavailable, [compare models using the model leaderboard](../how-to/benchmark-model-in-catalog.md).
 
 ## Evaluate model cost and quality differences
 
@@ -108,7 +108,7 @@ When you confirm that the new model meets your cost and performance requirements
 
 1. Test the agent to verify that it responds correctly with the new model.
 
-1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflect the new deployment.
+1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflects the new deployment.
 
 After you verify that the new model works correctly, consider deleting the old model deployment to avoid ongoing costs. 
 
