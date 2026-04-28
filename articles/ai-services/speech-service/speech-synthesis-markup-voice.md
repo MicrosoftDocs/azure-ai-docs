@@ -115,8 +115,43 @@ For `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`, within the `<mstts:dial
 
 For supported voices, see the [Language support](language-support.md?tabs=tts#multi-talker-voices) documentation.
 
-## Use speaking styles and roles
+## Use speaking styles, paralinguistics and roles
 
+### Styles and paralinguistic in HD voices
+
+In HD voices (DragonHD, DragonHD Omni, and DragonHD Flash), styles and paralinguistic elements can be used in the following three ways:
+
+| Input Type | Example |
+|-----------|---------|
+| **SSML (express-as tag)** | &lt;speak&gt;<br>&lt;voice name="en-us-Ava:DragonHDLatestNeural"&gt;<br>&lt;mstts:express-as style="whispering"&gt;Don’t tell anyone…&lt;/mstts:express-as&gt;<br>&lt;mstts:express-as style="ecstatic"&gt;This is amazing!&lt;/mstts:express-as&gt;<br>&lt;/voice&gt;<br>&lt;/speak&gt; |
+| **SSML (style markers)** | &lt;speak&gt;<br>&lt;voice name="en-us-Ava:DragonHDLatestNeural"&gt;<br>[whispering] Don’t tell anyone…<br>[ecstatic] This is amazing!<br>&lt;/voice&gt;<br>&lt;/speak&gt; |
+| **Plain Text (after chosing the voice)** | [whispering] Don’t tell anyone…<br>[ecstatic] This is amazing! |
+
+#### Supported styles for Dragon HD
+The following Styles and Paralinguistic tags are supported in HD voices
+
+| Type                                | Tag | 
+|-------------------------------------------|--------|
+| Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`, `whispering`   |
+| Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`   |
+
+> [!NOTE]
+> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
+> Paralingsuitics are available on all voices with all languages.
+
+#### Supported styles for Dragon HD Omni
+The following Styles and Paralinguistic tags are supported in HDOmni voices
+
+| Type                                | Tag | 
+|-------------------------------------------|--------|
+| Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`   |
+| Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`  |
+
+> [!NOTE]
+> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
+> Paralingsuitics are available on all voices with all languages.
+
+### Styles and roles in neural voices
 By default, neural voices have a neutral speaking style. You can adjust the speaking style, style degree, and role at the sentence level.
 
 > [!NOTE]
@@ -184,7 +219,7 @@ The following table has descriptions of each supported `role` attribute:
 
 ### mstts express-as examples
 
-For information about the supported values for attributes of the `mstts:express-as` element, see [Use speaking styles and roles](#use-speaking-styles-and-roles).
+For information about the supported values for attributes of the `mstts:express-as` element, see [Use speaking styles and roles](#use-speaking-styles-paralinguistics-and-roles).
 
 #### Style and degree example
 
