@@ -27,7 +27,7 @@ This article explains how to configure and use the Browser Automation tool with 
 
 For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
-In Microsoft Foundry, the Browser Automation tool enables you to perform real-world browser tasks through natural language prompts. When you use it with Foundry Agent Service, it creates isolated browser sessions in your provisioned Playwright workspace.
+In Microsoft Foundry, the Browser Automation tool enables your Foundry-model-powered agent to perform real-world browser tasks through natural language prompts. When you use it with Foundry Agent Service, it creates isolated browser sessions in your provisioned Playwright workspace.
 
 By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-workspaces), you can automate browser-based workflows such as searching, navigating, filling forms, and booking.
 

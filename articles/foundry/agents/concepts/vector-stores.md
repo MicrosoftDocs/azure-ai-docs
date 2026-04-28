@@ -14,7 +14,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Vector stores for file search
-Vector store objects give the [file search](../how-to/tools/file-search.md) tool the ability to search your files. When you add a file to a vector store, the service parses, chunks, embeds, and indexes it so the tool can run both keyword and semantic search.
+Vector store objects give the [file search](../how-to/tools/file-search.md) tool the ability to search your files. Adding a file to a vector store provides the agent's Foundry model with knowledge beyond its training data. The service parses, chunks, embeds, and indexes the file so the tool can run both keyword and semantic search.
 
 Vector stores can be attached to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation. For a conceptual overview of conversations, see [Agent runtime components](runtime-components.md).
 

@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Customize agent behavior at runtime with structured inputs
 
-You can customize agent instructions at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
+You can customize how an agent's Foundry model processes requests at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
 
 In this article, you learn how to:
 

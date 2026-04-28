@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation. A support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, and a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, you need to update and redeploy every agent that uses it.
 
-Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and reference from any hosted agent. At startup, the agent downloads the skill files it needs and injects their contents as additional instructions into every conversation session. If you update a skill, every agent that references it picks up the change on its next deployment - no code changes required.
+Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and reference from any hosted agent. At startup, the agent downloads the skill files it needs and injects their contents as additional instructions into every conversation session, guiding the Foundry model's behavior. If you update a skill, every agent that references it picks up the change on its next deployment - no code changes required.
 
 In this article, you learn how to:
 
