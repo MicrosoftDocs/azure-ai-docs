@@ -111,7 +111,7 @@ To configure **Managed Identity** authentication to API Management, complete the
        
     1. For token validation in API Management, get the application (client) ID of the managed identity.
         1. First, get the managed identity *object ID* from the managed identity configuration in your project. 
-        1. Search that object ID in Microsoft Entra ID to locate the corresponding application (client) ID.
+        1. Search that object ID in Microsoft Entra ID enterprise applications to locate the corresponding application (client) ID.
 
 1. Validate the managed identity token in API Management.
 
