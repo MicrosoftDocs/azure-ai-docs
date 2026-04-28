@@ -4,7 +4,8 @@ description: Learn how to combine scoring profiles with semantic ranking in Azur
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search
@@ -15,7 +16,7 @@ To ensure the scoring profile provides the determining score, the semantic ranke
 
 ## Prerequisites
 
-- [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+- [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md).
 
 - A search index with a semantic configuration that specifies `"rankingOrder": "boostedRerankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 
