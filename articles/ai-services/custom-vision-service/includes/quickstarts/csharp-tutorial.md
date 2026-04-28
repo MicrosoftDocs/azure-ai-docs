@@ -12,7 +12,7 @@ Get started with the Custom Vision client library for .NET. Follow these steps t
 > [!NOTE]
 > If you want to build and train a classification model _without_ writing code, see the [browser-based guidance](../../getting-started-build-a-classifier.md).
 
-[Reference documentation](/dotnet/api/overview/azure/custom-vision) | Library source code for [training](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/cognitiveservices/Vision.CustomVision.Training) and [prediction](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/cognitiveservices/Vision.CustomVision.Prediction) | Package (NuGet) for [training](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training/) and [prediction](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction/) | [Samples](/samples/browse/?products=azure&term=vision&terms=vision)
+[Reference documentation](/dotnet/api/overview/azure/custom-vision) | Library source code for [training](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitiveservices) and [prediction](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitiveservices) | Package (NuGet) for [training](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training/) and [prediction](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction/) | [Samples](/samples/browse/?products=azure&term=vision&terms=vision)
 
 
 ## Prerequisites
