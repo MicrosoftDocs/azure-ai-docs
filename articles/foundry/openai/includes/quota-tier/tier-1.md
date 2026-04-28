@@ -59,11 +59,15 @@ ms.date: 02/18/2026
 | gpt-5.4-mini                   | GlobalStandard    | 1,000       | 1,000,000   |
 | gpt-5.4-nano                   | DataZoneStandard  | 2,000       | 2,000,000   |
 | gpt-5.4-nano                   | GlobalStandard    | 5,000       | 5,000,000   |
+| gpt-5.5                        | DataZoneStandard  | 0           | 0           |
+| gpt-5.5                        | GlobalStandard    | 0           | 0           |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 9           | -           |
 | gpt-image-1-mini               | GlobalStandard    | 12          | -           |
 | gpt-image-1.5                  | DataZoneStandard  | 3           | -           |
 | gpt-image-1.5                  | GlobalStandard    | 9           | -           |
+| gpt-image-2                    | DataZoneStandard  | 3           | -           |
+| gpt-image-2                    | GlobalStandard    | 9           | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 150         | 150,000     |
 | o1                             | DataZoneStandard  | 100         | 600,000     |

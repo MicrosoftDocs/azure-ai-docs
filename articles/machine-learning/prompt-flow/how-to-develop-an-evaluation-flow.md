@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Evaluation flows and metrics
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Evaluation flows are a special type of prompt flow that calculates metrics to assess how well the outputs of a run meet specific criteria and goals. You can create or customize evaluation flows and metrics tailored to your tasks and objectives, and use them to evaluate other prompt flows. This article explains evaluation flows, how to develop and customize them, and how to use them in prompt flow batch runs to evaluate flow performance.
 
 ## Understand evaluation flows

@@ -568,7 +568,7 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
 - [Monitor model usage and costs](../../../foundry-classic/how-to/costs-plan-manage.md)
-- [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
+- [Configure Claude Desktop for Microsoft Foundry](configure-claude-desktop.md)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)
 - [Claude Code on Microsoft Foundry (Anthropic docs)](https://code.claude.com/docs/en/microsoft-foundry)

@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: limits-and-quotas
-ms.date: 12/11/2025
+ms.date: 04/20/2026
 ---
 
 # Project limits and boundaries
@@ -42,7 +42,6 @@ File names may not include the following characters:
 |Format|Max file size (MB)|
 |--|--|
 |`.docx`|10|
-|`.pdf`|25|
 |`.tsv`|10|
 |`.txt`|10|
 |`.xlsx`|3|
@@ -84,7 +83,9 @@ The length and acceptable characters for metadata name and value are listed in t
 |||||
 
 ## Project content limits
+
 Overall limits on the content in the project:
+
 * Length of answer text: 25,000 characters
 * Length of question text: 1,000 characters
 * Length of metadata key text: 100 characters
@@ -92,7 +93,7 @@ Overall limits on the content in the project:
 * Supported characters for metadata name: Alphabets, digits, and `_`
 * Supported characters for metadata value: All except `:` and `|`
 * Length of file name: 200
-* Supported file formats: ".tsv", ".pdf", ".txt", ".docx", ".xlsx".
+* Supported file formats: ".tsv", ".txt", ".docx", ".xlsx".
 * Maximum number of alternate questions: 300
 * Maximum number of question-answer pairs: Depends on the **[Azure AI Search tier](/azure/search/search-limits-quotas-capacity#document-limits)** chosen. A question and answer pair maps to a document on Azure AI Search index.
 * URL/HTML page: 1 million characters

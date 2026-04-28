@@ -19,6 +19,8 @@ ms.update-cycle: 365-days
 
 # Get started with prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 This article walks you through the main user journey of using prompt flow in Azure Machine Learning studio. You learn how to enable prompt flow in your Azure Machine Learning workspace, create and develop a prompt flow, test and evaluate the flow, and then deploy it to production.
 
 ## Prerequisites 

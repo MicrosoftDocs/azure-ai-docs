@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Overview of tools in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 This page provides an overview of the tools that are available in prompt flow. It also offers instructions on how to create your own custom tool and how to install custom tools.
 
 ## An index of tools

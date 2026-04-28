@@ -1,7 +1,7 @@
 ---
-title: Adapt Personally Identifying Information (PII) to your domain
+title: Adapt Personally Identifiable Information (PII) to your domain
 titleSuffix: Foundry Tools
-description: This article shows you how to adapt Personally Identifying Information (PII) to your domain.
+description: This article shows you how to adapt Personally Identifiable Information (PII) to your domain.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -10,7 +10,7 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-# Adapt Personally Identifying Information (PII) to your domain
+# Adapt Personally Identifiable Information (PII) to your domain
 
 To support using your own terminology to identify entities (also known as *context*), the `entitySynonyms` feature enables you to define custom synonyms for specific entity types. This feature helps the system detect entities that appear in your inputs using terms or vocabulary that the model doesn't recognize by default. Aligning your specific terms with standard entities allows the model to accurately recognize and link these terms during entity detection.
 

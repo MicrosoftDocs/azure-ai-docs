@@ -3,6 +3,10 @@ items:
   items: 
   - name: What is the Foundry Agent service
     href: ../../agents/overview.md
+  - name: Agent manifests
+    href: ../../agents/concepts/agent-catalog.md
+  - name: Quickstart - Create an agent from a manifest
+    href: ../../agents/quickstarts/quickstart-agent-catalog.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
   - name: Quickstart - Deploy a hosted agent
@@ -23,10 +27,16 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Manage hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
+    - name: Manage hosted agent sessions
+      href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Migrate agents
     href: ../../agents/how-to/migrate.md
+  - name: Migrate hosted agents to the refreshed public preview
+    href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
+  - name: Agent applications
+    href: ../../agents/how-to/agent-applications.md
   - name: Retrieval Augmented Generation (RAG) overview
     href: ../../concepts/retrieval-augmented-generation.md
   - name: Vector stores for file search
@@ -35,14 +45,20 @@ items:
   items:
   - name: Agent runtime components
     href: ../../agents/concepts/runtime-components.md
-  - name: Tools overview
-    href: ../../agents/concepts/tool-catalog.md
-  - name: Tool best practices
-    href: ../../agents/concepts/tool-best-practice.md
+  - name: Configure an agent
+    href: ../../agents/how-to/configure-agent.md
+  - name: Agent tools
+    items:
+    - name: Tools overview
+      href: ../../agents/concepts/tool-catalog.md
+    - name: Best practices
+      href: ../../agents/concepts/tool-best-practice.md
+    - name: Create a private tool catalog (preview)
+      href: ../../agents/how-to/private-tool-catalog.md
+  - name: Toolbox (preview)
+    href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
-  - name: Create a private tool catalog (preview)
-    href: ../../agents/how-to/private-tool-catalog.md
   - name: Azure AI Search
     href: ../../agents/how-to/tools/ai-search.md
   - name: Code interpreter
@@ -75,6 +91,8 @@ items:
       href: ../../mcp/build-your-own-mcp-server.md
   - name: Additional tools
     items:
+    - name: Skills (preview)
+      href: ../../agents/how-to/tools/skills.md
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
@@ -134,14 +152,12 @@ items:
   items:
   - name: Deploy a hosted agent
     href: ../../agents/how-to/deploy-hosted-agent.md
-  - name: Publish and share agents
-    href: ../../agents/how-to/publish-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
-  - name: Invoke your Agent Application using the Responses API protocol
-    href: ../../agents/how-to/publish-responses.md
+  - name: Migrate from Agent Applications to the new agent model
+    href: ../../agents/how-to/migrate-agent-applications.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:
@@ -167,6 +183,8 @@ items:
   items:
   - name: Quotas, limits, and region support
     href: ../../agents/concepts/limits-quotas-regions.md
+  - name: Hosted agent permissions reference
+    href: ../../agents/concepts/hosted-agent-permissions.md
   - name: FAQ
     href: ../../agents/faq.yml
   - name: Capability hosts

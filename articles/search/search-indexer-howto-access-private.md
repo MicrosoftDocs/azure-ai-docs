@@ -4,7 +4,7 @@ description: Configure indexer connections to access content from other Azure re
 ms.reviewer: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 04/22/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
@@ -59,7 +59,8 @@ You can create a shared private link for the following resources.
 | Microsoft.Sql/managedInstances (preview) <sup>5</sup>| `managedInstance` |
 | Microsoft.CognitiveServices/accounts <sup>6</sup> <sup>7</sup>| `openai_account` |
 | Microsoft.CognitiveServices/accounts <sup>8</sup> | `cognitiveservices_account` |
-| Microsoft.Fabric/privateLinkServicesForFabric <sup>9</sup> | `workspace` |
+| Microsoft.CognitiveServices/accounts <sup>9</sup> | `foundry_account` |
+| Microsoft.Fabric/privateLinkServicesForFabric <sup>10</sup> | `workspace` |
 
 <sup>1</sup> If Azure Storage and Azure AI Search are in the same region, the connection to storage is made over the Microsoft backbone network, which means a shared private link is redundant for this configuration. However, if you already set up a private endpoint for Azure Storage, you should also set up a shared private link or the connection is refused on the storage side. Also, if you're using multiple storage formats for various scenarios in search, make sure to create a separate shared private link for each subresource.
 
@@ -75,9 +76,11 @@ You can create a shared private link for the following resources.
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud and [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/). Other cloud offerings don't have support for shared private links for `openai_account` Group ID.
 
-<sup>8</sup> Shared private links are supported for connections to Foundry resources. For AI enrichment, Azure AI Search connects to a Foundry resource for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can be private through a shared private link, which is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition.
+<sup>8</sup> Shared private links are supported for connections to Foundry resources. For [Foundry resource skills](cognitive-search-predefined-skills.md#foundry-resource) used in [AI enrichment](cognitive-search-concept-intro.md), Azure AI Search connects to a Foundry resource for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can be private through a shared private link, which is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition. 
 
-<sup>9</sup> Shared private link is supported for connections to OneLake workspace. To create a `privateLinkServicesForFabric` resource specific to a workspace, [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) `Microsoft.Fabric` namespace to your subscription and refer to step 2 as documented in [Create the private link service in Azure](/fabric/security/security-workspace-level-private-links-set-up#step-2-create-the-private-link-service-in-azure). Note that when using a shared private link, the OneLake data source configuration must be defined with a specific connection string as outlined in the [OneLake indexer documentation](search-how-to-index-onelake-files.md#define-the-data-source).
+<sup>9</sup> Shared private links are supported for connections to Foundry resources. For Azure-hosted model skills such as [GenAI prompt skill](cognitive-search-skill-genai-prompt.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), or [Content Understanding skill](cognitive-search-skill-content-understanding.md), Azure AI Search connects to a Foundry resource to execute the underlying processing. 
+
+<sup>10</sup> Shared private link is supported for connections to OneLake workspace. To create a `privateLinkServicesForFabric` resource specific to a workspace, [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) `Microsoft.Fabric` namespace to your subscription and refer to step 2 as documented in [Create the private link service in Azure](/fabric/security/security-workspace-level-private-links-set-up#step-2-create-the-private-link-service-in-azure). Note that when using a shared private link, the OneLake data source configuration must be defined with a specific connection string as outlined in the [OneLake indexer documentation](search-how-to-index-onelake-files.md#define-the-data-source).
 
 ## 1 - Create a shared private link
 

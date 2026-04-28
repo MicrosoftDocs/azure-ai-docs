@@ -121,11 +121,12 @@ The following Fireworks models are available in the Foundry model catalog:
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
-| **Qwen** | Qwen3 14B | `FW-Qwen3-14b` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
 | **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | Bilingual model for chat and reasoning tasks. |
 | **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | Per-Token and PTU | High-performance bilingual model for chat and reasoning. |
 
-All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
+All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 ## Custom models (bring your own model)
 
@@ -137,9 +138,9 @@ Custom models must be based on one of the following supported architectures:
 
 * **DeepSeek** (V3.1, V3.2)
 * **Kimi** (K2, K2.5)
-* **GLM** (4.7, 4.8)
-* **OpenAI** gpt-oss-120b
-* **Qwen** (qwen3-14b)
+* **GLM** (4.7)
+* **OpenAI** (gpt-oss-120b)
+* **Qwen** (qwen3-14b, qwen3.5-397B-A17B, qwen3.5-122B-A10B)
 
 ### Limitations
 
@@ -202,6 +203,10 @@ Fireworks models deployed through Foundry support both [pay-per-token](https://a
 ### How do I disable Fireworks in my Foundry project?
 
 Fireworks can be disabled at the Azure subscription level. Follow the steps to [unregister preview features](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) in your Azure subscription.
+
+### How do I use the Responses API?
+
+The Responses API is supported via the Foundry Projects API and SDK. Make sure to point your client to your project's api endpoint or use the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk).
 
 ## Troubleshoot Fireworks on Foundry
 

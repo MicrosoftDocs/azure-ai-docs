@@ -9,8 +9,10 @@ ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-image-generation
 ---
 
@@ -20,7 +22,7 @@ zone_pivot_groups: selection-image-generation
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
 > - You also need a compatible orchestrator model (`gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, or `gpt-5` series) deployed in the same Foundry project.
 
-The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. Use it to create AI-generated visuals and return base64-encoded output that you can save to a file.
+The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. The agent's Foundry model orchestrates the image generation request and returns base64-encoded output that you can save to a file.
 
 ## Usage support
 
