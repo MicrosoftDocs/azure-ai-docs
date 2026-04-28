@@ -23,6 +23,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
+| [Index aliases](search-how-to-alias.md) | Now generally available. |
 | [Keyless billing for Foundry Tools processing](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) | Now generally available. |
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
