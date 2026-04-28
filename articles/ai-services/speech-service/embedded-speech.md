@@ -320,7 +320,7 @@ For embedded voices, it's essential to note that certain [Speech synthesis marku
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
 
-<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) style is supported only for the `en-US-JennyNeural` voice.
+<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles) style is supported only for the `en-US-JennyNeural` voice.
 
 ## Related content
 

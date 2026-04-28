@@ -44,7 +44,7 @@ sections:
       - question: |
           Can we have multiple strengths for each emotion, like sad, slightly sad, and so on?
         answer: |
-          Adjusting the style degree is supported for some voices depending on the locale. See the [mstts:express-as tag](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
+          Adjusting the style degree is supported for some voices depending on the locale. See the [mstts:express-as tag](speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
       - question: |
           Is there a mapping between Viseme IDs and mouth shape?
         answer: |

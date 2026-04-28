@@ -1,8 +1,10 @@
 ---
 title: "Use the Microsoft Fabric data agent with Foundry agents"
 description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough."
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 manager: nitinme
 ms.date: 03/30/2026
 ms.service: microsoft-foundry
