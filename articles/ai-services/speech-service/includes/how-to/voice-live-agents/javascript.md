@@ -51,7 +51,7 @@ Use Microsoft Entra ID credentials for agent mode. Agent invocation in this flow
 
 ### API version pinning
 
-Use a consistent SDK version (`@azure/ai-voicelive@1.0.0-beta.3`) in your `package.json` to keep behavior predictable across preview updates. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
+Use a consistent SDK version (`@azure/ai-voicelive@1.0.0`) in your `package.json` to keep behavior predictable. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
 
 ### Conversation and trace alignment
 

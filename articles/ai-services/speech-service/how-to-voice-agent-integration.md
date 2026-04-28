@@ -52,7 +52,7 @@ The Voice Live SDK introduces typed configuration classes that replace the raw q
 
 | Language | Package | Minimum version |
 |---|---|---|
-| Python | `azure-ai-voicelive` | 1.0.0 |
+| Python | `azure-ai-voicelive` | 1.2.0 |
 | C# | `Azure.AI.VoiceLive` | 1.1.0 |
 | Java | `azure-ai-voicelive` | 1.0.0 |
 | JavaScript | `@azure/ai-voicelive` | 1.0.0 |

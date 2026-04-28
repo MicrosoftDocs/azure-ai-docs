@@ -1762,7 +1762,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>com.azure</groupId>
         <artifactId>azure-ai-voicelive</artifactId>
-        <version>1.0.0-beta.1</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.azure</groupId>
