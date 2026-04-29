@@ -1,5 +1,5 @@
 ---
-title: "Manage Compliance and Security in Microsoft Foundry"
+title: "Manage compliance and security in Microsoft Foundry"
 ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
 author: s-polly
@@ -91,7 +91,7 @@ You can also review compliance status by asset rather than by guardrail policy:
 
 1. Review model deployments within the chosen subscription and project.
 
-1. Examine any assets marked as **Violation detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
+1. Examine any assets marked as **Violations detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
 
 1. On the information pane, review the governing guardrail policies and the specifics of any noncompliant guardrail policy.
 
@@ -133,7 +133,7 @@ After you create the guardrail policy, it's listed on the **Policies** tab. The 
 
 When you monitor your model deployments for compliance, review and compare the guardrail controls for your assets throughout a project or subscription. Even if the controls aren't directly linked to guardrail policy compliance, this process helps you spot gaps in guardrail policy assignments, like missing controls. You can also uncover potential risks that might go unnoticed, such as subscriptions that lack content filtering entirely.
 
-Here's how you can do this task:
+To review guardrails across your subscription:
 
 1. In the compliance workspace, select the **Guardrails** tab.
 
