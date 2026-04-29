@@ -132,7 +132,7 @@ Personal voice enables your users to get AI generated replication of their own v
 }
 ```
 
-The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural` and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-04-15.md#realtimeazurepersonalvoice).
+The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural` and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
 
 ### Azure custom avatar
 

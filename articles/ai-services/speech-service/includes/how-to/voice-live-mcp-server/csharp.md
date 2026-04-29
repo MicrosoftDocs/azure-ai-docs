@@ -153,4 +153,4 @@ In this sample:
 | `Headers` | No | Extra HTTP headers to include in MCP requests. |
 | `Authorization` | No | Authorization token for MCP requests. |
 
-For the complete REST API type definition, see [MCPTool](../../../voice-live-api-reference-2026-04-15.md#mcptool) in the Voice Live API reference.
+For the complete REST API type definition, see [MCPTool](../../../voice-live-api-reference-2026-01-01-preview.md#mcptool) in the Voice Live API reference.

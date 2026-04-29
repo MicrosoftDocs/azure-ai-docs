@@ -181,7 +181,7 @@ The message is:
 * Synthesized by TTS
 * Under full developer control
 
-For the full parameter specification, see [`pre_generated_assistant_message` in the API reference](./voice-live-api-reference-2026-04-15.md#realtimeresponseoptions).
+For the full parameter specification, see [`pre_generated_assistant_message` in the API reference](./voice-live-api-reference-2026-01-01-preview.md#realtimeresponseoptions).
 
 #### Example: Pregenerated greeting
 
