@@ -30,7 +30,7 @@ Model router is packaged as a single Foundry model that you deploy. Start by fol
 
 To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
 
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
+Go to the Microsoft Foundry portal and navigate to the model catalog. Find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
 
 To enable more configuration options, choose **Custom settings**.
 
