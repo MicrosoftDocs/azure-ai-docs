@@ -26,7 +26,9 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ## Deploy a model router model
 
-Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
+Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
+
+To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
 
 In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
 
