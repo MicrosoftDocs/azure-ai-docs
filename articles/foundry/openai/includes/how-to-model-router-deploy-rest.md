@@ -21,5 +21,8 @@ Deploy model router programmatically with the Azure Management REST API. The fol
 
 :::code language="bash" source="~/foundry-samples-main/samples/REST/model-router/deploy-model-router-all-configs.sh" id="deploy_model_router_all_configs":::
 
+> [!IMPORTANT]
+> If you include Anthropic Claude models in the `routing.models` array, you must first deploy them to the same Foundry account with a matching SKU. Otherwise the request fails with an `InvalidResourceProperties` error. Deploy Claude models from the Foundry model catalog before you reference them in a model router deployment. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude).
+
 > [!TIP]
 > For the full runnable sample and other deployment options (routing mode only, model subset only), see the [Model Router REST samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/REST/model-router) in the foundry-samples repository.
