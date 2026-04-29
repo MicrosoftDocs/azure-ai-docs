@@ -54,7 +54,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
 | `gpt-5.4-mini` | See the [models table](#model-summary-table-and-region-availability)|
-| `gpt-5.4.nano` | See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.4-nano` | See the [models table](#model-summary-table-and-region-availability) |
 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
