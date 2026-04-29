@@ -19,6 +19,9 @@ The following previously preview features are now generally available:
 - [Voice Agent integration with Foundry Agent Service](../../how-to-voice-agent-integration.md) — build real-time voice agents with Foundry Agent Service.
 - Java and JavaScript SDK support.
 
+New GA feature:
+- [Telemetry and tracing](../../how-to-voice-live-telemetry.md) — built-in OpenTelemetry instrumentation for monitoring Voice Live sessions.
+
 New preview feature:
 - [MAI Transcribe-1](../../mai-transcribe.md) is available in preview as a speech recognition model option for Voice Live.
 
