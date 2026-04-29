@@ -29,13 +29,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up the environment
 
-1. Create a new folder named `llm-speech-quickstart`, and then go to the folder with the following command:
+1. Create a new folder named `llm-speech-quickstart` and then go to the folder with the following command:
 
     ```shell
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
-1. To install the packages you need for this tutorial, create and activate a virtual Python environment. We recommend that you always use a virtual or conda environment when you install Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
+1. To install the packages that you need for this article, create and activate a virtual Python environment. We recommend that you always use a virtual or conda environment when you install Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or later installed, create a virtual environment by using the following commands:
 
    # [Windows](#tab/windows)
 
