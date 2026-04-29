@@ -34,6 +34,9 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
 | [GenAI Prompt skill property removals](cognitive-search-skill-genai-prompt.md) | Starting with REST API version 2026-04-01, the following properties are removed from the GenAI Prompt skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |
+| [Markdown one-to-many parsing mode](search-how-to-index-azure-blob-markdown.md#use-one-to-many-parsing-mode) | Now generally available. |
+| [Markdown one-to-one parsing mode](search-how-to-index-azure-blob-markdown.md#use-one-to-one-parsing-mode) | Now generally available. |
+| [User-assigned managed identity for indexer connections](search-how-to-managed-identities.md) | Now generally available for indexer data source connections, knowledge store connections, and customer-managed encryption key access to Azure Key Vault. |
 | [Split billing consent for semantic ranker and agentic retrieval](semantic-how-to-enable-disable.md) | Billing consent for semantic ranker and agentic retrieval is now independent. All search services are automatically on the free agentic retrieval plan. Currently, there's no portal support for the billing split.<p>The billing split only applies on Search Service 2026-04-01 and later. If you currently have `semanticSearch=standard`, you must explicitly set `knowledgeRetrieval=standard` before you upgrade to 2026-04-01. |
 
 ## March 2026

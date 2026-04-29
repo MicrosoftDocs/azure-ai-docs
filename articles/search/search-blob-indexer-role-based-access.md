@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/24/2026
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
@@ -136,7 +136,7 @@ If you're using an indexer, configure it, the data source, and the index to pull
 
   + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
 
-  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
+  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity), you must also specify the `identity` property.
 
 <!-- Question/Comment: check this example -->
 JSON example with system managed identity and `indexerPermissionOptions`:
