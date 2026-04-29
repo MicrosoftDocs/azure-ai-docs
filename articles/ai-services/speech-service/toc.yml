@@ -372,6 +372,8 @@ items:
         href: how-to-voice-live-mcp-server.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
+      - name: Enable telemetry and tracing
+        href: how-to-voice-live-telemetry.md
     - name: Voice Live FAQ
       href: voice-live-faq.yml
       displayName: FAQ,frequently asked questions
