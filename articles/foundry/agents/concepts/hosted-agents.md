@@ -189,10 +189,17 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 
 Hosted agents are currently available in the following regions: 
 
+- East US 2
 - Australia East
 - Canada Central
 - North Central US
 - Sweden Central
+- South East Asia
+- Poland Central
+- South Africa North
+- Korea Central
+- South India
+- Brazil South
 
 > [!NOTE]
 > This list will be updated as additional regions become available.
