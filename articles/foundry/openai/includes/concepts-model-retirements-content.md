@@ -7,7 +7,7 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/23/2026
+ms.date: 04/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -19,9 +19,9 @@ Microsoft Foundry continuously refreshes its model catalog with newer, more capa
 
 ### Lifecycle stages
 
-:::image type="content" source="../media/concepts/lifecycle-stage-transitions.png" alt-text="Screenshot showing model lifecycle stage transitions." lightbox="../media/concepts/lifecycle-stage-transitions.png":::
+Every model in the Foundry catalog belongs to exactly one of these five stages:
 
-Every model in the Foundry catalog belongs to exactly one of five stages, as described in the following table:
+:::image type="content" source="../media/concepts/lifecycle-stage-transitions.png" alt-text="Screenshot showing model lifecycle stage transitions." lightbox="../media/concepts/lifecycle-stage-transitions.png":::
 
 | Stage | What it means | Can create new deployments? | Existing deployments work? |
 |-------|--------------|----------------------------|---------------------------|
@@ -37,9 +37,9 @@ Every model in the Foundry catalog belongs to exactly one of five stages, as des
 
 ## Model launch and availability
 
-:::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
+New models become available through deployment types in this order:
 
-New models become available through deployment types in a predictable order as follows:
+:::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
 
 | Order | Deployment type | When available |
 |-------|----------------|---------------|
@@ -82,7 +82,7 @@ Microsoft makes specific commitments about how long model versions stay availabl
 
 We commit to meaningful overlap between a retiring GA model and its replacement so customers can test, evaluate, and migrate with confidence.
 
-:::image type="content" source="../media/concepts/GA-lifecycle-and-replacement-transition-timeframes.png" alt-text="Screenshot of the general availability model lifecycle showing model overlap and replacement transition timeframes." lightbox="../media/concepts/GA-lifecycle-and-replacement-transition-timeframes.png":::
+:::image type="content" source="../media/concepts/general-availability-lifecycle-and-replacement-transition-timeframes.png" alt-text="Screenshot of the general availability model lifecycle showing model overlap and replacement transition timeframes." lightbox="../media/concepts/general-availability-lifecycle-and-replacement-transition-timeframes.png":::
 
 | Phase | Pattern |
 |-------|---------|
