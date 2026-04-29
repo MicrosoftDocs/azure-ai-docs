@@ -133,11 +133,11 @@ If you use context compaction, there are two different continuation patterns.
 
 ### Server-side compaction
 
-When you enable [server-side compaction](./responses.md?tabs=python-key#server-side-compaction) (`context_management` with `compact_threshold`), compaction happens during normal `/responses` generation. In WebSocket mode, you continue the same way you normally do: send the next `response.create` with the latest `previous_response_id` and only new input items.
+When you enable [server-side compaction](../how-to/responses.md?tabs=python-key#server-side-compaction) (`context_management` with `compact_threshold`), compaction happens during normal `/responses` generation. In WebSocket mode, you continue the same way you normally do: send the next `response.create` with the latest `previous_response_id` and only new input items.
 
 ### Standalone `/responses/compact`
 
-The standalone [`/responses/compact`](./responses.md?tabs=python-key#compact-using-items-returned) endpoint returns a new compacted input window, not a response ID. After compaction, start a new response on your WebSocket connection by omitting `previous_response_id` (or setting it to `null`) and passing the compacted output as input, plus the next user or tool items. Pass the compacted output as-is; don't prune the returned window.
+The standalone [`/responses/compact`](../how-to/responses.md?tabs=python-key#compact-using-items-returned) endpoint returns a new compacted input window, not a response ID. After compaction, start a new response on your WebSocket connection by omitting `previous_response_id` (or setting it to `null`) and passing the compacted output as input, plus the next user or tool items. Pass the compacted output as-is; don't prune the returned window.
 
 ```python
 # Compact your current window (HTTP call)
