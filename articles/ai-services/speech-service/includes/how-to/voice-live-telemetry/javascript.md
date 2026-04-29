@@ -8,4 +8,5 @@ ms.author: pafarley
 
 [!INCLUDE [Header](../../common/voice-live-javascript.md)]
 
-JavaScript telemetry samples are coming soon. Check back for updated guidance on enabling OpenTelemetry tracing with the JavaScript Voice Live SDK.
+> [!NOTE]
+> JavaScript telemetry samples are coming soon. Check back for updated guidance on enabling OpenTelemetry tracing with the JavaScript Voice Live SDK.

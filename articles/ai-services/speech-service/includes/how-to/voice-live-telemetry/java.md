@@ -8,4 +8,5 @@ ms.author: pafarley
 
 [!INCLUDE [Header](../../common/voice-live-java.md)]
 
-Java telemetry samples are coming soon. Check back for updated guidance on enabling OpenTelemetry tracing with the Java Voice Live SDK.
+> [!NOTE]
+> Java telemetry samples are coming soon. Check back for updated guidance on enabling OpenTelemetry tracing with the Java Voice Live SDK.
