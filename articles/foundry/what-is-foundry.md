@@ -60,7 +60,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 ---
 
-For the full walkthrough including agent creation, see the [Microsoft Foundry quickstart](./quickstarts/get-started-code.md).
+For the full walkthrough, see the [Microsoft Foundry quickstart](./quickstarts/get-started-code.md).
 
 ## Available models
 
