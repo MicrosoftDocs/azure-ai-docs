@@ -127,7 +127,7 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 
 When gpt-4o versions `2024-05-13` and `2024-08-06` retired on **2026-03-31**, they were auto-upgraded to gpt-5.1 on the Standard SKU. Before the upgrade, gpt-5.1 had no Standard presence at all. After the upgrade, gpt-5.1 Standard was added to all eight regions that previously had those gpt-4o versions (centralus, eastus, eastus2, northcentralus, southcentralus, swedencentral, westus, westus3). Version `2024-11-20` was unaffected (retires 2026-10-01).
 
-### Migration to a replacement model
+## Migration to a replacement model
 
 When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirements.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
 
