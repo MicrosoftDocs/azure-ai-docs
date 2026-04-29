@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 The Responses API supports a WebSocket mode for long-running, tool-heavy workflows. In WebSocket mode, you keep a persistent connection to `/v1/responses` and continue each turn by sending only new input items together with a `previous_response_id`. This approach reduces per-turn overhead and improves end-to-end latency across long chains.
 
-WebSocket mode works with both Zero Data Retention (ZDR) and `store=false`.
+WebSocket mode works with `store=false`.
 
 ## Prerequisites
 
@@ -41,7 +41,9 @@ Server events and ordering match the existing Responses streaming event model.
 
 ### Start a turn
 
-Send a `response.create` event on the open socket. The following example connects by using an API key and asks the model a question.
+Send a `response.create` event on the open socket. The following examples connect to the WebSocket endpoint and ask the model a question. WebSocket mode supports both API key and Microsoft Entra ID authentication — choose the tab that matches your auth method.
+
+# [API key](#tab/api-key)
 
 ```python
 from websocket import create_connection
@@ -49,7 +51,7 @@ import json
 
 ws = create_connection(
     f"wss://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/v1/responses",
-    header=[f"Authorization: Bearer {YOUR_AOAI_API_KEY}"], # Or your Entra ID token
+    header=[f"Authorization: Bearer {YOUR_AOAI_API_KEY}"],
 )
 
 ws.send(json.dumps({
@@ -66,6 +68,39 @@ ws.send(json.dumps({
     "tools": [],
 }))
 ```
+
+# [Microsoft Entra ID](#tab/entra-id)
+
+```python
+from azure.identity import DefaultAzureCredential
+from websocket import create_connection
+import json
+
+# Acquire a token for the Azure OpenAI resource
+credential = DefaultAzureCredential()
+token = credential.get_token("https://cognitiveservices.azure.com/.default").token
+
+ws = create_connection(
+    f"wss://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/v1/responses",
+    header=[f"Authorization: Bearer {token}"],
+)
+
+ws.send(json.dumps({
+    "type": "response.create",
+    "model": "gpt-4.1", # Replace with your model deployment name
+    "store": False,
+    "input": [
+        {
+            "type": "message",
+            "role": "user",
+            "content": [{"type": "input_text", "text": "Find fizz_buzz()"}],
+        }
+    ],
+    "tools": [],
+}))
+```
+
+---
 
 > [!TIP]
 > You can optionally warm up request state by sending `response.create` with `generate: false`. Use this option when you already know the tools, instructions, or messages you plan to send with an upcoming turn. A warmup doesn't return model output but prepares request state so the next generated turn can start faster. The warmup request returns a response ID that you can chain from by using `previous_response_id`.
@@ -118,12 +153,12 @@ ws.send(json.dumps({
 
 WebSocket mode uses the same `previous_response_id` chaining as HTTP mode, but adds a lower-latency continuation path on the active socket.
 
-On an active WebSocket connection, the service keeps one previous-response state in a connection-local in-memory cache (the most recent response). Continuing from that response is fast because the service reuses connection-local state. Because this state is retained only in memory and isn't written to disk, WebSocket mode is compatible with `store=false` and Zero Data Retention (ZDR).
+On an active WebSocket connection, the service keeps one previous-response state in a connection-local in-memory cache (the most recent response). Continuing from that response is fast because the service reuses connection-local state. Because this state is retained only in memory and isn't written to disk, WebSocket mode is compatible with `store=false`.
 
 If a `previous_response_id` isn't in the in-memory cache, behavior depends on whether you store responses:
 
 - With `store=true`, the service might hydrate older response IDs from persisted state. Continuation still works but usually loses the in-memory latency benefit.
-- With `store=false` (including ZDR), there's no persisted fallback. If the ID is uncached, the request returns `previous_response_not_found`.
+- With `store=false`, there's no persisted fallback. If the ID is uncached, the request returns `previous_response_not_found`.
 
 If a turn fails (`4xx` or `5xx`), the service evicts the referenced `previous_response_id` from the connection-local cache. This prevents reusing stale cached state for that failed continuation.
 
@@ -174,7 +209,7 @@ ws.send(json.dumps({
 When a connection closes or hits the 60-minute limit, open a new WebSocket connection and continue with one of these patterns:
 
 - If your prior response is persisted (`store=true`) and you have a valid response ID, continue with `previous_response_id` and new input items.
-- If you can't continue the chain (for example, `store=false`/ZDR or `previous_response_not_found`), start a new response by omitting `previous_response_id` (or setting it to `null`) and send the full input context for the next turn.
+- If you can't continue the chain (for example, `store=false` or `previous_response_not_found`), start a new response by omitting `previous_response_id` (or setting it to `null`) and send the full input context for the next turn.
 - If you compacted context with `/responses/compact`, use the returned compacted window as the base `input` for the new response, then append the latest user or tool items.
 
 ## Troubleshooting
