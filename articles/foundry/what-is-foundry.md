@@ -4,7 +4,7 @@ description: "Microsoft Foundry is a trusted platform that empowers developers t
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 04/13/2026
+ms.date: 04/29/2026
 ms.service: microsoft-foundry
 ms.topic: overview
 ai-usage: ai-assisted
@@ -34,32 +34,106 @@ Microsoft Foundry unifies agents, models, and tools under a single management gr
 
 [!INCLUDE [previous-current](includes/previous-current.md)]
 
+## Your first API call
+
+**Get started now** — [Quickstart: Build with models and agents](./quickstarts/get-started-code.md) | [Open Foundry portal](https://ai.azure.com) | [Get an Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account)
+
+Send a prompt and get a response from a model in a few lines of code:
+
+# [Python](#tab/python)
+
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/responses/quickstart-responses.cs":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
+
+---
+
+For the full walkthrough including agent creation, see the [Microsoft Foundry quickstart](./quickstarts/get-started-code.md).
+
+## Available models
+
+Foundry gives you access to over 1,900 models from Microsoft, OpenAI, Meta, DeepSeek, Hugging Face, and more. The following table highlights popular model families to help you choose a starting point.
+
+| Model family | Best for | 
+|---|---|
+| **GPT-5** | Most capable — complex reasoning, multi-step tasks, and multimodal scenarios |
+| **GPT-4.1** | Best balance of capability and cost for production workloads |
+| **GPT-4.1 mini** | Fastest — low-latency, high-throughput scenarios |
+| **DeepSeek-R1** | Open-weight reasoning at scale |
+| **Phi-4** | Small language model — on-device or resource-constrained environments |
+| **Meta Llama** | Open models — customization and fine-tuning |
+
+For help choosing between models, see the [GPT-5 vs GPT-4.1 model choice guide](./foundry-models/how-to/model-choice-guide.md). Browse the full catalog in the [Foundry Models overview](./concepts/foundry-models-overview.md).
+
+## What's new
+
+Foundry is evolving fast. Here are some of the latest additions:
+
+- [Prompt Optimizer (preview)](./observability/how-to/prompt-optimizer.md) — Automatically improve agent prompts based on evaluation results.
+- [Task Adherence guardrails (preview)](./guardrails/task-adherence.md) — Keep agentic workflows on track with built-in adherence controls.
+- [LangChain and LangGraph integration](./how-to/develop/langchain.md) — Build and trace agents with popular open-source frameworks.
+- [Fireworks model import (preview)](./how-to/fireworks/enable-fireworks-models.md) — Bring custom models into Foundry through Fireworks.
+
+See [What's new in Microsoft Foundry](./whats-new-foundry.md) for the full list.
+
+## Choose your path
+
+Foundry supports multiple developer surfaces. Use the following table to find the right starting point for your scenario.
+
+| I want to... | Start here |
+|---|---|
+| Call a model from code | [Quickstart: Your first API call](./quickstarts/get-started-code.md) |
+| Build an agent with tools and memory | [Agent Service overview](./agents/concepts/workflow.md) |
+| Explore models in the browser | [Foundry portal playgrounds](./concepts/concept-playgrounds.md) |
+| Deploy and manage models at scale | [Foundry Models overview](./concepts/foundry-models-overview.md) |
+| Develop in VS Code | [Foundry for VS Code](./how-to/develop/get-started-projects-vs-code.md) |
+| Set up governance and security | [Foundry Control Plane](./control-plane/overview.md) |
+
 ## Who is Foundry for?
 
 Microsoft Foundry serves three primary audiences:
-* Application developers building AI-powered products with agents, models, and tools. Start with the [quickstart](./quickstarts/get-started-code.md)
-* ML engineers and data scientists who [fine-tune models](./openai/concepts/fine-tuning-considerations.md), [run evaluations](./observability/concepts/trace-agent-concept.md), and [manage model deployments](./foundry-models/how-to/monitor-models.md). 
-* IT administrators and platform engineers who govern AI resources, enforce policies, and manage access across teams. See [security](./concepts/architecture.md#security-driven-separation-of-concerns) and governance and [Foundry Control Plane](./control-plane/overview.md).
+
+* **Application developers** building AI-powered products with agents, models, and tools. Start with the [quickstart](./quickstarts/get-started-code.md).
+* **ML engineers and data scientists** who [fine-tune models](./openai/concepts/fine-tuning-considerations.md), [run evaluations](./observability/concepts/trace-agent-concept.md), and [manage model deployments](./foundry-models/how-to/monitor-models.md).
+* **IT administrators and platform engineers** who govern AI resources, enforce policies, and manage access across teams. See [security](./concepts/architecture.md#security-driven-separation-of-concerns) and governance and [Foundry Control Plane](./control-plane/overview.md).
 
 ## Key capabilities
 
 ### Build agents
 
-* **[Multi-agent orchestration and workflows](agents/concepts/workflow.md)** – Build collaborative agent behavior and complex workflow execution using SDKs for C# and Python.
-* **[Tool catalog](agents/concepts/tool-catalog.md)** – Connect over 1,400 tools through public and private catalogs.
-* **[Memory](agents/concepts/what-is-memory.md)** – Retain and recall contextual information across interactions without requiring repeated input.
-* **[Foundry IQ knowledge integration](agents/concepts/what-is-foundry-iq.md)** – Ground agent responses in enterprise or web content with citation-backed answers.
-* **[Publishing](agents/how-to/publish-copilot.md)** – Publish agents to Microsoft 365, Teams, BizChat, or containerized deployments.
+**[Multi-agent orchestration](agents/concepts/workflow.md)** — Build collaborative agent behavior and complex workflow execution using SDKs for C# and Python.
+
+**[Tool catalog](agents/concepts/tool-catalog.md)** — Connect over 1,400 tools through public and private catalogs.
+
+**[Memory](agents/concepts/what-is-memory.md)** — Retain and recall contextual information across interactions without requiring repeated input.
+
+**[Foundry IQ knowledge integration](agents/concepts/what-is-foundry-iq.md)** — Ground agent responses in enterprise or web content with citation-backed answers.
+
+**[Publishing](agents/how-to/publish-copilot.md)** — Publish agents to Microsoft 365, Teams, BizChat, or containerized deployments.
 
 ### Operate and govern
 
-* **[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)** – Monitor performance and governance with built-in metrics and model tracking.
-* **Centralized AI asset management** – Manage all agents, models, and tools from the **Operate** section, including agents registered from other clouds.
-* **Enterprise controls** – Full authentication support for MCP and A2A, AI gateway integration, and Azure Policy integration.
+**[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)** — Monitor performance and governance with built-in metrics and model tracking.
+
+**Centralized AI asset management** — Manage all agents, models, and tools from the **Operate** section, including agents registered from other clouds.
+
+**Enterprise controls** — Full authentication support for MCP and A2A, AI gateway integration, and Azure Policy integration.
 
 ## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
+The [Microsoft Foundry API](/rest/api/aifoundry/) provides a consistent contract for building agentic applications across different model providers. [SDK client libraries](how-to/develop/sdk-overview.md) are available for:
 
 - Python
 - C#
@@ -77,32 +151,15 @@ The [Microsoft Foundry portal](https://ai.azure.com) is where you manage project
 > [!TIP]
 > See [Find features in the Foundry portal](how-to/navigate-from-classic.md) if you're used to the Foundry (classic) portal and not sure where to find things now.
 
-### Choosing a project
-
-In the Foundry portal, the project you're working with appears in the upper-left corner of most pages. 
-* If you see a long list of projects instead, select a project to begin. This brings you to the **Home** page with the project name in the upper-left corner.
-* To switch to another recently used project, select the project name in the upper-left corner, then select the other project. 
-* To see all of your Foundry projects, select the project name in the upper-left corner, then select **View all projects**. Select the next project you want to work on.
-
-### Find other resources
-
-The Foundry portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
-
-To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](../foundry-classic/what-is-foundry.md) to work with these other resources in the Foundry (classic) portal.
-
-### Disable preview features
-
-[!INCLUDE [disable-preview](includes/disable-preview.md)]
+For details on switching between projects or finding resources created in Foundry (classic), see [Find features in the Foundry portal](how-to/navigate-from-classic.md).
 
 ## Pricing and billing
 
-Microsoft Foundry is monetized through individual products customers access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
-
-The platform is free to use and explore. Pricing occurs at the deployment level. 
+The platform is free to use and explore. Pricing occurs at the deployment level. Each product within Foundry (models, agents, tools) has its own billing model and price.
 
 Using Foundry also incurs costs associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
-Use the [Total Economic Impact calculator for Foundry](https://aka.ms/Foundry-ROI-Calculator) to estimate your return on investment and identify ongoing value and cost optimization opportunities.
+Use the [Total Economic Impact calculator for Foundry](https://aka.ms/Foundry-ROI-Calculator) to estimate your return on investment.
 
 ## Region availability
 
@@ -110,11 +167,12 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 ## How to get access
 
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs).
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs).
 
 ## Related content
 
-- [Quickstart: Get started with Microsoft Foundry](./tutorials/quickstart-create-foundry-resources.md)
+- [Quickstart: Get started with Microsoft Foundry](./quickstarts/get-started-code.md)
+- [Quickstart: Set up Foundry resources](./tutorials/quickstart-create-foundry-resources.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)
