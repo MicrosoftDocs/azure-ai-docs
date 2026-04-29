@@ -29,7 +29,7 @@ Follow the how-to below or get the full sample code:
 - [Node.js](https://nodejs.org/) version 18 or later.
 - [SoX](https://sox.sourceforge.io/) installed on your system (required by `node-record-lpcm16` for microphone capture).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- `@azure/ai-voicelive` package version 1.0.0 or later (MCP support requires API version `2026-04-15`).
+- `@azure/ai-voicelive` package version 1.0.0 or later (MCP support requires API version `2026-04-10`).
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 > [!TIP]
@@ -54,7 +54,7 @@ Control whether MCP tool calls require user approval before execution:
 
 ### API version requirement
 
-MCP support requires API version `2026-04-15` or later.
+MCP support requires API version `2026-04-10` or later.
 
 ## Define MCP servers
 

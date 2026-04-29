@@ -26,7 +26,7 @@ AGENT_VERSION=<version-of-the-agent>
 CONVERSATION_ID=<specific conversation id to reconnect to>
 PROJECT_NAME=<your_project_name>
 VOICELIVE_ENDPOINT=<your_endpoint>
-VOICELIVE_API_VERSION=2026-04-15
+VOICELIVE_API_VERSION=2026-04-10
 ```
 
 Replace the default values with your actual project name, agent name, and endpoint values.

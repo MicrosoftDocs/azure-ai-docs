@@ -41,4 +41,4 @@ ai-usage: ai-assisted
 
 - Learn more about [How to build voice agents](./how-to-voice-agent-integration.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

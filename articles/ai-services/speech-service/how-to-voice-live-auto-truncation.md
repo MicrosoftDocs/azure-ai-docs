@@ -342,6 +342,6 @@ const subscription = session.subscribe({
 ## Next steps
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
 - Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

@@ -96,7 +96,7 @@ A tool call failure means Voice Live successfully discovered the tool but the ca
 
 | Cause | Resolution |
 |-------|------------|
-| Wrong API version | MCP requires `api_version="2026-04-15"` or later. Earlier API versions silently ignore MCP server configuration. |
+| Wrong API version | MCP requires `api_version="2026-04-10"` or later. Earlier API versions silently ignore MCP server configuration. |
 | MCP servers not in session config | Verify that `MCPServer` objects are included in the `tools` list passed to `configure_session` or `updateSession`. |
 | `allowed_tools` mismatch | If `allowed_tools` is set, only the listed tool names are exposed. Verify the names match exactly what the MCP server advertises. |
 

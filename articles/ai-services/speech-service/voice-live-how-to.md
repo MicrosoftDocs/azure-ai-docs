@@ -35,10 +35,10 @@ A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech 
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-04-15`.
+The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-04-10`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&model=gpt-realtime`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&model=gpt-realtime`
 
 ### Credentials
 
@@ -483,4 +483,4 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2026-04-15.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

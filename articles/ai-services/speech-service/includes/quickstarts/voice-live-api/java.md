@@ -142,7 +142,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry models]
     ```properties
     azure.voicelive.endpoint=https://your-resource-name.services.ai.azure.com/
     azure.voicelive.api-key=your-api-key
-    azure.voicelive.api-version=2026-04-15
+    azure.voicelive.api-version=2026-04-10
     ```
 
     > [!NOTE]
@@ -978,7 +978,7 @@ The output of the application is printed to the console. You see messages indica
 ? VoiceLive client created
 ? Creating session configuration:
 ? Session configuration created
-[ModelQuickstart.main()] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection parameters -> endpoint: wss://my-resource.services.ai.azure.com/voice-live/realtime?api-version=2026-04-15&model=gpt-realtime headers: api-key=0XxX...x0xX
+[ModelQuickstart.main()] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection parameters -> endpoint: wss://my-resource.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&model=gpt-realtime headers: api-key=0XxX...x0xX
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - WebSocket connection established
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - Receive flux subscribed
 [reactor-http-nio-2] INFO com.azure.ai.voicelive.VoiceLiveSessionAsyncClient - Send stream subscribed

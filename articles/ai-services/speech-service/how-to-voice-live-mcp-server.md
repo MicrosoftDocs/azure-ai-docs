@@ -42,5 +42,5 @@ ai-usage: ai-assisted
 
 - [Function calling in Voice Live](how-to-voice-live-function-calling.md)
 - [How to build a voice agent](how-to-voice-agent-integration.md)
-- [Voice Live API reference](voice-live-api-reference-2026-04-15.md)
+- [Voice Live API reference](voice-live-api-reference-2026-04-10.md)
 - [Voice Live quickstart](voice-live-quickstart.md)

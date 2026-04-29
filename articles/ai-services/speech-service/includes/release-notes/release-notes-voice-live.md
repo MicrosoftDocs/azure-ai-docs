@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 ### April 2026 release
 
-Voice Live API version `2026-04-15` is available, adding new generally available features and preview capabilities. For the full API reference, see [Voice Live API Reference 2026-04-15](../../voice-live-api-reference-2026-04-15.md).
+Voice Live API version `2026-04-10` is available, adding new generally available features and preview capabilities. For the full API reference, see [Voice Live API Reference 2026-04-10](../../voice-live-api-reference-2026-04-10.md).
 
 The following previously preview features are now generally available:
 - [Proactive messages](../../how-to-voice-live-proactive-messages.md) — allow your voice agent to speak first before user interaction.

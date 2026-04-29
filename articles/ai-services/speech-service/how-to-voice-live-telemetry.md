@@ -42,5 +42,5 @@ ai-usage: ai-assisted
 
 - [Voice Live quickstart](voice-live-quickstart.md)
 - [Voice Live agents quickstart](voice-live-agents-quickstart.md)
-- [Voice Live API reference](voice-live-api-reference-2026-04-15.md)
+- [Voice Live API reference](voice-live-api-reference-2026-04-10.md)
 - [Voice Live SDK overview](voice-live-sdk.md)

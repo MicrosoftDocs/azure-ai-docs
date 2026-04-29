@@ -18,7 +18,7 @@ MCP server integration differs from [function calling](../../../how-to-voice-liv
 | Tool execution | Client-side | Server-side (managed by Voice Live) |
 | Tool discovery | Client defines tools explicitly | Voice Live auto-discovers tools from MCP endpoint |
 | Approval model | Not applicable | Configurable: `"always"` (default), `"never"`, or [per-tool dictionary](#approval-modes) |
-| API version required | `2025-10-01` | `2026-04-15` or later |
+| API version required | `2025-10-01` | `2026-04-10` or later |
 
 ### Key concepts
 
@@ -46,6 +46,6 @@ The `require_approval` property on each `MCPServer` controls whether tool calls 
 > [!NOTE]
 > In voice scenarios, each approval triggers a conversational prompt. Configure `require_approval` carefully to balance security with conversation flow. See [Voice-native approval](#voice-native-approval) for implementation patterns.
 
-For the full MCP event and type reference, see [Voice Live API reference](../../../voice-live-api-reference-2026-04-15.md).
+For the full MCP event and type reference, see [Voice Live API reference](../../../voice-live-api-reference-2026-04-10.md).
 
 
