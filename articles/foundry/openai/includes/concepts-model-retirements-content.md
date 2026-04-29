@@ -19,7 +19,9 @@ Microsoft Foundry continuously refreshes its model catalog with newer, more capa
 
 ### Lifecycle stages
 
-Every model in the Foundry catalog belongs to exactly one of five stages:
+:::image type="content" source="../media/concepts/lifecycle-stage-transitions.png" alt-text="Screenshot showing model lifecycle stage transitions." lightbox="../media/concepts/lifecycle-stage-transitions.png":::
+
+Every model in the Foundry catalog belongs to exactly one of five stages, as described in the following table:
 
 | Stage | What it means | Can create new deployments? | Existing deployments work? |
 |-------|--------------|----------------------------|---------------------------|
@@ -33,21 +35,11 @@ Every model in the Foundry catalog belongs to exactly one of five stages:
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
 > - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle—for example, 12 months instead of 18. When a shorter lifecycle applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 
-### Stage transitions at a glance
-
-```
-Preview ──►  GA  ──►  Legacy  ──►  Deprecated  ──►  Retired
-              │     (optional)      (+6 mo)             │
-              │                     existing            │
-              │                     customers           │
-              │                     only                │
-              │                                         │
-              └──────  18 months total (GA lifecycle)  ─┘
-```
-
 ## Model launch and availability
 
-New models become available through deployment types in a predictable order:
+:::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
+
+New models become available through deployment types in a predictable order as follows:
 
 | Order | Deployment type | When available |
 |-------|----------------|---------------|
@@ -56,22 +48,10 @@ New models become available through deployment types in a predictable order:
 | 3 | **Data Zone Standard** and **Data Zone Provisioned** | After Global Provisioned—data processing stays within a defined geographic boundary |
 | 4 | **Standard** and **Provisioned** | Last—regional-only, as older models retire and capacity is reallocated |
 
-### Availability rollout at a glance
-
-```
-Global Standard  ──►  Global Provisioned  ──►  Data Zone Standard  ──►   Standard
-                                                     and                   and
-  (at launch)         (follows closely)        Data Zone Provisioned     Provisioned   
-                                               
-                                               (expands to data zones)   (regional,
-                                                                          as capacity
-                                                                          permits)
-```
-
 > [!TIP]
 > For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
-## Special considerations
+## Lifecycle and availability variations
 
 Several factors affect how the standard lifecycle applies to your deployments, including the region you operate in, the cloud environment you use, and security requirements.
 
@@ -102,7 +82,7 @@ Microsoft makes specific commitments about how long model versions stay availabl
 
 We commit to meaningful overlap between a retiring GA model and its replacement so customers can test, evaluate, and migrate with confidence.
 
-:::image type="content" source="../media/concepts/ga-lifecycle-overlap.png" alt-text="Screenshot of the general availability model lifecycle overlap showing replacement transition timeframes." lightbox="../media/concepts/ga-lifecycle-overlap.png":::
+:::image type="content" source="../media/concepts/GA-lifecycle-and-replacement-transition-timeframes.png" alt-text="Screenshot of the general availability model lifecycle showing model overlap and replacement transition timeframes." lightbox="../media/concepts/GA-lifecycle-and-replacement-transition-timeframes.png":::
 
 | Phase | Pattern |
 |-------|---------|
@@ -122,7 +102,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 > [!NOTE]
 > Preview models aren't recommended for production workloads.
 
-:::image type="content" source="../media/concepts/preview-lifecycle.png" alt-text="Screenshot of the preview lifecycle showing the replacement transition timeframes." lightbox="../media/concepts/preview-lifecycle.png":::
+:::image type="content" source="../media/concepts/preview-lifecycle-and-replacement-transition-timeframes.png" alt-text="Screenshot of the preview lifecycle of models, showing model overlap and replacement transition timeframes." lightbox="../media/concepts/preview-lifecycle-and-replacement-transition-timeframes.png":::
 
 | Outcome | What happens |
 |---------|-------------|
@@ -130,7 +110,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 | **Upgrade to GA** | When the GA model launches, preview deployments are force-upgraded to the GA version. Customers get at least **30 days notice**. The GA model then follows the standard 18-month GA lifecycle. |
 | **No replacement (rare)** | If no replacement exists, customers get **30 days notice** before the model retires and inference returns `410 Gone`. |
 
-### Understanding automatic upgrades
+## Automatic upgrades
 
 For **Global Standard**, **Data Zone Standard**, and **Standard** deployment types, Microsoft manages automatic upgrades when a model version is retired:
 
@@ -147,7 +127,7 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 
 When gpt-4o versions `2024-05-13` and `2024-08-06` retired on **2026-03-31**, they were auto-upgraded to gpt-5.1 on the Standard SKU. Before the upgrade, gpt-5.1 had no Standard presence at all. After the upgrade, gpt-5.1 Standard was added to all eight regions that previously had those gpt-4o versions (centralus, eastus, eastus2, northcentralus, southcentralus, swedencentral, westus, westus3). Version `2024-11-20` was unaffected (retires 2026-10-01).
 
-### Migrating to a replacement model
+### Migration to a replacement model
 
 When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirements.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
 
