@@ -7,7 +7,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
 
-Run the following to list knowledge sources by name and type.
+Run the following code to list knowledge sources by name and type.
 
 ::: zone pivot="csharp"
 

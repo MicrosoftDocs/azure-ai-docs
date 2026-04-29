@@ -85,7 +85,7 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge base or [update the knowledge base](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateknowledgebaseasync?view=azure-dotnet&preserve-view=true) to remove the knowledge source if you have multiple sources. This example shows deletion.
+1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the source. This example shows deletion.
 
     ```csharp
     using Azure.Search.Documents.Indexes;
@@ -178,7 +178,7 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge base or [update the knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) to remove the knowledge source if you have multiple sources. This example shows deletion.
+1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the source. This example shows deletion.
 
     ```python
     # Delete a knowledge base
@@ -268,7 +268,7 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge base or [update the knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) by removing the knowledge source if you have multiple sources. This example shows deletion.
+1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the source. This example shows deletion.
 
     ```http
     ### Delete a knowledge base

@@ -313,7 +313,7 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 
 ### Ingestion parameters properties
 
-[!INCLUDE [ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
+[!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
 
 ## Check ingestion status
 

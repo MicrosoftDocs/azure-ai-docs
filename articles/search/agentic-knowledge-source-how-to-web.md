@@ -245,7 +245,7 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```http
-### Create a web knowledge source
+### Create Web Knowledge Source
 PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
@@ -269,7 +269,7 @@ api-key: {{api-key}}
 # [2026-04-01](#tab/2026-04-01)
 
 ```http
-### Create a web knowledge source
+### Create Web Knowledge Source
 PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-04-01
 Content-Type: application/json
 api-key: {{api-key}}
