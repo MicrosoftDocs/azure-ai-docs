@@ -156,9 +156,9 @@ Instead of setting `AZURE_SPEECH_API_KEY`, configure one of the following creden
 
 - **Azure CLI**: Run `az login` on your development machine.
 
-- **Managed Identity**: For apps running in Azure (Azure App Service, Azure Functions, virtual machines).
+- **Managed identity**: For apps running in Azure (Azure App Service, Azure Functions, virtual machines).
 
-- **Environment Variables**: Set `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_SECRET`.
+- **Environment variables**: Set `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_SECRET`.
 
 - **Visual Studio Code or IntelliJ**: Sign in through your IDE.
 
@@ -171,7 +171,7 @@ az role assignment create --assignee <your-identity> \
 ```
 
 > [!NOTE]
-> After setting environment variables on Windows, restart any running programs that need to read them, including the console window. On Linux or macOS, run `source ~/.bashrc` (or your equivalent shell configuration file) to make the changes effective.
+> After you set environment variables on Windows, restart any running programs that need to read them, including the console window. On Linux or macOS, run `source ~/.bashrc` (or your equivalent shell configuration file) to make the changes effective.
 
 ## Transcribe audio with LLM Speech
 
