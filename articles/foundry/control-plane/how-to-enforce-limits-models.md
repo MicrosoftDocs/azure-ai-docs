@@ -30,7 +30,7 @@ When you use an AI gateway with Foundry Control Plane to provide advanced policy
 
 Limits apply at the project level. That is, each project can have its own TPM and quota settings.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Diagram of the logical flow of client requests passing through Azure API Management as an AI gateway before reaching model deployments within a project.":::
+:::image type="content" source="../media/enable-ai-api-management-gateway-portal/gateway-architecture-diagram.png" alt-text="Diagram of the logical flow of client requests passing through Azure API Management as an AI gateway before reaching model deployments within a project." lightbox="../media/enable-ai-api-management-gateway-portal/gateway-architecture-diagram.png":::
 
 Use an AI gateway for:
 
@@ -47,7 +47,7 @@ You can configure token limits for specific model deployments within your projec
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
 1. Select **Operate** > **Admin**.
-1
+
 1. In the **AI Gateway** list, select the gateway that you want to use.
 
 1. On the gateway details pane that appears, select **Token management**.
@@ -58,7 +58,7 @@ You can configure token limits for specific model deployments within your projec
 
 1. Select **Create** to save your changes.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Screenshot of the project settings pane that shows input boxes for tokens per minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
+:::image type="content" source="../media/enable-ai-api-management-gateway-portal/set-token-limits.png" alt-text="Screenshot of the project settings pane that shows input boxes for tokens per minute and total token quota limits." lightbox="../media/enable-ai-api-management-gateway-portal/set-token-limits.png":::
 
 ## Understand quota windows
 
