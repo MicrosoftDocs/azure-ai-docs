@@ -140,7 +140,7 @@ Run the following code to create an indexed OneLake knowledge source.
 // Create an indexed OneLake knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure.Search.Documents.KnowledgeBases.Models;
+using Azure.Search.Documents.Models;
 using Azure;
 
 var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
@@ -261,8 +261,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 # Create an indexed OneLake knowledge source
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import IndexedOneLakeKnowledgeSource, IndexedOneLakeKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
-from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
+from azure.search.documents.indexes.models import IndexedOneLakeKnowledgeSource, IndexedOneLakeKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 

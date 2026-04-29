@@ -143,7 +143,7 @@ Run the following code to create a blob knowledge source.
 // Create a blob knowledge source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure.Search.Documents.KnowledgeBases.Models;
+using Azure.Search.Documents.Models;
 using Azure;
 
 var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
@@ -240,7 +240,7 @@ var blobParams = new AzureBlobKnowledgeSourceParameters(
     containerName: containerName
 )
 {
-    IsAdlsGen2 = false,
+    IsADLSGen2 = false,
     IngestionParameters = ingestionParams
 };
 
@@ -270,8 +270,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 # Create a blob knowledge source
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import AzureBlobKnowledgeSource, AzureBlobKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
-from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
+from azure.search.documents.indexes.models import AzureBlobKnowledgeSource, AzureBlobKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
@@ -488,11 +487,11 @@ For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the fo
 | `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `Description` | A description of the knowledge source. | String | Yes | No |
 | `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `AzureBlobParameters` | Parameters specific to blob knowledge sources: `ConnectionString`, `ContainerName`, `FolderPath`, and `IsAdlsGen2`. | Object |  | No |
+| `AzureBlobParameters` | Parameters specific to blob knowledge sources: `ConnectionString`, `ContainerName`, `FolderPath`, and `IsADLSGen2`. | Object |  | No |
 | `ConnectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
 | `ContainerName` | The name of the blob storage container. | String | No | Yes |
 | `FolderPath` | A folder within the container. | String | No | No |
-| `IsAdlsGen2` | The default is `False`. Set to `True` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
+| `IsADLSGen2` | The default is `False`. Set to `True` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
 
 ::: zone-end
 
