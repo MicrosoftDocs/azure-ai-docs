@@ -6,8 +6,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/08/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
@@ -18,7 +20,7 @@ ai-usage: ai-assisted
 
 # Web grounding tools overview
 
-Web grounding tools in Microsoft Foundry Agent Service connect your agents to real-time public web data, overcoming the knowledge cutoff that limits large language models. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
+Web grounding tools in Microsoft Foundry Agent Service connect your agents to real-time public web data, overcoming the knowledge cutoff of the agent's Foundry model. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
 
 ## How web grounding works
 
