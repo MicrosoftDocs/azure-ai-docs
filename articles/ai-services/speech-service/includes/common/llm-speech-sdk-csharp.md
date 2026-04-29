@@ -50,7 +50,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 You need to retrieve your resource endpoint for authentication.
 
-1. Sign in to [Foundry portal](https://ai.azure.com).
+1. Sign in to the [Foundry portal](https://ai.azure.com).
 
 1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multiservice resource.
 
