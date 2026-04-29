@@ -29,7 +29,7 @@ Add the following code to your application before calling `connect()`. This is t
 
 :::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/TelemetryQuickstart/telemetry-console.py" id="enable_console_tracing":::
 
-All `connect()`, `session.update()`, `conversation.item.create()`, and event receive calls now produce spans printed to stdout.
+All `connect`, `send`, and `recv` operations now produce spans printed to stdout.
 
 > [!div class="nextstepaction"]
 > [Complete console tracing sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/python/voice-live-quickstarts/TelemetryQuickstart/telemetry-console.py)
