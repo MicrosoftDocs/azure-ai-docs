@@ -1,7 +1,7 @@
 ---
 title: "Use LangGraph with the Agent Service (classic)"
 description: "Learn how to build LangGraph and LangChain applications with Foundry Agent Service in the classic experience."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - dev-focus
@@ -23,7 +23,7 @@ scenarios, from basic prompt agents to tool-enabled workflows.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project in Foundry classic.
 - A deployed chat model (for example, `gpt-4.1`) in your project.
 - Python 3.10 or later.

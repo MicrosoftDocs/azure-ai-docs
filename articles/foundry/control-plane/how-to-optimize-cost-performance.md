@@ -1,13 +1,13 @@
 ---
 title: "Optimize model cost and performance"
 description: "Use Ask AI in Microsoft Foundry to detect cost spikes, switch to cost-efficient models, evaluate quality, and track performance improvements."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 02/17/2026
 ms.reviewer: hanch
 ms.author: scottpolly
 author: bhcglx
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -17,7 +17,7 @@ When your model or agent costs start increasing, use **Ask AI** (preview) to qui
 In this article, you identify cost spikes, switch to a cost-efficient model, and validate performance improvements by using the Foundry portal.
 
 > [!NOTE]
-> When you ask Ask AI to perform tasks that modify your Azure resources, such as deploying a model or changing a deployment, Ask AI proposes actions for you to review and approve before it runs them. You can configure approval settings by selecting the settings icon in the Ask AI prompt chat. For more information, see [Ask AI for help (preview)](../concepts/ask-ai.md).
+> When you direct Ask AI to perform tasks that modify your Azure resources, such as deploying a model or changing a deployment, Ask AI proposes actions for you to review and approve before it runs them. You can configure approval settings by selecting the settings icon in the Ask AI prompt chat. For more information, see [Ask AI for help (preview)](../concepts/ask-ai.md).
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ In this article, you identify cost spikes, switch to a cost-efficient model, and
 - Application Insights configured for your Foundry project. For more information, see [Configure monitoring](monitoring-across-fleet.md#configure-monitoring).
 - At least one deployed or published agent with cost data. For meaningful trend analysis, you need a minimum of seven days of usage data.
 
-- The Ask AI agent enabled in your Foundry project. The Ask AI agent is available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
+- The Ask AI agent enabled in your Foundry project. It's available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
 
 - An evaluation dataset that represents your agent's typical workload. Use this dataset to compare model performance after switching models.
 
@@ -61,16 +61,16 @@ You can also select **Assets** on the left pane. Then, select **View Agent detai
 
 When you identify a model as a cost driver, use Ask AI to find a more cost-efficient alternative.
 
-1. In Ask AI, enter a prompt such as "Recommend a cheaper model with similar performance" or "Compare cost and quality for models similar to \[current model\]."
+1. In Ask AI, enter a prompt such as "Recommend a cheaper model with similar performance" or "Compare cost and quality for models similar to [current model]."
 
 1. Review the response. Ask AI recommends alternative models from the model catalog with performance and cost comparisons. Review the recommendations and select a model that meets your requirements.
 
-1. Deploy the new model. Ask AI can initiate the deployment for you directly in the chat or provide a link to the deployment page. You can also deploy manually. For detailed deployment steps, see [Deploy models as serverless API deployments](../../foundry-classic/how-to/deploy-models-serverless.md) or [Deploy models with managed compute](../../foundry-classic/how-to/deploy-models-managed.md).
+1. Deploy the new model. Ask AI can initiate the deployment for you directly in the chat or provide a link to the deployment page. You can also deploy manually. For detailed deployment steps, see [Deploy Microsoft Foundry Models in the Foundry portal](../foundry-models/how-to/deploy-foundry-models.md) or [Deploy models using Azure CLI and Bicep](../foundry-models/how-to/create-model-deployments.md).
 
 1. After deployment completes, verify that the new model appears in your agent's deployment list with a **Succeeded** status.
 
 > [!TIP]
-> If Ask AI is unavailable, browse the [Foundry model catalog](../../foundry-classic/concepts/foundry-models-overview.md) to compare models manually.
+> If Ask AI is unavailable, [compare models using the model leaderboard](../how-to/benchmark-model-in-catalog.md).
 
 ## Evaluate model cost and quality differences
 
@@ -108,9 +108,9 @@ When you confirm that the new model meets your cost and performance requirements
 
 1. Test the agent to verify that it responds correctly with the new model.
 
-1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflect the new deployment.
+1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflects the new deployment.
 
-After you verify that the new model works correctly, consider deleting the old model deployment to avoid ongoing costs. For more information, see [Deploy models as serverless API deployments](../../foundry-classic/how-to/deploy-models-serverless.md).
+After you verify that the new model works correctly, consider deleting the old model deployment to avoid ongoing costs. 
 
 ## Track cost and performance improvements
 
@@ -131,8 +131,8 @@ Use this workflow regularly to monitor efficiency and return on investment.
 | No cost data appears in the summary | Application Insights isn't configured for the project. | [Configure monitoring](monitoring-across-fleet.md#configure-monitoring) for your Foundry project. |
 | Ask AI doesn't respond to prompts | The feature might be temporarily unavailable, or the prompt might be too vague. | Try a more specific prompt or use the **Operate** > **Overview** pane directly. |
 | Ask AI asks for approval before acting | Ask AI proposes actions for review before modifying Azure resources. | Review the proposed action and select **Approve** to proceed. To configure pre-approval settings, select the settings icon in the Ask AI prompt chat. |
-| No alternative models recommended | The current model might already be the most cost-efficient option, or the model catalog doesn't have comparable alternatives. | Browse the [Foundry model catalog](../../foundry-classic/concepts/foundry-models-overview.md) manually. |
-| Evaluation runs don't complete | The evaluation dataset might be misconfigured or too large. | Verify your evaluation dataset configuration. See [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../foundry-classic/how-to/develop/evaluate-sdk.md). |
+| No alternative models recommended | The current model might already be the most cost-efficient option, or the model catalog doesn't have comparable alternatives. | Browse the [Foundry model catalog](../concepts/foundry-models-overview.md) manually. |
+| Evaluation runs don't complete | The evaluation dataset might be misconfigured or too large. | Verify your evaluation dataset configuration. See [Run evaluations from the SDK](../how-to/develop/cloud-evaluation.md). |
 | Cost data appears stale or delayed | Azure billing data can take up to 24-48 hours to update. Application Insights telemetry might also have a short delay. | Wait for the billing cycle to complete and check again. For near real-time data, rely on Application Insights metrics in the **Operate** > **Overview** pane. |
 | Model switch causes quality regression | The new model might not perform as well on your specific workload. | Roll back to the previous model deployment and run more targeted evaluations before switching again. |
 
@@ -143,5 +143,5 @@ Use this workflow regularly to monitor efficiency and return on investment.
 - [Manage agents in Foundry Control Plane](how-to-manage-agents.md)
 - [Enforce token limits on models](how-to-enforce-limits-models.md)
 - [What is Foundry Control Plane?](overview.md)
-- [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../foundry-classic/how-to/develop/evaluate-sdk.md)
-- [Explore Microsoft Foundry Models](../../foundry-classic/concepts/foundry-models-overview.md)
+- [Run evaluations from the SDK](../how-to/develop/cloud-evaluation.md)
+- [Explore Microsoft Foundry Models](../concepts/foundry-models-overview.md)

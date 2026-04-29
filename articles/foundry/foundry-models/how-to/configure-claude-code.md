@@ -1,11 +1,11 @@
 ---
 title: "Configure Claude Code for Microsoft Foundry"
 description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 02/24/2026
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
@@ -568,7 +568,7 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
 - [Monitor model usage and costs](../../../foundry-classic/how-to/costs-plan-manage.md)
-- [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
+- [Configure Claude Desktop for Microsoft Foundry](configure-claude-desktop.md)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)
 - [Claude Code on Microsoft Foundry (Anthropic docs)](https://code.claude.com/docs/en/microsoft-foundry)

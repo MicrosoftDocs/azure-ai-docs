@@ -7,13 +7,15 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 03/02/2026
+ms.date: 03/31/2026
 ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
 
 # Overview: Generate image alt text with Image Analysis
+
+[!INCLUDE [image-analysis-deprecation](includes/image-analysis-deprecation.md)]
 
 ## What is alt text?
 

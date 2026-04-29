@@ -6,7 +6,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Create a vector query in Azure AI Search
@@ -182,7 +183,7 @@ Use Search Explorer to formulate a vector query. Search Explorer has **Query vie
 
 Otherwise, if you don't have a vectorizer, you must use the JSON view and formulate the vector query in JSON by pasting a vector array as the query input.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 
@@ -343,7 +344,7 @@ A prerequisite is a search index that has a [vectorizer configured and assigned]
 
 Search Explorer supports integrated vectorization at query time. If your index contains vector fields and has a vectorizer, you can use the built-in text-to-vector conversion.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 
@@ -499,12 +500,12 @@ Vector weighting applies to vectors only. The text query in this example, `"hell
 
 Because nearest neighbor search always returns the requested `k` neighbors, it's possible to get multiple low-scoring matches as part of meeting the `k` number requirement on search results. To exclude low-scoring search results, you can add a `threshold` query parameter that filters out results based on a minimum score. Filtering occurs before [fusing results](hybrid-search-ranking.md) from different recall sets.
 
-This parameter is in preview. We recommend the  [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) REST API version.
+This parameter is in preview. We recommend the latest preview version of [Documents - Search Post](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API).
 
 In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results falls below `k`.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-05-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
     Content-Type: application/json 
     api-key: [admin key] 
 

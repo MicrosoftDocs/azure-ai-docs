@@ -2,10 +2,12 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [REST API Spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/stable/2024-10-21/inference.json) |

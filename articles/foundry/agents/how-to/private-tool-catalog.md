@@ -1,14 +1,16 @@
 ---
 title: "Create a private tool catalog in Foundry Agent Service"
 description: "Create a private tool catalog in Foundry Agent Service using Azure API Center. Let developers discover and configure organization-scoped MCP server tools."
-author: aahill
-ms.author: aahi
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.date: 02/03/2026
 ms.manager: nitinme
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
-ms.custom: pilot-ai-workflow-jan-2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a platform admin, I want to create a private tool catalog so that developers in my organization can discover and use approved MCP server tools.
 ---

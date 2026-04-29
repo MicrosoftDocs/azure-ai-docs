@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: error-reference
-ms.date: 10/14/2025
+ms.date: 04/23/2026
 ms.update-cycle: 180-days
 ---
 
@@ -26,9 +26,9 @@ Warnings don't stop indexing, but they do indicate conditions that could result 
 
 ## Where can you find specific indexer errors?
 
-To verify an indexer status and identify errors in the Azure portal, follow the steps below:
+To verify an indexer status and identify errors:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left, expand **Search Management** > **Indexers** and select an indexer.
 
@@ -440,3 +440,16 @@ This error occurs when the Azure AI Search indexer cannot authenticate using the
 | Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search Service.<br>- Assign appropriate role(s) to the identity (for example, `Storage Blob Data Reader` for blob containers). Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
 | Network/firewall blocks identity access | The resource contacted is configured to restrict network access. | Configure [network settings](search-indexer-howto-access-ip-restricted.md) to allow Azure AI Search access. |
 | Key authorization has been disabled | Shared key access removed on the source, but the Search service data source configuration still uses key-based authentication. | Use [managed identity](search-how-to-managed-identities.md) authentication and ensure role-based permissions are in place. From an Azure Storage perspective, this means that [shared key authorization functionality is blocked](/azure/storage/common/shared-key-authorization-prevent), either from the storage account itself, or enforced through enterprise-level Azure Policies. |
+
+## `Error: Error detecting index schema from data source`
+
+The Azure portal experience used to configure the indexer was unable to retrieve schema information from the data source. This can happen due to transient connectivity issues or network configuration restrictions that prevent Azure AI Search from accessing the source.
+
+| Reason | Details/Example | Resolution |
+| --- | --- | --- |
+| Transient communication issues | `Failed to fetch, this could be due to transient communication errors with the source` | Transient failures can occur due to temporary network interruptions or service timeouts. Retry the operation. If the issue is transient, it should resolve in subsequent calls. |
+| Private endpoint restrictions | The data source is protected by a virtual network or private endpoint, preventing access from the indexer. | If the data source is behind a private endpoint, configure a [shared private link](search-indexer-howto-access-private.md) so that Azure AI Search can connect privately to the resource. Ensure the private endpoint connection is approved. |
+| Firewall rules blocking access | The data source has firewall rules that block requests from Azure AI Search. | Update firewall settings to allow inbound traffic from Azure AI Search. See [configure firewall rules to allow indexer access](search-indexer-howto-access-ip-restricted.md). Ensure the search service IP or trusted service exceptions are allowed. |
+| Network configuration does not allow indexer access | The data source is configured to only allow selected networks without including Azure AI Search. | Verify that the data source network configuration allows access from Azure AI Search using one of the supported connectivity options: public endpoint with IP rules, shared private link, or trusted service access. |
+
+

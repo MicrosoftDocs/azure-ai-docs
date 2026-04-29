@@ -4,10 +4,10 @@ description: "Learn about Microsoft Foundry Agent Service capabilities, agent ty
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 03/10/2026
+ms.date: 04/13/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -32,9 +32,9 @@ Agent Service handles hosting, scaling, identity, observability, and enterprise 
 
 ## What is an agent?
 
-An agent is an AI application that uses a large language model (LLM) to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
+An agent is an AI application that uses a model from the Foundry model catalog to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
 
-* **Model (LLM)**: Provides reasoning and language capabilities.
+* **Model**: A model from the Foundry model catalog that provides reasoning and language capabilities.
 * **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
 * **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
@@ -45,7 +45,7 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 | Component | What it does |
 | --- | --- |
 | **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and agent lifecycle. |
-| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication - service managed credentials and On-Behalf-Of (OBO) authentication. |
+| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication, including service managed credentials and On-Behalf-Of (OBO) authentication. Some MCP servers, such as Azure DevOps MCP Server (preview), require connecting an organization during setup. Access can be scoped through Foundry tool configuration. |
 | **Models** | Works with many models from the Foundry model catalog, such as GPT-4o, Llama, and DeepSeek. Swap models without changing your agent code. |
 | **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
 | **Identity & Security** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
@@ -105,6 +105,21 @@ Agent Service works with many models available in the Foundry model catalog. For
 
 Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data. For a full list, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
 
+Foundry supports remote MCP servers that you can add from the **Add Tools** catalog in the Foundry portal. For example, the Azure DevOps MCP Server (public preview) can be added directly from the catalog. Connect your Azure DevOps organization to enable agent access, and configure a subset of available tools to control which actions agents can perform. You can also connect custom MCP servers hosted on Azure Functions using the Functions MCP webhook endpoint (`/runtime/webhooks/mcp`) to expose custom tools to your agents. The **Add Tools** catalog is the entry point for enabling MCP servers and selecting permitted tools for an agent.
+
+Supported authentication options for connecting MCP servers include:
+
+- Key-based access
+- Microsoft Entra (using the agent's managed identity or the project's managed identity)
+- OAuth identity passthrough (On-Behalf-Of)
+- Unauthenticated access, where appropriate
+
+These authentication options also apply when connecting remote MCP servers, with credentials and scopes managed in the tool configuration.
+
+### Toolbox (preview)
+
+[Toolbox](how-to/tools/toolbox.md) lets you define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint. Any MCP-compatible agent runtime or client can consume a toolbox, regardless of the framework you use. Toolbox versioning gives you explicit control over when changes take effect — create a new version, test it, and promote it to default when you're ready.
+
 > [!NOTE]
 > Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
@@ -113,10 +128,10 @@ Agent Service provides built-in tools and supports custom tools so your agents c
 Agent Service supports the full build-test-deploy-monitor workflow:
 
 1. **Create** — Define a prompt agent in the portal or build a hosted agent in code.
-1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally.
+1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, including custom MCP servers hosted on Azure Functions, can be exercised directly in the playground via chat prompts to validate tool connectivity, permissions, and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
-1. **Publish** — [Promote your agent](how-to/publish-agent.md) to a managed resource with a stable endpoint.
+1. **Publish** — [Promote your agent](how-to/agent-applications.md) to a managed resource with a stable endpoint.
 1. **Monitor** — Track performance and reliability with [service metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and dashboards.
 
 For a detailed walkthrough, see [Agent development lifecycle](concepts/development-lifecycle.md).
@@ -125,8 +140,8 @@ For a detailed walkthrough, see [Agent development lifecycle](concepts/developme
 
 Agent Service provides enterprise-grade infrastructure for every agent you deploy:
 
-- **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials.
-- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents and workflow agents. Hosted agents don't currently support private networking during preview.
+- **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials. Agent identities can authenticate to external MCP servers, including those hosted on Azure Functions, and OAuth On-Behalf-Of (OBO) passthrough is supported when configured.
+- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents and workflow agents. Hosted agents support bring-your-own Azure Virtual Network (BYO VNet), where each session runs in a VM-isolated sandbox connected to your VNet.
 - **Role-based access control** — Fine-grained permissions through Microsoft Entra and Azure RBAC. Control who can create, invoke, and manage agents.
 - **Content safety** — Integrated content filters help mitigate prompt injection risks (including cross-prompt injection) and prevent unsafe outputs.
 
@@ -137,8 +152,8 @@ For environment setup instructions, see [Set up your environment](environment-se
 Agent Service provides built-in versioning and publishing so your agents can move from development to production with confidence.
 
 - **Versioning** — As you iterate on your agent, versions are automatically snapshotted. Roll back to any previous version or compare changes between versions.
-- **[Publishing](how-to/publish-agent.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
-- **Distribution** — Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work.
+- **[Publishing](how-to/agent-applications.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
+- **Distribution** — Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work. Foundry Agent Service supports the OpenResponses and Activity Protocols for Microsoft 365 publishing, and an Invocations protocol for flexible endpoint integration with custom apps and services.
 
 ## Security, privacy, and compliance
 
@@ -149,10 +164,15 @@ Agent Service is designed for enterprise workloads where you need strong control
 - **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
 - **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
 
+## Agent manifests
+
+Agent manifests are pre-built configurations that you can deploy with one click. Each manifest combines tested instructions, tool configurations, and interaction patterns for common enterprise workflows. Browse manifests by industry, tools, or complexity to find a starting point, then customize for your scenario. For more information, see [Agent manifests for Foundry Agent Service](concepts/agent-catalog.md).
+
 ## Related content
 
 - [Set up your environment](environment-setup.md)
 - [Agent development lifecycle](concepts/development-lifecycle.md)
+- [Agent manifests](concepts/agent-catalog.md)
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
 - [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)

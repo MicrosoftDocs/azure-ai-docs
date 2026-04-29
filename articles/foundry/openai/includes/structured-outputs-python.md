@@ -1,12 +1,14 @@
 ---
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 ## Getting started

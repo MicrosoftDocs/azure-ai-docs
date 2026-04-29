@@ -5,8 +5,8 @@ author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
 ms.date: 12/30/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: whats-new
 ms.custom:
   - ignite-2023

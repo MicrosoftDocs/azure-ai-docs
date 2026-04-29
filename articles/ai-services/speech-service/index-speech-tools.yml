@@ -22,7 +22,7 @@ landingContent:
       - text: Speech in Microsoft Foundry
         url: speech-features-foundry.md
       - text: Speech MCP server
-        url: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
+        url: /azure/foundry/agents/how-to/tools/azure-ai-speech?context=/azure/ai-services/speech-service/context/context
 - title: Speech CLI
   linkLists:
     - linkListType: overview

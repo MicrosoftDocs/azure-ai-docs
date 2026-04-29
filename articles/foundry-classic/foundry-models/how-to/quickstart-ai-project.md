@@ -1,10 +1,10 @@
 ---
 title: "Configure your AI Project for Microsoft Foundry Models (classic)"
 description: "Learn how to upgrade your AI project to use models deployed in Microsoft Foundry Models in Microsoft Foundry Service. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 10/09/2025
+ms.date: 03/31/2026
 ms.custom: ignite-2024, github-universe-2024
 author: ssalgadodev
 ms.author: ssalgado

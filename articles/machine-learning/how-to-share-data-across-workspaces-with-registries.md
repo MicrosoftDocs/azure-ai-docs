@@ -8,9 +8,10 @@ ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 04/07/2025
+ms.date: 03/19/2026
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2, build-2023
+ms.custom: devx-track-azurecli, sdkv2, build-2023, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Share data across workspaces with registries
@@ -100,7 +101,7 @@ Before following the steps in this article, make sure you have the following pre
     To install the Python SDK v2, use the following command:
 
     ```bash
-    pip install --pre --upgrade azure-ai-ml azure-identity
+    pip install --upgrade azure-ai-ml azure-identity
     ```
 
     ---
@@ -138,7 +139,7 @@ Create a client connection to both the Azure Machine Learning workspace and regi
 ```python
 ml_client_workspace = MLClient( credential=credential,
     subscription_id = "<workspace-subscription>",
-    resource_group_name = "<workspace-resource-group",
+    resource_group_name = "<workspace-resource-group>",
     workspace_name = "<workspace-name>")
 print(ml_client_workspace)
 
@@ -201,7 +202,7 @@ az ml data show --name transformed-nyc-taxt-data --version 1 --registry-name <re
 # [Python SDK](#tab/python)
 
 > [!TIP]
-> The same `MLClient.environmentsdata.create_or_update()` can be used to create data in either a workspace or a registry depending on the target it has been initialized with. Since you work with both workspace and registry in this document, you have initialized `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
+> The same `MLClient.data.create_or_update()` can be used to create data in either a workspace or a registry depending on the target it has been initialized with. Since you work with both workspace and registry in this document, you have initialized `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
 
 
 The source data directory `data_transformed` is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/`. Initialize the data object and create the data.
@@ -297,7 +298,7 @@ def pipeline_with_registered_components(
         training_data=training_data,
     )
 pipeline_job = pipeline_with_registered_components(
-    training_data=Input(type="uri_folder", path=data_asset_from_registry.id"),
+    training_data=Input(type="uri_folder", path=data_asset_from_registry.id),
 )
 pipeline_job.settings.default_compute = "cpu-cluster"
 print(pipeline_job)
@@ -354,7 +355,10 @@ az ml data create -f local-folder.yml
 
 For more information on creating data assets in a workspace, see [How to create data assets](how-to-create-data-assets.md).  
 
-The data asset created in the workspace can be shared to a registry. From the registry, it can be used in multiple workspaces. We are passing `--share_with_name` and `--share_with_version` parameter in share function. These parameters are optional and if you don't pass these data will be shared with same name and version as in workspace.
+The data asset created in the workspace can be shared to a registry. From the registry, it can be used in multiple workspaces. The following example passes `--share-with-name` and `--share-with-version` to specify the name and version of the data asset in the registry.
+
+> [!NOTE]
+> The `az ml data share` command is currently in **preview** and might change at any time.
 
 The following example demonstrates using share command to share a data asset. Replace `<registry-name>` with the name of the registry that the data will be shared to.
 
@@ -381,7 +385,10 @@ For more information on creating data assets in a workspace, see [How to create 
 
 The data asset created in workspace can be shared to a registry and it can be used in multiple workspaces from there. You can also change the name and version when sharing the data from workspace to registry.
 
-We are passing `share_with_name` and `share_with_version` parameter in share function. These parameters are optional and if you don't pass these data will be shared with same name and version as in workspace.
+The following example passes `share_with_name` and `share_with_version` to specify the name and version of the data asset in the registry.
+
+> [!NOTE]
+> The `data.share()` method is currently **experimental** and might change at any time.
 
 ```python
 # Sharing data from workspace to registry
@@ -389,8 +396,8 @@ ml_client_workspace.data.share(
     name="titanic-dataset",
     version="1",
     registry_name="<REGISTRY_NAME>",
-    share_with_name=<name-in-registry>,
-    share_with_version=<version-in-registry>,
+    share_with_name="<name-in-registry>",
+    share_with_version="<version-in-registry>",
 )
 ```
 

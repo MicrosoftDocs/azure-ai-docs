@@ -4,16 +4,17 @@ description: "Learn about Foundry IQ, a managed knowledge layer that turns enter
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/12/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Foundry IQ (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Agents need context from scattered enterprise content to accurately answer questions. With Foundry IQ, you can create a configurable, multi-source *knowledge base* that provides agents with permission-aware responses based on your organization's data.
+Agents need context from scattered enterprise content to accurately answer questions. The Foundry model powering an agent has a knowledge cutoff and can't access your proprietary data on its own. With Foundry IQ, you can create a configurable, multi-source *knowledge base* that provides agents with permission-aware responses based on your organization's data.
 
 A knowledge base consists of *knowledge sources* (connections to internal and external data stores) and parameters that control retrieval behavior. Multiple agents can share the same knowledge base. When an agent queries the knowledge base, Foundry IQ uses *agentic retrieval* to process the query, retrieve relevant information, enforce user permissions, and return grounded answers with citations.
 

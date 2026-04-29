@@ -1,27 +1,29 @@
 ---
 title: "Agent tools overview for Microsoft Foundry Agent Service"
 description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
-author: aahill
-ms.author: aahi
-ms.date: 03/12/2026
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
+ms.date: 04/23/2026
 ms.manager: nitinme
 ms.topic: concept-article
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Agent tools overview for Foundry Agent Service
 
-Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own can generate text, but tools let it take action — searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
+Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own uses a Foundry model to generate text, but tools let it take action - searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
 
 > [!NOTE]
 > The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## What are tools?
 
-A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the model decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
+A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the Foundry model powering the agent decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
 
 Tools enable agents to go beyond text generation. For example, an agent can:
 
@@ -36,13 +38,13 @@ Foundry Agent Service provides two categories of tools: built-in tools that are 
 
 ### Built-in tools
 
-Built-in tools are preconfigured capabilities provided by Foundry Agent Service. You enable them on your agent and the service handles execution. No external hosting or custom code is required.
+Foundry Agent Service provides built-in tools as preconfigured capabilities. You enable these tools on your agent, and the service handles execution. These tools don't require external hosting or custom code.
 
 The most commonly used built-in tools include:
 
-- **[Web search](../how-to/tools/web-search.md)** — Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This is the recommended way to add web grounding. For advanced scenarios such as market-specific filtering, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
+- **[Web search](../how-to/tools/web-search.md)** — Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This method is the recommended way to add web grounding. For advanced scenarios such as market-specific filtering, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
 - **[Code Interpreter](../how-to/tools/code-interpreter.md)** — Let agents write and run Python code in a sandboxed environment for data analysis, math, and chart generation.
-- **[File Search](../how-to/tools/file-search.md)** — Augment agents with knowledge from uploaded files or proprietary documents using vector search.
+- **[File Search](../how-to/tools/file-search.md)** — Augment agents with knowledge from uploaded files or proprietary documents by using vector search.
 - **[Function calling](../how-to/tools/function-calling.md)** — Define custom functions that the agent can call. Your application executes the function and returns the result.
 
 For the complete list of built-in tools, see [All built-in tools](#all-built-in-tools).
@@ -53,39 +55,52 @@ Custom tools let you extend your agent with your own APIs, services, or other ag
 
 The most common custom tool options include:
 
-- **[Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md)** — Connect your agent to tools hosted on an MCP server endpoint. Best for tools shared across multiple agents or maintained by a different team.
+- **[Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md)** — Connect your agent to tools hosted on an MCP server endpoint. It's best for tools shared across multiple agents or maintained by a different team.
 - **[Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)** — Connect your agent to other agents through A2A-compatible endpoints for cross-agent communication.
-- **[OpenAPI tool](../how-to/tools/openapi.md)** — Connect your agent to external HTTP APIs using an OpenAPI 3.0 or 3.1 specification.
+- **[OpenAPI tool](../how-to/tools/openapi.md)** — Connect your agent to external HTTP APIs by using an OpenAPI 3.0 or 3.1 specification.
 
 For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
+
+### Toolbox (preview)
+
+A *toolbox* is a curated bundle of tools - such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools - that you configure once and expose as a single MCP-compatible endpoint. Instead of attaching each tool individually to every agent definition, define the collection in a toolbox and connect any agent to the toolbox endpoint. Because a toolbox exposes an MCP-compatible endpoint, any MCP-capable runtime can consume it - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and custom code.
+
+Toolboxes support versioning. Create multiple versions, test a new version against the version-specific endpoint, and then promote it to default when it's ready. Agents that connect to the Toolbox consumer endpoint automatically receive the promoted default version without code changes. For details, see [Manage toolbox versions](../how-to/tools/toolbox.md#promote-a-version-to-default).
+
+Manage authentication for tools in a toolbox centrally. The toolbox handles credential injection, token refresh, and policy enforcement at runtime by using Microsoft Entra ID and OAuth, so consuming agents don't need to manage credentials for each tool individually. For authentication details, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
+
+For setup steps, see [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md).
 
 ## Use a tool in an agent
 
 To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
 project = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
+openai = project.get_openai_client()
 
 # Create an agent with web search enabled
 agent = project.agents.create_version(
     agent_name="web-search-agent",
     definition=PromptAgentDefinition(
-        model=os.environ["MODEL_NAME"],
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can search the web.",
         tools=[WebSearchTool()],
     ),
 )
 
-# Start a conversation and send a query
-openai = project.get_openai_client()
+# Send a query
 response = openai.responses.create(
     input="What are the latest updates to Microsoft Foundry?",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
@@ -97,7 +112,7 @@ Each tool type has its own configuration. For detailed setup and code samples in
 
 ### Customize tool behavior at runtime with structured inputs
 
-By default, tool configurations such as file IDs, vector store IDs, and MCP server endpoints are fixed when you create the agent. *Structured inputs* in tool properties allows you to override these values at runtime without creating a new agent version.
+By default, tool configurations such as file IDs, vector store IDs, and MCP server endpoints are fixed when you create the agent. *Structured inputs* in tool properties allow you to override these values at runtime without creating a new agent version.
 
 Structured inputs are useful when:
 
@@ -151,13 +166,13 @@ Different tools require different authentication approaches. Understanding these
 
 ### Built-in tools
 
-Most built-in tools such as Code Interpreter and File Search authenticate through Foundry Agent Service automatically and require no extra configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the [connections](../../how-to/connections-add.md) configured in your Foundry project.
+Most built-in tools, such as Code Interpreter and File Search, automatically authenticate through Foundry Agent Service and require no extra configuration. Tools that connect to external data sources, such as Azure AI Search or SharePoint, use the [connections](../../how-to/connections-add.md) you configure in your Foundry project.
 
 ### MCP servers
 
 MCP servers support multiple authentication methods depending on the server: key-based authentication (API key or token), Microsoft Entra authentication (managed identity), and OAuth for user-level identity passthrough.
 
-The following example connects to an MCP server using key-based authentication. Store the credential in a project connection, then reference the connection name when you create the tool:
+The following example connects to an MCP server by using key-based authentication. Store the credential in a project connection, and then reference the connection name when you create the tool:
 
 ```python
 from azure.ai.projects.models import MCPTool
@@ -237,6 +252,7 @@ The following table lists all built-in tools available in Foundry Agent Service.
 | [Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md) | Customize the code interpreter's resources, Python packages, and Container Apps environment. |
 | [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
 | [Azure AI Search](../how-to/tools/ai-search.md) | Ground agents with data from an existing Azure AI Search index. |
+| [Azure Functions](../how-to/tools/azure-functions.md) | Enable agents to call your Azure Functions to perform custom actions and retrieve dynamic data. |
 | [Function calling](../how-to/tools/function-calling.md) | Define custom functions that the agent can call. Your app executes the function and returns the result. |
 | [Image Generation (preview)](../how-to/tools/image-generation.md) | Generate images as part of conversations and workflows. |
 | [Browser Automation (preview)](../how-to/tools/browser-automation.md) | Perform browser tasks through natural language prompts. |
@@ -256,6 +272,7 @@ The following table lists all custom tool options for connecting your own capabi
 | [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md) | Connect your agent to tools hosted on an MCP server endpoint. |
 | [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
 | [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
+| [Toolbox (preview)](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
 
 ## Key concepts
 
@@ -270,6 +287,7 @@ Use these definitions to keep terminology consistent:
 | Remote MCP server | An MCP server hosted by the publisher. You configure it by providing the required settings, such as an endpoint and authentication details. |
 | Local MCP server | An MCP server you host yourself, then connect to Foundry by providing its remote endpoint. |
 | Custom tool | A tool you add by providing your own endpoint or specification, such as an MCP endpoint, an OpenAPI spec, or Agent-to-Agent (A2A) endpoints. |
+| Toolbox | A curated bundle of tools that you configure once and expose as a single MCP endpoint for use across multiple agents. |
 
 > [!NOTE]
 > If you're interested in bringing your official, remote MCP servers to all Foundry customers, fill out this [form](https://forms.office.com/r/EEvMNceMRU).
@@ -328,7 +346,7 @@ In your tools list, you can find the tools you configured, along with details su
 Before you delete a tool, check which agents or workflows use it. Deleting a tool can break runs that depend on it.
 
 <!--
-:::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
+:::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal." lightbox="../media/tool-catalog/tool-view.png" :::
 -->
 
 ## Availability and limitations
@@ -348,6 +366,7 @@ Use these checks to resolve common issues:
 ## Related content
 
 - [Tool best practices for Foundry Agent Service](tool-best-practice.md)
+- [Create and use a Foundry Toolbox (preview)](../how-to/tools/toolbox.md)
 - [Set up MCP server authentication](../how-to/mcp-authentication.md)
 - [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)

@@ -3,11 +3,12 @@ title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 04/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Run or reset indexers, skills, or documents
@@ -25,6 +26,9 @@ This article explains how to run indexers on demand, with and without a reset. I
 Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. Depending on the external data source, you can use keys or roles to authenticate the connection.
 
 In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
+
+> [!NOTE]
+> Indexers operate with service-level permissions rather than user permissions. An indexer can write to any index on the search service, even if you assigned roles to restrict access to specific indexes. For more information, see [Per-index scope and indexer operations](search-security-rbac.md#per-index-scope-and-indexer-operations).
 
 ## Indexer execution
 
@@ -117,7 +121,7 @@ Once you reset an indexer, you can't undo the action.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the **Overview** page, select the **Indexers** tab.
 1. Select an indexer.
 1. Select the **Reset** command, and then select **Yes** to confirm the action.
@@ -266,15 +270,15 @@ POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs
 ## How to resync indexers (preview)
 
 [Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is a preview REST API that performs a partial reindex of all documents.
-An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index will be removed if delete tracking is enabled.
+An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index is removed if delete tracking is enabled.
 
-If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
+If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
 
-In contrast, for certain data sources like ADLS Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+In contrast, for certain data sources like ADLS Gen2, altering the access control lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob isn't re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
 
 While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
 
-Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer will inspect only relevant portion of data in the source and avoid any unnecessary processing that is unrelated to the specified data.  It will also query the existing documents in the target index and only update the documents that show discrepancies between the data source and the target index. After the resync run, the indexer will be synchronized and revert to regular indexer run mode for subsequent runs.
+Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer inspects only the relevant portion of data in the source and avoids any unnecessary processing that is unrelated to the specified data. It also queries the existing documents in the target index and only updates the documents that show discrepancies between the data source and the target index. After the resync run, the indexer is synchronized and reverts to regular indexer run mode for subsequent runs.
 
 ### How to resync and run indexers
 

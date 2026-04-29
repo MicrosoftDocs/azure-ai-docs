@@ -2,15 +2,15 @@
 title: "Customize a Microsoft Foundry Model with the Foundry Python SDK"
 titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python SDK.
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.date: 09/01/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ---
 
 ## Prerequisites
@@ -94,6 +94,9 @@ The next step is to either choose existing prepared training data or upload new 
 - [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
 
 For large data files, we recommend that you import from Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
+
+> [!IMPORTANT]
+> Importing from Azure Blob Storage requires the storage account to have **public network access enabled**. If your organization's policies don't allow public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method instead.
 
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
 

@@ -15,7 +15,7 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](search-create-service-portal.md), any region and tier, but it must be a billable tier (Basic or higher) for role-based access.
 
@@ -33,27 +33,21 @@ During development, plan on frequent rebuilds. Because physical structures are c
 
 ### [**Azure portal**](#tab/portal)
 
-Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full text search capabilities on numeric fields. 
+Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full-text search capabilities on numeric fields. 
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. Check for space. Search services are subject to [maximum number of indexes](search-limits-quotas-capacity.md), varying by service tier. Make sure you have room for a second index.
+1. Check for space. Search services are subject to a [maximum number of indexes](search-limits-quotas-capacity.md), which varies by pricing tier. Make sure you have room for a second index.
 
-1. In the search service **Overview** page, choose either option for creating a search index:
+1. On the search service **Overview** page, choose one of the following options:
 
-   + **Add index**, an embedded editor for specifying an index schema
-   + [**Import wizards**](search-import-data-portal.md)
+   + **Add index**: An embedded editor for specifying an index schema.
+   + [**Import data**](search-import-data-portal.md): A wizard that creates a data source, indexer, and finished index. The wizard also loads the data. If you don't need the end-to-end workflow, use **Add index** instead.
 
-   The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
-
-The following screenshot highlights where the **Add index**, **Import data**, and **Import data (new)** wizards appear on the command bar.
-
-:::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
-
-After an index is created, you can find it again on the **Indexes** page from the left pane.
-
+    :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
+    
 > [!TIP]
-> After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.
+> After you create an index in the Azure portal, you can copy the JSON representation and add it to your application code.
 
 ### [**REST**](#tab/index-rest)
 
@@ -141,13 +135,13 @@ For Azure AI Search, the Azure SDKs implement generally available features. As s
 
 ## Verify index creation
 
-After creating an index, verify it exists by listing the indexes on your search service.
+After you create an index, verify it exists by listing the indexes on your search service.
 
 ### [**Azure portal**](#tab/portal)
 
 1. In the Azure portal, go to your search service.
 
-1. Under **Search management**, select **Indexes**.
+1. From the left pane, select **Search management** > **Indexes**.
 
 1. Confirm your new index appears in the list. If you don't see it, refresh the page.
 
@@ -245,7 +239,7 @@ Setting a field as searchable, filterable, sortable, or facetable has an effect 
 
 If a field isn't set to be searchable, filterable, sortable, or facetable, the field can't be referenced in any query expression. This is desirable for fields that aren't used in queries, but are needed in search results.
 
-The REST APIs have default attribution based on [data types](/rest/api/searchservice/supported-data-types), which is also used by the [import wizards](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
+The REST APIs have default attribution based on [data types](/rest/api/searchservice/supported-data-types), which is also used by the [**Import data** wizard](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
 
 Default field attributions for the REST APIs are summarized in the following table.
 
@@ -262,7 +256,7 @@ Default field attributions for the REST APIs are summarized in the following tab
 
 String fields can also be optionally associated with [analyzers](search-analyzers.md) and [synonym maps](search-synonyms.md). Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. This is because values of such fields are treated as a single search term, and the maximum length of a term in Azure AI Search is 32 kilobytes. If you need to store more text than this in a single string field, you should explicitly set filterable, sortable, and facetable to `false` in your index definition.
 
-Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable is true by default if you add the vector field using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal. If you use the REST API, it's false.
+Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable is true by default if you add the vector field using the [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal. If you use the REST API, it's false.
 
 Field attributes are described in the following table.
 

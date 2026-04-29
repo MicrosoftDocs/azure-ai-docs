@@ -2,15 +2,15 @@
 title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.date: 02/27/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ---
 
 ## Prerequisites
@@ -95,6 +95,9 @@ The next step is to either choose existing prepared training data or upload new 
 
 For large data files, we recommend that you import from Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
+> [!IMPORTANT]
+> Importing from Azure Blob Storage requires the storage account to have **public network access enabled**. If your organization's policies don't allow public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method instead.
+
 ### Upload training data
 
 ```bash
@@ -117,7 +120,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
 
 ## Create a customized model
 
-After you upload your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP) by using the REST API.
+After you upload your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create) by using the REST API.
 
 This example includes passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you.
 
@@ -148,7 +151,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-
 }'
 ```
 
-You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP#finetuninghyperparameters) to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
+You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create) to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
 The currently supported hyperparameters for supervised fine-tuning are:
 
@@ -371,7 +374,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. The suffix can contain up to 40 characters (`a` to `z`, `A` to `Z`, `0` to `9`, `-`, and `_`) that are added to your fine-tuned model's name.
 
-If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP) for an Azure OpenAI resource by using the REST API.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list) for an Azure OpenAI resource by using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -382,7 +385,7 @@ When you no longer need your customized model, you can delete the deployment and
 You can use either of these methods to delete the deployment for your customized model:
 
 - [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)
-- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment)
 
 ### Delete your customized model
 

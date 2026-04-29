@@ -1,7 +1,7 @@
 ---
 title: Use Foundry Memory with LangChain and LangGraph
 description: Learn how to use langchain-azure-ai with Foundry Memory to build AI apps that remember user preferences across sessions.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.author: fasantia
@@ -29,7 +29,7 @@ in LangChain or LangGraph runtime state.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../../how-to/create-projects.md).
 - A deployed Microsoft Foundry chat model for memory retrieval.
 	- This tutorial uses "gpt-4.1".

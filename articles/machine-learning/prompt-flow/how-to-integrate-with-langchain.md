@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Integrate LangChain in prompt flows
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 The [LangChain](https://python.langchain.com) Python library is a framework for developing applications powered by large language models (LLMs), agents, and dependency tools. This article shows you how to supercharge your LangChain development with Azure Machine Learning prompt flow.
 
 :::image type="content" source="./media/how-to-integrate-with-langchain/flow.png" alt-text="Screenshot of a flow with the langchain python library." lightbox = "./media/how-to-integrate-with-langchain/flow.png":::

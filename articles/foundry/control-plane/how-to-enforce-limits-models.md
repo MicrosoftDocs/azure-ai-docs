@@ -4,10 +4,10 @@ description: "Use Foundry Control Plane integration with an AI gateway to apply 
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
-ms.custom: dev-focus
-ms.date: 01/06/2026
+ms.custom: dev-focus, doc-kit-assisted
+ms.date: 04/13/2026
 ai-usage: ai-assisted
 ---
 
@@ -22,7 +22,7 @@ This article explains how to configure token rate limiting and token quotas.
 
 - A Foundry resource with an AI gateway configured. [Learn more about how to enable an AI gateway for a Foundry resource](../configuration/enable-ai-api-management-gateway-portal.md).
 
-- A Foundry project added to the configured AI gateway. To enable an AI gateway for a project, you need the API Management Service Contributor or API Management Service Owner role on the Azure API Management resource.
+- A Foundry project with a deployed model added to the configured AI gateway. To enable an AI gateway for a project, you need the **API Management Service Contributor** role (or **Owner**) on the Azure API Management resource.
 
 ## Understand AI gateways
 
@@ -30,7 +30,7 @@ When you use an AI gateway with Foundry Control Plane to provide advanced policy
 
 Limits apply at the project level. That is, each project can have its own TPM and quota settings.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Diagram of the logical flow of client requests passing through Azure API Management as an AI gateway before reaching model deployments within a project.":::
+:::image type="content" source="../media/enable-ai-api-management-gateway-portal/gateway-architecture-diagram.png" alt-text="Diagram of the logical flow of client requests passing through Azure API Management as an AI gateway before reaching model deployments within a project." lightbox="../media/enable-ai-api-management-gateway-portal/gateway-architecture-diagram.png":::
 
 Use an AI gateway for:
 
@@ -44,17 +44,21 @@ Use an AI gateway for:
 
 You can configure token limits for specific model deployments within your projects:
 
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+
+1. Select **Operate** > **Admin**.
+
 1. In the **AI Gateway** list, select the gateway that you want to use.
 
 1. On the gateway details pane that appears, select **Token management**.
 
-1. Select **+ Add limit** to create a new limit for a model deployment.
+1. Select **+ Set limit** to create a new limit for a model deployment.
 
 1. Select the project and deployment that you want to restrict, and enter a value for **Limit (Token-per-minute)**.
 
 1. Select **Create** to save your changes.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Screenshot of the project settings pane that shows input boxes for tokens per minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
+:::image type="content" source="../media/enable-ai-api-management-gateway-portal/set-token-limits.png" alt-text="Screenshot of the project settings pane that shows input boxes for tokens per minute and total token quota limits." lightbox="../media/enable-ai-api-management-gateway-portal/set-token-limits.png":::
 
 ## Understand quota windows
 

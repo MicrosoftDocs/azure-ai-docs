@@ -121,7 +121,7 @@ Set-AzCognitiveServicesAccount -ResourceGroupName $resourceGroup `
 
 # [Azure CLI](#tab/azure-cli)
 
-[!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
+[!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
 This section requires the latest version of the Azure CLI. If you're using Azure Cloud Shell, the latest version is already installed.
 

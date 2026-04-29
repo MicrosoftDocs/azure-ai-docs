@@ -1,12 +1,14 @@
 ---
 ms.topic: include
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 10/22/2024
 ms.author: pafarley
 author: PatrickFarley
+
+ms.custom: classic-and-new
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)

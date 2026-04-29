@@ -2,10 +2,12 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [Library source code](https://github.com/openai/openai-python/tree/main/src/openai) | [Package](https://github.com/openai/openai-python) | [Samples](https://github.com/openai/openai-python/tree/main/examples)

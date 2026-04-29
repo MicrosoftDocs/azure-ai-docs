@@ -81,7 +81,7 @@ To increase or decrease the capacity of your service, you have two options:
 
 ### Add or remove partitions and replicas
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 
@@ -103,7 +103,7 @@ To increase or decrease the capacity of your service, you have two options:
 
    This operation can take several hours to complete. It occurs in the background, so your search service remains fully operational and available for read and write operations.
 
-   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway:
+   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway.
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
 
@@ -112,7 +112,7 @@ To increase or decrease the capacity of your service, you have two options:
 > [!NOTE]
 > The Azure portal and [Services - Update (REST API)](/rest/api/searchmanagement/services/update) support changes between Basic and Standard (S1, S2, and S3) tiers. You can upgrade or downgrade tiers, provided your current service configuration doesn't exceed the [limits of the target tier](search-limits-quotas-capacity.md). Your region also can't have [capacity constraints on the target tier](search-region-support.md).
 
-Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more or less capacity, you can switch to a different pricing tier that accommodates your storage needs.
+Your pricing tier determines the maximum storage of your search service. If you need more or less capacity, you can switch to a different pricing tier that accommodates your storage needs.
 
 In addition to capacity, pricing tiers determine limits on indexes, indexers, and other search objects. Compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier before you proceed. Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier has the opposite effect.
 
@@ -120,7 +120,7 @@ Switching to a higher pricing tier also increases the cost of running your searc
 
 To change your pricing tier:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 
@@ -140,7 +140,7 @@ To change your pricing tier:
 
    This operation can take several hours to complete. It occurs in the background, so your search service remains fully operational and available for read and write operations.
 
-   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway:
+   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway.
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
 

@@ -2,8 +2,8 @@
 title: "Customize a model with fine-tuning (classic)"
 description: "Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions
   - classic-and-new
@@ -56,10 +56,4 @@ In this article, you learn how to:
 
 ::: zone-end
 
-## Related content
-
-- [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
-- [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-- [Quotas and limits](../quotas-limits.md)
-- [View and interpret evaluation results](../../how-to/evaluate-results.md)
-- [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)
+[!INCLUDE [fine-tuning 1](../../../foundry/openai/includes/how-to-fine-tuning-1.md)]

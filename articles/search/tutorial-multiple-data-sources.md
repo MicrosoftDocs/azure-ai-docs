@@ -56,7 +56,7 @@ This sample uses two small sets of data describing seven fictional hotels. One s
 
 ### Start with Azure Cosmos DB
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your Azure Cosmos DB account.
+1. Go to your Azure Cosmos DB account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data Explorer**.
 
@@ -86,7 +86,7 @@ This sample uses two small sets of data describing seven fictional hotels. One s
 
 ### Azure Blob Storage
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -112,7 +112,7 @@ The third component is Azure AI Search, which you can [create in the Azure porta
 
 To authenticate to your search service, you need the service URL and an access key. Having a valid key establishes trust on a per-request basis between the application sending the request and the service handling it.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 
@@ -364,7 +364,7 @@ Because the index is already populated with hotel data from the Azure Cosmos DB 
 
 After you run the program, you can explore the populated search index using [**Search explorer**](search-explorer.md) in the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Search management** > **Indexes**.
 

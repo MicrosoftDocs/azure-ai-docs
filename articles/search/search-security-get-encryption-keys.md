@@ -31,9 +31,9 @@ The **encryptionKey** construct is the same for all encrypted objects. It's a fi
 
 ## Permissions for retrieving object definitions
 
-You must have [Search Service Contributor](search-security-rbac.md#built-in-roles-used-in-search) or equivalent permissions. To use [key-based authentication](search-security-api-keys.md) instead, provide an admin API key. Admin permissions are required on requests that return object definitions and metadata. The easiest way to get the admin API key is through the Azure portal.
+You must have [Search Service Contributor](search-security-rbac.md#built-in-roles) or equivalent permissions. To use [key-based authentication](search-security-api-keys.md) instead, provide an admin API key. Admin permissions are required on requests that return object definitions and metadata. The easiest way to get the admin API key is through the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and open the search service overview page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left side, select **Keys** and copy an admin API. 
 

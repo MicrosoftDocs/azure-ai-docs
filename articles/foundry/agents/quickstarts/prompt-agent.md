@@ -3,20 +3,20 @@ title: "Quickstart: Create a prompt agent"
 description: "Create a prompt agent in Foundry Agent Service using the Microsoft Foundry SDK."
 author: aahill
 ms.author: aahi
-ms.date: 03/13/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.date: 03/30/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: quickstart
-ms.custom: build-2025
+ms.custom: build-2025, update-code1
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a prompt agent in Foundry Agent Service so that I can build AI-powered automation.
 ---
 
 # Quickstart: Create a prompt agent
 
-In this quickstart, you create a prompt agent in Foundry Agent Service and have a conversation with it. A prompt agent is a declaratively defined agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior.
+In this quickstart, you create a prompt agent in Foundry Agent Service and have a conversation with it. A prompt agent is a declaratively defined agent that combines a model from the Foundry model catalog, instructions, tools, and natural language prompts to drive behavior.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 

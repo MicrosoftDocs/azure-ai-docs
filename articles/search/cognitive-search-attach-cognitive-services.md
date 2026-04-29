@@ -141,7 +141,7 @@ If you don't specify the `cognitiveServices` property, your search service attem
 
 1. Add the key to a skillset definition.
 
-   + If you're using an [import wizard](search-import-data-portal.md), select the Foundry resource. The wizard adds the resource key to your skillset definition.
+   + If you're using the [**Import data** wizard](search-import-data-portal.md), select the Foundry resource. The wizard adds the resource key to your skillset definition.
 
    + For a new or existing skillset, provide the key in skillset definition.
 
@@ -211,7 +211,7 @@ Without the key, the skillset reverts to the default allocation of 20 free trans
 
 ### [**Azure portal**](#tab/portal-remove)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management > Skillsets**, select a skillset from the list.
 

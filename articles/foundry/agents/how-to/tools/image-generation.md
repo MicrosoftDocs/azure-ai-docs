@@ -3,14 +3,16 @@ title: "Use the image generation tool (preview) in Foundry Agent Service"
 description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
-ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
+ms.date: 03/30/2026
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-image-generation
 ---
 
@@ -20,15 +22,15 @@ zone_pivot_groups: selection-image-generation
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
 > - You also need a compatible orchestrator model (`gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, or `gpt-5` series) deployed in the same Foundry project.
 
-The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. Use it to create AI-generated visuals and return base64-encoded output that you can save to a file.
+The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. The agent's Foundry model orchestrates the image generation request and returns base64-encoded output that you can save to a file.
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -48,7 +50,7 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 ## Code examples
 
-Before you start, install the latest SDK package. The .NET and Java SDKs are currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
+Before you start, install the latest SDK package. The .NET SDK is currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
@@ -78,7 +80,7 @@ openai = project.get_openai_client()
 agent = project.agents.create_version(
     agent_name="agent-image-generation",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="Generate images based on user prompts.",
         tools=[ImageGenTool(model=IMAGE_MODEL, quality="low", size="1024x1024")],
     ),
@@ -109,14 +111,14 @@ if image_data and image_data[0]:
 :::zone-end
 
 :::zone pivot="csharp"
-## Sample for image generation in Azure.AI.Projects.OpenAI.
+## Sample for image generation in Azure.AI.Extensions.OpenAI
 
-In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
+In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -139,7 +141,7 @@ AIProjectClient projectClient = new(
 // when creating this tool. The ImageGenerationTool parameters include
 // the image generation model, image quality and resolution.
 // Supported image generation models include gpt-image-1.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
 Instructions = "Generate images based on user prompts.",
 Tools = {
@@ -150,7 +152,7 @@ Tools = {
         )
     }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -170,7 +172,7 @@ foreach (ResponseItem item in response.OutputItems)
 }
 
 // Clean up resources by deleting the Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 
 // To use image generation, provide the custom header to web requests,
 // which contain the model deployment name, for example:
@@ -330,7 +332,7 @@ export async function main(): Promise<void> {
   // Create Agent with image generation tool
   const agent = await project.agents.createVersion("agent-image-generation", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "Generate images based on user prompts",
     tools: [
       {
@@ -400,7 +402,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -437,7 +439,7 @@ public class ImageGenerationExample {
             .setSize(ImageGenToolSize.fromString("1024x1024"));
 
         // Create agent with image generation tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a creative assistant that can generate images based on descriptions.")
             .setTools(Collections.singletonList(imageGenTool));
 
@@ -448,8 +450,8 @@ public class ImageGenerationExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Generate an image of a sunset over a mountain range"));
 

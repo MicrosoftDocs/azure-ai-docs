@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API using the Azure OpenAI .NET SDK.
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/04/2026
 manager: nitinme
@@ -190,7 +190,7 @@ new SystemChatMessage(@"Assistant is an intelligent chatbot designed to help use
 
 Context:
 - Azure OpenAI provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
-- Azure OpenAI gives customers advanced language AI with OpenAI GPT-3, Codex, and DALL-E models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image series, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 - At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes requiring applicants to show well-defined use cases, incorporating Microsoft's principles for responsible AI use."),
 new UserChatMessage("What is Azure OpenAI?")
 ```
@@ -326,7 +326,7 @@ It's your responsibility to ensure that the prompt and completion fall within th
 
 The following code sample shows a simple chat loop example that trims the conversation history when the number of stored messages approaches a limit. It removes the oldest non-system messages to keep the conversation within bounds.
 
-You can install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.0200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.0200kBase) packages for accurate token counting:
+You can install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.0200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.O200kBase) packages for accurate token counting:
 
 ```dotnetcli
 dotnet add package Microsoft.ML.Tokenizers

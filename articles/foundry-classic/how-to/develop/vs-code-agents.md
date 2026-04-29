@@ -2,16 +2,17 @@
 title: "Create and manage Foundry agents in Visual Studio Code (classic)"
 description: "Create, configure, test, and deploy Foundry agents directly in Visual Studio Code by using the Foundry Agent Service extension and designer. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 #CustomerIntent: As a developer, I want to create and manage Foundry agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
+ms.custom: doc-kit-assisted
 ---
 
 # Create and manage Foundry agents in Visual Studio Code (classic)
@@ -21,14 +22,17 @@ author: ms-johnalex
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 
+> [!NOTE]
+> For the new Foundry Toolkit workflows—including agent creation from templates, GitHub Copilot-assisted creation, local testing and debugging, and tracing—see [Create hosted agent workflows in Visual Studio Code](../../../foundry/agents/how-to/vs-code-agents-workflow-pro-code.md).
+
 [Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Foundry Agent Service](../../agents/overview.md).
 - [Visual Studio Code](https://code.visualstudio.com/) installed.
-- The [Microsoft Foundry for VS Code extension](./get-started-projects-vs-code.md) installed and signed in.
+- The [Foundry Toolkit for Visual Studio Code](./get-started-projects-vs-code.md) installed and signed in.
 - A [deployed model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) in your project.
 
 ## Create an agent in the designer
@@ -39,7 +43,7 @@ The designer provides a visual interface for configuring your agent's name, mode
 
 1. [Set your default project](./get-started-projects-vs-code.md#create-a-project).
 
-1. In the **Foundry Extension** view, find the **Classic** subsection in the **Resources** section.
+1. In the **Foundry Toolkit** view, find the **Classic** subsection in the **Resources** section.
 
 1. Select the plus (**+**) icon next to the **Classic Agents** subsection to create a new agent.
 

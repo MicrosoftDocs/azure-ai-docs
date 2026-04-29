@@ -5,12 +5,13 @@ ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 09/23/2025
+ms.date: 04/27/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
 ms.devlang: csharp
+ai-usage: ai-assisted
 ---
 
 # Step 3 - Deploy the search-enabled .NET website
@@ -154,7 +155,7 @@ To clean up the resources created in this tutorial, delete the resource group or
 
 1. If you no longer want the GitHub fork of the sample, remember to delete that on GitHub. Go to your fork's **Settings** then delete the repository.
 
-1. To delete Azure AI Search, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select **Delete** at the top of the page.
+1. To delete Azure AI Search, go to your search service in the [Azure portal](https://portal.azure.com) and select **Delete** at the top of the page.
 
 ## Next steps
 

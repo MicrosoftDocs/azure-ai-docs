@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Model retirement table for Azure OpenAI in Microsoft Foundry Models.
 manager: nitinme
 ms.date: 12/16/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, build-2025
 ---
@@ -37,20 +37,24 @@ ms.custom: references_regions, build-2025
 | `o4-mini` | 2025-04-16 | `Generally Available` | 2026-04-16 | 2026-10-16 |  |
 | `codex-mini` | 2025-05-16 | `Generally Available` | 2026-05-16 | 2026-11-15 |  |
 | `model-router` | 2025-11-18 | `Generally Available` | 2026-11-18 | 2027-05-20 |  |
+| `gpt-5` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-mini` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-nano` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-codex` | 2025-09-15 | `Generally Available` | 2026-09-15 | 2027-03-17 |  |
 | `gpt-5-pro` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `gpt-5.1` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1-codex` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1-codex-mini` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1-chat` | 2025-11-13 | `Preview` | n/a | No earlier than 2026-03-31 |  |
-| `gpt-5.2` | 2025-12-11 | `Generally Available` | No earlier than 2026-12-12 | No earlier than 2027-05-12 | |
-| `gpt-5.2-chat` | 2025-12-11 | `Preview` | n/a | No earlier than 2026-04-01 | |
-| `gpt-5.2-codex` | 2026-01-14 | `Generally Available` | 2027-01-14 | 2027-07-14 | `gpt-5.3-codex` |
-| `gpt-5.3-codex` | 2026-02-24 | `Generally Available` | 2027-02-25 | 2027-08-25 | |
-| `gpt-5.4` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
-| `gpt-5.4-pro` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
+| `gpt-5.1-codex` | 2025-11-13 | `Generally Available` | 2026-11-15 | 2027-05-15 |  |
+| `gpt-5.1-codex-mini` | 2025-11-13 | `Generally Available` | 2026-11-15 | 2027-05-15 |  |
+| `gpt-5.1-chat` | 2025-11-13 | `Preview` | n/a | 2026-05-13 |  |
+| `gpt-5.2` | 2025-12-11 | `Generally Available` | 2026-06-12 | 2026-12-12 | |
+| `gpt-5.2-chat` | 2025-12-11 | `Preview` | n/a | No earlier than 2026-05-13 | |
+| `gpt-5.2-codex` | 2026-01-14 | `Generally Available` | 2026-07-14 | 2027-01-14 | `gpt-5.3-codex` |
+| `gpt-5.3-codex` | 2026-02-24 | `Generally Available` | 2026-09-25 | 2027-02-25 | |
+| `gpt-5.4` | 2026-03-05 | `Generally Available` | 2026-09-05 | 2027-03-05 | |
+| `gpt-5.4-pro` | 2026-03-05 | `Generally Available` | 2026-09-06 | 2027-03-06 | |
+| `gpt-5.4-mini` | 2026-03-17 | `Generally Available` | 2026-09-18 | 2027-03-18 | |
+| `gpt-5.4-nano` | 2026-03-17 | `Generally Available` | 2026-09-18 | 2027-03-18 | |
+| `gpt-5.5` | 2026-04-24 |  `Generally Available` | 2026-10-24 |2027-04-24 | |
 
 
 
@@ -87,11 +91,11 @@ ms.custom: references_regions, build-2025
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `dall-e-3` | 3 | `Generally Available` | n/a | 2026-03-04 | `gpt-image-1.5` |
-| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | No earlier than 2026-03-31 | `gpt-image-1.5` |
+| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | 2026-05-15 | `gpt-image-1.5` |
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
-| `sora` | 2025-05-02 | `Preview` | n/a | No earlier than 2026-02-28 | `sora-2` |
-| `gpt-image-1.5`    | 2025-12-16   | `Preview`    | n/a | No earlier than 2026-12-16 |  |
-| `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-04-30 |  |
+| `gpt-image-1.5`    | 2025-12-16   | `Generally Available`    | n/a | No earlier than 2026-12-16 |  |
+| `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-09-15 |  |
+| `gpt-image-2` | 2026-04-21 | `Preview` | n/a | No earlier than 2027-04-21 |  |
 
 
 # [Embedding](#tab/embedding)

@@ -5,10 +5,10 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sonalimalik
-ms.date: 01/08/2026
+ms.date: 04/10/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
+ms.service: microsoft-foundry
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -77,6 +77,8 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 | **Red team scans (preview)** | Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
 | **Alerts (preview)** | Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
 
+
+
 ## Set up continuous evaluation
 
 Use the Python or .NET SDK to set up continuous evaluation rules for agent responses.
@@ -92,7 +94,9 @@ pip install "azure-ai-projects>=2.0.0" python-dotenv
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -151,7 +155,8 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenAI.Evals;
 
@@ -160,7 +165,7 @@ var endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
 
 AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
 #pragma warning disable OPENAI001
-EvaluationClient evaluationClient = projectClient.OpenAI.GetEvaluationClient();
+EvaluationClient evaluationClient = projectClient.ProjectOpenAIClient.GetEvaluationClient();
 #pragma warning restore OPENAI001
 
 PromptAgentDefinition agentDefinition = new(
@@ -169,7 +174,7 @@ PromptAgentDefinition agentDefinition = new(
     Instructions = "You are a helpful assistant that answers general questions",
 };
 
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: Environment.GetEnvironmentVariable("AZURE_AI_AGENT_NAME"),
     options: new(agentDefinition));
 
@@ -335,6 +340,17 @@ if (runs.GetArrayLength() > 0)
 
 ---
 
+## Use custom evaluators for continuous evaluations
+
+In addition to first-party evaluators, you can bring your own evaluators for continuous evaluations. To set up custom evaluators, follow the steps in [Custom evaluators (preview)](../../concepts/evaluation-evaluators/custom-evaluators.md).
+
+To add custom evaluators to continuous evaluations:
+
+1. From the **Monitor** tab, select **Settings**.
+1. Select the **Continuous evaluation** tab.
+1. Select **Add evaluator(s)**.
+1. Choose the custom evaluators you want to include.
+
 ## Full sample code
 
 To view the full sample code, see:
@@ -350,6 +366,19 @@ To view the full sample code, see:
 | You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Azure AI User** role. |
 | Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
+
+## Monitor and set up continuous evaluation for custom agents
+
+Foundry can serve as a centralized location for your agent monitoring, even for agents not running on the platform. Within Foundry control plane, you can onboard agents running elsewhere via AI Gateway. You can then instrument your agent to send traces to the same Application Insights instance as your Foundry project. This setup enables continuous evaluations and tracking of metrics like error rate for agents not running in Foundry.
+
+## Set up monitoring for your custom agents
+
+1. Onboard your custom agent to Foundry using the instructions in [Register and manage custom agents](../../control-plane/register-custom-agent.md).
+1. Instrument your agent to comply with the [semantic conventions for generative AI solutions in the OpenTelemetry standard](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
+1. Configure your agent to send telemetry to the same Application Insights instance as your Foundry project to enable continuous evaluation features.
+1. In Foundry Control Plane, go to the **Asset** page and select your agent.
+1. Select the **Monitor** tab to view your metrics and charts.
+1. Set up continuous evaluations using the methods outlined in [Configure settings](#configure-settings).
 
 ## Related content
 

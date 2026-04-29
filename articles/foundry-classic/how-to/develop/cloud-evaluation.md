@@ -1,7 +1,7 @@
 ---
 title: "Cloud Evaluation with the Microsoft Foundry SDK (classic)"
 description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - references_regions
@@ -262,5 +262,5 @@ After you register your custom evaluator, you can view it in your [evaluator cat
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

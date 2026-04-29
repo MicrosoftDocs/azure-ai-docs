@@ -4,8 +4,8 @@ description: Quota tier limits for tier 3
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/18/2026
 ---
@@ -56,10 +56,18 @@ ms.date: 02/18/2026
 | gpt-5.4                        | DataZoneStandard  | 1,000       | 1,000,000   |
 | gpt-5.4                        | GlobalStandard    | 40,000      | 4,000,000   |
 | gpt-5.4-pro                    | GlobalStandard    | 700         | 700,000     |
+| gpt-5.4-mini                   | GlobalStandard    | 4,000       | 4,000,000   |
+| gpt-5.4-nano                   | DataZoneStandard  | 16,000      | 16,000,000  |
+| gpt-5.4-nano                   | GlobalStandard    | 46,000      | 46,000,000  |
+| gpt-5.5                        | DataZoneStandard  | 0           | 0           |
+| gpt-5.5                        | GlobalStandard    | 0           | 0           |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 30          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 54          | -           |
+| gpt-image-1.5                  | DataZoneStandard  | 10          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 30          | -           |
+| gpt-image-2                    | DataZoneStandard  | 10          | -           |
+| gpt-image-2                    | GlobalStandard    | 30          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 235         | 235,000     |
 | o1                             | DataZoneStandard  | 450         | 2,700,000   |

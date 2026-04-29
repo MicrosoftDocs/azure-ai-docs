@@ -3,10 +3,12 @@ title: Azure OpenAI API surfaces
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Information on the division of control plane and data plane API surfaces
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/28/2025
+
+ms.custom: classic-and-new
 ---
 
 ## API specs

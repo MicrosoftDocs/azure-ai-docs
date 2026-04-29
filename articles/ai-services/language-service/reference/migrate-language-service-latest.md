@@ -125,10 +125,6 @@ The key phrase extraction feature functionality currently isn't changed outside 
 
 * [What is Azure Language in Foundry Tools?](../overview.md)
 * [Language developer guide](../concepts/developer-guide.md)
-* See the following reference documentation for information on previous API versions.
-  * [Version 2.1](https://westcentralus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v2-1/operations/56f30ceeeda5650db055a3c9)
-  * [Version 3.0](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment)
-  * [Version 3.1](https://westcentralus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-1/operations/Sentiment)
 * Use the following quickstart guides to see examples for the current version of these features.
   * [Entity linking](../entity-linking/quickstart.md)
   * [Key phrase extraction](../key-phrase-extraction/quickstart.md)

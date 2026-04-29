@@ -1,21 +1,21 @@
 ---
-title: "Quickstart: Create a Guardrail policy"
+title: "Quickstart: Create a guardrail policy"
 description: "Learn how to create a guardrail policy for model deployments in Microsoft Foundry so that you can govern the usage of guardrail controls across your subscription."
 author: gregharen
 ms.author: scottpolly
 ms.reviewer: gregharen
 ms.date: 02/19/2026
 ms.topic: quickstart
-ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.service: microsoft-foundry
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
-#customer intent: As a subscription owner, I want to manage guardrail policies in Microsoft Foundry so that I can monitor compliance status in Foundry Control Plane.
+#CustomerIntent: As a subscription owner, I want to manage guardrail policies in Microsoft Foundry so that I can monitor compliance status in Foundry Control Plane.
 ---
 
-# Quickstart: Create a Guardrail policy
+# Quickstart: Create a guardrail policy
 In this quickstart, you create a policy in Microsoft Foundry to govern the use of guardrail controls for model deployments across your subscription.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 1. Select **Next** to move to scope selection. You can scope your policy to a single subscription or a resource group.
 
-   Select a scope, select the subscription or resource group that you want to apply to the policy, and then choose **Select**.
+   Select a scope, select the subscription or resource group that you want the policy to apply to, and then choose **Select**.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-scope.png" alt-text="Screenshot of the area for selecting a scope." lightbox="media/quickstart-create-a-guardrail-policy/select-scope.png":::
 
@@ -84,7 +84,7 @@ If you no longer need the guardrail policy, you can delete it:
 
 1. Select the policy that you want to remove.
 
-1. Select **Delete Policy**, and then confirm the deletion.
+1. Select **Delete policy**, and then confirm the deletion.
 
 > [!NOTE]
 > Deleting a policy in the Foundry portal also removes the associated policy assignment in Azure Policy.

@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/31/2026
 ai-usage: ai-assisted
 ---
 

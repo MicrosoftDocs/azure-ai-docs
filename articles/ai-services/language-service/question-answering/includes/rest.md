@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use cURL & REST to manage project - custom question answering"
 description: This quickstart shows you how to create, publish, and query your project using the REST APIs.
-ms.date: 12/15/2025
+ms.date: 04/20/2026
 ms.topic: include
 author: laujan
 ms.author: lajanuar
@@ -11,9 +11,9 @@ ms.author: lajanuar
 * The current version of [cURL](https://curl.haxx.se/). Several command-line switches are used in the quickstarts, which are noted in the [cURL documentation](https://curl.haxx.se/docs/manpage.html).
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Custom question answering requires a [Language resource](https://portal.azure.com/?quickstart=true#create/Microsoft.CognitiveServicesTextAnalytics) with the custom question answering feature enabled to generate an API key and endpoint.
-    * After your Language resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect to the API. Paste your key and endpoint into the code later in the quickstart.
+* After your Language resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect to the API. Paste your key and endpoint into the code later in the quickstart.
 * Create a Language resource with [Azure CLI](../../../multi-service-resource.md?pivots=azcli) and provide the following properties: `--api-properties qnaAzureSearchEndpointId=/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Search/searchServices/<azure-search-service-name> qnaAzureSearchEndpointKey=<azure-search-service-auth-key>`
-* An existing project to query. If you have not setup a project, you can follow the instructions in the [**Foundry quickstart**](../quickstart/sdk.md). Or add a project that uses this [Surface User Guide URL](https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf) as a data source.
+* An existing project to query. If you have not setup a project, you can follow the instructions in the [**Foundry quickstart**](../quickstart/sdk.md). Or add a project that uses this [Surface User Guide URL](https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features) as a data source.
 
 
 

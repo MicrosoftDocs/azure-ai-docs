@@ -2,11 +2,12 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: include
 ms.date: 09/12/2025
-ms.custom: devx-track-ts
+ms.custom: devx-track-ts, classic-and-new
+
 ---
 
 | [Reference documentation](/javascript/api/overview/azure/ai-projects-readme) | [Samples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/README.md) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-projects) |

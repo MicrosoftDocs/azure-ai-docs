@@ -2,8 +2,8 @@
 title: "Connect Azure Speech in Foundry Tools to an agent"
 description: "Connect Azure Speech in Foundry Tools to an agent by using an MCP server for speech-to-text and text-to-speech in Foundry Agent Service."
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 01/21/2026
 author: PatrickFarley
@@ -11,6 +11,7 @@ ms.author: pafarley
 ms.custom: 
 - azure-ai-agents
 - pilot-ai-workflow-jan-2026
+- doc-kit-assisted
 ai-usage: ai-assisted
 keywords: Azure Speech, speech to text, text to speech, MCP, Model Context Protocol, Foundry Agent Service
 ---

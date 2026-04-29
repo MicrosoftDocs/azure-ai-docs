@@ -2,15 +2,17 @@
 title: "Azure OpenAI in Microsoft Foundry Models v1 REST API reference"
 description: "Learn how to use Azure OpenAI's v1 REST API." 
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
+ai-usage: ai-assisted
 ms.custom:
 - classic-and-new
+- doc-kit-assisted
 ---
 
 # Azure OpenAI in Microsoft Foundry Models v1 REST API reference
@@ -9571,6 +9573,7 @@ A tool that generates images using the GPT image models.
 ```
 gpt-image-1
 gpt-image-1-mini
+gpt-image-2
 ```
 
 | Name | Type | Description | Required | Default |
@@ -9694,7 +9697,7 @@ A text input to the model.
 
 ### OpenAI.InputFidelity
 
-Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for `gpt-image-1`. Unsupported for `gpt-image-1-mini`. Supports `high` and `low`. Defaults to `low`.
+Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for `gpt-image-1` and `gpt-image-2`. Unsupported for `gpt-image-1-mini`. Supports `high` and `low`. Defaults to `low`.
 
 | Property | Value |
 |----------|-------|

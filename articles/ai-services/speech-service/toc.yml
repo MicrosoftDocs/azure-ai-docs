@@ -26,7 +26,7 @@ items:
   - name: Speech tools documentation
     href: index-speech-tools.yml
   - name: Speech MCP server
-    href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
+    href: /azure/foundry/agents/how-to/tools/azure-ai-speech?context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio
     href: speech-studio-overview.md
   - name: Speech in Microsoft Foundry
@@ -89,6 +89,8 @@ items:
       items:
       - name: How to recognize speech
         href: how-to-recognize-speech.md
+      - name: How to use post-processing
+        href: how-to-post-processing.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
       - name: Language identification
@@ -157,6 +159,9 @@ items:
         href: /rest/api/speechtotext/operation-groups
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
@@ -286,6 +291,9 @@ items:
     - name: OpenAI text to speech voices
       href: openai-voices.md
       displayName: tts
+    - name: MAI-Voice
+      displayName: mai voice, neural voice
+      href: mai-voices.md
     - name: Text to speech FAQ
       displayName: FAQ,TTS,frequently asked questions
       href: faq-tts.yml
@@ -309,14 +317,17 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Speech Transcription SDK
-      href: transcription-sdk.md
+    - name: Use MAI-Transcribe-1
+      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
         href: /rest/api/speechtotext/transcriptions/transcribe
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
@@ -357,6 +368,8 @@ items:
         href: how-to-voice-live-auto-truncation.md
       - name: Improve tool calling and latency wait times (preview)
         href: how-to-voice-live-interim-response.md
+      - name: Add an MCP server (preview)
+        href: how-to-voice-live-mcp-server.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ
@@ -492,6 +505,8 @@ items:
           href: audio-processing-overview.md
         - name: Use the Microsoft Audio Stack (MAS)
           href: audio-processing-speech-sdk.md
+        - name: Model-based acoustic echo cancellation
+          href: audio-processing-model-based-echo-cancellation.md
         - name: Microphone array recommendations
           href: speech-sdk-microphone.md
     - name: Embedded speech
@@ -561,6 +576,9 @@ items:
             href: /python/api/azure-cognitiveservices-speech/
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme

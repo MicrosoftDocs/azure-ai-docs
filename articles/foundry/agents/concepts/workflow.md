@@ -1,12 +1,13 @@
 ---
 title: "Build a workflow in Microsoft Foundry"
 description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom:
   - build-2025
   - code01
   - pilot-ai-workflow-jan-2026 
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: fniedtner
@@ -20,7 +21,7 @@ ai-usage: ai-assisted
 # Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
-Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
+Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each powered by a Foundry model with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
@@ -102,6 +103,9 @@ When you select a prebuilt workflow, the builder displays the nodes in sequence.
 Add any Foundry agent from your project to the workflow. Agent nodes also let you create new agents with customized capabilities by configuring their model, prompt, and tools.
 
 For advanced agent creation options, go to the **Foundry Agent** tab in the Foundry portal.
+
+> [!NOTE]
+> Hosted agents aren't supported in the workflow designer. To coordinate tasks, call other agents, or orchestrate workflows within a hosted agent, use [Microsoft Agent Framework workflows](/agent-framework/workflows/) or another agent framework that supports workflow capabilities from your hosted agent code.
 
 ### Add an existing agent
 

@@ -1,11 +1,11 @@
 ---
-title: "What is Microsoft Foundry? (classic)"
+title: "What is Microsoft Foundry (classic) portal"
 description: "Microsoft Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way. (classic)"
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 11/06/2025
-ms.service: azure-ai-foundry
+ms.date: 04/13/2026
+ms.service: microsoft-foundry
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -22,7 +22,7 @@ keywords:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# What is Microsoft Foundry? (classic)
+# What is Microsoft Foundry (classic) portal?
 
 This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 
@@ -43,7 +43,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ## Foundry (classic) portal
 
-[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+[!INCLUDE [foundry-link](../foundry/includes/foundry-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
 
 The Foundry (classic) portal provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
 
@@ -174,6 +174,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 ## Related content
 
-- [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)- [Create a project](./how-to/create-projects.md)
+- [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
+- [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

@@ -20,6 +20,8 @@ ms.custom:
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+[!INCLUDE [machine-learning-data-import-deprecation](includes/machine-learning-data-import-deprecation.md)]
+
 In this article, you learn how to manage imported data assets from a life-cycle perspective. You'll learn how to modify or update auto delete settings on the data assets imported into a managed datastore (`workspacemanagedstore`) that Microsoft manages for the customer.
 
 > [!NOTE]
