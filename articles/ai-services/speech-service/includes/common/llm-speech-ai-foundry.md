@@ -21,7 +21,7 @@ You can try LLM Speech in [Microsoft Foundry](https://ai.azure.com/?cid=learnDoc
 
 1. [!INCLUDE [foundry-sign-in](../../../../foundry/includes/foundry-sign-in.md)]
 
-1. From the upper right menu, select **Build**.
+1. From the upper-right menu, select **Build**.
 
 1. In the left pane, select **Models**.
 
