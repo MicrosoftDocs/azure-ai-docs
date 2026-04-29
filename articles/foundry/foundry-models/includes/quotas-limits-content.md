@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -18,13 +18,15 @@ Microsoft Foundry is introducing Cross-endpoint quotas to bring consistency and 
 
 This change consolidates quota into shared pools:
 
-* **Cross-endpoint quotas**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* Global Standard: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* Data Zone Standard: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
 ## What’s changing for me?
 
 For the models that are onboarded to Global and Data Zone quotas:
 
-* All Cross-endpoint quotas of the same model and version under a subscription now draw from a single shared quota pool across all regions.
+* All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
+* All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
 * Existing approved quota is retained and automatically applies at the subscription level — no action required.
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
