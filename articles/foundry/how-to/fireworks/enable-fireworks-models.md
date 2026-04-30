@@ -120,7 +120,7 @@ The following Fireworks models are available in the Foundry model catalog:
 | **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
-| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | PTU | Open-source model for coding, long-horizon execution, and agent workflows. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Per-Token and PTU | Open-source model for coding, long-horizon execution, and agent workflows. |
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
 | **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
 | **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
