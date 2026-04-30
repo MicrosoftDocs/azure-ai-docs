@@ -8,6 +8,7 @@ ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 zone_pivot_groups: selection-mcp-code

@@ -8,6 +8,7 @@ ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/07/2026
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -16,7 +17,7 @@ zone_pivot_groups: selection-file-search-upload-new
 ---
 
 # File search tool for agents
-Use the file search tool to enable Microsoft Foundry agents to search through your documents and retrieve relevant information. File search augments agents with knowledge from outside their model, such as proprietary product information or user-provided documents.
+Use the file search tool to enable Microsoft Foundry agents to search through your documents and retrieve relevant information. File search augments agents with knowledge from outside the Foundry model powering the agent, such as proprietary product information or user-provided documents.
 
 In this article, you learn how to:
 

@@ -2,6 +2,7 @@
 title: "Tool best practices for Microsoft Foundry Agent Service"
 description: "Learn tool best practices for Foundry Agent Service: configure tool_choice, secure tool usage, and troubleshoot tool-calling issues."
 author: jonburchel
+reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.date: 03/09/2026
@@ -15,7 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Tool best practices for Microsoft Foundry Agent Service
-When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the model calls them, and keep your data secure.
+When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the agent calls them, and keep your data secure.
 
 > [!TIP]
 > In your agent instructions, describe what each tool is for and when to use it. For example:

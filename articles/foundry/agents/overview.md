@@ -32,9 +32,9 @@ Agent Service handles hosting, scaling, identity, observability, and enterprise 
 
 ## What is an agent?
 
-An agent is an AI application that uses a large language model (LLM) to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
+An agent is an AI application that uses a model from the Foundry model catalog to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
 
-* **Model (LLM)**: Provides reasoning and language capabilities.
+* **Model**: A model from the Foundry model catalog that provides reasoning and language capabilities.
 * **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
 * **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 

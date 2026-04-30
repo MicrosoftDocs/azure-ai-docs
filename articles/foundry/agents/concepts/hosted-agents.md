@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # What are hosted agents?
 When you build agentic applications by using open-source frameworks, you typically manage many cross-cutting concerns: containerization, web server setup, security, memory persistence, scaling, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
-Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
+Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. Hosted agents call models from the Foundry model catalog to perform reasoning while your custom code handles orchestration. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
 ### When to use hosted agents
 
@@ -189,10 +189,17 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 
 Hosted agents are currently available in the following regions: 
 
+- East US 2
 - Australia East
 - Canada Central
 - North Central US
 - Sweden Central
+- South East Asia
+- Poland Central
+- South Africa North
+- Korea Central
+- South India
+- Brazil South
 
 > [!NOTE]
 > This list will be updated as additional regions become available.
