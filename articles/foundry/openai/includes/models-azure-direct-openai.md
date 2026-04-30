@@ -430,11 +430,11 @@ All deployments can perform the exact same inference operations, but the billing
 
 # [Asia Pacific](#tab/asia-pacific)
 
-[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]TBD
+[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]
 
 # [Middle East & Africa](#tab/middle-east-africa)
 
-TBD[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
+[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
 
 ---
 
