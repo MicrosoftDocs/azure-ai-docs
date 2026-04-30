@@ -30,27 +30,39 @@ Agent 365 data collection on a Foundry resource is tracked by two properties in 
 
 | Property | Type | Description |
 |---|---|---|
-| `agent365Config.loggingEnabled` | String | User control to set whether agent activity data is sent to Agent 365 for this Foundry resource. Accepted values: `true`, `false`. |
-| `agent365Config.a365Status` | String | Read-only property displaying the enablement status in the system, considering A365 Licensing and terms acceptance. Possible values: `Enabled`, `Disabled`, `NotLicensed` |
+| `a365LoggingEnabled` | Boolean | User-controlled property to set whether agent activity data is sent to Agent 365 for this Foundry resource. Accepted values: `true`, `false`. |
+| `a365Status` | String | Read-only system property showing enablement status after licensing and consent checks. Possible values: `Enabled`, `Disabled`, `NotLicensed`. |
 
 These properties are part of the `Microsoft.CognitiveServices/accounts` resource type and can be read or modified through the Azure Resource Manager API, Azure CLI, Azure PowerShell, or the Azure portal.
 
 > [!IMPORTANT]
-> Data collection requires **both** an active Agent 365 license **and** tenant-level A365 consent **and** `loggingEnabled` set to `enabled`. No data is ingested unless the customer has completed the Agent 365 consent flow and holds a valid license. Setting the property to `enabled` alone doesn't trigger data collection.
+> Data collection requires **both** an active Agent 365 license **and**
+> tenant-level A365 consent **and** `a365LoggingEnabled` set to `true`.
+> No data is ingested unless the customer has completed the Agent 365
+> consent flow and holds a valid license. Setting `a365LoggingEnabled`
+> to `true` alone doesn't trigger data collection.
 
 ### Default state
 
-When Agent 365 is enabled for an Entra tenant, Foundry resources in the same Azure tenant will have `loggingEnabled` set to `enabled` by default. Organizations must explicitly opt out to disable data collection on each resource. You may use Azure Policy to deny data collection for select Azure Subscriptions or Azure Management Groups.
+When Agent 365 is enabled for an Entra tenant, Foundry resources in the
+same Azure tenant have `a365LoggingEnabled` set to `true` by default.
+Organizations must explicitly opt out to disable data collection on each
+resource. You can use Azure Policy to deny data collection for select Azure
+subscriptions or Azure management groups.
 
 ### Scope of the setting
 
-The `agent365Config` setting applies at the **Foundry resource level**. Every Foundry project and every prompt agent contained within that resource inherits the same data-collection setting. There's no per-project or per-agent override possible.
+The `a365LoggingEnabled` setting applies at the **Foundry resource level**.
+Every Foundry project and every prompt agent contained within that resource
+inherits the same data-collection setting. There's no per-project or
+per-agent override.
 
 [Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in hosted agents override logging disablement settings on the Foundry resource level.
 
 ## Disable data collection on a Foundry resource
 
-To stop sending agent activity data from a specific Foundry resource to Agent 365, set `loggingEnabled` to `false`.
+To stop sending agent activity data from a specific Foundry resource to
+Agent 365, set `a365LoggingEnabled` to `false`.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -59,7 +71,8 @@ az resource update \
   --resource-group <resource-group> \
   --name <foundry-resource-name> \
   --resource-type Microsoft.CognitiveServices/accounts \
-  --set properties.agent365Config.loggingEnabled=false
+  --api-version 2026-03-15-preview \
+  --set properties.a365LoggingEnabled=false
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -68,24 +81,24 @@ az resource update \
 $resource = Get-AzResource `
   -ResourceGroupName <resource-group> `
   -ResourceName <foundry-resource-name> `
-  -ResourceType Microsoft.CognitiveServices/accounts
+  -ResourceType Microsoft.CognitiveServices/accounts `
+  -ApiVersion 2026-03-15-preview
 
-$resource.Properties.agent365Config.loggingEnabled = false
+$resource.Properties.a365LoggingEnabled = false
 
 Set-AzResource -ResourceId $resource.ResourceId `
+  -ApiVersion 2026-03-15-preview `
   -Properties $resource.Properties -Force
 ```
 
 ### [REST API](#tab/rest-api)
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.CognitiveServices/accounts/{accountName}?api-version=2024-10-01
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.CognitiveServices/accounts/{accountName}?api-version=2026-03-15-preview
 
 {
   "properties": {
-    "agent365Config": {
-      "loggingEnabled": false
-    }
+    "a365LoggingEnabled": false
   }
 }
 ```
@@ -93,7 +106,7 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 ### [Bicep](#tab/bicep)
 
 ```bicep
-resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
+resource foundryAccount 'Microsoft.CognitiveServices/accounts@2026-03-15-preview' = {
   name: '<foundry-resource-name>'
   location: '<location>'
   kind: 'AIServices'
@@ -101,9 +114,7 @@ resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
     name: 'S0'
   }
   properties: {
-    agent365Config: {
-      loggingEnabled: false
-    }
+    a365LoggingEnabled: false
   }
 }
 ```
@@ -112,14 +123,12 @@ resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
 
 ```hcl
 resource "azapi_update_resource" "disable_agent365" {
-  type        = "Microsoft.CognitiveServices/accounts@2024-10-01"
+  type        = "Microsoft.CognitiveServices/accounts@2026-03-15-preview"
   resource_id = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource-name>"
 
   body = {
     properties = {
-      agent365Config = {
-        loggingEnabled = false
-      }
+      a365LoggingEnabled = false
     }
   }
 }
@@ -131,7 +140,7 @@ After you disable logging, the setting takes effect for all projects and agents 
 
 ## Enable data collection on a Foundry resource
 
-To opt a resource back in, set `loggingEnabled` to `true` and provide the ingestion endpoint for your tenant.
+To opt a resource back in, set `a365LoggingEnabled` to `true`.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -140,7 +149,8 @@ az resource update \
   --resource-group <resource-group> \
   --name <foundry-resource-name> \
   --resource-type Microsoft.CognitiveServices/accounts \
-  --set properties.agent365Config.loggingEnabled=true
+  --api-version 2026-03-15-preview \
+  --set properties.a365LoggingEnabled=true
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -149,24 +159,24 @@ az resource update \
 $resource = Get-AzResource `
   -ResourceGroupName <resource-group> `
   -ResourceName <foundry-resource-name> `
-  -ResourceType Microsoft.CognitiveServices/accounts
+  -ResourceType Microsoft.CognitiveServices/accounts `
+  -ApiVersion 2026-03-15-preview
 
-$resource.Properties.agent365Config.loggingEnabled = true
+$resource.Properties.a365LoggingEnabled = true
 
 Set-AzResource -ResourceId $resource.ResourceId `
+  -ApiVersion 2026-03-15-preview `
   -Properties $resource.Properties -Force
 ```
 
 ### [REST API](#tab/rest-api)
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.CognitiveServices/accounts/{accountName}?api-version=2024-10-01
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.CognitiveServices/accounts/{accountName}?api-version=2026-03-15-preview
 
 {
   "properties": {
-    "agent365Config": { 
-      "loggingEnabled": true
-    }
+    "a365LoggingEnabled": true
   }
 }
 ```
@@ -174,7 +184,7 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 ### [Bicep](#tab/bicep)
 
 ```bicep
-resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
+resource foundryAccount 'Microsoft.CognitiveServices/accounts@2026-03-15-preview' = {
   name: '<foundry-resource-name>'
   location: '<location>'
   kind: 'AIServices'
@@ -182,9 +192,7 @@ resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
     name: 'S0'
   }
   properties: {
-    agent365Config: { 
-      loggingEnabled: true
-    }
+    a365LoggingEnabled: true
   }
 }
 ```
@@ -193,130 +201,18 @@ resource foundryAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
 
 ```hcl
 resource "azapi_update_resource" "enable_agent365" {
-  type        = "Microsoft.CognitiveServices/accounts@2024-10-01"
+  type        = "Microsoft.CognitiveServices/accounts@2026-03-15-preview"
   resource_id = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource-name>"
 
   body = {
     properties = {
-      agent365Config = { 
-        loggingEnabled    = true
-      }
+      a365LoggingEnabled = true
     }
   }
 }
 ```
 
 ---
-
-## Enforce data collection settings with Azure Policy
-
-You can use an Azure Policy with a `modify` effect to automatically configure Agent 365 data collection on every Foundry resource in a subscription or management group. This approach is useful when you want to ensure that all Foundry resources conform to a single data-collection posture.
-
-The following custom policy definition sets the ingestion endpoint and logging state on every `Microsoft.CognitiveServices/accounts` resource.
-
-### Create the policy definition
-
-Save the following JSON as a file (for example, `agent365-policy.json`):
-
-```json
-{
-  "properties": {
-    "displayName": "Configure Agent 365 data collection for Foundry resources",
-    "description": "Automatically configures the Agent 365 ingestion endpoint and logging setting on all Microsoft.CognitiveServices/accounts resources.",
-    "policyType": "Custom",
-    "mode": "Indexed",
-    "parameters": {
-      "loggingEnabled": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Enable Agent 365 logging",
-          "description": "Set to 'enabled' to send agent activity data to Agent 365, or 'disabled' to stop data collection."
-        },
-        "allowedValues": [
-          true,
-          false
-        ],
-        "defaultValue": false
-      }
-    },
-    "policyRule": {
-      "if": {
-        "field": "type",
-        "equals": "Microsoft.CognitiveServices/accounts"
-      },
-      "then": {
-        "effect": "modify",
-        "details": {
-          "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
-          ],
-          "operations": [
-            {
-              "operation": "addOrReplace",
-              "field": "properties.agent365Config.loggingEnabled",
-              "value": "[parameters('loggingEnabled')]"
-            }
-          ]
-        }
-      }
-    }
-  }
-}
-```
-
-> [!NOTE]
-> The policy uses the **Contributor** built-in role (`b24988ac-…-20f7382dd24c`) to perform the `modify` operation. The managed identity created during policy assignment needs this role on the target scope.
-
-### Deploy the policy
-
-### [Azure CLI](#tab/policy-azure-cli)
-
-```azurecli
-# Create the policy definition
-az policy definition create \
-  --name "configure-agent365-foundry" \
-  --display-name "Configure Agent 365 data collection for Foundry resources" \
-  --rules agent365-policy.json \
-  --mode Indexed
-
-# Assign the policy to a subscription
-az policy assignment create \
-  --name "agent365-foundry-assignment" \
-  --policy "configure-agent365-foundry" \
-  --scope "/subscriptions/<subscription-id>" \
-  --mi-system-assigned \
-  --location <location> \
-  --params '{ "agents365IngestionEndpoint": { "value": "<entra-tenant-id>.agent365.com" }, "loggingEnabled": { "value": "disabled" } }'
-```
-
-### [Azure PowerShell](#tab/policy-azure-powershell)
-
-```azurepowershell
-# Create the policy definition
-$definition = New-AzPolicyDefinition `
-  -Name "configure-agent365-foundry" `
-  -DisplayName "Configure Agent 365 data collection for Foundry resources" `
-  -Policy "agent365-policy.json" `
-  -Mode Indexed
-
-# Assign the policy to a subscription
-New-AzPolicyAssignment `
-  -Name "agent365-foundry-assignment" `
-  -PolicyDefinition $definition `
-  -Scope "/subscriptions/<subscription-id>" `
-  -Location <location> `
-  -IdentityType SystemAssigned `
-  -PolicyParameterObject @{
-    agents365IngestionEndpoint = "<entra-tenant-id>.agent365.com"
-    loggingEnabled            = "disabled"
-  }
-```
-
----
-
-After assignment, the policy evaluates existing resources and remediates them during the next compliance evaluation cycle. New Foundry resources automatically receive the configured settings at creation time.
-
-To disable data collection across all Foundry resources in the subscription, set the `loggingEnabled` parameter to `false` in the policy assignment. To enable it, set the parameter to `true`.
 
 ## Related content
 
