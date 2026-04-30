@@ -7,46 +7,51 @@ ms.topic: include
 ms.date: 01/31/2026
 ---
 
-[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples)
+[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples)
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- <a href="https://www.python.org/" target="_blank">Python 3.9 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+
+- <a href="https://www.python.org/" target="_blank">Python 3.9 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [Visual Studio Code Python tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter). This tutorial shows you the easiest way of installing Python on your operating system.
+
 - A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=stt).
+
 - A sample `.wav` audio file to transcribe.
 
 ### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
+
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Setup
+- Assign the Cognitive Services User role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-1. Create a new folder named `llm-speech-quickstart` and go to the quickstart folder with the following command:
+## Set up the environment
+
+1. Create a new folder named `llm-speech-quickstart` and then go to the folder with the following command:
 
     ```shell
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
-1. Create and activate a virtual Python environment to install the packages you need for this tutorial. We recommend you always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
+1. To install the packages that you need for this article, create and activate a virtual Python environment. We recommend that you always use a virtual or conda environment when you install Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or later installed, create a virtual environment by using the following commands:
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     py -3 -m venv .venv
     .venv\Scripts\Activate.ps1
     ```
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
 
-    # [macOS](#tab/macos)
+   # [macOS](#tab/macos)
 
     ```bash
     python3 -m venv .venv
@@ -75,26 +80,28 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 You need to retrieve your resource endpoint and API key for authentication.
 
 1. Sign in to [Foundry portal (classic)](https://ai.azure.com).
-1. Select **Management center** from the left menu. 
-1. Select **Connected resources** on the left, and find your Microsoft Foundry resource (or add a connection if it isn't there). Then copy the **API Key** and **Target** (endpoint) values. Use these values to set environment variables.
+
+1. Select **Management center** from the left menu.
+
+1. Select **Connected resources**, and find your Microsoft Foundry resource (or add a connection if it isn't there). Then copy the **API Key** and **Target** (endpoint) values. Use these values to set environment variables.
 
 1. Set the following environment variables:
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     $env:AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
     $env:AZURE_SPEECH_API_KEY="<your-api-key>"
     ```
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
     export AZURE_SPEECH_API_KEY="<your-api-key>"
     ```
 
-    # [macOS](#tab/macos)
+   # [macOS](#tab/macos)
 
     ```bash
     export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
@@ -104,11 +111,11 @@ You need to retrieve your resource endpoint and API key for authentication.
     ---
 
 > [!NOTE]
-> For Microsoft Entra ID authentication (recommended for production), install `azure-identity` and configure authentication as described in the [Microsoft Entra ID prerequisites](#microsoft-entra-id-prerequisites) section.
+> For Microsoft Entra ID authentication (recommended for production), install `azure-identity`. Configure authentication as described in the [Microsoft Entra ID prerequisites](#microsoft-entra-id-prerequisites) section.
 
-## Transcribe audio with LLM speech
+## Transcribe audio with LLM Speech
 
-LLM speech uses the `EnhancedModeProperties` class to enable large-language-model-enhanced transcription. The model automatically detects the language in your audio.
+LLM Speech uses the `EnhancedModeProperties` class to enable transcription that's enhanced by a large language model. The model automatically detects the language in your audio.
 
 1. Create a file named `llm_speech_transcribe.py` with the following code:
 
@@ -145,7 +152,7 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
 
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
-        # Create enhanced mode properties for LLM speech transcription
+        # Create enhanced mode properties for LLM Speech transcription
         enhanced_mode = EnhancedModeProperties(
             task="transcribe",
             prompt=[],
@@ -170,7 +177,7 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
                 print(f"  [{phrase.offset_milliseconds}ms]: {phrase.text}")
     ```
 
-    Reference: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient) | [TranscriptionContent](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptioncontent) | [TranscriptionOptions](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions) | [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties)
+    For more information, see the following references: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient), [TranscriptionContent](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptioncontent), [TranscriptionOptions](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions), and [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties).
 
 1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file. The service supports WAV, MP3, FLAC, OGG, and other common audio formats.
 
@@ -180,7 +187,7 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
     python llm_speech_transcribe.py
     ```
 
-### Output
+### Transcription output
 
 The script prints the transcription result to the console:
 
@@ -197,10 +204,9 @@ Detailed phrases:
   [22480ms]: This audio is provided by samplefiles.com.
 ```
 
+## Translate audio with LLM Speech
 
-## Translate audio with LLM speech
-
-You can also use LLM speech to translate audio into a target language. Set the `task` to `translate` and specify the `target_language`.
+You can also use LLM Speech to translate audio into a target language. Set the `task` to `translate`, and specify the `target_language`.
 
 1. Create a file named `llm_speech_translate.py` with the following code:
 
@@ -237,7 +243,7 @@ You can also use LLM speech to translate audio into a target language. Set the `
     
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
-        # Create enhanced mode properties for LLM speech translation
+        # Create enhanced mode properties for LLM Speech translation
         # Translate to another language
         enhanced_mode = EnhancedModeProperties(
             task="translate",
@@ -261,7 +267,7 @@ You can also use LLM speech to translate audio into a target language. Set the `
         print(f"Translation: {result.combined_phrases[0].text}")
     ```
 
-    Reference: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient) | [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties)
+    For more information, see the following references: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient) and [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties).
 
 1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
@@ -308,7 +314,7 @@ audio_file_path = "<path-to-your-audio-file.wav>"
 
 # Open and read the audio file
 with open(audio_file_path, "rb") as audio_file:
-    # Create enhanced mode properties for LLM speech transcription
+    # Create enhanced mode properties for LLM Speech transcription
     enhanced_mode = EnhancedModeProperties(
         task="transcribe",
         prompt=[
@@ -339,23 +345,26 @@ with open(audio_file_path, "rb") as audio_file:
 
 ```
 
-### Best practices for prompts:
+### Best practices for prompts
 
-- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts have a maximum length of 4,096 characters.
+
 - Prompts should preferably be written in English.
+
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
+
 - Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
 
-Reference: [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties)
+For more information, see the following reference: [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties).
 
 ### Output
 
 The script prints the transcription result to the console:
 
 ```output
-Transcription: Hello, this is a test of the LLM speech transcription service.
+Transcription: Hello, this is a test of the LLM Speech transcription service.
 
 Detailed phrases:
   [0ms]: Hello, this is a test
-  [1500ms]: of the LLM speech transcription service.
+  [1500ms]: of the LLM Speech transcription service.
 ```
