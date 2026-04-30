@@ -61,7 +61,7 @@ Capability hosts follow a hierarchy where more specific configurations override 
 
 1. **Service defaults** (Microsoft-managed search and storage) - Used when no capability host is configured.
 2. **Account-level capability host** - Provides shared defaults for all projects under the account.
-3. **Project-level capability host** - Overrides account-level and service defaults for that specific project. 
+3. **Project-level capability host** - Overrides account-level for that specific project. 
 
 ## Understand capability host constraints
 
@@ -70,6 +70,8 @@ When creating capability hosts, be aware of these important constraints to avoid
 - **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you get a 409 conflict.
 
 - **You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
+
+- **Account capability host pre-requisite for Project capability host**: You can't create capability host for your projects if at account level you don't have existing capability host.
 
 ## Create connections for capability hosts
 
