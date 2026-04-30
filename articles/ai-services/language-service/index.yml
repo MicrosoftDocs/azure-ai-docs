@@ -53,43 +53,57 @@ conceptualContent:
             - url: personally-identifiable-information/document-based-pii-overview.md
               itemType: overview
               text: Document-based PII detection
-          footerLink:
-            url: personally-identifiable-information/quickstart.md
-            text: Get started
+            - url: personally-identifiable-information/quickstart.md
+              itemType: quickstart
+              text: Get started with PII detection
 
         # Card
-        - title: Extract named entities
-          summary: Extract and classify entities with prebuilt models or train custom models for domain-specific schemas.
+        - title: Named Entity Recognition (NER)
+          summary: Identify and classify entities such as people, organizations, locations, and dates using prebuilt recognition models.
           links:
             - url: named-entity-recognition/overview.md
               itemType: overview
-              text: Prebuilt Named Entity Recognition
-            - url: custom-named-entity-recognition/overview.md
-              itemType: overview
-              text: Custom Named Entity Recognition
+              text: Named Entity Recognition overview
+            - url: named-entity-recognition/concepts/named-entity-categories.md
+              itemType: reference
+              text: Recognized entity categories
+            - url: named-entity-recognition/how-to-call.md
+              itemType: how-to-guide
+              text: Call the NER API
             - url: named-entity-recognition/quickstart.md
               itemType: quickstart
-              text: Get started with prebuilt NER
-          footerLink:
-            url: named-entity-recognition/concepts/named-entity-categories.md
-            text: View entity categories
+              text: Get started with Named Entity Recognition
 
         # Card
-        - title: Analyze healthcare text
+        - title: Custom Named Entity Recognition (CNER)
+          summary: Train custom models to extract domain-specific entities using your own labeled data and entity schemas.
+          links:
+            - url: custom-named-entity-recognition/overview.md
+              itemType: overview
+              text: Custom NER overview
+            - url: custom-named-entity-recognition/how-to/design-schema.md
+              itemType: how-to-guide
+              text: Design your entity schema
+            - url: custom-named-entity-recognition/how-to/train-model.md
+              itemType: how-to-guide
+              text: Train a model
+            - url: custom-named-entity-recognition/quickstart.md
+              itemType: quickstart
+              text: Get started with CNER
+
+        # Card
+        - title: Analyze healthcare documents 
           summary: Extract clinical entities, relations, and assertions from biomedical and clinical narratives.
           links:
             - url: text-analytics-for-health/overview.md
               itemType: overview
               text: Text analytics for health
-            - url: text-analytics-for-health/quickstart.md
-              itemType: quickstart
-              text: Quickstart
             - url: text-analytics-for-health/concepts/health-entity-categories.md
               itemType: reference
               text: Health entity categories
-          footerLink:
-            url: text-analytics-for-health/how-to/call-api.md
-            text: Call the API
+            - url: text-analytics-for-health/quickstart.md
+              itemType: quickstart
+              text: Get started with text analytics for health
 
       # Card
         - title: Detect language
@@ -98,12 +112,12 @@ conceptualContent:
             - url: language-detection/overview.md
               itemType: overview
               text: Language detection overview
-            - url: language-detection/quickstart.md
-              itemType: quickstart
-              text: Quickstart
             - url: language-detection/language-support.md
               itemType: reference
               text: Language support
+            - url: language-detection/quickstart.md
+              itemType: quickstart
+              text: Get started with language detection
 
     - title: Legacy capabilities
       summary: Use legacy extraction and analysis capabilities for established production systems, specialized workloads, and phased migration plans. For net-new implementations, prioritize using core capabilities to align with current platform architecture, long-term roadmap direction, and recommended engineering practices.
