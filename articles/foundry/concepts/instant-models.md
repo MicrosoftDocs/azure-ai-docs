@@ -65,16 +65,18 @@ If your instant model usage exceeds the remaining capacity, you receive a thrott
 
 Each model has its own global quota allocation. Usage of one model doesn't consume quota assigned to a different model.
 
-## Which models support instant models?
+## Supported models
 
-<!-- The following models support instant access during the preview:
+The following models support instant access during the preview:
 
- [TODO] Add specific model list before publish -->
+<!-- [TODO] Add specific model list before publish -->
 
-As new models are released, they support instant access by default. Support for additional models is considered based on customer demand.
+New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
+
+To see all models that support instant access, open the [Foundry model catalog](https://ai.azure.com/explore/models) and filter **Deployment options** to **Instant**.
 
 > [!NOTE]
-> During the preview, instant models are available in projects in South Central US only. 
+> During the preview, instant models are available in projects in South Central US only.
 
 ## When to use instant models vs. deployments
 
@@ -111,9 +113,9 @@ To prevent ambiguity, new deployments can't use a name that matches an existing 
 ## Limitations during preview
 
 - Available in South Central US only.
-
+- Fine-tuned models aren't supported. Instant models work only with base catalog models. To use a fine-tuned model, create a deployment.
 - Custom RAI policies and guardrails aren't configurable for instant models.
-- Only models with global quota support are eligible. This list will initially be small but more added over time.
+- Only the models listed in [Supported models](#supported-models) are eligible.
 
 ## Related content
 
