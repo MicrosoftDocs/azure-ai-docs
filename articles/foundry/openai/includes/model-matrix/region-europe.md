@@ -14,7 +14,7 @@ ms.custom:
 
 # [Global deployments](#tab/az-global)
 
-## [Global Standard](#tab/az-global/standard)
+# [Global Standard](#tab/az-global-standard)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -81,7 +81,7 @@ ms.custom:
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
 
 
-## [Global Provisioned Managed](#tab/az-global/provisioned)
+# [Global Provisioned Managed](#tab/az-global-provisioned)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -106,7 +106,7 @@ ms.custom:
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 
-## [Global Batch](#tab/az-global/batch)
+# [Global Batch](#tab/az-global-batch)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **norwayeast** | **polandcentral** | **swedencentral** | **switzerlandnorth** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -123,10 +123,11 @@ ms.custom:
 | gpt-4o | 2024-05-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
+---
 
 # [Data Zone deployments](#tab/az-data-zone)
 
-## [Data Zone Standard](#tab/az-data-zone/standard)
+# [Data Zone Standard](#tab/az-data-zone-standard)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **polandcentral** | **spaincentral** | **swedencentral** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -156,7 +157,7 @@ ms.custom:
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 
-## [Data Zone Provisioned Managed](#tab/az-data-zone/provisioned)
+# [Data Zone Provisioned Managed](#tab/az-data-zone-provisioned)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **polandcentral** | **spaincentral** | **swedencentral** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -179,7 +180,7 @@ ms.custom:
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ |
 
 
-## [Data Zone Batch](#tab/az-data-zone/batch)
+# [Data Zone Batch](#tab/az-data-zone-batch)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **polandcentral** | **swedencentral** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -192,10 +193,11 @@ ms.custom:
 | gpt-4o | 2024-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
+---
 
 # [Regional deployments](#tab/az-regional)
 
-## [Standard](#tab/az-regional/standard)
+# [Standard](#tab/az-regional-standard)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -216,7 +218,7 @@ ms.custom:
 | whisper | 001 | - | - | ✅ | - | - | ✅ | ✅ | - | ✅ |
 
 
-## [Provisioned Managed](#tab/az-regional/provisioned)
+# [Provisioned Managed](#tab/az-regional-provisioned)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -236,5 +238,7 @@ ms.custom:
 | gpt-4o | 2024-05-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | - |
 | gpt-4o-mini | 2024-07-18 | ✅ | - | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | - |
 
+
+---
 
 ---

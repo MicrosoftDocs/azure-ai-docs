@@ -438,6 +438,16 @@ All deployments can perform the exact same inference operations, but the billing
 
 ---
 
+> [!NOTE]
+> 
+> - `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+>
+> - `o1-mini` is currently available to all customers for Global Standard deployment. Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
+>
+> - The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
+
+For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
+
 <!-- # [Global Standard](#tab/global-standard-aoai)
 
 ### Global Standard model availability
