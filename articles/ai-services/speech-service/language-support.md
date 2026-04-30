@@ -44,7 +44,18 @@ The table in this section summarizes the locales supported for [real-time transc
 
 # [Text to speech](#tab/tts)
 
-The table in this section summarizes the locales and voices that text to speech supports. For details, see the table footnotes.
+The tables in this section summarize the locales and voices that text to speech supports. For details, see the table footnotes.
+
+**In this section**
+- [Voices by locale](#voices-by-locale)
+- [Multilingual voices](#multilingual-voices)
+- [Multi-talker voices](#multi-talker-voices)
+- [Voice styles and roles](#voice-styles-and-roles)
+- [Visemes](#visemes)
+- [Standard voices](#standard-voices)
+- [Professional voice](#professional-voice)
+- [Personal voice](#personal-voice)
+- [Voice conversion](#voice-conversion)
 
 More remarks for text-to-speech locales are included in the [Voice styles and roles](#voice-styles-and-roles), [Standard voices](#standard-voices), [Professional voice](#professional-voice), and [Personal voice](#personal-voice) sections in this article.
 
@@ -53,6 +64,8 @@ More remarks for text-to-speech locales are included in the [Voice styles and ro
 >
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
+
+## Voices by locale
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
@@ -85,7 +98,7 @@ For more information about how to use multi-talker voices via Speech Synthesis M
 
 In some cases, you can adjust the speaking style to express emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support adjustment of style degree. You can optimize the voice for scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
 
-To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
+To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
 
 Use the following table to determine supported styles and roles for each voice.
 

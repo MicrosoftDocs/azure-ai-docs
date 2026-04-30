@@ -19,9 +19,6 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-> [!NOTE]
-> Foundry agent integration currently only supports agents available on public endpoints. Foundry agents deployed in private VNet aren't supported.
-
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
 ::: zone-end

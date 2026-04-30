@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 ---
 
 # Agent development lifecycle
-The agent development lifecycle in Microsoft Foundry spans from initial creation through production monitoring. Following this lifecycle helps you build reliable agents, catch issues early, and ship with confidence. Use the Foundry portal or code to build, customize, and test your agent's behavior. Then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
+The agent development lifecycle in Microsoft Foundry spans from initial creation through production monitoring. At the core of every agent is a model from the Foundry model catalog that drives reasoning and response generation. Following this lifecycle helps you build reliable agents, catch issues early, and ship with confidence. Use the Foundry portal or code to build, customize, and test your agent's behavior. Then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
 
 This article is for developers who want to build, test, and ship production-ready agents.
 
@@ -41,7 +41,7 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 
 There are three types of agents:
 
-- **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../concepts/concept-playgrounds.md) in the Foundry portal.
+- **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines a Foundry model, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../concepts/concept-playgrounds.md) in the Foundry portal.
 
 - **Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see [Build a workflow in Microsoft Foundry](./workflow.md).
 

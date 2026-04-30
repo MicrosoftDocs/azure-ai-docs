@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Quickstart: Create an agent from a manifest
 
-In this quickstart, you create an agent from a pre-built manifest and test it in the playground. Agent manifests are ready-to-use configurations that combine tested prompts, tool configurations, and interaction patterns so you can skip writing instructions from scratch.
+In this quickstart, you create an agent from a pre-built manifest and test it in the playground. Agent manifests are ready-to-use configurations that combine a Foundry model, tested prompts, tool configurations, and interaction patterns so you can skip writing instructions from scratch.
 
 **In this quickstart, you:**
 
