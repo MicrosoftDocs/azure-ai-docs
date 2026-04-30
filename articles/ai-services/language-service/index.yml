@@ -216,9 +216,13 @@ additionalContent:
       items:
         # Card
         - title: Language Understanding
-          summary: LUIS is deprecated; use Conversational Language Understanding in Azure Language for new development.
+          summary: LUIS is deprecated.
+        - title: CLU
           url: conversational-language-understanding/overview.md
+          summary: Conversational Language Understanding (CLU) is the replacement for LUIS in Azure Language for new development.
         # Card
         - title: QnA Maker
-          summary: QnA Maker is deprecated; use Custom Question Answering in Azure Language for new development.
+          summary: QnA Maker is deprecated.
+        - title: CQA
           url: question-answering/overview.md
+          summary: Custom Question Answering (CQA) is the replacement for QnA Maker in Azure Language for new development.
