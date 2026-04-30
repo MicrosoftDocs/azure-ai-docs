@@ -15,9 +15,7 @@ ms.custom:
 
 # Instant models in Microsoft Foundry (preview)
 
-Instant models let you call any supported model by name without creating a deployment first. Create a Foundry project, start coding, and use any available model immediately.
-
-With instant models, the typical workflow is straightforward: create a Foundry project, write code that references a model by name, and run inference. No deployment step required.
+With instant models, your workflow is straightforward: create a Foundry project, write code that references a model by name, and run inference. No deployment step required.
 
 Deployments aren't going away. They remain the right choice when you need fine-grained quota control, provisioned throughput (PTU), or advanced enterprise capabilities. Instant models simplify the getting-started experience so that deployments become something you level up to, not a gate you must pass before you can use a model.
 
