@@ -370,6 +370,8 @@ items:
         href: how-to-voice-live-interim-response.md
       - name: Add an MCP server (preview)
         href: how-to-voice-live-mcp-server.md
+      - name: Voice Live via WebRTC (preview)
+        href: voice-live-webrtc.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ
