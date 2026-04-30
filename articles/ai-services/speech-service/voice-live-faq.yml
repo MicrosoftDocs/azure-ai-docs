@@ -161,10 +161,6 @@ sections:
         answer: |
           No. If you need custom content filtering, you can use the bring-your-own-model (PREVIEW) feature.
       - question: |
-          Does Voice Live API support WebRTC?
-        answer: |
-          WebRTC is currently not supported.
-      - question: |
           Is SIP supported?
         answer: |
           SIP is currently not supported.
