@@ -151,7 +151,7 @@ Treat a hosted agent like production application code.
 
 ### Versioning
 
-Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. Note that requests to create agent version with no change to the agent version paramaters such as container image, environment variables, etc. will not result in a new version being created. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
+Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. Note that requests to create agent version with no change to the agent version parameters such as container image, environment variables, etc. will not result in a new version being created. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
 
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They're set per version and are immutable once the version is created.
 
