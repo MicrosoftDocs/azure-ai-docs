@@ -36,11 +36,11 @@ Agent 365 data collection on a Foundry resource is tracked by two properties in 
 These properties are part of the `Microsoft.CognitiveServices/accounts` resource type and can be read or modified through the Azure Resource Manager API, Azure CLI, Azure PowerShell, or the Azure portal.
 
 > [!IMPORTANT]
-> Data collection requires **both** an active Agent 365 license **and** tenant-level A365 consen **and** `loggingEnabled` set to `enabled`. No data is ingested unless the customer has completed the Agent 365 consent flow and holds a valid license. Setting the property to `enabled` alone doesn't trigger data collection.
+> Data collection requires **both** an active Agent 365 license **and** tenant-level A365 consent **and** `loggingEnabled` set to `enabled`. No data is ingested unless the customer has completed the Agent 365 consent flow and holds a valid license. Setting the property to `enabled` alone doesn't trigger data collection.
 
 ### Default state
 
-When Agent 365 is enabled for an Entra tenant, Foundry resources in the same Azure tenant will have `loggingEnabled` set to `enabled` by default. Organizations must explicitly opt out to disable data collection on each resource. You may use Azure Policy to deny data collection for select Azure Subscriptions or Azure Mangement Groups.
+When Agent 365 is enabled for an Entra tenant, Foundry resources in the same Azure tenant will have `loggingEnabled` set to `enabled` by default. Organizations must explicitly opt out to disable data collection on each resource. You may use Azure Policy to deny data collection for select Azure Subscriptions or Azure Management Groups.
 
 ### Scope of the setting
 
