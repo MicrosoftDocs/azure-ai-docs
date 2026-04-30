@@ -70,7 +70,59 @@ Hosted agents communicate with the Foundry gateway through protocol libraries. C
 | **Responses** | `azure-ai-agentserver-responses` | `Azure.AI.AgentServer.Responses` | `/responses` | Conversational chatbots, streaming, multi-turn with platform-managed history |
 | **Invocations** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations` | Webhook receivers, non-conversational processing, custom async workflows |
 
-A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
+The python and .NET libraries for Responses protocol implement the Azure AI Responses API. Import the package, implement one interface `IResponseHandler`, and the library handles routing, streaming (SSE), background execution, cancellation, caching, and response lifecycle management.
+
+**IResponseHandler**
+
+The core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients via SSE:
+
+```C# Snippet:Responses_ReadMe_EchoHandler
+public class EchoHandler : IResponseHandler
+{
+    public async IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
+        CreateResponse request,
+        IResponseContext context,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        var stream = new ResponseEventStream(context, request);
+        yield return stream.EmitCreated();
+        yield return stream.EmitInProgress();
+
+        var message = stream.AddOutputItemMessage();
+        yield return message.EmitAdded();
+
+        var text = message.AddTextContent();
+        yield return text.EmitAdded();
+        yield return text.EmitDelta("Hello, world!");
+        yield return text.EmitDone("Hello, world!");
+
+        yield return message.EmitContentDone(text);
+        yield return message.EmitDone();
+        yield return stream.EmitCompleted();
+    }
+}
+```
+
+**ResponseEventStream**
+
+Manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps 1:1 to an SSE event with zero bookkeeping.
+
+**Streaming & Background Modes**
+
+- **Streaming mode** (default): SSE events are delivered in real-time to the connected client.
+- **Background mode**: The handler runs to completion without a connected SSE client; events are buffered and available for replay via `GET /responses/{id}`.
+
+**Response Lifecycle**
+
+The library orchestrates the complete response lifecycle: `created` → `in_progress` → `completed` (or `failed` / `cancelled`). Cancellation, error handling, and terminal event guarantees are all managed automatically.
+
+For detailed handler implementation guidance, see [docs/handler-implementation-guide.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md).
+
+**Thread safety**
+
+All service instances registered via `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
+
+You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples). A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
 
 ### Health endpoints
 
