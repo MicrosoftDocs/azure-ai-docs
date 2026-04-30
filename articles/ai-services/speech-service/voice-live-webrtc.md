@@ -35,7 +35,7 @@ WebRTC provides the following capabilities for real-time audio streaming:
 Before using the WebRTC connection, see [how to use voice live](voice-live-how-to.md) for supported models and regions, authentication, and session configuration details.
 
 > [!IMPORTANT]
-> Voice Live API with WebRTC currently uses global standard deployments and automatically routes requests to the nearest region to optimize latency. The following regions are supported: `australiaeast`, `centralindia`, `eastus2`, `italynorth`, `japaneast`, `koreacentral`, `northcentralus`, `southafricanorth`, `uksouth`, `westus2`. For more information about the voice live supported regions, see [region support](regions.md?tabs=voice-live).
+> Voice Live API with WebRTC currently uses global standard deployments and automatically routes requests to the nearest region to optimize latency. The following regions are supported: `australiaeast`, `centralindia`, `eastus2`, `italynorth`, `japaneast`, `koreacentral`, `northcentralus`, `uksouth`, `westus2`. For more information about the voice live supported regions, see [region support](regions.md?tabs=voice-live).
  
 ## Set up WebRTC connection
 
