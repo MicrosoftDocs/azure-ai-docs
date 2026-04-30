@@ -5,10 +5,9 @@ description: Complete reference for the Voice Live API events, models, and confi
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 4/10/2026
+ms.date: 04/30/2026
 author: PatrickFarley
 ms.author: pafarley
-ai-usage: ai-assisted
 ---
 
 # Voice Live `2026-04-10` API Reference
