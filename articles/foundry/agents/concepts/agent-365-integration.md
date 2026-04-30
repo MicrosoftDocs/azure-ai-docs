@@ -69,7 +69,7 @@ After these steps are complete, agent activity data from Foundry is ingested int
 
 ## Data residency
 
-Microsoft Foundry and Agent 365 follow different data residency models, hence data processing and storage may happen across geographical reigons.
+Microsoft Foundry and Agent 365 follow different data residency models, hence data processing and storage may happen across geographical regions.
 
 | Platform | Data residency model |
 |---|---|
