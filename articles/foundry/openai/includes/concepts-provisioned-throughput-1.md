@@ -169,12 +169,12 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt 5.5          | ✅                 | ✅                    |                      | ✅                 |
-|                    | Gpt 5.4          | ✅                 | ✅                    |                      | ✅                 |
+| **Azure OpenAI**   | Gpt 5.5          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.4          | ✅                 | ✅                    | ✅                    | ✅                 |
 |                    | Gpt 5.3 codex    | ✅                 |                       |                      | ✅                 |
-|                    | Gpt 5.2          | ✅                 | ✅                    |                      | ✅                 |
+|                    | Gpt 5.2          | ✅                 | ✅                    | ✅                    | ✅                 |
 |                    | Gpt 5.2 codex    | ✅                 |                       |                      | ✅                 |
-|                    | Gpt 5.1          | ✅                 | ✅                     |                      | ✅                 |
+|                    | Gpt 5.1          | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5.1 codex    | ✅                 | ✅                     |                      | ✅                 |
 |                    | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |
