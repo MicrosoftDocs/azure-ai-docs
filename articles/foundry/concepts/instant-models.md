@@ -48,15 +48,15 @@ Instant models draw from a per-model **global quota** pool assigned to your subs
 | Partitioning | You divide quota among deployments | No partitioning — shared across all usage |
 | Reservation | Deployments reserve their allocated portion | No reservation needed |
 
-### Quota sharing between deployments and instant models
+### Quota sharing between Global Standard deployments and instant models
 
-Deployments and instant models share the same underlying global capacity. When you create a deployment, it reserves a portion of your global quota. Instant models use whatever capacity remains.
+Global Standard deployments and instant models share the same underlying global capacity. When you create a Global Standard deployment, it reserves a portion of your global quota. Instant models use whatever capacity remains. Other deployment types (Regional Standard, Provisioned) use separate regional quota and don't affect your instant model capacity.
 
 ```
 Global Quota Pool:                1,000 units
-  Deployment A reserves:            -400 units
+  Global Standard deployment:       -400 units
                                   ----------
-  Available for Instant models:     600 units
+  Available for instant models:     600 units
 ```
 
 If your instant model usage exceeds the remaining capacity, you receive a throttling error. You can then wait for capacity to free up, request a quota increase, or create a deployment with reserved capacity.
@@ -67,10 +67,11 @@ Each model has its own global quota allocation. Usage of one model doesn't consu
 
 ## Which models support instant models?
 
-Instant model availability depends on global quota support:
+<!-- The following models support instant access during the preview:
 
-- **New models** — Supported by default. New model releases are built with global quota from the start.
-- **Existing models** — Not initially supported. Older models require additional scaling work. Coverage improves naturally as newer models replace older ones.
+ [TODO] Add specific model list before publish -->
+
+As new models are released, they support instant access by default. Support for additional models is considered based on customer demand.
 
 > [!NOTE]
 > During the preview, instant models are available in projects in South Central US only. 
