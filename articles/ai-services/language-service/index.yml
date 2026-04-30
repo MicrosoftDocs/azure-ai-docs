@@ -1,12 +1,12 @@
 ### YamlMime:Hub
 
 title: Azure Language documentation
-summary: Build and operationalize natural language processing (NLP) solutions with prebuilt and customizable models for entity extraction, sentiment analysis, PII detection, classification, summarization, and healthcare text processing.
+summary: Build and deploy natural language processing (NLP) solutions with prebuilt and customizable models for entity extraction, sentiment analysis, PII detection, classification, summarization, and healthcare text processing.
 brand: azure
 
 metadata:
   title: Azure Language documentation | Microsoft Docs
-  description: Create NLP solutions with pre-trained and customizable models for semantic understanding, entity extraction, and text analysis.
+  description: Create natural language processing (NLP) solutions with pre-trained and customizable models for semantic understanding, entity extraction, and text analysis.
   ms.service: azure-ai-language
   ms.topic: hub-page
   author: laujan
@@ -34,7 +34,7 @@ highlightedContent:
 conceptualContent:
   sections:
     - title: Core capabilities
-      summary: Production-grade NLP capabilities optimized for current platform architecture and engineering workflows.
+      summary: Use production-grade NLP capabilities optimized for the latest platform architecture and engineering workflows.
       items:
 
         # Card
@@ -106,7 +106,7 @@ conceptualContent:
               text: Language support
 
     - title: Legacy capabilities
-      summary: Legacy extraction and analysis capabilities remain available for established production systems, specialized workloads, and phased migration plans. For net-new implementations, prioritize core capabilities to align with current platform architecture, long-term roadmap direction, and recommended engineering practices.
+      summary: Use legacy extraction and analysis capabilities for established production systems, specialized workloads, and phased migration plans. For net-new implementations, prioritize using core capabilities to align with current platform architecture, long-term roadmap direction, and recommended engineering practices.
       items:
 
         # Card
@@ -150,9 +150,9 @@ conceptualContent:
             - url: summarization/overview.md?tabs=conversation-summarization
               itemType: how-to-guide
               text: Conversation summarization
-          footerLink:
-            url: summarization/quickstart.md
-            text: Get started
+            - url: summarization/quickstart.md
+              itemType: quickstart
+              text: Get started with summarization
 
         # Card
         - title: Build conversational applications
@@ -175,23 +175,13 @@ conceptualContent:
             - url: question-answering/overview.md
               itemType: overview
               text: Custom question answering
-            - url: question-answering/quickstart/sdk.md
-              itemType: quickstart
-              text: Quickstart
             - url: question-answering/how-to/deploy-agent.md
               itemType: how-to-guide
               text: Deploy a CQA agent
-
-        # Card
-        - title: Translate text
-          summary: Apply neural machine translation to support multilingual application and localization workflows.
-          links:
-            - url: ../translator/overview.md
-              itemType: overview
-              text: Machine translation overview
-            - url: ../translator/quickstart.md
+            - url: question-answering/quickstart/sdk.md
               itemType: quickstart
-              text: Get started
+              text: Get started with CQA
+
 additionalContent:
   sections:
     - title: Resources
