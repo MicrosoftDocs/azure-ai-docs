@@ -216,9 +216,9 @@ additionalContent:
       items:
         # Card
         - title: Language Understanding
-          summary: LUIS is deprecated; use **Conversational Language Understanding** in Azure Language for new development.
+          summary: LUIS is deprecated; use <b>Conversational Language Understanding</b> in Azure Language for new development.
           url: conversational-language-understanding/overview.md
         # Card
         - title: QnA Maker
-          summary: QnA Maker is deprecated; use **Custom Question Answering** in Azure Language for new development.
+          summary: QnA Maker is deprecated; use <b>Custom Question Answering</b> in Azure Language for new development.
           url: question-answering/overview.md
