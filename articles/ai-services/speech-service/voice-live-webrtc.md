@@ -25,10 +25,10 @@ WebRTC provides the following capabilities for real-time audio streaming:
 - **Lower latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
 - **Built-in media handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
 - **Network resilience**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
-- **Peer-to-peer connection**: WebRTC establishes a direct connection between the client and the Voice Live API for real-time audio, eliminating the need for an intermediary server to relay audio data and further reducing latency. Meanwhile, your server retains full control of the session — it can send commands, configure behavior, and manage tool calls through the WebSocket signaling channel at any time.
+- **Peer-to-peer connection**: WebRTC establishes a direct connection between the client and the Voice Live API for real-time audio, eliminating the need for an intermediary server to relay audio data and further reducing latency. Meanwhile, your server retains full control of the session—it can send commands, configure behavior, and manage tool calls through the WebSocket signaling channel at any time.
 
 > [!TIP]
-> **WebRTC vs WebSocket:** WebRTC is recommended for real-time audio streaming because it uses UDP-based transport, which prioritizes speed and continuous delivery — if a packet is lost, playback continues without waiting for retransmission. WebSocket connections use TCP, which guarantees delivery order but can introduce delays when packets are lost as it waits for retransmission. For realtime voice interactions where natural, low-latency audio is critical, WebRTC provides a noticeably better experience.
+> **WebRTC vs WebSocket:** WebRTC is recommended for real-time audio streaming because it uses UDP-based transport, which prioritizes speed and continuous delivery—if a packet is lost, playback continues without waiting for retransmission. WebSocket connections use TCP, which guarantees delivery order but can introduce delays when packets are lost as it waits for retransmission. For real-time voice interactions where natural, low-latency audio is critical, WebRTC provides a noticeably better experience.
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ In a typical setup, the client establishes a WebSocket based signaling channel w
 
 ### Step 1: Create a control channel
 
-The WebRTC session negotiation is performed by exchanging SDP (Session Description Protocol) messages over a WebSocket control channel. 
+The WebRTC session negotiation is performed by exchanging SDP (Session Description Protocol) messages over a WebSocket control channel.
 
 When initiating a WebRTC call session, use the `voice-live/realtime/calls` endpoint instead of `voice-live/realtime`. For example:
 
@@ -158,14 +158,11 @@ The WebSocket control channel is required for the initial SDP exchange. After ne
 
 When using WebRTC, a Voice Live WebRTC session establishes three communication channels:
 
-1. **WebSocket control channel** — The WebSocket connection used to initiate the session (SDP exchange). After negotiation completes, it remains open and carries session control  messages, error notifications, and tool/function call events that need to reach your backend for processing to control  the WebRTC session. This channel is typically initiated by your server to the Voice Live API.
+1. **WebSocket control channel**: The WebSocket connection used to initiate the session (SDP exchange). After negotiation completes, it remains open and carries session control  messages, error notifications, and tool/function call events that need to reach your backend for processing to control  the WebRTC session. This channel is typically initiated by your server to the Voice Live API.
 
-2. **WebRTC data channel (`voice-live-events`)** — A peer-to-peer data channel on the RTCPeerConnection between the client and the Voice Live API. It carries voice activity detection (VAD) events, response lifecycle events, and transcription data. These are low-latency, non-audio events delivered directly to the client/browser.
+2. **WebRTC data channel (`voice-live-events`)**: A peer-to-peer data channel on the RTCPeerConnection between the client and the Voice Live API. It carries voice activity detection (VAD) events, response lifecycle events, and transcription data. These are low-latency, non-audio events delivered directly to the client/browser.
 
-3. **WebRTC media track (RTP)** — The real-time audio stream. Model-generated audio is delivered over RTP media tracks as a continuous stream, not as discrete message events. User audio from the microphone is also sent over RTP in the opposite direction.
-
-Audio is not sent as events over WebRTC media track — it flows as a real-time audio stream.
-
+3. **WebRTC media track (RTP)**: The real-time audio stream. Model-generated audio is delivered over RTP media tracks as a continuous stream, not as discrete message events. User audio from the microphone is also sent over RTP in the opposite direction.
 
 > [!TIP]
 > For the complete list of supported voice live API events, see the [API reference](voice-live-api-reference-2026-01-01-preview.md).
@@ -187,7 +184,7 @@ The WebSocket control channel carries session control  messages and tool/functio
 | `response.output_item.done` | Server → Client | Function/tool call output item complete |
 | `conversation.item.created` | Server → Client | Function call output item created |
 
-Function and tool call events are routed to the control WebSocket so they can reach your backend for processing. Non-tool `response.output_item.*` and `conversation.item.created` events are routed to the data channel instead.
+Function and tool call events are routed to the control WebSocket so they can reach your backend for processing. The `response.output_item.*` and `conversation.item.created` events are routed to the data channel instead.
 
 ### Data channel events (`voice-live-events`)
 
@@ -207,9 +204,9 @@ The WebRTC data channel carries voice activity, response lifecycle, and transcri
 | `response.audio_transcript.done` | AI response transcript complete |
 | `response.text.delta` | Streaming text response |
 | `response.text.done` | Text response complete |
-| `conversation.item.created` | Non-tool conversation item created |
-| `response.output_item.added` | Non-tool output item added |
-| `response.output_item.done` | Non-tool output item complete |
+| `conversation.item.created` | Conversation item created |
+| `response.output_item.added` | Output item added |
+| `response.output_item.done` | Output item complete |
 
 ## Error handling
 
