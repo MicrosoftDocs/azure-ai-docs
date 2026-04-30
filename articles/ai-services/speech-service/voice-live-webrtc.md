@@ -42,7 +42,7 @@ Before using the WebRTC connection, see [how to use voice live](voice-live-how-t
 In a typical setup, the client establishes a WebSocket based signaling channel with the Voice Live API to exchange SDP offer/answer messages required for WebRTC session negotiation. Once negotiation completes, audio is transmitted over WebRTC RTP media tracks.
 
 <p align="center">
-  <img src="media/voice-live/voice-live-with-webrtc1.png" alt="Voice Live API with Web Real-time Communication" width="750"/>
+  <img src="media/voice-live/voice-live-with-webrtc.png" alt="Voice Live API with Web Real-time Communication" width="750"/>
 </p>
 
 
