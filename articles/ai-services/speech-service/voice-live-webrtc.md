@@ -48,7 +48,7 @@ In a typical setup, the client establishes a WebSocket based signaling channel w
 
 ### Step 1: Create a control channel
 
-The WebRTC session negotiation is performed by exchanging SDP (Session Description Protocol) messages over a WebSocket control channel. To create this side-band signaling channel, connect to the Voice Live WebRTC endpoint. 
+The WebRTC session negotiation is performed by exchanging SDP (Session Description Protocol) messages over a WebSocket control channel. 
 
 When initiating a WebRTC call session, use the `voice-live/realtime/calls` endpoint instead of `voice-live/realtime`. For example:
 
