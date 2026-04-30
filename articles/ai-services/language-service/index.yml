@@ -58,12 +58,12 @@ conceptualContent:
               text: Get started with PII detection
 
         # Card
-        - title: Named Entity Recognition (NER)
+        - title: Recognize named entities
           summary: Identify and classify entities such as people, organizations, locations, and dates using prebuilt recognition models.
           links:
             - url: named-entity-recognition/overview.md
               itemType: overview
-              text: Named Entity Recognition overview
+              text: Named Entity Recognition (NER) overview
             - url: named-entity-recognition/concepts/named-entity-categories.md
               itemType: reference
               text: Recognized entity categories
@@ -75,12 +75,12 @@ conceptualContent:
               text: Get started with Named Entity Recognition
 
         # Card
-        - title: Custom Named Entity Recognition (CNER)
+        - title: Build a custom entity recognizer
           summary: Train custom models to extract domain-specific entities using your own labeled data and entity schemas.
           links:
             - url: custom-named-entity-recognition/overview.md
               itemType: overview
-              text: Custom NER overview
+              text: Custom named entity recognition (CNER) overview
             - url: custom-named-entity-recognition/how-to/design-schema.md
               itemType: how-to-guide
               text: Design your entity schema
