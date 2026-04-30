@@ -8,6 +8,7 @@ ms.topic: reference
 ms.date: 04/30/2026
 author: PatrickFarley
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 # Voice Live `2026-04-10` API Reference
