@@ -12,7 +12,9 @@ ms.custom:
   - build-2025
 ---
 
-# [Global Standard](#tab/az-global-standard)
+# [Global deployments](#tab/az-global)
+
+## [Global Standard](#tab/az-global/standard)
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -62,7 +64,7 @@ ms.custom:
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | - | ✅ |
 
 
-# [Global Provisioned Managed](#tab/az-global-provisioned)
+## [Global Provisioned Managed](#tab/az-global/provisioned)
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -87,7 +89,7 @@ ms.custom:
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 
-# [Global Batch](#tab/az-global-batch)
+## [Global Batch](#tab/az-global/batch)
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: |
@@ -105,19 +107,23 @@ ms.custom:
 | gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ |
 
 
-# [Data Zone Standard](#tab/az-data-zone-standard)
+# [Data Zone deployments](#tab/az-data-zone)
+
+## [Data Zone Standard](#tab/az-data-zone/standard)
 
 Not available
 
-# [Data Zone Provisioned Managed](#tab/az-data-zone-provisioned)
+## [Data Zone Provisioned Managed](#tab/az-data-zone/provisioned)
 
 Not available
 
-# [Data Zone Batch](#tab/az-data-zone-batch)
+## [Data Zone Batch](#tab/az-data-zone/batch)
 
 Not available
 
-# [Standard](#tab/az-standard)
+# [Regional deployments](#tab/az-regional)
+
+## [Standard](#tab/az-regional/standard)
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -129,7 +135,7 @@ Not available
 | whisper | 001 | - | - | - | - | ✅ |
 
 
-# [Provisioned Managed](#tab/az-provisioned)
+## [Provisioned Managed](#tab/az-regional/provisioned)
 
 | **Model** | **Version** | **australiaeast** | **japaneast** | **koreacentral** | **southeastasia** | **southindia** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
