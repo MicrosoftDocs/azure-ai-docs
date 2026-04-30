@@ -420,12 +420,27 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
-# [Global Standard](#tab/global-standard-aoai)
+# [Americas](#tab/americas)
+
+[!INCLUDE [region-americas](model-matrix/region-americas.md)]
+
+# [Europe](#tab/europe)
+
+[!INCLUDE [region-europe](model-matrix/region-europe.md)]
+
+# [Asia Pacific](#tab/asia-pacific)
+
+[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]TBD
+
+# [Middle East & Africa](#tab/middle-east-africa)
+
+TBD[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
+
+---
+
+<!-- # [Global Standard](#tab/global-standard-aoai)
 
 ### Global Standard model availability
-
-<!-- [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)] -->
-[!INCLUDE [standard-global-by-capability](model-matrix/standard-global-by-capability.md)]
 
 > [!NOTE]
 > `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
@@ -487,7 +502,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
----
+--- -->
 
 This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
