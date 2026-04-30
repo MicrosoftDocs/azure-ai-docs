@@ -1,7 +1,7 @@
 ### YamlMime:Hub
 
 title: Azure Language documentation
-summary: Build natural language processing (NLP) solutions with pre-trained and customizable models for entity recognition, sentiment analysis, PII detection, text classification, summarization, and healthcare text analysis.
+summary: Build and operationalize natural language processing (NLP) solutions with prebuilt and customizable models for entity extraction, sentiment analysis, PII detection, classification, summarization, and healthcare text processing.
 brand: azure
 
 metadata:
@@ -34,11 +34,12 @@ highlightedContent:
 conceptualContent:
   sections:
     - title: Core capabilities
-      summary: Modern, production-ready natural language processing capabilities.
+      summary: Production-grade NLP capabilities optimized for current platform architecture and engineering workflows.
       items:
+
         # Card
         - title: Detect and redact sensitive information
-          summary: Identify and redact personally identifiable information (PII) in text, conversations, and documents.
+          summary: Detect, classify, and redact personally identifiable information (PII) across unstructured text, conversation transcripts, and document workflows.
           links:
             - url: personally-identifiable-information/overview.md
               itemType: overview
@@ -55,22 +56,10 @@ conceptualContent:
           footerLink:
             url: personally-identifiable-information/quickstart.md
             text: Get started
-        # Card
-        - title: Detect language
-          summary: Automatically identify the language of text across 120+ languages and scripts.
-          links:
-            - url: language-detection/overview.md
-              itemType: overview
-              text: Language detection overview
-            - url: language-detection/quickstart.md
-              itemType: quickstart
-              text: Quickstart
-            - url: language-detection/language-support.md
-              itemType: reference
-              text: Language support
+
         # Card
         - title: Extract named entities
-          summary: Identify and classify named entities using prebuilt or custom recognition models.
+          summary: Extract and classify entities with prebuilt models or train custom models for domain-specific schemas.
           links:
             - url: named-entity-recognition/overview.md
               itemType: overview
@@ -84,9 +73,10 @@ conceptualContent:
           footerLink:
             url: named-entity-recognition/concepts/named-entity-categories.md
             text: View entity categories
+
         # Card
         - title: Analyze healthcare text
-          summary: Extract medical entities, relationships, and assertions from healthcare documentation.
+          summary: Extract clinical entities, relations, and assertions from biomedical and clinical narratives.
           links:
             - url: text-analytics-for-health/overview.md
               itemType: overview
@@ -100,12 +90,28 @@ conceptualContent:
           footerLink:
             url: text-analytics-for-health/how-to/call-api.md
             text: Call the API
+
+      # Card
+        - title: Detect language
+          summary: Automatically determine input language and script for multilingual processing pipelines.
+          links:
+            - url: language-detection/overview.md
+              itemType: overview
+              text: Language detection overview
+            - url: language-detection/quickstart.md
+              itemType: quickstart
+              text: Quickstart
+            - url: language-detection/language-support.md
+              itemType: reference
+              text: Language support
+
     - title: Legacy capabilities
-      summary: Additional language understanding and extraction features. Most new projects should use core capabilities above.
+      summary: Legacy extraction and analysis capabilities remain available for established production systems, specialized workloads, and phased migration plans. For net-new implementations, prioritize core capabilities to align with current platform architecture, long-term roadmap direction, and recommended engineering practices.
       items:
+
         # Card
         - title: Classify and analyze text
-          summary: Analyze sentiment, mine opinions, and create custom text classifiers for domain-specific categorization.
+          summary: Perform sentiment and opinion analysis, and train custom classifiers for domain-specific taxonomy mapping.
           links:
             - url: sentiment-opinion-mining/overview.md
               itemType: overview
@@ -116,9 +122,10 @@ conceptualContent:
             - url: sentiment-opinion-mining/quickstart.md
               itemType: quickstart
               text: Get started with sentiment analysis
+
         # Card
         - title: Extract information
-          summary: Identify key phrases and link entities to knowledge bases for enhanced information extraction.
+          summary: Extract key phrases and resolve linked entities against knowledge sources to enrich downstream indexing and retrieval.
           links:
             - url: key-phrase-extraction/overview.md
               itemType: overview
@@ -129,9 +136,10 @@ conceptualContent:
             - url: key-phrase-extraction/quickstart.md
               itemType: quickstart
               text: Get started with key phrases
+
         # Card
         - title: Summarize content
-          summary: Generate concise summaries of documents, conversations, and text using abstractive summarization.
+          summary: Generate abstractive summaries for documents, conversations, and long-form content.
           links:
             - url: summarization/overview.md
               itemType: overview
@@ -145,9 +153,10 @@ conceptualContent:
           footerLink:
             url: summarization/quickstart.md
             text: Get started
+
         # Card
         - title: Build conversational applications
-          summary: Create conversational models to recognize intents, extract entities, and orchestrate language services.
+          summary: Build conversational workflows that classify intents, extract entities, and orchestrate language services.
           links:
             - url: conversational-language-understanding/overview.md
               itemType: overview
@@ -158,9 +167,10 @@ conceptualContent:
             - url: conversational-language-understanding/quickstart.md
               itemType: quickstart
               text: Get started with CLU
+
         # Card
         - title: Build question-answering systems
-          summary: Create custom knowledge bases and deploy intelligent agents to answer domain-specific questions.
+          summary: Author domain-specific knowledge bases and deploy question-answering agents for retrieval-grounded responses.
           links:
             - url: question-answering/overview.md
               itemType: overview
@@ -171,11 +181,12 @@ conceptualContent:
             - url: question-answering/how-to/deploy-agent.md
               itemType: how-to-guide
               text: Deploy a CQA agent
+
         # Card
         - title: Translate text
-          summary: Use cloud-based neural machine translation to build intelligent multi-language solutions.
+          summary: Apply neural machine translation to support multilingual application and localization workflows.
           links:
-            - url: ../translator/translator-overview.md
+            - url: ../translator/overview.md
               itemType: overview
               text: Machine translation overview
             - url: ../translator/quickstart.md
@@ -187,23 +198,23 @@ additionalContent:
       items:
         # Card
         - title: Pricing
-          summary: View pricing for Azure Language services.
+          summary: Review pricing and consumption options for Azure Language workloads.
           url: https://azure.microsoft.com/pricing/details/cognitive-services/text-analytics/
         # Card
         - title: Support and help
-          summary: Get support and find answers to common questions.
+          summary: Access support channels, troubleshooting guidance, and service assistance.
           url: ../cognitive-services-support-options.md?context=/azure/ai-services/language-service/context/context
         # Card
         - title: Training
-          summary: Learn with interactive courses and hands-on training.
+          summary: Build implementation expertise through guided learning paths and hands-on training.
           url: /training/browse/?products=azure-cognitive-services&term=language
     - title: Deprecated services
       items:
         # Card
         - title: Language Understanding
-          summary: Previously known as LUIS. Now replaced by conversational language understanding.
+          summary: LUIS is deprecated; use Conversational Language Understanding for new development.
           url: ../luis/index.yml
         # Card
         - title: QnA Maker
-          summary: Now available as Custom Question Answering in Azure Language.
+          summary: QnA Maker is deprecated; use Custom Question Answering in Azure Language.
           url: ../qnamaker/index.yml
