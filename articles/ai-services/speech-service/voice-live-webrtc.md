@@ -10,7 +10,8 @@ ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/30/2026
-ms.custom: references_voice_live
+ms.custom: references_voice_live, references_regions
+
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents through WebRTC connection
 ---
 
