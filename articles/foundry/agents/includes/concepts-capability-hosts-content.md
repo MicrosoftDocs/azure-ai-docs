@@ -48,7 +48,7 @@ If you don't create capability hosts, Agent Service automatically uses Microsoft
 - Vector search (embeddings and retrieval)
 
 ### Bring-your-own resources
-When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For network-secured standard agent setup, see [Standard agent setup](../concepts/standard-agent-setup.md).
+When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For securing your agent service, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
 
 To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](../concepts/standard-agent-setup.md).
 
@@ -70,13 +70,13 @@ Capability hosts operate at two distinct scopes:
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
-- **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you'll receive a conflict error.
+- **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you'll receive a 409 error.
 
 - **You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
 
 ## Create connections for capability hosts
 
-Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for the following:
+Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for resources that store agent data:
 
 - **Thread storage**: Azure Cosmos DB connection
 - **File storage**: Azure Storage connection
@@ -220,7 +220,7 @@ Use these steps to confirm that capability hosts are configured correctly:
 ## Delete capability hosts
 
 > [!WARNING]
-> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents will fall back to Microsoft-managed resources.
+> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
 
 ### Delete an account-level capability host
 
@@ -249,7 +249,7 @@ If you're experiencing issues when creating capability hosts, this section provi
 {
   "error": {
     "code": "Conflict",
-    "message": "There is an existing Capability Host with name: existing-host, provisioning state: Succeeded for workspace: /subscriptions/.../workspaces/my-workspace, cannot create a new Capability Host"
+    "message": "There is an existing Capability Host with name: existing-host, provisioning state: Succeeded for workspace: /subscriptions/.../workspaces/my-workspace, cannot create a new Capability Host with name: new-host for the same ClientId."
   }
 }
 ```
