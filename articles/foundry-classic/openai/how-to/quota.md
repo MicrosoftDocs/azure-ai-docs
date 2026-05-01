@@ -387,7 +387,7 @@ Because of this difference, you can get 429 responses even when your token usage
 |-----------|--------|
 | Occasional 429s that resolve with `retry-after-ms` backoff | **Retry** — this behavior is normal and expected for shared (Standard) deployments. |
 | 429s during development or testing | **Often acceptable** — non-production 429s might be intentional cost guardrails. |
-| Sustained 429s in production, below approved quota | **Escalate** — open a [support request](/azure/ai-services/openai/how-to/get-support) for engineering investigation. |
+| Sustained 429s in production, below approved quota | **Escalate** — open a [support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) for engineering investigation. |
 | Rate limit increases not reflected in effective limits | **Escalate** — verify quota allocation at the deployment level first, then escalate if the issue persists. |
 | Latency-sensitive or mission-critical production workloads experiencing frequent 429s | **Upgrade** — consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity and latency SLA. |
 
