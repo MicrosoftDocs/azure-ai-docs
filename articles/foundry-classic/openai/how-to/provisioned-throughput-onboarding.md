@@ -94,12 +94,12 @@ For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calc
 
 ## Fireworks on Microsoft Foundry models (Preview)
 
-The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
+The following Fireworks on Microsoft Foundry models currently support provisioned throughput.
 
 | Topic | **gpt-oss-120b** | **Kimi K2 Instruct 0905** | **Kimi K2 Thinking** | **Kimi K2.5** | **DeepSeek v3.1** | **DeepSeek v3.2** | **Qwen3 14B** | **MiniMax 2.5** | **GLM-5** | **GLM-4.7** |
 |---|---|---|---|---|---|---|---|---|---|---|
-|Global provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
-|Global provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
+|Global & data zone provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
+|Global & data zone provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
 |Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
 |Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
