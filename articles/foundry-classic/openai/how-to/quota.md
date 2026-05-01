@@ -7,7 +7,13 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 05/01/2026
-ms.author: mbullwin
+author: alvinashcraft
+manager: nitinme
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
+ms.topic: how-to
+ms.date: 05/01/2026
+ms.author: aashcraft
 ---
 
 # Manage Azure OpenAI in Microsoft Foundry Models quota (classic)
