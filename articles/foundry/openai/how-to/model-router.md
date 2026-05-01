@@ -87,6 +87,10 @@ New models introduced later are excluded by default until explicitly added.
 > [!NOTE]
 > Changes to the model subset can take up to five minutes to take effect.
 
+#### Configure custom settings with the REST API
+
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
 [!INCLUDE [model-router-deploy-rest-custom](../includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../includes/how-to-model-router-1.md)]

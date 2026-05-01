@@ -52,6 +52,10 @@ If you want to override the default **Balanced** routing mode or restrict routin
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
+#### Configure custom settings with the REST API
+
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
 [!INCLUDE [model-router-deploy-rest-custom](../../../foundry/openai/includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
