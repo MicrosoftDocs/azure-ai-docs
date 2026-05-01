@@ -604,7 +604,7 @@ my-agent/
 After downloading the skills, initialize the agent. The agent autodiscovers skills at startup by scanning the project root for any `*/SKILL.md` pattern.
 
 ```bash
-azd ai agent init --skills --name my-agent
+azd ai agent init --name my-agent
 ```
 
 Start the local agent:
