@@ -135,10 +135,6 @@ The following input constraints apply:
 | Total documents per request | <= 40 |
 | Total content size per request | <= 10 MB |
 
-> [!NOTE]
-> For the latest support matrix for image-based and scanned-document scenarios, review the feature-specific how-to and language support pages.
-> Image placeholder: Add supported-format visual showing Word, PDF, and image-oriented redaction scenarios.
-
 See [language support](language-support.md) and [quotas and limits](../concepts/data-limits.md) for current language coverage and service limit details.
 
 ## Pricing
