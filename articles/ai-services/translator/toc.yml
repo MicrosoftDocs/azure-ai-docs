@@ -234,7 +234,7 @@ items:
   - name: Foundry Tools for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Adaptive custom translation (preview)
+  - name: Adaptive custom translation
     displayName: foundry, gpt, api
     href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ

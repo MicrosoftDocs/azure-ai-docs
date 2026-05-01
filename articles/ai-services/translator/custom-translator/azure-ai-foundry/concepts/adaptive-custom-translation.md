@@ -12,7 +12,15 @@ ms.topic: reference
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD036 -->
 
-# Azure Translation adaptive custom translation (GA)
+# Azure Translation adaptive custom translation
+
+> [!IMPORTANT]
+>
+> * The Adaptive custom translation playground (GA in Foundry NextGen) enables no-code adaptCT dataset indexes lifecycle management capabilities.
+> * The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
+> * This API requires proper authentication and foundry resource setup before use.
+> * Make sure to test thoroughly before using in production environments.
+> * Project and workspace are used interchangeably to mean a Foundry auto-created project.
 
 Azure Translator adaptive custom translation (**AdaptCT**) is a runtime translation adaptation capability available in Microsoft Foundry. It improves large language model (LLM) outputs, such as GPT-5.1, using a compact set of reference sentence pairs.
 
@@ -34,18 +42,11 @@ The following comparison highlights when to choose adaptive custom translation v
 
 ### Key differences
 
-Use these key points as a quick decision guide before you invest in data preparation, training, or deployment.
+Use the following decision guide to evaluate implementation effort, update speed, and operational impact before you commit to data preparation, training, and deployment workflows.
 
-* **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
-* **Adaptive custom translation**: No fine-tuning or deployment required; updates by rebuilding the dataset index, ready within minutes. ​
+* **Custom translator**: Best when you need a dedicated, production-deployed neural translation model trained on a large parallel corpus. This path involves full model training and deployment, and updates typically follow a retrain-and-redeploy cycle that can take up to ~48 hours depending on dataset size and service capacity.
 
-> [!IMPORTANT]
->
-> * The Adaptive custom translation playground (GA in Foundry NextGen) enables no-code adaptCT dataset indexes lifecycle management capabilities.
-> * The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
-> * This API requires proper authentication and foundry resource setup before use.
-> * Make sure to test thoroughly before using in production environments.
-> * Project and workspace are used interchangeably to mean a Foundry auto-created project.
+* **Adaptive custom translation**: Best when you need rapid, iterative control of terminology, phrasing, or style without creating a new model artifact. Instead of fine-tuning, the service builds a dataset index from aligned sentence pairs and applies retrieval at inference time, so updates are usually available within minutes after reindexing.
 
 ## Adaptive Custom Translation base URL
 
@@ -69,7 +70,7 @@ For more information about Azure resources, *see* [Azure resources for Azure AI 
 Include the following headers in every request to ensure the service can authenticate and route your call correctly.
 
 | Header | Value | Required | Description |
-|--------|-------|----------|-------------|
+| --- | --- | --- | --- |
 | `Ocp-Apim-Subscription-Key` | Your subscription key | **True** | Azure Translator subscription key |
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** | Azure resource region (for example, "eastus2") |
 
@@ -155,7 +156,7 @@ GET /workspaces/<workspaceId>
 **Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `workspaceId` | string | **True** | Unique identifier for the project |
 
 **Request example**
@@ -199,7 +200,7 @@ GET /documents?workspaceId=<workspaceId>&pageIndex={pageIndex}
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `workspaceId` | string | **True** | Project identifier |
 | `pageIndex` | integer | False | Page index for pagination (default: 0) |
 
@@ -245,13 +246,13 @@ POST /documents/import?workspaceId=<workspaceId>
 **Request headers**
 
 | Header | Value | Required |
-| -------- | ----- | -------- |
+| --- | --- | --- |
 | `Authorization` | `Bearer <token>` | **True** |
 
 **Request body (multipart form data)**
 
 | Field | Type | Required | Description |
-| ------- | ------ | ---------- | ------------- |
+| --- | --- | --- | --- |
 | `DocumentDetails` | string | **True** | JSON string containing document metadata |
 | `FILES` | file | **True** | TSV or TMX file to upload |
 
@@ -304,13 +305,13 @@ GET /documents/import/jobs/<jobId>
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `jobId` | string | **True** | Import job identifier |
 
 **Request headers**
 
 | Header | Value | Required |
-| -------- | ----- | -------- |
+| --- | --- | --- |
 | `Authorization` | `Bearer <token>` | **True** |
 
 **Request example**
@@ -344,13 +345,13 @@ POST /index?workspaceId=<workspaceId>
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `workspaceId` | string | **True** | Project identifier |
 
 **Request headers**
 
 | Header | Value | Required |
-| -------- | ----- | -------- |
+| --- | --- | --- |
 | `Content-Type` | `application/json` | **True** |
 
 **Request body**
@@ -367,7 +368,7 @@ POST /index?workspaceId=<workspaceId>
 **Request body fields**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `documentIds` | array | **True** | Array of document IDs to include in the dataset index |
 | `IndexName` | string | **True** | Name for the new dataset index |
 | `SourceLanguage` | string | **True** | Source language code |
@@ -404,7 +405,7 @@ GET /index/{indexId}
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `indexId` | string | **True** | Index identifier |
 
 **Request example**
@@ -434,7 +435,7 @@ GET /index?workspaceId=<workspaceId>
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `workspaceId` | string | **True** | Project identifier |
 
 **Request example**
@@ -464,7 +465,7 @@ DELETE /index/<indexId>
 **Parameters**
 
 | Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
+| --- | --- | --- | --- |
 | `indexId` | string | **True** | Dataset index identifier |
 
 **Request example**
@@ -490,7 +491,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 The API returns standard HTTP status codes. Common error responses:
 
 | Status Code | Description |
-| ------------- | ------------- |
+| --- | --- |
 | 400 | Bad Request - Invalid parameters or request format |
 | 401 | Unauthorized - Missing or invalid authentication |
 | 403 | Forbidden - Insufficient permissions |
