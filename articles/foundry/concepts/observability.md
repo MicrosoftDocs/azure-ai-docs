@@ -103,7 +103,7 @@ To learn which regions support AI-assisted evaluators, the rate limits that appl
 
 ## Pricing
 
-Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/en-us/pricing/details/foundryobservability/).
+Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/foundryobservability/).
 
 [!INCLUDE [evaluations-agent-playground](../includes/evaluations-agent-playground.md)]
 
