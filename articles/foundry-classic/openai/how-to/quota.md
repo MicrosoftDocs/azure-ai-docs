@@ -441,7 +441,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 ```
 
 > [!NOTE]
-> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
+> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest&preserve-view=true#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
 
 For more information, see the REST API reference documentation for [usages](/rest/api/aiservices/accountmanagement/usages/list?branch=main&tabs=HTTP) and [deployment](/rest/api/aiservices/accountmanagement/deployments/create-or-update).
 
@@ -509,7 +509,7 @@ az cognitiveservices account deployment create -g test-resource-group -n test-re
 
 ### Usage
 
-To [query your quota usage](/cli/azure/cognitiveservices/usage?view=azure-cli-latest) in a given region, for a specific subscription
+To [query your quota usage](/cli/azure/cognitiveservices/usage?view=azure-cli-latest&preserve-view=true) in a given region, for a specific subscription
 
 ```azurecli
 az cognitiveservices usage list --location
@@ -523,7 +523,7 @@ az cognitiveservices usage list -l eastus
 
 This command runs in the context of the currently active subscription for Azure CLI. Use `az-account-set --subscription` to [modify the active subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
-For more information, see the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest)
+For more information, see the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
 
 # [Azure PowerShell](#tab/powershell)
 
