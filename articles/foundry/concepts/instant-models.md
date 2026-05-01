@@ -15,59 +15,31 @@ ms.custom:
 
 # Instant models in Microsoft Foundry (preview)
 
-With instant models, your workflow is straightforward: create a Foundry project, write code that references a model by name, and run inference. No deployment step required.
+Instant models let you call any supported model by name — no deployment required. Create a Foundry project, start coding, and use any available model immediately.
 
-Deployments aren't going away. They remain the right choice when you need fine-grained quota control, provisioned throughput (PTU), or advanced enterprise capabilities. Instant models simplify the getting-started experience so that deployments become something you level up to, not a gate you must pass before you can use a model.
+## Start using models instantly
 
-## How instant models work
+With instant models, the workflow is:
 
-When you call a model by name through the Foundry API, the platform routes your request to available global capacity for that model. No deployment resource is created, and no deployment configuration is required. The following sections describe model name resolution and the developer interface.
+1. Create a Foundry project in South Central US (the only supported region during preview).
+1. Pass a supported model name in your code. No deployment needed.
 
-### Model name resolution
+The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
 
-| What you provide | What happens |
-|---|---|
-| Model name only (for example, `gpt-4o`) | Routes to the latest evergreen version of that model |
-| Model name + version (for example, `gpt-4o-2024-05-13`) | Routes to the specific version you requested |
+[!INCLUDE [quickstart-v2-chat](../includes/quickstart-v2-chat.md)]
 
-Version pinning is opt-in. By default, you always get the latest version. If your application requires stability on a specific version, include the version string in the model name.
 
-### API and SDK interface
+The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
-The API and SDK interface for instant models is identical to the interface for deployments. Existing code that targets a deployment name works with instant models when you replace the deployment name with the model name.
+### Why instant models matter
 
-## Global quota
+- **Switch models by changing one string** — try `gpt-4o`, then switch to `gpt-4.1` without creating or deleting deployments.
+- **Same API and SDK** — the same `responses.create()` calls work for both instant models and deployments.
+- **Works with your dev tools** — instant models integrate with Foundry CLI, VS Code, and CI/CD pipelines the same way deployments do.
 
-Instant models draw from a per-model **global quota** pool assigned to your subscription. This quota is separate from the regional quota used by standard deployments. The following sections explain how global quota works and how it interacts with deployments.
-
-### How global quota differs from regional quota
-
-| Aspect | Regional quota (deployments) | Global quota (instant models) |
-|---|---|---|
-| Scope | Per region, per deployment | Single pool across regions |
-| Partitioning | You divide quota among deployments | No partitioning — shared across all usage |
-| Reservation | Deployments reserve their allocated portion | No reservation needed |
-
-### Quota sharing between Global Standard deployments and instant models
-
-Global Standard deployments and instant models share the same underlying global capacity. When you create a Global Standard deployment, it reserves a portion of your global quota. Instant models use whatever capacity remains. Other deployment types (Regional Standard, Provisioned) use separate regional quota and don't affect your instant model capacity.
-
-```
-Global Quota Pool:                1,000 units
-  Global Standard deployment:       -400 units
-                                  ----------
-  Available for instant models:     600 units
-```
-
-If your instant model usage exceeds the remaining capacity, you receive a throttling error. You can then wait for capacity to free up, request a quota increase, or create a deployment with reserved capacity.
-
-### Quota is per model
-
-Each model has its own global quota allocation. Usage of one model doesn't consume quota assigned to a different model.
+Deployments aren't going away. They remain the right choice when you need reserved throughput, custom content filters, data residency, or advanced enterprise configurations. Instant models simplify the getting-started experience so that deployments become something you level up to, not a gate you must pass before you can use a model.
 
 ## Supported models
-
-The following models support instant access during the preview:
 
 <!-- [TODO] Add specific model list before publish -->
 
@@ -80,8 +52,6 @@ To see all models that support instant access, open the [Foundry model catalog](
 
 ## When to use instant models vs. deployments
 
-Use the following guidance to decide between instant models and deployments.
-
 | Scenario | Recommended approach |
 |---|---|
 | Getting started, prototyping, or experimentation | Instant models |
@@ -89,18 +59,43 @@ Use the following guidance to decide between instant models and deployments.
 | Need reserved capacity or predictable throughput | Deployment |
 | Require provisioned throughput (PTU) | Deployment |
 | Need data residency in a specific region | Deployment |
+| Custom content filtering policies | Deployment |
+| Endpoint-specific configuration (for example, custom RAI, version locks per endpoint) | Deployment |
 | Fine-grained quota partitioning across teams | Deployment |
+| Fine-tuned models | Deployment |
 
 Instant models and deployments can coexist in the same project. You can start with instant models and create deployments later as your requirements evolve.
 
-## Enterprise controls
+## Model versions
 
-Existing governance capabilities continue to work with instant models:
+By default, instant models route to the latest evergreen version of a model. To pin to a specific version, append the version date to the model name as a hyphenated suffix:
+
+| What you pass as `model` | Behavior |
+|---|---|
+| `gpt-4o` | Routes to the latest version |
+| `gpt-4o-2024-05-13` | Routes to that specific version |
+
+<!-- [TODO] Confirm version suffix format (hyphen vs. other delimiter) before publish -->
+
+Version pinning is opt-in. If your application requires stability, include the version suffix. Otherwise, you always get the latest version automatically.
+
+## How quota is consumed
+
+Instant models draw from a per-model **global quota** pool assigned to your subscription. This quota is separate from the regional quota used by standard deployments.
+
+- You don't allocate or partition global quota — it's shared automatically across all instant model usage in your subscription.
+- Global Standard deployments reserve a portion of your global quota. Instant models use whatever capacity remains.
+- Other deployment types (Regional Standard, Provisioned) use separate regional quota and don't affect your instant model capacity.
+- If instant model requests are throttled, you can request a quota increase or create a deployment with reserved capacity.
+
+For more details on how global and regional quota interact, see [Manage and increase quotas](../how-to/quota.md).
+
+## Enterprise controls
 
 | Capability | How it works |
 |---|---|
 | Block specific models or providers | Azure Policy definitions apply to instant models the same way they apply to deployments |
-| Pin to a model version | Include the version string in the model name |
+| Pin to a model version | Append the version suffix to the model name (see [Model versions](#model-versions)) |
 | Disable instant models entirely | Administrators can turn off instant models at the subscription level through Azure Policy |
 
 > [!IMPORTANT]
@@ -108,13 +103,13 @@ Existing governance capabilities continue to work with instant models:
 
 ## Deployment name collisions
 
-To prevent ambiguity, new deployments can't use a name that matches an existing model name. If you have an existing deployment whose name collides with a model name, the deployment takes precedence and instant model access for that model name is unavailable in that project.
+New deployments can't use a name that matches an existing model name. If you have an existing deployment whose name collides with a model name, the deployment takes precedence and instant model access for that model name is unavailable in that project.
 
 ## Limitations during preview
 
 - Available in South Central US only.
-- Fine-tuned models aren't supported. Instant models work only with base catalog models. To use a fine-tuned model, create a deployment.
-- Custom RAI policies and guardrails aren't configurable for instant models.
+- Fine-tuned models aren't supported. To use a fine-tuned model, create a deployment.
+- Custom RAI policies and content filters aren't configurable for instant models.
 - Only the models listed in [Supported models](#supported-models) are eligible.
 
 ## Related content
