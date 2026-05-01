@@ -321,7 +321,7 @@ await retryPolicy.ExecuteAsync(async () =>
 #### Monitor and manage deployment-level usage
 
 - **Check per-deployment TPM allocation**, not just subscription-level quota. You may have approved quota at the subscription level but hit 429s because the quota isn't allocated to the specific deployment receiving traffic.
-- **Rebalance quota across deployments** based on observed usage. Use [Azure Monitor metrics](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/monitoring) to review 24-hour and 7-day usage trends and detect bursty patterns.
+- **Rebalance quota across deployments** based on observed usage. Use [Azure Monitor metrics](/azure/ai-services/openai/how-to/monitoring) to review 24-hour and seven-day usage trends and detect bursty patterns.
 - Use quota management in the [Foundry portal](https://ai.azure.com) to increase TPM on high-traffic deployments and reduce TPM on underutilized ones.
 
 #### Distribute traffic evenly
@@ -347,8 +347,8 @@ A 429 error ("Too Many Requests") means your request was rejected because a rate
 | Scenario | Error message indicator | Root cause | Recommended action |
 |----------|------------------------|------------|-------------------|
 | **Rate limit exceeded** | "Requests to … have been limited" or "Rate limit is exceeded" | Your requests exceeded the TPM or RPM rate limit for your deployment's allocated quota. | Increase the deployment's TPM allocation, rebalance quota across deployments, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
-| **System capacity throttling** | "The service is temporarily unable to process your request" or "System is experiencing high demand" | Backend capacity is constrained. This is often transient. | Retry after the `retry-after-ms` delay. If persistent, consider upgrading to [Provisioned Throughput (PTU)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity. |
-| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (PayGo) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput). |
+| **System capacity throttling** | "The service is temporarily unable to process your request" or "System is experiencing high demand" | Backend capacity is constrained. This condition is often transient. | Retry after the `retry-after-ms` delay. If persistent, consider upgrading to [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity. |
+| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (PayGo) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This reduction is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput). |
 | **Token budget exceeded by request parameters** | Rate limit triggered but token usage metrics appear low | The rate limit calculation includes `max_tokens` and prompt estimate, not just billed tokens. A request with a high `max_tokens` value can consume rate limit budget even if the actual response is small. | Reduce `max_tokens` to match your expected response size. |
 
 > [!IMPORTANT]
@@ -370,11 +370,11 @@ This means you can receive 429 responses even when your token usage metrics appe
 - **Distributed enforcement**: Rate limit enforcement across distributed infrastructure may not be perfectly precise or immediately reflected in aggregated metrics.
 
 > [!TIP]
-> If you observe 429 responses during a temporary rate limit adjustment period:
+> If you see 429 responses during a temporary rate limit adjustment period:
 > 1. **Retry with backoff** — honor the `retry-after-ms` header. The adjustment is temporary and will resolve as demand stabilizes.
-> 2. **Spread traffic** — if possible, distribute requests across multiple deployments or regions.
-> 3. **Review your traffic pattern** — sustained heavy bursts are the most common trigger. Gradually ramping workloads reduces the likelihood of adjustments.
-> 4. **Consider Provisioned Throughput (PTU)** — for production workloads that require consistent throughput without shared-pool variability, [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput) provides dedicated capacity with guaranteed rate limits.
+> 1. **Spread traffic** — if possible, distribute requests across multiple deployments or regions.
+> 1. **Review your traffic pattern** — sustained heavy bursts are the most common trigger. Gradually ramping workloads reduces the likelihood of adjustments.
+> 1. **Consider Provisioned Throughput (PTU)** — for production workloads that need consistent throughput without shared-pool variability, [Provisioned Throughput](/azure/ai-services/openai/concepts/provisioned-throughput) provides dedicated capacity with guaranteed rate limits.
 
 **What to rely on:**
 - Use **token usage metrics** to understand billed consumption.
@@ -387,9 +387,9 @@ This means you can receive 429 responses even when your token usage metrics appe
 |-----------|--------|
 | Occasional 429s that resolve with `retry-after-ms` backoff | **Retry** — this is normal, expected behavior for shared (Standard) deployments. |
 | 429s during development or testing | **Often acceptable** — non-production 429s may be intentional cost guardrails. |
-| Sustained 429s in production, below approved quota | **Escalate** — open a [support request](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/get-support) for engineering investigation. |
+| Sustained 429s in production, below approved quota | **Escalate** — open a [support request](/azure/ai-services/openai/how-to/get-support) for engineering investigation. |
 | Rate limit increases not reflected in effective limits | **Escalate** — verify quota allocation at the deployment level first, then escalate if the issue persists. |
-| Latency-sensitive or mission-critical production workloads experiencing frequent 429s | **Upgrade** — consider [Provisioned Throughput (PTU)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity and latency SLA. |
+| Latency-sensitive or mission-critical production workloads experiencing frequent 429s | **Upgrade** — consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity and latency SLA. |
 
 > [!NOTE]
 > Standard (PayGo) deployments use a shared resource pool. Throttling protects overall service reliability for all users. Occasional transient 429s are expected behavior, not a service defect. For workloads that require predictable latency and guaranteed throughput, Provisioned Throughput (PTU) is the recommended deployment type.
