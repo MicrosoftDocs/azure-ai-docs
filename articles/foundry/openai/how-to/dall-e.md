@@ -41,16 +41,12 @@ The following command shows the most basic way to use an image model with code. 
 Send a POST request to:
 
 ```
-https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deployment_name>/images/generations?api-version=<api_version>
+https://<your_resource_name>.openai.azure.com/openai/v1/images/generations?api-version=preview
 ```
 
 **URL**:
 
-Replace the following values:
-
-- `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
+Replace `<your_resource_name>` with the name of your Azure OpenAI resource.
 
 **Required headers**:
 
@@ -60,6 +56,9 @@ Replace the following values:
 **Body**:
 
 The following is a sample request body. You specify a number of options, defined in later sections.
+
+> [!NOTE]
+> Set the `model` parameter to the name of your model deployment (for example, `gpt-image-1.5`).
 
 ```json
 {
