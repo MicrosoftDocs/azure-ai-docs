@@ -27,14 +27,24 @@ Model router for Microsoft Foundry is a deployable AI chat model that selects th
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation]() to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
 [!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
-Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
+Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You don't need to configure optional routing settings unless you want custom routing behavior.
+
+### Default deployment
 
 In the **Create new deployment**, find `model-router` in the **Models** list and select it.
+
+[!INCLUDE [model-router-deploy-rest-default](../../../foundry/openai/includes/how-to-model-router-deploy-rest-default.md)]
+
+### Optional: customize deployment settings
+
+If you want to override the default **Balanced** routing mode or restrict routing to a model subset, use the REST API deployment options in the next section.
 
 > [!NOTE]
 > Your deployment settings apply to all underlying chat models that model router uses.
@@ -42,9 +52,11 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-### Deploy with the REST API
+#### Configure custom settings with the REST API
 
-[!INCLUDE [model-router-deploy-rest](../../../foundry/openai/includes/how-to-model-router-deploy-rest.md)]
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
+[!INCLUDE [model-router-deploy-rest-custom](../../../foundry/openai/includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
 
