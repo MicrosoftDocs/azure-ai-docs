@@ -117,8 +117,10 @@ Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at t
 ```jsonc
 PATCH /contentunderstanding/defaults
 {
-  // Specify default model deployments as "prebuilt analyzer indirection keys": "deployment name"
   "modelDeployments": {
+    "gpt-5.2": "myGpt52Deployment",
+    "text-embedding-3-large": "myTextEmbedding3LargeDeployment",
+    // Specify default model deployments as "prebuilt analyzer indirection keys": "deployment name"
     "prebuilt-analyzer-completion": "myGpt52Deployment",
     "prebuilt-analyzer-completion-mini": "myGpt41-miniDeployment",
     "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
