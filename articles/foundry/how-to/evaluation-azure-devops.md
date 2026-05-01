@@ -3,7 +3,7 @@ title: "How to run an evaluation in Azure DevOps"
 description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps." 
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 04/30/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -94,7 +94,7 @@ The input data file should be a JSON file with the following structure:
 
 ## Sample pipeline
 
-To use this extension, add the `AIAgentEvaluation@2` task to your Azure Pipeline. The following example shows a complete pipeline that authenticates using an Azure Resource Manager service connection and evaluates an agent.
+To use this extension, add the `AIAgentEvaluation@2` task to your Azure Pipeline. The following example shows a complete pipeline that authenticates by using an Azure Resource Manager service connection and evaluates an agent.
 
 ```yaml
 steps:
@@ -109,7 +109,7 @@ steps:
 
 ## Evaluation results and outputs
 
-Evaluation results appear in the Azure DevOps pipeline summary. The report shows evaluation scores for each metric, confidence intervals, and — when you evaluate multiple agents — a pairwise statistical comparison that indicates whether differences are meaningful or within random variation.
+You see evaluation results in the Azure DevOps pipeline summary. The report shows evaluation scores for each metric, confidence intervals, and - when you evaluate multiple agents - a pairwise statistical comparison that indicates whether differences are meaningful or within random variation.
 
 The following screenshot shows a sample report comparing two agents.
 
