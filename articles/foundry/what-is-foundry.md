@@ -64,13 +64,16 @@ For the full walkthrough, see the [Microsoft Foundry quickstart](./quickstarts/g
 
 ## Available models
 
-Foundry gives you access to over 1,900 models from Microsoft, OpenAI, Meta, DeepSeek, Hugging Face, and more. The following table highlights popular model families to help you choose a starting point.
+Foundry gives you access to over 1,900 models from Microsoft, OpenAI, Anthropic, Mistral, xAI, Meta, DeepSeek, Hugging Face, and more. The following table highlights popular model families to help you choose a starting point.
 
 | Model family | Best for | 
 |---|---|
 | **GPT-5** | Most capable — complex reasoning, multi-step tasks, and multimodal scenarios |
 | **GPT-4.1** | Best balance of capability and cost for production workloads |
 | **GPT-4.1 mini** | Fastest — low-latency, high-throughput scenarios |
+| **Claude** | Advanced reasoning, code generation, and multimodal tasks |
+| **Grok** | Reasoning, coding, and data extraction |
+| **Mistral** | Code generation, multilingual, and general-purpose chat |
 | **DeepSeek-R1** | Open-weight reasoning at scale |
 | **Phi-4** | Small language model — on-device or resource-constrained environments |
 | **Meta Llama** | Open models — customization and fine-tuning |
