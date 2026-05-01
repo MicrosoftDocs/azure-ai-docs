@@ -18,6 +18,14 @@ ms.custom: language-service-pii
 
 This feature uses an asynchronous API workflow and returns redacted output that preserves document structure and formatting. You can use it when document fidelity is important for compliance review, sharing, analytics, and downstream AI workflows.
 
+## Video demonstration
+
+In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data directly from native documents while preserving file structure and formatting. We also cover common use cases, supported formats, and how to get started with document-based PII in Azure AI Language:
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=ec4b7c3d-c2ff-45c6-ba4f-a816b0e5d7ce]
+
+Closed captions are available for this video.
+
 ## At a glance
 
 Document-based PII provides the following capabilities:
@@ -41,7 +49,7 @@ The general availability release introduces the following capabilities and opera
 * Entity synonym support to map customer-specific vocabulary to standard PII entity types.
 * Value exclusion policy support for terms that should remain unredacted in select workflows.
 
-## GA (2026-05-01) and preview (2026-05-15-preview) feature comparison
+## GA and preview feature comparison
 
 The following table provides a detailed capability matrix comparing the feature sets of the general availability release (**2026-05-01**) and the preview API version (2026-05-15-preview). Use this comparison to understand which features are available in each release and to make informed decisions about API version selection based on your specific feature requirements:
 
@@ -58,14 +66,6 @@ The following table provides a detailed capability matrix comparing the feature 
 | Disable entity validation | ➖ | ✅ |
 | Entity synonyms (context vocabulary) | ➖ | ✅ |
 | Value exclusion policy | ➖ | ✅ |
-
-## Video demonstration
-
-In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data directly from native documents while preserving file structure and formatting. We also cover common use cases, supported formats, and how to get started with document-based PII in Azure AI Language:
-
-> [!VIDEO https://learn-video.azurefd.net/vod/player?id=ec4b7c3d-c2ff-45c6-ba4f-a816b0e5d7ce]
-
-Closed captions are available for this video.
 
 ## Why use document-based PII?
 
