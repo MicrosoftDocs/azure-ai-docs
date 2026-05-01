@@ -13,6 +13,12 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 05/01/2026
+author: alvinashcraft
+manager: nitinme
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
+ms.topic: how-to
+ms.date: 05/01/2026
 ms.author: aashcraft
 ---
 
