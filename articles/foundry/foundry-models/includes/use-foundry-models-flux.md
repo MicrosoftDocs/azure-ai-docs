@@ -277,13 +277,13 @@ curl -X POST https://<resource-name>.api.cognitive.microsoft.com/providers/black
 `FLUX.1-Kontext-pro` and `FLUX-1.1-pro` are also available through the Image API, which uses the same endpoint format as the Azure OpenAI images API. The Image API endpoint has the following form:
 
 ```
-https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-name>/images/generations?api-version=preview
+https://<resource-name>.services.ai.azure.com/openai/v1/images/generations?api-version=preview
 ```
 
 For image editing (in-context generation), `FLUX.1-Kontext-pro` also supports:
 
 ```
-https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-name>/images/edits?api-version=preview
+https://<resource-name>.services.ai.azure.com/openai/v1/images/edits?api-version=preview
 ```
 
 ### Image generation (text to image)
@@ -338,10 +338,11 @@ export DEPLOYMENT_NAME="<your-deployment-name>"
 ```
 
 ```sh
-curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$DEPLOYMENT_NAME/images/generations?api-version=preview \
+curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/generations?api-version=preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_API_KEY" \
   -d '{
+      "model": "'"$DEPLOYMENT_NAME"'",
       "prompt": "A photograph of a red fox in an autumn forest",
       "n": 1,
       "size": "1024x1024"
@@ -389,8 +390,9 @@ print(result.data[0].url)
 # [REST API](#tab/rest-api)
 
 ```sh
-curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$DEPLOYMENT_NAME/images/edits?api-version=preview \
+curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/edits?api-version=preview \
   -H "api-key: $AZURE_API_KEY" \
+  -F "model=$DEPLOYMENT_NAME" \
   -F "prompt=Change the background to a sunset over the ocean" \
   -F "image=@reference.jpg" \
   -F "n=1" \

@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation. A support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, and a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, you need to update and redeploy every agent that uses it.
 
-Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and reference from any hosted agent. At startup, the agent downloads the skill files it needs and injects their contents as additional instructions into every conversation session, guiding the Foundry model's behavior. If you update a skill, every agent that references it picks up the change on its next deployment - no code changes required.
+Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and download into any hosted agent project. Your agent code loads these skill files and injects their contents as additional instructions into conversation sessions, guiding the model's behavior. When you update a skill, download it again and redeploy the agent to pick up the change — no code changes required.
 
 In this article, you learn how to:
 
@@ -42,7 +42,7 @@ In this article, you learn how to:
 | Include downloaded skills in agent | N/A | N/A | N/A | N/A | ✔️ | N/A |
 
 > [!IMPORTANT]
-> Use skills in **hosted agents** only. The Skills REST API handles storage and retrieval. The hosted agent bundles the downloaded `SKILL.md` files into its container image and injects them at session startup.
+> Use skills in **hosted agents** only. The Skills REST API handles storage and retrieval. Your agent code bundles the downloaded `SKILL.md` files into the container image and loads them when creating sessions.
 
 ## Prerequisites
 
@@ -582,55 +582,93 @@ Returns HTTP 200 on success:
 
 ## Use skills in a hosted agent
 
-After importing skills to Foundry, download them and bundle them into your hosted agent's container image. The agent discovers them at startup and injects them as additional instructions in every session.
+After importing skills to Foundry through the REST API, download them into your agent project. The following walkthrough uses a [GitHub Copilot SDK sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot) that loads `SKILL.md` files from a local `skills/` directory and injects their contents as additional instructions into each session.
 
-### Step 1: Download skills into the agent directory
+> [!NOTE]
+> This sample requires a GitHub fine-grained personal access token (PAT) with **Copilot Requests → Read-only** permission. Create one at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Classic tokens (`ghp_`) aren't supported — use a fine-grained PAT (`github_pat_`).
 
-Download each skill into its own subdirectory under the agent root. Use the download operation from [Download a skill](#download-a-skill).
+### Step 1: Initialize the agent project
 
-When the downloads finish, the agent directory looks like this:
+Scaffold the project from the sample manifest:
+
+```bash
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot/agent.manifest.yaml
+```
+
+Set the required GitHub token:
+
+```bash
+azd env set GITHUB_TOKEN="github_pat_..."
+```
+
+The scaffolded project includes `main.py`, configuration files, and a sample `joke` skill:
 
 ```
-my-agent/
+├── main.py                  ← agent code that loads skills via CopilotClient
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    └── joke/
+        └── SKILL.md         ← bundled sample skill
+```
+
+In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as additional instructions when a session starts.
+
+### Step 2: Add the greeting skill
+
+Add the greeting skill you created in the [Author a skill](#author-a-skill) section. Create a subdirectory under `skills/` and add the `SKILL.md` file:
+
+```bash
+mkdir skills/greeting
+```
+
+Copy the greeting `SKILL.md` content from the [Author a skill](#author-a-skill) section into `skills/greeting/SKILL.md`. You can also use the download operation from [Download a skill](#download-a-skill) if you imported the skill to Foundry earlier.
+
+The project now includes both skills:
+
+```
 ├── main.py
-├── greeting/
-│   └── SKILL.md        ← downloaded from Foundry
-└── another-skill/
-    └── SKILL.md
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    ├── greeting/
+    │   └── SKILL.md         ← your greeting skill
+    └── joke/
+        └── SKILL.md
 ```
 
-### Step 2: Initialize the agent locally
+### Step 3: Run and test locally
 
-After downloading the skills, initialize the agent. The agent autodiscovers skills at startup by scanning the project root for any `*/SKILL.md` pattern.
+Start the agent:
 
 ```bash
-azd ai agent init --name my-agent
+azd ai agent run
 ```
 
-Start the local agent:
+In a separate terminal, test the greeting skill:
 
 ```bash
-azd ai agent start
+azd ai agent invoke --local '{"input": "Hi, my name is Alex!"}'
 ```
 
-Test the local agent:
+> [!TIP]
+> On PowerShell, escape the inner quotes: `azd ai agent invoke --local '{\"input\": \"Hi, my name is Alex!\"}'`
+
+### Step 4: Deploy and test remotely
+
+Provision Azure resources and deploy the agent:
 
 ```bash
-azd ai agent invoke "What Azure products do you offer?"
+azd provision
+azd deploy
 ```
 
-### Step 3: Deploy and test the hosted agent
-
-Deploy the agent:
+Test the deployed agent on Foundry:
 
 ```bash
-azd ai agent deploy
-```
-
-Test the remote hosted agent:
-
-```bash
-azd ai agent invoke --remote "What Azure products do you offer?"
+azd ai agent invoke '{"input": "Hi, my name is Alex!"}'
 ```
 
 ## Related content
