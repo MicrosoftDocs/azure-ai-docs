@@ -26,7 +26,7 @@ With instant models, the workflow is:
 
 The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
 
-[!INCLUDE [quickstart-v2-chat](../includes/quickstart-v2-chat.md)]
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
 
 
 The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
