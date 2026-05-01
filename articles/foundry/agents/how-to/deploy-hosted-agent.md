@@ -51,6 +51,9 @@ If you use `azd` or the VS Code extension, the tooling handles most RBAC assignm
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 
+> [!IMPORTANT]
+> The Azure Container Registry that holds your hosted agent's container image must currently be reachable over its public endpoint. Placing the registry behind a private network (private endpoint with public network access disabled) isn't currently supported for hosted agents — the platform can't pull the image. For the full list of network constraints, see [Limitations](virtual-networks.md#limitations).
+
 ## Container requirements
 
 Your container image must meet the following requirements to run on the hosted agent platform.
@@ -478,5 +481,5 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
-- [Publish and share agents](publish-agent.md)
+- [Agent applications](agent-applications.md)
 - [Azure Container Registry documentation](/azure/container-registry/)

@@ -561,6 +561,9 @@ while keep_going:
 
 ## Streaming
 
+> [!NOTE]
+> During streaming, the Responses API might return an error event ( `500`, `429`, and similar errors) if the service encounters an error, such as token limits or parsing problems. Applications should detect this event and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
+
 ```python
 import os
 from openai import OpenAI
@@ -1456,6 +1459,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
 - `gpt-5.4-pro` (Version:`2026-03-05`)

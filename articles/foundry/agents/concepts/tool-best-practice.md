@@ -1,8 +1,10 @@
 ---
 title: "Tool best practices for Microsoft Foundry Agent Service"
 description: "Learn tool best practices for Foundry Agent Service: configure tool_choice, secure tool usage, and troubleshoot tool-calling issues."
-author: aahill
-ms.author: aahi
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.date: 03/09/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.manager: nitinme
@@ -14,7 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Tool best practices for Microsoft Foundry Agent Service
-When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the model calls them, and keep your data secure.
+When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the agent calls them, and keep your data secure.
 
 > [!TIP]
 > In your agent instructions, describe what each tool is for and when to use it. For example:
@@ -83,14 +85,14 @@ The following table shows tool availability by [region](../../openai/how-to/resp
 | francecentral       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | germanywestcentral  | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | italynorth          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| japaneast           | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| japaneast           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | koreacentral        | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | northcentralus      | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | norwayeast          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | polandcentral       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southafricanorth    | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southcentralus      | yes | yes             | yes                 | no                | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| southeastasia       | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| southeastasia       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southindia          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | spaincentral        | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | swedencentral       | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -121,7 +123,9 @@ Tools are supported by the following models.
 | FW-Kimi-K2-Thinking | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
 | FW-Kimi-K2.5 | No | No | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
 | FW-MiniMax-M2.5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| Llama-3.3-70B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
+| FW-Qwen3.5-122B-A10B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes |
+| FW-Qwen3.5-397B-A17B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes |
+| Llama-3.3-70B-Instruct | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | Llama-4-Scout-17B-16E-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
@@ -157,12 +161,15 @@ Tools are supported by the following models.
 | gpt-5.4-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
 | gpt-5.4-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
 | gpt-5.4-pro | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.5 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
 | gpt-oss-120b | No | No | No | No | No | No | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
 | grok-3 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
 | grok-3-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4-1-fast-non-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4-1-fast-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
+| grok-4-20-non-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| grok-4-20-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | 
 | grok-4-fast-non-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4-fast-reasoning | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
 | mistral-small-2503 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |

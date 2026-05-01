@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Use model router for Microsoft Foundry
 
-Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md). To understand the architecture and routing logic, see [How model router works](../concepts/model-router-how-it-works.md).
 
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
@@ -28,7 +28,11 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
 
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. To enable more configuration options, choose **Custom settings**.
+To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
+
+Go to the Microsoft Foundry portal and navigate to the model catalog. Find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
+
+To enable more configuration options, choose **Custom settings**.
 
 :::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
 
@@ -75,6 +79,9 @@ New models introduced later are excluded by default until explicitly added.
 > [!NOTE]
 > Changes to the model subset can take up to five minutes to take effect.
 
+### Deploy with the REST API
+
+[!INCLUDE [model-router-deploy-rest](../includes/how-to-model-router-deploy-rest.md)]
 
 [!INCLUDE [model-router 1](../includes/how-to-model-router-1.md)]
 

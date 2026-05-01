@@ -3,10 +3,10 @@ title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: microsoft-foundry
-ms.date: 02/06/2026
+ms.date: 04/29/2026
 ms.author: lagayhar
 author: lgayhardt
-ms.reviewer: changliu2
+ms.reviewer: dlozier
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ms.custom: doc-kit-assisted
@@ -28,6 +28,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 
 ## Prerequisites
 
+- Python 3.8 or later.
 - A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
@@ -106,7 +107,7 @@ First, configure your evaluators. Each evaluator needs a data mapping that tells
 - `{{sample.output_items}}` references the full agent response, including tool calls.
 - `{{sample.output_text}}` references just the response message text.
 
-AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment in `initialization_parameters`. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
+AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment name in `initialization_parameters`. The value must match a GPT deployment name in your project — this is the judge model used to score responses. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
 
 ```python
 testing_criteria = [
@@ -193,9 +194,6 @@ print(f"Evaluation run started: {eval_run.id}")
 
 > [!TIP]
 > This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
-
-> [!TIP]
-> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation) in the cloud evaluation guide.
 
 ## Interpret results
 
@@ -311,5 +309,4 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
-- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

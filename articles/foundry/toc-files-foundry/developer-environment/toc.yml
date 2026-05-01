@@ -7,6 +7,8 @@ items:
   href: ../../how-to/develop/get-started-projects-vs-code.md
 - name: Configure Claude Code with Microsoft Foundry
   href: ../../foundry-models/how-to/configure-claude-code.md
+- name: Configure Claude Desktop with Microsoft Foundry
+  href: ../../foundry-models/how-to/configure-claude-desktop.md
 
 # Getting Started with Development
 - name: Start with an AI template

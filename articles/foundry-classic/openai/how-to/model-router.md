@@ -32,7 +32,7 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ## Deploy a model router model
 
-Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
+Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
 
 In the **Create new deployment**, find `model-router` in the **Models** list and select it.
 
@@ -41,6 +41,10 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 > - Don't deploy the underlying chat models separately. Model router works independently of your other deployed models.
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
+
+### Deploy with the REST API
+
+[!INCLUDE [model-router-deploy-rest](../../../foundry/openai/includes/how-to-model-router-deploy-rest.md)]
 
 [!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
 

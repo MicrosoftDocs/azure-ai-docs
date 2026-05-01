@@ -192,9 +192,12 @@ items:
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/reference/get-supported-glossary-formats.md
+  - name: Document translation SDK guide
+    displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
+    href: document-translation/document-sdk-overview.md
   - name: Document translation FAQ
     href: document-translation/faq.md
-- name: Containers
+- name: Container instances
   items:
   - name: What are Azure Translator containers?
     displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing

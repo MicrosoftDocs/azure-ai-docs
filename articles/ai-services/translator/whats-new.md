@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 04/01/2026
+ms.date: 04/30/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -76,10 +76,10 @@ For more information, *see* [Text translation overview](text-translation/overvie
 
 ### Document Translation new feature update
 
-Azure Translator [Document translation feature](document-translation/overview.md#key-features) now supports [translating text embedded in images detected in Word documents](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) within documents.
+Azure Translator [Document translation feature](document-translation/overview.md#key-features) now supports [translating text embedded in images detected in Word documents](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) within documents.
 
 * This feature is optional and must be enabled for each translation request.
-* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) API for `.docx` file format.
+* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` file format.
 * A [Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
