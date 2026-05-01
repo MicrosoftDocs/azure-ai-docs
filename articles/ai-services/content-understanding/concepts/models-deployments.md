@@ -23,10 +23,10 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 
 ## Supported models
 
-The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models).
+The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models). Please refer to [Model retirement schedule](../../../foundry/openai/concepts/model-retirement-schedule.md) to track Foundry model lifecycle stage and retirement date.
 
 > [!IMPORTANT]
-> GPT-5.2 is now supported across all Content Understanding analyzers. GPT-5 and GPT-5.1 are not currently supported due to a dependency on logprobs for confidence scoring. Support for additional GPT-5.x models will be added in a future update.
+> GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in a future update.
 
 ### Check supported models per analyzer
 
@@ -58,34 +58,17 @@ The response includes a `supportedModels` object that lists the valid completion
 }
 ```
 
-To list all analyzers and their supported models at once:
-
-```http
-GET /contentunderstanding/analyzers?api-version=2025-11-01
-```
-
-### Supported models by analyzer category
-
-The following table summarizes the supported models by analyzer category. For a specific analyzer, use the `GET` method above.
-
-| Analyzer category | Examples | Completion models | Embedding models |
-|---|---|---|---|
-| **Base & RAG analyzers** | `prebuilt-read`, `prebuilt-layout`, `prebuilt-document`, `prebuilt-documentSearch`, `prebuilt-digitalParse` | gpt-4o, gpt-4o-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-5.2 | text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002 |
-| **Domain-specific analyzers** | `prebuilt-invoice`, `prebuilt-receipt`, `prebuilt-idDocument`, `prebuilt-tax.*`, `prebuilt-mortgage.*` | gpt-4.1, gpt-5.2 | text-embedding-3-large |
-| **Image & video analyzers** | `prebuilt-image`, `prebuilt-imageSearch`, `prebuilt-video`, `prebuilt-videoSearch`, `prebuilt-videoSynopsis` | gpt-4o, gpt-4o-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-5.2 | N/A |
-| **Custom analyzers** | User-created analyzers | Inherited from base analyzer | Inherited from base analyzer |
-
 ## How model selection works
 
-When you create a custom analyzer, you specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
+When you create a custom analyzer, you can specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
 
 ```jsonc
 {
   "analyzerId": "myReceipt",
   "models": {
     // Specifies the completion and embedding models used by this analyzer.
-    "completion": "gpt-4.1",
-    "embedding": "text-embedding-ada-002"
+    "completion": "myGpt52Deployment",
+    "embedding": "myTextEmbedding3LargeDeployment"
   },
   "config": {
 
@@ -95,11 +78,11 @@ When you create a custom analyzer, you specify which chat completion model and e
 ```
 
 > [!TIP] 
-> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
+> GPT-5.2 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
 
 ### Model selection for prebuilt analyzers
 
-Prebuilt analyzers use indirection keys instead of direct model names in their `models` section. This allows the service to support model upgrades (for example, from GPT-4.x to GPT-5.x) without changing analyzer definitions.
+Prebuilt analyzers use indirection keys instead of direct model names in their `models` section. This allows the service to support model upgrades without changing analyzer definitions.
 
 Prebuilt analyzers reference the following deployment keys:
 
@@ -134,23 +117,14 @@ Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at t
 ```jsonc
 PATCH /contentunderstanding/defaults
 {
-  // Specify default model deployments as "model name": "deployment name"
+  // Specify default model deployments as "prebuilt analyzer indirection keys": "deployment name"
   "modelDeployments": {
-    "gpt-4.1": "gpt-4.1-deployment",
-    "gpt-4.1-mini": "gpt-4.1-mini",
-    "gpt-5.2": "gpt-5.2-deployment",
-    "text-embedding-3-large": "text-embedding-3-large-deployment",
-    "text-embedding-ada-002": "text-embedding-ada-002",
-    // Prebuilt analyzer indirection keys
-    "prebuilt-analyzer-completion": "gpt-4.1-deployment",
-    "prebuilt-analyzer-completion-mini": "gpt-4.1-mini",
-    "prebuilt-analyzer-embedding": "text-embedding-3-large-deployment"
+    "prebuilt-analyzer-completion": "myGpt52Deployment",
+    "prebuilt-analyzer-completion-mini": "myGpt41-miniDeployment",
+    "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
   }
 }
 ```
-
-> [!NOTE]
-> The `prebuilt-analyzer-*` keys map prebuilt analyzers to your deployments. To migrate prebuilt analyzers to GPT-5.2, update these keys to point to a GPT-5.2 deployment (for example, `"prebuilt-analyzer-completion": "gpt-5.2-deployment"`).
 
 Example analyze request that uses resource defaults:
 
@@ -175,7 +149,7 @@ For the full onboarding flow, see [Quickstart: Try out Content Understanding Stu
 
 
 
-Studio can configure defaults for supported models such as `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
+Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
 
 ---
 
@@ -193,11 +167,8 @@ POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
   ],
   // Specify the model deployments for this request
   "modelDeployments": {
-    "gpt-4.1": "gpt-4.1",
-    "text-embedding-3-large": "text-embedding-3-large",
-    // Override prebuilt analyzer deployments for this request
-    "prebuilt-analyzer-completion": "gpt-5.2-deployment",
-    "prebuilt-analyzer-embedding": "text-embedding-3-large"
+    "prebuilt-analyzer-completion": "myGpt5Deployment",
+    "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
   }
 }
 ```
@@ -218,8 +189,8 @@ Analyze responses include a `usage` property. This property reports token usage 
     "videoHours": 0.123,
     "contextualizationToken": 1000,
     "tokens": {
-      "gpt-4.1-input": 1234, /*Completion model Input and output tokens consumed*/
-      "gpt-4.1-output": 2345,
+      "gpt-5.2-input": 1234, /*Completion model Input and output tokens consumed*/
+      "gpt-5.2-output": 2345,
       "text-embedding-3-large": 3456 /*Embedding tokens consumed*/
     }
   }
