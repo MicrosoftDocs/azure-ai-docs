@@ -151,9 +151,10 @@ Treat a hosted agent like production application code.
 
 ### Versioning
 
-Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
+Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. Note that requests to create agent version with no change to the agent version parameters such as container image, environment variables, etc. will not result in a new version being created. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
 
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They're set per version and are immutable once the version is created.
+
 
 ### Foundry Toolbox
 
@@ -190,16 +191,23 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 Hosted agents are currently available in the following regions: 
 
 - East US 2
-- Australia East
-- Canada Central
 - North Central US
 - Sweden Central
-- South East Asia
+- Canada Central
+- Southeast Asia
 - Poland Central
 - South Africa North
 - Korea Central
 - South India
 - Brazil South
+- West US
+- West US 3
+- Norway East
+- Japan East
+- France Central
+- Switzerland North
+- Spain Central
+- Australia East
 
 > [!NOTE]
 > This list will be updated as additional regions become available.
