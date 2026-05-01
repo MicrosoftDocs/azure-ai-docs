@@ -21,7 +21,7 @@ This article shows you how to manage sessions for hosted agents in Foundry Agent
 
 Sessions and conversations are distinct concepts in Foundry Agent Service:
 
-| | Session | Conversation |
+| Aspect | Session | Conversation |
 |---|---|---|
 | What it represents | Sandbox compute and persisted filesystem (`$HOME`, `/files`) | History of messages, tool calls, and responses |
 | Identifier | `agent_session_id` | `previous_response_id` or `conversation` (Responses protocol only) |
