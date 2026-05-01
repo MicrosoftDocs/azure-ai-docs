@@ -30,7 +30,7 @@ The Azure Communication Services Call Automation APIs provide the telephony inte
 Alternatively for telephony integration, Twilio Media Streams provide access to the raw audio from a Programmable Voice call by streaming it over WebSockets to a destination you specify. This enables use cases such as real-time transcriptions, sentiment analysis, voice authentication, and more. You can also stream raw audio into a Twilio Voice call from another application. Learn more about [Twilio Media Streams](https://www.twilio.com/docs/voice/media-streams).
 
 
-:::image type="content" source="media/voice-live/telephony1.png" alt-text="Diagram of the call center telephony setup.":::
+:::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup.":::
 
 
 ## Related content 
