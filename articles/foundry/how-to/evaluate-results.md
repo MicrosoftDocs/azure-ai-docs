@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/29/2026
+ms.date: 04/30/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # View evaluation results in the Microsoft Foundry portal
 
-In this article, you learn to:
+In this article, you learn how to:
 
 - Locate and open evaluation runs.
 - View aggregate and sample-level metrics.
@@ -64,17 +64,17 @@ Select the name of the run to view row-level results for each individual query. 
 
 ## Compare the evaluation results
 
-To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process.
+To compare two or more runs, select the runs you want to compare and start the process.
 
 1. Select two or more runs in the evaluation detail page.
 1. Select **Compare**.
 
-It generates a side-by-side comparison view for all selected runs.
+You see a side-by-side comparison view for all selected runs.
 
-The comparison is computed based on statistic t-testing, which provides more sensitive and reliable results for you to make decisions. You can use different functionalities of this feature:
+The comparison uses statistical t-testing, which gives you more sensitive and reliable results to help you make decisions. You can use different functionalities of this feature:
 
-- Baseline comparison: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
-- Statistic t-testing assessment: Each cell provides the stat-sig results with different color codes. You can also hover on the cell to get the sample size and p-value.  
+- **Baseline comparison**: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
+- **Statistical t-testing assessment**: Each cell provides the stat-sig results with different color codes. You can also hover on the cell to get the sample size and p-value.  
 
 |Legend | Definition|
 |--|--|
@@ -87,7 +87,7 @@ The comparison is computed based on statistic t-testing, which provides more sen
 | Inconclusive | Too few examples, or p>=0.05 |
 
 > [!NOTE]
-> The comparison view won't be saved. If you leave the page, you can reselect the runs and select **Compare** to regenerate the view.
+> The comparison view isn't saved. If you leave the page, you can reselect the runs and select **Compare** to regenerate the view.
 
 ## Understand the built-in evaluation metrics
 

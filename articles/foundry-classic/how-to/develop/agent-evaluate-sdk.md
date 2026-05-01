@@ -6,8 +6,8 @@ ms.custom:
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 02/10/2025
-ms.reviewer: changliu2
+ms.date: 04/30/2026
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 # customer intent: As a developer, I want to evaluate my AI agents using the Microsoft Foundry SDK so I can assess the quality, safety, and efficiency of agentic workflows.
@@ -165,7 +165,7 @@ message = project_client.agents.messages.create(
     role="user",  # Role of the message sender
     content="What is the weather in Seattle today?",  # Message content
 )
-print(f"Created message, ID: {message['id']}")
+print(f"Created message, ID: {message.id}")
 
 # Create and process an agent run
 run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
@@ -224,16 +224,16 @@ load_dotenv()
 
 model_config = {
     "azure_deployment": os.getenv("AZURE_DEPLOYMENT_NAME"),
-    "api_key": os.getenv("AZURE_API_KEY"),
-    "azure_endpoint": os.getenv("AZURE_ENDPOINT"),
+    "api_key": os.getenv("AZURE_OPENAI_API_KEY"),
+    "azure_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
 # example config for a reasoning model
 reasoning_model_config = {
-    "azure_deployment": "o3-mini",
-    "api_key": os.getenv("AZURE_API_KEY"),
-    "azure_endpoint": os.getenv("AZURE_ENDPOINT"),
+    "azure_deployment": "o4-mini",
+    "api_key": os.getenv("AZURE_OPENAI_API_KEY"),
+    "azure_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
