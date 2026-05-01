@@ -29,7 +29,7 @@ To delete a knowledge source:
     }
     ```
 
-   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
    An example response might look like the following:
 
@@ -60,7 +60,7 @@ To delete a knowledge source:
     Console.WriteLine(json);
     ```
 
-   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
    An example response might look like the following:
 
@@ -95,7 +95,7 @@ To delete a knowledge source:
     System.Console.WriteLine($"Knowledge base '{knowledgeBaseName}' deleted successfully.");
     ```
 
-   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 1. Delete the knowledge source.
 
@@ -104,7 +104,7 @@ To delete a knowledge source:
     System.Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfully.");
     ```
 
-   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+   **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -218,7 +218,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
 
    An example response might look like the following:
 
@@ -244,7 +244,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
 
    An example response might look like the following:
 
@@ -276,7 +276,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete)
 
 1. Delete the knowledge source.
 
@@ -286,6 +286,6 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete)
 
 ::: zone-end

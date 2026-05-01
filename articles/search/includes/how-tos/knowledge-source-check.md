@@ -26,7 +26,7 @@ await foreach (var ks in knowledgeSources)
 }
 ```
 
-**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -55,7 +55,7 @@ GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kin
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2026-04-01&preserve-view=true)
+**Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list)
 
 ::: zone-end
 
@@ -85,7 +85,7 @@ var jsonOptions = new JsonSerializerOptions
 Console.WriteLine(JsonSerializer.Serialize(ks, ks.GetType(), jsonOptions));
 ```
 
-**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -115,6 +115,6 @@ GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2026-04-01&preserve-view=true)
+**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
 
 ::: zone-end

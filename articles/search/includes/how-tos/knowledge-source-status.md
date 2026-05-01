@@ -24,7 +24,7 @@ var json = JsonSerializer.Serialize(status, new JsonSerializerOptions { WriteInd
 Console.WriteLine(json);
 ```
 
-**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -55,7 +55,7 @@ api-key: {{api-key}}
 Content-Type: application/json 
 ```
 
-**Reference:** [Knowledge Sources - Get Status](/rest/api/searchservice/knowledge-sources/get-status?view=rest-searchservice-2026-04-01&preserve-view=true)
+**Reference:** [Knowledge Sources - Get Status](/rest/api/searchservice/knowledge-sources/get-status)
 
 ::: zone-end
 
