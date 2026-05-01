@@ -1,8 +1,9 @@
 ---
 title: Auto and direct model routing with the Responses API
 description: "Use the Responses API as a single interface to call any model in Microsoft Foundry, from automatic selection with model router to deterministically named models."
-author: yourGitHubAlias
-ms.author: yourMsAlias
+author: PatrickFarley
+ms.author: pafarley
+manager: nitinme
 ms.date: 05/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -21,7 +22,7 @@ The Responses API is the single calling interface for every model in Microsoft F
 ## Prerequisites
 
 - A Foundry project with a `model-router` deployment. See [Deploy model router](model-router.md#deploy-a-model-router-model).
-- At least one named model deployment for deterministic calls (for example, `gpt-4.1-mini`). See [Deploy a model](create-resource.md).
+- At least one named model deployment for deterministic calls (for example, `gpt-4.1-mini`). See [Deploy a model](/azure/ai-foundry/openai/how-to/create-resource).
 - Familiarity with the [Responses API](responses.md).
 - Python 3.9+
 - The OpenAI Python package:
