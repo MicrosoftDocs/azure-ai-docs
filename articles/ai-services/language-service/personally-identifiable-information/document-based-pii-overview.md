@@ -22,7 +22,7 @@ This feature uses an asynchronous API workflow and returns redacted output that 
 
 Document-based PII provides the following capabilities:
 
-* Native document redaction for `.pdf`, `.docx`, and `.txt` files.
+* Native document redaction for **.pdf**, **.docx**, and **.txt** files.
 * Preserved layout in output documents, including font, spacing, and color.
 * A single asynchronous API workflow for extraction, detection, and redaction.
 * Enterprise-ready outputs: a redacted document and a structured JSON result.
@@ -42,7 +42,7 @@ Many custom pipelines require multiple steps to extract text, run detection, and
 
 Document-based PII is especially useful when you need to:
 
-* Redact PII in `.pdf`, `.docx`, and `.txt` files.
+* Redact PII in **.pdf**, **.docx**, and **.txt** files.
 * Preserve document layout for downstream business processes.
 * Generate structured JSON output for auditing and integration.
 
@@ -63,22 +63,21 @@ The following updates are reflected in this overview based on the latest GA cont
 
 ## GA vs preview feature comparison
 
-The following table compares baseline capabilities in `2026-05-15-preview` with GA-oriented updates covered in this overview.
+The following table compares key service features between GA and **2026-05-15-preview**.
 
-| Feature | Preview (`2026-05-15-preview`) | GA |
+| Feature | GA | Preview (**2026-05-15-preview**) |
 | --- | --- | --- |
-| Native document processing (`.pdf`, `.docx`, `.txt`) | Supported | Supported |
-| Asynchronous job workflow and output artifacts | Supported | Supported |
-| Redacted file output with layout preservation (font, spacing, color) | Supported | Supported with quality improvements |
-| Character-mask redaction | Supported | Supported |
-| Black-marker redaction style | Limited or not documented as default behavior | Supported |
-| Blur-based redaction for image-oriented scenarios | Limited | Supported |
-| Entity-label masking policy (for example, `[Address]`) | Not available | Supported |
-| Synthetic replacement masking policy (for example, realistic substitute values) | Not available | Supported |
-| Configurable confidence-score threshold for redaction | Not available | Supported |
-| Optional disable entity validation control | Not available | Supported |
-| Entity synonyms (context vocabulary mapping) | Not available | Supported |
-| Value exclusion policy | Not available | Supported |
+| Updated output quality: Font, color, and format preservation | ✅ | ✅ |
+| Image redaction with blur | ✅ | ✅ |
+| PDF support (including digital PDF support) | ✅ | ✅ |
+| Microsoft Word **.docx** support | ✅ | ✅ |
+| Black marker redaction | ➖ | ✅ |
+| Anonymization/Synthetic replacement masking policy | ➖ | ✅ |
+| Entity label masking policy (for example, **[Address]**) | ➖ | ✅ |
+| Confidence score threshold | ➖ | ✅ |
+| Disable entity validation | ➖ | ✅ |
+| Entity synonyms (context vocabulary) | ➖ | ✅ |
+| Value exclusion policy | ➖ | ✅ |
 
 ## What it returns
 
@@ -125,9 +124,9 @@ Document-based PII accepts native file formats directly, without requiring text 
 
 | File type | File extension | Description |
 | --- | --- | --- |
-| Text | `.txt` | An unformatted text document. |
-| Adobe PDF | `.pdf` | A portable document file formatted document. |
-| Microsoft Word | `.docx` | A Microsoft Word document file. |
+| Text | **.txt** | An unformatted text document. |
+| Adobe PDF | **.pdf** | A portable document file formatted document. |
+| Microsoft Word | **.docx** | A Microsoft Word document file. |
 
 The following input constraints apply:
 
