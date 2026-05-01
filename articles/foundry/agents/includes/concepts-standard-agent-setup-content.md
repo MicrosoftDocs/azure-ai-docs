@@ -48,15 +48,26 @@ All data processed by Foundry Agent Service is automatically stored at rest in t
 
 Your Azure Cosmos DB for NoSQL account must have a total throughput limit of at least **3000 RU/s**. Both **Provisioned Throughput** and **Serverless** modes are supported.
 
-Standard setup provisions **three containers** in your Cosmos DB account, **each requiring 1000 RU/s**:
+The **Standard setup** provisions **five containers**, each requiring **1000 RU/s**:
 
 | Container | Purpose |
 |-----------|---------|
 | `thread-message-store` | End-user conversations |
 | `system-thread-message-store` | Internal system messages |
 | `agent-entity-store` | Agent metadata (instructions, tools, name) |
+| `agent-definitions-v1` | Agent metadata (instructions, tools, name, versions) |
+| `run-state-v1` | Internal messages and end-user conversations |
 
-For multiple projects under the same Foundry account, multiply by the number of projects. For example, two projects require at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects).
+`thread-message-store`, `system-thread-message-store`, and `agent-entity-store` are part of the **Foundry Agent Service (Classic)** Standard Setup.
+
+**Foundry Agent Service (New)** uses **`agent-definitions-v1`** and **`run-state-v1`**.  
+The older containers belong to the **Classic** experience and are not used by the new runtime.
+
+---
+
+## Information Warning
+
+The **Classic** and **New** Foundry Agent Service runtimes use **different Cosmos DB containers**.  
 
 ## Project-level data isolation
 
