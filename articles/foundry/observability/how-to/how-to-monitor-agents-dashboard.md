@@ -288,7 +288,7 @@ Console.WriteLine(
     $" (id: {continuousEvalRule.Id}, name: {continuousEvalRule.DisplayName})");
 ```
 
-References: [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluationrule)
+References: [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluation.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluation.evaluationrule)
 
 ---
 
