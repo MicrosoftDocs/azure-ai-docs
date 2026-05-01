@@ -461,6 +461,7 @@ The following table shows which knowledge sources require ingestion-time configu
 | [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
 | [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
+| [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#authenticate-at-query-time) | ❌ | Fabric Data Agent is called directly using the user's token. <!-- TO-DO (PM): Confirm whether the Fabric Data Agent enforces per-user data permissions using this token (for example, Power BI row-level security), or whether the token is required solely for authentication. --> |
 
 > [!IMPORTANT]
 > If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, update or recreate the knowledge source with the appropriate `ingestionPermissionOptions` values and [reindex](search-howto-run-reset-indexers.md).
