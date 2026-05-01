@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 04/16/2026
+ms.date: 05/01/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -14,12 +14,9 @@ ms.custom: language-service-pii
 <!-- markdownlint-disable MD025 -->
 # Document-based PII overview
 
-[**Document-based PII**](document-based-pii-overview.md) is a preview feature in Azure AI Language Personally Identifiable Information (PII) detection. It helps you detect and redact sensitive data directly in native document files, including Microsoft Word and PDF files, without building your own text extraction and reconstruction pipeline.
+[**Document-based PII**](document-based-pii-overview.md) in Azure AI Language Personally Identifiable Information (PII) detection helps you detect and redact sensitive data directly in native document files, including Microsoft Word and PDF files, without building your own text extraction and reconstruction pipeline.
 
 This feature uses an asynchronous API workflow and returns redacted output that preserves document structure and formatting. You can use it when document fidelity is important for compliance review, sharing, analytics, and downstream AI workflows.
-
-> [!IMPORTANT]
-> Document-based PII is currently in preview and may change before general availability (GA).
 
 ## At a glance
 
@@ -29,6 +26,7 @@ Document-based PII provides the following capabilities:
 * Preserved layout in output documents, including font, spacing, and color.
 * A single asynchronous API workflow for extraction, detection, and redaction.
 * Enterprise-ready outputs: a redacted document and a structured JSON result.
+* Configurable masking policies for character masking, entity labeling, and synthetic replacement scenarios.
 
 ## Video demonstration
 
@@ -50,12 +48,45 @@ Document-based PII is especially useful when you need to:
 
 Document-based PII uses the same predefined PII categories as text PII, including entities such as addresses, phone numbers, and credit card numbers.
 
+## GA updates
+
+The following updates are reflected in this overview based on the latest GA content review:
+
+* Improved redacted output quality while preserving font, color, and document formatting.
+* Black-marker redaction style support in addition to character masking options.
+* Blur-based redaction support for image-based document scenarios.
+* Expanded masking policy options, including entity-label masking and synthetic replacement.
+* Confidence-threshold controls to determine which detected entities are redacted.
+* Optional controls to disable strict entity validation for latency-sensitive workflows.
+* Entity synonym support to map customer-specific vocabulary to standard PII entity types.
+* Value exclusion policy support for terms that should remain unredacted in select workflows.
+
+## GA vs preview feature comparison
+
+The following table compares baseline capabilities in `2026-05-15-preview` with GA-oriented updates covered in this overview.
+
+| Feature | Preview (`2026-05-15-preview`) | GA |
+| --- | --- | --- |
+| Native document processing (`.pdf`, `.docx`, `.txt`) | Supported | Supported |
+| Asynchronous job workflow and output artifacts | Supported | Supported |
+| Redacted file output with layout preservation (font, spacing, color) | Supported | Supported with quality improvements |
+| Character-mask redaction | Supported | Supported |
+| Black-marker redaction style | Limited or not documented as default behavior | Supported |
+| Blur-based redaction for image-oriented scenarios | Limited | Supported |
+| Entity-label masking policy (for example, `[Address]`) | Not available | Supported |
+| Synthetic replacement masking policy (for example, realistic substitute values) | Not available | Supported |
+| Configurable confidence-score threshold for redaction | Not available | Supported |
+| Optional disable entity validation control | Not available | Supported |
+| Entity synonyms (context vocabulary mapping) | Not available | Supported |
+| Value exclusion policy | Not available | Supported |
+
 ## What it returns
 
 When a job succeeds, you receive:
 
 * A redacted document in your target storage container.
 * A JSON result file with detected entities, categories, confidence scores, and processing metadata.
+* Redaction results that can preserve visual document fidelity for downstream review and audit processes.
 
 ## How it works
 
@@ -92,26 +123,22 @@ Typical examples include:
 
 Document-based PII accepts native file formats directly, without requiring text preprocessing. The following table lists the supported formats:
 
-| File type      | File extension | Description                                  |
-| -------------- | -------------- | -------------------------------------------- |
-| Text           | `.txt`         | An unformatted text document.                |
-| Adobe PDF      | `.pdf`         | A portable document file formatted document. |
-| Microsoft Word | `.docx`        | A Microsoft Word document file.              |
+| File type | File extension | Description |
+| --- | --- | --- |
+| Text | `.txt` | An unformatted text document. |
+| Adobe PDF | `.pdf` | A portable document file formatted document. |
+| Microsoft Word | `.docx` | A Microsoft Word document file. |
 
 The following input constraints apply:
 
-| Attribute                      | Limit    |
-| ------------------------------ | -------- |
-| Total documents per request    | <= 20    |
+| Attribute | Limit |
+| --- | --- |
+| Total documents per request | <= 40 |
 | Total content size per request | <= 10 MB |
 
-The following content types are not supported:
-
-| Type                        | Limitation                                           |
-| --------------------------- | ---------------------------------------------------- |
-| Fully scanned PDFs          | Not supported.                                       |
-| Images with embedded text   | Digital images with embedded text are not supported. |
-| Tables in scanned documents | Not supported.                                       |
+> [!NOTE]
+> For the latest support matrix for image-based and scanned-document scenarios, review the feature-specific how-to and language support pages.
+> Image placeholder: Add supported-format visual showing Word, PDF, and image-oriented redaction scenarios.
 
 See [language support](language-support.md) and [quotas and limits](../concepts/data-limits.md) for current language coverage and service limit details.
 
