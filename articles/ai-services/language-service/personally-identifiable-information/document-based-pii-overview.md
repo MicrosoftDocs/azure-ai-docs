@@ -28,6 +28,37 @@ Document-based PII provides the following capabilities:
 * Enterprise-ready outputs: a redacted document and a structured JSON result.
 * Configurable masking policies for character masking, entity labeling, and synthetic replacement scenarios.
 
+## GA (2026-05-01) feature additions
+
+The general availability release introduces the following capabilities and operational enhancements. These additions expand the platform's redaction strategies, enhance configuration flexibility, and improve support for specialized document processing scenarios:
+
+* Improved redacted output quality while preserving font, color, and document formatting.
+* Black-marker redaction style support in addition to character masking options.
+* Blur-based redaction support for image-based document scenarios.
+* Expanded masking policy options, including entity-label masking and synthetic replacement.
+* Confidence-threshold controls to determine which detected entities are redacted.
+* Optional controls to disable strict entity validation for latency-sensitive workflows.
+* Entity synonym support to map customer-specific vocabulary to standard PII entity types.
+* Value exclusion policy support for terms that should remain unredacted in select workflows.
+
+## GA (2026-05-01) and preview (2026-05-15-preview) feature comparison
+
+The following table provides a detailed capability matrix comparing the feature sets of the general availability release (**2026-05-01**) and the preview API version (2026-05-15-preview). Use this comparison to understand which features are available in each release and to make informed decisions about API version selection based on your specific feature requirements:
+
+| Feature | GA (2026-05-01) | Preview (**2026-05-15-preview**) |
+| --- | --- | --- |
+| Updated output quality: Font, color, and format preservation | ✅ | ✅ |
+| Image redaction with blur | ✅ | ✅ |
+| PDF support (including digital PDF support) | ✅ | ✅ |
+| Microsoft Word **.docx** support | ✅ | ✅ |
+| Black marker redaction | ➖ | ✅ |
+| Anonymization/Synthetic replacement masking policy | ➖ | ✅ |
+| Entity label masking policy (for example, **[Address]**) | ➖ | ✅ |
+| Confidence score threshold | ➖ | ✅ |
+| Disable entity validation | ➖ | ✅ |
+| Entity synonyms (context vocabulary) | ➖ | ✅ |
+| Value exclusion policy | ➖ | ✅ |
+
 ## Video demonstration
 
 In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data directly from native documents while preserving file structure and formatting. We also cover common use cases, supported formats, and how to get started with document-based PII in Azure AI Language:
@@ -47,37 +78,6 @@ Document-based PII is especially useful when you need to:
 * Generate structured JSON output for auditing and integration.
 
 Document-based PII uses the same predefined PII categories as text PII, including entities such as addresses, phone numbers, and credit card numbers.
-
-## GA updates
-
-The following updates are reflected in this overview based on the latest GA content review:
-
-* Improved redacted output quality while preserving font, color, and document formatting.
-* Black-marker redaction style support in addition to character masking options.
-* Blur-based redaction support for image-based document scenarios.
-* Expanded masking policy options, including entity-label masking and synthetic replacement.
-* Confidence-threshold controls to determine which detected entities are redacted.
-* Optional controls to disable strict entity validation for latency-sensitive workflows.
-* Entity synonym support to map customer-specific vocabulary to standard PII entity types.
-* Value exclusion policy support for terms that should remain unredacted in select workflows.
-
-## GA vs preview feature comparison
-
-The following table compares key service features between GA and **2026-05-15-preview**.
-
-| Feature | GA | Preview (**2026-05-15-preview**) |
-| --- | --- | --- |
-| Updated output quality: Font, color, and format preservation | ✅ | ✅ |
-| Image redaction with blur | ✅ | ✅ |
-| PDF support (including digital PDF support) | ✅ | ✅ |
-| Microsoft Word **.docx** support | ✅ | ✅ |
-| Black marker redaction | ➖ | ✅ |
-| Anonymization/Synthetic replacement masking policy | ➖ | ✅ |
-| Entity label masking policy (for example, **[Address]**) | ➖ | ✅ |
-| Confidence score threshold | ➖ | ✅ |
-| Disable entity validation | ➖ | ✅ |
-| Entity synonyms (context vocabulary) | ➖ | ✅ |
-| Value exclusion policy | ➖ | ✅ |
 
 ## What it returns
 
@@ -103,9 +103,9 @@ For implementation details and request samples, see [Detect and redact Personall
 
 All PII feature types use predefined entity categories, but they optimize for different input types:
 
-* Document-based PII is optimized for native-file redaction workflows and file output fidelity.
-* Text PII is optimized for direct string-based input and app integration.
-* Conversation PII is optimized for turn-based and transcript-oriented conversational input.
+* **Document-based PII** is optimized for native-file redaction workflows and file output fidelity.
+* **Text PII** is optimized for direct string-based input and app integration.
+* **Conversation PII** is optimized for turn-based and transcript-oriented conversational input.
 
 ## Common use cases
 
