@@ -97,7 +97,7 @@ conceptualContent:
           links:
             - url: text-analytics-for-health/overview.md
               itemType: overview
-              text: Text analytics for health
+              text: Text analytics for health overview
             - url: text-analytics-for-health/concepts/health-entity-categories.md
               itemType: reference
               text: Health entity categories
