@@ -36,7 +36,7 @@ By default, model router deploys with the **Balanced** routing mode and routes a
 
 ### Default deployment
 
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
+Go to the Microsoft Foundry portal and navigate to the model catalog. Find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
 
 [!INCLUDE [model-router-deploy-rest-default](../includes/how-to-model-router-deploy-rest-default.md)]
 

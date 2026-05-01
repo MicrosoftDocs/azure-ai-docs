@@ -54,7 +54,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
 | `gpt-5.4-mini` | See the [models table](#model-summary-table-and-region-availability)|
-| `gpt-5.4.nano` | See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.4-nano` | See the [models table](#model-summary-table-and-region-availability) |
 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
@@ -420,73 +420,31 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
-# [Global Standard](#tab/global-standard-aoai)
+# [Americas](#tab/americas)
 
-### Global Standard model availability
+[!INCLUDE [region-americas](model-matrix/region-americas.md)]
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+# [Europe](#tab/europe)
 
-> [!NOTE]
-> `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+[!INCLUDE [region-europe](model-matrix/region-europe.md)]
 
-# [Global Provisioned managed](#tab/global-ptum-aoai)
+# [Asia Pacific](#tab/asia-pacific)
 
-### Global Provisioned managed model availability
+[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+# [Middle East & Africa](#tab/middle-east-africa)
 
-# [Global Batch](#tab/global-batch)
-
-### Global Batch model availability
-
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
-
-# [Data Zone Standard](#tab/datazone-standard)
-
-### Data Zone Standard model availability
-
-[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Data Zone Provisioned managed](#tab/datazone-provisioned-managed)
-
-### Data Zone Provisioned managed model availability
-
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
-
-# [Data Zone Batch](#tab/datazone-batch)
-
-### Data Zone Batch model availability
-
-[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
-
-# [Standard](#tab/standard)
-
-### Standard deployment model availability
-
-[!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Provisioned managed](#tab/provisioned)
-
-### Provisioned deployment model availability
-
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
-
-> [!NOTE]
-> The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
-
-For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
+[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
 
 ---
+
+> [!NOTE]
+> 
+> - `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+>
+> - `o1-mini` is currently available to all customers for Global Standard deployment. Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
+>
+> - The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only. For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
 This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
 

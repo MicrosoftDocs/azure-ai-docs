@@ -206,6 +206,9 @@ items:
       - name: Web search
         displayName: Web search with the Responses API
         href: ../../openai/how-to/web-search.md
+      - name: WebSocket mode
+        displayName: Use the Azure OpenAI Responses API in WebSocket mode
+        href: ../../openai/how-to/websockets.md
     - name: Predicted outputs
       displayName: How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models
       href: ../../openai/how-to/predicted-outputs.md

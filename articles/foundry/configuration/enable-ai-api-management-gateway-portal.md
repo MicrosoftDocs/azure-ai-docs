@@ -56,7 +56,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. Select **Add AI Gateway**.
 
-    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png" alt-text="A screenshot showing how to add an AI Gateway to a given Foundry resource." lightbox="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png":::
+    :::image type="content" source="../media/enable-ai-api-management-gateway-portal/foundry-add-ai-gateway.png" alt-text="A screenshot showing how to add an AI Gateway to a given Foundry resource." lightbox="../media/enable-ai-api-management-gateway-portal/foundry-add-ai-gateway.png":::
 
 1. Select the Foundry resource you want to connect with the gateway.
 
@@ -71,7 +71,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
     > [!NOTE]
     > AI Gateway includes a free tier for Azure API Management. For current details about costs and free-tier eligibility, see [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/).
 
-    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="Screenshot of AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
+    :::image type="content" source="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png" alt-text="Screenshot of AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="../media/enable-ai-api-management-gateway-portal/create-ai-gateway-portal.png":::
 
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
 
@@ -85,7 +85,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. Select **Add project to gateway**. The **Gateway status** column updates to **Enabled**.
 
-    :::image type="content" source="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png" alt-text="A screenshot showing how to enable a given project by adding it to the gateway." lightbox="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png":::
+    :::image type="content" source="../control-plane/media/register-custom-agent/verify-ai-gateway-project.png" alt-text="A screenshot showing how to enable a given project by adding it to the gateway." lightbox="../control-plane/media/register-custom-agent/verify-ai-gateway-project.png":::
 
 ## Verify the gateway is working
 
@@ -103,7 +103,7 @@ Confirm that traffic routes through AI Gateway:
 
 AI Gateway sits between clients and Foundry building blocks, including models and tools. All requests flow through the APIM instance once associated. Limits apply at the project level, so each project can have its own TPM and quota settings.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Logical flow showing client requests passing through AI Gateway (APIM) before reaching model deployments within a project.":::
+:::image type="content" source="../media/enable-ai-api-management-gateway-portal/gateway-architecture-diagram.png" alt-text="Logical flow showing client requests passing through AI Gateway (APIM) before reaching model deployments within a project.":::
 
 AI Gateway enables:
 
@@ -118,7 +118,7 @@ Once you configure AI Gateway for your resource and project, you can:
 
 * [Configure token limits for models](../control-plane/how-to-enforce-limits-models.md).
 * [Add custom agents to Control Plane](../control-plane/register-custom-agent.md).
-* Govern MCP and A2A agent tools.
+* [Govern MCP and A2A agent tools](/azure/ai-foundry/agents/how-to/tools/governance).
 
 ## Troubleshooting
 
@@ -131,7 +131,7 @@ Once you configure AI Gateway for your resource and project, you can:
 | Project shows **Gateway status** as **Disabled**. | Existing projects aren't automatically enabled for AI Gateway. | Select the AI Gateway, locate the project, and select **Add project to gateway**. |
 | Requests bypass the gateway. | The project wasn't enabled before requests were made, or the gateway isn't fully provisioned. | Verify the gateway status shows **Enabled** for both the resource and project. |
 | Permission error when creating gateway. | Missing required RBAC role. | Verify you have **Contributor** or **Owner** on the resource group (to create) or **API Management Service Contributor** on an existing instance. |
-| Existing API Management instance does not appear in the list when selecting **Use existing APIM** | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant, uses a supported SKU, is not already associated with another AI Gateway, and that you have the API Management Service Contributor role (or Owner) on the instance. |
+| Existing API Management instance does not appear in the list when selecting **Use existing APIM**. | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant, uses a supported SKU, is not already associated with another AI Gateway, and that you have the API Management Service Contributor role (or Owner) on the instance. |
 | Token limits don't apply to requests. | Limits aren't configured, or the project isn't using the gateway. | Verify the project is enabled for AI Gateway, then configure token limits in the Admin console. |
 | 500 errors on model calls after gateway setup. | The auto-created APIM endpoints may not be fully provisioned, or the model deployment isn't correctly mapped through the gateway. | Wait several minutes for provisioning to complete. Verify the model deployment is accessible without the gateway first. Check the APIM **Monitoring** > **Logs** for detailed error information. If the issue persists, try removing and re-adding the project to the gateway. |
 | Projects don't appear in the AI Gateway tab after association. | The project list may take time to refresh, or the project was created before the gateway was enabled. | Refresh the page or navigate away and return to the AI Gateway tab. If projects still don't appear, verify the gateway status shows **Enabled** at the resource level. For existing projects, you must manually add them to the gateway by selecting **Add project to gateway**. |
@@ -145,7 +145,7 @@ If you created a dedicated APIM instance for this purpose:
 1. Confirm that no other workloads depend on it.
 1. Disable the AI Gateway for all projects in the Foundry resource it's associated with.
 1. Remove linked resources in Azure portal.
-1. Delete the APIM instance with the same name as the AI gateway in Azure portal (if it isn't used for any other purpose).
+1. Delete the APIM instance with the same name as the AI Gateway in Azure portal (if it isn't used for any other purpose).
 
 ## Related content
 
