@@ -53,8 +53,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     # Azure OpenAI metadata variables
     $openai = @{
         api_base    = $Env:AZURE_OPENAI_ENDPOINT 
-        api_version = '2025-04-01-preview'
-        deployment  = 'gpt-image-1' # the name of your GPT-image-1 series deployment
+        deployment  = 'gpt-image-1' # set to the name of your model deployment
     }
     
     # Use the recommended keyless authentication via bearer token.
@@ -68,6 +67,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Adjust these values to fine-tune completions
     $body = [ordered]@{
+        model  = $openai.deployment  # required: the name of your model deployment
         prompt = $prompt
         size   = '1024x1024'
         n      = 1
@@ -78,7 +78,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     } | ConvertTo-Json
     
     # Call the API to generate the image and retrieve the response
-    $url = "$($openai.api_base)/openai/deployments/$($openai.deployment)/images/generations?api-version=$($openai.api_version)"
+    $url = "$($openai.api_base)/openai/v1/images/generations?api-version=preview"
     
     $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
     
