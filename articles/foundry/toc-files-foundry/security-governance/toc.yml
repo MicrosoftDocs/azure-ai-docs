@@ -51,6 +51,8 @@ items:
     href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
   - name: Configure Agent 365 data collection
     href: ../../agents/how-to/configure-agent-365-data-collection.md
+  - name: Plan and manage costs
+    href: ../../concepts/manage-costs.md
 
 # Reliability and Recovery
 - name: High availability and disaster recovery
@@ -63,10 +65,6 @@ items:
     href: ../../how-to/agent-service-platform-disaster-recovery.md
   - name: Disaster recovery from resource and data loss
     href: ../../how-to/agent-service-operator-disaster-recovery.md
-
-# Cost Management
-- name: Plan and manage costs
-  href: ../../concepts/manage-costs.md
 
 # Architecture and Standards
 - name: Security baseline
