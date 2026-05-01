@@ -25,10 +25,10 @@ The Responses API is the single calling interface for every model in Microsoft F
 - At least one named model deployment for deterministic calls (for example, `gpt-4.1-mini`). See [Deploy a model](/azure/ai-foundry/openai/how-to/create-resource).
 - Familiarity with the [Responses API](responses.md).
 - Python 3.9+
-- The OpenAI Python package:
+- The Foundry SDK:
 
   ```bash
-  pip install openai>=1.75.0
+  pip install "azure-ai-projects>=2.0.0"
   ```
 
 ## Call models through the Responses API
@@ -38,11 +38,13 @@ The following sample calls several models through the same `responses.create()` 
 ```python
 import os
 import time
-from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
 
-client = AzureOpenAI(
-    azure_endpoint=os.environ["PROJECT_ENDPOINT"],
-    api_version="2025-04-01-preview",
+# Create the Foundry project client
+project = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
 
 deployments = ["model-router", "gpt-5.2", "grok-4-fast-reasoning", "gpt-5-mini", "Deepseek-V3.2"]
@@ -51,16 +53,18 @@ prompt = "Explain retrieval-augmented generation in one sentence."
 print(f"{'Deployment':<22} {'Responded':<22} {'Latency':>8}  Response")
 print("-" * 100)
 
-for name in deployments:
-    start = time.time()
-    response = client.responses.create(model=name, input=prompt)
-    elapsed = time.time() - start
+# Get an OpenAI-compatible client that works with all Foundry models
+with project.get_openai_client() as client:
+    for name in deployments:
+        start = time.time()
+        response = client.responses.create(model=name, input=prompt)
+        elapsed = time.time() - start
 
-    responded_model = response.model
-    print(
-        f"{name:<22} {responded_model:<22} {elapsed:>7.2f}s  "
-        f"{response.output_text[:60]}"
-    )
+        responded_model = response.model
+        print(
+            f"{name:<22} {responded_model:<22} {elapsed:>7.2f}s  "
+            f"{response.output_text[:60]}"
+        )
 ```
 
 The following table shows a sample output. Actual latency and response text vary per request.
@@ -118,4 +122,4 @@ These capabilities apply uniformly across all models in the catalog. You don't o
 
 - [Use model router for Microsoft Foundry](model-router.md) — deployment, routing modes, model subsets
 - [Use the Azure OpenAI Responses API](responses.md) — streaming, tools, stored responses
-- [Microsoft Foundry SDKs and endpoints](../../how-to/develop/sdk-overview.md) — client setup and endpoint patterns
+- [Microsoft Foundry SDKs and endpoints](../../how-to/develop/sdk-overview.md#foundry-sdk) — client setup and endpoint patterns
