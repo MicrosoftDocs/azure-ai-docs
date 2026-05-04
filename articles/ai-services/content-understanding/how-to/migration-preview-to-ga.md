@@ -77,9 +77,6 @@ For example, the schema from step 1 is updated to:
 }
 ```
 
-> [!TIP]
-> To more closely match preview behavior, use a GPT-4o `2024-08-06` generative deployment. For new analyzers, we recommend GPT-4.1 for Content Understanding.
-
 ### Step 3: Create a new analyzer
 
 You can use the updated definition to create a new analyzer:

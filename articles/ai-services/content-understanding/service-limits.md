@@ -50,9 +50,6 @@ The currently supported models are:
 
 | Model Type | Model | Version |
 |--|--|--|
-|Chat Completion | gpt-4o | `2024-08-06` |
-|Chat Completion | gpt-4o | `2024-11-20` |
-|Chat Completion | gpt-4o-mini | `2024-11-20` |
 |Chat Completion | gpt-4.1 | `2025-04-14` |
 |Chat Completion | gpt-4.1-mini | `2025-04-14` |
 |Chat Completion | gpt-4.1-nano | `2025-04-14` |

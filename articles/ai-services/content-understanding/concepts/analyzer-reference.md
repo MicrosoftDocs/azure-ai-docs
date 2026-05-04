@@ -125,7 +125,7 @@ Use these properties to uniquely identify and describe your analyzer:
 - **Example:**
   ```json
   {
-    "completion": "gpt-4o",
+    "completion": "gpt-4.1",
     "embedding": "text-embedding-3-large"
   }
   ```
@@ -549,7 +549,7 @@ Here's a comprehensive example of a custom invoice analyzer configuration that d
     }
   },
   "supportedModels": {
-    "completion": ["gpt-4o", "gpt-4o-mini", "gpt-4.1"],
+    "completion": ["gpt-4.1"],
     "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
   },
   "models": {
