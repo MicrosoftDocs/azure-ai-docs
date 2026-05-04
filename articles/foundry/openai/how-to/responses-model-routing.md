@@ -82,7 +82,7 @@ See the first row: `model-router` didn't target a specific model, but the `Respo
 > [!TIP]
 > The `response.model` field always returns the model that handled the request. Use it for logging, cost attribution, or debugging routing decisions.
 
-## One API, two routing strategies
+## Routing strategies
 
 Every call goes through `responses.create()`. The `model` value is the only decision point.
 
