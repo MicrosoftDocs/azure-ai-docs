@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 04/24/2026
+ms.date: 05/04/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
