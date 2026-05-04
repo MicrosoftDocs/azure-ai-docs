@@ -64,8 +64,6 @@ Several factors affect how the standard lifecycle applies to your deployments, i
 
 We commit to meaningful overlap between a retiring GA model and its replacement so customers can test, evaluate, and migrate with confidence. In Azure Government, this relies on a two-step process that leverages the earlier availability in Commercial cloud.
 
-:::image type="content" source="../media/concepts/ga-lifecycle-overlap.png" alt-text="Screenshot of the general availability model lifecycle overlap showing replacement transition timeframes." lightbox="../media/concepts/ga-lifecycle-overlap.png":::
-
 | Phase | Pattern |
 |-------|---------|
 | **Azure Government launch** | Each model launches per its own deployment type and region availability matrix. Retirement date in Azure Government is set to match the Commercial Cloud date and is available via the [Models API](/rest/api/aiservices/accountmanagement/models). |
