@@ -5,11 +5,13 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/16/2026
 ms.custom: include, classic-and-new
 ---
 
 Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. 
+
+## Prompt cache retention
 
 Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches aren't shared between Azure subscriptions.
 
@@ -17,6 +19,40 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 - Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
 - Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models that don't have these operations, this feature isn't available.
+
+## Extended prompt cache retention
+
+Extended prompt cache retention is available for the following models:
+
+- `gpt-5.4`
+- `gpt-5.3-codex`
+- `gpt-5.2`
+- `gp5-5.1-codex-max`
+- `gpt-5.1`
+- `gpt-5.1-codex`
+- `gpt-5.1-codex-mini`
+- `gpt-5.1-chat`
+- `gpt-5`
+- `gpt-5-codex`
+- `gpt-4.1`
+
+Extended prompt cache retention keeps cached prefixes active for longer, up to a maximum of 24 hours. Extended Prompt Caching works by offloading the key/value tensors to GPU-local storage when memory is full, significantly increasing the storage capacity available for caching.
+
+### Configure per request
+
+For `gpt-5.4` and older models if you don’t specify a retention policy, the default is `in_memory`. Allowed values are `in_memory` and `24h`. For all newer models, the default is `24h` and `in_memory` is not supported.
+
+```json
+{
+  "model": "gpt-5.4",
+  "input": "Your prompt goes here...",
+  "prompt_cache_retention": "24h"
+}
+```
+
+### Does Prompt Caching work with Data Residency?
+
+In-memory Prompt Caching is compatible with all Data Residency regions. Extended caching temporarily stores data on GPU machines and will only be kept in-region when using Regional Standard or Regional Provisioned deployment types.
 
 ## Getting started
 
