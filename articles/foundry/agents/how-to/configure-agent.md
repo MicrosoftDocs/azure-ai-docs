@@ -112,7 +112,6 @@ By default, the routing policy is **Always use latest**. To pin traffic to a spe
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
@@ -183,7 +182,6 @@ Updating protocols and authorization schemes isn't yet configurable in the Found
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
@@ -265,7 +263,6 @@ Adding an agent card isn't yet configurable in the Foundry portal. Use the REST 
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_card": {
@@ -314,7 +311,6 @@ To view your agent's current properties—identity, protocols, authorization, an
 GET {endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/json
-Foundry-Features: AgentEndpoints=V1Preview
 ```
 
 

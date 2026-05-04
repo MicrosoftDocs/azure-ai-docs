@@ -40,7 +40,11 @@ Incoming A2A requires the responses protocol. The following agent types support 
 
 Enabling incoming A2A requires two things: an **agent card** that describes your agent's capabilities, and the **A2A protocol** enabled on the agent endpoint. You can set both in a single PATCH call. This feature isn't available in the Foundry portal yet — use the REST API or Python SDK.
 
-### REST API
+#### [Foundry portal](#tab/portal)
+
+Enabling incoming A2A isn't yet configurable in the Foundry portal. Use the REST API or Python SDK.
+
+#### [REST API](#tab/rest)
 
 Set up variables for your project:
 
@@ -57,7 +61,6 @@ Send a `PATCH` request to configure the agent card and enable the A2A protocol:
 curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: AgentEndpoints=V1Preview" \
   -d '{
     "agent_card": {
       "description": "A helpful assistant that answers questions",
@@ -78,7 +81,7 @@ curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
 
 Replace `{agent_name}` with the name of your agent. Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
 
-### Python SDK
+#### [Python SDK](#tab/python)
 
 Install the required package:
 
@@ -120,6 +123,8 @@ patched_agent = project_client.beta.agents.patch_agent_details(
 
 > [!NOTE]
 > Setting the agent card through the Python SDK isn't supported yet. Use the REST API to configure the agent card.
+
+---
 
 ## Verify the agent card
 
