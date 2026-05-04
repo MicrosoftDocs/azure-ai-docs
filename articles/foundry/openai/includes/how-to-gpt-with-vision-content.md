@@ -81,6 +81,8 @@ The following is a sample request body. The format is the same as the chat compl
 
 > [!NOTE]
 > Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
+> Image URLs must be publicly accessible: private endpoints, VNet-restricted, and firewall-restricted URLs are not supported even if they are on a storage account within same or peered vnet.
+> The Vision service fetches images from Microsoft's managed infrastructure, not from within VNet so the request will be unaware of the Private Endpoint present in VNET.
 
 ```json
 {
