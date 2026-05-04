@@ -71,7 +71,7 @@ Here's a condensed example that shows the overall structure of an analyzer confi
     }
   },
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
 }
@@ -125,7 +125,7 @@ Use these properties to uniquely identify and describe your analyzer:
 - **Example:**
   ```json
   {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
   ```
@@ -549,11 +549,11 @@ Here's a comprehensive example of a custom invoice analyzer configuration that d
     }
   },
   "supportedModels": {
-    "completion": ["gpt-4.1"],
+    "completion": ["gpt-5.2"],
     "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
   },
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
 }

@@ -34,7 +34,7 @@ When you create a custom analyzer, you specify which chat completion model and e
   "analyzerId": "myReceipt",
   "models": {
     // Specifies the completion and embedding models used by this analyzer.
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-ada-002"
   },
   "config": {
@@ -69,7 +69,7 @@ PATCH /contentunderstanding/defaults
 {
   // Specify default model deployments as "model name": "deployment name"
   "modelDeployments": {
-    "gpt-4.1": "gpt-4.1-deployment",
+    "gpt-5.2": "gpt-5.2-deployment",
     "gpt-4.1-mini": "gpt-4.1-mini",
     "text-embedding-3-large": "text-embedding-3-large-deployment",
     "text-embedding-ada-002": "text-embedding-ada-002"
@@ -118,7 +118,7 @@ POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
   ],
   // Specify the model deployments for this request
   "modelDeployments": {
-    "gpt-4.1": "gpt-4.1",
+    "gpt-5.2": "gpt-5.2",
     "text-embedding-3-large": "text-embedding-3-large"
   }
 }
@@ -140,8 +140,8 @@ Analyze responses include a `usage` property. This property reports token usage 
     "videoHours": 0.123,
     "contextualizationToken": 1000,
     "tokens": {
-      "gpt-4.1-input": 1234, /*Completion model Input and output tokens consumed*/
-      "gpt-4.1-output": 2345,
+      "gpt-5.2-input": 1234, /*Completion model Input and output tokens consumed*/
+      "gpt-5.2-output": 2345,
       "text-embedding-3-large": 3456 /*Embedding tokens consumed*/
     }
   }

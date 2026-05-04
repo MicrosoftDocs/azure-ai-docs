@@ -36,7 +36,7 @@ By taking these steps, you set up a connection between Content Understanding and
      -H "Content-Type: application/json" \
      -d '{
            "modelDeployments": {
-             "gpt-4.1": "{myGPT41Deployment}",
+             "gpt-5.2": "{myGPT52Deployment}",
              "gpt-4.1-mini": "{myGPT41MiniDeployment}",
              "text-embedding-3-large": "{myEmbeddingDeployment}"
            }

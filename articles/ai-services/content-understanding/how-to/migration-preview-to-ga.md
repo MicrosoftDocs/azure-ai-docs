@@ -71,7 +71,7 @@ For example, the schema from step 1 is updated to:
   },
   "fieldSchema": {/*...*/},
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
 }
