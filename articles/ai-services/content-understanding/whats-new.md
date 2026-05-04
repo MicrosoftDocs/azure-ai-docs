@@ -26,13 +26,32 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 ## April 2026
 
-### GPT-5.2 model support
+### GPT-5.2 model support and model deployment updates
 
-Content Understanding now supports the GPT-5.2 model as the recommended completion model. GPT-5.2 delivers improved quality and performance over previous generations. See [Model deployments](concepts/models-deployments.md) for the full list of supported models.
+Content Understanding now supports the GPT-5.2 model as the recommended completion model. GPT-5.2 delivers improved quality and performance over previous generations. For the full list of supported models and deployment options, see [Model deployment options for Content Understanding analyzers](concepts/models-deployments.md).
 
-### Agent framework and LangChain integration
+### LangChain integration
 
-Content Understanding now integrates with the Azure AI Agent framework and LangChain, enabling you to incorporate Content Understanding capabilities directly into your agent and retrieval-augmented generation (RAG) workflows. SDK updates across Python, .NET, Java, and JavaScript/TypeScript bring alignment with these integrations.
+The Content Understanding document loader for LangChain is now available in the [`langchain-azure-ai`](https://github.com/langchain-ai/langchain-azure/tree/main/libs/azure-ai/langchain_azure_ai/document_loaders) package. Use it to load and process documents through Content Understanding directly from your LangChain pipelines. See the [demo notebook](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-ai/docs/content_understanding_loader_demo.ipynb) for a usage walkthrough.
+
+### Azure AI Agent framework integration (preview)
+
+Content Understanding is now available as a package for the Azure AI Agent framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
+
+### SDK updates: `to_llm_input()` helper (preview)
+
+A new `to_llm_input()` helper function is available across SDK languages. It formats Content Understanding field extraction results into markdown with YAML frontmatter, making it easier to pass structured output directly to language models.
+
+| Language | Package version | Sample |
+|----------|----------------|--------|
+| Python | `azure-ai-contentunderstanding 1.2.0b1` | [sample_to_llm_input.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_to_llm_input.py) |
+| .NET | `Azure.AI.ContentUnderstanding 1.2.0-beta.1` | [samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) |
+| JavaScript/TypeScript | `@azure/ai-content-understanding 1.2.0-beta.1` | [JS](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1-beta/javascript) · [TS](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1-beta/typescript) |
+| Java | `azure-ai-contentunderstanding` | [samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample_Advanced_ToLlmInput.java) |
+
+### Foundry portal updates
+
+The Foundry portal now includes a prebuilt analyzers playground for exploring Content Understanding capabilities without writing any code. You can also create and configure custom analyzers directly in the Foundry portal. For a comparison of what's available in Foundry versus Content Understanding Studio, see [Choose the right Foundry tool for document processing](choosing-right-ai-tool.md).
 
 ## March 2026
 
