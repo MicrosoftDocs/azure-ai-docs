@@ -70,10 +70,12 @@ An agent can expose multiple protocols simultaneously:
 
 | Protocol | Endpoint pattern |
 |----------|-----------------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
-| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` |
-| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` |
-| **A2A (preview)** | Enables the agent to receive inbound Agent2Agent requests. For setup details, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md). |
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
+| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
+| **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+
+To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
 
 ### Authorization schemes
 
