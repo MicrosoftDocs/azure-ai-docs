@@ -338,9 +338,11 @@ The image generation models generate images from text prompts that the user prov
 
 | Model | Region |
 |---|---|
-|`gpt-image-1` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-1` |  See the [Models table](#model-summary-table-and-region-availability)|
 |`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
 |`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-2` |  See the [models table](#model-summary-table-and-region-availability)|
+
 
 ## Video generation models
 

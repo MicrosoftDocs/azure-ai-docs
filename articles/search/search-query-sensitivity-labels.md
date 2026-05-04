@@ -5,6 +5,7 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 03/05/2026
+ai-usage: ai-assisted
 ---
 
 # Query-time enforcement of Microsoft Purview sensitivity labels in Azure AI Search  
@@ -54,7 +55,7 @@ Both are required to authorize label-based visibility.
 | Input type | Description | Example source |
 |-------------|--------------|----------------|
 | Application role | Determines whether the calling app has permission to execute queries on the index. | `Authorization: Bearer <app-token>` |
-| User identity | Determines which sensitivity labels the end user is allowed to access. | `x-ms-query-source-authorization: Bearer <user-token>` |
+| User identity | Determines which sensitivity labels the end user is allowed to access. | `x-ms-query-source-authorization: <user-token>` |
 
 
 
@@ -84,13 +85,13 @@ If either condition fails, the document is omitted from the results.
 
 ## Query example
 
-Here's an example of a query request using Microsoft Purview sensitivity label enforcement.  
-The query token is passed in the request headers. Both headers must include valid bearer tokens representing the application and the end user.
+Here's an example of a query request using Microsoft Purview sensitivity label enforcement.
+The application token is passed as a bearer token in the `Authorization` header. The user token is passed as the raw token value in the `x-ms-query-source-authorization` header, without the `Bearer` prefix.
 
 ```http
 POST  {{endpoint}}/indexes/sensitivity-docs/docs/search?api-version=2025-11-01-preview
 Authorization: Bearer {{app-query-token}}
-x-ms-query-source-authorization: Bearer {{user-query-token}}
+x-ms-query-source-authorization: {{user-query-token}}
 Content-Type: application/json
 
 {
