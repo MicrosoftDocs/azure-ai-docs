@@ -24,7 +24,6 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 Extended prompt cache retention is available for the following models:
 
-- `gpt-5.5`
 - `gpt-5.4`
 - `gpt-5.3-codex`
 - `gpt-5.2`
@@ -41,15 +40,19 @@ Extended prompt cache retention keeps cached prefixes active for longer, up to a
 
 ### Configure per request
 
-If you don’t specify a retention policy, for most models the default is `in_memory`. For `gpt-5.5` and all future models, the default is `24h` and `in_memory` is not supported. Allowed values are `in_memory` and `24h`.
+For `gpt-5.4` and older models if you don’t specify a retention policy, the default is `in_memory`. Allowed values are `in_memory` and `24h`. For all newer models, the default is `24h` and `in_memory` is not supported.
 
 ```json
 {
-  "model": "gpt-5.5",
+  "model": "gpt-5.4",
   "input": "Your prompt goes here...",
   "prompt_cache_retention": "24h"
 }
 ```
+
+### Does Prompt Caching work with Data Residency?
+
+In-memory Prompt Caching is compatible with all Data Residency regions. Extended caching temporarily stores data on GPU machines and will only be kept in-region when using Regional Standard or Regional PTU deployment types.
 
 ## Getting started
 
