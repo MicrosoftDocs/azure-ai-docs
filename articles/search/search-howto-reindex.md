@@ -347,9 +347,11 @@ An index description is a schema update, and you can add it without having to re
 + String length is 4,000 characters maximum.
 + Content must be human-readable, in Unicode. Your use-case should determine which language to use.
 
-Support for an index description is available through the Azure portal, the latest stable REST API, or an Azure SDK package that provides the feature.
+You can add an index description through the Azure portal, the latest stable REST API, or an Azure SDK package that provides the feature.
 
 ### [**Azure portal**](#tab/portal)
+
+The Azure portal supports the latest preview API.
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
