@@ -101,7 +101,7 @@ This approach uses your current Azure CLI login session so you can use over docu
 
 ## Token acquisition for OBO scenarios
 
-Applications that implement the On-Behalf-Of (OBO) flow must acquire tokens through Microsoft Entra ID using supported authentication libraries such as the [Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-acquire-cache-tokens).
+Applications that implement the on-behalf-of (OBO) flow must acquire tokens through Microsoft Entra ID using a supported authentication library, such as the [Microsoft Authentication Library](/entra/identity-platform/msal-acquire-cache-tokens) (MSAL).
 
 In OBO scenarios, the token must be requested for the downstream API being called. For example, when calling Azure AI Search: `https://search.azure.com/.default`.
 
