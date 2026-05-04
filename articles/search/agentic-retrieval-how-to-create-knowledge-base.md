@@ -39,21 +39,21 @@ A knowledge base specifies:
 
 ::: zone pivot="csharp"
 
-+ Required .NET SDK package:
++ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For 2026-04-01 features, the latest stable [`Azure.Search.Documents` package](https://www.nuget.org/packages/Azure.Search.Documents): `dotnet add package Azure.Search.Documents`
+  + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-+ Required Python SDK package:
++ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
   + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
-  + For 2026-04-01 features, the latest stable [`azure-search-documents` package](https://pypi.org/project/azure-search-documents/): `pip install azure-search-documents`
+  + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
 ::: zone-end
 

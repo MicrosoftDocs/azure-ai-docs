@@ -60,23 +60,7 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 ## Check for existing knowledge sources
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Check for existing knowledge sources using C#](includes/how-tos/knowledge-source-check-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Check for existing knowledge sources using Python](includes/how-tos/knowledge-source-check-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Check for existing knowledge sources using REST](includes/how-tos/knowledge-source-check-rest.md)]
-
-::: zone-end
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for an indexed SharePoint knowledge source.
 
@@ -126,9 +110,9 @@ The following JSON is an example response for an indexed SharePoint knowledge so
 
 ## Create a knowledge source
 
-::: zone pivot="csharp"
-
 Run the following code to create an indexed SharePoint knowledge source.
+
+::: zone pivot="csharp"
 
 ```csharp
 // Create an IndexedSharePoint knowledge source
@@ -181,17 +165,18 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
 ```
 
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [IndexedSharePointKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.indexedsharepointknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
-
-Run the following code to create an indexed SharePoint knowledge source.
 
 ```python
 # Create an indexed SharePoint knowledge source
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import IndexedSharePointKnowledgeSource, IndexedSharePointKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+from azure.search.documents.indexes.models import IndexedSharePointKnowledgeSource, IndexedSharePointKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
+from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
@@ -233,13 +218,14 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
 
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create an indexed SharePoint knowledge source.
-
 ```http
+### Create an indexed SharePoint knowledge source
 PUT {{search-url}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2025-11-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
@@ -273,6 +259,8 @@ Content-Type: application/json
     }
 }
 ```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -325,43 +313,11 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 
 ### Ingestion parameters properties
 
-::: zone pivot="csharp"
-
-[!INCLUDE [C# ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Python ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [REST ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-rest.md)]
-
-::: zone-end
+[!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
 
 ## Check ingestion status
 
-::: zone pivot="csharp"
-
-[!INCLUDE [C# knowledge source status](includes/how-tos/knowledge-source-status-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Python knowledge source status](includes/how-tos/knowledge-source-status-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [REST knowledge source status](includes/how-tos/knowledge-source-status-rest.md)]
-
-::: zone-end
+[!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]
 
 ## Review the created objects
 
@@ -384,46 +340,12 @@ For any knowledge base that specifies an indexed SharePoint knowledge source, be
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-::: zone pivot="csharp"
-
-> [!TIP]
-> To enforce document-level permissions, set `IngestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
-
-::: zone-end
-
-::: zone pivot="python"
-
-> [!TIP]
-> To enforce document-level permissions, set `ingestion_permission_options` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
-
-::: zone-end
-
-::: zone pivot="rest"
-
 > [!TIP]
 > To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
-::: zone-end
-
 ## Delete a knowledge source
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Delete knowledge source using C#](includes/how-tos/knowledge-source-delete-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Delete knowledge source using Python](includes/how-tos/knowledge-source-delete-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Delete knowledge source using REST](includes/how-tos/knowledge-source-delete-rest.md)]
-
-::: zone-end
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 

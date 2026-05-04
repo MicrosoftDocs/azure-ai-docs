@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 04/24/2026
+ms.date: 04/28/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -23,6 +23,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
+| [Knowledge bases](agentic-retrieval-how-to-create-knowledge-base.md) | Now generally available. REST API version 2026-04-01 supports extractive retrieval from generally available knowledge source types. Preview-only capabilities, including query planning, answer synthesis, and configurable reasoning effort, require the 2025-11-01-preview. For help with migration and breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
+| [Search index knowledge sources](agentic-knowledge-source-how-to-search-index.md) | Now generally available. |
+| [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
+| [OneLake knowledge sources](agentic-knowledge-source-how-to-onelake.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
+| [Web knowledge sources](agentic-knowledge-source-how-to-web.md) | Now generally available. For REST API version 2026-04-01, the knowledge base must include a model reference to provide the LLM for web content summarization. |
+| [Knowledge source status API](agentic-knowledge-source-how-to-blob.md#check-ingestion-status) | Now generally available. REST API version 2026-04-01 introduces the `kind` field and `currentSynchronizationState.errors[]` array with document-level error details. |
 | [Index aliases](search-how-to-alias.md) | Now generally available. |
 | [Keyless billing for Foundry Tools processing](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) | Now generally available. |
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
