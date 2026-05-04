@@ -106,7 +106,7 @@ You can also restrict routing to a subset of models. For configuration details, 
 
 ## Built-in enterprise capabilities
 
-Every `responses.create()` call—whether routed through `model-router` or targeting a named model — automatically includes:
+Every `responses.create()` call, whether routed through `model-router` or targeting a named model, automatically includes:
 
 - **Automatic failover**—When using `model-router`, if the selected model encounters a transient issue, model router transparently redirects the request to the next most appropriate model. No disruption to your application, no retry logic required. If you configure a model subset, that subset also serves as your fallback set — select at least two models to benefit from failover.
 - **Prompt caching**—Model router supports prompt caching. When model router delegates a request to a model that supports prompt caching, cached tokens are used automatically. Combined with model router's right-fit model selection, you get an extra efficiency lift: the optimal model for the task *and* reduced token costs on repeated prompt prefixes — no configuration needed.
