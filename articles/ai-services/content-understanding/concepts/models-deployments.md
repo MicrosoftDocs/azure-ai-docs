@@ -25,7 +25,7 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 
 The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models). Please refer to [Model retirement schedule](../../../foundry/openai/concepts/model-retirement-schedule.md) to track Foundry model lifecycle stage and retirement date.
 
-> [!NEW]
+> [!NOTE]
 > GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in future updates.
 
 ### Check supported models per analyzer
@@ -162,7 +162,7 @@ Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`,
 Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
-POST /contentunderstanding/analyzers/{analyzerID}}:analyze
+POST /contentunderstanding/analyzers/{analyzerID}:analyze
 {
   "modelDeployments": {
     "gpt-5.2": "myGpt52Deployment", 
