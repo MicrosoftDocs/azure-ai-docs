@@ -139,21 +139,19 @@ The response includes the `agent_card` and `agent_endpoint` objects. Verify that
 
 ## Configure authentication for incoming requests
 
-When other agents call your A2A endpoint, you control how those requests are authenticated. Configure authentication to ensure only authorized callers can reach your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Azure AI User** role (or higher) on the Foundry project that hosts your agent.
 
-[TO VERIFY] — Describe the supported authentication methods for incoming A2A (for example, Microsoft Entra ID, API key, unauthenticated). Include setup steps for each supported method.
+Two authentication patterns are supported:
 
-### Microsoft Entra ID authentication
+### On-behalf-of (OBO) the end user
 
-[TO VERIFY] — Describe how to require Entra ID tokens for inbound A2A calls. Include any role assignments the calling agent's identity needs.
+The calling agent passes through the end user's identity. Your agent receives a token that represents the actual user, so you can scope actions to that user's permissions. This pattern is appropriate when your agent needs to enforce per-user access control.
 
-### Key-based authentication
+### Service identity (agent identity, service principal, or managed identity)
 
-[TO VERIFY] — Describe how to issue and configure an API key for inbound A2A access, if supported.
+The calling agent authenticates with its own identity — either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-### Unauthenticated access
-
-[TO VERIFY] — Describe whether unauthenticated inbound A2A is supported, and any security considerations.
+To grant a calling identity access, assign the **Azure AI User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Limitations
 
