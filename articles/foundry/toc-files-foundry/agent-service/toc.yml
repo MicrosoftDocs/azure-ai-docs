@@ -158,6 +158,8 @@ items:
     href: ../../agents/how-to/agent-365.md
   - name: Migrate from Agent Applications to the new agent model
     href: ../../agents/how-to/migrate-agent-applications.md
+  - name: Enable incoming A2A (preview)
+    href: ../../agents/how-to/enable-incoming-a2a.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:
