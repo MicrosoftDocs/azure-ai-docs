@@ -108,9 +108,12 @@ In this sample, proactive messaging is applied in three steps:
 
 Use Voice Live's `interim_response` feature to bridge wait times during tool calling or when generating agent responses with high latency.
 
-This feature supports two modes:
-- LlmInterimResponseConfig: LLM-generated interim response - best for dynamic and adaptive starts
-- InterimResponseTrigger: Pre-generated interim response - best for deterministic or branded messaging
+Voice Live offers two interim response modes:
+
+- **LLM-generated interim response** (`llm_interim_response`): Uses a lightweight LLM to generate context-aware filler text dynamically. Best for adaptive, natural-sounding responses.
+- **Static interim response** (`static_interim_response`): Randomly selects from a predefined list of texts you provide. Best for deterministic or branded messaging.
+
+For more information, see [Improve tool calling and latency wait times with interim responses](../../../how-to-voice-live-interim-response.md).
 
 The `voice-live-agents-quickstart.py` created with the quickstart shows the required code additions to configure this feature as follows:
 
