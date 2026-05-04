@@ -92,9 +92,10 @@ Every call goes through `responses.create()`. The `model` value is the only deci
 | A specific model for compliance, reproducibility, or benchmarking | The model name (`"gpt-5-2"`, `"Deepseek-V3.2"`) | Foundry routes to exactly that model |
 | To switch between strategies | Change one string | The rest of the code stays identical |
 
-Use `model-router` as your default. Switch to a named model only when you need deterministic control.
+Use `model-router` as your default. Customize your model router deployment with optional settings. See [Model router deployment options](model-router.md#optional-customize-deployment-settings).
 
-Customize your model router deployment with optional settings. See [Use model router](model-router.md#Optional-customize-deployment-settings).
+Switch to a named model only when you need deterministic control.
+
 
 ## Built-in enterprise capabilities
 
