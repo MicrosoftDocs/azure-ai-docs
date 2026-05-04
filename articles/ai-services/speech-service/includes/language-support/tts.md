@@ -73,8 +73,8 @@ ai-usage: ai-assisted
 | `de-AT` | German (Austria) | Standard | `de-AT-JonasNeural` (Male) |  | ❌ |
 | `de-CH` | German (Switzerland) | Standard | `de-CH-LeniNeural` (Female) |  | ❌ |
 | `de-CH` | German (Switzerland) | Standard | `de-CH-JanNeural` (Male) |  | ❌ |
-| `de-DE` | German (Germany) | Neural HD | `de-DE-Seraphina:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `de-DE` | German (Germany) | Neural HD | `de-DE-Florian:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `de-DE` | German (Germany) | Neural HD | `de-DE-Seraphina:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `de-DE` | German (Germany) | Neural HD | `de-DE-Florian:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `de-DE` | German (Germany) | Multilingual | `de-DE-SeraphinaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `de-DE` | German (Germany) | Multilingual | `de-DE-FlorianMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-KatjaNeural` (Female) |  | ❌ |
@@ -164,22 +164,22 @@ ai-usage: ai-assisted
 | `en-SG` | English (Singapore) | Standard | `en-SG-WayneNeural` (Male) |  | ❌ |
 | `en-TZ` | English (Tanzania) | Standard | `en-TZ-ImaniNeural` (Female) |  | ❌ |
 | `en-TZ` | English (Tanzania) | Standard | `en-TZ-ElimuNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Ava:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Andrew:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Adam:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Ava:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Andrew:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Adam:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Alloy:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Aria:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Bree:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Brian:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Davis:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Emma:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Emma2:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Brian:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Davis:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Emma:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Emma2:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Jane:DragonHDLatestNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Jenny:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Nova:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Phoebe:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Serena:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Steffan:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Steffan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Andrew:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Caleb:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Dana:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
@@ -260,7 +260,7 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Standard | `en-US-AIGenerate2Neural`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Multilingual | `en-US-AshTurboMultilingualNeural`<sup>1,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-BlueNeural`<sup>1</sup> (Neutral) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Andrew2:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Andrew2:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-Multitalker:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-ava:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
@@ -291,8 +291,8 @@ ai-usage: ai-assisted
 | `es-DO` | Spanish (Dominican Republic) | Standard | `es-DO-EmilioNeural` (Male) |  | ❌ |
 | `es-EC` | Spanish (Ecuador) | Standard | `es-EC-AndreaNeural` (Female) |  | ❌ |
 | `es-EC` | Spanish (Ecuador) | Standard | `es-EC-LuisNeural` (Male) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Ximena:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Tristan:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Ximena:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Tristan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-ElviraNeural` (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-AlvaroNeural` (Male) | **Styles**<br/>`cheerful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `es-ES` | Spanish (Spain) | Multilingual | `es-ES-ArabellaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
@@ -377,8 +377,8 @@ ai-usage: ai-assisted
 | `fr-CA` | French (Canada) | Standard | `fr-CA-ThierryNeural` (Male) |  | ❌ |
 | `fr-CH` | French (Switzerland) | Standard | `fr-CH-ArianeNeural` (Female) |  | ❌ |
 | `fr-CH` | French (Switzerland) | Standard | `fr-CH-FabriceNeural` (Male) |  | ❌ |
-| `fr-FR` | French (France) | Neural HD | `fr-FR-Vivienne:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `fr-FR` | French (France) | Neural HD | `fr-FR-Remy:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `fr-FR` | French (France) | Neural HD | `fr-FR-Vivienne:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `fr-FR` | French (France) | Neural HD | `fr-FR-Remy:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-DeniseNeural` (Female) | **Styles**<br/>`cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-HenriNeural` (Male) | **Styles**<br/>`cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `fr-FR` | French (France) | Multilingual | `fr-FR-VivienneMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
@@ -449,8 +449,8 @@ ai-usage: ai-assisted
 | `iu-CANS-CA` | Inuktitut (Syllabics, Canada) | Standard | `iu-Cans-CA-TaqqiqNeural`<sup>3</sup> (Male) |  | ❌ |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | Standard | `iu-Latn-CA-SiqiniqNeural`<sup>3</sup> (Female) |  | ❌ |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | Standard | `iu-Latn-CA-TaqqiqNeural`<sup>3</sup> (Male) |  | ❌ |
-| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Nanami:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Masaru:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Nanami:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Masaru:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-NanamiNeural` (Female) | **Styles**<br/>`chat`, `cheerful`, `customerservice`<br/>**Roles**<br/>Not supported | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-KeitaNeural` (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-AoiNeural` (Female) |  | ❌ |
@@ -521,8 +521,8 @@ ai-usage: ai-assisted
 | `pl-PL` | Polish (Poland) | Standard | `pl-PL-ZofiaNeural` (Female) |  | ❌ |
 | `ps-AF` | Pashto (Afghanistan) | Standard | `ps-AF-LatifaNeural`<sup>3</sup> (Female) |  | ❌ |
 | `ps-AF` | Pashto (Afghanistan) | Standard | `ps-AF-GulNawazNeural`<sup>3</sup> (Male) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Thalita:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Macerio:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Thalita:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Macerio:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-FranciscaNeural` (Female) | **Styles**<br/>`calm`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-AntonioNeural` (Male) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Multilingual | `pt-BR-MacerioMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
@@ -603,10 +603,10 @@ ai-usage: ai-assisted
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-YunSongNeural`<sup>3</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>2</sup> (Male) | **Styles**<br/>`assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Yunqi:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `assistant`, `calm`, `chat`, `chat-casual`, `cheerful`, `customerservice`, `disgruntled`, `excited`, `fearful`, `friendly`, `gentle`, `lyrical`, `newscast`, `poetry-reading`, `sad`, `serious`, `sorry`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
@@ -673,7 +673,7 @@ ai-usage: ai-assisted
 
 <sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#visemes). 
 
-<sup>4</sup> For the current list of regions where this voice is generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
+<sup>4</sup> For the current list of regions where Neural HD voices are generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>5</sup> The OpenAI text-to-speech voices in Azure Speech are in preview and are available only in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text-to-speech voices and Azure Speech text-to-speech voices, see [OpenAI text-to-speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
 
