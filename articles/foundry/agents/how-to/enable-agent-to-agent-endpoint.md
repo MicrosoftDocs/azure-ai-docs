@@ -38,7 +38,7 @@ Incoming A2A requires the responses protocol. The following agent types support 
 
 ## Enable incoming A2A
 
-To enable incoming A2A, update your agent's `protocols` array to include both `responses` and `a2a`. This feature isn't available in the Foundry portal yet — use the REST API or Python SDK.
+Enabling incoming A2A requires two things: an **agent card** that describes your agent's capabilities, and the **A2A protocol** enabled on the agent endpoint. You can set both in a single PATCH call. This feature isn't available in the Foundry portal yet — use the REST API or Python SDK.
 
 ### REST API
 
@@ -51,18 +51,32 @@ TOKEN=$(az account get-access-token --resource https://ai.azure.com \
   --query accessToken -o tsv)
 ```
 
-Send a `PATCH` request to enable the A2A protocol on an existing agent:
+Send a `PATCH` request to configure the agent card and enable the A2A protocol:
 
 ```bash
 curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
+  -H "Foundry-Features: AgentEndpoints=V1Preview" \
   -d '{
-    "protocols": ["responses", "a2a"]
+    "agent_card": {
+      "description": "A helpful assistant that answers questions",
+      "version": "1.0",
+      "skills": [
+        {
+          "id": "general-qa",
+          "name": "General Q&A",
+          "description": "Answers general questions"
+        }
+      ]
+    },
+    "agent_endpoint": {
+      "protocols": ["responses", "a2a"]
+    }
   }'
 ```
 
-Replace `{agent_name}` with the name of your agent.
+Replace `{agent_name}` with the name of your agent. Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
 
 ### Python SDK
 
@@ -104,11 +118,19 @@ patched_agent = project_client.beta.agents.patch_agent_details(
 )
 ```
 
+> [!NOTE]
+> Setting the agent card through the Python SDK isn't supported yet. Use the REST API to configure the agent card.
+
 ## Verify the agent card
 
-After you enable incoming A2A, Foundry Agent Service publishes an agent card at the well-known path for your agent's endpoint. External agents use this card to discover your agent's capabilities and supported interactions.
+After you enable incoming A2A, external agents use the agent card to discover your agent's capabilities and supported interactions. Confirm the agent card is set by retrieving your agent's properties:
 
-[TO VERIFY] — Describe how to confirm the agent card is live (for example, `GET <agent-endpoint>/.well-known/agent-card.json`).
+```bash
+curl -X GET "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+The response includes the `agent_card` and `agent_endpoint` objects. Verify that `protocols` contains `a2a` and that the `agent_card` fields match your intended description and skills.
 
 ## Configure authentication for incoming requests
 

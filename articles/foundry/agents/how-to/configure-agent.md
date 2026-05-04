@@ -73,6 +73,7 @@ An agent can expose multiple protocols simultaneously:
 | **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` |
+| **A2A (preview)** | Enables the agent to receive inbound Agent2Agent requests. For setup details, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md). |
 
 ### Authorization schemes
 
@@ -186,7 +187,7 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations"],
+    "protocols": ["activity", "responses", "invocations", "a2a"],
     "authorization_schemes": [
       {
         "type": "Entra",
@@ -231,6 +232,7 @@ with project_client:
             AgentEndpointProtocol.RESPONSES,
             AgentEndpointProtocol.ACTIVITY,
             AgentEndpointProtocol.INVOCATIONS,
+            AgentEndpointProtocol.A2A,
         ],
         authorization_schemes=[
             EntraAuthorizationScheme(
