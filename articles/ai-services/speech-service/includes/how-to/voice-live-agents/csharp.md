@@ -113,7 +113,7 @@ Voice Live offers `InterimResponse` to bridge wait times during tool calling or 
 Voice Live offers two interim response modes:
 
 - **LLM-generated interim response** (`LlmInterimResponseConfig`): Uses a lightweight LLM to generate context-aware filler text dynamically. Best for adaptive, natural-sounding responses.
-- **Static interim response** (`InterimResponseTrigger`): Randomly selects from a predefined list of texts you provide. Best for deterministic or branded messaging.
+- **Static interim response** (`StaticInterimResponseConfig`): Randomly selects from a predefined list of texts you provide. Best for deterministic or branded messaging.
 
 For more information, see [Improve tool calling and latency wait times with interim responses](../../../how-to-voice-live-interim-response.md).
 
