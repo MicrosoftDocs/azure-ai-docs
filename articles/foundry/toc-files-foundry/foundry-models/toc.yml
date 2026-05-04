@@ -53,9 +53,15 @@ items:
     - name: Foundry Models lifecycle and support policy
       displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md
+    - name: Foundry Models lifecycle and support policy (government)
+      displayName: Foundry Models lifecycle and support policy (government)
+      href: ../../openai/concepts/model-retirements-gov.md
     - name: Model retirement schedule for Foundry Models
       displayName: Model retirement schedule for Microsoft Foundry Models
       href: ../../openai/concepts/model-retirement-schedule.md
+    - name: Model retirement schedule for Foundry Models (government)
+      displayName: Model retirement schedule for Microsoft Foundry Models (government)
+      href: ../../openai/concepts/model-retirement-schedule-gov.md
     - name: Retired Foundry Models
       displayName: Retired Azure OpenAI models in Microsoft Foundry
       href: ../../openai/concepts/retired-models.md
