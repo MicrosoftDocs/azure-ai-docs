@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Auto and direct model routing with the Responses API
 
-The Responses API is the single calling interface for every model in Microsoft Foundry. Pass `model-router` to let Foundry pick the best model automatically. Pass a specific model name for deterministic control. The code is the same—only the `model` value changes.
+The Responses API is the programmatic interface for every model in Microsoft Foundry. Pass `model-router` in the `model` field to let Foundry pick the best model automatically. Or pass a specific model name for deterministic control. The code is the same—only the `model` value changes.
 
 > [!NOTE]
 > You pass your deployment name to the `model` parameter. In most cases the deployment name matches the model name. For example, a `gpt-4.1-mini` deployment is called `"gpt-4.1-mini"`.
