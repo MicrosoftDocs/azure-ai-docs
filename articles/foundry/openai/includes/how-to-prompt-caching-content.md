@@ -54,6 +54,10 @@ For `gpt-5.4` and older models if you don’t specify a retention policy, the de
 
 In-memory Prompt Caching is compatible with all Data Residency regions. Extended caching temporarily stores data on GPU machines and will only be kept in-region when using Regional Standard or Regional PTU deployment types.
 
+### Does Prompt Caching work on requests with store=false set?
+
+In-memory cache retention does not save any data to disk. Extended prompt caching may store key/value tensors in GPU-local storage, and the key-value tensors are derived from customer content. This data is not retained beyond cache expiration — the key-value tensors are retained for 1-2 hours (most usage) and at most 24 hours. Extended prompt caching requests are not blocked if `store=false` is set.
+
 ## Getting started
 
 To take advantage of prompt caching, a request must meet both of these requirements:
