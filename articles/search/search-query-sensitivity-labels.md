@@ -62,7 +62,7 @@ Both are required to authorize label-based visibility.
 ### 2. Sensitivity label evaluation
 
 When a query request is received, Azure AI Search evaluates:
-1. The sensitivityLabel field in each indexed document (extracted from Microsoft Purview during ingestion).  
+1. The `sensitivityLabel` field in each indexed document (extracted from Microsoft Purview during ingestion).  
 2. The user's effective Purview permissions, as defined by Microsoft Entra ID and Purview label policy.  
 
 If the user isn't authorized for a document's sensitivity label with `EXTRACT` permissions, that document is excluded from the query results.
