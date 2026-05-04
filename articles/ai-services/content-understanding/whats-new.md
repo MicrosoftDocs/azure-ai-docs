@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 03/03/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
@@ -20,6 +20,16 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
+
+## April 2026
+
+### GPT-5.2 model support
+
+Content Understanding now supports the GPT-5.2 model as the recommended completion model. GPT-5.2 delivers improved quality and performance over previous generations. See [Model deployments](concepts/models-deployments.md) for the full list of supported models.
+
+### Agent framework and LangChain integration
+
+Content Understanding now integrates with the Azure AI Agent framework and LangChain, enabling you to incorporate Content Understanding capabilities directly into your agent and retrieval-augmented generation (RAG) workflows. SDK updates across Python, .NET, Java, and JavaScript/TypeScript bring alignment with these integrations.
 
 ## March 2026
 
