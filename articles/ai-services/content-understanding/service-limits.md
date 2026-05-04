@@ -5,7 +5,7 @@ description: Quick reference, detailed description, and best practices for worki
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 03/23/2026
+ms.date: 05/04/2026
 ms.service: azure-ai-content-understanding
 ms.topic: limits-and-quotas
 ms.custom:
@@ -50,12 +50,15 @@ The currently supported models are:
 
 | Model Type | Model | Version |
 |--|--|--|
+|Chat Completion | gpt-5.2 | `2025-12-11` |
 |Chat Completion | gpt-4.1 | `2025-04-14` |
 |Chat Completion | gpt-4.1-mini | `2025-04-14` |
 |Chat Completion | gpt-4.1-nano | `2025-04-14` |
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
+
+For the model retirement schedule, see [Model retirements](/azure/foundry/openai/concepts/model-retirement-schedule).
 
 ## Input file limits
 
