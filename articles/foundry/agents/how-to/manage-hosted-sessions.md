@@ -7,7 +7,7 @@ ms.date: 04/14/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: hosted-agent-manage-method
