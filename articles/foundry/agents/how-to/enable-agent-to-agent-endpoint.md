@@ -38,11 +38,71 @@ Incoming A2A requires the responses protocol. The following agent types support 
 
 ## Enable incoming A2A
 
-[TO VERIFY] — Exact steps for enabling the feature (portal toggle, SDK, or REST) need confirmation.
+To enable incoming A2A, update your agent's `protocols` array to include both `responses` and `a2a`. This feature isn't available in the Foundry portal yet — use the REST API or Python SDK.
 
-1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
-1. Navigate to your agent in the Foundry portal.
-1. [TO VERIFY] — Describe the portal UI for enabling incoming A2A.
+### REST API
+
+Set up variables for your project:
+
+```bash
+BASE_URL="https://{account}.services.ai.azure.com/api/projects/{project}"
+API_VERSION="v1"
+TOKEN=$(az account get-access-token --resource https://ai.azure.com \
+  --query accessToken -o tsv)
+```
+
+Send a `PATCH` request to enable the A2A protocol on an existing agent:
+
+```bash
+curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "protocols": ["responses", "a2a"]
+  }'
+```
+
+Replace `{agent_name}` with the name of your agent.
+
+### Python SDK
+
+Install the required package:
+
+```bash
+pip install "azure-ai-projects>=2.0.0"
+```
+
+Use the `patch_agent_details` method to add the A2A protocol to your agent's endpoint:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    AgentEndpoint,
+    AgentEndpointProtocol,
+)
+
+# Format: "https://{account}.ai.azure.com/api/projects/{project}"
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+project_client = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+
+endpoint_config = AgentEndpoint(
+    protocols=[
+        AgentEndpointProtocol.RESPONSES,
+        AgentEndpointProtocol.A2A,
+    ],
+)
+
+patched_agent = project_client.beta.agents.patch_agent_details(
+    agent_name=AGENT_NAME,
+    agent_endpoint=endpoint_config,
+)
+```
 
 ## Verify the agent card
 
