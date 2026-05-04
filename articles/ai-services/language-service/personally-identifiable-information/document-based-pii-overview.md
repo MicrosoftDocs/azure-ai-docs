@@ -18,6 +18,8 @@ ms.custom: language-service-pii
 
 This feature uses an asynchronous API workflow and returns redacted output that preserves document structure and formatting. You can use it when document fidelity is important for compliance review, sharing, analytics, and downstream AI workflows.
 
+:::image type="content" source="media/document-pii-technical-workflow.png" alt-text="Screenshot of the technical workflow for document-based PII detection in Azure AI Language.":::
+
 ## Video demonstration
 
 In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data directly from native documents while preserving file structure and formatting. We also cover common use cases, supported formats, and how to get started with document-based PII in Azure AI Language:
@@ -40,8 +42,7 @@ Document-based PII provides the following capabilities:
 
 The general availability release introduces the following capabilities and operational enhancements. These additions expand the platform's redaction strategies, enhance configuration flexibility, and improve support for specialized document processing scenarios:
 
-* Improved redacted output quality while preserving font, color, and document formatting.
-* Black-marker redaction style support in addition to character masking options.
+* Improved redaction output quality while preserving font, color, and document formatting.
 * Blur-based redaction support for image-based document scenarios.
 * Expanded masking policy options, including entity-label masking and synthetic replacement.
 * Confidence-threshold controls to determine which detected entities are redacted.
@@ -79,7 +80,7 @@ Document-based PII is especially useful when you need to:
 
 Document-based PII uses the same predefined PII categories as text PII, including entities such as addresses, phone numbers, and credit card numbers.
 
-## What it returns
+## What Document-based PII returns
 
 When a job succeeds, you receive:
 
@@ -87,7 +88,7 @@ When a job succeeds, you receive:
 * A JSON result file with detected entities, categories, confidence scores, and processing metadata.
 * Redaction results that can preserve visual document fidelity for downstream review and audit processes.
 
-## How it works
+## How Document-based PII works
 
 Document-based PII uses an asynchronous workflow:
 
@@ -95,11 +96,11 @@ Document-based PII uses an asynchronous workflow:
 1. Poll the job status by using the operation location.
 1. Retrieve output artifacts from your target storage location.
 
-:::image type="content" source="media/document-pii-workflow.png" alt-text="Diagram showing the asynchronous workflow for document-based PII detection.":::
+:::image type="content" source="media/document-pii-api-call.png" alt-text="Diagram showing the asynchronous API call for document-based PII detection.":::
 
 For implementation details and request samples, see [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md).
 
-## How it differs from other PII feature types
+## How Document-based PII differs from other PII feature types
 
 All PII feature types use predefined entity categories, but they optimize for different input types:
 
