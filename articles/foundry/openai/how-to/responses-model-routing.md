@@ -77,7 +77,7 @@ The following table shows a sample output. Actual latency and response text vary
 | gpt-5-mini | same | 0.67 s | It retrieves external knowledge to augment a model's genera... |
 | Deepseek-V3.2 | same | 1.14 s | It augments model generation by first retrieving relevant do... |
 
-The first row is the key insight: `model-router` didn't target a specific model, but the `Responded` column shows Foundry selected `gpt-4.1-nano` on your behalf. For the named models that follow, the two columns match—you asked for a specific model and got it. The code is identical in every case.
+See the first row: `model-router` didn't target a specific model, but the `Responded` column shows that it selected `gpt-4.1-nano`. For the named models that follow, the two columns match; The code is identical in every case.
 
 > [!TIP]
 > The `response.model` field always returns the model that handled the request. Use it for logging, cost attribution, or debugging routing decisions.
