@@ -94,15 +94,7 @@ Every call goes through `responses.create()`. The `model` value is the only deci
 
 Use `model-router` as your default. Switch to a named model only when you need deterministic control.
 
-## Configure the model router deployment
-
-The model router deployment supports three routing modes that control how it selects the underlying model:
-
-- **Balanced** (default)—Optimizes cost while maintaining quality. Best for most workloads.
-- **Quality**—Prioritizes the strongest model. Use for critical tasks like legal review or complex reasoning.
-- **Cost**—Prioritizes the cheapest capable model. Use for high-volume workloads like classification or simple Q&A.
-
-You can also restrict routing to a subset of models. For configuration details, see [Use model router](model-router.md#optional-change-the-routing-mode).
+Customize your model router deployment with optional settings. See [Use model router](model-router.md#Optional-customize-deployment-settings).
 
 ## Built-in enterprise capabilities
 
