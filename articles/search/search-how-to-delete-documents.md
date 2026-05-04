@@ -69,7 +69,7 @@ Once you know which field is the document key, you can get the key value by runn
 In this example, the search string is used to find the document in the index, and the select statement determines what fields are in the results. The "HotelId" is the document key in this example. 
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
     "search": "this query has terms that pertain to the document I want to delete",
     "select": "HotelName, HotelId",
@@ -102,13 +102,13 @@ Now that you have the document key, run a [look up query](/rest/api/searchservic
 The first example returns the hotel having a document key value of `18`.
 
 ```http
-GET https://[service name].search.windows.net/indexes/hotels-sample/docs('18')&api-version=2025-09-01
+GET https://[service name].search.windows.net/indexes/hotels-sample/docs('18')&api-version=2026-04-01
 ```
 
 The second example returns a chunk document. The "chunk_id" is the document key.
 
 ```http
-GET https://[service name].search.windows.net/indexes/chunking-example-index/docs('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')&api-version=2025-09-01
+GET https://[service name].search.windows.net/indexes/chunking-example-index/docs('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')&api-version=2026-04-01
 ```
 
 The response from the second example includes all fields, which you should review to ensure you know what you're deleting. Fields that include parent information are useful if you need to manually reindex a single parent document into constituent chunked documents in the search index.
@@ -156,7 +156,7 @@ Here's an example response:
 1. Make sure the body of the request includes the key of the document you want to delete.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2026-04-01
     Content-Type: application/json   
     api-key: [admin key]
     
@@ -187,7 +187,7 @@ Here's an example response:
 1. You can resend the [Lookup query](/rest/api/searchservice/documents/get) to confirm the deletion. You should get a 404 document not found message. 
 
     ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/18?api-version=2025-09-01
+    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/18?api-version=2026-04-01
     ```
 
 **Reference:** [Documents - Index](/rest/api/searchservice/documents)
@@ -284,7 +284,7 @@ Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure
 1. Make sure the body of the request includes the keys of all of the documents you want to delete.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2026-04-01
     Content-Type: application/json   
     api-key: [admin key]
     
@@ -406,7 +406,7 @@ After deleting documents, verify the deletion was successful.
 Use the [Get Document](/rest/api/searchservice/documents/get) API to confirm the document no longer exists:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/18?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/18?api-version=2026-04-01
 api-key: [admin-key]
 ```
 
@@ -415,7 +415,7 @@ Expected response: HTTP 404 Not Found if the document was deleted successfully.
 You can also check index statistics:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample/stats?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/stats?api-version=2026-04-01
 api-key: [admin-key]
 ```
 

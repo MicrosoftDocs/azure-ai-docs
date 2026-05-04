@@ -179,12 +179,12 @@ Here's a [REST API example](search-get-started-text.md) demonstrating these tips
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
 ### Change the description, city, and tags for Stay-Kay City Hotel
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -203,7 +203,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
     }
        
 ### Retrieve the same document, confirm the overwrites and retention of all other values
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```

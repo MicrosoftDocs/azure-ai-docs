@@ -153,7 +153,7 @@ If you don't specify the `cognitiveServices` property, your search service attem
 Use [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update), specifying the `cognitiveServices` section in the body of the request.
 
 ```http
-PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01
+PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
 api-key: [admin-key]
 Content-Type: application/json
 {
@@ -234,7 +234,7 @@ Without the key, the skillset reverts to the default allocation of 20 free trans
 1. Send the request.
 
     ```http
-    PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01
+    PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
     api-key: [admin-key]
     Content-Type: application/json
 
