@@ -4,7 +4,7 @@ description: "Learn how Microsoft Agent 365 provides governance, security, and l
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 05/04/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -23,14 +23,14 @@ This article describes how Foundry agents can be managed and governed in Microso
 ### Agent 365 core capabilities
 
 - **Registry**: A complete inventory of agents in the organization, including agents built in Microsoft Foundry and Copilot Studio, agents registered by administrators, and shadow agents discovered in the tenant.
-- **Access control**: Brings agents under management and limits access to only the resources they need by using Microsoft Entra–based controls and risk-based Conditional Access policies.
+- **Access control**: Brings agents under management and limits access to only the resources they need by using Microsoft Entra–based controls and risk-based Conditional Access policies. Microsoft Entra network controls and Conditional Access are now generally available in Agent 365. These controls apply to both Foundry-hosted agents managed through Agent 365 and endpoint-hosted agents.
 - **Visualization**: Enables organizations to explore connections between agents, people, and data, and to monitor agent behavior and performance in real time.
 - **Interoperability**: Equips agents with access to Microsoft 365 apps and organizational data so they can participate in real workflows. Agents can also be connected to Work IQ to apply organizational context and knowledge.
 - **Security**: Protects agents from threats and vulnerabilities by integrating with Microsoft's security stack. It also helps protect data agents create or use from oversharing, leaks, and risky behavior.
 
 ## How does Foundry integrate with Agent 365?
 
-**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associated with an agent. 
+**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associated with an agent. Foundry agents are governed alongside agents from Copilot Studio and other ecosystem SaaS agents in a unified registry view. No extra configuration is required for Foundry-originated agents.
 
 ## Create AI teammates
 
@@ -41,7 +41,6 @@ The rest of this article walks through that process.
 
 ### Prerequisites 
 
-- Enrollment in the [Frontier preview program](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
 - An Azure subscription where you can create resources.
 - The required permissions:
   - **Owner** role on the Azure subscription
