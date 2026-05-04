@@ -25,8 +25,8 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 
 The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models). Please refer to [Model retirement schedule](../../../foundry/openai/concepts/model-retirement-schedule.md) to track Foundry model lifecycle stage and retirement date.
 
-> [!IMPORTANT]
-> GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in a future update.
+> [!NEW]
+> GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in future updates.
 
 ### Check supported models per analyzer
 
@@ -58,9 +58,27 @@ The response includes a `supportedModels` object that lists the valid completion
 }
 ```
 
+### Model selection for prebuilt analyzers
+
+Prebuilt analyzers use indirection keys instead of direct model names in their `models` section. This allows the service to support model upgrades without changing analyzer definitions.
+
+Prebuilt analyzers reference the following deployment keys:
+
+| Key | Used by |
+|---|---|
+| `prebuilt-analyzer-completion` | Default for most prebuilt analyzers |
+| `prebuilt-analyzer-completion-mini` | Default for selected prebuilt analyzers, e.g. `prebuilt-*Search` |
+| `prebuilt-analyzer-embedding` | Prebuilt analyzers that require embeddings |
+
+You map these keys to your actual deployments in the `modelDeployments` configuration (see [Set default deployments](#option-1-set-default-deployments-at-the-resource-level)).
+
+> [!NOTE]
+> If your resource already has `gpt-4.1` (or `gpt-4.1-mini`) and `text-embedding-3-large` configured in `modelDeployments`, the service automatically creates the `prebuilt-analyzer-*` keys using those existing deployment values. No manual action is required for existing customers.
+
+
 ## How model selection works
 
-When you create a custom analyzer, you can specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
+When you create a custom analyzer, you can specify which chat completion model and embedding model it uses.
 
 ```jsonc
 {
@@ -80,22 +98,6 @@ When you create a custom analyzer, you can specify which chat completion model a
 > [!TIP] 
 > GPT-5.2 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
 
-### Model selection for prebuilt analyzers
-
-Prebuilt analyzers use indirection keys instead of direct model names in their `models` section. This allows the service to support model upgrades without changing analyzer definitions.
-
-Prebuilt analyzers reference the following deployment keys:
-
-| Key | Used by |
-|---|---|
-| `prebuilt-analyzer-completion` | Most prebuilt analyzers (invoice, receipt, tax, mortgage, etc.) |
-| `prebuilt-analyzer-completion-mini` | Prebuilt search analyzers (`prebuilt-*Search`) |
-| `prebuilt-analyzer-embedding` | Prebuilt analyzers that require embeddings |
-
-You map these keys to your actual deployments in the `modelDeployments` configuration (see [Set default deployments](#option-1-set-default-deployments-at-the-resource-level)).
-
-> [!NOTE]
-> If your resource already has `gpt-4.1` (or `gpt-4.1-mini`) and `text-embedding-3-large` configured in `modelDeployments`, the service automatically creates the `prebuilt-analyzer-*` keys using those existing deployment values. No manual action is required for existing customers.
 
 ## Two ways to provide model deployments
 
@@ -160,22 +162,20 @@ Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`,
 Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
-POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
+POST /contentunderstanding/analyzers/{analyzerID}}:analyze
 {
-  "inputs": [
-    {
-      "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf"
-    }
-  ],
-  // Specify the model deployments for this request
   "modelDeployments": {
-    "prebuilt-analyzer-completion": "myGpt5Deployment",
+    "gpt-5.2": "myGpt52Deployment", 
+    "text-embedding-3-large": "myTextEmbedding3LargeDeployment",
+  // Specify the model deployments for this request
+    "prebuilt-analyzer-completion": "myGpt52Deployment",
     "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
   }
 }
 ```
 
-The `modelDeployments` values in this analyze request override any defaults that you configured at the resource level.
+The `modelDeployments` values in this analyze request override defaults that you configured at the resource level.
+
 
 ## Usage and billing data
 
