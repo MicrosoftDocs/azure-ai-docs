@@ -107,7 +107,7 @@ In OBO scenarios, the token must be requested for the downstream API that the ap
 
 The `.default` scope requests all delegated permissions that have been pre-consented for the application for the specified resource.
 
-Sensitivity label permissions (including `EXTRACT`) aren't represented as OAuth scopes. These permissions are evaluated at runtime by the downstream service (such as Azure AI Search) based on the user identity in the token and the applied sensitivity label policy.
+Sensitivity label permissions, including `EXTRACT`, aren't represented as OAuth scopes. These permissions are evaluated at runtime by the downstream service, such as Azure AI Search, based on the user identity in the token and the applied sensitivity label policy.
 
 ## Query example
 
