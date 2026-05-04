@@ -128,14 +128,27 @@ patched_agent = project_client.beta.agents.patch_agent_details(
 
 ## Verify the agent card
 
-After you enable incoming A2A, external agents use the agent card to discover your agent's capabilities and supported interactions. Confirm the agent card is set by retrieving your agent's properties:
+After you enable incoming A2A, your agent exposes two URLs that calling agents use:
+
+- **A2A base path** — The root URL for A2A protocol interactions with your agent:
+
+  `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`
+
+- **Agent card URL** — The discovery endpoint where calling agents retrieve your agent's capabilities, skills, and metadata:
+
+  `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a/agentCard/v0.3`
+
+> [!IMPORTANT]
+> Both URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Azure AI User** role on the Foundry project.
+
+To confirm your agent card is configured correctly, fetch it directly:
 
 ```bash
-curl -X GET "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
+curl -X GET "$BASE_URL/agents/{agent_name}/endpoint/protocols/a2a/agentCard/v0.3" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
-The response includes the `agent_card` and `agent_endpoint` objects. Verify that `protocols` contains `a2a` and that the `agent_card` fields match your intended description and skills.
+The response contains the agent card with the description and skills you configured. Verify that the fields match your intended capabilities.
 
 ## Configure authentication for incoming requests
 
@@ -153,9 +166,20 @@ The calling agent authenticates with its own identity — either the platform-as
 
 To grant a calling identity access, assign the **Azure AI User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
+## Supported A2A transports
+
+Foundry Agent Service supports the following A2A transports for incoming requests:
+
+| Transport | Supported |
+|-----------|-----------|
+| **HTTP+JSON** | ✔️ |
+| **JSONRPC** | ✔️ |
+| **gRPC** | ❌ |
+
 ## Limitations
 
 - Only A2A protocol version 0.3 is supported.
+- Only **text** modality is supported. File data and other non-text modalities aren't supported.
 - Incoming A2A requires the responses protocol. Agents that don't use the responses protocol can't be exposed as A2A endpoints.
 - This feature is in preview and isn't recommended for production workloads.
 
