@@ -4,7 +4,7 @@ description: Learn how query-time enforcement of Microsoft Purview sensitivity l
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 03/05/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ---
 
@@ -86,7 +86,9 @@ If either condition fails, the document is omitted from the results.
 
 ## Acquire a user access token
 
-## For testing scenarios
+To query Azure AI Search using user context, you must acquire an access token that represents the signed-in user. The approach you use depends on whether you're testing locally with your own token, if you have access to the source document, or implementing the application flow that requires passing the end-user token.
+
+### For testing scenarios
 
 For local testing, you can retrieve a user access token using Azure CLI:
 
@@ -97,9 +99,9 @@ $token = az account get-access-token `
   --output tsv
 ```
 
-This approach uses your current Azure CLI login session so you can use over documents you have `EXTRACT` permissions assigned via sensitivity labels. This method is intended for development and validation scenarios only.
+This approach uses your current Azure CLI login session, so you can use the context over documents you have `EXTRACT` permissions assigned via sensitivity labels. This method is intended for development and validation scenarios only.
 
-## Token acquisition for OBO scenarios
+### Token acquisition for OBO scenarios
 
 Applications that implement the on-behalf-of (OBO) flow must acquire tokens through Microsoft Entra ID using a supported authentication library, such as the [Microsoft Authentication Library](/entra/identity-platform/msal-acquire-cache-tokens) (MSAL).
 
@@ -135,7 +137,7 @@ Note that the GUID alone is insufficient for scenarios that include user interfa
 
 To display label names and/or enforce UI-specific restrictions, your application must call the Microsoft Purview Information Protection endpoint to retrieve full label metadata and associated permissions.
 
-You can use the GUID returned by Azure AI Search to resolve the label properties and call the [Purview Labels APIs](/graph/api/sensitivitylabel-get) to fetch the label name, description, and policy settings. This [end-to-end demo sample](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo) includes code that shows how to call the endpoint from a user interface. It also demonstrates how to extract the label name and expose it as part of the citations used in your RAG applications or agents.
+You can use the GUID returned by Azure AI Search to resolve the label properties and call the [Purview Labels APIs](/graph/api/sensitivitylabel-get) to fetch the label name, description, and policy settings. 
 
 
 ## End-to-end testing setup
@@ -143,6 +145,7 @@ You can use the GUID returned by Azure AI Search to resolve the label properties
 To help you validate your sensitivity label configuration in Azure AI Search, here's a [reference end-to-end setup](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo).
 
 This repository demonstrates:
-- How to configure sensitivity labels and protection settings
+- How to configure sensitivity labels sync and honoring in Azure AI Search
 - How to test ingestion and query-time enforcement scenarios for documents with sensitivity labels
+- How to extract the label name and expose it as part of the citations used in your RAG applications or agents.
 
