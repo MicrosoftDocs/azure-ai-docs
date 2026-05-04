@@ -40,7 +40,7 @@ Incoming A2A requires the responses protocol. The following agent types support 
 
 [TO VERIFY] — Exact steps for enabling the feature (portal toggle, SDK, or REST) need confirmation.
 
-1. [!INCLUDE [foundry-sign-in](../../../includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Navigate to your agent in the Foundry portal.
 1. [TO VERIFY] — Describe the portal UI for enabling incoming A2A.
 
