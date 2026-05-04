@@ -4,7 +4,7 @@ description: Include file
 author: jonburchel
 ms.reviewer: andyaviles
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -54,5 +54,5 @@ If Speech or Language capabilities stop functioning after changes to your storag
 - [Add connections to your project](../how-to/connections-add.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
-- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples)
+- [Infrastructure setup samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
 - [Connect storage for Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)

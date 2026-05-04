@@ -4,7 +4,7 @@ description: "The management center in Microsoft Foundry portal provides a centr
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: aashishb
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024
   - dev-focus

@@ -4,8 +4,8 @@ description: "Customer Copyright Commitment Required Mitigations for Azure OpenA
 keywords: Code of Conduct for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.reviewer: nitinme
 ms.topic: concept-article
 ms.date: 05/21/2024

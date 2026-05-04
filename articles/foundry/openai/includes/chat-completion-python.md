@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API. 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 11/04/2025
 manager: nitinme
@@ -226,7 +226,7 @@ You can also include relevant data or information in the system message to give 
 
 Context:
 - Azure OpenAI provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
-- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image-1, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+- Azure OpenAI gives customers advanced language AI with OpenAI GPT-4o, GPT-image series, and Embeddings models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 - At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes requiring applicants to show well-defined use cases, incorporating Microsoft’s principles for responsible AI use."
 },
 {"role": "user", "content": "What is Azure OpenAI?"}

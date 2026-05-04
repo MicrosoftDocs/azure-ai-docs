@@ -3,12 +3,14 @@ title: "Connect an Azure AI Search index to Foundry agents"
 description: "Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples."
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-ai-search-tool
@@ -20,7 +22,7 @@ zone_pivot_groups: selection-ai-search-tool
 > [!TIP]
 > For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md). For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
 
-Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents and generates answers with inline citations, enabling accurate, source-backed responses.
+Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents so the Foundry model powering the agent can generate answers with inline citations, enabling accurate, source-backed responses.
 
 > [!IMPORTANT]
 > If you want to use a private virtual network with the Azure AI Search tool, make sure you use Microsoft Entra project managed identity to authenticate in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking.
@@ -843,7 +845,7 @@ For the full API specification, see [Project Connections REST API reference](/re
 
 Use a Bicep template to create an Azure AI Search connection as part of your infrastructure deployment.
 
-See the [AI Search connection Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
+See the [AI Search connection Bicep templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
 
 For more information about deploying connections with Bicep, see [Add a new connection to your project](../../../how-to/connections-add.md).
 

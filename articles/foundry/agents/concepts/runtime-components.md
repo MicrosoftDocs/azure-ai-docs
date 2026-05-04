@@ -2,10 +2,10 @@
 title: "Build with agents, conversations, and responses in Foundry Agent Service"
 description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 04/10/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Build with agents, conversations, and responses
 
-Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent defines what model, instructions, and tools to use. A conversation persists history across turns. A response is the output the agent produces when it processes input.
+Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent uses a model from the Foundry model catalog, along with instructions and tools. A conversation persists history across turns. A response is the output the agent produces when it processes input.
 
 This article walks through each component and shows how to use them together in code. You'll learn how to create an agent, start a conversation, generate responses (with or without an agent), add follow-up messages, and stream results—with examples in Python, C#, JavaScript, Java, and REST API.
 
@@ -25,7 +25,7 @@ When you work with an agent, you follow a consistent pattern:
 
 - **Create an agent**: Define an agent to start sending messages and receiving responses.
 - **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
+- **Generate a response**: The agent's Foundry model processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
 - **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
 - **Retrieve the response**: Display the generated response to the user.
 
@@ -55,6 +55,8 @@ pip install azure-identity
 
 ```bash
 dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -1937,7 +1939,7 @@ Limits can depend on the model, region, and the tools you attach (for example, s
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Discover tools in the Foundry Tools](./tool-catalog.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
-- [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+- [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)
 - [Migrate to the new agents developer experience](../how-to/migrate.md)
 - [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)

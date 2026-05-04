@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: seramasu
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with a model deployed using a provisioned throughput deployment type.
 - Provisioned throughput quota allocated to your subscription in your target region.
 - [Azure CLI](/cli/azure/install-azure-cli) (if you plan to create deployments via the command line).
@@ -93,13 +93,13 @@ In Foundry, the deployment experience identifies when a region lacks the capacit
 
 Details on the deployment experience can be found in the Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
-Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
+Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
 If an acceptable region isn't available to support the desired model, version, and/or PTU, customers can also try the following steps:
 
 - Attempt the deployment with a smaller number of PTUs.
 - Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand, and more capacity might become available later.
-- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
 
 ## Monitor utilization and performance
 
@@ -169,8 +169,12 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt 5.2          | ✅                 |                       |                      | ✅                 |
-|                    | Gpt 5.1          | ✅                 | ✅                     |                      | ✅                 |
+| **Azure OpenAI**   | Gpt 5.5          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.4          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.3 codex    | ✅                 |                       |                      | ✅                 |
+|                    | Gpt 5.2          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.2 codex    | ✅                 |                       |                      | ✅                 |
+|                    | Gpt 5.1          | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5.1 codex    | ✅                 | ✅                     |                      | ✅                 |
 |                    | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |

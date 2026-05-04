@@ -19,6 +19,18 @@ ms.custom: sdkv2, ignite-2023
 
 An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, visit the [feature store concepts](./concept-what-is-managed-feature-store.md) resource.
 
+> [!IMPORTANT]
+> Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
+>
+> Migration guidance:
+> - [Migrate Basic, Standard, and Premium tiers to Azure Managed Redis](/azure/redis/migrate/migrate-basic-standard-premium-overview)
+> - [Migrate Enterprise tier to Azure Managed Redis](/azure/redis/migrate/migrate-redis-enterprise-overview)
+>
+> For more details about the retirement:
+>   - [Azure Cache for Redis Retirement: What to Know and How to Prepare](https://techcommunity.microsoft.com/blog/azure-managed-redis/azure-cache-for-redis-retirement-what-to-know-and-how-to-prepare/4458721)
+>   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
+> 
+
 Part 1 of this tutorial series showed how to create a feature set specification with custom transformations, and use that feature set to generate training data. Part 2 of the series showed how to enable materialization, and perform a backfill. Additionally, Part 2 showed how to experiment with features, as a way to improve model performance. Part 3 showed how a feature store increases agility in the experimentation and training flows. Part 3 also described how to run batch inference.
 
 In this tutorial, you

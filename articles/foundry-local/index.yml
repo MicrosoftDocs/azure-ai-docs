@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
-title: Foundry Local (preview) documentation # < 60 chars
+title: Foundry Local documentation # < 60 chars
 summary:  Safely design, customize, and manage AI applications and agents on-device.
 metadata:
-  title: Foundry Local (preview) documentation
-  description: Foundry Local (preview) helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  title: Foundry Local documentation
+  description: Foundry Local helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: microsoft-foundry
   ms.subservice: foundry-local
   ms.custom:
@@ -21,11 +21,11 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: Learn About Foundry Local (preview)
+  - title: Learn About Foundry Local
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Foundry Local (preview)?
+          - text: What is Foundry Local?
             url: what-is-foundry-local.md
       - linkListType: concept
         links:
@@ -40,6 +40,17 @@ landingContent:
           - text: Get started with Foundry Local
             url: get-started.md
 
+      - linkListType: tutorial
+        links:
+          - text: Build a multi-turn chat assistant
+            url: tutorials/tutorial-build-chat-assistant.md
+          - text: Build an AI assistant with tool calling
+            url: tutorials/tutorial-build-tool-calling-assistant.md
+          - text: Build a voice-to-text note taker
+            url: tutorials/tutorial-build-voice-to-text-note-taker.md
+          - text: Build a document summarizer
+            url: tutorials/tutorial-build-document-summarizer.md
+
       - linkListType: how-to-guide
         links:
           - text: Integrate with Inferencing SDKs
@@ -48,8 +59,6 @@ landingContent:
             url: how-to/how-to-transcribe-audio.md
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
-          - text: Integrate with Open Web UI
-            url: how-to/how-to-chat-application-with-open-web-ui.md
           - text: Compile Hugging Face models to run on Foundry Local
             url: how-to/how-to-compile-hugging-face-models.md
   
@@ -58,17 +67,13 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: CLI reference
-            url: reference/reference-cli.md
           - text: SDK reference
             url: reference/reference-sdk-current.md
-          - text: REST reference
-            url: reference/reference-rest.md
-          - text: Catalog API reference
-            url: reference/reference-catalog-api.md
-          - text: Foundry Local on Windows Server 2025
-            url: reference/windows-server-frequently-asked-questions.md            
-          - text: Best practice and troubleshooting
+          - text: CLI (preview) reference
+            url: reference/reference-cli.md
+          - text: CLI REST (preview) reference
+            url: reference/reference-rest.md         
+          - text: CLI (preview) best practice and troubleshooting
             url: reference/reference-best-practice.md
   
   # Card

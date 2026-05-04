@@ -3,12 +3,14 @@ title: "What are tools in Foundry Agent Service (classic)"
 description: "Learn how to use the various tools available in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents
 ---
 
@@ -121,15 +123,15 @@ The following tools are authored by third-party partners. Use the links below to
 
 |Tool  |Description  |
 |---------|---------|
-| [Auquan](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/auquan) | AI-powered workflow automation for institutional finance |
-| [Celonis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Celonis) | Celonis delivers Process Intelligence to accelerate enterprise AI at scale |
-| [InsureMO Insurance Quotation](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/InsureMO) | Action APIs for insurance quotations for Car, Home, and Travel |
-| [LEGALFLY](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/legalfly) | Legal insights grounded in trusted sources from your jurisdiction. |
-| [LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/LexisNexis) | Seamless access to LexisNexis content. |
-| [MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
-| [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
-| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries/regions |
-| [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
+| [Auquan](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/auquan) | AI-powered workflow automation for institutional finance |
+| [Celonis](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Celonis) | Celonis delivers Process Intelligence to accelerate enterprise AI at scale |
+| [InsureMO Insurance Quotation](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/InsureMO) | Action APIs for insurance quotations for Car, Home, and Travel |
+| [LEGALFLY](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/legalfly) | Legal insights grounded in trusted sources from your jurisdiction. |
+| [LexisNexis](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/LexisNexis) | Seamless access to LexisNexis content. |
+| [MiHCM](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
+| [Morningstar](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
+| [Trademo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries/regions |
+| [Tripadvisor](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
 
 ## Best Practices
 

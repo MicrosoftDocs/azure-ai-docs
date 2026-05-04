@@ -6,44 +6,47 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: limits-and-quotas
-ms.date: 11/18/2025
+ms.date: 04/03/2026
 ms.author: lajanuar
 ---
+<!-- markdownlint-disable MD025 -->
 # Service limits for Azure Language in Foundry Tools
 
 > [!NOTE]
 > This article only describes the limits for preconfigured features in Azure Language in Foundry Tools:
-> To see the service limits for customizable features, see the following articles: 
+> To see the service limits for customizable features, see the following articles:
+>
 > * [Custom classification](../custom-text-classification/service-limits.md)
 > * [Custom NER](../custom-named-entity-recognition/service-limits.md)
 > * [Conversational language understanding](../conversational-language-understanding/service-limits.md)
 > * [Question answering](../question-answering/concepts/limits.md)
 
-Use this article to find the limits for the size, and rates that you can send data to the following features of Azure Language. 
-* [Named Entity Recognition (NER)](../named-entity-recognition/overview.md) 
+Use this article to find the limits for the size, and rates that you can send data to the following features of Azure Language.
+>
+* [Named Entity Recognition (NER)](../named-entity-recognition/overview.md)
 * [Personally Identifiable Information (PII) detection](../personally-identifiable-information/overview.md)
-* [Key phrase extraction](../key-phrase-extraction/overview.md) 
-* [Entity linking](../entity-linking/overview.md)  
+* [Key phrase extraction](../key-phrase-extraction/overview.md)
+* [Entity linking](../entity-linking/overview.md)
 * [Text Analytics for health](../text-analytics-for-health/overview.md)
 * [Sentiment analysis and opinion mining](../sentiment-opinion-mining/overview.md)
 * [Language detection](../language-detection/overview.md)
 
 When using features of Azure Language, keep the following information in mind:
 
-* Pricing is independent of data or rate limits. Pricing is based on the number of text records you send to the API, and is subject to your Language resource's [pricing details](https://aka.ms/unifiedLanguagePricing).
-    * A text record is measured as 1000 characters. 
-* Data and rate limits are based on the number of documents you send to the API. If you need to analyze larger documents than the limit allows, you can break the text into smaller chunks of text before sending them to the API. 
-* A document is a single string of text characters.  
+* Pricing is independent of data or rate limits. Pricing is based on the number of text records you send to the API, and is subject to your Language resource's [pricing details](https://aka.ms/unifiedLanguagePricing). **A text record is measured as 1000 characters**.
+* Data and rate limits are based on the number of documents you send to the API. If you need to analyze larger documents than the limit allows, you can break the text into smaller chunks of text before sending them to the API.
+* A document is a single string of text characters.
 
 ## Maximum characters per document
 
-The following limit specifies the maximum number of characters that can be in a single document.
+| The following limit specifies the maximum number of characters that can be in a single document. |
 
-| Feature | Value |
-|------------------------|---------------|
-| Text Analytics for health | 125,000 characters as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements).  | 
-| All other preconfigured features (synchronous) | 5,120 as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). If you need to submit larger documents, consider using the feature asynchronously. |
-| All other preconfigured features ([asynchronous](use-asynchronously.md))  | 125,000 characters across all submitted documents, as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements) (maximum of 25 documents). |
+| Feature | Maximum value |
+| ------------------------ | --------------- |
+| **Text Analytics for health** | 125,000 characters as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). |
+| **Conversation PII** | 1,000 characters as measured by [**Analyze Conversations** API](/rest/api/language/analyze-conversations/analyze-conversations/analyze-conversations). A conversation can have a list of conversation items (turns). 1,000 is the max limit for each conversation item (not for the entire conversation). The conversation PII API supports asynchronous requests only. |
+| **All other preconfigured features (synchronous)** | 5,120 as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). If you need to submit larger documents, consider using the feature asynchronously. |
+| **All other preconfigured features ([asynchronous](use-asynchronously.md))** | 125,000 characters across all submitted documents, as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements) (maximum of 25 documents). |
 
 If a document exceeds the character limit, the API behaves differently depending on how you're sending requests.
 
@@ -65,10 +68,10 @@ The following limit specifies the maximum size of documents contained in the ent
 
 Exceeding the following document limits generates an HTTP 400 error code.
 
-> [!NOTE] 
+> [!NOTE]
 > When sending asynchronous API requests, you can send a maximum of 25 documents per request.
 
-| Feature | Max Documents Per Request | 
+| Feature | Max Documents Per Request |
 |----------|-----------|
 | Conversation summarization | 1 |
 | Language Detection | 1000 |

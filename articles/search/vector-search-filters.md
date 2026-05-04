@@ -4,9 +4,10 @@ description: Learn how to add filter expressions to vector queries in Azure AI S
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
-  + ignite-2023
+  - ignite-2023
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Add a filter to a vector query in Azure AI Search
@@ -192,7 +193,7 @@ To understand the conditions under which one filter mode performs better than th
 
 For the small and medium workloads, we used a Standard 2 (S2) service with one partition and one replica. For the large workload, we used a Standard 3 (S3) service with 12 partitions and one replica.
 
-Indexes had an identical construction: one key field, one vector field, one text field, and one numeric filterable field. The following index is defined using the `2023-11-03` syntax.
+Indexes had an identical construction: one key field, one vector field, one text field, and one numeric filterable field. The following index is defined using the `2023-11-01` syntax.
 
 ```python
 def get_index_schema(self, index_name, dimensions):

@@ -4,9 +4,9 @@ description: "Learn about region availability, rate limits, virtual network supp
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 02/10/2026
+ms.date: 04/03/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ai-usage: ai-assisted
 ms.custom:
   - references_regions
@@ -21,8 +21,9 @@ ms.custom:
 
 You can  use your own storage account to run evaluations.
 
-1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account by using Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
+
 
 [!INCLUDE [evaluation-regions-limits-virtual-network 2](../includes/concepts-evaluation-regions-limits-virtual-network-2.md)]

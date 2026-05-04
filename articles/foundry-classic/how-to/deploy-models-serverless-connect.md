@@ -1,8 +1,8 @@
 ---
 title: "Consume serverless APIs from a different project or hub (classic)"
 description: "Learn how to consume serverless APIs from a different project or hub. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/31/2026
 manager: nitinme

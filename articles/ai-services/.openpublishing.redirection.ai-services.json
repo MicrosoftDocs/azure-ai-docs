@@ -1612,7 +1612,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/azure-government.md",
-      "redirect_url": "/azure/ai-foundry/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": true
     },
     {
@@ -1842,7 +1842,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/business-continuity-disaster-recovery.md",
-      "redirect_url": "/azure/ai-foundry/openai/how-to/business-continuity-disaster-recovery",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": true
     },
     {
@@ -3151,11 +3151,6 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/computer-vision/face/context/context.yml",
-      "redirect_url": "/azure/ai-services/face/context/context.yml",
-      "redirect_document_id": true
-    },
-    {
       "source_path_from_root": "/articles/ai-services/computer-vision/identity-api-reference.md",
       "redirect_url": "/azure/ai-services/face/identity-api-reference",
       "redirect_document_id": true
@@ -3173,6 +3168,11 @@
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/liveness-detection-shared-responsibility.md",
       "redirect_url": "/azure/ai-services/face/liveness-detection-shared-responsibility",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/native-document-support/overview.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/document-based-pii-overview",
       "redirect_document_id": true
     }
   ]

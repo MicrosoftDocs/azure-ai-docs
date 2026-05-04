@@ -23,11 +23,17 @@ You can disable local authentication using the Azure policy **Foundry Tools reso
 If you're creating an account using Bicep / ARM template, you can set the property `disableLocalAuth` to `true` to disable local authentication. For more information, see 
 [Microsoft.CognitiveServices accounts - Bicep, ARM template, & Terraform](/azure/templates/microsoft.cognitiveservices/accounts)
 
-You can also use PowerShell with the Azure CLI to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
+You can also use PowerShell to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
 
 ```powershell
 Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
 ```
+
+> [!NOTE]
+> If you get an error that `-DisableLocalAuth` is not recognized, update your Az.CognitiveServices module:
+> ```powershell
+> Update-Module -Name Az.CognitiveServices
+> ```
 
 ## Verify local authentication status
 

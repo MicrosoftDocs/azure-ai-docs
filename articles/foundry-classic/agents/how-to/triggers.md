@@ -5,8 +5,8 @@ ms.date: 01/06/2026
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ---
 
 # Trigger an agent by using Logic Apps (preview) (classic)

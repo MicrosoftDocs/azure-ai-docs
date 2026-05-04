@@ -145,7 +145,7 @@ items:
       - name: Image Analysis REST API v4.0 (Analyze and multimodal embeddings, GA)
         href: https://aka.ms/vision-4-0-ref
       - name: Image Analysis REST API v4.0 (other features, preview)
-        href: /rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview
+        href: /rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview&preserve-view=true
       - name: .NET
         href: https://aka.ms/azsdk/image-analysis/ref-docs/csharp
       - name: Python
@@ -157,7 +157,7 @@ items:
     - name: Version 3.2
       items:
       - name: Image Analysis REST API v3.2
-        href: /rest/api/computervision/operation-groups?view=rest-computervision-v3.2
+        href: /rest/api/computervision/operation-groups?view=rest-computervision-v3.2&preserve-view=true
       - name: .NET
         href: /dotnet/api/overview/azure/computer-vision
       - name: Node.js
@@ -171,9 +171,9 @@ items:
     - name: Older versions
       items: 
       - name: Image Analysis REST API v3.1
-        href: /rest/api/computervision/operation-groups?view=rest-computervision-v3.1
+        href: /rest/api/computervision/operation-groups?view=rest-computervision-v3.1&preserve-view=true
       - name: Image Analysis REST API v2.1
-        href: /rest/api/computervision/operation-groups?view=rest-computervision-v2.1
+        href: /rest/api/computervision/operation-groups?view=rest-computervision-v2.1&preserve-view=true
     - name: Azure CLI
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
@@ -231,11 +231,11 @@ items:
     - name: OCR REST API v4.0 (preview)
       href: https://aka.ms/vision-4-0-ref
     - name: OCR REST API v3.2 
-      href: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2
+      href: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true
     - name: OCR REST API v3.1
-      href: /rest/api/computervision/read?view=rest-computervision-v3.1
+      href: /rest/api/computervision/read?view=rest-computervision-v3.1&preserve-view=true
     - name: OCR REST API v2.1
-      href: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v2.1
+      href: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true
     - name: .NET
       href: /dotnet/api/overview/azure/computer-vision
     - name: Node.js

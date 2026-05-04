@@ -6,7 +6,7 @@ ms.author: deeikele
 author: deeikele
 ms.reviewer: sdgilley
 ms.date: 03/13/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom: dev-focus
 ai-usage: ai-assisted

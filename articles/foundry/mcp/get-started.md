@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.reviewer: sehan
 ms.date: 03/12/2026
 ms.topic: get-started
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---

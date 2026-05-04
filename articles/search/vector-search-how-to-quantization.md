@@ -6,7 +6,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Compress vectors using scalar or binary quantization

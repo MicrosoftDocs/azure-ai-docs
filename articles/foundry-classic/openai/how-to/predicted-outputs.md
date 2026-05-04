@@ -2,8 +2,8 @@
 title: "How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to improve your model response latency with predicted outputs (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/11/2026
 author: mrbullwinkle

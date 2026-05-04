@@ -1,8 +1,8 @@
 ---
 title: "Deploy Microsoft Foundry Models in the Foundry portal (classic)"
 description: "Learn how to deploy Microsoft Foundry Models in the Foundry portal for AI inference applications and integration into your projects. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 02/09/2026
 ms.custom:

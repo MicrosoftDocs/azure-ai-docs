@@ -1,6 +1,6 @@
 ---
 title: "What is Microsoft Foundry Control Plane?"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/19/2026
 ms.reviewer: mesameki
@@ -13,13 +13,12 @@ ms.custom: doc-kit-assisted
 ---
 
 # What is Microsoft Foundry Control Plane?
-Microsoft Foundry Control Plane is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Foundry Control Plane centralizes management for your AI agent fleet, from build to production.
+
+Microsoft Foundry Control Plane is a unified management interfacethat provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Foundry Control Plane centralizes management for your AI agent fleet, from build to production.
 
 As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the visibility, governance, and control that you need to scale reliably.
 
 This article is intended for enterprise administrators and AI developers who manage AI agents across multiple projects. You learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
-
-In this article, you learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
 
 ## Prerequisites
 
@@ -28,7 +27,7 @@ To explore Foundry Control Plane, you need:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project. For more information, see [Create a project](../how-to/create-projects.md).
 - An [AI gateway configured](../configuration/enable-ai-api-management-gateway-portal.md) for advanced governance features.
-- Appropriate Azure role-based access control (RBAC) permissions for your subscription. <!-- TO VERIFY: Confirm required RBAC roles -->
+- Appropriate Azure role-based access control (RBAC) permissions for your subscription.
 
 ## When to use Foundry Control Plane
 
@@ -141,6 +140,10 @@ Use the **Quota** pane to view, adjust, and request quotas.
 :::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
 The **Quota** pane shows your model deployments and how much quota each deployment consumes. It gives insights into usage patterns and helps you manage resources effectively.
+
+By default, the quota view displays only models with active deployments. Turn on the **Show all** toggle to see the full list of available models and regions, including models you haven't deployed yet. Use **Show all** to explore available quota before you create a deployment, or to check which regions have capacity for a specific model.
+
+For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
 
 ### Admin
 

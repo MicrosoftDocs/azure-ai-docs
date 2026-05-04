@@ -34,12 +34,10 @@ The DSVM supports these data platform tools:
 > SQL Server Developer Edition can be used only for development and test purposes. You need a license or one of the SQL Server VMs to run it in production.
 
 > [!NOTE]
-> Support for Machine Learning Server Standalone ended on July 1, 2021. We will remove it from the DSVM images after
-> June 30. Existing deployments will continue to have access to the software but due to the reached support end date,
-> support for it ended after July 1, 2021.
+> Support for Machine Learning Server Standalone ended on July 1, 2021. It was removed from the DSVM images on June 30, 2021. Existing deployments continue to have access to the software, but support ended after July 1, 2021.
 
 > [!NOTE]
-> We will remove SQL Server Developer Edition from DSVM images by end of November, 2021. Existing deployments will continue to have SQL Server Developer Edition installed. In new deployemnts, if you would like to have access to the SQL Server Developer Edition, you can install and use the SQL Server Developer Edition via Docker support. Visit [Quickstart: Run SQL Server container images with Docker](/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash&preserve-view=true) for more information.
+> SQL Server Developer Edition was removed from DSVM images on November 2021. Existing deployments continue to have SQL Server Developer Edition installed. In new deployments, to access SQL Server Developer Edition, install and use it via Docker support. Visit [Quickstart: Run SQL Server container images with Docker](/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash&preserve-view=true) for more information.
 
 ### Windows
 

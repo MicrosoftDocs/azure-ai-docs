@@ -4,8 +4,8 @@ titleSuffix: Microsoft Foundry
 description: Learn how to use structured outputs with chat completions with Microsoft Foundry Models
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 08/28/2025
 ms.author: mopeakande

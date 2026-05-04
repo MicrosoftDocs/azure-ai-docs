@@ -3,8 +3,8 @@ title: 'Quickstart: Use Azure OpenAI in Microsoft Foundry Models with the C# SDK
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the C# SDK. 
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
@@ -125,7 +125,7 @@ To run the quickstart, follow these steps:
 The base64-encoded image data is printed to the console.
 
 > [!IMPORTANT]
-> GPT-image-1 also supports additional parameters such as `quality` (`low`, `medium`, `high`), `output_format` (`png`, `jpeg`), `background` (`auto`, `transparent`), and `output_compression` (0-100, JPEG only). For details, see [API options](/azure/ai-foundry/openai/how-to/dall-e#specify-api-options).
+> GPT-image-1 and GPT-image-2 also support additional parameters such as `quality` (`low`, `medium`, `high`), `output_format` (`png`, `jpeg`), `background` (`auto`, `transparent`), and `output_compression` (0-100, JPEG only). For details, see [API options](/azure/ai-foundry/openai/how-to/dall-e#specify-api-options).
 
 > [!NOTE]
 > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.

@@ -1,7 +1,7 @@
 ---
 title: "Create and Configure your Storage Account for Evaluations (classic)"
 description:  "Learn how to create and configure your storage account for Microsoft Foundry evaluations. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/30/2026
 ms.reviewer: none

@@ -3,12 +3,14 @@ title: "Use Grounding with Bing Search tools with the agents API"
 description: "Learn how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to ground agent responses with web data."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+ms.date: 04/03/2026
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
@@ -19,7 +21,7 @@ zone_pivot_groups: selection-bing-grounding-new
 
 # Grounding agents with Bing Search tools
 
-Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
+Foundry models have a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
 
@@ -44,6 +46,9 @@ The following table shows SDK and setup support.
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> Not all models support Grounding with Bing Search or Grounding with Bing Custom Search. For a full list of models that support these tools, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Prerequisites
 
@@ -1168,7 +1173,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 1. The admin needs the **Owner** or **Contributor** role in the subscription.
 1. The admin deletes all Grounding with Bing Search and Grounding with Bing Custom Search resources in the subscription.
 1. The admin unregisters the `Microsoft.Bing` resource provider in the subscription (you can't unregister before deleting all resources). For more information, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-1. The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the [sample](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
+1. The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the [sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
 
 ## Next steps
 

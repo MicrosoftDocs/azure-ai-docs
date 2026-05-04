@@ -56,7 +56,7 @@ To create a custom voice in Speech Studio, follow these steps for one of the fol
 1. Select a version of the training recipe for your model. The latest version is selected by default. The supported features and training time can vary by version. Normally, we recommend the latest version. In some cases, you can choose an earlier version to reduce training time. See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
 
    > [!NOTE]
-   > Model versions `V3.0`, `V7.0` and `V8.0` will be retired by July 25, 2025. The voice models already created on these retired versions won't be affected.
+   > Model versions `V3.0`, `V7.0` and `V8.0` were retired on July 25, 2025. The voice models already created on these retired versions aren't affected.
    
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
@@ -145,7 +145,7 @@ Optionally, you can also select **Add my own test script** and provide your own 
 
 1. Optionally, you can add other custom speaking styles. The maximum number of custom styles varies by languages: `English (United States)` allows up to 10 custom styles, `Chinese (Mandarin, Simplified)` allows up to four custom styles, and `Japanese (Japan)` allows up to five custom styles.
 
-   1. Select **Add a custom style** and enter a custom style name of your choice. This name is used by your application within the `style` element of [Speech Synthesis Markup Language (SSML)](../../../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles). You can also use the custom style name as SSML by using the [Audio Content Creation](../../../../how-to-audio-content-creation.md) tool in [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation).
+   1. Select **Add a custom style** and enter a custom style name of your choice. This name is used by your application within the `style` element of [Speech Synthesis Markup Language (SSML)](../../../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles). You can also use the custom style name as SSML by using the [Audio Content Creation](../../../../how-to-audio-content-creation.md) tool in [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation).
    1. Select style samples as training data. Ensure that the training data for custom speaking styles comes from the same speaker as the data used to create the default style.
 
 1. Select **Next**.
@@ -178,7 +178,7 @@ The following table summarizes the different preset styles according to differen
 1. Select a version of the training recipe for your model. The latest version is selected by default. The supported features and training time can vary by version. Normally, we recommend the latest version.
 
    > [!NOTE]
-   > Model versions `V3.0` will be retired by July 25, 2025. The voice models already created on these retired versions won't be affected.
+   > Model version `V3.0` was retired on July 25, 2025. The voice models already created on these retired versions aren't affected.
 
 1. Select the **Target language** that your voice speaks. The voice speaks a different language from your training data. You can select only one target language for a voice model.
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.

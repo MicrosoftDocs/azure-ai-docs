@@ -1,7 +1,7 @@
 ---
 title: Use personally identifiable information (PII) detection Docker containers on-premises
 titleSuffix: Foundry Tools
-description: Use Docker containers for the Personally Identifiable Information (PII) detection API to determine the language of written text, on-premises.
+description: Use Docker containers for the Personally Identifiable Information (PII) detection API to detect and redact sensitive entities on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language

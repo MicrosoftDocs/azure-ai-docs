@@ -2,9 +2,16 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 08/01/2024
+ms.date: 04/09/2026
 ms.author: pafarley
 ---
+
+### Speech CLI 1.49.0: 2026-April release
+Updated to use Speech SDK 1.49.0
+#### New features
+* Added support for phrase list weights.
+#### Bug fixes
+* none
 
 ### Speech CLI 1.48.0: 2026-February release
 Updated to use Speech SDK 1.48.0
@@ -53,7 +60,7 @@ Updated to use Speech SDK 1.45.0
 * Updated SPX to use .NET 8.
     
 #### Bug fixes
-* Fixed SPX Docker container not working in on-prem batch scenarios.
+* Fixed SPX Docker container not working in on-premises batch scenarios.
 
 ### Speech CLI 1.40.0: August 2024 release
 Updated to use Speech SDK 1.40.0

@@ -2,8 +2,8 @@
 title: "Integrate Microsoft Foundry with your applications"
 description: "Learn how to choose a Microsoft Foundry integration pattern, retrieve endpoints, and send your first REST API request with authentication."
 ms.topic: how-to
-ms.date: 03/25/2026
-ms.service: azure-ai-foundry
+ms.date: 04/08/2026
+ms.service: microsoft-foundry
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley

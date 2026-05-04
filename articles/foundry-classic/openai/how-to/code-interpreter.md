@@ -3,10 +3,10 @@ title: "How to use Azure OpenAI Assistants Code Interpreter (classic)"
 description: "Learn how to use Assistants Code Interpreter (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 04/10/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -70,7 +70,7 @@ We recommend using assistants with the latest models to take advantage of the ne
 
 ### File upload API reference
 
-Assistants use the [same API for file upload as fine-tuning](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP). When uploading a file, you have to specify an appropriate value for the [purpose parameter](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP#purpose).
+Assistants use the [same API for file upload as fine-tuning](/rest/api/azureopenai/files/upload). When uploading a file, you have to specify an appropriate value for the [purpose parameter](/rest/api/azureopenai/files/upload#purpose).
 
 ## Enable Code Interpreter
 
@@ -269,7 +269,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/<YOUR-FILE-ID>/con
 
 ## See also
 
-* [File Upload API reference](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP)
+* [File Upload API reference](/rest/api/azureopenai/files/upload)
 * [Assistants API Reference](../reference-preview.md#list---assistants)
 * Learn more about how to use Assistants with our [How-to guide on Assistants](../how-to/assistant.md).
 * [Azure OpenAI Assistants API samples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants)

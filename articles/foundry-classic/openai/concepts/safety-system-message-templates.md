@@ -1,8 +1,8 @@
 ---
 title: "Safety system message templates (classic)"
 description: "Use these safety system message templates as a starting point to reduce harmful and ungrounded outputs in your Azure OpenAI apps. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/30/2026
 ms.custom: 

@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # Rerank tool (preview)
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 The prompt flow Rerank tool improves search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
 > [!IMPORTANT]

@@ -41,7 +41,7 @@ To create a personal voice and get the speaker profile ID, use the [PersonalVoic
 
 - Set the required `projectId` property. See [create a project](./personal-voice-create-project.md).
 - Set the required `consentId` property. See [add user consent](./personal-voice-create-consent.md).
-- Set the required `audiodata` property. You can specify one or more audio files in the same request. 
+- Set the required `audiodata` property. You can specify one or more audio files in the same request. The maximum file size is 30 MB.
 
 Make an HTTP POST request using the URI as shown in the following [PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post) example. 
 - Replace `YourResourceKey` with your Speech resource key.
@@ -49,7 +49,7 @@ Make an HTTP POST request using the URI as shown in the following [PersonalVoice
 - Replace `JessicaPersonalVoiceId` with a personal voice ID of your choice. The case sensitive ID will be used in the personal voice's URI and can't be changed later. 
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'projectId="ProjectId"' -F 'consentId="JessicaConsentId"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample001.wav"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample002.wav"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2024-02-01-preview"
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'projectId="ProjectId"' -F 'consentId="JessicaConsentId"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample001.wav"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample002.wav"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -71,7 +71,7 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
 Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
 ```
 
@@ -104,7 +104,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
       ".wav"
     ]
   }
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
 
 # Ensure the `containerUrl` has both read and list permissions. 
 # Ensure the `.wav` files are located in the "jessica" folder within the container. The `prefix` matches all `.wav` files in the "jessica" folder. If there is no such folder, the prefix will match `.wav` files with names starting with "jessica". 
@@ -129,7 +129,7 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Create](/rest/api/aiservices/speechapi/personal-voices/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
 Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
 ```
 

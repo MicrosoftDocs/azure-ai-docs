@@ -124,14 +124,14 @@ The following table shows a summary of the different features available to stand
 | Deployment types              | Models                                          | Models                                          | Models and Pipeline components                |
 | MLflow model deployment       | No, only specific models in the catalog         | Yes                                             | Yes                                           |
 | Custom model deployment       | No, only specific models in the catalog         | Yes, with scoring script                        | Yes, with scoring script                      |
-| Inference server <sup>3</sup> | Azure AI Model Inference API                    | - Azure Machine Learning Inferencing Server<br /> - Triton<br /> - Custom (using BYOC)  | Batch Inference        |
+| Inference server <sup>2</sup> | Azure AI Model Inference API                    | - Azure Machine Learning Inferencing Server<br /> - Triton<br /> - Custom (using BYOC)  | Batch Inference        |
 | Compute resource consumed     | None (serverless)                               | Instances or granular resources                 | Cluster instances                             |
 | Compute type                  | None (serverless)                               | Managed compute and Kubernetes                  | Managed compute and Kubernetes                |
 | Low-priority compute          | NA                                              | No                                              | Yes                                           |
 | Scaling compute to zero       | Built-in                                        | No                                              | Yes                                           |
-| Autoscaling compute<sup>4</sup> | Built-in                                        | Yes, based on resource use                 | Yes, based on job count                       |
+| Autoscaling compute<sup>3</sup> | Built-in                                        | Yes, based on resource use                 | Yes, based on job count                       |
 | Overcapacity management       | Throttling                                      | Throttling                                      | Queuing                                       |
-| Cost basis<sup>5</sup>        | Per token                                      | Per deployment: compute instances running       | Per job: compute instances consumed in the job (capped to the maximum number of instances of the cluster) |
+| Cost basis<sup>4</sup>        | Per token                                      | Per deployment: compute instances running       | Per job: compute instances consumed in the job (capped to the maximum number of instances of the cluster) |
 | Local testing of deployments  | No                                              | Yes                                             | No                                            |
 
 

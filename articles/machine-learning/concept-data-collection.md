@@ -42,6 +42,19 @@ Data collector has the following limitations:
 - Data collector only supports logging for online (or real-time) Azure Machine Learning endpoints (Managed or Kubernetes).
 - The Data collector Python SDK only supports logging tabular data via pandas DataFrames.
 
+## FAQ
+
+### Inference data collection after deployment
+
+**Why are request and response logs missing or unmatched for early requests?**
+Inference data collection is initialized when traffic first arrives. During this brief warm-up period after deployment, early requests or responses may be logged independently. This behavior is expected and temporary.
+
+**Does this indicate data loss or a failure?**
+No. This is by design and does not indicate an error if data-collection metrics show no failures.
+
+**How can I avoid this when validating telemetry?**
+Send a few warm-up inference requests or wait briefly after deployment before running validation or smoke tests.
+
 ## Related content
 
 - [How to collect data from models in production](how-to-collect-production-data.md)

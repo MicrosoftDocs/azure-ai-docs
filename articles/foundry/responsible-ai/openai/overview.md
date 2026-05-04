@@ -4,8 +4,8 @@ description: "RAI overview for Azure OpenAI Service"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 07/28/2025
 ai-usage: ai-assisted
