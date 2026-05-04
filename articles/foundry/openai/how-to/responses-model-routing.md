@@ -86,7 +86,7 @@ See the first row: `model-router` didn't target a specific model, but the `Respo
 
 Every call goes through `responses.create()`. The `model` value is the only decision point.
 
-| When you need | Set `model` to | What happens |
+| Use case | `model` value| Result |
 |---|---|---|
 | The best model for each request, optimized by cost or quality | `"model-router"` | Foundry evaluates the prompt and selects the best model from your configured pool |
 | A specific model for compliance, reproducibility, or benchmarking | The model name (`"gpt-5-2"`, `"Deepseek-V3.2"`) | Foundry routes to exactly that model |
