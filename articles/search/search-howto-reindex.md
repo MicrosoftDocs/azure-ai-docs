@@ -289,7 +289,7 @@ The following list enumerates the schema changes that can be introduced seamless
 + Update `searchAnalyzer` on a field having an existing `indexAnalyzer`
 + Add a new [analyzer definition](index-add-custom-analyzers.md) in an index (which can be applied to new fields)
 + Add, update, or delete [scoring profiles](index-add-scoring-profiles.md)
-+ Add, update, or delete [synonymMaps](search-synonyms.md)
++ Add, update, or delete [synonym maps](search-synonyms.md)
 + Add, update, or delete [semantic configurations](semantic-how-to-configure.md)
 + Add, update, or delete CORS settings
 
@@ -347,11 +347,9 @@ An index description is a schema update, and you can add it without having to re
 + String length is 4,000 characters maximum.
 + Content must be human-readable, in Unicode. Your use-case should determine which language to use.
 
-Support for an index description is provided in the latest stable REST API, the Azure portal, or an Azure SDK package that provides the feature.
+Support for an index description is available through the Azure portal, the latest stable REST API, or an Azure SDK package that provides the feature.
 
 ### [**Azure portal**](#tab/portal)
-
-The Azure portal supports the latest stable API.
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
