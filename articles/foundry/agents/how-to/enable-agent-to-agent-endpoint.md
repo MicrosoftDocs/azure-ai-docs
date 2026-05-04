@@ -176,6 +176,83 @@ Foundry Agent Service supports the following A2A transports for incoming request
 | **JSONRPC** | ✔️ |
 | **gRPC** | ❌ |
 
+## Connect to a Foundry A2A agent with the Python A2A SDK
+
+The following example shows how to use the open-source [Python A2A SDK](https://github.com/a2aproject/a2a-python) to connect to a Foundry agent that has incoming A2A enabled. The SDK automatically uses its 0.3 compatibility mode based on the protocol version in the agent card.
+
+Because the Foundry agent card requires authentication and uses a custom path (`agentCard/v0.3` instead of the default `.well-known/agent-card.json`), you configure the `httpx` client with a bearer token and pass the custom agent card path to the resolver.
+
+Install the required packages:
+
+```bash
+pip install a2a-sdk azure-identity
+```
+
+```python
+import asyncio
+
+import httpx
+
+from azure.identity import DefaultAzureCredential
+from a2a.client import A2ACardResolver, ClientConfig, create_client
+from a2a.helpers import new_text_message
+from a2a.types.a2a_pb2 import (
+    Role,
+    SendMessageRequest,
+)
+
+# Your Foundry agent's A2A base path
+A2A_BASE_URL = (
+    "https://{account}.services.ai.azure.com/api/projects"
+    "/{project}/agents/{agent}/endpoint/protocols/a2a"
+)
+# Agent card path, relative to the A2A base URL
+AGENT_CARD_PATH = "agentCard/v0.3"
+
+
+async def main():
+    # Get a Microsoft Entra token
+    credential = DefaultAzureCredential()
+    token = credential.get_token("https://ai.azure.com/.default").token
+
+    async with httpx.AsyncClient(
+        headers={"Authorization": f"Bearer {token}"},
+    ) as httpx_client:
+        # Resolve the agent card from the custom path
+        resolver = A2ACardResolver(
+            httpx_client=httpx_client,
+            base_url=A2A_BASE_URL,
+            agent_card_path=AGENT_CARD_PATH,
+        )
+        agent_card = await resolver.get_agent_card()
+
+        # Create a non-streaming A2A client
+        config = ClientConfig(
+            streaming=False,
+            httpx_client=httpx_client,
+        )
+        client = await create_client(
+            agent=agent_card, client_config=config
+        )
+
+        # Send a message to the Foundry agent
+        message = new_text_message(
+            "Hello, what can you do?", role=Role.ROLE_USER
+        )
+        request = SendMessageRequest(message=message)
+
+        async for response in client.send_message(request):
+            print(response)
+
+        await client.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Replace `{account}`, `{project}`, and `{agent}` with your Foundry resource name, project name, and agent name. The resolver constructs the full agent card URL by appending the relative `AGENT_CARD_PATH` to `A2A_BASE_URL`.
+
 ## Limitations
 
 - Only A2A protocol version 0.3 is supported.
