@@ -33,7 +33,7 @@ The Responses API is the programmatic interface for every model in Microsoft Fou
 
 ## Call models through the Responses API
 
-The following sample calls several models through the same `responses.create()` interface—starting with `model-router` for automatic selection, then named models for deterministic control. The only difference is the `model` value.
+The following sample calls several models through the same `responses.create()` interface, starting with `model-router` for automatic selection, then named models for deterministic control.
 
 ```python
 import os
