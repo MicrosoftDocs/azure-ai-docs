@@ -1,4 +1,4 @@
----
+﻿---
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
@@ -262,6 +262,8 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Standard | `en-US-BlueNeural`<sup>1</sup> (Neutral) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Andrew2:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-Multitalker:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multi-talker | `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multi-talker | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-ava:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Ava3:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
