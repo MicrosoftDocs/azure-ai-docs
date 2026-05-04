@@ -93,6 +93,9 @@ items:
   - name: Manage quotas for Foundry resources
     displayName: Manage and increase quotas for resources with Microsoft Foundry
     href: ../../how-to/quota.md
+  - name: Manage Azure OpenAI deployment quotas
+    displayName: Manage Azure OpenAI deployment quotas in Microsoft Foundry models
+    href: ../../openai/how-to/quota.md
   - name: Foundry Model quotas and limits
     displayName: Microsoft Foundry Models quotas and limits
     href: ../../foundry-models/quotas-limits.md
