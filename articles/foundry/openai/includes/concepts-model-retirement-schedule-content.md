@@ -35,7 +35,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-06-01 | — |
 | gpt-4o-mini-tts | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
-| gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2027-04-16 | — |
+| gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-chat | 2025-08-07 | Preview | 2026-06-09 | gpt-5.3-chat |
 | gpt-5-chat | 2025-10-03 | Preview | 2026-06-09 | gpt-5.3-chat |
@@ -61,7 +61,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | gpt-5.5 | 2026-04-24 | GA | 2027-04-23 | — |
 | gpt-audio | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
-| gpt-audio-mini | 2025-10-06 | GA | 2027-04-07 | — |
+| gpt-audio-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-05-15 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
@@ -69,7 +69,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
-| gpt-realtime-mini | 2025-10-06 | GA | 2027-04-07 | — |
+| gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-07-15 | — |
 | o3 | 2025-04-16 | GA | 2026-10-16 | — |
@@ -82,9 +82,9 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 2 | GA | 2027-04-15 | — |
-| tts | 001 | Preview | 2026-06-18 | — |
-| tts-hd | 001 | GA | 2026-06-18 | — |
-| whisper | 001 | GA | 2026-06-18 | — |
+| tts | 001 | Preview | 2026-12-15 | — |
+| tts-hd | 001 | GA | 2026-12-15 | — |
+| whisper | 001 | GA | 2026-12-15 | — |
 
 #### Fine-tuned models
 
