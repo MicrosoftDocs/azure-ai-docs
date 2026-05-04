@@ -57,7 +57,7 @@ To add an avatar talent profile and upload their consent statement in your proje
 1. Sign in to the [Speech Studio](https://speech.microsoft.com).
 1. Select **Custom avatar** > Your project name > **Set up avatar talent** > **Upload consent video**.
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
-    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
+    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
     - Enter the avatar talent name and your company name in the same language as the recorded statement. 
         - The avatar talent name must be the name of the person who recorded the consent statement. 
@@ -119,7 +119,7 @@ Training duration varies depending on how much data you use. It normally takes 2
 Custom avatar training is currently only available in some regions. After your avatar model is trained in a supported region, you can copy it to an AI Services resource for Speech in another region as needed. For more information, see footnotes in the [regions table](../../../../regions.md).
 
 > [!NOTE]
-> You can only copy the voice sync for avatar model to the regions that support the voice sync for avatar feature, which are the same regions that support personal voice.
+> You can only copy the voice sync for avatar model to the regions that support the voice sync for avatar feature, which are the same regions that support personal voice. See the [Region support](/azure/ai-services/speech-service/regions?tabs=ttsavatar) page.
 
 To copy your custom avatar model to another project:
 1. On the **Train model** tab, select an avatar model that you want to copy, and then select **Copy to project**.
