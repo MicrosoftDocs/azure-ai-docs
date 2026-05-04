@@ -1,4 +1,4 @@
----
+﻿---
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
@@ -197,6 +197,18 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Multilingual | `en-US-OnyxTurboMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Multilingual | `en-US-NovaTurboMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
 | `en-US` | English (United States) | Multilingual | `en-US-ShimmerTurboMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-AlloyMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-EchoMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-FableMultilingualNeural`<sup>5</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-OnyxMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-NovaMultilingualNeural`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-ShimmerMultilingualNeural`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-AlloyMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI)| `en-US-EchoMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI)| `en-US-FableMultilingualNeuralHD`<sup>5</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-OnyxMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-NovaMultilingualNeuralHD`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-ShimmerMultilingualNeuralHD`<sup>5</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Multilingual | `en-US-BrianMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-AvaNeural` (Female) | **Styles**<br/>`angry`, `fearful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-AndrewNeural` (Male) |  | ❌ |
@@ -661,7 +673,7 @@ ai-usage: ai-assisted
 
 <sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#visemes). 
 
-<sup>2</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices.
+<sup>4</sup> For the current list of regions where this voice is generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>5</sup> The OpenAI text-to-speech voices in Azure Speech are in preview and are available only in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text-to-speech voices and Azure Speech text-to-speech voices, see [OpenAI text-to-speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
 
