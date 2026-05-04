@@ -1,4 +1,4 @@
-﻿---
+---
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
@@ -601,11 +601,11 @@ ai-usage: ai-assisted
 | `wuu-CN` | Chinese (Wu, Simplified) | Standard | `wuu-CN-YunzheNeural`<sup>3</sup> (Male) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-XiaoMinNeural`<sup>3</sup> (Female) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-YunSongNeural`<sup>3</sup> (Male) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>2</sup> (Male) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>2</sup> (Male) | **Styles**<br/>`assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>2,8</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>2,8</sup> (Male) | **Styles**<br/>`assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Yunqi:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
@@ -615,7 +615,7 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyiNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunyangNeural` (Male) | **Styles**<br/>`customerservice`, `narration-professional`, `newscast-casual`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaochenNeural` (Female) | **Styles**<br/>`livecommercial`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>2</sup> (Female) | **Styles**<br/>`cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaochenMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Xiaohan:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `complaining`, `fearful`, `gentle`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaohanNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
@@ -681,4 +681,4 @@ ai-usage: ai-assisted
 
 <sup>7</sup> The multi-talker voice is available in preview in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. Only `en-US` content is supported for this voice.
 
-
+<sup>8</sup> The voice is available in the `ChinaNorth3` region.
