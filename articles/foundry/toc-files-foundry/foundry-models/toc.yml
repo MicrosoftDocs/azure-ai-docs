@@ -125,12 +125,9 @@ items:
   - name: Deployment types (government)
     displayName: Deployment types for Microsoft Foundry Models (government)
     href: ../../foundry-models/concepts/deployment-types-gov.md
-  - name: Managed compute pay-as-you-go
-    displayName: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing
-    href: ../../../foundry-classic/how-to/deploy-models-managed-pay-go.md?context=/azure/foundry/context/context
   - name: Managed compute deployment
-    displayName: Deploy models with managed compute
-    href: ../../../foundry-classic/how-to/deploy-models-managed.md?context=/azure/foundry/context/context
+    displayName: Deploy open-source AI models with managed compute in Foundry
+    href: ../../how-to/deploy-models-managed.md
   - name: Batch processing
     displayName: Getting started with Azure OpenAI batch deployments
     href: ../../openai/how-to/batch.md

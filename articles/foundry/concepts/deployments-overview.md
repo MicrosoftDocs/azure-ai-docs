@@ -16,6 +16,7 @@ ai-usage: ai-assisted
 
 Microsoft Foundry Models is the hub for discovering and deploying a wide range of AI models for generative AI applications. To make a model available for inference requests, you deploy it. Foundry offers two deployment options depending on the model type and your infrastructure needs.
 
+<!-- This article needs to be updated for managed compute in Foundry Nextgen. -->
 ## Deployment options
 
 Foundry provides two deployment options:
