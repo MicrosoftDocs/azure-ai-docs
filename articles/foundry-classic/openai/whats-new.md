@@ -21,6 +21,15 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## May 2026
+
+### GPT Realtime 2.0 and GPT Audio 2.0 concept articles
+
+New concept articles describe the capabilities and key concepts for the latest realtime and audio models:
+
+- [GPT Realtime 2.0 overview](./concepts/realtime-2.md) — covers reasoning support, response phases (preamble and final answer), and stricter instruction following.
+- [GPT Audio 2.0 overview](./concepts/realtime-audio-2.md) — covers request/response audio generation scenarios and how GPT Audio 2 differs from GPT Realtime 2.
+
 ## February 2026
 
 ### GPT-Realtime-1.5 and GPT-Audio-1.5 models released

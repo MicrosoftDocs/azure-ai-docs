@@ -18,6 +18,8 @@ Welcome! This article highlights key changes and updates in Microsoft Foundry do
 
 ## New articles
 
+- [GPT Audio 2.0 overview](../foundry/openai/concepts/realtime-audio-2.md)
+- [GPT Realtime 2.0 overview](../foundry/openai/concepts/realtime-2.md)
 - [Agentic Workflows: Task Adherence (preview)](../foundry/guardrails/task-adherence.md)
 - [Auto-upgrade Azure OpenAI resources to Microsoft Foundry](../foundry/how-to/upgrade-azure-openai-auto.md)
 - [Customize agent behavior at runtime with structured inputs](../foundry/agents/how-to/structured-inputs.md)
