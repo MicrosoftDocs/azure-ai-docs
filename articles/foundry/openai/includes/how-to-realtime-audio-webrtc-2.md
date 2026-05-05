@@ -1115,7 +1115,7 @@ The associated browser changes are shown here.
 
 **Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [Flask documentation](https://flask.palletsprojects.com/)
 
-###  Step 4 (optional): Network Firewall configuration
+###  Step 4 (optional): Configure Network Firewall
 
 If you use a Network Firewall, the Realtime API requires the following `Allow` rules on the client side.
 
@@ -1135,7 +1135,7 @@ If you use a Network Firewall, the Realtime API requires the following `Allow` r
 
 - **WebRTC connection failed**:
   - Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
-  - If you use Network Firewall, check [Firewall Settings](#step-4-optional-network-firewall-configuration).
+  - If you use Network Firewall, check [Firewall Settings](#step-4-optional-configure-network-firewall).
 - **Data channel not opening**: Check the browser console for ICE connection state errors. Verify the ephemeral token hasn't expired.
 - **SDP exchange failed**: Verify the WebRTC endpoint URL is correct and the ephemeral token is valid.
 
