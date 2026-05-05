@@ -1117,7 +1117,7 @@ The associated browser changes are shown here.
 
 ###  Step 4 (optional): Configure Network Firewall
 
-If you use a Network Firewall, the Realtime API requires the following `Allow` rules on the client side.
+If you use a Network Firewall, the Realtime API requires the following `Allow` rule on the client side.
 
 | Port | Protocols | Rule | IP Range |
 | --- | --- | --- | --- |
