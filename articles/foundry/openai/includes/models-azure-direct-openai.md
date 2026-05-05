@@ -15,8 +15,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Models | Description |
 |--|--|
+| [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview**  |
 | [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | **NEW** `gpt-5.5` |
-| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) |`gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
 | [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) |  `gpt-5.3-chat`, `gpt-5.3-codex`  |
 | [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
 | [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) |  `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
@@ -32,6 +33,20 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [Image generation](../../foundry-models/concepts/models-sold-directly-by-azure.md#image-generation-models) | A series of models that can generate original images from natural language. |
 | [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
+
+## GPT-chat-latest
+
+| Model | Region |
+|---|---|
+| `gpt-chat-latest` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central |
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | December 2025 |
+
+>[!NOTE]
+> You may also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, we are introducing `gpt-chat-latest` as the product name for this release. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. We are also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
+
 
 ## GPT-5.5
 
