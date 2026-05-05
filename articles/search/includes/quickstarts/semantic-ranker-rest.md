@@ -193,7 +193,7 @@ Both `.rest` files define variables at the top for reuse across all requests.
 ```http
 @searchUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @personalAccessToken = PUT-YOUR-PERSONAL-ACCESS-TOKEN-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 ```
 
 Key takeaways:

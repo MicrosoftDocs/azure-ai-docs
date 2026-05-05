@@ -47,7 +47,7 @@ In this scenario, a scoring profile is used twice.
 To enable scoring profiles for semantically ranked results, [update an index](/rest/api/searchservice/indexes/create-or-update#rankingorder) by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-09-01
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2026-04-01
 {
   "semantic": {
     "configurations": [
@@ -65,7 +65,7 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 To opt out of sorting by semantic reranker boosted score, set the `rankingOrder` field to `reRankerScore` value in the semantic configuration.
 
 ```json
-PUT /indexes/{index-name}?api-version=2025-09-01
+PUT /indexes/{index-name}?api-version=2026-04-01
 {
   "semantic": {
     "configurations": [
@@ -85,7 +85,7 @@ Even if you opt out of sorting by `@search.rerankerBoostedScore`, the `boostedRe
 Start with a [semantic query](semantic-how-to-query-request.md) that specifies a scoring profile. This query targets a search index that has `rankingOrder` set to `boostedRerankerScore`.
 
 ```json
-POST /indexes/{index-name}/docs/search?api-version=2025-09-01
+POST /indexes/{index-name}/docs/search?api-version=2026-04-01
 {
   "search": "my query to be boosted",
   "scoringProfile": "myScoringProfile",

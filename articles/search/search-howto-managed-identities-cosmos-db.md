@@ -103,7 +103,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
+POST https://[service name].search.windows.net/datasources?api-version=2026-04-01
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
