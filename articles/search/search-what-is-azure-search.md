@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/10/2025
+ms.date: 05/05/2026
 ---
 
 # What is Azure AI Search?
@@ -106,7 +106,7 @@ Classic search and agentic retrieval are complementary modes of information retr
 | Query request | Search documents in an index | Retrieve from knowledge sources |
 | Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, references |
 | Region restrictions | No | Yes |
-| Status | Generally available | Public preview|
+| Status | Generally available | Generally available, with some capabilities in preview |
 
 ## How to get started
 
