@@ -3227,7 +3227,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/adaptive-custom-translation",
+      "redirect_url": "/azure/ai-services/translator/foundry/adaptive-custom-translation",
       "redirect_document_id": true
     },
     {

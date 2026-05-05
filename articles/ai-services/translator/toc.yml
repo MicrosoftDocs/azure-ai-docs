@@ -197,8 +197,14 @@ items:
     href: document-translation/document-sdk-overview.md
   - name: Document translation FAQ
     href: document-translation/faq.md
+
+- name: Microsoft Foundry custom translation
+  items:
+  - name: Adaptive custom translation
+    displayName: foundry, gpt, api
+    href: foundry/adaptive-custom-translation.md
  
-- name: Custom translation
+- name: Custom Translator portal
   items:
   - name: What is the Custom Translator portal?
     href: custom-translator/overview.md
@@ -210,9 +216,6 @@ items:
   - name: "Quickstart: Custom Translator portal"
     displayName: workspace,project,parallel,train,upload,publish,
     href: custom-translator/quickstart.md
-  - name: Adaptive custom translation
-    displayName: foundry, gpt, api
-    href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: How-to guides
     items:
     - name: Create and manage a portal workspace
