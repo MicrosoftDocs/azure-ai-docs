@@ -15,7 +15,7 @@ monikerRange: '<=doc-intel-4.0.0'
 # Document Intelligence v4.0 migration
 
 > [!IMPORTANT]
-> Document Intelligence REST API 2022–08–31 (GA) v3.0 reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](versioning/v3-1-migration-guide.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements.
+> Document Intelligence REST API 2022–08–31 (GA) v3.0 reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](migration-guide-overview.md) or [Azure Content Understanding](../../content-understanding/nt-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements.
 
 ## SDk migration guides
 
