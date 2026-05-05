@@ -62,9 +62,9 @@ The following breaking changes apply to data operations.
 
 ### Breaking changes for agentic retrieval
 
-`2026-04-01` is the first stable API version for agentic retrieval. It introduces the following breaking changes from `2025-11-01-preview`:
+`2026-04-01` is the first stable REST API version for agentic retrieval. It introduces the following breaking changes from `2025-11-01-preview`:
 
-+ Answer synthesis, query planning, and configurable reasoning effort are removed. Retrieval returns extractive grounded content only.
++ Answer synthesis, query planning, and configurable reasoning effort are removed. Retrieval only returns extractive, grounded content.
 
 + The retrieve request shape changes: `messages` is replaced by `intents`, and several parameters are renamed or removed.
 
@@ -104,15 +104,15 @@ Upgrade guidance assumes upgrade from the most recent previous version. If your 
 
 ### Upgrade to 2026-04-01
 
-[`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) is the latest stable REST API version. It promotes agentic retrieval, knowledge sources, and several skills and features to general availability.
+[`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) is the latest stable REST API version. It promotes agentic retrieval, select knowledge sources, and several skills and features to general availability.
 
-Before you upgrade, check whether any of the following breaking changes apply to your code:
+Before you upgrade, check whether any of the following `2026-04-01` breaking changes apply to your code:
 
-+ Six properties are removed from the [GenAI Prompt skill](genai-prompt-skill.md) definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. Remove these properties before you upgrade. Definitions that still include these properties return a `400 Bad Request` error.
++ Six properties are removed from the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. Remove these properties before you upgrade. Definitions that still include these properties return a `400 Bad Request` error.
 
 + Agentic retrieval now requires its own billing consent. If you have `semanticSearch=standard` set but haven't explicitly set `knowledgeRetrieval=standard`, agentic retrieval calls fail. Use the Search Management REST API to set `knowledgeRetrieval=standard` before you upgrade. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-+ If your agentic retrieval code targets the `2025-11-01-preview`, the generally available `2026-04-01` removes several preview capabilities and standardizes retrieval around the intents input, extractive output, and minimal reasoning. For more information, see [Breaking changes for agentic retrieval](#breaking-changes-for-agentic-retrieval) and [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
++ If your agentic retrieval code targets the `2025-11-01-preview`, `2026-04-01` removes several preview capabilities and standardizes retrieval around the intents input, extractive output, and minimal reasoning. For more information, see [Breaking changes for agentic retrieval](#breaking-changes-for-agentic-retrieval) and [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 

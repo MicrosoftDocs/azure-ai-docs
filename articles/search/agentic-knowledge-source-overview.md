@@ -39,7 +39,7 @@ You can create the following knowledge sources:
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
-|  [`"webParameters"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
+| [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
 
 Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
 
