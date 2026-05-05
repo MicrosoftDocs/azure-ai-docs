@@ -217,6 +217,7 @@ async def main():
 
     async with httpx.AsyncClient(
         headers={"Authorization": f"Bearer {token}"},
+        timeout=httpx.Timeout(120.0),
     ) as httpx_client:
         # Resolve the agent card from the custom path
         resolver = A2ACardResolver(
