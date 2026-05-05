@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 05/05/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -41,7 +41,7 @@ monikerRange: '<=doc-intel-4.0.0'
 :::moniker-end
 
 > [!IMPORTANT]
-> Document Intelligence v3.0 reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](versioning/v3-1-migration-guide.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements.
+> Document Intelligence REST API 2022–08–31 (GA) v3.0 reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](versioning/v3-1-migration-guide.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements. For more information on migrating to v4.0, see the [Migration to v4.0 guide](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer/MigrationGuide.md) in our GitHub repository.
 
 Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
@@ -637,7 +637,7 @@ To learn more about each model and browse the API references, use the links in t
 
 :::moniker range=">=doc-intel-3.0.0"
 
-* [Choose a Document Intelligence model]().
+* [Choose a Document Intelligence model](concept/choose-model-feature.md).
 * Process your own forms and documents with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 * Finish a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), and then create a document processing app in the development language of your choice.
 
