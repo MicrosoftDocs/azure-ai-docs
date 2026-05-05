@@ -86,7 +86,7 @@ Update the `agent_card` fields to describe your agent's actual capabilities. The
 Install the required package:
 
 ```bash
-uv add "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 Use the `patch_agent_details` method to add the A2A protocol to your agent's endpoint:
@@ -185,7 +185,7 @@ Because the Foundry agent card requires authentication and uses a custom path (`
 Install the required packages:
 
 ```bash
-uv add a2a-sdk azure-identity
+pip install a2a-sdk azure-identity
 ```
 
 ```python
