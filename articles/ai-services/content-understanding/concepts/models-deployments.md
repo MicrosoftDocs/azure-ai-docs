@@ -72,8 +72,7 @@ Prebuilt analyzers reference the following deployment keys:
 
 You map these keys to your actual deployments in the `modelDeployments` configuration (see [Set default deployments](#option-1-set-default-deployments-at-the-resource-level)).
 
-> [!NOTE]
-> If your resource already has `gpt-4.1` (or `gpt-4.1-mini`) and `text-embedding-3-large` configured in `modelDeployments`, the service automatically creates the `prebuilt-analyzer-*` keys using those existing deployment values. No manual action is required for existing customers.
+
 
 
 ## How model selection works
@@ -84,9 +83,9 @@ When you create a custom analyzer, you can specify which chat completion model a
 {
   "analyzerId": "myReceipt",
   "models": {
-    // Specifies the completion and embedding models used by this analyzer.
-    "completion": "myGpt52Deployment",
-    "embedding": "myTextEmbedding3LargeDeployment"
+    // Specify the completion and embedding models for this custom analyzer by referencing the indirection keys in model deployment
+    "completion": "prebuilt-analyzer-completion",
+    "embedding": "prebuilt-analyzer-embedding"
   },
   "config": {
 
@@ -162,7 +161,7 @@ Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`,
 Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
-POST /contentunderstanding/analyzers/{analyzerID}:analyze
+POST /contentunderstanding/analyzers/myReceipt:analyze
 {
   "modelDeployments": {
     "gpt-5.2": "myGpt52Deployment", 
