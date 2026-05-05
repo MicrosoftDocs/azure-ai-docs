@@ -19,22 +19,22 @@ The new version introduces expanded model options, new translation controls, and
 >[!IMPORTANT]
 >
 > * API version `2026-06-06` **is not a drop-in replacement** for v3.0. Changes to request structure, response schema, and supported methods are required.
-> * Test your application thoroughly in a non-production environment before migrating any production workloads.
-> * Validate your code and internal workflows, and restrict production deployments to API versions you have fully tested.
+> * Test your application thoroughly in a nonproduction environment before migrating any production workloads.
+> * Validate your code and internal workflows, and restrict production deployments to API versions you fully test.
 
 ## What's new in API version 2026-06-06
 
-These are the key capabilities added in `2026-06-06`. Review each one to understand whether it applies to your integration and whether it requires code changes or opens up new scenarios for your application.
+There are key capabilities added in the `2026-06-06` API. Review each one to understand whether it applies to your integration and whether it requires code changes or opens up new scenarios for your application.
 
-* **Large language model (LLM) selection**. You can now choose between standard Neural Machine Translation (NMT) and a supported Large Language Model (LLM), such as GPT-5.1, for each translation request. This lets you balance quality, cost, and performance without managing prompt engineering or manual quality pipelines. Note that LLM-based translation requires a Microsoft Foundry resource.
+* **Large language model (LLM) selection**. You can now choose between standard Neural Machine Translation (NMT) and a supported Large Language Model (LLM), such as GPT-5.1, for each translation request. This allowance lets you balance quality, cost, and performance without managing prompt engineering or manual quality pipelines. LLM-based translation requires a Microsoft Foundry resource.
 
-* **Adaptive custom translation**. You can supply up to five reference translation pairs or an adaptive dataset index ID to guide LLM output toward your preferred style and terminology. This is useful for domain-specific content or applications with established glossaries.
+* **Adaptive custom translation**. You can supply up to five reference translation pairs or an adaptive dataset index ID to guide LLM output toward your preferred style and terminology. This allowance is useful for domain-specific content or applications with established glossaries.
 
 * **Tone and gender controls**. Translation requests now accept tone (formal, informal, neutral) and gender (male, female, neutral) parameters when using LLM-based translation. These parameters are optional but allow you to produce more targeted output for audience-specific scenarios.
 
 ## Method changes
 
-The `2026-06-06` API changes several required parameters and removes methods that v3.0 supported. Review the tables below to identify what you need to update in your code.
+The `2026-06-06` API changes several required parameters and removes methods that v3.0 supported. Review the following tables to identify what you need to update in your code.
 
 >[!WARNING]
 >
@@ -63,7 +63,7 @@ Several v3.0 methods are no longer available in `2026-06-06`. If your applicatio
 | [Translate text](../reference/v3/translate.md) | [Translate text](../2026-06-06/translate-api.md) |
 | [Transliterate](../reference/v3/transliterate.md) | [Transliterate](../2026-06-06/transliterate-api.md) |
 | [Languages](../reference/v3/languages.md) | [Languages](../2026-06-06/get-languages.md) |
-| [BreakSentence](../reference/v3/break-sentence.md) | No longer supported. Replace with a sentence delimiter function or an NLP library compatible with your programming language. |
+| [BreakSentence](../reference/v3/break-sentence.md) | No longer supported. Replace with a sentence delimiter function or a natural language processing (NLP) library compatible with your programming language. |
 | [Detect](../reference/v3/detect.md) | No longer supported. Replace with the [Azure AI Language detection API](../../../language-service/language-detection/how-to/call-api.md). |
 | [Dictionary Lookup](../reference/v3/dictionary-lookup.md) | No longer supported. Consider using [adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md) for domain-specific term handling. |
 | [Dictionary Examples](../reference/v3/dictionary-examples.md) | No longer supported. |
