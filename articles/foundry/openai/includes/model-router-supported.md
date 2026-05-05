@@ -9,17 +9,17 @@ ms.date: 03/18/2026
 ---
 
 
-## Supported underlying models
+## Supported models
 With the `2025-11-18` version, Model Router adds nine new models including Anthropic's Claude, DeepSeek, Llama, Grok models to support a total of 18 models available for routing your prompts.
 
 > [!NOTE]
 > You don't need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
 
-|Model router version|Underlying models| Underlying model version
-|:---:|:---|:----:|
-|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5` <br> `gpt-5-chat` <br> `gpt-5.2` <br> `gpt-5.2-chat` <br> `Deepseek-v3.1`<sup>2</sup> <br> `Deepseek-v3.2`<sup>2</sup><br> `gpt-oss-120b`<sup>2</sup> <br> `llama4-maverick-instruct`<sup>2</sup> <br> `grok-4`<sup>2</sup> <br> `grok-4-fast`<sup>2</sup> <br> `claude-haiku-4-5`<sup>3</sup> <br> `claude-sonnet-4-5`<sup>3</sup> <br> `claude-opus-4-1`<sup>3</sup> <br> `claude-opus-4-6`<sup>3</sup> | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-12-11` <br> `2025-12-11` <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> `2025-09-29` <br> `2025-08-05` <br> `2025-09-29` <br> `2025-08-05`  |
-|`2025-08-07`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5`<sup>1</sup> <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
-|`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
+|Model router version| Format | Model | Version
+|:---:|:---|:---|:----:|
+|`2025-11-18`| OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> DeepSeek <br> DeepSeek <br> OpenAI <br> Meta <br> xAI <br> xAI <br> Anthropic <br> Anthropic <br> Anthropic <br> Anthropic | `gpt-4.0` </br> `gpt-4.0-mini` </br> `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5` <br> `gpt-5-chat` <br> `gpt-5.2` <br> `gpt-5.2-chat` <br> `Deepseek-V3.1`<sup>2</sup> <br> `Deepseek-V3.2`<sup>2</sup><br> `gpt-oss-120b`<sup>2</sup> <br> `Llama-4-Maverick-17B-128E-Instruct-FP8`<sup>2</sup> <br> `grok-4`<sup>2</sup> <br> `grok-4-fast-reasoning`<sup>2</sup> <br> `claude-haiku-4-5`<sup>3</sup> <br> `claude-sonnet-4-5`<sup>3</sup> <br> `claude-opus-4-1`<sup>3</sup> <br> `claude-opus-4-6`<sup>3</sup> | `2024-11-20` <br> `2024-07-18` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-12-11` <br> `2025-12-11` <br> `1` <br> `1` <br> `1` <br> `1` <br> `1` <br> `1` <br> `20251001` <br> `20250929` <br> `20250805`  <br> `1` |
+|`2025-08-07`| OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI <br> OpenAI | `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5`<sup>1</sup> <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+|`2025-05-19`| OpenAI <br> OpenAI <br> OpenAI <br> OpenAI | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 
 - <sup>1</sup>Requires registration.
 - <sup>2</sup>Model router support is in preview.

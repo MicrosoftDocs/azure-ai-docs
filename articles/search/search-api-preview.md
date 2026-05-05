@@ -6,7 +6,8 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Preview features in Azure AI Search

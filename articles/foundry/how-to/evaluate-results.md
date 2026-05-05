@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/22/2026
+ms.date: 04/30/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # View evaluation results in the Microsoft Foundry portal
 
-In this article, you learn to:
+In this article, you learn how to:
 
 - Locate and open evaluation runs.
 - View aggregate and sample-level metrics.
@@ -27,50 +27,54 @@ In this article, you learn to:
 
 ## Prerequisites
 
-- An evaluation run.
-
-    - To learn how to run evaluations in the portal see, [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
-    - To learn how to run evaluations from the SDK see, [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
+- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- A completed evaluation run.
+    - To run evaluations in the portal, see [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
+    - To run evaluations from the SDK, see [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
 
 ## See your evaluation results
 
-After you submit an evaluation, track its progress on the **Evaluation** details page. When the evaluation completes, the page displays key information such as:
+1. In the [Foundry portal](https://ai.azure.com), go to your project and select **Evaluation** from the left pane.
 
-- Name of the run
-- Target
-- Dataset (downloadable)
-- Status
-- Evaluation tokens (tokens used in the evaluation)
-- Target tokens (new)
-- Scores for each evaluator used
+1. Select an evaluation run from the list to open its details page. If the run is still in progress, the status shows **Running** and updates automatically when complete.
 
-:::image type="content" source="../media/observability/evaluation-runs.png" alt-text="Screenshot of the evaluation details page showing evaluation runs." lightbox="../media/observability/evaluation-runs.png":::
+   The details page shows:
 
-Hover over results to see more details.
+   | Field | Description |
+   |-------|-------------|
+   | Name | The name of the evaluation run. |
+   | Target | The model or agent that was evaluated. |
+   | Dataset | The test dataset used. Select the download icon to export it as a CSV file. |
+   | Status | Current status of the run (**Running**, **Completed**, or **Failed**). |
+   | Evaluation tokens | Tokens consumed by the evaluators during the run. |
+   | Target tokens | Tokens consumed by the model or agent being evaluated. |
+   | Scores | Aggregate score for each evaluator used. |
 
-:::image type="content" source="../media/observability/evaluation-runs-hover.png" alt-text="Screenshot of the evaluation details page showing evaluation runs hovered over token usage." lightbox="../media/observability/evaluation-runs-hover.png":::
+   :::image type="content" source="../media/observability/evaluation-runs.png" alt-text="Screenshot of the Evaluation page showing a list of runs with Name, Status, Target, Evaluation tokens, Target tokens, and Scores columns." lightbox="../media/observability/evaluation-runs.png":::
 
-Select a specific run to drill into row‑level results.
+1. Hover over a score cell to see token usage details and additional context.
 
-Select **Learn more about metrics** for definitions and formulas.
+   :::image type="content" source="../media/observability/evaluation-runs-hover.png" alt-text="Screenshot of the Evaluation page with a score cell hovered, showing a tooltip with token usage breakdown." lightbox="../media/observability/evaluation-runs-hover.png":::
+
+1. Select **Learn more about metrics** to see metric definitions and scoring formulas.
 
 ### Evaluation run details
 
-To view the row level data for individual runs, select the name of the run. This provides a view that allows you to see evaluation results at the individual query level against each evaluator used. Here, you can view details like query, response, ground truth, and the evaluator score and explanation.
+Select the name of the run to view row-level results for each individual query. For each row, you can see the query, response, ground truth, evaluator score, and score explanation.
 
 ## Compare the evaluation results
 
-To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process.
+To compare two or more runs, select the runs you want to compare and start the process.
 
 1. Select two or more runs in the evaluation detail page.
 1. Select **Compare**.
 
-It generates a side-by-side comparison view for all selected runs.
+You see a side-by-side comparison view for all selected runs.
 
-The comparison is computed based on statistic t-testing, which provides more sensitive and reliable results for you to make decisions. You can use different functionalities of this feature:
+The comparison uses statistical t-testing, which gives you more sensitive and reliable results to help you make decisions. You can use different functionalities of this feature:
 
-- Baseline comparison: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
-- Statistic t-testing assessment: Each cell provides the stat-sig results with different color codes. You can also hover on the cell to get the sample size and p-value.  
+- **Baseline comparison**: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
+- **Statistical t-testing assessment**: Each cell provides the stat-sig results with different color codes. You can also hover on the cell to get the sample size and p-value.  
 
 |Legend | Definition|
 |--|--|
@@ -83,7 +87,7 @@ The comparison is computed based on statistic t-testing, which provides more sen
 | Inconclusive | Too few examples, or p>=0.05 |
 
 > [!NOTE]
-> The comparison view won't be saved. If you leave the page, you can reselect the runs and select **Compare** to regenerate the view.
+> The comparison view isn't saved. If you leave the page, you can reselect the runs and select **Compare** to regenerate the view.
 
 ## Understand the built-in evaluation metrics
 
@@ -97,11 +101,12 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 |---------|----------------|-------|
 | Run stays pending | High service load or queued jobs | Refresh, verify quota, and resubmit if prolonged |
 | Metrics missing | Not selected at creation | Rerun and select required metrics |
-| All safety metrics zero | Category disabled or unsupported model | Confirm model and metric support matrix |
+| All safety metrics zero | Category disabled or unsupported model | Confirm model and evaluator support in [Risk and safety evaluators](../concepts/built-in-evaluators.md#risk-and-safety-evaluators) |
 | Groundedness unexpectedly low | Retrieval/context incomplete | Verify context construction / retrieval latency |
 
 ## Related content
 
 - [Run evaluations from the Microsoft Foundry portal](./evaluate-generative-ai-app.md)
 - [Run batch evaluations from the SDK](./develop/cloud-evaluation.md)
+- [Built-in evaluators](../concepts/built-in-evaluators.md)
 - [Improve model performance with fine-tuning](../openai/how-to/fine-tuning.md)

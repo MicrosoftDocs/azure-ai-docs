@@ -74,13 +74,11 @@ When a model version reaches its retirement date, what happens next depends on t
 * **Upgrade once new default version becomes available**: The deployment automatically updates to the current default version. No action is required.
 * **Once the current version expires**: The deployment automatically updates to the next available version when the current version expires.
 
-Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md). In addition, the following Azure Government specific retirement dates apply. 
-
-[!INCLUDE [model-retirement content](../../openai/includes/model-matrix/retirement-models-gov.md)]
+Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Foundry Models lifecycle and support policy in Azure Government](../../openai/concepts/model-retirements-gov.md). 
 
 ## Related content
 
 - [Foundry Models sold directly by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
-- [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md)
+- [Foundry Models lifecycle and support policy in Azure Government](../../openai/concepts/model-retirements-gov.md)
 - [Deploy Foundry Models](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models in Azure Government](../concepts/deployment-types-gov.md)

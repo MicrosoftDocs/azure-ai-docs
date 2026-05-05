@@ -1,8 +1,10 @@
 ---
 title: "Agent tools overview for Microsoft Foundry Agent Service"
 description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
-author: aahill
-ms.author: aahi
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.date: 04/23/2026
 ms.manager: nitinme
 ms.topic: concept-article
@@ -14,14 +16,14 @@ ai-usage: ai-assisted
 
 # Agent tools overview for Foundry Agent Service
 
-Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own can generate text, but tools let it take action - searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
+Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own uses a Foundry model to generate text, but tools let it take action - searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
 
 > [!NOTE]
 > The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## What are tools?
 
-A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the model decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
+A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the Foundry model powering the agent decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
 
 Tools enable agents to go beyond text generation. For example, an agent can:
 
