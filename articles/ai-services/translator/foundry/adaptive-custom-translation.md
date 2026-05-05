@@ -61,11 +61,11 @@ Here's the base URL for all adaptive custom translation API requests:
 
 Each request to an adaptCT API must include an authentication header. This header passes along a Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services.
 
-* Authenticate with a [secret key](../../../text-translation/reference/authentication.md#secret-key).
-* Authenticate with an [access token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
-* Authenticate with [Microsoft Entra ID](../../../text-translation/reference/authentication.md#authentication-with-microsoft-entra-id).
+* Authenticate with a [secret key](../text-translation/reference/authentication.md#secret-key).
+* Authenticate with an [access token](../text-translation/reference/authentication.md#authenticating-with-an-access-token).
+* Authenticate with [Microsoft Entra ID](../text-translation/reference/authentication.md#authentication-with-microsoft-entra-id).
 
-For more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
+For more information about Azure resources, *see* [Azure resources for Azure AI translation](../how-to/create-translator-resource.md)
 
 ### Required headers
 
@@ -78,7 +78,7 @@ Include the following headers in every request to ensure the service can authent
 
 ## How to create and use an adaptive dataset
 
-1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
+1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../how-to/create-translator-resource.md)
 2. [Create workspace](#create-workspace)
 3. [Import adaptive documents (TMX/TSV)](#import-documents-tsv-tmx)
 4. [Create adaptive dataset](#create-adaptive-dataset)
@@ -113,15 +113,16 @@ The Adaptive custom translation API is organized into three main operation categ
 
 Retrieves all workspaces available to the authenticated user.
 
-#### Request URL
+***Request URL***
 
 ```bash
    GET /workspaces/
 ```
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/" ^
  -H "Ocp-Apim-Subscription-Key: <your-key>" ^
@@ -129,6 +130,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/" \
  -H "Ocp-Apim-Subscription-Key: <your-key>" \
@@ -139,21 +141,22 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 
 Retrieves details for a specific workspace.
 
-#### Request URL
+***Request URL***
 
 ```bash
    GET /workspaces/<workspaceId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Unique identifier for the project |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/<workspaceId>" ^
  -H "Ocp-Apim-Subscription-Key: <your-key>" ^
@@ -161,6 +164,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/<workspaceId>" \
  -H "Ocp-Apim-Subscription-Key: <your-key>" \
@@ -181,7 +185,7 @@ Create a workspace in Microsoft Foundry after creating your Foundry resource and
 
 Retrieves a paginated list of documents in a project.
 
-#### Request URL
+***Request URL***
 
 ```bash
   GET /documents?workspaceId=<workspaceId>&pageIndex={pageIndex}
@@ -194,22 +198,24 @@ Retrieves a paginated list of documents in a project.
 | `workspaceId` | string | **True** | Project identifier |
 | `pageIndex` | integer | False | Page index for pagination (default: 0) |
 
-#### Request headers
+***Request headers***
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Authorization` | `Bearer <token>` | **True** |
 | `Content-Type` | `multipart/form-data` | False |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents?workspaceId=<workspaceId>&pageIndex=0" ^
  -H "Authorization: Bearer <token>"
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents?workspaceId=<workspaceId>&pageIndex=0" \
  -H "Authorization: Bearer <token>"
@@ -219,19 +225,19 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 
 Imports adaptive documents in TSV and TMX format to a project.
 
-#### Request URL
+***Request URL***
 
 ```bash
    POST /documents/import?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request headers
+***Request headers***
 
 | Header | Value | Required |
 |--------|-------|----------|
@@ -263,6 +269,7 @@ Imports adaptive documents in TSV and TMX format to a project.
 ***English to supported target language, for example, French.***
 
 **Windows**
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import?workspaceId=<workspaceId>" ^
  -H "Authorization: Bearer <token>" ^
@@ -271,6 +278,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import?workspaceId=<workspaceId>" \
  -H "Authorization: Bearer <token>" \
@@ -283,33 +291,35 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
 
 Retrieves the status of a document import job.
 
-#### Request URL
+***Request URL***
 
 ```bash
    GET /documents/import/jobs/<jobId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `jobId` | string | **True** | Import job identifier |
 
-#### Request headers
+***Request headers***
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Authorization` | `Bearer <token>` | **True** |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import/jobs/<jobId>" ^
  -H "Authorization: Bearer <token>"
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import/jobs/<jobId>" \
  -H "Authorization: Bearer <token>"
@@ -321,19 +331,19 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 
 Creates a new dataset for adaptive translation using specified documents.
 
-#### Request URL
+***Request URL***
 
 ```bash
    POST /index?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request headers
+***Request headers***
 
 | Header | Value | Required |
 |--------|-------|----------|
@@ -350,7 +360,7 @@ Creates a new dataset for adaptive translation using specified documents.
 }
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -359,9 +369,10 @@ Creates a new dataset for adaptive translation using specified documents.
 | `SourceLanguage` | string | **True** | Source language code |
 | `TargetLanguage` | string | **True** | Target language code |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>" ^
  -H "Content-Type: application/json" ^
@@ -369,6 +380,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>" \
  -H "Content-Type: application/json" \
@@ -379,26 +391,28 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
 
 Retrieves details for a specific dataset.
 
-#### Request URL
+***Request URL***
 
 ```bash
    GET /index/{indexId}
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `indexId` | string | **True** | Index identifier |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
 **Linux/macOS**
+
 ```bash
 cucurl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
@@ -407,26 +421,28 @@ cucurl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translat
 
 Retrieves all datasets in a project.
 
-#### Request URL
+***Request URL***
 
 ```bash
    GET /index?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>"
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>"
 ```
@@ -435,26 +451,28 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 
 Deletes a specific language pair dataset.
 
-#### Request URL
+***Request URL***
 
 ```bash
    DELETE /index/<indexId>
 ```
 
-#### Parameters
+***Parameters***
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `indexId` | string | **True** | Dataset index identifier |
 
-#### Request example
+***Request example***
 
 **Windows**
+
 ```bash
 curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
 **Linux/macOS**
+
 ```bash
 curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
@@ -496,6 +514,6 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Next steps
 
-* [Learn about custom translator models](/azure/ai-services/translator/custom-translator/overview)
-* [Learn about the text translation API](/azure/ai-services/translator/text-translation/preview/overview)
+* [Learn about custom translator models](../custom-translator/overview)
+* [Learn about the text translation API](../text-translation/preview/overview)
 * [Explore Foundry for advanced AI capabilities](/azure/ai-foundry/)
