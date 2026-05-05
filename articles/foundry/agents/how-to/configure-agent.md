@@ -70,9 +70,9 @@ An agent can expose multiple protocols simultaneously:
 
 | Protocol | Endpoint pattern |
 |----------|-----------------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
-| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` |
-| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` |
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
+| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
 
 ### Authorization schemes
 
