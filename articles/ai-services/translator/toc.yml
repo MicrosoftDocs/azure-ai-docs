@@ -198,7 +198,7 @@ items:
   - name: Document translation FAQ
     href: document-translation/faq.md
 
-- name: Microsoft Foundry custom translation
+- name: Microsoft Foundry tools
   items:
   - name: Adaptive custom translation
     displayName: foundry, gpt, api
