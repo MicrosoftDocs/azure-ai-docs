@@ -170,6 +170,7 @@ To update metadata visible in Teams and M365 (display name, descriptions, URLs),
 |-------|-------|------------|
 | Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` is not null). Confirm the developer name is 32 characters or fewer. |
 | Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
+| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor** role on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
 | Organization scope agent doesn't appear | Admin approval pending | Confirm an admin approved in the [M365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). Check app policies. |
 | Agent works in Foundry but fails after publishing | Agent identity missing permissions | Assign RBAC roles to the agent's identity for any Azure resources it accesses. |
 | Publishing fails with identity error | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
