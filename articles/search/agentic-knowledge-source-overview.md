@@ -76,9 +76,9 @@ Knowledge source selection logic is based on these factors:
 
 + The `description` of an index, assuming an indexed knowledge source.
 
-+ The `retrievalInstructions` specified in the [retrieve action](agentic-retrieval-how-to-retrieve.md) or in the [knowledge base definition](/rest/api/searchservice/knowledge-bases/create-or-update) provides guidance that includes or excludes a knowledge source. It's similar to a prompt. You can specify brevity, tone, and formatting as a retrieval instruction.
++ The `retrievalInstructions` specified in the [retrieve action](agentic-retrieval-how-to-retrieve.md) or in the [knowledge base definition](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) provides guidance that includes or excludes a knowledge source. It's similar to a prompt. You can specify brevity, tone, and formatting as a retrieval instruction.
 
-+ [`outputMode`](/rest/api/searchservice/knowledge-bases/create-or-update#knowledgeretrievaloutputmode) on a knowledge base also affects query output and what goes in the response.
++ [`outputMode`](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgeretrievaloutputmode) on a knowledge base also affects query output and what goes in the response.
 
 ### Use a retrieval reasoning effort to control LLM usage
 

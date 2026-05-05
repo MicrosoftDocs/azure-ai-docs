@@ -74,9 +74,9 @@ For the full list of property-level changes and migration steps, see [Migrate yo
 
 ### Breaking changes for knowledge agents
 
-[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object and `defaultMaxDocsForReranker` was replaced with other APIs. More breaking changes are introduced in `2025-11-01-preview`.
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object, and `defaultMaxDocsForReranker` was replaced with other APIs. More breaking changes were introduced in `2025-11-01-preview`.
 
-For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+For the full list of property-level changes and migration steps, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -110,9 +110,9 @@ Before you upgrade, check whether any of the following `2026-04-01` breaking cha
 
 + Six properties are removed from the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. Remove these properties before you upgrade. Definitions that still include these properties return a `400 Bad Request` error.
 
-+ Agentic retrieval now requires its own billing consent. If you have `semanticSearch=standard` set but haven't explicitly set `knowledgeRetrieval=standard`, agentic retrieval calls fail. Use the Search Management REST API to set `knowledgeRetrieval=standard` before you upgrade. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
++ Agentic retrieval now requires its own billing consent. If you currently have `semanticSearch=standard`, you must explicitly set `knowledgeRetrieval=standard` before you upgrade. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-+ If your agentic retrieval code targets the `2025-11-01-preview`, `2026-04-01` removes several preview capabilities and standardizes retrieval around the intents input, extractive output, and minimal reasoning. For more information, see [Breaking changes for agentic retrieval](#breaking-changes-for-agentic-retrieval) and [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
++ If your agentic retrieval code targets the `2025-11-01-preview`, `2026-04-01` removes several preview capabilities and standardizes retrieval around the intents input, extractive output, and minimal reasoning. For more information, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 
@@ -124,13 +124,13 @@ For all other existing APIs, there are no behavior changes. You can swap in the 
 
 + Knowledge source properties are refactored, implementing a new `ingestionParameters` object for knowledge sources that generate an indexer pipeline.
 
-For more information on changes and code migration, see [breaking changes in 2025-11-01-preview](agentic-retrieval-how-to-migrate.md#version-specific-changes) and [How to migrate](agentic-retrieval-how-to-migrate.md#how-to-migrate).
+For the full list of property-level changes and migration steps, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2025-09-01
 
-[`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) is a stable REST API version that added general availability for the OneLake indexer, Document Layout skill, and other APIs.
+[`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) is a stable REST API version that adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
 
 There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
 
