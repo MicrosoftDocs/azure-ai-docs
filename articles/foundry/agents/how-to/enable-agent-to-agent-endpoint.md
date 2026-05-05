@@ -50,7 +50,7 @@ Set up variables for your project:
 
 ```bash
 BASE_URL="https://{account}.services.ai.azure.com/api/projects/{project}"
-API_VERSION="v1"
+AGENT_NAME="your-agent-name"
 TOKEN=$(az account get-access-token --resource https://ai.azure.com \
   --query accessToken -o tsv)
 ```
@@ -58,7 +58,7 @@ TOKEN=$(az account get-access-token --resource https://ai.azure.com \
 Send a `PATCH` request to configure the agent card and enable the A2A protocol:
 
 ```bash
-curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
+curl -X PATCH "$BASE_URL/agents/$AGENT_NAME?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -79,14 +79,14 @@ curl -X PATCH "$BASE_URL/agents/{agent_name}?api-version=$API_VERSION" \
   }'
 ```
 
-Replace `{agent_name}` with the name of your agent. Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
+Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
 
 #### [Python SDK](#tab/python)
 
 Install the required package:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+uv add "azure-ai-projects>=2.0.0"
 ```
 
 Use the `patch_agent_details` method to add the A2A protocol to your agent's endpoint:
@@ -144,7 +144,7 @@ After you enable incoming A2A, your agent exposes two URLs that calling agents u
 To confirm your agent card is configured correctly, fetch it directly:
 
 ```bash
-curl -X GET "$BASE_URL/agents/{agent_name}/endpoint/protocols/a2a/agentCard/v0.3" \
+curl -X GET "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -185,7 +185,7 @@ Because the Foundry agent card requires authentication and uses a custom path (`
 Install the required packages:
 
 ```bash
-pip install a2a-sdk azure-identity
+uv add a2a-sdk azure-identity
 ```
 
 ```python
