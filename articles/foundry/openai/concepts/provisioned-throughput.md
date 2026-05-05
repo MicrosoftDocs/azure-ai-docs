@@ -102,7 +102,8 @@ The following models support provisioned throughput deployment types. PTU quota 
 
 | Model family | Model | Global provisioned | Data zone provisioned | Regional provisioned | Spillover |
 |---|---|:---:|:---:|:---:|:---:|
-| **Azure OpenAI** | gpt-5.4 | ✅ |✅ |✅ | ✅ |
+| **Azure OpenAI** | gpt-5.5 | ✅ |✅ |✅ | ✅ |
+| | gpt-5.4 | ✅ |✅ |✅ | ✅ |
 | | gpt-5.3-codex | ✅ | | | ✅ |
 | | gpt-5.2 | ✅ |✅ |✅ | ✅ |
 | | gpt-5.2-codex | ✅ | | | ✅ |
