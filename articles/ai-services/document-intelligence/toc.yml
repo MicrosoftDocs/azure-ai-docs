@@ -207,49 +207,50 @@ items:
       href: https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md
 
 
-  - name: Custom models
-    items:
-    - name: Build a custom extraction model
-      displayName: tables, labels, ocr, input, train, training, sets, testing
-      href: how-to-guides/build-a-custom-model.md
-    - name: Build a custom classification model
-      displayName: custom, classifier, splitter
-      href: how-to-guides/build-a-custom-classifier.md
-    - name: Project sharing with custom models
-      displayName: project, share, sharing
-      href: how-to-guides/project-share-custom-models.md
-    - name: Compose custom extraction models
-      displayName: custom, models, modelId, model ID, train, dataset, data set, label, ocr, upload
-      href: how-to-guides/compose-custom-models.md
-    - name: Deploy the sample-labeling tool
-      displayName: FOTT, migration, containers, docker
-      href: v21/deploy-label-tool.md
-    - name: Train a custom model with the sample-labeling tool
-      displayName: FOTT, migration, containers, docker
-      href: v21/label-tool.md
-    - name: Use table tags to train your custom model
-      displayName: FOTT, migration, dynamic
-      href: v21/supervised-table-tags.md
-  - name: Back up and recover models
-    displayName: disaster, recovery, region, copy, modelId, model ID
-    href: disaster-recovery.md
-  - name: Configure secure communications
-    items:
-    - name: Set up Virtual Networks
-      displayName: firewall, security, subdomain, VNet, virtual network, az, regions, cli
-      href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/document-intelligence/context/context
-    - name: Create and use managed identities
-      displayName: azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob
-      href: authentication/managed-identities.md
-    - name: Configure managed identities with private endpoints
-      displayName: Azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob, virtual, firewalls, VNet, virtual networks, endpoints, storage
-      href: authentication/managed-identities-secured-access.md
-    - name: Use customer-managed keys
-      displayName: encrypt, encryption, key vault
-      href: authentication/encrypt-data-at-rest.md
-    - name: Use Microsoft Entra authentication
-      displayName: headers, subscription, access token, azure active directory, subdomain, role, service principal
-      href: ../../ai-services/authentication.md?context=/azure/ai-services/document-intelligence/context/context
+- name: Custom models
+  items:
+  - name: Build a custom extraction model
+    displayName: tables, labels, ocr, input, train, training, sets, testing
+    href: how-to-guides/build-a-custom-model.md
+  - name: Build a custom classification model
+    displayName: custom, classifier, splitter
+    href: how-to-guides/build-a-custom-classifier.md
+  - name: Project sharing with custom models
+    displayName: project, share, sharing
+    href: how-to-guides/project-share-custom-models.md
+  - name: Compose custom extraction models
+    displayName: custom, models, modelId, model ID, train, dataset, data set, label, ocr, upload
+    href: how-to-guides/compose-custom-models.md
+  - name: Deploy the sample-labeling tool
+    displayName: FOTT, migration, containers, docker
+    href: v21/deploy-label-tool.md
+  - name: Train a custom model with the sample-labeling tool
+    displayName: FOTT, migration, containers, docker
+    href: v21/label-tool.md
+  - name: Use table tags to train your custom model
+    displayName: FOTT, migration, dynamic
+    href: v21/supervised-table-tags.md
+- name: Back up and recover models
+  displayName: disaster, recovery, region, copy, modelId, model ID
+  href: disaster-recovery.md
+- name: Configure secure communications
+  items:
+  - name: Set up Virtual Networks
+    displayName: firewall, security, subdomain, VNet, virtual network, az, regions, cli
+    href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/document-intelligence/context/context
+  - name: Create and use managed identities
+    displayName: azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob
+    href: authentication/managed-identities.md
+  - name: Configure managed identities with private endpoints
+    displayName: Azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob, virtual, firewalls, VNet, virtual networks, endpoints, storage
+    href: authentication/managed-identities-secured-access.md
+  - name: Use customer-managed keys
+    displayName: encrypt, encryption, key vault
+    href: authentication/encrypt-data-at-rest.md
+  - name: Use Microsoft Entra authentication
+    displayName: headers, subscription, access token, azure active directory, subdomain, role, service principal
+    href: ../../ai-services/authentication.md?context=/azure/ai-services/document-intelligence/context/context
+    
 - name: Containers
   items:
   - name: Install and run containers

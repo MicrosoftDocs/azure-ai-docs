@@ -18,6 +18,18 @@ monikerRange: '<=doc-intel-4.0.0'
 >
 > Document Intelligence REST API v4.0 introduces breaking changes in the REST API request and analyze response JSON.
 
+## SDk migration guides
+
+For guidance on updating your application code to use the v4.0 SDKs, see the language-specific SDK migration guides in our GitHub repositories. These guides provide instructions for updating your code to call the new API methods and handle the updated response formats introduced in v4.0:
+
+* [**.NET/C# SDK**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md/)
+
+* [**Java SDK**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+* [**Python SDK**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+* [**JavaScript/TypeScript SDK**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/documentintelligence/ai-document-intelligence-rest/MIGRATION-FR_v4-DI_v1.md)*
+
 ## Migrating from v3.1 to v4.0
 
 Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md).
