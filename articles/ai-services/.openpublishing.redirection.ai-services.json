@@ -3199,7 +3199,123 @@
       "source_path_from_root": "/articles/ai-services/translator/text-translation/preview/transliterate-api.md",
       "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/transliterate-api",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/overview.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/key-terms.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/key-terms",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/beginners-guide.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/beginners-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/faq.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/faq",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/release-notes.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/release-notes",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/adaptive-custom-translation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/bleu-score.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/bleu-score",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/customization.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/customization",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/data-filtering.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/data-filtering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/dictionaries.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/dictionaries",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/document-formats-naming-convention.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/document-formats-naming-convention",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/model-training.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/model-training",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/parallel-documents.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/parallel-documents",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/sentence-alignment.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/sentence-alignment",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/concepts/workspace-and-project.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/workspace-and-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/copy-model.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/copy-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-language-pair.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-language-pair",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-project.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/deploy-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/test-model.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/test-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/train-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/translate-with-model.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/translate-with-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/upload-data.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/upload-data",
+      "redirect_document_id": true
     }
+
   ]
 }
 
