@@ -102,13 +102,13 @@ Now that you have the document key, run a [look up query](/rest/api/searchservic
 The first example returns the hotel having a document key value of `18`.
 
 ```http
-GET https://[service name].search.windows.net/indexes/hotels-sample/docs('18')&api-version=2026-04-01
+GET https://[service name].search.windows.net/indexes/hotels-sample/docs('18')?api-version=2026-04-01
 ```
 
 The second example returns a chunk document. The "chunk_id" is the document key.
 
 ```http
-GET https://[service name].search.windows.net/indexes/chunking-example-index/docs('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')&api-version=2026-04-01
+GET https://[service name].search.windows.net/indexes/chunking-example-index/docs('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')?api-version=2026-04-01
 ```
 
 The response from the second example includes all fields, which you should review to ensure you know what you're deleting. Fields that include parent information are useful if you need to manually reindex a single parent document into constituent chunked documents in the search index.
