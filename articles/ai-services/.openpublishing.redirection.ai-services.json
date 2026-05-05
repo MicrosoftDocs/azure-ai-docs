@@ -3283,7 +3283,7 @@
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-language-pair.md",
       "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/workspace-and-project",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-project.md",
