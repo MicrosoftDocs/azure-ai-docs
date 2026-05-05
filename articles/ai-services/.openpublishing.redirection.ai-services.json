@@ -3282,37 +3282,37 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-language-pair.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-language-pair",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/workspace-and-project",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/create-project.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-project",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-manage-project",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/deploy-model.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/deploy-model",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/publish-model",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/test-model.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/test-model",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/test-your-model",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/train-model.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/train-model",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/train-custom-model",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/translate-with-model.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/translate-with-model",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/translate-with-custom-model",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/upload-data.md",
-      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/upload-data",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-manage-training-documents",
       "redirect_document_id": true
     }
 

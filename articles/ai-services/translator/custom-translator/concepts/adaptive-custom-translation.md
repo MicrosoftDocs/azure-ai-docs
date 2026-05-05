@@ -24,7 +24,7 @@ ms.topic: reference
 
 Azure Translator adaptive custom translation (**AdaptCT**) is a runtime translation adaptation capability available in Microsoft Foundry. It improves large language model (LLM) outputs, such as GPT-5.1, using a compact set of reference sentence pairs.
 
-With **AdaptCT**, you upload 5-10,000 prealigned bilingual segment pairs (source and target). Each source segment can contain up to 250 characters, and each target segment can contain up to 250 characters. The service builds a language-pair dataset index in minutes, which you can apply through the [Azure Translator 2026-06-06 APIs](../../../text-translation/2026-06-06/translate-api.md).
+With **AdaptCT**, you upload 5-10,000 prealigned bilingual segment pairs (source and target). Each source segment can contain up to 250 characters, and each target segment can contain up to 250 characters. The service builds a language-pair dataset index in minutes, which you can apply through the [Azure Translator 2026-06-06 APIs](../../text-translation/2026-06-06/translate-api.md).
 
 Unlike traditional custom translation workflows that require large training corpora and separate model deployment, **AdaptCT** uses few-shot retrieval at inference time. For each request, the system retrieves relevant segment pairs from your dataset index and uses them to steer output toward domain-specific terminology, context, and style.
 
@@ -60,10 +60,10 @@ Here's the base URL for all adaptive custom translation API requests:
 
 Each request to an adaptCT API must include an authentication header. This header passes along a Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services.
 
-* Authenticate with a [secret key](../../../text-translation/reference/authentication.md#secret-key).
-* Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
+* Authenticate with a [secret key](../../text-translation/reference/authentication.md#secret-key).
+* Authenticate with a [bearer token](../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
 
-For more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
+For more information about Azure resources, *see* [Azure resources for Azure AI translation](../../how-to/create-translator-resource.md)
 
 ### Required headers
 
@@ -78,7 +78,7 @@ Include the following headers in every request to ensure the service can authent
 
 Complete the following workflow to provision your workspace, import bilingual data, create a dataset index, and apply it during translation.
 
-1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
+1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../how-to/create-translator-resource.md)
 1. [Create workspace](#create-workspace)
 1. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 1. [Create Dataset Index](#create-dataset-index)
@@ -484,7 +484,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 
 ## Translate with dataset index
 
-[Translate with dataset index](../../../text-translation/2026-06-06/translate-api.md#translate-using-adaptivedatasetid)
+[Translate with dataset index](../../text-translation/2026-06-06/translate-api.md#translate-using-adaptivedatasetid)
 
 ## Error responses
 
@@ -525,6 +525,6 @@ If requests fail, use the following checks to isolate authentication, ingestion,
 
 Use these resources to deepen implementation knowledge and connect AdaptCT with broader Azure AI translation capabilities.
 
-* [Custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
-* [Text translation API](../../../text-translation/overview.md)
-* [Explore Foundry](../../../overview.md)
+* [Custom translator models](../overview.md)
+* [Text translation API](../../text-translation/overview.md)
+* [Explore Foundry](../../overview.md)
