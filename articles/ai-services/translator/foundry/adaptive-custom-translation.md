@@ -21,7 +21,7 @@ ms.topic: reference
 > * Segments with >250 characters (source or target) are rejected. If all segments are invalid, the document upload fails.
 > * This API requires proper authentication and foundry resource setup before use.
 > * Project and workspace both refer to a Foundry project.
-> * General category is added to allow a language pair (e.g., English–French, French-English) to be created once in both directions. Future categories (e.g., finance, legal, healthcare) will enable coexistence—multiple datasets for the same language pair across categories.
+> * A general category is added to allow a language pair (for example, English–French, French-English) to be created once in both directions.
 
 Azure Translator adaptive custom translation (**AdaptCT**) is a runtime translation adaptation capability available in Microsoft Foundry. It improves large language model (LLM) outputs, such as GPT-5.1, using a compact set of reference sentence pairs.
 
