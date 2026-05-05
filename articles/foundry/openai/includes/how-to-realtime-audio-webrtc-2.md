@@ -1121,7 +1121,7 @@ If you use a Network Firewall, the Realtime API requires the following `Allow` r
 
 | Port | Protocols | Rule | IP Range |
 | --- | --- | --- | --- |
-| 3478 | UDP, TCP | Allow | All Subnets belonging to `AzureCloud.<Your_Microsoft_Foundry_Resource_Azure_Region>` [Service Tag](https://learn.microsoft.com/azure/virtual-network/service-tags-overview). Example `AzureCloud.eastus2`. [See the complete list of Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). |
+| 3478 | UDP, TCP | Allow | All Subnets belonging to `AzureCloud.<Your_Microsoft_Foundry_Resource_Azure_Region>` [Service Tag](/azure/virtual-network/service-tags-overview). Example `AzureCloud.eastus2`. [See the complete list of Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). |
 
 
 ## Troubleshooting
