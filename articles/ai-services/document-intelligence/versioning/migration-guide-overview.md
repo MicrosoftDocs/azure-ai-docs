@@ -1,5 +1,5 @@
 ---
-title: "How-to: Migrate Document Intelligence applications to v3.1."
+title: "Migrate to v4.0."
 titleSuffix: Foundry Tools
 description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
