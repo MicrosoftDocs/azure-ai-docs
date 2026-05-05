@@ -514,6 +514,6 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Next steps
 
-* [Learn about custom translator models](../custom-translator/overview)
-* [Learn about the text translation API](../text-translation/preview/overview)
+* [Learn about custom translator models](../custom-translator/overview.md)
+* [Learn about the text translation API](../text-translation/2026-06-06/overview.md)
 * [Explore Foundry for advanced AI capabilities](/azure/ai-foundry/)
