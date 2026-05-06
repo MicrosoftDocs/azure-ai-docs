@@ -44,7 +44,7 @@ The table in this section summarizes the locales supported for [real-time transc
 
 # [Text to speech](#tab/tts)
 
-Learn about the types and features of voices, or skip to the [Text to speech voices](#text-to-speech-voices) table.
+Learn about the different types and features of Azure Speech voices, or skip to the complete [Text to speech voices](#text-to-speech-voices) table.
 
 ## Types of voices
 
