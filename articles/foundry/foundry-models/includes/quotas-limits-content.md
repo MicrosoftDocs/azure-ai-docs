@@ -31,7 +31,7 @@ For the models that are onboarded to Global and Data Zone quotas:
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
 
-[!IMPORTANT]
+> [!IMPORTANT]
 > The updated quota management currently apply only to Mistral Medium 3.5. For all other Foundry Models covered in this article, quotas and limits are managed per region, per subscription, and per model or deployment type. In the future, these quota guidelines will also apply to some existing models and to new Foundry Model launches.
 
 ## Quotas and limits reference
