@@ -121,24 +121,24 @@ The regions in the following tables support most of the core features of Azure S
 | `canadacentral` | ✅ | ✅ | ✅ | ✅ | | ✅ | | | | | | |
 | `canadaeast` | ✅ | ✅ | | | | | | | | | | |
 | `centralindia` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | | | |
-| `centralus` | ✅ | ✅ | ✅ | | | ✅ | | ✅ | | | | |
+| `centralus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
 | `eastasia` | ✅ | ✅ | ✅ | | | ✅ | | | | ✅ | | |
 | `eastus` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `eastus2` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
-| `francecentral` | ✅ | ✅ | ✅ | ✅ | | ✅ | | | | | | |
+| `francecentral` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | | | | | |
 | `germanywestcentral` | ✅ | ✅ | ✅ | | | ✅ | | | | | | |
 | `italynorth` | ✅ | ✅ | | | | ✅ | | ✅ | | | | |
 | `japaneast` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
 | `japanwest` | ✅ | ✅ | | | | ✅ | | | | | | |
 | `koreacentral` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
-| `northcentralus` | ✅ | ✅ | ✅ | | ✅ | ✅ | | ✅ | | | | |
+| `northcentralus` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | | | | |
 | `northeurope` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
 | `norwayeast` | ✅ | ✅ | ✅ | | | ✅ | | | | | | |
 | `qatarcentral` | ✅ | ✅ | | | | | | | | | | |
 | `southafricanorth` | ✅ | ✅ | ✅ | | | ✅ | | | | | | |
 | `southcentralus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
 | `southeastasia` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `swedencentral` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | | |
+| `swedencentral` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | |
 | `switzerlandnorth` | ✅ | ✅ | ✅ | | | ✅ | | | | | | |
 | `switzerlandwest` | ✅ | ✅ | | | | ✅ | | | | | | |
 | `uaenorth` | ✅ | ✅ | ✅ | | | ✅ | | | | | | |
@@ -148,7 +148,7 @@ The regions in the following tables support most of the core features of Azure S
 | `westeurope` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
 | `westus2` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
-| `westus3` | ✅ | ✅ | | | | ✅ | | ✅ | | | | |
+| `westus3` | ✅ | ✅ | | | | ✅ | ✅ | ✅ | | | | |
 
 # [Text-to-speech avatar](#tab/ttsavatar)
 
