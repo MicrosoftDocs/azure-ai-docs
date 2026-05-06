@@ -483,12 +483,6 @@ items:
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
     - name: Create a remote source
       items:
-      - name: Fabric Data Agent (preview)
-        href: agentic-knowledge-source-how-to-fabric-data-agent.md
-      - name: Fabric Ontology (preview)
-        href: agentic-knowledge-source-how-to-fabric-ontology.md
-      - name: Fabric Data Agent (preview)
-        href: agentic-knowledge-source-how-to-fabric-data-agent.md
       - name: Fabric Ontology (preview)
         href: agentic-knowledge-source-how-to-fabric-ontology.md
       - name: SharePoint

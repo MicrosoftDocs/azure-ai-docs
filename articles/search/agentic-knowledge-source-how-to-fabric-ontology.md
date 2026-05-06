@@ -1,6 +1,6 @@
 ---
 title: Create a Fabric Ontology Knowledge Source
-description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric semantic model to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
+description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/04/2026
@@ -11,17 +11,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *Fabric Ontology knowledge source* connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search. A Fabric ontology represents enterprise knowledge as entities, relationships, and rules — a semantic model that describes *how* business concepts relate to one another, not just what the raw data contains.
+A *Fabric Ontology knowledge source* connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search, providing ontology-defined entities, relationships, and content as grounding data. Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns.
 
-At query time, the retrieval engine converts the query into a call to the Fabric ontology's Model Context Protocol (MCP) endpoint. The ontology returns a natural-language answer and the structured data that grounded it, without requiring a separate LLM call to interpret the query.
-
-Like any other knowledge source, you specify a Fabric Ontology knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) and use the results as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
-
-### When to use Fabric Ontology
-
-Use a Fabric Ontology knowledge source when your most important information is modeled as business entities and their relationships in Fabric, and answers depend on reasoning over how those concepts connect — for example, "Which airline routes had the most delays last quarter?"
-
-If your data lives in tables or files behind a Fabric Data Agent, use a [Fabric Data Agent knowledge source](agentic-knowledge-source-how-to-fabric-data-agent.md) instead. A Fabric Ontology knowledge source is purpose-built for semantically modeled data where the ontology itself is the source of truth.
+Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live data directly. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
 
 ### Usage support
 
@@ -35,7 +27,7 @@ If your data lives in tables or files behind a Fabric Data Agent, use a [Fabric 
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-+ A Microsoft Fabric workspace with an ontology item configured. Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity) or workspace settings required to use a Fabric ontology as a knowledge source. -->
++ A Microsoft Fabric workspace with an [ontology item](/fabric/iq/ontology/tutorial-1-create-ontology). Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity) or workspace settings required to use a Fabric ontology as a knowledge source. -->
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -76,7 +68,6 @@ The following JSON is an example response for a Fabric Ontology knowledge source
   "description": "A Fabric Ontology knowledge source.",
   "encryptionKey": null,
   "fabricOntologyParameters": {
-    "fabricEndpoint": "https://api.fabric.microsoft.com",
     "workspaceId": "00000000-0000-0000-0000-000000000000",
     "ontologyId": "00000000-0000-0000-0000-000000000001"
   }
@@ -84,9 +75,6 @@ The following JSON is an example response for a Fabric Ontology knowledge source
 ```
 
 ## Create a knowledge source
-
-> [!IMPORTANT]
-> Always set `fabricEndpoint` explicitly in the knowledge source definition. Omitting it causes `405` or `502` errors at query time.
 
 Run the following code to create a Fabric Ontology knowledge source.
 
@@ -101,7 +89,6 @@ Content-Type: application/json
   "kind": "fabricOntology",
   "description": "A Fabric Ontology knowledge source.",
   "fabricOntologyParameters": {
-    "fabricEndpoint": "https://api.fabric.microsoft.com",
     "workspaceId": "{fabric-workspace-id}",
     "ontologyId": "{fabric-ontology-id}"
   }
@@ -117,40 +104,39 @@ The following properties apply to Fabric Ontology knowledge sources.
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The type identifier for the knowledge source. Must be `fabricOntology`. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `fabricOntology` in this case. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `fabricOntologyParameters` | An object containing the parameters that identify the Fabric ontology endpoint. All child parameters are required. | Object | No | Yes |
-| `fabricEndpoint` | The base URL of the Fabric API. Always specify this value — omitting it causes query-time errors. | String | No | Yes |
-| `workspaceId` | The GUID of the Microsoft Fabric workspace that contains the ontology. | String | No | Yes |
-| `ontologyId` | The GUID of the Fabric ontology item to query. | String | No | Yes |
+| `fabricOntologyParameters` | Parameters specific to the Fabric Ontology knowledge source: `workspaceId` and `ontologyId`. | Object | No | Yes |
+| `workspaceId` | The [ID of the Microsoft Fabric workspace](/fabric/data-factory/migrate-pipelines-how-to-find-your-fabric-workspace-id) that contains the ontology item. | String | No | Yes |
+| `ontologyId` | The ID of the ontology item to query. | String | No | Yes |
 
 ## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Fabric Ontology knowledge sources can coexist with indexed and other remote sources in the same knowledge base. When a query targets multiple knowledge sources, the retrieval engine merges and reranks results from all sources before returning a unified response.
-
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has specific query-time authentication requirements and a distinctive response structure.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
 ### Enforce permissions at query time
 
-Fabric Ontology knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Fabric-scoped token and uses it to call the Fabric ontology MCP endpoint on behalf of the end user.
+Fabric Ontology knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the ontology item on behalf of the end user.
 
-Because Fabric Ontology doesn't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement. <!-- TO-DO (PM): Confirm what Fabric workspace role (Viewer, Contributor, or Admin) the end user's delegated identity requires to query the ontology. -->
+Because Fabric Ontology knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Fabric Ontology–specific response fields
 
-When the retrieval engine queries a Fabric Ontology knowledge source, the ontology returns a natural-language answer synthesized from its semantic model alongside the raw structured data that produced it. Both values appear in the `sourceData` object of each reference entry.
+Fabric Ontology knowledge sources can return two types of content, both nested inside the `sourceData` object of each reference entry:
 
-- **`fabricAnswer`** — A natural-language response generated by the Fabric ontology from its entity model.
-- **`fabricRawData`** — The structured data that grounded the answer, returned in CSV format.
+<!-- TO-DO (PM): Confirm the JSON serialization names of these fields (`fabricAnswer`, `fabricRawData`) before publish. -->
 
-The following example shows a retrieve response containing a Fabric Ontology reference. The `activity` record shows the search argument sent to the ontology, and the `references` array shows the answer alongside its underlying structured data. The `response` content uses inline `ref_id` markers to associate answer text with specific references.
+- A natural-language answer (`fabricAnswer`)
+- The structured data that grounded the answer, returned in CSV format (`fabricRawData`)
+
+The following example shows a retrieve response containing a Fabric Ontology reference. The `activity` record shows the search argument sent to the ontology, and the `references` array shows the grounded answer and its underlying structured data.
 
 ```json
 {
