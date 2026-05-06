@@ -120,5 +120,3 @@ Prompt caching is enabled by default for all supported models. There's no opt-ou
 
 In-memory prompt caching is compatible with all Data Residency regions. Extended prompt caching temporarily stores data on GPU machines and will only be kept in-region when using Regional Standard or Regional Provisioned deployment types.
 
-
-<!-- @microsoft-github-policy-service agree company="Microsoft" -->
