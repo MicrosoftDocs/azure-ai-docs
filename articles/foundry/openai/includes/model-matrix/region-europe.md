@@ -16,6 +16,7 @@ ms.custom:
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **westeurope** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| gpt-chat-latest | 2026-05-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-5.5 | 2026-04-24 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-2 | 2026-04-21 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -77,7 +78,6 @@ ms.custom:
 | text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
 | text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
 | text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
-
 
 # [Global Provisioned Managed](#tab/az-global-provisioned)
 
