@@ -42,9 +42,9 @@ monikerRange: '<=doc-intel-4.0.0'
 
 > [!IMPORTANT]
 >
-> * **Document Intelligence REST API v2.1 (GA)** reaches end of support on **September 15, 2027**.
-> * **Document Intelligence REST API 2022-08-31 (GA) v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md).
+> * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
+> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md).
 
 Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
