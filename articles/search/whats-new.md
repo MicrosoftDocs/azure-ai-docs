@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 04/28/2026
+ms.date: 05/05/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -28,16 +28,15 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
 | [OneLake knowledge sources](agentic-knowledge-source-how-to-onelake.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
 | [Web knowledge sources](agentic-knowledge-source-how-to-web.md) | Now generally available. For REST API version 2026-04-01, the knowledge base must include a model reference to provide the LLM for web content summarization. |
-| [Knowledge source status API](agentic-knowledge-source-how-to-blob.md#check-ingestion-status) | Now generally available. REST API version 2026-04-01 introduces the `kind` field and `currentSynchronizationState.errors[]` array with document-level error details. |
+| [Knowledge source status](agentic-knowledge-source-how-to-blob.md#check-ingestion-status) | Now generally available. REST API version 2026-04-01 introduces the `kind` field and `currentSynchronizationState.errors[]` array with document-level error details. |
 | [Index aliases](search-how-to-alias.md) | Now generally available. |
 | [Keyless billing for Foundry Tools processing](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) | Now generally available. |
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
-| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
-| [GenAI Prompt skill property removals](cognitive-search-skill-genai-prompt.md) | Starting with REST API version 2026-04-01, the following properties are removed from the GenAI Prompt skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |
+| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. REST API version 2026-04-01 removes the following properties from the skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |
 | [Markdown one-to-many parsing mode](search-how-to-index-azure-blob-markdown.md#use-one-to-many-parsing-mode) | Now generally available. |
 | [Markdown one-to-one parsing mode](search-how-to-index-azure-blob-markdown.md#use-one-to-one-parsing-mode) | Now generally available. |
 | [User-assigned managed identity for indexer connections](search-how-to-managed-identities.md) | Now generally available for indexer data source connections, knowledge store connections, and customer-managed encryption key access to Azure Key Vault. |
-| [Split billing consent for semantic ranker and agentic retrieval](semantic-how-to-enable-disable.md) | Billing consent for semantic ranker and agentic retrieval is now independent. All search services are automatically on the free agentic retrieval plan. Currently, there's no portal support for the billing split.<p>The billing split only applies on Search Service 2026-04-01 and later. If you currently have `semanticSearch=standard`, you must explicitly set `knowledgeRetrieval=standard` before you upgrade to 2026-04-01. |
+| [Split billing consent for semantic ranker and agentic retrieval](semantic-how-to-enable-disable.md) | Billing consent for semantic ranker and agentic retrieval is now independent. All search services are automatically on the free agentic retrieval plan. Currently, there's no portal support for the billing split.<p>The billing split applies only to Search Service 2026-04-01 and later. If you currently have `semanticSearch=standard`, you must explicitly set `knowledgeRetrieval=standard` before you upgrade to 2026-04-01. |
 
 ## March 2026
 

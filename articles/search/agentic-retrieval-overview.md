@@ -1,7 +1,7 @@
 ---
 title: Agentic Retrieval Overview
 description: Learn about agentic retrieval in Azure AI Search, a pipeline that uses LLMs to decompose complex queries into subqueries for better RAG and agent workflows.
-ms.date: 04/24/2026
+ms.date: 05/05/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -27,7 +27,7 @@ Here's what it does:
 
 This high-performance pipeline helps you generate high-quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a [Knowledge Base object](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a [knowledge base object](/rest/api/searchservice/knowledge-bases) in the latest stable (2026-04-01) and preview (2025-11-01-preview) REST API versions, as well as the equivalent Azure SDK packages. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -164,7 +164,7 @@ Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI
 
 ## How to get started
 
-To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
+To create an agentic retrieval solution, you can use the Azure portal, REST APIs, or an Azure SDK package that provides the functionality.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
@@ -197,9 +197,9 @@ To create an agentic retrieval solution, you can use the Azure portal, the lates
 
 ### [**REST API references**](#tab/rest-api-references)
 
-+ [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-+ [Knowledge Bases](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-+ [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
++ [Knowledge Sources](/rest/api/searchservice/knowledge-sources)
++ [Knowledge Bases](/rest/api/searchservice/knowledge-bases)
++ [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve)
 
 ### [**Demos**](#tab/demos)
 

@@ -135,7 +135,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
     ```http
     # List indexes using roles
-    GET https://{{search-url}}/indexes?api-version=2025-11-01-preview
+    GET https://{{search-url}}/indexes?api-version=2026-04-01
     Content-Type: application/json
     Authorization: Bearer {{access-token}}
     ```
@@ -182,7 +182,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We 
 
    ```http
    # List indexes using keys
-   GET {{search-url}}/indexes?api-version=2025-11-01-preview
+   GET {{search-url}}/indexes?api-version=2026-04-01
    Content-Type: application/json
    api-key: {{search-api-key}}
    ```
