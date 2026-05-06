@@ -629,7 +629,7 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoshuang:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoshuangMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoshuangNeural` (Female, Child) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoDialectsNeural` (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoDialectsNeural`<sup>6</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoxiaoMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `cheerful`, `empathetic`, `excited`, `poetry-reading`, `sorry`, `story`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyanNeural` (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoyi:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `complaining`, `cute`, `gentle`, `nervous`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
