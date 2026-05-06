@@ -60,17 +60,17 @@ The response includes a `supportedModels` object that lists the valid completion
 
 ### Model selection for prebuilt analyzers
 
-Prebuilt analyzers use indirection keys instead of direct model names in their `models` section. This allows the service to support model upgrades without changing analyzer definitions.
+Prebuilt analyzers use model aliases instead of direct model names in their `models` section. This allows the service to support model upgrades without changing analyzer definitions.
 
-Prebuilt analyzers reference the following deployment keys:
+Prebuilt analyzers reference the following model aliases:
 
-| Key | Used by |
+| Model Alias | Used by |
 |---|---|
 | `prebuilt-analyzer-completion` | Default for most prebuilt analyzers |
 | `prebuilt-analyzer-completion-mini` | Default for selected prebuilt analyzers, e.g. `prebuilt-*Search` |
 | `prebuilt-analyzer-embedding` | Prebuilt analyzers that require embeddings |
 
-You map these keys to your actual deployments in the `modelDeployments` configuration (see [Set default deployments](#option-1-set-default-deployments-at-the-resource-level)).
+You map these aliases to your actual deployments in the `modelDeployments` configuration (see [Set default deployments](#option-1-set-default-deployments-at-the-resource-level)).
 
 
 
@@ -83,7 +83,7 @@ When you create a custom analyzer, you can specify which chat completion model a
 {
   "analyzerId": "myReceipt",
   "models": {
-    // Specify the completion and embedding models for this custom analyzer by referencing the indirection keys in model deployment
+    // Specify the completion and embedding models for this custom analyzer by referencing the model aliases
     "completion": "prebuilt-analyzer-completion",
     "embedding": "prebuilt-analyzer-embedding"
   },
@@ -100,7 +100,7 @@ When you create a custom analyzer, you can specify which chat completion model a
 
 ## Two ways to provide model deployments
 
-As a customer, you have two options:
+To set model deployments, you have two options:
 
 - **Option 1:** Set default model deployments at the resource level.
 - **Option 2:** Pass model deployment pointers in every analyze request.
@@ -109,7 +109,7 @@ If you set resource defaults, you can still override those defaults for a single
 
 ### Option 1: Set default deployments at the resource level
 
-After you set defaults, analyze requests can omit `modelDeployments`. Choose one of the following setup methods:
+You can directly connect Content Understanding to your model deployment when you call analyze via the API. However, to simplify management across a set of different analyzers, there's one unified place where you manage the default models for all analyzers under a given Foundry resource. Choose one of the following setup methods:
 
 # [REST API or code](#tab/rest-api)
 
@@ -121,7 +121,7 @@ PATCH /contentunderstanding/defaults
   "modelDeployments": {
     "gpt-5.2": "myGpt52Deployment",
     "text-embedding-3-large": "myTextEmbedding3LargeDeployment",
-    // Specify default model deployments as "prebuilt analyzer indirection keys": "deployment name"
+    // Specify default model deployments using "model alias": "deployment name"
     "prebuilt-analyzer-completion": "myGpt52Deployment",
     "prebuilt-analyzer-completion-mini": "myGpt41-miniDeployment",
     "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
@@ -129,7 +129,7 @@ PATCH /contentunderstanding/defaults
 }
 ```
 
-Example analyze request that uses resource defaults:
+After you set defaults, analyze requests can omit `modelDeployments`. Example analyze request that uses resource defaults:
 
 ```jsonc
 POST /myReceipt:analyze
