@@ -17,8 +17,9 @@ monikerRange: '<=doc-intel-4.0.0'
 
 > [!IMPORTANT]
 >
-> * **Document Intelligence REST API v2.1** (GA) reaches end-of-support on **15 September 2027**. On this date, the Document Intelligence GA API v2.1 will be retired and all requests to the service with that API version will fail.  To ensure your models continue to operate seamlessly, you'll need to migrate to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md). If you're using custom models, we recommend re-training them with a newer GA API.
-> * **Document Intelligence REST API 2022–08–31 (GA) v3.0** reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements.
+> * **Document Intelligence REST API v2.1 (GA)** reaches end of support on **September 15, 2027**.
+> * **Document Intelligence REST API 2022-08-31 (GA) v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md).
 
 ## SDk migration guides
 

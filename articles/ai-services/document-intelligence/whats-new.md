@@ -26,17 +26,15 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 
 > [!IMPORTANT]
 >
-> * Preview API versions will be retired by 06/30/2026, and v3.0 `2022-08-31 (GA)` API will be retired by 03/30/2029. If you're still using a preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 v4.0 (GA)`. </br>
-> * **Document Intelligence REST API v2.1 (GA)** reaches end of support on **September 15, 2027**. After this date, the v2.1 endpoint is retired, and all requests targeting that API version fail. To prevent production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](versioning/v3-1-migration-guide.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md). For custom models, plan a full retraining cycle on a supported GA API version.
-> * **Document Intelligence REST API 2022-08-31 (GA) v3.0** reaches end of support on **March 30, 2029**. Use the remaining support window to complete v3.0 workload migration and route all new implementations to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](versioning/v3-1-migration-guide.md) or [Azure Content Understanding](../content-understanding/choosing-right-ai-tool.md). These platforms provide broader capabilities and are aligned with current document processing requirements.
-
+> * **Document Intelligence REST API v2.1 (GA)** reaches end of support on **September 15, 2027**.
+> * **Document Intelligence REST API 2022-08-31 (GA) v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md).
 
 ## March 2026
 
 **Updated prebuilt tax form models**
 
 Prebuilt models for US tax forms have been updated supporting 2025 tax forms including quality improvement to address multi-copy extraction (e.g., multiple W-2s or 1099s in one document). You can now extract data from multi-form filings in a single request and get more comprehensive field coverage.
-
 
 ## June 2025
 

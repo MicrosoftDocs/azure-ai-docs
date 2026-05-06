@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 05/06/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.0.0'
 ---
@@ -19,12 +19,14 @@ monikerRange: 'doc-intel-3.0.0'
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# SDK target: REST API 2022–08–31 (GA) v3.0
+# SDK target: REST API 2022–08–31 v3.0
 
-![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2022–08–31 (GA) v3.0**
+![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2022–08–31 v3.0**
 
 > [!IMPORTANT]
-> Document Intelligence REST API 2022–08–31 (GA) v3.0 reaches end-of-support on **March 30, 2029**. During the support window, we recommend that users migrate existing v3.0 workloads and redirect new projects to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](migration-guide-overview.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md). Both solutions provide expanded feature sets and support modern document processing requirements.
+>
+> * **Document Intelligence REST API 2022-08-31 (GA) v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, migrate now to [Azure Document Intelligence API v4.0:2024-11-30 (GA)](sdk-overview-v4-0.md) or [Azure Content Understanding](../../content-understanding/choosing-right-ai-tool.md).
 
 Azure Document Intelligence in Foundry Tools is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
