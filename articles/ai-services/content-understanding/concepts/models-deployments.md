@@ -81,7 +81,7 @@ When you create a custom analyzer, you can specify which chat completion model a
 
 ```jsonc
 {
-  "analyzerId": "myReceipt",
+  "analyzerId": "myInvoice",
   "models": {
     // Specify the completion and embedding models for this custom analyzer by referencing the model aliases
     "completion": "prebuilt-analyzer-completion",
@@ -111,6 +111,26 @@ If you set resource defaults, you can still override those defaults for a single
 
 You can directly connect Content Understanding to your model deployment when you call analyze via the API. However, to simplify management across a set of different analyzers, you can centrally manage default models for all analyzers under a given Foundry resource. To do so, choose one of the following setup methods:
 
+# [Content Understanding Studio](#tab/studio)
+
+For the full onboarding flow, see [Quickstart: Try out Content Understanding Studio](../quickstart/content-understanding-studio.md).
+
+1. Open [Content Understanding Studio](https://aka.ms/cu-studio).
+1. Select the **Settings** gear icon in the upper-right corner.
+1. Select **Add resource** to open the **Add new connected resource** dialog.
+1. To connect a resource, select the subscription, resource group, and Foundry resource in the dialog.
+:::image type="content" source="../media/concepts/set-defaults-in-content-understanding-studio.png" alt-text="Screenshot of the Add new connected resource dialog with subscription, resource group, resource name, and automatic deployment option." lightbox="../media/concepts/set-defaults-in-content-understanding-studio.png" :::
+1. Optional: Select **Enable auto-deployment for required models if no default deployment available**.
+1. Select **Next**, review mappings, and then save.
+
+
+
+Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
+
+:::image type="content" source="../media/concepts/configure-models-studio.png" alt-text="Screenshot of the Setup and Configure model deployment in the Content Understanding Studio." lightbox="../media/concepts/configure-models-studio.png" :::
+
+
+
 # [REST API or code](#tab/rest-api)
 
 Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at the resource level.
@@ -132,30 +152,16 @@ PATCH /contentunderstanding/defaults
 After you set defaults, analyze requests can omit `modelDeployments`. Example analyze request that uses resource defaults:
 
 ```jsonc
-POST /myReceipt:analyze
+POST /contentunderstanding/analyzers/myInvoice:analyze
 {
+  "inputs": [
+    {
+      "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf"
+    }
+  ]
   // No modelDeployments needed - uses resource defaults
 }
 ```
-
-# [Content Understanding Studio](#tab/studio)
-
-For the full onboarding flow, see [Quickstart: Try out Content Understanding Studio](../quickstart/content-understanding-studio.md).
-
-1. Open [Content Understanding Studio](https://aka.ms/cu-studio).
-1. Select the **Settings** gear icon in the upper-right corner.
-1. Select **Add resource** to open the **Add new connected resource** dialog.
-1. To connect a resource, select the subscription, resource group, and Foundry resource in the dialog.
-:::image type="content" source="../media/concepts/set-defaults-in-content-understanding-studio.png" alt-text="Screenshot of the Add new connected resource dialog with subscription, resource group, resource name, and automatic deployment option." lightbox="../media/concepts/set-defaults-in-content-understanding-studio.png" :::
-1. Optional: Select **Enable auto-deployment for required models if no default deployment available**.
-1. Select **Next**, review mappings, and then save.
-
-
-
-Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
-
-:::image type="content" source="../media/concepts/configure-models-studio.png" alt-text="Screenshot of the Setup and Configure model deployment in the Content Understanding Studio." lightbox="../media/concepts/configure-models-studio.png" :::
-
 
 ---
 
@@ -164,12 +170,14 @@ Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`,
 Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
-POST /contentunderstanding/analyzers/myReceipt:analyze
+POST /contentunderstanding/analyzers/myInvoice:analyze
 {
+  "inputs": [
+    {
+      "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf"
+    }
+  ],
   "modelDeployments": {
-    "gpt-5.2": "myGpt52Deployment", 
-    "text-embedding-3-large": "myTextEmbedding3LargeDeployment",
-  // Specify the model deployments for this request
     "prebuilt-analyzer-completion": "myGpt52Deployment",
     "prebuilt-analyzer-embedding": "myTextEmbedding3LargeDeployment"
   }
