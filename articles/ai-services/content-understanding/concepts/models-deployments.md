@@ -154,6 +154,9 @@ For the full onboarding flow, see [Quickstart: Try out Content Understanding Stu
 
 Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
 
+:::image type="content" source="../media/concepts/configure-models-studio.png" alt-text="Screenshot of the Setup and Configure model deployment in the Content Understanding Studio." lightbox="../media/concepts/configure-models-studio.png" :::
+
+
 ---
 
 ### Option 2: Pass model deployments in each analyze request
