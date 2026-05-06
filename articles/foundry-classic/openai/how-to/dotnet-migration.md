@@ -55,7 +55,7 @@ AzureOpenAIClient openAIClient = new(
 ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
-Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet) package is installed.
+Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) package is installed.
 
 ```csharp
 // 2.0: Microsoft Entra ID via Azure.Identity's DefaultAzureCredential

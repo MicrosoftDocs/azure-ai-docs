@@ -1,6 +1,6 @@
 ---
-title: "Data, privacy, and security for Azure AI Agent Service"
-description: "This document details issues for data, privacy, and security for Azure AI Agent Service"
+title: "Data, privacy, and security for Foundry Agent Service"
+description: "This document details issues for data, privacy, and security for the Foundry Agent Service"
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -14,6 +14,6 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Data, privacy, and security for Azure AI Agent Service
+# Data, privacy, and security for Foundry Agent Service
 
 [!INCLUDE [data-privacy-security content](../includes/agents-data-privacy-security-content.md)]
