@@ -50,6 +50,16 @@ Learn about the different types and features of Azure Speech voices, or skip to 
 
 The table in this section represents the locales and voices that text to speech supports. For details, see the following section notes. More remarks for text-to-speech locales are included in the [Voice styles and roles](#voice-styles-and-roles), [Standard voices](#standard-voices), [Professional voice](#professional-voice), and [Personal voice](#personal-voice) sections in this article.
 
+
+### Standard voices
+
+Each standard voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+
+> [!IMPORTANT]
+> Pricing varies for standard voice and custom voice. For more information, see the [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/speech/) page.
+
+Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can get other sample rates through upsampling or downsampling when synthesizing.
+
 ### Multilingual voices
 
 Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or `DragonHDOmniLatestNeural` support multiple languages. These voices enable expressive speech synthesis across languages, which helps reduce language barriers and support inclusive global communication.
@@ -92,21 +102,8 @@ To learn how you can configure and adjust voice styles and roles, see [Use speak
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
 
+# [Custom TTS](#tab/custom-tts)
 
-## Visemes
-
-This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
-
-[!INCLUDE [Language support include](includes/language-support/viseme.md)]
-
-## Standard voices
-
-Each standard voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
-
-> [!IMPORTANT]
-> Pricing varies for standard voice and custom voice. For more information, see the [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/speech/) page.
-
-Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can get other sample rates through upsampling or downsampling when synthesizing.
 
 ## Professional voice
 
@@ -133,6 +130,13 @@ The following table distinguishes locales that function as both cross-lingual so
 [!INCLUDE [Language support include](includes/language-support/personal-voice.md)]
 
 
+# [Avatar](#tab/avatar)
+
+## Visemes
+
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+
+[!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)
