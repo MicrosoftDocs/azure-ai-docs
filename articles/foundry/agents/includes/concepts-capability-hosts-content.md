@@ -71,6 +71,8 @@ When creating capability hosts, be aware of these important constraints to avoid
 
 - **You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
 
+- **Account capability host prerequisite**: You can't create a project capability host unless an account-level capability host already exists.
+
 ## Create connections for capability hosts
 
 Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for the resources that store agent data:
