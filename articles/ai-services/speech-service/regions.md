@@ -72,41 +72,41 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Speech to text](#tab/stt)
 
-| Region | Real-time transcription<sup>1</sup> | Fast transcription | Batch transcription<sup>1</sup> | Whisper via batch transcription | Whisper via Azure OpenAI | Custom speech training<sup>2</sup> |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| `australiaeast` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `brazilsouth` | ✅ | ✅ | ✅ | | | |
-| `canadacentral` | ✅ | ✅ | ✅ | | | ✅ |
-| `canadaeast` | ✅ | | ✅ | | | |
-| `centralindia` | ✅ | ✅ | ✅ | | ✅ | ✅ |
-| `centralus` | ✅ | | ✅ | | | |
-| `eastasia` | ✅ | | ✅ | | | ✅ |
-| `eastus` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ |
-| `francecentral` | ✅ | ✅ | ✅ | | | ✅ |
-| `germanywestcentral` | ✅ | ✅ | ✅ | | | |
-| `italynorth` | ✅ | ✅ | ✅ | | | |
-| `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `japanwest` | ✅ | ✅ | ✅ | | | |
-| `koreacentral` | ✅ | ✅ | ✅ | | | ✅ |
-| `northcentralus` | ✅ | ✅ | ✅ | | ✅ | |
-| `northeurope` | ✅ | ✅ | ✅ | | | ✅ |
-| `norwayeast` | ✅ | | ✅ | | ✅ | |
-| `qatarcentral` | ✅ | | ✅ | | | |
-| `southafricanorth` | ✅ | | ✅ | | | |
-| `southcentralus` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `southeastasia` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `swedencentral` | ✅ | ✅ | ✅ | | ✅ | |
-| `switzerlandnorth` | ✅ | | ✅ | | ✅ | ✅ |
-| `switzerlandwest` | ✅ | | ✅ | | | |
-| `uaenorth` | ✅ | | ✅ | | | |
-| `uksouth` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `ukwest` | ✅ | | ✅ | | | |
-| `westcentralus` | ✅ | | ✅ | | | |
-| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `westus` | ✅ | ✅ | ✅ | | | ✅ |
-| `westus2` | ✅ | ✅ | ✅ | | | ✅ |
-| `westus3` | ✅ | ✅ | ✅ | | | ✅ |
+| Region | Real-time transcription<sup>1</sup> | Fast transcription | Batch transcription<sup>1</sup> | Whisper via batch transcription | Whisper via Azure OpenAI | Custom speech training<sup>2</sup> | Post-stream refinement (preview) |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| `australiaeast` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
+| `brazilsouth` | ✅ | ✅ | ✅ | | | | |
+| `canadacentral` | ✅ | ✅ | ✅ | | | ✅ | |
+| `canadaeast` | ✅ | | ✅ | | | | |
+| `centralindia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ |
+| `centralus` | ✅ | | ✅ | | | | |
+| `eastasia` | ✅ | | ✅ | | | ✅ | |
+| `eastus` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ |
+| `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | |
+| `francecentral` | ✅ | ✅ | ✅ | | | ✅ | |
+| `germanywestcentral` | ✅ | ✅ | ✅ | | | | |
+| `italynorth` | ✅ | ✅ | ✅ | | | | |
+| `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
+| `japanwest` | ✅ | ✅ | ✅ | | | | |
+| `koreacentral` | ✅ | ✅ | ✅ | | | ✅ | |
+| `northcentralus` | ✅ | ✅ | ✅ | | ✅ | | |
+| `northeurope` | ✅ | ✅ | ✅ | | | ✅ | ✅ |
+| `norwayeast` | ✅ | | ✅ | | ✅ | | |
+| `qatarcentral` | ✅ | | ✅ | | | | |
+| `southafricanorth` | ✅ | | ✅ | | | | |
+| `southcentralus` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
+| `southeastasia` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ |
+| `swedencentral` | ✅ | ✅ | ✅ | | ✅ | | |
+| `switzerlandnorth` | ✅ | | ✅ | | ✅ | ✅ | |
+| `switzerlandwest` | ✅ | | ✅ | | | | |
+| `uaenorth` | ✅ | | ✅ | | | | |
+| `uksouth` | ✅ | ✅ | ✅ | ✅ | | ✅ | |
+| `ukwest` | ✅ | | ✅ | | | | |
+| `westcentralus` | ✅ | | ✅ | | | | |
+| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |
+| `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ |
+| `westus2` | ✅ | ✅ | ✅ | | | ✅ | |
+| `westus3` | ✅ | ✅ | ✅ | | | ✅ | |
 
 <sup>1</sup> Supports the processing of custom speech models.
 
