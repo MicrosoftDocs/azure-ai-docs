@@ -311,11 +311,11 @@ items:
       href: /rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true
     - name: 2023-07-31 GA (v3.1)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
-    - name: 2022-08-31 GA (v3.0)
+    - name: 2022-08-31 GA (v3.0) (retires March 30, 2029)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP
     - name: Error codes v4.0, v3.1, and v3.0
       href: how-to-guides/resolve-errors.md
-    - name: v2.1
+    - name: v2.1 (retires September 15, 2027)
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
   - name: Client libraries (2024-11-30 GA)
     items:
