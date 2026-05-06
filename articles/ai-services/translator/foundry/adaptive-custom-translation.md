@@ -19,7 +19,7 @@ ms.topic: reference
 > * Adaptive custom translation playground (GA in Foundry NextGen) enables no-code dataset lifecycle management.
 > * Adaptive custom translation API (v1.0 preview) enables developers to manage the adaptive dataset lifecycles.
 > * Segments with >250 characters (source or target) are rejected. If all segments are invalid, the document upload fails.
-> * This API requires proper authentication and foundry resource setup before use.
+> * This API requires proper authentication and Foundry resource setup before use.
 > * Project and workspace both refer to a Foundry project.
 > * A general category is added to allow a language pair (for example, English–French, French-English) to be created once in both directions.
 
@@ -36,7 +36,7 @@ The following comparison highlights when to choose adaptive custom translation v
 | Feature | Adaptive custom translation | Custom translator |
 | --- | --- | --- |
 | **System Creation** | Enables dynamic translation adaptation and optimization of an existing LLM model using a compact dataset index. The process is streamlined, as it doesn't require offline training or manual deployment steps. | Empowers the creation of a dedicated neural machine translation (NMT) model through comprehensive, end-to-end training. Deployment to production environments ensures that the model is tailored for operational use. |
-| **Data Requirements** | Facilitates domain-specific translation improvements with a minimal dataset, such as five parallel, prealigned sentence pairs, or a small table compacted sample. This approach efficiently grounds translation outputs. | Uses a large training data, typically at least 10,000 parallel sentence pairs, to build a highly accurate NMT model. This extensive data supports robust supervised learning and high-fidelity translations. |
+| **Data Requirements** | Facilitates domain-specific translation improvements with a minimal dataset, such as five parallel, prealigned sentence pairs, or a small table compacted sample. This approach efficiently grounds translation outputs. | Uses a large training datasets, typically at least 10,000 parallel sentence pairs, to build a highly accurate NMT model. This extensive data supports robust supervised learning and high-fidelity translations. |
 | **Speed** | Quickly incorporates and applies dataset updates within minutes, allowing for immediate adjustments in translation behavior and output. | Completes model training over a variable period—potentially up to 48 hours—depending on the dataset size and computational capacity. Updates require retraining and redeployment to reflect changes. |
 | **Maintenance** | Simplifies operational management by focusing on dataset updates and integrity checks, removing the need for ongoing model maintenance. | Supports sustained translation quality with periodic maintenance, including retraining and redeployment, to keep the model current and accurate. |
 | **Use Case** | Best for rapidly evolving or low-volume content (for example, support tickets) where quick updates to terminology or phrasing are needed without retraining a model. | Ideal for high-volume, consistent translation of domain-specific content (for example, legal contracts) where strict terminology and style adherence are critical across all documents. |
@@ -65,7 +65,7 @@ Each request to an adaptCT API must include an authentication header. This heade
 * Authenticate with an [access token](../text-translation/reference/authentication.md#authenticating-with-an-access-token).
 * Authenticate with [Microsoft Entra ID](../text-translation/reference/authentication.md#authentication-with-microsoft-entra-id).
 
-For more information about Azure resources, *see* [Azure resources for Azure AI translation](../how-to/create-translator-resource.md)
+For more information about Azure resources, *see* [Azure resources for Azure AI translation](../how-to/create-translator-resource.md).
 
 ### Required headers
 
@@ -175,9 +175,9 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 
 Create a workspace in Microsoft Foundry after creating your Foundry resource and project.
 
-> 1. Select a project.
-> 2. Select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM. The workspace is created automatically.
-> 3. Retrieve the workspace ID by creating your first adaptive dataset in the playground using the Adaptive LLM tab (the GUID in <GUID>-adaptive-general), or by calling [Get all workspaces](#get-all-workspaces).
+1. Select a project.
+1. Select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM. The workspace is created automatically.
+1. Retrieve the workspace ID by creating your first adaptive dataset in the playground using the Adaptive LLM tab (the GUID in <GUID>-adaptive-general), or by calling [Get all workspaces](#get-all-workspaces).
 
 ## Document operations
 
@@ -349,7 +349,7 @@ Creates a new dataset for adaptive translation using specified documents.
 |--------|-------|----------|
 | `Content-Type` | `application/json` | **True** |
 
-#### Request body
+***Request body***
 
 ```json
 {
@@ -495,22 +495,24 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Best practices
 
-1. **Authentication**: Use MI or access token
-1. **Error Handling**: Implement proper error handling and retry logic for API calls
-1. **Project Organization**: Use descriptive names for projects and adaptive datasets to  organize related adaptive documents and datasets
-1. **Document Management**: Ensure TSV and TMX files are properly formatted with well aligned source-target pairs. Examples are available, in foundry: select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM > Documents.
+* **Authentication**: Use MI or access token
+* **Error Handling**: Implement proper error handling and retry logic for API calls
+* **Project Organization**: Use descriptive names for projects and adaptive datasets to  organize related adaptive documents and datasets
+* **Document Management**: Ensure TSV and TMX files are properly formatted with well aligned source-target pairs. Examples are available, in Foundry: select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM > Documents.
 
 ## Troubleshooting
 
-1. **Authentication Errors**
-   * Verify your Azure tokens are valid and not expired.
-   * Check that all required environment variables are set.
-   * Ensure your Azure services are properly configured.
+**Authentication Errors**:
 
-1. **Index Creation Issues**
-   * Verify documents are properly uploaded before creating indices.
-   * Check that the Custom Translator API endpoint is accessible.
-   * Ensure your subscription is active.
+* Verify your Azure tokens are valid and not expired.
+* Check that all required environment variables are set.
+* Ensure your Azure services are properly configured.
+
+**Index Creation Issues**:
+
+* Verify documents are properly uploaded before creating indices.
+* Check that the Custom Translator API endpoint is accessible.
+* Ensure your subscription is active.
 
 ## Next steps
 

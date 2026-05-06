@@ -38,7 +38,7 @@ Translator **2026-06-06** is our latest cloud-based multilingual translation ser
 
 **Adaptive custom translation (AdaptCT)**: Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
 
-  :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screen shot of the adaptive custom translation pane in Foundry":::
+  :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screenshot of the adaptive custom translation pane in Foundry." lightbox="media/adaptive-custom-translation.png":::
 
 ## December 2025
 

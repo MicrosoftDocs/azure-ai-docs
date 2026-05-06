@@ -29,9 +29,9 @@ Translator is an optimal solution for managing extensive multilingual content. I
 
 * **Revised request and response JSON format**. The REST API structure is revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide](rest-api-guide.md#rest-api-code-sample-translate).
 
-* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest release, you now can optionally select either the standard NMT translation or Large Language Model (LLM), for example, GPT-5.1. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have a Microsoft Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest release, you now can optionally select either the standard NMT translation or Large Language Model (LLM), for example, GPT-5.1. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have a Microsoft Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
-* **Adaptive custom translation**. You can provide up to five reference translations or adaptive dataset index ID to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs. For more information, *see* [Adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
+* **Adaptive custom translation**. You can provide up to five reference translations or adaptive dataset index ID to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs. For more information, *see* [Adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md).
 
 * **Tone variant translations**. Use generative AI LLMs translate text across multiple tonal categories—formal, informal, and neutral—ensuring precise contextual adaptation.
 
@@ -43,7 +43,7 @@ The languages supported for LLM and Adaptive custom translations are listed in t
 
 ## Authentication
 
-The `2026-06-06` API supports both the resource API key and Microsoft Entra ID authentication. For your information, *see* [Authorization and authentication](../../text-translation/reference/authentication.md)
+The `2026-06-06` API supports both the resource API key and Microsoft Entra ID authentication. For your information, *see* [Authorization and authentication](../../text-translation/reference/authentication.md).
 
 ## NMT Base URLs
 
