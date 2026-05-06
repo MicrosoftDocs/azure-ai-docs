@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *Fabric Data Agent knowledge source* connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. At query time, the retrieval engine queries the Fabric Data Agent directly, bypassing an intermediate LLM call. You specify the workspace and data agent IDs, and the retrieval engine handles authentication and query formulation.
+A *Fabric Data Agent knowledge source* connects your [Microsoft Fabric data agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. The data agent acts as a virtual analyst over your Microsoft Fabric data sources, dynamically generating and executing queries to answer questions about live business data, such as revenue analysis, operational metrics, and analytical breakdowns. Results are returned as grounded outputs, including tables, charts, and data-driven explanations.
 
-Like any other knowledge source, you specify a Fabric Data Agent knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) and use the results as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live data directly. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
 
 ### Usage support
 
@@ -27,7 +27,7 @@ Like any other knowledge source, you specify a Fabric Data Agent knowledge sourc
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-+ A Microsoft Fabric workspace with a [Fabric Data Agent configured](/fabric/data-science/how-to-create-data-agent). Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity), workspace settings, or same-tenant requirements required to use a Fabric Data Agent as a knowledge source. -->
++ A Microsoft Fabric workspace with a [data agent](/fabric/data-science/how-to-create-data-agent). Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity), workspace settings, or same-tenant requirements required to use a Fabric Data Agent as a knowledge source. -->
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -68,7 +68,6 @@ The following JSON is an example response for a Fabric Data Agent knowledge sour
   "description": "A Fabric Data Agent knowledge source.",
   "encryptionKey": null,
   "fabricDataAgentParameters": {
-    "fabricEndpoint": null,
     "workspaceId": "00000000-0000-0000-0000-000000000000",
     "dataAgentId": "00000000-0000-0000-0000-000000000001"
   }
@@ -110,7 +109,7 @@ The following properties apply to Fabric Data Agent knowledge sources.
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
 | `fabricDataAgentParameters` | Parameters specific to the Fabric Data Agent knowledge source: `workspaceId` and `dataAgentId`. | Object | No | Yes |
 | `workspaceId` | The [ID of the Microsoft Fabric workspace](/fabric/data-factory/migrate-pipelines-how-to-find-your-fabric-workspace-id) that contains the data agent. | String | No | Yes |
-| `dataAgentId` | The ID of the Fabric Data Agent to query. | String | No | Yes |
+| `dataAgentId` | The ID of the data agent to query. | String | No | Yes |
 
 ## Assign to a knowledge base
 
@@ -125,17 +124,17 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Fabric Data Agent knowledge sources require the end user's access token at query time. You include the token in the retrieve request, and the retrieval engine passes it to the Fabric Data Agent to authenticate the call on behalf of the end user.
+Fabric Data Agent knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the data agent on behalf of the end user.
 
 <!-- TO-DO (PM): Confirm whether Power BI row-level security is enforced on underlying semantic models when the Fabric Data Agent is queried via the on-behalf-of flow. -->
 
-Because Fabric Data Agent doesn't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Because Fabric Data Agent knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Fabric Data Agent–specific response fields
 
-Fabric Data Agent knowledge sources can return two types of content:
+Fabric Data Agent knowledge sources can return two types of content, both nested inside the `sourceData` object of each reference entry:
 
 - A natural-language answer (`fabricAnswer`)
 - Embedded resources, such as tables, charts, or datasets (`fabricEmbeddedResources`)
