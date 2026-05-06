@@ -109,7 +109,7 @@ If you set resource defaults, you can still override those defaults for a single
 
 ### Option 1: Set default deployments at the resource level
 
-You can directly connect Content Understanding to your model deployment when you call analyze via the API. However, to simplify management across a set of different analyzers, there's one unified place where you manage the default models for all analyzers under a given Foundry resource. Choose one of the following setup methods:
+You can directly connect Content Understanding to your model deployment when you call analyze via the API. However, to simplify management across a set of different analyzers, you can centrally manage default models for all analyzers under a given Foundry resource. To do so, choose one of the following setup methods:
 
 # [REST API or code](#tab/rest-api)
 
