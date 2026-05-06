@@ -16,6 +16,7 @@ ms.custom:
 
 | **Model** | **Version** | **brazilsouth** | **canadacentral** | **canadaeast** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westus** | **westus3** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| gpt-chat-latest | 2026-05-05 | - | - | - | - | - | ✅ | - | ✅ | - | - |
 | gpt-5.5 | 2026-04-24 | - | - | - | - | - | ✅ | - | ✅ | - | - |
 | gpt-image-2 | 2026-04-21 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
