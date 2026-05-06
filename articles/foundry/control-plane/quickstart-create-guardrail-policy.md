@@ -4,7 +4,7 @@ description: "Learn how to create a guardrail policy for model deployments in Mi
 author: gregharen
 ms.author: scottpolly
 ms.reviewer: gregharen
-ms.date: 02/19/2026
+ms.date: 05/06/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
@@ -21,7 +21,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
-- The appropriate roles for using Azure Policy to create a policy for your subscription. You can learn more about Azure Policy roles in the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
+- The [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) role at the subscription or resource group level. For more information, see the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
 
 > [!NOTE]
 > This capability is available only in the [Microsoft Foundry (new) portal](../what-is-foundry.md).
@@ -38,7 +38,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/compliance-tab.png" alt-text="Screenshot of the Compliance pane of Foundry Control Plane." lightbox="media/quickstart-create-a-guardrail-policy/compliance-tab.png":::
 
-1. Select the controls to add to the policy. Guardrail controls include content safety filters, prompt shields, and groundedness checks. These controls represent the minimum settings required for a model deployment to be considered compliant with the policy.
+1. Select the controls to add to the policy. Guardrail controls include content safety, prompt injection, and protected materials. These controls represent the minimum settings required for a model deployment to be considered compliant with the policy.
 
    As you configure each control, select **Add control** to add it to the policy.
 
@@ -71,10 +71,7 @@ After you submit your policy, verify that it was created successfully:
 1. Check that the policy name, scope, and status are correct.
 
 > [!NOTE]
-> It takes some time for Azure Policy to perform a compliance scan. Initial compliance results might not appear immediately after policy creation.
-
-> [!TIP]
-> If you receive a permissions error when creating a policy, verify that you have the [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) role at the subscription or resource group level.
+> It takes some time for Azure Policy to perform a compliance scan. Initial compliance results might not appear immediately after policy creation. After the scan completes, return to the **Compliance** pane to review compliance status for your model deployments.
 
 ## Clean up resources
 
