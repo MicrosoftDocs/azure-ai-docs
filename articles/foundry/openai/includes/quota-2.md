@@ -6,83 +6,10 @@ ms.reviewer: shiyingfu
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/04/2026
+ms.date: 05/06/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
-
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing your Azure OpenAI quota.
-
-## Prerequisites
-
-> [!IMPORTANT]
-> For any task that requires viewing available quota we recommend using the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you'll need to access Azure OpenAI, consult our [Azure role-based access control guide](../../../foundry-classic/openai/how-to/role-based-access-control.md). 
->
-> This role can be found in the Azure portal under **Subscriptions** > **Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**. This role **must be applied at the subscription level**, it doesn't exist at the resource level.
->
-> If you don't wish to use this role, the subscription **Reader** role will provide equivalent access, but it will also grant read access beyond the scope of what is needed for viewing quota and model deployment.
-
-## Introduction to quota
-
-Azure OpenAI's quota feature enables assignment of rate limits to your deployments, up-to a global limit called your *quota*. Quota is assigned to your subscription on a per-region, per-model, per-deployment-type basis in units of **Tokens-per-Minute (TPM)**. When you onboard a subscription to Azure OpenAI, you'll receive default quota for most available models. Then, you'll assign TPM to each deployment as it is created, and the available quota for that model will be reduced by that amount. You can continue to create deployments and assign them TPM until you reach your quota limit. Once that happens, you can only create new deployments of that model by reducing the TPM assigned to other deployments of the same model (thus freeing TPM for use), or by requesting and being approved for a model quota increase in the desired region.
-
-> [!NOTE]
-> With a quota of 240,000 TPM for GPT-4o in East US, a customer can create a single deployment of 240 K TPM, 2 deployments of 120 K TPM each, or any number of deployments in one or multiple Azure OpenAI resources as long as their TPM adds up to less than 240 K total in that region.
-
-When a deployment is created, the assigned TPM will directly map to the tokens-per-minute rate limit enforced on its inferencing requests. A **Requests-Per-Minute (RPM)** rate limit will also be enforced whose value is set proportionally to the TPM assignment using the following ratio:
-
-> [!IMPORTANT]
-> The ratio of Requests Per Minute (RPM) to Tokens Per Minute (TPM) for quota can vary by model. When you deploy a model programmatically or [request a quota increase](https://aka.ms/oai/stuquotarequest) you don't have granular control over TPM and RPM as independent values. Quota is allocated in terms of units of capacity which have corresponding amounts of RPM & TPM:
->
-> | Model                  | Capacity   | Requests Per Minute (RPM)  | Tokens Per Minute (TPM) |
-> |------------------------|:----------:|:--------------------------:|:-----------------------:|
-> | **Older chat models:** | 1 Unit     | 6 RPM                      | 1,000 TPM               |
-> | **o1 & o1-preview:**   | 1 Unit     | 1 RPM                      | 6,000 TPM               |
-> | **o3**                 | 1 Unit     | 1 RPM                      | 1,000 TPM               |
-> | **o4-mini**            | 1 Unit     | 1 RPM                      | 1,000 TPM               |
-> | **o3-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
-> | **o1-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
-> | **o3-pro:**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
->
-> This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota.
-
-The flexibility to distribute TPM globally within a subscription and region has allowed Azure OpenAI to loosen other restrictions:
-
-- The maximum resources per region are increased to 30.
-- The limit on creating no more than one deployment of the same model in a resource has been removed.
-
-## Assign quota
-
-When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
-
-To create a new deployment from within the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
-
-Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in [Foundry portal](https://ai.azure.com/?cid=learnDocs). You can also modify this setting from the **Management** > **Model quota** page.
-
-> [!IMPORTANT]
-> Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
-
-## Request more quota
-
-[!INCLUDE [quota-increase-request](./quota-increase-request.md)]
-
-## Model specific settings
-
-Different model deployments, also called model classes have unique max TPM values that you're now able to control. **This represents the maximum amount of TPM that can be allocated to that type of model deployment in a given region.** 
-
-All other model classes have a common max TPM value.
-
-> [!NOTE]
-> Quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](../../foundry-models/concepts/models-sold-directly-by-azure.md) and aren't impacted by changes made to TPM.  
-
-## View and request quota
-
-For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in [Foundry portal](https://ai.azure.com/?cid=learnDocs):
-
-- **Deployment**: Model deployments divided by model class.
-- **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
-- **Quota allocation**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
-- **Request Quota**: The icon navigates to [this form](https://aka.ms/oai/stuquotarequest) where requests to increase quota can be submitted.
 
 ## Migrating existing deployments
 
@@ -219,7 +146,7 @@ response = chat_completion_with_backoff(
 > [!IMPORTANT]
 > When using a custom retry library, set `max_retries=0` on the SDK client to disable its built-in retry. Otherwise, each attempt from tenacity might itself trigger up to two additional SDK retries, leading to far more requests than expected.
 
-**Option 3: Manual implementation (no third-party library):**
+**Option 3: Manual implementation (no third-party library)**
 
 ```python
 import time
@@ -345,7 +272,7 @@ A 429 error ("Too Many Requests") means the system rejected your request because
 |----------|------------------------|------------|-------------------|
 | **Rate limit exceeded** | "Requests to … have been limited" or "Rate limit is exceeded" | Your requests exceeded the TPM or RPM rate limit for your deployment's allocated quota. | Increase the deployment's TPM allocation, rebalance quota across deployments, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
 | **System capacity throttling** | "The service is temporarily unable to process your request" or "System is experiencing high demand" | Backend capacity is constrained. This condition is often transient. | Retry after the `retry-after-ms` delay. If persistent, consider upgrading to [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity. |
-| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (PayGo) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This reduction is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput). |
+| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (pay-as-you-go) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This reduction is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput). |
 | **Token budget exceeded by request parameters** | Rate limit triggered but token usage metrics appear low | The rate limit calculation includes `max_tokens` and prompt estimate, not just billed tokens. A request with a high `max_tokens` value can consume rate limit budget even if the actual response is small. | Reduce `max_tokens` to match your expected response size. |
 
 > [!IMPORTANT]
@@ -363,7 +290,7 @@ Because of this difference, you can get 429 responses even when your token usage
 - **`max_tokens` overestimation**: Rate limits are calculated using the *estimated maximum* token count (prompt + `max_tokens`), not the actual tokens generated.
 - **Rejected requests**: Requests rejected due to input length limits (HTTP 400) might still count toward rate limiting but won't appear in billed token metrics.
 - **Burst patterns**: RPM enforcement evaluates requests in small time windows (1–10 seconds). A burst of requests in a short window triggers throttling even if the per-minute total is within limits.
-- **Temporary rate limit adjustment for service reliability**: Standard (Pay-As-You-Go) deployments share a common resource pool across customers. To keep service reliable and fair, the system continuously monitors demand across this shared pool. When demand from a deployment approaches or exceeds capacity limits, the system might **temporarily reduce the effective rate limit** for that deployment. During this adjustment period, requests that would have been accepted under normal conditions return 429 responses — even though your configured quota didn't change. This protective measure prevents service degradation for all customers sharing the resource pool. The adjustment is **temporary** and typically resolves within a few hours once traffic stabilizes. You can monitor for this condition by checking if your effective rate limit (visible in `x-ratelimit-limit-tokens` response headers) is lower than your configured TPM allocation.
+- **Temporary rate limit adjustment for service reliability**: Standard (pay-as-you-go) deployments share a common resource pool across customers. To keep service reliable and fair, the system continuously monitors demand across this shared pool. When demand from a deployment approaches or exceeds capacity limits, the system might **temporarily reduce the effective rate limit** for that deployment. During this adjustment period, requests that would have been accepted under normal conditions return 429 responses — even though your configured quota didn't change. This protective measure prevents service degradation for all customers sharing the resource pool. The adjustment is **temporary** and typically resolves within a few hours once traffic stabilizes. You can monitor for this condition by checking if your effective rate limit (visible in `x-ratelimit-limit-tokens` response headers) is lower than your configured TPM allocation.
 - **Distributed enforcement**: Rate limit enforcement across distributed infrastructure might not be perfectly precise or immediately reflected in aggregated metrics.
 
 > [!TIP]
@@ -389,7 +316,7 @@ Because of this difference, you can get 429 responses even when your token usage
 | Latency-sensitive or mission-critical production workloads experiencing frequent 429s | **Upgrade** — consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity and latency SLA. |
 
 > [!NOTE]
-> Standard (PayGo) deployments use a shared resource pool. Throttling protects overall service reliability for all users. Occasional transient 429s are expected behavior, not a service defect. For workloads that require predictable latency and guaranteed throughput, Provisioned Throughput (PTU) is the recommended deployment type.
+> Standard (pay-as-you-go) deployments use a shared resource pool. Throttling protects overall service reliability for all users. Occasional transient 429s are expected behavior, not a service defect. For workloads that require predictable latency and guaranteed throughput, Provisioned Throughput (PTU) is the recommended deployment type.
 
 
 
