@@ -345,6 +345,8 @@ items:
           href: ../../openai/how-to/switching-endpoints.yml
         - name: Manage quota
           href: ../../openai/how-to/quota.md
+        - name: Automate deployments with quota
+          href: ../../openai/how-to/automate-quota-deployments.md
         - name: Dynamic quota
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI
