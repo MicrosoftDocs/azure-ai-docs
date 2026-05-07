@@ -20,7 +20,7 @@ See [Monitor Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai
 Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available metrics for this namespace which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
 
 > [!IMPORTANT]
-> Don't confuse the metrics in this section with the legacy `Latency` metric listed under **Cognitive Services - HTTP Requests** later in this article. The legacy `Latency` metric isn't designed for Azure OpenAI workloads and produces misleading results when used to diagnose Azure OpenAI latency. For Azure OpenAI latency monitoring, use **Time to Response** (`AzureOpenAITimeToResponse`), **Time to Last Byte** (`AzureOpenAITTLTInMS`), **Time Between Tokens** (`AzureOpenAINormalizedTBTInMS`), or **Normalized Time to First Byte** (`AzureOpenAINormalizedTTFTInMS`). For guidance on interpreting these metrics, see [Performance and latency](how-to/latency.md).
+> Don't confuse the metrics in this section with the legacy `Latency` metric listed under **Cognitive Services - HTTP Requests** later in this article. The legacy `Latency` metric isn't designed for Azure OpenAI workloads and produces misleading results when used to diagnose Azure OpenAI latency. For Azure OpenAI latency monitoring, use **Time to Response** (`AzureOpenAITimeToResponse`), **Time to Last Byte** (`AzureOpenAITTLTInMS`), **Time Between Tokens** (`AzureOpenAINormalizedTBTInMS`), or **Normalized Time to First Byte** (`AzureOpenAINormalizedTTFTInMS`). For guidance on interpreting these metrics, see [Performance and latency](../how-to/latency.md).
 
 - Azure OpenAI Requests
 - Active Tokens
@@ -49,7 +49,7 @@ You can also monitor Content Safety metrics that are used by other related servi
 
 #### Quick reference: Key metrics by use case
 
-Use this table to find the right metric for a specific monitoring goal. For end-to-end guidance on interpreting these metrics, see [Performance and latency](how-to/latency.md).
+Use this table to find the right metric for a specific monitoring goal. For end-to-end guidance on interpreting these metrics, see [Performance and latency](../how-to/latency.md).
 
 | I want to monitor... | Use this metric | REST API name |
 | --- | --- | --- |
