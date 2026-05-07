@@ -1772,7 +1772,7 @@ This event is also returned when a response is interrupted, incomplete, or cance
 
 ### mcp_list_tools.in_progress
 
-The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from a mcp server.
+The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from an mcp server.
 
 #### Event structure
 
@@ -1792,7 +1792,7 @@ The server `mcp_list_tools.in_progress` event is returned when the service start
 
 ### mcp_list_tools.completed
 
-The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from a mcp server.
+The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from an mcp server.
 
 #### Event structure
 
@@ -1812,7 +1812,7 @@ The server `mcp_list_tools.completed` event is returned when the service complet
 
 ### mcp_list_tools.failed
 
-The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from a mcp server.
+The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from an mcp server.
 
 #### Event structure
 
@@ -2087,7 +2087,7 @@ Configuration for input audio transcription.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech`, `mai-transcribe-1` (preview) |
-| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection, (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
+| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
@@ -2158,7 +2158,7 @@ Azure standard voice configuration.
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. for example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Preferred locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. for example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example, set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
@@ -2177,7 +2177,7 @@ Azure custom voice configuration (preferred for custom voices).
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Preferred locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
@@ -2442,7 +2442,7 @@ Constrains effort on reasoning for reasoning models. Check model documentation f
 
 ### Tool Configuration
 
-We support two types of tools: function calling and MCP tools which allow you connect to a mcp server.
+We support two types of tools: function calling and MCP tools which allow you connect to an mcp server.
 
 #### RealtimeTool
 
@@ -2665,7 +2665,7 @@ Response status values.
 **Allowed Values:**
 * `in_progress` - Response is being generated
 * `completed` - Response completed successfully
-* `cancelled` - Response was cancelled
+* `canceled` - Response was canceled
 * `incomplete` - Response incomplete (interrupted)
 * `failed` - Response failed with error
 
