@@ -21,6 +21,17 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## May 2026
+
+
+
+### GPT Realtime Translate and GPT Realtime Whisper
+
+New concept articles describe the capabilities and use cases for the latest real-time translation and transcription models:
+
+- [GPT Realtime Translate](./concepts/gpt-realtime-translate.md) — covers continuous stream-based audio translation for live multilingual events, customer support, and voice assistants.
+- [GPT Realtime Whisper](./concepts/gpt-realtime-whisper.md) — covers low-latency streaming transcription for live captions, monitoring, and archival workflows.
+
 ## February 2026
 
 ### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
