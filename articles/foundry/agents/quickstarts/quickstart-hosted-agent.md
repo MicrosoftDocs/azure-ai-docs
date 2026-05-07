@@ -17,6 +17,9 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
+> [!NOTE]
+> **Runtime behavior**: Hosted agents use scale-to-zero compute. Idle compute deprovisions after approximately 15 minutes of inactivity and is automatically restored on the next request, with predictable cold starts. Sessions are stateful—each session has a persistent filesystem and can persist for up to 30 days.
+
 **In this quickstart, you:**
 
 > [!div class="checklist"]
@@ -190,6 +193,8 @@ Deploying services (azd deploy)
   - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
   - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
+
+The endpoint is stable and versioned—each deployment creates a new immutable version. Hosted agents support built-in versioning and weighted rollouts, enabling canary deployments and gradual traffic shifts between versions. For details, see [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md).
 
 :::zone-end
 
@@ -423,6 +428,9 @@ If your project has multiple agent services, specify the agent name as a positio
 azd ai agent monitor <agent-name> --follow
 ```
 
+> [!NOTE]
+> The platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the [Azure portal](https://portal.azure.com) and navigate to **Investigate** > **Transaction search** or **Performance**. Use `azd ai agent monitor` for live console logs.
+
 :::zone-end
 
 ### Test in the Foundry playground
@@ -524,6 +532,9 @@ You can view all the files stored on the home directory of your ADC based agent
 1. Select the "files" section in the session details.
 
 You can download, upload, and create folders within the current folder, clicking on a folder will step into the folder, and clicking on the top navbar will step back into that folder.
+
+> [!NOTE]
+> The per-session filesystem persists with the session and is retained for up to 30 days. Files created during one session remain visible in later interactions with the same session. If you notice a delay when resuming a session after a period of inactivity, this is an expected cold start—idle compute deprovisions after approximately 15 minutes due to scale-to-zero behavior and is automatically restored on the next request.
 
 | Issue | Solution |
 | ----- | -------- |
