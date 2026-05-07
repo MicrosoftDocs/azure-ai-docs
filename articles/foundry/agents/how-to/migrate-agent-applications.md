@@ -6,8 +6,8 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.date: 04/14/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -107,8 +107,8 @@ When migrating, update any code or integrations that reference the old endpoint 
 
 | Aspect | Legacy endpoint | New endpoint |
 |--------|----------------|--------------|
-| Responses | `https://{account}.../projects/{project}/applications/{app}/protocols/openai` | `https://{account}.../projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
-| Activity | `https://{account}.../projects/{project}/applications/{app}/protocols/activityprotocol` | `https://{account}.../projects/{project}/agents/{agent}/protocols/activityprotocol` |
+| Responses | `https://{account}.../projects/{project}/applications/{app}/protocols/openai` | `https://{account}.../projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| Activity | `https://{account}.../projects/{project}/applications/{app}/protocols/activityprotocol` | `https://{account}.../projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 
 ## Publishing UX during the transition
 

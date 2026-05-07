@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 04/29/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
