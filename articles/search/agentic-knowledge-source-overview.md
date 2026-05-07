@@ -61,7 +61,7 @@ Use the Azure portal, REST API, or an Azure SDK preview package to create a know
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
-+ [How to create a Work IQ knowledge source (preview) (queries Work IQ directly)](agentic-knowledge-source-how-to-workiq.md)
++ [How to create a Work IQ knowledge source (preview) (queries Work IQ directly)](agentic-knowledge-source-how-to-work-iq.md)
 + [How to create a Web Knowledge Source resource (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After you create the knowledge source, reference it in a knowledge base.

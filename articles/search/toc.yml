@@ -486,7 +486,7 @@ items:
       - name: SharePoint
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
       - name: Work IQ (preview)
-        href: agentic-knowledge-source-how-to-workiq.md
+        href: agentic-knowledge-source-how-to-work-iq.md
       - name: Web
         href: agentic-knowledge-source-how-to-web.md
       - name: Manage web access
