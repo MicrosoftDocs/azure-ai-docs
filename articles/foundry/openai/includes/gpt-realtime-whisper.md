@@ -29,21 +29,11 @@ Use GPT Realtime Whisper when you need:
 - Text visibility into spoken input while audio is being processed by other models.
 
 
-## Use cases
+## Example use cases
 
 - **Live event captioning**: Provide real-time captions in the speaker's original language during conferences, webinars, or broadcasts.
 - **Compliance and quality review**: Capture the original conversation as text for regulatory compliance, quality assurance, or analytics.
 - **Multilingual pipelines**: Pair with GPT Realtime Translate to deliver both translated output and a source-language transcript in a single workflow.
-
-## Using GPT Realtime Whisper with other models
-
-GPT Realtime Whisper, GPT Realtime Translate, and GPT Realtime 2 cover different parts of an audio architecture:
-
-- Use **GPT Realtime Whisper** when you need streaming transcription of live audio for captions, monitoring, moderation, or analytics.
-- Use **GPT Realtime Translate** when you need continuous real-time translation during live multilingual audio experiences.
-- Use **GPT Realtime 2** for live conversational experiences that require streaming audio input and output, stronger instruction following, and reasoning during the interaction.
-
-In a pipeline, GPT Realtime Translate handles live translated output, GPT Realtime Whisper captures the original speech as text for captions, monitoring, or archival purposes, and GPT Realtime 2 supports reasoning or audio generation depending on the application design. Using the models together offers advantages in scalability, flexibility, and latency management, as each model can be optimized independently for its task.
 
 ## Get started
 
@@ -55,9 +45,3 @@ GPT Realtime Whisper is available through the Realtime API. The connection and u
 ## Deployment and availability
 
 GPT Realtime Whisper is available as a Global Standard (pay-as-you-go) deployment in Microsoft Foundry. Deploy the model from the [model catalog](https://ai.azure.com).
-
-- **Access**: Generally available. No gating or access request required.
-- **Fine-tuning**: Not supported.
-- **Model Router**: Not supported.
-
-[TO VERIFY] Confirm supported languages, regions, and pricing details.
