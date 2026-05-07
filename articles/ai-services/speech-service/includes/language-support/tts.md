@@ -73,10 +73,10 @@ ai-usage: ai-assisted
 | `de-AT` | German (Austria) | Standard | `de-AT-JonasNeural` (Male) |  | ❌ |
 | `de-CH` | German (Switzerland) | Standard | `de-CH-LeniNeural` (Female) |  | ❌ |
 | `de-CH` | German (Switzerland) | Standard | `de-CH-JanNeural` (Male) |  | ❌ |
-| `de-DE` | German (Germany) | Neural HD | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |  | ❌ |
-| `de-DE` | German (Germany) | Neural HD | `de-DE-Florian:DragonHDLatestNeural` (Male) |  | ❌ |
-| `de-DE` | German (Germany) | Multilingual | `de-DE-SeraphinaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `de-DE` | German (Germany) | Multilingual | `de-DE-FlorianMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `de-DE` | German (Germany) | Neural HD | `de-DE-Seraphina:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `de-DE` | German (Germany) | Neural HD | `de-DE-Florian:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `de-DE` | German (Germany) | Multilingual | `de-DE-SeraphinaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `de-DE` | German (Germany) | Multilingual | `de-DE-FlorianMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-KatjaNeural` (Female) |  | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-ConradNeural` (Male) | **Styles**<br/>`cheerful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `de-DE` | German (Germany) | Standard | `de-DE-AmalaNeural` (Female) |  | ❌ |
@@ -94,7 +94,7 @@ ai-usage: ai-assisted
 | `de-DE` | German (Germany) | Standard | `de-DE-TanjaNeural` (Female) |  | ❌ |
 | `el-GR` | Greek (Greece) | Standard | `el-GR-AthinaNeural` (Female) |  | ❌ |
 | `el-GR` | Greek (Greece) | Standard | `el-GR-NestorasNeural` (Male) |  | ❌ |
-| `en-AU` | English (Australia) | Multilingual | `en-AU-WilliamMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `en-AU` | English (Australia) | Multilingual | `en-AU-WilliamMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `en-AU` | English (Australia) | Standard | `en-AU-NatashaNeural` (Female) |  | ❌ |
 | `en-AU` | English (Australia) | Standard | `en-AU-WilliamNeural` (Male) |  | ❌ |
 | `en-AU` | English (Australia) | Standard | `en-AU-AnnetteNeural` (Female) |  | ❌ |
@@ -113,8 +113,8 @@ ai-usage: ai-assisted
 | `en-CA` | English (Canada) | Standard | `en-CA-LiamNeural` (Male) |  | ❌ |
 | `en-GB` | English (United Kingdom) | Neural HD | `en-GB-Ada:DragonHDLatestNeural` (Female) |  | ❌ |
 | `en-GB` | English (United Kingdom) | Neural HD | `en-GB-Ollie:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-GB` | English (United Kingdom) | Multilingual | `en-GB-AdaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `en-GB` | English (United Kingdom) | Multilingual | `en-GB-OllieMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `en-GB` | English (United Kingdom) | Multilingual | `en-GB-AdaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-GB` | English (United Kingdom) | Multilingual | `en-GB-OllieMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `en-GB` | English (United Kingdom) | Standard | `en-GB-SoniaNeural` (Female) | **Styles**<br/>`cheerful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-GB` | English (United Kingdom) | Standard | `en-GB-RyanNeural` (Male) | **Styles**<br/>`chat`, `cheerful`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-GB` | English (United Kingdom) | Standard | `en-GB-LibbyNeural` (Female) |  | ❌ |
@@ -164,40 +164,52 @@ ai-usage: ai-assisted
 | `en-SG` | English (Singapore) | Standard | `en-SG-WayneNeural` (Male) |  | ❌ |
 | `en-TZ` | English (Tanzania) | Standard | `en-TZ-ImaniNeural` (Female) |  | ❌ |
 | `en-TZ` | English (Tanzania) | Standard | `en-TZ-ElimuNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Ava:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Andrew:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Adam:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Alloy:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Aria:DragonHDLatestNeural` (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Ava:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Andrew:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Adam:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Alloy:DragonHDLatestNeural`<sup>2</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Aria:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Bree:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Brian:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Davis:DragonHDLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Emma:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Emma2:DragonHDLatestNeural` (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Brian:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Davis:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Emma:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Emma2:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD | `en-US-Jane:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Jenny:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Nova:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Phoebe:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Serena:DragonHDLatestNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Steffan:DragonHDLatestNeural` (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Jenny:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Nova:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Phoebe:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Serena:DragonHDLatestNeural`<sup>2</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Steffan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Andrew:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Caleb:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Dana:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Lewis:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-US-Phoebe:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-AvaMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-AndrewMultilingualNeural`<sup>4</sup> (Male) | **Styles**<br/>`empathetic`, `relieved`<br/>**Roles**<br/>Not supported | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-AmandaMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-AdamMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-EmmaMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-PhoebeMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`empathetic`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-AlloyTurboMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-EchoTurboMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-FableTurboMultilingualNeural`<sup>4</sup> (Neutral) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-OnyxTurboMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-NovaTurboMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-ShimmerTurboMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-BrianMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-AvaMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-AndrewMultilingualNeural`<sup>2</sup> (Male) | **Styles**<br/>`empathetic`, `relieved`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-AmandaMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-AdamMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-EmmaMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-PhoebeMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`empathetic`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-AlloyTurboMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-EchoTurboMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-FableTurboMultilingualNeural`<sup>2</sup> (Neutral) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-OnyxTurboMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-NovaTurboMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-ShimmerTurboMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-AlloyMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-EchoMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-FableMultilingualNeural`<sup>5</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-OnyxMultilingualNeural`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-NovaMultilingualNeural`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-ShimmerMultilingualNeural`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-AlloyMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI)| `en-US-EchoMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI)| `en-US-FableMultilingualNeuralHD`<sup>5</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-OnyxMultilingualNeuralHD`<sup>5</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-NovaMultilingualNeuralHD`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual (OpenAI) | `en-US-ShimmerMultilingualNeuralHD`<sup>5</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Multilingual | `en-US-BrianMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-AvaNeural` (Female) | **Styles**<br/>`angry`, `fearful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-AndrewNeural` (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-EmmaNeural` (Female) |  | ❌ |
@@ -213,34 +225,34 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Standard | `en-US-SaraNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-TonyNeural` (Male) | **Styles**<br/>`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-NancyNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-CoraMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-ChristopherMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-BrandonMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-CoraMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-ChristopherMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-BrandonMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-AmberNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-AnaNeural` (Female, Child) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-AshleyNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-BrandonNeural` (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-ChristopherNeural` (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-CoraNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-DavisMultilingualNeural`<sup>4</sup> (Male) | **Styles**<br/>`empathetic`, `funny`, `relieved`<br/>**Roles**<br/>Not supported | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-DerekMultilingualNeural`<sup>4</sup> (Male) | **Styles**<br/>`empathetic`, `excited`, `relieved`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-DustinMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-DavisMultilingualNeural`<sup>2</sup> (Male) | **Styles**<br/>`empathetic`, `funny`, `relieved`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-DerekMultilingualNeural`<sup>2</sup> (Male) | **Styles**<br/>`empathetic`, `excited`, `relieved`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-DustinMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-ElizabethNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-EricNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-EvelynMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-EvelynMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-JacobNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-JennyMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-JennyMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
 | `en-US` | English (United States) | Neural HD Flash | `en-US-Jimmie:DragonHDFlashLatestNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-LewisMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-LolaMultilingualNeural`<sup>4</sup> (Female) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-LewisMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-LolaMultilingualNeural`<sup>2</sup> (Female) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-MichelleNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-MonicaNeural` (Female) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-NancyMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`excited`, `friendly`, `funny`, `relieved`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-NancyMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`excited`, `friendly`, `funny`, `relieved`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-RogerNeural` (Male) |  | ❌ |
-| `en-US` | English (United States) | Multilingual | `en-US-RyanMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-SamuelMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-SerenaMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
-| `en-US` | English (United States) | Multilingual | `en-US-SteffanMultilingualNeural`<sup>4</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-RyanMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-SamuelMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-SerenaMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`<br/>**Roles**<br/>Not supported | ✅ |
+| `en-US` | English (United States) | Multilingual | `en-US-SteffanMultilingualNeural`<sup>2</sup> (Male) |  | ✅ |
 | `en-US` | English (United States) | Standard | `en-US-SteffanNeural` (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Flash | `en-US-Tiana:DragonHDFlashLatestNeural` (Female) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Flash | `en-US-Tyler:DragonHDFlashLatestNeural` (Male) |  | ❌ |
@@ -248,11 +260,13 @@ ai-usage: ai-assisted
 | `en-US` | English (United States) | Standard | `en-US-AIGenerate2Neural`<sup>1</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Multilingual | `en-US-AshTurboMultilingualNeural`<sup>1,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-BlueNeural`<sup>1</sup> (Neutral) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Andrew2:DragonHDLatestNeural` (Male) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Andrew2:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-Multitalker:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Andrew3:DragonHDLatestNeural`<sup>1</sup> (Male) |  | ❌ |
+| `en-US` | English (United States) | Multi-talker | `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Multi-talker | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`<sup>1</sup> (Neutral) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `en-US` | English (United States) | Neural HD Omni | `en-us-ava:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
-| `en-US` | English (United States) | Neural HD | `en-US-Ava3:DragonHDLatestNeural`<sup>1</sup> (Female) |  | ❌ |
+| `en-US` | English (United States) | Neural HD | `en-US-Ava3:DragonHDLatestNeural`<sup>1,2</sup> (Female) |  | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Grant:MAI-Voice-1` (Neutral) | **Styles**<br/>`anger`, `confusion`, `determination`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealousy`, `joy`, `neutral`, `professional`, `regret`, `relief`, `sadness`, `shouting`, `softvoice`, `surprise`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Iris:MAI-Voice-1` (Neutral) | **Styles**<br/>`anger`, `confusion`, `determination`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealousy`, `joy`, `narration`, `neutral`, `regret`, `relief`, `sadness`, `shouting`, `softvoice`, `surprise`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `en-US` | English (United States) | Standard | `en-US-Jasper:MAI-Voice-1` (Neutral) | **Styles**<br/>`anger`, `confusion`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealous`, `joy`, `learning`, `media`, `persuasive`, `regret`, `sadness`, `sales`, `surprise`<br/>**Roles**<br/>Not supported | ❌ |
@@ -279,14 +293,14 @@ ai-usage: ai-assisted
 | `es-DO` | Spanish (Dominican Republic) | Standard | `es-DO-EmilioNeural` (Male) |  | ❌ |
 | `es-EC` | Spanish (Ecuador) | Standard | `es-EC-AndreaNeural` (Female) |  | ❌ |
 | `es-EC` | Spanish (Ecuador) | Standard | `es-EC-LuisNeural` (Male) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Ximena:DragonHDLatestNeural` (Female) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Tristan:DragonHDLatestNeural` (Male) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Ximena:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Neural HD | `es-ES-Tristan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-ElviraNeural` (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-AlvaroNeural` (Male) | **Styles**<br/>`cheerful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
-| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-ArabellaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-IsidoraMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-TristanMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
-| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-XimenaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-ArabellaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-IsidoraMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-TristanMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
+| `es-ES` | Spanish (Spain) | Multilingual | `es-ES-XimenaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-AbrilNeural` (Female) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-ArnauNeural` (Male) |  | ❌ |
 | `es-ES` | Spanish (Spain) | Standard | `es-ES-DarioNeural` (Male) |  | ❌ |
@@ -311,8 +325,8 @@ ai-usage: ai-assisted
 | `es-MX` | Spanish (Mexico) | Neural HD | `es-MX-Tristan:DragonHDLatestNeural` (Male) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-DaliaNeural` (Female) | **Styles**<br/>`cheerful`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-JorgeNeural` (Male) | **Styles**<br/>`chat`, `cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
-| `es-MX` | Spanish (Mexico) | Multilingual | `es-MX-DaliaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `es-MX` | Spanish (Mexico) | Multilingual | `es-MX-JorgeMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `es-MX` | Spanish (Mexico) | Multilingual | `es-MX-DaliaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `es-MX` | Spanish (Mexico) | Multilingual | `es-MX-JorgeMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-BeatrizNeural` (Female) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-CandelaNeural` (Female) |  | ❌ |
 | `es-MX` | Spanish (Mexico) | Standard | `es-MX-CarlotaNeural` (Female) |  | ❌ |
@@ -365,13 +379,13 @@ ai-usage: ai-assisted
 | `fr-CA` | French (Canada) | Standard | `fr-CA-ThierryNeural` (Male) |  | ❌ |
 | `fr-CH` | French (Switzerland) | Standard | `fr-CH-ArianeNeural` (Female) |  | ❌ |
 | `fr-CH` | French (Switzerland) | Standard | `fr-CH-FabriceNeural` (Male) |  | ❌ |
-| `fr-FR` | French (France) | Neural HD | `fr-FR-Vivienne:DragonHDLatestNeural` (Female) |  | ❌ |
-| `fr-FR` | French (France) | Neural HD | `fr-FR-Remy:DragonHDLatestNeural` (Male) |  | ❌ |
+| `fr-FR` | French (France) | Neural HD | `fr-FR-Vivienne:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `fr-FR` | French (France) | Neural HD | `fr-FR-Remy:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-DeniseNeural` (Female) | **Styles**<br/>`cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-HenriNeural` (Male) | **Styles**<br/>`cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
-| `fr-FR` | French (France) | Multilingual | `fr-FR-VivienneMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `fr-FR` | French (France) | Multilingual | `fr-FR-RemyMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
-| `fr-FR` | French (France) | Multilingual | `fr-FR-LucienMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `fr-FR` | French (France) | Multilingual | `fr-FR-VivienneMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `fr-FR` | French (France) | Multilingual | `fr-FR-RemyMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
+| `fr-FR` | French (France) | Multilingual | `fr-FR-LucienMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-AlainNeural` (Male) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-BrigitteNeural` (Female) |  | ❌ |
 | `fr-FR` | French (France) | Standard | `fr-FR-CelesteNeural` (Female) |  | ❌ |
@@ -416,10 +430,10 @@ ai-usage: ai-assisted
 | `it-IT` | Italian (Italy) | Standard | `it-IT-ElsaNeural` (Female) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-IsabellaNeural` (Female) | **Styles**<br/>`chat`, `cheerful`, `excited`, `sad`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-DiegoNeural` (Male) | **Styles**<br/>`cheerful`, `excited`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
-| `it-IT` | Italian (Italy) | Multilingual | `it-IT-AlessioMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
-| `it-IT` | Italian (Italy) | Multilingual | `it-IT-IsabellaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
-| `it-IT` | Italian (Italy) | Multilingual | `it-IT-GiuseppeMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
-| `it-IT` | Italian (Italy) | Multilingual | `it-IT-MarcelloMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `it-IT` | Italian (Italy) | Multilingual | `it-IT-AlessioMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
+| `it-IT` | Italian (Italy) | Multilingual | `it-IT-IsabellaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
+| `it-IT` | Italian (Italy) | Multilingual | `it-IT-GiuseppeMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
+| `it-IT` | Italian (Italy) | Multilingual | `it-IT-MarcelloMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-BenignoNeural` (Male) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-CalimeroNeural` (Male) |  | ❌ |
 | `it-IT` | Italian (Italy) | Standard | `it-IT-CataldoNeural` (Male) |  | ❌ |
@@ -437,8 +451,8 @@ ai-usage: ai-assisted
 | `iu-CANS-CA` | Inuktitut (Syllabics, Canada) | Standard | `iu-Cans-CA-TaqqiqNeural`<sup>3</sup> (Male) |  | ❌ |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | Standard | `iu-Latn-CA-SiqiniqNeural`<sup>3</sup> (Female) |  | ❌ |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | Standard | `iu-Latn-CA-TaqqiqNeural`<sup>3</sup> (Male) |  | ❌ |
-| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |  | ❌ |
-| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Nanami:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Neural HD | `ja-JP-Masaru:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-NanamiNeural` (Female) | **Styles**<br/>`chat`, `cheerful`, `customerservice`<br/>**Roles**<br/>Not supported | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-KeitaNeural` (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-AoiNeural` (Female) |  | ❌ |
@@ -446,7 +460,7 @@ ai-usage: ai-assisted
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-MayuNeural` (Female) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-NaokiNeural` (Male) |  | ❌ |
 | `ja-JP` | Japanese (Japan) | Standard | `ja-JP-ShioriNeural` (Female) |  | ❌ |
-| `ja-JP` | Japanese (Japan) | Multilingual | `ja-JP-MasaruMultilingualNeural`<sup>1,4</sup> (Male) |  | ❌ |
+| `ja-JP` | Japanese (Japan) | Multilingual | `ja-JP-MasaruMultilingualNeural`<sup>1,2</sup> (Male) |  | ❌ |
 | `jv-ID` | Javanese (Latin, Indonesia) | Standard | `jv-ID-SitiNeural`<sup>3</sup> (Female) |  | ❌ |
 | `jv-ID` | Javanese (Latin, Indonesia) | Standard | `jv-ID-DimasNeural`<sup>3</sup> (Male) |  | ❌ |
 | `ka-GE` | Georgian (Georgia) | Standard | `ka-GE-EkaNeural`<sup>3</sup> (Female) |  | ❌ |
@@ -461,7 +475,7 @@ ai-usage: ai-assisted
 | `ko-KR` | Korean (Korea) | Neural HD | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-SunHiNeural` (Female) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-InJoonNeural` (Male) | **Styles**<br/>`sad`<br/>**Roles**<br/>Not supported | ❌ |
-| `ko-KR` | Korean (Korea) | Multilingual | `ko-KR-HyunsuMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `ko-KR` | Korean (Korea) | Multilingual | `ko-KR-HyunsuMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-BongJinNeural` (Male) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-GookMinNeural` (Male) |  | ❌ |
 | `ko-KR` | Korean (Korea) | Standard | `ko-KR-HyunsuNeural` (Male) |  | ❌ |
@@ -509,12 +523,12 @@ ai-usage: ai-assisted
 | `pl-PL` | Polish (Poland) | Standard | `pl-PL-ZofiaNeural` (Female) |  | ❌ |
 | `ps-AF` | Pashto (Afghanistan) | Standard | `ps-AF-LatifaNeural`<sup>3</sup> (Female) |  | ❌ |
 | `ps-AF` | Pashto (Afghanistan) | Standard | `ps-AF-GulNawazNeural`<sup>3</sup> (Male) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Thalita:DragonHDLatestNeural` (Female) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Macerio:DragonHDLatestNeural` (Male) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Thalita:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Neural HD | `pt-BR-Macerio:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-FranciscaNeural` (Female) | **Styles**<br/>`calm`<br/>**Roles**<br/>Not supported | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-AntonioNeural` (Male) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Multilingual | `pt-BR-MacerioMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
-| `pt-BR` | Portuguese (Brazil) | Multilingual | `pt-BR-ThalitaMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Multilingual | `pt-BR-MacerioMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
+| `pt-BR` | Portuguese (Brazil) | Multilingual | `pt-BR-ThalitaMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-BrendaNeural` (Female) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-DonatoNeural` (Male) |  | ❌ |
 | `pt-BR` | Portuguese (Brazil) | Standard | `pt-BR-ElzaNeural` (Female) |  | ❌ |
@@ -589,12 +603,12 @@ ai-usage: ai-assisted
 | `wuu-CN` | Chinese (Wu, Simplified) | Standard | `wuu-CN-YunzheNeural`<sup>3</sup> (Male) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-XiaoMinNeural`<sup>3</sup> (Female) |  | ❌ |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Standard | `yue-CN-YunSongNeural`<sup>3</sup> (Male) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxiao:DragonHDFlashLatestNeural` (Male) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunyi:DragonHDFlashLatestNeural` (Male) | **Styles**<br/>`assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story-telling`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>2,8</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>2,8</sup> (Male) | **Styles**<br/>`assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural`<sup>1</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Omni | `zh-CN-Yunqi:DragonHDOmniLatestNeural`<sup>1</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `assistant`, `calm`, `chat`, `chat-casual`, `cheerful`, `customerservice`, `disgruntled`, `excited`, `fearful`, `friendly`, `gentle`, `lyrical`, `newscast`, `poetry-reading`, `sad`, `serious`, `sorry`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
@@ -603,8 +617,8 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyiNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunyangNeural` (Male) | **Styles**<br/>`customerservice`, `narration-professional`, `newscast-casual`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaochenNeural` (Female) | **Styles**<br/>`livecommercial`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaochen:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaochenMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>2,8</sup> (Female) | **Styles**<br/>`cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaochenMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Xiaohan:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `complaining`, `fearful`, `gentle`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaohanNeural` (Female) | **Styles**<br/>`affectionate`, `angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaomengNeural` (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
@@ -613,19 +627,19 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaorouNeural` (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoruiNeural` (Female) | **Styles**<br/>`angry`, `calm`, `fearful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoshuang:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoshuangMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoshuangMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoshuangNeural` (Female, Child) | **Styles**<br/>`chat`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoDialectsNeural` (Female) |  | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoxiaoMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`affectionate`, `cheerful`, `empathetic`, `excited`, `poetry-reading`, `sorry`, `story`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoxiaoDialectsNeural`<sup>6</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoxiaoMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`affectionate`, `cheerful`, `empathetic`, `excited`, `poetry-reading`, `sorry`, `story`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyanNeural` (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoyi:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `complaining`, `cute`, `gentle`, `nervous`, `sad`, `shy`, `strict`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoyou:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `cute`, `poetry-reading`, `sad`, `story-telling`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoyouMultilingualNeural`<sup>4</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `cute`, `poetry-reading`, `sad`, `story`<br/>**Roles**<br/>Not supported | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoyouMultilingualNeural`<sup>2</sup> (Female) | **Styles**<br/>`angry`, `chat`, `cheerful`, `cute`, `poetry-reading`, `sad`, `story`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaoyouNeural` (Female, Child) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Xiaoyu:DragonHDFlashLatestNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `comforting`, `debating`, `sad`, `sorry`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoyuMultilingualNeural`<sup>4</sup> (Female) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-XiaoyuMultilingualNeural`<sup>2</sup> (Female) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-XiaozhenNeural` (Female) | **Styles**<br/>`angry`, `cheerful`, `disgruntled`, `fearful`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunfanMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunfanMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunfengNeural` (Male) | **Styles**<br/>`angry`, `cheerful`, `depressed`, `disgruntled`, `fearful`, `sad`, `serious`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Yunhan:DragonHDFlashLatestNeural` (Male) | **Styles**<br/>`angry`, `cheerful`, `curious`, `empathetic`, `encouraging`, `excited`, `guilty`, `lonely`, `sad`, `serious`, `sorry`, `surprised`, `tired`, `whispering`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunhaoNeural` (Male) | **Styles**<br/>`advertisement-upbeat`<br/>**Roles**<br/>Not supported | ❌ |
@@ -633,10 +647,10 @@ ai-usage: ai-assisted
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-Yunxi:DragonHDFlashLatestNeural` (Male) | **Styles**<br/>`angry`, `chat`, `cheerful`, `complaining`, `depressed`, `fearful`, `news`, `sad`, `shy`, `strict`, `voice-assistant`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunxia:DragonHDFlashLatestNeural` (Male) | **Styles**<br/>`affectionate`, `angry`, `cheerful`, `comforting`, `encouraging`, `excited`, `fearful`, `sad`, `surprised`<br/>**Roles**<br/>Not supported | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunxiaNeural` (Male) | **Styles**<br/>`angry`, `calm`, `cheerful`, `fearful`, `sad`<br/>**Roles**<br/>Not supported | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunxiaoMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunxiaoMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Neural HD Flash | `zh-CN-Yunye:DragonHDFlashLatestNeural` (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunyeNeural` (Male) | **Styles**<br/>`angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `sad`, `serious`<br/>**Roles**<br/>`Boy`, `Girl`, `OlderAdultFemale`, `OlderAdultMale`, `SeniorFemale`, `SeniorMale`, `YoungAdultFemale`, `YoungAdultMale` | ❌ |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunyiMultilingualNeural`<sup>4</sup> (Male) |  | ❌ |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Multilingual | `zh-CN-YunyiMultilingualNeural`<sup>2</sup> (Male) |  | ❌ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Standard | `zh-CN-YunzeNeural` (Male) | **Styles**<br/>`angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `fearful`, `sad`, `serious`<br/>**Roles**<br/>`OlderAdultMale`, `SeniorMale` | ❌ |
 | `zh-CN-GUANGXI` | Chinese (Guangxi Accent Mandarin, Simplified) | Standard | `zh-CN-guangxi-YunqiNeural`<sup>1,3</sup> (Male) |  | ❌ |
 | `zh-CN-henan` | Chinese (Zhongyuan Mandarin Henan, Simplified) | Standard | `zh-CN-henan-YundengNeural`<sup>3</sup> (Male) |  | ❌ |
@@ -654,13 +668,14 @@ ai-usage: ai-assisted
 | `zu-ZA` | isiZulu (South Africa) | Standard | `zu-ZA-ThandoNeural`<sup>3</sup> (Female) |  | ❌ |
 | `zu-ZA` | isiZulu (South Africa) | Standard | `zu-ZA-ThembaNeural`<sup>3</sup> (Male) |  | ❌ |
 
-<sup>1</sup> The neural voice is available in preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts). 
+<sup>1</sup> The neural voice is available in public preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts). 
 
-<sup>2</sup> The neural voice is available in public preview. For the current list of regions that support this voice in public preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
+<sup>2</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices. All multilingual voices can speak in the auto-detected language of the input text in the default locale without [using SSML](../../speech-synthesis-markup-voice.md#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to set the preferred speaking accent of each language, such as a British accent (`en-GB`) for English.
+
 
 <sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#visemes). 
 
-<sup>4</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices.
+<sup>4</sup> For the current list of regions where Neural HD voices are generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>5</sup> The OpenAI text-to-speech voices in Azure Speech are in preview and are available only in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text-to-speech voices and Azure Speech text-to-speech voices, see [OpenAI text-to-speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
 
@@ -668,4 +683,4 @@ ai-usage: ai-assisted
 
 <sup>7</sup> The multi-talker voice is available in preview in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. Only `en-US` content is supported for this voice.
 
-
+<sup>8</sup> The voice is available in the `ChinaNorth3` region.
