@@ -18,6 +18,10 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
+> [!IMPORTANT]
+> Starting 6 June 2026 you won’t be able to create new workflws. The workflow in Microsoft Foundry feature is being retired 1 October 2026.
+> We recommend migrating to [](), which integrates the  [](), .
+
 # Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
