@@ -29,6 +29,9 @@ To access the monitoring dashboards, sign in to the [Azure portal](https://porta
 
 The dashboards are grouped into four categories: **HTTP Requests**, **Tokens-Based Usage**, **PTU Utilization**, and **Fine-tuning**.
 
+> [!TIP]
+> When you investigate response times, use the Azure OpenAI latency metrics (Time to Response, Time to Last Byte, Time Between Tokens) rather than the legacy `Latency` metric in the **HTTP Requests** category. For guidance on which metrics to chart and how to interpret them, see [Performance and latency](latency.md).
+
 ## Data collection and routing in Azure Monitor
 
 Azure OpenAI collects the same kinds of monitoring data as other Azure resources. You can configure Azure Monitor to generate data in activity logs, resource logs, virtual machine logs, and platform metrics. For more information, see [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources).
@@ -145,6 +148,7 @@ You can set alerts for any metric, log entry, or activity log entry listed in th
 
 ## Related content
 
+- See [Performance and latency](latency.md) for guidance on diagnosing Azure OpenAI response times and choosing the right latency metrics.
 - See [Azure OpenAI monitoring data reference](../monitor-openai-reference.md) for a reference of the metrics, logs, and other important values created for Azure OpenAI.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.
 - See [Understand log searches in Azure Monitor logs](/azure/azure-monitor/logs/log-query-overview) about logs.
