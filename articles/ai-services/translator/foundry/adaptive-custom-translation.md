@@ -36,7 +36,7 @@ The following comparison highlights when to choose adaptive custom translation v
 | Feature | Adaptive custom translation | Custom translator |
 | --- | --- | --- |
 | **System Creation** | Enables dynamic translation adaptation and optimization of an existing LLM model using a compact dataset index. The process is streamlined, as it doesn't require offline training or manual deployment steps. | Empowers the creation of a dedicated neural machine translation (NMT) model through comprehensive, end-to-end training. Deployment to production environments ensures that the model is tailored for operational use. |
-| **Data Requirements** | Facilitates domain-specific translation improvements with a minimal dataset, such as five parallel, prealigned sentence pairs, or a small table compacted sample. This approach efficiently grounds translation outputs. | Uses a large training datasets, typically at least 10,000 parallel sentence pairs, to build a highly accurate NMT model. This extensive data supports robust supervised learning and high-fidelity translations. |
+| **Data Requirements** | Facilitates domain-specific translation improvements with a minimal dataset, such as five parallel, prealigned sentence pairs, or a small table compacted sample. This approach efficiently grounds translation outputs. | Uses large training datasets, typically at least 10,000 parallel sentence pairs, to build a highly accurate NMT model. This extensive data supports robust supervised learning and high-fidelity translations. |
 | **Speed** | Quickly incorporates and applies dataset updates within minutes, allowing for immediate adjustments in translation behavior and output. | Completes model training over a variable period—potentially up to 48 hours—depending on the dataset size and computational capacity. Updates require retraining and redeployment to reflect changes. |
 | **Maintenance** | Simplifies operational management by focusing on dataset updates and integrity checks, removing the need for ongoing model maintenance. | Supports sustained translation quality with periodic maintenance, including retraining and redeployment, to keep the model current and accurate. |
 | **Use Case** | Best for rapidly evolving or low-volume content (for example, support tickets) where quick updates to terminology or phrasing are needed without retraining a model. | Ideal for high-volume, consistent translation of domain-specific content (for example, legal contracts) where strict terminology and style adherence are critical across all documents. |
@@ -191,7 +191,7 @@ Retrieves a paginated list of documents in a project.
   GET /documents?workspaceId=<workspaceId>&pageIndex={pageIndex}
 ```
 
-**Parameters**
+***Parameters***
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
