@@ -61,7 +61,7 @@ Capability hosts follow a hierarchy where more specific configurations override 
 
 1. **Service defaults** (Microsoft-managed search and storage) - Used when no capability host is configured.
 2. **Account-level capability host** - Provides shared defaults for all projects under the account.
-3. **Project-level capability host** - Overrides account-level and service defaults for that specific project. 
+3. **Project-level capability host** - Overrides account-level for that specific project. 
 
 ## Understand capability host constraints
 
