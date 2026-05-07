@@ -24,6 +24,27 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!IMPORTANT]
 > Preview API versions `2025-05-01-preview` and `2024-12-01-preview` will be retired by July 15, 2026. If you're still using a preview API, update your code to target the latest API version `2025-11-01 (GA)`.
 
+## May 2026
+
+### Content Understanding Studio new GPT-5.2 support regions
+
+Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 region, enabling broader regional coverage for resource and deployment creation. The following regions are now supported:
+
+- East US 2
+- East US
+- Australia East
+- Japan East
+- North Europe
+- South Central US
+- Southeast Asia
+- Sweden Central
+- UK South
+- West Europe
+- West US
+- West US 3
+
+For the full list of supported models and regions, see the [Foundry Models region table](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure).
+
 ## April 2026
 
 ### GPT-5.2 model support and model deployment updates
