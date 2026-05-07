@@ -86,7 +86,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 ## Fireworks on Microsoft Foundry models (Preview)
 
-The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
+The following Fireworks on Microsoft Foundry models currently support provisioned throughput.
 
 |Topic|**gpt-oss-120b**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**DeepSeek v3.1**|**DeepSeek v3.2**|**Qwen3 14B**|**MiniMax 2.5**|**GLM-5**|**GLM-4.7**|
 |---|---|---|---|---|---|---|---|---|---|---|---|

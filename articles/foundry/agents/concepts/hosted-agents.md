@@ -28,7 +28,7 @@ Choose hosted agents over prompt-based agents when you need to:
 
 ### How it works
 
-You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Foundry Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
+You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
 > [!IMPORTANT]
 > When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that aren't Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs. Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation to use of Third-Party Systems, and you're responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
@@ -151,13 +151,14 @@ Treat a hosted agent like production application code.
 
 ### Versioning
 
-Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
+Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. Note that requests to create agent version with no change to the agent version parameters such as container image, environment variables, etc. will not result in a new version being created. You can split traffic between versions with weighted rollouts to support canary and blue-green deployments.
 
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They're set per version and are immutable once the version is created.
 
-### Foundry Toolbox
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
+### Toolbox in Foundry 
+
+Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
 
 ### Language support
 
@@ -190,16 +191,23 @@ Managed hosting runtime billing is based on consumption of CPU and memory resour
 Hosted agents are currently available in the following regions: 
 
 - East US 2
-- Australia East
-- Canada Central
 - North Central US
 - Sweden Central
-- South East Asia
+- Canada Central
+- Southeast Asia
 - Poland Central
 - South Africa North
 - Korea Central
 - South India
 - Brazil South
+- West US
+- West US 3
+- Norway East
+- Japan East
+- France Central
+- Switzerland North
+- Spain Central
+- Australia East
 
 > [!NOTE]
 > This list will be updated as additional regions become available.

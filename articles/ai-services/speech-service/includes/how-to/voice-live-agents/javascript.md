@@ -110,7 +110,14 @@ In this sample, proactive messaging is applied in three steps:
 
 ## Improve tool calling and latency wait times
 
-Voice Live provides a feature called `interimResponse` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+Voice Live provides the `interimResponse` feature to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+
+Voice Live offers two interim response modes:
+
+- **LLM-generated interim response** (`llm_interim_response`): Uses a lightweight LLM to generate context-aware filler text dynamically. Best for adaptive, natural-sounding responses.
+- **Static interim response** (`static_interim_response`): Randomly selects from a predefined list of texts you provide. Best for deterministic or branded messaging.
+
+For more information, see [Improve tool calling and latency wait times with interim responses](../../../how-to-voice-live-interim-response.md).
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 

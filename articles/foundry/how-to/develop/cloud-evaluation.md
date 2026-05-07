@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/17/2026
+ms.date: 04/29/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -27,8 +27,6 @@ Cloud evaluation results are stored in your Foundry project. You can review resu
 
 > [!TIP]
 > For complete runnable examples, see the [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) on GitHub.
-
-When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built in evaluators](../../concepts/built-in-evaluators.md). and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md) and have the same project-scope, role-based access control.
 
 ## How cloud evaluation works
 
@@ -1337,7 +1335,7 @@ If an agent evaluator returns an error for unsupported tools:
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md)
-- [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
+- [Set up continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
