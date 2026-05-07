@@ -18,4 +18,4 @@ ai-usage: ai-assisted
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/gpt-realtime-translate.md)
 
-[!INCLUDE [GPT Realtime Translate](../../../foundry/openai/includes/gptrealtime-translate.md)]
+[!INCLUDE [GPT Realtime Translate](../../../foundry/openai/includes/gpt-realtime-translate.md)]
