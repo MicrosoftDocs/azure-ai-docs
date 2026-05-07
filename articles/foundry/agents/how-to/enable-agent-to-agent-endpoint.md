@@ -236,8 +236,8 @@ Because the Foundry agent card requires authentication and uses a custom path (`
 
 Install the required packages:
 
-```bash
-pip install a2a-sdk azure-identity
+```
+pip install a2a-sdk==1.0.2 azure-identity==1.25.3 httpx==0.28.1
 ```
 
 ```python
