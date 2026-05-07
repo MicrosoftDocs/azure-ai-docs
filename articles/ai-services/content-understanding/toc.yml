@@ -1,33 +1,17 @@
 items:
-  - name: Azure Content Understanding in Foundry Tools documentation
+  - name: Azure Content Understanding documentation
     href: index.yml
   - name: Overview
-    expanded: true       
+    expanded: true
     items:
-      - name: What is Azure Content Understanding in Foundry Tools?
-        displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
+      - name: What is Azure Content Understanding?
+        displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, OCR, optical character recognition, parse, extract, classify, content filtering, filter
         href: overview.md
-      - name: Choose the right tool for document processing
-        href: choosing-right-ai-tool.md
       - name: What's new
         displayName: changelog, release, updates, previews
         href: whats-new.md
-      - name: Service quotas and limits
-        displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
-        href: service-limits.md
-      - name: Language and region support
-        href: language-region-support.md
-      - name: Foundry and Content Understanding Studio comparison
-        displayName: studio, foundry, differences, comparison, use cases, features
-        href: foundry-vs-content-understanding-studio.md
-      - name: Pricing model details and examples
-        displayName: pricing, cost, examples, billing
-        href: pricing-explainer.md
-      - name: Pricing
-        href: https://azure.microsoft.com/pricing/details/content-understanding/
-      - name: Security features
-        displayName: security, features
-        href: concepts/secure-communications.md
+      - name: Choose the right tool for document processing
+        href: choosing-right-ai-tool.md
       - name: FAQ
         displayName: FAQ, definition, updates, previews
         href: faq.yml
@@ -36,97 +20,121 @@ items:
         href: glossary.md
   - name: Quickstarts
     items:
-    - name: Content Understanding Studio Quickstart
-      displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract
-      href: quickstart/content-understanding-studio.md
-    - name: Try Content Understanding REST API and SDKs
-      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
-      href: quickstart/use-rest-api.md
-    - name: Create CU Task in Foundry (classic) (Preview)
-      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
-      href: how-to/content-understanding-foundry-classic.md
+      - name: Content Understanding Studio
+        displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract, OCR
+        href: quickstart/content-understanding-studio.md
+      - name: REST API and SDKs
+        displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode, parse
+        href: quickstart/use-rest-api.md
+  - name: "Documents: Parse, Extract & Classify"
+    expanded: true
+    items:
+      - name: Document processing overview
+        displayName: document, text, images, visual, structured, content, field, extraction, OCR, optical character recognition, parse, extract, classify, layout
+        href: document/overview.md
+      - name: "Parse: OCR & layout analysis"
+        displayName: parse, OCR, optical character recognition, layout, read, text extraction, document parsing, prebuilt-read, prebuilt-layout, content extraction, digitize, structure analysis, tables, paragraphs, figures, barcodes, formulas
+        items:
+          - name: Document elements reference
+            displayName: document, elements, OCR, text, paragraphs, tables, figures, barcodes, formulas, selection marks, layout, structure, content extraction, parse
+            href: document/elements.md
+          - name: Markdown output
+            displayName: document, markdown, OCR, parse, layout, output format, RAG, search
+            href: document/markdown.md
+      - name: "Extract: Field extraction & prebuilt models"
+        displayName: extract, field extraction, prebuilt, invoice, receipt, tax, data extraction, custom extractor, structured data, key-value pairs, schema
+        items:
+          - name: Prebuilt analyzers (invoice, tax, ID, and more)
+            displayName: prebuilt, analyzer, templates, invoice, receipt, tax, identity, mortgage, contract, procurement, field extraction, extract, domain-specific
+            href: concepts/prebuilt-analyzers.md
+          - name: Improve analyzer accuracy
+            displayName: analyzer, improvement, accuracy, custom, training, labeling, extract
+            href: document/analyzer-improvement.md
+      - name: "Classify: Segmentation & routing"
+        displayName: classify, classification, segmentation, splitting, routing, document types, categorize, content categories, sort
+        href: concepts/classifier.md
+      - name: Best practices
+        displayName: best practices, analyzers, optimization, fields, OCR, parse, extract, classify
+        href: concepts/best-practices.md
+  - name: Image processing
+    displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, parse
+    href: image/overview.md
+  - name: Audio & video processing
+    items:
+      - name: Video overview
+        displayName: video, speech, recognition, transcription, segmentation, scene, analysis, sentiment
+        href: video/overview.md
+      - name: Audio overview
+        displayName: audio, speech, voice, recognition, transcription, translation, sentiment, analysis, emotion
+        href: audio/overview.md
+      - name: Audio/video elements
+        displayName: audio, video, elements, schema, structure
+        href: video/elements.md
+      - name: Audio/video markdown output
+        displayName: audio, video, markdown, formatting
+        href: video/markdown.md
+  - name: Face detection (preview)
+    displayName: recognition, detection, analysis, identification, verification
+    href: face/overview.md
   - name: Concepts
     items:
-    - name: What are analyzers?
-      displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/analyzer-reference.md
-    - name: Prebuilt analyzers
-      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/prebuilt-analyzers.md
-    - name: Best practices
-      displayName: best practices, analyzers, optimization, fields
-      href: concepts/best-practices.md
-    - name: What are classifiers?
-      displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/classifier.md
-    - name: Foundry model deployments
-      displayName: foundry, model, deployments
-      href: concepts/models-deployments.md
-    - name: "Modes: standard and pro (Preview)"
-      displayName: standard, pro, modes, analyzers, optimization, fields
-      href: concepts/standard-pro-modes.md
-  - name: Modalities
+      - name: Analyzers
+        displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, OCR
+        href: concepts/analyzer-reference.md
+      - name: "Modes: Standard and Pro (Preview)"
+        displayName: standard, pro, modes, analyzers, optimization, fields
+        href: concepts/standard-pro-modes.md
+      - name: Foundry model deployments
+        displayName: foundry, model, deployments
+        href: concepts/models-deployments.md
+  - name: Tutorials & how-to guides
     items:
-      - name: Document
-        items:
-          - name: Overview
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/overview.md
-          - name: Elements
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/elements.md
-          - name: Markdown
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/markdown.md
-          - name: Analyzer Improvement
-            href: document/analyzer-improvement.md
-      - name: AudioVideo
-        items:
-          - name: Video Overview
-            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-            href: video/overview.md
-          - name: Audio Overview
-            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-            href: audio/overview.md
-          - name: Elements
-            displayName: audio, video, elements, schema, structure
-            href: video/elements.md
-          - name: Markdown
-            displayName: audio, video, markdown, formatting
-            href: video/markdown.md
-      - name: Image
-        displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-        href: image/overview.md
-      - name: What is face detection? (preview)
-        displayName: recognition, detection, analysis, identification, verification
-        href: face/overview.md
-  - name: Tutorials
-    items:
-      - name: Create a custom analyzer with Content Understanding Studio
+      - name: Create a custom analyzer (Studio)
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: how-to/customize-analyzer-content-understanding-studio.md
-      - name: Create a custom analyzer
+      - name: Create a custom analyzer (API)
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-        href: tutorial/create-custom-analyzer.md        
-      - name: Classifier tutorial - Split and route
-        displayName: classifier, split, route, perPage, auto, analyzerId
+        href: tutorial/create-custom-analyzer.md
+      - name: Classify, split, and route documents
+        displayName: classifier, split, route, perPage, auto, analyzerId, classify, segmentation
         href: how-to/classification-content-understanding-studio.md
-      - name: Migration from CU Preview to GA
-        displayName: migration, preview, GA, API changes
-        href: how-to/migration-preview-to-ga.md
-      - name: Copy and back up analyzers
-        href: how-to/copy-analyzers.md
-      - name: Build a retrieval-augmented generation solution
+      - name: Build a RAG solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
-      - name: Build a robotic process automation solution
+      - name: Build an RPA solution
         href: tutorial/robotic-process-automation.md
-      - name: Create a Microsoft Foundry resource
+      - name: Copy and back up analyzers
+        href: how-to/copy-analyzers.md
+      - name: Create a Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
-      - name: Build a face-data person directory (preview)
-        displayName: person, directory, search, index, vector
+      - name: Use CU in Foundry (classic) (Preview)
+        displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
+        href: how-to/content-understanding-foundry-classic.md
+      - name: Migrate from Preview to GA
+        displayName: migration, preview, GA, API changes
+        href: how-to/migration-preview-to-ga.md
+      - name: Build a person directory (preview)
+        displayName: person, directory, search, index, vector, face
         href: tutorial/build-person-directory.md
+  - name: Service information
+    items:
+      - name: Service quotas and limits
+        displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
+        href: service-limits.md
+      - name: Pricing details and examples
+        displayName: pricing, cost, examples, billing
+        href: pricing-explainer.md
+      - name: Azure pricing
+        href: https://azure.microsoft.com/pricing/details/content-understanding/
+      - name: Language and region support
+        href: language-region-support.md
+      - name: Security features
+        displayName: security, features
+        href: concepts/secure-communications.md
+      - name: Foundry vs. Content Understanding Studio
+        displayName: studio, foundry, differences, comparison, use cases, features
+        href: foundry-vs-content-understanding-studio.md
   - name: Samples
     items:
       - name: Data extraction using Content Understanding
