@@ -129,7 +129,7 @@ Studio can configure defaults for supported models such as `gpt-5.2`, `gpt-4.1`,
 
 :::image type="content" source="../media/concepts/configure-models-studio.png" alt-text="Screenshot of the Setup and Configure model deployment in the Content Understanding Studio." lightbox="../media/concepts/configure-models-studio.png" :::
 
-
+From here, you can go on to try out Content Understanding features in the web portal by following the steps in the [quickstart](/azure/ai-services/content-understanding/quickstart/content-understanding-studio?tabs=portal%2Ccu-studio).
 
 # [REST API or code](#tab/rest-api)
 
