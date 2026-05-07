@@ -3,7 +3,7 @@ title: "How to run an evaluation in GitHub Action"
 description: "How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production."
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 04/13/2026
+ms.date: 04/30/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -15,7 +15,7 @@ ms.custom:
 # How to run an evaluation in GitHub Action (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
+This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It streamlines the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
 
 To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, runs the evaluations, and generates a summary report.
 
@@ -27,7 +27,7 @@ To use this action, provide a data set with test queries and a list of evaluator
 - A [Foundry agent](../agents/overview.md).
 
 > [!TIP]
-> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process by using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect).
+> The recommended way to authenticate is by using Microsoft Entra ID, which you can use to securely connect to your Azure resources. You can automate the authentication process by using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect).
 
 ## How to set up AI agent evaluations
 

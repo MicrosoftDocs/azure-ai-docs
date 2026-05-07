@@ -15,6 +15,9 @@ zone_pivot_groups: programming-languages-speech-services
 
 # How to use post-processing
 
+> [!NOTE]
+> Post-stream refinement is currently in **public preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Some features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/post-processing/csharp.md)]
 ::: zone-end

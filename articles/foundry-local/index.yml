@@ -57,6 +57,8 @@ landingContent:
             url: how-to/how-to-integrate-with-inference-sdks.md
           - text: Transcribe audio files
             url: how-to/how-to-transcribe-audio.md
+          - text: Live transcribe audio from a microphone
+            url: how-to/how-to-live-transcribe-audio.md
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Compile Hugging Face models to run on Foundry Local
