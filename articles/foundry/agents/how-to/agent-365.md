@@ -41,6 +41,7 @@ The rest of this article walks through that process.
 
 ### Prerequisites 
 
+- [Microsoft 365 E7](https://www.microsoft.com/microsoft-365/enterprise/e7)
 - An Azure subscription where you can create resources.
 - The required permissions:
   - **Owner** role on the Azure subscription
