@@ -15,7 +15,7 @@ ms.custom:
 # Index data from Azure Files
 
 > [!IMPORTANT] 
-> Azure Files indexer is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Use a [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) to create the indexer data source.
+> Azure Files indexer is currently in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Use a [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) to create the indexer data source.
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Files and makes it searchable in Azure AI Search. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
 
