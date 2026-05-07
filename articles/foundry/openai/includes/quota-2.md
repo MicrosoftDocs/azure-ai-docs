@@ -146,7 +146,7 @@ response = chat_completion_with_backoff(
 > [!IMPORTANT]
 > When using a custom retry library, set `max_retries=0` on the SDK client to disable its built-in retry. Otherwise, each attempt from tenacity might itself trigger up to two additional SDK retries, leading to far more requests than expected.
 
-**Option 3: Manual implementation (no third-party library):**
+**Option 3: Manual implementation (no third-party library)**
 
 ```python
 import time
@@ -272,7 +272,7 @@ A 429 error ("Too Many Requests") means the system rejected your request because
 |----------|------------------------|------------|-------------------|
 | **Rate limit exceeded** | "Requests to … have been limited" or "Rate limit is exceeded" | Your requests exceeded the TPM or RPM rate limit for your deployment's allocated quota. | Increase the deployment's TPM allocation, rebalance quota across deployments, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
 | **System capacity throttling** | "The service is temporarily unable to process your request" or "System is experiencing high demand" | Backend capacity is constrained. This condition is often transient. | Retry after the `retry-after-ms` delay. If persistent, consider upgrading to [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity. |
-| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (PayGo) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This reduction is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput). |
+| **Temporary rate limit adjustment** | 429 responses occur but your configured quota hasn't changed; `x-ratelimit-limit-tokens` in response headers is lower than your deployment's configured TPM | Standard (pay-as-you-go) deployments share a resource pool. When demand approaches capacity limits, the system temporarily reduces your deployment's effective rate limit to maintain reliability for all customers. This reduction is protective and temporary. | Retry with `retry-after-ms` backoff. The adjustment typically resolves within a few hours. For workloads requiring consistent throughput, consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput). |
 | **Token budget exceeded by request parameters** | Rate limit triggered but token usage metrics appear low | The rate limit calculation includes `max_tokens` and prompt estimate, not just billed tokens. A request with a high `max_tokens` value can consume rate limit budget even if the actual response is small. | Reduce `max_tokens` to match your expected response size. |
 
 > [!IMPORTANT]
@@ -290,7 +290,7 @@ Because of this difference, you can get 429 responses even when your token usage
 - **`max_tokens` overestimation**: Rate limits are calculated using the *estimated maximum* token count (prompt + `max_tokens`), not the actual tokens generated.
 - **Rejected requests**: Requests rejected due to input length limits (HTTP 400) might still count toward rate limiting but won't appear in billed token metrics.
 - **Burst patterns**: RPM enforcement evaluates requests in small time windows (1–10 seconds). A burst of requests in a short window triggers throttling even if the per-minute total is within limits.
-- **Temporary rate limit adjustment for service reliability**: Standard (Pay-As-You-Go) deployments share a common resource pool across customers. To keep service reliable and fair, the system continuously monitors demand across this shared pool. When demand from a deployment approaches or exceeds capacity limits, the system might **temporarily reduce the effective rate limit** for that deployment. During this adjustment period, requests that would have been accepted under normal conditions return 429 responses — even though your configured quota didn't change. This protective measure prevents service degradation for all customers sharing the resource pool. The adjustment is **temporary** and typically resolves within a few hours once traffic stabilizes. You can monitor for this condition by checking if your effective rate limit (visible in `x-ratelimit-limit-tokens` response headers) is lower than your configured TPM allocation.
+- **Temporary rate limit adjustment for service reliability**: Standard (pay-as-you-go) deployments share a common resource pool across customers. To keep service reliable and fair, the system continuously monitors demand across this shared pool. When demand from a deployment approaches or exceeds capacity limits, the system might **temporarily reduce the effective rate limit** for that deployment. During this adjustment period, requests that would have been accepted under normal conditions return 429 responses — even though your configured quota didn't change. This protective measure prevents service degradation for all customers sharing the resource pool. The adjustment is **temporary** and typically resolves within a few hours once traffic stabilizes. You can monitor for this condition by checking if your effective rate limit (visible in `x-ratelimit-limit-tokens` response headers) is lower than your configured TPM allocation.
 - **Distributed enforcement**: Rate limit enforcement across distributed infrastructure might not be perfectly precise or immediately reflected in aggregated metrics.
 
 > [!TIP]
@@ -316,7 +316,7 @@ Because of this difference, you can get 429 responses even when your token usage
 | Latency-sensitive or mission-critical production workloads experiencing frequent 429s | **Upgrade** — consider [Provisioned Throughput (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput) for guaranteed capacity and latency SLA. |
 
 > [!NOTE]
-> Standard (PayGo) deployments use a shared resource pool. Throttling protects overall service reliability for all users. Occasional transient 429s are expected behavior, not a service defect. For workloads that require predictable latency and guaranteed throughput, Provisioned Throughput (PTU) is the recommended deployment type.
+> Standard (pay-as-you-go) deployments use a shared resource pool. Throttling protects overall service reliability for all users. Occasional transient 429s are expected behavior, not a service defect. For workloads that require predictable latency and guaranteed throughput, Provisioned Throughput (PTU) is the recommended deployment type.
 
 
 

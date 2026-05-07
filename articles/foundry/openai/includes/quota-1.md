@@ -36,13 +36,13 @@ When a deployment is created, the assigned TPM directly maps to the tokens-per-m
 >
 > | Model                  | Capacity   | Requests Per Minute (RPM)  | Tokens Per Minute (TPM) |
 > |------------------------|:----------:|:--------------------------:|:-----------------------:|
-> | **Older chat models:** | 1 Unit     | 6 RPM                      | 1,000 TPM               |
-> | **o1 & o1-preview:**   | 1 Unit     | 1 RPM                      | 6,000 TPM               |
+> | **Older chat models**  | 1 Unit     | 6 RPM                      | 1,000 TPM               |
+> | **o1 & o1-preview**    | 1 Unit     | 1 RPM                      | 6,000 TPM               |
 > | **o3**                 | 1 Unit     | 1 RPM                      | 1,000 TPM               |
 > | **o4-mini**            | 1 Unit     | 1 RPM                      | 1,000 TPM               |
-> | **o3-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
-> | **o1-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
-> | **o3-pro:**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o3-mini**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o1-mini**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o3-pro**             | 1 Unit     | 1 RPM                      | 10,000 TPM              |
 >
 > This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota.
 

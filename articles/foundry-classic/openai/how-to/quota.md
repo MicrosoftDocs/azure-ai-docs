@@ -30,7 +30,7 @@ To create a new deployment from within the [Microsoft Foundry portal](https://ai
 Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in [Foundry portal](https://ai.azure.com/?cid=learnDocs). You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
-> Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
+> Quotas and limits are subject to change. For the most up-to-date information, consult our [quotas and limits article](../quotas-limits.md).
 
 ## View and request quota
 
