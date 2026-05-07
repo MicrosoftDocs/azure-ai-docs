@@ -107,7 +107,7 @@ items:
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
-    - name: Foundry IQ (preview)
+    - name: Foundry IQ
       items:
       - name: What is Foundry IQ?
         href: ../../agents/concepts/what-is-foundry-iq.md

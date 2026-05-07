@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/30/2026
 ---
 
 # Manage access to Web Knowledge Source in your Azure subscription
@@ -16,8 +16,6 @@ ms.date: 03/25/2026
 > + The [Microsoft Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) doesn't apply to data sent to Web Knowledge Source. When Customer uses Web Knowledge Source, Customer Data flows outside the Azure compliance and Geo boundary. This also means use of Web Knowledge Source waives all elevated Government Community Cloud security and compliance commitments to include data sovereignty and screened/citizenship-based support, as applicable.
 >
 > + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
-
-[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 As an Azure admin, you can use the Azure CLI to enable or disable the use of [Web Knowledge Source](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all search services within the specified subscription.
 
