@@ -27,7 +27,7 @@ To learn how Application Gateway secures connections to non-Azure resources, see
 
 ## Prerequisites
 
-- Set up your Foundry resource's managed virtual network and select an isolation mode: Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](managed-virtual-network.md).
+- Set up your Foundry resource's managed virtual network and select an isolation mode: **Allow Internet Outbound** or **Allow Only Approved Outbound**. For more information, see [Managed virtual network isolation](managed-virtual-network.md).
 - Get the resource's private HTTP(S) endpoint.
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 - Ensure the Foundry resource's managed identity can approve private endpoint connections on the target Application Gateway. Assign the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) on the Application Gateway resource.
