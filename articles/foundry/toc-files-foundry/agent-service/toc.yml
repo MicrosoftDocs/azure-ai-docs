@@ -41,9 +41,6 @@ items:
     href: ../../concepts/retrieval-augmented-generation.md
   - name: Vector stores for file search
     href: ../../agents/concepts/vector-stores.md
-  - name: Agents networking deep dive
-    displayName: VNet, subnet, IP allocation, data proxy, micro VM, hosted agent, prompt agent
-    href: ../../agents/concepts/agents-networking-deep-dive.md
 - name: Build your agent
   items:
   - name: Agent runtime components
