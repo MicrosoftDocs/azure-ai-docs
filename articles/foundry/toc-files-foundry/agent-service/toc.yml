@@ -138,7 +138,7 @@ items:
 # Deploy and Share
 - name: Deploy and share
   items:
-  - name: hosted agent overview
+  - name: hosted agents
     items:
     - name: Deploy a hosted agent
       href: ../../agents/how-to/deploy-hosted-agent.md
