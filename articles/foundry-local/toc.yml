@@ -16,6 +16,8 @@ items:
     href: tutorials/tutorial-build-voice-to-text-note-taker.md
   - name: Build a document summarizer
     href: tutorials/tutorial-build-document-summarizer.md
+  - name: Build a RAG application
+    href: tutorials/tutorial-build-rag-app.md
 - name: Concepts
   expanded: true
   items:
@@ -26,10 +28,14 @@ items:
   items:
   - name: Use native chat completions API
     href: how-to/how-to-use-native-chat-completions.md
+  - name: Generate text embeddings
+    href: how-to/how-to-generate-embeddings.md
   - name: Use chat completions via REST server
     href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Transcribe audio (speech-to-text)
     href: how-to/how-to-transcribe-audio.md
+  - name: Live transcribe audio (speech-to-text) from a microphone
+    href: how-to/how-to-live-transcribe-audio.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Compile Hugging Face models to run on Foundry Local
