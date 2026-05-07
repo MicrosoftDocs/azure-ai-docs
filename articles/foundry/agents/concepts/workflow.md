@@ -19,8 +19,8 @@ ai-usage: ai-assisted
 ---
 
 > [!IMPORTANT]
-> Starting 6 June 2026 you won’t be able to create new workflws. The workflow in Microsoft Foundry feature is being retired 1 October 2026.
-> We recommend migrating to [](), which integrates the  [](), .
+> Workflows in Microsoft Foundry is being retired 1 October 2026.
+> If you're looking to build workflows, we reccomend using Microsoft Agent Framework. If you would like more options for migrating existing workflows, see this section of this article.
 
 # Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
