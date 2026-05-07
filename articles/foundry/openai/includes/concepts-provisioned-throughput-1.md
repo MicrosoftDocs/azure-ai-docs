@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: seramasu
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with a model deployed using a provisioned throughput deployment type.
 - Provisioned throughput quota allocated to your subscription in your target region.
 - [Azure CLI](/cli/azure/install-azure-cli) (if you plan to create deployments via the command line).
@@ -169,8 +169,12 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt 5.2          | ✅                 |                       |                      | ✅                 |
-|                    | Gpt 5.1          | ✅                 | ✅                     |                      | ✅                 |
+| **Azure OpenAI**   | Gpt 5.5          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.4          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.3 codex    | ✅                 |                       |                      | ✅                 |
+|                    | Gpt 5.2          | ✅                 | ✅                    | ✅                    | ✅                 |
+|                    | Gpt 5.2 codex    | ✅                 |                       |                      | ✅                 |
+|                    | Gpt 5.1          | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5.1 codex    | ✅                 | ✅                     |                      | ✅                 |
 |                    | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |

@@ -1,14 +1,14 @@
 ---
 title: "Role-based access control for Microsoft Foundry (classic)"
 description: "This article introduces role-based access control in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 12/31/2025
+ms.date: 04/13/2026
 ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 

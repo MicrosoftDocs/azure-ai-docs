@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -43,9 +43,9 @@ Learn more about Azure OpenAI's models:
 > [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 * Store your embeddings and perform vector (similarity) search using your choice of Azure service:
   * [Azure AI Search](/azure/search/vector-search-overview)
-  * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql#vector-search)
+  * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
   * [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search)
-  * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql#vector-search)
+  * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
   * [Azure Cosmos DB for NoSQL](/azure/cosmos-db/vector-search)
   * [Azure Cosmos DB for PostgreSQL](/azure/cosmos-db/postgresql/howto-use-pgvector)
   * [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-tutorial-vector-similarity)

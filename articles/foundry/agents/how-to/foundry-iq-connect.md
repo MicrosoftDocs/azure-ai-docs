@@ -5,7 +5,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/02/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted

@@ -4,7 +4,7 @@ description: "Learn how to manage Grounding with Bing in Microsoft Foundry and A
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: overview
 ms.date: 02/17/2026
 ai-usage: ai-assisted

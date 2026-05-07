@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: seramasu
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -14,7 +14,7 @@ This article describes how to manage traffic with spillover for provisioned depl
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - A provisioned managed deployment and a standard deployment in the same Azure OpenAI resource
 

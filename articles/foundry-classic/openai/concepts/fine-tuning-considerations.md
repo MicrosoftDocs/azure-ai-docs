@@ -2,8 +2,8 @@
 title: "Microsoft Foundry fine-tuning considerations (classic)"
 description: "Learn more about what you should take into consideration before fine-tuning with Microsoft Foundry. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 02/11/2026
 author: ssalgadodev

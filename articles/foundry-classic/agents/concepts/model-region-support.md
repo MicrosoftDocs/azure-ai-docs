@@ -4,10 +4,10 @@ description: "Find supported Azure OpenAI models and regions for Microsoft Found
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/17/2026
+ms.date: 04/15/2026
 ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
@@ -16,52 +16,11 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
-Azure OpenAI models power agents in Microsoft Foundry Agent Service. This article helps you choose a supported model and region combination for your deployment. Choosing the right model and region affects your agent's capabilities, latency, and cost.
+Azure OpenAI models power agents in Foundry Agent Service. To use these models, you need a [Microsoft Foundry project](../../what-is-foundry.md) with access to Agent Service. Use the tabs to find a supported model, deployment type, and region combination. For details on deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
-To use these models, you need a [Microsoft Foundry project](../../what-is-foundry.md) with access to Foundry Agent Service.
-
-Microsoft Foundry offers two main types of deployments:
-
-- *Standard* includes a global deployment option that routes traffic across Azure's global infrastructure to maximize throughput and availability.
-- *Provisioned* also includes a global deployment option. You can purchase and deploy provisioned throughput units (PTUs) across Azure's global infrastructure for predictable performance.
-
-All deployments can perform the same inference operations. However, the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
-
-## How to use this page
-
-Use the tables in this article to choose a supported combination of deployment type, model version, and Azure region.
-
-- **Deployment type**: Use the tabs to select the deployment type you plan to use (standard or provisioned).
-- **Region**: The **Region** column lists the Azure region where you deploy the model.
-- **Availability markers**:
-  - ✅: Supported.
-  - Blank cells or `-`: Not supported.
-
-## Choose a model
-
-Select a model based on your agent's requirements:
-
-- **gpt-5 family** (gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat): Frontier-scale reasoning for complex, multi-step tasks. Registration is required for access.
-- **gpt-4.1 family** (gpt-4.1, gpt-4.1-mini, gpt-4.1-nano): Cost-effective models for general-purpose agent workloads.
-- **gpt-4o family** (gpt-4o, gpt-4o-mini): Multimodal capabilities with vision support.
-- **gpt-4 and gpt-35-turbo**: Legacy models for backward compatibility.
-
-> [!TIP]
-> **Quick start**: For most new agents, deploy **gpt-4o, 2024-11-20** in **swedencentral** or **eastus2** using Global standard deployment. These regions have broad model availability and low latency for most scenarios.
+Agents (classic) are deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
 
 ## Available models
-
-Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
-
-Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
-
-> [!NOTE]
-> - This article refers to Agents (classic), which are now deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
-> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
-> - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
-> - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
-> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
 
 # [Global standard](#tab/global-standard)
 
@@ -158,26 +117,30 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 
 ---
 
+> [!IMPORTANT]
+> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+
+- **gpt-5 family** (gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat): Frontier-scale reasoning for complex, multi-step tasks. [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. These models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
+- **gpt-4.1 family** (gpt-4.1, gpt-4.1-mini, gpt-4.1-nano): Cost-effective models for general-purpose agent workloads.
+- **gpt-4o family** (gpt-4o, gpt-4o-mini): Multimodal capabilities with vision support.
+- **gpt-4 and gpt-35-turbo**: Legacy models for backward compatibility.
+
 ## Non-OpenAI models
 
 In addition to Azure OpenAI models, you can use models sold directly by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
 
 [!INCLUDE [agent-service-models-support-list](../../../foundry/agents/includes/agent-service-models-support-list.md)]
 
-## View all agent-supported models in the Foundry portal
+## Verify model support
 
-To see a full list of the supported models in the Foundry portal:
+Model availability can change over time. To check what you can deploy for your project and region:
 
 1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Go to the **Model catalog**.
 1. Filter the models by **Capabilities** and select **Agent supported**.
 
-## Verify model support
-
-Model availability can change over time.
-
-- To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
-- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
+If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
 ## Troubleshooting
 

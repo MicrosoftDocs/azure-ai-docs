@@ -2,8 +2,8 @@
 title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini (classic)"
 description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/17/2026
 author: mrbullwinkle
@@ -920,7 +920,7 @@ print(response.model_dump_json(indent=2))
 | Model | Region | Limited access |
 |---|---|---|
 | `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central | No access request needed. |
-| `gpt-5.4.nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  | No access request needed. |
+| `gpt-5.4-nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  | No access request needed. |
 | `gpt-5.4-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |

@@ -3,13 +3,14 @@ title: "How to use an existing AI Search index with the Azure AI Search tool (cl
 description: "Learn how to use Agents Azure AI Search tool. (classic)"
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
-ms.reviewer: aahi
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, doc-kit-assisted
 ai-usage: ai-assisted
 ---

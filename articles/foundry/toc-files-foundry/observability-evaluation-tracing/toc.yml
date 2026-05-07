@@ -82,3 +82,7 @@ items:
      href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
+
+# Troubleshooting
+- name: Troubleshoot evaluation and observability issues
+  href: ../../observability/how-to/troubleshooting.md

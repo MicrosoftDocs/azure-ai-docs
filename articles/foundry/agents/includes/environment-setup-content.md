@@ -4,7 +4,7 @@ description: include file
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -24,6 +24,9 @@ Creating your first agent is a two-step process:
 | Create an account and project                                          | Azure AI Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Azure AI User                    |
+
+> [!NOTE]
+> For hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
 
 ## Set up your agent environment
 To get started, you need a Microsoft Foundry resource and a Foundry project.  
@@ -54,7 +57,14 @@ Agent Service offers three environment configuration modes to suit different nee
 
 - **Standard Setup with Bring Your Own (BYO) Virtual Network**:  
 
-   Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment. 
+   Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment.
+
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.**
+>
+> BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
+>
+> All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
 
 ### Compare setup options
 

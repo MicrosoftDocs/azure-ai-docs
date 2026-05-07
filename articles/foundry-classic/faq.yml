@@ -3,7 +3,7 @@ metadata:
   title: Microsoft Foundry (classic) frequently asked questions
   titleSuffix: Microsoft Foundry
   description: Get answers to the most popular questions about Microsoft Foundry (classic).
-  ms.service: azure-ai-foundry
+  ms.service: microsoft-foundry
   ms.custom:
     - build-2024
   ms.topic: faq

@@ -4,9 +4,9 @@ description: Include file
 author: lgayhardt
 ms.reviewer: minthigpen
 ms.author: lagayhar
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/10/2026
 ms.custom: include
 ---
 
@@ -19,11 +19,13 @@ uv pip install "azure-ai-evaluation[redteam]"
 ```
 
 > [!NOTE]
-> PyRIT only works with Python 3.10, 3.11, 3.12 but doesn't support Python 3.9. If you're using Python 3.9, you must upgrade your Python version to use this feature.
+> PyRIT requires Python 3.10, 3.11, 3.12, or 3.13. Python 3.9 isn't supported. If you're using Python 3.9, upgrade your Python version to use this feature.
 
 ## Create and run an AI Red Teaming Agent
 
-You can instantiate the AI Red Teaming agent with your Foundry project and Azure Credentials.
+You can instantiate the AI Red Teaming agent with your Foundry project and Azure Credentials. Choose one of the following options to provide your project reference.
+
+**Option 1 — Foundry Hub project (dictionary):**
 
 ```python
 # Azure imports
@@ -82,10 +84,11 @@ red_team_agent = RedTeam(
 
 Currently, AI Red Teaming Agent is available only in some regions. Ensure your Azure AI Project is located in the following supported regions:
 
-- East US2
-- Sweden Central
+- East US 2
 - France Central
+- Sweden Central
 - Switzerland West
+- US North Central
 
 ## Supported targets
 
@@ -140,7 +143,7 @@ The `RedTeam` can run automated scans on various targets.
   red_team_result = await red_team_agent.scan(target=advanced_callback)
   ```
 
-- **PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://azure.github.io/PyRIT/code/targets/0_prompt_targets.html).
+- **PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://microsoft.github.io/PyRIT/api/pyrit-prompt-target/).
 
   ```python
   from pyrit.prompt_target import OpenAIChatTarget, PromptChatTarget

@@ -12,7 +12,7 @@ ms.author: pafarley
 | `am-ET` | Amharic (Ethiopia) | ✅ |
 | `ar-AE` | Arabic (United Arab Emirates) | ✅ |
 | `ar-BH` | Arabic (Bahrain) | ✅ |
-| `ar-DZ` | Arabic (Algeria) |   |
+| `ar-DZ` | Arabic (Algeria) | ✅ |
 | `ar-EG` | Arabic (Egypt) | ✅ |
 | `ar-IL` | Arabic (Israel) | ✅ |
 | `ar-IQ` | Arabic (Iraq) | ✅ |
@@ -20,19 +20,19 @@ ms.author: pafarley
 | `ar-KW` | Arabic (Kuwait) | ✅ |
 | `ar-LB` | Arabic (Lebanon) | ✅ |
 | `ar-LY` | Arabic (Libya) | ✅ |
-| `ar-MA` | Arabic (Morocco) |   |
+| `ar-MA` | Arabic (Morocco) | ✅ |
 | `ar-OM` | Arabic (Oman) | ✅ |
 | `ar-PS` | Arabic (Palestinian Authority) | ✅ |
 | `ar-QA` | Arabic (Qatar) | ✅ |
 | `ar-SA` | Arabic (Saudi Arabia) | ✅ |
 | `ar-SY` | Arabic (Syria) | ✅ |
-| `ar-TN` | Arabic (Tunisia) |   |
-| `ar-YE` | Arabic (Yemen) |   |
-| `as-IN` | Assamese (India) |   |
+| `ar-TN` | Arabic (Tunisia) | ✅ |
+| `ar-YE` | Arabic (Yemen) | ✅ |
+| `as-IN` | Assamese (India) | ✅ |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | ✅ |
 | `bg-BG` | Bulgarian (Bulgaria) | ✅ |
 | `bn-IN` | Bengali (India) | ✅ |
-| `bs-BA` | Bosnian (Bosnia and Herzegovina) |   |
+| `bs-BA` | Bosnian (Bosnia and Herzegovina) | ✅ |
 | `ca-ES` | Catalan | ✅ |
 | `cs-CZ` | Czech (Czechia) | ✅ |
 | `cy-GB` | Welsh (United Kingdom) | ✅ |
@@ -83,13 +83,13 @@ ms.author: pafarley
 | `fa-IR` | Persian (Iran) | ✅ |
 | `fi-FI` | Finnish (Finland) | ✅ |
 | `fil-PH` | Filipino (Philippines) | ✅ |
-| `fr-BE` | French (Belgium) |   |
-| `fr-CA` | French (Canada) |   |
-| `fr-CH` | French (Switzerland) |   |
+| `fr-BE` | French (Belgium) | ✅ |
+| `fr-CA` | French (Canada) | ✅ |
+| `fr-CH` | French (Switzerland) | ✅ |
 | `fr-FR` | French (France) | ✅ |
 | `ga-IE` | Irish (Ireland) | ✅ |
 | `gl-ES` | Galician | ✅ |
-| `gu-IN` | Gujarati (India) |   |
+| `gu-IN` | Gujarati (India) | ✅ |
 | `he-IL` | Hebrew (Israel) | ✅ |
 | `hi-IN` | Hindi (India) | ✅ |
 | `hr-HR` | Croatian (Croatia) | ✅ |
@@ -97,14 +97,14 @@ ms.author: pafarley
 | `hy-AM` | Armenian (Armenia) | ✅ |
 | `id-ID` | Indonesian (Indonesia) | ✅ |
 | `is-IS` | Icelandic (Iceland) | ✅ |
-| `it-CH` | Italian (Switzerland) |   |
+| `it-CH` | Italian (Switzerland) | ✅ |
 | `it-IT` | Italian (Italy) | ✅ |
 | `ja-JP` | Japanese (Japan) | ✅ |
 | `jv-ID` | Javanese (Latin, Indonesia) | ✅ |
 | `ka-GE` | Georgian (Georgia) | ✅ |
 | `kk-KZ` | Kazakh (Kazakhstan) | ✅ |
-| `km-KH` | Khmer (Cambodia) |   |
-| `kn-IN` | Kannada (India) |   |
+| `km-KH` | Khmer (Cambodia) | ✅ |
+| `kn-IN` | Kannada (India) | ✅ |
 | `ko-KR` | Korean (Korea) | ✅ |
 | `lo-LA` | Lao (Laos) | ✅ |
 | `lt-LT` | Lithuanian (Lithuania) | ✅ |
@@ -117,18 +117,18 @@ ms.author: pafarley
 | `mt-MT` | Maltese (Malta) | ✅ |
 | `my-MM` | Burmese (Myanmar) | ✅ |
 | `nb-NO` | Norwegian Bokmål (Norway) | ✅ |
-| `ne-NP` | Nepali (Nepal) |   |
+| `ne-NP` | Nepali (Nepal) | ✅ |
 | `nl-BE` | Dutch (Belgium) |   |
 | `nl-NL` | Dutch (Netherlands) | ✅ |
-| `or-IN` | Odia (India) |   |
-| `pa-IN` | Punjabi (India) |   |
+| `or-IN` | Odia (India) | ✅ |
+| `pa-IN` | Punjabi (India) | ✅ |
 | `pl-PL` | Polish (Poland) | ✅ |
 | `ps-AF` | Pashto (Afghanistan) | ✅ |
 | `pt-BR` | Portuguese (Brazil) | ✅ |
 | `pt-PT` | Portuguese (Portugal) | ✅ |
 | `ro-RO` | Romanian (Romania) | ✅ |
 | `ru-RU` | Russian (Russia) | ✅ |
-| `si-LK` | Sinhala (Sri Lanka) |   |
+| `si-LK` | Sinhala (Sri Lanka) | ✅ |
 | `sk-SK` | Slovak (Slovakia) | ✅ |
 | `sl-SI` | Slovenian (Slovenia) | ✅ |
 | `so-SO` | Somali (Somalia) | ✅ |
@@ -145,11 +145,11 @@ ms.author: pafarley
 | `ur-IN` | Urdu (India) | ✅ |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | ✅ |
 | `vi-VN` | Vietnamese (Vietnam) | ✅ |
-| `wuu-CN` | Chinese (Wu, Simplified) |   |
+| `wuu-CN` | Chinese (Wu, Simplified) | ✅ |
 | `yue-CN` | Chinese (Cantonese, Simplified) |   |
 | `zh-CN` | Chinese (Mandarin, Simplified) | ✅ |
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) |   |
-| `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) |   |
+| `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | ✅ |
 | `zh-HK` | Chinese (Cantonese, Traditional) | ✅ |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | ✅ |
 | `zu-ZA` | Zulu (South Africa) | ✅ |

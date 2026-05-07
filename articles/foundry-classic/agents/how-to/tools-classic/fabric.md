@@ -1,12 +1,14 @@
 ---
 title: "How to use the data agents in Microsoft Fabric with Foundry Agent Service (classic)"
 description: "Learn how to perform data analytics in Microsoft Foundry Agents using Microsoft Fabric data agent. (classic)"
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 manager: nitinme
 ms.date: 03/23/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025

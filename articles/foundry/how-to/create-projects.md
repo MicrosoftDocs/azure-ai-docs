@@ -5,7 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.date: 04/08/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - classic-and-new
@@ -32,7 +32,11 @@ If your organization requires customized Azure configurations like alternative n
 
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+* If you're creating the project for yourself: 
+    * [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+* If you're creating the project for a team: 
+    * [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+    * A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
 
 Use the following tabs to select the method you want to use to create a Foundry project:
 
@@ -100,6 +104,31 @@ On the **Home** project page, you see the project endpoint and API key for the p
 [!INCLUDE [create-projects-view-cli](../includes/create-projects-view-cli.md)]
 
 ---
+
+## Grant access to team members
+
+If you created the project for a team, assign the **Azure AI User** role to team members so they can use the project and its resources. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+> [!IMPORTANT]
+> To complete role assignments, you need a role such as **Owner** on the project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+
+# [Foundry portal](#tab/foundry)
+
+[!INCLUDE [add-users](../includes/add-users.md)]
+
+# [Python SDK](#tab/python)
+
+Use the Azure CLI or Foundry portal to manage role assignments. The Python SDK doesn't support role assignment operations.
+
+# [Azure CLI](#tab/azurecli)
+
+[!INCLUDE [add-users-cli](../includes/add-users-cli.md)]
+
+---
+
+### Verify team member access
+
+[!INCLUDE [verify-team-access](../includes/verify-team-access.md)]
 
 ## Delete projects
 

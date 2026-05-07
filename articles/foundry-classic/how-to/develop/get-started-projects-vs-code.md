@@ -2,7 +2,7 @@
 title: "Work with the Microsoft Foundry for Visual Studio Code extension (classic)"
 description: "Create projects, deploy models from the model catalog, and interact with model playgrounds using the Microsoft Foundry for Visual Studio Code extension. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

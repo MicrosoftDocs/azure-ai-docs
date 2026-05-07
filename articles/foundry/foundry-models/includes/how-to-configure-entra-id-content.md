@@ -4,7 +4,7 @@ description: include file
 author: msakande
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new

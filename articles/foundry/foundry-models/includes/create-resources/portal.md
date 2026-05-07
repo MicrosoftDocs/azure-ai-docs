@@ -3,8 +3,8 @@ manager: nitinme
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: fasantia
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment

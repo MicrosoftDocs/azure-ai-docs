@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Variants in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 With Azure Machine Learning prompt flow, you can use variants to tune your prompt. In this article, you learn about the prompt flow variants concept.
 
 ## Variants

@@ -1,7 +1,7 @@
 ---
 title: "Cloud Evaluation with the Microsoft Foundry SDK (classic)"
 description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - references_regions

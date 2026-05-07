@@ -4,7 +4,7 @@ description: include file
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -24,7 +24,7 @@ You can reuse your existing model deployments and quota from Foundry Tools or Az
 
 ### SDK usage with hub-based projects
 
-Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#choosing-a-project) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
+Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#foundry-portal) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
 
 If you want to continue using your hub-based project and connection string, you need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 

@@ -5,7 +5,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 11/18/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
 ---

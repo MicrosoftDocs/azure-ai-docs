@@ -1,12 +1,12 @@
 ---
 title: "Run AI Red Teaming Agent Locally (Azure AI Evaluation SDK)"
 description: "Learn how to use the AI Red Teaming Agent to run a local automated scan of a Generative AI application with the Azure AI Evaluation SDK."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 04/10/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. The AI red teaming capabilities of Microsoft's open-source framework for Python Risk Identification Tool ([PyRIT](https://github.com/Azure/PyRIT)) are integrated  directly into Microsoft Foundry. Teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
+The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. The AI red teaming capabilities of Microsoft's open-source framework for Python Risk Identification Tool ([PyRIT](https://github.com/microsoft/PyRIT)) are integrated directly into Microsoft Foundry. Teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
 
 This article explains how to:
 
@@ -31,6 +31,7 @@ This article explains how to:
 ## Prerequisites
 
 - [A Foundry project](../create-projects.md)
+- Python 3.10, 3.11, 3.12, or 3.13
 - Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 [!INCLUDE [run-scans-ai-red-teaming-agent 1](../../includes/how-to-develop-run-scans-ai-red-teaming-agent-1.md)]

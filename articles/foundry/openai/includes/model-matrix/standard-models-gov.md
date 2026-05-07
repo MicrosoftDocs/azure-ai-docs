@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models in Azure Government
 description: Quota and limits for Azure OpenAI by region in Azure Government
 ms.author: challenp
 ms.date: 04/03/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ---
 

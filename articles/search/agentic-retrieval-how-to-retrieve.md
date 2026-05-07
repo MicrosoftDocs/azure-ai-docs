@@ -3,7 +3,7 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.date: 04/15/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -193,6 +193,206 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
+## Filter at query time (Search index)
+
+When retrieving from a search index knowledge source, you can apply an [OData filter](search-query-odata-filter.md) at query time to narrow the results to specific documents or fields. The filter expression uses OData syntax and is passed via the `filterAddOn` parameter.
+
+### Filter syntax and examples
+
+The `filterAddOn` parameter accepts OData filter expressions. Example patterns include:
+
+- **Metadata fields**: `city eq 'Phoenix'`, `status eq 'active'`
+- **Date ranges**: `publishDate ge 2024-01-01 and publishDate le 2024-12-31`
+- **Numeric ranges**: `price ge 100 and price le 5000`
+- **Text matching**: `substringof('climate', description)`, `indexof(title, 'urgent') ge 0`
+- **Logical operators**: `(category eq 'News' or category eq 'Analysis') and status eq 'published'`
+
+**Example filter expressions:**
+
+- `status eq 'published'`
+- `created ge 2025-01-01`
+- `city eq 'Redmond' and department eq 'Engineering'`
+- `(priority eq 'High' or priority eq 'Critical') and resolved eq false`
+
+### Examples by language
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.Identity;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+var kbClient = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
+    knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
+    tokenCredential: new DefaultAzureCredential()
+);
+
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "You are a support agent. Answer questions based on published documentation. "
+                + "If you don't know the answer, say so."
+            )
+        }
+    ) { Role = "assistant" }
+);
+
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "What is the process for submitting an expense report?"
+            )
+        }
+    ) { Role = "user" }
+);
+
+// Apply a filter to search only published documents
+var searchIndexParams = new SearchIndexKnowledgeSourceParams(
+    knowledgeSourceName: "internal-documentation-ks"
+);
+searchIndexParams.FilterAddOn = "status eq 'published'";
+
+retrievalRequest.KnowledgeSourceParams.Add(searchIndexParams);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+    SearchIndexKnowledgeSourceParams,
+)
+
+kb_client = KnowledgeBaseRetrievalClient(
+    endpoint="<YOUR SEARCH SERVICE URL>",
+    knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
+    credential=DefaultAzureCredential(),
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="assistant",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="You are a support agent. Answer questions based on published documentation. "
+                    "If you don't know the answer, say so."
+                )
+            ],
+        ),
+        KnowledgeBaseMessage(
+            role="user",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="What is the process for submitting an expense report?"
+                )
+            ],
+        ),
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="internal-documentation-ks",
+            # Apply a filter to search only published documents
+            filter_add_on="status eq 'published'",
+        )
+    ],
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```http
+POST https://<YOUR SEARCH SERVICE>.search.windows.net/knowledgebases/<YOUR KNOWLEDGE BASE NAME>/retrieve?api-version=2025-11-01-preview
+Content-Type: application/json
+Authorization: Bearer <YOUR ACCESS TOKEN>
+
+{
+    "messages": [
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "You are a support agent. Answer questions based on published documentation. If you don't know the answer, say so."
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is the process for submitting an expense report?"
+                }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "internal-documentation-ks",
+            "kind": "searchIndex",
+            "filterAddOn": "status eq 'published'"
+        }
+    ]
+}
+```
+
+:::zone-end
+
+### Multi-filter example
+
+You can combine multiple filters to refine results further:
+
+:::zone pivot="csharp"
+
+```csharp
+searchIndexParams.FilterAddOn = "(status eq 'published' or status eq 'internal') and created ge 2025-01-01";
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+filter_add_on="(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```json
+{
+    "knowledgeSourceName": "internal-documentation-ks",
+    "kind": "searchIndex",
+    "filterAddOn": "(status eq 'published' or status eq 'internal') and created ge 2025-01-01"
+}
+```
+
+:::zone-end
+
 ### Request parameters
 
 Pass the following parameters to call the retrieve action.
@@ -257,9 +457,9 @@ The following table shows which knowledge sources require ingestion-time configu
 
 | Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
-| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestionparameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 
 > [!IMPORTANT]
@@ -437,7 +637,10 @@ Key points:
 
 + In this preview, `content.type` has one valid value: `text`.
 
-+ The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string.
++ The `maxOutputSize` property on the knowledge base determines the length of the string.
+
+    > [!IMPORTANT]
+    > A document that exceeds the `maxOutputSize` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -816,6 +1019,12 @@ Content-Type: application/json
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 :::zone-end
+
+## Troubleshoot empty responses
+
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSize` output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
+
+To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
 ## Related content
 

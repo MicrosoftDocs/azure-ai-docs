@@ -3,8 +3,8 @@ title: Azure OpenAI latest inference API documentation
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Latest data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 11/01/2024
 ---

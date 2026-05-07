@@ -2,7 +2,7 @@
 title: "Harm categories and severity levels in Microsoft Foundry (classic)"
 description: "Learn about the harm categories and severity levels used by the content safety system in Microsoft Foundry to detect and filter harmful content. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/05/2026
 author: ssalgadodev

@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -228,7 +228,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 ```
 
 > [!NOTE]
-> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
+> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest&preserve-view=true#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
 
 #### Example response
 
@@ -355,7 +355,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 ```
 
 > [!NOTE]
-> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
+> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest&preserve-view=true#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
 
 ### Multi-deployment migrations for provisioned deployments
 

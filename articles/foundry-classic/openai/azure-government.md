@@ -4,8 +4,8 @@ description: "Learn about Microsoft Foundry Models sold directly by Azure, their
 author: challenp
 ms.author: chaparker
 ms.date: 04/09/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom:
   - references_regions

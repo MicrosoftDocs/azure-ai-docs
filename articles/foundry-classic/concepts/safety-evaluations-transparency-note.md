@@ -1,7 +1,7 @@
 ---
 title:  "Microsoft Foundry risk and safety evaluations (preview) Transparency Note (classic)"
 description: "Microsoft Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - build-2024

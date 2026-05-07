@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models in Azure Government
 author: challenp
 ms.author: challenp
 ms.date: 04/03/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: classic-and-new
 ---
@@ -159,14 +159,10 @@ These models can be used only with Embedding API requests.
 
 ## Model retirement
 
-In some cases, models are retired in Azure Government earlier or later than in the commercial cloud. For the latest information on model retirements, refer to the [model retirement guide](../concepts/model-retirements.md). 
-
-[!INCLUDE [Retirements](../includes/model-matrix/retirement-models-gov.md)]
-
-
+In some cases, models are retired in Azure Government earlier or later than in the commercial cloud. For the latest information on model retirements, refer to the [model retirement guide](../concepts/model-retirements-gov.md). 
 
 ## Related content
 
-- [Model retirement and deprecation](../concepts/model-retirements.md)
+- [Model retirement and deprecation](../concepts/model-retirements-gov.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md)

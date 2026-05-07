@@ -3,12 +3,14 @@ title: "Customize Agent Behavior at Runtime with Structured Inputs"
 description: "Learn how to customize agent behavior at runtime using structured inputs. Define placeholders with handlebar templates, dynamically configure agent instructions and tools, and pass values at runtime to your agent."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-structured-inputs
 ai-usage: ai-assisted
@@ -17,7 +19,7 @@ ai-usage: ai-assisted
 
 # Customize agent behavior at runtime with structured inputs
 
-You can customize agent instructions at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
+You can customize how an agent's Foundry model processes requests at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
 
 In this article, you learn how to:
 

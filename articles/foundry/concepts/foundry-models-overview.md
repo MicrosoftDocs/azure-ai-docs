@@ -1,15 +1,15 @@
 ---
 title: Microsoft Foundry Models overview
 description: Discover and deploy AI models with Microsoft Foundry Models. Browse 1,900+ models from OpenAI, Meta, and more to build scalable AI solutions. Explore now.
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ai-usage: ai-assisted
 ms.custom:
   - build-2025
   - ai-learning-hub
   - classic-and-new
 ms.topic: concept-article
-ms.date: 03/04/2026
+ms.date: 04/20/2026
 ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
@@ -67,7 +67,7 @@ Some of these models also offer fungible provisioned throughput, meaning you can
 
 These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of models from Partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
 
-Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md) and [Anthropic privacy policy](https://aka.ms/anthropic_privacy). For terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
+Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md). For terms that govern data processing, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
 Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../../foundry-classic/how-to/deploy-models-managed.md).
 

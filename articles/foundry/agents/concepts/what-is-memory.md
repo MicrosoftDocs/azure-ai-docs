@@ -4,8 +4,8 @@ description: "Learn what memory is in Microsoft Foundry Agent Service (preview),
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/06/2026
 ms.custom: pilot-ai-workflow-jan-2026 , doc-kit-assisted

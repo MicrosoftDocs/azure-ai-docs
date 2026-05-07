@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -32,7 +32,9 @@ In this setup:
 
 ## Resource overview
 
-Standard setup requires you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:**
+>
 
 | Resource | What it stores |
 |----------|---------------|

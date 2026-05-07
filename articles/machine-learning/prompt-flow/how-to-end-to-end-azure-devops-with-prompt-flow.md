@@ -20,6 +20,8 @@ ms.update-cycle: 365-days
 
 # GenAIOps with prompt flow and Azure DevOps
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 As the demand for LLM-infused applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
 
 This article shows how Azure Machine Learning lets you integrate with Azure DevOps to automate the LLM-infused application development lifecycle with *prompt flow*. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.

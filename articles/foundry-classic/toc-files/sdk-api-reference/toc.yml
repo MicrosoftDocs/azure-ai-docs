@@ -8,7 +8,7 @@ items:
   - name: Python
     href: https://azure.github.io/azure-sdk-for-python/cognitiveservices.html#azure-ai-projects
   - name: REST API
-    href: ../../reference/foundry-project.md
+    href: /rest/api/aifoundry/aiproject
 - name: Azure AI Agents
   items:
     - name: C#

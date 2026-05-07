@@ -5,7 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.date: 12/29/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - build-2025

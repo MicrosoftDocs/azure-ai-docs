@@ -4,15 +4,15 @@ description: "Learn how to view your agent inventory, monitor agent health, and 
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 01/02/2026
+ms.date: 04/13/2026
 ms.manager: mcleans
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Manage agents in Foundry Control Plane
+# Manage agents at scale in Microsoft Foundry Control Plane
 
 Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. With Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
 
@@ -39,14 +39,14 @@ The following information appears:
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform where the agent or resource was discovered. See the [list of supported platforms](#supported-agent-platforms) later in this article. | All |
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered. | Foundry<br><br>Custom |
-| **Status** | Refers to a broad range of conditions, including operational, health, or lifecycle status of the agent. Agents transition to different values, depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#handle-unknown-states)</li></ul> | All |
+| **Status** | Refers to a broad range of conditions, including operational, health, or lifecycle status of the agent. Agents transition to different values, depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unknown](#handle-unknown-states)</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
-| **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/publish-agent.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
+| **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/agent-applications.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
 | **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observability-of-agents). | All |
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observability-of-agents). | All |
-| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
+| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of AI application lifecycle evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
 | **Entra ID** | The Microsoft Entra Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. See [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permissions model
@@ -82,7 +82,7 @@ Foundry Control Plane helps you manage agents across all your Foundry projects. 
 For each agent, the information includes:
 
 * The latest version of the agent.
-* Versions [published as agent applications](../agents/how-to/publish-agent.md).
+* Versions [published as agent applications](../agents/how-to/agent-applications.md).
 
 You can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Version 6 of the `format-agent` agent was published, but version 7 (latest) is still under development.
 
@@ -156,7 +156,7 @@ To view them:
 
 Foundry Control Plane helps organizations control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
 
-The following table summarizes supported actions for each platform. A foundry agent's support depends on the agent type and its publishing state.
+The following table summarizes supported actions for each platform. A Foundry agent's support depends on the agent type and its publishing state.
 
 | Platform | Agent type | Published | Supported actions | Notes |
 | -------- | ---------- | --------- | ----------------- | ----- |
@@ -165,7 +165,7 @@ The following table summarizes supported actions for each platform. A foundry ag
 | Foundry | Prompt<br><br>Workflow<br><br>Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE Agent | Not applicable | Not applicable | Start/stop | |
 | Azure Logic Apps | Not applicable | Not applicable | Start/stop | You can stop an Azure Logic Apps agent loop by stopping the Logic Apps resource that hosts it. Stopping a Logic Apps resource stops all the workflows associated with it. |
-| Custom | Not applicable | Not applicable | Block/unblock | Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent. Blocking a request prevents clients from consuming it. |
+| Custom | Not applicable | Not applicable | Block/unblock | Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent. Blocking prevents clients from using the agent. |
 
 ### Start and stop agents
 
@@ -200,7 +200,7 @@ To start the agent:
 
 ### Block and unblock agents
 
-For [custom agents](register-custom-agent.md), Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent. Blocking a request prevents clients from consuming it. This capability allows administrators to disable an agent if it misbehaves.
+For [custom agents](register-custom-agent.md), Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent. Blocking prevents clients from using the agent. This capability allows administrators to disable an agent if it misbehaves.
 
 To block incoming requests to your agent:
 

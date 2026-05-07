@@ -3,8 +3,8 @@ title: "Set Up MCP Server Authentication"
 description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/09/2026
 author: aahill
@@ -65,8 +65,8 @@ Use the following guidance to choose a method:
 | Method | Description | User context persists |
 | --- | --- | --- |
 | Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity (preview) | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity (preview) | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
 | OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
 | Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
 
@@ -96,7 +96,7 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
-### Use agent identity authentication (preview)
+### Use agent identity authentication
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
 

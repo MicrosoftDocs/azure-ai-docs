@@ -584,7 +584,7 @@
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       },
       "ms.service": {
-        "articles/ai-studio/**/*.md": "azure-ai-foundry",
+        "articles/ai-studio/**/*.md": "microsoft-foundry",
         "articles/ai-services/**/*.md": "azure-ai-services",
         "articles/ai-services/speech-service/*.md": "azure-ai-speech",
         "articles/ai-services/translator/**/*.md": "azure-ai-translator",
@@ -594,8 +594,8 @@
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
         "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
-        "articles/foundry/**/*.md": "azure-ai-foundry",
-        "articles/foundry-classic/**/*.md": "azure-ai-foundry"
+        "articles/foundry/**/*.md": "microsoft-foundry",
+        "articles/foundry-classic/**/*.md": "microsoft-foundry"
       },
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",

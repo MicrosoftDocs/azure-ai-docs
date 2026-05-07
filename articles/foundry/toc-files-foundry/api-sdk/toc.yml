@@ -4,6 +4,9 @@ items:
   href: ../../how-to/develop/sdk-overview.md
 - name: Endpoints for Foundry Models
   href: ../../foundry-models/concepts/endpoints.md
+- name: Auto and direct model routing
+  displayName: Auto and direct model routing with the Responses API
+  href: ../../openai/how-to/responses-model-routing.md
 
 # Azure AI Projects SDK
 - name: Azure AI Projects
@@ -15,9 +18,7 @@ items:
   - name: Python
     href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
   - name: REST API
-    href: ../../reference/foundry-project.md
-  - name: REST API (preview)
-    href: ../../reference/foundry-project-rest-preview.md
+    href: /rest/api/aifoundry/aiproject
 
 # Azure OpenAI SDK and APIs
 - name: Azure OpenAI

@@ -1,8 +1,8 @@
 ---
 title: Import custom models into Microsoft Foundry with Fireworks (preview)
 description: Learn how to import, register, and deploy your own custom model weights in Microsoft Foundry using the Fireworks inference runtime.
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/20/2026
 author: ssalgadodev 

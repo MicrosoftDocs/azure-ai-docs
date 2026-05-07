@@ -52,7 +52,7 @@ In a code editor, create a new file named `test_pii_payload.json` and copy the f
 
 Save `test_pii_payload.json` somewhere on your computer. For example, your desktop.  
 
-## Send a personally identifying information (PII) detection API request
+## Send a personally identifiable information (PII) detection API request
 
 Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
 
