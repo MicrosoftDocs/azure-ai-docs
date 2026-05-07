@@ -44,9 +44,7 @@ Enabling incoming A2A requires two things: an **agent card** that describes your
 
 Enabling incoming A2A isn't yet configurable in the Foundry portal. Use the REST API or Python SDK.
 
-#### [REST API](#tab/rest)
-
-##### [Bash](#tab/rest/bash)
+#### [REST API (Bash)](#tab/rest-bash)
 
 Set up variables for your project:
 
@@ -81,7 +79,9 @@ curl -X PATCH "$BASE_URL/agents/$AGENT_NAME?api-version=v1" \
   }'
 ```
 
-##### [PowerShell](#tab/rest/powershell)
+Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
+
+#### [REST API (PowerShell)](#tab/rest-powershell)
 
 Set up variables for your project:
 
@@ -118,8 +118,6 @@ Invoke-RestMethod -Method Patch `
   -ContentType "application/json" `
   -Body $body
 ```
-
----
 
 Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
 
