@@ -306,6 +306,163 @@ if __name__ == "__main__":
 
 Replace `{account}`, `{project}`, and `{agent}` with your Foundry resource name, project name, and agent name. The resolver constructs the full agent card URL by appending the relative `AGENT_CARD_PATH` to `A2A_BASE_URL`.
 
+## Connect from another Foundry agent
+
+You can call a Foundry A2A agent from another Foundry agent by using the A2A tool. This section walks through the full setup: create a connection to the target agent, then create a calling agent that uses that connection.
+
+### Step 1: Create an A2A connection to the target agent
+
+The connection stores the target agent's A2A endpoint URL, authentication details, and the custom agent card path. Foundry agents serve their agent card at `agentCard/v0.3` (not the default `.well-known/agent-card.json`), so you must set the `AgentCardPath` in the connection metadata.
+
+> [!NOTE]
+> Setting a custom agent card path isn't supported in the Foundry portal. Use the REST API to create the connection.
+
+#### [REST API (Bash)](#tab/connection-bash)
+
+Set up variables:
+
+```bash
+SUBSCRIPTION_ID="your-subscription-id"
+RESOURCE_GROUP="your-resource-group"
+FOUNDRY_ACCOUNT="your-foundry-account"
+PROJECT_NAME="your-project"
+CONNECTION_NAME="my-a2a-target"
+TARGET_A2A_URL="https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a"
+TOKEN=$(az account get-access-token \
+  --scope https://management.azure.com/.default \
+  --query accessToken -o tsv)
+```
+
+Create the connection:
+
+```bash
+curl --request PUT \
+  --url "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$FOUNDRY_ACCOUNT/projects/$PROJECT_NAME/connections/$CONNECTION_NAME?api-version=2025-04-01-preview" \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "properties": {
+      "authType": "AgenticIdentity",
+      "category": "RemoteA2A",
+      "target": "'"$TARGET_A2A_URL"'",
+      "audience": "https://ai.azure.com",
+      "Credentials": {},
+      "metadata": {
+        "AgentCardPath": "/agentCard/v0.3"
+      }
+    }
+  }'
+```
+
+#### [REST API (PowerShell)](#tab/connection-powershell)
+
+Set up variables:
+
+```powershell
+$SUBSCRIPTION_ID = "your-subscription-id"
+$RESOURCE_GROUP = "your-resource-group"
+$FOUNDRY_ACCOUNT = "your-foundry-account"
+$PROJECT_NAME = "your-project"
+$CONNECTION_NAME = "my-a2a-target"
+$TARGET_A2A_URL = "https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a"
+$TOKEN = az account get-access-token `
+  --scope https://management.azure.com/.default `
+  --query accessToken -o tsv
+```
+
+Create the connection:
+
+```powershell
+$body = @{
+    properties = @{
+        authType = "AgenticIdentity"
+        category = "RemoteA2A"
+        target = $TARGET_A2A_URL
+        audience = "https://ai.azure.com"
+        Credentials = @{}
+        metadata = @{
+            AgentCardPath = "/agentCard/v0.3"
+        }
+    }
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod -Method Put `
+  -Uri "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$FOUNDRY_ACCOUNT/projects/$PROJECT_NAME/connections/$CONNECTION_NAME`?api-version=2025-04-01-preview" `
+  -Headers @{ Authorization = "Bearer $TOKEN" } `
+  -ContentType "application/json" `
+  -Body $body
+```
+
+---
+
+For other authentication options (key-based, OAuth, managed identity), see [Create an A2A connection by using the REST API](tools/agent-to-agent.md#create-an-a2a-connection-by-using-the-rest-api).
+
+### Step 2: Create the calling agent with the A2A tool
+
+After the connection exists, create an agent that uses the `A2APreviewTool` to call the target agent:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    A2APreviewTool,
+)
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+A2A_CONNECTION_NAME = "my-a2a-target"
+AGENT_NAME = "my-calling-agent"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
+
+tool = A2APreviewTool(
+    project_connection_id=a2a_connection.id,
+)
+
+agent = project.agents.create_version(
+    agent_name=AGENT_NAME,
+    definition=PromptAgentDefinition(
+        model="gpt-4.1-mini",
+        instructions=(
+            "You are a helpful assistant. Use the A2A tool "
+            "to delegate tasks to the target agent."
+        ),
+        tools=[tool],
+    ),
+)
+
+# Send a message and stream the response
+stream_response = openai.responses.create(
+    stream=True,
+    input="Ask the target agent what it can do.",
+    extra_body={
+        "agent_reference": {
+            "name": agent.name,
+            "type": "agent_reference",
+        }
+    },
+)
+
+for event in stream_response:
+    if event.type == "response.output_text.delta":
+        print(event.delta, end="")
+    elif event.type == "response.completed":
+        print(f"\n\nCompleted: {event.response.output_text}")
+
+# Clean up
+project.agents.delete_version(
+    agent_name=agent.name, agent_version=agent.version
+)
+```
+
+For additional language examples (C#, JavaScript, Java, REST), see [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md).
+
 ## Limitations
 
 - Only A2A protocol version 0.3 is supported.
