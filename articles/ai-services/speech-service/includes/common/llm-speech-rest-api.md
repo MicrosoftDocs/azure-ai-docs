@@ -19,7 +19,7 @@ The next several sections provide details about how to use this API.
 
 ### Supported languages
 
-The following languages are currently supported for both `transcribe` and `translate` tasks: `English`, `Chinese`, `German`, `French`, `Italian`, `Japanese`, `Spanish`, `Portuguese`, and `Korean`.
+The following languages are currently supported for both `transcribe` and `translate` tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``German``, ``English``, ``Spanish``, ``Finnish``, ``French``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Dutch``, ``Polish``, ``Portuguese``, ``Russian``, ``Swedish``, ``Thai``, ``Turkish``.
 
 ### Upload audio
 
