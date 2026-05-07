@@ -19,7 +19,7 @@ monikerRange: '<=doc-intel-4.0.0'
 >
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
 > * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence API v4.0:2024-11-30 (GA).
+> * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence API v4.0:2024-11-30 (GA)**.
 
 ## SDk migration guides
 
