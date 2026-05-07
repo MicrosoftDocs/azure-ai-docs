@@ -15,4 +15,4 @@ ai-usage: ai-assisted
 
 # GPT Realtime Translate overview
 
-[!INCLUDE [GPT Realtime Translate](../includes/gptrealtime-translate.md)]
+[!INCLUDE [GPT Realtime Translate](../includes/gpt-realtime-translate.md)]
