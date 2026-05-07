@@ -4,20 +4,20 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/07/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
-GPT Realtime Translate is a purpose-built model for continuous, real-time audio translation. Unlike pipeline-based approaches that chunk audio into segments before translating, this model processes audio streams continuously, producing translated output as speech unfolds. It's designed for scenarios where audio is flowing live and latency must be minimal.
+GPT Realtime Translate is a purpose-built model for continuous, real-time audio translation. Unlike pipeline-based approaches that chunk audio into segments before translating, this model processes audio streams continuously and produces translated output as speech unfolds. Use it in scenarios where audio is flowing live and latency must be minimal.
 
 ## Key capabilities
 
 - **Continuous stream processing**: Translates live audio without segmenting or buffering, producing output that tracks the cadence of the original speech.
 - **Speech and text output**: Produces both translated speech (audio) and a translated transcript in the target language.
-- **Low-latency translation**: Designed to keep pace with real-time conversation, reducing the gap between the original speech and translated output.
+- **Low-latency translation**: Keeps pace with real-time conversation, reducing the gap between the original speech and translated output.
 
 ## When to use GPT Realtime Translate
 
