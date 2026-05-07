@@ -46,6 +46,8 @@ Enabling incoming A2A isn't yet configurable in the Foundry portal. Use the REST
 
 #### [REST API](#tab/rest)
 
+##### [Bash](#tab/rest/bash)
+
 Set up variables for your project:
 
 ```bash
@@ -78,6 +80,46 @@ curl -X PATCH "$BASE_URL/agents/$AGENT_NAME?api-version=v1" \
     }
   }'
 ```
+
+##### [PowerShell](#tab/rest/powershell)
+
+Set up variables for your project:
+
+```powershell
+$BASE_URL = "https://{account}.services.ai.azure.com/api/projects/{project}"
+$AGENT_NAME = "your-agent-name"
+$TOKEN = az account get-access-token --resource https://ai.azure.com `
+  --query accessToken -o tsv
+```
+
+Send a `PATCH` request to configure the agent card and enable the A2A protocol:
+
+```powershell
+$body = @{
+    agent_card = @{
+        description = "A helpful assistant that answers questions"
+        version = "1.0"
+        skills = @(
+            @{
+                id = "general-qa"
+                name = "General Q&A"
+                description = "Answers general questions"
+            }
+        )
+    }
+    agent_endpoint = @{
+        protocols = @("responses", "a2a")
+    }
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod -Method Patch `
+  -Uri "$BASE_URL/agents/$AGENT_NAME`?api-version=v1" `
+  -Headers @{ Authorization = "Bearer $TOKEN" } `
+  -ContentType "application/json" `
+  -Body $body
+```
+
+---
 
 Update the `agent_card` fields to describe your agent's actual capabilities. The agent card is what other agents see when they discover your A2A endpoint.
 
@@ -143,10 +185,22 @@ After you enable incoming A2A, your agent exposes two URLs that calling agents u
 
 To confirm your agent card is configured correctly, fetch it directly:
 
+#### [Bash](#tab/verify-bash)
+
 ```bash
 curl -X GET "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3" \
   -H "Authorization: Bearer $TOKEN"
 ```
+
+#### [PowerShell](#tab/verify-powershell)
+
+```powershell
+Invoke-RestMethod -Method Get `
+  -Uri "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3" `
+  -Headers @{ Authorization = "Bearer $TOKEN" }
+```
+
+---
 
 The response contains the agent card with the description and skills you configured. Verify that the fields match your intended capabilities.
 
