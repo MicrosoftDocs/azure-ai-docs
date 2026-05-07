@@ -194,7 +194,6 @@ Deploying services (azd deploy)
   - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
 
-The endpoint is stable and versioned—each deployment creates a new immutable version. Hosted agents support built-in versioning and weighted rollouts, enabling canary deployments and gradual traffic shifts between versions. For details, see [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md).
 
 :::zone-end
 
@@ -532,9 +531,6 @@ You can view all the files stored on the home directory of your ADC based agent
 1. Select the "files" section in the session details.
 
 You can download, upload, and create folders within the current folder, clicking on a folder will step into the folder, and clicking on the top navbar will step back into that folder.
-
-> [!NOTE]
-> The per-session filesystem persists with the session and is retained for up to 30 days. Files created during one session remain visible in later interactions with the same session. If you notice a delay when resuming a session after a period of inactivity, this is an expected cold start—idle compute deprovisions after approximately 15 minutes due to scale-to-zero behavior and is automatically restored on the next request.
 
 | Issue | Solution |
 | ----- | -------- |
