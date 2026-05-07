@@ -77,9 +77,10 @@ The calculator provides accurate cost projections for your workload.
 
 ## Pricing example: Invoice field extraction
 
-Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
+Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. 
 
-**Scenario**: You want to process 1,000 invoice pages with source grounding and confidence scores disabled. 
+**Scenario**: You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
+ You want to process 1,000 invoice pages with source grounding and confidence scores disabled. 
 
 **Step 1: Test with representative files**
 After testing representative files, you found the following average token usage per page:

@@ -27,6 +27,8 @@ The service is periodically updated to add support for more models. The currentl
 
 ## How model selection works
 
+
+
 When you create a custom analyzer, you specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
 
 ```jsonc
@@ -44,8 +46,7 @@ When you create a custom analyzer, you specify which chat completion model and e
 }
 ```
 
-> [!TIP] 
-> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
+[!INCLUDE [gpt-4x-deprecation-notice](../includes/gpt-4x-deprecation-notice.md)]
 
 ## Two ways to provide model deployments
 

@@ -44,6 +44,7 @@ This article lists the quotas and limits for the Azure Content Understanding in 
 
 ## Supported generative models
 
+
 Content Understanding connects to Foundry Models for generative capabilities. The service periodically adds support for more models. To learn more, see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md).
 
 The currently supported models are:
@@ -57,6 +58,9 @@ The currently supported models are:
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
+
+[!INCLUDE [gpt-4x-deprecation-notice](includes/gpt-4x-deprecation-notice.md)]
+
 
 For the model retirement schedule, see [Model retirements](/azure/foundry/openai/concepts/model-retirement-schedule).
 
