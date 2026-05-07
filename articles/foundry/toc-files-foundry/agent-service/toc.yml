@@ -138,12 +138,14 @@ items:
 # Deploy and Share
 - name: Deploy and share
   items:
-  - name: Deploy a hosted agent
-    href: ../../agents/how-to/deploy-hosted-agent.md
-  - name: Manage hosted agent lifecycle
-    href: ../../agents/how-to/manage-hosted-agent.md
-  - name: Manage hosted agent sessions
-    href: ../../agents/how-to/manage-hosted-sessions.md
+  - name: hosted agent overview
+    items:
+    - name: Deploy a hosted agent
+      href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Manage hosted agent lifecycle
+      href: ../../agents/how-to/manage-hosted-agent.md
+    - name: Manage hosted agent sessions
+      href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
