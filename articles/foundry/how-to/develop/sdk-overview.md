@@ -381,6 +381,70 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 Use the Anthropic SDK to work with Anthropic Claude models deployed in Foundry. Claude models use a separate `/anthropic` endpoint and the Anthropic Messages API, not the OpenAI-compatible endpoint.
 
+The Anthropic endpoint appends `/anthropic` to your resource URL:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic
+```
+
+::: zone pivot="programming-language-python"
+
+```python
+from anthropic import AnthropicFoundry
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+client = AnthropicFoundry(
+    azure_ad_token_provider=token_provider,
+    base_url="https://<resource-name>.services.ai.azure.com/anthropic",
+)
+
+message = client.messages.create(
+    model="claude-sonnet-4-6",  # Replace with your deployment name
+    messages=[
+        {"role": "user", "content": "What are 3 things to visit in Seattle?"}
+    ],
+    max_tokens=1048,
+)
+
+print(message.content)
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+```javascript
+import AnthropicFoundry from '@anthropic-ai/foundry-sdk';
+import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://ai.azure.com/.default');
+
+const client = new AnthropicFoundry({
+    azureADTokenProvider: tokenProvider,
+    baseURL: "https://<resource-name>.services.ai.azure.com/anthropic",
+});
+
+const message = await client.messages.create({
+    model: "claude-sonnet-4-6", // Replace with your deployment name
+    messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+    max_tokens: 1048,
+});
+
+console.log(message);
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp,programming-language-java"
+
 For setup, authentication, and code samples, see [Use Anthropic Claude models in Microsoft Foundry](../../foundry-models/how-to/use-foundry-models-claude.md).
+
+::: zone-end
 
 [!INCLUDE [sdk-overview 3](../../includes/how-to-develop-sdk-overview-3.md)]
