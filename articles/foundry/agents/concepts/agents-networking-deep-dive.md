@@ -35,11 +35,11 @@ Two request flows traverse this architecture:
 |------|---------------|
 | **Foundry instance** | Your Microsoft Foundry resource. The top-level container that holds your projects, agents, and networking configuration. |
 | **Hosted agent** | An agent you build and deploy yourself by using your own container image through Azure Container Registry. You control CPU, memory, and code. Runs on Azure Container Apps. |
-| **Prompt agent** | An agent where compute and scaling are fully managed by Microsoft. You define behavior through configuration. No container image or infrastructure management is required. Also runs on Azure Container Apps. |
+| **Prompt agent** | An agent where compute and scaling are fully managed by Microsoft. You define behavior through configuration. No container image or infrastructure management is required. |
 | **Single-tenant data proxy** | A platform-managed networking component dedicated to your Foundry project that handles outbound connectivity for your agents. Each project gets its own isolated data proxy instance. All tool calls route through the data proxy. |
-| **Tool server** | A backend service registered at the project level that your agents can call to perform actions, such as querying a database or invoking an external API. Tool server traffic always routes through the single-tenant data proxy. |
+| **Tool server** | A backend service registered at the project level that your agents can call to perform actions, such as querying a database or invoking an external API. In bring-your-own VNet configurations, tool server traffic routes through the single-tenant data proxy. |
 | **Delegated subnet** | The subnet in your VNet that you delegate to Foundry Agent Service. All agent infrastructure (data proxies and Micro VMs) deploys into this subnet and consumes IPs from it. |
-| **Micro VM** | The lightweight virtual machine that runs a hosted agent. Each Micro VM gets a dedicated network interface and IP address in your delegated subnet. |
+| **Micro VM** | The lightweight virtual machine that runs a hosted agent. |
 | **Version** | A change that affects how your agent runs, such as new code, a new container image, or a configuration update. Only runtime-affecting changes create a new version. |
 | **Revision** | The deployment unit for your agent. A revision can be *versioned* (tied to a runtime change) or *non-versioned* (metadata-only changes like tags or scaling settings). |
 
@@ -64,7 +64,7 @@ Even though the Micro VM has its own NIC, any tool invocation is routed through 
 
 ### Prompt agent path
 
-For a prompt agent, there's no Micro VM. The Foundry endpoint forwards the request directly to the Tools Service, which calls the single-tenant data proxy. IPs are allocated at the project level, so all prompt agents within a project share the same data proxy infrastructure.
+For a prompt agent, the agent runs in Microsoft-managed compute. The Foundry endpoint forwards the request directly to the Tools Service, which calls the single-tenant data proxy. IPs are allocated at the project level, so all prompt agents within a project share the same data proxy infrastructure.
 
 ### Egress to customer resources
 
@@ -72,7 +72,7 @@ Outbound traffic from the data proxy reaches your storage accounts, databases, a
 
 ## Subnet sizing and IP allocation
 
-Subnet sizing applies at the **Foundry instance level**, across all agent types. Hosted and prompt agents share the same delegated subnet, so the recommended size has to cover combined IP usage from agents, platform upgrades, and scaling events.
+Subnet configuration applies at the **Foundry account level**. All projects in the account share the same subnet configuration, and hosted and prompt agents share the same delegated subnet. The recommended size has to cover combined IP usage from agents across every project, platform upgrades, and scaling events.
 
 ### Recommended subnet size
 
@@ -169,11 +169,12 @@ If you can't avoid IP overlap, use [Managed virtual network](../../how-to/manage
 
 ## Monitor IP usage and detect exhaustion
 
-The Azure portal doesn't currently expose IP utilization for delegated subnets, so you can't monitor it directly. The primary indicator of IP exhaustion is **HTTP 500 errors from the data proxy**. When IPs are exhausted, data proxy scaling and new project provisioning fail, which produces 5xx errors. Monitor data proxy health as a leading indicator of capacity issues.
+The Azure portal doesn't currently expose IP utilization for delegated subnets, so you can't monitor it directly. The primary indicators of IP exhaustion are **HTTP 5xx errors from the data proxy** and, for hosted agents, **session creation failures (4xx errors)**. When IPs are exhausted, data proxy scaling and new project provisioning fail, and hosted agents can't allocate a Micro VM for new sessions. Monitor data proxy health and hosted agent session-creation success as leading indicators of capacity issues.
 
 Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
-1. The data proxy returning 500 errors.
+1. The data proxy returning 5xx errors.
+1. Hosted agent session creation failing with 4xx errors.
 1. New project provisioning failures.
 1. Approximately 80% of your estimated usable IP capacity in use.
 
