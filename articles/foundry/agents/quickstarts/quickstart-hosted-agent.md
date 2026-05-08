@@ -88,8 +88,8 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
 
     The interactive flow guides you through the following configuration:
 
-    - **Language** — Select which programming language you want sample code for, either C# or Python.
-    - **Agent Template** - Select a sample to start with.
+    - **Language** — Select Python.
+    - **Agent Template** - Select 'Basic agent (Responses, Agent Framework, Python)'
     - **Model Configuration** - Select to deploy a new model in Foundry or use an existing one from an existing Foundry Project.
     - **Azure subscription** — select the subscription where you want the Foundry resources to be created.
     - **Location** — select a region for the resources.
