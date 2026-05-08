@@ -110,8 +110,8 @@ The following Styles and Paralinguistic tags are supported in HD voices
 
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
-> Paralingsuitics are available on all voices with all languages.
-> Check for styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
+>
+> Paralinguistics are available on all voices with all languages. See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Dragon HD Omni voices
 
@@ -136,7 +136,7 @@ The following Styles and Paralinguistic tags are supported in HDOmni voices
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
 > Paralingsuitics are available on all voices with all languages.
-> Check for styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
+> See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 #### Dragon HD Omni voice naming convention
 
