@@ -1,6 +1,8 @@
 ---
 title: Agentic Retrieval GA Feature
 description: Note indicating a specific agentic retrieval feature is generally available in the 2026-04-01 REST API via programmatic access.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 04/16/2026

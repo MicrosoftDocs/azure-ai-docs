@@ -1,6 +1,8 @@
 ---
 title: Include File
 description: Include file
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/19/2024

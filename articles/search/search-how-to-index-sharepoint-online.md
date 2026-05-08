@@ -206,7 +206,7 @@ These are the instructions to configure the application so Microsoft Entra trust
 
 1. Under **Federated credential scenario** select **Managed Identity**. 
 
-1. Select managed identity: Choose the created managed identity created as part of step 1.
+1. Select managed identity: Choose the managed identity created in step 1.
 
 1. Add a name for your credential and select **Save**.
 

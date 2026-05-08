@@ -1,6 +1,8 @@
 ---
 title: Agentic Retrieval Preview Feature
 description: Note indicating a specific agentic retrieval feature remains in preview despite the overall GA release in the 2026-04-01 REST API.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 04/16/2026
