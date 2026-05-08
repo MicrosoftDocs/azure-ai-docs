@@ -5,14 +5,14 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: hanch
-ms.date: 05/01/2026
+ms.date: 05/08/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ---
 
 # Run benchmark evaluations in Microsoft Foundry (preview)
 
-[!INCLUDE [feature-preview](includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use benchmark evaluations in Microsoft Foundry to evaluate a model or agent against built-in benchmark datasets and evaluation logic. Benchmark evaluations help you compare model deployments, check whether fine-tuning introduced regressions, and review benchmark scores without creating your own dataset or evaluator from scratch.
 
@@ -20,12 +20,12 @@ This article covers how to create a benchmark evaluation in the Foundry portal, 
 
 ## Prerequisites
 
-- A [Foundry project](../how-to/create-projects.md).
+- A [Foundry project](../../how-to/create-projects.md).
 - Access to the **Build** experience in the Foundry portal.
 - The **Azure AI User** role, or equivalent permissions, on the project.
 - At least one target to evaluate, such as a deployed model or an agent.
 - Access to built-in benchmark datasets in your project.
-- A model deployment that can be selected as the **Judge model** when the benchmark flow asks for one.
+- A model deployment that you can select as the **Judge model** when the benchmark flow asks for one.
 
 ## How benchmark evaluations work
 
@@ -44,26 +44,26 @@ For example, a TruthfulQA benchmark run might show a result such as `82%` with `
 
 To create a benchmark evaluation in the Foundry portal:
 
-1. Navigate to the **Build** page.
-2. In the left navigation, select **Evaluations**.
-3. Select **Create**.
+1. Go to the **Build** page.
+1. In the left navigation, select **Evaluations**.
+1. Select **Create**.
 
 The Evaluations list shows existing evaluation groups, their latest run status, run count, creator, and creation time.
 
-![Screenshot of the Evaluations list page in Microsoft Foundry showing existing evaluation groups and the Create button.](images/benchmark-evaluation/Eval-list.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/evaluation-list.png" alt-text="Screenshot of the Evaluations list page in Microsoft Foundry showing existing evaluation groups and the Create button." lightbox="../../media/observability/benchmark-evaluation/evaluation-list.png":::
 
 You can also create a benchmark evaluation from an agent page:
 
-1. Navigate to the **Build** page.
-2. In the left navigation, select **Agents**.
-3. Open an agent.
-4. Select the **Evaluation** tab.
+1. Go to the **Build** page.
+1. In the left navigation, select **Agents**.
+1. Open an agent.
+1. Select the **Evaluation** tab.
 
 The agent evaluation entry point opens the same evaluation creation experience, scoped to that agent.
 
 ### Select what to evaluate
 
-In the **Create new evaluation** wizard, choose the target type.
+In **Create new evaluation**, choose the target type.
 
 For benchmark evaluations, supported target types include:
 
@@ -73,16 +73,18 @@ For benchmark evaluations, supported target types include:
 To evaluate model deployments:
 
 1. Select **Model**.
-2. Select one or more model deployments from the model table.
-3. Select **Next**.
+1. Select one or more model deployments from the model table.
+1. Select **Next**.
 
 The model table shows the model name, model version, capabilities, status, and creation date.
 
-![Screenshot of the Create new evaluation wizard with Model selected as the evaluation target type.](images/benchmark-evaluation/Create-eval-model.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/create-evaluation-model.png" alt-text="Screenshot of the Create new evaluation wizard with Model selected as the evaluation target type." lightbox="../../media/observability/benchmark-evaluation/create-evaluation-model.png":::
+
 
 To evaluate an agent, select **Agent**, choose an agent from the agent table, and select one or more agent versions to evaluate.
 
-![Screenshot of the Create new evaluation wizard with Agent selected as the evaluation target type.](images/benchmark-evaluation/Create-eval-agent.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/create-evaluation-agent.png" alt-text="Screenshot of the Create new evaluation wizard with Agent selected as the evaluation target type." lightbox="../../media/observability/benchmark-evaluation/create-evaluation-agent.png":::
+
 
 ### Select benchmark data
 
@@ -112,32 +114,34 @@ Examples shown in the current UI include the following benchmarks. You can selec
 | MuSR Benchmark | reasoning, quality | 756 | builtin.regex_match |
 | TruthfulQA Benchmark | truthfulness, quality, reasoning | 790 | TruthfulQA |
 
-![Screenshot of the Data step in the Create new evaluation wizard with Benchmarks selected as the dataset source and benchmark datasets listed.](images/benchmark-evaluation/Create-eval-benchmark.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/create-evaluation-benchmark.png" alt-text="Screenshot of the Data step in the Create new evaluation wizard with Benchmarks selected as the dataset source and benchmark datasets listed." lightbox="../../media/observability/benchmark-evaluation/create-evaluation-benchmark.png":::
+
 
 ### Select a judge model, if required
 
 After selecting benchmarks, choose a **Judge model** from the dropdown when the selected benchmark uses model-based judging.
 
-The judge model is used by the evaluation service during benchmark scoring. It is separate from the target model or agent being evaluated. For example, you can evaluate `{target-deployment-a}` and `{target-deployment-b}` as targets while selecting `{judge-deployment}` as the judge model.
+The evaluation service uses the judge model during benchmark scoring. It's separate from the target model or agent being evaluated. For example, you can evaluate `{target-deployment-a}` and `{target-deployment-b}` as targets while selecting `{judge-deployment}` as the judge model.
 
 > [!IMPORTANT]
-> The **target** is what you evaluate. The **Judge model** supports scoring. Don't assume the judge model score represents the judge model's own quality; it is part of the evaluation pipeline.
+> The **target** is what you evaluate. The **Judge model** supports scoring. Don't assume the judge model score represents the judge model's own quality; it's part of the evaluation pipeline.
 
 ### Review and submit
 
 In the **Review** step:
 
 1. Review the selected targets.
-2. Review the selected benchmark datasets.
-3. Select **Submit**.
+1. Review the selected benchmark datasets.
+1. Select **Submit**.
 
 The review page summarizes the selected targets, datasets, and evaluators.
 
-![Screenshot of the Review step in the Create new evaluation wizard showing selected targets, benchmark datasets, and evaluators.](images/benchmark-evaluation/Create-eval-review.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/create-evaluation-review.png" alt-text="Screenshot of the Review step in the Create new evaluation wizard showing selected targets, benchmark datasets, and evaluators." lightbox="../../media/observability/benchmark-evaluation/create-evaluation-review.png":::
+
 
 ## View benchmark evaluation results
 
-After you submit the evaluation, return to the Evaluations list and open the created evaluation group.
+After you submit the evaluation, return to the **Evaluations** list and open the created evaluation group.
 
 The evaluation group page shows:
 
@@ -149,7 +153,7 @@ The evaluation group page shows:
 
 Each run represents a target evaluated on the benchmark dataset in that evaluation group. For example, a TruthfulQA evaluation group can contain separate runs for two model versions, with each run showing its own TruthfulQA score.
 
-![Screenshot of a benchmark evaluation group page showing run details, token usage, metric results, and evaluator information.](images/benchmark-evaluation/View-result-eval-group.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/view-result-evaluation-group.png" alt-text="Screenshot of a benchmark evaluation group page showing run details, token usage, metric results, and evaluator information." lightbox="../../media/observability/benchmark-evaluation/view-result-evaluation-group.png":::
 
 ### View a run result
 
@@ -164,11 +168,11 @@ The run detail page shows:
 - **Download user logs**.
 - Overall metric results, including token usage and benchmark score.
 
-![Screenshot of a benchmark evaluation run detail page showing run status, Raw JSON, downloadable results, user logs, and overall metric results.](images/benchmark-evaluation/View-result-eval-run.jpg)
+:::image type="content" source="../../media/observability/benchmark-evaluation/view-result-evaluation-run.png" alt-text="Screenshot of a benchmark evaluation run detail page showing run status, Raw JSON, downloadable results, user logs, and overall metric results." lightbox="../../media/observability/benchmark-evaluation/view-result-evaluation-run.png":::
 
 ### Understand scores and token usage
 
-Benchmark results are shown at both the evaluation group level and run level.
+The portal shows benchmark results at both the evaluation group level and run level.
 
 At the evaluation group level, the run table includes:
 
@@ -185,7 +189,7 @@ The score can include:
 - A percentage, such as `82%`.
 - A pass count and total count, such as `645 / 790`.
 
-If detailed metrics aren't available, the detail section may show **No data available** while the overall metric result is still available.
+If detailed metrics aren't available, the detail section might show **No data available** while the overall metric result is still available.
 
 ## Use the REST API (preview)
 
@@ -251,7 +255,7 @@ The `grader_model` value can be a deployment name, such as `{judge-deployment}`,
 
 ### Add a benchmark run
 
-After the evaluation group is created, add a run for each target you want to evaluate.
+After you create the evaluation group, add a run for each target you want to evaluate.
 
 ```http
 POST {project-endpoint}/openai/evals/{evaluation-id}/runs?api-version=2025-11-15-preview
@@ -293,7 +297,7 @@ Content-Type: application/json
 
 ### Handle missing judge model errors
 
-If a benchmark requires model-based judging and no `grader_model` is provided, the service returns a validation error. The following example shows key response fields.
+If a benchmark requires model-based judging and you don't provide a `grader_model`, the service returns a validation error. The following example shows key response fields.
 
 ```json
 {
@@ -324,10 +328,18 @@ If a benchmark requires model-based judging and no `grader_model` is provided, t
 
 | Issue | Possible cause | Resolution |
 |-------|---------------|------------|
-| Target model or agent doesn't appear | The target doesn't exist in the current project, isn't deployed, or you don't have access | Confirm the deployment or agent exists and that you have permission to access it. |
+| Target model or agent doesn't appear | The target model or agent doesn't exist in the current project, isn't deployed, or you don't have access | Confirm the deployment or agent exists and that you have permission to access it. |
 | Benchmark datasets don't appear | Benchmark evaluations might not be enabled for the project or region | Confirm benchmark support for the project. Contact your project administrator or support team if the list is empty. |
 | Judge model dropdown is empty | No supported model deployment is available or accessible | Deploy or connect a supported model, then reopen the benchmark setup flow. |
 | Run fails or completes partially | Model access, rate limits, dataset loading, or evaluator execution failed | Open the run detail page, review user logs, Raw JSON, token usage, and metric output. |
 | Score is available but detailed metrics are empty | Row-level details might not be displayed in the portal | Use **Download results** to inspect output files when available. |
 | Token usage is high | Benchmark datasets can contain many examples, and judge-model scoring can add tokens | Start with smaller benchmark selections and review token usage before scaling up. |
+
+## Related content
+
+- [Evaluate your AI agents](evaluate-agent.md) — Run evaluations using your own datasets and built-in evaluators for quality, safety, and agent-specific behaviors.
+- [Human evaluation for Microsoft Foundry agents](human-evaluation.md) — Collect structured human feedback on agent responses to complement automated evaluation results.
+- [Evaluation cluster analysis](cluster-analysis.md) — Group and explore evaluation outputs to identify patterns, failure modes, and improvement areas.
+- [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md) — Track operational metrics, token usage, latency, and evaluation results for agents in production.
+- [Troubleshoot evaluation and observability issues](troubleshooting.md) — Resolve common issues with evaluations, storage account access, RBAC, and network configuration.
 
