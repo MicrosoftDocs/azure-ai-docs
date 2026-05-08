@@ -204,7 +204,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 
 **Required fields**:
 
-- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for hosted agents.
+- `deploymentType`: The deployment mode. Use `Managed` for prompt agents. Use `Hosted` for hosted agents.
 - `agents`: The agent name and version to deploy.
 - `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 
@@ -213,7 +213,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 - `minReplicas`: Sets the minimum number of replicas
 - `maxReplicas`: Sets the maximum number of replicas
 
-##### Prompt and workflow agents
+##### Prompt agents
 ```
 PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -268,7 +268,7 @@ Content-Type: application/json
 
 #### 3. Verify deployment is running
 
-Prompt and workflow agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
+Prompt agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
 
 To check the current state, get the deployment resource and inspect property `state`:
 ```

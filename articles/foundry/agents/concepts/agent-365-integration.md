@@ -50,7 +50,6 @@ Not all Foundry agent types support the full set of Agent 365 integration featur
 |---|---|---|---|
 | **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ✅ | ✅ |
 | **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using A365 SDK |
-| **[Workflow agent](workflow.md)** | ✅ | ❌ | ❌ |
 
 ### Enablement and data collection
 
