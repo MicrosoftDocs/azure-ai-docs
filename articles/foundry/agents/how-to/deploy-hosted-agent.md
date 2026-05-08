@@ -70,16 +70,17 @@ Hosted agents communicate with the Foundry gateway through protocol libraries. C
 | **Responses** | `azure-ai-agentserver-responses` | `Azure.AI.AgentServer.Responses` | `/responses` | Conversational chatbots, streaming, multi-turn with platform-managed history |
 | **Invocations** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations` | Webhook receivers, non-conversational processing, custom async workflows |
 
-[!NOTE]
 A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
 
-The python and .NET libraries for Responses protocol implement the Azure AI Responses API. Import the package, implement one interface `IResponseHandler`, and the library handles routing, streaming (SSE), background execution, cancellation, caching, and response lifecycle management.
+### Responses protocol library
 
-**IResponseHandler**
+The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
 
-The core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients via SSE:
+#### IResponseHandler
 
-```C# Snippet:Responses_ReadMe_EchoHandler
+`IResponseHandler` is the core abstraction you implement. The library calls `CreateAsync` for each incoming request and delivers the returned `IAsyncEnumerable<ResponseStreamEvent>` to clients through SSE:
+
+```csharp
 public class EchoHandler : ResponseHandler
 {
     public override IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
@@ -97,26 +98,24 @@ public class EchoHandler : ResponseHandler
 }
 ```
 
-**ResponseEventStream**
+#### ResponseEventStream
 
-Manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps 1:1 to an SSE event with zero bookkeeping.
+`ResponseEventStream` manages `sequenceNumber`, `outputIndex`, `contentIndex`, `itemId`, and the full `Response` lifecycle automatically. Each `yield return` maps one-to-one to an SSE event, so you don't need to track this state yourself.
 
-**Streaming & Background Modes**
+#### Streaming and background modes
 
-- **Streaming mode** (default): SSE events are delivered in real-time to the connected client.
-- **Background mode**: The handler runs to completion without a connected SSE client; events are buffered and available for replay via `GET /responses/{id}`.
+- **Streaming mode** (default): SSE events are delivered in real time to the connected client.
+- **Background mode**: The handler runs to completion without a connected SSE client. Events are buffered and available for replay through `GET /responses/{id}`.
 
-**Response Lifecycle**
+#### Response lifecycle
 
-The library orchestrates the complete response lifecycle: `created` → `in_progress` → `completed` (or `failed` / `cancelled`). Cancellation, error handling, and terminal event guarantees are all managed automatically.
+The library orchestrates the complete response lifecycle: `created` → `in_progress` → `completed` (or `failed` or `cancelled`). The library also manages cancellation, error handling, and terminal event guarantees automatically.
 
-For detailed handler implementation guidance, see [docs/handler-implementation-guide.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md).
+#### Thread safety
 
-**Thread safety**
+All service instances registered through `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
 
-All service instances registered via `AddResponsesServer()` are thread-safe. Handler instances are scoped per-request.
-
-You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples). A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
+For detailed handler implementation guidance, see the [handler implementation guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/agentserver/Azure.AI.AgentServer.Responses/docs/handler-implementation-guide.md). For runnable examples, see the [Responses protocol samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/agentserver/Azure.AI.AgentServer.Responses/samples).
 
 ### Health endpoints
 
