@@ -81,7 +81,7 @@ Benefits for Claude Code users:
 - **Cost optimization**: Use routing profiles to balance quality versus cost while maintaining baseline performance.
 - **Single endpoint**: One deployment handles all routing decisions across your model fleet.
 
-To use Model Router with Claude Code, first deploy the supported Claude models, then deploy Model Router and enable them through [model subset configuration](../../openai/how-to/model-router.md#select-your-model-subset).
+To use Model Router with Claude Code, first deploy the supported Claude models, then deploy Model Router and enable them through [model subset configuration](../../openai/how-to/model-router.md#optional-route-to-a-model-subset).
 
 ## Install Claude Code CLI
 

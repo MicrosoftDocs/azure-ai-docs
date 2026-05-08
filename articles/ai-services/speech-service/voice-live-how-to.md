@@ -20,6 +20,9 @@ The Voice Live API provides a capable WebSocket interface compared to the [Azure
 
 Unless otherwise noted, the Voice Live API uses the [same events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context) as the Azure OpenAI Realtime API. This document provides a reference for the event message properties that are specific to the Voice Live API.
 
+> [!TIP] 
+> In most cases, use [Voice Live API with WebRTC](./voice-live-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming scenarios.
+
 ## Supported models and regions
 
 For a table of supported models and regions, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions).

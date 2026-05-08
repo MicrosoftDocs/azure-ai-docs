@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
 ms.topic: how-to
-ms.date: 04/22/2026
+ms.date: 04/29/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -25,7 +25,8 @@ Use the Foundry portal to run evaluations, view results, and analyze metrics.
 ## Prerequisites
 
 - A test dataset in CSV or JSON Lines (JSONL) format, or a model or agent to evaluate.
-- An Azure OpenAI connection with a deployed GPT model that supports chat completion (for example, `gpt-4o-mini`). Required only for AI-assisted quality evaluations.
+- An Azure OpenAI connection with a deployed GPT model that supports chat completion (for example, `gpt-5-mini`). Required only for AI-assisted quality evaluations.
+- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
 ## Create an evaluation
 
@@ -54,7 +55,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 > [!NOTE]
 > Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
 
-#### Multimodal content (image and audio) (preview)
+#### Multimodal content (preview)
 
 All evaluation targets - Agent, Model, Dataset, and Traces - support image and audio content. Each content type uses a specific JSONL schema:
 
@@ -71,6 +72,9 @@ Audio content:
 
 - `audio_data`: The audio as a data URI with base64-encoded WAV data (for example, `data:audio/wav;base64,...`).
 - `expected`: A text description of the expected audio content.
+
+> [!NOTE]
+> Only WAV audio format is currently supported.
 
 ```jsonl
 {"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
@@ -152,11 +156,17 @@ For the complete list of available evaluators, see [Built-in evaluators](../conc
 
 ### Data mapping
 
-Different evaluators require different data inputs. The portal automatically maps your dataset fields to the fields each evaluator expects. Check the mapping and reassign fields if needed. For field requirements, see the respective evaluator pages under [Built-in evaluators](../concepts/built-in-evaluators.md).
+Different evaluators require different data inputs. The portal automatically maps your dataset fields to the fields each evaluator expects. Check the mapping and reassign fields if needed.
+
+If the portal can't auto-map a field, the field shows as **Unassigned**. Select the field dropdown to manually assign a column from your dataset. Required fields are marked with an asterisk (*) — evaluators fail if required fields are left unassigned.
+
+For field requirements per evaluator, see the respective evaluator pages under [Built-in evaluators](../concepts/built-in-evaluators.md).
 
 ### Review and submit
 
 After you finish configuring, provide a name for your evaluation, review your settings, and select **Submit**.
+
+After you submit, the evaluation run starts. Evaluations typically complete within a few minutes, depending on dataset size. To view results, select the evaluation name in the **Evaluation** page, or see [View the evaluation results](./evaluate-results.md).
 
 ## Related content
 
