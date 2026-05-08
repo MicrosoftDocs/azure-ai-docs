@@ -34,7 +34,7 @@ This article walks through the process of managing quota for your Microsoft Foun
 
 You don't need to allocate or partition global quota — it's shared automatically across all instant model usage in your subscription. If instant model requests are throttled, you can request a global quota increase or create a deployment with reserved capacity.
 
-For details on how global and regional quota interact, see [Instant models — Global quota](../concepts/instant-models.md#global-quota).
+For details on how global and regional quota interact, see [Instant models — Global quota](../concepts/instant-models.md#how-quota-is-consumed).
 
 ## View and request quotas in Foundry portal
 
