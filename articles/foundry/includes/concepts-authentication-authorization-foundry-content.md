@@ -170,6 +170,7 @@ Reference the following matrix to understand what capabilities in Foundry suppor
 | Support in automation pipelines | Yes (secret) | Yes (service principal or managed identity) | Entra ID reduces secret rotation. |
 | Assistants API | Yes | Yes | Recommended to use Entra ID. |
 | Batch inferencing | Yes | Yes |  |
+| Toolbox | No | Yes | Use Entra ID for managed identity tool access. |
 
 ## Identity types
 

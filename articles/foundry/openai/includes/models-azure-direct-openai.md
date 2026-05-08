@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 04/17/2026
+ms.date: 05/04/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
@@ -15,10 +15,12 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Models | Description |
 |--|--|
-| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
-| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | **NEW** `gpt-5.3-chat`, `gpt-5.3-codex`  |
-| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
-| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
+| [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview**  |
+| [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | **NEW** `gpt-5.5` |
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) |`gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) |  `gpt-5.3-chat`, `gpt-5.3-codex`  |
+| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
+| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) |  `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
 | [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
 | [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` **Preview** |
 | [gpt-oss](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-oss) | open-weight reasoning models |
@@ -32,16 +34,43 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
+## GPT-chat-latest
+
+| Model | Region |
+|---|---|
+| `gpt-chat-latest` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central |
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+
+>[!NOTE]
+> You may also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, we are introducing `gpt-chat-latest` as the product name for this release. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. We are also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
+
+
+## GPT-5.5
+
+| Model | Region |
+|---|---|
+| `gpt-5.5` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US <br> Poland Central <br> Sweden Central    |
+
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.5` (2026-04-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 br><br>Input: 922,000<br>Output: 128,000  | 128,000 | December 2025 |
+
+> [!NOTE]
+> Some [quota tiers](../quotas-limits.md) will require quota requests for `gpt-5.5` to be able to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default.
+
 ## GPT-5.4
 
 | Model | Region |
 |---|---|
 | `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
-| `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central |
-| `gpt-5.4.nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  |
+| `gpt-5.4-mini` | See the [models table](#model-summary-table-and-region-availability)|
+| `gpt-5.4-nano` | See the [models table](#model-summary-table-and-region-availability) |
 
-- **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -57,7 +86,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
 
-- **[Registration is required for access to gpt-5.3-codex](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -74,9 +102,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
-- **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -321,19 +347,17 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. GPT-image-1 series models are in limited access preview.
-
-Registration is required to access `gpt-image-1`, `gpt-image-1-mini`, or `gpt-image-1.5`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
-
-To request access, fill out an application form: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access). When access is granted, you need to create a deployment for the model.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 series models include `gpt-image-1`, `gpt-image-1-mini`, and `gpt-image-1.5`.
 
 ### Region availability
 
 | Model | Region |
 |---|---|
-|`gpt-image-1` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-1` |  See the [Models table](#model-summary-table-and-region-availability)|
 |`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
 |`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-2` |  See the [models table](#model-summary-table-and-region-availability)|
+
 
 ## Video generation models
 
@@ -413,73 +437,31 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
-# [Global Standard](#tab/global-standard-aoai)
+# [Americas](#tab/americas)
 
-### Global Standard model availability
+[!INCLUDE [region-americas](model-matrix/region-americas.md)]
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+# [Europe](#tab/europe)
 
-> [!NOTE]
-> `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+[!INCLUDE [region-europe](model-matrix/region-europe.md)]
 
-# [Global Provisioned managed](#tab/global-ptum-aoai)
+# [Asia Pacific](#tab/asia-pacific)
 
-### Global Provisioned managed model availability
+[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+# [Middle East & Africa](#tab/middle-east-africa)
 
-# [Global Batch](#tab/global-batch)
-
-### Global Batch model availability
-
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
-
-# [Data Zone Standard](#tab/datazone-standard)
-
-### Data Zone Standard model availability
-
-[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Data Zone Provisioned managed](#tab/datazone-provisioned-managed)
-
-### Data Zone Provisioned managed model availability
-
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
-
-# [Data Zone Batch](#tab/datazone-batch)
-
-### Data Zone Batch model availability
-
-[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
-
-# [Standard](#tab/standard)
-
-### Standard deployment model availability
-
-[!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Provisioned managed](#tab/provisioned)
-
-### Provisioned deployment model availability
-
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
-
-> [!NOTE]
-> The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
-
-For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
+[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
 
 ---
+
+> [!NOTE]
+> 
+> - `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+>
+> - `o1-mini` is currently available to all customers for Global Standard deployment. Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
+>
+> - The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only. For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
 This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
 

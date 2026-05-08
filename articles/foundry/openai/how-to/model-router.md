@@ -18,9 +18,8 @@ ai-usage: ai-assisted
 
 # Use model router for Microsoft Foundry
 
-Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+Model router is a trained language model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md). To understand the architecture and routing logic, see [How model router works](../concepts/model-router-how-it-works.md).
 
-Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 [!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
@@ -28,9 +27,21 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
 
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. To enable more configuration options, choose **Custom settings**.
+To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You only need to change the routing mode or select a model subset when you want custom routing behavior.
 
 :::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+
+### Default deployment
+
+Go to the Microsoft Foundry portal and navigate to the model catalog. Find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
+
+[!INCLUDE [model-router-deploy-rest-default](../includes/how-to-model-router-deploy-rest-default.md)]
+
+### Optional: customize deployment settings
+
+To enable more configuration options, choose **Custom settings**.
 
 > [!NOTE]
 > Your deployment settings apply to all underlying chat models that model router uses.
@@ -38,7 +49,7 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-### Select a routing mode
+#### Optional: change the routing mode
 
 [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
@@ -54,7 +65,7 @@ Use the **Routing mode** dropdown to select a routing profile. This sets the rou
 > [!NOTE]
 > Changes to the routing mode can take up to five minutes to take effect.
 
-### Select your model subset
+#### Optional: route to a model subset
 
 [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
@@ -69,12 +80,17 @@ New models introduced later are excluded by default until explicitly added.
 
 
 > [!IMPORTANT]
-> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude).
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](../../foundry-models/how-to/use-foundry-models-claude.md).
 
 
 > [!NOTE]
 > Changes to the model subset can take up to five minutes to take effect.
 
+#### Configure custom settings with the REST API
+
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
+[!INCLUDE [model-router-deploy-rest-custom](../includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../includes/how-to-model-router-1.md)]
 

@@ -70,6 +70,25 @@ Example session configuration with custom speech models. In this example when th
 > In order to use a custom speech model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice Live API.
 > You pay separately for custom speech training and model hosting.
 
+### MAI-Transcribe-1 model (preview)
+
+You can use the MAI-Transcribe-1 model for input audio transcription in Voice Live. MAI-Transcribe-1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe-1 in Azure Speech](./mai-transcribe.md).
+
+To use MAI-Transcribe-1, set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` configuration:
+
+```json
+{
+  "session": {
+    "input_audio_transcription": {
+      "model": "mai-transcribe-1"
+    }
+  }
+}
+```
+
+> [!NOTE]
+> When you use the MAI-Transcribe-1 model, some transcription features aren't supported. See the [Feature availability](./llm-speech.md#feature-availability) table.
+
 ## Speech output customization
 
 ### Custom lexicon

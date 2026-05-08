@@ -3,10 +3,22 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 4/21/2026
 ms.author: pafarley
 ms.custom: references_regions
 ---
+
+### April 2026 release
+
+#### Post-stream refinement (public preview)
+
+Post-stream refinement is now available in public preview for real-time speech to text. When enabled, the service runs a second recognition pass in parallel with real-time streaming to improve final transcript accuracy. Intermediate results remain low-latency; only the final result for each segment is replaced with a more accurate version. Set the `SpeechServiceResponse_PostProcessingOption` property to `PostRefinement` to enable it. For more information, see [How to use post-processing](../../how-to-post-processing.md) and [How to recognize speech](../../how-to-recognize-speech.md).
+
+#### Improved pronunciation assessment model
+
+We've updated the pronunciation assessment model for `de-DE`, improving the Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+The updated model is ready to use through the API and the Microsoft Foundry playground.
 
 ### March 2026 release
 

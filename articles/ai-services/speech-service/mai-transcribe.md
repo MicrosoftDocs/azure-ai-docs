@@ -1,52 +1,49 @@
 ---
-title: MAI-Transcribe-1 in LLM Speech API - Speech service
+title: MAI-Transcribe-1 in LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
-description: Learn how to use MAI-Transcribe-1 model in Azure Speech LLM Speech API
+description: Learn how to use the MAI-Transcribe-1 model in Azure Speech LLM Speech API.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/01/2026
-# Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
+zone_pivot_groups: llm-speech-quickstart
+
+# Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
+MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team. The model has a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
 
 ## Prerequisites
 
 > [!div class="checklist"]
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-> - [Create a Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
-> - Get the Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
-> - An audio file (less than 300 MB in size) in one of the formats: WAV, MP3, and FLAC.
+> - [A Microsoft Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+> - The Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
+> - An audio file (less than 300 MB in size) in one of these formats: WAV, MP3, or FLAC.
 
 ## Use the MAI-Transcribe-1 model
 
-### Upload audio
+Note the following limitations when you use the MAI-Transcribe-1 model:
 
-You can provide audio data in the following ways:
+- Diarization isn't supported.
 
-- Pass inline audio data.
+- Prompt-tuning isn't supported.
 
-```
-  --form 'audio=@"YourAudioFile"'
-```
+::: zone pivot="ai-foundry"
 
-- Upload audio file from a public `audioUrl`.
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=ai-foundry). Then, specify `mai-transcribe-1` as the **Model**.
 
-```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
-```
+::: zone-end
 
-In the sections below, inline audio upload is used as an example.
+::: zone pivot="programming-language-rest"
 
-
-### Create transcription
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-rest).
 
 To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
 
@@ -63,11 +60,42 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
   }
 }'
 ```
-Note the following limitations using the MAI-Transcribe-1 model:
-- Diarization isn't supported.
-- Prompt isn't supported.
 
-Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python). Then, specify `mai-transcribe-1` as the `model` in the `enhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-csharp). Then, specify `mai-transcribe-1` as the `Model` in the `EnhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-javascript). Then, specify `mai-transcribe-1` as the model in the `enhancedMode` property.
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+To start using transcription with enhanced mode, first follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-java). Then, specify `mai-transcribe-1` as the model in the `EnhancedModeOptions` object.
+
+::: zone-end
+
+### Use MAI-Transcribe-1 with Voice Live
+
+You can also use the MAI-Transcribe-1 model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
+
+## Language support
+
+When you use the MAI-Transcribe-1 model, diarization and prompt features aren't supported.
+
+Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don't specify a language, the service automatically detects it. The following languages are currently supported:
 
 | Language code | Language |
 | ----- | ----- |
@@ -97,9 +125,8 @@ Optionally, specify a language code in `locales` to force recognition in a singl
 | `tr` | Turkish |
 | `vi` | Vietnamese |
 
-> [!TIP]
-> For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
-
 ## Related content
 
+- For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
 - [MAI-Voice-1 in Azure Speech](mai-voices.md)
+- [How to customize Voice Live input and output](./voice-live-how-to-customize.md)

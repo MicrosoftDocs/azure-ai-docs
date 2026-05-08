@@ -1,20 +1,23 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Model Retirements (classic)"
-description: "Learn about model deprecations and retirements in Azure OpenAI. (classic)"
+title: "Foundry Models lifecycle and support policy (classic)"
+description: "Learn about the Microsoft Foundry Models lifecycle and support policy, including model deprecations and retirements. Explore how these changes affect your deployments. (classic)"
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 03/11/2026
+ms.date: 04/23/2026
 ms.custom:
   - classic-and-new
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin 
+author: msakande
+ms.author: mopeakande
+ms.reviewer: josander
+reviewer: johnrsanders
 recommendations: false
 ROBOTS: NOINDEX, NOFOLLOW
+#customer intent: As a developer, I want to understand the lifecycle stages of Microsoft Foundry Models so that I can plan for updates and changes in my applications.
 ---
 
-# Azure OpenAI in Microsoft Foundry model deprecations and retirements (classic)
+# Microsoft Foundry Models lifecycle and support policy (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/model-retirements.md)
 

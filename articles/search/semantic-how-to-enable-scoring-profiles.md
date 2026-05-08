@@ -4,7 +4,8 @@ description: Learn how to combine scoring profiles with semantic ranking in Azur
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search

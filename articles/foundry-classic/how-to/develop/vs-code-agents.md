@@ -22,6 +22,9 @@ ms.custom: doc-kit-assisted
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 
+> [!NOTE]
+> For the new Foundry Toolkit workflows—including agent creation from templates, GitHub Copilot-assisted creation, local testing and debugging, and tracing—see [Create hosted agent workflows in Visual Studio Code](../../../foundry/agents/how-to/vs-code-agents-workflow-pro-code.md).
+
 [Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 
 ## Prerequisites
@@ -29,7 +32,7 @@ ms.custom: doc-kit-assisted
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Foundry Agent Service](../../agents/overview.md).
 - [Visual Studio Code](https://code.visualstudio.com/) installed.
-- The [Microsoft Foundry for VS Code extension](./get-started-projects-vs-code.md) installed and signed in.
+- The [Foundry Toolkit for Visual Studio Code](./get-started-projects-vs-code.md) installed and signed in.
 - A [deployed model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) in your project.
 
 ## Create an agent in the designer
@@ -40,7 +43,7 @@ The designer provides a visual interface for configuring your agent's name, mode
 
 1. [Set your default project](./get-started-projects-vs-code.md#create-a-project).
 
-1. In the **Foundry Extension** view, find the **Classic** subsection in the **Resources** section.
+1. In the **Foundry Toolkit** view, find the **Classic** subsection in the **Resources** section.
 
 1. Select the plus (**+**) icon next to the **Classic Agents** subsection to create a new agent.
 

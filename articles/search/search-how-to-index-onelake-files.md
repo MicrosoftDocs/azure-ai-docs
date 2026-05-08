@@ -4,7 +4,7 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/17/2026
+ms.date: 04/23/2026
 ms.custom:
   - build-2024
   - ignite-2024
@@ -58,9 +58,7 @@ This article uses the REST APIs to illustrate each step.
 
 + There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
 
-+ Microsoft Purview sensitivity labels [applied to Fabric items](/fabric/fundamentals/apply-sensitivity-labels) (such as lakehouses) will cause the indexer to fail if the search service doesn't have the required access. To prevent this behavior, you must either:
-    - Add the AI Search service’s Service Principal Name (SPN) to an existing organization group that grants access under the sensitivity label policy, or
-    - Request an exception from your organization’s IT team responsible for Purview sensitivity label policy configurations, and have them add the SPN directly to the policy.
++ Indexing files from [Fabric items with sensitivity labels](/fabric/fundamentals/apply-sensitivity-labels), for example, lakehouses, isn't supported. However, when sensitivity labels are applied directly to individual documents, ingestion of protected content and associated labels is supported. In these cases, Azure AI Search can extract and honor sensitivity labels and labeled documents' content through its [integration with Purview](search-indexer-sensitivity-labels.md). 
   
 + Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
 

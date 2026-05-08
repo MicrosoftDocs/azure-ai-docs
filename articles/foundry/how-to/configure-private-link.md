@@ -59,6 +59,13 @@ Before getting started, ensure you have the following prerequisites set-up.
     - On the Foundry project resource: **Contributor** (or **Owner**) to create private endpoint connections. If you don't have approval permissions, the private endpoint connection stays in a **Pending** state until the resource owner approves it.
     - If you manage private DNS zones: **Private DNS Zone Contributor** (or equivalent) for the private DNS zone that you link to the virtual network.
 
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.**
+>
+> BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
+>
+> All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
+
 ## Set up walkthrough for inbound network isolation
 
 This section guides you through creating a new Foundry resource with inbound network isolation enabled. The public network access can be set to **Disabled** with a private endpoint (private link) enabled, or set to **Selected networks** to grant specific IP addresses and virtual networks the ability to access Foundry securely. 
@@ -197,7 +204,7 @@ This section guides you through creating a new Foundry resource with outbound ne
 
 ### Deep dive into network injection for Agent Service and evaluations
 
-If you're building agents or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations.
+If you're building agents, either prompt agents or hosted (preview) agents , or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations. The same networking injection for outbound traffic applies for both types of agents you create, prompt and hosted agents. 
 
 :::image type="content" source="../media/how-to/network/agent-eval-network-diagram.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-network-diagram.png":::
 
@@ -225,6 +232,8 @@ When creating a new Foundry resource, follow these steps:
 
 Certain Agent tools are supported when Foundry is network isolated, while others are not. The following table shows support status for agent tools in network-isolated environments and how traffic flows. This covers tool support behind a VNET for the new Responses API Agents created through SDK/CLI or in the new Foundry portal only, not agents created in the classic Foundry portal experience. 
 
+Code samples for how to run these Agent tools within a network secured set-up can be found in the sample template [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup). 
+
 | Tool | Support Status | Traffic Flow |
 |------|---------------|--------------|
 | MCP Tool (Private MCP) | ✅ Supported | Through your VNet subnet |
@@ -235,24 +244,24 @@ Certain Agent tools are supported when Foundry is network isolated, while others
 | Websearch | ✅ Supported | Public endpoint |
 | SharePoint Grounding | ✅ Supported | Public endpoint |
 | Foundry IQ (preview) | ✅ Supported | Via MCP |
-| Fabric Data Agent | ❌ Not supported | Under development |
+| OpenAPI tool | ✅ Supported | Through your VNet subnet |
+| Azure Functions | ✅ Supported | Through your VNet subnet |
+| Agent-to-Agent (A2A) | ✅ Supported | Through your VNet subnet |
+| Fabric Data Agent | ❌ Not supported | Fabric resource must have public network access enabled (Workspace-level private link Fabric unsupported) |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
-| OpenAPI tool | ❌ Not supported | Under development |
-| Azure Functions | ❌ Not supported | Under development |
 | Browser Automation | ❌ Not supported | Under development |
 | Computer Use | ❌ Not supported | Under development |
 | Image Generation | ❌ Not supported | Under development |
-| Agent-to-Agent (A2A) | ❌ Not supported | Under development |
 
 > [!NOTE]
 > **Public endpoint tools** (Bing Grounding, Websearch, SharePoint Grounding) work in network-isolated environments but communicate over the public internet. These tools don't require private endpoints or VNet configuration. If your organization requires that all traffic remain within a private network, these tools may not meet your compliance requirements.
 
 #### Configuration requirements by traffic pattern
 
-**Tools using your virtual network subnet** (MCP Tool, Azure AI Search):
+**Tools using your virtual network subnet** (MCP Tool, Azure AI Search, OpenAPI, A2A, Azure Functions):
 
-For more information on private MCP support and setup, see [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup).
+For more information on private MCP support and setup, see [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup). Use this template to understand how to set-up the Agent tools with your network isolated Foundry resource end-to-end. 
 
 **Tools using Microsoft backbone network** (Code Interpreter, Function Calling):
 
@@ -283,15 +292,30 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Hosted Agents | Not supported | Hosted Agents do not have virtual network support yet. |
-| Publish Agent to Teams/M365 | Not supported | Requires public endpoints for Teams/M365 integration. |
 | Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
 | Traces | Not supported | Traces don't have virtual network support with a private Application Insights yet. |
 | Workflow Agents | Partially supported | Inbound access is supported in the UI, SDK, and CLI. Outbound with virtual network injection isn't currently supported for Workflow Agents. |
-| AI Gateway (APIM) | Partially supported | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure Portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
+| AI Gateway (APIM) | Partially supported via Foundry UI | You can create a new AI Gateway with your private Foundry resource in the new Foundry portal but this gateway is automatically public. To complete any data plane actions with a private Foundry, your AI Gateway must also have network isolation configured which is set-up through the Azure Portal. For more information, see [Networking for AI Gateway](/azure/api-management/virtual-network-concepts). |
 | Certain Agent Tools | Partially supported | See [Agent tools with network isolation](#agent-tools-with-network-isolation) for detailed tool-by-tool support status. |
 
 For more Agent Service network isolation limitations, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks).
+
+### More limitations 
+
+- **Private AI Search with private Foundry agent tool**: If you are using your public network access disabled AI Search as an Agent tool with a network isolated Foundry resource, ensure you are using the new Foundry Portal to build your new agents. This scenario is not supported with the older version of the Agent service in the classic Foundry portal.
+- **Publishing Agents to Teams/M365**: You can publish your agent to Teams and M365 when your Foundry resource has public network access disabled. There are additional set-up requirements for this experience. For more information, please follow [this blog post on building custom engine agents when your Foundry resource is private](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-agents-and-custom-engine-agents-through-the-corporate-firewall/4502218).
+- **Hosted Agents with private Azure Container Registry**: If you would like to deploy hosted agents on Foundry, ensure your Azure Container Registry has public network access enabled. Public network access disabled with private endpoint Azure Container Registry is not yet supported with a private Foundry set-up. Hosted agents can be deployed on a private Foundry that was set-up using the existing networking templates. You do not need to redeploy your private and VNET injected Foundry.
+- **Changing or updating outbound networking**: You cannot update your outbound networking settings currently. If you have a subnet delegated for your Foundry resource, you cannot change the delegated subnet to a new one. You cannot take your existing Foundry deployment and add outbound virtual network injection. You must redeploy Foundry to add outbound networking. 
+
+### Firewall allowlisting
+
+If you deploy Foundry with virtual network injection, you may create a firewall to control egress traffic. Below is the listed of trusted Fully Qualified Domain Names (FQDNs) to allowlist on your firewall depending on the scenario or feature in Foundry. 
+
+| Scenario | FQDNs | Description |
+|---------|--------------------------|-------|
+| Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com` or AAD Service Tag | Required for the Azure Container App delegation for Agent service. |
+| Evaluations & Traces | `*.blob.core.windows.net`, `settings.sdk.monitor.azure.com` | Used for the evaluators catalogue and fir sending results to the linked Application Insights resource. |
+| Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 
 ### Private endpoint limitations
 
@@ -300,7 +324,7 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 - **IP address range**: Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is reserved by Docker bridge networking.
 - **Approvals**: If you don't have **Contributor** or **Owner** permissions on the Foundry resource, private endpoint connections remain in **Pending** state until approved.
 
-## Troubleshoot private endpoint issues
+## Troubleshooting
 
 If you experience connectivity problems after setting up a private endpoint, try these steps:
 
