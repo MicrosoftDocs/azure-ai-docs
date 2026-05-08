@@ -35,7 +35,7 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
 + [ADLS Gen2 limits on role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) apply.
 
-+ The `owning users`, `owning groups`, and `Other` (`all`) [ACL identity categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) aren't supported during public preview. Use `named users` and `named groups` assignments instead.
++ The `owning users`, `owning groups`, and `Other` (`all`) [ACL identity categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) aren't supported during preview. Use `named users` and `named groups` assignments instead.
   
 + The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
 

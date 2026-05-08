@@ -1,6 +1,8 @@
 ---
 title: Agentic Retrieval GA Announcement
 description: Note announcing that some agentic retrieval features are generally available in the 2026-04-01 REST API, with portal caveats and migration guidance.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 04/16/2026

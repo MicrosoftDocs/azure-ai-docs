@@ -1,6 +1,8 @@
 ---
 title: Agentic Retrieval Preview API Usage
 description: Note for articles that use the 2025-11-01-preview REST API to demonstrate the full agentic retrieval feature set, including features that remain in preview.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 04/16/2026
