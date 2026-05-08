@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/08/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -90,7 +90,9 @@ Global deployments receive new models and features first.
 For **Global** deployment types, prompts and responses might be processed in any geography where the model is deployed. For **DataZone** deployment types, prompts and responses are processed only within the specified data zone:
 
 - **United States**: Data processed anywhere within the US
-- **European Union**: Data processed within any EU member nation
+- **European Union**: Data processed within the [EU Data Boundary](https://learn.microsoft.com/en-us/privacy/eudb/eu-data-boundary-learn)
+
+The EU Data Zone processes data within regions located in countries covered by the [Azure EU Data Boundary](https://learn.microsoft.com/en-us/privacy/eudb/eu-data-boundary-learn). As of May 2026, this includes regions in: France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, and Switzerland. Additional regions within the EU Data Boundary may be added without prior notice to improve capacity and availability.
 
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
 
