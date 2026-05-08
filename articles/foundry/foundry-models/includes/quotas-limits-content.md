@@ -14,7 +14,7 @@ This article provides a quick reference and detailed description of the quotas a
 
 ## Updates to quota management after 05/06/2025 
 
-Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level — shared across all resources and regions — rather than being allocated separately per resource or per region.
+Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level—shared across all resources and regions—rather than being allocated separately per resource or per region.
 
 This change consolidates quota into shared pools:
 
@@ -27,7 +27,7 @@ For the models that are onboarded the new quota management system:
 
 * All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
 * All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
-* Existing approved quota is retained and automatically applies at the subscription level — no action required.
+* Existing approved quota is retained and automatically applies at the subscription level—no action required.
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
 
@@ -109,7 +109,7 @@ Set the client-side timeout explicitly based on the following guidance.
     - For streaming, up to 60 seconds.
     - For non-streaming requests, up to 29 minutes.
     
-29 minutes here does not mean all requests will take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
+29 minutes here doesn't mean all requests take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
 
 Set a timeout that's less than these values, tuned to your traffic patterns.
 
