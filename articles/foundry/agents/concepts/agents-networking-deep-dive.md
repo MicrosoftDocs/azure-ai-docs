@@ -173,10 +173,10 @@ The Azure portal doesn't currently expose IP utilization for delegated subnets, 
 
 Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
-1. The data proxy returning 5xx errors.
-1. Hosted agent session creation failing with 4xx errors.
-1. New project provisioning failures.
-1. Approximately 80% of your estimated usable IP capacity in use.
+- The data proxy returning 5xx errors.
+- Hosted agent session creation failing with 4xx errors.
+- New project provisioning failures.
+- Approximately 80% of your estimated usable IP capacity in use.
 
 > [!IMPORTANT]
 > The platform doesn't proactively warn you when IP capacity is running low. Monitor the signals listed earlier to avoid unexpected provisioning failures.
