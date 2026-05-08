@@ -385,11 +385,11 @@ azd ai agent show --output table
 If your project has multiple agent services, specify the agent name as a positional argument:
 
 ```bash
-azd ai agent show <agent-name>
+azd ai agent show [agent-name]
 ```
 
 > [!TIP]
-> Find `<agent-name>` in the `azure.yaml` file under the `services:` section.
+> Find `[agent-name]` in the `azure.yaml` file under the `services:` section.
 
 ### Test the deployed agent
 
@@ -398,7 +398,7 @@ Send a test message to your deployed agent using the same `invoke` command used 
 For agents using the Responses API, you can send a string as the payload:
 
 ```bash
-azd ai agent invoke <payload>
+azd ai agent invoke "Hello"
 ```
 
 You should see a response from the agent after a few seconds.
@@ -424,7 +424,7 @@ azd ai agent monitor --session <session-id> --follow
 If your project has multiple agent services, specify the agent name as a positional argument:
 
 ```bash
-azd ai agent monitor <agent-name> --follow
+azd ai agent monitor [agent-name] --follow
 ```
 
 > [!NOTE]
