@@ -376,6 +376,8 @@ items:
         href: voice-live-webrtc.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
+      - name: How to evaluate Voice Live agents (preview)
+        href: how-to-voice-live-evaluate.md
     - name: Voice Live FAQ
       href: voice-live-faq.yml
       displayName: FAQ,frequently asked questions
