@@ -1360,6 +1360,16 @@
       "source_path": "articles/foundry/agents/how-to/publish-responses.md",
       "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-whisper.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-whisper",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-translate.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-translate",
+      "redirect_document_id": false
     }
   ]
 }
