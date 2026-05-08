@@ -7,8 +7,8 @@ ms.author: sgilley
 ms.reviewer: fosteramanda
 ms.date: 04/14/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
@@ -70,9 +70,12 @@ An agent can expose multiple protocols simultaneously:
 
 | Protocol | Endpoint pattern |
 |----------|-----------------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
-| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` |
-| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` |
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
+| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
+| **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+
+To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
 
 ### Authorization schemes
 
@@ -111,7 +114,6 @@ By default, the routing policy is **Always use latest**. To pin traffic to a spe
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
@@ -182,11 +184,10 @@ Updating protocols and authorization schemes isn't yet configurable in the Found
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations"],
+    "protocols": ["activity", "responses", "invocations", "a2a"],
     "authorization_schemes": [
       {
         "type": "Entra",
@@ -231,6 +232,7 @@ with project_client:
             AgentEndpointProtocol.RESPONSES,
             AgentEndpointProtocol.ACTIVITY,
             AgentEndpointProtocol.INVOCATIONS,
+            AgentEndpointProtocol.A2A,
         ],
         authorization_schemes=[
             EntraAuthorizationScheme(
@@ -263,7 +265,6 @@ Adding an agent card isn't yet configurable in the Foundry portal. Use the REST 
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_card": {
@@ -312,7 +313,6 @@ To view your agent's current properties—identity, protocols, authorization, an
 GET {endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/json
-Foundry-Features: AgentEndpoints=V1Preview
 ```
 
 

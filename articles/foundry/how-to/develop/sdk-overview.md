@@ -235,7 +235,10 @@ Console.WriteLine(response.GetOutputText());
 
 ## OpenAI SDK
 
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API), including embeddings, chat completions, and image generation. It doesn't provide access to Foundry-specific features like agents and evaluations.
+
+> [!TIP]
+> Use the OpenAI SDK endpoint for [generating embeddings](../../openai/how-to/embeddings.md). The project endpoint used by the Foundry SDK doesn't currently route embedding requests.
 
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
@@ -386,6 +389,9 @@ The Anthropic endpoint appends `/anthropic` to your resource URL:
 ```
 https://<resource-name>.services.ai.azure.com/anthropic
 ```
+### Generate embeddings with the OpenAI SDK
+
+Use the same `/openai/v1` endpoint to generate embeddings with a deployed embedding model.
 
 ::: zone pivot="programming-language-python"
 

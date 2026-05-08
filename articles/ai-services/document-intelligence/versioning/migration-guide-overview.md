@@ -1,5 +1,5 @@
 ---
-title: "How-to: Migrate Document Intelligence applications to v3.1."
+title: "Migrate to v4.0."
 titleSuffix: Foundry Tools
 description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
@@ -12,11 +12,26 @@ monikerRange: '<=doc-intel-4.0.0'
 ---
 
 <!-- markdownlint-disable MD004 -->
+<!-- markdownlint-disable MD025 -->
 # Document Intelligence v4.0 migration
 
 > [!IMPORTANT]
 >
-> Document Intelligence REST API v4.0 introduces breaking changes in the REST API request and analyze response JSON.
+> * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
+> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence 2024-11-30 v4.0**.
+
+## SDk migration guides
+
+For guidance on updating your application code to use the v4.0 SDKs, see the language-specific SDK migration guides in our GitHub repositories. These guides provide instructions for updating your code to call the new API methods and handle the updated response formats introduced in v4.0:
+
+* [**.NET/C# SDK**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md/)
+
+* [**Java SDK**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+* [**Python SDK**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
+
+* [**JavaScript/TypeScript SDK**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/documentintelligence/ai-document-intelligence-rest/MIGRATION-FR_v4-DI_v1.md)*
 
 ## Migrating from v3.1 to v4.0
 

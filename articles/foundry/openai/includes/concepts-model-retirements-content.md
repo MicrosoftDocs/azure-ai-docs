@@ -157,7 +157,29 @@ Customers can check lifecycle and deprecation fields on any model using the [Mod
 GET https://management.azure.com/subscriptions/{sub}/providers/Microsoft.CognitiveServices/locations/{location}/models?api-version=2024-10-01
 ```
 
-Fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
+Key fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
+
+> [!IMPORTANT]
+> **The API uses different terminology than the docs and portal.** The table below maps the customer-facing stage names used in this document and the Foundry portal to the corresponding API field values.
+
+| Stage (docs and portal) | API status field (`lifecycleStatus`) | API date field (`deprecation.inference`) | What it means |
+|---|---|---|---|
+| **Preview** | `Preview` | Future date or not set | Experimental. May change or be removed. |
+| **Generally Available** | `GenerallyAvailable` | Future date (set at launch) | Production-ready. Fixed weights and API. |
+| **Deprecated** | `Deprecating` | Future date | Still serves inference. Blocked for new customers. |
+| **Retired** | `Deprecated` | Past date | Fully retired. Inference returns `410 Gone`. |
+
+For example, a model that the docs list as **"Deprecated"** (still works, blocked for new customers) appears in the API as `lifecycleStatus: "Deprecating"`—not `"Deprecated"`. The API value `"Deprecated"` means the model is **retired** and no longer serves inference.
+
+To determine a model's stage programmatically, check both fields together:
+
+```
+if lifecycleStatus == "Deprecated"         → Retired (410 Gone)
+if lifecycleStatus == "Deprecating"        → Deprecated (existing customers only)
+if deprecation.inference < today           → Retired (regardless of lifecycleStatus lag)
+if lifecycleStatus == "GenerallyAvailable" → GA
+if lifecycleStatus == "Preview"            → Preview
+```
 
 ## Fine-tuned models
 
