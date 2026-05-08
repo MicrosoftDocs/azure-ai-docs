@@ -27,7 +27,7 @@ Audio Dataset  →  Voice Live API  →  Transcript + Response  →  Foundry Eva
 The harness supports two modes:
 
 - **Python CLI** (code-first) — Run evaluations locally with full control over configuration. The CLI sends audio through Voice Live, generates responses, and submits them to Foundry for scoring.
-- **Foundry portal** — After the CLI generates evaluation output, you can view and compare results in the [Microsoft Foundry portal](/azure/ai-foundry/how-to/evaluate-generative-ai-app). Portal-native Voice Live audio evaluation isn't available yet.
+- **Foundry portal** — After the CLI generates evaluation output, you can view and compare results in the [Microsoft Foundry portal](/azure/ai-foundry/how-to/evaluate-generative-ai-app).
 
 > [!NOTE]
 > The evaluation harness measures conversational quality, such as task completion, intent resolution, and groundedness. It doesn't measure speech-specific metrics like Mean Opinion Score (MOS) or Word Error Rate (WER). It also isn't designed for competitive benchmarking.
@@ -39,7 +39,7 @@ For the full source code and developer reference, see the [Voice Live evaluation
 - A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) in a supported region. For current availability, see [Evaluation regions and limits](/azure/ai-foundry/concepts/evaluation-regions-limits-virtual-network). Confirmed regions: **Sweden Central** and **East US 2**.
 - A [Foundry resource](../multi-service-resource.md) or [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) that supports Voice Live.
 - The **Cognitive Services User** role on the Voice Live resource for API access. The **Azure AI User** role on the Foundry project for evaluation. For more information, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
-- An Azure OpenAI connection with a deployed GPT model that supports chat completion, such as `gpt-5-mini`. This connection is required for AI-assisted quality evaluators.
+- An Azure OpenAI connection with a deployed GPT model that supports chat completion, such as `gpt-5-mini`. Voice Live uses this connection for the AI-assisted quality evaluators that score your agent's responses.
 - Python 3.10 or later.
 - Azure CLI with an authenticated session (`az login`) for [Microsoft Entra](/azure/ai-services/authentication) authentication (recommended). You can also use an API key.
 - A test dataset with audio files and ground truth answers. For more information, see [Prepare your dataset](#prepare-your-dataset).
@@ -68,7 +68,10 @@ Your dataset is a JSON Lines (JSONL) file where each line represents one evaluat
 ```
 
 > [!TIP]
-> Dataset quality has a strong effect on evaluation scores. Datasets with specific questions, matching ground truth, and aligned system prompts typically score 4.0 or higher. Datasets with open-ended questions and no ground truth typically score 2.0 to 3.0, even with the same Voice Live configuration.
+> Dataset quality has a strong effect on evaluation scores. Datasets with specific questions, matching ground truth, and aligned system prompts typically produce higher scores. Datasets with open-ended questions and no ground truth typically produce lower scores, even with the same Voice Live configuration.
+
+> [!TIP]
+> The evaluation harness repository includes a helper script to download audio datasets from HuggingFace as evaluation-ready JSONL files. For details, see the [helper scripts documentation](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/helper_scripts).
 
 ### Multi-turn conversations
 
@@ -88,7 +91,7 @@ Voice Live session parameters control how the harness processes audio and how th
 | **PTT + Cascaded** (experimental) | `gpt-5` | `server_vad` | Disabled | Testing client-controlled speech with cascaded models. |
 
 > [!IMPORTANT]
-> Use VAD mode for all production evaluations. PTT mode is experimental and has a lower audio response rate (approximately 83% compared to 100% for VAD) due to known platform limitations.
+> Use VAD mode for all production evaluations. PTT mode is experimental and has a lower audio response rate due to known platform limitations.
 
 ### Example config file
 
@@ -120,7 +123,7 @@ Voice Live session parameters control how the harness processes audio and how th
 Pre-built sample configs are available in the [evaluation harness repository](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/configs).
 
 > [!NOTE]
-> The config file uses the **evaluation harness schema** (flat keys like `vad_type`, `noise_reduction`), not the raw Voice Live API session update format. For Voice Live API session parameters, see [How to use the Voice Live API](./voice-live-how-to.md).
+> The config file uses a simplified flat-key format for readability. For the full Voice Live API session parameters, see [How to use the Voice Live API](./voice-live-how-to.md).
 
 ## Run the evaluation
 
@@ -227,10 +230,9 @@ Some Foundry built-in evaluators have known issues that can affect Voice Live ev
 | Evaluator | Issue | Impact | Status |
 |-----------|-------|--------|--------|
 | **Task Adherence** | The model re-introduces itself every turn in multi-turn conversations. | Inflates scores for greetings and penalizes natural follow-ups. | Fix in progress |
-| **Task Completion** | High variance across identical runs. For example, 0.67 compared to 0.33 on the same input. | Run-to-run comparison is unreliable for this metric. | Under investigation |
-| **Fluency / Coherence** | Consistently scores 5.0 regardless of actual response quality. | Provides no useful signal. Consider excluding these evaluators. | Consider removing |
+| **Task Completion** | High variance across identical runs. | Run-to-run comparison is unreliable for this metric. | Under investigation |
+| **Fluency / Coherence** | Consistently returns the maximum score regardless of actual response quality. | Provides no useful signal. Consider excluding these evaluators. | Consider removing |
 | **Response Completeness** | A known bug caused misleading scores when comparing certain model configurations. | Validate results by inspecting raw Voice Live responses in the output JSONL. | Mitigated |
-| **All GPT-judge evaluators** | Scores vary across environments (local compared to cloud) and drift 1 to 2% over time. | Average multiple runs and pin evaluator model versions for reliable comparisons. | Known |
 
 For the complete list of known issues and workarounds, see the [evaluation harness README](https://github.com/microsoft-foundry/voicelive-evaluation/blob/main/evaluation_harness/README.md#known-evaluator-issues).
 
