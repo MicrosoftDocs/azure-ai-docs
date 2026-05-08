@@ -5,7 +5,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/09/2026
+ms.date: 05/08/2026
 
 ms.custom: classic-and-new
 ---
@@ -17,7 +17,6 @@ ms.custom: classic-and-new
 >
 > + GPT‑4o (versions 2024‑05‑13, 2024‑08‑06, and 2024‑11‑20)
 > + GPT-4o-mini (version 2024-07-18)
-> + GPT-4.1, GPT-4.1-mini, and GPT-4.1-nano (version 2025-04-14)
 >
 > [Once the GPT‑4.1 models retire](../concepts/model-retirements.md), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
 > 
