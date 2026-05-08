@@ -18,6 +18,8 @@ Welcome! This article highlights key changes and updates in Microsoft Foundry do
 
 ## New articles
 
+- [GPT Realtime Translate overview](../foundry/openai/concepts/gpt-realtime-translate.md)
+- [GPT Realtime Whisper overview](../foundry/openai/concepts/gpt-realtime-whisper.md)
 - [Agentic Workflows: Task Adherence (preview)](../foundry/guardrails/task-adherence.md)
 - [Auto-upgrade Azure OpenAI resources to Microsoft Foundry](../foundry/how-to/upgrade-azure-openai-auto.md)
 - [Customize agent behavior at runtime with structured inputs](../foundry/agents/how-to/structured-inputs.md)
