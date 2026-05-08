@@ -20,7 +20,9 @@ Use the Voice Live evaluation harness to measure the quality of voice agents bui
 
 **How it works:**
 
-:::image type="content" source="media/voice-live/voice-live-evaluation-pipeline.png" alt-text="Diagram of the Voice Live evaluation pipeline showing audio dataset flowing through the Voice Live API, producing transcripts and responses, which are scored by Foundry evaluators to produce quality scores.":::
+```
+Audio Dataset  →  Voice Live API  →  Transcript + Response  →  Foundry Evaluators  →  Quality Scores
+```
 
 The harness supports two modes:
 
