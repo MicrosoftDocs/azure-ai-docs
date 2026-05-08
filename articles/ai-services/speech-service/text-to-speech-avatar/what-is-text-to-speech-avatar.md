@@ -32,7 +32,7 @@ Text to speech avatar capabilities include:
 - Synthesizes text to speech avatar video asynchronously with the [batch synthesis API](./batch-synthesis-avatar.md) or in [real-time](./real-time-synthesis-avatar.md).
 - Use Text to speech avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) for creating video content without coding.
 - Enables real-time avatar conversations through the [Voice Live in Foundry](https://ai.azure.com/nextgen/goto/discover/models/Azure-Speech-Voice-live/version/1/registry/azureml-cogsvc).
-- Create voice agent with avatar in [Voice live](../voice-live.md) 
+- Create voice agent with avatar in [Voice Live](../voice-live.md) 
 
 With text to speech avatar's advanced neural network models and Photo avatar's VASA-1 models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
@@ -76,7 +76,7 @@ You can create custom text to speech avatars that are unique to your product or 
 
 There are several options for the voice part of a custom avatar:
 ### 1.	Voice sync for avatar
-Voice sync for avatar is a most efficient custom voice option for custom video avatar, it is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and can't be independently used. Please note the voice sync for avatar is only available for the custom video avatar.
+Voice sync for avatar is a most efficient custom voice option for custom video avatar, it is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and can't be independently used. Please note the voice sync for avatar is only available for the custom video avatar. For more information, see[Voice sync for avatar](./voice-sync-for-avatar.md)
   	
 ### 2.	Professional voice
    Professional voice is a type of custom voice that provides higher voice quality. [Professional voice fine-tuning](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) have separate process for obtaining limit access and training models. You can use them independently or together. If you plan to also use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your fine-tuned professional voice model to one of the [avatar supported regions](#available-locations).
