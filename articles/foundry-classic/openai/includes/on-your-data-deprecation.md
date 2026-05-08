@@ -16,6 +16,6 @@ ms.custom: classic-and-new
 > Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following models:
 >
 > + GPT‑4o (versions 2024‑05‑13, 2024‑08‑06, and 2024‑11‑20)
-> + GPT-4o-mini (version 2024‑11‑20) [Once this model retires](../concepts/model-retirements.md), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+> + GPT-4o-mini (version 2024-07-18) [Once this model retires](../concepts/model-retirements.md), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
 > 
 > We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview.md) with [Foundry IQ](../../../foundry/agents/concepts/what-is-foundry-iq.md) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../../foundry/agents/how-to/foundry-iq-connect.md).
