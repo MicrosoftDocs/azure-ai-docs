@@ -37,17 +37,7 @@ For more details, see [Create a custom video avatar](/azure/ai-services/speech-s
 
 Voice sync for avatar supports the same languages as [personal voice](../language-support.md#personal-voice)
 
-The regions that support voice sync for avatar use and creation are listed below.
-
-| Region | Voice sync for avatar use | Custom video avatar use | Voice sync for avatar creation | Custom video avatar training |
-| ----- | ----- | ----- | ----- | ----- |
-| `eastus2` | ✅ | ✅ | | |
-| `northeurope` | | ✅ | | |
-| `southcentralus` | | ✅ | | |
-| `southeastasia` | ✅ | ✅ | ✅ | ✅ |
-| `swedencentral` | ✅ | ✅ | | |
-| `westeurope` | ✅ | ✅ | ✅ | ✅ |
-| `westus2` | ✅ | ✅ | ✅ | ✅ |
+The regions that support voice sync for avatar use and creation are listed in [Speech service regions table](../regions.md?tabs=ttsavatar).
 
 > [!NOTE]
 > When you copy a custom video avatar model to another resource, the voice sync for avatar is lost if the destination resource is in a region that doesn't support voice sync for avatar.
