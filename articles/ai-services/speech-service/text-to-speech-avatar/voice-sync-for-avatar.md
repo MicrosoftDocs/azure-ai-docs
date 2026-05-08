@@ -30,7 +30,7 @@ Custom photo avatar doesn't currently support voice sync for avatar.
 
 A voice sync for avatar is created during custom video avatar fine-tuning. When you upload the consent video for the avatar talent, you can choose the avatar type: either *Avatar with a voice sync for avatar* or *Avatar only*. If you choose to create an avatar with a voice sync for avatar, the verbal statement in the consent video must include consent for synthetic voice creation and use.
 
-For more details, see Create a custom video avatar.
+For more details, see [Create a custom video avatar](/azure/ai-services/speech-service/text-to-speech-avatar/custom-avatar-create?pivots=ai-foundry-portal).
 
 
 ## Supported regions and languages
