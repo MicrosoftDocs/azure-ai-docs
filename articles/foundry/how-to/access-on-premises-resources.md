@@ -25,6 +25,9 @@ Set up the application gateway in your Azure virtual network for inbound access 
 To learn how Application Gateway secures connections to non-Azure resources, see [How an application gateway works](/azure/application-gateway/how-application-gateway-works).
 
 
+:::image type="content" source="media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram that shows a managed virtual network using Azure Application Gateway and a private endpoint to reach on-premises resources securely." lightbox="media/managed-virtual-network/diagram-managed-network.png":::
+
+
 ## Prerequisites
 
 - Set up your Foundry resource's managed virtual network and select an isolation mode: **Allow Internet Outbound** or **Allow Only Approved Outbound**. For more information, see [Managed virtual network isolation](managed-virtual-network.md).
