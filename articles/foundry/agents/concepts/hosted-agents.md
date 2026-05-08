@@ -88,6 +88,7 @@ The endpoint is available immediately after deployment—publishing isn't requir
 
 - **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
+- **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
 Which endpoints are active depends on the protocols declared in the agent version definition (set in agent.yaml when using azd, or via container_protocol_versions when using the SDK).
 
