@@ -150,6 +150,8 @@ items:
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
+  - name: Enable incoming A2A (preview)
+    href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:

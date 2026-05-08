@@ -13,7 +13,7 @@ items:
     href: ../../foundry-models/how-to/configure-entra-id.md
 - name: Network security
   items:
-  - name: Configure private link
+  - name: Configure network isolation
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
   - name: Managed virtual network
