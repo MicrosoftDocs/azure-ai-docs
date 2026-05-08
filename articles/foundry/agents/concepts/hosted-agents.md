@@ -56,7 +56,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 | Conversational chatbot or assistant | **Responses** | The platform manages conversation history, streaming events, and session lifecycle—use any OpenAI-compatible SDK as the client. |
 | Multi-turn Q&A with RAG or tools | **Responses** | Built-in conversation ID threading and tool result handling. |
 | Background / async processing | **Responses** | background: true with platform-managed polling and cancellation—no custom code needed. |
-| Agent published to Teams or M365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the Activity protocol handles the Teams channel integration. |
+| Agent published to Teams or M365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the platform automatically bridges Responses to the Activity protocol for channel delivery. |
 | Webhook receiver (GitHub, Stripe, Jira, etc.) | **Invocations** | The external system sends its own payload format—you can't change it to match /responses. |
 | Non-conversational processing (classification, extraction, batch) | **Invocations** | The input is structured data, not a chat message. Arbitrary JSON in, arbitrary JSON out. |
 | Custom streaming protocol (AG-UI, etc.) | **Invocations** | AG-UI and other agent-UI protocols aren't OpenAI-compatible—you need raw SSE control. |
@@ -78,7 +78,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 
 #### Additional protocols
 
-Hosted agents also support the **Activity** protocol for Teams and M365 channel integration (typically used alongside Responses) and the **A2A** protocol for agent-to-agent delegation. All four protocols—Responses, Invocations, Activity, and A2A—can be combined in a single agent.
+Hosted agents also support the **Activity** protocol for Teams and Microsoft 365 channel integration. When you use the Responses protocol for agent logic and publish to Microsoft 365 channels such as Teams, the platform automatically bridges Responses to the Activity protocol for channel delivery—no separate wiring is required. The **A2A** protocol supports agent-to-agent delegation. All four protocols—Responses, Invocations, Activity, and A2A—can be combined in a single agent.
 
 ### Agent identity and endpoint
 
@@ -156,6 +156,12 @@ Each call to create a version produces an **immutable agent version**—a snapsh
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They're set per version and are immutable once the version is created.
 
 
+### Observability
+
+Hosted agents provide built-in observability. The platform automatically injects an Application Insights connection string into your agent container via environment variables. Agents that use the protocol libraries emit OpenTelemetry traces by default, which appear in the linked Application Insights resource under **Investigate** > **Transaction search** or **Performance**.
+
+For configuration and analysis guidance, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
+
 ### Toolbox in Foundry 
 
 Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
@@ -170,7 +176,10 @@ Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU
 
 ### Private networking
 
-Hosted agents support deployment within network-isolated Foundry resources. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md). Note that the Azure Container Registry holding your agent image must currently remain reachable over its public endpoint; private-network-secured ACR isn't currently supported.
+Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
+
+> [!NOTE]
+> The Azure Container Registry holding your agent image must currently remain reachable over its public endpoint. Private-network-secured ACR isn't currently supported.
 
 ## Limits, pricing, and availability (preview)
 
