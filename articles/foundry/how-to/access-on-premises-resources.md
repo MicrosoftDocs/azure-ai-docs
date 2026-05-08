@@ -25,7 +25,7 @@ Set up the application gateway in your Azure virtual network for inbound access 
 To learn how Application Gateway secures connections to non-Azure resources, see [How an application gateway works](/azure/application-gateway/how-application-gateway-works).
 
 
-:::image type="content" source="media/access on-premises resources/app-gw-managed-network-diagram.png" alt-text="Diagram that shows a managed virtual network using Azure Application Gateway and a private endpoint to reach on-premises resources securely." lightbox="media/access on-premises resources/app-gw-managed-network-diagram.png":::
+:::image type="content" source="media/access-on-premises-resources/app-gw-managed-network-diagram.png" alt-text="Diagram that shows a managed virtual network using Azure Application Gateway and a private endpoint to reach on-premises resources securely." lightbox="media/access-on-premises-resources/app-gw-managed-network-diagram.png":::
 
 
 ## Prerequisites
