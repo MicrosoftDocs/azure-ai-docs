@@ -251,3 +251,6 @@ For the complete list of known issues and workarounds, see the [evaluation harne
 - [Run evaluations from the Microsoft Foundry portal](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 - [View evaluation results](/azure/ai-foundry/how-to/evaluate-results)
 - [Voice Live evaluation harness on GitHub](https://github.com/microsoft-foundry/voicelive-evaluation)
+
+<!-- TODO: Add link to Foundry solution template when published -->
+<!-- - [Voice Live evaluation solution template](TBD) -->
