@@ -235,7 +235,10 @@ Console.WriteLine(response.GetOutputText());
 
 ## OpenAI SDK
 
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API), including embeddings, chat completions, and image generation. It doesn't provide access to Foundry-specific features like agents and evaluations.
+
+> [!TIP]
+> Use the OpenAI SDK endpoint for [generating embeddings](../../openai/how-to/embeddings.md). The project endpoint used by the Foundry SDK doesn't currently route embedding requests.
 
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
@@ -376,5 +379,55 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    ```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet)
 ::: zone-end
+
+### Generate embeddings with the OpenAI SDK
+
+Use the same `/openai/v1` endpoint to generate embeddings with a deployed embedding model.
+
+::: zone pivot="programming-language-python"
+
+```python
+embedding = client.embeddings.create(
+    model="text-embedding-3-large",
+    input="How do I get started with Microsoft Foundry?",
+)
+print(f"Embedding dimension: {len(embedding.data[0].embedding)}")
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+```javascript
+const embedding = await client.embeddings.create({
+    model: "text-embedding-3-large",
+    input: "How do I get started with Microsoft Foundry?",
+});
+console.log(`Embedding dimension: ${embedding.data[0].embedding.length}`);
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```csharp
+var embeddingClient = openAIClient.GetEmbeddingClient("text-embedding-3-large");
+var result = embeddingClient.GenerateEmbedding(
+    "How do I get started with Microsoft Foundry?");
+Console.WriteLine($"Embedding dimension: {result.Value.ToFloats().Length}");
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+```java
+// Use the same OpenAI client created above
+// Embeddings are available through the OpenAI SDK embeddings API
+```
+
+::: zone-end
+
+For the full embeddings how-to, see [Generate embeddings](../../openai/how-to/embeddings.md).
 
 [!INCLUDE [sdk-overview 3](../../includes/how-to-develop-sdk-overview-3.md)]
