@@ -9,7 +9,7 @@ ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.metricsadvisor-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.MetricsAdvisor) |
+[Reference documentation](/dotnet/api/overview/azure/ai.metricsadvisor-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/metricsadvisor/Azure.AI.MetricsAdvisor/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.MetricsAdvisor) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/metricsadvisor/Azure.AI.MetricsAdvisor/samples/README.md)
 
 > [!IMPORTANT]
 > Microsoft recommends that you use the most secure authentication flow available. Some of the authentication flows described in this article require a very high degree of trust in the application, and carries risks that are not present in other more secure flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
@@ -20,9 +20,9 @@ ms.author: mbullwin
 * The current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 * Once you have your Azure subscription, <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.  
 * Your own SQL database with time series data.
-
+   
 > [!TIP]
->
+> * You can find .NET Metrics Advisor samples on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/metricsadvisor/Azure.AI.MetricsAdvisor/samples/README.md).
 > * It may take 10 to 30 minutes for your Metrics Advisor resource to deploy a service instance for you to use. Select **Go to resource** once it successfully deploys. After deployment, you can start using your Metrics Advisor instance with both the web portal and REST API. 
 > * You can find the URL for the REST API in Azure portal, in the **Overview** section of your resource. It will look like this:
 > * `https://<instance-name>.cognitiveservices.azure.com/`
