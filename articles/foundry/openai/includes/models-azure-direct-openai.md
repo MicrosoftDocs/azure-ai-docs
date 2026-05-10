@@ -426,18 +426,17 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `gpt-4o-mini-tts` (2025-03-20) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 | `gpt-4o-mini-tts` (2025-12-15) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 
-## Model summary table and region availability
-
-### Models by deployment type
+## Model summary and region availability
 
 Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment:
 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
+To see Foundry Models based on the deployment types they support and their regions of availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
-# [Americas](#tab/americas)
+
+<!-- # [Americas](#tab/americas)
 
 [!INCLUDE [region-americas](model-matrix/region-americas.md)]
 
@@ -453,7 +452,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
 
----
+--- -->
 
 > [!NOTE]
 > 

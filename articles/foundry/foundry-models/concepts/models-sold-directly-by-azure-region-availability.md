@@ -16,7 +16,16 @@ zone_pivot_groups: adm-region-availability
 #CustomerIntent: As a developer, I want to browse the list of Microsoft Foundry Models sold directly by Azure based on the supported deployment types, availability in Azure regions, and model capabilities,, so that I can select the right model for my application.
 ---
 
-# Foundry Models sold directly by Azure
+# Region availability for Foundry Models sold directly by Azure
+
+Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories, *standard* (pay-per-token) and *provisioned* (reserved capacity), and other categories such as *batch* (for asynchronous requests). Within these categories, you can choose global, data zone, or regional processing based on your compliance requirements.
+
+For all deployment types, data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:
+- **Global** types: May be processed in any Azure region
+- **DataZone** types: Processed only within the Microsoft-specified data zone (US or EU)
+- **Standard/Regional** types: Processed in the deployment region (ot available fo batch deployments)
+
+All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Microsoft Foundry deployment types, including *Batch* deployment types, see [Deployment types for Microsoft Foundry Models](deployment-types.md).
 
 
 ::: zone pivot="standard"
@@ -558,7 +567,7 @@ Not available
 
 ---
 
-## Provisioned Managed
+## Regional Provisioned Managed
 
 # [Americas](#tab/az-americas)
 
