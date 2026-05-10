@@ -130,14 +130,14 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 ## Model region availability by deployment type
 
-Foundry Models gives you choices for the hosting structure that fits your business and usage patterns. The service offers two main types of deployment:
+Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories:
 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned**: Also has a global deployment option, allowing you to purchase and deploy provisioned throughput units across Azure global infrastructure.
+- **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments perform the same inference operations, but the billing, scale, and performance differ. For more information about deployment types, see [Deployment types in Foundry Models](../concepts/deployment-types.md).
+Other deployment categories like *batch* are also available. To see Foundry Models grouped by their deployment category and their regions of availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-# [Global Standard](#tab/global-standard)
+<!-- # [Global Standard](#tab/global-standard)
 
 ### Global Standard model availability
 
@@ -155,7 +155,7 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 [!INCLUDE [data-zone-standard](model-matrix/data-zone-standard.md)]
 
----
+--- -->
 
 ## Related content
 
