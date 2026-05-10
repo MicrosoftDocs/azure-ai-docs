@@ -244,7 +244,7 @@ You can paste URLs and the service will store the webpage content, using it when
 
 <!--:::image type="content" source="../media/use-your-data/url.png" alt-text="A screenshot of the Azure OpenAI use your data url/webpage studio configuration page." lightbox="../media/use-your-data/url.png":::-->
 
-Once you have added the URL/web address for data ingestion, the web pages from your URL are fetched and saved to Azure Blob Storage with a container name: `webpage-<index name>`. Each URL will be saved into a different container within the account. Then the files are indexed into an Azure AI Search index, which is used for retrieval when you’re chatting with the model.
+Once you have added the URL/web address for data ingestion, the web pages from your URL are fetched and saved to Azure Blob Storage with a container name: `webpage-<index name>`. Each URL will be saved into a different container within the account. Then the files are indexed into an Azure AI Search index, which is used for retrieval when you're chatting with the model.
 
 [!INCLUDE [ai-search-ingestion](../includes/ai-search-ingestion.md)]
 
@@ -601,7 +601,7 @@ In total, there are two calls made to the model:
 
 The model generated output tokens (both intents and response) need to be taken into account for total token estimation. Summing up all the four columns below gives the average total tokens used for generating a response. 
 
-| Model	| Generation prompt token count | Intent prompt token count | Response token count | Intent token count |
+| Model    | Generation prompt token count | Intent prompt token count | Response token count | Intent token count |
 |--|--|--|--|--|
 | gpt-35-turbo-16k | 4297 | 1366 | 111 | 25 |
 | gpt-4-0613 | 3997 | 1385 | 118 | 18 |
@@ -704,7 +704,7 @@ Each user message can translate to multiple search queries, all of which get sen
 
 [!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for regional availability.
+For regional availability, see the [Region availability for Foundry Models sold directly by Azure](../../../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## Next steps
 * [Get started using your data with Azure OpenAI](../../quickstarts/get-started-code.md)

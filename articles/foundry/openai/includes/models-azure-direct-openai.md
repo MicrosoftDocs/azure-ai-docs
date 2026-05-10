@@ -66,10 +66,10 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
-| `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
-| `gpt-5.4-mini` | See the [models table](#model-summary-table-and-region-availability)|
-| `gpt-5.4-nano` | See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.4` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
+| `gpt-5.4-pro` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)  |
+| `gpt-5.4-mini` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)|
+| `gpt-5.4-nano` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
@@ -83,7 +83,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.3-codex` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
 | `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
 
 
@@ -98,9 +98,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.2` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).   |
+| `gpt-5.2-chat` **Preview** |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+| `gpt-5.2-codex` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
 
 
 
@@ -127,11 +127,11 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5.1` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.1-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
+| `gpt-5.1` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).   |
+| `gpt-5.1-chat` **Preview** |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+| `gpt-5.1-codex` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+| `gpt-5.1-codex-mini` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+| `gpt-5.1-codex-max` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  | 
 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
@@ -158,13 +158,13 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-08-07) **Preview** |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-10-03) **Preview** |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5` (2025-08-07) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
+| `gpt-5-mini` (2025-08-07) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
+| `gpt-5-nano` (2025-08-07) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
+| `gpt-5-chat` (2025-08-07) **Preview** |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
+| `gpt-5-chat` (2025-10-03) **Preview** |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
+| `gpt-5-codex` (2025-09-11) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
+| `gpt-5-pro` (2025-10-06) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -223,9 +223,9 @@ az cognitiveservices account deployment create \
 
 | Model | Region |
 |---|---|
-| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-4.1` (2025-04-14) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
+| `gpt-4.1-nano` (2025-04-14) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
+| `gpt-4.1-mini` (2025-04-14) |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).|
 
 ### Capabilities
 
@@ -267,7 +267,7 @@ To request access, go to [`computer-use-preview` limited access model applicatio
 
 | Model | Region |
 |---|---|
-| `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
+| `computer-use-preview` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
 
 ### Capabilities
 
@@ -298,12 +298,12 @@ To learn more about advanced o-series models, see [Getting started with reasonin
 |---|---|
 |`codex-mini` | East US2 & Sweden Central (Global Standard).   |
 |`o3-pro`   | East US2 & Sweden Central (Global Standard).    |
-|`o4-mini`|   See the [models table](#model-summary-table-and-region-availability).  |
-| `o3` |   See the [models table](#model-summary-table-and-region-availability).  |
-|`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
-|`o1` | See the [models table](#model-summary-table-and-region-availability). |
-| `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is available only for customers who were granted access as part of the original limited access. |
-| `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
+|`o4-mini`|   See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+| `o3` |   See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).  |
+|`o3-mini` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
+|`o1` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
+| `o1-preview` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). This model is available only for customers who were granted access as part of the original limited access. |
+| `o1-mini` | See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). |
 
 ## GPT-4o and GPT-4 Turbo
 
@@ -353,10 +353,10 @@ The image generation models generate images from text prompts that the user prov
 
 | Model | Region |
 |---|---|
-|`gpt-image-1` |  See the [Models table](#model-summary-table-and-region-availability)|
-|`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
-|`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
-|`gpt-image-2` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-1` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)|
+|`gpt-image-1-mini` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
+|`gpt-image-1.5` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)|
+|`gpt-image-2` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)|
 
 
 ## Video generation models
@@ -367,8 +367,8 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` |  See the [models table](#model-summary-table-and-region-availability) |
-| `sora-2` |  See the [models table](#model-summary-table-and-region-availability) |
+|`sora` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
+| `sora-2` |  See the [models table](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) |
 
 ## Audio models
 
