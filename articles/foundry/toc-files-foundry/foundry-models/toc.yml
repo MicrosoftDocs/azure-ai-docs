@@ -8,6 +8,9 @@ items:
   - name: Foundry Models sold directly by Azure
     displayName: Foundry Models sold directly by Azure
     href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+  - name: Region availability for Foundry Models sold directly by Azure
+    displayName: Region availability for Foundry Models sold directly by Azure
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
   - name: Foundry Models sold directly by Azure (government)
     displayName: Foundry Models sold directly by Azure (government)
     href: ../../foundry-models/concepts/models-sold-directly-by-azure-gov.md

@@ -873,7 +873,7 @@ groups:
 - id: adm-region-availability
 # Owner: mopeakande
   title: Region availability for Azure direct models
-  prompt: Choose a deployment type for your Foundry Model
+  prompt: Choose a deployment category for your Foundry Model
   pivots:
     - id: standard
       title: Standard deployment options
