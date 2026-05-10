@@ -428,12 +428,15 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 
 ## Model summary and region availability
 
+> [!NOTE]
+> To see Foundry Models grouped by their deployment category and their regions of availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
 Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories:
 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-Other deployment categories like *batch* are also available. To see Foundry Models grouped by their deployment category and their regions of availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+Other deployment categories like *batch* are also available. To learn about all available model deployment types, see  [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
 
 <!-- # [Americas](#tab/americas)
