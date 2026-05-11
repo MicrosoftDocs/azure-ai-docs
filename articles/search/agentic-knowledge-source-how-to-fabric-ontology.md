@@ -3,7 +3,7 @@ title: Create a Fabric Ontology Knowledge Source
 description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/04/2026
+ms.date: 05/11/2026
 ai-usage: ai-assisted
 ---
 
@@ -47,7 +47,7 @@ GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kin
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list)
 
 You can also return a single knowledge source by name to review its JSON definition.
 
@@ -57,7 +57,7 @@ GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
 
 The following JSON is an example response for a Fabric Ontology knowledge source.
 
@@ -115,6 +115,9 @@ The following properties apply to Fabric Ontology knowledge sources.
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
+> [!NOTE]
+> Fabric Ontology knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
+
 ## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has unique query-time permissions enforcement and response characteristics.
@@ -129,61 +132,56 @@ For instructions on passing the token, see [Enforce permissions at query time](a
 
 ### Fabric Ontology–specific response fields
 
-Fabric Ontology knowledge sources can return two types of content, both nested inside the `sourceData` object of each reference entry:
+Fabric Ontology knowledge sources return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
 
-<!-- TO-DO (PM): Confirm the JSON serialization names of these fields (`fabricAnswer`, `fabricRawData`) before publish. -->
+- `fabricAnswer`: The ontology's natural-language answer.
+- `fabricRawData`: The structured data that grounded the answer, returned in CSV format.
 
-- A natural-language answer (`fabricAnswer`)
-- The structured data that grounded the answer, returned in CSV format (`fabricRawData`)
-
-The following example shows a retrieve response containing a Fabric Ontology reference. The `activity` record shows the search argument sent to the ontology, and the `references` array shows the grounded answer and its underlying structured data.
+The following example shows a retrieve response containing a Fabric Ontology knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 ```json
 {
   "response": [
-    {
-      "content": [
-        {
-          "type": "text",
-          "text": "[{\"ref_id\":0,\"content\":\"There are 3 airlines with domestic routes: Delta (47), United (38), and American (29).\"}]"
-        }
-      ]
-    }
+    // ... Response omitted for brevity
   ],
   "activity": [
     {
       "type": "fabricOntology",
       "id": 1,
       "knowledgeSourceName": "my-fabric-ontology-ks",
+      "queryTime": "2026-05-11T20:29:24Z",
+      "count": 1,
       "fabricOntologyArguments": {
         "search": "Which airlines operate domestic routes?"
       }
-    }
+    },
+    // ... Additional activity records omitted for brevity
   ],
   "references": [
     {
       "type": "fabricOntology",
       "id": "0",
       "activitySource": 1,
-      "workspaceId": "00000000-0000-0000-0000-000000000000",
-      "ontologyId": "00000000-0000-0000-0000-000000000001",
       "sourceData": {
         "fabricAnswer": "There are 3 airlines with domestic routes: Delta, United, and American.",
         "fabricRawData": "Airline,Routes\nDelta,47\nUnited,38\nAmerican,29"
-      }
+      },
+      "rerankerScore": 0,
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "ontologyId": "00000000-0000-0000-0000-000000000001"
     }
   ]
 }
 ```
 
 > [!TIP]
-> To receive `sourceData` in the response, set `includeReferenceSourceData` to `true` in `knowledgeSourceParams` of the retrieve request.
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
 <!-- TO-DO (writer): Replace with [!INCLUDE [knowledge-source-delete-rest](./includes/how-tos/knowledge-source-delete-rest.md)] when C# and Python are added to this article. -->
 
-Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. For knowledge sources that generate an index and indexer pipeline, all *generated objects* are also deleted. However, if you used an existing index to create a knowledge source, your index isn't deleted.
 
 If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
 
@@ -197,7 +195,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
 
    An example response might look like the following:
 
@@ -219,7 +217,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
 
    An example response might look like the following:
 
@@ -247,7 +245,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete)
 
 1. Delete the knowledge source.
 
@@ -257,11 +255,11 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete)
 
 ## Related content
 
-+ [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
