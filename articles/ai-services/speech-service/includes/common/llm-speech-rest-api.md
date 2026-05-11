@@ -19,7 +19,7 @@ The next several sections provide details about how to use this API.
 
 ### Supported languages
 
-The following languages are currently supported for both `transcribe` and `translate` tasks: `English`, `Chinese`, `German`, `French`, `Italian`, `Japanese`, `Spanish`, `Portuguese`, and `Korean`.
+The following input languages are currently supported for both `transcribe` and `translate` tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``German``, ``English``, ``Spanish``, ``Finnish``, ``French``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Dutch``, ``Polish``, ``Portuguese``, ``Russian``, ``Swedish``, ``Thai``, ``Turkish``.
 
 ### Upload audio
 
@@ -89,6 +89,21 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
   }
 }'
 ```
+
+The following target languages are supported in `targetLanguage` by specifying the corresponding language code:
+
+| Language code | Language |
+| ----- | ----- |
+| `de` | German |
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `it` | Italian |
+| `ko` | Korean |
+| `ja` | Japanese |
+| `pt` | Portuguese |
+| `zh` | Chinese |
+
 
 #### Use prompt-tuning to alter performance
 
