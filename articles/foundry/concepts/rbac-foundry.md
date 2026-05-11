@@ -40,6 +40,10 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 |**Azure AI Account Owner**|Grants full access to manage projects and resources, and lets you conditionally assign the Azure AI User role to other user principals.|
 |**Azure AI Owner**|Grants full access to managed projects and resources and build and develop with projects. Highly privileged self-serve role designed for digital natives.|
 
+> [!NOTE]
+> Don't assign built-in roles that start with **Cognitive Services**. These roles are designed for accessing AI Services resources directly and don't apply to Foundry scenarios.
+> Similarly, don't use the **Azure AI Developer** role for Foundry work. Despite the name, this role is scoped to Azure Machine Learning and Foundry hubs, not to Foundry project resources.
+
 ### Permissions for each built-in role
 
 Use the following table to see the permissions allowed for each built-in role in Microsoft Foundry. 
