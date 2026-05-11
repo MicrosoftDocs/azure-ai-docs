@@ -3,7 +3,7 @@ title: Create a Work IQ Knowledge Source
 description: Learn how to create a Work IQ knowledge source to ground an agentic retrieval pipeline in Azure AI Search with organizational intelligence from Work IQ.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 05/11/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *Work IQ knowledge source* connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to your agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
+A *Work IQ knowledge source* connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
 
 Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
 
@@ -43,7 +43,7 @@ Run the following code to list knowledge sources by name and type.
 
 ```http
 ### List knowledge sources by name and type
-GET {{search-url}}/knowledgesources?api-version=2026-05-01-preview&$select=name,kind
+GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kind
 api-key: {{api-key}}
 ```
 
@@ -53,7 +53,7 @@ You can also return a single knowledge source by name to review its JSON definit
 
 ```http
 ### Get a knowledge source definition
-GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
+GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
 api-key: {{api-key}}
 ```
 
@@ -65,7 +65,7 @@ The following JSON is an example response for a Work IQ knowledge source.
 {
   "name": "my-workiq-ks",
   "kind": "workIQ",
-  "description": "Organizational intelligence from Work IQ.",
+  "description": "A sample Work IQ knowledge source.",
   "encryptionKey": null
 }
 ```
@@ -83,11 +83,11 @@ Content-Type: application/json
 {
   "name": "my-workiq-ks",
   "kind": "workIQ",
-  "description": "Organizational intelligence from Work IQ."
+  "description": "A sample Work IQ knowledge source."
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ### Source-specific properties
 
@@ -121,20 +121,33 @@ For instructions on passing the token, see [Enforce permissions at query time](a
 
 ### Work IQ–specific response fields
 
-Work IQ reference entries return the following content:
+Work IQ knowledge sources return per-document citations in the `references` array and query diagnostics in the `activity` array. Each reference includes grounded text passages (`sourceData.extracts[].text`) and a link to the source document in Microsoft 365 (`attributions[].seeMoreWebUrl`).
 
-- Grounded text passages from Work IQ (`sourceData.extracts[].text`)
-- A link to the source document in Microsoft 365 (`attributions[].seeMoreWebUrl`)
-
-The following example shows a reference and activity entry from a Work IQ knowledge source. The `activity` record shows the search argument sent to Work IQ, and the `references` array shows the grounded text and its source attribution.
+The following example shows a retrieve response containing a Work IQ knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 ```json
 {
+  "response": [
+    // ... Response omitted for brevity
+  ],
+  "activity": [
+    {
+      "type": "workIQ",
+      "id": 0,
+      "knowledgeSourceName": "my-workiq-ks",
+      "queryTime": "2026-05-01T19:25:23.683Z",
+      "count": 1,
+      "elapsedMs": 1137,
+      "workIQArguments": {
+        "search": "my query"
+      }
+    }
+  ],
   "references": [
     {
       "type": "workIQ",
       "id": "83dd7d40",
-      "activitySource": 1,
+      "activitySource": 0,
       "rerankerScore": 3.5,
       "attributions": [
         {
@@ -149,19 +162,6 @@ The following example shows a reference and activity entry from a Work IQ knowle
         ]
       }
     }
-  ],
-  "activity": [
-    {
-      "type": "workIQ",
-      "id": 1,
-      "elapsedMs": 1137,
-      "knowledgeSourceName": "my-workiq-ks",
-      "queryTime": "2026-05-01T19:25:23.683Z",
-      "count": 1,
-      "workIQArguments": {
-        "search": "my query"
-      }
-    }
   ]
 }
 ```
@@ -173,7 +173,7 @@ The following example shows a reference and activity entry from a Work IQ knowle
 
 <!-- TO-DO (writer): Replace the following inline REST with [!INCLUDE [Delete knowledge source using REST](includes/how-tos/knowledge-source-delete-rest.md)] when C# and Python are added to this article. -->
 
-BBefore you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. For knowledge sources that generate an index and indexer pipeline, all *generated objects* are also deleted. However, if you used an existing index to create a knowledge source, your index isn't deleted.
 
 If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
 
@@ -183,7 +183,7 @@ To delete a knowledge source:
 
     ```http
     ### Get knowledge bases
-    GET {{search-url}}/knowledgebases?api-version=2026-05-01-preview&$select=name
+    GET {{search-url}}/knowledgebases?api-version={{api-version}}&$select=name
     api-key: {{api-key}}
     ```
 
@@ -195,12 +195,12 @@ To delete a knowledge source:
     {
         "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
         "value": [
-          {
+        {
             "name": "my-kb"
-          },
-          {
+        },
+        {
             "name": "my-kb-2"
-          }
+        }
         ]
     }
    ```
@@ -209,7 +209,7 @@ To delete a knowledge source:
 
     ```http
     ### Get a knowledge base definition
-    GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
+    GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
     api-key: {{api-key}}
     ```
 
@@ -223,10 +223,10 @@ To delete a knowledge source:
       "description": null,
       "retrievalInstructions": null,
       "answerInstructions": null,
-      "outputMode": "answerSynthesis",
+      "outputMode": null,
       "knowledgeSources": [
         {
-          "name": "my-mcp-server-ks"
+          "name": "my-blob-ks",
         }
       ],
       "models": [],
@@ -237,11 +237,11 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the reference. This example shows deletion.
+1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the source. This example shows deletion.
 
     ```http
     ### Delete a knowledge base
-    DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
+    DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
     api-key: {{api-key}}
     ```
 
@@ -251,7 +251,7 @@ To delete a knowledge source:
 
     ```http
     ### Delete a knowledge source
-    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
+    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
     api-key: {{api-key}}
     ```
 
@@ -259,7 +259,7 @@ To delete a knowledge source:
 
 ## Related content
 
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Query a knowledge base (APIs or MCP)](agentic-retrieval-how-to-retrieve.md)
-+ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
