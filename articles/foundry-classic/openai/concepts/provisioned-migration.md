@@ -138,8 +138,6 @@ In addition to the updates for the hourly payment model, in December 2024 new [A
 
 - Supports all models, both old and new.
 
-https://review.learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability?branch=pr-en-us-12035&tabs=az-americas&pivots=standard#global-standard
-
 > [!IMPORTANT]
 > More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [Region availability for Foundry Models sold directly by Azure (classic)](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned) for the availability. Models that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
