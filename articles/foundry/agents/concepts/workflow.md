@@ -329,6 +329,29 @@ To delete a workflow you no longer need:
 1. Select the **Version** dropdown list to the left of the **Save** button.
 1. Select **Delete** for the version you want to remove.
 
+## Migration Guide
+
+Azure AI Foundry continues to support executing YAML-based workflows when they are deployed through hosted agents. However, since Foundry workflows is being retired, you can choose  one of the supported workflow experiences described in this section.
+
+* **Microsoft Agent Framework (MAF)** – For building and executing workflows using YAML or code-first patterns.
+* **Logic Apps** – For a fully visual workflow design experience with orchestration capabilities.
+* **Agent-to-agent (A2A) connections** – For lightweight scenarios that require direct communication between agents without a formal workflow.
+
+### Retrieve your existing workflows
+Before migrating, download or copy your existing workflow definition:
+
+* Open your workflow in the Foundry workflow UI.
+* Select YAML view to access the configuration.
+* Copy or export the YAML file for reuse in your new workflow environment.
+
+The Agent Inspector in the Foundry AI Toolkit for VSCode allows to visualize and execute Foundry workflows. [See Develop agents with Agent Inspector in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/agent-inspector).  
+
+#### Microsoft Agent Framework 
+
+* Build and run workflows in MAF: [Microsoft Agent Framework Workflows | Microsoft Learn](/agent-framework/workflows/)
+* Run a yaml-based workflow: [Declarative Workflows - Overview | Microsoft Learn](/agent-framework/workflows/declarative?pivots=programming-language-python) 
+* Deployment as a hosted agent to [Foundry: Foundry Hosted Agents | Microsoft Learn](/agent-framework/hosting/foundry-hosted-agent?pivots=programming-language-python)
+
 ## Related content
 
 - [Foundry Agent Service FAQ](../../agents/faq.yml)
