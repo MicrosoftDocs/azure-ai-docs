@@ -18,6 +18,9 @@ For all deployment types, data stored at rest remains in the designated Azure ge
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Microsoft Foundry deployment types, including *Batch* deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
+> [!TIP]
+> Use the tabs at the top of this page to switch deployment categories: [Standard deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard), [Provisioned deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned), and [Batch deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=batch).
+
 
 <!-- ::: zone pivot="standard"
 
