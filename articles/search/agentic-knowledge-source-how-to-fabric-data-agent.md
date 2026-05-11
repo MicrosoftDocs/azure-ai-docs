@@ -1,9 +1,9 @@
 ---
 title: Create a Fabric Data Agent Knowledge Source
-description: Learn how to create a Fabric Data Agent knowledge source, which tells the agentic retrieval engine in Azure AI Search to query a Microsoft Fabric Data Agent directly.
+description: Learn how to create a Fabric Data Agent knowledge source, which connects a Microsoft Fabric Data Agent to an agentic retrieval pipeline in Azure AI Search for live, data-driven answers as grounding data.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/04/2026
+ms.date: 05/11/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *Fabric Data Agent knowledge source* connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. At query time, the retrieval engine queries the Fabric Data Agent directly, bypassing an intermediate LLM call. You specify the workspace and data agent IDs, and the retrieval engine handles authentication and query formulation.
+A *Fabric Data Agent knowledge source* connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. The data agent acts as a virtual analyst, generating and running queries against your live Microsoft Fabric data to return natural-language answers, tables, and charts as grounding data.
 
-Like any other knowledge source, you specify a Fabric Data Agent knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) and use the results as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to query the Fabric Data Agent on behalf of the end user.
 
 ### Usage support
 
@@ -68,7 +68,6 @@ The following JSON is an example response for a Fabric Data Agent knowledge sour
   "description": "A Fabric Data Agent knowledge source.",
   "encryptionKey": null,
   "fabricDataAgentParameters": {
-    "fabricEndpoint": null,
     "workspaceId": "00000000-0000-0000-0000-000000000000",
     "dataAgentId": "00000000-0000-0000-0000-000000000001"
   }
@@ -125,52 +124,71 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Fabric Data Agent knowledge sources require the end user's access token at query time. You include the token in the retrieve request, and the retrieval engine passes it to the Fabric Data Agent to authenticate the call on behalf of the end user.
+Fabric Data Agent knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the Fabric Data Agent on behalf of the end user.
 
 <!-- TO-DO (PM): Confirm whether Power BI row-level security is enforced on underlying semantic models when the Fabric Data Agent is queried via the on-behalf-of flow. -->
 
-Because Fabric Data Agent doesn't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Because Fabric Data Agent knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Fabric Data Agent–specific response fields
 
-Fabric Data Agent knowledge sources can return two types of content:
+Fabric Data Agent knowledge sources return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
 
-- A natural-language answer (`fabricAnswer`)
-- Embedded resources, such as tables, charts, or datasets (`fabricEmbeddedResources`)
+- `fabricAnswer`: The data agent's natural-language answer.
+- `fabricEmbeddedResources`: Any embedded resources, such as tables and charts, when the query produces structured output.
 
-The following example shows a reference entry from a Fabric Data Agent knowledge source, which the retrieval engine passes through directly and integrates with results from other knowledge sources.
+The following example shows a retrieve response containing a Fabric Data Agent knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 <!-- TO-DO (PM): Confirm the JSON serialization names of the embedded resource subfields (`title`, `mimeType`, `content`). -->
 
 ```json
 {
-  "type": "fabricDataAgent",
-  "id": "0",
-  "activitySource": 1,
-  "workspaceId": "00000000-0000-0000-0000-000000000000",
-  "dataAgentId": "00000000-0000-0000-0000-000000000001",
-  "rerankerScore": 2.57,
-  "sourceData": {
-    "fabricAnswer": "There were 47 airline delays in Q1 2026. The majority occurred on transcontinental routes.",
-    "fabricEmbeddedResources": [
-      {
-        "title": "Q1 2026 Airline Operations Report",
-        "mimeType": "text/csv",
-        "content": "Route | Delays | Avg. Delay (min)\n--- | --- | ---\nJFK–LAX | 18 | 42\nORD–MIA | 12 | 31"
+  "response": [
+    // ... Response omitted for brevity
+  ],
+  "activity": [
+    {
+      "type": "fabricDataAgent",
+      "id": 1,
+      "knowledgeSourceName": "my-fabric-data-agent-ks",
+      "queryTime": "2026-05-11T19:37:11.600Z",
+      "count": 1,
+      "fabricDataAgentArguments": {
+        "search": "my query"
       }
-    ]
-  }
+    }
+  ],
+  "references": [
+    {
+      "type": "fabricDataAgent",
+      "id": "0",
+      "activitySource": 1,
+      "rerankerScore": 2.57,
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "dataAgentId": "00000000-0000-0000-0000-000000000001",
+      "sourceData": {
+        "fabricAnswer": "There were 47 airline delays in Q1 2026. The majority occurred on transcontinental routes.",
+        "fabricEmbeddedResources": [
+          {
+            "title": "Q1 2026 Airline Operations Report",
+            "mimeType": "text/csv",
+            "content": "Route | Delays | Avg. Delay (min)\n--- | --- | ---\nJFK–LAX | 18 | 42\nORD–MIA | 12 | 31"
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
 > [!TIP]
-> To receive `sourceData` in the response, set `includeReferenceSourceData` to `true` in `knowledgeSourceParams` of the retrieve request.
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
-<!-- TO-DO (writer): Add inline REST code based on articles/search/includes/how-tos/knowledge-source-delete.md. -->
+<!-- TO-DO (writer): Replace with [!INCLUDE [knowledge-source-delete-rest](./includes/how-tos/knowledge-source-delete-rest.md)] when C# and Python are added to this article. -->
 
 Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. For knowledge sources that generate an index and indexer pipeline, all *generated objects* are also deleted. However, if you used an existing index to create a knowledge source, your index isn't deleted.
 
@@ -186,7 +204,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
 
    An example response might look like the following:
 
@@ -212,7 +230,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
 
    An example response might look like the following:
 
@@ -244,7 +262,7 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete)
 
 1. Delete the knowledge source.
 
@@ -254,11 +272,12 @@ To delete a knowledge source:
     api-key: {{api-key}}
     ```
 
-   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete?view=rest-searchservice-2026-04-01&preserve-view=true)
+   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete)
 
 ## Related content
 
++ [Agentic retrieval in Azure AI Search]
+(agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
-+ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
