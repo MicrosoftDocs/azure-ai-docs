@@ -66,5 +66,9 @@ In this quickstart you'll get started using models and agents in Foundry.
 > [!div class="nextstepaction"]
 > [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
 
+## Related content
+
+- [Instant models in Microsoft Foundry (preview)](../concepts/instant-models.md)
+
 
 

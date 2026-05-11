@@ -21,8 +21,8 @@ Instant models let you call any supported model by name — no deployment requir
 
 With instant models, the workflow is:
 
-1. Create a Foundry project in South Central US (the only supported region during preview).
-1. Pass a supported model name in your code. No deployment needed.
+1. Create a Foundry project in *South Central US* (the only supported region during preview).
+1. Pass a *supported model name* in your code. No deployment needed.
 
 The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
 

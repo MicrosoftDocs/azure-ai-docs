@@ -184,6 +184,7 @@ You can get more detailed billing information by grouping costs by resource:
 
 ## Related content
 
+- [Instant models in Microsoft Foundry (preview)](instant-models.md)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
 - [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
