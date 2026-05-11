@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ---
 
 # Integrate Azure OpenAI fine-tuning with Weights & Biases (preview) (classic)

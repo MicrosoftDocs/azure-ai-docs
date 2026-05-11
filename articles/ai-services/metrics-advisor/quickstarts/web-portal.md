@@ -2,8 +2,8 @@
 title: 'Quickstart: Metrics Advisor web portal'
 titleSuffix: Azure AI services
 description: Learn how to start using the Metrics Advisor web portal.
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 06/12/2025
 ms.topic: quickstart

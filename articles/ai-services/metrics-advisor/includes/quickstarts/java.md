@@ -1,12 +1,12 @@
 ---
 title: Metrics Advisor Java quickstart
 titleSuffix: Azure AI services
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 [Azure AI Foundry REST API reference](/rest/api/aifoundry/) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor/src) | [Artifact (Maven)](https://search.maven.org/artifact/com.azure/azure-ai-metricsadvisor) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples)

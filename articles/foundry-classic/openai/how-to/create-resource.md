@@ -8,8 +8,8 @@ ms.custom: devx-track-azurecli, build-2023, build-2023-dataai, devx-track-azurep
 ms.topic: how-to
 ms.date: 11/26/2025
 zone_pivot_groups: openai-create-resource
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 

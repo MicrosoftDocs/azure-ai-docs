@@ -6,8 +6,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference
 ms.date: 11/26/2025
-author: mrbullwinkle 
-ms.author: mbullwin
+author: alvinashcraft 
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 ms.custom:

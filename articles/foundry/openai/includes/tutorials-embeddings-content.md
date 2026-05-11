@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle #noabenefraim
-ms.author: mbullwin
+author: alvinashcraft #noabenefraim
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
