@@ -100,7 +100,7 @@ First, create a system-assigned managed identity for your Translator resource an
 
 #### Role assignment
 
-Next, assign a **`Storage Blob Data Contributor`** role to the managed identity *at the* storage scope for your storage resource.
+Next, assign the **`Storage Blob Data Reader`** and **`Storage Blob Data Contributor`** roles to the managed identity at the storage scope for your storage resource.
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Translator resource.
@@ -113,14 +113,14 @@ Next, assign a **`Storage Blob Data Contributor`** role to the managed identity 
 
     :::image type="content" source="../../media/managed-identities/azure-role-assignments-page-portal.png" alt-text="Screenshot: Azure role assignments page in the Azure portal.":::
 
-1. Finally, assign a **Storage Blob Data Contributor** role to your Translator resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
+1. Finally, assign both **Storage Blob Data Reader** and **Storage Blob Data Contributor** roles to your Translator resource. The **Storage Blob Data Reader** role gives Translator (represented by the system-assigned managed identity) read access to the source container and blobs and the **Storage Blob Data Contributor** role gives Translator read, write, and delete access to the destination blob container and data. To start, assign the **Storage Blob Data Reader** role as follows: In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
 
     | Field | Value|
     |------|--------|
     |**Scope**| ***Storage***.|
     |**Subscription**| ***The subscription associated with your storage resource***.|
     |**Resource**| ***The name of your storage resource***.
-    |**Role** | ***Storage Blob Data Contributor***.|
+    |**Role** | ***Storage Blob Data Reader***.|
 
 1. After the *Added Role assignment* confirmation message appears, refresh the page to see the added role assignment.
 
@@ -129,6 +129,8 @@ Next, assign a **`Storage Blob Data Contributor`** role to the managed identity 
 1. If you don't see the new role assignment right away, wait and try refreshing the page again. When you assign or remove role assignments, it can take up to 30 minutes for changes to take effect.
 
     :::image type="content" source="../../media/managed-identities/assigned-roles-window.png" alt-text="Screenshot: Azure role assignments window.":::
+
+1. Repeat the previous 3 steps for the **Storage Blob Data Contributor** role.
 
 ### Configure a Document translation flow
 
