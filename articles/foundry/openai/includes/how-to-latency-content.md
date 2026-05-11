@@ -203,21 +203,7 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
-
-## How to measure per-call latency
-The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
-
-You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
-
-### Non-Streaming
-
-- **Time to Last Byte (TTLT)** (`AzureOpenAITTLTInMS`): The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. Equivalent to end-to-end request time. This value increases as prompt and generation size increases — specifically, `TTLT = TTFT + (TBT × Tokens Generated)`, so higher output token counts directly increase TTLT.
-
-### Streaming
-
-- **Time to Response (TTFT)** (`AzureOpenAITimeToResponse`): Recommended latency (responsiveness) measure for streaming requests. Applies to PTU, PTU-managed, and Pay-as-you-go deployments. Calculated as the time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This value increases as prompt size increases or cache hit rate reduces. Maps to **TTFT** in the latency formula.
-- **Time Between Tokens (TBT)** (`AzureOpenAINormalizedTBTInMS`): The average time between consecutive generated tokens, in milliseconds. Sometimes called the *average token generation rate*. Lower values mean faster token generation. Applies to PTU, PTU-managed, and Pay-as-you-go deployments. Maps to **TBT** in the latency formula and increases as system load increases.
+For the full list of monitoring metrics, dimensions, and resource logs, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md).
 
 ## Summary
 
