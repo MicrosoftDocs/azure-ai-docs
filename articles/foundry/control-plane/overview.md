@@ -165,7 +165,7 @@ From **Admin**, administrators and power users can:
 
 ## Get started with Foundry Control Plane
 
-Foundry Control Plane is available in the [Foundry portal](https://foundry.microsoft.com). To start using Foundry Control Plane, explore these resources:
+Foundry Control Plane is available in the [Foundry portal](https://ai.azure.com). To start using Foundry Control Plane, explore these resources:
 
 - [Configure an AI gateway](../configuration/enable-ai-api-management-gateway-portal.md): Enable advanced governance features in your Foundry projects.
 - [Configure monitoring for your agent fleet](monitoring-across-fleet.md): Enable metrics and diagnostic information with observability features.
