@@ -17,6 +17,9 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
+> [!NOTE]
+> **Runtime behavior**: Hosted agents use scale-to-zero compute. Idle compute deprovisions after approximately 15 minutes of inactivity and is automatically restored on the next request, with predictable cold starts. Sessions are stateful—each session has a persistent filesystem and can persist for up to 30 days.
+
 **In this quickstart, you:**
 
 > [!div class="checklist"]
@@ -190,6 +193,7 @@ Deploying services (azd deploy)
   - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
   - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
+
 
 :::zone-end
 
@@ -422,6 +426,9 @@ If your project has multiple agent services, specify the agent name as a positio
 ```bash
 azd ai agent monitor <agent-name> --follow
 ```
+
+> [!NOTE]
+> The platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the [Azure portal](https://portal.azure.com) and navigate to **Investigate** > **Transaction search** or **Performance**. Use `azd ai agent monitor` for live console logs.
 
 :::zone-end
 

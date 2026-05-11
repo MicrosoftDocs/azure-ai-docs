@@ -71,7 +71,75 @@ The number of PTUs scales roughly linearly with call rate when the workload dist
 
 The high level definition of latency in this context is the amount of time it takes to get a response back from the model. For completion and chat completion requests, latency is largely dependent on model type, the number of tokens in the prompt and the number of tokens generated. In general, each prompt token adds little time compared to each incremental token generated.
 
+The relationship `TTLT = TTFT + (TBT × Tokens Generated)` lets you separate expected token-driven latency from real regressions. See [Understanding Azure OpenAI latency](#understanding-azure-openai-latency) for the full breakdown.
+
 Estimating your expected per-call latency can be challenging with these models. Latency of a completion request can vary based on four primary factors: (1) the model, (2) the number of tokens in the prompt, (3) the number of tokens generated, and (4) the overall load on the deployment & system. One and three are often the main contributors to the total time. The next section goes into more details on the anatomy of a large language model inference call.
+
+## Understanding Azure OpenAI latency
+
+Azure OpenAI request latency follows a predictable formula. Knowing this formula helps you tell expected, token-driven response times from real performance regressions.
+
+### The latency formula
+
+The total time to generate a response is:
+
+> **TTLT = TTFT + (TBT × Tokens Generated)**
+
+Where:
+
+- **TTFT** (Time to First Token) is the time from prompt submission until the first token returns, in milliseconds.
+- **TBT** (Time Between Tokens) is the average time between consecutive generated tokens, in milliseconds.
+- **Tokens Generated** is the total output token count for the response.
+- **TTLT** (Time to Last Token) is the total end-to-end response time.
+
+Because TTLT scales with the number of generated tokens, an increase in TTLT is often fully explained by an increase in output tokens — not by a system performance issue. Always check token counts before you conclude that there's a latency regression.
+
+### Key latency metrics
+
+Use these Azure Monitor metrics to investigate latency, regardless of whether you stream responses:
+
+| Display name | REST API name | What it measures | When to use |
+| --- | --- | --- | --- |
+| Time to Last Byte | `AzureOpenAITTLTInMS` | Total time from prompt submission to the last token, measured by the API gateway. Maps to **TTLT**. | Non-streaming requests, or any time you need overall response time. |
+| Time to Response | `AzureOpenAITimeToResponse` | Time from prompt submission to the first response chunk. Maps to **TTFT**. | Streaming requests, or any time you need first-token responsiveness. |
+| Time Between Tokens | `AzureOpenAINormalizedTBTInMS` | Average milliseconds between consecutive generated tokens. Maps to **TBT**. Sometimes called the *average token generation rate*. | Streaming requests, or to diagnose generation throughput. |
+| Normalized Time to First Byte | `AzureOpenAINormalizedTTFTInMS` | First-byte latency divided by prompt token count. | Comparing first-token efficiency across different prompt sizes. Don't use this metric for absolute latency diagnosis. |
+| Generated Completion Tokens | `GeneratedTokens` | Output token count per request. | Always pair with a latency metric — output tokens are the primary driver of TTLT. |
+| Processed Prompt Tokens | `ProcessedPromptTokens` | Input token count per request. | Larger prompts increase TTFT and overall processing time. |
+
+> [!NOTE]
+> The latency formula uses **TTFT**, but Azure Monitor offers two TTFT-related metrics. For diagnosing absolute latency that customers experience, use **Time to Response** (`AzureOpenAITimeToResponse`). Use **Normalized Time to First Byte** (`AzureOpenAINormalizedTTFTInMS`) only when you need to compare first-token efficiency across prompts of different sizes.
+
+Always pair a latency metric with a token count metric. A 5-second TTLT that generates 2,000 tokens is very different from a 5-second TTLT that generates 50 tokens. Latency without token context isn't actionable.
+
+For the complete metrics catalog, including dimensions and aggregation guidance, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md).
+
+## Evaluate your latency in 10 minutes
+
+Use the path that matches your workload to assess whether deployment latency is behaving as expected. Both paths use Azure Monitor metrics from the [Key latency metrics](#key-latency-metrics) table.
+
+### Non-streaming workloads
+
+1. In the Azure portal, open your Azure OpenAI resource, and then select **Monitoring** > **Metrics**.
+1. Add **Time to Last Byte** (`AzureOpenAITTLTInMS`) and split by `ModelDeploymentName` to isolate per-deployment behavior.
+1. Add a second chart for **Generated Completion Tokens** (`GeneratedTokens`) on the same time range.
+1. Compare the two charts:
+
+   - If TTLT and generated tokens rose together, the latency change is explained by token volume. This pattern is expected behavior, not a regression.
+   - If TTLT rose without a token-count increase, check for capacity pressure. On PTU-managed deployments, chart **Provisioned-managed Utilization V2** (`AzureOpenAIProvisionedManagedUtilizationV2`). On Pay-as-you-go deployments, check **Azure OpenAI Requests** (`AzureOpenAIRequests`) for 429 throttling and concurrent request volume.
+
+### Streaming workloads
+
+1. In the Azure portal, open your Azure OpenAI resource, and then select **Monitoring** > **Metrics**.
+1. Add **Time to Response** (`AzureOpenAITimeToResponse`) and split by `ModelDeploymentName` for first-token latency.
+1. Add **Time Between Tokens** (`AzureOpenAINormalizedTBTInMS`) for per-token generation throughput.
+1. Add **Processed Prompt Tokens** (`ProcessedPromptTokens`). Larger prompts increase TTFT.
+1. Compare the charts:
+
+   - If Time to Response rose while prompt size stayed flat, check deployment utilization and concurrent request volume.
+   - If Time Between Tokens rose, the deployment is likely under load.
+
+If observed values look unexpected, plug them back into the [latency formula](#the-latency-formula) to sanity-check before you open a support case.
 
 ## Improve performance
 There are several factors that you can control to improve per-call latency of your application.
@@ -135,20 +203,7 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
-
-## How to measure per-call latency
-The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
-
-You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
-
-### Non-Streaming:
--	 End-to-end Request Time: The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. This number increases as prompt and generation size increases.
-
-### Streaming:
--	Time to Response: Recommended latency (responsiveness) measure for streaming requests. Applies to PTU and PTU-managed deployments. Calculated as time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This number increases as the prompt size increases and/or 	 hit size reduces.
--	Average Token Generation Rate
-Time from the first token to the last token, divided by the number of generated tokens, as measured by the API gateway. This measures the speed of response generation and increases as the system load increases. Recommended latency measure for streaming requests.
+For the full list of monitoring metrics, dimensions, and resource logs, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md).
 
 ## Summary
 

@@ -83,7 +83,7 @@ Because this scenario is document-specific, start by deriving the analyzer from 
   "analyzerId": "insuranceClaim",
   "baseAnalyzerId": "prebuilt-document",
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-ada-002"
   },
   "config": {
