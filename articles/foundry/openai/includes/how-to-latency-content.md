@@ -77,7 +77,7 @@ Estimating your expected per-call latency can be challenging with these models. 
 
 ## Understanding Azure OpenAI latency
 
-Azure OpenAI latency for chat and completion requests follows a predictable formula. Knowing this formula helps you tell expected, token-driven response times from real performance regressions.
+Azure OpenAI request latency follows a predictable formula. Knowing this formula helps you tell expected, token-driven response times from real performance regressions.
 
 ### The latency formula
 
