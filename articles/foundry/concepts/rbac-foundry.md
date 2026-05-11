@@ -25,7 +25,7 @@ In this article, you learn core role-based access control (RBAC) concepts for Mi
 
 For more information about authentication and authorization in Microsoft Foundry, see [Authentication and Authorization](../concepts/authentication-authorization-foundry.md).
 
-[!INCLUDE [rbac-foundry 1](../includes/concepts-rba-foundry-1.md)]
+[!INCLUDE [rbac-foundry 1](../includes/concepts-rbac-foundry-1.md)]
 
 
 ### Permissions for each built-in role
