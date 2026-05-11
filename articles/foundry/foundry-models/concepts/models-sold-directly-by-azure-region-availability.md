@@ -18,7 +18,9 @@ zone_pivot_groups: adm-region-availability
 
 # Region availability for Foundry Models sold directly by Azure
 
-Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories, *standard* (pay-per-token) and *provisioned* (reserved capacity), along with other categories like *batch* (for asynchronous requests). Within these categories, you can choose global, data zone, or regional processing based on your compliance requirements.
+[!INCLUDE [models-sold-directly-by-azure-region-availability-content](../includes/models-sold-directly-by-azure-region-availability-content.md)]
+
+<!-- Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories, *standard* (pay-per-token) and *provisioned* (reserved capacity), along with other categories like *batch* (for asynchronous requests). Within these categories, you can choose global, data zone, or regional processing based on your compliance requirements.
 
 For all deployment types, data stored at rest remains in the designated Azure geography (Americas, Europe, Asia Pacific, Middle East & Africa). However, inferencing data is processed as follows:
 - **Global** types: May be processed in any Azure region where the Foundry Model is deployed
@@ -46,4 +48,4 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [deployments-batch](../includes/model-matrix/deployments-batch.md)]
 
-::: zone-end
+::: zone-end -->

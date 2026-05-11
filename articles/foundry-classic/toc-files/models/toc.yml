@@ -5,6 +5,8 @@ items:
   href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
 - name: Foundry Models from partners and community
   href: ../../foundry-models/concepts/models-from-partners.md
+- name: Region availability for Foundry Models sold directly by Azure
+  href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
 - name: Model versions
   href: ../../foundry-models/concepts/model-versions.md
 - name: Foundry Models lifecycle and support policy
