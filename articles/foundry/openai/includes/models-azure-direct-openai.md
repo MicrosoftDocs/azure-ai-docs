@@ -436,7 +436,7 @@ Microsoft Foundry provides customers with choices on the hosting structure that 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-Other deployment categories like *batch* are also available. To learn about all available model deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
+Other deployment categories like *batch* are also available. To learn about all available model deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
 > [!NOTE]
 > 
@@ -485,7 +485,7 @@ These models can be used only with Embedding API requests.
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md?pivots=standard#global-standard). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|

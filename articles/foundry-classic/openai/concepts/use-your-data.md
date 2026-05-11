@@ -77,7 +77,7 @@ You need to connect to a data source to upload your data. When you want to use y
 > [!NOTE]
 > Your data should be unstructured text for best results. If you have non-textual semi-structured or structured data consider converting it to text. If your files have special formatting, such as tables and columns, or bullet points, prepare your data with the data preparation script available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts#optional-crack-pdfs-to-text).
 
-The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) natively supports integration with Azure OpenAI On Your Data.
+The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](../references/cosmos-db.md) natively supports integration with Azure OpenAI On Your Data.
 
 For some data sources such as uploading files from your local machine (preview) or data contained in a blob storage account (preview), Azure AI Search is used. When you choose the following data sources, your data is ingested into an Azure AI Search index.
 
@@ -158,12 +158,12 @@ If you want to implement additional value-based criteria for query execution, yo
 # [Vector Database in Azure Cosmos DB for MongoDB](#tab/mongo-db)
 
 ### Prerequisites
-* [vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/introduction) account
+* [vCore-based Azure Cosmos DB for MongoDB](../references/cosmos-db.md) account
 * A deployed [embedding model](../concepts/understand-embeddings.md)
 
 ### Limitations
 * Only vCore-based Azure Cosmos DB for MongoDB is supported.
-* The search type is limited to [Integrated Vector Database in Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) with an Azure OpenAI embedding model.
+* The search type is limited to [Integrated Vector Database in Azure Cosmos DB for MongoDB](../references/cosmos-db.md) with an Azure OpenAI embedding model.
 * This implementation works best on unstructured and spatial data.
 
   
