@@ -167,7 +167,7 @@ The following example shows a retrieve response containing a Work IQ knowledge s
 ```
 
 > [!TIP]
-> To receive `sourceData` in the response, set `includeReferenceSourceData` to `true` in `knowledgeSourceParams` of the retrieve request.
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
