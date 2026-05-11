@@ -628,7 +628,9 @@ public class AgentToAgentExample {
 
 ## Host an A2A-compatible agent endpoint
 
-Foundry Agent Service doesn't natively expose hosted agents as A2A endpoints. To make your agent available as an A2A endpoint that other agents can call, use one of the following approaches.
+You can expose your Foundry agent as an A2A endpoint directly by enabling the A2A protocol on the agent. For step-by-step instructions, see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+
+If your agent is deployed outside of Agent Service, or if you need a custom hosting approach, use one of the following alternatives.
 
 ### Option 1: Register a custom A2A agent in Foundry Control Plane
 
