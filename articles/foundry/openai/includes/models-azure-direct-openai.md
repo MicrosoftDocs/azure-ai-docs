@@ -395,7 +395,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
 
-To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
+To compare the availability of GPT-4o audio models across all regions, refer to [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Audio API
 
@@ -436,26 +436,7 @@ Microsoft Foundry provides customers with choices on the hosting structure that 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-Other deployment categories like *batch* are also available. To learn about all available model deployment types, see  [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
-
-
-<!-- # [Americas](#tab/americas)
-
-[!INCLUDE [region-americas](model-matrix/region-americas.md)]
-
-# [Europe](#tab/europe)
-
-[!INCLUDE [region-europe](model-matrix/region-europe.md)]
-
-# [Asia Pacific](#tab/asia-pacific)
-
-[!INCLUDE [region-asia-pacific](model-matrix/region-asia-pacific.md)]
-
-# [Middle East & Africa](#tab/middle-east-africa)
-
-[!INCLUDE [region-middle-east-africa](model-matrix/region-middle-east-africa.md)]
-
---- -->
+Other deployment categories like *batch* are also available. To learn about all available model deployment types, see [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
 > [!NOTE]
 > 
@@ -465,7 +446,7 @@ Other deployment categories like *batch* are also available. To learn about all 
 >
 > - The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only. For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
-This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
+For fine-tuning regional availability information, see the [fine-tuning section](#fine-tuning-models).
 
 ### Embeddings models
 
@@ -504,7 +485,7 @@ These models can be used only with Embedding API requests.
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md?pivots=standard#global-standard). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
