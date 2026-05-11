@@ -27,7 +27,7 @@ Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-+ A Microsoft Fabric workspace with a [Fabric Data Agent configured](/fabric/data-science/how-to-create-data-agent). Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity), workspace settings, or same-tenant requirements required to use a Fabric Data Agent as a knowledge source. -->
++ A Microsoft Fabric workspace with a [data agent](/fabric/data-science/how-to-create-data-agent). Your search service and workspace must be in the same Microsoft Entra ID tenant. <!-- TO-DO (PM): Confirm any specific Fabric SKU (for example, F64 capacity), workspace settings, or same-tenant requirements required to use a Fabric Data Agent as a knowledge source. -->
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -109,7 +109,7 @@ The following properties apply to Fabric Data Agent knowledge sources.
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
 | `fabricDataAgentParameters` | Parameters specific to the Fabric Data Agent knowledge source: `workspaceId` and `dataAgentId`. | Object | No | Yes |
 | `workspaceId` | The [ID of the Microsoft Fabric workspace](/fabric/data-factory/migrate-pipelines-how-to-find-your-fabric-workspace-id) that contains the data agent. | String | No | Yes |
-| `dataAgentId` | The ID of the Fabric Data Agent to query. | String | No | Yes |
+| `dataAgentId` | The ID of the data agent to query. | String | No | Yes |
 
 ## Assign to a knowledge base
 
