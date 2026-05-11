@@ -24,4 +24,24 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 
-[!INCLUDE [models-sold-directly-by-azure-region-availability-content](../../../foundry/foundry-models/includes/models-sold-directly-by-azure-region-availability-content.md)]
+[!INCLUDE [models-sold-directly-by-azure-region-availability-intro](../../../foundry/foundry-models/includes/models-sold-directly-by-azure-region-availability-intro.md)]
+
+::: zone pivot="standard"
+
+[!INCLUDE [deployments-standard](../../../foundry/foundry-models/includes/model-matrix/deployments-standard.md)]
+
+::: zone-end
+
+
+::: zone pivot="provisioned"
+
+[!INCLUDE [deployments-provisioned](../../../foundry/foundry-models/includes/model-matrix/deployments-provisioned.md)]
+
+::: zone-end
+
+
+::: zone pivot="batch"
+
+[!INCLUDE [deployments-batch](../../../foundry/foundry-models/includes/model-matrix/deployments-batch.md)]
+
+::: zone-end
