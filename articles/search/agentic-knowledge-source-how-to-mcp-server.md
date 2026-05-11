@@ -275,14 +275,7 @@ The following example shows a retrieve response containing an MCP Server knowled
 ```json
 {
   "response": [
-    {
-      "content": [
-        {
-          "type": "text",
-          "text": "A knowledge source specifies the content used for agentic retrieval.[ref_id:0] You create it as a top-level resource on your search service, and each knowledge source points to exactly one data structure.[ref_id:0]"
-        }
-      ]
-    }
+      // ... Response omitted for brevity
   ],
   "activity": [
     {
