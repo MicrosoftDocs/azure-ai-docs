@@ -126,7 +126,7 @@ Use the path that matches your workload to assess whether deployment latency is 
 1. Compare the two charts:
 
    - If TTLT and generated tokens rose together, the latency change is explained by token volume. This pattern is expected behavior, not a regression.
-   - If TTLT rose without a token-count increase, check **Provisioned-managed Utilization V2** (`AzureOpenAIProvisionedManagedUtilizationV2`) for capacity pressure.
+   - If TTLT rose without a token-count increase, check for capacity pressure. On PTU-managed deployments, chart **Provisioned-managed Utilization V2** (`AzureOpenAIProvisionedManagedUtilizationV2`). On Pay-as-you-go deployments, check **Azure OpenAI Requests** (`AzureOpenAIRequests`) for 429 throttling and concurrent request volume.
 
 ### Streaming workloads
 
