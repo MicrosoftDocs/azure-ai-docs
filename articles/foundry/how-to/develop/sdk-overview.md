@@ -389,9 +389,12 @@ The Anthropic endpoint appends `/anthropic` to your resource URL:
 ```
 https://<resource-name>.services.ai.azure.com/anthropic
 ```
-### Generate embeddings with the OpenAI SDK
 
-Use the same `/openai/v1` endpoint to generate embeddings with a deployed embedding model.
+The Messages API is available at:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic/v1/messages
+```
 
 ::: zone pivot="programming-language-python"
 
@@ -421,6 +424,45 @@ print(message.content)
 
 ::: zone-end
 
+::: zone pivot="programming-language-csharp"
+
+The Anthropic SDK doesn't provide a native C# client. Use the REST API with `HttpClient` to call Claude models.
+
+```csharp
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using Azure.Identity;
+
+string endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+string deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredential();
+var token = await credential.GetTokenAsync(
+    new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"]));
+
+using var httpClient = new HttpClient();
+httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token.Token);
+httpClient.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
+
+var requestBody = new
+{
+    model = deploymentName,
+    messages = new[] { new { role = "user", content = "What are 3 things to visit in Seattle?" } },
+    max_tokens = 1048
+};
+
+var response = await httpClient.PostAsync(
+    endpoint,
+    new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json"));
+
+string result = await response.Content.ReadAsStringAsync();
+Console.WriteLine(result);
+```
+
+::: zone-end
+
 ::: zone pivot="programming-language-javascript"
 
 ```javascript
@@ -434,6 +476,7 @@ const tokenProvider = getBearerTokenProvider(
 const client = new AnthropicFoundry({
     azureADTokenProvider: tokenProvider,
     baseURL: "https://<resource-name>.services.ai.azure.com/anthropic",
+    apiVersion: "2023-06-01"
 });
 
 const message = await client.messages.create({
@@ -447,10 +490,49 @@ console.log(message);
 
 ::: zone-end
 
-::: zone pivot="programming-language-csharp,programming-language-java"
+::: zone pivot="programming-language-java"
 
-For setup, authentication, and code samples, see [Use Anthropic Claude models in Microsoft Foundry](../../foundry-models/how-to/use-foundry-models-claude.md).
+The Anthropic SDK doesn't provide a native Java client. Use the REST API with `HttpClient` to call Claude models.
+
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.core.credential.TokenRequestContext;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+String endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+String deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredentialBuilder().build();
+var token = credential.getToken(
+    new TokenRequestContext().addScopes("https://ai.azure.com/.default")).block();
+
+String requestBody = """
+    {
+        "model": "%s",
+        "messages": [{"role": "user", "content": "What are 3 things to visit in Seattle?"}],
+        "max_tokens": 1048
+    }
+    """.formatted(deploymentName);
+
+HttpClient httpClient = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create(endpoint))
+    .header("Authorization", "Bearer " + token.getToken())
+    .header("Content-Type", "application/json")
+    .header("anthropic-version", "2023-06-01")
+    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+    .build();
+
+HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+```
 
 ::: zone-end
+
+For more information, see [Use Anthropic Claude models in Microsoft Foundry](../../foundry-models/how-to/use-foundry-models-claude.md).
 
 [!INCLUDE [sdk-overview 3](../../includes/how-to-develop-sdk-overview-3.md)]
