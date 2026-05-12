@@ -44,7 +44,7 @@ In this article, you learn how to:
 - Create a toolbox with one or more tools.
 - Get the toolbox MCP endpoint.
 - Verify that tools load correctly.
-- Integrate a toolbox into your hosted agent.
+- Integrate a toolbox into your Hosted agent.
 - Manage toolbox versions and promote a version to default.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
@@ -69,7 +69,7 @@ For tool configuration syntax and authentication options for each tool type, see
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Grant the **Azure AI User** role on the Foundry project to each identity that applies to your scenario:
   - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
-  - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
+  - **Agent identity** (required if using a Hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
@@ -521,7 +521,7 @@ await client.close();
 
 :::zone pivot="vscode"
 
-Use the endpoint from Step 2 together with a scaffolded hosted agent sample to validate toolbox loading in VS Code.
+Use the endpoint from Step 2 together with a scaffolded Hosted agent sample to validate toolbox loading in VS Code.
 
 1. In **Foundry Toolkit**, under **My Resources** > **Your project name** > **Tools**, locate the toolbox you want to test.
 1. Select **Scaffold code template**.
@@ -764,7 +764,7 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit to scaffold a hosted agent sample that's already wired to your toolbox.
+Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to your toolbox.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -772,9 +772,9 @@ Use Foundry Toolkit to scaffold a hosted agent sample that's already wired to yo
 1. In the Command Palette, choose a project folder when prompted.
 1. Open the generated `README.md` and follow the setup, local run, and deployment steps for the scaffold.
 
-The generated project includes the hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
+The generated project includes the Hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
 
-If you want to integrate a toolbox into an existing hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
+If you want to integrate a toolbox into an existing Hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
 
 :::zone-end
 
@@ -1111,7 +1111,7 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a hosted agent that consumes it.
+Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
 
 :::zone-end
 
@@ -2037,7 +2037,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
 
 > [!IMPORTANT]
-> When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
+> When Code Interpreter is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
 
 :::zone pivot="rest-api"
 
@@ -2152,7 +2152,7 @@ To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When File Search is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
@@ -2602,6 +2602,6 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
-- [Deploy a hosted agent](../deploy-hosted-agent.md)
+- [Deploy a Hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)

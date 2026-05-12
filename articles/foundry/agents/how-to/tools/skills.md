@@ -20,12 +20,12 @@ ai-usage: ai-assisted
 
 As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation. A support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, and a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, you need to update and redeploy every agent that uses it.
 
-Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and download into any hosted agent project. Your agent code loads these skill files and injects their contents as additional instructions into conversation sessions, guiding the model's behavior. When you update a skill, download it again and redeploy the agent to pick up the change — no code changes required.
+Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and download into any Hosted agent project. Your agent code loads these skill files and injects their contents as additional instructions into conversation sessions, guiding the model's behavior. When you update a skill, download it again and redeploy the agent to pick up the change — no code changes required.
 
 In this article, you learn how to:
 
 - Import, list, get, download, and delete skills by using the Skills REST API.
-- Bundle downloaded skills into a hosted agent.
+- Bundle downloaded skills into a Hosted agent.
 
 > [!IMPORTANT]
 > If you use Skills with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.
@@ -42,7 +42,7 @@ In this article, you learn how to:
 | Include downloaded skills in agent | N/A | N/A | N/A | N/A | ✔️ | N/A |
 
 > [!IMPORTANT]
-> Use skills in **hosted agents** only. The Skills REST API handles storage and retrieval. Your agent code bundles the downloaded `SKILL.md` files into the container image and loads them when creating sessions.
+> Use skills in **Hosted agents** only. The Skills REST API handles storage and retrieval. Your agent code bundles the downloaded `SKILL.md` files into the container image and loads them when creating sessions.
 
 ## Prerequisites
 
@@ -85,7 +85,7 @@ Place each skill in its own subdirectory under the agent root directory. For exa
 
 ## Manage skills with the REST API
 
-The Skills REST API stores skills centrally so any hosted agent in your Foundry project can download and use them.
+The Skills REST API stores skills centrally so any Hosted agent in your Foundry project can download and use them.
 
 **Skills endpoint:** `{FOUNDRY_PROJECT_ENDPOINT}/skills`
 
@@ -674,4 +674,4 @@ azd ai agent invoke '{"input": "Hi, my name is Alex!"}'
 ## Related content
 
 - [Curate intent-based toolbox in Foundry](toolbox.md)
-- [Deploy a hosted agent](../deploy-hosted-agent.md)
+- [Deploy a Hosted agent](../deploy-hosted-agent.md)
