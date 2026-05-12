@@ -28,6 +28,7 @@ In the serverless model, **performance optimization directly affects cost**. Cos
 
 - Queries and indexing consume compute, measured in compute units per hour (CUs/hr).
 - Storage is billed separately based on index size on disk.
+- When the service is idle with no active queries or indexing, compute usage is zero. There is no reserved or minimum capacity charge.
 
 > [!IMPORTANT]
 > CUs/hr don't include all optional capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
