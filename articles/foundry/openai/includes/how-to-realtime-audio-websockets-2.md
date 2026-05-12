@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
 - `gpt-4o-mini-realtime-preview` (`2024-12-17`)
 - `gpt-4o-realtime-preview` (`2024-12-17`)
 - `gpt-realtime` (`2025-08-28`)

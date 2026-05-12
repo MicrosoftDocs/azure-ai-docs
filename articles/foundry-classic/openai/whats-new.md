@@ -87,7 +87,7 @@ The Realtime API now supports SIP, enabling telephony connections to realtimeapi
 
 ### GPT-4o audio model released
 
-- The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
+- The `gpt-4o-transcribe-diarize` speech to text model is released. This model is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
 
 Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity, supporting automatic speech recognition. 
 
@@ -110,9 +110,9 @@ Personally identifiable information (PII) detection is now available as a built-
 ### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-codex` is designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
+- `gpt-5-codex` is designed for use with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
 
-- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you do not need to reapply and will automatically be granted access.
+- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you don't need to reapply and will automatically be granted access.
 
 ### Sora video-to-video support 
 
@@ -147,7 +147,7 @@ We highly recommend that all customers transition to the newly launched GA model
 <!--
 ### gpt-audio Preview
 
-- Designed for audio content creation and analysis. It’s great for: 
+- Designed for audio content creation and analysis. It's great for: 
     - Spoken summaries and audio narration
     - Sentiment analysis from voice
     - Captioning and meeting summaries
@@ -226,11 +226,11 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ### o4-mini and o3 models released
 
-`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+`o4-mini` and `o3` models are now available. These models are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
-GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series).
+GPT 4.1 and GPT 4.1-nano are now available. These models are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series).
 
 ### gpt-4o audio models released
 
@@ -300,7 +300,7 @@ For more information about available models, see the [models and versions docume
 
 ### GPT-4o audio completions
 
-The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
+The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). Use the `gpt-4o-audio-preview` model for audio generation.
 
 The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
@@ -309,7 +309,7 @@ The `gpt-4o-audio-preview` model introduces the audio modality into the existing
 
 ### GPT Realtime API 2024-12-17
 
-The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
+The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
@@ -335,7 +335,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 ### Preference fine-tuning (preview)
 
-[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
+[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We're excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
 
 For fine-tuning model region availability, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#fine-tuning-models).
 
