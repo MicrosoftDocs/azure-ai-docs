@@ -264,14 +264,14 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 <!-- TO-DO (PM): Confirm the following behavior and response fields for MCP Server knowledge sources before publish. -->
 
-### How MCP server retrieval works
+### How retrieval works for MCP Server knowledge sources
 
-At query time, the model configured in the knowledge base reviews the configured tools, selects which ones to call based on the user query, and generates the arguments for each call. Azure AI Search then invokes the selected tools on the MCP server and returns the results as ranked references.
+At query time, the large language model (LLM) configured in the knowledge base reviews the configured tools, selects which ones to call based on the user query, and generates the arguments for each call. Azure AI Search then invokes the selected tools on the MCP server and returns the results as ranked references.
 
 > [!TIP]
 > MCP tool calls involve external network requests that can take longer than typical search queries. Set `maxRuntimeInSeconds` on the retrieve request to a value that gives all configured tools sufficient time to respond.
 
-### MCP server–specific response fields
+### MCP Server–specific response fields
 
 MCP Server knowledge sources return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
 
