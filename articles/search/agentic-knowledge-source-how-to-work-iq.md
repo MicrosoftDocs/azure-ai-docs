@@ -135,7 +135,7 @@ The following example shows a retrieve response containing a Work IQ knowledge s
 ```json
 {
   "response": [
-    // ... Response omitted for brevity
+      // ... Response omitted for brevity
   ],
   "activity": [
     {
