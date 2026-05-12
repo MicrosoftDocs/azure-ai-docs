@@ -3,7 +3,7 @@ title: Create a Fabric Ontology Knowledge Source
 description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/11/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -99,6 +99,8 @@ Content-Type: application/json
 
 ### Source-specific properties
 
+<!-- TO-DO (PM): Confirm whether these properties are correct for Fabric Ontology knowledge sources and update as needed. -->
+
 The following properties apply to Fabric Ontology knowledge sources.
 
 | Name | Description | Type | Editable | Required |
@@ -116,11 +118,13 @@ The following properties apply to Fabric Ontology knowledge sources.
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!NOTE]
-> Fabric Ontology knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
+> Fabric Ontology knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead. <!-- TO-DO (PM): Is answer synthesis also required? -->
 
 ## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has unique query-time permissions enforcement and response characteristics.
+
+<!-- TO-DO (PM): Confirm the following details about query-time permissions and response characteristics for Fabric Ontology knowledge sources and update as needed. -->
 
 ### Enforce permissions at query time
 
@@ -142,7 +146,7 @@ The following example shows a retrieve response containing a Fabric Ontology kno
 ```json
 {
   "response": [
-    // ... Response omitted for brevity
+      // ... Response omitted for brevity
   ],
   "activity": [
     {
@@ -155,7 +159,9 @@ The following example shows a retrieve response containing a Fabric Ontology kno
         "search": "Which airlines operate domestic routes?"
       }
     },
-    // ... Additional activity records omitted for brevity
+    {
+      // ... Additional activity records omitted for brevity 
+    }
   ],
   "references": [
     {
@@ -169,6 +175,9 @@ The following example shows a retrieve response containing a Fabric Ontology kno
       "rerankerScore": 0,
       "workspaceId": "00000000-0000-0000-0000-000000000000",
       "ontologyId": "00000000-0000-0000-0000-000000000001"
+    },
+    {
+      // ... Additional references omitted for brevity
     }
   ]
 }
