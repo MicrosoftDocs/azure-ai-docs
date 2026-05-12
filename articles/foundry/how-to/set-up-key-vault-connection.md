@@ -4,7 +4,7 @@ description: "Learn how to securely connect your Azure Key Vault to Foundry. Fol
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
-ms.date: 02/24/2026
+ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.custom:

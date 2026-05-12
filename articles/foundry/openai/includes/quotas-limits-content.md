@@ -66,7 +66,7 @@ You can currently check you quota tier with the [control plane API](/rest/api/ai
 
 ```bash
 curl -X GET \
-  "https://management.azure.com/subscriptions/9d295860-44e3-44bb-ade9-235cc45c68ba/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
+  "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
   -H "Authorization: Bearer $(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)" \
   -H "Content-Type: application/json"
 ```
