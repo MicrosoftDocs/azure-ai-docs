@@ -3,7 +3,7 @@ title: Create an MCP Server Knowledge Source
 description: Learn how to create an MCP Server knowledge source for agentic retrieval in Azure AI Search, which connects to any external Model Context Protocol server.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/11/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -15,7 +15,7 @@ An *MCP Server knowledge source* connects your agentic retrieval pipeline to any
 
 Unlike indexed knowledge sources, MCP Server knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. You provide the MCP server URL and specify which tools to allow, and Azure AI Search calls those tools on each query.
 
-## Usage support
+### Usage support
 
 | [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
 |--|--|--|--|--|--|--|
@@ -32,6 +32,14 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+## Limitations and considerations
+
+<!-- TO-DO (PM): Confirm that the following limitations apply to MCP Server knowledge sources before publish. -->
+
++ The `minimal` retrieval reasoning effort and `extractiveData` output mode aren't supported. Use the `low` or `medium` [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md).
+
++ `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source.
 
 ## Check for existing knowledge sources
 
@@ -89,6 +97,14 @@ The following JSON is an example response for an MCP Server knowledge source.
 
 ## Create a knowledge source
 
+<!-- TO-DO (PM): Before publish, confirm:
+
+(1) All property descriptions, editable values, and required values in the source-specific properties and tool properties tables.
+(2) Property descriptions and required values for jsonParameters.
+(3) Whether foundryConnection is supported at Build (bug bash doc marks it as "out of scope for now") or whether this tab should be removed. 
+
+-->
+
 Run the following code to create an MCP Server knowledge source.
 
 ```http
@@ -131,8 +147,6 @@ Prefer: return=representation
 
 The following properties apply to MCP Server knowledge sources.
 
-<!-- TO-DO (PM): Confirm all property descriptions, Editable values, and Required values in this table before publish. -->
-
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
@@ -149,8 +163,6 @@ The following properties apply to MCP Server knowledge sources.
 If your MCP server requires authentication, use one of the following options.
 
 # [`foundryConnection`](#tab/foundry-connection)
-
-<!-- TO-DO (PM): Bug bash doc marks foundryConnection as "out of scope for now." Confirm whether this option is supported at Build and whether it should be included in this article. -->
 
 Use `foundryConnection` to authenticate with credentials managed by Microsoft Foundry, which manages the full authentication lifecycle and injects the required credentials at query time. We recommend this option for production scenarios.
 
@@ -187,14 +199,12 @@ Use `storedHeaders` to send static HTTP headers with every MCP request. We recom
 
 Each entry in the `tools` array is an `McpServerTool` object with the following properties.
 
-<!-- TO-DO (PM): Confirm all property descriptions, Editable values, and Required values in this table before publish. -->
-
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the MCP tool to invoke. Must match a tool name exposed by the MCP server. | String | No | Yes |
 | `outputParsing` | Controls how the tool's raw output is parsed into rankable documents. Defaults to `auto`. For supported output parsing modes, see [Output parsing modes](#output-parsing-modes). | Object | No | No |
 | `inclusionMode` | Controls whether the tool's results are included only when ranked highly (`reranked`) or always regardless of relevance score (`always`). Defaults to `reranked`. | String | No | No |
-| `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. | Integer | No | No |
+| `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. Use this property to limit large tool responses that might otherwise be truncated by output explosion detection. | Integer | No | No |
 
 ### Output parsing modes
 
@@ -217,8 +227,6 @@ The `json` mode extracts documents from a specific location in the JSON output u
   }
 }
 ```
-
-<!-- TO-DO (PM): Confirm property descriptions and Required values for `jsonParameters`. -->
 
 | Property | Description | Type | Required |
 |--|--|--|--|
@@ -250,14 +258,11 @@ The `none` mode requires no configuration. The entire tool output is treated as 
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-> [!IMPORTANT]
-> MCP Server knowledge sources don't support the `minimal` retrieval reasoning effort or extractive data. Your knowledge base must use the `low` or `medium` [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md).
-
-<!-- TO-DO (PM): Is this "IMPORTANT" box accurate? Does this KB configuration indeed apply to MCP Server KS? -->
-
 ## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query MCP server content. MCP Server knowledge sources have source-specific retrieval behavior and response fields.
+
+<!-- TO-DO (PM): Confirm the following behavior and response fields for MCP Server knowledge sources before publish. -->
 
 ### How MCP server retrieval works
 
@@ -317,7 +322,7 @@ The following example shows a retrieve response containing an MCP Server knowled
 ```
 
 > [!TIP]
-> To receive `sourceData` in the response, set `includeReferenceSourceData` to `true` in `knowledgeSourceParams` of the retrieve request.
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
