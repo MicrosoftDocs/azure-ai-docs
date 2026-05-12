@@ -211,6 +211,7 @@ The regions in the following tables support most of the core features of Azure S
 | `northeurope` | ✅ | ✅ |
 | `southeastasia` | ✅ | ✅ | |
 | `westus` | ✅ | ✅ | ✅ |
+| `westus2` | ✅ | ✅ | |
 
 # [Voice Live](#tab/voice-live)
 
