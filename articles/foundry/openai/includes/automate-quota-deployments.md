@@ -13,6 +13,18 @@ ai-usage: ai-assisted
 
 This article contains brief example templates to help get you started programmatically creating Azure OpenAI deployments that use quota to set TPM rate limits. With the introduction of quota you must use API version `2023-05-01` for resource management related activities. This API version is only for managing your resources, and doesn't impact the API version used for inferencing calls like completions, chat completions, embedding, image generation, etc.
 
+## Prerequisites
+
+Before you create deployments programmatically, complete the following:
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An existing Azure OpenAI resource. To create one, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
+- Quota available in the target region for the model you want to deploy. To check or request quota, see [Manage Azure OpenAI in Microsoft Foundry Models quota](../how-to/quota.md).
+- Permissions to create deployments on the resource. The **Cognitive Services Contributor** role at the resource scope provides the required access. For details, see [Role-based access control for Azure OpenAI](../../../foundry-classic/openai/how-to/role-based-access-control.md).
+- The model name and version that you want to deploy. For supported models, see [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+
+Each tab in this article lists any tool-specific prerequisites, such as the required Azure CLI or Az PowerShell module version.
+
 # [REST](#tab/rest)
 
 ### Deployment
