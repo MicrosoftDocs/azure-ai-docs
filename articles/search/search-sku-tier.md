@@ -8,45 +8,70 @@ ms.topic: concept-article
 ms.date: 03/25/2026
 ---
 
-# Choose a service tier for Azure AI Search
+# Choose a service tier for the Dedicated pricing model in Azure AI Search
 
-Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU). In the Azure portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the `-Sku` parameter.
+When you [create a search service](search-create-service-portal.md), you must choose a pricing model. Azure AI Search offers two pricing models, each suited to different workload patterns:
 
-The tier determines the:
+| Pricing model | Best for | How you're billed |
+| --- | --- | --- |
+| Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#service-tier-descriptions) |
+| Serverless | Infrequent, bursty, or highly variable workloads | Consumption-based: measured by [Compute Units](./serverless-cost-optimization.md) and indexed storage (GB/month) |
 
-+ Maximum number of indexes and other objects allowed on the service.
-+ Size and speed of partitions (physical storage).
-+ Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity.
-+ Workload characteristics. Some tiers are optimized for specific workloads.
+> [!NOTE] 
+> Dedicated model Search Units (SUs) and Serverless model Compute Units (CUs) are not the same and cannot be used interchangeably. Don't use SU-based pricing calculators or estimates for Serverless workloads.
 
-In a few instances, the tier you choose determines the availability of [premium features](#feature-availability-by-tier).
+Both models provide the same core search features. The difference is pricing and scale behavior, not capabilities.
 
-Billing rates are shown in the Azure portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
+## Serverless pricing model (preview)
 
-> [!NOTE]
-> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits).
+The Serverless pricing model uses consumption-based pricing and does not require selecting a service tier.
 
-## Tier descriptions
+To learn more, see [Optimize costs with the Serverless pricing model](./serverless-cost-optimization.md).
 
-Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the Azure portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)).
 
-:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
+## Dedicated pricing model
 
-**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription. If the service is inactive for an extended period of time, it might be deleted to free up capacity, especially if the region is under capacity constraints.
+In the Dedicated pricing model, the selected service tier determines:
+
+- Maximum number of indexes and other objects allowed on the service.
+- Size and speed of partitions (physical storage).
+- Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity.
+- Workload characteristics. Some tiers are optimized for specific workloads.
+
+In some cases, the tier also determines the availability of [premium features](#feature-availability-by-tier).
+
+### Service tier descriptions
+
+**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling is not supported. Some premium features are unavailable, and the service may be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
 The most commonly used billable tiers include:
 
-+ **Basic** has the ability to meet SLA with its support for three replicas.
+- **Basic** supports production workloads and can meet SLA requirements with up to three replicas.
 
-+ **Standard (S1, S2, S3)** is the default. It gives you more flexibility in scaling for workloads. You can scale both partitions and replicas. With dedicated resources under your control, you can deploy larger projects, optimize performance, and increase capacity.
+- **Standard (S1, S2, S3)** is the default tier. It supports scaling partitions and replicas, enabling larger workloads and improved performance.
 
 Some tiers are designed for certain types of work:
 
-+ **Standard 3 High Density (S3 HD)** is a *hosting mode* for S3, where the underlying hardware is optimized for a large number of smaller indexes and is intended for multitenancy scenarios. S3 HD has the same per-unit charge as S3, but the hardware is optimized for fast file reads on a large number of smaller indexes.
+- **Standard 3 High Density (S3 HD)** is a *hosting mode* for S3 optimized for multitenancy. S3 HD has the same per-unit charge as S3, but supports a large number of smaller indexes and uses hardware optimized for fast file reads and high-density storage scenarios.
 
-+ **Storage Optimized (L1, L2)** tiers offer larger storage capacity at a lower price per TB than the Standard tiers. These tiers are designed for large indexes that don't change very often. The primary tradeoff is higher query latency, which you should validate for your specific application requirements.
+- **Storage Optimized (L1, L2)** tiers provide lower-cost storage per TB and are designed for large, less frequently updated indexes. These tiers typically have higher query latency.
 
-You can find out more about the various tiers on the [pricing page](https://azure.microsoft.com/pricing/details/search/), in the [Service limits in Azure AI Search](search-limits-quotas-capacity.md) article, and on the Azure portal page when you're provisioning a service.
+Billing rates are shown in the [Azure portal](https://portal.azure.com/auth/login/) when you're creating a new AI Search service in the **Select Pricing Tier** page. 
+
+:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
+
+You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates.
+
+Review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the Dedicated pricing model and how it compares to the Serverless model.
+
+Check [Service limits in Azure AI Search](search-limits-quotas-capacity.md) 
+or limits on storage, workloads, and object counts by tier.
+
+## How to select a tier
+
+In the Azure portal, the service tiers are specified in the **Select Pricing Tier** page when you create the service. 
+
+In PowerShell or Azure CLI, the tier is specified through the `-Sku` parameter.
 
 ## Region availability by tier
 
@@ -56,10 +81,10 @@ When you create a search service in the Azure portal, unavailable region–tier 
 
 ## Feature availability by tier
 
-Most features are available on all tiers, including the Free tier. In a few cases, the tier determines the availability of a feature. The following table describes the constraints.
+Most features are available across all tiers. In some cases, feature availability depends on the selected tier:
 
 | Feature | Tier considerations |
-|---------|---------------------|
+| ------- | ------------------- |
 | [indexers](search-indexer-overview.md) | Indexers aren't available on S3 HD. Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
 | [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
 | [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended for large workloads. |
@@ -89,11 +114,19 @@ Tiers have different billing rates, with higher rates for tiers that run on more
 
 After you create a service, the billing rate becomes both a *fixed cost* of running the service around the clock, and an *incremental cost* if you choose to add more capacity.
 
-Search services are allocated computing resources in the form of *partitions* (for storage), and *replicas* (instances of the query engine). Initially, a service is created with one of each, and the billing rate is inclusive of both resources. However, if you scale capacity, the costs go up or down in increments of the billable rate.
+
+In the Dedicated model, billing is based on Search Units (SUs), which combine partitions (storage) and replicas (query capacity).
+
+- A service starts with one partition and one replica (one SU)
+- Adding partitions or replicas increases cost linearly with the number of SUs
+
+For example, adding replicas to improve availability or throughput increases the monthly cost proportionally.
+
+For more information, see [Plan and manage costs](search-sku-manage-costs.md).
+
+### Billing rate example
 
 The following example provides an illustration. Assume a hypothetical billing rate of $100 per month. If you keep the search service at its initial capacity of one partition and one replica, then $100 is what you can expect to pay at the end of the month. However, if you add two more replicas to achieve high availability, the monthly bill increases to $300 ($100 for the first replica-partition pair, followed by $200 for the two replicas).
-
-This billing model is based on the concept of applying the billing rate to the number *search units* (SU) used by a search service. All services are initially provisioned at one SU, but you can increase the SUs by adding either partitions or replicas to handle larger workloads. For more information, see [How to estimate costs of a search service](search-sku-manage-costs.md).
 
 ## Tier changes
 
