@@ -1,7 +1,7 @@
 ---
 title: "Configure managed virtual network for Microsoft Foundry projects (preview)"
 ms.service: microsoft-foundry
-ms.date: 02/25/2026
+ms.date: 05/12/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
