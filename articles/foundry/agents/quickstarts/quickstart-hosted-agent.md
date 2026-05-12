@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
+In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running Hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
 > [!NOTE]
 > **Runtime behavior**: Hosted agents use scale-to-zero compute. Idle compute deprovisions after approximately 15 minutes of inactivity and is automatically restored on the next request, with predictable cold starts. Sessions are stateful—each session has a persistent filesystem and can persist for up to 30 days.
@@ -52,7 +52,7 @@ Before you begin, you need:
 :::zone pivot="azd"
 
 ## Required Permission
-You need Azure AI Project Manager at project scope to create and deploy hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the Azure AI User role to the platform-created agent identity. The agent identity needs Azure AI User on the project to access models and artifacts at runtime.
+You need Azure AI Project Manager at project scope to create and deploy Hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the Azure AI User role to the platform-created agent identity. The agent identity needs Azure AI User on the project to access models and artifacts at runtime.
 
 If you use azd or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
@@ -66,7 +66,7 @@ Azure AI User for the platform-created agent identity (runtime model and tool ac
 > This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.27-preview or later.
 > For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
 
-Install the Azure Developer CLI agent extension and initialize a new hosted agent project.
+Install the Azure Developer CLI agent extension and initialize a new Hosted agent project.
 
 1. Install the `ai agent` extension for the Azure Developer CLI:
 
@@ -80,7 +80,7 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     azd ext list
     ```
 
-1. Initialize a new hosted agent project in an empty directory:
+1. Initialize a new Hosted agent project in an empty directory:
 
     ```bash
     azd ai agent init
@@ -182,7 +182,7 @@ The agent container is built remotely, so Docker Desktop isn't required on your 
 > The `azd deploy` command assigns Azure RBAC roles to the agent's Agent identity. This role assignment requires **Owner** or **User Access Administrator** permissions on your subscription, in addition to the **Contributor** role required for provisioning.
 
 > [!WARNING]
-> Your hosted agent incurs charges while deployed. After you finish testing, complete [Clean up resources](#clean-up-resources) to delete resources and stop charges.
+> Your Hosted agent incurs charges while deployed. After you finish testing, complete [Clean up resources](#clean-up-resources) to delete resources and stop charges.
 
 When finished, the output shows a link to the Agent Playground and the endpoint for invoking the agent programmatically:
 
@@ -232,7 +232,7 @@ Once the model is deployed successfully, move on to the next step and create a H
 
 ## Step 3: Create a Hosted Agent project
 
-Use the Microsoft Foundry Toolkit extension in VS Code to scaffold a new hosted agent project.
+Use the Microsoft Foundry Toolkit extension in VS Code to scaffold a new Hosted agent project.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create new Hosted Agent**.
 
@@ -246,7 +246,7 @@ Use the Microsoft Foundry Toolkit extension in VS Code to scaffold a new hosted 
 
 1. Choose the folder where you want your project files to be saved.
 
-1. Enter a name for the hosted agent.
+1. Enter a name for the Hosted agent.
 
 A new VS Code window will launch with the new agent project folder as the active workspace.
 
@@ -303,7 +303,7 @@ Run as HTTP server (default):
 python main.py
 ```
 
-This will start the hosted agent locally on `http://localhost:8088/`.
+This will start the Hosted agent locally on `http://localhost:8088/`.
 
 **PowerShell (Windows):**
 
@@ -350,7 +350,7 @@ After deployment completes, verify your agent is running.
 
 Check the status of your agent to confirm it's running.
 
-1. Select your hosted agent from the Hosted Agents (Preview) tree view.
+1. Select your Hosted agent from the Hosted Agents (Preview) tree view.
 
 1. Select the agent you just deployed 
 
@@ -360,7 +360,7 @@ The detail page shows the Status under the Container Details section.
 
 Microsoft Foundry Toolkit for VS Code includes an integrated playground to chat and interact with your agent. 
 
-1. Select your hosted agent from the Hosted Agents (Preview) tree view.
+1. Select your Hosted agent from the Hosted Agents (Preview) tree view.
 
 1. Select the Playground option and type a message and send to test your agent.
 
@@ -460,7 +460,7 @@ To avoid charges, delete the resources when you're finished.
 :::zone pivot="azd"
 
 > [!WARNING]
-> This command permanently deletes all Azure resources in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and your hosted agent. This action can't be undone. If you're using an existing resource group that contains other resources, use caution — `azd down` removes everything in the group, not just resources created by this quickstart.
+> This command permanently deletes all Azure resources in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and your Hosted agent. This action can't be undone. If you're using an existing resource group that contains other resources, use caution — `azd down` removes everything in the group, not just resources created by this quickstart.
 
 To preview what will be deleted run the `down` command:
 
@@ -477,7 +477,7 @@ The cleanup process takes approximately 2-5 minutes.
 :::zone pivot="vscode"
 
 > [!WARNING]
-> Deleting resources permanently removes all Azure resources created in this quickstart, including the Foundry project, Container Registry, Application Insights, and your hosted agent. This action can't be undone.
+> Deleting resources permanently removes all Azure resources created in this quickstart, including the Foundry project, Container Registry, Application Insights, and your Hosted agent. This action can't be undone.
 
 To delete your resources, open the [Azure portal](https://portal.azure.com), navigate to your resource group, and delete it along with all contained resources.
 
@@ -498,7 +498,7 @@ If you encounter issues, try these solutions for common problems:
 | Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
 | `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
 
-For comprehensive details about all permissions and role assignments involved in hosted agent deployment, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+For comprehensive details about all permissions and role assignments involved in Hosted agent deployment, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 :::zone pivot="azd"
 
@@ -514,9 +514,9 @@ For comprehensive details about all permissions and role assignments involved in
 
 You can check the console and system logs of the container to troubleshoot issues.
 
-1. Select your hosted agent from the Hosted Agents (Preview) tree view.
+1. Select your Hosted agent from the Hosted Agents (Preview) tree view.
 
-1. Select the "Playground" tab of your hosted agent 
+1. Select the "Playground" tab of your Hosted agent 
 
 1. Select the "Logs" section in the session details.
 
@@ -524,9 +524,9 @@ You can check the console and system logs of the container to troubleshoot issue
 
 You can view all the files stored on the home directory of your ADC based agent
 
-1. Select your hosted agent from Hosted Agents (Preview) tree view.
+1. Select your Hosted agent from Hosted Agents (Preview) tree view.
 
-1. Select the "Playground" tab of your hosted agent
+1. Select the "Playground" tab of your Hosted agent
 
 1. Select the "files" section in the session details.
 
@@ -542,17 +542,17 @@ You can download, upload, and create folders within the current folder, clicking
 
 In this quickstart, you:
 
-- Set up a hosted agent sample with Foundry tools (web search and MCP)
+- Set up a Hosted agent sample with Foundry tools (web search and MCP)
 - Tested the agent locally
 - Deployed to Foundry Agent Service
 - Verified your agent in the Foundry playground
 
 ## Next steps
 
-Now that you've deployed your first hosted agent, learn how to:
+Now that you've deployed your first Hosted agent, learn how to:
 
 > [!div class="nextstepaction"]
-> [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
+> [Manage Hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
 Customize your agent with additional capabilities:
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
@@ -564,7 +564,7 @@ You can see a full list of available tools in the [tool catalog](../concepts/too
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Deploy a Hosted agent](../how-to/deploy-hosted-agent.md)
 - [Agent development lifecycle](../concepts/development-lifecycle.md)
-- [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+- [Python Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
