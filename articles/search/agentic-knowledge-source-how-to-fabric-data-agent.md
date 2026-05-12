@@ -3,7 +3,7 @@ title: Create a Fabric Data Agent Knowledge Source
 description: Learn how to create a Fabric Data Agent knowledge source, which connects a Microsoft Fabric Data Agent to an agentic retrieval pipeline in Azure AI Search for live, data-driven answers as grounding data.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/11/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -99,6 +99,8 @@ Content-Type: application/json
 
 ### Source-specific properties
 
+<!-- TO-DO (PM): Confirm whether these properties are correct for Fabric Data Agent knowledge sources and update as needed. -->
+
 The following properties apply to Fabric Data Agent knowledge sources.
 
 | Name | Description | Type | Editable | Required |
@@ -116,17 +118,17 @@ The following properties apply to Fabric Data Agent knowledge sources.
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!IMPORTANT]
-> Fabric Data Agent knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
+> Fabric Data Agent knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead. <!-- TO-DO (PM): Is answer synthesis also required? -->
 
 ## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Data Agent content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
+<!-- TO-DO (PM): Confirm the following details about query-time permissions and response characteristics for Fabric Data Agent knowledge sources and update as needed. -->
+
 ### Enforce permissions at query time
 
 Fabric Data Agent knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the Fabric Data Agent on behalf of the end user.
-
-<!-- TO-DO (PM): Confirm whether Power BI row-level security is enforced on underlying semantic models when the Fabric Data Agent is queried via the on-behalf-of flow. -->
 
 Because Fabric Data Agent knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
@@ -140,8 +142,6 @@ Fabric Data Agent knowledge sources return results in the `sourceData` object of
 - `fabricEmbeddedResources`: Any embedded resources, such as tables and charts, when the query produces structured output.
 
 The following example shows a retrieve response containing a Fabric Data Agent knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
-
-<!-- TO-DO (PM): Confirm the JSON serialization names of the embedded resource subfields (`title`, `mimeType`, `content`). -->
 
 ```json
 {
@@ -158,6 +158,9 @@ The following example shows a retrieve response containing a Fabric Data Agent k
       "fabricDataAgentArguments": {
         "search": "my query"
       }
+    },
+    {
+      // ... Additional activity records omitted for brevity 
     }
   ],
   "references": [
@@ -178,6 +181,9 @@ The following example shows a retrieve response containing a Fabric Data Agent k
           }
         ]
       }
+    },
+    {
+      // ... Additional references omitted for brevity 
     }
   ]
 }
@@ -276,8 +282,7 @@ To delete a knowledge source:
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search]
-(agentic-retrieval-overview.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
