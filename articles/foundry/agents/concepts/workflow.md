@@ -18,11 +18,14 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
+
+
+# Build a workflow in Microsoft Foundry
+
 > [!IMPORTANT]
 > Workflows in Microsoft Foundry is being retired 1 October 2026.
 > If you're looking to build workflows, we reccomend using Microsoft Agent Framework. If you would like more options for migrating existing workflows, see the [migration guide](#Migration-Guide) section of this article.
 
-# Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each powered by a Foundry model with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
@@ -333,12 +336,6 @@ To delete a workflow you no longer need:
 
 Azure AI Foundry continues to support executing YAML-based workflows when they are deployed through hosted agents. However, since Foundry workflows is being retired, you can choose  one of the supported workflow experiences described in this section.
 
-* **[Microsoft Agent Framework (MAF)](#microsoft-agent-framework)** – For building and executing workflows using YAML or code-first patterns.
-* **[Logic Apps](#logic-apps)** – For a fully visual workflow design experience with orchestration capabilities.
-* **[Agent-to-agent (A2A) connections](#Connecting-Foundry-Agents-through-A2A)** – For lightweight scenarios that require direct communication between agents without a formal workflow.
-
-### Retrieve your existing workflows
-
 Before migrating, download or copy your existing workflow definition:
 
 * Open your workflow in the Foundry workflow UI.
@@ -349,18 +346,22 @@ The Agent Inspector in the Foundry AI Toolkit for VSCode allows to visualize and
 
 #### Microsoft Agent Framework 
 
+Micrsoft Agent Framework can be used for building and executing workflows using YAML or code-first patterns.
+
 * Build and run workflows in MAF: [Microsoft Agent Framework Workflows | Microsoft Learn](/agent-framework/workflows/)
 * Run a yaml-based workflow: [Declarative Workflows - Overview | Microsoft Learn](/agent-framework/workflows/declarative?pivots=programming-language-python) 
 * Deployment as a hosted agent to [Foundry: Foundry Hosted Agents | Microsoft Learn](/agent-framework/hosting/foundry-hosted-agent?pivots=programming-language-python)
 
 #### Logic Apps 
 
+Logic Apps can be used for a fully visual workflow design experience with orchestration capabilities.
+
 - Logic Apps provides a visual designer for building automated workflows: [Overview - Azure Logic Apps | Microsoft Learn](/azure/logic-apps/logic-apps-overview))
 - You can orchestrate Foundry agents in Logic Apps workflows: [Run Automated Workflows from Foundry Agents - Azure Logic Apps | Microsoft Learn](/azure/logic-apps/add-agent-action-create-run-workflow?pivots=portal)
 
 #### Connecting Foundry Agents through A2A 
  
-For scenarios that do not require a workflow but only creating a connection between two agents Foundry allows to expose agents as Agent2Agent endpoint: 
+Connecting Foundry Agents through A2A, can be used for lightweight scenarios that require direct communication between agents without a formal workflow. For scenarios that do not require a workflow but only creating a connection between two agents Foundry allows to expose agents as Agent2Agent endpoint: 
 Enable incoming [A2A on a Foundry agent - Microsoft Foundry | Microsoft Learn](/azure/foundry/agents/how-to/enable-agent-to-agent-endpoint?view=foundry&tabs=portal%2Cverify-bash%2Cconnection-bash)
 
 ## Related content
