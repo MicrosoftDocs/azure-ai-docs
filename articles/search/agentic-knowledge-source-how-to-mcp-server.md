@@ -273,7 +273,7 @@ At query time, the large language model (LLM) configured in the knowledge base r
 
 MCP Server knowledge sources return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
 
-The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record.
+The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 ```json
 {
