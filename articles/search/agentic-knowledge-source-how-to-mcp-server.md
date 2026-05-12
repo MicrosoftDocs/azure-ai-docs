@@ -41,6 +41,8 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 
 + `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source.
 
++ MCP server tool calls involve external network requests and can take longer than typical search queries. Set `maxRuntimeInSeconds` on retrieve requests to give all configured tools sufficient time to respond.
+
 ## Check for existing knowledge sources
 
 <!-- TO-DO (writer): Replace with [!INCLUDE [Check for existing knowledge sources using REST](includes/how-tos/knowledge-source-check-rest.md)] when C# and Python are added to this article. -->
@@ -91,7 +93,6 @@ The following JSON is an example response for an MCP Server knowledge source.
       }
     ]
   }
-  // Other knowledge source type parameters omitted for brevity.
 }
 ```
 
@@ -162,7 +163,7 @@ The following properties apply to MCP Server knowledge sources.
 
 If your MCP server requires authentication, use one of the following options.
 
-# [`foundryConnection`](#tab/foundry-connection)
+# [foundryConnection](#tab/foundry-connection)
 
 Use `foundryConnection` to authenticate with credentials managed by Microsoft Foundry, which manages the full authentication lifecycle and injects the required credentials at query time. We recommend this option for production scenarios.
 
@@ -175,7 +176,7 @@ Use `foundryConnection` to authenticate with credentials managed by Microsoft Fo
 }
 ```
 
-# [`storedHeaders`](#tab/stored-headers)
+# [storedHeaders](#tab/stored-headers)
 
 Use `storedHeaders` to send static HTTP headers with every MCP request. We recommend this option for static, long-lived credentials, such as API keys. Stored headers aren't intended for per-user credentials or rotating tokens.
 
@@ -210,11 +211,11 @@ Each entry in the `tools` array is an `McpServerTool` object with the following 
 
 By default, the retrieval engine applies automatic heuristics (`auto`) to convert raw MCP tool output into rankable documents. You can override this behavior per tool using the `outputParsing` property.
 
-# [`auto`](#tab/auto)
+# [auto](#tab/auto)
 
 The `auto` mode requires no configuration. The retrieval engine applies heuristics to parse the tool output.
 
-# [`json`](#tab/json)
+# [json](#tab/json)
 
 The `json` mode extracts documents from a specific location in the JSON output using a JSONPath expression. Use this mode when your tool returns a structured JSON response with a predictable array field.
 
@@ -233,7 +234,7 @@ The `json` mode extracts documents from a specific location in the JSON output u
 | `documentsPath` | A [JSONPath](https://goessner.net/articles/JsonPath/) expression that resolves to an array in the tool output. Each element in the array becomes a rankable document. | String | Yes |
 | `includeContext` | Whether to include the full JSON response alongside each extracted document as additional context. Defaults to `false`. | Boolean | No |
 
-# [`split`](#tab/split)
+# [split](#tab/split)
 
 The `split` mode chunks large text, HTML, or Markdown output into smaller segments. Use this mode when a tool returns long-form content. This mode supports the same parameters as the [Text Split skill](cognitive-search-skill-textsplit.md#skill-parameters).
 
@@ -248,7 +249,7 @@ The `split` mode chunks large text, HTML, or Markdown output into smaller segmen
 }
 ```
 
-# [`none`](#tab/none)
+# [none](#tab/none)
 
 The `none` mode requires no configuration. The entire tool output is treated as a single document. Use this mode when the raw output doesn't require splitting or structured extraction.
 
@@ -267,9 +268,6 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 ### How retrieval works for MCP Server knowledge sources
 
 At query time, the large language model (LLM) configured in the knowledge base reviews the configured tools, selects which ones to call based on the user query, and generates the arguments for each call. Azure AI Search then invokes the selected tools on the MCP server and returns the results as ranked references.
-
-> [!TIP]
-> MCP tool calls involve external network requests that can take longer than typical search queries. Set `maxRuntimeInSeconds` on the retrieve request to a value that gives all configured tools sufficient time to respond.
 
 ### MCP Server–specific response fields
 
