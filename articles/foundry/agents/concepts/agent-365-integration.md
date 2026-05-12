@@ -6,8 +6,8 @@ ms.author: deeikele
 ms.reviewer: jburchel
 ms.date: 03/19/2026
 ms.topic: concept-article
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As an IT admin or platform engineer, I want to understand how Foundry agents integrate with Agent 365 so that I can plan governance and security for AI agents in my organization.
 ---
