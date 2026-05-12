@@ -638,7 +638,7 @@ To learn more about each model and browse the API references, use the links in t
 
 :::moniker range=">=doc-intel-3.0.0"
 
-* [Choose a Document Intelligence model]().
+* [Choose a Document Intelligence model](concept/choose-model-feature.md).
 * Process your own forms and documents with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 * Finish a [Document Intelligence quickstart](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), and then create a document processing app in the development language of your choice.
 
