@@ -20,24 +20,3 @@ All deployments can perform the exact same inference operations, but the billing
 
 > [!TIP]
 > Use the tabs at the top of this page to switch deployment categories: [Standard deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard), [Provisioned deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned), and [Batch deployment options](../concepts/models-sold-directly-by-azure-region-availability.md?pivots=batch).
-
-
-<!-- ::: zone pivot="standard"
-
-[!INCLUDE [deployments-standard](../includes/model-matrix/deployments-standard.md)]
-
-::: zone-end
-
-
-::: zone pivot="provisioned"
-
-[!INCLUDE [deployments-provisioned](../includes/model-matrix/deployments-provisioned.md)]
-
-::: zone-end
-
-
-::: zone pivot="batch"
-
-[!INCLUDE [deployments-batch](../includes/model-matrix/deployments-batch.md)]
-
-::: zone-end -->
