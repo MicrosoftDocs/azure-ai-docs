@@ -8,12 +8,12 @@ metadata:
   title: Anomaly Detector API - Tutorials, quickstarts, API reference
   titleSuffix: Foundry Tools
   description: Use the Azure AI Anomaly Detector univariate and multivariate APIs to monitor data over time and detect anomalies with machine learning. Get insight into your data, regardless of volume, industry, or scenario. 
-  author: mrbullwinkle
+  author: alvinashcraft
   manager: nitinme
   ms.service: azure-ai-anomaly-detector
   ms.topic: landing-page
   ms.date: 03/17/2026
-  ms.author: mbullwin
+  ms.author: aashcraft
 
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new

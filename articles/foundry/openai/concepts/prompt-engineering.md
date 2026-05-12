@@ -10,8 +10,8 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 
 recommendations: false
 ai-usage: ai-assisted

@@ -4,7 +4,7 @@ description: "Find known issues, workarounds, and solutions for Microsoft Foundr
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.topic: troubleshooting-known-issue
-ms.date: 02/19/2026
+ms.date: 05/06/2026
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: bgilmore

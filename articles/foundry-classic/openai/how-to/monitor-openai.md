@@ -4,8 +4,8 @@ description: "Start here to learn how to use Azure Monitor tools like Log Analyt
 ms.date: 11/6/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: concept-article
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ---

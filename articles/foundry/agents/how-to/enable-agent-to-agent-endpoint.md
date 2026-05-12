@@ -25,7 +25,7 @@ You can expose your Foundry Agent Service agent as an Agent2Agent (A2A) endpoint
 Incoming A2A requires the responses protocol. The following agent types support it:
 
 - **Prompt agents** — support the responses protocol by default. All prompt agents can be exposed as A2A endpoints.
-- **Hosted agents** — support incoming A2A only if the hosted agent is built to handle the responses protocol. If your hosted agent doesn't implement the responses protocol, you can't enable incoming A2A for it.
+- **Hosted agents** — support incoming A2A only if the Hosted agent is built to handle the responses protocol. If your Hosted agent doesn't implement the responses protocol, you can't enable incoming A2A for it.
 
 > [!TIP]
 > This article covers how to **expose** your agent as an A2A endpoint that other agents can call. If you want your agent to **call** a remote A2A endpoint, see [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md).
@@ -33,7 +33,7 @@ Incoming A2A requires the responses protocol. The following agent types support 
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A deployed agent in Foundry Agent Service that uses the responses protocol (prompt agent or a hosted agent built to support it).
+- A deployed agent in Foundry Agent Service that uses the responses protocol (prompt agent or a Hosted agent built to support it).
 - Required Azure role: **Azure AI User** or higher on the Foundry project.
 
 ## Enable incoming A2A

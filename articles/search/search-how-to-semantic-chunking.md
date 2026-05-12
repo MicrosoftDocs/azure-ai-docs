@@ -189,7 +189,7 @@ Besides skills, the skillset includes `indexProjections` and `cognitiveServices`
 + `cognitiveServices` [attaches a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) for billing purposes. The Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 
 ```https
-POST {endpoint}/skillsets?api-version=2025-09-01
+POST {endpoint}/skillsets?api-version=2026-04-01
 
 {
   "name": "my_skillset",
@@ -321,7 +321,7 @@ You don't need to set `outputFieldMappings` in this scenario because `indexProje
 Here's an example of an indexer creation request.
 
 ```https
-POST {endpoint}/indexers?api-version=2025-09-01
+POST {endpoint}/indexers?api-version=2026-04-01
 
 {
   "name": "my_indexer",

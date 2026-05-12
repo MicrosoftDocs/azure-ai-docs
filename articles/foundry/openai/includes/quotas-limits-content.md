@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
@@ -66,7 +66,7 @@ You can currently check you quota tier with the [control plane API](/rest/api/ai
 
 ```bash
 curl -X GET \
-  "https://management.azure.com/subscriptions/9d295860-44e3-44bb-ade9-235cc45c68ba/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
+  "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
   -H "Authorization: Bearer $(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)" \
   -H "Content-Type: application/json"
 ```
@@ -240,12 +240,7 @@ If you encounter 429 errors or notice increased latency variability, here’s wh
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
 - Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you're operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
-You may receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota.
-
-This can occur in the following scenarios:
-- Requests rejected due to **input or context length limits (HTTP 400)**. These requests are not billed and may not appear in token usage metrics, but they can still count toward rate limiting.
-- Requests evaluated based on **potential token usage** (for example, `max_tokens`), even if no tokens are ultimately generated.
-- **Distributed rate‑limiting behavior**, where enforcement may not be perfectly precise or immediately reflected in aggregated metrics.
+You might receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota. For an explanation of why this happens, see [Why you might see 429s even when token usage metrics are below quota](../how-to/quota.md#why-you-might-see-429s-even-when-token-usage-metrics-are-below-quota).
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -279,6 +274,8 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Avoid sharp changes in the workload. Increase the workload gradually.
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
+
+For detailed best practices, retry-with-backoff code samples, and a 429 troubleshooting guide, see [Manage Azure OpenAI in Microsoft Foundry Models quota](../how-to/quota.md#rate-limit-best-practices).
 
 ## Request quota increases
 

@@ -302,7 +302,7 @@ This approach assumes Visual Studio Code with the [REST Client extension](https:
 1. Send a request that uses the variables you specify. For the Search Index Data Reader role, you can send a query using any [supported API version](/rest/api/searchservice/search-service-api-versions).
 
    ```http
-   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2025-09-01 HTTP/1.1
+   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2026-04-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 

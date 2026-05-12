@@ -6,7 +6,7 @@ ms.author: jburchel
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -86,7 +86,7 @@ The account must be created with `customSubDomainName`, `allowProjectManagement`
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
   --body '{
     "location": "{region}",
     "kind": "AIServices",
@@ -112,7 +112,7 @@ Wait for `provisioningState` to reach `Succeeded` before proceeding:
 
 ```azurecli
 az rest --method GET \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
   --query "properties.provisioningState" -o tsv
 ```
 
@@ -233,7 +233,7 @@ After the deployment completes, verify that the managed virtual network is confi
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2025-10-01-preview" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2026-03-01" \
      --query "properties.managedNetwork"
    ```
 
@@ -243,7 +243,7 @@ After the deployment completes, verify that the managed virtual network is confi
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2025-10-01-preview" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2026-03-01" \
      --query "value[].{name:name, type:properties.type, status:properties.status}"
    ```
 
@@ -347,7 +347,7 @@ To update outbound rules using ARM REST API, use the `az rest` command. The foll
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-03-01" \
   --body '{
     "properties": {
       "type": "PrivateEndpoint",

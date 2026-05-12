@@ -7,8 +7,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: tutorial
 ms.date: 11/04/2025
-author: mrbullwinkle #noabenefraim
-ms.author: mbullwin
+author: alvinashcraft #noabenefraim
+ms.author: aashcraft
 recommendations: false
 ms.custom:
   - devx-track-python

@@ -6,13 +6,17 @@ ms.author: haileytapia
 manager: nitinme
 ms.service: microsoft-foundry
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 04/30/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
 
-# Foundry IQ (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# What is Foundry IQ?
+
+> [!NOTE]
+> Some Foundry IQ features are now generally available, while others remain in preview. Availability depends on the Search Service REST API version you use. The Microsoft Foundry portal and Azure portal continue to provide preview-only access to all agentic retrieval features.
+>
+> For migration guidance, including a breakdown of what's generally available and what remains in preview, see [Migrate agentic retrieval code to the latest version](/azure/search/agentic-retrieval-how-to-migrate).
 
 Agents need context from scattered enterprise content to accurately answer questions. The Foundry model powering an agent has a knowledge cutoff and can't access your proprietary data on its own. With Foundry IQ, you can create a configurable, multi-source *knowledge base* that provides agents with permission-aware responses based on your organization's data.
 
@@ -53,6 +57,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 ### [Portal](#tab/portal)
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+
 1. Create a project or select an existing project.
 
 1. From the top menu, select **Build**.
