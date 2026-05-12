@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 04/17/2026
+ms.date: 05/12/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -120,6 +120,7 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `grok-4.3` <br> **Preview** | chat-completion | - **Input:** text (200,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4-20-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4-20-non-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4.1-fast-reasoning` <br> **Preview** | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
