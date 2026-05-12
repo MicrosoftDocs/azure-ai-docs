@@ -156,7 +156,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
         embedding: "text-embedding-3-large", // Required when using field_schema and prebuilt-document base analyzer
     },
 } as unknown as ContentAnalyzer;
@@ -274,7 +274,7 @@ const classifierAnalyzer: ContentAnalyzer = {
         },
     } as unknown as ContentAnalyzerConfig,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -342,7 +342,7 @@ const analyzer: ContentAnalyzer = {
         + " and graphs",
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -459,7 +459,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 
@@ -576,7 +576,7 @@ const analyzer: ContentAnalyzer = {
     config,
     fieldSchema,
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 } as unknown as ContentAnalyzer;
 

@@ -7,9 +7,9 @@ ms.date: 01/26/2026
 ms.custom: references_regions
 ---
 
-# Set the retrieval reasoning effort
+# Set the retrieval reasoning effort (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 In agentic retrieval, you can specify the level of large language model (LLM) processing for query planning and answer formulation. Use the `retrievalReasoningEffort` property to set LLM processing levels that affect costs and latency. Extra LLM processing improves relevancy, but it also takes longer and uses billable LLM resources. You can set this property in a knowledge base or on a retrieve request.
 

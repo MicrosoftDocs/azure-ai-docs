@@ -1,8 +1,8 @@
 ---
 title: "Planning red teaming for large language models (LLMs) and their applications"
 description: "Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 12/6/2025
 ms.service: microsoft-foundry

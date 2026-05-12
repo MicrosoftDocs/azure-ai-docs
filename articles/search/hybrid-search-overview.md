@@ -41,7 +41,7 @@ Hybrid search relies on a search index that contains fields of various [data typ
 A representative hybrid query might look like the following. For brevity, the vector queries have placeholder values.
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2026-04-01
 content-type: application/JSON
 
 {

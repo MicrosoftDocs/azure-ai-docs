@@ -2,8 +2,8 @@
 title: "Data and privacy for Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Anomaly Detector and Metrics Advisor."
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article

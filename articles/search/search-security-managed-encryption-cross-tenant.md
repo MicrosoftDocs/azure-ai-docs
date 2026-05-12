@@ -117,7 +117,7 @@ You can use this sample index schema for testing. You can use the Azure portal t
 Verify the index was created successfully:
 
 ```http
-GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2025-09-01
+GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2026-04-01
 ```
 
 For more information about how to rotate or manage keys, see [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md).

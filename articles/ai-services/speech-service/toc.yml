@@ -267,8 +267,8 @@ items:
           - name: Batch synthesis properties
             href: text-to-speech-avatar/batch-synthesis-avatar-properties.md
             displayName: avatar
-        - name: Customize avatar gestures with SSML
-          href: text-to-speech-avatar/avatar-gestures-with-ssml.md
+          - name: Customize avatar gestures with SSML
+            href: text-to-speech-avatar/avatar-gestures-with-ssml.md
       - name: Standard avatars
         href: text-to-speech-avatar/standard-avatars.md
       - name: Custom text to speech avatar
@@ -283,6 +283,8 @@ items:
           displayName: avatar
         - name: Create a custom photo avatar
           href: text-to-speech-avatar/custom-photo-avatar-create.md
+        - name: Voice sync for avatar
+          href: text-to-speech-avatar/voice-sync-for-avatar.md
       - name: Content credentials
         href: text-to-speech-avatar/content-credentials.md
     - name: Audio content creation
