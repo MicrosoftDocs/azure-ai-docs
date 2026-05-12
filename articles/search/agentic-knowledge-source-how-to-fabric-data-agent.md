@@ -146,7 +146,7 @@ The following example shows a retrieve response containing a Fabric Data Agent k
 ```json
 {
   "response": [
-    // ... Response omitted for brevity
+      // ... Response omitted for brevity
   ],
   "activity": [
     {
