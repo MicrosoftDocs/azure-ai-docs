@@ -7,7 +7,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/18/2026
+ms.date: 05/12/2026
 ---
 
 
@@ -70,7 +70,8 @@ ms.date: 02/18/2026
 | gpt-image-2                    | DataZoneStandard  | 20          | -           |
 | gpt-image-2                    | GlobalStandard    | 60          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| model-router                   | DataZoneStandard  | 300         | 300,000     |
+| model-router                   | DataZoneStandard  | 1,667       | 1,667,000   |
+| model-router                   | GlobalStandard    | 5,000       | 5,000,000   |
 | o1                             | DataZoneStandard  | 1,000       | 6,000,000   |
 | o1                             | GlobalStandard    | 5,000       | 30,000,000  |
 | o3                             | DataZoneStandard  | 3,000       | 3,000,000   |
