@@ -37,7 +37,7 @@ items:
   - name: Virtual networks
     href: ../../agents/how-to/virtual-networks.md
   - name: Networking deep dive
-    displayName: VNet, subnet, IP allocation, data proxy, micro VM, hosted agent, prompt agent
+    displayName: VNet, subnet, IP allocation, data proxy, micro VM, Hosted agent, prompt agent
     href: ../../agents/concepts/agents-networking-deep-dive.md
   - name: Bring your own models with AI gateways
     href: ../../agents/how-to/ai-gateway.md
