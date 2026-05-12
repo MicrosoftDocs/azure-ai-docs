@@ -6,7 +6,7 @@ description: Learn about Azure Content Understanding in Foundry Tools, Azure Doc
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 03/23/2026
+ms.date: 05/12/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ai-usage: ai-assisted
@@ -36,7 +36,10 @@ Here’s a summary of the three available services:
 
 ## Azure Document Intelligence
 
-Document Intelligence is the trusted choice for many document-centric scenarios. It provides industry-leading OCR capability and structure extraction, including table recognition, figures, paragraphs, selection marks, sections, and more, all output in Markdown format for easy integration with LLMs for RAG ingestion, field extraction, and document chat scenarios. 
+Azure Document Intelligence (now part of Azure Content Understanding) is the trusted choice for many document-centric scenarios. It provides industry-leading OCR capability and structure extraction, including table recognition, figures, paragraphs, selection marks, sections, and more, all output in Markdown format for easy integration with LLMs for RAG ingestion, field extraction, and document chat scenarios.
+
+> [!NOTE]
+> Azure Document Intelligence is now part of Azure Content Understanding. Existing APIs, endpoints, and pricing remain unchanged. For Document Intelligence-specific model selection guidance, see [Which Document Intelligence model should I choose?](../document-intelligence/concept/choose-model-feature.md).
 
 Document Intelligence has the tools to build scalable and flexible IDP solutions with classification and conditional routing for high-accuracy extraction from prebuilt models like invoices, receipts, tax forms, and identification cards. For any custom template, you can label a few samples to train a custom extraction model on any document type. Document Intelligence models have some limitations like supporting only extracting results, limited generalization of custom models across many template variations, and limited semantic understanding capabilities. With confidence scores and grounded results, you can build an effective, low latency, consistent extractive document processing solution for most scenarios. Document Intelligence provides the following models:
 

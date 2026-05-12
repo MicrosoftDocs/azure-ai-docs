@@ -6,14 +6,18 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 05/12/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 
 # Which model should I choose?
 
-Azure Document Intelligence in Foundry Tools supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
+Azure Document Intelligence in Foundry Tools (now part of Azure Content Understanding) supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
+
+> [!NOTE]
+> Azure Document Intelligence is now part of Azure Content Understanding. Existing APIs, endpoints, and pricing remain unchanged. To compare Document Intelligence and Content Understanding capabilities for your document processing scenarios, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md).
 
 > [!VIDEO 364078d4-14bc-4b16-995a-526db31ea1ee]
 
@@ -22,13 +26,31 @@ The following decision charts highlight the features of each supported model to 
 > [!IMPORTANT]
 > Be sure to check the [**language support**](../language-support/prebuilt.md) page for supported language text and field extraction  by feature.
 
+## Compare Document Intelligence and Content Understanding
+
+Azure Document Intelligence and Azure Content Understanding are complementary services within the Azure Content Understanding product family. Use the following table to determine which service best fits your scenario before selecting a specific Document Intelligence model.
+
+| | Azure Document Intelligence | Azure Content Understanding |
+|---|---|---|
+| **Best for** | High-volume, deterministic extraction from structured and semi-structured documents | Complex, varied, unstructured, or multimodal content processing |
+| **Document types** | Standardized forms, invoices, tax forms, IDs, and receipts | Highly varied templates, unstructured documents, images, audio, and video |
+| **Labeling** | Required for custom models (minimum five labeled samples) | No labeling required to start; label to improve |
+| **Extraction** | Deterministic field extraction with confidence scores and grounding | Extractive and inferred fields, generated metadata, and enrichments |
+| **Generative AI** | No | Yes — inferred fields, reasoning, and post-processing |
+| **Multimodal input** | Documents only | Documents, images, audio, and video |
+| **Latency** | Low | Medium |
+| **Prebuilt coverage** | 20+ models (invoices, tax, IDs, mortgage, and more) | Prebuilt analyzers for common document types |
+| **Multi-file input** | No | Yes (preview) |
+
+If your scenario requires generative AI, multimodal input, or highly varied document templates, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md) for full scenario guidance. Otherwise, continue below to select the Document Intelligence model that best fits your structured document processing needs.
+
 ## Pretrained document-analysis models
 
 | Document type | Example| Data to extract | Your best solution |
 | -----------------|-----------|--------|-------------------|
 |**A generic document**. | A contract or letter. |You want to primarily extract written or printed text lines, words, locations, and detected languages.|[**Read OCR model**](../prebuilt/read.md)|
 |**A document that includes structural information**. |A report or study.| In addition to written or printed text, you need to extract structural information like tables, selection marks, paragraphs, titles, headings, and subheadings.| [**Layout analysis model**](../prebuilt/layout.md)|
-|**A structured or semi-structured document that includes content formatted as fields (keys) and values**.|A form or document that is a standardized format commonly used in your business or industry like a credit application or survey. | You want to extract fields and values including ones not covered by the scenario-specific prebuilt models **without having to train a custom model**.| [**Layout analysis model with the optional query string parameter `features=keyValuePairs` enabled **](../prebuilt/layout.md)|
+|**A structured or semi-structured document that includes content formatted as fields (keys) and values**.|A form or document that is a standardized format commonly used in your business or industry like a credit application or survey. | You want to extract fields and values including ones not covered by the scenario-specific prebuilt models **without having to train a custom model**.| [**Layout analysis model with the optional query string parameter `features=keyValuePairs` enabled**](../prebuilt/layout.md)|
 
 ## Pretrained scenario-specific models
 

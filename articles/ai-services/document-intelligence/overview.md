@@ -41,7 +41,10 @@ monikerRange: '<=doc-intel-4.0.0'
 
 :::moniker-end
 
-Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
+Azure Document Intelligence in Foundry Tools (now part of Azure Content Understanding) is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
+
+> [!NOTE]
+> Azure Document Intelligence is now part of Azure Content Understanding. Existing APIs, endpoints, and pricing remain unchanged. To learn more about both services, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
 
 | ✔️ [Document analysis models](#document-analysis-models) | ✔️ [Prebuilt models](#prebuilt-models) | ✔️ [Custom models](#custom-model-overview) |
 
