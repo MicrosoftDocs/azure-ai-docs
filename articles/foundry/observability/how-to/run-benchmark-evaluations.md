@@ -226,7 +226,7 @@ Content-Type: application/json
     "type": "azure_ai_source",
     "scenario": "benchmark_preview",
     "benchmark_name": "builtin.truthful_qa",
-    "benchmark_version": "1"
+    "benchmark_version": "3"
   }
 }
 ```
@@ -245,7 +245,7 @@ Content-Type: application/json
     "type": "azure_ai_source",
     "scenario": "benchmark_preview",
     "benchmark_name": "builtin.frontierscience",
-    "benchmark_version": "1",
+    "benchmark_version": "2",
     "grader_model": "{connection-name}/{judge-deployment}"
   }
 }
