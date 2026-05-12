@@ -38,7 +38,7 @@ Foundry and Agent 365 connect in two ways:
 
 - **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
 
-- **Digital worker publishing** &mdash; Foundry hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
+- **Digital worker publishing** &mdash; Foundry Hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
 
 For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md).
 
