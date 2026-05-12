@@ -3,7 +3,7 @@ title: Create a Work IQ Knowledge Source
 description: Learn how to create a Work IQ knowledge source to ground an agentic retrieval pipeline in Azure AI Search with organizational intelligence from Work IQ.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/11/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -21,13 +21,13 @@ Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ dir
 |--|--|--|--|--|--|--|
 | ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-<!-- TO-DO (PM): Confirm which, if any, portal or SDK surfaces will support Work IQ KS in this preview. Update the usage support table accordingly. -->
+<!-- TO-DO (PM): Confirm portal and SDK support for Build and update this table as needed. -->
 
 ## Prerequisites
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-+ A Work IQ environment that is already configured and accessible to the calling tenant. <!-- TO-DO (PM): What Work IQ environment prerequisites does the caller need? Is there a provisioning step, a license requirement (for example, a Microsoft 365 Copilot license), or a service enablement flag that must be set before creating this knowledge source? -->
++ A Work IQ environment that is already configured and accessible to the calling tenant. <!-- TO-DO (PM): What Work IQ environment prerequisites does the caller need? Are there any Microsoft Learn articles for Work IQ that we can reference here? -->
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -91,6 +91,8 @@ Content-Type: application/json
 
 ### Source-specific properties
 
+<!-- TO-DO (PM): Confirm whether these properties are correct for Work IQ knowledge sources and update as needed. -->
+
 The following properties apply to Work IQ knowledge sources.
 
 | Name | Description | Type | Editable | Required |
@@ -108,6 +110,8 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Work IQ content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
+<!-- TO-DO (PM): Confirm the following details about query-time permissions and response characteristics for Work IQ knowledge sources and update as needed. -->
+
 > [!IMPORTANT]
 > Work IQ can take 40–60 seconds or more to respond. To avoid timeout errors, set `maxRuntimeInSeconds` on the retrieve request to `120` or higher.
 
@@ -121,7 +125,10 @@ For instructions on passing the token, see [Enforce permissions at query time](a
 
 ### Work IQ–specific response fields
 
-Work IQ knowledge sources return per-document citations in the `references` array and query diagnostics in the `activity` array. Each reference includes grounded text passages (`sourceData.extracts[].text`) and a link to the source document in Microsoft 365 (`attributions[].seeMoreWebUrl`).
+Work IQ knowledge sources return results in the `references` array and query diagnostics in the `activity` array. Each reference entry contains:
+
+- `sourceData.extracts[].text`: Grounded text passages from Work IQ.
+- `attributions[].seeMoreWebUrl`: A link to the source document in Microsoft 365.
 
 The following example shows a retrieve response containing a Work IQ knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
@@ -141,6 +148,9 @@ The following example shows a retrieve response containing a Work IQ knowledge s
       "workIQArguments": {
         "search": "my query"
       }
+    },
+    {
+       // ... Additional activity records omitted for brevity       
     }
   ],
   "references": [
@@ -161,6 +171,9 @@ The following example shows a retrieve response containing a Work IQ knowledge s
           }
         ]
       }
+    },
+    {
+      // ... Additional references omitted for brevity
     }
   ]
 }
