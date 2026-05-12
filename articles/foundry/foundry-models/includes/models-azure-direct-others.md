@@ -48,6 +48,7 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `DeepSeek-V4-Fast` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2-Speciale` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.1` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
@@ -102,10 +103,11 @@ Several Mistral models are also available [from partners and community](../conce
 
 ## Moonshot AI models sold directly by Azure
 
-Moonshot AI models include Kimi K2.5 (Preview), a multimodal reasoning model that accepts text and image input. 
+Moonshot AI models include Kimi K2.6 (Preview) and Kimi K2.5 (Preview), multimodal reasoning models that accept text and image input. 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `Kimi-K2.6` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text and image (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
 | `Kimi-K2.5` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text and image (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
 
 See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
@@ -128,12 +130,12 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 ## Model region availability by deployment type
 
-Foundry Models gives you choices for the hosting structure that fits your business and usage patterns. The service offers two main types of deployment:
+Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories:
 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned**: Also has a global deployment option, allowing you to purchase and deploy provisioned throughput units across Azure global infrastructure.
+- **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments perform the same inference operations, but the billing, scale, and performance differ. For more information about deployment types, see [Deployment types in Foundry Models](../concepts/deployment-types.md).
+Other deployment categories like *batch* are also available. To learn about all available model deployment types, see  [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
 # [Global Standard](#tab/global-standard)
 

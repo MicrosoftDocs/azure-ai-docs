@@ -17,6 +17,9 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 In this quickstart, you deploy a containerized AI agent that calls Foundry models and uses Foundry tools in Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
+> [!NOTE]
+> **Runtime behavior**: Hosted agents use scale-to-zero compute. Idle compute deprovisions after approximately 15 minutes of inactivity and is automatically restored on the next request, with predictable cold starts. Sessions are stateful—each session has a persistent filesystem and can persist for up to 30 days.
+
 **In this quickstart, you:**
 
 > [!div class="checklist"]
@@ -85,8 +88,8 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
 
     The interactive flow guides you through the following configuration:
 
-    - **Language** — Select which programming language you want sample code for, either C# or Python.
-    - **Agent Template** - Select a sample to start with.
+    - **Language** — Select Python.
+    - **Agent Template** - Select 'Basic agent (Responses, Agent Framework, Python)'
     - **Model Configuration** - Select to deploy a new model in Foundry or use an existing one from an existing Foundry Project.
     - **Azure subscription** — select the subscription where you want the Foundry resources to be created.
     - **Location** — select a region for the resources.
@@ -190,6 +193,7 @@ Deploying services (azd deploy)
   - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
   - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
+
 
 :::zone-end
 
@@ -381,11 +385,11 @@ azd ai agent show --output table
 If your project has multiple agent services, specify the agent name as a positional argument:
 
 ```bash
-azd ai agent show <agent-name>
+azd ai agent show [agent-name]
 ```
 
 > [!TIP]
-> Find `<agent-name>` in the `azure.yaml` file under the `services:` section.
+> Find `[agent-name]` in the `azure.yaml` file under the `services:` section.
 
 ### Test the deployed agent
 
@@ -394,7 +398,7 @@ Send a test message to your deployed agent using the same `invoke` command used 
 For agents using the Responses API, you can send a string as the payload:
 
 ```bash
-azd ai agent invoke <payload>
+azd ai agent invoke "Hello"
 ```
 
 You should see a response from the agent after a few seconds.
@@ -420,8 +424,11 @@ azd ai agent monitor --session <session-id> --follow
 If your project has multiple agent services, specify the agent name as a positional argument:
 
 ```bash
-azd ai agent monitor <agent-name> --follow
+azd ai agent monitor [agent-name] --follow
 ```
+
+> [!NOTE]
+> The platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the [Azure portal](https://portal.azure.com) and navigate to **Investigate** > **Transaction search** or **Performance**. Use `azd ai agent monitor` for live console logs.
 
 :::zone-end
 

@@ -9,8 +9,8 @@ ms.custom:
   - classic-and-new
 ms.topic: how-to
 ms.date: 02/10/2026
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

@@ -30,18 +30,6 @@ In this article, you learn about role-based access control (RBAC) in your Micros
 
 [!INCLUDE [rbac-foundry 1](../../foundry/includes/concepts-rbac-foundry-1.md)]
 
-## Built-in roles
-
-A **built-in role** in Foundry is a role created by Microsoft that covers common access scenarios that you can assign to your team members. Key built-in roles used across Azure include Owner, Contributor, and Reader. These roles aren't specific to Foundry resource permissions. 
-
-For Foundry resources, use additional built-in roles to follow least-privilege access principles. The following table lists key built-in roles for Foundry and links to the exact role definitions in [AI + Machine Learning built-in roles](/azure/role-based-access-control/built-in-roles/ai-machine-learning).
-
-|Role|Description|
-|---|---|
-|**Azure AI User**|Grants reader access to Foundry project, Foundry resource, and data actions for your Foundry project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. Least privilege access role in Foundry.|
-|**Azure AI Project Manager**|Lets you perform management actions on Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals.|
-|**Azure AI Account Owner**|Grants full access to manage projects and resources, and lets you conditionally assign the Azure AI User role to other user principals.|
-|**Azure AI Owner**|Grants full access to managed projects and resources and build and develop with projects. Highly privileged self-serve role designed for digital natives.|
 
 ### Permissions for each built-in role
 
@@ -57,9 +45,6 @@ Use the following table and diagram to see the permissions allowed for each buil
 |**Contributor**|✔|✔|||✔|✔|
 |**Reader**|||||✔||
 
-:::image type="content" source="../../foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../../foundry/media/how-to/network/detailed-rbac-diagram.png":::
- 
-For more on built-in roles in Azure and Foundry, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles). To learn more about conditional delegation used in the Azure AI Account Owner and Azure AI Project Manager role, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
 
 [!INCLUDE [rbac-foundry 2](../../foundry/includes/concepts-rbac-foundry-2.md)]
 

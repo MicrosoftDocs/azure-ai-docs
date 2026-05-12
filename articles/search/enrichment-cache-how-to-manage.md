@@ -1,6 +1,6 @@
 ---
 title: Manage Enrichment Caching
-description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in public preview.
+description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in preview.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/24/2026
@@ -13,7 +13,7 @@ ms.custom:
 # Manage an enrichment cache
 
 > [!IMPORTANT] 
-> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) supports this feature.
+> This feature is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) supports this feature.
 
 An *enrichment cache* is an optional feature that stores reusable enriched content created during [skillset execution](cognitive-search-working-with-skillsets.md) so that only new and changed skills and documents incur standard processing charges during future indexer and skillset processing. 
 

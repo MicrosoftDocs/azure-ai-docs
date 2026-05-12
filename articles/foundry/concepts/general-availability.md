@@ -75,7 +75,6 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Discover | Model | GA |
 | Discover | Tools | GA |
 | Discover | Solution Templates | GA |
-| Discover | Agent Manifests | Preview |
 | Discover | Search | GA |
 | Discover | Ask AI | Preview |
 | Build | Agents | GA (minus Voice Live, traces in agent builder in Preview) |

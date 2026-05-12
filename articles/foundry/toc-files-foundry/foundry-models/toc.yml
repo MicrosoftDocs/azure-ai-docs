@@ -93,6 +93,9 @@ items:
 
 - name: Quota limits and region availability
   items:
+  - name: Region availability for Foundry Models sold directly by Azure
+    displayName: Region availability for Foundry Models sold directly by Azure
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
   - name: Manage quotas for Foundry resources
     displayName: Manage and increase quotas for resources with Microsoft Foundry
     href: ../../how-to/quota.md
@@ -329,6 +332,12 @@ items:
     - name: Realtime API migration from Preview to GA
       displayName: Migration from Preview to GA version of Realtime API
       href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+    - name: GPT Realtime Translate overview
+      displayName: GPT Realtime Translate real-time translation model
+      href: ../../openai/concepts/gpt-realtime-translate.md
+    - name: GPT Realtime Whisper overview
+      displayName: GPT Realtime Whisper streaming transcription model
+      href: ../../openai/concepts/gpt-realtime-whisper.md
 
 - name: Fine-tuning
   items:

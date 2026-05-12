@@ -870,6 +870,17 @@ groups:
       title: Azure OpenAI models
     - id: azure-direct-others
       title: Other model collections
+- id: adm-region-availability
+# Owner: mopeakande
+  title: Region availability for Azure direct models
+  prompt: Choose a deployment category for your Foundry Model
+  pivots:
+    - id: standard
+      title: Standard deployment options
+    - id: provisioned
+      title: Provisioned deployment options
+    - id: batch
+      title: Batch deployment options
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
