@@ -1,7 +1,7 @@
 ---
-title: Azure Translator in Foundry Tools 2025-10-01-preview translate method
+title: Azure Translator in Foundry Tools 2026-06-06 translate method
 titleSuffix: Foundry Tools
-description: Understand the parameters, headers, and body messages for the Azure Translator in Foundry Tools 2025-10-01-preview translate method.
+description: Understand the parameters, headers, and body messages for the Azure Translator in Foundry Tools 2026-06-06 translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 12/01/2025
 ms.author: lajanuar
 ---
 
-# Translate (2025-10-01-preview)
+# Translate (2026-06-06)
 
 The Text translation API enables you to translate your source language text into a specified target language text.
 
@@ -29,7 +29,7 @@ The Text translation API enables you to translate your source language text into
 ***Windows***
 
 ```cmd
-curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview' ^
+curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2026-06-06' ^
   --header 'content-type: application/json' ^
   --header 'ocp-apim-subscription-key: <your-resource-key>' ^
   --header 'ocp-apim-subscription-region: <your-resource-region>' ^
@@ -50,7 +50,7 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 ***Linux or macOS***
 
 ```bash
-curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview' \
+curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2026-06-06' \
   --header 'content-type: application/json' \
   --header 'ocp-apim-subscription-key: <your-resource-key>' \
   --header 'ocp-apim-subscription-region: <your-resource-region>' \
@@ -79,7 +79,7 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 ***Windows***
 
 ```cmd
-curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-10-01-preview' ^
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2026-06-06' ^
   --header 'content-type: application/json' ^
   --header 'ocp-apim-subscription-key: <your-resource-key>' ^
   --header 'ocp-apim-subscription-region: <your-resource-region>' ^
@@ -100,7 +100,7 @@ curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translato
 ***Linux or macOS***
 
 ```bash
-curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-10-01-preview' \
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2026-06-06' \
   --header 'content-type: application/json' \
   --header 'ocp-apim-subscription-key: <your-resource-key>' \
   --header 'ocp-apim-subscription-region: <your-resource-region>' \
@@ -142,7 +142,7 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-10-01-preview.|
+|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2026-06-06.|
 |**text** | string | **True** | Source text for translation. |
 |**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
@@ -157,10 +157,10 @@ Request parameters passed with the request are as follows:
 | --- | --- | --- | --- |
 | **targets.language** | string | **True** |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 | **targets.script** | string | False | Specify the script of the transliterated text. |
-|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-deployment-and-nmt)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Microsoft Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
+|**targets.deploymentName** | string | False | &bullet; Default is `general` (Translator reserved name), which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-5.1` is an example deployment name for the GPT-5.1 model. For more information, *see* [Translate using GPT-5.1 and NMT deployments](translate-api.md#translate-using-gpt-51-deployment).<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Microsoft Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md).<br> |
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `female`, `male`, or `neutral`.|
-| **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
+| **targets.adaptiveDatasetId** | string | False | Dataset index created with your domain data and terminology to select relevant sentence pairs to adapt and optimize the LLM’s output toward your domain terminology, context, and style.|
 | **targets.allowFallback** | string | False | If the desired model doesn't support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `True`. If `False` system returns an error if language pair isn't supported. |
 | **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation. |
 | **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored. |
@@ -281,7 +281,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 72
 ```
 
-#### Translate source text into multiple languages using NMT 
+#### Translate source text into multiple languages using NMT
 
 ***Request***
 
@@ -339,7 +339,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 #### Translate using large language model
 
-This request uses a gpt-4o-mini model instance with a user defined name (contoso-gpt-4o-mini). When the source language isn't indicated, the system detects it automatically. 
+This request uses a gpt-5.1 model instance with a user defined name (your-gpt-5.1-deployment-name). When the source language isn't indicated, the system detects it automatically.
 
 ```json
 {
@@ -349,7 +349,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
      "targets": [
        {
          "language": "es",
-         "deploymentName": "contoso-gpt-4o-mini"
+         "deploymentName": "your-gpt-5.1-deployment-name"
        }
      ]
    }
@@ -360,9 +360,9 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 
 
 
-#### Translate using `GPT-4o mini` deployment and `NMT`
+#### Translate using `GPT-5.1` deployment
 
-* Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
+* Here,  the source text is translated into Spanish language using a specified mode (gpt-5.1).
 * Using an `LLM` model requires you to have a Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
@@ -376,10 +376,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
     "targets": [
       {
         "language": "es",
-        " deploymentName": "your-gpt-4o-mini-deployment-name"
-      },
-      {
-        "language": "de"
+        " deploymentName": "your-gpt-5.1-deployment-name"
       }
     ]
   }
@@ -404,11 +401,6 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
             "instructionTokens": 12,
             "sourceTokens": 14,
             "targetTokens": 16
-          },
-          {
-            "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
-            "language": "de",
-            "sourceCharacters": 72
           }
         ]
       }
@@ -425,7 +417,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 "targetTokensCharged": 16
 ```
 
-#### Translate specifying gender and tone using `GPT-4o mini` deployment
+#### Translate specifying gender and tone using `GPT-5.1` deployment
 
 Using an `LLM` model requires you to have a Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
@@ -441,13 +433,13 @@ Using an `LLM` model requires you to have a Foundry resource. For more informati
       "targets": [
         {
           "language": "es",
-          "deploymentName": "your-gpt-4omini-deployment-name",
+          "deploymentName": "your-gpt-5.1-deployment-name",
           "tone": "formal",
           "gender": "female"
         },
         {
           "language": "es",
-          "deploymentName": "your-gpt-4omini-deployment-name",
+          "deploymentName": "your-gpt-5.1-deployment-name",
           "tone": "formal",
           "gender": "male"
         }
@@ -463,24 +455,20 @@ Using an `LLM` model requires you to have a Foundry resource. For more informati
 {
   "value": [
     {
-      "detectedLanguage": {
-        "language": "en",
-        "score": 1
-      },
       "translations": [
         {
-          "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
           "language": "es",
-          "promptTokens": 12,
-          "sourceTokens": 14,
-          "targetTokens": 16
+          "text": "La doctora está disponible el próximo lunes. ¿Desea programar una cita?",
+          "instructionTokens": 319,
+          "responseTokens": 34,
+          "sourceCharacters": 72
         },
         {
-          "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?",
           "language": "es",
-          "instructionTokens": 12,
-          "sourceTokens": 14,
-          "targetTokens": 16
+          "text": "El doctor está disponible el próximo lunes. ¿Desea programar una cita?",
+          "instructionTokens": 319,
+          "responseTokens": 33,
+          "sourceCharacters": 72
         }
       ]
     }
@@ -491,11 +479,12 @@ Using an `LLM` model requires you to have a Foundry resource. For more informati
 ***Response Header***
 
 ```bash
-"sourceTokensCharged": 52
-"targetTokensCharged": 32
+"sourcetokenscharged":	638
+"targettokenscharged":	67
+"sourcecharacterscharged":	144
 ```
 
-#### Text translation request applying adaptive custom translation with dataset
+#### Translate using adaptiveDatasetId
 
 Adaptive custom translation deploys on Translator infrastructure. Charges are based on source characters.
 
@@ -510,7 +499,10 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
         "targets": [
           {
             "language": "es",
-            "adaptiveDatasetId": "TMS-en-es-hr-020"
+            "DeploymentName": "your-gpt-5.1-deployment-name",
+            "tone": "formal",
+            "gender": "male",
+            "adaptiveDatasetId": "<your-workspace-id>-adaptive-general"
           }
         ]
       }
@@ -530,10 +522,12 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
         },
         "translations": [
           {
-            "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
             "language": "es",
-            "sourceCharacters": 72,
-            "targetChaaracters": 72
+            "text": "El Doctor está disponible el próximo lunes. ¿Quieres programar una cita?",
+            "instructionTokens": 382,
+            "sourceTokens": 14,
+            "responseTokens": 2,
+            "targetTokens": 15
           }
         ]
       }
@@ -544,7 +538,7 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
 ***Response Header***
 
 ```bash
-"sourceCharactersCharged": 72 "targetChaaractersCharged": 72
+"sourceCharactersCharged": 72
 ```
 
 #### Text translation request applying Adaptive custom translation with reference pairs
@@ -555,11 +549,16 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
 {
   "inputs": [
     {
-      "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-      "language": "en",
-      "targets": [
+      "Text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+      "Script": "",
+      "Language": "en",
+      "TextType": "Plain",
+      "Targets": [
         {
-          "language": "es",
+          "Language": "es",
+          "DeploymentName": "your-gpt-5.1-deployment-name",
+          "tone": "formal",
+          "gender": "female",
           "referenceTextPairs": [
             {
               "source": "text_in_en",
@@ -591,8 +590,10 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
         {
           "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
           "language": "es",
-          "sourceCharacters": 72,
-          "targetCharacters": 72
+          "instructionTokens": 382,
+          "sourceTokens": 14,
+          "responseTokens": 2,
+          "targetTokens": 15
         }
       ]
     }
@@ -604,7 +605,6 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
 
 ```bash
 "sourceCharactersCharged": 72
-"targetCharactersCharged": 72
 ```
 
 #### Text translation request using custom translation
@@ -660,4 +660,4 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)
+> [View 2026-06-06 migration guide](../how-to/migrate-to-preview.md)

@@ -23,7 +23,6 @@ As organizations increasingly use Generative AI to manage documents and unstruct
 * **Azure Content Understanding in Foundry Tools**: Multimodal service with industry-leading content extraction (for example, OCR and speech-to-text), multimodal processing of documents, images, audio, and video, and  generative AI capabilities for complex field extraction.
 * **Azure-hosted LLMs (Azure Foundry models)**: Flexible platform for building custom AI solutions with maximum control over models, prompts, and workflows.
 
-
 ## Overview of services
 
 Here’s a summary of the three available services:

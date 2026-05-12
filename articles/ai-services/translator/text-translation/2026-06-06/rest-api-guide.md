@@ -73,4 +73,4 @@ The available preview methods are listed in the following table:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)
+> [View 2026-06-06 migration guide](../how-to/migrate-to-2026-06-06.md)

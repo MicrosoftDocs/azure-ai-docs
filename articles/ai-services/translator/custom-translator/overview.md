@@ -10,9 +10,9 @@ ms.author: lajanuar
 ms.topic: overview
 ---
 
-# What is Custom Translator?
+# What is the Custom Translator portal?
 
-Custom Translator is a feature of the [Azure Translator in Foundry Tools](../overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.
+The Custom Translator portal is a feature of the [Azure Translator in Foundry Tools](../overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.
 
 Translation systems built with [Custom Translator](https://portal.customtranslator.azure.ai) are available through Microsoft Translator [Microsoft Translator Text API v3](../text-translation/reference/v3/translate.md?tabs=curl), the same cloud-based, secure, high performance system powering billions of translations every day.
 

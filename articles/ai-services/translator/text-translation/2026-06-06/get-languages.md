@@ -1,7 +1,7 @@
 ---
-title: Translator 2025-10-01-preview languages method
+title: Translator 2026-06-06 languages method
 titleSuffix: Foundry Tools
-description: The languages method displays the set of languages currently supported by Azure Translator in Foundry Tools 2025-10-01-preview.
+description: The languages method displays the set of languages currently supported by Azure Translator in Foundry Tools 2026-06-06.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,22 +12,23 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Languages (2025-10-01-preview)
+# Languages (2026-06-06)
 
 Get the set of languages currently supported by the latest Azure Translator version.
+
 ## Request URL
 
 Send a `GET` request to:
 
 ```bash
-https://api.cognitive.microsofttranslator.com/languages?api-version=2025-10-01-preview
+https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
 ```bash
-https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-10-01-preview
+https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2026-06-06
 ```
 
 For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
@@ -38,7 +39,7 @@ Request parameters passed on the query string are:
 
 |Query parameters|Description|
 |---|---|
-|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `2025-10-01-preview`.|
+|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `2026-06-06`.|
 |scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`,`transliteration`, and `models`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,models`.|
 
 *See* [response body](#response-body).
@@ -193,7 +194,7 @@ If an error occurs, the request also returns a JSON error response. The error co
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl "https://api.cognitive.microsofttranslator.com/languages?api-version=2025-10-01-preview&scope=translation"
+curl "https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06&scope=translation"
 ```
 
 ## Related content

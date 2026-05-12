@@ -17,6 +17,8 @@ When you deploy a model in Microsoft Foundry, you choose a deployment type that 
 
 The service offers two main categories: *standard* (pay-per-token) and *provisioned* (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements.
 
+[!INCLUDE [try-instant-models](../../includes/try-instant-models.md)]
+
 :::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the deployment type selection box with Global Standard selected." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
 > [!IMPORTANT]
@@ -31,6 +33,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 
 | Deployment type | SKU code | Data processing | Billing | Best for |
 | --------------- | -------- | --------------- | ------- | -------- |
+| [Instant (preview)](../../concepts/instant-models.md) | N/A — no deployment needed | Any Azure region | Pay-per-token (global quota) | Getting started, prototyping, trying new models |
 | [Global Standard](#global-standard) | `GlobalStandard` | Any Azure region | Pay-per-token | General workloads, highest quota |
 | [Global Provisioned](#global-provisioned) | `GlobalProvisionedManaged` | Any Azure region | Reserved PTU | Predictable high-throughput |
 | [Global Batch](#global-batch) | `GlobalBatch` | Any Azure region | 50% discount, 24-hr | Large async jobs |
@@ -63,6 +66,7 @@ Use the following criteria to select a deployment type:
 
 ### By workload pattern
 
+- **Quick start, prototyping, or trying a new model**: Use [instant models (preview)](../../concepts/instant-models.md) (no deployment needed)
 - **Variable, bursty traffic**: Use Standard or Global Standard (pay-per-token)
 - **Consistent high volume**: Use Provisioned types (reserved capacity)
 - **Large batch jobs (not time-sensitive)**: Use Global Batch or DataZone Batch (50% cost savings)
