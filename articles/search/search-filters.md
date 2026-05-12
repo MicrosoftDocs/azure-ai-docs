@@ -54,7 +54,7 @@ One of the limits on a filter expression is the maximum size limit of the reques
 The following examples represent prototypical filter definitions in several APIs.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2026-04-01
 {
     "search": "*",
     "filter": "Rooms/any(room: room/BaseRate lt 150.0)",
