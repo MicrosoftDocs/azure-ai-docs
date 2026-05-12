@@ -9,4 +9,4 @@ ms.topic: include
 ms.date: 11/18/2025
 ---
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v2.1 (GA)**
+**This content applies to:** ![red-checkmark](../media/retire-icon.png) **v3.0 (retiring)** ![red-checkmark](../media/retire-icon.png) **v2.1 (retiring)**

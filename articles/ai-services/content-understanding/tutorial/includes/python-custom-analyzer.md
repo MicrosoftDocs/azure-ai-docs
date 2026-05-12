@@ -149,7 +149,7 @@ analyzer = ContentAnalyzer(
     config=config,
     field_schema=field_schema,
     models={
-        "completion": "gpt-4.1",
+        "completion": "gpt-5.2",
         "embedding": "text-embedding-3-large",
     }, # Required when using field_schema and prebuilt-document base analyzer
 )
@@ -237,7 +237,7 @@ classifier = ContentAnalyzer(
     base_analyzer_id="prebuilt-document",
     description="Custom classifier for financial document categorization",
     config=config,
-    models={"completion": "gpt-4.1"},
+    models={"completion": "gpt-5.2"},
 )
 
 # Create the classifier
@@ -303,7 +303,7 @@ analyzer = ContentAnalyzer(
     ),
     field_schema=field_schema,
     models={
-        "completion": "gpt-4.1",
+        "completion": "gpt-5.2",
     }, 
 )
 
@@ -407,7 +407,7 @@ analyzer = ContentAnalyzer(
     config=config,
     field_schema=field_schema,
     models={
-        "completion": "gpt-4.1",
+        "completion": "gpt-5.2",
     },
 )
 # Create the analyzer
@@ -512,7 +512,7 @@ analyzer = ContentAnalyzer(
     config=config,
     field_schema=field_schema,
     models={
-        "completion": "gpt-4.1",
+        "completion": "gpt-5.2",
     }, 
 )
 

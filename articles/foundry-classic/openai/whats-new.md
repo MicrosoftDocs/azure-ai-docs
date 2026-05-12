@@ -1,5 +1,5 @@
 ---
-title: "What's new in Azure OpenAI in Azure AI Foundry Models? (classic)"
+title: "What's new in Azure OpenAI in Microsoft Foundry Models? (classic)"
 description: "Learn about the latest news and features updates for Azure OpenAI. (classic)"
 author: mrbullwinkle
 ms.author: mbullwin #
@@ -15,25 +15,36 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure OpenAI in Azure AI Foundry Models (classic)
+# What's new in Azure OpenAI in Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## May 2026
+
+
+
+### GPT Realtime Translate and GPT Realtime Whisper
+
+New concept articles describe the capabilities and use cases for the latest real-time translation and transcription models:
+
+- [GPT Realtime Translate](./concepts/gpt-realtime-translate.md) — covers continuous stream-based audio translation for live multilingual events, customer support, and voice assistants.
+- [GPT Realtime Whisper](./concepts/gpt-realtime-whisper.md) — covers low-latency streaming transcription for live captions, monitoring, and archival workflows.
 
 ## February 2026
 
 ### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
 
 The `gpt-realtime-1.5` and `gpt-audio-1.5` models are now available.
-- These models were built upon last year’s GPT-Realtime and GPT-Audio with focused improvements in instruction following, multi-lingual support, and tool calling while preserving the low-latency, real-time interactions developers need for voice-first applications. 
-- Developers can try them out through the existing chat completion APIs in Microsoft Foundry. 
+- These models build on last year's GPT-Realtime and GPT-Audio with improvements in instruction following, multilingual support, and tool calling, while preserving the low-latency, real-time interactions developers need for voice-first applications.
+- Try them with the existing chat completion APIs in Microsoft Foundry.
 
 ## December 2025
 
 ### GPT-image-1.5 model is now available
 
-GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding or removing one aspect of the input image while retaining others.
 
 Request access: [limited access model application](https://aka.ms/oai/gptimage1.5access)
 
@@ -50,22 +61,22 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 ### Automatic speech recognition (ASR) model update
 
 `gpt-4o-mini-transcribe-2025-12-15`
-- Improved transcription accuracy and robustness for real-time scenarios. ~50% lower word error rate (WER) than previous gpt-4o-transcribe-mini on English benchmarks
-- Improves multilingual performance across Japanese, Indic, and other languages. 
-- Reduced hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams. 
+- Improved transcription accuracy and robustness for real-time scenarios, with approximately 50% lower word error rate (WER) than the previous `gpt-4o-transcribe-mini` model on English benchmarks.
+- Improves multilingual performance across Japanese, Indic, and other languages.
+- Reduces hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams.
 - Input remains audio, with text as output, and deployment is API-only.  
 
 ### Realtime-mini (speech-to-speech) model update
 
 `gpt-realtime-mini-2025-12-15`
 - Feature parity with full gpt-realtime model in instruction-following and function-calling.
-- Input and output are both audio, and is be API-only.  
+- Input and output are both audio, and deployment is API-only.
 
 ### Text to speech model update
 
 `gpt-4o-mini-tts-2025-12-15`
-- New benchmark for multilingual speech synthesis, 
-- More natural, human-like speech with fewer artifacts and improved speaker similarity. 
+- Sets a new benchmark for multilingual speech synthesis.
+- Produces more natural, human-like speech with fewer artifacts and improved speaker similarity.
 - Input is text, output is audio, and deployment is API-only.  
 
 ## October 2025
@@ -84,7 +95,7 @@ Use this model via the `/audio` and `/realtime` APIs.
 
 ### GPT-image-1-mini 
 
-The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+The `gpt-image-1-mini` model is now available for global deployments. It's a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
 
 Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
 
@@ -117,7 +128,7 @@ This Sora model is now available in the Sweden Central region and East US 2.
 
 ### Realtime API audio model GA
 
-OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
+OpenAI's GPT RealTime and Audio models are now generally available in Microsoft Foundry Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -129,7 +140,7 @@ Realtime API service improvements:
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
 
-We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
+We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Microsoft Foundry portal](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications.
 
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
 
@@ -161,7 +172,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - Model router now supports GPT-5 series models.
 
-- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+- Model router for Microsoft Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## July 2025 
 
@@ -194,7 +205,7 @@ Spotlighting is a sub-feature of prompt shields that enhances protection against
 
 ### Model router (preview)
 
-Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+Model router for Microsoft Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## April 2025
 

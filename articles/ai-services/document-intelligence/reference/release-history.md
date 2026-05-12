@@ -30,7 +30,7 @@ Azure Document Intelligence is an innovative a cloud-based service that utilizes
 The Document Intelligence version 3.1 API is now generally available (GA)! The API version corresponds to ```2023-07-31```.
 The v3.1 API introduces new and updated capabilities:
 
-* Document Intelligence APIs are now more modular and with support for optional features. You can now customize the output to specifically include the features you need. Learn more about the [optional parameters](../versioning/v3-1-migration-guide.md).
+* Document Intelligence APIs are now more modular and with support for optional features. You can now customize the output to specifically include the features you need. Learn more about the [optional parameters](../versioning/sdk-overview-v3-1.md).
 * Document classification API for splitting a single file into individual documents. [Learn more](../train/custom-classifier.md) about document classification.
 * [Prebuilt contract model](../prebuilt/contract.md).
 * [Prebuilt US tax form 1098 model](../prebuilt/tax-document.md).
