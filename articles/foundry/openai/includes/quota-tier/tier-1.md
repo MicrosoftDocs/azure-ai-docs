@@ -2,8 +2,8 @@
 title: Quota tier 1
 description: Quota tier limits for tier 1
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

@@ -2,12 +2,12 @@
 title: Metrics Advisor what's new
 titleSuffix: Azure AI services
 description: Learn about what is new with Metrics Advisor
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: whats-new
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Metrics Advisor: what's new in the docs

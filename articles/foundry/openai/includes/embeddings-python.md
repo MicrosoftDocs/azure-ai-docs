@@ -6,8 +6,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 09/30/2025
-author: mrbullwinkle #noabenefraim
-ms.author: mbullwin
+author: alvinashcraft #noabenefraim
+ms.author: aashcraft
 
 ms.custom: classic-and-new
 ---

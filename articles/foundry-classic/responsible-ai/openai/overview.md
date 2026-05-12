@@ -1,8 +1,8 @@
 ---
 title: "Overview of Responsible AI practices for Azure OpenAI in Foundry Models (classic)"
 description: "RAI overview for Azure OpenAI Service (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

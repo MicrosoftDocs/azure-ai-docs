@@ -6,8 +6,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 04/24/2026
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new

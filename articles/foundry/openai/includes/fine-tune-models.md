@@ -2,8 +2,8 @@
 title: Fine-Tuning Model Guidance
 titleSuffix: Azure OpenAI
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 02/06/2025
 ms.service: microsoft-foundry

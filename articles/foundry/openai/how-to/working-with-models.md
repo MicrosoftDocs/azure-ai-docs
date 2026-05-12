@@ -10,8 +10,8 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 manager: nitinme
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+author: alvinashcraft #ChrisHMSFT
+ms.author: aashcraft #chrhoder
 recommendations: false
 ai-usage: ai-assisted
 ---
