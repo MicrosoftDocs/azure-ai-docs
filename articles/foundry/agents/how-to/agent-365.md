@@ -34,7 +34,7 @@ This article describes how Foundry agents can be managed and governed in Microso
 
 ## Create AI teammates
 
-There's also a specific use case in which Foundry hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
+There's also a specific use case in which Foundry Hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
 
 
 The rest of this article walks through that process.
@@ -47,7 +47,7 @@ The rest of this article walks through that process.
   - **Owner** role on the Azure subscription
   - **Azure AI User** or **Cognitive Services User** role at subscription or resource group scope
   - A tenant admin role that can approve agent requests in the Microsoft 365 admin center
-- Use a region that supports hosted agents. For the current supported regions, see [Hosted agents in Microsoft Foundry](../concepts/hosted-agents.md#region-availability).
+- Use a region that supports Hosted agents. For the current supported regions, see [Hosted agents in Microsoft Foundry](../concepts/hosted-agents.md#region-availability).
 - [Azure CLI](/cli/azure/install-azure-cli)
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 - [Docker](https://www.docker.com/)
@@ -55,7 +55,7 @@ The rest of this article walks through that process.
 
 ### What the sample creates
 
-The sample provisions Azure resources and publishes a hosted agent end-to-end. Specifically: 
+The sample provisions Azure resources and publishes a Hosted agent end-to-end. Specifically: 
 
 - Creates or updates Azure resources required to run the sample.
 - Creates an agent version and configures endpoint traffic to always route to that version
@@ -107,7 +107,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | `azd provision` fails before resource creation starts | Missing permissions | Confirm you have **Owner** on the subscription and **Azure AI User** (or **Cognitive Services User**) at subscription or resource group scope. |
-| `azd provision` fails with a region or hosted-agent availability message | Wrong region | Create all resources for this sample in a region that hosted agents are supported in. |
+| `azd provision` fails with a region or hosted-agent availability message | Wrong region | Create all resources for this sample in a region that Hosted agents are supported in. |
 | Container build or push fails | Docker isn't running | Start Docker, and then run `azd provision --verbose` again. |
 | You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Verify tenant admin permissions and confirm the deployment completed successfully. |
 | You can't find your blueprint in the Teams Developer Portal list | Portal only shows the first 100 blueprints | Open any blueprint and replace the blueprint ID in the URL with your blueprint ID from `azd env get-values`. |
