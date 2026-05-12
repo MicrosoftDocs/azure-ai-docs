@@ -11,8 +11,8 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 ---

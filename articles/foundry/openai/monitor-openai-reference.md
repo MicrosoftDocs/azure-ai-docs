@@ -8,8 +8,8 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: reference
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ---

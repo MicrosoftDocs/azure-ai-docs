@@ -2,8 +2,8 @@
 title: Quota tier 3
 description: Quota tier limits for tier 3
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

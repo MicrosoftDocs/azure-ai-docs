@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+author: alvinashcraft #ChrisHMSFT
+ms.author: aashcraft #chrhoder
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
