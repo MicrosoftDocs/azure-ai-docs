@@ -25,6 +25,10 @@ Before you create deployments programmatically, complete the following:
 
 Each tab in this article lists any tool-specific prerequisites, such as the required Azure CLI or Az PowerShell module version.
 
+## Create a deployment and query usage
+
+Select the tab for the tool or template language you want to use. Each tab includes a deployment example that sets a TPM-based capacity, followed by a usage query that returns your remaining quota in the specified region.
+
 # [REST](#tab/rest)
 
 ### Deployment
