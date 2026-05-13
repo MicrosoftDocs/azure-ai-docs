@@ -26,6 +26,10 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 ## May 2026
 
+### Built-in RBAC roles for Content Understanding
+
+Added RBAC built-in roles for **Cognitive Service Content Understanding Owner**, **Contributor**, and **Reader** to allow granular access control. For more information, see [Managed identities](concepts/secure-communications.md#managed-identities).
+
 ### Content Understanding Studio new GPT-5.2 support regions
 
 Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 region, enabling broader regional coverage for resource and deployment creation. The following regions are now supported:
