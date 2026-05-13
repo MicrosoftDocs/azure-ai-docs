@@ -23,9 +23,6 @@ recommendations: false
 
 Provisioned throughput is a model deployment type in Microsoft Foundry that allocates dedicated model processing capacity to your deployment. Unlike standard deployments—where inference capacity is shared across customers and throughput can vary with demand—a provisioned deployment holds a fixed amount of processing capacity exclusively for your use, whether or not requests are being made.
 
-> [!IMPORTANT]
-> Dedicated capacity is allocated when a provisioned deployment is **successfully created**—not when PTU quota is assigned to your subscription. Having PTU quota doesn't guarantee that capacity will be available when you try to deploy. For details, see [Quota and capacity](#quota-and-capacity).
-
 This article explains the core concepts behind provisioned throughput: what it is, when to use it, how capacity is measured and billed, and what to know about quota and capacity before you deploy.
 
 ## Deployment types compared
@@ -36,10 +33,10 @@ Standard deployments, priority processing, and provisioned throughput are three 
 |---|---|---|---|---|
 | **Standard** | Pay per token | None | Shared pool | Development, testing, variable or unpredictable workloads |
 | **Priority processing** | Pay per token (priority tier rate) | Contractual latency target per model | Shared pool, priority queue | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
-| **Provisioned** | Per PTU per hour | Contractual latency target per model | Dedicated once deployed; availability not guaranteed at deployment time | Sustained high-volume production workloads |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | Contractual latency target per model | Dedicated once deployed; availability not guaranteed at deployment time | Sustained high-volume production workloads |
 
 > [!NOTE]
-> Priority processing is available on Global standard and Data Zone standard (US) deployments only, and uses the same quota as standard processing. For details, see [Enable priority processing for Microsoft Foundry models](priority-processing.md).
+> Priority processing is available on Global standard and Data Zone standard (US) deployments only, and uses the same quota as standard processing (see [Quota and capacity](#quota-and-capacity)). TO learn about priority processing, see [Enable priority processing for Microsoft Foundry models](priority-processing.md).
 
 ## When to use provisioned throughput
 
@@ -66,7 +63,7 @@ Key characteristics of PTUs:
 - **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 - **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 
-For details on PTU quota, capacity, and how to request more, see [Quota and capacity](#quota-and-capacity).
+For details on PTU quota, capacity, and how to request more, see [Quota and capacity](#quota-and-capacity). Note that having PTU quota doesn't guarantee that capacity is available when you deploy—quota is a policy limit, not a capacity reservation.
 
 ## PTU sizing
 
@@ -76,14 +73,17 @@ Before creating a provisioned deployment, estimate how many PTUs your workload r
 
 Use your expected traffic and the per-model values from [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model) to estimate the PTUs your workload needs. The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
 
+Before applying the formulas, note two key terms:
+
+- The **output-to-input ratio** reflects how much more processing capacity an output token requires compared to an input token. For example, a ratio of 8 means one output token counts as 8 input tokens toward the model's TPM limit.
+- The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). Cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
+
 **Formulas:**
 
 - Input TPM = Peak RPM × prompt size (tokens)
 - Output TPM = Peak RPM × response size (tokens)
 - Converted input TPM = (input TPM × (1 − cache rate)) + (output-to-input ratio × output TPM)
 - PTUs required = converted input TPM ÷ Input TPM per PTU
-
-The **output-to-input ratio** reflects how much more processing capacity an output token requires compared to an input token. For example, a ratio of 8 means one output token counts as 8 input tokens toward the model's TPM limit. The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). Cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
 
 **Worked example:**
 
@@ -148,7 +148,7 @@ All provisioned deployment types are billed at an hourly rate ($/PTU/hr) based o
 
 ### Azure Reservations
 
-Azure Reservations are a financial discount applied to the PTU billing meter, not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Reservations are purchased per deployment type (Global, Data Zone, or Regional) and can be scoped to cover one or more subscriptions or resource groups.
+Azure Reservations are a financial discount applied to the PTU billing meter (the hourly usage counter Azure charges against), not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Reservations are purchased per deployment type (Global, Data Zone, or Regional) and can be scoped to cover one or more subscriptions or resource groups.
 
 Reservations and deployments are loosely coupled—you create deployments and reservations independently.
 
