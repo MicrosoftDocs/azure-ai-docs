@@ -153,7 +153,7 @@ var customAnalyzer = new ContentAnalyzer
     FieldSchema = fieldSchema
 };
 
-customAnalyzer.Models["completion"] = "gpt-4.1";
+customAnalyzer.Models["completion"] = "gpt-5.2";
 customAnalyzer.Models["embedding"] =
     "text-embedding-3-large"; // Required when using field_schema and prebuilt-document base analyzer
 
@@ -282,7 +282,7 @@ var classifierAnalyzer = new ContentAnalyzer
 };
 
 classifierAnalyzer.Models["completion"] =
-    "gpt-4.1";
+    "gpt-5.2";
 
 var classifierOp =
     await client.CreateAnalyzerAsync(
@@ -354,7 +354,7 @@ var customAnalyzer = new ContentAnalyzer
     FieldSchema = fieldSchema
 };
 
-customAnalyzer.Models["completion"] = "gpt-4.1";
+customAnalyzer.Models["completion"] = "gpt-5.2";
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,
@@ -468,7 +468,7 @@ var customAnalyzer = new ContentAnalyzer
     FieldSchema = fieldSchema
 };
 
-customAnalyzer.Models["completion"] = "gpt-4.1";
+customAnalyzer.Models["completion"] = "gpt-5.2";
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,
@@ -601,7 +601,7 @@ var customAnalyzer = new ContentAnalyzer
     FieldSchema = fieldSchema
 };
 
-customAnalyzer.Models["completion"] = "gpt-4.1";
+customAnalyzer.Models["completion"] = "gpt-5.2";
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,

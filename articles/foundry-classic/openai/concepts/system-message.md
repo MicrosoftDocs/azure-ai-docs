@@ -10,8 +10,8 @@ ms.custom:
   - ignite-2023
   - pilot-ai-workflow-jan-2026
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 

@@ -2,8 +2,8 @@
 title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 02/27/2025
 ms.service: microsoft-foundry

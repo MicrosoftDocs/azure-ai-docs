@@ -2,8 +2,8 @@
 title: Quota tier free
 description: Quota tier limits for free tier
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

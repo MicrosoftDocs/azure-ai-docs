@@ -26,7 +26,7 @@ Creating your first agent is a two-step process:
 | Create and edit agents                                                 | Azure AI User                    |
 
 > [!NOTE]
-> For hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
+> For Hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
 
 ## Set up your agent environment
 To get started, you need a Microsoft Foundry resource and a Foundry project.  

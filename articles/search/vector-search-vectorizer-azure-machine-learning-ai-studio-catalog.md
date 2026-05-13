@@ -13,7 +13,7 @@ ms.update-cycle: 365-days
 # Microsoft Foundry model catalog vectorizer
 
 > [!IMPORTANT]
-> This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). To use this feature, we recommend the latest preview version of [Indexes - Create Or Update (REST API)](/rest/api/searchservice/indexes/create-or-update).
+> This vectorizer is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). To use this feature, we recommend the latest preview version of [Indexes - Create Or Update (REST API)](/rest/api/searchservice/indexes/create-or-update).
 
 The **Microsoft Foundry model catalog** vectorizer connects to an embedding model deployed from the [Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) or an [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
