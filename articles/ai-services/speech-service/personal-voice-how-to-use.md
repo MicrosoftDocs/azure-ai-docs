@@ -29,7 +29,7 @@ This table shows the advantages of the different base models:
 | Base model | Key characteristics | Latency |
 |-------|-------------------| ------- |
 | **DragonLatestNeural** | Good similarity | 500ms |
-| **DragonHDOmniLatestNeural** | Natural prosody, style and paralinguistics control. For example: <br/> `[laughter] Don't worry—we'll get you a table, no problem! [Sad] Don't worry—we'll get you a table, no problem!` <br/> See [the supported styles and paralinguistics](./high-definition-voices#supported-styles-for-dragon-hd-omni). | 300ms |
+| **DragonHDOmniLatestNeural** | Natural prosody, style and paralinguistics control. For example: <br/> `[laughter] Don't worry—we'll get you a table, no problem! [Sad] Don't worry—we'll get you a table, no problem!` <br/> See [the supported styles and paralinguistics](./high-definition-voices.md#supported-styles-for-dragon-hd-omni). | 300ms |
 | **MAI-Voice-1** | Highly expressive and natural, now only available in en-US. | 1500ms |
 | **PhoenixLatestNeural** | Accurate pronunciation, lower latency. | 200ms |
 
