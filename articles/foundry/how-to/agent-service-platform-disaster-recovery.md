@@ -6,7 +6,7 @@ description: "Recover Foundry Agent Service projects from Azure platform and reg
 #customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.
 author: jonburchel
 ms.author: jburchel
-ms.date: 02/24/2026
+ms.date: 05/12/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.custom:

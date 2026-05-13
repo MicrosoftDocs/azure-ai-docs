@@ -12,7 +12,7 @@ ms.date: 02/23/2026
 
 # Quickstart: Agentic retrieval in the Azure portal
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 

@@ -1,8 +1,8 @@
 ---
 title: "How to migrate from Azure.AI.OpenAI 1.0 Beta to 2.0 (classic)"
 description: "Learn about migrating to the latest release of the Azure OpenAI package for .NET. (classic)"
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: alvinashcraft 
+ms.author: aashcraft 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-dotnet

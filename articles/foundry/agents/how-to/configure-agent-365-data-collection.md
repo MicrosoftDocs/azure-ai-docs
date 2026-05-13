@@ -57,7 +57,7 @@ Every Foundry project and every prompt agent contained within that resource
 inherits the same data-collection setting. There's no per-project or
 per-agent override.
 
-[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in hosted agents override logging disablement settings on the Foundry resource level.
+[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in Hosted agents override logging disablement settings on the Foundry resource level.
 
 ## Disable data collection on a Foundry resource
 

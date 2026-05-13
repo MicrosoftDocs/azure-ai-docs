@@ -33,6 +33,14 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 - **Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
 - **Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
 
+> [!IMPORTANT]
+> **Migrating from `agent.as_tool` or Connected Agents?** The Connected Agents tool from the previous (classic) Agents API isn't available in the new Foundry Agent Service. To use one Foundry agent from another, choose one of the following replacements:
+>
+> - **A2A tool** (this article): Call any A2A-compatible endpoint from your agent. To call another Foundry agent this way, expose that agent as an A2A endpoint by following [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article, then connect to it from your calling agent.
+> - **Workflows**: Orchestrate multiple Foundry agents declaratively in a sequential, group chat, or human-in-the-loop pattern. See [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
+>
+> For the full mapping of classic tools to their replacements in the new API, see [Agent tool availability](../../how-to/migrate.md#agent-tool-availability) in the migration guide.
+
 ## Usage support
 
 The following table shows SDK and setup support.
@@ -628,7 +636,9 @@ public class AgentToAgentExample {
 
 ## Host an A2A-compatible agent endpoint
 
-Foundry Agent Service doesn't natively expose hosted agents as A2A endpoints. To make your agent available as an A2A endpoint that other agents can call, use one of the following approaches.
+You can expose your Foundry agent as an A2A endpoint directly by enabling the A2A protocol on the agent. For step-by-step instructions, see [Enable incoming A2A on a Foundry agent](../enable-agent-to-agent-endpoint.md).
+
+If your agent is deployed outside of Agent Service, or if you need a custom hosting approach, use one of the following alternatives.
 
 ### Option 1: Register a custom A2A agent in Foundry Control Plane
 
