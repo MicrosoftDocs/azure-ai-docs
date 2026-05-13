@@ -45,3 +45,5 @@ ROBOTS: NOINDEX, NOFOLLOW
 [!INCLUDE [deployments-batch](../../../foundry/foundry-models/includes/model-matrix/deployments-batch.md)]
 
 ::: zone-end
+
+[!INCLUDE [models-sold-directly-by-azure-region-availability-1](../../../foundry/foundry-models/includes/models-sold-directly-by-azure-region-availability-1.md)]
