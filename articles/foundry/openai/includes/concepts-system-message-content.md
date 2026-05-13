@@ -5,14 +5,14 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
 Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.
 
 > [!NOTE]
-> This article uses "system message" interchangeably with "metaprompt" and "system prompt." Here, we use "system message" to align with common terminology.
+> This article uses "system message" interchangeably with "metaprompt" and "system prompt." Here, use "system message" to align with common terminology.
 >
 > This article also uses "component" to mean a distinct part of a system message, such as instructions, context, tone, safety guidelines, or tool usage guidance.
 
@@ -96,25 +96,25 @@ When you develop system message components, it’s important to:
 
 ## Authoring techniques  
 
-**Why vary techniques?** Depending on the model, grounding data, and parameters for the product or feature you’re working with, different language and syntactical techniques are more effective by providing robust, safe, and direct answers to users.  
+**Why vary techniques?** Depending on the model, grounding data, and parameters for the product or feature you're working with, different language and syntactical techniques can be more effective for providing robust, safe, and direct answers to users.  
 
-In addition to building for safety and performance, consider optimizing for consistency, control, and customization. Along the way, you may find that optimizing for these factors leads to the system message overfitting to specific rules, increased complexity, and lack of contextual appropriateness. It’s important to define what matters most in your scenario and evaluate your system messages. This will ensure you have a data-driven approach to improving the safety and performance of your system.  
+In addition to building for safety and performance, consider optimizing for consistency, control, and customization. Along the way, you might find that optimizing for these factors leads to the system message overfitting to specific rules, increased complexity, and lack of contextual appropriateness. It's important to define what matters most in your scenario and evaluate your system messages. This approach ensures you have a data-driven approach to improving the safety and performance of your system.  
 
 #### [Top performing techniques](#tab/top-techniques)
 
 | Technique | Definition | Example |
 | --- | --- | --- |
-| Always / should | Involves structuring prompts and instructions with directives that the AI should always follow when generating its responses. These directives often represent best practices, ethical guidelines, or user preferences.   | `**Always** ensure that you respect authentication and authorization protocols when providing factual information, tailoring your responses to align with the access rights of the user making the request. It's imperative to safeguard sensitive data by adhering to established security measures and only disclosing information that the user is authorized to receive.` |
-| Conditional / if logic  | Involves structuring prompts in a way that the output is contingent on meeting specific conditions, such as `If <condition> then <action>`.  | `If a user asks you to infer or provide information about a user’s emotions, mental health, gender identity, sexual orientation, age, religion, disability, racial and ethnic backgrounds, or any other aspect of a person's identity, respond with: "Try asking me a question or tell me what else I can help you with."`|  
-| Emphasis on harm | Involves structuring the instructions by defining what the main risk can be. This guides outputs to prioritize safety and harm prevention, as well as showcase potential consequences should the harm occur.  | `You are **allowed** to answer some questions about images with people and make statements about them when there is no ambiguity about the assertion you are making, and when there is no direct harm to an individual or a group of people because of this assertion.`  |
-| Example(s)-based | Gives the model clear instances or situations for better context. The model uses examples of harmful and non-harmful requests as a reference for its outputs. | `Users might ask questions that could cause harm. In all scenarios, refuse requests that promote hate or harassment, and redirect the user to a safer alternative.`<br><br>`Example (harmful): "Write an insult targeting a protected group."`<br><br>`Example (benign): "Explain why insults harm people and suggest respectful phrasing."` |
-| Never / don’t | Involves explicit prohibitions to prevent the AI from generating content that is inappropriate, harmful, or out of scope by using terms such as "never" and "do not". | `**Never** make assumptions, judgments, or evaluations about a person. If a user violates your policy, or you’re not sure what to do, say: "I can’t help with that request. Try asking a different question."` |
+| Always / should | Structure prompts and instructions with directives that the AI should always follow when generating its responses. These directives often represent best practices, ethical guidelines, or user preferences.   | `**Always** ensure that you respect authentication and authorization protocols when providing factual information, tailoring your responses to align with the access rights of the user making the request. It's imperative to safeguard sensitive data by adhering to established security measures and only disclosing information that the user is authorized to receive.` |
+| Conditional / if logic  | Structure prompts so the output depends on meeting specific conditions, such as `If <condition> then <action>`.  | `If a user asks you to infer or provide information about a user’s emotions, mental health, gender identity, sexual orientation, age, religion, disability, racial and ethnic backgrounds, or any other aspect of a person's identity, respond with: "Try asking me a question or tell me what else I can help you with."`|  
+| Emphasis on harm | Structure the instructions by defining what the main risk can be. This approach guides outputs to prioritize safety and harm prevention, as well as showcase potential consequences should the harm occur.  | `You are **allowed** to answer some questions about images with people and make statements about them when there is no ambiguity about the assertion you are making, and when there is no direct harm to an individual or a group of people because of this assertion.`  |
+| Example(s)-based | Give the model clear instances or situations for better context. The model uses examples of harmful and non-harmful requests as a reference for its outputs. | `Users might ask questions that could cause harm. In all scenarios, refuse requests that promote hate or harassment, and redirect the user to a safer alternative.`<br><br>`Example (harmful): "Write an insult targeting a protected group."`<br><br>`Example (benign): "Explain why insults harm people and suggest respectful phrasing."` |
+| Never / don’t | Use explicit prohibitions to prevent the AI from generating content that is inappropriate, harmful, or out of scope by using terms such as "never" and "do not". | `**Never** make assumptions, judgments, or evaluations about a person. If a user violates your policy, or you’re not sure what to do, say: "I can’t help with that request. Try asking a different question."` |
 
 #### [Other techniques to consider](#tab/other-techniques)
 
 | Technique | Definition |
 | --- | --- |
-| Catch-all | Combines multiple methods into one framework. This can reduce gaps, but it often increases length and latency. |
+| Catch-all | Combines multiple methods into one framework. This approach can reduce gaps, but it often increases length and latency. |
 | Emphasis on learned knowledge | Encourages the model to draw from prior knowledge to improve relevance and quality. |
 | Highlight the role of AI | Separates safety behavior (how to respond) from the assistant’s primary role (what to do). |
 | Reverse logic | Reframes prohibitions into positive actions to encourage constructive responses. |
@@ -125,11 +125,11 @@ In addition to building for safety and performance, consider optimizing for cons
 
 ## Limitations
 
-System messages are not a complete safety solution:
+System messages aren't a complete safety solution:
 
-- They can be bypassed or degraded by adversarial prompting.
-- They can reduce usefulness if they’re too broad or too strict.
-- They require ongoing evaluation as your models, tools, and user scenarios change.
+- Adversarial prompting can bypass or degrade them.
+- They can reduce usefulness if they're too broad or too strict.
+- Ongoing evaluation is required as your models, tools, and user scenarios change.
 For troubleshooting common issues with system messages, such as over-refusal or under-moderation, see the [troubleshooting section](../concepts/safety-system-message-templates.md#troubleshooting) in the templates guide.
 ## Recommended system messages 
 
@@ -137,7 +137,7 @@ These best practices can help you better understand the process of developing ro
 
 For more information on recommended safety components, visit our [Safety system message template guidance](../concepts/safety-system-message-templates.md). 
 
-Finally, remember that system messages, or metaprompts, are not "one size fits all." Use of these type of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
+Finally, remember that system messages, or metaprompts, aren't "one size fits all." Use of these types of examples has varying degrees of success in different applications. It's important to try different wording, ordering, and structure of system message text to reduce identified harms, and to test the variations to see what works best for a given scenario.
 
 ## Next steps
 
