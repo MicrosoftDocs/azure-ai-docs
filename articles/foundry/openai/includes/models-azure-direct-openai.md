@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 05/04/2026
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
@@ -318,11 +318,7 @@ The third generation embeddings models support reducing the size of the embeddin
 
 OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than the 1,536 dimensions of `text-embeddings-ada-002`, performance remains slightly better.
 
-
 These models can be used only with Embedding API requests.
-
-> [!NOTE]
-> `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embedding models. To migrate from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.  
 
 |  Model ID | Max request (tokens) | Output dimensions |Training data (up to)
 |---|---| :---:|:---:|:---:|
