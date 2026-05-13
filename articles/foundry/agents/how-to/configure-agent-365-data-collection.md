@@ -6,8 +6,8 @@ ms.author: deeikele
 ms.reviewer: jburchel
 ms.date: 03/19/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As an IT admin, I want to control whether Foundry agent data is sent to Agent 365 so that I can meet my organization's data governance and residency requirements.
 ---

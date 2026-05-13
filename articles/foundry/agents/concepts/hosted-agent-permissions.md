@@ -4,8 +4,8 @@ description: "Reference for permissions required to create, deploy, and interact
 manager: nitinme
 author: mattchenderson
 ms.author: mahender
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: reference
 ms.date: 04/21/2026
 ms.custom:
