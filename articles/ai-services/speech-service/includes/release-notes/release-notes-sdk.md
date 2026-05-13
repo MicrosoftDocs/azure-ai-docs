@@ -21,6 +21,7 @@ ai-usage: ai-assisted
   * Added support for dynamic voice configuration per target language during translation updates.
   * Added support for source language autodetection in speech recognition.
   * Updated Android OpenSSL to 3.0.20.
+  * Added support for configuring post-processing behavior via PostProcessingOption to improve final transcript accuracy. 
 
 #### Bug fixes:
   * Fixed a TTS connection race condition.
@@ -34,7 +35,7 @@ ai-usage: ai-assisted
 ### Speech SDK for JavaScript
 
 #### New features:
-  * No new features.
+   * Added support for configuring post-processing behavior via PostProcessingOption to improve final transcript accuracy. 
 
 #### Bug fixes:
   * Fixed ineffective proxy configuration when SpeechConfig.setProxy(...) is used on recent Node.js versions.
