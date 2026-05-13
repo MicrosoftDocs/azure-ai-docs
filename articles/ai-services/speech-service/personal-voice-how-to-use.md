@@ -24,12 +24,12 @@ You need to use [speech synthesis markup language (SSML)](./speech-synthesis-mar
 
 - The voice name is specified in the `name` property in SSML. For personal voice, the voice name must be one of the supported base model voice names. To get a list of supported base model voice names, use the [BaseModels_List](/rest/api/aiservices/speechapi/base-models/list) operation of the custom voice API.
 
-Here're the advantages of base models:
+This table shows the advantages of the different base models:
 
-| Base Model | Key Characteristics | Latency |
+| Base model | Key characteristics | Latency |
 |-------|-------------------| ------- |
 | **DragonLatestNeural** | Good similarity | 500ms |
-| **DragonHDOmniLatestNeural** | Natural prosody, style and paralinguistics control. Here is a demo input. <br/> `[laughter] Don't worry—we'll get you a table, no problem! [Sad] Don't worry—we'll get you a table, no problem!` <br/> See [the supported styles and paralinguistics](./high-definition-voices#supported-styles-for-dragon-hd-omni). | 300ms |
+| **DragonHDOmniLatestNeural** | Natural prosody, style and paralinguistics control. For example: <br/> `[laughter] Don't worry—we'll get you a table, no problem! [Sad] Don't worry—we'll get you a table, no problem!` <br/> See [the supported styles and paralinguistics](./high-definition-voices#supported-styles-for-dragon-hd-omni). | 300ms |
 | **MAI-Voice-1** | Highly expressive and natural, now only available in en-US. | 1500ms |
 | **PhoenixLatestNeural** | Accurate pronunciation, lower latency. | 200ms |
 
