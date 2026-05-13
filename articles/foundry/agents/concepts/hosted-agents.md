@@ -47,7 +47,7 @@ Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedi
 
 ### Protocols: Responses and Invocations
 
-Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration.
+Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration. Both protocols are available in [regions that support Hosted agents](#region-availability). 
 
 #### Which protocol should I use?
 
