@@ -3,7 +3,7 @@ title: "Deep dive into Foundry Agent Service networking"
 description: "Understand the network architecture, subnet sizing, IP allocation, and traffic flow for hosted and prompt agents in Microsoft Foundry Agent Service with bring-your-own VNet."
 author: aahill
 ms.author: aahi
-ms.date: 05/07/2026
+ms.date: 05/13/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -176,7 +176,6 @@ Consider deploying a new Foundry instance with a fresh subnet when you observe:
 - The data proxy returning 5xx errors.
 - Hosted agent session creation failing with 4xx errors.
 - New project provisioning failures.
-- Approximately 80% of your estimated usable IP capacity in use.
 
 > [!IMPORTANT]
 > The platform doesn't proactively warn you when IP capacity is running low. Monitor the signals listed earlier to avoid unexpected provisioning failures.
