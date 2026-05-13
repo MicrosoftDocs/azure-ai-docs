@@ -19,7 +19,7 @@ Microsoft has partnered with Hugging Face to bring open-source models from Huggi
 
 You can search from thousands of Transformers models in the model catalog and deploy models to a managed online endpoint through a guided wizard. Once deployed, the managed online endpoint provides a secure REST API to score your model in real time.
 
-Models sourced from Hugging Face are Non-Microsoft Products that has not been tested or evaluated by Microsoft. Customers should ensure that the model is appropriate for their specific use, including by evaluating any legal or export-control considerations and conducting their own model risk and safety evaluations. You can learn about Foundry risk and safety evaluations [here](https://learn.microsoft.com/en-us/azure/foundry/concepts/safety-evaluations-transparency-note?view=foundry#the-basics-of-microsoft-foundry-risk-and-safety-evaluations-preview). You can learn about Hugging Face security measures and requirements for models offered in Foundry [here](https://huggingface.co/docs/microsoft-azure/security). 
+Models sourced from Hugging Face are Non-Microsoft Products that has not been tested or evaluated by Microsoft. Customers should ensure that the model is appropriate for their specific use, including by evaluating any legal or export-control considerations and conducting their own model risk and safety evaluations. You can learn about Foundry risk and safety evaluations [here](../concepts/safety-evaluations-transparency-note.md#the-basics-of-microsoft-foundry-risk-and-safety-evaluations-preview)). You can learn about Hugging Face security measures and requirements for models offered in Foundry [here](https://huggingface.co/docs/microsoft-azure/security). 
 
 > [!NOTE]
 > Models from Hugging Face are subject to third-party license terms available on the Hugging Face model details page. It's your responsibility to comply with the model's license terms.
@@ -55,9 +55,6 @@ Choose the real-time deployment option to open the quick deploy dialog. Specify 
 1. Select the number of instances. One instance is sufficient for testing, but consider two or more instances for production.
 1. Optionally, specify an endpoint and deployment name.
 1. Select **Deploy**. You're then navigated to the endpoint page, which might take a few seconds. The deployment takes several minutes to complete based on the model size and instance type.
-
-> [!NOTE]
-> If you want to deploy to an existing endpoint, select **More options** from the quick deploy dialog and use the full deployment wizard.
 
 #### Gated models
 
