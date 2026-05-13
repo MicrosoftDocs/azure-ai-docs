@@ -1,8 +1,8 @@
 ---
 title: "Foundry Models sold directly by Azure"
 description: "Learn about Microsoft Foundry Models sold directly by Azure, their capabilities, deployment types, and regional availability for AI applications."
-author: msakande
-ms.author: mopeakande
+author: msakande #alvinashcraft for azure-openai pivot
+ms.author: mopeakande #aashcraft for azure-openai pivot
 manager: nitinme
 ms.date: 04/17/2026
 ms.service: microsoft-foundry
@@ -19,7 +19,7 @@ ms.custom:
 ai-usage: ai-assisted
 zone_pivot_groups: models-sold-directly-by-azure
 
-#CustomerIntent: As a developer, I want to browse the full list of Microsoft Foundry Models sold directly by Azure, including their capabilities and regional availability, so that I can select the right model for my application.
+#CustomerIntent: As a developer, I want to browse the full list of Microsoft Foundry Models sold directly by Azure, including their capabilities, so that I can select the right model for my application.
 ---
 
 # Foundry Models sold directly by Azure
