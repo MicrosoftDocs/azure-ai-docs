@@ -2584,7 +2584,7 @@ Response includes details of the enqueued job including job status and the name 
 | model | string (see valid models below) | The name of the model to fine-tune. You can select one of the<br>  [supported models](https://platform.openai.com/docs/guides/fine-tuning#which-models-can-be-fine-tuned). | Yes |  |
 | seed | integer or null | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.<br>  If a seed is not specified, one will be generated for you. | No |  |
 | suffix | string or null | A string of up to 64 characters that will be added to your fine-tuned model name.<br>  For example, a `suffix` of "custom-model-name" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. | No |  |
-| training_file | string | The ID of an uploaded file that contains training data.<br>  See [upload file](https://platform.openai.com/docs/api-reference/files/create) for how to upload a file.<br>  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br>  The contents of the file should differ depending on if the model uses the [chat](https://platform.openai.com/docs/api-reference/fine-tuning/chat-input), [completions](https://platform.openai.com/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](https://platform.openai.com/docs/api-reference/fine-tuning/preference-input) format.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | Yes |  |
+| training_file | string | The ID of an uploaded file that contains training data.<br>  See [upload file](https://developers.openai.com/api/reference/resources/files/methods/create/create) for how to upload a file.<br>  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br>  The contents of the file should differ depending on if the model uses the [chat](https://platform.openai.com/docs/api-reference/fine-tuning/chat-input), [completions](https://platform.openai.com/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](https://platform.openai.com/docs/api-reference/fine-tuning/preference-input) format.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | Yes |  |
 | validation_file | string or null | The ID of an uploaded file that contains validation data.<br>  If you provide this file, the data is used to generate validation<br>  metrics periodically during fine-tuning. These metrics can be viewed in<br>  the fine-tuning results file.<br>  The same data should not be present in both train and validation files.<br>  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | No |  |
 
 #### Responses
@@ -4985,7 +4985,7 @@ Creates a vector store.
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
 | description | string | A description for the vector store. Can be used to describe the vector store's purpose. | No |  |
 | expires_after | [OpenAI.VectorStoreExpirationAfter](#openaivectorstoreexpirationafter) | The expiration policy for a vector store. | No |  |
-| file_ids | array of string | A list of [File](https://platform.openai.com/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
+| file_ids | array of string | A list of [File](https://developers.openai.com/api/reference/resources/files/methods/create) IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
 | name | string | The name of the vector store. | No |  |
 
@@ -5208,7 +5208,7 @@ Create a vector store file batch.
 |------|------|-------------|----------|---------|
 | attributes | [OpenAI.VectorStoreFileAttributes](#openaivectorstorefileattributes) or null |  | No |  |
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
-| file_ids | array of string | A list of [File](https://platform.openai.com/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.  If `attributes` or `chunking_strategy` are provided, they will be  applied to all files in the batch. Mutually exclusive with `files`. | No |  |
+| file_ids | array of string | A list of [File](https://developers.openai.com/api/reference/resources/files/methods/create) IDs that the vector store should use. Useful for tools like `file_search` that can access files.  If `attributes` or `chunking_strategy` are provided, they will be  applied to all files in the batch. Mutually exclusive with `files`. | No |  |
 | files | array of [OpenAI.CreateVectorStoreFileRequest](#openaicreatevectorstorefilerequest) | A list of objects that each include a `file_id` plus optional `attributes` or `chunking_strategy`. Use this when you need to override metadata for specific files. The global `attributes` or `chunking_strategy` will be ignored and must be specified for each file. Mutually exclusive with `file_ids`. | No |  |
 
 #### Responses
@@ -5471,7 +5471,7 @@ Create a vector store file by attaching a File to a vector store.
 |------|------|-------------|----------|---------|
 | attributes | [OpenAI.VectorStoreFileAttributes](#openaivectorstorefileattributes) or null |  | No |  |
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
-| file_id | string | A [File](https://platform.openai.com/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+| file_id | string | A [File](https://developers.openai.com/api/reference/resources/files/methods/create) ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
 
 #### Responses
 
@@ -8218,7 +8218,7 @@ gpt-4o-mini
 | model | string (see valid models below) | The name of the model to fine-tune. You can select one of the<br>  [supported models](https://platform.openai.com/docs/guides/fine-tuning#which-models-can-be-fine-tuned). | Yes |  |
 | seed | integer or null | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.<br>  If a seed is not specified, one will be generated for you. | No |  |
 | suffix | string or null | A string of up to 64 characters that will be added to your fine-tuned model name.<br>  For example, a `suffix` of "custom-model-name" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. | No |  |
-| training_file | string | The ID of an uploaded file that contains training data.<br>  See [upload file](https://platform.openai.com/docs/api-reference/files/create) for how to upload a file.<br>  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br>  The contents of the file should differ depending on if the model uses the [chat](https://platform.openai.com/docs/api-reference/fine-tuning/chat-input), [completions](https://platform.openai.com/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](https://platform.openai.com/docs/api-reference/fine-tuning/preference-input) format.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | Yes |  |
+| training_file | string | The ID of an uploaded file that contains training data.<br>  See [upload file](https://developers.openai.com/api/reference/resources/files/methods/create/create) for how to upload a file.<br>  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br>  The contents of the file should differ depending on if the model uses the [chat](https://platform.openai.com/docs/api-reference/fine-tuning/chat-input), [completions](https://platform.openai.com/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](https://platform.openai.com/docs/api-reference/fine-tuning/preference-input) format.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | Yes |  |
 | validation_file | string or null | The ID of an uploaded file that contains validation data.<br>  If you provide this file, the data is used to generate validation<br>  metrics periodically during fine-tuning. These metrics can be viewed in<br>  the fine-tuning results file.<br>  The same data should not be present in both train and validation files.<br>  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.<br>  See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | No |  |
 
 ### OpenAI.CreateFineTuningJobRequestHyperparameters
@@ -8385,7 +8385,7 @@ request, an empty thread will be created.
 |------|------|-------------|----------|---------|
 | attributes | [OpenAI.VectorStoreFileAttributes](#openaivectorstorefileattributes) or null |  | No |  |
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
-| file_ids | array of string | A list of [File](https://platform.openai.com/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.  If `attributes` or `chunking_strategy` are provided, they will be  applied to all files in the batch. Mutually exclusive with `files`. | No |  |
+| file_ids | array of string | A list of [File](https://developers.openai.com/api/reference/resources/files/methods/create) IDs that the vector store should use. Useful for tools like `file_search` that can access files.  If `attributes` or `chunking_strategy` are provided, they will be  applied to all files in the batch. Mutually exclusive with `files`. | No |  |
 | files | array of [OpenAI.CreateVectorStoreFileRequest](#openaicreatevectorstorefilerequest) | A list of objects that each include a `file_id` plus optional `attributes` or `chunking_strategy`. Use this when you need to override metadata for specific files. The global `attributes` or `chunking_strategy` will be ignored and must be specified for each file. Mutually exclusive with `file_ids`. | No |  |
 
 ### OpenAI.CreateVectorStoreFileRequest
@@ -8394,7 +8394,7 @@ request, an empty thread will be created.
 |------|------|-------------|----------|---------|
 | attributes | [OpenAI.VectorStoreFileAttributes](#openaivectorstorefileattributes) or null |  | No |  |
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
-| file_id | string | A [File](https://platform.openai.com/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+| file_id | string | A [File](https://developers.openai.com/api/reference/resources/files/methods/create) ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
 
 ### OpenAI.CreateVectorStoreRequest
 
@@ -8403,7 +8403,7 @@ request, an empty thread will be created.
 | chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. | No |  |
 | description | string | A description for the vector store. Can be used to describe the vector store's purpose. | No |  |
 | expires_after | [OpenAI.VectorStoreExpirationAfter](#openaivectorstoreexpirationafter) | The expiration policy for a vector store. | No |  |
-| file_ids | array of string | A list of [File](https://platform.openai.com/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
+| file_ids | array of string | A list of [File](https://developers.openai.com/api/reference/resources/files/methods/create) IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
 | name | string | The name of the vector store. | No |  |
 
@@ -9246,11 +9246,11 @@ The `fine_tuning.job` object represents a fine-tuning job that has been created 
 | model | string | The base model that is being fine-tuned. | Yes |  |
 | object | enum | The object type, which is always "fine_tuning.job".<br>Possible values: `fine_tuning.job` | Yes |  |
 | organization_id | string | The organization that owns the fine-tuning job. | Yes |  |
-| result_files | array of string | The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](https://platform.openai.com/docs/api-reference/files/retrieve-contents). | Yes |  |
+| result_files | array of string | The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](https://developers.openai.com/api/reference/resources/files/methods/create/retrieve-contents). | Yes |  |
 | seed | integer | The seed used for the fine-tuning job. | Yes |  |
 | status | enum | The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.<br>Possible values: `validating_files`, `queued`, `running`, `succeeded`, `failed`, `cancelled` | Yes |  |
 | trained_tokens | integer or null |  | Yes |  |
-| training_file | string | The file ID used for training. You can retrieve the training data with the [Files API](https://platform.openai.com/docs/api-reference/files/retrieve-contents). | Yes |  |
+| training_file | string | The file ID used for training. You can retrieve the training data with the [Files API](https://developers.openai.com/api/reference/resources/files/methods/create/retrieve-contents). | Yes |  |
 | validation_file | string or null |  | Yes |  |
 
 ### OpenAI.FineTuningJobCheckpoint
@@ -10329,7 +10329,7 @@ This component uses the property `type` to discriminate between different types:
 
 ### OpenAI.MessageContentImageFileObject
 
-References an image [File](https://platform.openai.com/docs/api-reference/files) in the content of a message.
+References an image [File](https://developers.openai.com/api/reference/resources/files/methods/create) in the content of a message.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -13205,7 +13205,7 @@ A batch of files attached to a vector store.
 | id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
 | object | enum | The object type, which is always `vector_store.file_batch`.<br>Possible values: `vector_store.files_batch` | Yes |  |
 | status | enum | The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.<br>Possible values: `in_progress`, `completed`, `cancelled`, `failed` | Yes |  |
-| vector_store_id | string | The ID of the [vector store](https://platform.openai.com/docs/api-reference/vector-stores/object) that the [File](https://platform.openai.com/docs/api-reference/files) is attached to. | Yes |  |
+| vector_store_id | string | The ID of the [vector store](https://platform.openai.com/docs/api-reference/vector-stores/object) that the [File](https://developers.openai.com/api/reference/resources/files/methods/create) is attached to. | Yes |  |
 
 ### OpenAI.VectorStoreFileBatchObjectFileCounts
 
@@ -13231,7 +13231,7 @@ A list of files attached to a vector store.
 | object | enum | The object type, which is always `vector_store.file`.<br>Possible values: `vector_store.file` | Yes |  |
 | status | enum | The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.<br>Possible values: `in_progress`, `completed`, `cancelled`, `failed` | Yes |  |
 | usage_bytes | integer | The total vector store usage in bytes. Note that this may be different from the original file size. | Yes |  |
-| vector_store_id | string | The ID of the [vector store](https://platform.openai.com/docs/api-reference/vector-stores/object) that the [File](https://platform.openai.com/docs/api-reference/files) is attached to. | Yes |  |
+| vector_store_id | string | The ID of the [vector store](https://platform.openai.com/docs/api-reference/vector-stores/object) that the [File](https://developers.openai.com/api/reference/resources/files/methods/create) is attached to. | Yes |  |
 
 ### OpenAI.VectorStoreFileObjectLastError
 

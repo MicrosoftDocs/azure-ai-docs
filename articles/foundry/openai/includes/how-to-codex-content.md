@@ -16,7 +16,7 @@ OpenAI's [Codex CLI](https://github.com/openai/codex) is the same coding agent t
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Contributor permissions in [Microsoft Foundry](https://ai.azure.com/).
 - `homebrew` (macOS) or Node.js with `npm` for installing the Codex CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-- For Windows, install and configure WSL2. See [Install WSL](https://learn.microsoft.com/windows/wsl/install).
+- For Windows, install and configure WSL2. See [Install WSL](/windows/wsl/install).
 
 | Requirements | Details |
 | ------------ | ------- |

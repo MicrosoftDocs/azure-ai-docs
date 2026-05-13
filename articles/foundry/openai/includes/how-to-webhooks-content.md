@@ -13,7 +13,7 @@ Azure OpenAI webhooks enable your applications to receive real-time notification
 
 ## Prerequisites
 
-- Azure CLI installed and signed in. For example: `az --version` and `az login`. See <https://learn.microsoft.com/cli/azure/install-azure-cli>.
+- Azure CLI installed and signed in. For example: `az --version` and `az login`. See [How to install the Azure CLI](/cli/azure/install-azure-cli).
 - An Azure OpenAI resource endpoint (for example, `https://{resource}.openai.azure.com/`) and an API key available as `AZURE_OPENAI_API_KEY`.
 
 Install the required Python packages:

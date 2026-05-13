@@ -9,7 +9,7 @@ ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
-An embedding is a special format of data representation that machine learning models and algorithms can easily use. An embedding is an information-dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating-point numbers, such that the distance between two embeddings in the vector space correlates with the semantic similarity between two inputs in the original format. For example, if two texts are similar, their vector representations are also similar. Embeddings power vector similarity search in Azure databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search), and [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
+An embedding is a special format of data representation that machine learning models and algorithms can easily use. An embedding is an information-dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating-point numbers, such that the distance between two embeddings in the vector space correlates with the semantic similarity between two inputs in the original format. For example, if two texts are similar, their vector representations are also similar. Embeddings power vector similarity search in Azure databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search), and [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
 
 ## Prerequisites
 
@@ -192,7 +192,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
 
 ## Limitations & risks
 
-Embedding models might be unreliable or pose social risks in certain cases. They might cause harm if used without mitigations. For more information about how to approach their use responsibly, see the [Responsible AI](https://learn.microsoft.com/azure/ai/responsible-ai/overview) content.
+Embedding models might be unreliable or pose social risks in certain cases. They might cause harm if used without mitigations. For more information about how to approach their use responsibly, see the [Responsible AI](/azure/foundry/responsible-use-of-ai-overview) content.
 
 ## Next steps
 
@@ -200,7 +200,6 @@ Embedding models might be unreliable or pose social risks in certain cases. They
 * To learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * To store your embeddings and perform vector (similarity) search, choose from the following services:
   * [Azure AI Search](/azure/search/vector-search-overview)
-  * [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search)
   * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
   * [Azure Cosmos DB for NoSQL](/azure/cosmos-db/vector-search)
   * [Azure Cosmos DB for PostgreSQL](/azure/cosmos-db/postgresql/howto-use-pgvector)
