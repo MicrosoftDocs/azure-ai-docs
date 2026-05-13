@@ -99,11 +99,13 @@ For production-ready Terraform configurations with enterprise security built in,
 
 ### Related security configurations
 
-When you customize your configuration, consider adding the following security settings:
+When you customize your configuration, consider adding the following security settings. Choose based on your governance requirements:
 
-- [Configure network isolation with private endpoints](configure-private-link.md)
-- [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md)
-- [Configure role-based access control for Foundry](../concepts/rbac-foundry.md)
-- [Create custom Azure Policy definitions](custom-policy-definition.md)
+| Control | When to add it | Learn more |
+| --- | --- | --- |
+| **Private endpoints (network isolation)** | Your organization bans public endpoints, or you need to keep traffic on your virtual network for compliance (HIPAA, PCI, FedRAMP). | [Configure network isolation with private endpoints](configure-private-link.md) |
+| **Customer-managed keys (CMK) for encryption** | You must control the encryption-key lifecycle, rotation cadence, or revocation, or your data classification requires bring-your-own-key. | [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md) |
+| **Role-based access control (RBAC)** | You need least-privilege access for builders versus administrators, or you grant access to multiple teams that share a Foundry resource. | [Configure role-based access control for Foundry](../concepts/rbac-foundry.md) |
+| **Custom Azure Policy definitions** | Your platform team enforces a security baseline (allowed regions, required tags, allowed SKUs, mandatory CMK or private link) across every Foundry resource the organization creates. | [Create custom Azure Policy definitions](custom-policy-definition.md) |
 
 [!INCLUDE [create-resource-terraform 2](../includes/how-to-create-resource-terraform-2.md)]
