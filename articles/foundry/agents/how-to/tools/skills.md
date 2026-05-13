@@ -8,8 +8,8 @@ ms.reviewer: zhuoqunli
 ms.date: 04/23/2026
 ms.manager: nitinme
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-foundry-skills
 ai-usage: ai-assisted
