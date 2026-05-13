@@ -47,7 +47,9 @@ In this article, you learn how to:
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
-- **RBAC**: Azure AI User role on the Foundry project.
+- **RBAC**: Foundry User role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 
 ## Author a skill
 

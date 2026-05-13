@@ -35,8 +35,10 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
 - [!INCLUDE [azure-subscription](azure-subscription.md)]
 
 - Have one of the following Azure RBAC roles to create and manage Foundry resources:
-  - **Azure AI User** (least-privilege role for development)
-  - **Azure AI Project Manager** (for managing Foundry projects)
+  - **Foundry User** (least-privilege role for development)
+
+    [!INCLUDE [role-rename-note](./role-rename-note.md)]
+  - **Foundry Project Manager** (for managing Foundry projects)
   - **Contributor** or **Owner** (for subscription-level permissions)
   
   For details on each role's permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).

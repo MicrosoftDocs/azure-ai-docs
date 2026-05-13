@@ -53,7 +53,9 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+  - On Foundry, assign [**Foundry User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+
+    [!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ## @odata.type  
 

@@ -21,9 +21,11 @@ Creating your first agent is a two-step process:
 
 | Action                                                                 | Required Role                   |
 |------------------------------------------------------------------------|----------------------------------|
-| Create an account and project                                          | Azure AI Account Owner           |
+| Create an account and project                                          | Foundry Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
-| Create and edit agents                                                 | Azure AI User                    |
+| Create and edit agents                                                 | Foundry User                    |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 > [!NOTE]
 > For Hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
@@ -38,7 +40,7 @@ Projects are currently the unit of sharing and isolation in Foundry. See the [wh
 ### Prerequisites 
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
+* Ensure that the individual creating the account and project has the **Foundry Account Owner** role at the subscription scope
 * If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.

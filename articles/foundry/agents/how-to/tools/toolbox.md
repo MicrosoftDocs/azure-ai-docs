@@ -67,7 +67,9 @@ For tool configuration syntax and authentication options for each tool type, see
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
-- **RBAC**: Grant the **Azure AI User** role on the Foundry project to each identity that applies to your scenario:
+- **RBAC**: Grant the **Foundry User** role on the Foundry project to each identity that applies to your scenario:
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
   - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
   - **Agent identity** (required if using a Hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
