@@ -5,15 +5,28 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 01/26/2026
+ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
   - build-2024
   - ignite-2024
+#customer intent: As a developer making decisions about the infrastructure we use, planning to optimize for usage need, capacity, and cost, I want to understand the limits, quotas, and capacities associated with Azure AI Search services, detailing how these factors depend on the chosen pricing tier.
+
 ---
 
 # Service limits in Azure AI Search
+
+Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the pricing model of your Azure AI Search service (see [Plan and manage costs](./search-sku-manage-costs.md)).
+
+Azure AI Search supports two pricing models:
+
+- **[Dedicated](./search-sku-tier.md)**: You must choose a service tier in this model, with options for Free, Basic, Standard (S1-S3, including S3 HD), and Storage Optimized (L1-L2) tiers. The tier selected will impact the service limits outlined in this guidance.
+- **[Serverless](./serverless-cost-optimization.md) (Preview)**: In the Serverless model, limits are defined by per-index caps, per-service object counts, and Serverless throttling behavior. 
+
+
+
+------
 
 Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the [pricing tier](search-sku-tier.md) of your Azure AI Search service:
 
@@ -35,19 +48,21 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 
 ## Index limits
 
-| Resource | Free | Basic&nbsp;<sup>1</sup>  | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 |
-|----------|------|--------|----|----|----|------------|----|----|
-| Maximum indexes |3 |5 or 15 |50 |200 |200 |1000 per partition or 3000 per service |10 |10 |
-| Maximum simple fields per index&nbsp;<sup>2</sup> |1000 |100 |1000 |1000 |1000 |1000 |1000 |1000 |
-| Maximum dimensions per vector field | 4096|4096|4096|4096|4096|4096|4096|4096|
-| Maximum complex collections per index |40 |40 |40 |40 |40 |40 |40 |40 |
-| Maximum elements across all complex collections per document&nbsp;<sup>3</sup> |3000 |3000 |3000 |3000 |3000 |3000 |3000 |3000 |
-| Maximum depth of complex fields |10 |10 |10 |10 |10 |10 |10 |10 |
-| Maximum [suggesters](/rest/api/searchservice/suggesters) per index |1 |1 |1 |1 |1 |1 |1 |1 |
-| Maximum [scoring profiles](/rest/api/searchservice/add-scoring-profiles-to-a-search-index) per index |100 |100 |100 |100 |100 |100 |100 |100 |
-| Maximum [semantic configurations](semantic-how-to-configure.md) per index |100 |100 |100 |100 |100 |100 |100 |100 |
-| Maximum functions per profile |8 |8 |8 |8 |8 |8 |8 |8 |
-| Maximum index size&nbsp;<sup>4</sup> | N/A | N/A | N/A | 1.88&nbsp;TB | 2.34&nbsp;TB | 100 GB| N/A | N/A |
+## Index limits
+
+| Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless |
+|----------|------|--------------------|----|----|----|--------|----|----|------------|
+| Maximum indexes | 3 | 5 or 15 | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 | 3,000 per service |
+| Maximum simple fields per index <sup>2</sup> | 1000 | 100 | 1000 | 1000 | 1000 | 1000 | 1000 | 1000 | 1000 |
+| Maximum dimensions per vector field | 4096 | 4096 | 4096 | 4096 | 4096 | 4096 | 4096 | 4096 | 4096 |
+| Maximum complex collections per index | 40 | 40 | 40 | 40 | 40 | 40 | 40 | 40 | 40 |
+| Maximum elements across all complex collections per document <sup>3</sup> | 3000 | 3000 | 3000 | 3000 | 3000 | 3000 | 3000 | 3000 | 3000 |
+| Maximum depth of complex fields | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 |
+| Maximum suggesters per index | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| Maximum scoring profiles per index | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+| Maximum semantic configurations per index | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+| Maximum functions per profile | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
+| Maximum index size <sup>4</sup> | N/A | N/A | N/A | 1.88 TB | 2.34 TB | 100 GB | N/A | N/A | Defined per index (service-level limits apply) |
 
 <sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes. Basic tier is the only tier with a lower limit of 100 fields per index.
 
