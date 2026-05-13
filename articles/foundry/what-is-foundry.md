@@ -87,7 +87,6 @@ Foundry is evolving fast. Here are some of the latest additions:
 - [A2A agent endpoints (preview)](./agents/how-to/enable-agent-to-agent-endpoint.md) — Expose agents as Agent2Agent endpoints so other agents can discover and call them.
 - [Instant models (preview)](./concepts/instant-models.md) — Call any supported model by name without creating a deployment first.
 
-
 See [What's new in Microsoft Foundry](./whats-new-foundry.md) for the full list.
 
 ## Choose your path
