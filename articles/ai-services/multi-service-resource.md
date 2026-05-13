@@ -102,7 +102,7 @@ The **Agent service** section is where you opt into the **standard setup for age
 
 ## Access your resource
 
-With your first resource created, you can access it via [Foundry portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
+With your first resource created, you can access it via [Foundry portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](../ai-foundry/how-to/develop/sdk-overview.md), or via [Azure portal for administrative management](https://portal.azure.com).
 
 ### Verify your setup
 
