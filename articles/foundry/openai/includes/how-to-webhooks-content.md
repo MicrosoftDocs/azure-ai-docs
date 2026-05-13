@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -28,7 +28,7 @@ A webhook server is an application that listens for and processes automated mess
 
 ### Create the webhook listener application
 
-Create a file called app.py with the following Flask application that receives and processes webhook events:
+Create a file called `app.py` with the following Flask application that receives and processes webhook events:
 
 ```python
 from flask import Flask, request, Response

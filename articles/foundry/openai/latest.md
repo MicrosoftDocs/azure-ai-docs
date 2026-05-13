@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 05/13/2026
 author: alvinashcraft 
 ms.author: aashcraft
 recommendations: false
@@ -61,15 +61,15 @@ Creates and executes a batch from an uploaded file of requests
 #### URI Parameters
 
 | Name | In | Required | Type | Description |
-|------|------|----------|------|-----------|
+| ---- | -- | -------- | ---- | ----------- |
 | endpoint | path | Yes | string | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No | string | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 #### Request Header
 
 | Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| accept | True | string<br>Possible values: `application/json` |  |
+| ---- | -------- | ---- | ----------- |
+| accept | True | string<br>Possible values: `application/json` | |
 
 #### Request Body
 
