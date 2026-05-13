@@ -17,8 +17,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 - For **Azure Government model availability**, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
 
-> [!NOTE]
-> 
+### Model highlights
 
 | Models | Description |
 |--|--|
