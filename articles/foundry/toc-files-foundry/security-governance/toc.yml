@@ -43,6 +43,8 @@ items:
     href: ../../../ai-services/policy-reference.md?context=/azure/foundry/context/context
   - name: Built-in policy for model deployment
     href: ../../how-to/model-deployment-policy.md
+  - name: Govern model router with Azure Policy
+    href: ../../openai/how-to/model-router-policy.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 
