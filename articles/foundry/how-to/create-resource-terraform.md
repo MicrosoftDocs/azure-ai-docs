@@ -2,7 +2,7 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
@@ -64,9 +64,15 @@ terraform output
 If you already configured a Foundry resource in the Azure portal, you can export that configuration as Terraform code. The export captures your current resource settings, including network rules, identity configuration, and project associations. Use the exported code as a starting point for managing the resource with Terraform.
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry resource.
-1. In the left menu under **Automation**, select **Export template**.
-1. Select the **Terraform** tab to view the generated Terraform code.
-1. Select **Download** to save the file locally, or **Copy** to copy the code to your clipboard.
+1. In the left menu, expand **Automation**, and then select **Export template**.
+
+   :::image type="content" source="media/export-template/foundry-resource-export-template-menu.png" alt-text="Screenshot of a Foundry resource left menu with the Automation group expanded and Export template selected." lightbox="media/export-template/foundry-resource-export-template-menu.png":::
+
+1. Select the **Terraform** tab to view the generated Terraform code. Use the **AzureRM** or **AzApi** subtab to choose which provider format to export.
+
+   :::image type="content" source="media/export-template/foundry-export-template-terraform.png" alt-text="Screenshot of the Foundry Export template page with the Terraform tab selected, showing the Download, Open in VS Code, and Copy buttons above the AzureRM and AzApi subtabs and the generated Terraform code." lightbox="media/export-template/foundry-export-template-terraform.png":::
+
+1. Select **Download** to save the file locally, **Open in VS Code** to edit it directly, or **Copy** to copy the code to your clipboard.
 
 > [!NOTE]
 > The export might complete with warnings if some resource types don't support full export. Review the output and fill in any missing properties manually.
