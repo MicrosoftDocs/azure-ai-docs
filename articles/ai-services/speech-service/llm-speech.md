@@ -22,6 +22,10 @@ LLM Speech is an API in Microsoft Foundry. A large language model (LLM) enhances
 
 ::: zone pivot="ai-foundry"
 
+## Supported languages
+
+The following input languages are supported for both `transcribe` and `translate` tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``German``, ``English``, ``Spanish``, ``Finnish``, ``French``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Dutch``, ``Polish``, ``Portuguese``, ``Russian``, ``Swedish``, ``Thai``, ``Turkish``. By default, the service operates in multi-lingual mode, so you don't need to specify the input language locale. For more information about the supported locales, see [supported languages](../../language-support.md?tabs=stt).
+
 [!INCLUDE [Foundry portal](includes/common/llm-speech-ai-foundry.md)]
 
 ::: zone-end
