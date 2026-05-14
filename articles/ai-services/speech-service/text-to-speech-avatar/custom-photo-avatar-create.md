@@ -14,22 +14,39 @@ zone_pivot_groups: foundry-speech-studio
 
 # How to create a custom photo avatar
 
-Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can efficiently create a personalized and more engaging Voice Live agent. 
+Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can efficiently create a personalized and more engaging voice agent through Voice Live API or a talking heads video.
 
-Custom photo avatar creation is a manual process. You can follow the below process, and after custom photo avatars are set up, you can access them in the Microsoft Foundry or through API.
+Users can now create custom photo avatars directly in Microsoft Foundry. Self-creation supports two types of custom photo avatars:
+ - **Avatars created from a real person’s photo**  -  Users can upload a photo of a real person along with a consent video from the same individual authorizing avatar creation.
 
->[!Important]
-> Photo avatar (preview) and custom photo avatar (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA)("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-> Access to custom photo avatar (preview), which is part of custom text to speech avatar, is limited based on eligibility and usage criteria. Learn more [here](https://aka.ms/limitedaccesscogservices).
+ - **Avatars created from an AI-generated character** - Users can describe the character they want, and the embedded GenAI image model will generate it before creating the avatar.
 
 
-## Step 1: Request access
+> [!Note]
+> Custom photo avatar access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
-Custom photo avatar is available only to Microsoft managed customers and partners. You can request access on the [intake form](https://aka.ms/customneural).
-After the request is approved, please contact your Microsoft account manager to proceed.
 
-## Step 2: Prepare training data
-The custom photo avatar creation supports real human photos and virtual human images. Here are some tips for preparing the images.
+## Prerequisites
+
+- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../ai-foundry/how-to/create-projects.md).
+- Image to create the custom photo avatar, if you want to create an avatar from an existing image.
+- You need a video recording of the talent reading a consent statement acknowledging the use of their image. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
+
+## Step 1: Start fine-tuning
+1. [!INCLUDE [foundry-sign-in](../../../foundry/includes/foundry-sign-in.md)]
+2. Select **Build** from the top right menu.
+3. Select **Fine-tune** from the left pane.
+4. Select **AI Services**
+5. Click **Fine-tune** button on the top right corner.
+6. In the **Fine-tune a model** page, select model as **Azure Speech - Text to Speech Avatar**
+7. Select **Photo avatar** in Type
+8. Name your avatar and add optional description and click **Next**
+
+
+## Step 2: Add image data
+In this step, you can upload a photo of a real person or reuse a photo previously stored in Foundry by selecting **Existing data**,  or create a GenAI character by selecting **Create with AI** in the Select data source.
+
+To get the best results when creating an avatar, please follow these image preparation guidelines.
 - The photo avatar only includes the head, so it’s best to provide an image showing the character from the shoulders up.
 - The face must look like a real or virtual human. Cartoon-like characteristics, such as eyes that are larger than normal human proportions, are not supported.
 - Avoid showing elaborate accessories or jewelry.
