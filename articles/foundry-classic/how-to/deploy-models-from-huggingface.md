@@ -40,17 +40,19 @@ Key capabilities include:
 - **Traffic management** - Split or mirror traffic across multiple deployments. Mirror traffic helps you test new model versions on production traffic without releasing to production. Splitting traffic lets you gradually increase production traffic to new model versions while observing performance.
 - **Autoscaling** - Dynamically ramp up or ramp down resources based on utilization metrics, a specific schedule, or a combination of both. For example, add nodes if CPU utilization goes higher than 70%, or add nodes based on peak business hours.
 
-This article covers three deployment methods. Use the **portal** for guided first-time deployments, the **Python SDK** for programmatic workflows, or the **CLI** for automation and CI/CD pipelines.
+Select the tab for your preferred method.
 
-## Deploy Hugging Face hub models by using the portal
+## Deploy a Hugging Face model
 
-### Find the model in the model catalog
+# [Portal](#tab/portal)
+
+### Find the model
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
 4. Select **Hugging Face** in the **Collections** filter to see available Hugging Face models.
 
-1.  Select a model tile to open the model card. If the selected model is a *gated model*, the model card includes the note: **Gated Model Access Required**. To request access to deploy a gated model, see [Gated models](#gated-models).
+1. Select a model tile to open the model card. If the selected model is a *gated model*, the model card includes the note: **Gated Model Access Required**. To request access to deploy a gated model, see [Gated models](#gated-models).
 
 ### Deploy the model
 
@@ -68,7 +70,7 @@ This article covers three deployment methods. Use the **portal** for guided firs
 
 #### Gated models
 
-Gated models require approval from the model's author before use. When you open the model card of a gated model, you see the note: **Gated Model Access Required**. 
+Gated models require approval from the model's author before use. When you open the model card of a gated model, you see the note: **Gated Model Access Required**.
 
 To deploy a gated model:
 
@@ -88,11 +90,11 @@ Once the deployment completes, find the REST endpoint on the endpoints page to s
 
 You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
-## Deploy Hugging Face hub models by using the Python SDK
+# [Python SDK](#tab/python-sdk)
 
 [Set up the Python SDK](/python/api/overview/azure/ai-ml-readme).
 
-### Find the model to deploy
+### Find the model
 
 Browse the model catalog in Foundry portal and find the model you want to deploy. Copy the model name. The models shown in the catalog are listed from the `HuggingFace` registry. Create the `model_id` by using the model name you copied and the `HuggingFace` registry. This example deploys the `bert_base_uncased` model.
 
@@ -176,11 +178,11 @@ response_json = json.loads(response)
 print(json.dumps(response_json, indent=2))
 ```
 
-## Deploy Hugging Face hub models by using the CLI
+# [Azure CLI](#tab/azure-cli)
 
 [Set up the CLI](../../machine-learning/how-to-configure-cli.md).
 
-### Find the model to deploy
+### Find the model
 
 Browse the model catalog in Foundry portal and find the model you want to deploy. Copy the model name. The models shown in the catalog are listed from the `HuggingFace` registry. This example deploys the `bert_base_uncased` model.
 
@@ -241,6 +243,8 @@ cat <<EOF > $scoring_file
 EOF
 az ml online-endpoint invoke --name $endpoint_name --request-file $scoring_file
 ```
+
+---
 
 ## Hugging Face model example code
 
