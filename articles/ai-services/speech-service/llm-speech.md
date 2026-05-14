@@ -12,9 +12,8 @@ zone_pivot_groups: llm-speech-quickstart
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# LLM Speech for speech transcription and translation (preview)
+# LLM Speech for speech transcription and translation
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 LLM Speech is an API in Microsoft Foundry. A large language model (LLM) enhances a speech model, delivering improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios. For example, use LLM Speech to generate captions and subtitles from audio files, summarize meeting notes, assist call center agents, and transcribe voicemails.
 
@@ -22,7 +21,7 @@ LLM Speech is an API in Microsoft Foundry. A large language model (LLM) enhances
 
 ## Supported languages
 
-The following input languages are supported for both `transcribe` and `translate` tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``German``, ``English``, ``Spanish``, ``Finnish``, ``French``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Dutch``, ``Polish``, ``Portuguese``, ``Russian``, ``Swedish``, ``Thai``, ``Turkish``. By default, the service operates in multi-lingual mode, so you don't need to specify the input language locale. For more information about the supported locales, see [supported languages](language-support.md?tabs=stt).
+The following input languages are supported for both transcribe and translate tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``Dutch``, ``English``, ``Finnish``, ``French``, ``German``, ``Greek``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Indonesian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Polish``, ``Portuguese``, ``Russian``, ``Spanish``, ``Swedish``, ``Thai``, ``Turkish``. By default, the service operates in multi-lingual mode, so you don't need to specify the input language locale. For more information about the supported locales, see [supported languages](language-support.md?tabs=stt).
 
 
 ::: zone pivot="ai-foundry"
