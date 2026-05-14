@@ -1,14 +1,16 @@
 ---
-title: Deploy models from Hugging Face Hub (classic)
-description: "Learn how to deploy open-source models from the Hugging Face hub to managed online endpoints for real-time inference in Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+title: "Deploy Hugging Face Hub models to online endpoints (classic)"
+description: "Deploy Hugging Face Hub models to managed online endpoints in Microsoft Foundry for secure, scalable real-time inference. Follow this step-by-step guide to get started."
+#customer intent: As a data scientist, I want to deploy an open-source Hugging Face model to a managed online endpoint so that I can serve real-time predictions on Azure.
+ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 05/14/2026
 ms.author: mopeakande
 ms.reviewer: osiotugo
 author: msakande
 reviewer: ositanachi
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Deploy models from Hugging Face Hub to online endpoints (classic)
@@ -355,7 +357,7 @@ If you see `CredentialUnavailableError` when running the Python SDK, run `az log
 
 If a deployment fails with `QuotaExceeded` or `SubscriptionCapacityReached`, you don't have sufficient quota for the selected `instance_type` in the deployment region. To resolve this, either request a quota increase in the [Azure portal](https://portal.azure.com) under **Subscriptions** > **Usage + quotas**, or choose a different `instance_type` or region where you have available quota. For more information, see [Manage quotas across projects](quota.md).
 
-## Frequently asked questions
+## Frequently asked questions about Hugging Face Hub deployments
 
 ### Where are the model weights stored?
 
