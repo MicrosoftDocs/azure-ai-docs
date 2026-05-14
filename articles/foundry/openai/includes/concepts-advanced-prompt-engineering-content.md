@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -67,14 +67,14 @@ If your app needs structured output, specify an output contract (for example, JS
 
 Add constraints that reduce risky behavior for your scenario, such as refusing disallowed requests or avoiding disclosure of sensitive information.
 
-If you want guidance and templates designed for safety, see [Safety system messages](../concepts/system-message.md) and [Safety system message templates](../concepts/safety-system-message-templates.md).
+For guidance and templates designed for safety, see [Safety system messages](../concepts/system-message.md) and [Safety system message templates](../concepts/safety-system-message-templates.md).
 
 ## System message examples
 
 The following example shows a system message and the resulting model response.
 
 | System message | User | Assistant |
-|---|---|---|
+| --- | --- | --- |
 | You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say,<br>But I don't have info on you today.<br>I'm just an AI with knowledge in my brain,<br>But without your input, I can't explain.<br>So tell me more about what you seek,<br>And I'll do my best to give you an answer unique. |
 
 Here are a few more examples you can adapt.
@@ -143,6 +143,6 @@ If you’re tuning prompts as part of an evaluation workflow, you can also use t
 
 ## Next steps
 
-- Read [Prompt engineering techniques](../concepts/prompt-engineering.md) for broader prompt patterns.
-- Use [Safety system messages](../concepts/system-message.md) if you need safety-focused frameworks.
-- Start from [Safety system message templates](../concepts/safety-system-message-templates.md) when you want a ready-made baseline.
+- For broader prompt patterns, see [Prompt engineering techniques](../concepts/prompt-engineering.md).
+- If you need safety-focused frameworks, see [Safety system messages](../concepts/system-message.md).
+- For a ready-made baseline, see [Safety system message templates](../concepts/safety-system-message-templates.md).

@@ -1,12 +1,12 @@
 ---
-title: "What is Foundry IQ?"
-description: "Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents."
+title: What is Foundry IQ?
+description: Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
 ms.service: microsoft-foundry
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/13/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
@@ -76,7 +76,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 > [!NOTE]
 > + The playground provides a simplified workflow for proof-of-concept testing. When you move to code, configure managed identities and permissions to meet your organization's security requirements.
 >
-> + You can use the [Azure portal](/azure/search/get-started-portal-agentic-retrieval) to create knowledge bases and knowledge sources, but agent configuration and integration must be done in the Microsoft Foundry (new) portal or programmatically.
+> + You can use the [Azure portal](/azure/search/get-started-portal-agentic-retrieval) to create knowledge bases and knowledge sources, but agent configuration and integration must be done in the Microsoft Foundry portal or programmatically.
 
 ### [Programmatic](#tab/programmatic)
 
@@ -84,7 +84,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 1. [Create a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) that references your knowledge sources.
 
-1. [Connect an agent](/azure/ai-foundry/agents/how-to/foundry-iq-connect) to your knowledge base.
+1. [Connect an agent](/azure/foundry/agents/how-to/foundry-iq-connect) to your knowledge base.
 
 1. Send messages and refine your agent.
 
@@ -109,7 +109,7 @@ Each IQ workload is standalone, but you can use them together to provide compreh
 
 + [Watch this session](https://www.youtube.com/watch?v=slDdNIQCJBQ) for an introduction to Foundry IQ, and then [watch this video](https://www.youtube.com/watch?v=uDVkcZwB0EU) for a deep dive.
 
-+ For minimum costs and proof-of-concept testing, start with the Microsoft Foundry (new) portal. You can use the free tier for Azure AI Search and a free allocation of tokens for agentic retrieval. [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc) for a quick demonstration of the portal.
++ For minimum costs and proof-of-concept testing, start with the Microsoft Foundry portal. You can use the free tier for Azure AI Search and a free allocation of tokens for agentic retrieval. [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc) for a quick demonstration of the portal.
 
 + For step-by-step integration guidance, learn how to [connect a Foundry IQ knowledge base to Foundry Agent Service](../how-to/foundry-iq-connect.md).
 
