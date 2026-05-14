@@ -32,11 +32,11 @@ Standard deployments, priority processing, and provisioned throughput are three 
 | Deployment type | Billing | Latency guarantee | Capacity | Best for |
 |---|---|---|---|---|
 | **Standard** | Pay per token | None | Shared pool | Development, testing, variable or unpredictable workloads |
-| **Priority processing** | Pay per token (priority tier rate) | Contractual latency target per model | Shared pool, priority queue | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
-| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | Contractual latency target per model | Dedicated once deployed; availability not guaranteed at deployment time | Sustained high-volume production workloads |
+| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md) | Shared pool, priority queue | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | [Defined latency target per model](../how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model) | Dedicated once deployed; availability not guaranteed at deployment time | Sustained high-volume production workloads |
 
 > [!NOTE]
-> Priority processing is available on Global standard and Data Zone standard (US) deployments only, and uses the same quota as standard processing (see [Quota and capacity](#quota-and-capacity)). TO learn about priority processing, see [Enable priority processing for Microsoft Foundry models](priority-processing.md).
+> Priority processing is available on Global standard and Data Zone standard (US) deployments only, and uses the same quota as standard processing (see [Quota and capacity](#quota-and-capacity)). To learn about priority processing, see [Enable priority processing for Microsoft Foundry models](priority-processing.md).
 
 ## When to use provisioned throughput
 
@@ -102,7 +102,7 @@ For full details on the formulas, per-model Input TPM per PTU values, output-to-
 
 ## Deployment types that support provisioned throughput
 
-Provisioned throughput is available as three deployment types. They all provide the same predictable latency and dedicated capacity. The difference is where your inference traffic is processed:
+Provisioned throughput is available as three deployment types. They all provide dedicated capacity and predictable latency once deployed. The difference is where your inference traffic is processed:
 
 | Deployment type | `sku-name` in CLI | Data routing | Best for |
 |---|---|---|---|
@@ -120,7 +120,7 @@ For a full comparison of all Foundry deployment types—including standard, batc
 For the full list of models that support provisioned throughput—including which deployment types each model supports and regional availability—see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned).
 
 > [!NOTE]
-> New models sold directly by Azure are typically onboarded with the Global Provisioned type first. Data Zone Provisioned support follows. Check the Foundry portal for supported model versions when you configure a deployment. Regional provisioned availability varies by region.
+> Check the Foundry portal for supported model versions when you configure a deployment. Regional provisioned availability varies by region.
 
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
