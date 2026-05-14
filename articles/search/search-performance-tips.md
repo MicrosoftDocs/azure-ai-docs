@@ -148,4 +148,4 @@ Review these other articles related to service performance:
 + [Index large data sets in Azure AI Search](search-howto-large-index.md)
 + [Choose a service tier](search-sku-tier.md)
 + [Plan or add capacity](search-capacity-planning.md#add-or-remove-partitions-and-replicas)
-+ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/t5/azure-ai/case-study-effectively-using-cognitive-search-to-support-complex/ba-p/2804078)
++ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/case-study-effectively-using-cognitive-search-to-support-complex-ai-scenarios/2804078)
