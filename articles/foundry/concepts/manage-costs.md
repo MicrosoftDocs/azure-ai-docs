@@ -176,6 +176,29 @@ You can get more detailed billing information by grouping costs by resource:
 
    :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
+## Chargeback with project-level cost attribution
+
+Microsoft Foundry supports chargeback at the project level, so FinOps teams and admins can allocate shared Foundry spend back to the business unit, team, or workload that incurred it. Project-level attribution is useful when multiple projects share the same Foundry resource and you need to split the bill accurately.
+
+Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Azure Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
+
+> [!NOTE]
+> Project-level cost attribution is currently supported for models sold directly by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
+
+### View costs by project
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and open your Foundry resource.
+1. Select **Cost analysis** under **Resource Management** in the left navigation.
+1. In the filter bar, select **Add filter**, choose **Tag**, then choose `project`.
+1. Select one or more projects to view their attributed cost over the selected time range.
+
+   :::image type="content" source="media/manage-costs/cost-analysis-project-tag.png" alt-text="Screenshot of Azure Cost Management Cost analysis view filtered by the project tag, showing accumulated cost over time for a selected Foundry project." lightbox="media/manage-costs/cost-analysis-project-tag.png":::
+
+### What you can do with project-level attribution
+
+- Allocate shared Foundry resource costs back to individual projects for chargeback or showback.
+- Track project-level spend trends over time.
+
 [!INCLUDE [manage-costs-scope](../includes/concepts-manage-costs-scope.md)]
 
 [!INCLUDE [manage-costs 2](../includes/concepts-manage-costs-2.md)]
