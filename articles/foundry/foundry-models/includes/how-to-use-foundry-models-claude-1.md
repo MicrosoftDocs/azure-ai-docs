@@ -232,7 +232,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest",
+            "@anthropic-ai/foundry-sdk": "latest",
             "@azure/identity": "latest"
           }
         }
@@ -300,7 +300,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest"
+            "@anthropic-ai/foundry-sdk": "latest"
           }
         }
         ```
