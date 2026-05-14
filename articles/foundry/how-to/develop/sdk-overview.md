@@ -380,18 +380,85 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet)
 ::: zone-end
 
-### Generate embeddings with the OpenAI SDK
+## Anthropic SDK
 
-Use the same `/openai/v1` endpoint to generate embeddings with a deployed embedding model.
+Use the Anthropic SDK to work with Anthropic Claude models deployed in Foundry. Claude models use a separate `/anthropic` endpoint and the Anthropic Messages API, not the OpenAI-compatible endpoint.
+
+The Anthropic endpoint appends `/anthropic` to your resource URL:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic
+```
+
+The Messages API is available at:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic/v1/messages
+```
 
 ::: zone pivot="programming-language-python"
 
 ```python
-embedding = client.embeddings.create(
-    model="text-embedding-3-large",
-    input="How do I get started with Microsoft Foundry?",
+from anthropic import AnthropicFoundry
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
-print(f"Embedding dimension: {len(embedding.data[0].embedding)}")
+
+client = AnthropicFoundry(
+    azure_ad_token_provider=token_provider,
+    base_url="https://<resource-name>.services.ai.azure.com/anthropic",
+)
+
+message = client.messages.create(
+    model="claude-sonnet-4-6",  # Replace with your deployment name
+    messages=[
+        {"role": "user", "content": "What are 3 things to visit in Seattle?"}
+    ],
+    max_tokens=1048,
+)
+
+print(message.content)
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+The Anthropic SDK doesn't provide a native C# client. Use the REST API with `HttpClient` to call Claude models.
+
+```csharp
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using Azure.Identity;
+
+string endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+string deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredential();
+var token = await credential.GetTokenAsync(
+    new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"]));
+
+using var httpClient = new HttpClient();
+httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token.Token);
+httpClient.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
+
+var requestBody = new
+{
+    model = deploymentName,
+    messages = new[] { new { role = "user", content = "What are 3 things to visit in Seattle?" } },
+    max_tokens = 1048
+};
+
+var response = await httpClient.PostAsync(
+    endpoint,
+    new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json"));
+
+string result = await response.Content.ReadAsStringAsync();
+Console.WriteLine(result);
 ```
 
 ::: zone-end
@@ -399,35 +466,73 @@ print(f"Embedding dimension: {len(embedding.data[0].embedding)}")
 ::: zone pivot="programming-language-javascript"
 
 ```javascript
-const embedding = await client.embeddings.create({
-    model: "text-embedding-3-large",
-    input: "How do I get started with Microsoft Foundry?",
+import AnthropicFoundry from '@anthropic-ai/foundry-sdk';
+import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://ai.azure.com/.default');
+
+const client = new AnthropicFoundry({
+    azureADTokenProvider: tokenProvider,
+    baseURL: "https://<resource-name>.services.ai.azure.com/anthropic",
+    apiVersion: "2023-06-01"
 });
-console.log(`Embedding dimension: ${embedding.data[0].embedding.length}`);
-```
 
-::: zone-end
+const message = await client.messages.create({
+    model: "claude-sonnet-4-6", // Replace with your deployment name
+    messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+    max_tokens: 1048,
+});
 
-::: zone pivot="programming-language-csharp"
-
-```csharp
-var embeddingClient = openAIClient.GetEmbeddingClient("text-embedding-3-large");
-var result = embeddingClient.GenerateEmbedding(
-    "How do I get started with Microsoft Foundry?");
-Console.WriteLine($"Embedding dimension: {result.Value.ToFloats().Length}");
+console.log(message);
 ```
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
+The Anthropic SDK doesn't provide a native Java client. Use the REST API with `HttpClient` to call Claude models.
+
 ```java
-// Use the same OpenAI client created above
-// Embeddings are available through the OpenAI SDK embeddings API
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.core.credential.TokenRequestContext;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+String endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+String deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredentialBuilder().build();
+var token = credential.getToken(
+    new TokenRequestContext().addScopes("https://ai.azure.com/.default")).block();
+
+String requestBody = """
+    {
+        "model": "%s",
+        "messages": [{"role": "user", "content": "What are 3 things to visit in Seattle?"}],
+        "max_tokens": 1048
+    }
+    """.formatted(deploymentName);
+
+HttpClient httpClient = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create(endpoint))
+    .header("Authorization", "Bearer " + token.getToken())
+    .header("Content-Type", "application/json")
+    .header("anthropic-version", "2023-06-01")
+    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+    .build();
+
+HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
 ```
 
 ::: zone-end
 
-For the full embeddings how-to, see [Generate embeddings](../../openai/how-to/embeddings.md).
+For more information, see [Use Anthropic Claude models in Microsoft Foundry](../../foundry-models/how-to/use-foundry-models-claude.md).
 
 [!INCLUDE [sdk-overview 3](../../includes/how-to-develop-sdk-overview-3.md)]
