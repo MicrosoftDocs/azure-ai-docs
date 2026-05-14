@@ -4,7 +4,7 @@ description: "Learn about how red teaming and adversarial testing are an essenti
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 12/6/2025
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

@@ -108,7 +108,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 * [Keyword search](/azure/search/search-lucene-query-architecture)
 
 * [Semantic search](/azure/search/semantic-search-overview)
-* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings-models) 
+* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings) 
 
     To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 

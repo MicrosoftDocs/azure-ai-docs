@@ -4,7 +4,7 @@ description: "Learn how to use global batch with Azure OpenAI"
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 01/27/2026
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

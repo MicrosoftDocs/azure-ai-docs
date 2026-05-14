@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -88,12 +88,12 @@ print(response.output_text)
 
 ## Output structure
 
-Deep research responses follow the standard Responses API format. Pay attention to the output array—it lists all tool calls made during the process, such as:
+Deep research responses follow the standard Responses API format. Pay attention to the output array - it lists all tool calls made during the process, such as:
 
-* **web_search_call**: Actions using the web search tool (for example, search, open_page, find_in_page).
-* **code_interpreter_call**: Code execution steps.
+* **web_search_call**: Actions that use the web search tool, like search, open_page, and find_in_page.
+* **code_interpreter_call**: Steps for code execution.
 * **mcp_tool_call**: Actions performed on remote MCP servers.
-* **message**: The model’s final answer with inline citations.
+* **message**: The model's final answer with inline citations.
 
 Example `web_search_call` (search action):
 
@@ -141,16 +141,16 @@ Example `message` (final answer):
 
 * Use background mode to avoid timeouts.
 * Configure webhooks for completion notifications.
-* Increase timeout settings if not using background mode.
-* Use `max_tool_calls` to control tool usage and manage cost/latency.
+* Increase timeout settings if you're not using background mode.
+* Use `max_tool_calls` to control tool usage and manage cost and latency.
 
 ## Creating optimized prompts
 
 For best results, use this three-step process:
 
 1. **Clarify intent**: Use a smaller model (for example, gpt-4.1 or gpt-5) to gather details from the user.
-2. **Rewrite prompt**: Use a smaller model to create a detailed, structured prompt.
-3. **Run deep research**: Pass the optimized prompt to o3-deep-research.
+1. **Rewrite prompt**: Use a smaller model to create a detailed, structured prompt.
+1. **Run deep research**: Pass the optimized prompt to o3-deep-research.
 
 These steps are optional but recommended for high-quality outputs.
 
@@ -308,7 +308,7 @@ Requirements:
 
 * A `search` interface to return results for a query.
 * A `fetch` interface to retrieve documents by ID.
-* `require_approval` must be set to never.
+* Set `require_approval` to `never`.
 
 #### Remote MCP server with deep research
 
