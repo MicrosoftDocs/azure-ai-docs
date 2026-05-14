@@ -368,6 +368,8 @@ items:
         href: how-to-voice-live-auto-truncation.md
       - name: Improve tool calling and latency wait times
         href: how-to-voice-live-interim-response.md
+      - name: Use Voice Live with hosted agents
+        href: how-to-voice-live-hosted-agent-integration.md
       - name: Add an MCP server
         href: how-to-voice-live-mcp-server.md
       - name: Voice Live via WebRTC (preview)
