@@ -278,7 +278,7 @@ To deploy a gated model with the Azure CLI:
 
 ---
 
-### Test the model
+## Test the model
 
 # [Portal](#tab/portal)
 
