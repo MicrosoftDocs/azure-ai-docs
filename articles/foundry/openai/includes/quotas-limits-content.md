@@ -206,13 +206,6 @@ The following section provides you with a quick guide to the default quotas and 
 > [!NOTE]
 > Quota limits are subject to change.
 
-## model-router rate limits
-
-| Model                              | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
-|:----------------------------------:|------------------|:-------------:|:-------------:|:---------------------------:|:----------------------------:|
-| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
-
 [!INCLUDE [Quota](global-batch-limits.md)]
 
 ## gpt-oss
