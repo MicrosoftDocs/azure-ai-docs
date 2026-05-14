@@ -73,7 +73,7 @@ The following sections describe what a developer experiences when a policy that 
 
 1. Select **Deploy**. The deployment uses the compliant model subset.
 
-For the full deployment walkthrough that doesn't include policy steps, see [Use model router for Microsoft Foundry](model-router.md).
+For the full deployment walkthrough that doesn't include policy steps, see [Use model router for Microsoft Foundry](../openai/how-to/model-router.md).
 
 ### REST API, Azure CLI, and ARM templates
 
