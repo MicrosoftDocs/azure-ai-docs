@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 05/14/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -178,11 +178,15 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
 
 ## Best practices
 
+> [!TIP]
+> Embedding requests return HTTP 400 when the **sum** of input tokens exceeds 300,000, even if every individual input is well under the per-input limit. If you previously batched large arrays of long inputs successfully, split them into smaller requests.
+
 ### Verify inputs don't exceed the maximum length
 
 - The maximum length of input text for the latest embedding models is 8,192 tokens. Verify that your inputs don't exceed this limit before making a request.
-- If you send an array of inputs in a single embedding request, the max array size is 2,048.
-- When you send an array of inputs in a single request, remember that the number of tokens per minute in your requests must stay below the quota limit that the model deployment assigned. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
+- If you send an array of inputs in a single embedding request, the maximum array size is 2,048.
+- Each `/embeddings` request also has a hard cap of 300,000 tokens summed across all inputs. Requests that exceed this aggregate limit fail with HTTP 400, even when every individual input is under 8,192 tokens and the array length is under 2,048. Batch large workloads into multiple smaller requests to stay under the cap.
+- When you send an array of inputs in a single request, remember that the number of tokens per minute in your requests must stay below the quota limit assigned to the model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
 
 ## Troubleshooting
 

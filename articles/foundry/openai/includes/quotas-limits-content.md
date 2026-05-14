@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/14/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -184,6 +184,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum training job size `(tokens in training file) x (# of epochs)` | 2 billion. |
 | Maximum size of all files per upload (Azure OpenAI on your data) | 16 MB. |
 | Maximum number of inputs in array with `/embeddings` | 2,048. |
+| Maximum tokens per `/embeddings` request (sum across all inputs) | 300,000. |
 | Maximum number of `/chat/completions` messages | 2,048. |
 | Maximum number of `/chat/completions` functions | 128. |
 | Maximum number of `/chat/completions` tools | 128. |
