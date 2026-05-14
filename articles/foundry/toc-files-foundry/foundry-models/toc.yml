@@ -87,9 +87,6 @@ items:
     - name: Auto and direct routing with Responses API
       displayName: Auto and direct model routing with the Responses API
       href: ../../openai/how-to/responses-model-routing.md
-    - name: Govern model router with Azure Policy
-      displayName: Use Azure Policy to control model router deployments in Microsoft Foundry
-      href: ../../openai/how-to/model-router-policy.md
     - name: How model router works
       displayName: How model router works in Microsoft Foundry
       href: ../../openai/concepts/model-router-how-it-works.md

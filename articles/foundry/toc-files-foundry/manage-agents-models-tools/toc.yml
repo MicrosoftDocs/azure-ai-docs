@@ -25,6 +25,8 @@ items:
     href: ../../control-plane/how-to-enforce-limits-models.md
   - name: Apply a guardrail policy for models
     href: ../../control-plane/quickstart-create-guardrail-policy.md
+  - name: Govern model router with Azure Policy
+    href: ../../how-to/model-router-policy.md
   - name: Optimize cost and performance
     href: ../../control-plane/how-to-optimize-cost-performance.md
 - name: Manage compliance and security

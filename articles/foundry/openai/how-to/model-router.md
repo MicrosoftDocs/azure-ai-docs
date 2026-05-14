@@ -23,6 +23,10 @@ Model router is a trained language model that selects the best large language mo
 
 [!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
+## Govern model router deployments with Azure Policy
+
+If your organization restricts which models developers can deploy, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. Policy is enforced at deploy time across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
+
 ## Deploy a model router model
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 

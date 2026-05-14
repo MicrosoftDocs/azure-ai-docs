@@ -28,7 +28,7 @@ This article shows IT admins how to assign a policy that governs model router, a
 
 - An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- A Foundry resource in a region that supports model router. To learn more, see [Use model router for Microsoft Foundry](model-router.md).
+- A Foundry resource in a region that supports model router. To learn more, see [Use model router for Microsoft Foundry](../openai/how-to/model-router.md).
 
 - Permissions to assign Azure Policy. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the subscription or resource group level.
 
@@ -46,7 +46,7 @@ Model discoverability is preserved. Unapproved models remain visible in the mode
 
 ## Assign a policy that governs model router
 
-Model router uses the same built-in Foundry policy that governs other model deployments: **Cognitive Services Deployments should only use approved Registry Models**. To assign or update the policy, follow the steps in [Built-in policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy). The publisher names and asset IDs that you allow apply to model router selections automatically. No separate policy definition is required.
+Model router uses the same built-in Foundry policy that governs other model deployments: **Cognitive Services Deployments should only use approved Registry Models**. To assign or update the policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically. No separate policy definition is required.
 
 > [!TIP]
 > Scope the policy to the resource group or subscription that contains your Foundry resources. The model subset selector evaluates the policy at the scope where the Foundry resource is created.
@@ -85,7 +85,7 @@ To stay compliant on the command line:
 
 1. When you author the request body for the model router deployment, include only those approved models in the model subset.
 
-1. Submit the deployment by using the REST API examples in [Use model router for Microsoft Foundry](model-router.md#configure-custom-settings-with-the-rest-api).
+1. Submit the deployment by using the REST API examples in [Use model router for Microsoft Foundry](../openai/how-to/model-router.md#configure-custom-settings-with-the-rest-api).
 
 If the request fails, inspect the response message to see which model triggered the policy. Update the request body to remove the noncompliant model and resubmit.
 
@@ -116,8 +116,8 @@ Compliance results can take up to 24 hours to appear after a policy change. To f
 
 ## Related content
 
-- [Use model router for Microsoft Foundry](model-router.md)
-- [Model router for Microsoft Foundry concepts](../concepts/model-router.md)
-- [Built-in policy for model deployment](/azure/ai-foundry/how-to/model-deployment-policy)
-- [Create custom policy definitions](/azure/ai-foundry/how-to/custom-policy-definition)
+- [Use model router for Microsoft Foundry](../openai/how-to/model-router.md)
+- [Model router for Microsoft Foundry concepts](../openai/concepts/model-router.md)
+- [Built-in policy for model deployment](model-deployment-policy.md)
+- [Create custom policy definitions](custom-policy-definition.md)
 - [Azure Policy overview](/azure/governance/policy/overview)
