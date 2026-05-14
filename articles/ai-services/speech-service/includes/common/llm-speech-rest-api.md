@@ -103,9 +103,6 @@ The following target languages are supported in `targetLanguage` by specifying t
 
 #### Use prompt-tuning to alter performance
 
-
-#### Use prompt-tuning to alter performance
-
 You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
 
 ```azurecli-interactive
