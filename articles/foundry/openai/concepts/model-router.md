@@ -27,10 +27,6 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 
 [!INCLUDE [model-router 1](../includes/concepts-model-router-1.md)]
 
-## Govern model router deployments
-
-If your organization uses Azure Policy to control which models can be deployed, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. The policy applies to the model subset that a developer can include in a model router deployment, and it's enforced consistently across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
-
 ## Routing mode
 
 With the latest version, if you choose custom deployment, you can select the **routing mode** to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing mode is optional, and if you don’t set one, your deployment defaults to the Balanced mode.
@@ -42,5 +38,9 @@ Available routing modes:
 | Balanced (default) | Considers both cost and quality dynamically. Perfect for general-purpose scenarios |
 | Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
 | Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |
+
+## Govern model router deployments
+
+If your organization uses Azure Policy to control which models can be deployed, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. The policy applies to the model subset that a developer can include in a model router deployment, and it's enforced consistently across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
 
 [!INCLUDE [model-router 2](../includes/concepts-model-router-2.md)]
