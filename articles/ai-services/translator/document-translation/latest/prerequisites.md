@@ -16,8 +16,8 @@ The Document Translation API lets you translate documents at scale or on demand.
 
 The API supports two translation processes:
 
-* [Asynchronous batch translation](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/quickstarts/rest-api#asynchronously-translate-documents-post) — Use this process to translate multiple documents or large files in parallel. You need an Azure Blob Storage account with separate containers for your source and translated documents.
-* [Synchronous single file](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/quickstarts/rest-api#synchronously-translate-a-single-document-post) — Use this process to translate a single document without Azure Blob Storage. The API returns the translated document directly in the response.
+* [Asynchronous batch translation](rest-api/translate-asynchronous.md) — Use this process to translate multiple documents or large files in parallel. You need an Azure Blob Storage account with separate containers for your source and translated documents.
+* [Synchronous single file](rest-api/translate-synchronous.md) — Use this process to translate a single document without Azure Blob Storage. The API returns the translated document directly in the response.
 
 
 ## Azure resources
@@ -27,7 +27,7 @@ The resources you need depend on whether you use large language model (LLM)-base
 * You need an active **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * For **LLM-based translation**, you need the following:
-    * A Foundry resource. To create one, see [Create and configure Azure resources for Translator in Foundry Tools](https://learn.microsoft.com/en-us/azure/ai-services/translator/how-to/create-translator-resource?tabs=foundry).
+    * A Foundry resource. To create one, see [Azure resources for Translator in Foundry Tools](../../how-to/create-translator-resource.md).
     * An LLM model deployed in your Foundry resource. Supported models: `GPT-5.1`, `GPT-5.2`, `GPT-5.2-chat`.
     * The deployment name of your model, which you include as `deploymentName` in the request payload.
 

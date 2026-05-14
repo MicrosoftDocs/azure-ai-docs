@@ -143,7 +143,7 @@ response headers: {
   'Date': 'Mon, 04 May 2026 16:06:08 GMT'
            }
 ```
-To monitor progress, use the `operation-location` URL to poll the job status. For more information, see [Get translation job status](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/reference/get-translation-status).
+To monitor progress, use the `operation-location` URL to poll the job status. For more information, see [Get translation job status](../rest-api/get-status-specific-translation.md).
 
 ## Step 5: View results
 

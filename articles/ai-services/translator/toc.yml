@@ -177,7 +177,7 @@ items:
   - name: Document translation REST APIs 2026-03-01
     items:
       - name: Document translation operations
-        href: document-translation/reference/rest-api-guide.md
+        href: document-translation/latest/rest-api-guide.md
       - name: Synchronous document translation
         href: document-translation/reference/translate-document.md
       - name: Asynchronous batch translation
@@ -209,7 +209,7 @@ items:
     href: document-translation/document-sdk-overview.md
   - name: Document translation REST APIs
     displayName: get,post,cancel,delete
-    href: document-translation/reference/rest-api-guide.md
+    href: document-translation/latest/rest-api-guide.md
 
 - name: Microsoft Foundry tools
   items:

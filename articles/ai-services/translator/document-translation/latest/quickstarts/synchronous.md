@@ -25,7 +25,7 @@ For more information, see [Prerequisites and setup](../prerequisites.md).
 
 ## Step 1: Prepare your document
 
-The synchronous API accepts one document per request as a multipart form upload. Confirm your document is in one of the [supported document formats](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/overview?tabs=sync#supported-document-and-glossary-formats) and note its MIME type — you specify it in the request so the service can parse the file correctly.
+The synchronous API accepts one document per request as a multipart form upload. Confirm your document is in one of the [supported document formats](../../overview.md#supported-document-and-glossary-formats) and note its MIME type — you specify it in the request so the service can parse the file correctly.
 
 ## Step 2: Submit a synchronous translation request
 
@@ -50,4 +50,4 @@ To apply custom terminology, add a glossary file as a second form field in the s
 -F "glossary=@glossary.tsv;type=text/tab-separated-values"
 ```
 
-For more information, see [Create and use a glossary](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-use-glossary).
+For more information, see [Create and use a glossary](../../how-to-guides/create-use-glossaries.md).
