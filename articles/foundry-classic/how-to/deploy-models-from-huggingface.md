@@ -97,11 +97,6 @@ To deploy a gated model:
 
 1. Use the newly created endpoint in the steps to [deploy the model](#deploy-the-model).
 
-### Test the model
-
-Once the deployment is complete, find the REST endpoint on the endpoints page to score the model. The endpoints page provides options to add more deployments, manage traffic, and configure scaling. Use the **Test** tab on the endpoint page to test the model with sample inputs.
-
-You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
 # [Python SDK](#tab/python-sdk)
 
@@ -166,29 +161,6 @@ deployment = ml_client.online_deployments.get(
     endpoint_name=endpoint_name, name="demo"
 )
 print(f"Provisioning state: {deployment.provisioning_state}")
-```
-
-### Test the model
-
-Create a file with inputs to submit to the online endpoint for scoring. This code sample submits a `fill-mask` input, matching the `bert-base-uncased` model you deployed. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
-
-```python
-import json
-
-scoring_file = "./sample_score.json"
-with open(scoring_file, "w") as outfile:
-    outfile.write(
-        '{"inputs": ["Paris is the [MASK] of France.",'
-        ' "The goal of life is [MASK]."]}'
-    )
-
-response = ml_client.online_endpoints.invoke(
-    endpoint_name=endpoint_name,
-    deployment_name="demo",
-    request_file=scoring_file,
-)
-response_json = json.loads(response)
-print(json.dumps(response_json, indent=2))
 ```
 
 #### Gated models
@@ -269,23 +241,6 @@ az ml online-deployment show --name demo \
     --query "provisioningState" -o tsv
 ```
 
-### Test the model
-
-Create a file with inputs to submit to the online endpoint for scoring. This code sample provides input for the `fill-mask` type for the deployed `bert-base-uncased` model. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
-
-```shell
-scoring_file="./sample_score.json"
-cat <<EOF > $scoring_file
-{
-  "inputs": [
-    "Paris is the [MASK] of France.",
-    "The goal of life is [MASK]."
-  ]
-}
-EOF
-az ml online-endpoint invoke --name $endpoint_name --request-file $scoring_file
-```
-
 #### Gated models
 
 To deploy a gated model with the Azure CLI:
@@ -320,6 +275,56 @@ To deploy a gated model with the Azure CLI:
    ```
 
 1. Use the newly created endpoint in the steps to [deploy the model](#deploy-the-model-2).
+
+---
+
+### Test the model
+
+# [Portal](#tab/portal)
+
+Once the deployment is complete, find the REST endpoint on the endpoints page to score the model. The endpoints page provides options to add more deployments, manage traffic, and configure scaling. Use the **Test** tab on the endpoint page to test the model with sample inputs.
+
+You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+
+# [Python SDK](#tab/python-sdk)
+
+Create a file with inputs to submit to the online endpoint for scoring. This code sample submits a `fill-mask` input, matching the `bert-base-uncased` model you deployed. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+
+```python
+import json
+
+scoring_file = "./sample_score.json"
+with open(scoring_file, "w") as outfile:
+    outfile.write(
+        '{"inputs": ["Paris is the [MASK] of France.",'
+        ' "The goal of life is [MASK]."]}'
+    )
+
+response = ml_client.online_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    deployment_name="demo",
+    request_file=scoring_file,
+)
+response_json = json.loads(response)
+print(json.dumps(response_json, indent=2))
+```
+
+# [Azure CLI](#tab/azure-cli)
+
+Create a file with inputs to submit to the online endpoint for scoring. This code sample provides input for the `fill-mask` type for the deployed `bert-base-uncased` model. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+
+```shell
+scoring_file="./sample_score.json"
+cat <<EOF > $scoring_file
+{
+  "inputs": [
+    "Paris is the [MASK] of France.",
+    "The goal of life is [MASK]."
+  ]
+}
+EOF
+az ml online-endpoint invoke --name $endpoint_name --request-file $scoring_file
+```
 
 ---
 
