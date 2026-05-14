@@ -105,7 +105,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 
 |Development option|Description|
 |---|---|
-|**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
+|**REST API**|The [REST API](latest/rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
 ### [Synchronous](#tab/sync)
@@ -116,7 +116,7 @@ Use synchronous document translation to translate a single file and return the t
 |---|---|
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
-|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](reference/translate-document.md).|
+|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](latest/rest-api/guide-overview.md#synchronous-operations).|
 |**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
@@ -126,7 +126,7 @@ Use synchronous document translation to translate a single file and return the t
 
 Document translation supports a broad range of file formats for both translation and glossary input. The supported formats differ slightly between asynchronous batch and synchronous translation. To query the full list at runtime, use the [Get supported document formats](reference/get-supported-document-formats.md) API.
 
-For a complete list of supported formats by method, see [Supported document formats](reference/rest-api-guide.md).
+For a complete list of supported formats by method, see [Supported document formats](latest/rest-api/guide-overview.md).
 
 ## Document translation request limits
 
@@ -167,5 +167,5 @@ Pricing depends on whether you use NMT-based or LLM-based translation. The two m
 * [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md)
 * [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md)
 * [Use glossaries with Document translation](how-to-guides/create-use-glossaries.md)
-* [Document translation REST API reference](reference/rest-api-guide.md)
+* [Document translation REST API reference](latest/rest-api/guide-overview.md)
 * [Translator language support](../language-support.md)

@@ -118,7 +118,7 @@ Azure Translator [Document translation feature](document-translation/overview.md
 
 ## May 2024
 
-A [single API](document-translation/latest/rest-api-guide.md) is now available for both [asynchronous batch](document-translation/overview.md#key-features) and [synchronous single document](document-translation/overview.md#key-features) translation operations.
+A [single API](document-translation/latest/rest-api/guide-overview.md) is now available for both [asynchronous batch](document-translation/overview.md#key-features) and [synchronous single document](document-translation/overview.md#key-features) translation operations.
 
 ## February 2024
 

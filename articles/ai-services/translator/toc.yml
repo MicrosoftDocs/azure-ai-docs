@@ -147,10 +147,10 @@ items:
     items:
     - name: Asynchronous batch translation with REST API
       displayName: batch,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: document-translation/latest/asynchronous.md
+      href: document-translation/latest/rest-api/translate-asynchronous.md
     - name: Synchronous document translation with REST API
       displayName: rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: document-translation/latest/synchronous.md
+      href: document-translation/latest/rest-api/translate-synchronous.md
     - name: "Quickstart: Document translation SDKs"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
@@ -177,7 +177,7 @@ items:
   - name: Document translation REST APIs 2026-03-01
     items:
       - name: Document translation operations
-        href: document-translation/latest/rest-api-guide.md
+        href: document-translation/latest/rest-api/guide-overview.md
       - name: Synchronous document translation
         href: document-translation/reference/translate-document.md
       - name: Asynchronous batch translation
@@ -191,7 +191,7 @@ items:
       - name: Get status of a specific document
         href: document-translation/reference/get-document-status.md
       - name: Cancel translation
-        href: document-translation/reference/cancel-translation.md
+        href: document-translation/latest/rest-api/cancel-translation.md
       - name: Get supported document formats
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
@@ -209,7 +209,7 @@ items:
     href: document-translation/document-sdk-overview.md
   - name: Document translation REST APIs
     displayName: get,post,cancel,delete
-    href: document-translation/latest/rest-api-guide.md
+    href: document-translation/latest/rest-api/guide-overview.md
 
 - name: Microsoft Foundry tools
   items:

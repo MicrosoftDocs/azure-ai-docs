@@ -62,11 +62,11 @@ landingContent:
       - linkListType: reference
         links:
          - text: Document translation REST APIs
-           url: document-translation/latest/rest-api-guide.md
+           url: document-translation/latest/rest-api/guide-overview.md
          - text: Synchronous document translation
-           url: document-translation/reference/translate-document.md
+           url: document-translation/latest/rest-api/translate-synchronous
          - text: Asynchronous document translation
-           url: document-translation/reference/start-batch-translation.md
+           url: document-translation/latest/rest-api/translate-asynchronous.md
          - text: Document translation FAQ
            url: document-translation/faq.md
       - linkListType: how-to-guide

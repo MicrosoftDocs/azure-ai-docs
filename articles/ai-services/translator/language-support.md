@@ -340,5 +340,5 @@ View all [Foundry Tools](../index.yml).
 ## Next steps
 
 * [Text translation reference](text-translation/reference/v3/reference.md)
-* [Document translation reference](document-translation/latest/rest-api-guide.md)
+* [Document translation reference](document-translation/latest/rest-api/guide-overview.md)
 * [Custom Translator overview](custom-translator/overview.md)
