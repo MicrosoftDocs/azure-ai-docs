@@ -102,8 +102,8 @@ Use these Azure Monitor metrics to investigate latency, regardless of whether yo
 
 | Display name | REST API name | What it measures | When to use |
 | --- | --- | --- | --- |
-| Time to Last Byte | `AzureOpenAITTLTInMS` | Total time from prompt submission to the last token, measured by the API gateway. Maps to **TTLT**. | Non-streaming requests, or any time you need overall response time. |
-| Time to Response | `AzureOpenAITimeToResponse` | Time from prompt submission to the first response chunk. Maps to **TTFT**. | Streaming requests, or any time you need first-token responsiveness. |
+| Time to Last Byte | `AzureOpenAITTLTInMS` | Total time from prompt submission to the last token, measured by the API gateway. Maps to **TTLT**. | Non-streaming requests, or anytime you need overall response time. |
+| Time to Response | `AzureOpenAITimeToResponse` | Time from prompt submission to the first response chunk. Maps to **TTFT**. | Streaming requests, or anytime you need first-token responsiveness. |
 | Time Between Tokens | `AzureOpenAINormalizedTBTInMS` | Average milliseconds between consecutive generated tokens. Maps to **TBT**. Sometimes called the *average token generation rate*. | Streaming requests, or to diagnose generation throughput. |
 | Normalized Time to First Byte | `AzureOpenAINormalizedTTFTInMS` | First-byte latency divided by prompt token count. | Comparing first-token efficiency across different prompt sizes. Don't use this metric for absolute latency diagnosis. |
 | Generated Completion Tokens | `GeneratedTokens` | Output token count per request. | Always pair with a latency metric — output tokens are the primary driver of TTLT. |
@@ -168,7 +168,7 @@ In summary, reducing the number of tokens generated per request reduces the late
 ### Streaming
 Setting `stream: true` in a request makes the service return tokens as soon as they're available, instead of waiting for the full sequence of tokens to be generated. It doesn't change the time to get all the tokens, but it reduces the time for first response. This approach provides a better user experience since end-users can read the response as it is generated. 
 
-Streaming is also valuable for large calls that take a long time to process. Many clients and intermediary layers have timeouts on individual calls. Long generation calls might be canceled due to client-side time outs. By streaming the data back, you can ensure incremental data is received.
+Streaming is also valuable for large calls that take a long time to process. Many clients and intermediary layers have timeouts on individual calls. Long generation calls might be canceled due to client-side timeouts. By streaming the data back, you can ensure incremental data is received.
 
 **Examples of when to use streaming**:
 
