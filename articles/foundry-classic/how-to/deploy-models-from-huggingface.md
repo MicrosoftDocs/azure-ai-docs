@@ -328,7 +328,19 @@ az ml online-endpoint invoke --name $endpoint_name --request-file $scoring_file
 
 ---
 
-## Troubleshooting
+
+## Clean up resources
+
+When you no longer need the deployment, delete the online endpoint to avoid ongoing charges. Deleting the endpoint also deletes all deployments under it.
+
+# [Portal](#tab/portal)
+
+1. In Foundry portal, go to **My assets** > **Models + endpoints**.
+1. Select the endpoint you created.
+1. Select **Delete** and confirm.
+
+# [Python SDK](#tab/python-sdk)
+
 
 ### Gated models
 
@@ -400,33 +412,6 @@ Submit your questions in the [discussion forum](https://discuss.huggingface.co/t
 ## Regional availability
 
 The Hugging Face Collection is currently available in all regions of the public cloud only.
-
-## Clean up resources
-
-When you no longer need the deployment, delete the online endpoint to avoid ongoing charges. Deleting the endpoint also deletes all deployments under it.
-
-# [Portal](#tab/portal)
-
-1. In Foundry portal, go to **My assets** > **Models + endpoints**.
-1. Select the endpoint you created.
-1. Select **Delete** and confirm.
-
-# [Python SDK](#tab/python-sdk)
-
-```python
-ml_client.online_endpoints.begin_delete(name=endpoint_name).wait()
-```
-
-# [Azure CLI](#tab/azure-cli)
-
-```bash
-az ml online-endpoint delete --name $endpoint_name \
-    --workspace-name $workspace_name \
-    --resource-group $resource_group_name \
-    --yes
-```
-
----
 
 ## Related content
 
