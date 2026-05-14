@@ -44,27 +44,43 @@ This article covers three deployment methods. Use the **portal** for guided firs
 
 ## Deploy Hugging Face hub models by using the portal
 
-To find a model to deploy, open the model catalog in Foundry portal. Select **All Filters**, then select **HuggingFace** in the **Filter by collections** section. Select a model tile to open the model page.
+### Find the model in the model catalog
+
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+4. Select **Hugging Face** in the **Collections** filter to see available Hugging Face models.
+
+1.  Select a model tile to open the model card. If the selected model is a *gated model*, the model card includes the note: **Gated Model Access Required**. To request access to deploy a gated model, see [Gated models](#gated-models).
 
 ### Deploy the model
 
-Choose the real-time deployment option to open the quick deploy dialog. Specify the following options:
+1. On the model's page, select **Use this model**. This action opens the deployment window that is pre-filled with some selections and parameter values.
 
-1. Select the template for GPU or CPU. CPU instance types are good for testing. GPU instance types offer better performance in production. Large models might not fit in a CPU instance type.
-1. Select the instance type. The list of instances is filtered to the ones where the model is expected to deploy without running out of memory.
-1. Select the number of instances. One instance is sufficient for testing, but consider two or more instances for production.
-1. Optionally, specify an endpoint and deployment name.
-1. Select **Deploy**. You're then navigated to the endpoint page, which might take a few seconds. The deployment takes several minutes to complete based on the model size and instance type.
+1. Select the **Template** for GPU or CPU. CPU instance types are good for testing. GPU instance types offer better performance in production. Large models might not fit in a CPU instance type.
+
+1. Select the **Virtual machine** instance type. The list of instances is pre-filtered to the ones where the model is expected to deploy without running out of memory.
+
+1. Specify the **Instance count**. One instance is sufficient for testing, but consider two or more instances for production.
+
+1. Optionally, specify an **Endpoint name** and a **Deployment name** that are different from the default ones suggested.
+
+1. Select **Deploy** to create your deployment. The creation process might take a few minutes to complete. When it's complete, the portal opens the model deployment page.
 
 #### Gated models
 
-Gated models require approval from the model's author before use. To deploy a gated model:
+Gated models require approval from the model's author before use. When you open the model card of a gated model, you see the note: **Gated Model Access Required**. 
+
+To deploy a gated model:
 
 1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens).
+
 1. Request access through the model's page on Hugging Face.
+
 1. Create a custom key connection named `HuggingFaceTokenConnection` with the key `HF_TOKEN` and your Hugging Face token as the secret value.
+
 1. Create an endpoint with `enforce_access_to_default_secret_stores` set to `enabled`.
-1. Deploy the model by using the newly created endpoint.
+
+1. Use the newly created endpoint in the steps to [deploy the model](#deploy-the-model).
 
 ### Test the model
 
