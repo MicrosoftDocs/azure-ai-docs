@@ -3314,7 +3314,47 @@
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/upload-data.md",
       "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-manage-training-documents",
       "redirect_document_id": true
-    }
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-documents-status.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-status-all-documents",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-document-status.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-status-specific-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-supported-document-formats.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-supported-formats",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-supported-glossary-formats.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-supported-glossary",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-translations-status.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-status-all-translations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-translation-status.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/get-status-specific-translation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/start-batch-translation.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/translate-asynchronous",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/translate-document.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/translate-synchronous",
+      "redirect_document_id": true
+    },
   ]
 }
 

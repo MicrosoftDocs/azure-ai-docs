@@ -140,20 +140,24 @@ items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: Document translation SDK guide
-    displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
-    href: document-translation/document-sdk-overview.md
-  - name: Document translation REST APIs
-    displayName: get,post,cancel,delete
-    href: document-translation/reference/rest-api-guide.md
+  - name: Prerequisites and setup
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value,keys,subscription
+    href: document-translation/latest/prerequisites.md
   - name: Quickstarts
     items:
+    - name: Asynchronous batch translation with REST API
+      displayName: batch,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
+      href: document-translation/latest/asynchronous.md
+    - name: Synchronous document translation with REST API
+      displayName: rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
+      href: document-translation/latest/synchronous.md
     - name: "Quickstart: Document translation SDKs"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
-    - name: "Quickstart: Document translation REST APIs"
-      displayName: get,post,cancel,delete
-      href: document-translation/quickstarts/rest-api.md
+    - name: End-to-end batch workflow
+      displayName: batch,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
+      href: document-translation/latest/end-to-end-batch-workflow.md
+
   - name: How-to guides
     items:
     - name: Translate documents programmatically
@@ -170,7 +174,7 @@ items:
     - name: Create SAS tokens for storage containers
       displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
       href: document-translation/how-to-guides/create-sas-tokens.md
-  - name: Document translation REST APIs
+  - name: Document translation REST APIs 2026-03-01
     items:
       - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
@@ -198,12 +202,21 @@ items:
   - name: Document translation FAQ
     href: document-translation/faq.md
 
+  - name: Document translation Reference
+    items:
+    - name: Document translation SDK guide
+    displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
+    href: document-translation/document-sdk-overview.md
+  - name: Document translation REST APIs
+    displayName: get,post,cancel,delete
+    href: document-translation/reference/rest-api-guide.md
+
 - name: Microsoft Foundry tools
   items:
   - name: Adaptive custom translation
     displayName: foundry, gpt, api
     href: foundry/adaptive-custom-translation.md
- 
+
 - name: Custom Translator portal
   items:
   - name: What is the Custom Translator portal?
