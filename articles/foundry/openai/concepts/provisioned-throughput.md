@@ -21,22 +21,19 @@ recommendations: false
 
 # What is provisioned throughput for Foundry Models?
 
-Provisioned throughput is a model deployment type in Microsoft Foundry that allocates dedicated model processing capacity to your deployment. Unlike standard deployments—where inference capacity is shared across customers and throughput can vary with demand—a provisioned deployment holds a fixed amount of processing capacity exclusively for your use, whether or not requests are being made.
+Provisioned throughput is a model deployment type in Microsoft Foundry that allocates dedicated model processing capacity to your deployment. Unlike standard deployments, where inference capacity is shared across customers and throughput can vary with demand, a provisioned deployment holds a fixed amount of processing capacity exclusively for your use, whether or not requests are being made.
 
-This article explains the core concepts behind provisioned throughput: what it is, when to use it, how capacity is measured and billed, and what to know about quota and capacity before you deploy.
+This article introduces the core concepts behind provisioned throughput: what it is, when to use it, how capacity is measured and billed, and what to know about quota and capacity before you deploy.
 
-## Deployment types compared
+## Deployment categories compared
 
-Standard deployments, priority processing, and provisioned throughput are three ways to deploy models in Microsoft Foundry. The right choice depends on your latency requirements, traffic patterns, and cost tolerance.
+Standard deployments, priority processing, and provisioned throughput are three ways to deploy models for real-time workloads in Microsoft Foundry. The right choice depends on your latency requirements, traffic patterns, and cost tolerance.
 
-| Deployment type | Billing | Latency guarantee | Capacity | Best for |
-|---|---|---|---|---|
-| **Standard** | Pay per token | None | Shared pool | Development, testing, variable or unpredictable workloads |
-| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md) | Shared pool, priority queue | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
-| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | [Defined latency target per model](../how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model) | Dedicated once deployed; availability not guaranteed at deployment time | Sustained high-volume production workloads |
-
-> [!NOTE]
-> Priority processing is available on Global standard and Data Zone standard (US) deployments only, and uses the same quota as standard processing (see [Quota and capacity](#quota-and-capacity)). To learn about priority processing, see [Enable priority processing for Microsoft Foundry models](priority-processing.md).
+| Deployment category | Billing | Latency guarantee | Best for |
+|---|---|---|---|
+| **Standard** | Pay per token | None | Development, testing, variable or unpredictable workloads |
+| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md#latency-target) | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | [Defined latency target per model](../how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model) | Sustained high-volume production workloads |
 
 ## When to use provisioned throughput
 
@@ -49,9 +46,6 @@ Provisioned throughput is the right choice when your application has:
 
 Standard deployments remain the better fit for development, testing, low-volume usage, or highly variable traffic that makes it difficult to size a deployment in advance.
 
-> [!NOTE]
-> In function calling and agent use cases, token usage can be variable. Understand your expected tokens per minute (TPM) usage in detail before migrating workloads to provisioned throughput.
-
 ## Provisioned throughput units
 
 **Provisioned throughput units (PTUs)** are the unit of measure for provisioned capacity. A PTU represents a fixed amount of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves that amount of compute and holds it for your deployment.
@@ -63,19 +57,19 @@ Key characteristics of PTUs:
 - **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 - **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 
-For details on PTU quota, capacity, and how to request more, see [Quota and capacity](#quota-and-capacity). Note that having PTU quota doesn't guarantee that capacity is available when you deploy—quota is a policy limit, not a capacity reservation.
+For details on PTU quota, capacity, and how to request more, see [Quota and capacity](#quota-and-capacity). Because quota is a policy limit, not a capacity reservation, having PTU quota doesn't guarantee that capacity is available when you want to deploy.
 
 ## PTU sizing
 
-Before creating a provisioned deployment, estimate how many PTUs your workload requires. PTU requirements depend on your expected requests per minute (RPM), prompt size, response size, and cache hit rate.
+Before creating a provisioned deployment, you should estimate how many PTUs your workload requires. PTU requirements depend on your expected requests per minute (RPM), prompt size, response size, and cache hit rate.
 
-### Estimate PTU manually
+### Manual PTU estimation
 
 Use your expected traffic and the per-model values from [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model) to estimate the PTUs your workload needs. The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
 
 Before applying the formulas, note two key terms:
 
-- The **output-to-input ratio** reflects how much more processing capacity an output token requires compared to an input token. For example, a ratio of 8 means one output token counts as 8 input tokens toward the model's TPM limit.
+- The **output-to-input ratio** reflects how much more processing capacity an output token requires compared to an input token. For example, a ratio of 8 means one output token counts as 8 input tokens toward the model's TPM limit. For GPT-4.1 and later Azure OpenAI models, the ratio is set to match the model's global standard pricing ratio between output and input tokens. THis means that a model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/provisioned-throughput-onboarding.md#exceptions-to-input-and-output-throughput-ratio). For per-model output-to-input ratios, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 - The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). Cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
 
 **Formulas:**
@@ -100,7 +94,7 @@ Use the [capacity calculator](https://ai.azure.com/resource/calculator) in the F
 
 For full details on the formulas, per-model Input TPM per PTU values, output-to-input ratios, and the capacity calculator, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#determine-ptu-requirements-for-a-workload).
 
-## Deployment types that support provisioned throughput
+## Provisioned throughput deployment types
 
 Provisioned throughput is available as three deployment types. They all provide dedicated capacity and predictable latency once deployed. The difference is where your inference traffic is processed:
 
@@ -110,17 +104,11 @@ Provisioned throughput is available as three deployment types. They all provide 
 | **Data Zone Provisioned** | `DataZoneProvisionedManaged` | Stays within a geographic zone (US or EU) | Zone-level data residency with higher availability than regional |
 | **Regional Provisioned** | `ProvisionedManaged` | Stays in the deployment's specific Azure region | Strict single-region data residency requirements |
 
-> [!NOTE]
-> New models sold directly by Azure are typically onboarded with the Global Provisioned type first. Data Zone Provisioned support follows. See [Supported models](#supported-models) for current availability by deployment type.
-
 For a full comparison of all Foundry deployment types—including standard, batch, and provisioned—see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
 ## Supported models
 
 For the full list of models that support provisioned throughput—including which deployment types each model supports and regional availability—see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned).
-
-> [!NOTE]
-> Check the Foundry portal for supported model versions when you configure a deployment. Regional provisioned availability varies by region.
 
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
@@ -222,3 +210,4 @@ Use Azure Cost Management to track and analyze your PTU usage and reservation co
 - [Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
 - [Performance and latency](../how-to/latency.md)
 - [Migrate from the Commitment purchase model](../../../foundry-classic/openai/concepts/provisioned-migration.md)
+- [Enable priority processing for Microsoft Foundry models](priority-processing.md)
