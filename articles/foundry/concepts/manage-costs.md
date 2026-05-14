@@ -119,7 +119,7 @@ You see total cost and an estimated cost chart for the selected range.
 When you select **View More Details** or **Azure Cost Management**, you're directed to the Azure portal's **Cost Management** section. Azure portal costs can show aggregated charges for the related account scope, not only individual models.
 
 > [!NOTE]
-> Token and request charts can temporarily differ from **Estimated cost** because of ingestion timing and aggregation differences. Use **Estimated cost** for near-real-time monitoring, and use Azure Cost Management and invoiced charges for financial reconciliation.
+> Token and request charts can temporarily differ from **Estimated cost** because of ingestion timing and aggregation differences. Use **Estimated cost** for near-real-time monitoring, and use Microsoft Cost Management and invoiced charges for financial reconciliation.
 
 ## Monitor in Azure portal
 
@@ -180,7 +180,7 @@ You can get more detailed billing information by grouping costs by resource:
 
 Microsoft Foundry supports chargeback at the project level, so FinOps teams and admins can allocate shared Foundry spend back to the business unit, team, or workload that incurred it. Project-level attribution is useful when multiple projects share the same Foundry resource and you need to split the bill accurately.
 
-Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Azure Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
+Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
 
 > [!NOTE]
 > Project-level cost attribution is currently supported for models sold directly by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
@@ -192,7 +192,7 @@ Every Foundry project is automatically tagged with a `project` tag on its underl
 1. In the filter bar, select **Add filter**, choose **Tag**, then choose `project`.
 1. Select one or more projects to view their attributed cost over the selected time range.
 
-   :::image type="content" source="media/manage-costs/cost-analysis-project-tag.png" alt-text="Screenshot of Azure Cost Management Cost analysis view filtered by the project tag, showing accumulated cost over time for a selected Foundry project." lightbox="media/manage-costs/cost-analysis-project-tag.png":::
+   :::image type="content" source="media/manage-costs/cost-analysis-project-tag.png" alt-text="Screenshot of Cost Management Cost analysis view filtered by the project tag, showing accumulated cost over time for a selected Foundry project." lightbox="media/manage-costs/cost-analysis-project-tag.png":::
 
 ### What you can do with project-level attribution
 
