@@ -10,4 +10,4 @@ ms.custom: include
 ---
 
 > [!NOTE]
-> If the new role name isn't yet available in your region, use the previous name instead: **Azure AI User**, **Azure AI Owner**, **Azure AI Account Owner**, or **Azure AI Project Manager**.
+> If the new role name doesn't work yet, use the previous name instead: **Azure AI User**, **Azure AI Owner**, **Azure AI Account Owner**, or **Azure AI Project Manager**.
