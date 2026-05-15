@@ -632,7 +632,7 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
                 with open(output_audio_file, "wb") as f:
                     f.write(output_audio)
                 print(f"\n\nSaved {len(output_audio)} bytes of audio to {output_audio_file}")
-                print("Play with: ffplay -nodisp -autoexit -hide_banner -f s16le -sample_rate 24000 -ch_layout mono output.pcm")    
+                print("Play with: ffplay -nodisp -autoexit -hide_banner -f s16le -sample_rate 24000 -ch_layout mono output.pcm")
     
     asyncio.run(main())
     ```
