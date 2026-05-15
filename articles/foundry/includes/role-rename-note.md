@@ -10,4 +10,4 @@ ms.custom: include
 ---
 
 > [!IMPORTANT]
-> The Foundry RBAC roles were recently renamed. **Foundry User**, **Foundry Owner**, **Foundry Account Owner**, and **Foundry Project Manager** were previously named Azure AI User, Azure AI Owner, Azure AI Account Owner, and Azure AI Project Manager. You might still see the previous names in some regions and in the Azure portal while the rename rolls out. The permissions for each role are unchanged.
+> The Foundry RBAC roles were recently renamed. **Foundry User**, **Foundry Owner**, **Foundry Account Owner**, and **Foundry Project Manager** were previously named Azure AI User, Azure AI Owner, Azure AI Account Owner, and Azure AI Project Manager. You might still see the previous names in some regions and in the Azure portal while the rename rolls out. The role IDs and core permissions are unchanged by the rename.

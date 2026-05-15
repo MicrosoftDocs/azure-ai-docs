@@ -63,9 +63,9 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 |---|---|
 |**Foundry User**|Grants reader access to Foundry project, Foundry resource, and data actions for your Foundry project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. Least privilege access role in Foundry.|
 |**Foundry Project Manager**|Lets you perform management actions on Foundry projects, build and develop with projects, and conditionally assign the Foundry User role to other user principals.|
-|**Foundry Account Owner**|Grants full access to manage projects and resources, and lets you conditionally assign the Foundry User role to other user principals.|
-|**Foundry Owner**|Grants full access to managed projects and resources and build and develop with projects. Highly privileged self-serve role designed for digital natives.|
+|**Foundry Account Owner**|Grants full access to manage projects and resources, and lets you conditionally assign the Foundry User, ACR, and monitoring roles to other user principals.|
+|**Foundry Owner**|Grants full access to manage projects and resources and build and develop with projects. Lets you conditionally assign the Foundry User, ACR, and monitoring roles. Highly privileged self-serve role designed for digital natives.|
 
 > [!NOTE]
 > Don't assign built-in roles that start with **Cognitive Services**. These roles are designed for accessing AI Services resources directly and don't apply to Foundry scenarios.
-> Similarly, don't use the **Azure AI Developer** role for Foundry work. Despite the name, this role is scoped to Azure Machine Learning and Foundry hubs, not to Foundry project resources.
+> Similarly, don't use the **Azure AI Developer** role for Foundry work. Despite the name, this role is scoped to Azure Machine Learning workspaces and Foundry hubs, not to Foundry projects or Foundry hosted agents. For Foundry project access, use **Foundry User** or **Foundry Owner** instead.

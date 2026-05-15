@@ -36,8 +36,8 @@ Use the following table to see the permissions allowed for each built-in role in
 |---|---|---|---|---|---|---|---|
 |**Foundry User**|||✔||✔|||
 |**Foundry Project Manager**|||✔|✔ (only assign Foundry User role)|✔||✔|
-|**Foundry Account Owner**|✔|✔||✔ (only assign Foundry User role)|✔|✔||
-|**Foundry Owner**|✔|✔|✔||✔|✔|✔|
+|**Foundry Account Owner**|✔|✔||✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔||
+|**Foundry Owner**|✔|✔|✔|✔ (assign Foundry User, ACR, and monitoring roles)|✔|✔|✔|
 
 [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
