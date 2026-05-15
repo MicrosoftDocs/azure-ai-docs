@@ -15,13 +15,15 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
 | **Foundry SDK** | Foundry-specific capabilities with OpenAI-compatible interfaces. Includes access to Foundry direct models through the Responses API (not Chat Completions). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
-| **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
+| **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface, including embeddings. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
+| **Anthropic SDK** | Anthropic Claude models deployed in Foundry, using the Anthropic Messages API. | `https://<resource-name>.services.ai.azure.com/anthropic` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
 | **Agent Framework** | Multi-agent orchestration in code. Cloud-agnostic. | Uses the project endpoint via the Foundry SDK. |
 
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
-- Use **OpenAI SDK** when maximum OpenAI compatibility is required, or using Foundry direct models via Chat Completions
+- Use **OpenAI SDK** when maximum OpenAI compatibility is required, when generating embeddings, or using Foundry direct models via Chat Completions
+- Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
 - Use **Agent Framework** when building multi-agent systems in code (local orchestration)
 

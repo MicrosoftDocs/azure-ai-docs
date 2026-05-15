@@ -321,6 +321,11 @@ ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscr
 
 ---
 
+> [!IMPORTANT]
+> Azure Machine Learning training and command jobs don't support Azure Container Registries (ACR) that use customized domain name labels. Jobs that reference such a registry might fail during startup due to image pull or environment resolution errors. To avoid this issue:
+>
+> - Use the default login server format (`<registry-name>.azurecr.io`) for your ACR.
+> - When you create the registry, set **Domain name label scope** to **Unsecure**.
 
 ## Register the trained model
 

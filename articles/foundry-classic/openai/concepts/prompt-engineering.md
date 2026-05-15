@@ -9,8 +9,8 @@ ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 
 recommendations: false
 ai-usage: ai-assisted

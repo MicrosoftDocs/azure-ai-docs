@@ -49,7 +49,7 @@ A search request is a complete specification of what should be returned in a res
 The following example is a search request you might send to Azure AI Search using the [REST API](/rest/api/searchservice/documents/search-post):
 
 ```
-POST /indexes/hotels/docs/search?api-version=2025-09-01
+POST /indexes/hotels/docs/search?api-version=2026-04-01
 {
     "search": "Spacious, air-condition* +\"Ocean view\"",
     "searchFields": "description, title",
