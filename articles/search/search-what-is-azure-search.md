@@ -6,16 +6,16 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/10/2025
+ms.date: 06/02/2026
 ---
 
 # What is Azure AI Search?
 
 Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
 
-Common use cases include *classic search* and modern retrieval-augmented generation (RAG) via *agentic retrieval*. This makes Azure AI Search suitable for both enterprise and consumer scenarios, whether you're adding search functionality to a website, app, agent, or chatbot.
+Common use cases include *classic search* and modern retrieval-augmented generation (RAG) via *agentic retrieval*. These capabilities make Azure AI Search suitable for both enterprise and consumer scenarios, whether you're adding search functionality to a website, app, agent, or chatbot.
 
-When you create a search service, you unlock the following capabilities:
+When you create a search service, the following capabilities are included:
 
 + Two engines: [classic search](#what-is-classic-search) for single requests and [agentic retrieval](#what-is-agentic-retrieval) for parallel, iterative, LLM-assisted search.
 + [Full-text](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), and [multimodal](multimodal-search-overview.md) queries over local (indexed) and remote content.
@@ -56,6 +56,9 @@ You can use Azure AI Search for regular search needs (like searching through cat
 + Provide enterprise security, access control, and compliance through Microsoft Entra, Azure Private Link, document-level access control, and role-based access.
 
 + Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
+
+> [!NOTE]
+> In the Serverless pricing model, scaling is handled automatically by the service. Unlike Dedicated models where you configure replicas and partitions, Serverless uses consumption-based scaling and service-level limits to manage capacity. For more information, see [Optimize costs with the Serverless pricing model](./serverless-cost-optimization.md).
 
 For more information about specific functionality, see [Features of Azure AI Search](search-features-list.md).
 
@@ -107,6 +110,8 @@ Classic search and agentic retrieval are complementary modes of information retr
 | Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, references |
 | Region restrictions | No | Yes |
 | Status | Generally available | Public preview|
+| Dedicated pricing model support | Yes | Yes |
+| Serverless pricing model support | Yes | Yes |
 
 ## How to get started
 
@@ -118,7 +123,9 @@ The portal is useful for service administration and content management, with too
 
 Before you get started, use this checklist to make key decisions:
 
-+ **Choose a search engine:** If you're not using an agent or chatbot, classic search can meet most app needs, with lower costs and complexity than LLM integration. If you want the benefits of a knowledge base and multiple knowledge sources without full LLM orchestration, consider agentic retrieval with the minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
++ **Choose a pricing model**: Select between the **[Dedicated](./search-sku-tier.md)** or **[Serverless](./serverless-cost-optimization.md)** pricing model. See [Plan and Manage Costs](./search-sku-manage-costs.md) for help with choosing a the model that best fits your needs.
+
++ **Choose how you want to retrieve data:** You can query directly from a search index for predictable, low-latency results, or use agentic retrieval to query across multiple indexes through a knowledge base. If you’re building a traditional app without an agent or chatbot, direct index queries can meet most needs with lower cost and complexity. If you want to work across multiple knowledge sources or support more advanced scenarios, consider agentic retrieval with minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 + **Choose a region:** If you're using agentic retrieval, choose a [supported region](search-region-support.md). For classic search, choose a region that offers the features and capacity you need.
 
@@ -131,8 +138,6 @@ Before you get started, use this checklist to make key decisions:
 ### Choose your learning resources
 
 ### [Quickstarts](#tab/quickstarts)
-
-We maintain quickstarts that span various end-to-end search scenarios:
 
 + Quickstart: Agentic retrieval ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
 + Quickstart: Full-text search ([portal](search-get-started-portal.md) or [programmatic](search-get-started-text.md))
