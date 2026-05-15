@@ -956,8 +956,49 @@ Here's an example of the references array:
 The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
+
+### Tune candidate documents per knowledge source
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
+`maxOutputDocuments` to control how many candidate documents or chunks are
+preserved per knowledge source before later ranking and synthesis steps. Use
+this setting when broad or ambiguous queries need a larger evidence pool.
+
+This setting controls intermediate candidates. It doesn't control the final
+number of grounding documents returned to the caller. Larger candidate pools
+can improve recall, but they can also increase latency and request cost.
+
+```http
+POST {{search-url}}/knowledgebases/operations-kb/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What safety procedures apply?" }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "operations-ks",
+            "kind": "searchIndex",
+            "maxOutputDocuments": 120
+        }
+    ]
+}
+```
+
+[TO VERIFY] Confirm the default value, maximum value, and knowledge source
+kind applicability for `maxOutputDocuments` in `knowledgeSourceParams`.
 
 ### Override default reasoning effort and set request limits
 
