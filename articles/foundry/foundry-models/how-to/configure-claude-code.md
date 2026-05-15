@@ -411,10 +411,12 @@ To grant team members access to your Foundry-hosted Claude models, assign one of
 
 | Role | Permissions |
 | --- | --- |
-| **Azure AI User** | Invoke models, view deployments |
+| **Foundry User** | Invoke models, view deployments |
 | **Cognitive Services User** | Invoke models, view deployments (legacy Azure AI Services role) |
 
-The **Azure AI User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+The **Foundry User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
 
 These roles include all required permissions for running Claude Code with Foundry.
 

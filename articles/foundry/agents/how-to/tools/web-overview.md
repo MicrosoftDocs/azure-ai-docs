@@ -40,7 +40,9 @@ Before using any web grounding tool, ensure you have:
 - An Azure OpenAI model deployment in your Foundry project.
 
 > [!NOTE]
-> Web Search requires no extra roles beyond your Foundry project access. Grounding with Bing Search and Grounding with Bing Custom Search require **Contributor** or **Owner** role to create Bing resources, and **Azure AI Project Manager** role to create project connections. For details, see [agent environment setup](../../../agents/environment-setup.md).
+> Web Search requires no extra roles beyond your Foundry project access. Grounding with Bing Search and Grounding with Bing Custom Search require **Contributor** or **Owner** role to create Bing resources, and **Foundry Project Manager** role to create project connections. For details, see [agent environment setup](../../../agents/environment-setup.md).
+
+[!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 
 <!-- Note, in the Bing grounding legal enterprise below, we're intentionally using the en-us region in the link. It's the only language available for the legal documentation. -->
 

@@ -73,11 +73,13 @@ Azure resource limits and organizational configurations might require extra step
 |---|---|
 |User principal lacks account or write permissions|Get a privileged Azure RBAC role to manage top-level Azure resource. For example, **Owner**, **Contributor**, or **Azure AI Administrator**.| 
 |Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource by using templates or Azure portal.|
-|No permissions to create agents, while you're the owner or contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include **Azure AI User**, **Azure AI Project Manager**, or **Azure AI Owner** roles. **Owner** and **Contributor** roles only grant access to management operations in Azure such as managing deployments.|
+|No permissions to create agents, while you're the owner or contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include **Foundry User**, **Foundry Project Manager**, or **Foundry Owner** roles. **Owner** and **Contributor** roles only grant access to management operations in Azure such as managing deployments.|
 |An Azure Policy conflict occurred.|Your organization might put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
 |Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Foundry. Then retry rolling back your current resource.|
 |Exceeded number of AIServices instances of 100 per subscription per region.|Delete a Foundry resource you might not use in this subscription. Then retry upgrading your current resource.|
 |I can't access my resource over the private network|See [private networking configuration](#private-network-configuration) for the required steps.|
+
+[!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 
 [!INCLUDE [upgrade-azure-openai 4](../../foundry/includes/how-to-upgrade-azure-openai-4.md)]
 

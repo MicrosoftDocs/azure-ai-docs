@@ -18,7 +18,9 @@ ms.custom:
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them.
+
+  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -253,7 +255,7 @@ After the model is copied from region A to region B, you can continually fine-tu
 ### Configure permissions
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give the Azure AI User role to your user-assigned managed identity on your destination resource or account.
+2. Give the Foundry User role to your user-assigned managed identity on your destination resource or account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
 ### Copy the model

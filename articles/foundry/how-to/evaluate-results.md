@@ -27,7 +27,9 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 - A completed evaluation run.
     - To run evaluations in the portal, see [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
     - To run evaluations from the SDK, see [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
