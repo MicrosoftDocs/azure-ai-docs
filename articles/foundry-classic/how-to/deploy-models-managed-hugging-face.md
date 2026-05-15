@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
 
-# Deploy models from Hugging Face Hub to online endpoints (classic)
+# Deploy models from Hugging Face Hub to managed compute (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
