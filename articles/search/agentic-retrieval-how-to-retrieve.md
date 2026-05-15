@@ -956,8 +956,55 @@ Here's an example of the references array:
 The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
+
+### Require a knowledge source to succeed
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
+`failOnError` to mark a specific knowledge source as required for the retrieve
+request. Use this setting when a partial answer would be misleading or
+noncompliant if that source is unavailable.
+
+By default, retrieve favors availability and can return results from other
+sources when an optional source fails. `failOnError` changes that behavior for
+the source where it's set.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "Which HR policy applies?" }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "hr-policy-ks",
+            "kind": "searchIndex",
+            "failOnError": true,
+            "alwaysQuerySource": true
+        },
+        {
+            "knowledgeSourceName": "hr-faq-ks",
+            "kind": "searchIndex"
+        }
+    ]
+}
+```
+
+[TO VERIFY] Confirm the default value for `failOnError`, the exact HTTP status
+and error body when a required source fails, whether the setting applies to all
+knowledge source kinds, and how it interacts with `alwaysQuerySource`.
 
 ### Override default reasoning effort and set request limits
 
