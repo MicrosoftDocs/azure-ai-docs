@@ -98,8 +98,6 @@ Optional (Teams / M365 Copilot publishing):
 └── Azure Bot Service → connected to agent application (Channels auth mode)
 ```
 
-[!INCLUDE [role-rename-note-code](../../includes/role-rename-note-code.md)]
-
 The diagram above shows how resources are organized hierarchically and which role assignments enable communication between them. The following sections provide detailed configuration requirements for each component.
 
 ### Required Azure resources
