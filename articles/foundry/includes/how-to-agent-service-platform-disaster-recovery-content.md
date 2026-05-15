@@ -28,7 +28,9 @@ Before you implement the disaster recovery procedures in this article, ensure yo
 - An Azure subscription with an active Microsoft Foundry account using Agent Service in [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup).
 - One of the following Azure RBAC roles at the subscription or resource group scope:
   - **Contributor** or **Owner** for creating and managing Foundry accounts, projects, and dependencies
-  - **Azure AI Project Manager** for managing Foundry projects
+  - **Foundry Project Manager** for managing Foundry projects
+
+    [!INCLUDE [role-rename-note](./role-rename-note.md)]
   - **Storage Account Contributor** for initiating Storage account failover
   - For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 - Agent definitions, knowledge assets, and tool bindings stored in source control for redeployment.
