@@ -62,7 +62,7 @@ REST APIs are useful for initial proof-of-concept testing, where you can test in
 1. Formulate a POST call specifying the index name, the "docs/index" endpoint, and a request body that includes the `@search.action` parameter.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2026-04-01
     Content-Type: application/json   
     api-key: [admin key] 
     {
@@ -130,7 +130,7 @@ REST APIs are useful for initial proof-of-concept testing, where you can test in
 1. [Look up the documents](/rest/api/searchservice/documents/get) you just added as a validation step:
 
     ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2025-09-01
+    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2026-04-01
     ```
 
 **Reference:** [Documents - Index](/rest/api/searchservice/documents), [Documents - Get](/rest/api/searchservice/documents/get)
@@ -265,7 +265,7 @@ After loading documents, verify the data is indexed correctly.
 Use the [Get Document](/rest/api/searchservice/documents/get) API to retrieve a specific document by key:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/1111?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/1111?api-version=2026-04-01
 api-key: [admin-key]
 ```
 

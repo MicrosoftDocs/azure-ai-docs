@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
 > [!NOTE]
-> Foundry Agent Service is generally available (GA). Some sub-features, such as [hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
+> Foundry Agent Service is generally available (GA). Some sub-features, such as [Hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-Foundry agent service is only available for Foundry projects created in regions that support the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability). Your Foundry project must be in one of these regions to use Agent Service. Some Azure OpenAI models may not be available in the same regions. See [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for details. 
+Foundry agent service is only available for Foundry projects created in regions that support the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability). Your Foundry project must be in one of these regions to use Agent Service. Some Azure OpenAI models may not be available in the same regions. See [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) for details. 
 
 > [!IMPORTANT]
 > Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).

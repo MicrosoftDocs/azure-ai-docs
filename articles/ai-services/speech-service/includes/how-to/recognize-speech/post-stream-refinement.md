@@ -52,6 +52,7 @@ Some important considerations for post-stream refinement:
 - Post-stream refinement works best for longer utterances such as conversations, meetings, and dictation. For very short phrases, the refined result might be identical to the standard result.
 - Post-stream refinement and semantic segmentation can't be used together.
 - Post-stream refinement and TrueText are separate values of the same `SpeechServiceResponse_PostProcessingOption` property. Only one value can be set at a time.
+- Post-stream refinement is available only in [select Azure regions](../../../regions.md?tabs=stt) during public preview.
 
 For more information about post-processing options, see [How to use post-processing](../../../how-to-post-processing.md).
 

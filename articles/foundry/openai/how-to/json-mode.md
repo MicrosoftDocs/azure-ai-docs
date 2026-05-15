@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 05/13/2026
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 
@@ -28,7 +28,7 @@ Before you run the examples:
 - Replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name.
 - Replace `YOUR-MODEL_DEPLOYMENT_NAME` with the name of your model deployment.
 
-The examples below show JSON mode using the Python and .NET SDKs, and PowerShell for direct REST interaction.
+The following examples show how to use JSON mode with the Python and .NET SDKs, and PowerShell for direct REST interaction.
 
 # [Python](#tab/python)
 
@@ -183,14 +183,14 @@ year team                  player           player_height
 
 ---
 
-Two requirements must both be met to use JSON mode successfully:
+To use JSON mode successfully, ensure both of the following requirements are met:
 
 - Set the response format to `json_object` in your request. In Python, pass `response_format={ "type": "json_object" }`; in .NET, use `ChatResponseFormat.CreateJsonObjectFormat()`; in PowerShell, set `response_format = @{type = 'json_object'}`.
 - Include the word "JSON" somewhere in the messages conversation (typically the system message).
 
-Including guidance to the model that it should produce JSON as part of the messages conversation is **required**. We recommend adding this instruction as part of the system message. According to OpenAI, failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
+**Include guidance to the model that it should produce JSON as part of the messages conversation.** Add this instruction as part of the system message. According to OpenAI, failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
 
-Failure to include "JSON" within the messages returns:
+If you don't include "JSON" within the messages, the response is:
 
 ### Output
 

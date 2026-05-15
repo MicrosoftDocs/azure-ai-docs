@@ -105,7 +105,7 @@ Add any Foundry agent from your project to the workflow. Agent nodes also let yo
 For advanced agent creation options, go to the **Foundry Agent** tab in the Foundry portal.
 
 > [!NOTE]
-> Hosted agents aren't supported in the workflow designer. To coordinate tasks, call other agents, or orchestrate workflows within a hosted agent, use [Microsoft Agent Framework workflows](/agent-framework/workflows/) or another agent framework that supports workflow capabilities from your hosted agent code.
+> Hosted agents aren't supported in the workflow designer. To coordinate tasks, call other agents, or orchestrate workflows within a Hosted agent, use [Microsoft Agent Framework workflows](/agent-framework/workflows/) or another agent framework that supports workflow capabilities from your Hosted agent code.
 
 ### Add an existing agent
 

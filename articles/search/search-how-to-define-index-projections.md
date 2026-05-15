@@ -156,7 +156,7 @@ Index projections are defined inside a skillset definition and are primarily def
 
 Index projections are generally available. We recommend the most recent stable API:
 
-- [Create Skillset (api-version=2025-09-01)](/rest/api/searchservice/skillsets/create)
+- [Create Skillset (api-version=2026-04-01)](/rest/api/searchservice/skillsets/create)
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
 

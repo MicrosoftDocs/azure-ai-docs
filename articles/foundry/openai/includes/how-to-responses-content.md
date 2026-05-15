@@ -1,8 +1,8 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
@@ -1459,6 +1459,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-chat-latest` (Version: `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)

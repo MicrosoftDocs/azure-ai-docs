@@ -204,7 +204,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 
 **Required fields**:
 
-- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for hosted agents.
+- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for Hosted agents.
 - `agents`: The agent name and version to deploy.
 - `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 

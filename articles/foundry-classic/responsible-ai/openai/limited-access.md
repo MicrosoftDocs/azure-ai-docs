@@ -1,8 +1,8 @@
 ---
 title: "Limited access to Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "This document details the limited access policy for Azure OpenAI (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
