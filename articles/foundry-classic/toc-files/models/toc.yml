@@ -164,7 +164,7 @@ items:
           href: ../../openai/whisper-quickstart.md
         - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
-          - name: GPT Realtime 2.0 (preview)
+        - name: GPT Realtime 2.0 (preview)
           href: ../../openai/concepts/realtime-2.md
         - name: GPT Audio 2.0
           href: ../../openai/concepts/realtime-audio-2.md
