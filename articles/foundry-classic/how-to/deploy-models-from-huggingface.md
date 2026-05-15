@@ -1,7 +1,7 @@
 ---
-title: "Deploy Hugging Face Hub models to online endpoints (classic)"
-description: "Deploy Hugging Face Hub models to managed online endpoints in Microsoft Foundry for secure, scalable real-time inference. Follow this step-by-step guide to get started."
-#customer intent: As a data scientist, I want to deploy an open-source Hugging Face model to a managed online endpoint so that I can serve real-time predictions on Azure.
+title: "Deploy Hugging Face Hub models in Microsoft Foundry (classic)"
+description: "Deploy Hugging Face Hub models to managed compute endpoints in Microsoft Foundry for secure, scalable real-time inference. Follow this step-by-step guide to get started."
+#customer intent: As a data scientist, I want to deploy an open-source Hugging Face model to a managed compute endpoint so that I can serve real-time predictions on Azure.
 ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 05/14/2026
@@ -17,14 +17,9 @@ ms.custom: doc-kit-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-Microsoft has partnered with Hugging Face to bring open-source models from Hugging Face Hub to the Foundry model catalog. Hugging Face is the creator of Transformers, a widely popular library for building large language models. The Hugging Face Hub has thousands of open-source models. The integration with Microsoft Foundry enables you to deploy open-source models of your choice to secure and scale inference infrastructure on Azure.
+Microsoft has partnered with Hugging Face to bring open-source models from Hugging Face Hub to the Foundry model catalog. Hugging Face is the creator of Transformers, a widely popular library for building large language models. The Hugging Face Hub has thousands of open-source models. The integration with Microsoft Foundry enables you to deploy open-source models of your choice to secure and scalable inference infrastructure on Azure.
 
-You can search from thousands of Transformers models in the model catalog and deploy models to a managed Foundry endpoint through a guided wizard. Once deployed, the managed online endpoint provides a secure REST API to score your model in real time.
-
-Models sourced from Hugging Face are Non-Microsoft Products that haven't been tested or evaluated by Microsoft. Customers should ensure that the model is appropriate for their specific use, including by evaluating any legal or export-control considerations and conducting their own model risk and safety evaluations. Learn about [Foundry risk and safety evaluations](../concepts/safety-evaluations-transparency-note.md#the-basics-of-microsoft-foundry-risk-and-safety-evaluations-preview) and [Hugging Face security measures for models offered in Foundry](https://huggingface.co/docs/microsoft-azure/security).
-
-> [!NOTE]
-> Models from Hugging Face are subject to third-party license terms available on the Hugging Face model details page. It's your responsibility to comply with the model's license terms.
+You can search from thousands of Transformers models in the model catalog and deploy models to managed compute endpoints (also called managed online endpoints). Once deployed, the managed online endpoint provides a secure REST API to score your model in real time.
 
 ## Prerequisites
 
@@ -43,6 +38,13 @@ Models sourced from Hugging Face are Non-Microsoft Products that haven't been te
   ```bash
   az extension add -n ml
   ```
+
+## Use Hugging Face models responsibly
+
+Models sourced from Hugging Face are Non-Microsoft Products that haven't been tested or evaluated by Microsoft. Before you deploy a model, ensure it's appropriate for your specific use case, including by evaluating any legal or export-control considerations and conducting your own model risk and safety evaluations. Learn about [Foundry risk and safety evaluations](../concepts/safety-evaluations-transparency-note.md#the-basics-of-microsoft-foundry-risk-and-safety-evaluations-preview) and [Hugging Face security measures for models offered in Foundry](https://huggingface.co/docs/microsoft-azure/security).
+
+> [!IMPORTANT]
+> Models from Hugging Face are subject to third-party license terms available on the Hugging Face model details page. It's your responsibility to comply with the model's license terms.
 
 ## Benefits of using online endpoints for real-time inference
 
@@ -363,6 +365,8 @@ The Hugging Face Collection is currently available in all regions of the public 
 
 ## Troubleshooting
 
+The following sections describe common errors you might encounter when deploying or scoring Hugging Face models, and how to resolve them.
+
 ### Gated models
 
 [Gated models](https://huggingface.co/docs/hub/models-gated) require you to accept the model author's terms before access is granted. Deploying without proper setup results in a deployment failure or an unauthorized response status code. For the required steps, see [Gated models](#gated-models).
@@ -395,7 +399,9 @@ If you see `CredentialUnavailableError` when running the Python SDK, run `az log
 
 If a deployment fails with `QuotaExceeded` or `SubscriptionCapacityReached`, you don't have sufficient quota for the selected `instance_type` in the deployment region. To resolve this, either request a quota increase in the [Azure portal](https://portal.azure.com) under **Subscriptions** > **Usage + quotas**, or choose a different `instance_type` or region where you have available quota. For more information, see [Manage quotas across projects](quota.md).
 
-## Frequently asked questions about Hugging Face Hub deployments
+## Frequently asked questions
+
+The following questions address common topics about model storage, supported models, and community registry support for Hugging Face Hub deployments.
 
 ### Where are the model weights stored?
 
