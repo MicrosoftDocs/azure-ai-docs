@@ -334,7 +334,7 @@ To delete a workflow you no longer need:
 
 ## Migration Guide
 
-Azure AI Foundry continues to support executing YAML-based workflows when they are deployed through hosted agents. However, since Foundry workflows is being retired, you can choose  one of the supported workflow experiences described in this section.
+Workflows in Microsoft Foundry is being retired 1 October 2026. Designer UI and workflow execution will no longer be supported in Foundry after 1 October 2026. Azure AI Foundry continues to support executing YAML-based workflows when they are deployed through hosted agents. However, since Foundry workflows is being retired, you can choose  one of the supported workflow experiences described in this section.
 
 Before migrating, download or copy your existing workflow definition:
 
