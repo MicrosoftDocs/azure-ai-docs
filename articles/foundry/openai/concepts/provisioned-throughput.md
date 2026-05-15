@@ -102,41 +102,19 @@ If your target region doesn't have available capacity:
 
 For step-by-step guidance on creating provisioned deployments and handling capacity constraints, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
 
-## PTU sizing and estimation
+## PTU sizing
 
-Before creating a provisioned deployment, you should estimate how many PTUs your workload requires. PTU requirements depend on your expected requests per minute (RPM), prompt size, response size, and cache hit rate.
+Before creating a provisioned deployment, estimate how many PTUs your workload requires. Three factors drive the calculation:
 
-### Manual PTU estimation
+- **Request shape**: Your expected requests per minute (RPM), average prompt size (input tokens), and average response size (output tokens).
+- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. A model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/provisioned-throughput-onboarding.md#exceptions-to-input-and-output-throughput-ratio).
+- **Cache rate**: The fraction of input tokens served from the prompt cache. Cached tokens don't consume PTU capacity, so a higher cache rate reduces the PTUs required.
 
-Use your expected traffic and the per-model values from [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model) to estimate the PTUs your workload needs. The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
+The sizing calculation converts your expected token volumes into a single *converted input TPM* figure using these factors, then divides by the model's **Input TPM per PTU** value to arrive at the required PTU count.
 
-Before applying the formulas, note two key terms:
+You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal (navigate to **Operate** > **Quota** > **Provisioned throughput unit**) for a guided estimate.
 
-- The **output-to-input ratio** reflects how much more processing capacity an output token requires compared to an input token. For example, a ratio of 8 means one output token counts as 8 input tokens toward the model's TPM limit. For GPT-4.1 and later Azure OpenAI models, the ratio is set to match the model's global standard pricing ratio between output and input tokens. This means that a model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/provisioned-throughput-onboarding.md#exceptions-to-input-and-output-throughput-ratio). For per-model output-to-input ratios, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
-
-- The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). Cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
-
-**Formulas:**
-
-- Input TPM = Peak RPM × prompt size (tokens)
-- Output TPM = Peak RPM × response size (tokens)
-- Converted input TPM = (input TPM × (1 − cache rate)) + (output-to-input ratio × output TPM)
-- PTUs required = converted input TPM ÷ Input TPM per PTU
-
-**Worked example:**
-
-Suppose your application sends requests at a peak rate of 1,000 RPM with an average prompt size of 100 tokens and an average response size of 50 tokens, using the gpt-5.2 model. From the per-model table, gpt-5.2 has an Input TPM per PTU of 3,400 and an output-to-input ratio of 8.
-
-- Input TPM = 1,000 × 100 = 100,000
-- Output TPM = 1,000 × 50 = 50,000
-- Converted input TPM = 100,000 + (8 × 50,000) = 500,000
-- PTUs required = 500,000 ÷ 3,400 = 147.06 → **150 PTUs** (rounded up to the nearest 50 PTUs, matching the Regional Provisioned scale increment for gpt-5.2)
-
-### Estimate PTU with the capacity calculator
-
-Use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal to size specific workload shapes. Find the calculator under **Operate** > **Quota** > **Provisioned throughput unit**, then enter your workload parameters.
-
-For full details on the formulas, per-model Input TPM per PTU values, output-to-input ratios, and the capacity calculator, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#determine-ptu-requirements-for-a-workload).
+For the complete sizing methodology that includes formulas, worked examples with cache variation, a workload comparison table, and the full capacity calculator reference, see [Determine PTU requirements for a workload](../how-to/provisioned-throughput-onboarding.md#determine-ptu-requirements-for-a-workload).
 
 ## Provisioned throughput deployment types
 
