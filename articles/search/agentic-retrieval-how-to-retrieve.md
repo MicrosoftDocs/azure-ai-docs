@@ -956,8 +956,74 @@ Here's an example of the references array:
 The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Inspect model names in activity logs](#inspect-model-names-in-activity-logs)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
+
+### Inspect model names in activity logs
+
+In the `2026-05-01-preview` API, model-backed activity records can include
+`modelName` when `includeActivity` is enabled. Use this field to confirm which
+configured model handled query planning, answer synthesis, or another
+model-backed step during a retrieve request.
+
+The field is additive and appears only on activity entries that represent
+model-backed work. Nonmodel activity records, such as search index retrieval
+steps, don't include `modelName`.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "Which policy applies to returns?" }
+            ]
+        }
+    ],
+    "includeActivity": true
+}
+```
+
+The following response excerpt shows activity records with `modelName`:
+
+```json
+{
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "modelName": "gpt-5-mini",
+      "inputTokens": 1842,
+      "outputTokens": 87,
+      "elapsedMs": 1923
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "knowledgeSourceName": "operations-ks",
+      "count": 12,
+      "elapsedMs": 234
+    },
+    {
+      "type": "modelSummarization",
+      "id": 2,
+      "modelName": "gpt-5-mini",
+      "inputTokens": 2418,
+      "outputTokens": 179,
+      "elapsedMs": 931
+    }
+  ]
+}
+```
+
+[TO VERIFY] Confirm the complete list of activity types that emit `modelName`
+and whether the value is the deployment name, model name, or another model
+identifier.
 
 ### Override default reasoning effort and set request limits
 
