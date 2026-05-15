@@ -1,5 +1,5 @@
 ---
-title: GPT Realtime 2.0
+title: GPT Realtime 2.0 (preview)
 description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 ---
 
 GPT Realtime 2 is a speech-to-speech model with built-in reasoning. It accepts audio input and produces audio output. It's designed for low-latency, interactive voice experiences where you need stronger instruction following and reasoning than earlier realtime models.
+
+[!INCLUDE [preview-feature](preview-feature.md)]
 
 ## What's new in GPT Realtime 2
 

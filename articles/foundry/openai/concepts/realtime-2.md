@@ -1,5 +1,5 @@
 ---
-title: "GPT Realtime 2.0 overview"
+title: "GPT Realtime 2.0 (preview) overview"
 description: "Learn about GPT Realtime 2, a speech-to-speech model with built-in reasoning for low-latency interactive voice experiences."
 author: PatrickFarley
 ms.author: pafarley
@@ -13,6 +13,6 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# GPT Realtime 2.0 overview
+# GPT Realtime 2.0 (preview) overview
 
 [!INCLUDE [GPT Realtime 2](../includes/concepts-realtime-2.md)]

@@ -27,7 +27,7 @@ This article provides a summary of the latest releases and major documentation u
 
 New concept articles describe the capabilities and key concepts for the latest realtime and audio models:
 
-- [GPT Realtime 2.0 overview](./concepts/realtime-2.md) — covers reasoning support, response phases (preamble and final answer), and stricter instruction following.
+- [GPT Realtime 2.0 (preview) overview](./concepts/realtime-2.md) — covers reasoning support, response phases (preamble and final answer), and stricter instruction following.
 - [GPT Audio 2.0 overview](./concepts/realtime-audio-2.md) — covers request/response audio generation scenarios and how GPT Audio 2 differs from GPT Realtime 2.
 
 

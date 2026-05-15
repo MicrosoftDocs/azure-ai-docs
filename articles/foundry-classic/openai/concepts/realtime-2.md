@@ -1,5 +1,5 @@
 ---
-title: "GPT Realtime 2.0 overview (classic)"
+title: "GPT Realtime 2.0 overview (preview, classic)"
 description: "Learn about GPT Realtime 2, a speech-to-speech model with built-in reasoning for low-latency interactive voice experiences. (classic)"
 author: PatrickFarley
 ms.author: pafarley
@@ -14,7 +14,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 ai-usage: ai-assisted
 ---
 
-# GPT Realtime 2.0 overview (classic)
+# GPT Realtime 2.0 (preview) overview (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/realtime-2.md)
 
