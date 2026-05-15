@@ -10,7 +10,7 @@ ms.reviewer: osiotugo
 author: msakande
 reviewer: ositanachi
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, references_regions
 ---
 
 # Deploy models from Hugging Face Hub to managed compute (classic)
@@ -33,7 +33,7 @@ You can search from thousands of Transformers models in the model catalog and de
   pip install "azure-ai-ml>=1.12.0" azure-identity
   ```
 
-- **Azure CLI only**: The Azure ML CLI v2 extension:
+- **Azure CLI only**: The Azure Machine Learning CLI v2 extension:
 
   ```bash
   az extension add -n ml
@@ -89,7 +89,7 @@ Gated models require approval from the model's author before use. When you open 
 
 To deploy a gated model:
 
-1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens).
+1. Have a Hugging Face `read` or `fine-grained` [token](https://huggingface.co/docs/hub/security-tokens).
 
 1. Request access through the model's page on Hugging Face.
 
@@ -169,7 +169,7 @@ print(f"Provisioning state: {deployment.provisioning_state}")
 
 To deploy a gated model with the Python SDK:
 
-1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens).
+1. Have a Hugging Face `read` or `fine-grained` [token](https://huggingface.co/docs/hub/security-tokens).
 
 1. Request access through the model's page on Hugging Face.
 
@@ -247,7 +247,7 @@ az ml online-deployment show --name demo \
 
 To deploy a gated model with the Azure CLI:
 
-1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens).
+1. Have a Hugging Face `read` or `fine-grained` [token](https://huggingface.co/docs/hub/security-tokens).
 
 1. Request access through the model's page on Hugging Face.
 
