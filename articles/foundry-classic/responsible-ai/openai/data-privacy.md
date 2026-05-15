@@ -1,8 +1,8 @@
 ---
 title: "Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)" 
 description: "This document details issues for data, privacy, and security for Azure Direct Models (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

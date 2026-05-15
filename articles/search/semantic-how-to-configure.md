@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 04/24/2026
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -21,8 +21,6 @@ This article explains how to configure a search index for semantic reranking.
 ## Prerequisites
 
 + Azure AI Search in any [region that provides semantic ranking](search-region-support.md).
-
-+ Semantic ranker [enabled on your search service](semantic-how-to-enable-disable.md).
 
 + An existing search index with rich text content. Semantic ranking applies to strings (nonvector) fields and works best on content that is informational or descriptive.
 
@@ -62,7 +60,7 @@ Across all semantic configuration properties, the fields you assign must be:
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and go to a search service that has [semantic ranking enabled](semantic-how-to-enable-disable.md).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From **Indexes** on the left-navigation pane, select an index.
 

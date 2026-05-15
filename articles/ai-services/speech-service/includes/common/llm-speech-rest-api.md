@@ -17,9 +17,6 @@ ms.date: 01/31/2026
 
 The next several sections provide details about how to use this API.
 
-### Supported languages
-
-The following languages are currently supported for both `transcribe` and `translate` tasks: `English`, `Chinese`, `German`, `French`, `Italian`, `Japanese`, `Spanish`, `Portuguese`, and `Korean`.
 
 ### Upload audio
 
@@ -90,6 +87,21 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
+The following target languages are supported in `targetLanguage` by specifying the corresponding language code:
+
+| Language code | Language |
+| ----- | ----- |
+| `de` | German |
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `it` | Italian |
+| `ko` | Korean |
+| `ja` | Japanese |
+| `pt` | Portuguese |
+| `zh` | Chinese |
+
+
 #### Use prompt-tuning to alter performance
 
 You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
@@ -145,34 +157,6 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM Speech. You can omit these options from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options).
 
-#### Use the MAI-Transcribe model (preview)
-
-You can also use the MAI-Transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API.
-
-For the current list of regions where this model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
-
-The following languages are currently supported for mai-transcribe-1 model: `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
-
-To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
-
-```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
---header 'Content-Type: multipart/form-data' \
---header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
---form 'audio=@"YourAudioFile.wav"' \
---form 'definition={
-  "enhancedMode": {
-    "enabled": true,
-    "model":"mai-transcribe-1"
-  }
-}'
-```
-
-When you use this model, be aware of the following limitations:
-
-- The audio file should be less than 70 MB in size.
-
-- Diarization isn't supported.
 
 #### Sample response
 

@@ -1,26 +1,32 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/16/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. 
+Prompt caching reduces overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. In this context, *"prompt"* refers to the input you send to the model as part of your chat completions or response creation requests. Rather than reprocessing the same input tokens over and over again, the service retains a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. 
+
+For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. Prompt cache pricing is the same for both retention policies.
 
 ## Prompt cache retention
+Prompt caching can use either in-memory or extended retention policies. When available, extended prompt caching aims to retain the cache for longer, so that subsequent requests are more likely to match the cache.
 
-Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches aren't shared between Azure subscriptions.
+To configure the prompt cache retention policy, set the `prompt_cache_retention` parameter on the Responses or Chat Completions API.
 
-## Supported models
+### In-memory prompt cache retention
 
-- Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
-- Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models that don't have these operations, this feature isn't available.
+The system typically clears caches within 5 to 10 minutes of inactivity and always removes them within one hour of the cache's last use. The system doesn't share prompt caches between Azure subscriptions.
 
-## Extended prompt cache retention
+All Azure OpenAI models GPT-4o or newer support in-memory prompt cache retention. It applies to models that have chat-completion, completion, responses, or real-time operations. For models that don't have these operations, this feature isn't available.
+
+### Extended prompt cache retention
+
+Extended prompt cache retention keeps cached prefixes active for longer, up to a maximum of 24 hours. Extended prompt caching works by offloading the key/value tensors to GPU-local storage when memory is full, which significantly increases the storage capacity available for caching.
 
 Extended prompt cache retention is available for the following models:
 
@@ -36,11 +42,10 @@ Extended prompt cache retention is available for the following models:
 - `gpt-5-codex`
 - `gpt-4.1`
 
-Extended prompt cache retention keeps cached prefixes active for longer, up to a maximum of 24 hours. Extended Prompt Caching works by offloading the key/value tensors to GPU-local storage when memory is full, significantly increasing the storage capacity available for caching.
 
 ### Configure per request
 
-For `gpt-5.4` and older models if you don’t specify a retention policy, the default is `in_memory`. Allowed values are `in_memory` and `24h`. For all newer models, the default is `24h` and `in_memory` is not supported.
+For `gpt-5.4` and older models, if you don't specify a retention policy, the default is `in_memory`. Allowed values are `in_memory` and `24h`. For all newer models, the default is `24h` and `in_memory` isn't supported.
 
 ```json
 {
@@ -49,10 +54,6 @@ For `gpt-5.4` and older models if you don’t specify a retention policy, the de
   "prompt_cache_retention": "24h"
 }
 ```
-
-### Does Prompt Caching work with Data Residency?
-
-In-memory Prompt Caching is compatible with all Data Residency regions. Extended caching temporarily stores data on GPU machines and will only be kept in-region when using Regional Standard or Regional Provisioned deployment types.
 
 ## Getting started
 
@@ -63,7 +64,7 @@ To take advantage of prompt caching, a request must meet both of these requireme
 
 Requests are routed based on a hash of the initial prefix of a prompt. The hash typically uses the first 256 tokens, though the exact length varies depending on the model.
 
-When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-foundry/openai/reference-preview#cached_tokens) under [`prompt_tokens_details`](/azure/ai-foundry/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
+When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits show up as [`cached_tokens`](/azure/ai-foundry/openai/reference-preview#cached_tokens) under [`prompt_tokens_details`](/azure/ai-foundry/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
 
 ```json
 {
@@ -88,19 +89,19 @@ When a match is found between the token computations in a prompt and the current
 }
 ```
 
-After the first 1,024 tokens cache hits will occur for every 128 additional identical tokens.
+After the first 1,024 tokens, cache hits occur for every 128 additional identical tokens.
 
-A single character difference in the first 1,024 tokens will result in a cache miss which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
+A single character difference in the first 1,024 tokens results in a cache miss, which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
 
-If you provide the `prompt_cache_key` parameter, it's combined with the prefix hash, allowing you to influence routing and improve cache hit rates. This is especially beneficial when many requests share long, common prefixes.
+If you provide the `prompt_cache_key` parameter, it's combined with the prefix hash, so you can influence routing and improve cache hit rates. This benefit is especially beneficial when many requests share long, common prefixes. If requests for the same prefix and `prompt_cache_key` combination exceed a certain rate (approximately 15 requests per minute), some requests overflow and get routed to extra machines, reducing cache effectiveness.
 
-If requests for the same prefix and `prompt_cache_key` combination exceed a certain rate (approximately 15 requests per minute), some may overflow and get routed to additional machines, reducing cache effectiveness.
+## Frequently asked questions
 
-## What is cached?
+### What is cached?
 
-Feature support of o1-series models varies by model. For more information, see our dedicated [reasoning models guide](../how-to/reasoning.md).
+Feature support for o1-series models varies by model. For more information, see the dedicated [reasoning models guide](../how-to/reasoning.md).
 
-Prompt caching is supported for:
+Prompt caching supports:
 
 | **Caching supported** | **Description** |
 | --- | --- |
@@ -109,8 +110,13 @@ Prompt caching is supported for:
 | **Tool use** | Both the messages array and tool definitions. |
 | **Structured outputs** | Structured output schema is appended as a prefix to the system message. |
 
-To improve the likelihood of cache hits occurring, you should structure your requests such that repetitive content occurs at the beginning of the messages array.
+To improve the likelihood of cache hits, structure your requests so that repetitive content occurs at the beginning of the messages array.
 
-## Can I disable prompt caching?
+### Can I disable prompt caching?
 
 Prompt caching is enabled by default for all supported models. There's no opt-out support for prompt caching.
+
+### Does prompt caching work with data residency?
+
+In-memory prompt caching is compatible with all data residency regions. Extended prompt caching temporarily stores data on GPU machines and keeps data in-region only when using Regional Standard or Regional Provisioned deployment types.
+

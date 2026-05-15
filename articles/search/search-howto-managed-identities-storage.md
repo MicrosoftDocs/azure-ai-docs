@@ -4,7 +4,7 @@ description: Learn how to set up an indexer connection to an Azure Storage accou
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 04/24/2026
 ms.update-cycle: 365-days
 ms.custom:
   - subject-rbac-steps
@@ -71,7 +71,7 @@ For connections made using a system-assigned managed identity, the only change t
 Provide a connection string that contains a `ResourceId`, with no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
+POST https://[service name].search.windows.net/datasources?api-version=2026-04-01
 
 {
     "name" : "blob-datasource",
@@ -85,7 +85,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2025-09-0
 }   
 ```
 
-### User-assigned managed identity (preview)
+### User-assigned managed identity
 
 You must have a [user-assigned managed identity already configured](search-how-to-managed-identities.md) and associated with your search service, and the identity must have a role-assignment on Azure Storage. 
 
@@ -96,7 +96,7 @@ Provide a connection string that contains a `ResourceId`, with no account key or
 Provide an `identity` using the syntax shown in the following example. Set `userAssignedIdentity` to the user-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-04-01
 
 {
     "name" : "blob-datasource",

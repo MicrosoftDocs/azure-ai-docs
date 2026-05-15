@@ -6,7 +6,7 @@ ms.author: jburchel
 ms.reviewer: ckittel
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -48,7 +48,7 @@ The following table summarizes each recovery scenario, expected recovery time, a
   - **Cosmos DB Account Contributor** for Azure Cosmos DB restore operations
   - **Search Service Contributor** for Azure AI Search operations
   - **Storage Blob Data Contributor** for Azure Storage operations
-- Azure CLI (version 2.52.0 or later) or Azure PowerShell installed for restore commands
+- Azure CLI (version 2.86.0 or later) or Azure PowerShell installed for restore commands
 - Microsoft Purview integration (optional, for eDiscovery compliance)
 
 ## Foundry accounts and projects
@@ -96,7 +96,7 @@ The following sections describe recovery strategies for incidents that affect a 
      -Location {location} `
      -Properties @{restore=$true} `
      -ResourceId /subscriptions/{subscriptionID}/resourceGroups/{resourceGroup}/providers/Microsoft.CognitiveServices/accounts/{resourceName} `
-     -ApiVersion 2021-04-30
+     -ApiVersion 2026-03-01
    ```
 
    **Reference:** [Recover or purge deleted resources](/azure/ai-services/recover-purge-resources)

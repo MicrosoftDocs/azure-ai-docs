@@ -1,9 +1,9 @@
 ---
-author: mrbullwinkle
+author: alvinashcraft
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ms.custom: engagement-fy23
 ---
 

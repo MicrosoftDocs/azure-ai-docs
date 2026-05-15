@@ -9,8 +9,8 @@ ms.custom:
   - references_regions, build-2023, build-2023-dataai, devx-track-azurepowershell
   - classic-and-new
 manager: nitinme
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+author: alvinashcraft #ChrisHMSFT
+ms.author: aashcraft #chrhoder
 recommendations: false
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

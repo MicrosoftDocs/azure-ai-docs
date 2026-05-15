@@ -2,12 +2,12 @@
 title: Troubleshoot the Anomaly Detector multivariate API
 titleSuffix: Azure AI services
 description: Learn how to remediate common error codes when you use the Azure AI Anomaly Detector multivariate API.
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: troubleshooting
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 keywords: anomaly detection, machine learning, algorithms
 ---
 

@@ -1,25 +1,25 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 
 ---
 
-Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search` tool in the **Responses API**.
+Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. You can access web search through the `web_search` tool in the **Responses API**.
 
 > [!NOTE]
-> `web_search` is now the recommended tool for Web search in the Azure OpenAI Responses API.
-> The preview version of the web search tool (`web_search_preview`) while supported is not recommended.
+> In the Azure OpenAI Responses API, use the `web_search` tool for web search.
+> The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
 
 > [!IMPORTANT]
 > * Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
-> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside Customer’s compliance and Geo boundary.
-> * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When you use Grounding with Bing Search and/or Grounding with Bing Custom Search, your data flows outside your compliance and geo boundary.
+> * Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. To learn more, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
 > * [Learn more](#manage-web-search-tool) about how Azure admins can manage access to the use of Web search.
 
 ## Prerequisites
@@ -58,7 +58,7 @@ Deep Research can run for several minutes and is best for background-style workl
 
 ## How it works
 
-You use web search by declaring the tool in your request. The model may decide whether to call the tool based on the user’s prompt and your configuration.
+You use web search by declaring the tool in your request. The model decides whether to call the tool based on the user’s prompt and your configuration.
 
 > [!NOTE]
 > Web Search in the Responses API works with GPT-4 models and later.
@@ -137,7 +137,7 @@ print(response.output_text)
 
 ### Response shape
 
-A successful response that used web search typically contains two parts:
+A successful response that uses web search typically contains two parts:
 
 * A `web_search_call` output item that records the action performed:
   * `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing)).
@@ -296,7 +296,7 @@ print(response.output_text)
 
 Set the model to `o3-deep-research` to perform multi-step research across many sources. You must include at least one data source (for example, web search or a remote Model Context Protocol (MCP) server). You can also include the **code interpreter** tool to allow the model to write and run code for analysis.
 
-Because Deep Research may execute many browsing steps, requests can take longer and may incur multiple tool calls. For long-running analyses, consider using background execution patterns in your application.
+Because Deep Research might execute many browsing steps, requests can take longer and might incur multiple tool calls. For long-running analyses, consider using background execution patterns in your application.
 
 **REST API - Entra ID**
 
@@ -382,7 +382,7 @@ print(response.output_text)
 
 ### Domain filtering
 
-You can limit results to a specific set of domains using domain filtering. You can allow-list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use microsoft.com instead of https://www.microsoft.com/. Subdomains are also included in the search. Domain filtering works in the `web_search_tool` only with responses API. 
+You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works in the `web_search_tool` only with Responses API. 
 
 #### REST API - Entra ID
 
@@ -516,19 +516,19 @@ print(response.output_text)
 ```
 
 > [!IMPORTANT]
-> Live internet access is not supported. The parameter `external_web_access` if passed will be ignored.
+> Live internet access isn't supported. If you pass the parameter `external_web_access`, the parameter is ignored.
 
 ## Manage web search tool
 
-You can enable or disable the `web_search` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
+You can enable or disable the `web_search` tool in the Responses API at the subscription level by using Azure CLI. This setting applies to all accounts within the specified subscription.
 
 ### Prerequisites
 
-Before running the commands below, ensure the following:
+Before running the following commands, make sure you have the following prerequisites:
 
-* [Azure CLI](/cli/azure/install-azure-cli) is installed. 
-* You're signed in to Azure using `az login`
-* You have **Owner** or **Contributor** access to the subscription
+* [Azure CLI](/cli/azure/install-azure-cli) installed. 
+* You're signed in to Azure by using `az login`.
+* You have **Owner** or **Contributor** access to the subscription.
 
 ### Disable web search
 

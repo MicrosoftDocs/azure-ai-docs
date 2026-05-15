@@ -5,7 +5,8 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 02/25/2026
+ms.date: 04/17/2026
+ai-usage: ai-assisted
 # This is the primary instructional guidance for GenAI prompt, Document Layout, Azure AI Vision.
 ---
 
@@ -1145,7 +1146,6 @@ This pattern uses:
       "name": "genAI-prompt-skill",
       "description": "GenAI Prompt skill for image verbalization",
       "uri": "{{chatCompletionModelUri}}",
-      "timeout": "PT1M",
       "apiKey": "{{chatCompletionModelKey}}",
       "context": "/document/normalized_images/*",
       "responseFormat": { "type": "text" },
@@ -1536,7 +1536,6 @@ This pattern uses:
          "name":"genAI-prompt-skill",
          "description":"GenAI Prompt skill for image verbalization",
          "uri":"{{chatCompletionModelUri}}",
-         "timeout":"PT1M",
          "apiKey":"{{chatCompletionModelKey}}",
          "context":"/document/normalized_images/*",
          "inputs":[

@@ -186,7 +186,7 @@ Deployment tools like the Azure Developer CLI (azd) provide limited automation f
 - **Development**: azd automatically assigns Azure AI User to the shared project agent identity for unpublished agents
 - **Production**: Published agents receive distinct identities that require manual role assignments
 
-azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for Hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ## Tool authentication
 
@@ -231,7 +231,7 @@ Common role assignments for agent tools:
 > When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
 
 > [!TIP]
-> For comprehensive details about all permissions involved in hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+> For comprehensive details about all permissions involved in Hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ### Supported tools
 

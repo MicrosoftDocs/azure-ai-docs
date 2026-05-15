@@ -175,7 +175,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 **New agent templates**. Azure Language now supports the following agent templates:
 
 * [Intent routing](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md): Detects user intent and provides precise answers, ideal for deterministic intent routing, and exact question answering with human oversight.
-* [Exact question answering](../agents/concepts/agent-catalog.md): Delivers consistent, accurate responses to high-value predefined questions through deterministic methods.
+* Exact question answering: Delivers consistent, accurate responses to high-value predefined questions through deterministic methods.
 
 **PII detection enhancements**. Azure Language introduces new customization and entity subtype features for PII detection:
 
