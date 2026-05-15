@@ -3357,7 +3357,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/document-translation/quickstarts/rest-api.md",
-      "redirect_url": "/azure/ai-services/translator/document-translation/latest/quickstarts/asynchronous.md",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/quickstarts/asynchronous",
       "redirect_document_id": true
     },
     {
@@ -3369,7 +3369,7 @@
       "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/rest-api-guide.md",
       "redirect_url": "/azure/ai-services/translator/document-translation/latest/rest-api/guide-overview",
       "redirect_document_id": true
-    },
+    }
 
   ]
 }
