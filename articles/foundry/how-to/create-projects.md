@@ -107,7 +107,9 @@ On the **Home** project page, you see the project endpoint and API key for the p
 
 ## Grant access to team members
 
-If you created the project for a team, assign the **Azure AI User** role to team members so they can use the project and its resources. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+If you created the project for a team, assign the **Foundry User** role to team members so they can use the project and its resources. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+[!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 > [!IMPORTANT]
 > To complete role assignments, you need a role such as **Owner** on the project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).

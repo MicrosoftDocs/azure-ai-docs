@@ -99,7 +99,9 @@ Two identities are involved:
 | **Microsoft Entra ID** (agent identity, per-agent) | Created automatically at deploy time | The identity the agent container authenticates with at runtime. Used for model invocation, tool access, and downstream Azure services. |
 | **Project managed identity** (project-wide) | System-assigned on the Foundry project | Used by the platform for infrastructure operations (for example, Container Registry Repository Reader on the container registry). Not the agent's runtime identity. |
 
-When you deploy with azd, the required RBAC role (Azure AI User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
+When you deploy with azd, the required RBAC role (Foundry User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can also operate with on-behalf-of (OBO) user identity. The agent's Microsoft Entra ID can exchange a user token to call downstream services as the user, subject to tenant policies. For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 

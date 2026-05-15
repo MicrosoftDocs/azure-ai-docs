@@ -20,7 +20,9 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 ## [Portal](#tab/portal)
 
 > [!IMPORTANT]
-> To deploy models, you need to be assigned the `Azure AI Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+> To deploy models, you need to be assigned the `Foundry Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
 

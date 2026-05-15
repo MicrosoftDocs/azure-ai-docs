@@ -49,8 +49,10 @@ You need the following role assignments:
 
 | Resource | Required role |
 |----------|---------------|
-| Foundry project | **Azure AI User** or higher |
+| Foundry project | **Foundry User** or higher |
 | Resource group (for connection deployment) | **Contributor** |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ::: zone pivot="foundry-portal"
 
