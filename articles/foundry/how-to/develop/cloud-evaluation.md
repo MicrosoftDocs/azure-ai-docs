@@ -995,6 +995,10 @@ Trace evaluation supports two modes:
 > [!TIP]
 > Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
 
+### Intelligent sampling
+ 
+Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity—ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+
 ### Trace data requirements
 
 Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
