@@ -485,7 +485,7 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
                 chunk = audio_data[i : i + chunk_size]
                 await connection.input_audio_buffer.append(audio=base64.b64encode(chunk).decode())
                 # Small delay to simulate real-time streaming
-                await asyncio.sleep(0.05)
+                await asyncio.sleep(0.1)
     
             print("Audio sent. Waiting for response...")
     
