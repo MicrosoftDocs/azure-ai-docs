@@ -200,7 +200,7 @@ Use `storedHeaders` to send static HTTP headers with every MCP request. We recom
 
 Each entry in the `tools` array is an `McpServerTool` object with the following properties.
 
-| Property | Description | Type | Editable | Required |
+| Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the MCP tool to invoke. Must match a tool name exposed by the MCP server. | String | No | Yes |
 | `outputParsing` | Controls how the tool's raw output is parsed into rankable documents. Defaults to `auto`. For supported output parsing modes, see [Output parsing modes](#output-parsing-modes). | Object | No | No |
@@ -229,7 +229,7 @@ The `json` mode extracts documents from a specific location in the JSON output u
 }
 ```
 
-| Property | Description | Type | Required |
+| Name | Description | Type | Required |
 |--|--|--|--|
 | `documentsPath` | A [JSONPath](https://goessner.net/articles/JsonPath/) expression that resolves to an array in the tool output. Each element in the array becomes a rankable document. | String | Yes |
 | `includeContext` | Whether to include the full JSON response alongside each extracted document as additional context. Defaults to `false`. | Boolean | No |
