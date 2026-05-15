@@ -221,7 +221,7 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
    ```azurecli
    az role assignment create \
      --assignee <principal-id> \
-     --role "Foundry User" \
+     --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
      --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<resource-name>
    ```
 
