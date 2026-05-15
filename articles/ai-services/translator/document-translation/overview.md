@@ -23,26 +23,37 @@ ai-usage: ai-assisted
 
 # What is Azure Translator document translation?
 
-Document translation (**2026-03-01** GA) is the latest cloud-based feature of Azure Translator and is part of the Foundry Tools family of REST APIs. It translates documents across all [supported languages and dialects](../language-support.md) while preserving the original document structure and data format. In addition to the default neural machine translation (NMT) engine, you can now use large language models (LLMs) for higher-quality, context-aware translations. The Document Translation API supports two translation processes:
+Document translation (**2026-03-01** GA) is a cloud-based feature of Azure Translator and part of the Foundry Tools family of REST APIs. It provides:
 
-* **[Asynchronous batch translation](#key-features)** — Translate multiple documents or large files in parallel. Requires an Azure Blob Storage account with source and target containers.
-* **[Synchronous single-file translation](#key-features)** — Translate a single document and receive the output directly in the response. No Azure Blob Storage required.
+* **Translation** across all [supported languages and dialects](../language-support.md).
+* **Preservation** of the original document structure and data format.
+* **Neural machine translation (NMT) engine support** for standard translations (default).
+* **Large language model (LLM) support** for higher-quality, context-aware translations (optional).
+
+The Document Translation API supports two translation processes:
+
+* **[Asynchronous batch translation](#key-features):** Translate multiple documents or large files in parallel. Upload documents to Blob Storage, submit a batch job, poll for status, then download translated output from your target container. Requires an Azure Blob Storage account with source and target containers. For a full walkthrough, see [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md) and [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md).
+
+* **[Synchronous single-file translation](#key-features):** POST a single document and receive the translated output directly in the response. No Azure Blob Storage required. For a full walkthrough, see [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md).
 
 ## What's new in version 2026-03-01
 
-API version 2026-03-01 introduces the following capabilities for Document Translation:
+API version **2026-03-01** introduces the following capabilities for Document Translation:
 
-* **Large language model (LLM) selection (Public Preview)** — By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../how-to/create-translator-resource.md).
+* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../how-to/create-translator-resource.md).
 
-* **Image translation** — Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
+* **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
 
-* **PDF translation with Azure Document Intelligence (batch only)** — Translate PDF files using Azure Document Intelligence to preserve layout and structure in the translated output.
+* **PDF translation with Azure Document Intelligence (batch only)**: Translate PDF files using Azure Document Intelligence to preserve layout and structure in the translated output.
 
-* **Translate images in Office documents (batch only)** — Translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) documents while preserving overall document structure.
+* **Image translation in Office documents (batch only)**: Translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) documents while preserving overall document structure.
 
-## Prerequisites
+## Before you begin
 
-The prerequisites differ by translation method. Asynchronous batch translation requires an Azure Blob Storage account and storage authorization (SAS tokens or managed identity). Synchronous translation requires only a Translator resource with a custom domain endpoint.
+Prerequisites differ by translation method:
+
+* **Asynchronous batch translation**: Requires an Azure Blob Storage account and storage authorization (SAS tokens or managed identity).
+* **Synchronous single-file translation**: Requires only a Translator resource with a custom domain endpoint.
 
 For the full prerequisites list, see [Prerequisites and setup](latest/prerequisites.md).
 
@@ -50,7 +61,7 @@ For the full prerequisites list, see [Prerequisites and setup](latest/prerequisi
 
 Document Translation supports different features for each translation method. Select the tab for your scenario.
 
-### [Asynchronous (batch)](#tab/async)
+### [**Asynchronous (batch)**](#tab/async)
 
 | Feature | Description |
 | --- | --- |
@@ -64,7 +75,7 @@ Document Translation supports different features for each translation method. Se
 | **Automatically detect document language** | Let the Document translation service determine the language of the document. |
 | **Translate documents with content in multiple languages** | Use the autodetect feature to translate documents with content in multiple languages into your target language. |
 
-### [Synchronous](#tab/sync)
+### [**Synchronous**](#tab/sync)
 
 |Feature | Description |
 | ---------| -------------|
@@ -77,16 +88,9 @@ Document Translation supports different features for each translation method. Se
 
 ---
 
-## How document translation works
-
-Both translation methods follow a distinct workflow. For step-by-step instructions, see the relevant quickstart:
-
-* **Asynchronous batch translation** — Upload documents to Blob Storage, submit a batch job, poll for status, then download translated output from your target container. For a full walkthrough, see [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md) and [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md).
-* **Synchronous single-file translation** — POST a single document and receive the translated output directly in the response. For a full walkthrough, see [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md).
-
 ## Language support
 
-For the full list of languages supported for LLM-based translation, see the Translation section of [Language support](../language-support.md#translation).
+For the full list of languages supported for document translation features, including LLM-based translation, see [Language support](../language-support.md).
 
 ### LLM data processing
 
@@ -99,7 +103,7 @@ Add document translation to your projects and applications using the following d
 > [!NOTE]
 > Foundry portal currently supports synchronous (single-file) document translation only. Use the REST API or client libraries for asynchronous batch document translation.
 
-### [Asynchronous (batch)](#tab/async)
+### [**Asynchronous (batch)**](#tab/async)
 
 Use asynchronous workflows to translate multiple documents and large files.
 
@@ -108,7 +112,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |**REST API**|The [REST API](latest/rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
-### [Synchronous](#tab/sync)
+### [**Synchronous**](#tab/sync)
 
 Use synchronous document translation to translate a single file and return the translated file in the response.
 
@@ -124,17 +128,22 @@ Use synchronous document translation to translate a single file and return the t
 
 ## Supported document and glossary formats
 
-Document translation supports a broad range of file formats for both translation and glossary input. The supported formats differ slightly between asynchronous batch and synchronous translation. To query the full list at runtime, use the [Get supported document formats](reference/get-supported-document-formats.md) API.
+Document translation supports a broad range of file formats for both translation input and glossary files. Supported formats differ slightly between asynchronous batch and synchronous translation.
+
+To query supported formats at runtime:
+
+* **Document formats**: Use the [Get supported document formats](latest/rest-api/get-supported-formats.md) API.
+* **Glossary formats**: Use the [Get supported glossary formats](latest/rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
 
 For a complete list of supported formats by method, see [Supported document formats](latest/rest-api/guide-overview.md).
 
 ## Document translation request limits
 
-For detailed information about Translator request limits, see [Document translation request limits](../service-limits.md#document-translation).
+Document translation enforces limits on request size, document count, file size, and concurrent operations. Understanding these limits helps you design batch jobs and avoid throttling errors. For detailed information, see [Document translation request limits](../service-limits.md#document-translation).
 
 ## Document translation data residency
 
-Document translation data residency depends on the Azure region where your Translator resource was created:
+Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the processing location is determined by the Azure region where your Translator resource was created. The following table maps resource regions to their corresponding request processing data centers:
 
 ✔️ Feature: **Document translation**
 ✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
@@ -147,25 +156,25 @@ Document translation data residency depends on the Azure region where your Trans
 |**Europe (except Switzerland)**| France Central &bull; West Europe|
 |**Switzerland**|Switzerland North &bull; Switzerland West|
 
-## Troubleshooting
+## Service limits and troubleshooting
 
-For common issues with batch translation — missing output files, storage authorization errors, or unsupported formats — see [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md). For synchronous translation errors, see [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md).
+If you encounter unexpected behavior, errors, or performance issues, the following resources can help you diagnose and resolve them:
 
-For request limit errors, see [Document translation request limits](../service-limits.md#document-translation).
+* **Service limits:** See [Document translation request limits](../service-limits.md#document-translation).
+
+* **Translation errors and known issues:** See [Known issues](../reference/known-issues.md).
 
 ## Pricing
 
 Pricing depends on whether you use NMT-based or LLM-based translation. The two models have different billing units.
 
-* Document translations using NMT models are billed by the number of characters or images in the source document. For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
-* Document translations using LLMs are charged by the number of input and output tokens processed. For more information, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+* Document translations using **NMT models** are billed by the number of characters or images in the source document. For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+
+* Document translations using **LLMs** are charged by the number of input and output tokens processed. For more information, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Related content
 
-* [Prerequisites and setup](latest/prerequisites.md)
 * [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md)
 * [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md)
 * [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md)
-* [Use glossaries with Document translation](how-to-guides/create-use-glossaries.md)
-* [Document translation REST API reference](latest/rest-api/guide-overview.md)
-* [Translator language support](../language-support.md)
+
