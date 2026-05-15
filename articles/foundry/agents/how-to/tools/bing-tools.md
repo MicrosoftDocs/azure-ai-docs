@@ -57,7 +57,9 @@ Before you begin, make sure you have:
 - An Azure subscription with the right permissions.
 - Azure RBAC roles:
   - **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-  - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
+  - **Foundry Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
+
+    [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
 - SDK installed for your preferred language:
@@ -1101,7 +1103,7 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 **Solution**: 
 1. Verify you have the required RBAC roles:
    - **Contributor** or **Owner** role for creating Bing resources
-   - **Azure AI Project Manager** role for creating project connections
+   - **Foundry Project Manager** role for creating project connections
 1. Check that your Azure credentials are properly configured:
    - For Python/TypeScript: `DefaultAzureCredential` can authenticate
    - For REST: Bearer token is valid and not expired
@@ -1166,7 +1168,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 
 1. The admin registers `Microsoft.Bing` in the Azure subscription. The admin needs permissions to perform the `/register/action` operation for the resource provider. The Contributor and Owner roles include this permission. For more information about how to register, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
 1. After the admin registers `Microsoft.Bing`, users with permissions can create, delete, or retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These users need the **Contributor** or **Owner** role at the subscription or resource group level. 
-1. After creating a Grounding with Bing and/or Grounding with Bing Custom Search resource, users with permissions can create a Microsoft Foundry connection to connect to the resource and use it as a tool in Foundry Agent Service. These users need at least the **Azure AI Project Manager** role. 
+1. After creating a Grounding with Bing and/or Grounding with Bing Custom Search resource, users with permissions can create a Microsoft Foundry connection to connect to the resource and use it as a tool in Foundry Agent Service. These users need at least the **Foundry Project Manager** role. 
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 

@@ -33,7 +33,9 @@ After you build and test an agent, the next step is often sharing it with others
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
 - A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
-    - **Azure AI User** role on the Foundry project scope to create, manage, and publish agents.
+    - **Foundry User** role on the Foundry project scope to create, manage, and publish agents.
+
+      [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
     - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - An Azure subscription where Azure Bot Service resources can be created
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
