@@ -64,7 +64,7 @@ landingContent:
          - text: Document translation REST APIs
            url: document-translation/latest/rest-api/guide-overview.md
          - text: Synchronous document translation
-           url: document-translation/latest/rest-api/translate-synchronous
+           url: document-translation/latest/rest-api/translate-synchronous.md
          - text: Asynchronous document translation
            url: document-translation/latest/rest-api/translate-asynchronous.md
          - text: Document translation FAQ
