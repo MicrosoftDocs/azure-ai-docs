@@ -4,6 +4,7 @@ description: Learn how to create a search index knowledge source, which specifie
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/28/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -269,6 +270,60 @@ Content-Type: application/json
 ### Source-specific properties
 
 For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a search index knowledge source.
+
+### Persist retrieve defaults on a knowledge source
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, a knowledge source definition can persist
+source-specific retrieve defaults. Use persisted defaults for settings that
+should apply to most retrieve requests so callers don't have to repeat the
+same values every time.
+
+The effective value order is:
+
+| Priority | Source |
+| --- | --- |
+| Lowest | Service defaults |
+| Middle | Knowledge source definition defaults |
+| Highest | Retrieve-time `knowledgeSourceParams` overrides |
+
+The following example stores a default filter on a search index knowledge
+source:
+
+```http
+PUT {{search-url}}/knowledgesources/public-docs-ks?api-version=2026-05-01-preview
+Content-Type: application/json
+api-key: {{search-api-key}}
+
+{
+  "name": "public-docs-ks",
+  "kind": "searchIndex",
+  "searchIndexParameters": {
+    "searchIndexName": "public-docs-index",
+    "semanticConfigurationName": "public-docs-semantic-config",
+    "baseFilter": "isPublished eq true and accessScope eq 'public'"
+  }
+}
+```
+
+A retrieve request can still add request-specific constraints:
+
+```json
+{
+  "knowledgeSourceParams": [
+    {
+      "knowledgeSourceName": "public-docs-ks",
+      "filterAddOn": "category eq 'Benefits'"
+    }
+  ]
+}
+```
+
+[TO VERIFY] Confirm the complete list of retrieve defaults that can be
+persisted for each knowledge source kind, whether request overrides replace or
+merge with stored defaults, how to clear persisted defaults, and whether
+stored defaults are returned by GET operations.
 
 ::: zone pivot="csharp"
 
