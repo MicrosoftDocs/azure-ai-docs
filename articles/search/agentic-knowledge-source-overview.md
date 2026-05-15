@@ -3,7 +3,8 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/05/2026
+ms.date: 05/07/2026
+ai-usage: ai-assisted
 ---
 
 # What is a knowledge source?
@@ -36,6 +37,7 @@ You can create the following knowledge sources:
 |------|-------------------|
 | [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource) wraps an existing index. | Indexed |
 | [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
+| `"file"` API uploads files directly to Azure AI Search for processing and retrieval. [TO VERIFY: Add REST API reference link when available.] | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
@@ -57,6 +59,7 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
++ [How to create a file knowledge source (uploads files directly)](agentic-knowledge-source-how-to-file.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)

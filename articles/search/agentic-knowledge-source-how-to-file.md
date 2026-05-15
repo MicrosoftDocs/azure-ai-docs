@@ -1,0 +1,286 @@
+---
+title: Create a file knowledge source for agentic retrieval
+description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/07/2026
+ai-usage: ai-assisted
+---
+
+# Create a file knowledge source
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Use a *file knowledge source* to upload small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+
+A file knowledge source is useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base. Use [blob knowledge sources](agentic-knowledge-source-how-to-blob.md) instead when your content already lives in Azure Blob Storage or ADLS Gen2, when you need large-scale ingestion, or when you depend on storage-account capabilities.
+
+## Prerequisites
+
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you need paid usage beyond the monthly free allowance, set the `knowledgeRetrieval` service property to `standard` by using the [Search Management REST API](/rest/api/searchmanagement/services/create-or-update).
+
++ Files in a [supported format](#review-supported-formats-and-limits).
+
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
+
+## Check for existing knowledge sources
+
+A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
+
+[TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
+
+```http
+### List knowledge sources by name and type
+GET {{search-url}}/knowledgesources?api-version=2026-05-01-preview&$select=name,kind
+api-key: {{api-key}}
+```
+
+You can also return a single knowledge source by name to review its JSON definition.
+
+```http
+### Get a knowledge source definition
+GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
+api-key: {{api-key}}
+```
+
+The following JSON is an example response for a file knowledge source.
+
+```json
+{
+  "name": "my-file-ks",
+  "kind": "file",
+  "description": "A sample file knowledge source.",
+  "encryptionKey": null,
+  "fileParameters": {
+    "ingestionParameters": {
+      "contentExtractionMode": "minimal",
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "text-embedding-3-large",
+          "modelName": "text-embedding-3-large"
+        }
+      }
+    }
+  }
+}
+```
+
+## Create a knowledge source
+
+Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a file knowledge source. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
+
+```http
+PUT {{search-url}}/knowledgesources/my-file-ks?api-version=2026-05-01-preview
+api-key: {{api-key}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "name": "my-file-ks",
+  "kind": "file",
+  "description": "This knowledge source uses directly uploaded product manuals.",
+  "encryptionKey": null,
+  "fileParameters": {
+    "ingestionParameters": {
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "{{aoai-endpoint}}",
+          "deploymentId": "{{aoai-embedding-deployment}}",
+          "modelName": "{{aoai-embedding-model}}"
+        }
+      },
+      "contentExtractionMode": "minimal"
+    }
+  }
+}
+```
+
+### Source-specific properties
+
+You can pass the following properties to create a file knowledge source.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `file` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `fileParameters` | Parameters specific to file knowledge sources: `ingestionParameters`. | Object | Only nested model credentials are editable | No |
+| `ingestionParameters` | Parameters that control how uploaded files are cracked, chunked, vectorized, and prepared for retrieval. | Object | Only nested model credentials are editable | No |
+
+### Ingestion parameters properties
+
+You can pass the following `ingestionParameters` properties to control how uploaded files are processed.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `contentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
+| `embeddingModel` | A text embedding model that vectorizes text during processing and at query time. Supported models are `text-embedding-ada-002`, `text-embedding-3-small`, and `text-embedding-3-large`. | Object | Only `apiKey` is editable | No |
+
+## Upload files
+
+After the source exists, upload files directly to it. The file knowledge source processing path is push-oriented rather than schedule-oriented. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
+
+The request body contains the file content.
+
+```http
+POST {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
+api-key: {{api-key}}
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="installation-guide.pdf"
+
+<binary file content>
+```
+
+## List uploaded files
+
+List files on the knowledge source to inspect the uploaded file set.
+
+```http
+GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
+api-key: {{api-key}}
+```
+
+A response includes metadata for each uploaded file. The `errorMessage` value is `null` when the upload is processed without an error.
+
+```json
+{
+  "value": [
+    {
+      "fileId": "file-abc123",
+      "fileName": "installation-guide.txt",
+      "fileSizeBytes": 89,
+      "createdAt": "2026-05-07T18:10:00Z",
+      "lastUpdatedAt": "2026-05-07T18:14:00.803Z",
+      "errorMessage": null
+    }
+  ]
+}
+```
+
+Wait until processing succeeds before you rely on the file content in retrieve requests. If processing fails, review responses for unsupported file types, extraction failures, model access issues, or quota limits.
+
+## Create a knowledge base
+
+If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+
+```http
+PUT {{search-url}}/knowledgebases/my-file-kb?api-version=2026-05-01-preview
+api-key: {{api-key}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "name": "my-file-kb",
+  "description": "A knowledge base for uploaded product manuals.",
+  "outputMode": "extractiveData",
+  "retrievalReasoningEffort": {
+    "kind": "minimal"
+  },
+  "knowledgeSources": [
+    {
+      "name": "my-file-ks"
+    }
+  ]
+}
+```
+
+## Retrieve from the knowledge base
+
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
+
+```http
+POST {{search-url}}/knowledgebases/my-file-kb/retrieve?api-version=2026-05-01-preview
+api-key: {{api-key}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "includeActivity": true,
+  "intents": [
+    {
+      "type": "semantic",
+      "search": "What does the installation guide say about network prerequisites?"
+    }
+  ],
+  "knowledgeSourceParams": [
+    {
+      "kind": "file",
+      "knowledgeSourceName": "my-file-ks",
+      "includeReferences": true,
+      "includeReferenceSourceData": true
+    }
+  ]
+}
+```
+
+## Review supported formats and limits
+
+The following file types are supported in this preview. [TO VERIFY: Confirm that this list is accurate and complete.]
+
+| Category | Extensions |
+|--|--|
+| Text | `.txt`, `.md`, `.html`, `.json`, `.csv` |
+| Code | `.c`, `.cs`, `.cpp`, `.java`, `.py`, `.js`, `.ts`, `.php`, `.rb`, `.sh` |
+| Documents | `.pdf`, `.docx`, `.pptx`, `.doc` |
+
+The file knowledge source preview has the following limits.
+
+| Limit | Value |
+|--|--|
+| Maximum file size per upload | 50 MB |
+| Maximum files per file knowledge source | 100 |
+
+> [!NOTE]
+> Uploaded content is stored in the generated search index. For total storage limits by SKU, see [Service limits](search-limits-quotas-capacity.md#service-limits).
+
+File knowledge sources are designed for direct upload scenarios, not large-scale scheduled crawling. If you need recurring ingestion from durable external storage, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
+
+## Delete a knowledge source
+
+Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
+
+To delete a knowledge source:
+
+1. Get a list of all knowledge bases on your search service.
+
+    ```http
+    ### Get knowledge bases
+    GET {{search-url}}/knowledgebases?api-version=2026-05-01-preview&$select=name
+    api-key: {{api-key}}
+    ```
+
+1. Get an individual knowledge base definition to check for knowledge source references.
+
+    ```http
+    ### Get a knowledge base definition
+    GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
+    api-key: {{api-key}}
+    ```
+
+1. Either delete the knowledge base or update the knowledge base by removing the knowledge source if you have multiple sources. This example shows deletion.
+
+    ```http
+    ### Delete a knowledge base
+    DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
+    api-key: {{api-key}}
+    ```
+
+1. Delete the knowledge source.
+
+    ```http
+    ### Delete a knowledge source
+    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
+    api-key: {{api-key}}
+    ```
+
+## Related content
+
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
