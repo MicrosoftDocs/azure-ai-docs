@@ -482,6 +482,8 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
     
             # Send audio in chunks (the Realtime API expects base64-encoded audio)
             chunk_size = 4800  # 100ms of audio at 24kHz, 16-bit
+            audio_data += b"\x00" * chunk_size * 10  # 1 second of silence
+            
             for i in range(0, len(audio_data), chunk_size):
                 chunk = audio_data[i : i + chunk_size]
                 await connection.input_audio_buffer.append(audio=base64.b64encode(chunk).decode())
@@ -601,6 +603,8 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
     
             # Send audio in chunks (the Realtime API expects base64-encoded audio)
             chunk_size = 4800  # 100ms of audio at 24kHz, 16-bit
+            audio_data += b"\x00" * chunk_size * 10  # 1 second of silence
+
             for i in range(0, len(audio_data), chunk_size):
                 chunk = audio_data[i : i + chunk_size]
                 await connection.input_audio_buffer.append(audio=base64.b64encode(chunk).decode())
