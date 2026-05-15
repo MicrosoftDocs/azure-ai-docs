@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -42,6 +43,31 @@ Some workloads create a semantic configuration automatically. If you're using [a
 For other workloads, you can set up a semantic configuration yourself. A *semantic configuration* is a section in your index that establishes the field inputs used for semantic ranking. You can add or update a semantic configuration at any time, no rebuild necessary. If you create multiple configurations, you can specify a default. At query time, specify a semantic configuration on a [query request](semantic-how-to-query-request.md), or leave it blank to use the default.
 
 You can create up to 100 semantic configurations in a single index.
+
+### When semantic configuration is optional
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, supported agentic retrieval flows can use
+Azure AI Search ranking behavior without requiring an explicit semantic
+configuration on the underlying index. This preview behavior helps teams start
+with knowledge base retrieval without blocking on semantic configuration
+authoring.
+
+This change doesn't remove classic semantic ranking configuration. Continue to
+define a semantic configuration for classic semantic search queries, older API
+versions, and workloads that need explicit control over title, content, and
+keyword fields.
+
+| Scenario | Semantic configuration guidance |
+| --- | --- |
+| Classic semantic search query | Configure semantic ranking on the index. |
+| Existing GA or older preview API versions | Configure semantic ranking on the index. |
+| Supported `2026-05-01-preview` agentic retrieval flow | Semantic configuration can be optional. |
+
+[TO VERIFY] Confirm the exact API versions and query types where semantic
+configuration is optional, and confirm downgrade behavior if a workload later
+uses a GA API version.
 
 A semantic configuration has a name and the following properties:
 
