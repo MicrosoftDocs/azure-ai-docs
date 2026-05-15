@@ -477,6 +477,8 @@ items:
       items:
       - name: Search index
         href: agentic-knowledge-source-how-to-search-index.md
+      - name: Freshness-aware retrieval (preview)
+        href: agentic-retrieval-how-to-configure-freshness.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
       - name: OneLake
