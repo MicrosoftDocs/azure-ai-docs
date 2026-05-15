@@ -32,7 +32,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 ## Limitations
 
-+ During public preview, ACL ingestion applies to initial indexing only. ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
++ During preview, ACL ingestion applies to initial indexing only. ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
   
 + The Azure portal doesn't support this feature.
 
@@ -171,7 +171,7 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 
 ## Synchronize permissions between indexed and source content
 
-During public preview when the configuration is completed, and ACLs are captured during the first indexer run and for new files only. To pick up later changes:
+During preview when the configuration is completed, and ACLs are captured during the first indexer run and for new files only. To pick up later changes:
 
 | Change  Scope | 	Recommended | Trigger | What refreshes | 
 |--------|-------------|---------|---------|

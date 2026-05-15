@@ -93,7 +93,7 @@ The pattern includes the following components:
 
 - Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-honoring-at-query-time) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- For incremental indexing of ACLs, review the [SharePoint ACL synchronization options](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content) available during public preview.
+- For incremental indexing of ACLs, review the [SharePoint ACL synchronization options](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content) available during preview.
 - At query time, Azure AI Search checks the Microsoft Entra principal in the query token against SharePoint ACL metadata stored in the index. It excludes any documents the caller isn't authorized to access.
 
 During preview, only the following principal types are supported in SharePoint ACLs:
@@ -123,7 +123,7 @@ The pattern includes the following components:
 - Apply sensitivity labels to documents before indexing so they can be recognized and preserved during ingestion.
 - At query time, attach a valid Microsoft Entra token via the header `x-ms-query-source-authorization` to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.
 
-Purview sensitivity label enforcement is limited to single-tenant scenarios, requires RBAC authentication, and during public preview is supported only through REST API or SDK. Autocomplete and Suggest APIs aren't available for Purview-enabled indexes at this time.
+Purview sensitivity label enforcement is limited to single-tenant scenarios, requires RBAC authentication, and during preview is supported only through REST API or SDK. Autocomplete and Suggest APIs aren't available for Purview-enabled indexes at this time.
 
 For more information, see [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 

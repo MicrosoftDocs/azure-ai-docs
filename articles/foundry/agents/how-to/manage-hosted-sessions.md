@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agent sessions
 
-This article shows you how to manage sessions for hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days, with a 15-minute idle timeout that deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
+This article shows you how to manage sessions for Hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days, with a 15-minute idle timeout that deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
 
 ## Sessions versus conversations
 
@@ -53,7 +53,7 @@ For Invocations, the platform reads the query parameter only. Fields named `agen
 
 ## Prerequisites
 
-- A [deployed hosted agent](deploy-hosted-agent.md) with an `active` version. See [Manage hosted agents](manage-hosted-agent.md) for how to check version status.
+- A [deployed Hosted agent](deploy-hosted-agent.md) with an `active` version. See [Manage Hosted agents](manage-hosted-agent.md) for how to check version status.
 
 :::zone pivot="rest"
 
@@ -634,11 +634,11 @@ azd ai agent files remove --file data.csv
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Manage hosted agents](manage-hosted-agent.md)
+> [Manage Hosted agents](manage-hosted-agent.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Deploy a hosted agent](deploy-hosted-agent.md)
-- [Manage hosted agents](manage-hosted-agent.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Deploy a Hosted agent](deploy-hosted-agent.md)
+- [Manage Hosted agents](manage-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)

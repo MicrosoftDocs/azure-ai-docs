@@ -87,6 +87,10 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 ::: zone-end
 
+### Use MAI-Transcribe-1 with Voice Live
+
+You can also use the MAI-Transcribe-1 model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
+
 ## Language support
 
 When you use the MAI-Transcribe-1 model, diarization and prompt features aren't supported.
@@ -125,3 +129,4 @@ Optionally, specify a language code in `locales` to force recognition in a singl
 
 - For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
 - [MAI-Voice-1 in Azure Speech](mai-voices.md)
+- [How to customize Voice Live input and output](./voice-live-how-to-customize.md)

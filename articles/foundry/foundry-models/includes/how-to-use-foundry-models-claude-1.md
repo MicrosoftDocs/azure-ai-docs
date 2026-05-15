@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/16/2026
+ms.date: 05/11/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -232,7 +232,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest",
+            "@anthropic-ai/foundry-sdk": "latest",
             "@azure/identity": "latest"
           }
         }
@@ -300,7 +300,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest"
+            "@anthropic-ai/foundry-sdk": "latest"
           }
         }
         ```
@@ -554,7 +554,6 @@ Some of the **Core capabilities** that Foundry supports are:
     > The `effort` parameter supports effort levels: `low`, `medium`, and `high`. For Opus 4.7, Opus 4.6, and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
 - **PDF support:** Process and analyze text and visual content from PDF documents.
-- **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
 
 Some of the **Tools** that Foundry supports are:
 
@@ -633,7 +632,6 @@ Choose the appropriate Claude model based on your specific requirements:
 
 - **Token management**: Monitor and optimize token usage.
 - **Model selection**: Use the most cost-effective model for your use case.
-- **Caching**: Implement [explicit prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#continuing-a-multi-turn-conversation) where appropriate.
 - **Request batching**: Combine multiple requests when possible.
 
 ## Troubleshooting
