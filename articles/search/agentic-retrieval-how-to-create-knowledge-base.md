@@ -4,6 +4,7 @@ description: Learn how to create a knowledge base for agentic retrieval workload
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -84,6 +85,14 @@ Use one of the following LLMs from Azure OpenAI in Foundry Models. For deploymen
 + `gpt-5.4`
 + `gpt-5.4-mini`
 + `gpt-5.4-nano`
+
+The `2026-05-01-preview` API expands the supported model catalog, but the
+knowledge base schema is unchanged. You update the model deployment and
+`modelName` values, not the structure of the knowledge base request.
+
+[TO VERIFY] Confirm regional availability for each GPT-5 family model and
+whether Azure AI Search validates `modelName` against a supported list before
+calling Azure OpenAI.
 
 ## Configure access
 
@@ -514,8 +523,8 @@ api-key: {{search-api-key}}
             "azureOpenAIParameters": {
                 "resourceUri": "{{model-provider-url}}",
                 "apiKey": "{{model-api-key}}",
-                "deploymentId": "gpt-4.1-mini",
-                "modelName": "gpt-4.1-mini"
+                "deploymentId": "gpt-5.4-mini",
+                "modelName": "gpt-5.4-mini"
             }
         }
     ],
