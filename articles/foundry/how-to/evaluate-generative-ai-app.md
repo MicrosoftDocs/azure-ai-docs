@@ -1,10 +1,16 @@
 ---
 title: Run evaluations from the Microsoft Foundry portal
 description: Learn how to evaluate the performance and safety of your generative AI models and agents using the Foundry portal.
-ms.service: azure-ai-foundry
+ai-usage: ai-assisted
+ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 05/08/2026
-author: dlozier
+ms.date: 06/02/2026
+ms.reviewer: dlozier
+ms.author: lagayhar
+author: lgayhardt
+ms.custom:
+  - ignite-2023, references_regions, build-2024, ignite-2024
+  - classic-and-new
 ---
 
 # Run evaluations from the Microsoft Foundry portal
@@ -79,7 +85,7 @@ Choose how you want to evaluate your agent's performance:
 
 The data source options depend on your evaluation target and scope.
 
-#### For conversation evaluations (Agent > Full conversations)
+#### For conversation evaluations (agent > full conversations)
 
 Choose where your conversation data comes from:
 
@@ -130,7 +136,7 @@ Generate test queries using AI. Select **Synthetic** and configure the number of
 
 Use a prepared dataset in CSV or JSONL format. Select **Existing dataset** and choose a file from your project's data assets. Only CSV and JSONL file formats are supported.
 
-##### Existing traces (Agent only)
+##### Existing traces (agent only)
 
 Evaluate historical agent traces from your project. Select **Existing traces** and filter by date range to select traces.
 
