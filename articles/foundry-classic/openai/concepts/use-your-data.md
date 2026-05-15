@@ -77,7 +77,7 @@ You need to connect to a data source to upload your data. When you want to use y
 > [!NOTE]
 > Your data should be unstructured text for best results. If you have non-textual semi-structured or structured data consider converting it to text. If your files have special formatting, such as tables and columns, or bullet points, prepare your data with the data preparation script available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts#optional-crack-pdfs-to-text).
 
-The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) natively supports integration with Azure OpenAI On Your Data.
+The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](../references/cosmos-db.md) natively supports integration with Azure OpenAI On Your Data.
 
 For some data sources such as uploading files from your local machine (preview) or data contained in a blob storage account (preview), Azure AI Search is used. When you choose the following data sources, your data is ingested into an Azure AI Search index.
 
@@ -108,7 +108,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 * [Keyword search](/azure/search/search-lucene-query-architecture)
 
 * [Semantic search](/azure/search/semantic-search-overview)
-* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings-models) 
+* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings) 
 
     To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 
@@ -158,12 +158,12 @@ If you want to implement additional value-based criteria for query execution, yo
 # [Vector Database in Azure Cosmos DB for MongoDB](#tab/mongo-db)
 
 ### Prerequisites
-* [vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/introduction) account
+* [vCore-based Azure Cosmos DB for MongoDB](../references/cosmos-db.md) account
 * A deployed [embedding model](../concepts/understand-embeddings.md)
 
 ### Limitations
 * Only vCore-based Azure Cosmos DB for MongoDB is supported.
-* The search type is limited to [Integrated Vector Database in Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) with an Azure OpenAI embedding model.
+* The search type is limited to [Integrated Vector Database in Azure Cosmos DB for MongoDB](../references/cosmos-db.md) with an Azure OpenAI embedding model.
 * This implementation works best on unstructured and spatial data.
 
   
@@ -244,7 +244,7 @@ You can paste URLs and the service will store the webpage content, using it when
 
 <!--:::image type="content" source="../media/use-your-data/url.png" alt-text="A screenshot of the Azure OpenAI use your data url/webpage studio configuration page." lightbox="../media/use-your-data/url.png":::-->
 
-Once you have added the URL/web address for data ingestion, the web pages from your URL are fetched and saved to Azure Blob Storage with a container name: `webpage-<index name>`. Each URL will be saved into a different container within the account. Then the files are indexed into an Azure AI Search index, which is used for retrieval when you’re chatting with the model.
+Once you have added the URL/web address for data ingestion, the web pages from your URL are fetched and saved to Azure Blob Storage with a container name: `webpage-<index name>`. Each URL will be saved into a different container within the account. Then the files are indexed into an Azure AI Search index, which is used for retrieval when you're chatting with the model.
 
 [!INCLUDE [ai-search-ingestion](../includes/ai-search-ingestion.md)]
 
@@ -601,7 +601,7 @@ In total, there are two calls made to the model:
 
 The model generated output tokens (both intents and response) need to be taken into account for total token estimation. Summing up all the four columns below gives the average total tokens used for generating a response. 
 
-| Model	| Generation prompt token count | Intent prompt token count | Response token count | Intent token count |
+| Model    | Generation prompt token count | Intent prompt token count | Response token count | Intent token count |
 |--|--|--|--|--|
 | gpt-35-turbo-16k | 4297 | 1366 | 111 | 25 |
 | gpt-4-0613 | 3997 | 1385 | 118 | 18 |
@@ -704,7 +704,7 @@ Each user message can translate to multiple search queries, all of which get sen
 
 [!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for regional availability.
+For regional availability, see the [Region availability for Foundry Models sold directly by Azure](../../../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## Next steps
 * [Get started using your data with Azure OpenAI](../../quickstarts/get-started-code.md)

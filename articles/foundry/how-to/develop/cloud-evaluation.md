@@ -63,7 +63,9 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 
 - A [Foundry project](../../how-to/create-projects.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 > [!NOTE]
@@ -1540,7 +1542,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 If you receive a `401 Unauthorized` or `403 Forbidden` error, verify that:
 
 - Your `DefaultAzureCredential` is configured correctly (run `az login` if using Azure CLI).
-- Your account has the **Azure AI User** role on the Foundry project.
+- Your account has the **Foundry User** role on the Foundry project.
 - The project endpoint URL is correct and includes both the account and project names.
 
 ### Data format errors

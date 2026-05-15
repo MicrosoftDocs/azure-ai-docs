@@ -72,7 +72,7 @@ A new `to_llm_input()` helper function is available across SDK languages. It for
 
 ### Foundry portal updates
 
-The Foundry portal now includes a prebuilt analyzers playground for exploring Content Understanding capabilities without writing any code. You can also create and configure custom analyzers directly in the Foundry portal. For a comparison of what's available in Foundry versus Content Understanding Studio, see [Choose the right Foundry tool for document processing](choosing-right-ai-tool.md).
+The Foundry portal now includes a prebuilt analyzers playground for exploring Content Understanding capabilities without writing any code. For a comparison of what's available in Foundry versus Content Understanding Studio, see [Compare Content Understanding in Foundry and Content Understanding Studio](/azure/ai-services/content-understanding/foundry-vs-content-understanding-studio).
 
 ## March 2026
 

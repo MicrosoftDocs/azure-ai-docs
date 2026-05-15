@@ -12,7 +12,7 @@ ms.custom: include, classic-and-new
 
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
-## Updates to quota management after 05/06/2025 
+## Updates to quota management after 05/07/2026
 
 Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level—shared across all resources and regions—rather than being allocated separately per resource or per region.
 

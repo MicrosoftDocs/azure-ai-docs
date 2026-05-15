@@ -38,7 +38,9 @@ For more information about intervention points, see [Intervention points and con
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
-- Azure AI Account Owner role.
+- Foundry Account Owner role.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
   - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models

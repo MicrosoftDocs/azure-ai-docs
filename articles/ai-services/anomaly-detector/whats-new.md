@@ -3,8 +3,8 @@ title: What's New - Anomaly Detector
 description: This article is regularly updated with news about the Azure AI Anomaly Detector.
 ms.service: azure-ai-anomaly-detector
 ms.topic: whats-new
-ms.author: mbullwin
-author: mrbullwinkle
+ms.author: aashcraft
+author: alvinashcraft
 manager: nitinme
 ms.date: 06/12/2025
 ---

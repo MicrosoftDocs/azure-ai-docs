@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2025
 ms.topic: reference
-ms.date: 02/11/2026
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ---
 
@@ -235,7 +235,7 @@ This example demonstrates how to output text content in fixed-sized chunks and e
 
 ## Related content
 
-+ [What is Azure Content Understanding (preview)?](/azure/ai-services/content-understanding/overview)
++ [What is Azure Content Understanding in Foundry Tools?](/azure/ai-services/content-understanding/overview)
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [Create a skillset](cognitive-search-defining-skillset.md)
-+ [Indexers - Create (REST API)](/rest/api/searchservice/indexers/create)
++ [Indexers - Create](/rest/api/searchservice/indexers/create) (REST API)

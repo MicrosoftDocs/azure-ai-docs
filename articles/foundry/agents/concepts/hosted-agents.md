@@ -19,7 +19,7 @@ Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foun
 
 ### When to use hosted agents
 
-Choose hosted agents over prompt-based agents when you need to:
+Choose Hosted agents over prompt-based agents when you need to:
 
 - **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
@@ -37,7 +37,7 @@ You package your agent as a container image and push it to Azure Container Regis
 
 ### Hosted agents
 
-Hosted agents are containerized agentic AI applications that run on Agent Service. Unlike prompt-based agents—which are defined entirely through prompts and tool configuration in the Foundry portal—hosted agents are your own code packaged as a container image. You choose the framework, control the runtime behavior, and deploy the image to Microsoft-managed infrastructure.
+Hosted agents are containerized agentic AI applications that run on Agent Service. Unlike prompt-based agents—which are defined entirely through prompts and tool configuration in the Foundry portal—Hosted agents are your own code packaged as a container image. You choose the framework, control the runtime behavior, and deploy the image to Microsoft-managed infrastructure.
 
 The platform automatically manages the container lifecycle based on activity, provisioning resources when you create a version and deprovisioning when the idle timeout is reached.
 
@@ -47,7 +47,7 @@ Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedi
 
 ### Protocols: Responses and Invocations
 
-Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration.
+Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration. Both protocols are available in [regions that support Hosted agents](#region-availability). 
 
 #### Which protocol should I use?
 
@@ -63,7 +63,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 | Protocol bridge (GitHub Copilot, proprietary systems) | **Invocations** | The caller has its own protocol that doesn't map to /responses. |
 
 > [!TIP]
-> **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a hosted agent can support both protocols simultaneously.
+> **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a Hosted agent can support both protocols simultaneously.
 
 #### Protocol comparison
 
@@ -82,7 +82,7 @@ Hosted agents also support the **Activity** protocol for Teams and Microsoft 365
 
 ### Agent identity and endpoint
 
-Every hosted agent deployed to a Foundry project gets its own **dedicated Microsoft Entra ID (agent identity)** and **dedicated endpoint**—both created automatically at deploy time. You don't need to configure managed identities or routing manually.
+Every Hosted agent deployed to a Foundry project gets its own **dedicated Microsoft Entra ID (agent identity)** and **dedicated endpoint**—both created automatically at deploy time. You don't need to configure managed identities or routing manually.
 
 The endpoint is available immediately after deployment—publishing isn't required for programmatic access:
 
@@ -99,9 +99,11 @@ Two identities are involved:
 | **Microsoft Entra ID** (agent identity, per-agent) | Created automatically at deploy time | The identity the agent container authenticates with at runtime. Used for model invocation, tool access, and downstream Azure services. |
 | **Project managed identity** (project-wide) | System-assigned on the Foundry project | Used by the platform for infrastructure operations (for example, Container Registry Repository Reader on the container registry). Not the agent's runtime identity. |
 
-When you deploy with azd, the required RBAC role (Azure AI User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
+When you deploy with azd, the required RBAC role (Foundry User at account scope) is assigned to the agent's Microsoft Entra ID automatically. For external resources (for example, your own Azure Storage), you assign RBAC manually to the agent's Microsoft Entra ID.
 
-When integrated via Microsoft 365 channels (for example, Teams), hosted agents can also operate with on-behalf-of (OBO) user identity. The agent's Microsoft Entra ID can exchange a user token to call downstream services as the user, subject to tenant policies. For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can also operate with on-behalf-of (OBO) user identity. The agent's Microsoft Entra ID can exchange a user token to call downstream services as the user, subject to tenant policies. For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
 ### Sessions and conversations
 
@@ -140,7 +142,7 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 
 ## Security and data handling
 
-Treat a hosted agent like production application code.
+Treat a Hosted agent like production application code.
 
 > [!IMPORTANT]
 > If you use Foundry Agent Service to host agents that interact with third-party models, servers, or agents, you do so at your own risk. We recommend reviewing all data being shared with third-party models, servers, or agents and understanding third-party practices for retention and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications.
@@ -165,7 +167,7 @@ For configuration and analysis guidance, see [Enable tracing in your project](..
 
 ### Toolbox in Foundry 
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
+Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md). We recommend customers using toolbox in Foundry for connecting tools in Hosted agent with consolidated auth support across OAuth Identity passthrough, agent identity, key based and more. 
 
 ### Language support
 
@@ -226,9 +228,9 @@ Hosted agents are currently available in the following regions:
 
 | Task | Link |
 |------|------|
-| Build and deploy your first hosted agent | [Quickstart: Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md) |
-| Deploy using the Foundry SDK | [Deploy a hosted agent by using the Foundry SDK](../../agents/how-to/deploy-hosted-agent.md) |
-| Update, delete, invoke, or stream logs | [Manage hosted agents](../../agents/how-to/manage-hosted-agent.md) |
+| Build and deploy your first Hosted agent | [Quickstart: Deploy your first Hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md) |
+| Deploy using the Foundry SDK | [Deploy a Hosted agent by using the Foundry SDK](../../agents/how-to/deploy-hosted-agent.md) |
+| Update, delete, invoke, or stream logs | [Manage Hosted agents](../../agents/how-to/manage-hosted-agent.md) |
 | Set up tracing and monitoring | [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
 | Publish to Teams, M365, or custom apps | [Agent applications](../how-to/agent-applications.md) |

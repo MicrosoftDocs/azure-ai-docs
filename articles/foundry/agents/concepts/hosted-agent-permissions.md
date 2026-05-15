@@ -4,8 +4,8 @@ description: "Reference for permissions required to create, deploy, and interact
 manager: nitinme
 author: mattchenderson
 ms.author: mahender
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: reference
 ms.date: 04/21/2026
 ms.custom:
@@ -17,34 +17,36 @@ ai-usage: ai-assisted
 
 # Hosted agent permissions reference
 
-When working with [hosted agents in Microsoft Foundry][hosted-agents], it's important to understand the various permissions involved. There are several classes of permissions involved in hosted agent development, spanning the Azure Resource Manager control plane and the Foundry data plane:
+When working with [Hosted agents in Microsoft Foundry][hosted-agents], it's important to understand the various permissions involved. There are several classes of permissions involved in Hosted agent development, spanning the Azure Resource Manager control plane and the Foundry data plane:
 
 - Permissions granted to users or principals working with Foundry resources
 - Permissions granted to the Foundry project
 - Permissions granted to the agent
 
-This article is a companion to [Role-based access control for Microsoft Foundry][foundry-rbac], which introduces role-based access control (RBAC) concepts and the built-in roles available in Microsoft Foundry. You should familiarize yourself with that article before proceeding. This article covers the operations involved in hosted agent development and deployment, the permissions required to perform those operations, and which built-in roles cover those permissions.
+This article is a companion to [Role-based access control for Microsoft Foundry][foundry-rbac], which introduces role-based access control (RBAC) concepts and the built-in roles available in Microsoft Foundry. You should familiarize yourself with that article before proceeding. This article covers the operations involved in Hosted agent development and deployment, the permissions required to perform those operations, and which built-in roles cover those permissions.
 
-For end-to-end deployment and lifecycle tasks, see [Deploy a hosted agent][deploy] and [Manage hosted agent lifecycle][lifecycle]. For identity-specific behavior, see [Agent identity][agent-identity].
+For end-to-end deployment and lifecycle tasks, see [Deploy a Hosted agent][deploy] and [Manage Hosted agent lifecycle][lifecycle]. For identity-specific behavior, see [Agent identity][agent-identity].
 
 > [!IMPORTANT]
 > Always adhere to the principle of least privilege when assigning permissions. Only grant the permissions necessary for users and agents to perform their tasks, and regularly review and update permissions as needed.
 
 ## Roles in this article
 
-Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Azure AI User][role-ai-user], [Azure AI Project Manager][role-project-manager], or [Azure AI Owner][role-ai-owner].
+Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Foundry User][role-ai-user], [Foundry Project Manager][role-project-manager], or [Foundry Owner][role-ai-owner].
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 This article references the following built-in roles. For information about custom role definitions, see [Azure custom roles](/azure/role-based-access-control/custom-roles).
 
-| Role | Purpose in hosted agent deployment |
+| Role | Purpose in Hosted agent deployment |
 | ----- | ------------------------------------- |
 | [Owner][role-owner] | Full permissions to create and manage Azure resources |
 | [Contributor][role-contributor] | Create and manage Azure resources |
 | [Role Based Access Control Administrator][role-rbac-admin] | Create role assignments on Azure resources |
-| [Azure AI User][role-ai-user] | Create agents, perform model inference, and interact with agents |
-| [Azure AI Project Manager][role-project-manager] | Manage projects, create agents, perform model inference, interact with agents, and create role assignments |
-| [Azure AI Account Owner][role-account-owner] | Create deployments, manage projects, and handle account-level resources. Create role assignments for control plane operations only. Can't perform data plane operations such as creating or interacting with agents. |
-| [Azure AI Owner][role-ai-owner] | Full control plane and data plane permissions over account resources, but can't create role assignments |
+| [Foundry User][role-ai-user] | Create agents, perform model inference, and interact with agents |
+| [Foundry Project Manager][role-project-manager] | Manage projects, create agents, perform model inference, interact with agents, and create role assignments |
+| [Foundry Account Owner][role-account-owner] | Create deployments, manage projects, and handle account-level resources. Create role assignments for control plane operations only. Can't perform data plane operations such as creating or interacting with agents. |
+| [Foundry Owner][role-ai-owner] | Full control plane and data plane permissions over account resources, but can't create role assignments |
 | [Container Registry Repository Reader][role-acr-reader] | Pull container images from the registry |
 | [Container Registry Repository Writer][role-acr-writer] | Push container images to the registry |
 | [AcrPull][role-acrpull] | Pull container images from the registry |
@@ -54,7 +56,7 @@ This article references the following built-in roles. For information about cust
 | [Cognitive Services User][role-cog-services-user] | Access account-level capabilities (Speech, Vision, Language) directly |
 
 > [!CAUTION]
-> Although it might sound like an appropriate role for a developer working with hosted agents, the **Azure AI Developer** built-in role is insufficient for hosted agent scenarios. This role is scoped to Azure Machine Learning and Foundry hubs, not to the Foundry project resources used by hosted agents, and it doesn't include the resource management permissions required for hosted agent deployment.
+> Although it might sound like an appropriate role for a developer working with Hosted agents, the **Azure AI Developer** built-in role is insufficient for Hosted agent scenarios. This role is scoped to Azure Machine Learning and Foundry hubs, not to the Foundry project resources used by Hosted agents, and it doesn't include the resource management permissions required for Hosted agent deployment.
 
 ## Quick diagnosis by symptom
 
@@ -70,7 +72,7 @@ Use these links to jump directly to sections that address common permission issu
 
 ## Hosted agent solution architecture
 
-A completed hosted agent setup involves multiple Azure resources, identity assignments, and connections working together. The following diagram shows the key components and their relationships:
+A completed Hosted agent setup involves multiple Azure resources, identity assignments, and connections working together. The following diagram shows the key components and their relationships:
 
 ```
 Foundry Account
@@ -87,8 +89,8 @@ Separate Azure Resources:
 └── Log Analytics Workspace
 
 Role assignments:
-• Foundry Project → Azure AI User role on Foundry Account
-• Hosted Agent → Azure AI User role on Foundry Project  
+• Foundry Project → Foundry User role on Foundry Account
+• Hosted Agent → Foundry User role on Foundry Project  
 • Foundry Project → Container Registry Repository Reader role on Azure Container Registry
 • Foundry Project → Log Analytics Data Reader role on Log Analytics Workspace
 
@@ -96,22 +98,24 @@ Optional (Teams / M365 Copilot publishing):
 └── Azure Bot Service → connected to agent application (Channels auth mode)
 ```
 
+[!INCLUDE [role-rename-note-code](../../includes/role-rename-note-code.md)]
+
 The diagram above shows how resources are organized hierarchically and which role assignments enable communication between them. The following sections provide detailed configuration requirements for each component.
 
 ### Required Azure resources
 
-Each hosted agent deployment requires these Azure resources to be properly configured:
+Each Hosted agent deployment requires these Azure resources to be properly configured:
 
 - **A Foundry account**
-    - A role assignment allows the project managed identity to access the account for model access. `Azure AI User` is the recommended built-in role.
+    - A role assignment allows the project managed identity to access the account for model access. `Foundry User` is the recommended built-in role.
 - **A model deployment (in the account)**
 - **A Foundry project (in the account)**
     - The project has a managed identity. The project also gets an agent blueprint and agent identity when its first agent is created.
-    - A role assignment allows the hosted agent's agent identity to access the project for model access. `Azure AI User` is the recommended built-in role.
-    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Azure AI User` is the recommended built-in role.
-- **A hosted agent (in the project)**
+    - A role assignment allows the Hosted agent's agent identity to access the project for model access. `Foundry User` is the recommended built-in role.
+    - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry User` is the recommended built-in role.
+- **A Hosted agent (in the project)**
     - The agent automatically gets an agent blueprint and agent identity.
-- **An agent version (in the hosted agent object)**
+- **An agent version (in the Hosted agent object)**
 - **An Azure Container Registry (ACR)**
     - A role assignment allows the project's managed identity to pull images from the registry. [Container Registry Repository Reader][role-acr-reader] is the recommended built-in role.
     - A role assignment allows a user or service principal that deploys the agent to push images to the registry. [Container Registry Repository Writer][role-acr-writer] is the recommended built-in role.
@@ -131,7 +135,7 @@ This list doesn't include networking resources. However, the user or service pri
 If you use [agent applications](../how-to/agent-applications.md), the list also includes:
 
 - **An agent application (in the project)**
-    - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the hosted agent's agent identity with the agent application's agent identity.
+    - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the Hosted agent's agent identity with the agent application's agent identity.
 - **An agent deployment (in the agent application)**
 
 ## Azure resource setup
@@ -144,12 +148,12 @@ Creating a Foundry account requires the `Microsoft.CognitiveServices/accounts/wr
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
 | Contributor | Resource group | ✔ Yes |
-| Azure AI User | Resource group | ✗ No |
-| Azure AI Project Manager | Resource group | ✗ No |
-| Azure AI Account Owner | Resource group | ✔ Yes |
-| Azure AI Owner | Resource group | ✔ Yes |
+| Foundry User | Resource group | ✗ No |
+| Foundry Project Manager | Resource group | ✗ No |
+| Foundry Account Owner | Resource group | ✔ Yes |
+| Foundry Owner | Resource group | ✔ Yes |
 
-The project's managed identity needs access to the Foundry account to perform model inference through the project endpoint. The project's access is covered by the `Azure AI User` role at the scope of the Foundry account. This role assignment might be created automatically when the project is created, depending on the permissions of the user or service principal creating the project.
+The project's managed identity needs access to the Foundry account to perform model inference through the project endpoint. The project's access is covered by the `Foundry User` role at the scope of the Foundry account. This role assignment might be created automatically when the project is created, depending on the permissions of the user or service principal creating the project.
 
 More role assignments might be needed if your agent code accesses the account-level OpenAI endpoint directly or other account-level capabilities not proxied by the project endpoint. For more information, see [Optional account access](#optional-account-access).
 
@@ -161,10 +165,10 @@ Creating a model deployment requires the `Microsoft.CognitiveServices/accounts/d
 | --- | --- | --- |
 | Owner | Foundry account | ✔ Yes |
 | Contributor | Foundry account | ✔ Yes |
-| Azure AI User | Foundry account | ✗ No |
-| Azure AI Project Manager | Foundry account | ✗ No |
-| Azure AI Account Owner | Foundry account | ✔ Yes |
-| Azure AI Owner | Foundry account | ✔ Yes |
+| Foundry User | Foundry account | ✗ No |
+| Foundry Project Manager | Foundry account | ✗ No |
+| Foundry Account Owner | Foundry account | ✔ Yes |
+| Foundry Owner | Foundry account | ✔ Yes |
 
 ### Project setup
 
@@ -174,15 +178,15 @@ Creating a Foundry project requires the `Microsoft.CognitiveServices/accounts/pr
 | --- | --- | --- |
 | Owner | Foundry account | ✔ Yes |
 | Contributor | Foundry account | ✔ Yes |
-| Azure AI User | Foundry account | ✗ No |
-| Azure AI Project Manager | Foundry account | ✔ Yes |
-| Azure AI Account Owner | Foundry account | ✔ Yes |
-| Azure AI Owner | Foundry account | ✔ Yes |
+| Foundry User | Foundry account | ✗ No |
+| Foundry Project Manager | Foundry account | ✔ Yes |
+| Foundry Account Owner | Foundry account | ✔ Yes |
+| Foundry Owner | Foundry account | ✔ Yes |
 
-If the creator of the project has the ability to assign the `Azure AI User` role at the scope of the account, the system automatically creates two role assignments:
+If the creator of the project has the ability to assign the `Foundry User` role at the scope of the account, the system automatically creates two role assignments:
 
-- The project creator is granted the Azure AI User role at the scope of the Foundry account.
-- The project's managed identity is granted the Azure AI User role at the scope of the Foundry account.
+- The project creator is granted the Foundry User role at the scope of the Foundry account.
+- The project's managed identity is granted the Foundry User role at the scope of the Foundry account.
 
 A similar role assignment is needed for the agent identity over the project. For more information, see the [Agent creation](#agent-creation) section.
 
@@ -191,16 +195,16 @@ A similar role assignment is needed for the agent identity over the project. For
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
 > [!NOTE]
-> For hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+> For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
 | Contributor | Resource group | ✔ Yes |
-| Azure AI User | Resource group | ✗ No |
-| Azure AI Project Manager | Resource group | ✗ No |
-| Azure AI Account Owner | Resource group | ✗ No |
-| Azure AI Owner | Resource group | ✗ No |
+| Foundry User | Resource group | ✗ No |
+| Foundry Project Manager | Resource group | ✗ No |
+| Foundry Account Owner | Resource group | ✗ No |
+| Foundry Owner | Resource group | ✗ No |
 
 The project's managed identity needs permissions to pull the image from ACR. There are two built-in roles suitable to this task, which should be assigned at the ACR registry resource scope:
 - [Container Registry Repository Reader][role-acr-reader] (preferred because it models the pull as a data action)
@@ -214,13 +218,13 @@ For details on assigning roles in Azure, see [Create Azure role assignments][cre
 | --- | --- | --- |
 | Owner | ACR registry | ✔ Yes |
 | Contributor | ACR registry | ✗ No |
-| Azure AI User | ACR registry | ✗ No |
-| Azure AI Project Manager | ACR registry | ✗ No<sup>1</sup> |
-| Azure AI Account Owner | ACR registry | ✗ No<sup>1</sup> |
-| Azure AI Owner | ACR registry | ✗ No |
+| Foundry User | ACR registry | ✗ No |
+| Foundry Project Manager | ACR registry | ✗ No<sup>1</sup> |
+| Foundry Account Owner | ACR registry | ✗ No<sup>1</sup> |
+| Foundry Owner | ACR registry | ✗ No |
 | Role Based Access Control Administrator | ACR registry | ✔ Yes |
 
-<sup>1</sup> These roles have `roleAssignments/write` but are constrained to only assign the `Azure AI User` role, which doesn't cover ACR permissions.
+<sup>1</sup> These roles have `roleAssignments/write` but are constrained to only assign the `Foundry User` role, which doesn't cover ACR permissions.
 
 The user or service principal that pushes images to the registry also needs a role assignment. For more information, see the [Hosted agent deployment](#hosted-agent-deployment) section.
 
@@ -232,10 +236,10 @@ Creating an Application Insights resource requires the `Microsoft.Insights/compo
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
 | Contributor | Resource group | ✔ Yes |
-| Azure AI User | Resource group | ✗ No |
-| Azure AI Project Manager | Resource group | ✗ No |
-| Azure AI Account Owner | Resource group | ✗ No |
-| Azure AI Owner | Resource group | ✗ No |
+| Foundry User | Resource group | ✗ No |
+| Foundry Project Manager | Resource group | ✗ No |
+| Foundry Account Owner | Resource group | ✗ No |
+| Foundry Owner | Resource group | ✗ No |
 
 Creating a Log Analytics workspace requires the `Microsoft.OperationalInsights/workspaces/write` permission at the scope of the resource group.
 
@@ -243,10 +247,10 @@ Creating a Log Analytics workspace requires the `Microsoft.OperationalInsights/w
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
 | Contributor | Resource group | ✔ Yes |
-| Azure AI User | Resource group | ✗ No |
-| Azure AI Project Manager | Resource group | ✗ No |
-| Azure AI Account Owner | Resource group | ✗ No |
-| Azure AI Owner | Resource group | ✗ No |
+| Foundry User | Resource group | ✗ No |
+| Foundry Project Manager | Resource group | ✗ No |
+| Foundry Account Owner | Resource group | ✗ No |
+| Foundry Owner | Resource group | ✗ No |
 
 If you plan to use the evaluations feature, the project's managed identity needs permissions to read from the Log Analytics workspace. You can enable this access by granting the `Log Analytics Data Reader` role to the project's managed identity at the scope of the Log Analytics workspace.
 
@@ -258,13 +262,13 @@ For details on assigning roles in Azure, see [Create Azure role assignments][cre
 | --- | --- | --- |
 | Owner | Log Analytics workspace | ✔ Yes |
 | Contributor | Log Analytics workspace | ✗ No |
-| Azure AI User | Log Analytics workspace | ✗ No |
-| Azure AI Project Manager | Log Analytics workspace | ✗ No<sup>1</sup> |
-| Azure AI Account Owner | Log Analytics workspace | ✗ No<sup>1</sup> |
-| Azure AI Owner | Log Analytics workspace | ✗ No |
+| Foundry User | Log Analytics workspace | ✗ No |
+| Foundry Project Manager | Log Analytics workspace | ✗ No<sup>1</sup> |
+| Foundry Account Owner | Log Analytics workspace | ✗ No<sup>1</sup> |
+| Foundry Owner | Log Analytics workspace | ✗ No |
 | Role Based Access Control Administrator | Log Analytics workspace | ✔ Yes |
 
-<sup>1</sup> These roles have `roleAssignments/write` but are constrained to only assign the `Azure AI User` role, which doesn't cover Log Analytics permissions.
+<sup>1</sup> These roles have `roleAssignments/write` but are constrained to only assign the `Foundry User` role, which doesn't cover Log Analytics permissions.
 
 ### Connections setup
 
@@ -274,10 +278,10 @@ Creating a connection requires the `Microsoft.CognitiveServices/accounts/project
 | --- | --- | --- |
 | Owner | Foundry project | ✔ Yes |
 | Contributor | Foundry project | ✔ Yes |
-| Azure AI User | Foundry project | ✗ No |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✔ Yes |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✗ No |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✔ Yes |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 The user or service principal creating the connections also needs the connection information for the Application Insights component and the container registry. The connection details can be provided by the user or service principal that created those resources, or by having read access over those resources.
 
@@ -292,12 +296,12 @@ If you use agent applications, you need to create an agent application in the Fo
 | --- | --- | --- |
 | Owner | Foundry project | ✔ Yes |
 | Contributor | Foundry project | ✔ Yes |
-| Azure AI User | Foundry project | ✗ No |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✔ Yes |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✗ No |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✔ Yes |
+| Foundry Owner | Foundry project | ✔ Yes |
 
-`agentDeployment` objects are also ARM resources, but they're created as part of the hosted agent deployment process. For more information, see [Hosted agent deployment](#hosted-agent-deployment).
+`agentDeployment` objects are also ARM resources, but they're created as part of the Hosted agent deployment process. For more information, see [Hosted agent deployment](#hosted-agent-deployment).
 
 ## Agent creation
 
@@ -307,10 +311,10 @@ Agents are created through a data plane operation. Creating an agent requires th
 | --- | --- | --- |
 | Owner | Foundry project | ✗ No |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✔ Yes |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✗ No |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 Because the agent identity might only be available after the agent is created, some role assignments can't be created until after this point. To perform model inferencing with the project endpoint, the agent identity requires the following permissions at the scope of the Foundry project:
 
@@ -322,13 +326,13 @@ Because the agent identity might only be available after the agent is created, s
 | --- | --- | --- |
 | Owner | Foundry project | ✗ No |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✔ Yes |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✗ No |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 > [!TIP]
-> `Azure AI User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`, `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`, and `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`.
+> `Foundry User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`, `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`, and `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`.
 
 Creating that role assignment requires the `Microsoft.Authorization/roleAssignments/write` permission at the scope of the Foundry project.
 
@@ -338,32 +342,32 @@ For details on assigning roles in Azure, see [Create Azure role assignments][cre
 | --- | --- | --- |
 | Owner | Foundry project | ✔ Yes |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✗ No |
-| Azure AI Project Manager | Foundry project | ✔ Yes for `Azure AI User` role<sup>1</sup> |
-| Azure AI Account Owner | Foundry project | ✔ Yes for `Azure AI User` role<sup>1</sup> |
-| Azure AI Owner | Foundry project | ✗ No |
+| Foundry User | Foundry project | ✗ No |
+| Foundry Project Manager | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
+| Foundry Account Owner | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
+| Foundry Owner | Foundry project | ✗ No |
 | Role Based Access Control Administrator | Foundry project | ✔ Yes |
 
-<sup>1</sup> Both `Azure AI Project Manager` and `Azure AI Account Owner` have a constraint that they can only assign the `Azure AI User` role. If you plan to use a custom role definition for the agent to access the project, `Azure AI Project Manager` and `Azure AI Account Owner` won't be able to assign that custom role.
+<sup>1</sup> Both `Foundry Project Manager` and `Foundry Account Owner` have a constraint that they can only assign the `Foundry User` role. If you plan to use a custom role definition for the agent to access the project, `Foundry Project Manager` and `Foundry Account Owner` won't be able to assign that custom role.
 
 > [!IMPORTANT]
-> Because a role assignment is needed after the agent is created, the user or principal that creates the agent also needs permission to create role assignments. [Azure AI Project Manager][role-project-manager] at the project scope is the recommended role assignment for agent creators, as that role includes both the required data plane permissions and the ability to assign the `Azure AI User` role.
+> Because a role assignment is needed after the agent is created, the user or principal that creates the agent also needs permission to create role assignments. [Foundry Project Manager][role-project-manager] at the project scope is the recommended role assignment for agent creators, as that role includes both the required data plane permissions and the ability to assign the `Foundry User` role.
 
 ### Optional account access
 
 When you use the Foundry SDK and the project endpoint for model inference, the project proxies inference calls to the account-level deployment using its own managed identity. However, if your agent code bypasses the project endpoint and calls the account-level OpenAI endpoint directly (for example, `https://{account}.cognitiveservices.azure.com`), the agent's identity needs one of the following roles at account scope:
 
 - [Cognitive Services OpenAI User][role-openai-user] - covers only OpenAI data actions.
-- [Azure AI User][role-ai-user] - covers all CognitiveServices data actions on the account.
+- [Foundry User][role-ai-user] - covers all CognitiveServices data actions on the account.
 
 Account-level capabilities aren't proxied by the project endpoint. These capabilities include Speech, Content Safety, Computer Vision, Document Intelligence, Language, and Translator. They require a role assignment at account scope if your agent accesses them directly. For these capabilities, assign one of the following roles at account scope:
 
 - [Cognitive Services User][role-cog-services-user] - covers Speech, Vision, Language, and other non-OpenAI capabilities.
-- [Azure AI User][role-ai-user] - covers all CognitiveServices data actions, including OpenAI and the capabilities listed previously, with a single grant.
+- [Foundry User][role-ai-user] - covers all CognitiveServices data actions, including OpenAI and the capabilities listed previously, with a single grant.
 
 ## Hosted agent deployment
 
-Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a hosted agent][deploy].
+Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
 
 ### Push an image to the registry
 
@@ -379,10 +383,10 @@ Creating an agent requires the `Microsoft.CognitiveServices/accounts/AIServices/
 | --- | --- | --- |
 | Owner | Foundry project | ✗ No |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✔ Yes |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✗ No |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 If you use agent applications, you also need to create an `agentDeployment` object that references a newly deployed agent version. This is a management plane operation. Creating an `agentDeployment` object requires the `Microsoft.CognitiveServices/accounts/projects/applications/agentDeployments/write` permission at the scope of the agent application.
 
@@ -390,10 +394,10 @@ If you use agent applications, you also need to create an `agentDeployment` obje
 | --- | --- | --- |
 | Owner | Foundry account | ✔ Yes |
 | Contributor | Foundry account | ✔ Yes |
-| Azure AI User | Foundry account | ✗ No |
-| Azure AI Project Manager | Foundry account | ✔ Yes |
-| Azure AI Account Owner | Foundry account | ✔ Yes |
-| Azure AI Owner | Foundry account | ✔ Yes |
+| Foundry User | Foundry account | ✗ No |
+| Foundry Project Manager | Foundry account | ✔ Yes |
+| Foundry Account Owner | Foundry account | ✔ Yes |
+| Foundry Owner | Foundry account | ✔ Yes |
 
 ### Update the agent to use the new version
 
@@ -403,10 +407,10 @@ If you use the _agent endpoint_, version selection is configured on the agent ob
 | --- | --- | --- |
 | Owner | Foundry project | ✗ No |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✔ Yes |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✗ No |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 If instead you use the _agent application_, version selection is configured on the agent application object. Updating the agent application to use the new `agentDeployment` object requires the `Microsoft.CognitiveServices/accounts/projects/applications/write` permission at the scope of the agent application.
 
@@ -414,10 +418,10 @@ If instead you use the _agent application_, version selection is configured on t
 | --- | --- | --- |
 | Owner | Foundry account | ✔ Yes |
 | Contributor | Foundry account | ✔ Yes |
-| Azure AI User | Foundry account | ✗ No |
-| Azure AI Project Manager | Foundry account | ✔ Yes |
-| Azure AI Account Owner | Foundry account | ✔ Yes |
-| Azure AI Owner | Foundry account | ✔ Yes |
+| Foundry User | Foundry account | ✗ No |
+| Foundry Project Manager | Foundry account | ✔ Yes |
+| Foundry Account Owner | Foundry account | ✔ Yes |
+| Foundry Owner | Foundry account | ✔ Yes |
 
 ### Azure Bot Service setup
 
@@ -431,10 +435,10 @@ Creating the bot service resource requires the `Microsoft.BotService/botServices
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
 | Contributor | Resource group | ✔ Yes |
-| Azure AI User | Resource group | ✗ No |
-| Azure AI Project Manager | Resource group | ✗ No |
-| Azure AI Account Owner | Resource group | ✗ No |
-| Azure AI Owner | Resource group | ✗ No |
+| Foundry User | Resource group | ✗ No |
+| Foundry Project Manager | Resource group | ✗ No |
+| Foundry Account Owner | Resource group | ✗ No |
+| Foundry Owner | Resource group | ✗ No |
 
 > [!NOTE]
 > Azure Bot Service is a separate resource type from Foundry. Azure AI–scoped built-in roles don't include `Microsoft.BotService/*` permissions.
@@ -447,10 +451,10 @@ Configuring the Teams and Microsoft 365 Extensions channels on the bot service r
 | --- | --- | --- |
 | Owner | Bot service | ✔ Yes |
 | Contributor | Bot service | ✔ Yes |
-| Azure AI User | Bot service | ✗ No |
-| Azure AI Project Manager | Bot service | ✗ No |
-| Azure AI Account Owner | Bot service | ✗ No |
-| Azure AI Owner | Bot service | ✗ No |
+| Foundry User | Bot service | ✗ No |
+| Foundry Project Manager | Bot service | ✗ No |
+| Foundry Account Owner | Bot service | ✗ No |
+| Foundry Owner | Bot service | ✗ No |
 
 #### Updating the agent or agent application
 
@@ -473,10 +477,10 @@ Interacting with the agent requires the calling user or service principal to hav
 | --- | --- | --- |
 | Owner | Foundry project | ✗ No |
 | Contributor | Foundry project | ✗ No |
-| Azure AI User | Foundry project | ✔ Yes |
-| Azure AI Project Manager | Foundry project | ✔ Yes |
-| Azure AI Account Owner | Foundry project | ✗ No |
-| Azure AI Owner | Foundry project | ✔ Yes |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
 
 ## Agent observability
 
@@ -492,10 +496,10 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 | --- | --- | --- |
 | Owner | Application Insights | ✔ Yes |
 | Contributor | Application Insights | ✔ Yes |
-| Azure AI User | Application Insights | ✗ No (sees metrics, but not traces) |
-| Azure AI Project Manager | Application Insights | ✗ No |
-| Azure AI Account Owner | Application Insights | ✗ No (sees metrics, but not traces) |
-| Azure AI Owner | Application Insights | ✗ No |
+| Foundry User | Application Insights | ✗ No (sees metrics, but not traces) |
+| Foundry Project Manager | Application Insights | ✗ No |
+| Foundry Account Owner | Application Insights | ✗ No (sees metrics, but not traces) |
+| Foundry Owner | Application Insights | ✗ No |
 | Monitoring Reader | Application Insights | ✔ Yes |
 | Log Analytics Reader | Log Analytics Workspace | ✔ Yes (from workspace directly) |
 
@@ -503,18 +507,18 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 
 Viewing costs in billing currency in the Foundry portal requires the `Microsoft.Billing/billingProperty/read` permission. This permission requires a subscription or billing-account-scoped assignment. Resource group scope doesn't cover this permission.
 
-This permission is for portal display convenience and isn't required for hosted agent functionality. You can safely omit this permission for most users.
+This permission is for portal display convenience and isn't required for Hosted agent functionality. You can safely omit this permission for most users.
 
 | Built-in role | Scope | Can assignee view costs in billing currency? |
 | --- | --- | --- |
 | Owner | Subscription | ✔ Yes |
 | Contributor | Subscription | ✔ Yes |
 | [Cost Management Reader](/azure/role-based-access-control/built-in-roles#cost-management-reader) | Subscription | ✔ Yes |
-| Azure AI User | Subscription | ✗ No |
+| Foundry User | Subscription | ✗ No |
 
 ## Related content
 
-- [Hosted agents][hosted-agents]: Learn the hosted agent architecture and lifecycle.
+- [Hosted agents][hosted-agents]: Learn the Hosted agent architecture and lifecycle.
 - [Role-based access control for Microsoft Foundry][foundry-rbac]: Review built-in roles, scopes, and assignment patterns.
 - [Agent identity][agent-identity]: Understand how agent identity and project managed identity differ.
 

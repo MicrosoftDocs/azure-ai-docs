@@ -17,7 +17,7 @@ keywords:
     - tool calling
     - content filters
     - agent observability
-    - hosted agents
+    - Hosted agents
     - prompt agents
     - workflow agents
     - Microsoft Foundry
@@ -26,7 +26,7 @@ keywords:
 
 # What is Microsoft Foundry Agent Service?
 
-Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and [many models](./concepts/limits-quotas-regions.md) from the Foundry model catalog. Create no-code [prompt agents](#agent-types) in the Foundry portal, or use the available SDKs and REST API to deploy them and code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
+Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and [many models](./concepts/limits-quotas-regions.md) from the Foundry model catalog. Create no-code [prompt agents](#agent-types) in the Foundry portal, or use the available SDKs and REST API to deploy them and code-based **[Hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
@@ -35,7 +35,7 @@ Agent Service handles hosting, scaling, identity, observability, and enterprise 
 An agent is an AI application that uses a model from the Foundry model catalog to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
 
 * **Model**: A model from the Foundry model catalog that provides reasoning and language capabilities.
-* **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
+* **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or Hosted agent code.
 * **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
 :::image type="content" source="media/what-is-an-agent.png" alt-text="A diagram showing the components of an AI agent.":::
@@ -44,7 +44,7 @@ An agent is an AI application that uses a model from the Foundry model catalog t
 
 | Component | What it does |
 | --- | --- |
-| **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and agent lifecycle. |
+| **Agent Runtime** | Hosts and scales both prompt agents and Hosted agents. Manages conversations, tool calls, and agent lifecycle. |
 | **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication, including service managed credentials and On-Behalf-Of (OBO) authentication. Some MCP servers, such as Azure DevOps MCP Server (preview), require connecting an organization during setup. Access can be scoped through Foundry tool configuration. |
 | **Models** | Works with many models from the Foundry model catalog, such as GPT-4o, Llama, and DeepSeek. Swap models without changing your agent code. |
 | **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
@@ -56,7 +56,7 @@ An agent is an AI application that uses a model from the Foundry model catalog t
 Ready to get started with agents? Choose your path based on how you want to build:
 
 - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
-- **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
+- **Want to deploy an agent as a container with a framework of your choice?** [Build a Hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
 - **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
 
 ## Agent types
@@ -127,7 +127,7 @@ These authentication options also apply when connecting remote MCP servers, with
 
 Agent Service supports the full build-test-deploy-monitor workflow:
 
-1. **Create** — Define a prompt agent in the portal or build a hosted agent in code.
+1. **Create** — Define a prompt agent in the portal or build a Hosted agent in code.
 1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, including custom MCP servers hosted on Azure Functions, can be exercised directly in the playground via chat prompts to validate tool connectivity, permissions, and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
@@ -168,7 +168,7 @@ Agent Service is designed for enterprise workloads where you need strong control
 
 - [Set up your environment](environment-setup.md)
 - [Agent development lifecycle](concepts/development-lifecycle.md)
-- [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
+- [Deploy your first Hosted agent](quickstarts/quickstart-hosted-agent.md)
 - [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
 - For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).

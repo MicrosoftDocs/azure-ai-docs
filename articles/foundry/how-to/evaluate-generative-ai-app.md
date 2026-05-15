@@ -26,7 +26,9 @@ Use the Foundry portal to run evaluations, view results, and analyze metrics.
 
 - A test dataset in CSV or JSON Lines (JSONL) format, or a model or agent to evaluate.
 - An Azure OpenAI connection with a deployed GPT model that supports chat completion (for example, `gpt-5-mini`). Required only for AI-assisted quality evaluations.
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Create an evaluation
 

@@ -140,7 +140,9 @@ For the full procedure, see [Elevate access to manage all Azure subscriptions an
 
 When you finish your admin tasks, remove your elevated permissions in reverse order:
 
-1. **Remove Azure role assignments**: Remove any Azure AI roles you gave yourself (such as Azure AI Owner) from the specific Foundry projects or resource groups.
+1. **Remove Azure role assignments**: Remove any Azure AI roles you gave yourself (such as Foundry Owner) from the specific Foundry projects or resource groups.
+
+   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
    **Azure portal**:
    1. In the Azure portal, navigate to the resource where you assigned yourself roles.
@@ -181,12 +183,12 @@ After you elevate your access, assign yourself the minimum role needed for your 
 
 | Action | Minimum built-in role for Foundry agent objects | Minimum built-in role for Agent applications |
 |---|---|---|
-| View | [Azure AI User]<br/>(**Reader** isn't sufficient) | [Reader](/azure/role-based-access-control/built-in-roles/general#reader) |
-| Stop/Start | _Not supported_ | [Azure AI Owner] |
-| Delete | [Azure AI User] | [Azure AI Owner] |
+| View | [Foundry User]<br/>(**Reader** isn't sufficient) | [Reader](/azure/role-based-access-control/built-in-roles/general#reader) |
+| Stop/Start | _Not supported_ | [Foundry Owner] |
+| Delete | [Foundry User] | [Foundry Owner] |
 
-[Azure AI User]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-user
-[Azure AI Owner]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner
+[Foundry User]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-user
+[Foundry Owner]: /azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner
 
 Assign roles at the narrowest scope possible. For Foundry agents, assign the role over just the Foundry project resource you want to work with. For agent applications, assign the role at the application scope. If you only need to manage agents in a single resource group, assign the role at the resource group scope. Don't assign these roles at the subscription or management group scope.
 
@@ -235,7 +237,7 @@ Stopping an agent is the preferred approach for most situations. Stopping disabl
 
 # [Agent application](#tab/agent-application/microsoft-365-admin-center)
 
-When you open the agent details page for a Foundry agent application, Microsoft 365 Admin Center automatically checks if you have the necessary permissions to manage the agent. If you do, a **Stop** or **Start** button is available at the top of the page, based on the current state of the application. If you don't see these buttons but are a Global Administrator, follow the prompt to automatically elevate your access and grant yourself the Azure AI Owner role over the agent application.
+When you open the agent details page for a Foundry agent application, Microsoft 365 Admin Center automatically checks if you have the necessary permissions to manage the agent. If you do, a **Stop** or **Start** button is available at the top of the page, based on the current state of the application. If you don't see these buttons but are a Global Administrator, follow the prompt to automatically elevate your access and grant yourself the Foundry Owner role over the agent application.
 
 If your agent application is currently running, select **Stop** to stop it. This action stops every agent deployment associated with the application. The agent application and its deployments still exist. You can start them again later.
 
