@@ -579,7 +579,8 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
                                 "threshold": 0.5,
                                 "prefix_padding_ms": 300,
                                 "silence_duration_ms": 500,
-                                "create_response": False,
+                                "create_response": True,
+                                "interrupt_response": False,
                             },
                         },
                         "output": {
@@ -607,9 +608,6 @@ ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
                 await asyncio.sleep(0.05)
     
             print("Audio sent. Waiting for response...")
-    
-            # Ask the model to respond after server VAD commits the audio turn.
-            await connection.response.create()
     
             # Collect audio response
             output_audio = bytearray()
