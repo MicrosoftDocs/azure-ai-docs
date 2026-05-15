@@ -956,8 +956,52 @@ Here's an example of the references array:
 The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Limit final grounding documents](#limit-final-grounding-documents)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
+
+### Limit final grounding documents
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, top-level `maxOutputDocuments` caps how
+many grounding documents are returned in the final retrieve response. Use this
+setting when your application needs a predictable citation or reference count.
+
+This count-based control complements `maxOutputSize`, which limits payload
+size. If both settings are present, both constraints apply to the final
+response.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What is the return policy?" }
+            ]
+        }
+    ],
+    "outputMode": "extractedData",
+    "maxOutputDocuments": 3,
+    "maxOutputSize": 6000
+}
+```
+
+| `maxOutputDocuments` | `maxOutputSize` | Behavior |
+| --- | --- | --- |
+| Unspecified | Unspecified | Uses the default response limit behavior. |
+| Unspecified | Specified | Limits the response by payload size. |
+| Specified | Unspecified | Returns up to the specified number of grounding documents. |
+| Specified | Specified | Applies both the document-count and payload-size limits. |
+
+[TO VERIFY] Confirm the default and maximum value for top-level
+`maxOutputDocuments` and whether the service applies the count or size limit
+first when both are specified.
 
 ### Override default reasoning effort and set request limits
 
