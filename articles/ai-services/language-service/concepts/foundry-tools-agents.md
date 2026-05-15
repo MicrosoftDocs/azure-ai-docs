@@ -136,7 +136,7 @@ The agent combines Foundry Agent Service capabilities with [**Custom Question An
 
 The agent works well for scenarios where answer accuracy is important, such as customer service, help desk operations, or compliance information delivery.
 
-In addition to creating the agent from the exact question answering agent template in Agent Catalog, you can also create the agent directly from your CQA project in the Foundry portal. For more information, see [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md).
+You can also create the agent directly from your CQA project in the Foundry portal. For more information, see [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md).
 
 ### Prerequisites
 

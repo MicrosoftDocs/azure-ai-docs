@@ -1,8 +1,8 @@
 ---
 title: "Deployment overview for Microsoft Foundry Models"
 description: "Learn about deployment options for Microsoft Foundry Models, including standard deployments in Foundry resources and managed compute for partner and community models."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 04/03/2026
 ms.author: mopeakande

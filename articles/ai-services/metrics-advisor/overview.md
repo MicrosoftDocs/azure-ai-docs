@@ -2,12 +2,12 @@
 title: What is the Azure AI Metrics Advisor service?
 titleSuffix: Azure AI services
 description: What is Metrics Advisor?
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: overview
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # What is Azure AI Metrics Advisor? 

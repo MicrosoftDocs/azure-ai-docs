@@ -1,8 +1,8 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.date: 02/27/2025
 ms.service: microsoft-foundry
 ms.topic: include

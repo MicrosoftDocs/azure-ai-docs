@@ -4,8 +4,8 @@ description: "Reference for permissions required to create, deploy, and interact
 manager: nitinme
 author: mattchenderson
 ms.author: mahender
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: reference
 ms.date: 04/21/2026
 ms.custom:
@@ -17,15 +17,15 @@ ai-usage: ai-assisted
 
 # Hosted agent permissions reference
 
-When working with [hosted agents in Microsoft Foundry][hosted-agents], it's important to understand the various permissions involved. There are several classes of permissions involved in hosted agent development, spanning the Azure Resource Manager control plane and the Foundry data plane:
+When working with [Hosted agents in Microsoft Foundry][hosted-agents], it's important to understand the various permissions involved. There are several classes of permissions involved in Hosted agent development, spanning the Azure Resource Manager control plane and the Foundry data plane:
 
 - Permissions granted to users or principals working with Foundry resources
 - Permissions granted to the Foundry project
 - Permissions granted to the agent
 
-This article is a companion to [Role-based access control for Microsoft Foundry][foundry-rbac], which introduces role-based access control (RBAC) concepts and the built-in roles available in Microsoft Foundry. You should familiarize yourself with that article before proceeding. This article covers the operations involved in hosted agent development and deployment, the permissions required to perform those operations, and which built-in roles cover those permissions.
+This article is a companion to [Role-based access control for Microsoft Foundry][foundry-rbac], which introduces role-based access control (RBAC) concepts and the built-in roles available in Microsoft Foundry. You should familiarize yourself with that article before proceeding. This article covers the operations involved in Hosted agent development and deployment, the permissions required to perform those operations, and which built-in roles cover those permissions.
 
-For end-to-end deployment and lifecycle tasks, see [Deploy a hosted agent][deploy] and [Manage hosted agent lifecycle][lifecycle]. For identity-specific behavior, see [Agent identity][agent-identity].
+For end-to-end deployment and lifecycle tasks, see [Deploy a Hosted agent][deploy] and [Manage Hosted agent lifecycle][lifecycle]. For identity-specific behavior, see [Agent identity][agent-identity].
 
 > [!IMPORTANT]
 > Always adhere to the principle of least privilege when assigning permissions. Only grant the permissions necessary for users and agents to perform their tasks, and regularly review and update permissions as needed.
@@ -36,7 +36,7 @@ Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) c
 
 This article references the following built-in roles. For information about custom role definitions, see [Azure custom roles](/azure/role-based-access-control/custom-roles).
 
-| Role | Purpose in hosted agent deployment |
+| Role | Purpose in Hosted agent deployment |
 | ----- | ------------------------------------- |
 | [Owner][role-owner] | Full permissions to create and manage Azure resources |
 | [Contributor][role-contributor] | Create and manage Azure resources |
@@ -54,7 +54,7 @@ This article references the following built-in roles. For information about cust
 | [Cognitive Services User][role-cog-services-user] | Access account-level capabilities (Speech, Vision, Language) directly |
 
 > [!CAUTION]
-> Although it might sound like an appropriate role for a developer working with hosted agents, the **Azure AI Developer** built-in role is insufficient for hosted agent scenarios. This role is scoped to Azure Machine Learning and Foundry hubs, not to the Foundry project resources used by hosted agents, and it doesn't include the resource management permissions required for hosted agent deployment.
+> Although it might sound like an appropriate role for a developer working with Hosted agents, the **Azure AI Developer** built-in role is insufficient for Hosted agent scenarios. This role is scoped to Azure Machine Learning and Foundry hubs, not to the Foundry project resources used by Hosted agents, and it doesn't include the resource management permissions required for Hosted agent deployment.
 
 ## Quick diagnosis by symptom
 
@@ -70,7 +70,7 @@ Use these links to jump directly to sections that address common permission issu
 
 ## Hosted agent solution architecture
 
-A completed hosted agent setup involves multiple Azure resources, identity assignments, and connections working together. The following diagram shows the key components and their relationships:
+A completed Hosted agent setup involves multiple Azure resources, identity assignments, and connections working together. The following diagram shows the key components and their relationships:
 
 ```
 Foundry Account
@@ -100,18 +100,18 @@ The diagram above shows how resources are organized hierarchically and which rol
 
 ### Required Azure resources
 
-Each hosted agent deployment requires these Azure resources to be properly configured:
+Each Hosted agent deployment requires these Azure resources to be properly configured:
 
 - **A Foundry account**
     - A role assignment allows the project managed identity to access the account for model access. `Azure AI User` is the recommended built-in role.
 - **A model deployment (in the account)**
 - **A Foundry project (in the account)**
     - The project has a managed identity. The project also gets an agent blueprint and agent identity when its first agent is created.
-    - A role assignment allows the hosted agent's agent identity to access the project for model access. `Azure AI User` is the recommended built-in role.
+    - A role assignment allows the Hosted agent's agent identity to access the project for model access. `Azure AI User` is the recommended built-in role.
     - Role assignments allow client users or principals to interact with agents in the project at runtime. `Azure AI User` is the recommended built-in role.
-- **A hosted agent (in the project)**
+- **A Hosted agent (in the project)**
     - The agent automatically gets an agent blueprint and agent identity.
-- **An agent version (in the hosted agent object)**
+- **An agent version (in the Hosted agent object)**
 - **An Azure Container Registry (ACR)**
     - A role assignment allows the project's managed identity to pull images from the registry. [Container Registry Repository Reader][role-acr-reader] is the recommended built-in role.
     - A role assignment allows a user or service principal that deploys the agent to push images to the registry. [Container Registry Repository Writer][role-acr-writer] is the recommended built-in role.
@@ -131,7 +131,7 @@ This list doesn't include networking resources. However, the user or service pri
 If you use [agent applications](../how-to/agent-applications.md), the list also includes:
 
 - **An agent application (in the project)**
-    - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the hosted agent's agent identity with the agent application's agent identity.
+    - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the Hosted agent's agent identity with the agent application's agent identity.
 - **An agent deployment (in the agent application)**
 
 ## Azure resource setup
@@ -191,7 +191,7 @@ A similar role assignment is needed for the agent identity over the project. For
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
 > [!NOTE]
-> For hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+> For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |
@@ -297,7 +297,7 @@ If you use agent applications, you need to create an agent application in the Fo
 | Azure AI Account Owner | Foundry project | ✔ Yes |
 | Azure AI Owner | Foundry project | ✔ Yes |
 
-`agentDeployment` objects are also ARM resources, but they're created as part of the hosted agent deployment process. For more information, see [Hosted agent deployment](#hosted-agent-deployment).
+`agentDeployment` objects are also ARM resources, but they're created as part of the Hosted agent deployment process. For more information, see [Hosted agent deployment](#hosted-agent-deployment).
 
 ## Agent creation
 
@@ -363,7 +363,7 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 
 ## Hosted agent deployment
 
-Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a hosted agent][deploy].
+Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
 
 ### Push an image to the registry
 
@@ -503,7 +503,7 @@ If you need to work against the Log Analytics workspace directly, also assign [L
 
 Viewing costs in billing currency in the Foundry portal requires the `Microsoft.Billing/billingProperty/read` permission. This permission requires a subscription or billing-account-scoped assignment. Resource group scope doesn't cover this permission.
 
-This permission is for portal display convenience and isn't required for hosted agent functionality. You can safely omit this permission for most users.
+This permission is for portal display convenience and isn't required for Hosted agent functionality. You can safely omit this permission for most users.
 
 | Built-in role | Scope | Can assignee view costs in billing currency? |
 | --- | --- | --- |
@@ -514,7 +514,7 @@ This permission is for portal display convenience and isn't required for hosted 
 
 ## Related content
 
-- [Hosted agents][hosted-agents]: Learn the hosted agent architecture and lifecycle.
+- [Hosted agents][hosted-agents]: Learn the Hosted agent architecture and lifecycle.
 - [Role-based access control for Microsoft Foundry][foundry-rbac]: Review built-in roles, scopes, and assignment patterns.
 - [Agent identity][agent-identity]: Understand how agent identity and project managed identity differ.
 

@@ -27,7 +27,7 @@ highlightedContent:
       url: ../foundry-classic/what-is-foundry.md
     - title: Explore Foundry Models
       itemType: concept
-      url: ./foundry-models/concepts/models-from-partners.md
+      url: ./foundry-models/concepts/models-sold-directly-by-azure.md
     - title: Manage agents, models, and tools
       itemType: overview
       url: ./control-plane/overview.md

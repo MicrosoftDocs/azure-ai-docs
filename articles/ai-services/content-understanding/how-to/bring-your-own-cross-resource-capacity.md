@@ -28,7 +28,7 @@ Use this high-level diagram to understand how Content Understanding uses a conne
 |  | resource                  |                                |
 |  |                           |                                |
 |  | defaults:                 |                                |
-|  | gpt-4.1 -> connA/gpt41    |                                |
+|  | gpt-5.2 -> connA/gpt52    |                                |
 |  +-------------+-------------+                                |
 |                |                                              |
 |    analyze API | uses default deployment mapping              |
@@ -38,7 +38,7 @@ Use this high-level diagram to understand how Content Understanding uses a conne
 |  | (Azure OpenAI or Foundry) |                                |
 |  |                           |                                |
 |  | deployments:              |                                |
-|  | - gpt-4.1                 |                                |
+|  | - gpt-5.2                 |                                |
 |  | - text-embedding-3-large  |                                |
 |  +---------------------------+                                |
 |                                                               |
@@ -106,7 +106,7 @@ Content-Type: application/json
 
 {
   "modelDeployments": {
-    "gpt-4.1": "{ConnectionName}/{DeploymentName}",
+    "gpt-5.2": "{ConnectionName}/{DeploymentName}",
     "text-embedding-3-large": "{ConnectionName}/{EmbeddingDeploymentName}"
   }
 }

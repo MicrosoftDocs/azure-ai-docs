@@ -110,7 +110,8 @@ The following Styles and Paralinguistic tags are supported in HD voices
 
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
-> Paralingsuitics are available on all voices with all languages.
+>
+> Paralinguistics are available on all voices with all languages. See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Dragon HD Omni voices
 
@@ -135,6 +136,7 @@ The following Styles and Paralinguistic tags are supported in HDOmni voices
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
 > Paralingsuitics are available on all voices with all languages.
+> See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 #### Dragon HD Omni voice naming convention
 
@@ -204,33 +206,11 @@ Here's an example of how to use Azure Speech HD voices in SSML:
 
 ### Style control with Express-As
 
-Dragon HD Omni supports advanced style control using the `mstts:express-as` element with natural language descriptions. Here's an example:
-
-```ssml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
-       xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-us-ava:DragonHDOmniLatestNeural">
-    <mstts:express-as style="sick">
-      Ugh… I'm not feeling so great today. My head's pounding, and even my voice sounds like it's been through a blender. I think I need to lie down for a bit… maybe some soup would help.
-    </mstts:express-as>
-  </voice>
-</speak>
-```
+Dragon HD Omni supports advanced style control using the `mstts:express-as` element with natural language descriptions, see [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Multilingual support
 
-All Dragon HD Omni voices support multiple languages with automatic language detection. You can also use the `<lang xml:lang>` tag to explicitly specify the speaking language and accent:
-
-```ssml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" 
-        xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-us-ava:DragonHDOmniLatestNeural">
-    <lang xml:lang="fr-FR">
-      Bonjour ! Ce matin, j'ai pris un café au jardin du Luxembourg. Il faisait frais, mais très agréable. Ensuite, j'ai acheté une baguette et quelques macarons. Paris est vraiment charmant.
-    </lang>
-  </voice>
-</speak>
-```
+All Dragon HD Omni voices support multiple languages with automatic language detection. You can also use the `<lang xml:lang>` tag to explicitly specify the speaking language and accent, see [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Word boundary events
 
@@ -377,6 +357,15 @@ When enhancePronunciation is enabled, the service prioritizes pronunciation accu
 - Acronyms, abbreviations, and mixed‑case text
 - Words with multiple possible pronunciations depending on context
 This parameter is designed to complement existing pronunciation controls such as SSML‑based pronunciation tags and lexicons, and does not replace them. enhancePronunciation is off by default to preserve predictable, backward‑compatible speech output, and can be enabled when developers want the service to apply additional pronunciation optimizations for improved clarity and naturalness.
+
+```SSML
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-Ava:DragonHDLatestNeural" parameters="enhancePronunciation=true">
+    This is a pronunciation enhanced example for technical terms like
+    Kubernetes, Azure OpenAI, and multilingual content such as 今、何か軽く摘めそうなものある？
+  </voice>
+</speak>
+```
 
 ### Recommended use cases
 Enable enhancePronunciation in scenarios with structured or technical domain-specific content.
