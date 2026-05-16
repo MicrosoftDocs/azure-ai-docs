@@ -166,7 +166,7 @@ Before testing, review what the workflow does:
 1. Check the run status to see whether the run succeeded or failed. Select the status indicator to view details for each step.
 1. If a step failed, select it to review the error details and verify your connection credentials or expression values.
 1. After a successful run, check your inbox. You receive an email with the invoice fields you configured.
-1. When you finish testing, [disable or delete your Logic App](https://learn.microsoft.com/azure/logic-apps/manage-logic-apps-with-azure-portal?tabs=consumption#disable-enable-logic-apps) to stop usage charges.
+1. When you finish testing, [disable or delete your Logic App](/azure/logic-apps/manage-logic-apps-with-azure-portal?tabs=consumption#disable-enable-logic-apps) to stop usage charges.
 
 
 ## Next steps
