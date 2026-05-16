@@ -2,8 +2,8 @@
 title: "Use cases for Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
 description: "Understanding the use cases of Anomaly Detector and Metrics Advisor"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article

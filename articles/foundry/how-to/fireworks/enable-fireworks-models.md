@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: nitinme
-ms.date: 04/10/2026
+ms.date: 04/29/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -31,7 +31,9 @@ All of these capabilities are available directly within your Foundry project, wi
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
-* To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+* To deploy models, you need the **Foundry Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ## Region availability
 
@@ -120,6 +122,7 @@ The following Fireworks models are available in the Foundry model catalog:
 | **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Per-Token and PTU | Open-source model for coding, long-horizon execution, and agent workflows. |
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
 | **Qwen** | Qwen3.5 122B A10B | `FW-Qwen3.5-122B-A10B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
 | **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
@@ -127,6 +130,9 @@ The following Fireworks models are available in the Foundry model catalog:
 | **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | Per-Token and PTU | High-performance bilingual model for chat and reasoning. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
+
+> [!IMPORTANT]
+> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 
 ## Custom models (bring your own model)
 
@@ -136,9 +142,8 @@ In addition to the catalog models, Fireworks on Foundry supports importing and d
 
 Custom models must be based on one of the following supported architectures:
 
-* **DeepSeek** (V3.1, V3.2)
-* **Kimi** (K2, K2.5)
-* **GLM** (4.7)
+* **Kimi** (K2, K2.5, K2.6)
+* **GLM** (4.7, 4.8)
 * **OpenAI** (gpt-oss-120b)
 * **Qwen** (qwen3-14b, qwen3.5-397B-A17B, qwen3.5-122B-A10B)
 

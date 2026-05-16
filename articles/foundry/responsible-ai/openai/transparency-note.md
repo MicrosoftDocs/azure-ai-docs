@@ -1,13 +1,13 @@
 ---
 title: "Transparency Note for Azure OpenAI in Microsoft Foundry Models"
 description: "Transparency Note for Azure OpenAI"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 04/16/2025
+ms.date: 05/14/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
@@ -37,6 +37,7 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-5 series | ✅ | ✅ |  |
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
+| GPT-Audio-2 |  |  | ✅ |
 | GPT-Realtime series | ✅ | ✅ | ✅ |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 
@@ -535,6 +536,11 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
+
+### GPT-Audio-2 limitations
+
+> [!CAUTION]
+> Microsoft's testing of GPT-Audio-2 identified that the model shows a lower propensity to block coaching, role-playing, or advising in certain inappropriate scenarios. Customers should consider (i) conducting their own evaluations in their production environments to validate safety performance for their specific use cases, (ii) using Azure AI Content Safety (or equivalent safeguards) in conjunction with this model, (iii) limited access/gating or preview deployment or other staggered roll-outs, (iv) implementing appropriate monitoring for safety performance in their production systems. Customers are encouraged to provide feedback to Microsoft.
 
 ### Risk and limitations of Computer Use (Preview) 
 

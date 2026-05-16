@@ -6,8 +6,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/09/2026
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ---
 
 # Computer Use in Azure OpenAI (classic)

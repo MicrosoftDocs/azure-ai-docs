@@ -25,7 +25,9 @@ right deep-dive documentation for each capability.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
-- The **Azure AI User** role on the Foundry project (least-privilege role for
+- The **Foundry User** role on the Foundry project (least-privilege role for
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
   development). If you also create or manage resources, use **Contributor** or
   **Owner** as needed. For details, see [Role-based access control for
   Microsoft Foundry](../../concepts/rbac-foundry.md).

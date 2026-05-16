@@ -12,7 +12,7 @@ ms.update-cycle: 365-days
 # Add spell check to queries in Azure AI Search
 
 > [!IMPORTANT]
-> Spell correction is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available through the Azure portal, preview REST APIs, and beta versions of Azure SDK libraries.
+> Spell correction is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available through the Azure portal, preview REST APIs, and beta versions of Azure SDK libraries.
 
 You can improve recall by spell-correcting words in a query before they reach the search engine. The `speller` parameter is supported for all text (non-vector) query types.
 
@@ -101,7 +101,7 @@ Valid values for `queryLanguage` can be found in the following table, copied fro
 | Dutch [NL] | NL, NL-BE, NL-NL (default) |
 
 > [!NOTE]
-> Previously, while semantic ranker was in public preview, the `queryLanguage` parameter was also used for semantic ranking. Semantic ranker is now language-agnostic.
+> Previously, while semantic ranker was in preview, the `queryLanguage` parameter was also used for semantic ranking. Semantic ranker is now language-agnostic.
 
 ### Language analyzer considerations
 

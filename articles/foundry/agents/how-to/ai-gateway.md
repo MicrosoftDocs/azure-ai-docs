@@ -4,8 +4,8 @@ description: "Connect and bring your own models hosted behind enterprise AI gate
 author: aahil
 ms.author: aahi
 ms.date: 04/27/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
@@ -49,8 +49,10 @@ You need the following role assignments:
 
 | Resource | Required role |
 |----------|---------------|
-| Foundry project | **Azure AI User** or higher |
+| Foundry project | **Foundry User** or higher |
 | Resource group (for connection deployment) | **Contributor** |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ::: zone pivot="foundry-portal"
 
