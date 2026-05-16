@@ -9,6 +9,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 The video translation REST API facilitates seamless video translation integration into your applications. It supports uploading, managing, and refining video translations, with multiple iterations for continuous improvement. In this article, you learn how to utilize video translation through the REST API. 
@@ -78,7 +79,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
     },
     "videoFileUrl": "https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4"
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01"
+}' "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01"
 ```
 
 > [!IMPORTANT]
@@ -126,7 +127,7 @@ You can download the translated video and subtitles once the iteration status is
 To retrieve details of a specific iteration by its ID, use the HTTP GET request. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, `Your-Translation-Id` with the translation ID you want to check,  and `Your-Iteration-Id` with the iteration ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2026-03-01"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2026-03-01"  
 ```
 
 You should receive a response body in the following format:
@@ -531,7 +532,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
       "url": "https://YourBlobStorageUrl/YourWebVTTFile.vtt"
     }
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2026-03-01"
+}' "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2026-03-01"
 ```
 
 You should receive a response body in the following format:
@@ -560,7 +561,7 @@ Check the status of an operation using its operation ID. The operation ID is uni
 - Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/operations/Your-Operation-Id-1?api-version=2026-03-01" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/operations/Your-Operation-Id-1?api-version=2026-03-01" 
 ```
 
 You should receive a response body in the following format:
@@ -582,7 +583,7 @@ Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResou
 > Starting from API version 2026-03-01, data retention is enabled. For translations created with API version 2026-03-01 and later, the data retention duration is 31 days. For translations created with API version 2025-05-20 and earlier, the data retention duration is 300 days. If not deleted manually, the service automatically retains the translation history according to these retention policies.
 
 ```azurecli-interactive
-curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
+curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
 ```
 
 The response headers include `HTTP/1.1 204 No Content` if the delete request was successful.
@@ -611,7 +612,7 @@ This section provides examples for other video translation API calls that aren't
 To list all video translations that are uploaded and processed in your resource account, make an HTTP GET request as shown in the following example. Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.   
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations?api-version=2026-03-01"
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations?api-version=2026-03-01"
 ```
 
 ### Get a translation by translation ID
@@ -619,7 +620,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 This operation retrieves detailed information about a specific translation, identified by its unique `translationId`. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
 ```
 
 ### List iterations
@@ -627,7 +628,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 List all iterations for a specific translation. This request lists all iterations without detailed information. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2026-03-01"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourResourceName.cognitiveservices.azure.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2026-03-01"  
 ```
 
 ## HTTP status codes
