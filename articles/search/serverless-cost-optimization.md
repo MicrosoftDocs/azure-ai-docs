@@ -54,7 +54,7 @@ Different operations have different cost profiles:
 
 ### Monitor compute usage
 
-You can track the CU cost of every request by inspecting the HTTP response headers and operation events in [Azure Monitor](/azure/azure-monitor/fundamentals/overview).
+The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in [Azure Monitor](/azure/azure-monitor/fundamentals/overview).
 
 - **Header**: `x-ms-request-charge: <value>`
 - **Value**: A floating-point number representing the CUs consumed.
@@ -68,6 +68,12 @@ x-ms-request-charge: 12.45
 ```
 
 This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 CUs.
+
+You can also use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
+
+> [!NOTE]
+> The Azure pricing calculator and SU-based capacity-planning worksheets don't apply to Serverless services. To estimate Serverless costs, index a representative sample of your data, run typical queries, and inspect the `x-ms-request-charge` header to measure actual CU consumption per operation type. Extrapolate to your expected volume, then apply current rates from the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
+> Usage is measured per minute and rounded up to the nearest 0.25 CU/minute, with 60 of these per minute segments added up over the period of an hour to calculate the full CU/hr amount that appears on the bill. CU costs are consistent - the same request on the same data produces similar CU consumption. The relative cost of different operation types follows this general pattern: keyword search (low) < vector search (higher) < hybrid search (combined cost of both).
 
 ## Reduce compute costs through optimization
 
