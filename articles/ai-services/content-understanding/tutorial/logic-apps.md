@@ -79,7 +79,7 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 1. When prompted, sign in to your OneDrive account.
 1. After connecting, select the folder you created earlier. Leave the other default values in place.
 1. Select the **➕ New step** button to add the next step.
-1. In the **Choose an operation** search bar, enter **Content Understanding**. Select **Analyze content** from the results.
+1. In the **Choose an operation** search bar, enter **Content Understanding**. Select **Analyze Content** from the results.
 
    > [!NOTE]
    > The connector might appear as **Azure Content Understanding** in the search results.
@@ -95,9 +95,9 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 
 1. In the **Analyze content** action parameters, complete the following fields:
 
-   - **Analyzer ID**: Enter `prebuilt-invoice` to use the built-in invoice analyzer.
+   - **Analyzer ID**: Enter `prebuilt-invoice` (or one of the other [prebuilt analyzers](../concepts/prebuilt-analyzers.md))to use the built-in invoice analyzer.
    - **File Content**: Select this field. In the dynamic content pop-up that appears, choose **File content**. This sends the OneDrive file to the Content Understanding analyzer for processing. When the **File content** badge appears in the field, this step is complete.
-   - **File URL**: Leave this field empty, because you're supplying the file content directly from OneDrive.
+   - **Input File URL**: Leave this field empty, because you're supplying the file content directly from OneDrive.
 
 1. Select **➕ New step** to add another action.
 1. In the **Choose an operation** search bar, enter **Control** and select the **Control** tile.
@@ -168,10 +168,8 @@ Before testing, review what the workflow does:
 1. After a successful run, check your inbox. You receive an email with the invoice fields you configured.
 1. When you finish testing, [disable or delete your Logic App](https://learn.microsoft.com/azure/logic-apps/manage-logic-apps-with-azure-portal?tabs=consumption#disable-enable-logic-apps) to stop usage charges.
 
-Congratulations! You completed this tutorial.
 
 ## Next steps
 
 - [Explore prebuilt analyzers](../concepts/prebuilt-analyzers.md)
-- [Create a custom analyzer](create-custom-analyzer.md)
 - [Build a robotic process automation solution](robotic-process-automation.md)
