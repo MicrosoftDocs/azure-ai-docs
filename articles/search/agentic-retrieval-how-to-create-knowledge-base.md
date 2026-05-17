@@ -86,13 +86,13 @@ Use one of the following LLMs from Azure OpenAI in Foundry Models. For deploymen
 + `gpt-5.4-mini`
 + `gpt-5.4-nano`
 
-The `2026-05-01-preview` API expands the supported model catalog, but the
-knowledge base schema is unchanged. You update the model deployment and
-`modelName` values, not the structure of the knowledge base request.
-
-[TO VERIFY] Confirm regional availability for each GPT-5 family model and
-whether Azure AI Search validates `modelName` against a supported list before
-calling Azure OpenAI.
+The `2026-05-01-preview` API expands the supported model catalog through the
+existing model allowlist, but the knowledge base schema is unchanged. You
+update the model deployment and `modelName` values, not the structure of the
+knowledge base request. The preview adds the listed GPT-5.1, GPT-5.2, and
+GPT-5.4 family names to the supported set; it doesn't add chat, codex, or pro
+model variants. Regional availability is determined by Azure OpenAI in Foundry
+Models for the deployment you select.
 
 ## Configure access
 
