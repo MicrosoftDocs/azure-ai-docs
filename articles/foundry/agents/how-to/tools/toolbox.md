@@ -63,6 +63,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Tool Search](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
 ## Prerequisites
 
@@ -2555,6 +2556,40 @@ resources:
 ```
 
 :::zone-end
+
+### [Tool Search](tool-search.md)
+
+Use this pattern to enable intent-based tool routing. When `ToolboxSearchPreviewTool` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Toolbox with intent-based tool routing",
+  "tools": [
+    {
+      "type": "tool_search_preview"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import ToolboxSearchPreviewTool
+
+tools = [
+    ToolboxSearchPreviewTool()
+]
+```
+
+:::zone-end
+
+> [!NOTE]
+> `ToolboxSearchPreviewTool` is a routing directive, not a callable tool. It does not appear in `tools/list` responses and does not count toward the unnamed-tool-per-type limit.
 
 ## Troubleshoot
 
