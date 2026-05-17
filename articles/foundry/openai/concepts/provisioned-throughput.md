@@ -157,6 +157,8 @@ Hourly billing is practical for short-term scenarios like benchmarking a new mod
 
 - Continuous hourly billing at high utilization typically exceeds reservation pricing.
 
+For complete guidance on hourly billing and scaling provisioned deployments, see [Hourly billing](../how-to/provisioned-throughput-onboarding.md#hourly-billing).
+
 ### Azure reservations
 
 Azure Reservations are a financial discount applied to the PTU billing meter (the hourly usage counter Azure charges against), not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Some key things to note about reservations include:
@@ -167,7 +169,7 @@ Azure Reservations are a financial discount applied to the PTU billing meter (th
 
 - Reservations don't guarantee capacity. First create deployments to confirm that capacity is available, then purchase the reservation to lock in the discounted rate.
 
-For complete guidance on sizing, purchasing, and managing reservations, see [Azure Reservations for provisioned throughput](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-provisioned-throughput).<!-- TODO: Update link to dedicated reservations article when published -->
+For complete guidance on sizing, purchasing, and managing reservations, see [Azure Reservations for provisioned throughput](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-provisioned-throughput).
 
 ## How to track PTU costs and billing
 
