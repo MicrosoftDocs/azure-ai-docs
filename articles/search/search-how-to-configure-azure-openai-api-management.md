@@ -49,7 +49,7 @@ Azure AI Search (skill or vectorizer)
 
 ### Private path from Azure AI Search to API Management
 
-When the search service must reach API Management privately, create a [shared private link](search-indexer-howto-access-private.md) from the search service to the API Management instance, and run indexers in the [private execution environment](search-indexer-howto-access-private.md#step-4-configure-the-indexer-to-run-in-the-private-environment).
+When the search service must reach API Management privately, create a [shared private link](search-indexer-howto-access-private.md) from the search service to the API Management instance, and run indexers in the [private execution environment](search-indexer-howto-access-private.md#4---configure-the-indexer-to-run-in-the-private-environment).
 
 ```
 Azure AI Search (private indexer execution)
@@ -103,7 +103,7 @@ To restrict outbound traffic from the search service to a private channel:
 
 1. Create a shared private link from the search service to the API Management instance. Use the `Microsoft.ApiManagement/service` resource type and the `Gateway` group ID. For steps, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 1. Approve the private endpoint connection on the API Management instance.
-1. Configure indexers that use the skill or vectorizer to run in the [private execution environment](search-indexer-howto-access-private.md#step-4-configure-the-indexer-to-run-in-the-private-environment).
+1. Configure indexers that use the skill or vectorizer to run in the [private execution environment](search-indexer-howto-access-private.md#4---configure-the-indexer-to-run-in-the-private-environment).
 
 The shared private link counts against the [shared private link limit](search-limits-quotas-capacity.md#shared-private-link-resource-limits) for your search service tier.
 
