@@ -37,12 +37,14 @@ page size, offset, and count behavior.
 | Parameter | Type | Default | Maximum | Description |
 | --- | --- | --- | --- | --- |
 | `$top` | Integer | `50` | `1000` | Number of items to retrieve in the page. |
-| `$skip` | Integer | `0` | [TO VERIFY] | Number of items to skip before returning results. |
+| `$skip` | Integer | `0` | No fixed maximum other than the number of objects in the list. | Number of items to skip before returning results. |
 | `$count` | Boolean | `false` | Not applicable | Returns the total item count when set to `true`. |
 
-[TO VERIFY] Confirm the maximum `$top` behavior when a request exceeds the
-limit, whether `$skip` has a maximum value, and whether `$filter` or `$orderby`
-are supported for paged list operations.
+If `$top` is omitted, the service returns up to 50 items by default. If a
+request asks for more than 1,000 items, the service returns at most 1,000 items
+in the page and includes continuation information when more items remain.
+Filtering and ordering parameters, such as `$filter` and `$orderby`, aren't
+part of this preview paging contract.
 
 ## Send the first paged request
 
@@ -88,8 +90,9 @@ while nextLink is not null:
     nextLink = response["@odata.nextLink"]
 ```
 
-[TO VERIFY] Confirm whether `@odata.nextLink` is the only continuation
-mechanism or whether the preview also returns a continuation token header.
+`@odata.nextLink` is the continuation mechanism for paged list responses in
+this preview. Treat it as opaque and don't depend on the `$skip` value or other
+query parameters embedded in the URL.
 
 ## Supported list operations
 
@@ -99,15 +102,20 @@ The following list operations support paging in the preview:
 | --- | --- |
 | List Indexes | P0 |
 | List Index Statistics Summary | P0 |
+| List Synonym Maps | P1 |
 | List Indexers | P1 |
 | List Data Sources | P1 |
 | List Skillsets | P1 |
 | List Knowledge Bases | P1 |
 | List Knowledge Sources | P1 |
 
-[TO VERIFY] Confirm the complete supported operation list for
-`2026-05-01-preview`, including whether synonym maps and aliases support
-paging.
+Aliases aren't included in the preview paging scope.
+
+During preview validation, `GET /indexes` accepted `$top`, `$skip`, and
+`$count`, but didn't always populate `@odata.nextLink` when more pages were
+available. `GET /knowledgebases` and `GET /knowledgesources` rejected `$top` and
+`$skip` in the tested environment. Treat those as preview service issues if you
+encounter them before the feature is fully rolled out.
 
 ## Related content
 
