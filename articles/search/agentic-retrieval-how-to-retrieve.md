@@ -1021,9 +1021,11 @@ The following response excerpt shows activity records with `modelName`:
 }
 ```
 
-[TO VERIFY] Confirm the complete list of activity types that emit `modelName`
-and whether the value is the deployment name, model name, or another model
-identifier.
+For this preview, `modelName` appears on `modelQueryPlanning` and
+`modelSummarization` activity records. Future model-backed activity types can
+use the same field. The value is the public model name used for the activity,
+such as `gpt-5-mini`, not the deployment name. If an activity step isn't backed
+by a single customer-visible model, the field is omitted.
 
 ### Override default reasoning effort and set request limits
 
