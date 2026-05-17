@@ -7,7 +7,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 10/30/2025
+ms.date: 05/16/2025
 ai-usage: ai-assisted
 ---
 
@@ -20,7 +20,7 @@ Chat completion models have the same input token restrictions, so chunking is he
 Azure AI Search has built-in solutions for chunking content, and also for vectorizing chunked content if you're using vector search. The built-in approach takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](vector-search-integrated-vectorization.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
 
 > [!TIP]
-> If you're chunking content for agentic retrieval, several knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and index are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure blob / Azure data lake storage Gen2](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
+> If you're chunking content for agentic retrieval, multiple knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and index are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure blob / Azure data lake storage Gen2](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
 
 ## Common chunking techniques
 
