@@ -501,6 +501,8 @@ items:
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base via APIs or MCP
       href: agentic-retrieval-how-to-retrieve.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Build an end-to-end retrieval solution
       href: agentic-retrieval-how-to-create-pipeline.md
   - name: Migrate agentic retrieval code

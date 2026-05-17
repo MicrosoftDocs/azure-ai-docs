@@ -54,8 +54,6 @@ Agentic retrieval adds latency to query processing, but it makes up for it by ad
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
-> [!NOTE]
-> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. You can minimize latency and costs by setting properties that limit LLM processing. You can also exclude LLM processing altogether for just text and hybrid search and your own query planning logic.
 
 ## Architecture and workflow
 
@@ -91,8 +89,6 @@ Your search index determines query execution and any optimizations that occur du
 
 Your application drives the pipeline by calling the knowledge base and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
-> [!NOTE]
-> Only gpt-4o, gpt-4.1, and gpt-5 series models are supported for query planning. You can use any model for final answer generation.
 
 ## Availability and pricing
 
@@ -182,6 +178,7 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
   + [Web](agentic-knowledge-source-how-to-web.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
++ [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md)
 + [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 
 ### [**Tutorials**](#tab/tutorials)
@@ -205,7 +202,6 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
 
----
 
 ## Next step
 

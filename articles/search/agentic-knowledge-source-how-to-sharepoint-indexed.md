@@ -343,6 +343,9 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 > [!TIP]
 > To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
+> [!TIP]
+> To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source and enable image serving on the knowledge base. For more information, see [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+
 ## Delete a knowledge source
 
 [!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
