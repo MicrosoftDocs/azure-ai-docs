@@ -147,10 +147,12 @@ knowledge sources on the service alongside existing top-level resource counts.
 }
 ```
 
-[TO VERIFY] Confirm quota values for `knowledgeBasesCount` and
-`knowledgeSourcesCount` by SKU, whether quota can be `null`, and whether these
-counters are available through both data-plane and management-plane service
-statistics APIs.
+The new counters use the same resource-counter shape as existing service
+statistics: `usage` reports the current object count, and `quota` reports the
+service limit when a quota value is available. Services that support knowledge
+bases or knowledge sources but haven't created any return a `usage` value of
+`0` for the corresponding counter. These counters are exposed by the data-plane
+service statistics API for the preview API version.
 
 You can also send a GET Index Statistics to get the physical size of the index on disk, plus the in-memory size of the vector fields.
 
