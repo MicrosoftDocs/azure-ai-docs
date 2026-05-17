@@ -357,7 +357,8 @@ var aoaiParams = new AzureOpenAIVectorizerParameters
 {
     ResourceUri = new Uri(aoaiEndpoint),
     DeploymentName = aoaiGptDeployment,
-    ModelName = aoaiGptModel
+    ModelName = aoaiGptModel,
+    ApiKey = aoaiApiKey
 };
 
 var knowledgeBase = new KnowledgeBase(
