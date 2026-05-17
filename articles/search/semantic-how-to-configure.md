@@ -65,9 +65,12 @@ keyword fields.
 | Existing GA or older preview API versions | Configure semantic ranking on the index. |
 | Supported `2026-05-01-preview` agentic retrieval flow | Semantic configuration can be optional. |
 
-[TO VERIFY] Confirm the exact API versions and query types where semantic
-configuration is optional, and confirm downgrade behavior if a workload later
-uses a GA API version.
+Semantic configuration is optional only for supported agentic retrieval
+knowledge base retrieve flows that use the `2026-05-01-preview` API. Classic
+semantic search queries and older API versions still require a semantic
+configuration when you use semantic ranking. If you create an index without a
+semantic configuration for the preview flow, don't assume that the same index
+can be used unchanged with GA or older preview semantic ranking APIs.
 
 A semantic configuration has a name and the following properties:
 
