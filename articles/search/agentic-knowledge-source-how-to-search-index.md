@@ -320,10 +320,13 @@ A retrieve request can still add request-specific constraints:
 }
 ```
 
-[TO VERIFY] Confirm the complete list of retrieve defaults that can be
-persisted for each knowledge source kind, whether request overrides replace or
-merge with stored defaults, how to clear persisted defaults, and whether
-stored defaults are returned by GET operations.
+For search index knowledge sources, the persisted retrieve default in this
+preview is `searchIndexParameters.baseFilter`. At query time,
+`knowledgeSourceParams.filterAddOn` adds request-specific constraints to the
+stored base filter. The intended composed filter is a conjunction of both
+filters. During preview validation, `baseFilter` and `filterAddOn` each worked
+in isolation, but using both together returned an error; treat combined filter
+composition as a preview issue until the service fix is available.
 
 ::: zone pivot="csharp"
 
