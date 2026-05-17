@@ -63,7 +63,7 @@ You specify the retrieve action on a knowledge base. The request body includes t
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```csharp
-using Azure.Identity;
+using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
@@ -71,7 +71,7 @@ using Azure.Search.Documents.KnowledgeBases.Models;
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    tokenCredential: new DefaultAzureCredential()
+    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -108,7 +108,7 @@ Console.WriteLine(
 # [2026-04-01](#tab/2026-04-01)
 
 ```csharp
-using Azure.Identity;
+using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
@@ -116,7 +116,7 @@ using Azure.Search.Documents.KnowledgeBases.Models;
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    tokenCredential: new DefaultAzureCredential()
+    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -144,7 +144,7 @@ Console.WriteLine(
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```python
-from azure.identity import DefaultAzureCredential
+from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage,
@@ -157,7 +157,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=DefaultAzureCredential(),
+    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
 )
 
 request = KnowledgeBaseRetrievalRequest(
@@ -189,7 +189,7 @@ request = KnowledgeBaseRetrievalRequest(
     ],
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
@@ -198,7 +198,7 @@ print(result.response[0].content[0].text)
 # [2026-04-01](#tab/2026-04-01)
 
 ```python
-from azure.identity import DefaultAzureCredential
+from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeRetrievalSemanticIntent,
@@ -210,7 +210,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=DefaultAzureCredential(),
+    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
 )
 
 request = KnowledgeBaseRetrievalRequest(
@@ -227,7 +227,7 @@ request = KnowledgeBaseRetrievalRequest(
     ],
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
@@ -342,14 +342,14 @@ The `filterAddOn` parameter accepts OData filter expressions. Example patterns i
 :::zone pivot="csharp"
 
 ```csharp
-using Azure.Identity;
+using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    tokenCredential: new DefaultAzureCredential()
+    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -394,7 +394,7 @@ Console.WriteLine(
 :::zone pivot="python"
 
 ```python
-from azure.identity import DefaultAzureCredential
+from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage,
@@ -406,7 +406,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=DefaultAzureCredential(),
+    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
 )
 
 request = KnowledgeBaseRetrievalRequest(
@@ -438,7 +438,7 @@ request = KnowledgeBaseRetrievalRequest(
     ],
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
@@ -615,7 +615,7 @@ In the .NET SDK, pass the token as the `xMsQuerySourceAuthorization` parameter o
 
 ```csharp
 using Azure;
-using Azure.Identity;
+using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
@@ -662,7 +662,7 @@ Console.WriteLine(text);
 In the Python SDK, pass the token as the `x_ms_query_source_authorization` parameter on `retrieve`:
 
 ```python
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from azure.core.credentials import AzureKeyCredential, get_bearer_token_provider
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage, KnowledgeBaseMessageTextContent,
@@ -1075,7 +1075,7 @@ request = KnowledgeBaseRetrievalRequest(
     max_output_size=6000,
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
@@ -1194,7 +1194,7 @@ request = KnowledgeBaseRetrievalRequest(
     ],
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
@@ -1288,7 +1288,7 @@ request = KnowledgeBaseRetrievalRequest(
     ]
 )
 
-result = kb_client.retrieve(retrieval_request=request)
+result = kb_client.retrieve(request)
 print(result.response[0].content[0].text)
 ```
 
