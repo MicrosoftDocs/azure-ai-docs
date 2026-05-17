@@ -965,13 +965,12 @@ The following examples illustrate different ways to call the retrieve action usi
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
-`maxOutputDocuments` to control how many candidate documents or chunks are
-preserved per knowledge source before later ranking and synthesis steps. Use
-this setting when broad or ambiguous queries need a larger evidence pool.
+`maxOutputDocuments` to cap output documents per knowledge source before
+final result selection. Use this setting when you want one source to
+contribute a bounded number of documents to the retrieve pipeline.
 
-This setting controls intermediate candidates. It doesn't control the final
-number of grounding documents returned to the caller. Larger candidate pools
-can improve recall, but they can also increase latency and request cost.
+This setting is per source. It doesn't control the final number of grounding
+documents returned to the caller.
 
 ```http
 POST {{search-url}}/knowledgebases/operations-kb/retrieve?api-version=2026-05-01-preview
@@ -991,17 +990,15 @@ Content-Type: application/json
         {
             "knowledgeSourceName": "operations-ks",
             "kind": "searchIndex",
-            "maxOutputDocuments": 120
+            "maxOutputDocuments": 100
         }
     ]
 }
 ```
 
 For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
-is a per-source upper-bound hint for the intermediate reranking window. The
-default is `50`, the minimum is `50`, and the maximum is `200`. Values outside
-that range are rejected. The service can rerank fewer candidates when fewer
-matches are available or when internal limits reduce the applied window.
+is a per-source cap. The service can return fewer documents when fewer matches
+are available or when internal limits reduce the applied window.
 
 ### Override default reasoning effort and set request limits
 
