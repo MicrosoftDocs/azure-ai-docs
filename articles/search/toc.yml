@@ -479,6 +479,8 @@ items:
         href: agentic-knowledge-source-how-to-search-index.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
