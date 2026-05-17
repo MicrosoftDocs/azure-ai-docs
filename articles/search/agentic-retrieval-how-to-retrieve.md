@@ -804,7 +804,7 @@ The output includes the following components:
 | source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
 | agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval. |
 
-
+---
 
 Here's an example of the activity array:
 

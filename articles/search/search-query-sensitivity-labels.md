@@ -206,7 +206,7 @@ Azure AI Search uploads audit entries to the calling tenant's Microsoft Purview 
 1. Select **Audit Search**, and then filter by date range, user, or the Azure AI Search record type.
 1. Open an entry to view the standard schema fields and the Azure AI Search custom fields, including `SensitivityLabelName`, `DocumentDataSourceType`, and `DocumentDataSourceId`.
 
-For step-by-step guidance on running audit searches, retention behavior, and required Purview roles, see [Search the audit log in the Microsoft Purview portal](/purview/audit-search-overview).
+For step-by-step guidance on running audit searches, retention behavior, and required Purview roles, see [Search the audit log in the Microsoft Purview portal](/purview/audit-search).
 
 ## Sensitivity label handling in Azure AI Search
 
