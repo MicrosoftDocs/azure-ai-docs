@@ -156,6 +156,8 @@ items:
       items:
       - name: Chunk documents
         href: vector-search-how-to-chunk-documents.md
+      - name: Chunk and vectorize with Content Understanding
+        href: search-how-to-semantic-chunking-content-understanding.md
       - name: Chunk and vectorize by document layout
         href: search-how-to-semantic-chunking.md
       - name: Generate embeddings

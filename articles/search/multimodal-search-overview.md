@@ -5,6 +5,7 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 04/20/2026
+ai-usage: ai-assisted
 ---
 
 # Multimodal search in Azure AI Search
@@ -39,7 +40,7 @@ To simplify the creation of a multimodal pipeline, Azure AI Search offers the **
 
 The wizard follows these steps to create a multimodal pipeline:
 
-1. **Extract content:** Choose from the [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to obtain page text, inline images, and structural metadata. Each skill offers different capabilities for metadata extraction, table handling, and file format support. For detailed comparisons, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
+1. **Extract content:** Choose from the [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to obtain page text, inline images, and structural metadata. Each skill offers different capabilities for metadata extraction, table handling, and file format support. For detailed comparisons, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
 
 1. **Chunk text:** The [Text Split skill](cognitive-search-skill-textsplit.md) breaks the extracted text into manageable chunks for use in the remaining pipeline, such as the embedding skill.
 
@@ -56,22 +57,24 @@ The wizard follows these steps to create a multimodal pipeline:
 
 ## Options for multimodal content extraction
 
-A multimodal pipeline begins by cracking each source document into chunks of text, inline images, and associated metadata. For this step, Azure AI Search provides three built-in skills:
+A multimodal pipeline begins by cracking each source document into chunks of text, inline images, and associated metadata. For this step, Azure AI Search provides two recommended built-in skills:
 
 + [Document Extraction skill](cognitive-search-skill-document-extraction.md)
-+ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md)
 
-| Characteristic | Document Extraction skill | Document Layout skill | Azure Content Understanding skill |
-|--|--|--|--|
-| Text location metadata extraction (pages and bounding polygons) | No | Yes | Yes |
-| Image location metadata extraction (pages and bounding polygons) | Yes | Yes | Yes |
-| Table extraction and preservation | No | No | Yes (including cross-page tables) |
-| Cross-page semantic units | Not applicable | Single page only | Yes (spans page boundaries) |
-| Location metadata extraction based on file type | PDFs only. | Multiple supported file types according to the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/prebuilt/layout#supported-file-types). | [Multiple supported file types](/azure/ai-services/content-understanding/language-region-support), including PDF, DOCX, XLSX, and PPTX. |
-| Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Document Layout pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Billed according to [Azure Content Understanding pricing](https://azure.microsoft.com/pricing/details/content-understanding/). |
-| Built-in chunking | No (use Text Split skill) | Yes (based on paragraph boundaries) | Yes (semantic chunking) |
-| Recommended scenarios | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Advanced document analysis requiring cross-page table extraction, semantic chunking, or consistent handling across document formats (PDF, DOCX, XLSX, PPTX). |
+The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) remains supported for existing pipelines. For new skillsets, use the Azure Content Understanding skill. It offers semantic chunking, AI-generated image descriptions, cross-page table extraction, and a single skill for content extraction and chunking.
+
+| Characteristic | Document Extraction skill | Azure Content Understanding skill |
+|--|--|--|
+| Text location metadata extraction (pages and bounding polygons) | No | Yes |
+| Image location metadata extraction (pages and bounding polygons) | Yes | Yes |
+| Table extraction and preservation | No | Yes (including cross-page tables) |
+| Cross-page semantic units | Not applicable | Yes (spans page boundaries) |
+| Location metadata extraction based on file type | PDFs only. | [Multiple supported file types](/azure/ai-services/content-understanding/language-region-support), including PDF, DOCX, XLSX, and PPTX. |
+| Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Azure Content Understanding pricing](https://azure.microsoft.com/pricing/details/content-understanding/). |
+| Built-in chunking | No (use Text Split skill) | Yes (semantic chunking) |
+| AI-generated image descriptions | No | Yes (when `modelName` and `modelDeployment` are configured, available starting with the `2026-05-01-preview` REST API) |
+| Recommended scenarios | Rapid prototyping or production pipelines where exact position or detailed layout information isn't required. | Advanced document analysis requiring cross-page table extraction, semantic chunking and AI-generated image descriptions. |
 
 ## Options for multimodal content embedding
 
