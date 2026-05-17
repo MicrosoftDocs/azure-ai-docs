@@ -1830,34 +1830,6 @@ resources:
       - type: web_search
 ```
 
-**With Grounding with Bing Custom Search:**
-
-```yaml
-parameters:
-  bing_api_key:
-    secret: true
-    description: Bing API key
-resources:
-  - kind: connection
-    name: bing-custom-conn
-    category: GroundingWithCustomSearch
-    authType: ApiKey
-    target: ""
-    credentials:
-      key: "{{ bing_api_key }}"
-    metadata:
-      ResourceId: /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Bing/accounts/<bing-account>
-      type: bing_custom_search
-  - kind: toolbox
-    name: bing-custom-tools
-    description: Bing Custom Search toolbox
-    tools:
-      - type: bing_custom_search
-        custom_search_configuration:
-          instance_name: your-bing-custom-instance
-        project_connection_id: bing-custom-conn
-```
-
 :::zone-end
 
 > [!NOTE]
