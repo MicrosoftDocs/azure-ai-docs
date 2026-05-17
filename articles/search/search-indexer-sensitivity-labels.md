@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers to ingest Microsoft
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 05/17/2026
 ---
 
 # Use an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels and enforce document-level security
@@ -34,7 +34,7 @@ This functionality is available for the following data sources:
 
 + Source documents must use file types that are both [supported by Purview sensitivity labels](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and [supported by Azure AI Search indexers](search-how-to-index-azure-blob-storage.md#supported-document-formats).
 
-+ REST API version 2025-11-01-preview or an equivalent preview SDK package.
++ REST API version 2026-05-01-preview or an equivalent preview SDK package.
 
 ## Limitations
 
@@ -158,14 +158,14 @@ The appID roles in the provided PowerShell script are associated to the followin
 
 ## 4. Configure the index to enable Purview sensitivity label 
 
-When sensitivity label support is required, set the purviewEnabled property to true in your [index definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+When sensitivity label support is required, set the purviewEnabled property to true in your [index definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 > [!IMPORTANT]
 > **purviewEnabled** property must be set to true when the index is created. This setting is permanent and can't be modified later.
 > When **purviewEnabled** is set to true, only RBAC authentication is supported for all document operations APIs.
 API key access is limited to index schema retrieval (list and get).
 
 ```
-PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2025-11-01-preview
+PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2026-05-01-preview
 {
   "purviewEnabled": true,
   "fields": [
@@ -182,7 +182,7 @@ PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2025
 
 ## 5. Configure the data source
 
-To enable sensitivity label ingestion, configure the [data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with the indexerPermissionOptions property set to ["sensitivityLabel"]. 
+To enable sensitivity label ingestion, configure the [data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with the indexerPermissionOptions property set to ["sensitivityLabel"]. 
 
 ```
 {
@@ -202,10 +202,12 @@ The `indexerPermissionOptions` property instructs the indexer to extract sensiti
 
 ## 6. Configure index projections in your skillset (if applicable)
 
-If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md), for example, if you have integrated vectorization, you must ensure you also map the sensitivity label to each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md) — for example, with integrated vectorization — project the sensitivity label onto each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+
+For the broader rule on when permission and ACL fields belong in indexer field mappings versus index projections, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields--indexer-field-mappings-index-projections-or-both).
 
 ```
-PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-11-01-preview
+PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-05-01-preview
 {
   "name": "my-skillset",
   "skills": [
@@ -242,7 +244,7 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-1
 
 ## 7. Configure the indexer
 
-- Define field mappings in your [indexer definition](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to route extracted label metadata to the index fields.
+- Define field mappings in your [indexer definition](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to route extracted label metadata to the index fields.
 If your data source emits label metadata under a different field name (for example, metadata_sensitivity_label), map it explicitly.
 
 ```

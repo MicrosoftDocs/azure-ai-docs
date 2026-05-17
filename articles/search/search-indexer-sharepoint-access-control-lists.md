@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/23/2026
+ms.date: 05/17/2026
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
@@ -119,7 +119,21 @@ Add fields to your [index schema definition](search-how-to-index-sharepoint-onli
 ```
 Set `retrievable` attribute to `true` only during development to verify values. You can change retrievable from true to false with no index rebuild requirement.
 
+### Choose where to populate ACL fields — indexer field mappings, index projections, or both
+
+Where you map the ACL metadata fields depends on whether the indexer writes one document per source item or multiple chunks per source item.
+
+| Scenario | Populate ACL fields via | Why |
+|---|---|---|
+| No skillset, or skillset without chunking — one search document per source item | **Indexer field mappings** only (`metadata_user_ids` → `UserIds`, `metadata_group_ids` → `GroupIds`, and for SharePoint groups `metadata_sharepoint_site_url` → `SharePointSiteUrl`). | The indexer writes a single document to the target index, and field mappings carry source metadata to index fields. |
+| Skillset with chunking (for example, Text Split skill for integrated vectorization), single index with parent fields repeated on each chunk (`projectionMode: skipIndexingParentDocuments`) | **Index projections** in the skillset (`mappings` from `/document/metadata_user_ids`, `/document/metadata_group_ids`, and for SharePoint groups `/document/metadata_sharepoint_site_url`). | The parent document isn't indexed; only chunks are. ACL values must be projected onto every chunk so query-time filters apply on the chunk returned in results. Indexer field mappings for these fields are bypassed in this mode. |
+| Skillset with chunking, two-index pattern (parent index + child chunk index) | **Both** — indexer field mappings populate ACL fields on the parent index, index projections populate ACL fields on the child chunk index. | Both indexes are queryable, and each needs the metadata it filters on. |
+
+In all chunked scenarios, every chunk must carry the ACL fields. Permission filters apply per document, so a chunk missing ACL fields can't be returned to the right caller.
+
 ### 3. Configure index projections in your skillset (if applicable)
+
+When chunking is enabled, the parent document isn't written to the index when `projectionMode` is `skipIndexingParentDocuments`. Carry the ACL metadata onto each chunk through `indexProjections.selectors[].mappings`.
 
 If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as a [split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
@@ -147,8 +161,9 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-0
           { "name": "chunkId",           "source": "/document/chunks/*/id" },     // if you create an id per chunk
           { "name": "content",           "source": "/document/chunks/*/text" },   // chunk text
           { "name": "parentId",          "source": "/document/id" },              // parent doc id
-          { "name": "UserIds",  "source": "/document/metadata_user_ids" }, // <-- parent → child
-          { "name": "GroupIds",  "source": "/document/metadata_group_ids" } // <-- parent → child
+          { "name": "UserIds",  "source": "/document/metadata_user_ids" },
+          { "name": "GroupIds",  "source": "/document/metadata_group_ids" },
+          { "name": "SharePointSiteUrl", "source": "/document/metadata_sharepoint_site_url" } // include when the index has sharePointConnectorAppRegistration (SharePoint groups support)
         ]
       }
     ],
@@ -160,7 +175,11 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-0
 
 ```
 
+The `UserIds`, `GroupIds`, and `SharePointSiteUrl` mappings read source-level metadata emitted by the SharePoint indexer (`/document/metadata_*`) and write the values onto each chunk.
+
 ### 4. Configure the indexer field mappings for ACLs
+
+Use indexer field mappings when the indexer writes one document per source item (no chunking) or when you maintain a separate parent index alongside a chunk index. If your skillset chunks documents into a single target index with `projectionMode: skipIndexingParentDocuments`, the field mappings shown here are superseded by the `indexProjections.mappings` from the previous step for the chunk index.
 
 Besides your required [indexer configuration](search-how-to-index-sharepoint-online.md#step-6-create-an-indexer), map raw metadata ACL fields from SharePoint to your index fields.
 
@@ -177,37 +196,69 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 
 Starting in the 2026-05-01-preview REST API, the SharePoint indexer can ingest membership of SharePoint site groups (such as Owners, Members, Visitors, and custom site groups) and honor them at query time. SharePoint group IDs are emitted in the `metadata_group_ids` field with the `spg:` prefix to distinguish them from Microsoft Entra group object IDs.
 
-To enable SharePoint groups support, add a `sharePointConnectorAppRegistration` property to your index that references an existing federated identity credential, and map the SharePoint site URL to an index field.
+This walkthrough is self-contained: complete the steps in order to configure the index, indexer field mappings, and query the index with SharePoint site group enforcement.
 
-1. Add the `sharePointConnectorAppRegistration` property and a `SharePointSiteUrl` field to your index definition. Mark the field with the `sharepointSiteUrl: true` attribute.
+The following components work together to enable SharePoint site group resolution:
 
-   ```http
-   PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-preview
-   {
-     "name": "my-sharepoint-acl-index",
-     "sharePointConnectorAppRegistration": {
-       "federatedCredentialId": "<federated-identity-credential-object-id>"
-     },
-     "fields": [
-       { "name": "SharePointSiteUrl", "type": "Edm.String", "sharepointSiteUrl": true, "filterable": false, "retrievable": false }
-     ],
-     "permissionFilterOption": "enabled"
-   }
-   ```
+| Component | Where | Purpose |
+|---|---|---|
+| `sharePointConnectorAppRegistration` (with `federatedCredentialId`) | Index definition | Lets the search service call SharePoint as the calling user to resolve site group membership at query time. |
+| `SharePointSiteUrl` field (with `sharepointSiteUrl: true`) | Index schema + indexer field mapping from `metadata_sharepoint_site_url` | Identifies which SharePoint site a document belongs to, so SP group resolution is scoped correctly. |
+| `spg:`-prefixed values in `GroupIds` | Document permission metadata | Distinguish SharePoint site group IDs from Microsoft Entra group object IDs. |
 
-   The `federatedCredentialId` value is the object ID of the federated identity credential previously configured on the [Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity) used by the indexer.
+### Prerequisites
 
-1. Map the `metadata_sharepoint_site_url` source field to `SharePointSiteUrl` in the indexer field mappings.
++ SharePoint indexer already configured for ACL ingestion. See [Configure the indexer field mappings for ACLs](#4-configure-the-indexer-field-mappings-for-acls).
++ Microsoft Entra app registration with a federated identity credential. See [Configuring the registered application with a managed identity](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity).
++ REST API `2026-05-01-preview` or later.
 
-   ```
-   {
-     "fieldMappings": [
-       { "sourceFieldName": "metadata_sharepoint_site_url", "targetFieldName": "SharePointSiteUrl" }
-     ]
-   }
-   ```
+### Configure the index
 
-At query time, the search service uses the registered application and the `SharePointSiteUrl` field to resolve which SharePoint groups the calling user belongs to on that site, and matches them against the `spg:`-prefixed values stored in `GroupIds`.
+Add the `sharePointConnectorAppRegistration` property and the `SharePointSiteUrl` field alongside the `UserIds` and `GroupIds` permission-filter fields, so the full index shape is in one place. Keep `permissionFilterOption: "enabled"`.
+
+```http
+PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-preview
+{
+  "name": "my-sharepoint-acl-index",
+  "sharePointConnectorAppRegistration": {
+    "federatedCredentialId": "<federated-identity-credential-object-id>"
+  },
+  "fields": [
+    { "name": "UserIds",           "type": "Collection(Edm.String)", "permissionFilter": "userIds",  "filterable": true, "retrievable": false },
+    { "name": "GroupIds",          "type": "Collection(Edm.String)", "permissionFilter": "groupIds", "filterable": true, "retrievable": false },
+    { "name": "SharePointSiteUrl", "type": "Edm.String", "sharepointSiteUrl": true, "filterable": false, "retrievable": false }
+  ],
+  "permissionFilterOption": "enabled"
+}
+```
+
+The `federatedCredentialId` value is the object ID of the federated identity credential previously configured on the [Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity) used by the indexer.
+
+### Configure the indexer field mappings
+
+Map the SharePoint metadata fields to the index fields in a single combined mapping block. The first two mappings are the same ones used for standard ACL ingestion; the third mapping activates SharePoint groups resolution.
+
+```json
+{
+  "fieldMappings": [
+    { "sourceFieldName": "metadata_user_ids",             "targetFieldName": "UserIds" },
+    { "sourceFieldName": "metadata_group_ids",            "targetFieldName": "GroupIds" },
+    { "sourceFieldName": "metadata_sharepoint_site_url",  "targetFieldName": "SharePointSiteUrl" }
+  ]
+}
+```
+
+If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), project `SharePointSiteUrl` onto each chunk through `indexProjections.mappings` instead. See [Choose where to populate ACL fields](#choose-where-to-populate-acl-fields--indexer-field-mappings-index-projections-or-both).
+
+### Query the index
+
+No client-side change is required. The same `x-ms-query-source-authorization` token used for Microsoft Entra group enforcement also activates SharePoint site group enforcement, because the search service resolves SharePoint group memberships server-side using the `sharePointConnectorAppRegistration` configured on the index.
+
+For the request shape, see the [general query example](search-query-access-control-rbac-enforcement.md#query-example) and the SharePoint-specific [example with SharePoint site group enforcement](search-query-access-control-rbac-enforcement.md#example-query-with-sharepoint-site-group-enforcement).
+
+### Verify
+
+To confirm SharePoint group IDs landed in the index, run an [elevated-read query](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) that selects `GroupIds` and look for `spg:`-prefixed values in the response.
 
 ## Synchronize permissions between indexed and source content
 

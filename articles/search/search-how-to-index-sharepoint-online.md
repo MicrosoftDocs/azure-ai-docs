@@ -640,5 +640,5 @@ The error message also includes the SharePoint site ID, drive ID, and drive item
 + [Indexers in Azure AI Search](search-indexer-overview.md)
 + [Content metadata properties used in Azure AI Search](search-blob-metadata-properties.md)
 + [Index SharePoint content and other sources in Azure AI Search using Azure Logic App connectors](search-how-to-index-logic-apps.md)
-+ [Ingest SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md)
++ [Ingest SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md). To also enforce SharePoint site group membership at query time, complete [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support) after indexer creation.
 + [Preserve and honor Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md)

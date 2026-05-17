@@ -4,7 +4,7 @@ description: Learn how query-time ACL and RBAC enforcement ensures secure docume
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 01/15/2026
+ms.date: 05/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -27,7 +27,7 @@ This article explains how to set up queries that use permission metadata to filt
   + For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
   + For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). 
 
-- Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
+- Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
 ## Limitations
 
@@ -90,12 +90,29 @@ At query time, Azure AI Search uses the registered application and the site URL 
 
 For configuration details and limitations, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
 
+### Example: query with SharePoint site group enforcement
+
+The request is identical to the standard ACL-enforced query. The search service uses the index's `sharePointConnectorAppRegistration` to resolve SharePoint group membership on the caller's behalf. Include `GroupIds` in the `select` clause to see `spg:`-prefixed values in the response.
+
+```http
+POST {{endpoint}}/indexes/{index}/docs/search?api-version=2026-05-01-preview
+Authorization: Bearer {{query-token}}
+x-ms-query-source-authorization: {{query-token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "name,description,SharePointSiteUrl,GroupIds",
+    "orderby": "name asc"
+}
+```
+
 ## Query example
 
 Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2026-05-01-preview
 Authorization: Bearer {{query-token}}
 x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json
@@ -135,7 +152,7 @@ Queries are a data plane operation, so the custom role can only consist of atomi
 After you set up permissions, you can run the query. The following example is a query request against a search index.
 
 ```http
-POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2025-11-01-preview
+POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2026-05-01-preview
 Authorization: Bearer {AUTH_TOKEN}
 x-ms-query-source-authorization: {TOKEN}
 x-ms-enable-elevated-read: true
@@ -148,7 +165,7 @@ x-ms-enable-elevated-read: true
 ```
 
 > [!IMPORTANT]
-> The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action.
+> The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) action.
 
 ### Important ACL functionality behavior change in specific preview API versions
 
@@ -158,7 +175,7 @@ Starting in November 2025, this behavior changed:
 
 - ACL permission filters now apply even when using only service API keys or Entra authentication across all versions that support ACL.
 - If the user token is omitted, ACL-protected content isn't returned.
-- To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2025-11-01-preview`.
+- To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2026-05-01-preview`.
 
 This update helps keep content protected when applications don’t enforce best practices for token validation.
 
