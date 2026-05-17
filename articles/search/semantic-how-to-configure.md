@@ -59,6 +59,13 @@ define a semantic configuration for classic semantic search queries, older API
 versions, and workloads that need explicit control over title, content, and
 keyword fields.
 
+For search index knowledge sources, `semanticConfigurationName` remains a
+supported property. Set it when you want the knowledge source to use a specific
+semantic configuration. In supported `2026-05-01-preview` agentic retrieval
+flows, you can omit it when you want the service to use the preview behavior
+that doesn't require an explicit semantic configuration on the underlying
+index.
+
 | Scenario | Semantic configuration guidance |
 | --- | --- |
 | Classic semantic search query | Configure semantic ranking on the index. |
