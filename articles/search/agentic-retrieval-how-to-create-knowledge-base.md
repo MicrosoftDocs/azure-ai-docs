@@ -598,9 +598,12 @@ When `corsOptions` is present, `allowedOrigins` lists the origins that can call
 the knowledge base from a browser. `maxAgeInSeconds` is optional and controls
 how long the browser can cache the preflight response.
 
-[TO VERIFY] Confirm the default behavior when `corsOptions` is omitted,
-wildcard origin support, origin-count limits, `maxAgeInSeconds` range, and the
-supported way to clear an existing CORS policy.
+If `corsOptions` is omitted, the knowledge base has no CORS policy and browsers
+block cross-origin retrieve requests. Set `allowedOrigins` to an explicit list
+of browser origins for production applications. You can use `"*"` to allow all
+origins, but this setting isn't recommended for production. If
+`maxAgeInSeconds` is omitted, the preflight cache duration defaults to 300
+seconds. CORS applies to knowledge base retrieve REST API calls from browsers.
 
 ### Knowledge base properties
 
