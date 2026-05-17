@@ -997,8 +997,11 @@ Content-Type: application/json
 }
 ```
 
-[TO VERIFY] Confirm the default value, maximum value, and knowledge source
-kind applicability for `maxOutputDocuments` in `knowledgeSourceParams`.
+For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
+is a per-source upper-bound hint for the intermediate reranking window. The
+default is `50`, the minimum is `50`, and the maximum is `200`. Values outside
+that range are rejected. The service can rerank fewer candidates when fewer
+matches are available or when internal limits reduce the applied window.
 
 ### Override default reasoning effort and set request limits
 
