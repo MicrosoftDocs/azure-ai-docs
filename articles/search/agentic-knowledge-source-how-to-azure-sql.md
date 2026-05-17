@@ -2,7 +2,7 @@
 title: Create an Azure SQL Knowledge Source for Agentic Retrieval
 description: Learn how to create an indexed Azure SQL knowledge source in Azure AI Search that ingests rows from a SQL table or view for agentic retrieval.
 author: gmndrg
-ms.author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2026
