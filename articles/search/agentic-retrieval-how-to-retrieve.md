@@ -964,8 +964,8 @@ The following examples illustrate different ways to call the retrieve action usi
 
 In the `2026-05-01-preview` API, model-backed activity records can include
 `modelName` when `includeActivity` is enabled. Use this field to confirm which
-configured model handled query planning, answer synthesis, or another
-model-backed step during a retrieve request.
+configured model handled query planning, answer synthesis, or web
+summarization during a retrieve request.
 
 The field is additive and appears only on activity entries that represent
 model-backed work. Nonmodel activity records, such as search index retrieval
@@ -1010,7 +1010,7 @@ The following response excerpt shows activity records with `modelName`:
       "elapsedMs": 234
     },
     {
-      "type": "modelSummarization",
+      "type": "modelAnswerSynthesis",
       "id": 2,
       "modelName": "gpt-5-mini",
       "inputTokens": 2418,
@@ -1021,11 +1021,11 @@ The following response excerpt shows activity records with `modelName`:
 }
 ```
 
-For this preview, `modelName` appears on `modelQueryPlanning` and
-`modelSummarization` activity records. Future model-backed activity types can
-use the same field. The value is the public model name used for the activity,
-such as `gpt-5-mini`, not the deployment name. If an activity step isn't backed
-by a single customer-visible model, the field is omitted.
+For this preview, `modelName` appears on model activity records, including
+`modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The
+value is the public model name used for the activity, such as `gpt-5-mini`, not
+the deployment name. If an activity step isn't backed by a single
+customer-visible model, the field is omitted.
 
 ### Override default reasoning effort and set request limits
 
