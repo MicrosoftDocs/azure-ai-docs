@@ -66,6 +66,7 @@ The end-user application includes a query access token as part of the search que
 | - | - |
 | userIds | `oid` from `x-ms-query-source-authorization` token |
 | groupIds | Group membership fetched using the [Microsoft Graph](/graph/api/resources/groups-overview) API |
+| SharePoint site groups | SharePoint site group memberships for the calling user, fetched from SharePoint by using the registered application on the index. Group IDs are stored in `groupIds` with the `spg:` prefix. Requires the [SharePoint groups configuration](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support). Preview, starting in the 2026-05-01-preview REST API. |
 | rbacScope | Permissions the user from `x-ms-query-source-authorization` has on a storage container |
 
 ### 2. Security filter construction
@@ -77,6 +78,17 @@ For Azure RBAC, permissions are lists of resource ID strings. There must be an A
 ### 3. Results filtering
   
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the request against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
+
+## SharePoint groups at query time
+
+Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships (such as Owners, Members, Visitors, and custom site groups) at query time. To enable this scenario, the index must include:
+
+- A `sharePointConnectorAppRegistration` property that references the federated identity credential of the Microsoft Entra application used to call SharePoint on behalf of the user.
+- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_sharepoint_site_url` source field).
+
+At query time, Azure AI Search uses the registered application and the site URL on each candidate document to resolve the SharePoint group memberships of the calling user on that site. The resolved groups are matched against the `spg:`-prefixed values stored in the `groupIds` permission filter field. The `spg:` prefix distinguishes SharePoint site groups from Microsoft Entra group object IDs, which are stored without a prefix.
+
+For configuration details and limitations, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
 
 ## Query example
 

@@ -108,6 +108,12 @@ The following JSON is an example response for an indexed SharePoint knowledge so
 > [!NOTE]
 > Sensitive information is redacted. The generated resources appear at the end of the response.
 
+## Incremental ACL synchronization
+
+Starting in the 2026-05-01-preview REST API, when `ingestionPermissionOptions` is set on the indexed SharePoint knowledge source, ACL changes for drive items with unique permissions are detected and refreshed on each successful indexer run. Parent-scope permission changes (changes on a site, library, or folder that are inherited by child items) aren't picked up automatically and still require an explicit refresh. For details and remediation options, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
+
+The indexed SharePoint knowledge source ingests drive items only. SharePoint list items and ASPX site pages, including their ACLs, aren't supported at the knowledge source level in this preview. To index those item types, use the [SharePoint indexer](search-how-to-index-sharepoint-online.md) directly.
+
 ## Create a knowledge source
 
 Run the following code to create an indexed SharePoint knowledge source.

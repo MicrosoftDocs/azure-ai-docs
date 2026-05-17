@@ -25,10 +25,14 @@ This article explains how to configure a [search indexer](search-indexer-overvie
 In Azure AI Search, an indexer extracts searchable data and metadata from a data source. The SharePoint in Microsoft 365 indexer provides the following functionality:
 
 + Indexes files and metadata from one or more document libraries.
-+ Indexes incrementally, picking up just the new and changed files and metadata. 
-+ Detects deleted content automatically. Document deletion in the library is picked up on the next indexer run, and the corresponding search document is removed from the index.
++ Indexes [SharePoint lists](#index-sharepoint-lists) and their item field values, with each list column available as a source field for [field mapping](#index-sharepoint-lists). This capability is in preview, starting in the 2026-05-01-preview REST API.
++ Indexes [ASPX site pages](#index-aspx-site-pages) (modern site pages). This capability is in preview, starting in the 2026-05-01-preview REST API.
++ Indexes mixed SharePoint content (document libraries, lists, and site pages) in a single indexer using the `allSiteContent` container value. This capability is in preview, starting in the 2026-05-01-preview REST API.
++ Indexes content across subsites when `includeSubsites=true` is set in the data source query. This capability is in preview, starting in the 2026-05-01-preview REST API.
++ Indexes incrementally, picking up just the new and changed files, list items, pages, and metadata. 
++ Detects deleted content automatically. Deletion of files, list items, or pages is picked up on the next indexer run, and the corresponding search document is removed from the index.
 + Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), such as optical character recognition (OCR) or entity recognition.
-+ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in preview during initial document sync. It also supports full data set incremental data sync.
++ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in preview. Starting in 2026-05-01-preview, ACL changes are detected and updated incrementally on each successful indexer run for items with unique permissions. This release also extends ACL ingestion to list items, ASPX site pages, and SharePoint groups. For caveats and configuration steps, see [Use a SharePoint indexer to ingest permission metadata](search-indexer-sharepoint-access-control-lists.md).
 + Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in preview.
   
 ## Prerequisites
@@ -51,7 +55,7 @@ The SharePoint in Microsoft 365 indexer can extract text from the following docu
 
 Here are the limitations of this feature:
 
-+ The indexer can index content from supported document formats in a document library. There's no indexer support for [SharePoint lists](https://support.microsoft.com/office/introduction-to-lists-0a1c3ace-def0-44af-b225-cfa8d92c52d7), .ASPX site content, or OneNote notebook files. Furthermore, indexing sub-sites recursively from a specific site isn't supported.
++ Starting in the 2026-05-01-preview REST API, the indexer supports indexing of [SharePoint lists](https://support.microsoft.com/office/introduction-to-lists-0a1c3ace-def0-44af-b225-cfa8d92c52d7), modern ASPX site pages, and mixed content (libraries, lists, and pages combined). Subsite traversal is also supported with `includeSubsites=true`. OneNote notebook files aren't supported.
 
 + Incremental indexing limitations:
 
@@ -106,7 +110,7 @@ We recommend app-based permissions. For known issues related to delegated permis
 
 + Application permissions (recommended), where the indexer runs under the [identity of the SharePoint tenant](/sharepoint/dev/solution-guidance/security-apponly-azureacs) with access to all sites and files. The indexer requires a [client secret](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow). The indexer also requires [tenant admin approval](/azure/active-directory/manage-apps/grant-admin-consent) before it can index content. This permission type is the only one that supports basic [ACL preservation (preview)](search-indexer-sharepoint-access-control-lists.md) configuration. Delegated permissions can't be used for ACL sync.
 
-+ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforce token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This behavior can't be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). For this reason, you should use app-based permissions instead. This configuration is only recommended for small testing operations, due to token expiration period and since this permission type doesn't support any level of [ACL preservation](search-indexer-sharepoint-access-control-lists.md) configuration.
++ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforce token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This behavior can't be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true). For this reason, you should use app-based permissions instead. This configuration is only recommended for small testing operations, due to token expiration period and since this permission type doesn't support any level of [ACL preservation](search-indexer-sharepoint-access-control-lists.md) configuration.
 
 <a name='step-3-create-an-azure-ad-application'></a>
 
@@ -225,12 +229,12 @@ For SharePoint indexing, the data source must have the following required proper
 + **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Microsoft Entra tokens. An example SharePoint endpoint is `https://microsoft.sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
 + **container** specifies which document library to index. Properties [control which documents are indexed](#controlling-which-documents-are-indexed).
 
-To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 Here's a data source definition sample for credentials with application secret or service-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -245,7 +249,7 @@ api-key: [admin key]
 Here's a data source definition sample for credentials with user-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -290,10 +294,10 @@ If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sha
 
 The index specifies the fields in a document, attributes, and other constructs that shape the search experience.
 
-To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true):
+To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true):
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -313,7 +317,12 @@ api-key: [admin key]
 ```
 
 > [!IMPORTANT]
-> Only [`metadata_spo_site_library_item_id`](#metadata) may be used as the key field in an index populated by the SharePoint in Microsoft 365 indexer. If a key field doesn't exist in the data source, `metadata_spo_site_library_item_id` is automatically mapped to the key field.
+> The key field in an index populated by the SharePoint in Microsoft 365 indexer depends on the container type in the data source:
+>
+> + For document-library content (`defaultSiteLibrary`, `allSiteLibraries`, or `useQuery` with library or folder filters), use `metadata_spo_site_library_item_id`. If a key field doesn't exist in the data source, `metadata_spo_site_library_item_id` is automatically mapped to the key field.
+> + For list, page, or mixed content (`allSiteLists`, `allSitePages`, or `allSiteContent`), use `metadata_spo_site_asset_item_id`. This key field is in preview, starting in the 2026-05-01-preview REST API.
+>
+> Apply the `base64Encode` mapping function when mapping these key fields to your index `id` field.
 
 If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles for index and skillset configuration before you create the indexer. Each feature has specific configuration steps.
 
@@ -325,10 +334,10 @@ If you're using delegated permissions, during this step, you're asked to sign in
 
 To create the indexer:
 
-1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) request:
+1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) request:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [admin key]
     
@@ -360,19 +369,21 @@ To create the indexer:
     }
     ```
 
+    For data sources that use the `allSiteLists`, `allSitePages`, or `allSiteContent` container values, map `metadata_spo_site_asset_item_id` instead of `metadata_spo_site_library_item_id`.
+
     If you're using application permissions, you must wait until the initial run is complete before you start to query your index. The instructions provided in this step apply only to delegated permissions, not application permissions.
 
-1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
+1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-11-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-    If you don't run the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you'll need to recreate the [data source](#create-data-source).
+    If you don't run the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you'll need to recreate the [data source](#create-data-source).
 
-1. Copy the device login code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) response. The device login can be found in the "errorMessage".
+1. Copy the device login code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) response. The device login can be found in the "errorMessage".
 
     ```http
     {
@@ -395,7 +406,7 @@ To create the indexer:
 
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-approve-api-permissions.png" alt-text="Screenshot showing how to approve API permissions.":::
 
-1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided above are correct and within the 10-minute timeframe.
+1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided above are correct and within the 10-minute timeframe.
 
 > [!NOTE]
 > If the Microsoft Entra application requires admin approval and wasn't approved before logging in, you might see the following screen. [Admin approval](/azure/active-directory/manage-apps/grant-admin-consent) is required to continue.
@@ -404,10 +415,10 @@ To create the indexer:
 
 ### Step 7: Check the indexer status
 
-After the indexer has been created, you can call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true):
+After the indexer has been created, you can call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true):
 
 ```http
-GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-11-01-preview
+GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 ```
@@ -420,18 +431,18 @@ If you change the data source while the device code is expired, sign in again to
 
 Here are the steps for updating a data source, assuming an expired device code:
 
-1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
+1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
 
     ```http
-    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2025-11-01-preview  
+    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2026-05-01-preview  
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). 
+1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true). 
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-11-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
@@ -450,7 +461,8 @@ If you're indexing document metadata (`"dataToExtract": "contentAndMetadata"`), 
 
 | Identifier | Type | Description | 
 | ------------- | -------------- | ----------- |
-| metadata_spo_site_library_item_id | Edm.String | The combination key of site ID, library ID, and item ID, which uniquely identifies an item in a document library for a site. |
+| metadata_spo_site_library_item_id | Edm.String | The combination key of site ID, library ID, and item ID, which uniquely identifies an item in a document library for a site. Use this field as the index key for the `defaultSiteLibrary`, `allSiteLibraries`, and `useQuery` (library or folder filters) container values. |
+| metadata_spo_site_asset_item_id | Edm.String | The combination key that uniquely identifies a list item, ASPX site page, or any asset in mixed-content mode. Use this field as the index key for the `allSiteLists`, `allSitePages`, and `allSiteContent` container values. Preview, starting in the 2026-05-01-preview REST API. |
 | metadata_spo_site_id | Edm.String | The ID of the SharePoint site. |
 | metadata_spo_library_id | Edm.String | The ID of document library. |
 | metadata_spo_item_id | Edm.String | The ID of the (document) item in the library. |
@@ -467,6 +479,56 @@ The SharePoint in Microsoft 365 indexer also supports metadata specific to each 
 > [!NOTE]
 > To index custom metadata, "additionalColumns" must be specified in the [query parameter of the data source](#query).
 
+## Index SharePoint lists
+
+[SharePoint lists](https://support.microsoft.com/office/introduction-to-lists-0a1c3ace-def0-44af-b225-cfa8d92c52d7) are indexable in preview, starting in the 2026-05-01-preview REST API. Set the data source `container.name` to `allSiteLists` to index all list items from a site, or to `allSiteContent` to combine list items with document libraries and site pages in a single indexer. To include subsite lists, add `includeSubsites=true` to the `container.query`.
+
+For list-based or mixed-content indexers, the index key field must map from [`metadata_spo_site_asset_item_id`](#metadata). The list item content is surfaced in the `content` field as JSON-formatted field values, and the standard `metadata_spo_item_*` fields (such as `metadata_spo_item_name`, `metadata_spo_item_weburi`, and `metadata_spo_item_last_modified`) are populated for each list item.
+
+### Map list columns to index fields
+
+Each column defined on a SharePoint list is exposed as a source field with the same name as the SharePoint column. You can map each column to an index field by using [field mappings](search-indexer-field-mappings.md).
+
+For example, consider a SharePoint list with the following columns.
+
+| SharePoint column | SharePoint column type |
+|-------------------|------------------------|
+| `Title` | Single line of text |
+| `Price` | Number |
+| `InStock` | Yes/No |
+| `Category` | Choice |
+
+Add matching fields to your index definition, then map each column to its target field in the indexer:
+
+```http
+{
+  "name": "my-sharepoint-list-indexer",
+  "dataSourceName": "my-sharepoint-list-ds",
+  "targetIndexName": "products-index",
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_spo_site_asset_item_id",
+      "targetFieldName": "id",
+      "mappingFunction": { "name": "base64Encode" }
+    },
+    { "sourceFieldName": "Title", "targetFieldName": "productName" },
+    { "sourceFieldName": "Price", "targetFieldName": "price" },
+    { "sourceFieldName": "InStock", "targetFieldName": "available" },
+    { "sourceFieldName": "Category", "targetFieldName": "category" },
+    { "sourceFieldName": "metadata_spo_item_last_modified", "targetFieldName": "lastUpdated" },
+    { "sourceFieldName": "metadata_spo_item_weburi", "targetFieldName": "itemUrl" }
+  ]
+}
+```
+
+Make sure each target field exists in your index with a compatible type (for example, `Edm.String` for `Title`, `Edm.Double` or `Edm.Int64` for `Price`, `Edm.Boolean` for `InStock`).
+
+## Index ASPX site pages
+
+Modern ASPX site pages are indexable in preview, starting in the 2026-05-01-preview REST API. Set the data source `container.name` to `allSitePages` to index all pages from a site, or to `allSiteContent` to combine pages with document libraries and lists in a single indexer. To include subsite pages, add `includeSubsites=true` to the `container.query`.
+
+For page-based or mixed-content indexers, the index key field must map from [`metadata_spo_site_asset_item_id`](#metadata). Page text is extracted into the `content` field, and the standard `metadata_spo_item_*` fields (such as `metadata_spo_item_name`, `metadata_spo_item_weburi`, and `metadata_spo_item_last_modified`) are populated for each page.
+
 ## Include or exclude by file type
 
 You can control which files are indexed by setting inclusion and exclusion criteria in the "parameters" section of the indexer definition.
@@ -474,7 +536,7 @@ You can control which files are indexed by setting inclusion and exclusion crite
 Include specific file extensions by setting `"indexedFileNameExtensions"` to a comma-separated list of file extensions (with a leading dot). Exclude specific file extensions by setting `"excludedFileNameExtensions"` to the extensions that should be skipped. If the same extension is in both lists, it's excluded from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2025-11-01-preview
+PUT /indexers/[indexer name]?api-version=2026-05-01-preview
 {
     "parameters" : { 
         "configuration" : { 
@@ -500,8 +562,13 @@ The "name" property is required and must be one of three values:
 | Value | Description |
 |-|-|
 | defaultSiteLibrary | Index all content from the site's default document library. |
-| allSiteLibraries | Index all content from all document libraries in a site. Document libraries from a subsite are out of scope. If you need content from subsites, choose "useQuery" and specify "includeLibrariesInSite". |
-| useQuery | Only index the content defined in the "query". |
+| allSiteLibraries | Index all content from all document libraries in a site. Document libraries from a subsite are out of scope unless you set `includeSubsites=true` in the query (preview, 2026-05-01-preview). You can also choose `useQuery` and specify `includeLibrariesInSite` to scope to specific sites or subsites. |
+| allSiteLists | Index all [SharePoint list](#index-sharepoint-lists) items from a site. Preview, starting in the 2026-05-01-preview REST API. |
+| allSitePages | Index all [modern ASPX site pages](#index-aspx-site-pages) from a site. Preview, starting in the 2026-05-01-preview REST API. |
+| allSiteContent | Index libraries, lists, and pages from a site in a single indexer. Preview, starting in the 2026-05-01-preview REST API. |
+| useQuery | Only index the content defined in the `query`. |
+
+For data sources that use `allSiteLists`, `allSitePages`, or `allSiteContent`, the indexer key field mapping must use `metadata_spo_site_asset_item_id` instead of `metadata_spo_site_library_item_id`. For details, see [Step 6: Create an indexer](#step-6-create-an-indexer).
 
 <a name="query"></a>
 
@@ -515,6 +582,7 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 | Keyword | Value description and examples |
 | ------- | ------------------------ |
 | null | If null or empty, index either the default document library or all document libraries depending on the container name.	<br><br>Example: <br><br>``` "container" : { "name" : "defaultSiteLibrary", "query" : null } ``` |
+| includeSubsites | When set to `true`, the indexer traverses the root site and all subsites. Combine with `allSiteLibraries`, `allSiteLists`, `allSitePages`, or `allSiteContent`. Preview, starting in the 2026-05-01-preview REST API. <br><br>Example: <br><br>```"container" : { "name" : "allSiteLibraries", "query" : "includeSubsites=true" }``` |
 | includeLibrariesInSite | Index content from all libraries under the specified site in the connection string. The value should be the URI of the site or subsite. <br><br>Example 1: <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/mysite" }``` <br><br>Example 2 (include a few subsites only): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite1;includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite2" }``` |
 | includeLibrary | Index all content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br>Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/mysite/MyDocumentLibrary" }``` <br><br>Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
 | excludeLibrary | Don't index content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br> Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mysite.sharepoint.com/subsite1; excludeLibrary=https://mysite.sharepoint.com/subsite1/MyDocumentLibrary" }``` <br><br> Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/teams/mysite; excludeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
@@ -527,7 +595,7 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 By default, the SharePoint in Microsoft 365 indexer stops as soon as it encounters a document with an unsupported content type, such as an image. You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when an unsupported content type is encountered, set the `failOnUnsupportedContentType` configuration parameter to false:
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-11-01-preview
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
