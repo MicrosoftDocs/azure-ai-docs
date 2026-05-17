@@ -2,9 +2,12 @@
 title: Use Indexers to Ingest Microsoft Purview Sensitivity Labels
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.
 ms.reviewer: gimondra
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 05/17/2026
+ai-usage: ai-assisted
 ---
 
 # Use an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels and enforce document-level security
@@ -34,7 +37,7 @@ This functionality is available for the following data sources:
 
 + Source documents must use file types that are both [supported by Purview sensitivity labels](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and [supported by Azure AI Search indexers](search-how-to-index-azure-blob-storage.md#supported-document-formats).
 
-+ REST API version 2025-11-01-preview or an equivalent preview SDK package.
++ REST API version 2025-11-01-preview or an equivalent preview SDK package. The [elevated read](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview) capability and Microsoft Purview audit logging require [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or later.
 
 ## Limitations
 
@@ -69,11 +72,13 @@ When configured [on a schedule](search-howto-schedule-indexers.md), the indexer 
 - Changes to content or labels since the last indexer run
 
 > [!NOTE]
-> There might be a delay between when a label changes on a document and when the indexer detects the update.
+> There might be a delay between when a label changes on a document and when the indexer detects the update, since the labels will be updated in the index during the subsequent successful indexer runs after the change.
 
 ### Query-time enforcement
 
 At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) based on the user's Microsoft Entra ID token and Microsoft Purview label policies. Only users authorized to access content with [READ usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results.
+
+Authorized administrators can also issue [elevated read](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview) requests, which return labeled documents that the calling user wouldn't normally see and emit a Microsoft Purview audit log entry for every document returned. Elevated read requires Search Index Data Contributor role on the search service and the 2026-05-01-preview API version.
 
 ### End-to-end example
 
@@ -204,6 +209,8 @@ The `indexerPermissionOptions` property instructs the indexer to extract sensiti
 
 If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md), for example, if you have integrated vectorization, you must ensure you also map the sensitivity label to each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
+This step is required for both query-time enforcement and for [agentic retrieval](agentic-retrieval-overview.md) responses to include per-document `sensitivityLabelInfo` for each chunk. Without the projection mapping, child chunk rows won't be filtered correctly.
+
 ```
 PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-11-01-preview
 {
@@ -264,5 +271,7 @@ If your data source emits label metadata under a different field name (for examp
 ## Next steps
 
 [How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
+
+[Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview)
 
 [Document-level security in Azure AI Search](search-document-level-access-overview.md)

@@ -3,7 +3,8 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/05/2026
+ms.date: 05/17/2026
+ai-usage: ai-assisted
 ---
 
 # What is a knowledge source?
@@ -42,6 +43,10 @@ You can create the following knowledge sources:
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
 
 Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
+
+For blob, OneLake, and SharePoint-indexed knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. Once synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+
+If your indexed knowledge source uses a chunked index (for example, with integrated vectorization or a custom split skill), you must also map the sensitivity label to each chunk row via [index projections in the skillset](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Otherwise, chunk-level references in retrieve responses won't be returned if they have labels in the source document.
 
 You access remote knowledge sources at query time. The agentic retrieval engine calls the retrieval APIs that are native to the platform (Bing or SharePoint APIs).
 
@@ -86,5 +91,4 @@ Not all solutions benefit from LLM query planning and execution. If simplicity a
 
 For low and medium, the level of LLM processing is either a balanced or maximal approach that improves relevance. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-> [!NOTE]
-> If you used `attemptFastPath` in the previous preview, that approach is now replaced by `retrievalReasoningEffort` set to `minimal`.
+
