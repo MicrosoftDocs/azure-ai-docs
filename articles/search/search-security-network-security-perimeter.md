@@ -196,7 +196,7 @@ Within the perimeter, all resources have mutual access at the network level. You
 
 For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
-A search service accepts inbound requests from apps like the [Microsoft Foundry portal](https://foundry.microsoft.com/?cid=learnDocs) and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
+A search service accepts inbound requests from apps like the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
 
 > [!NOTE]
 > When the search service authenticates by using a managed identity and Microsoft Entra-based [role assignments](/entra/identity/managed-identities-azure-resources/overview), traffic between resources in the same network security perimeter is allowed implicitly at the network level. If the search service authenticates with API keys, the perimeter can't identify the traffic as intra-perimeter, so you must add explicit inbound and outbound access rules even when both resources are in the same perimeter.
