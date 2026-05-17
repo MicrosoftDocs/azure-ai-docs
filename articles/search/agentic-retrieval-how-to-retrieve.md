@@ -994,14 +994,15 @@ Content-Type: application/json
 
 | `maxOutputDocuments` | `maxOutputSize` | Behavior |
 | --- | --- | --- |
-| Unspecified | Unspecified | Uses the default response limit behavior. |
-| Unspecified | Specified | Limits the response by payload size. |
-| Specified | Unspecified | Returns up to the specified number of grounding documents. |
-| Specified | Specified | Applies both the document-count and payload-size limits. |
+| Unspecified | Unspecified | Uses the default `maxOutputSize` response limit behavior. |
+| Unspecified | Specified | Discards documents once the payload-size limit is reached. |
+| Specified | Unspecified | Returns up to the specified number of grounding documents and doesn't apply a `maxOutputSize` limit. |
+| Specified | Specified | Returns up to `maxOutputDocuments` documents or however many documents fit under `maxOutputSize`, whichever limit applies first. |
 
-[TO VERIFY] Confirm the default and maximum value for top-level
-`maxOutputDocuments` and whether the service applies the count or size limit
-first when both are specified.
+The service can return fewer documents than `maxOutputDocuments` if fewer
+results survive ranking, thresholding, or deduplication. Unlike per-source
+`knowledgeSourceParams.maxOutputDocuments`, the top-level final-result cap
+supports small values such as `1` for callers that need a narrow citation set.
 
 ### Override default reasoning effort and set request limits
 
