@@ -423,7 +423,13 @@ Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated suc
 # Create a knowledge base
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
+from azure.search.documents.indexes.models import (
+    AzureOpenAIVectorizerParameters,
+    KnowledgeBase,
+    KnowledgeBaseAzureOpenAIModel,
+    KnowledgeSourceReference,
+)
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalLowReasoningEffort
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
@@ -439,7 +445,7 @@ knowledge_base = KnowledgeBase(
     description = "This knowledge base handles questions directed at two unrelated sample indexes.",
     retrieval_instructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
     answer_instructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
-    output_mode = KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    output_mode = "answerSynthesis",
     knowledge_sources = [
         KnowledgeSourceReference(name = "hotels-ks"),
         KnowledgeSourceReference(name = "earth-at-night-ks"),
@@ -648,7 +654,7 @@ Pass the following properties to create a knowledge base.
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
 | `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Pass instructions directly to the LLM. It's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | No |
 | `answer_instructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | No |
-| `output_mode` | Valid values are `answer_synthesis` for an LLM-formulated answer or `extracted_data` for full search results that you can pass to an LLM as a downstream step. | String | No |
+| `output_mode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
 | `knowledge_sources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
 | `models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
 | `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
