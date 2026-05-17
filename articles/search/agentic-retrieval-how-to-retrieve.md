@@ -1002,7 +1002,8 @@ Content-Type: application/json
 The service can return fewer documents than `maxOutputDocuments` if fewer
 results survive ranking, thresholding, or deduplication. Unlike per-source
 `knowledgeSourceParams.maxOutputDocuments`, the top-level final-result cap
-supports small values such as `1` for callers that need a narrow citation set.
+applies after the knowledge sources have contributed documents to the retrieve
+pipeline.
 
 ### Override default reasoning effort and set request limits
 
