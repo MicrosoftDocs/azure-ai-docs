@@ -99,7 +99,7 @@ var indexKnowledgeSource = new SearchIndexKnowledgeSource(
     name: knowledgeSourceName,
     searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
     {
-        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
+        SemanticConfigurationName = "semantic_config",`r`n        SearchFields = { new SearchIndexFieldReference(name: "page_chunk") },`r`n        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
     }
 );
 
@@ -123,7 +123,7 @@ var indexKnowledgeSource = new SearchIndexKnowledgeSource(
     name: knowledgeSourceName,
     searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
     {
-        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
+        SemanticConfigurationName = "semantic_config",`r`n        SearchFields = { new SearchIndexFieldReference(name: "page_chunk") },`r`n        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
     }
 );
 
