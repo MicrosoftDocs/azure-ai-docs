@@ -8,8 +8,8 @@ ms.reviewer: zhuoqunli
 ms.date: 04/25/2026
 ms.manager: nitinme
 ms.topic: how-to
-ms.service: microsoft-foundry
-ms.subservice: foundry-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-toolbox
@@ -17,6 +17,10 @@ zone_pivot_groups: selection-foundry-toolbox
 
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+
+> [!WARNING]
+> When you connect to non-Foundry tools, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable terms and data handling policies. See the tool's documentation to learn how to manage access to the tool.
+
 
 A single agent can depend on multiple tools - APIs, Model Context Protocol (MCP) servers, connectors, and flows - each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration becomes the bottleneck.
 
@@ -44,7 +48,7 @@ In this article, you learn how to:
 - Create a toolbox with one or more tools.
 - Get the toolbox MCP endpoint.
 - Verify that tools load correctly.
-- Integrate a toolbox into your Hosted agent.
+- Integrate a toolbox into your hosted agent.
 - Manage toolbox versions and promote a version to default.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
@@ -63,15 +67,16 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Work IQ tool](work-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Tool Search](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Grant the **Foundry User** role on the Foundry project to each identity that applies to your scenario:
-
-  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
   - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
-  - **Agent identity** (required if using a Hosted agent) — the agent's managed identity that calls tools at runtime.
+  - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
@@ -523,7 +528,7 @@ await client.close();
 
 :::zone pivot="vscode"
 
-Use the endpoint from Step 2 together with a scaffolded Hosted agent sample to validate toolbox loading in VS Code.
+Use the endpoint from Step 2 together with a scaffolded hosted agent sample to validate toolbox loading in VS Code.
 
 1. In **Foundry Toolkit**, under **My Resources** > **Your project name** > **Tools**, locate the toolbox you want to test.
 1. Select **Scaffold code template**.
@@ -766,7 +771,7 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to your toolbox.
+Use Foundry Toolkit to scaffold a hosted agent sample that's already wired to your toolbox.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -774,9 +779,9 @@ Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to yo
 1. In the Command Palette, choose a project folder when prompted.
 1. Open the generated `README.md` and follow the setup, local run, and deployment steps for the scaffold.
 
-The generated project includes the Hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
+The generated project includes the hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
 
-If you want to integrate a toolbox into an existing Hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
+If you want to integrate a toolbox into an existing hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
 
 :::zone-end
 
@@ -1113,7 +1118,7 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
+Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a hosted agent that consumes it.
 
 :::zone-end
 
@@ -2039,7 +2044,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
 
 > [!IMPORTANT]
-> When Code Interpreter is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
+> When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
 
 :::zone pivot="rest-api"
 
@@ -2154,7 +2159,7 @@ To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
@@ -2556,6 +2561,114 @@ resources:
 
 :::zone-end
 
+### [Work IQ](work-iq.md)
+
+Use this pattern to give the agent access to the user's Microsoft 365 work context - email, meetings, files, and chats - through Work IQ. Provide a project connection to your Work IQ endpoint.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Work IQ for Microsoft 365 data access",
+  "tools": [
+    {
+      "type": "work_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import WorkIQPreviewTool
+
+tools = [
+    WorkIQPreviewTool(
+        project_connection_id="<CONNECTION_NAME>",
+    )
+]
+```
+
+:::zone-end
+
+### [Fabric IQ](fabric-iq.md)
+
+Use this pattern to give the agent access to Microsoft Fabric data - ontologies, data agents, and Power BI semantic models - through Fabric IQ. Provide the project connection, MCP server URL, and server label for the target Fabric item.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Fabric IQ for enterprise Fabric data access",
+  "tools": [
+    {
+      "type": "fabric_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>",
+      "server_label": "<SERVER_LABEL>",
+      "server_url": "<SERVER_URL>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import FabricIQPreviewTool
+
+tools = [
+    FabricIQPreviewTool(
+        project_connection_id="<CONNECTION_NAME>",
+        server_label="<SERVER_LABEL>",
+        server_url="<SERVER_URL>",
+    )
+]
+```
+
+:::zone-end
+
+For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
+
+### [Tool Search](tool-search.md)
+
+Use this pattern to enable intent-based tool routing. When `ToolboxSearchPreviewTool` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Toolbox with intent-based tool routing",
+  "tools": [
+    {
+      "type": "tool_search_preview"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import ToolboxSearchPreviewTool
+
+tools = [
+    ToolboxSearchPreviewTool()
+]
+```
+
+:::zone-end
+
+> [!NOTE]
+> `ToolboxSearchPreviewTool` is a routing directive, not a callable tool. It does not appear in `tools/list` responses and does not count toward the unnamed-tool-per-type limit.
+
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2604,6 +2717,6 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
-- [Deploy a Hosted agent](../deploy-hosted-agent.md)
+- [Deploy a hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)
