@@ -1005,11 +1005,12 @@ Content-Type: application/json
 `failOnError` defaults to `false`. When a queried source has
 `failOnError: true` and the source query fails, the retrieve request fails
 instead of returning `206 Partial Content`. The expected error is `502 Bad
-Gateway` with a `KnowledgeSourceQueryFailed` error code. The setting is
-independent of `alwaysQuerySource`: `alwaysQuerySource` controls whether the
-source is attempted, while `failOnError` controls what happens if that attempt
-fails. If a source must always participate and must fail the request on error,
-set both properties to `true`.
+Gateway`, with an error message that identifies the knowledge source that
+couldn't be queried. The setting is independent of `alwaysQuerySource`:
+`alwaysQuerySource` controls whether the source is attempted, while
+`failOnError` controls what happens if that attempt fails. If a source must
+always participate and must fail the request on error, set both properties to
+`true`.
 
 ### Override default reasoning effort and set request limits
 
