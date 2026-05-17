@@ -46,6 +46,10 @@ in the page and includes continuation information when more items remain.
 Filtering and ordering parameters, such as `$filter` and `$orderby`, aren't
 part of this preview paging contract.
 
+For knowledge base and knowledge source list operations, the service orders
+resources by name before applying `$skip` and `$top`, so paging is stable across
+requests when the collection doesn't change.
+
 ## Send the first paged request
 
 The following example requests five indexes and asks the service to include
@@ -57,8 +61,8 @@ Content-Type: application/json
 api-key: {{search-api-key}}
 ```
 
-The response includes the first page of values. If more results are available,
-the response includes `@odata.nextLink`.
+The response includes the first page of values. When you specify `$top`, request
+subsequent pages by increasing `$skip`.
 
 ```json
 {
@@ -69,30 +73,33 @@ the response includes `@odata.nextLink`.
     { "name": "index-3" },
     { "name": "index-4" },
     { "name": "index-5" }
-  ],
-  "@odata.nextLink": "https://contoso.search.windows.net/indexes?$top=5&$skip=5&$count=true&api-version=2026-05-01-preview"
+  ]
 }
 ```
 
 ## Continue through all pages
 
-Treat continuation information as opaque. Prefer following `@odata.nextLink`
-when it's present instead of constructing the next request yourself.
+When you control `$top`, continue by increasing `$skip` until the response
+contains fewer items than requested. If the service applies the default page
+size because `$top` is omitted, or caps a request above the maximum page size,
+the response can include `@odata.nextLink` when more results remain. Treat
+`@odata.nextLink` as opaque when it's present.
 
 The following pseudocode shows the basic paging loop:
 
 ```text
-nextLink = "/indexes?$top=50&$count=true&api-version=2026-05-01-preview"
+top = 50
+skip = 0
 
-while nextLink is not null:
-    response = GET nextLink
+while true:
+    response = GET "/indexes?$top={top}&$skip={skip}&$count=true&api-version=2026-05-01-preview"
     process response.value
-    nextLink = response["@odata.nextLink"]
-```
 
-`@odata.nextLink` is the continuation mechanism for paged list responses in
-this preview. Treat it as opaque and don't depend on the `$skip` value or other
-query parameters embedded in the URL.
+    if response.value.length < top:
+        break
+
+    skip = skip + top
+```
 
 ## Supported list operations
 
@@ -111,11 +118,8 @@ The following list operations support paging in the preview:
 
 Aliases aren't included in the preview paging scope.
 
-During preview validation, `GET /indexes` accepted `$top`, `$skip`, and
-`$count`, but didn't always populate `@odata.nextLink` when more pages were
-available. `GET /knowledgebases` and `GET /knowledgesources` rejected `$top` and
-`$skip` in the tested environment. Treat those as preview service issues if you
-encounter them before the feature is fully rolled out.
+Knowledge base and knowledge source list operations support `$top`, `$skip`,
+and `$count` in the `2026-05-01-preview` API.
 
 ## Related content
 
