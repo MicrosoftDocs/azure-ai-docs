@@ -144,7 +144,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
       - If you need to enable content indexing and/or limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
         - `Sites.Selected`
        
-       - If you'll be using this same application registraton for SharePoint group resolution (`sharePointConnectorAppRegistration` index configuration) at query time, choose also:
+      - If you'll be using this same application registraton for SharePoint group resolution (`sharePointConnectorAppRegistration` index configuration) at query time, choose also:
         - `User.Read.All` 
                  
           Then grant the application full control only for those selected sites. Review this [SharePoint blog post](https://techcommunity.microsoft.com/blog/spblog/develop-applications-that-use-sites-selected-permissions-for-spo-sites-/3790476) that explains this process.
