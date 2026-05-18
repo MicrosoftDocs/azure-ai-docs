@@ -265,6 +265,7 @@ Include `ToolboxSearchPreviewTool()` in your toolbox's tools list to enable tool
 - **`tool_search` doesn't count toward tool limits.** It's injected by the platform and doesn't consume the unnamed-tool-per-type slot.
 - **Multiple searches per turn are supported.** The model can call `tool_search` more than once in a single turn if different steps need different capabilities.
 - **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
+- **OAuth consent may be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
 
 ## Best practices
 
