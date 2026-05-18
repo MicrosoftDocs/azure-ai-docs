@@ -3327,12 +3327,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-supported-document-formats.md",
-      "redirect_url": "/azure/ai-services/translator/document-translation/latest/rest-api/get-supported-formats",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/rest-api/get-supported-document-formats",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/document-translation/reference/get-supported-glossary-formats.md",
-      "redirect_url": "/azure/ai-services/translator/document-translation/latest/rest-api/get-supported-glossary",
+      "redirect_url": "/azure/ai-services/translator/document-translation/latest/rest-api/get-supported-glossary-formats",
       "redirect_document_id": true
     },
     {
