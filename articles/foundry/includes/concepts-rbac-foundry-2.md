@@ -11,18 +11,26 @@ ms.custom: include
 ---
 
 Use these tabs to explore the differences between the built-in roles, assigned at the Foundry resource level (except for Owner, which is assigned at the subscription level)
-# [Owner](#tab/owner)
-:::image type="content" source="../media/rbac-foundry/owner.png" alt-text="Diagram shows access for Owner.":::
-# [Foundry Owner](#tab/ai-owner)
 
 [!INCLUDE [role-rename-note](./role-rename-note.md)]
-:::image type="content" source="../media/rbac-foundry/azure-ai-owner.png" alt-text="Diagram shows access for Foundry Owner.":::
+
+# [Owner](#tab/owner)
+:::image type="content" source="../media/rbac-foundry/owner.png" alt-text="Diagram shows access for Owner.":::
+
+# [Foundry Owner](#tab/ai-owner)
+
+:::image type="content" source="../media/rbac-foundry/foundry-owner.png" alt-text="Diagram shows access for Foundry Owner.":::
+
 # [Foundry Account Owner](#tab/ai-account-owner)
-:::image type="content" source="../media/rbac-foundry/azure-ai-account-owner.png" alt-text="Diagram shows access for Foundry Account Owner.":::
+:::image type="content" source="../media/rbac-foundry/foundry-account-owner.png" alt-text="Diagram shows access for Foundry Account Owner.":::
+
 # [Foundry Project Manager](#tab/ai-project-manager)
-:::image type="content" source="../media/rbac-foundry/azure-ai-project-manager.png" alt-text="Diagram shows access for Foundry Project Manager.":::
+:::image type="content" source="../media/rbac-foundry/foundry-project-manager.png" alt-text="Diagram shows access for Foundry Project Manager.":::
+
+
 # [Foundry User](#tab/ai-user)
-:::image type="content" source="../media/rbac-foundry/azure-ai-user.png" alt-text="Diagram shows access for Foundry User.":::
+:::image type="content" source="../media/rbac-foundry/foundry-user.png" alt-text="Diagram shows access for Foundry User.":::
+
 
 ---
 
