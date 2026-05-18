@@ -303,6 +303,44 @@ The effective value order is:
 The following example stores a default filter on a search index knowledge
 source:
 
+::: zone pivot="csharp"
+
+```csharp
+var knowledgeSource = new SearchIndexKnowledgeSource(
+    name: "public-docs-ks",
+    searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: "public-docs-index")
+    {
+        BaseFilter = "isPublished eq true and accessScope eq 'public'"
+    }
+);
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+knowledge_source = SearchIndexKnowledgeSource(
+    name="public-docs-ks",
+    search_index_parameters=SearchIndexKnowledgeSourceParameters(
+        search_index_name="public-docs-index",
+        base_filter="isPublished eq true and accessScope eq 'public'",
+    ),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexknowledgesourceparameters)
+
+::: zone-end
+
+::: zone pivot="rest"
+
 ```http
 PUT {{search-url}}/knowledgesources/public-docs-ks?api-version=2026-05-01-preview
 Content-Type: application/json
@@ -318,7 +356,42 @@ api-key: {{search-api-key}}
 }
 ```
 
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
+
 A retrieve request can still add request-specific constraints:
+
+::: zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.KnowledgeSourceParams.Add(
+    new SearchIndexKnowledgeSourceParams("public-docs-ks")
+    {
+        FilterAddOn = "category eq 'Benefits'"
+    }
+);
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+request = KnowledgeBaseRetrievalRequest(
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="public-docs-ks",
+            filter_add_on="category eq 'Benefits'",
+        ),
+    ],
+)
+```
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```json
 {
@@ -331,6 +404,8 @@ A retrieve request can still add request-specific constraints:
   ]
 }
 ```
+
+::: zone-end
 
 For search index knowledge sources, the persisted retrieve default in this
 preview is `searchIndexParameters.baseFilter`. At query time,
