@@ -16,6 +16,18 @@ Migration instructions are intended to help you run an existing solution on a ne
 > [!TIP]
 > Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install the latest package to begin your updates. Before you start, check the SDK changelogs to confirm API updates: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
+## SDK updates for 2026-05-01-preview
+
+Use the 2026-05-01-preview SDK packages when your code depends on preview-only agentic retrieval features, including message-based retrieval, answer synthesis, configurable reasoning effort, or MCP integration. The SDK surface changed from earlier preview packages in these areas:
+
+| Language | Migration updates |
+| --- | --- |
+| Python | Use `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Use `KnowledgeRetrievalLowReasoningEffort()` instances and `output_mode="answerSynthesis"` for answer synthesis. For Azure OpenAI model and vectorizer parameters, pass the resource root endpoint, not an `/openai/v1` endpoint. |
+| .NET | Create `KnowledgeBaseRetrievalClient` with `credential: new AzureKeyCredential(...)` or an equivalent token credential parameter supported by the package. If you use key-based Azure OpenAI access in samples, pass the model API key on the model and vectorizer parameters. |
+| Java | Use `KnowledgeBaseRetrievalClientBuilder`, `KnowledgeBaseRetrievalOptions`, and `KnowledgeRetrievalSemanticIntent` with the tested alpha package. The current Java alpha package exposes intent-based retrieval, but doesn't yet expose the full message-based answer-synthesis shape. |
+| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve(...)` with `{ serviceVersion: "2026-05-01-preview" }`. The tested alpha package currently uses semantic `intents`; message-based answer synthesis requires SDK parity with the REST contract. |
+
+For code samples, update package versions and feed configuration together, then test the full flow that creates the index, knowledge source, knowledge base, retrieve request, and cleanup path.
 ## When to migrate
 
 Every version that supports agentic retrieval has introduced breaking changes. You can continue to run older code unchanged by retaining the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
