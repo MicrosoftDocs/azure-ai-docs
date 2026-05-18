@@ -105,16 +105,14 @@ while true:
 
 The following list operations support paging in the preview:
 
-| Operation | Priority |
-| --- | --- |
-| List Indexes | P0 |
-| List Index Statistics Summary | P0 |
-| List Synonym Maps | P1 |
-| List Indexers | P1 |
-| List Data Sources | P1 |
-| List Skillsets | P1 |
-| List Knowledge Bases | P1 |
-| List Knowledge Sources | P1 |
++ List Indexes
++ List Index Statistics Summary
++ List Synonym Maps
++ List Indexers
++ List Data Sources
++ List Skillsets
++ List Knowledge Bases
++ List Knowledge Sources
 
 Aliases aren't included in the preview paging scope.
 
