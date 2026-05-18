@@ -10,6 +10,10 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a knowledge base in Azure AI Search
 
+<!-- build26-sdk-migration-note -->
+> [!NOTE]
+> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
