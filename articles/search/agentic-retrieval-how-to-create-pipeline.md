@@ -100,8 +100,11 @@ To configure access for this solution:
 
 1. Install the required packages.
 
+   > [!NOTE]
+   > The Python `azure-search-documents` package version that ships full 2026-05-01-preview agentic retrieval support is forthcoming. Update the pinned version below when the new preview package is published.
+
    ```console
-   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==12.1.0a20260515004 requests openai
+   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==11.7.0b2 requests openai
    ```
 
 1. Create a file named `.env` in the `tutorial-agentic-retrieval` folder.
