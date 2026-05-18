@@ -218,5 +218,5 @@ Gretel Navigator employs a compound AI architecture specifically engineered for 
 - [Explore Foundry Models](foundry-models-overview.md)
 - [Foundry Models and their capabilities](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
-- [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
+- [Content safety for  Models Sold by Azure ](model-catalog-content-safety.md)
 

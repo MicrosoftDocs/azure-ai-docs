@@ -1,5 +1,5 @@
 ---
-title: Global provisioned managed availability for Azure Direct models
+title: Global provisioned managed availability for Foundry models sold by Azure
 manager: nitinme
 ms.topic: include
 ms.date: 02/26/2026

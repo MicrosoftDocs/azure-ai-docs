@@ -9,14 +9,14 @@ ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
-Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold directly by Azure* and *Foundry Models from partners and community*.
+Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold by Azure* and *Foundry Models from partners and community*.
 This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, excluding deprecated and retired models.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 
 > [!IMPORTANT]
-> Models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
+> Models from partners and community that are not sold by Azure are Non-Microsoft Products under the Product Terms.
 
-For a list of Foundry Models sold directly by Azure, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
+For a list of Foundry Models sold by Azure, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 
 Foundry Models support several [deployment types](../../foundry-models/concepts/deployment-types.md) to a Foundry resource. Some models in the model catalog require a hub-based project hosted by a Foundry hub for deployment. Selecting those models in the catalog opens them up in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 

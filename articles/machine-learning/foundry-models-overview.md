@@ -32,12 +32,12 @@ Foundry offers a comprehensive catalog of AI models. There are more than 1,900 m
 
 The catalog is organized into two main categories: 
 
-* [Models Sold Directly by Azure](#models-sold-directly-by-azure)
+* [Models Sold by Azure](#foundry-models-sold-by-azure)
 * [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
  
-## Models sold directly by Azure  
+## Foundry Models sold by Azure  
  
 Microsoft hosts and sells these models under Microsoft Product Terms. These models undergo rigorous evaluation and are deeply integrated into Azure's AI ecosystem. They come from various top providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
  
@@ -67,8 +67,8 @@ You can deploy models as Managed Compute or Standard (pay-as-you-go) deployment 
 ## Choosing between direct models and partner and community models 
 
 When selecting models from Foundry Models, consider the following factors: 
-* Use case and requirements: Models sold directly by Azure are ideal for scenarios that require deep Azure integration, guaranteed support, and enterprise SLAs. Azure ecosystem models excel in specialized use cases and innovation-led scenarios.
-* Support expectations: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. Providers support their models, with varying levels of SLA and support structures.
+* Use case and requirements: Models sold by Azure are ideal for scenarios that require deep Azure integration, guaranteed support, and enterprise SLAs. Azure ecosystem models excel in specialized use cases and innovation-led scenarios.
+* Support expectations: Models sold by Azure come with robust Microsoft-provided support and maintenance. Providers support their models, with varying levels of SLA and support structures.
 * Innovation and specialization: Models from partners and community offer rapid access to specialized innovations and niche capabilities, often developed by leading research labs and emerging AI providers.
 
 ## Model collections

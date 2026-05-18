@@ -14,7 +14,7 @@ ms.custom: include file
 # Also used in Azure Machine Learning documentation
 ---
 
-For language models deployed via serverless API, Azure AI implements a default configuration of [Azure AI Content Safety](../../ai-services/content-safety/overview.md) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering, see [Guardrails & controls for Models Sold Directly by Azure](../concepts/model-catalog-content-safety.md). 
+For language models deployed via serverless API, Azure AI implements a default configuration of [Azure AI Content Safety](../../ai-services/content-safety/overview.md) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering, see [Guardrails & controls for Models Sold by Azure](../concepts/model-catalog-content-safety.md). 
 
 > [!TIP]
 > Content filtering is not available for certain model types that are deployed via serverless API. These model types include embedding models and time series models.

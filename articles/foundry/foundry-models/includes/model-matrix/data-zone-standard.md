@@ -1,5 +1,5 @@
 ---
-title: Data zone standard availability for Azure Direct models
+title: Data zone standard availability for Foundry models sold by Azure
 manager: nitinme
 ms.topic: include
 ms.date: 02/26/2026

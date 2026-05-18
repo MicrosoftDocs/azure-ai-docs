@@ -28,9 +28,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 Language and vision models process inputs by breaking them down into tokens. Text, image, and audio workloads can all use token-based metering. The billing unit and rate can vary by model, deployment type, and meter. Check the pricing page for the exact meter names and units for your deployment. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
-### Models sold directly by Azure
+### Foundry Models sold by Azure
 
-Models sold directly by Azure (including Azure OpenAI) are billed by Microsoft. In Cost Management, these charges typically appear as model-related meters associated with your deployed resources.
+Models sold by Azure (including Azure OpenAI) are billed by Microsoft. In Cost Management, these charges typically appear as model-related meters associated with your deployed resources.
 
 ### Models from partners and community
 
@@ -103,9 +103,9 @@ Use the **Cost Analysis** tool to view costs grouped by billing meter:
 
    :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-meter.png" alt-text="Screenshot of how to see the cost by each meter in the resource group." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-meter.png":::
 
-#### Models sold directly by Azure
+#### Models sold by Azure
 
-Models sold directly by Azure (including Azure OpenAI) are billed directly by Microsoft. When you inspect your bill, you typically see meters that account for model input and output usage.
+Models sold by Azure (including Azure OpenAI) are billed directly by Microsoft. When you inspect your bill, you typically see meters that account for model input and output usage.
 
 :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for Azure OpenAI and Phi models. Cost is group by meter." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-meter-1p.png":::
 
