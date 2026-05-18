@@ -29,7 +29,7 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -39,7 +39,7 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -49,7 +49,7 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -61,7 +61,7 @@ You specify the retrieve action on a knowledge base. The request body includes t
 
 :::zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 using Azure;
@@ -142,7 +142,7 @@ Console.WriteLine(
 
 :::zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -240,13 +240,13 @@ print(result.response[0].content[0].text)
 
 :::zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 @search-url = <YOUR SEARCH SERVICE URL> // Example: https://my-service.search.windows.net
 @accessToken = <YOUR ACCESS TOKEN> // Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
 
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
@@ -280,7 +280,7 @@ Authorization: Bearer {{accessToken}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -315,7 +315,7 @@ Authorization: Bearer {{accessToken}}
 :::zone-end
 
 > [!IMPORTANT]
-> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
+> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
 ## Filter at query time (Search index)
 
@@ -448,7 +448,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST https://<YOUR SEARCH SERVICE>.search.windows.net/knowledgebases/<YOUR KNOWLEDGE BASE NAME>/retrieve?api-version=2025-11-01-preview
+POST https://<YOUR SEARCH SERVICE>.search.windows.net/knowledgebases/<YOUR KNOWLEDGE BASE NAME>/retrieve?api-version=2026-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <YOUR ACCESS TOKEN>
 
@@ -521,14 +521,27 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 
 Pass the following parameters to call the retrieve action.
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
 | `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
 | `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
+| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. | Boolean | Yes | No |
+| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. For more information, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
+| `maxOutputSize` | Limits the size, in characters, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
+| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
 | `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
+| `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
+| `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
+| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. | Boolean | Yes | No |
+| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` if this knowledge source can't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`. For more information, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
+| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
+| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. | Boolean | Yes | No |
+| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. | Boolean | Yes | No |
+| `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
+| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. | String | Yes | No |
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -562,7 +575,7 @@ Each knowledge base has an MCP endpoint at the following URL:
 https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
 ```
 
-The API version you specify determines what the connection returns. With `2025-11-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
+The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
 
 ### Authenticate to the MCP endpoint
 
@@ -582,7 +595,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 ## Enforce permissions at query time
 
 > [!NOTE]
-> Although knowledge retrieval is generally available, permissions enforcement remains in preview. You must use the 2025-11-01-preview API version for both ingestion-time and query-time configuration. Preview features are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Although knowledge retrieval is generally available, permissions enforcement remains in preview. You must use the 2026-05-01-preview API version for both ingestion-time and query-time configuration. Preview features are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -714,7 +727,7 @@ In the REST API, include the `x-ms-query-source-authorization` header with the u
 @accessToken = <YOUR ACCESS TOKEN> // Service credential
 @userAccessToken = <USER ACCESS TOKEN> // User identity token
 
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 x-ms-query-source-authorization: {{userAccessToken}}
@@ -734,7 +747,7 @@ x-ms-query-source-authorization: {{userAccessToken}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
 
@@ -744,7 +757,7 @@ Successful retrieval returns a `200 OK` status code. If the knowledge base fails
 
 The retrieve action returns three main components:
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 + [Extracted response](#extracted-response) or [synthesized answer](agentic-retrieval-how-to-answer-synthesis.md) (depending on output mode)
 + [Activity array](#activity-array)
@@ -788,7 +801,7 @@ Key points:
 
   + The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
 
-+ The `maxOutputSizeInTokens` property (`maxOutputSize` in 2025-11-01-preview) on the retrieve request determines the length of the string.
++ The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
 
     > [!IMPORTANT]
     > A document that exceeds the `maxOutputSizeInTokens` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
@@ -799,7 +812,7 @@ The activity array outputs the query plan, which provides operational transparen
 
 The output includes the following components:
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Section | Description |
 |---------|-------------|
@@ -818,11 +831,11 @@ The output includes the following components:
 ---
 
 > [!NOTE]
-> The `modelQueryPlanning` and `modelAnswerSynthesis` sections don't appear in the 2026-04-01 activity array because query planning and answer synthesis are preview-only features. For full activity output, use the 2025-11-01-preview.
+> The `modelQueryPlanning` and `modelAnswerSynthesis` sections don't appear in the 2026-04-01 activity array because query planning and answer synthesis are preview-only features. For full activity output, use the 2026-05-01-preview.
 
 Here's an example of the activity array:
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```json
   "activity": [
@@ -954,7 +967,7 @@ Here's an example of the references array:
 
 ## Examples
 
-The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
+The following examples illustrate different ways to call the retrieve action using the 2026-05-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Inspect model names in activity logs](#inspect-model-names-in-activity-logs)
 + [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed)
@@ -1449,7 +1462,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{search-url}}/knowledgebases/kb-override/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/kb-override/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -1469,7 +1482,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
 
@@ -1568,7 +1581,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{search-url}}/knowledgebases/kb-medium-example/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/kb-medium-example/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -1606,7 +1619,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
 
@@ -1662,7 +1675,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{search-url}}/knowledgebases/kb-minimal/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/kb-minimal/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -1676,13 +1689,13 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
 
 ## Troubleshoot empty responses
 
-A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2025-11-01-preview) output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
