@@ -35,7 +35,7 @@ A knowledge base specifies:
 
 + One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). If you plan to use the 2026-04-01 API version to create your knowledge base, your knowledge sources must be generally available. Otherwise, you can use preview knowledge source types.
 
-+ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. For both the 2025-11-01-preview and 2026-04-01 API versions, the LLM is required if your knowledge base includes a web knowledge source. For the 2025-11-01-preview only, the LLM is optional for all other knowledge source types. 2026-04-01 doesn't support an LLM for non-web knowledge sources. 
++ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. For both the 2026-05-01-preview and 2026-04-01 API versions, the LLM is required if your knowledge base includes a web knowledge source. For the 2026-05-01-preview only, the LLM is optional for all other knowledge source types. 2026-04-01 doesn't support an LLM for non-web knowledge sources. 
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -43,7 +43,7 @@ A knowledge base specifies:
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -53,7 +53,7 @@ A knowledge base specifies:
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -63,7 +63,7 @@ A knowledge base specifies:
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -341,7 +341,7 @@ The following JSON is an example response for a knowledge base.
 ```
 
 > [!NOTE]
-> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2025-11-01-preview. For more information about which properties each version supports, see the next section.
+> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see the next section.
 
 ## Create a knowledge base
 
@@ -351,7 +351,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create a knowledge base
@@ -427,7 +427,7 @@ Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated suc
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create a knowledge base
@@ -503,11 +503,11 @@ print(f"Knowledge base '{knowledge_base.name}' created or updated successfully."
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 # Create a knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{search-api-key}}
 
@@ -543,7 +543,7 @@ api-key: {{search-api-key}}
 }
 ```
 
-**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -575,7 +575,7 @@ api-key: {{search-api-key}}
 ::: zone-end
 
 > [!IMPORTANT]
-> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
+> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
 ### Configure CORS for browser-based retrieve calls
 
@@ -586,7 +586,67 @@ for browser-based applications that call the retrieve action directly from
 JavaScript. The CORS policy identifies which browser origins can send retrieve
 requests to the knowledge base.
 
-The following REST example allows retrieve requests from one browser origin:
+The following examples create a knowledge base that allows retrieve requests from one browser origin.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var knowledgeBase = new KnowledgeBase(
+    name: "browser-chat-kb",
+    knowledgeSources: new[] { new KnowledgeSourceReference("product-docs-ks") }
+)
+{
+    Description = "A knowledge base that allows one browser app origin.",
+    CorsOptions = new CorsOptions(new[] { "https://myapp.example.com" })
+    {
+        MaxAgeInSeconds = 300
+    }
+};
+
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+```
+
+**Reference:** [CorsOptions](/dotnet/api/azure.search.documents.indexes.models.corsoptions?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    CorsOptions,
+    KnowledgeBase,
+    KnowledgeSourceReference,
+)
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+knowledge_base = KnowledgeBase(
+    name="browser-chat-kb",
+    description="A knowledge base that allows one browser app origin.",
+    knowledge_sources=[KnowledgeSourceReference(name="product-docs-ks")],
+    cors_options=CorsOptions(
+        allowed_origins=["https://myapp.example.com"],
+        max_age_in_seconds=300,
+    ),
+)
+
+index_client.create_or_update_knowledge_base(knowledge_base)
+```
+
+**Reference:** [CorsOptions](/python/api/azure-search-documents/azure.search.documents.indexes.models.corsoptions), [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 PUT {{search-url}}/knowledgebases/browser-chat-kb?api-version=2026-05-01-preview
@@ -610,6 +670,8 @@ api-key: {{search-api-key}}
 }
 ```
 
+::: zone-end
+
 When `corsOptions` is present, `allowedOrigins` lists the origins that can call
 the knowledge base from a browser. `maxAgeInSeconds` is optional and controls
 how long the browser can cache the preflight response.
@@ -627,7 +689,7 @@ Pass the following properties to create a knowledge base.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
@@ -656,7 +718,7 @@ Pass the following properties to create a knowledge base.
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
@@ -686,7 +748,7 @@ Pass the following properties to create a knowledge base.
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
