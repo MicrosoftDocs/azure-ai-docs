@@ -975,6 +975,54 @@ The field is additive and appears only on activity entries that represent
 model-backed work. Nonmodel activity records, such as search index retrieval
 steps, don't include `modelName`.
 
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("Which policy applies to returns?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.IncludeActivity = true;
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+foreach (var entry in result.Value.Activity)
+{
+    Console.WriteLine($"{entry.Type} modelName={entry.ModelName}");
+}
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="Which policy applies to returns?")],
+        )
+    ],
+    include_activity=True,
+)
+
+result = kb_client.retrieve(request)
+for entry in result.activity:
+    print(entry.type, "modelName=", getattr(entry, "model_name", None))
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 ```http
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
@@ -992,6 +1040,10 @@ Content-Type: application/json
     "includeActivity": true
 }
 ```
+
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+:::zone-end
 
 The following response excerpt shows activity records with `modelName`:
 
@@ -1044,6 +1096,66 @@ By default, retrieve favors availability and can return results from other
 sources when an optional source fails. `failOnError` changes that behavior for
 the source where it's set.
 
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("Which HR policy applies?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.KnowledgeSourceParams.Add(
+    new SearchIndexKnowledgeSourceParams("hr-policy-ks")
+    {
+        FailOnError = true,
+        AlwaysQuerySource = true
+    }
+);
+retrievalRequest.KnowledgeSourceParams.Add(
+    new SearchIndexKnowledgeSourceParams("hr-faq-ks")
+);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParams](/dotnet/api/azure.search.documents.knowledgebases.models.searchindexknowledgesourceparams?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="Which HR policy applies?")],
+        )
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="hr-policy-ks",
+            fail_on_error=True,
+            always_query_source=True,
+        ),
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="hr-faq-ks",
+        ),
+    ],
+)
+
+result = kb_client.retrieve(request)
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParams](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.searchindexknowledgesourceparams)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 ```http
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
@@ -1073,6 +1185,10 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+:::zone-end
+
 `failOnError` defaults to `false`. When a queried source has
 `failOnError: true` and the source query fails, the retrieve request fails
 instead of returning `206 Partial Content`. The expected error is `502 Bad
@@ -1094,6 +1210,58 @@ contribute a bounded number of documents to the retrieve pipeline.
 
 This setting is per source. It doesn't control the final number of grounding
 documents returned to the caller.
+
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("What safety procedures apply?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.KnowledgeSourceParams.Add(
+    new SearchIndexKnowledgeSourceParams("operations-ks")
+    {
+        MaxOutputDocuments = 100
+    }
+);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParams](/dotnet/api/azure.search.documents.knowledgebases.models.searchindexknowledgesourceparams?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What safety procedures apply?")],
+        )
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="operations-ks",
+            max_output_documents=100,
+        ),
+    ],
+)
+
+result = kb_client.retrieve(request)
+```
+
+**Reference:** [SearchIndexKnowledgeSourceParams](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.searchindexknowledgesourceparams)
+
+:::zone-end
+
+:::zone pivot="rest"
 
 ```http
 POST {{search-url}}/knowledgebases/operations-kb/retrieve?api-version=2026-05-01-preview
@@ -1119,6 +1287,10 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+:::zone-end
+
 For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
 is a per-source cap. The service can return fewer documents when fewer matches
 are available or when internal limits reduce the applied window.
@@ -1134,6 +1306,52 @@ setting when your application needs a predictable citation or reference count.
 This count-based control complements `maxOutputSize`, which limits payload
 size. If both settings are present, both constraints apply to the final
 response.
+
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("What is the return policy?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.OutputMode = "extractedData";
+retrievalRequest.MaxOutputDocuments = 3;
+retrievalRequest.MaxOutputSize = 6000;
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+```
+
+**Reference:** [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What is the return policy?")],
+        )
+    ],
+    output_mode="extractedData",
+    max_output_documents=3,
+    max_output_size=6000,
+)
+
+result = kb_client.retrieve(request)
+```
+
+**Reference:** [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
 
 ```http
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
@@ -1154,6 +1372,10 @@ Content-Type: application/json
     "maxOutputSize": 6000
 }
 ```
+
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+:::zone-end
 
 | `maxOutputDocuments` | `maxOutputSize` | Behavior |
 | --- | --- | --- |
