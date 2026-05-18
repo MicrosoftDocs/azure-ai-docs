@@ -12,8 +12,6 @@ ms.custom: include
 
 Use these tabs to explore the differences between the built-in roles, assigned at the Foundry resource level (except for Owner, which is assigned at the subscription level)
 
-[!INCLUDE [role-rename-note](./role-rename-note.md)]
-
 # [Owner](#tab/owner)
 :::image type="content" source="../media/rbac-foundry/owner.png" alt-text="Diagram shows access for Owner.":::
 
