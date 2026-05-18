@@ -38,6 +38,13 @@ Use tool search when:
 
 When you include `ToolboxSearchPreviewTool` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects a single `tool_search` function. The model calls `tool_search` with a natural-language description of the capability it needs. Foundry evaluates the query against every tool in the toolbox and returns the matching tool definitions, making them immediately callable by the model.
 
+The `tool_search` function accepts the following parameters:
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | string | Yes | Natural-language description of the capability or task you need a tool for. |
+| `top_k` | integer | No | Maximum number of tools to return. Defaults to a platform value when omitted. |
+
 The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
 
 > [!NOTE]
