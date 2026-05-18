@@ -47,7 +47,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ::: zone pivot="rest"
 
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone-end
 
@@ -158,31 +158,6 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
-
-```http
-### Create a remote SharePoint knowledge source
-PUT {{search-url}}/knowledgesources/my-remote-sharepoint-ks?api-version=2025-11-01-preview
-api-key: {{api-key}}
-Content-Type: application/json
-
-{
-    "name": "my-remote-sharepoint-ks",
-    "kind": "remoteSharePoint",
-    "description": "This knowledge source queries .docx files in a trusted Microsoft 365 tenant.",
-    "encryptionKey": null,
-    "remoteSharePointParameters": {
-        "filterExpression": "filetype:docx",
-        "resourceMetadata": [ "Author", "Title" ],
-        "containerTypeId": null
-    }
-}
-```
-
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
 ```http
 ### Create a remote SharePoint knowledge source
 PUT {{search-url}}/knowledgesources/my-remote-sharepoint-ks?api-version=2026-05-01-preview
@@ -203,8 +178,6 @@ Content-Type: application/json
 ```
 
 **Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
-
----
 
 ::: zone-end
 
@@ -354,38 +327,6 @@ result = kb_client.retrieve(
 
 You can pass a `filterExpressionAddOn` in the `knowledgeSourceParams` on the retrieve request to apply a KQL filter at query time. If you specify `filterExpressionAddOn` on the retrieve request and a `filterExpression` on the knowledge source definition, the filters are AND'd together.
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
-
-```http
-### Retrieve knowledge base content
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
-Authorization: Bearer {{accessToken}}
-Content-Type: application/json
-x-ms-query-source-authorization: {{user-access-token}}
-
-{
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                { "type": "text", "text": "contoso product planning" }
-            ]
-        }
-    ],
-    "knowledgeSourceParams": [
-        {
-            "knowledgeSourceName": "my-remote-sharepoint-ks",
-            "kind": "remoteSharePoint",
-            "filterExpressionAddOn": "filetype:docx"
-        }
-    ]
-}
-```
-
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
 ```http
 ### Retrieve knowledge base content
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
@@ -413,8 +354,6 @@ x-ms-query-source-authorization: {{user-access-token}}
 ```
 
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
-
----
 
 ::: zone-end
 
