@@ -49,7 +49,7 @@ The model actively manages the search process and can perform web searches as pa
 
 ### Deep research
 
-Deep Research is an agent-driven mode designed for **extended investigations**. The model performs multi-step reasoning, opens and reads many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research`, or with `gpt-5.5` and `reasoning.effort` set to `high`.
+Deep Research is an agent-driven mode designed for **extended investigations**. The model performs multi-step reasoning, opens and reads many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research`, or with `gpt-5.5` and `reasoning.effort` set to `high` or `xhigh`.
 
 Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
 
@@ -60,7 +60,7 @@ You use web search by declaring the tool `{"type": "web_search"}` in your reques
 > [!NOTE]
 > Web Search in the Responses API works with GPT-4 models and later.
 
-In the examples that follow, replace `gpt-5.5`, `gpt-5`, and `o3-deep-research` with the name of your own model deployment. The same `assert` pattern shown in the basic Microsoft Entra ID snippets applies to the API-key snippets and the user-location and domain-filtering examples.
+In the examples that follow, replace `gpt-5.5` with the name of your own model deployment. The same `assert` pattern shown in the basic Microsoft Entra ID snippets applies to the API-key snippets and the user-location and domain-filtering examples.
 
 # [Python](#tab/python)
 
@@ -420,7 +420,7 @@ You can refine search results by passing the approximate user location. The foll
 | `timezone` | [IANA time zone identifier](https://www.iana.org/time-zones). | `America/Chicago` |
 
 > [!NOTE]
-> The `city`, `region`, and `timezone` fields are only supported when you use a reasoning model.
+> The `city`, `region`, and `timezone` fields are only supported when you use the `web_search` tool (the GA version, not `web_search_preview`).
 
 # [Python](#tab/python)
 
@@ -449,7 +449,7 @@ response = openai.responses.create(
             },
         }
     ],
-    input="Give me a positive news story from the web today",
+    input="Give me a positive news story from the web today in my city",
 )
 
 print(response.output_text)
@@ -487,7 +487,7 @@ CreateResponseOptions options = new()
     Tools = { ResponseTool.CreateWebSearchTool(userLocation: location) }
 };
 options.InputItems.Add(ResponseItem.CreateUserMessageItem(
-    "Give me a positive news story from the web today"));
+    "Give me a positive news story from the web today in my city"));
 
 ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
@@ -524,7 +524,7 @@ const response = await openai.responses.create({
       },
     },
   ],
-  input: "Give me a positive news story from the web today",
+  input: "Give me a positive news story from the web today in my city",
 });
 
 console.log(response.output_text);
@@ -567,7 +567,7 @@ public class WebSearchLocationExample {
 
         ResponseCreateParams params = ResponseCreateParams.builder()
             .model("gpt-5.5")
-            .input("Give me a positive news story from the web today")
+            .input("Give me a positive news story from the web today in my city")
             .addTool(webSearchTool)
             .build();
 
@@ -599,7 +599,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
             }
         }
     ],
-    "input": "Give me a positive news story from the web today"
+    "input": "Give me a positive news story from the web today in my city"
     }'
 ```
 
@@ -612,6 +612,8 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
 
 To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
+
+To return the full content of pages the model consulted, set `include` to `["web_search_call.results"]`. The `web_search_call.results` option is supported only when you use a reasoning model.
 
 # [Python](#tab/python)
 
@@ -627,7 +629,7 @@ token_provider = get_bearer_token_provider(
 openai = OpenAI(base_url=endpoint, api_key=token_provider)
 
 response = openai.responses.create(
-    model="gpt-5",
+    model="gpt-5.5",
     reasoning={"effort": "low"},
     tools=[
         {
@@ -679,7 +681,7 @@ filters.AllowedDomains.Add("www.fda.gov");
 
 CreateResponseOptions options = new()
 {
-    Model = "gpt-5",
+    Model = "gpt-5.5",
     ReasoningOptions = new ResponseReasoningOptions { ReasoningEffortLevel = ResponseReasoningEffortLevel.Low },
     Tools = { ResponseTool.CreateWebSearchTool(filters: filters) },
     ToolChoice = ResponseToolChoice.CreateAutoChoice(),
@@ -710,7 +712,7 @@ const openai = new OpenAI({
 });
 
 const response = await openai.responses.create({
-  model: "gpt-5",
+  model: "gpt-5.5",
   reasoning: { effort: "low" },
   tools: [
     {
@@ -773,7 +775,7 @@ public class WebSearchDomainFilterExample {
             .build();
 
         ResponseCreateParams params = ResponseCreateParams.builder()
-            .model("gpt-5")
+            .model("gpt-5.5")
             .input("Please perform a web search on how semaglutide is used in the treatment of diabetes.")
             .addTool(webSearchTool)
             .toolChoice(ResponseCreateParams.ToolChoice.ofOptions(
@@ -796,7 +798,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-    "model": "gpt-5",
+    "model": "gpt-5.5",
     "reasoning": { "effort": "low" },
     "tools": [
       {
@@ -824,7 +826,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 ### Limitations
 
-- Live internet access isn't supported. If you pass the `external_web_access` parameter, the parameter is ignored.
+- Live internet access isn't supported. Azure OpenAI always treats the `external_web_access` parameter as `false`, even though the OpenAI default is `true`.
 - The domain allowlist supports up to 100 URLs.
 - Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
 - The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
