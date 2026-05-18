@@ -104,7 +104,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 credential = DefaultAzureCredential()
 project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 
 # Get bearer token for authentication
 bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
@@ -155,7 +155,7 @@ Content-Type: application/json
   "properties": {
     "authType": "ProjectManagedIdentity",
     "category": "RemoteTool",
-    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
+    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
     "isSharedToAll": true,
     "audience": "https://search.azure.com/",
     "metadata": {
@@ -206,7 +206,7 @@ from azure.identity import DefaultAzureCredential
 
 # Provide agent configuration details
 credential = DefaultAzureCredential()
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview"
 project_endpoint = "{project_endpoint}" # e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
 project_connection_name = "{project_connection_name}"
 agent_name = "{agent_name}"
@@ -267,7 +267,7 @@ Content-Type: application/json
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -321,7 +321,7 @@ Provide the header and token in the MCP tool configuration:
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
