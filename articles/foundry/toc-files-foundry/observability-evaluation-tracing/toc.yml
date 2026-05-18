@@ -83,7 +83,7 @@ items:
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
    - name: Tracing and data handling
-     href: ../../observability/concepts/tracing-data-handling.md
+     href: ../../observability/concepts/trace-data.md
 # Troubleshooting
 - name: Troubleshoot evaluation and observability issues
   href: ../../observability/how-to/troubleshooting.md
