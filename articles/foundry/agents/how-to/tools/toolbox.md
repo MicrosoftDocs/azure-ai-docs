@@ -2568,7 +2568,7 @@ Use this pattern to enable intent-based tool routing. When `ToolboxSearchPreview
   "description": "Toolbox with intent-based tool routing",
   "tools": [
     {
-      "type": "tool_search_preview"
+      "type": "toolbox_search_preview"
     }
   ]
 }
