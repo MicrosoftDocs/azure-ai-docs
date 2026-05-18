@@ -183,9 +183,11 @@ from azure.search.documents.indexes.models import (
     AzureOpenAIVectorizerParameters,
     FileKnowledgeSource,
     FileKnowledgeSourceParameters,
-    KnowledgeSourceAzureOpenAIVectorizer,
 )
-from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeSourceAzureOpenAIVectorizer,
+    KnowledgeSourceIngestionParameters,
+)
 
 index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
 
@@ -404,78 +406,8 @@ Prefer: return=representation
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.KnowledgeBases;
-using Azure.Search.Documents.KnowledgeBases.Models;
-
-var kbClient = new KnowledgeBaseRetrievalClient(
-    new Uri(searchEndpoint),
-    "my-file-kb",
-    new AzureKeyCredential(apiKey));
-
-var request = new KnowledgeBaseRetrievalRequest
-{
-    IncludeActivity = true
-};
-request.Intents.Add(new KnowledgeRetrievalSemanticIntent(
-    "What does the installation guide say about network prerequisites?"));
-request.KnowledgeSourceParams.Add(new FileKnowledgeSourceParams("my-file-ks")
-{
-    IncludeReferences = true,
-    IncludeReferenceSourceData = true
-});
-
-var result = await kbClient.RetrieveAsync(request);
-```
-
-**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
-from azure.search.documents.knowledgebases.models import (
-    FileKnowledgeSourceParams,
-    KnowledgeBaseRetrievalRequest,
-    KnowledgeRetrievalSemanticIntent,
-)
-
-kb_client = KnowledgeBaseRetrievalClient(
-    endpoint="search_url",
-    knowledge_base_name="my-file-kb",
-    credential=AzureKeyCredential("api_key"),
-)
-
-request = KnowledgeBaseRetrievalRequest(
-    intents=[
-        KnowledgeRetrievalSemanticIntent(
-            search="What does the installation guide say about network prerequisites?"
-        )
-    ],
-    knowledge_source_params=[
-        FileKnowledgeSourceParams(
-            knowledge_source_name="my-file-ks",
-            include_references=True,
-            include_reference_source_data=True,
-        )
-    ],
-    include_activity=True,
-)
-
-result = kb_client.retrieve(request)
-```
-
-**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient)
-
-::: zone-end
-
-::: zone pivot="rest"
+> [!NOTE]
+> File knowledge source runtime parameters aren't exposed as a typed `FileKnowledgeSourceParams` class in the current preview SDK packages. To override per-source retrieve defaults for a file knowledge source from a typed SDK, use the REST API until the typed wrapper ships. The retrieve action itself is documented for all SDKs in [Query a knowledge base](agentic-retrieval-how-to-retrieve.md).
 
 ```http
 POST {{search-url}}/knowledgebases/my-file-kb/retrieve?api-version=2026-05-01-preview
@@ -501,8 +433,6 @@ Accept: application/json
   ]
 }
 ```
-
-::: zone-end
 
 ## Review supported formats and limits
 
