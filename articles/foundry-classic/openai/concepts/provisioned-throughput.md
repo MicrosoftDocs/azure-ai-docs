@@ -27,7 +27,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 > [!TIP]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md).
 
-The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#foundry-models-sold-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time.
+The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time.
 
 Provisioned throughput provides:
 
