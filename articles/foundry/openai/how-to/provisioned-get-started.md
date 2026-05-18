@@ -38,7 +38,7 @@ For the estimation formulas, worked example, and capacity calculator walkthrough
 
 ## Check and request PTU quota
 
-PTU quota is granted per subscription, per region, and limits the total PTUs you can deploy in that region across all models. For details on how quota and capacity relate, see [PTU quota vs. capacity](../concepts/provisioned-throughput.md#ptu-quota-vs-capacity).
+PTU quota is granted per subscription, per region, and limits the total PTUs you can deploy in that region across all models. For details on how quota and capacity relate, see [PTU quota vs. capacity](../concepts/provisioned-throughput.md#quota-and-capacity).
 
 To check current usage or request additional quota:
 

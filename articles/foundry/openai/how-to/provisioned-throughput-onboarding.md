@@ -190,7 +190,7 @@ As your provisioned deployment footprint grows or shrinks, some ways to adjust y
 
 - **Exchange coverage**: Exchange a reservation in the Azure portal to change its term length or PTU quantity. Exchanges reset the reservation term. Because PTU reservations are scoped per deployment type, exchanges between deployment types (for example, Global Provisioned to Regional Provisioned) aren't supported. To move coverage to a different deployment type or region, cancel the existing reservation and purchase a new one for the target type and region. See [Exchanges and refunds for Azure Reservations](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations) for eligibility and fee details.
 
-- **Update scope**: Change the scope of an existing reservation at any time without penalty. For example, to extend coverage to a new subscription. See [Change the scope for a reservation](/azure/cost-management-billing/reservations/change-reservation-scope).
+- **Update scope**: Change the scope of an existing reservation at any time without penalty. For example, to extend coverage to a new subscription. See [Change the scope for a reservation](/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
 
 - **Disable auto-renew**: If you no longer need a reservation, turn off auto-renew to prevent it from renewing at the end of its term. See [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew).
 

@@ -71,7 +71,7 @@ Also note the model's minimum PTU count, as you need this information when you c
    | **Model** | The model to deploy. |
    | **Model version** | The version of the model. |
    | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum. |
-   | **Content filter** | The filtering policy. See [Content filtering](../foundry-models/concepts/content-filter.md). |
+   | **Content filter** | The filtering policy. See [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md). |
 
 1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md) before continuing.
 
