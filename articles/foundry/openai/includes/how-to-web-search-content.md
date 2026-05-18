@@ -5,22 +5,22 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
-ms.custom: include, classic-and-new
-
+ms.date: 05/18/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. You can access web search through the `web_search` tool in the **Responses API**.
 
 > [!NOTE]
 > In the Azure OpenAI Responses API, use the `web_search` tool for web search.
-> The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
+> The preview version of the web search tool (`web_search_preview`) is supported but not recommended. It has limitations.
 
 > [!IMPORTANT]
-> * Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
-> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When you use Grounding with Bing Search and/or Grounding with Bing Custom Search, your data flows outside your compliance and geo boundary.
-> * Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. To learn more, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
-> * [Learn more](#manage-web-search-tool) about how Azure admins can manage access to the use of Web search.
+> - Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When you use Grounding with Bing Search and/or Grounding with Bing Custom Search, your data flows outside your compliance and geo boundary.
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. To learn more, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+> - [Learn more](#manage-web-search-tool) about how Azure admins can manage access to the use of Web search.
 
 ## Prerequisites
 
@@ -28,126 +28,311 @@ Web search enables models to retrieve and ground responses with real-time inform
 - An authentication method:
   - API key, or
   - Microsoft Entra ID.
-- For Python examples:
-  - Install the `openai` package.
-  - Install `azure-identity` for Microsoft Entra ID authentication.
-- For REST examples:
-  - Set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
+- Install the client library for your language:
+  - **Python**: `pip install openai azure-identity`
+  - **.NET**: `dotnet add package OpenAI` and `dotnet add package Azure.Identity`
+  - **JavaScript/TypeScript**: `npm install openai @azure/identity`
+  - **Java**: Add `com.openai:openai-java` and `com.azure:azure-identity` to your project.
+- For REST examples, set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
 
 ## Options to use web search
 
 Web search supports three modes. Choose the mode based on the depth and speed you need.
 
-### Web search without reasoning 
+### Web search without reasoning
 
 The model forwards the user query directly to the web search tool and uses top-ranked sources to ground the response. There's no multi-step planning. This mode is **fast** and best for quick lookups and timely facts.
 
 ### Agentic search with reasoning models
 
-The model actively manages the search process and can perform web searches as part of its chain of thought, analyze results, and decide whether to keep searching. This flexibility makes agentic search well **suited for complex workflows**, but it also means searches take **longer** than quick lookups.
+The model actively manages the search process and can perform web searches as part of its chain of thought, analyze results, and decide whether to keep searching. This flexibility makes agentic search well **suited for complex workflows**, but it also means searches take **longer** than quick lookups. For example, use `gpt-5.5` with `reasoning.effort` set to `medium` or `high` to balance search depth and latency.
 
 ### Deep research
 
-Deep Research is an agent-driven mode designed for **extended investigations**. The model performs multi-step reasoning, may open and read many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research` when you need:
-
-* Legal or scientific research
-* Market and competitive analysis
-* Reporting over large bodies of internal or public data
+Deep Research is an agent-driven mode designed for **extended investigations**. The model performs multi-step reasoning, opens and reads many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research`, or with `gpt-5.5` and `reasoning.effort` set to `high`.
 
 Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
 
 ## How it works
 
-You use web search by declaring the tool in your request. The model decides whether to call the tool based on the user’s prompt and your configuration.
+You use web search by declaring the tool `{"type": "web_search"}` in your request. The model decides whether to call the tool based on the user's prompt and your configuration.
 
 > [!NOTE]
 > Web Search in the Responses API works with GPT-4 models and later.
 
-### Use web search with a non-reasoning model
+# [Python](#tab/python)
 
-**REST API - Entra ID**
+**Microsoft Entra ID:**
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+# Use the OpenAI client with the Azure v1 endpoint.
+openai = OpenAI(
+    base_url=endpoint,
+    api_key=token_provider,
+)
+
+response = openai.responses.create(
+    model="gpt-5.5",
+    tools=[{"type": "web_search"}],
+    input="Please perform a web search on the latest trends in renewable energy",
+)
+
+print(response.output_text)
+```
+
+**API key:**
+
+```python
+import os
+from openai import OpenAI
+
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+
+openai = OpenAI(
+    base_url=endpoint,
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+)
+
+response = openai.responses.create(
+    model="gpt-5.5",
+    tools=[{"type": "web_search"}],
+    input="Please perform a web search on the latest trends in renewable energy",
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+
+**Microsoft Entra ID:**
+
+```csharp
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+
+ResponsesClient openAIClient = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5.5",
+    Tools = { ResponseTool.CreateWebSearchTool() }
+};
+options.InputItems.Add(ResponseItem.CreateUserMessageItem(
+    "Please perform a web search on the latest trends in renewable energy"));
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+**API key:**
+
+```csharp
+using OpenAI.Responses;
+using System.ClientModel;
+
+#pragma warning disable OPENAI001
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+string apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!;
+
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(apiKey),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5.5",
+    Tools = { ResponseTool.CreateWebSearchTool() }
+};
+options.InputItems.Add(ResponseItem.CreateUserMessageItem(
+    "Please perform a web search on the latest trends in renewable energy"));
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+**Microsoft Entra ID:**
+
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+
+const response = await openai.responses.create({
+  model: "gpt-5.5",
+  tools: [{ type: "web_search" }],
+  input: "Please perform a web search on the latest trends in renewable energy",
+});
+
+console.log(response.output_text);
+```
+
+**API key:**
+
+```javascript
+import { OpenAI } from "openai";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await openai.responses.create({
+  model: "gpt-5.5",
+  tools: [{ type: "web_search" }],
+  input: "Please perform a web search on the latest trends in renewable energy",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+
+**Microsoft Entra ID:**
+
+```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.WebSearchTool;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+        OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+            .baseUrl(endpoint)
+            .credential(BearerTokenCredential.create(
+                AuthenticationUtil.getBearerTokenSupplier(
+                    new DefaultAzureCredentialBuilder().build(),
+                    "https://ai.azure.com/.default")))
+            .build();
+
+        WebSearchTool webSearchTool = WebSearchTool.builder()
+            .type(WebSearchTool.Type.WEB_SEARCH)
+            .build();
+
+        ResponseCreateParams params = ResponseCreateParams.builder()
+            .model("gpt-5.5")
+            .input("Please perform a web search on the latest trends in renewable energy")
+            .addTool(webSearchTool)
+            .build();
+
+        Response response = openAIClient.responses().create(params);
+        response.output().forEach(item -> item.message().ifPresent(msg ->
+            msg.content().forEach(content -> content.outputText().ifPresent(
+                t -> System.out.println(t.text())))));
+    }
+}
+```
+
+**API key:**
+
+```java
+import com.openai.azure.credential.AzureApiKeyCredential;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.WebSearchTool;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+        OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+            .baseUrl(endpoint)
+            .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+            .build();
+
+        WebSearchTool webSearchTool = WebSearchTool.builder()
+            .type(WebSearchTool.Type.WEB_SEARCH)
+            .build();
+
+        ResponseCreateParams params = ResponseCreateParams.builder()
+            .model("gpt-5.5")
+            .input("Please perform a web search on the latest trends in renewable energy")
+            .addTool(webSearchTool)
+            .build();
+
+        Response response = openAIClient.responses().create(params);
+        response.output().forEach(item -> item.message().ifPresent(msg ->
+            msg.content().forEach(content -> content.outputText().ifPresent(
+                t -> System.out.println(t.text())))));
+    }
+}
+```
+
+# [REST](#tab/rest)
+
+**Microsoft Entra ID:**
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-     "model": "gpt-4.1",
+     "model": "gpt-5.5",
      "tools": [{"type": "web_search"}],
      "input": "Please perform a web search on the latest trends in renewable energy"
     }'
 ```
 
-**REST API - Key**
+**API key:**
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-     "model": "gpt-4.1",
+     "model": "gpt-5.5",
      "tools": [{"type": "web_search"}],
      "input": "Please perform a web search on the latest trends in renewable energy"
     }'
 ```
 
-**Python - API Key**
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-
-response = client.responses.create(   
-  model="gpt-4.1", # Replace with your model deployment name
-  tools=[{"type": "web_search"}], 
-  input="Please perform a web search on the latest trends in renewable energy"
-)
-
-print(response.output_text)
-```
-
-**Python - Entra ID**
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://ai.azure.com/.default"
-)
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-)
-
-response = client.responses.create(   
-  model="gpt-4.1", # Replace with your model deployment name
-  tools=[{"type": "web_search"}], 
-  input="Please perform a web search on the latest trends in renewable energy"
-)
-
-print(response.output_text) 
-```
+---
 
 ### Response shape
 
 A successful response that uses web search typically contains two parts:
-
-* A `web_search_call` output item that records the action performed:
-  * `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing)).
-  * `open_page`: (Deep Research only) indicates the agent opened a page.
-  * `find_in_page`: (Deep Research only) indicates the agent searched within an opened page.
-* A message output item containing:
-  * The grounded text in `message.content[0].text`
-  * URL citations in `message.content[0].annotations`, one or more `url_citation` objects that include the URL, title, and character ranges
-
-#### Example
 
 ```json
 [
@@ -184,26 +369,202 @@ A successful response that uses web search typically contains two parts:
   ]
 ```
 
+- A `web_search_call` output item that records the action performed:
+  - `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing)).
+  - `open_page`: indicates the agent opened a page. Available with all reasoning models.
+  - `find_in_page`: indicates the agent searched within an opened page. Available with all reasoning models.
+- A message output item containing:
+  - The grounded text in `message.content[0].text`.
+  - URL citations in `message.content[0].annotations`, one or more `url_citation` objects that include the URL, title, and character ranges.
+
 ### Control results by user location
 
-You can refine search results by specifying a country/region code.
+You can refine search results by passing the approximate user location. The following fields are supported:
 
-- `country`: a two-letter [ISO country/region code](https://en.wikipedia.org/wiki/ISO_3166-1) (for example, US).
+| Field | Description | Example |
+|---|---|---|
+| `country` | Two-letter [ISO country/region code](https://en.wikipedia.org/wiki/ISO_3166-1). | `US` |
+| `city` | Free-text city name. | `Chicago` |
+| `region` | Free-text region or state name. | `Illinois` |
+| `timezone` | [IANA time zone identifier](https://www.iana.org/time-zones). | `America/Chicago` |
 
-**REST API - Entra ID**
+> [!NOTE]
+> The `city`, `region`, and `timezone` fields are only supported when you use a reasoning model.
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+openai = OpenAI(base_url=endpoint, api_key=token_provider)
+
+response = openai.responses.create(
+    model="gpt-5.5",
+    tools=[
+        {
+            "type": "web_search",
+            "user_location": {
+                "type": "approximate",
+                "country": "US",
+                "city": "Chicago",
+                "region": "Illinois",
+                "timezone": "America/Chicago",
+            },
+        }
+    ],
+    input="Give me a positive news story from the web today",
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+
+ResponsesClient openAIClient = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+WebSearchToolApproximateLocation location =
+    WebSearchToolLocation.CreateApproximateLocation(
+        country: "US",
+        region: "Illinois",
+        city: "Chicago",
+        timezone: "America/Chicago");
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5.5",
+    Tools = { ResponseTool.CreateWebSearchTool(userLocation: location) }
+};
+options.InputItems.Add(ResponseItem.CreateUserMessageItem(
+    "Give me a positive news story from the web today"));
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+
+const response = await openai.responses.create({
+  model: "gpt-5.5",
+  tools: [
+    {
+      type: "web_search",
+      user_location: {
+        type: "approximate",
+        country: "US",
+        city: "Chicago",
+        region: "Illinois",
+        timezone: "America/Chicago",
+      },
+    },
+  ],
+  input: "Give me a positive news story from the web today",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.WebSearchTool;
+import com.openai.models.responses.WebSearchTool.UserLocation;
+
+public class WebSearchLocationExample {
+    public static void main(String[] args) {
+        String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+        OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+            .baseUrl(endpoint)
+            .credential(BearerTokenCredential.create(
+                AuthenticationUtil.getBearerTokenSupplier(
+                    new DefaultAzureCredentialBuilder().build(),
+                    "https://ai.azure.com/.default")))
+            .build();
+
+        WebSearchTool webSearchTool = WebSearchTool.builder()
+            .type(WebSearchTool.Type.WEB_SEARCH)
+            .userLocation(UserLocation.builder()
+                .country("US")
+                .city("Chicago")
+                .region("Illinois")
+                .timezone("America/Chicago")
+                .build())
+            .build();
+
+        ResponseCreateParams params = ResponseCreateParams.builder()
+            .model("gpt-5.5")
+            .input("Give me a positive news story from the web today")
+            .addTool(webSearchTool)
+            .build();
+
+        Response response = openAIClient.responses().create(params);
+        response.output().forEach(item -> item.message().ifPresent(msg ->
+            msg.content().forEach(content -> content.outputText().ifPresent(
+                t -> System.out.println(t.text())))));
+    }
+}
+```
+
+# [REST](#tab/rest)
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-    "model": "gpt-4.1",
+    "model": "gpt-5.5",
     "tools": [
         {
             "type": "web_search",
             "user_location": {
                 "type": "approximate",
-                "country": "IN"
+                "country": "US",
+                "city": "Chicago",
+                "region": "Illinois",
+                "timezone": "America/Chicago"
             }
         }
     ],
@@ -211,312 +572,232 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-**REST API - Key**
+---
 
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{
-     "model": "gpt-4.1",
-     "tools": [
-        {
-            "type": "web_search",
-            "user_location": {
-                "type": "approximate",
-                "country": "IN"
-            }
-        }
-    ],
-    "input": "Give me a positive news story from the web today"
-    }'
-```
-
-**Python - API Key**
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-
-response = client.responses.create(   
-  model="gpt-4.1", # Replace with your model deployment name
-  tools= [
-        {
-            "type": "web_search",
-            "user_location": {
-                "type": "approximate",
-                "country": "IN"
-            }
-        }
-    ],
-    input="Give me a positive news story from the web today"
-)
-
-print(response.output_text)
-```
-
-**Python - Entra ID**
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://ai.azure.com/.default"
-)
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-)
-
-response = client.responses.create(   
-  model="gpt-4.1", # Replace with your model deployment name
-  tools= [
-        {
-            "type": "web_search",
-            "user_location": {
-                "type": "approximate",
-                "country": "IN"
-            }
-        }
-    ],
-    input="Give me a positive news story from the web today"
-)
-
-print(response.output_text) 
-```
-
-### Use with the deep research model
-
-Set the model to `o3-deep-research` to perform multi-step research across many sources. You must include at least one data source (for example, web search or a remote Model Context Protocol (MCP) server). You can also include the **code interpreter** tool to allow the model to write and run code for analysis.
-
-Because Deep Research might execute many browsing steps, requests can take longer and might incur multiple tool calls. For long-running analyses, consider using background execution patterns in your application.
-
-**REST API - Entra ID**
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-     "model": "o3-deep-research",
-     "tools": [
-                {"type": "web_search"},
-                { "type": "code_interpreter", "container": { "type": "auto" }}
-              ],
-     "input": "Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
-    }'
-```
-
-**REST API - Key**
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{
-     "model": "o3-deep-research",
-     "tools": [
-                {"type": "web_search"},
-                { "type": "code_interpreter", "container": { "type": "auto" }}
-              ],
-     "input": "Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
-    }'
-```
-
-**Python - API Key**
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-
-response = client.responses.create(   
-  model="o3-deep-research", # Replace with your model deployment name
-  tools=[
-            {"type": "web_search"},
-            { "type": "code_interpreter", "container": { "type": "auto" }}
-        ], 
-  input="Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
-)
-
-print(response.output_text)
-```
-
-**Python - Entra ID**
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://ai.azure.com/.default"
-)
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-)
-
-response = client.responses.create(   
-  model="o3-deep-research", # Replace with your model deployment name
-  tools=[
-            {"type": "web_search"},
-            { "type": "code_interpreter", "container": { "type": "auto" }}
-        ], 
-  input="Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
-)
-
-print(response.output_text)
-```
+To use API key authentication, replace the Microsoft Entra credential with your API key as shown in the [basic example](#how-it-works).
 
 ### Domain filtering
 
-You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works in the `web_search_tool` only with Responses API. 
+You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
 
-#### REST API - Entra ID
+To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The response includes the matched URLs and titles in the `web_search_call` output item.
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+openai = OpenAI(base_url=endpoint, api_key=token_provider)
+
+response = openai.responses.create(
+    model="gpt-5",
+    reasoning={"effort": "low"},
+    tools=[
+        {
+            "type": "web_search",
+            "filters": {
+                "allowed_domains": [
+                    "pubmed.ncbi.nlm.nih.gov",
+                    "clinicaltrials.gov",
+                    "www.who.int",
+                    "www.cdc.gov",
+                    "www.fda.gov",
+                ]
+            },
+        }
+    ],
+    tool_choice="auto",
+    include=["web_search_call.action.sources"],
+    input="Please perform a web search on how semaglutide is used in the treatment of diabetes.",
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+
+ResponsesClient openAIClient = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+WebSearchToolFilters filters = new();
+filters.AllowedDomains.Add("pubmed.ncbi.nlm.nih.gov");
+filters.AllowedDomains.Add("clinicaltrials.gov");
+filters.AllowedDomains.Add("www.who.int");
+filters.AllowedDomains.Add("www.cdc.gov");
+filters.AllowedDomains.Add("www.fda.gov");
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5",
+    ReasoningOptions = new ResponseReasoningOptions { ReasoningEffortLevel = ResponseReasoningEffortLevel.Low },
+    Tools = { ResponseTool.CreateWebSearchTool(filters: filters) },
+    ToolChoice = ResponseToolChoice.CreateAutoChoice(),
+    IncludedProperties = { IncludedResponseProperty.WebSearchCallActionSources }
+};
+options.InputItems.Add(ResponseItem.CreateUserMessageItem(
+    "Please perform a web search on how semaglutide is used in the treatment of diabetes."));
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+
+const response = await openai.responses.create({
+  model: "gpt-5",
+  reasoning: { effort: "low" },
+  tools: [
+    {
+      type: "web_search",
+      filters: {
+        allowed_domains: [
+          "pubmed.ncbi.nlm.nih.gov",
+          "clinicaltrials.gov",
+          "www.who.int",
+          "www.cdc.gov",
+          "www.fda.gov",
+        ],
+      },
+    },
+  ],
+  tool_choice: "auto",
+  include: ["web_search_call.action.sources"],
+  input: "Please perform a web search on how semaglutide is used in the treatment of diabetes.",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseIncludable;
+import com.openai.models.responses.WebSearchTool;
+import com.openai.models.responses.WebSearchTool.Filters;
+import java.util.List;
+
+public class WebSearchDomainFilterExample {
+    public static void main(String[] args) {
+        String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+        OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+            .baseUrl(endpoint)
+            .credential(BearerTokenCredential.create(
+                AuthenticationUtil.getBearerTokenSupplier(
+                    new DefaultAzureCredentialBuilder().build(),
+                    "https://ai.azure.com/.default")))
+            .build();
+
+        WebSearchTool webSearchTool = WebSearchTool.builder()
+            .type(WebSearchTool.Type.WEB_SEARCH)
+            .filters(Filters.builder()
+                .addAllowedDomain("pubmed.ncbi.nlm.nih.gov")
+                .addAllowedDomain("clinicaltrials.gov")
+                .addAllowedDomain("www.who.int")
+                .addAllowedDomain("www.cdc.gov")
+                .addAllowedDomain("www.fda.gov")
+                .build())
+            .build();
+
+        ResponseCreateParams params = ResponseCreateParams.builder()
+            .model("gpt-5")
+            .input("Please perform a web search on how semaglutide is used in the treatment of diabetes.")
+            .addTool(webSearchTool)
+            .toolChoice(ResponseCreateParams.ToolChoice.ofOptions(
+                ResponseCreateParams.ToolChoiceOptions.AUTO))
+            .include(List.of(ResponseIncludable.WEB_SEARCH_CALL_ACTION_SOURCES))
+            .build();
+
+        Response response = openAIClient.responses().create(params);
+        response.output().forEach(item -> item.message().ifPresent(msg ->
+            msg.content().forEach(content -> content.outputText().ifPresent(
+                t -> System.out.println(t.text())))));
+    }
+}
+```
+
+# [REST](#tab/rest)
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-	  "model": "gpt-5",
-	  "reasoning": { "effort": "low" },
-	  "tools": [
-	    {
-	      "type": "web_search",
-	      "filters": {
-		"allowed_domains": [
-		  "pubmed.ncbi.nlm.nih.gov",
-		  "clinicaltrials.gov",
-		  "www.who.int",
-		  "www.cdc.gov",
-		  "www.fda.gov"
-		]
-	      }
-	    }
-	  ],
-	  "tool_choice": "auto",
-	  "include": ["web_search_call.action.sources"],
-	  "input": "Please perform a web search on how semaglutide is used in the treatment of diabetes."
-	}'
+    "model": "gpt-5",
+    "reasoning": { "effort": "low" },
+    "tools": [
+      {
+        "type": "web_search",
+        "filters": {
+          "allowed_domains": [
+            "pubmed.ncbi.nlm.nih.gov",
+            "clinicaltrials.gov",
+            "www.who.int",
+            "www.cdc.gov",
+            "www.fda.gov"
+          ]
+        }
+      }
+    ],
+    "tool_choice": "auto",
+    "include": ["web_search_call.action.sources"],
+    "input": "Please perform a web search on how semaglutide is used in the treatment of diabetes."
+  }'
 ```
 
-#### REST API - Key
+---
 
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{
-	  "model": "gpt-5",
-	  "reasoning": { "effort": "low" },
-	  "tools": [
-	    {
-	      "type": "web_search",
-	      "filters": {
-		"allowed_domains": [
-		  "pubmed.ncbi.nlm.nih.gov",
-		  "clinicaltrials.gov",
-		  "www.who.int",
-		  "www.cdc.gov",
-		  "www.fda.gov"
-		]
-	      }
-	    }
-	  ],
-	  "tool_choice": "auto",
-	  "include": ["web_search_call.action.sources"],
-	  "input": "Please perform a web search on how semaglutide is used in the treatment of diabetes."
-	}'
-```
+To use API key authentication, replace the Microsoft Entra credential with your API key as shown in the [basic example](#how-it-works).
 
-#### Python - API Key
+### Limitations
 
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-)
-
-response = client.responses.create(   
-  model="gpt-5", # Replace with your model deployment name
-  tools= [
-	    {
-	      "type": "web_search",
-	      "filters": {
-		"allowed_domains": [
-		  "pubmed.ncbi.nlm.nih.gov",
-		  "clinicaltrials.gov",
-		  "www.who.int",
-		  "www.cdc.gov",
-		  "www.fda.gov"
-		]
-	      }
-	    }
-	  ],
-  tool_choice = "auto",
-  include = ["web_search_call.action.sources"],
-  input="Please perform a web search on how semaglutide is used in the treatment of diabetes."
-)
-
-print(response.output_text)
-```
-
-#### Python - Entra ID
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://ai.azure.com/.default"
-)
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-)
-response = client.responses.create(   
-  model="gpt-5", # Replace with your model deployment name
-  tools= [
-	    {
-	      "type": "web_search",
-	      "filters": {
-		"allowed_domains": [
-		  "pubmed.ncbi.nlm.nih.gov",
-		  "clinicaltrials.gov",
-		  "www.who.int",
-		  "www.cdc.gov",
-		  "www.fda.gov"
-		]
-	      }
-	    }
-	  ],
-  tool_choice = "auto",
-  include = ["web_search_call.action.sources"],
-  input="Please perform a web search on how semaglutide is used in the treatment of diabetes."
-)
-
-print(response.output_text)
-```
-
-> [!IMPORTANT]
-> Live internet access isn't supported. If you pass the parameter `external_web_access`, the parameter is ignored.
+- Live internet access isn't supported. If you pass the `external_web_access` parameter, the parameter is ignored.
+- The domain allowlist supports up to 100 URLs.
+- Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+- The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
+- The `open_page` and `find_in_page` actions are available only with reasoning models.
 
 ## Manage web search tool
 
@@ -526,9 +807,9 @@ You can enable or disable the `web_search` tool in the Responses API at the subs
 
 Before running the following commands, make sure you have the following prerequisites:
 
-* [Azure CLI](/cli/azure/install-azure-cli) installed. 
-* You're signed in to Azure by using `az login`.
-* You have **Owner** or **Contributor** access to the subscription.
+- [Azure CLI](/cli/azure/install-azure-cli) installed.
+- You're signed in to Azure by using `az login`.
+- You have **Owner** or **Contributor** access to the subscription.
 
 ### Disable web search
 
