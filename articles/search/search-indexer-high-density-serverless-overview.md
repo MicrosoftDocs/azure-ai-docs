@@ -5,7 +5,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/16/2026
+ms.date: 05/18/2026
 ms.custom:
   - references_regions
   - build-2026
@@ -119,7 +119,7 @@ The response includes a `runtime` section. The following sample shows an indexer
 
 ## Best practice guidance
 
-Indexer support on S3 HD and serverless is in preview. Follow this guidance to size workloads appropriately and to plan for billing.
+Indexer support on S3 HD and serverless is in preview. Follow this guidance to size workloads appropriately and to plan for billing for serverless to be introduced at a later date.
 
 ### S3 High Density
 
@@ -128,8 +128,6 @@ During preview, S3 HD indexer support is designed for workloads with no skillset
 + Plan for small indexes of about **1 GB** in size.
 + Size skillset usage carefully. Skills that call external services—such as Azure OpenAI embeddings, chat completions, and the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md)—significantly increase runtime and can consume the daily quota quickly, especially in multi-tenant scenarios.
 + Expect limited parallelism at preview. Use scheduled, staggered runs for large indexer fleets so that work spreads across the 24-hour window rather than competing for the same budget.
-
-For a full list of indexer limits on S3 HD, see [Indexer limits](search-limits-quotas-capacity.md#indexer-limits).
 
 ### Serverless
 
