@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/15/2026
 ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Configure freshness-aware retrieval in Azure AI Search
@@ -50,6 +51,57 @@ while preserving the rest of the retrieval pipeline.
 The following example shows an Azure Blob knowledge source with a freshness
 policy:
 
+::: zone pivot="csharp"
+
+```csharp
+var knowledgeSource = new AzureBlobKnowledgeSource(
+    name: "news-articles-ks",
+    azureBlobParameters: new AzureBlobKnowledgeSourceParameters(connectionString: blobConnectionString, containerName: "news")
+    {
+        IngestionParameters = new IngestionParameters
+        {
+            FreshnessPolicy = new FreshnessPolicy
+            {
+                BoostingDuration = TimeSpan.FromDays(90)
+            }
+        }
+    }
+)
+{
+    Description = "A knowledge source for recent news articles."
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+```
+
+**Reference:** [AzureBlobKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.azureblobknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+knowledge_source = AzureBlobKnowledgeSource(
+    name="news-articles-ks",
+    description="A knowledge source for recent news articles.",
+    azure_blob_parameters=AzureBlobKnowledgeSourceParameters(
+        connection_string=blob_connection_string,
+        container_name="news",
+        ingestion_parameters=IngestionParameters(
+            freshness_policy=FreshnessPolicy(boosting_duration="P90D"),
+        ),
+    ),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+```
+
+**Reference:** [AzureBlobKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.azureblobknowledgesourceparameters)
+
+::: zone-end
+
+::: zone pivot="rest"
+
 ```http
 PUT {{search-url}}/knowledgesources/news-articles-ks?api-version=2026-05-01-preview
 Content-Type: application/json
@@ -70,6 +122,10 @@ api-key: {{search-api-key}}
   }
 }
 ```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
 
 The freshness policy is part of the source ingestion parameters. For the
 preview, the service maps source modification metadata to a generated
