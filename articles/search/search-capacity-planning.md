@@ -10,6 +10,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ---
 
 # Estimate and manage capacity of a search service
@@ -69,7 +70,7 @@ Each service starts with 1 replica × 1 partition (1 SU). You can add or remove 
 |*Replica* | Instances of the search service, used primarily to load balance query operations. Each replica hosts one copy of an index. If you allocate three replicas, you have three copies of an index available for servicing query requests.|
 |*Partition* | Physical storage and I/O for read/write operations (for example, when rebuilding or refreshing an index). Each partition has a slice of the total index. If you allocate three partitions, your index is divided into thirds. |
 
-Review the [partitions and replicas table](#partition-and-replica-combinations) for possible combinations that stay under the 36 unit limit.
+Review the [partitions and replicas table](#partition-and-replica-combinations-for-the-dedicated-model) for possible combinations that stay under the 36 unit limit.
 
 The physical characteristics of replicas and partitions, such as processing speed and disk IO, vary by [pricing tier](search-sku-tier.md). On a standard search service, the replicas and partitions are faster and larger than those of a basic service.
 
@@ -79,7 +80,7 @@ Consider adding replicas or partitions when:
 
 - Query latency increases or service-level agreement criteria aren't being met.
 - The frequency of HTTP 503 (Service unavailable) errors is increasing.
-- The frequency of HTTP 429 (Too many requests) errors is increasing, an indication of low storage.
+- The frequency of HTTP 429 (Too many requests) errors is increasing, an indication of request throttling.
 - Large query volumes are expected.
 - Indexing jobs are slow or falling behind.
 - Storage or indexing throughput is insufficient.
@@ -109,15 +110,15 @@ For service limits and valid scaling ranges, see:
 - [Choose a service tier](search-sku-tier.md)
 
 > [!NOTE]
-> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [chart below](#chart) can help you cross-reference the number of search units required for a specific configuration. For more information on how extra replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
+> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [partition and replica combinations table](#partition-and-replica-combinations-for-the-dedicated-model) can help you cross-reference the number of search units required for a specific configuration. For more information on how extra replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
 
 ### How to manage and adjust capacity for the Dedicated model
 
-Changing capacity isn't instantaneous. It can take up to an hour to commission or decommission partitions, especially on search services with large amounts of data.
+Changing capacity isn't instantaneous. Depending on data volume and operation type, scaling can take from minutes to several hours.
 
 When scaling a search service, you can choose from the following tools and approaches:
 
-- [Azure portal](#adjust-capacity)
+- [Azure portal](#add-or-remove-partitions-and-replicas-for-the-dedicated-model)
 - [Azure PowerShell](search-manage-powershell.md#scale-replicas-and-partitions)
 - [Azure CLI](/cli/azure/search/service#az-search-service-create-optional-parameters)
 - [Management REST API](/rest/api/searchmanagement/services/create-or-update)
@@ -127,8 +128,8 @@ When scaling a search service, you can choose from the following tools and appro
 
 To increase or decrease the capacity of your service, you have two options:
 
-- [Add or remove partitions and replicas](#add-or-remove-partitions-and-replicas)
-- [Change your pricing tier](#change-your-pricing-tier)
+- [Add or remove partitions and replicas](#add-or-remove-partitions-and-replicas-for-the-dedicated-model)
+- [Change your pricing tier](#change-your-pricing-tier-for-the-dedicated-model)
 
 #### Add or remove partitions and replicas for the Dedicated model
 
@@ -204,7 +205,7 @@ Upon receipt of a scale request, the search service:
 1. Checks whether the service is already in a provisioning state (currently adding or eliminating either replicas or partitions).
 1. Starts provisioning.
 
-Scaling a service can take as little as 15 minutes or well over an hour, depending on the size of the service and the scope of the request. Backup can take several minutes, depending on the amount of data and number of partitions and replicas.
+Scaling a service can take from several minutes to several hours, depending on the size of the service and the scope of the request. Backup duration also varies based on the amount of data and number of partitions and replicas.
 
 The above steps aren't entirely consecutive. For example, the system starts provisioning when it can safely do so, which could be while backup is winding down.
 
@@ -269,11 +270,11 @@ We recommend estimating on a billable tier, Basic or higher. The Free tier runs 
 
    - For vector search, you can [set parameters to reduce vector size](vector-search-how-to-configure-compression-storage.md).
 
-1. [Monitor storage, service limits, query volume, and latency](monitor-azure-cognitive-search.md) in the Azure portal. the Azure portal shows you queries per second, throttled queries, and search latency. All of these values can help you decide if you selected the right tier.
+1. [Monitor storage, service limits, query volume, and latency](monitor-azure-cognitive-search.md) in the Azure portal. The Azure portal shows queries per second, throttled queries, and search latency. These values can help you decide if you selected the right tier.
 
 1. Add replicas for high availability or to mitigate slow query performance.
 
-   There are no guidelines on how many replicas are needed to accommodate query loads. Query performance depends on the complexity of the query and competing workloads. Although adding replicas clearly results in better performance, the result isn't strictly linear: adding three replicas doesn't guarantee triple throughput. For guidance in estimating QPS for your solution, see [Analyze performance](search-performance-analysis.md)and [Monitor queries](search-monitor-queries.md).
+   There are no guidelines on how many replicas are needed to accommodate query loads. Query performance depends on the complexity of the query and competing workloads. Although adding replicas clearly results in better performance, the result isn't strictly linear: adding three replicas doesn't guarantee triple throughput. For guidance in estimating QPS for your solution, see [Analyze performance](search-performance-analysis.md) and [Monitor queries](search-monitor-queries.md).
 
 For an [inverted index](https://en.wikipedia.org/wiki/Inverted_index), size and complexity are determined by content, not necessarily by the amount of data that you feed into it. A large data source with high redundancy could result in a smaller index than a smaller dataset that contains highly variable content. So it's rarely possible to infer index size based on the size of the original dataset.
 
@@ -283,9 +284,9 @@ Storage requirements can be inflated if you include data that will never be sear
 
 The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service.
 
-+ Two or more replicas satisfy query (read) SLAs.
+- Two or more replicas satisfy query (read) SLAs.
 
-+ Three or more replicas satisfy query and indexing (read-write) SLAs.
+- Three or more replicas satisfy query and indexing (read-write) SLAs.
 
 The number of partitions doesn't affect SLAs.
 
