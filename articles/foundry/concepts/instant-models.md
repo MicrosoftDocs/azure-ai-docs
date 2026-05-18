@@ -4,12 +4,13 @@ description: "Learn about instant models in Microsoft Foundry, which let you cal
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/18/2026
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 ms.custom:
   - build-2025
+  - update-code
 # customer intent: As a developer, I want to understand how instant models work so that I can call models without creating deployments first.
 ---
 
