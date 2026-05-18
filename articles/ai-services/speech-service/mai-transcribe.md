@@ -11,6 +11,7 @@ ms.date: 04/01/2026
 zone_pivot_groups: llm-speech-quickstart
 
 # Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
+ai-usage: ai-assisted
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
@@ -48,7 +49,7 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \

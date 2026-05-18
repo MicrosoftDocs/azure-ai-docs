@@ -58,7 +58,7 @@ Follow these steps to create a new console application.
     func main() {
         // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         // Replace with your own subscription key and endpoint
-        // The endpoint is like: "https://YourServiceRegion.api.cognitive.microsoft.com"
+        // The endpoint is like: "https://YourResourceName.cognitiveservices.azure.com"
         speechKey := os.Getenv("SPEECH_KEY")
         endpoint := os.Getenv("ENDPOINT")
 
