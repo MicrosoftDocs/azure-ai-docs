@@ -135,17 +135,17 @@ azd env set AZURE_LOCATION northcentralus
 
 ---
 
-Provision the Azure resources (~2 min):
+Provision the Azure resources. This step takes approximately two minutes:
 
 ```bash
 azd provision
 ```
 
-This creates:
+This step creates:
 
 - A Foundry account and project
 - An Azure Container Registry
-- A model deployment (gpt-4.1-mini)
+- A model deployment for gpt-4.1-mini
 
 ## Deploy the agent
 
@@ -167,12 +167,12 @@ azd ai agent invoke "What is 2+2?"
 azd ai agent optimize
 ```
 
-The CLI auto-detects the agent name from `agent.yaml`. The service:
+The CLI auto-detects the agent name from `agent.yaml`. The service completes the following steps:
 
-1. Evaluates your baseline agent against a built-in dataset (3 tasks, 12 criteria)
-1. Generates improved instruction candidates
-1. Evaluates each candidate
-1. Ranks them by score
+1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
+1. Generates improved instruction candidates.
+1. Evaluates each candidate.
+1. Ranks the candidates by score.
 
 This process takes 5 to 20 minutes. You see real-time progress:
 
@@ -194,12 +194,12 @@ Results:
     azd ai agent optimize deploy --candidate cand_91a5861f5c0245c4b2acb9ccaa48d4aa
 ```
 
-The *eval model* (defaults to `gpt-4.1-mini`) scores each response. This model must be deployed in your Foundry project.
+The *eval model*, which defaults to `gpt-4.1-mini`, scores each response. This model must be deployed in your Foundry project.
 
 > [!WARNING]
-> If the eval model isn't deployed, all scores are zero with no error message. Verify your eval model exists before running optimization.
+> If the eval model is not deployed, all scores are zero with no error message. Verify that your eval model exists before running optimization.
 
-To evaluate the baseline only (no optimization):
+To evaluate the baseline only, without running optimization:
 
 ```bash
 azd ai agent optimize --eval
@@ -229,7 +229,7 @@ azd ai agent optimize --eval
 
 ## Monitor and manage
 
-Use the *job ID* (format: `opt_<hex>`, printed in optimization output) to track and manage runs:
+Use the *job ID*, which is formatted as `opt_<hex>` and is printed in optimization output, to track and manage runs:
 
 ```bash
 # Watch a running job
@@ -269,3 +269,4 @@ azd down --force --purge
 - [Create a custom evaluation dataset](../how-to/create-optimization-dataset.md)
 - [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)
 - [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md)
+

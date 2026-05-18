@@ -17,17 +17,17 @@ ai-usage: ai-assisted
 
 Foundry Agent Optimization Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.
 
-Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and doesn't scale. Agent optimization automates this cycle so you can focus on your agent's core logic.
+Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and does not scale. Agent optimization automates this cycle so you can focus on your agent's core logic.
 
 ## How optimization works
 
 The optimization service runs a closed-loop evaluation and improvement cycle:
 
-1. **Evaluate the baseline** — Your agent is invoked against a dataset of tasks. Each response is scored against criteria you define (or a built-in default set). The *baseline* is your agent's score before any changes.
-2. **Generate candidates** — The service produces alternative configurations called *candidates* (for example, rewritten instructions or discovered skills) designed to improve scores.
-3. **Evaluate candidates** — Each candidate is tested against the same dataset.
-4. **Rank and recommend** — Results are ranked by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance. The best candidate is marked with ★.
-5. **Deploy the winner** — A single command promotes the winning candidate and saves its configuration to your agent's environment.
+1. **Evaluate the baseline.** Your agent is invoked against a dataset of tasks. Each response is scored against criteria you define or a built-in default set. The *baseline* is your agent's score before any changes.
+1. **Generate candidates.** The service produces alternative configurations called *candidates*, such as rewritten instructions or discovered skills, that are designed to improve scores.
+1. **Evaluate candidates.** Each candidate is tested against the same dataset.
+1. **Rank and recommend.** Results are ranked by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance. The best candidate is marked with ★.
+1. **Deploy the winner.** A single command promotes the winning candidate and saves its configuration to your agent's environment.
 
 The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
 
@@ -83,8 +83,8 @@ When your agent starts, the `load_config()` function checks three sources in ord
 
 | Priority | Source | When it's used |
 | ---------- | -------- | ---------------- |
-| 1 | `AGENT_OPTIMIZATION_CANDIDATE_ID` env var → resolver API | During optimization evaluation |
-| 2 | `AGENT_OPTIMIZATION_CONFIG` / `OPTIMIZATION_CONFIG` env var (inline JSON) | After deploying a candidate |
+| 1 | `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable, resolved through the API | During optimization evaluation |
+| 2 | `AGENT_OPTIMIZATION_CONFIG` or `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
 | 3 | Your defaults in code | Normal operation (no optimization) |
 
 Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md).
@@ -93,7 +93,7 @@ Your agent always works with or without optimization. No feature flags or condit
 
 | Field | Description | Strategy |
 | ------- | ------------- | ---------- |
-| `instructions` | System prompt / instructions | instruction, skill |
+| `instructions` | System prompt and instructions | instruction, skill |
 | `skills` | Discovered skill catalog | skill |
 | `model` | Model deployment name | (future) |
 | `temperature` | Sampling temperature | (future) |
@@ -119,7 +119,7 @@ Results:
 | Column | Description |
 | -------- | ------------- |
 | **Candidate** | Name of the configuration. `baseline` is your current agent before optimization. |
-| **Score** | Composite score across all tasks and criteria (0.0–1.0). |
+| **Score** | Composite score across all tasks and criteria, ranging from 0.0 to 1.0. |
 | **Pass** | Percentage of tasks where the agent produced a valid response. |
 | **Tokens** | Average token count per response. |
 
@@ -145,10 +145,10 @@ Task "refund_policy":
 
 | Improvement | Interpretation |
 | ------------- | --------------- |
-| < 0.03 | Noise — not a meaningful improvement |
-| 0.03–0.10 | Moderate improvement — worth deploying |
-| 0.10–0.20 | Significant improvement |
-| > 0.20 | Major improvement — likely from a poor baseline |
+| Less than 0.03 | Noise. Not a meaningful improvement. |
+| 0.03 to 0.10 | Moderate improvement. Worth deploying. |
+| 0.10 to 0.20 | Significant improvement. |
+| Greater than 0.20 | Major improvement. Likely from a poor baseline. |
 
 ### Token trade-offs
 
@@ -171,7 +171,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ```
 
 > [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify that your eval model exists in the project.
+> If the eval model is not deployed, all scores are zero with no error message. Always verify that your eval model exists in the project.
 
 ## Limitations and availability
 

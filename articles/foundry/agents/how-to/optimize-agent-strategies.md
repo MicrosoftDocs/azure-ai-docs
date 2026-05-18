@@ -38,10 +38,10 @@ The *instruction strategy* is the default optimization approach. It rewrites and
 
 ### How it works
 
-1. **Baseline evaluation** — Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
-1. **Instruction generation** — The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation** — Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The optimization service sets this variable automatically during evaluation.
-1. **Ranking** — Candidates are ranked by composite score. The best candidate is marked with ★.
+1. **Baseline evaluation.** Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
+1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
+1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The optimization service sets this variable automatically during evaluation.
+1. **Ranking.** Candidates are ranked by composite score. The best candidate is marked with ★.
 
 ### Run instruction optimization
 
@@ -78,7 +78,7 @@ azd ai agent optimize --config spec.yaml
 
 The optimizer rewrites the system prompt. Your code stays the same because `load_config()` returns the new instructions automatically. Common improvements include:
 
-- Adding explicit constraints that the original prompt implied but didn't state
+- Adding explicit constraints that the original prompt implied but did not state
 - Restructuring instructions for clarity
 - Adding output format specifications
 - Strengthening safety and scope boundaries
@@ -108,9 +108,9 @@ The *budget* option controls how many candidate instruction sets are generated. 
 
 | Budget | Candidates | Time | Best for |
 | -------- | ----------- | ------ | ---------- |
-| 3 (default) | 3 | 5–10 min | Quick experiments |
-| 5 | 5 | 10–15 min | Good balance |
-| 10 | 10 | 20–30 min | Thorough exploration |
+| 3 (default) | 3 | 5 to 10 min | Quick experiments |
+| 5 | 5 | 10 to 15 min | Good balance |
+| 10 | 10 | 20 to 30 min | Thorough exploration |
 
 Higher budgets explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
 
@@ -126,7 +126,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ```
 
 > [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
+> If the eval model is not deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
 
 ## Optimize with skill discovery
 
@@ -134,12 +134,12 @@ The *skill strategy* discovers reusable capabilities your agent should have. It 
 
 ### How it works
 
-1. **Baseline evaluation** — Same as the instruction strategy. Your agent is evaluated against the dataset.
-1. **Skill discovery** — The optimizer analyzes weak areas and generates skill definitions. A skill is a named capability with:
-   - **Name** — For example, `"step_by_step_reasoning"`
-   - **Description** — What the skill does and when to use it
-   - **Body** — Implementation details or procedure
-1. **Injection** — Discovered skills are appended to the agent's instructions through `compose_instructions()`, which creates a skill catalog the model can reference.
+1. **Baseline evaluation.** Same as the instruction strategy. Your agent is evaluated against the dataset.
+1. **Skill discovery.** The optimizer analyzes weak areas and generates skill definitions. A skill is a named capability with:
+   - **Name**: For example, `"step_by_step_reasoning"`
+   - **Description**: What the skill does and when to use it
+   - **Body**: Implementation details or procedure
+1. **Injection.** Discovered skills are appended to the agent's instructions through `compose_instructions()`, which creates a skill catalog the model can reference.
 
     ```python
     # compose_instructions() appends discovered skills to your prompt
@@ -147,7 +147,7 @@ The *skill strategy* discovers reusable capabilities your agent should have. It 
     # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
     ```
 
-1. **Evaluation** — The agent with skills is evaluated against the dataset.
+1. **Evaluation.** The agent with skills is evaluated against the dataset.
 
 ### Run skill optimization
 
@@ -214,7 +214,7 @@ azd ai agent optimize deploy --candidate <candidate-id>
 
 This command sets `OPTIMIZATION_CONFIG` in the agent's environment. On next startup, `load_config()` returns the optimized instructions.
 
-If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
+If all candidates score lower than the baseline, do not deploy any candidate. The baseline configuration remains active.
 
 ## Troubleshooting
 
