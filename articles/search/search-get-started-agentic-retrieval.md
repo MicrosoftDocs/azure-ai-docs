@@ -11,16 +11,10 @@ ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
 # Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI LLM to synthesize answers.
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 ---
 
 # Quickstart: Agentic retrieval
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ::: zone pivot="csharp"
 [!INCLUDE [C#](includes/quickstarts/agentic-retrieval-csharp.md)]
