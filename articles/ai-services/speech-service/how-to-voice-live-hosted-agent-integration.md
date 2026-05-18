@@ -5,10 +5,10 @@ description: Learn how to integrate Voice Live with Microsoft Foundry hosted age
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 05/14/2026
-author: 
-reviewer: 
-ms.author: 
-ms.reviewer: 
+author: PatrickFarley
+reviewer: QingyingLiao, YulinLi, JianMiao
+ms.author: pafarley
+ms.reviewer: qiliao, yulin, jianm
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to add real-time voice interaction to my Microsoft Foundry hosted agent so that users can speak to the agent and hear responses.
 ---
