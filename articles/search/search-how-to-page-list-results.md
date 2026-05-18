@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/15/2026
 ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Use paging with Azure AI Search list APIs
@@ -24,10 +25,25 @@ knowledge bases, or knowledge sources.
 
 + An Azure AI Search service with objects to enumerate.
 
-+ A client that can call the `2026-05-01-preview` REST APIs or an equivalent
-  preview SDK.
-
 + Permission to call the list operation you want to page through.
+
+::: zone pivot="csharp"
+
++ The latest preview [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package: `dotnet add package Azure.Search.Documents --prerelease`
+
+::: zone-end
+
+::: zone pivot="python"
+
++ The latest preview [azure-search-documents](https://pypi.org/project/azure-search-documents/) package: `pip install azure-search-documents --pre`
+
+::: zone-end
+
+::: zone pivot="rest"
+
++ A client that can call the `2026-05-01-preview` REST APIs.
+
+::: zone-end
 
 ## Choose paging parameters
 
@@ -53,7 +69,45 @@ requests when the collection doesn't change.
 ## Send the first paged request
 
 The following example requests five indexes and asks the service to include
-the total count:
+the total count.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var page = indexClient.GetIndexesAsync(top: 5, skip: 0).AsPages().GetAsyncEnumerator();
+await page.MoveNextAsync();
+foreach (var index in page.Current.Values)
+{
+    Console.WriteLine(index.Name);
+}
+```
+
+**Reference:** [SearchIndexClient.GetIndexesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+for index in index_client.list_indexes(top=5, skip=0):
+    print(index.name)
+```
+
+**Reference:** [SearchIndexClient.list_indexes](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 GET {{search-url}}/indexes?$top=5&$skip=0&$count=true&api-version=2026-05-01-preview
@@ -77,6 +131,8 @@ subsequent pages by increasing `$skip`.
 }
 ```
 
+::: zone-end
+
 ## Continue through all pages
 
 When you control `$top`, continue by increasing `$skip` until the response
@@ -85,7 +141,39 @@ size because `$top` is omitted, or caps a request above the maximum page size,
 the response can include `@odata.nextLink` when more results remain. Treat
 `@odata.nextLink` as opaque when it's present.
 
-The following pseudocode shows the basic paging loop:
+::: zone pivot="csharp"
+
+The .NET SDK pages through results transparently. Iterating an `AsyncPageable<T>`
+fetches each page on demand, so a simple `await foreach` covers the entire
+collection. Set `top` to control the page size that the SDK requests from the
+service.
+
+```csharp
+await foreach (var index in indexClient.GetIndexesAsync(top: 50))
+{
+    Console.WriteLine(index.Name);
+}
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+The Python SDK pages through results transparently. Iterating the iterator
+returned by `list_indexes` fetches each page on demand, so a simple `for` loop
+covers the entire collection. Set `top` to control the page size that the SDK
+requests from the service.
+
+```python
+for index in index_client.list_indexes(top=50):
+    print(index.name)
+```
+
+::: zone-end
+
+::: zone pivot="rest"
+
+The following pseudocode shows the basic paging loop for REST callers:
 
 ```text
 top = 50
@@ -100,6 +188,8 @@ while true:
 
     skip = skip + top
 ```
+
+::: zone-end
 
 ## Supported list operations
 
