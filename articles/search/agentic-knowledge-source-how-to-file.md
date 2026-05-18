@@ -277,9 +277,6 @@ You can pass the following `ingestionParameters` properties to control how uploa
 
 After the source exists, upload files directly to it. The file knowledge source processing path is push-oriented rather than schedule-oriented. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
 
-> [!NOTE]
-> The current preview C# and Python SDKs don't yet expose typed methods for file upload or file listing on a file knowledge source. Until they ship, send the same `2026-05-01-preview` REST calls through your language's HTTP client.
-
 The request body contains the file content.
 
 ::: zone pivot="csharp"
@@ -587,9 +584,6 @@ Accept: application/json
 ```
 
 ::: zone-end
-
-> [!NOTE]
-> To override per-source retrieve defaults for a file knowledge source (for example, `includeReferences` or `includeReferenceSourceData`), use the REST API. The current preview C# and Python SDKs don't yet expose a typed `FileKnowledgeSourceParams` class, although you can still construct the base `KnowledgeSourceParams` shape with `kind = "file"` directly. The retrieve action itself is fully documented for all SDKs in [Query a knowledge base](agentic-retrieval-how-to-retrieve.md).
 
 ## Review supported formats and limits
 
