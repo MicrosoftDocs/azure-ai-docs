@@ -577,6 +577,7 @@ Tool-specific `tools/call` argument examples:
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| Work IQ | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Step 4: Integrate the toolbox into your agent
