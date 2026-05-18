@@ -21,7 +21,7 @@ Instant models let you call any supported model by name — no deployment requir
 
 With instant models, the workflow is:
 
-1. Create a Foundry project in East US 3 (the only supported region during preview).
+1. Create a Foundry project in **West US 3** (the only supported region during preview).
 1. Pass a supported model name in your code. No deployment needed.
 
 The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
@@ -48,7 +48,7 @@ New models support instant access by default when they're released. Support for 
 To see all models that support instant access, open the [Foundry model catalog](https://ai.azure.com/explore/models) and filter **Deployment options** to **Instant**.
 
 > [!NOTE]
-> During the preview, instant models are available in projects in East US 3 only.
+> During the preview, instant models are available in projects in **West US 3** only.
 
 ## When to use instant models vs. deployments
 
@@ -107,7 +107,7 @@ New deployments can't use a name that matches an existing model name. If you hav
 
 ## Limitations during preview
 
-- Available in East US 3 only.
+- Available in **West US 3** only.
 - Fine-tuned models aren't supported. To use a fine-tuned model, create a deployment.
 - Custom RAI policies and content filters aren't configurable for instant models.
 - Only the models listed in [Supported models](#supported-models) are eligible.
