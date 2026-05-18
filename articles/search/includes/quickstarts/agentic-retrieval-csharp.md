@@ -518,6 +518,6 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfull
 ### Delete the search index
 
 ```csharp
-await indexClient.DeleteIndexAsync(indexName, matchConditions: null);
+await indexClient.DeleteIndexAsync(indexName);
 Console.WriteLine($"Index '{indexName}' deleted successfully.");     
 ```
