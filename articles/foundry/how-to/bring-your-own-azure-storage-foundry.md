@@ -23,10 +23,12 @@ ai-usage: ai-assisted
 ## Create a storage connection
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-1. In the upper right, select **Build**.
-1. In the left pane, select **Tools** and then **Connect a tool** in the upper right of the pane.
-1. In the **Select a tool** dialog, select the **Catalog** tab and find **Azure Blob Storage**.
-1. Select **Create**.
+1. Select **Operate** in the upper-right navigation.
+1. Select **Admin** in the left pane.
+1. Select your project name in the **Manage all projects** list.
+1. Select **Add connection** in the upper-right corner.
+1. In the list of available services, select **Azure Storage**.
+1. Browse for and select your Azure Storage account, choose an **Authentication** type, and then select **Add connection**.
 
 > [!NOTE]
 > Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks.
