@@ -10,10 +10,6 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Query a knowledge base using the retrieve action or MCP endpoint
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
@@ -66,10 +62,6 @@ You specify the retrieve action on a knowledge base. The request body includes t
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```csharp
 using Azure;
 using Azure.Search.Documents.KnowledgeBases;
@@ -115,10 +107,6 @@ Console.WriteLine(
 
 # [2026-04-01](#tab/2026-04-01)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```csharp
 using Azure;
 using Azure.Search.Documents.KnowledgeBases;
@@ -155,10 +143,6 @@ Console.WriteLine(
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
@@ -170,10 +154,6 @@ from azure.search.documents.knowledgebases.models import (
 )
 
 # Create knowledge base retrieval client
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
@@ -217,10 +197,6 @@ print(result.response[0].content[0].text)
 
 # [2026-04-01](#tab/2026-04-01)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
@@ -231,10 +207,6 @@ from azure.search.documents.knowledgebases.models import (
 )
 
 # Create knowledge base retrieval client
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
@@ -268,10 +240,6 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```http
 @search-url = <YOUR SEARCH SERVICE URL> // Example: https://my-service.search.windows.net
@@ -314,10 +282,6 @@ Authorization: Bearer {{accessToken}}
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```http
 @search-url = <YOUR SEARCH SERVICE URL> // Example: https://my-service.search.windows.net
@@ -558,10 +522,6 @@ Pass the following parameters to call the retrieve action.
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
@@ -570,10 +530,6 @@ Pass the following parameters to call the retrieve action.
 | `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -714,26 +670,14 @@ from azure.search.documents.knowledgebases.models import (
 )
 
 # Service credential: Authenticates to the search service
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 service_credential = DefaultAzureCredential()
 
 # User identity token: Represents the end user for document-level permissions filtering
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 user_token_provider = get_bearer_token_provider(
     service_credential, "https://search.azure.com/.default")
 user_token = user_token_provider()
 
 # Create the retrieval client with the service credential
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
@@ -751,10 +695,6 @@ request = KnowledgeBaseRetrievalRequest(
 )
 
 # Pass the user identity token for permissions filtering
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 result = kb_client.retrieve(
     retrieval_request=request, x_ms_query_source_authorization=user_token)
 print(result.response[0].content[0].text)
@@ -805,19 +745,11 @@ The retrieve action returns three main components:
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 + [Extracted response](#extracted-response) or [synthesized answer](agentic-retrieval-how-to-answer-synthesis.md) (depending on output mode)
 + [Activity array](#activity-array)
 + [References array](#references-array)
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 + [Extracted response](#extracted-response) (2026-04-01 doesn't support answer synthesis)
 + [Activity array](#activity-array)
@@ -868,10 +800,6 @@ The output includes the following components:
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 | Section | Description |
 |---------|-------------|
 | modelQueryPlanning | For knowledge bases that use an LLM for query planning, this section reports on the token counts used for input, and the token count for the subqueries. |
@@ -880,10 +808,6 @@ The output includes the following components:
 | modelAnswerSynthesis | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer, and the token count of the answer output. |
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 | Section | Description |
 |---------|-------------|
@@ -898,10 +822,6 @@ The output includes the following components:
 Here's an example of the activity array:
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```json
   "activity": [
@@ -961,10 +881,6 @@ Here's an example of the activity array:
 ```
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```json
   "activity": [
