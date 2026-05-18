@@ -24,7 +24,7 @@ With instant models, the workflow is:
 1. Create a Foundry project in **West US 3** (the only supported region during preview).
 1. Pass a supported model name in your code. No deployment needed.
 
-The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
+The only change from deployment-based code is the `model` parameter. In the code below, change the name from `"gpt-5-mini"` to any instant model name.
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
 
@@ -33,7 +33,7 @@ The same API, SDK, and client you already use for deployments works with instant
 
 ### Why instant models matter
 
-- **Switch models by changing one string** — try `gpt-4o`, then switch to `gpt-4.1` without creating or deleting deployments.
+- **Switch models by changing one string** — use any instant model name in the `model=` line, without creating or deleting deployments.
 - **Same API and SDK** — the same `responses.create()` calls work for both instant models and deployments.
 - **Works with your dev tools** — instant models integrate with Foundry CLI, VS Code, and CI/CD pipelines the same way deployments do.
 
@@ -72,8 +72,8 @@ By default, instant models route to the latest evergreen version of a model. To 
 
 | What you pass as `model` | Behavior |
 |---|---|
-| `gpt-4o` | Routes to the latest version |
-| `gpt-4o-2024-05-13` | Routes to that specific version |
+| `model-name` | Routes to the latest version |
+| `model-name-2025-04-01` | Routes to that specific version |
 
 <!-- [TODO] Confirm version suffix format (hyphen vs. other delimiter) before publish -->
 
