@@ -72,7 +72,7 @@ using Azure.Search.Documents.KnowledgeBases.Models;
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
+    tokenCredential: new DefaultAzureCredential()
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -117,7 +117,7 @@ using Azure.Search.Documents.KnowledgeBases.Models;
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
+    tokenCredential: new DefaultAzureCredential()
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -145,7 +145,7 @@ Console.WriteLine(
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage,
@@ -158,7 +158,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
+    credential=DefaultAzureCredential(),
 )
 
 request = KnowledgeBaseRetrievalRequest(
@@ -199,7 +199,7 @@ print(result.response[0].content[0].text)
 # [2026-04-01](#tab/2026-04-01)
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeRetrievalSemanticIntent,
@@ -211,7 +211,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
+    credential=DefaultAzureCredential(),
 )
 
 request = KnowledgeBaseRetrievalRequest(
@@ -350,7 +350,7 @@ using Azure.Search.Documents.KnowledgeBases.Models;
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    credential: new AzureKeyCredential("<YOUR SEARCH API KEY>")
+    tokenCredential: new DefaultAzureCredential()
 );
 
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -395,7 +395,7 @@ Console.WriteLine(
 :::zone pivot="python"
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage,
@@ -407,7 +407,7 @@ from azure.search.documents.knowledgebases.models import (
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=AzureKeyCredential("<YOUR SEARCH API KEY>"),
+    credential=DefaultAzureCredential(),
 )
 
 request = KnowledgeBaseRetrievalRequest(
