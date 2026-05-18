@@ -145,14 +145,14 @@ items:
     - name: "Quickstart: Create a provisioned throughput deployment"
       displayName: Create a provisioned throughput deployment
       href: ../../openai/provisioned-quickstart.md
-    - name: Provisioned throughput offering (PTU)
+    - name: What is provisioned throughput?
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
-    - name: Understanding and calculating PTU costs
-      displayName: Provisioned throughput unit (PTU) costs and billing
+    - name: PTU billing, sizing, and cost management
+      displayName: Provisioned throughput billing, sizing, and cost management
       href: ../../openai/how-to/provisioned-throughput-onboarding.md
-    - name: Get started with Provisioned Deployments
-      displayName: Get started with provisioned deployments in Microsoft Foundry
+    - name: Operate provisioned deployments in production
+      displayName: Operate provisioned deployments in production
       href: ../../openai/how-to/provisioned-get-started.md
     - name: Provisioned spillover
       displayName: Manage traffic with spillover for provisioned deployments
