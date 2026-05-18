@@ -3,7 +3,7 @@ title: "Provisioned throughput unit (PTU) costs and billing (classic)"
 description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 04/29/2026
 manager: nitinme
