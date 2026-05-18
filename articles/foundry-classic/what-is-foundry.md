@@ -117,7 +117,7 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
+| Foundry Models sold by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
 | Models deployed on managed compute (e.g. HuggingFace) | | ✅ |
 | Foundry SDK and API | ✅ | Limited* |

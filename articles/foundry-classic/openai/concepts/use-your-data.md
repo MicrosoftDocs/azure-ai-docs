@@ -704,7 +704,7 @@ Each user message can translate to multiple search queries, all of which get sen
 
 [!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-For regional availability, see the [Region availability for Foundry Models sold directly by Azure](../../../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For regional availability, see the [Region availability for Foundry Models sold by Azure](../../../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## Next steps
 * [Get started using your data with Azure OpenAI](../../quickstarts/get-started-code.md)
