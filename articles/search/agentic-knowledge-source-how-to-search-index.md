@@ -33,7 +33,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -43,7 +43,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -53,7 +53,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -86,7 +86,7 @@ Run the following code to create a search index knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create a search index knowledge source
@@ -144,7 +144,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create a search index knowledge source
@@ -216,11 +216,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 ### Create a search index knowledge source
-PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2026-05-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
 
@@ -240,7 +240,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -274,7 +274,7 @@ Content-Type: application/json
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a search index knowledge source.
+For both the 2026-05-01-preview and 2026-04-01 API versions, you can pass the following properties to create a search index knowledge source.
 
 ### Persist retrieve defaults on a knowledge source
 
@@ -288,7 +288,7 @@ same values every time.
 > [!NOTE]
 > Starting with `2026-05-01-preview`, `semanticConfigurationName` is optional
 > on search index knowledge sources. The examples in this section omit it.
-> Earlier API versions (`2025-11-01-preview` and `2026-04-01`) still require
+> Earlier API versions (`2026-05-01-preview` and `2026-04-01`) still require
 > `semanticConfigurationName`. If your knowledge source needs to support both
 > the older and newer API versions, keep specifying it.
 
