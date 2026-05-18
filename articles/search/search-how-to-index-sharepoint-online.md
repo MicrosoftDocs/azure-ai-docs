@@ -4,7 +4,7 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/23/2026
+ms.date: 05/18/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -137,14 +137,16 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
         
         :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
-
-      - If you're enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
+     - If you're enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
         - `Files.Read.All`
         - `Sites.FullControl.All` (instead of Sites.Read.All)
 
       - If you need to enable content indexing and/or limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
         - `Sites.Selected`
-
+       
+       - If you'll be using this same application registraton for SharePoint group resolution (`sharePointConnectorAppRegistration` index configuration) at query time, choose also:
+        - `User.Read.All` 
+                 
           Then grant the application full control only for those selected sites. Review this [SharePoint blog post](https://techcommunity.microsoft.com/blog/spblog/develop-applications-that-use-sites-selected-permissions-for-spo-sites-/3790476) that explains this process.
 
      
