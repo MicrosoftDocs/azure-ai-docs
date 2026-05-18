@@ -260,11 +260,11 @@ An Entra admin must complete the following steps before you can create a Fabric 
 1. Go to the [Microsoft Entra admin center](https://entra.microsoft.com/). In the left navigation, select **Entra ID** > **App registrations**.
 1. Select **New registration**. Give the app a descriptive name and set **Supported account types** to **Accounts in this organizational directory only**. Select **Register**.
 1. Copy the **Application (client) ID**. You need this value when creating the Foundry connection.
-1. Select **API permissions** > **Add a permission** > **APIs my organization uses**. Search for **Power BI service**, select **Delegated permissions**, and add the following permissions:
+1. Select **API permissions** > **Add a permission** > **Microsoft APIs**. Find and select **Power BI Service**, select **Delegated permissions**, and add the following permissions:
    - `Item.Execute.All`
    - `Item.Read.All`
 
-   :::image type="content" source="../../media/tools/fabric-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the APIs my organization uses tab with Power BI Service found by searching for Power BI service." lightbox="../../media/tools/fabric-iq/entra-api-permissions-search.png":::
+   :::image type="content" source="../../media/tools/fabric-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the Microsoft APIs tab with Power BI Service selected." lightbox="../../media/tools/fabric-iq/entra-api-permissions-search.png":::
 
    Select **Add permissions**.
 1. Select **Grant admin consent for [your tenant]**. Review the confirmation dialog and select **Yes**.
