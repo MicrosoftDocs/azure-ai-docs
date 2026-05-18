@@ -151,7 +151,7 @@ Elevated read is available in REST API version [2026-05-01-preview](/rest/api/se
 
 The calling developer user must hold the **Search Index Data Contributor** role on the search service or index scope. **Search Index Data Reader** isn't sufficient. Elevated read fails with `403 Forbidden` if the role isn't assigned. For more information about Azure AI Search roles, see [Role-based access control](search-security-rbac.md).
 
-The user identity passed in `x-ms-query-source-authorization` is still recorded as the requesting user in audit logs, even though the user's label permissions aren't enforced.
+When using `x-ms-enable-elevated-read` value set to `true`, the `x-ms-query-source-authorization` header isn't allowed to be used. 
 
 ### Elevated read example
 
