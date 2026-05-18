@@ -446,10 +446,10 @@ For a complete code sample, see [language identification](../../../language-iden
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, and handling language switches within the same session. These features enable a new level of speech translation powers that can be implemented into your products.
 
-Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResourceKey" with your Speech resource key.
+Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace `YourResourceName` with your Speech resource name. Replace "YourSpeechResourceKey" with your Speech resource key.
 
 ```csharp
-var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourServiceRegion");
+var v2EndpointInString = "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2";
 var v2EndpointUrl = new Uri(v2EndpointInString);
 var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResourceKey");
 ```
@@ -478,12 +478,11 @@ To use the Live Interpreter API, first [apply for personal voice access](https:/
 After personal voice access permission is granted, you can enable Live Interpreter with the following code:
 
 ```csharp
-// Please replace the service region with your region
-var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourRegion");
+// Replace YourResourceName with your Speech resource name
+var v2EndpointInString = "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2";
 var v2EndpointUrl = new Uri(v2EndpointInString);
 
-// Creates an instance of a speech translation config with specified subscription key and service region.
-// Please replace the service subscription key with your subscription key
+// Replace YourSubscriptionKey with your Speech resource key
 var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSubscriptionKey");
 
 // Translation target language and enable personal voice
@@ -542,7 +541,7 @@ namespace LiveInterpreterDemo
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // NOTICE!!!, set your region and key here
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(new Uri("https://<REGION>.stt.speech.microsoft.com/speech/universal/v2"), "<KEY>");
+            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(new Uri("https://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2"), "<KEY>");
             speechTranslationConfig.AddTargetLanguage(locale);
             speechTranslationConfig.VoiceName = "personal-voice";
 
@@ -659,9 +658,9 @@ Additionally, for offline training of a custom translator and obtaining a "Categ
 ```csharp
 // Creates an instance of a translation recognizer using speech translation configuration
 // You should use the same subscription key, which you used to generate the custom model before.
-// V2 endpoint is required for the "Custom Translation" feature. Example: "wss://westcentralus.stt.speech.microsoft.com/speech/universal/v2"
+// V2 endpoint is required for the "Custom Translation" feature. Example: "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2"
 
-var v2EndpointInString = "wss://westcentralus.stt.speech.microsoft.com/speech/universal/v2";
+var v2EndpointInString = "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/universal/v2";
 var v2EndpointUrl = new Uri(v2EndpointInString);
 var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechSubscriptionKey");
 

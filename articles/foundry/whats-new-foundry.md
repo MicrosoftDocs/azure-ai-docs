@@ -6,6 +6,7 @@ author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
@@ -29,6 +30,7 @@ For details and other product updates, see [Microsoft Foundry DevBlog](https://d
 
 ## New articles
 
+- [GPT Realtime 2.0 (preview) overview](../foundry/openai/concepts/realtime-2.md)
 - [What is Microsoft Foundry Control Plane?](../foundry/control-plane/overview.md)
 - [Quickstart: Create a guardrail policy](../foundry/control-plane/quickstart-create-guardrail-policy.md)
 - [Register and manage custom agents in Microsoft Foundry Control Plane](../foundry/control-plane/register-custom-agent.md)

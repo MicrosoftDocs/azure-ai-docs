@@ -3,6 +3,7 @@ title: "Create hosted agent workflows in Visual Studio Code"
 description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Foundry Toolkit for Visual Studio Code."
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
@@ -27,7 +28,9 @@ This article covers creating a workflow project, running it locally, visualizing
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
 - The [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
-- The project's managed identity with the [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
+- The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - A [supported region](../concepts/hosted-agents.md#region-availability) for Hosted agents.
 
 ::: zone pivot="python"

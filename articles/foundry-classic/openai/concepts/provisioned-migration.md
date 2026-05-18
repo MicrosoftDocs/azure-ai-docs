@@ -3,7 +3,7 @@ title: "Azure OpenAI Provisioned 2024 Updates (classic)"
 description: "Learn about the improvements to Provisioned Throughput including model-independent quota, hourly/reservation payment models, and global and data zone deployments. (classic)"
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.custom:
   - ignite-2024
 ms.topic: how-to
