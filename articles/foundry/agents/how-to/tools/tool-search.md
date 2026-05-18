@@ -33,31 +33,10 @@ Use tool search when:
 - An existing or new toolbox with at least one tool. See [Curate intent-based toolbox in Foundry](toolbox.md).
 - **RBAC**: Grant the **Foundry User** role on the Foundry project to each relevant identity (developer, agent managed identity, and end users in OAuth flows).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
-- **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
-- **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
 
 ## How tool search works
 
 When you include `ToolboxSearchPreviewTool` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects a single `tool_search` function. The model calls `tool_search` with a natural-language description of the capability it needs. Foundry evaluates the query against every tool in the toolbox and returns the matching tool definitions, making them immediately callable by the model.
-
-The `tool_search` function the model sees has the following signature:
-
-```json
-{
-  "name": "tool_search",
-  "description": "Search for tools in the toolbox that can help with a specific task. Returns matching tool definitions that you can call immediately.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "query": {
-        "type": "string",
-        "description": "Natural language description of the capability or task you need a tool for."
-      }
-    },
-    "required": ["query"]
-  }
-}
-```
 
 The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
 
