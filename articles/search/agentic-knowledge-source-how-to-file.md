@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/07/2026
 ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a file knowledge source
@@ -23,11 +24,63 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
+::: zone pivot="csharp"
+
++ The latest preview [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package: `dotnet add package Azure.Search.Documents --prerelease`
+
+::: zone-end
+
+::: zone pivot="python"
+
++ The latest preview [azure-search-documents](https://pypi.org/project/azure-search-documents/) package: `pip install azure-search-documents --pre`
+
+::: zone-end
+
+::: zone pivot="rest"
+
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
+
+::: zone-end
 
 ## Check for existing knowledge sources
 
 A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+await foreach (var ks in indexClient.GetKnowledgeSourcesAsync())
+{
+    Console.WriteLine($"{ks.Name} ({ks.GetType().Name})");
+}
+```
+
+**Reference:** [SearchIndexClient.GetKnowledgeSourcesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+for ks in index_client.list_knowledge_sources():
+    print(f"{ks.name} ({ks.kind})")
+```
+
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
 
@@ -69,7 +122,101 @@ The following JSON is an example response for a file knowledge source.
 }
 ```
 
+::: zone-end
+
 ## Create a knowledge source
+
+Create a file knowledge source that specifies the embedding model used to vectorize uploaded content.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var embeddingParams = new AzureOpenAIVectorizerParameters
+{
+    ResourceUri = new Uri(aoaiEndpoint),
+    DeploymentName = aoaiEmbeddingDeployment,
+    ModelName = aoaiEmbeddingModel
+};
+
+var ingestionParams = new KnowledgeSourceIngestionParameters
+{
+    ContentExtractionMode = "minimal",
+    EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
+    {
+        AzureOpenAIParameters = embeddingParams
+    }
+};
+
+var fileParams = new FileKnowledgeSourceParameters
+{
+    IngestionParameters = ingestionParams
+};
+
+var knowledgeSource = new FileKnowledgeSource(
+    name: "my-file-ks",
+    fileParameters: fileParams
+)
+{
+    Description = "This knowledge source uses directly uploaded product manuals."
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
+```
+
+**Reference:** [FileKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesource?view=azure-dotnet-preview&preserve-view=true), [FileKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    AzureOpenAIVectorizerParameters,
+    FileKnowledgeSource,
+    FileKnowledgeSourceParameters,
+    KnowledgeSourceAzureOpenAIVectorizer,
+)
+from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+embedding_params = AzureOpenAIVectorizerParameters(
+    resource_url="aoai_endpoint",
+    deployment_name="aoai_embedding_deployment",
+    model_name="aoai_embedding_model",
+)
+
+ingestion_params = KnowledgeSourceIngestionParameters(
+    content_extraction_mode="minimal",
+    embedding_model=KnowledgeSourceAzureOpenAIVectorizer(
+        azure_open_ai_parameters=embedding_params
+    ),
+)
+
+knowledge_source = FileKnowledgeSource(
+    name="my-file-ks",
+    description="This knowledge source uses directly uploaded product manuals.",
+    file_parameters=FileKnowledgeSourceParameters(ingestion_parameters=ingestion_params),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source=knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+**Reference:** [FileKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesource), [FileKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesourceparameters)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a file knowledge source. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
 
@@ -100,6 +247,8 @@ Prefer: return=representation
 }
 ```
 
+::: zone-end
+
 ### Source-specific properties
 
 You can pass the following properties to create a file knowledge source.
@@ -125,6 +274,9 @@ You can pass the following `ingestionParameters` properties to control how uploa
 ## Upload files
 
 After the source exists, upload files directly to it. The file knowledge source processing path is push-oriented rather than schedule-oriented. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
+
+> [!NOTE]
+> File upload and listing for file knowledge sources are currently REST-only operations in this preview. SDK clients can issue the same calls through their built-in HTTP pipelines or any HTTP client that signs requests with your search service credential.
 
 The request body contains the file content.
 
@@ -169,6 +321,62 @@ Wait until processing succeeds before you rely on the file content in retrieve r
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var knowledgeBase = new KnowledgeBase(
+    name: "my-file-kb",
+    knowledgeSources: new[] { new KnowledgeSourceReference("my-file-ks") }
+)
+{
+    Description = "A knowledge base for uploaded product manuals.",
+    OutputMode = KnowledgeRetrievalOutputMode.ExtractiveData,
+    RetrievalReasoningEffort = new KnowledgeRetrievalMinimalReasoningEffort()
+};
+
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated successfully.");
+```
+
+**Reference:** [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeSourceReference
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalMinimalReasoningEffort
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+knowledge_base = KnowledgeBase(
+    name="my-file-kb",
+    description="A knowledge base for uploaded product manuals.",
+    knowledge_sources=[KnowledgeSourceReference(name="my-file-ks")],
+    output_mode="extractiveData",
+    retrieval_reasoning_effort=KnowledgeRetrievalMinimalReasoningEffort(),
+)
+
+index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
+print(f"Knowledge base '{knowledge_base.name}' created or updated successfully.")
+```
+
+**Reference:** [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
+
+::: zone-end
+
+::: zone pivot="rest"
+
 ```http
 PUT {{search-url}}/knowledgebases/my-file-kb?api-version=2026-05-01-preview
 api-key: {{api-key}}
@@ -190,9 +398,84 @@ Prefer: return=representation
 }
 ```
 
+::: zone-end
+
 ## Retrieve from the knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+var kbClient = new KnowledgeBaseRetrievalClient(
+    new Uri(searchEndpoint),
+    "my-file-kb",
+    new AzureKeyCredential(apiKey));
+
+var request = new KnowledgeBaseRetrievalRequest
+{
+    IncludeActivity = true
+};
+request.Intents.Add(new KnowledgeRetrievalSemanticIntent(
+    "What does the installation guide say about network prerequisites?"));
+request.KnowledgeSourceParams.Add(new FileKnowledgeSourceParams("my-file-ks")
+{
+    IncludeReferences = true,
+    IncludeReferenceSourceData = true
+});
+
+var result = await kbClient.RetrieveAsync(request);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    FileKnowledgeSourceParams,
+    KnowledgeBaseRetrievalRequest,
+    KnowledgeRetrievalSemanticIntent,
+)
+
+kb_client = KnowledgeBaseRetrievalClient(
+    endpoint="search_url",
+    knowledge_base_name="my-file-kb",
+    credential=AzureKeyCredential("api_key"),
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    intents=[
+        KnowledgeRetrievalSemanticIntent(
+            search="What does the installation guide say about network prerequisites?"
+        )
+    ],
+    knowledge_source_params=[
+        FileKnowledgeSourceParams(
+            knowledge_source_name="my-file-ks",
+            include_references=True,
+            include_reference_source_data=True,
+        )
+    ],
+    include_activity=True,
+)
+
+result = kb_client.retrieve(request)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 POST {{search-url}}/knowledgebases/my-file-kb/retrieve?api-version=2026-05-01-preview
@@ -219,6 +502,8 @@ Accept: application/json
 }
 ```
 
+::: zone-end
+
 ## Review supported formats and limits
 
 The following file types are supported in this preview. [TO VERIFY: Confirm that this list is accurate and complete.]
@@ -244,6 +529,52 @@ File knowledge sources are designed for direct upload scenarios, not large-scale
 ## Delete a knowledge source
 
 Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+// List knowledge bases on the service.
+await foreach (var kb in indexClient.GetKnowledgeBasesAsync())
+{
+    Console.WriteLine(kb.Name);
+}
+
+// Delete the knowledge base that references the file knowledge source.
+await indexClient.DeleteKnowledgeBaseAsync("my-file-kb");
+
+// Delete the file knowledge source.
+await indexClient.DeleteKnowledgeSourceAsync("my-file-ks");
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+# List knowledge bases on the service.
+for kb in index_client.list_knowledge_bases():
+    print(kb.name)
+
+# Delete the knowledge base that references the file knowledge source.
+index_client.delete_knowledge_base("my-file-kb")
+
+# Delete the file knowledge source.
+index_client.delete_knowledge_source("my-file-ks")
+```
+
+::: zone-end
+
+::: zone pivot="rest"
 
 To delete a knowledge source:
 
@@ -278,6 +609,8 @@ To delete a knowledge source:
     DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
     api-key: {{api-key}}
     ```
+
+::: zone-end
 
 ## Related content
 
