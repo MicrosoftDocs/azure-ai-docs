@@ -18,17 +18,18 @@ Migration instructions are intended to help you run an existing solution on a ne
 
 ## SDK updates for 2026-05-01-preview
 
-Use the 2026-05-01-preview SDK packages when your code depends on preview-only agentic retrieval features, including message-based retrieval, answer synthesis, configurable reasoning effort, or MCP integration. The SDK surface changed from earlier preview packages in these areas:
+The 2026-05-01-preview agentic retrieval features (message-based retrieve, answer synthesis, configurable reasoning effort, and MCP integration) introduce code-shape changes across language SDKs. The table below summarizes the renames and new model usage. Install instructions and version pins for the 2026-05-01-preview SDK packages will be added when the packages are published.
 
 | Language | Migration updates |
 | --- | --- |
-| Python | Use `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Use `KnowledgeRetrievalLowReasoningEffort()` instances and `output_mode="answerSynthesis"` for answer synthesis. For Azure OpenAI model and vectorizer parameters, pass the resource root endpoint, not an `/openai/v1` endpoint. |
-| .NET | Create `KnowledgeBaseRetrievalClient` with `credential: new AzureKeyCredential(...)` or an equivalent token credential parameter supported by the package. If you use key-based Azure OpenAI access in samples, pass the model API key on the model and vectorizer parameters. |
-| Java | Use `KnowledgeBaseRetrievalClientBuilder`, `KnowledgeBaseRetrievalOptions`, and `KnowledgeRetrievalSemanticIntent` with the tested alpha package. The current Java alpha package exposes intent-based retrieval, but doesn't yet expose the full message-based answer-synthesis shape. |
-| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve(...)` with `{ serviceVersion: "2026-05-01-preview" }`. The tested alpha package currently uses semantic `intents`; message-based answer synthesis requires SDK parity with the REST contract. |
+| Python | Create the retrieve client as `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Construct reasoning effort instances such as `KnowledgeRetrievalLowReasoningEffort()` and pass the string `output_mode="answerSynthesis"`. Pass `AzureOpenAIVectorizerParameters(resource_url=...)` (renamed from `resource_uri`), using the resource root endpoint rather than an `/openai/v1` endpoint. |
+| .NET | Create the retrieve client as `new KnowledgeBaseRetrievalClient(endpoint, indexName, credential)` and pass an `AzureKeyCredential` or token credential. When you use key-based Azure OpenAI access, set the model API key on `AzureOpenAIVectorizerParameters.ApiKey`. Use the explicit `DeleteIndexAsync(indexName, matchConditions: null)` overload to disambiguate cleanup calls, and wrap cleanup in a `finally` block so resources are always removed. |
+| Java | Use `KnowledgeBaseRetrievalClientBuilder`, `KnowledgeBaseRetrievalOptions`, `KnowledgeRetrievalSemanticIntent`, and `IndexDocumentsBatch`. The current Java preview SDK exposes intent-based retrieval through `KnowledgeRetrievalSemanticIntent`; the message-based answer-synthesis request shape isn't exposed in the type system yet. Remove any explicit `azure-core` pin so the package's transitive `azure-core` dependency is used. Wait for indexed documents to be visible (for example, by polling `getDocumentCount()`) before issuing the first retrieve call. |
+| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve({ intents: [{ type: "semantic", search: query }] }, { serviceVersion: "2026-05-01-preview" })`. The previous `retrieveKnowledge(...)` method is removed in favor of `retrieve(...)`. The current preview SDK exposes the intent-based retrieve shape; the message-based answer-synthesis request shape isn't yet exposed by the public type system. Knowledge base properties such as `outputMode` and `answerInstructions` are accepted at runtime but not yet on the `KnowledgeBase` type. |
 
-For code samples, update package versions and feed configuration together, then test the full flow that creates the index, knowledge source, knowledge base, retrieve request, and cleanup path.
-## When to migrate
+After you update the client shapes, run the full flow that creates the index, uploads documents, creates a knowledge source, creates a knowledge base, issues a retrieve request, and cleans up resources to confirm the migration end to end.
+
+
 
 Every version that supports agentic retrieval has introduced breaking changes. You can continue to run older code unchanged by retaining the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
