@@ -108,7 +108,7 @@ Content-Type: application/json
   "description": "Large toolbox with tool search enabled",
   "tools": [
     {
-      "type": "tool_search_preview"
+      "type": "toolbox_search_preview"
     },
     {
       "type": "mcp",
@@ -135,14 +135,14 @@ Content-Type: application/json
 
 :::zone pivot="azd"
 
-In `agent.yaml`, add `type: tool_search_preview` to your toolbox version's tools list:
+In `agent.yaml`, add `type: toolbox_search_preview` to your toolbox version's tools list:
 
 ```yaml
 resources:
   - kind: toolbox
     name: my-toolbox
     tools:
-      - type: tool_search_preview
+      - type: toolbox_search_preview
       - type: mcp
         server_label: github
         server_url: https://api.githubcopilot.com/mcp
@@ -254,7 +254,7 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-| `type` | `"tool_search_preview"` | Yes | Activates tool search for the toolbox. No other fields are required. |
+| `type` | `"toolbox_search_preview"` | Yes | Activates tool search for the toolbox. No other fields are required. |
 
 Include `ToolboxSearchPreviewTool()` in your toolbox's tools list to enable tool search. No additional configuration is required.
 
