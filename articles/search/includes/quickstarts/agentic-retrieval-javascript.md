@@ -285,8 +285,8 @@ const index = {
 
 const credential = new DefaultAzureCredential();
 
-const searchIndexClient = new SearchIndexClient(process.env.AZURE_SEARCH_ENDPOINT, credential, { serviceVersion: "2026-05-01-preview" });
-const searchClient = new SearchClient(process.env.AZURE_SEARCH_ENDPOINT, 'earth_at_night', credential, { serviceVersion: "2026-05-01-preview" });
+const searchIndexClient = new SearchIndexClient(process.env.AZURE_SEARCH_ENDPOINT, credential);
+const searchClient = new SearchClient(process.env.AZURE_SEARCH_ENDPOINT, 'earth_at_night', credential);
 
 await searchIndexClient.createOrUpdateIndex(index);
 ```
@@ -407,8 +407,7 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 const knowledgeRetrievalClient = new KnowledgeRetrievalClient(
     process.env.AZURE_SEARCH_ENDPOINT,
     'earth-knowledge-base',
-    credential,
-    { serviceVersion: "2026-05-01-preview" }
+    credential
 )
 
 const query1 = `Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?`;
