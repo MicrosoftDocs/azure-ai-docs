@@ -38,7 +38,31 @@ Use tool search when:
 
 ## How tool search works
 
-When you include `ToolboxSearchPreviewTool` in a toolbox, Foundry adds a `tool_search` function to `tools/list`. When the model needs a capability it doesn't see in its current tool list, it calls `tool_search` with a natural-language description. Foundry evaluates the query against all tools in the toolbox and returns the matching ones so the model can call them immediately.
+When you include `ToolboxSearchPreviewTool` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects a single `tool_search` function. The model calls `tool_search` with a natural-language description of the capability it needs. Foundry evaluates the query against every tool in the toolbox and returns the matching tool definitions, making them immediately callable by the model.
+
+The `tool_search` function the model sees has the following signature:
+
+```json
+{
+  "name": "tool_search",
+  "description": "Search for tools in the toolbox that can help with a specific task. Returns matching tool definitions that you can call immediately.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Natural language description of the capability or task you need a tool for."
+      }
+    },
+    "required": ["query"]
+  }
+}
+```
+
+The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
+
+> [!NOTE]
+> `ToolboxSearchPreviewTool` is a configuration directive that activates tool search. It doesn't appear in `tools/list` itself and doesn't count toward the unnamed-tool-per-type limit.
 
 ## Enable tool search
 
@@ -233,15 +257,34 @@ In the response, `result.tools` should include `tool_search`.
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-| `type` | `"toolbox_search_preview"` | Yes | Identifies this as the tool search tool. |
+| `type` | `"tool_search_preview"` | Yes | Activates tool search for the toolbox. No other fields are required. |
 
 Include `ToolboxSearchPreviewTool()` in your toolbox's tools list to enable tool search. No additional configuration is required.
+
+## Considerations
+
+- **All toolbox tools are hidden from the initial listing.** When `ToolboxSearchPreviewTool` is in a toolbox, no other toolbox tools appear in `tools/list`. The model discovers them only through `tool_search`. Tools added directly to an agent outside the toolbox are unaffected and remain visible.
+- **Tool descriptions drive match quality.** Foundry uses tool names and descriptions to evaluate search queries. A tool without a description, or with a vague one, is unlikely to be returned even for relevant queries. Write descriptions that describe what the tool does and the kinds of tasks it handles.
+- **`tool_search` doesn't count toward tool limits.** It's injected by the platform and doesn't consume the unnamed-tool-per-type slot.
+- **Multiple searches per turn are supported.** The model can call `tool_search` more than once in a single turn if different steps need different capabilities.
+- **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
 
 ## Best practices
 
 - **Add a description to every tool.** Tool search uses descriptions to match tools to queries. A missing or vague description causes poor discovery.
 - **Use tool search for large toolboxes.** This is the most effective configuration when you have 10 or more tools.
 - **Use tool search together with toolbox versioning.** Test your configuration on a version-specific endpoint before promoting it to default.
+- **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."
+
+## Troubleshoot
+
+| Symptom | Likely cause | Fix |
+| ------- | ------------ | --- |
+| `tool_search` is missing from `tools/list` | `ToolboxSearchPreviewTool` wasn't included in the toolbox version, or you're connected to a version that predates the change. | Add `ToolboxSearchPreviewTool()` to the tools list and create a new version. Confirm you're using the updated version's endpoint. |
+| `tool_search` returns no results for a query | Tools in the toolbox have no description or descriptions don't relate to the query. | Add or improve descriptions on the tools in the toolbox. Descriptions should explain what the tool does and the kinds of tasks it handles. |
+| A toolbox tool appears in the initial `tools/list` | The tool was added directly to the agent instead of, or in addition to, the toolbox definition. | Remove the tool from the agent's direct tool list and rely on the toolbox. Tools added directly to an agent are always visible, regardless of tool search. |
+| The model never calls `tool_search` | The model doesn't know `tool_search` can retrieve additional tools. | Add an instruction in the system prompt telling the model to call `tool_search` when a needed capability isn't in its current tool list. |
+| `tool_search` is called but the tool returned fails to execute | The underlying tool's connection or configuration is invalid. | Verify the `project_connection_id` and other fields on the returned tool. Test the tool directly through the toolbox MCP endpoint without tool search enabled. |
 
 ## Related content
 
