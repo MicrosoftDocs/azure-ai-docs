@@ -267,6 +267,7 @@ An Entra admin must complete the following steps before you can create a Fabric 
    :::image type="content" source="../../media/tools/fabric-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel for Power BI Service in the Microsoft Entra admin center, showing Item.Execute.All and Item.Read.All selected as delegated permissions, both with admin consent not required." lightbox="../../media/tools/fabric-iq/entra-api-permissions-search.png":::
 
    Select **Add permissions**.
+1. Select **Grant admin consent for {your-organization}** in the **Configured permissions** panel. A Global Administrator must approve. This step allows users in your organization to authenticate through the Fabric IQ connection.
 1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, then immediately copy the secret **Value** — it's only shown once.
 1. Copy your **Directory (tenant) ID** from the **Microsoft Entra ID** overview page.
 
@@ -277,13 +278,13 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 | Field | Value |
 | --- | --- |
 | **Client ID** | Application (client) ID from step 3 |
-| **Client secret** | Client secret value from step 5 |
+| **Client secret** | Client secret value from step 6 |
 | **Authorization URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize` |
 | **Token URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Refresh URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All https://analysis.windows.net/powerbi/api/Item.Read.All offline_access` |
 
-Replace `{tenant-id}` with your Directory (tenant) ID from step 6. Select **Save** to create the connection.
+Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
 
 > [!NOTE]
 > For data agent connections using BYO Entra, use the `DataAgent.Execute.All` delegated permission instead of the Power BI scopes listed above. Add `https://analysis.windows.net/powerbi/api/DataAgent.Execute.All` as the scope in the Foundry connection, and grant admin consent for that permission in your app registration.
@@ -298,6 +299,17 @@ After Foundry creates the connection, it displays an OAuth redirect URL. Add thi
 1. Select **Configure**.
 
 ## Admin management
+
+### Grant admin consent
+
+A Global Administrator must grant tenant-wide admin consent for the Entra app registration before users can authenticate with the Fabric IQ connection:
+
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com/), go to **Entra ID** > **App registrations** and select your app.
+1. Select **API permissions**.
+1. Select **Grant admin consent for {your-organization}** and approve. Each listed permission shows a green checkmark when consent is granted.
+
+> [!NOTE]
+> DataAgent.Execute.All also requires admin consent. If you use this permission for data agent connections, follow the same process.
 
 ### Restrict network access
 
