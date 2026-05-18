@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 # Customer intent: As a developer, I want to add real-time voice interaction to my Microsoft Foundry hosted agent so that users can speak to the agent and hear responses.
 ---
 
-# Use Voice Live with hosted agents
+# Use Voice Live with hosted agents (preview)
 
 Here's how to integrate Azure Voice Live with your [Microsoft Foundry hosted agents](../../foundry/agents/how-to/deploy-hosted-agent.md) to enable real-time voice interaction.
     
