@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 01/26/2026
+ms.date: 05/18/2026
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
@@ -123,7 +123,7 @@ Maximum running times exist to provide balance and stability to the service as a
 | Maximum skillsets <sup>4</sup> |3 |5 or 15 |50 |200 |200 |3,000 <sup>3</sup>|10 |10 |
 | Maximum indexing load per invocation |10,000 documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents <sup>3</sup>|No limit |No limit |
 | Minimum schedule | 5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes | 5 minutes |
-| Maximum running time <sup>5</sup>| 1-3 or 3-10 minutes |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 hours <sup>9</sup>  |2 or 24 hours |2 or 24 hours |
+| Maximum running time <sup>5</sup>| 1-3 or 3-10 minutes |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 hours <sup>3</sup>  |2 or 24 hours |2 or 24 hours |
 | Blob indexer <sup>7</sup>: maximum blob size, MB |16 |16 |128 |256 |256 |256 <sup>3</sup>  |256 |256 |
 | Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> <sup>8</sup> |256,000 |512,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |16&nbsp;million <sup>3</sup>|4&nbsp;million |4&nbsp;million |
 
@@ -132,6 +132,7 @@ Maximum running times exist to provide balance and stability to the service as a
 <sup>2</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexers, data sources, and skillsets.
 
 <sup>3</sup> S3 HD indexer support is in preview, requires REST API version `2025-11-01-preview` or later, and is governed by a service-level daily quota of **6 hours of cumulative indexer runtime** shared across all indexers. S3 HD indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) and don't support [shared private link resources](search-indexer-howto-access-private.md). During preview, S3 HD indexer support is best suited for small workloads (approximately 1 GB index size) with no or minimal skillsets. For details, see [About indexer execution on serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
+Additionally, the service-level daily quota caps cumulative indexer runtime across all indexers at 6 hours per 24-hour UTC window.
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
@@ -142,8 +143,6 @@ Maximum running times exist to provide balance and stability to the service as a
 <sup>7</sup> When using `delimitedText` parsing mode for CSV files, a buffer size limit of 10MB per file row applies.
 
 <sup>8</sup> When using `delimitedText` parsing mode for CSV files, the “maximum extracted content size” limit doesn't apply.
-
-<sup>9</sup> On S3 HD, indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment), so the per-run maximum is 2 hours. Additionally, the service-level daily quota caps cumulative indexer runtime across all indexers at 6 hours per 24-hour UTC window.
 
 
 ## Shared private link resource limits
