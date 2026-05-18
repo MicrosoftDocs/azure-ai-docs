@@ -278,7 +278,7 @@ print(f"Knowledge source '{knowledge_source_name}' created or updated successful
 
 To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`.
 
-`output_mode` is set to `ANSWER_SYNTHESIS`, enabling natural-language answers that cite the retrieved documents and follow the provided `answer_instructions`.
+`output_mode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answer_instructions`.
 
 ```python
 # Create a knowledge base
@@ -296,7 +296,7 @@ knowledge_base = KnowledgeBase(
             name=knowledge_source_name
         )
     ],
-    output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    output_mode="answerSynthesis",
     answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
@@ -367,7 +367,7 @@ req = KnowledgeBaseRetrievalRequest(
         )
     ],
     include_activity=True,
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort()
 )
 
 result = agent_client.retrieve(retrieval_request=req)
@@ -453,7 +453,7 @@ req = KnowledgeBaseRetrievalRequest(
         )
     ],
     include_activity=True,
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort()
 )
 
 result = agent_client.retrieve(retrieval_request=req)

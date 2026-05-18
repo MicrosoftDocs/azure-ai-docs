@@ -411,8 +411,8 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 1. Synthesizes the top results into a natural-language answer.
 
 ```java
-SearchKnowledgeBaseClient baseClient =
-    new SearchKnowledgeBaseClientBuilder()
+KnowledgeBaseRetrievalClient baseClient =
+    new KnowledgeBaseRetrievalClientBuilder()
         .endpoint(searchEndpoint)
         .knowledgeBaseName(knowledgeBaseName)
         .credential(
@@ -429,8 +429,8 @@ String query = "Why do suburban belts display larger "
 
 messages.add(Map.of("role", "user", "content", query));
 
-KnowledgeBaseRetrievalResponse retrievalResult =
-    retrieve(baseClient, messages);
+KnowledgeBaseRetrievalResult retrievalResult =
+    retrieve(baseClient, query, knowledgeSourceName);
 
 String responseText =
     ((KnowledgeBaseMessageTextContent) retrievalResult
@@ -441,35 +441,29 @@ messages.add(
     Map.of("role", "assistant", "content", responseText));
 ```
 
-The `retrieve` helper method builds `KnowledgeBaseMessage` objects from the conversation history and sends the retrieval request:
+The `retrieve` helper builds a `KnowledgeBaseRetrievalOptions` that uses a `KnowledgeRetrievalSemanticIntent` for the latest user query, attaches the knowledge source parameters, and returns a `KnowledgeBaseRetrievalResult`:
 
 ```java
-private static KnowledgeBaseRetrievalResponse retrieve(
-        SearchKnowledgeBaseClient client,
-        List<Map<String, String>> messages) {
-    List<KnowledgeBaseMessage> kbMessages = new ArrayList<>();
-    for (Map<String, String> msg : messages) {
-        if (!"system".equals(msg.get("role"))) {
-            kbMessages.add(
-                new KnowledgeBaseMessage(Arrays.asList(
-                    new KnowledgeBaseMessageTextContent(
-                        msg.get("content"))
-                )).setRole(msg.get("role"))
-            );
-        }
-    }
+private static KnowledgeBaseRetrievalResult retrieve(
+        KnowledgeBaseRetrievalClient client,
+        String query,
+        String knowledgeSourceName) {
+    KnowledgeBaseRetrievalOptions request =
+        new KnowledgeBaseRetrievalOptions();
+    request.setIntents(
+        new KnowledgeRetrievalSemanticIntent(query));
+    request.setIncludeActivity(true);
+    request.setKnowledgeSourceParams(Arrays.asList(
+        new SearchIndexKnowledgeSourceParams(knowledgeSourceName)
+            .setIncludeReferences(true)
+            .setIncludeReferenceSourceData(true)
+    ));
 
-    KnowledgeBaseRetrievalRequest request =
-        new KnowledgeBaseRetrievalRequest();
-    request.setMessages(kbMessages);
-    request.setRetrievalReasoningEffort(
-        new KnowledgeRetrievalLowReasoningEffort());
-
-    return client.retrieve(request, null);
+    return client.retrieve(request);
 }
 ```
 
-**Reference:** [SearchKnowledgeBaseClient](/java/api/com.azure.search.documents.knowledgebases.searchknowledgebaseclient?view=azure-java-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/java/api/com.azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-java-preview&preserve-view=true)
+**Reference:** [KnowledgeBaseRetrievalClient](/java/api/com.azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-java-preview&preserve-view=true), [KnowledgeBaseRetrievalOptions](/java/api/com.azure.search.documents.knowledgebases.models.knowledgebaseretrievaloptions?view=azure-java-preview&preserve-view=true)
 
 #### Review the response, activity, and references
 
@@ -511,7 +505,7 @@ String nextQuery = "How do I find lava at night?";
 messages.add(
     Map.of("role", "user", "content", nextQuery));
 
-retrievalResult = retrieve(baseClient, messages);
+retrievalResult = retrieve(baseClient, nextQuery, knowledgeSourceName);
 ```
 
 #### Review the new response, activity, and references

@@ -449,7 +449,7 @@ const retrievalRequest = {
     retrievalReasoningEffort: { kind: "low" as const }
 };
 
-const result = await knowledgeRetrievalClient.retrieveKnowledge(retrievalRequest);
+const result = await knowledgeRetrievalClient.retrieve(retrievalRequest);
 ```
 
 **Reference:** [KnowledgeRetrievalClient](/javascript/api/@azure/search-documents/knowledgeretrievalclient), [KnowledgeBaseRetrievalRequest](/javascript/api/@azure/search-documents/knowledgebaseretrievalrequest)
@@ -531,7 +531,7 @@ const retrievalRequest2 = {
     retrievalReasoningEffort: { kind: "low" as const }
 };
 
-const result2 = await knowledgeRetrievalClient.retrieveKnowledge(retrievalRequest2);
+const result2 = await knowledgeRetrievalClient.retrieve(retrievalRequest2);
 ```
 
 #### Review the new response, activity, and references
