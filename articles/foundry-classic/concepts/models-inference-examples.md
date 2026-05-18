@@ -8,6 +8,7 @@ reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 12/09/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ms.custom:
   - references_regions

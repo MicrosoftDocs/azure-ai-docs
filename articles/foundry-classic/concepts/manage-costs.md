@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
