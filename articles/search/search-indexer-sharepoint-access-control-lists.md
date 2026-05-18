@@ -202,7 +202,7 @@ The following components work together to enable SharePoint site group resolutio
 
 | Component | Where | Purpose |
 |---|---|---|
-| `sharePointConnectorAppRegistration` (with `federatedCredentialId`) | Index definition | Lets the search service call SharePoint as the calling user to resolve site group membership at query time. |
+| `sharePointConnectorAppRegistration` (with `applicationId`, `tenantId`, `federatedCredentialId`) | Index definition | Provides the authentication configuration required for the search service to call the SharePoint REST API as the calling user and resolve site group membership at query time. |
 | `SharePointSiteUrl` field (with `sharepointSiteUrl: true`) | Index schema + indexer field mapping from `metadata_sharepoint_site_url` | Identifies which SharePoint site a document belongs to, so SP group resolution is scoped correctly. |
 | `spg:`-prefixed values in `GroupIds` | Document permission metadata | Distinguish SharePoint site group IDs from Microsoft Entra group object IDs. |
 
@@ -214,14 +214,16 @@ The following components work together to enable SharePoint site group resolutio
 
 ### Configure the index
 
-Add the `sharePointConnectorAppRegistration` property and the `SharePointSiteUrl` field alongside the `UserIds` and `GroupIds` permission-filter fields, so the full index shape is in one place. Keep `permissionFilterOption: "enabled"`.
+Add the `sharePointConnectorAppRegistration` configuration and the `SharePointSiteUrl` field alongside the `UserIds` and `GroupIds` permission-filter fields, so the full index shape is in one place. Keep `permissionFilterOption: "enabled"`.
 
 ```http
 PUT https://{service}.search.windows.net/indexes/{index}?api-version=2026-05-01-preview
 {
   "name": "my-sharepoint-acl-index",
   "sharePointConnectorAppRegistration": {
-    "federatedCredentialId": "<federated-identity-credential-object-id>"
+     "applicationId": "<entra-application-id>"
+     "federatedCredentialId": "<federated-identity-credential-object-id>"
+     "tenantId": "<sharepoint-tenant-id>"
   },
   "fields": [
     { "name": "UserIds",           "type": "Collection(Edm.String)", "permissionFilter": "userIds",  "filterable": true, "retrievable": false },
