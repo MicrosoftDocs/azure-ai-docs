@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 10/01/2025
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
