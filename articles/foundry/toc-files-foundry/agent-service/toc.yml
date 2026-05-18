@@ -161,7 +161,19 @@ items:
       href: ../../observability/how-to/trace-agent-client-side.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
-  - name: Optimize agent prompts 
+  - name: Optimize hosted agents (preview)
+    items:
+    - name: Agent optimization overview
+      href: ../../agents/concepts/agent-optimization-overview.md
+    - name: "Quickstart: Optimize a hosted agent"
+      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+    - name: Make your agent optimization-ready
+      href: ../../agents/how-to/make-agent-optimization-ready.md
+    - name: Create a custom evaluation dataset
+      href: ../../agents/how-to/create-optimization-dataset.md
+    - name: Optimize agent instructions and skills
+      href: ../../agents/how-to/optimize-agent-strategies.md
+  - name: Optimize agent prompts
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md

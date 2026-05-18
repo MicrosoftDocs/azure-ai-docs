@@ -557,6 +557,7 @@ Now that you've deployed your first Hosted agent, learn how to:
 > [Manage Hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
 Customize your agent with additional capabilities:
+- [Optimize your hosted agent](quickstart-optimize-hosted-agent.md) to automatically improve its instructions
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
 - [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
 - [Add file search](../how-to/tools/file-search.md) to search your documents

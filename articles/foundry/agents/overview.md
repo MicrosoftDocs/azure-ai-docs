@@ -131,6 +131,7 @@ Agent Service supports the full build-test-deploy-monitor workflow:
 1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, including custom MCP servers hosted on Azure Functions, can be exercised directly in the playground via chat prompts to validate tool connectivity, permissions, and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
+1. **Optimize** — Automatically improve your hosted agent's instructions using [agent optimization](concepts/agent-optimization-overview.md).
 1. **Publish** — [Promote your agent](how-to/agent-applications.md) to a managed resource with a stable endpoint.
 1. **Monitor** — Track performance and reliability with [service metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and dashboards.
 

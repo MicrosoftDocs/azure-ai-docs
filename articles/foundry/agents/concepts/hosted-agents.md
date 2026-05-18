@@ -232,6 +232,7 @@ Hosted agents are currently available in the following regions:
 | Deploy using the Foundry SDK | [Deploy a Hosted agent by using the Foundry SDK](../../agents/how-to/deploy-hosted-agent.md) |
 | Update, delete, invoke, or stream logs | [Manage Hosted agents](../../agents/how-to/manage-hosted-agent.md) |
 | Set up tracing and monitoring | [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md) |
+| Optimize agent instructions automatically | [Agent optimization overview](agent-optimization-overview.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
 | Publish to Teams, M365, or custom apps | [Agent applications](../how-to/agent-applications.md) |
 | Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) · [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
