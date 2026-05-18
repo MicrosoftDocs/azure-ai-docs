@@ -59,6 +59,10 @@ Also note the model's minimum PTU count, as you need this information when you c
 1. Select the model you want to deploy to open its model card.
 1. Select **Deploy** > **Custom settings**.
 1. In the **Deployment type** dropdown, select a provisioned deployment type: **Global Provisioned Throughput**, **Data Zone Provisioned Throughput**, or **Regional Provisioned Throughput**.
+
+    > [!TIP]
+    > If the portal shows that your target region doesn't have sufficient capacity, select **See other regions**. The portal lists your Foundry resources in other regions with available capacity. Select a resource in a region with sufficient capacity, select **Switch resource**, and complete the deployment.
+
 1. Fill in the deployment fields:
 
    | Field | Description |
@@ -69,15 +73,9 @@ Also note the model's minimum PTU count, as you need this information when you c
    | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum. |
    | **Content filter** | The filtering policy. See [Content filtering](../foundry-models/concepts/content-filter.md). |
 
-1. Select **Confirm pricing** to review the hourly rate for the deployment.
-
-   > [!IMPORTANT]
-   > Billing starts as soon as the deployment is created, even when no requests are being sent. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md) before continuing.
+1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md) before continuing.
 
 1. Confirm and create the deployment.
-
-> [!TIP]
-> If the portal shows that your target region doesn't have sufficient capacity, select **See other regions**. The portal lists your Foundry resources in other regions with available capacity. Select a resource in a region with sufficient capacity, select **Switch resource**, and complete the deployment.
 
 **Using the Azure CLI:**
 
@@ -184,10 +182,9 @@ For sizing guidance, purchase steps, and management, see [Azure Reservations for
 
 ## Clean up resources
 
-To stop hourly billing, delete the deployment.
+Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Delete deployments before deleting resources](./how-to/provisioned-throughput-onboarding.md#delete-deployments-before-deleting-resources).
 
-> [!IMPORTANT]
-> Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Delete deployments before deleting resources](./how-to/provisioned-throughput-onboarding.md#delete-deployments-before-deleting-resources).
+Stop hourly billing by deleting the deployment.
 
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to your resource.
 1. Select the deployment, then select **Delete** and confirm.
