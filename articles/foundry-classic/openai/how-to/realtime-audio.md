@@ -63,4 +63,3 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ::: zone-end
 
-[!INCLUDE [realtime-audio 2](../../../foundry/openai/includes/how-to-realtime-audio-2.md)]
