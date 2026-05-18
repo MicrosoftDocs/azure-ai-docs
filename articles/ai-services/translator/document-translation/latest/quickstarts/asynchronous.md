@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: asynchronous document translation"
+title: "Quickstart: Asynchronous Document Translation"
 titleSuffix: Foundry Tools
 description: Learn how to use the asynchronous batch translation process of the Document Translation API to translate multiple documents or large files in parallel using Azure Blob Storage for input and output.
 author: laujan
@@ -11,7 +11,7 @@ ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
 
-# Quickstart: asynchronous document translation
+# Quickstart: Asynchronous document translation
 
 Asynchronous batch translation lets you submit multiple documents or large files for translation in a single request. The service processes the documents in parallel and writes the translated output to your Azure Blob Storage target container. Because the operation runs asynchronously, you poll a job ID to track progress rather than waiting for an immediate response. Use this approach when you need to translate high volumes of content or files too large for a synchronous request.
 

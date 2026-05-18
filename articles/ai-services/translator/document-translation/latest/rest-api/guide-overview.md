@@ -1,5 +1,5 @@
 ﻿---
-title: "Document Translation REST API guide"
+title: Document Translation REST API Guide
 titleSuffix: Foundry Tools
 description: Overview of the Document Translation REST API operations for synchronous and asynchronous batch document translation.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Document Translation REST API guide
 
 The Document Translation REST API (version 2026-03-01) supports two translation models and a set of discovery operations. Synchronous translation processes a single document without Blob Storage and returns the translated file directly. Asynchronous batch translation processes one or more documents stored in Azure Blob Storage and lets you poll for status. Both models use neural machine translation (NMT) by default; you can select a large language model (LLM) by passing a `deploymentName` in the request.
@@ -38,8 +38,8 @@ All requests require a custom domain endpoint. The format is `https://{your-reso
 
 | Operation | Method | Description | Reference |
 |---|---|---|---|
-| Get supported document formats | `GET` | Retrieve a list of supported document formats and their MIME types. | [Get supported document formats](get-supported-formats.md) |
-| Get supported glossary formats | `GET` | Retrieve a list of supported glossary formats and their MIME types. | [Get supported glossary formats](get-supported-glossary.md) |
+| Get supported document formats | `GET` | Retrieve a list of supported document formats and their MIME types. | [Get supported document formats](get-supported-document-formats.md) |
+| Get supported glossary formats | `GET` | Retrieve a list of supported glossary formats and their MIME types. | [Get supported glossary formats](get-supported-glossary-formats.md) |
 
 ## Related content
 

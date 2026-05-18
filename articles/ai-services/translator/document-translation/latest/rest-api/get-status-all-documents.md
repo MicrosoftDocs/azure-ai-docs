@@ -1,5 +1,5 @@
 ﻿---
-title: "Get status for all documents"
+title: Get Status for All Documents
 titleSuffix: Foundry Tools
 description: Retrieve the translation status for all documents in a batch translation job using the Document Translation REST API.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Get status for all documents
 
 Retrieve the translation status for every document in a batch translation job. The response includes per-document status, progress, output location, and character usage. This operation supports paging, sorting, and filtering, which is useful for large jobs.

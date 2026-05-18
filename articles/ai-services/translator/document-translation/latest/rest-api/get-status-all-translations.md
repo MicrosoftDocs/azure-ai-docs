@@ -1,5 +1,5 @@
 ﻿---
-title: "Get status for all translation jobs"
+title: Get Status for All Translation Jobs
 titleSuffix: Foundry Tools
 description: Retrieve a list of all batch translation jobs submitted to your Document Translation resource and their current status.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Get status for all translation jobs
 
 Retrieve a list of all batch translation jobs submitted to your resource, along with status and summary information for each job. The response supports paging and filtering, which is useful for auditing job history or recovering a job ID.

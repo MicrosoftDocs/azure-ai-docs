@@ -1,5 +1,5 @@
 ﻿---
-title: "Get status for a specific document"
+title: Get Status for a Specific Document
 titleSuffix: Foundry Tools
 description: Retrieve the translation status and details for a single document within a batch translation job using the Document Translation REST API.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Get status for a specific document
 
 Retrieve status details for a single document within a batch translation job. The response includes translation status, progress, output URL, and character usage. This is the most targeted way to retrieve error details or the output URL for one document without paging through the full document list.

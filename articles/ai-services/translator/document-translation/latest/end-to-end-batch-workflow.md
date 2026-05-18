@@ -1,5 +1,5 @@
 ﻿---
-title: "How-to: end-to-end batch translation workflow"
+title: "End-to-end Batch Translation Workflow"
 titleSuffix: Foundry Tools
 description: Learn how to manage the full lifecycle of an asynchronous batch translation job, from submitting a job to monitoring status, retrieving results, and canceling jobs.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # End-to-end batch translation workflow
 
 Batch document translation is an asynchronous workflow with a fixed API call sequence. It differs from [synchronous translation](rest-api/translate-synchronous.md) in that the service processes your documents in the background and stores the translated output in your Azure Blob Storage target container. Because each step depends on the previous one, understanding the full sequence helps you build reliable, retry-safe integrations. Here, we walk you through each step in order:

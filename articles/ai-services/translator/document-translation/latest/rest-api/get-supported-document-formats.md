@@ -1,7 +1,7 @@
 ﻿---
-title: "Get supported glossary formats"
+title: Get Supported Document Formats
 titleSuffix: Foundry Tools
-description: Retrieve the list of glossary formats supported by the Document Translation service.
+description: Retrieve the list of document formats supported by the Document Translation service for translation.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
+<!-- markdownlint-disable MD025 -->
+# Get supported document formats
 
-# Get supported glossary formats
-
-Retrieve a list of glossary formats supported by the Document Translation service. Use this endpoint to discover which glossary file types and MIME types you can pass when applying custom terminology to a translation job.
+Retrieve a list of document formats supported by the Document Translation service. Use this endpoint to validate file types before submitting a translation job and to discover supported MIME types and format-specific versioning.
 
 **HTTP method:** GET
 **API version:** 2026-03-01
@@ -21,7 +21,7 @@ Retrieve a list of glossary formats supported by the Document Translation servic
 ## Request
 
 ```http
-GET {endpoint}/translator/document/formats?api-version=2026-03-01&type=glossary
+GET {endpoint}/translator/document/formats?api-version=2026-03-01&type=document
 ```
 
 ### Request headers
@@ -36,12 +36,12 @@ GET {endpoint}/translator/document/formats?api-version=2026-03-01&type=glossary
 | Parameter | Required | Description |
 |---|---|---|
 | `api-version` | Yes | Version of the API. Current value: `2026-03-01`. |
-| `type` | No | Filter results by format type. Use `glossary` to retrieve glossary formats. Omit to return all formats. |
+| `type` | No | Filter results by format type. Use `document` to retrieve document formats. Omit to return all formats. |
 
 ## Example request
 
 ```bash
-curl -X GET "{endpoint}/translator/document/formats?api-version=2026-03-01&type=glossary" \
+curl -X GET "{endpoint}/translator/document/formats?api-version=2026-03-01&type=document" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -51,7 +51,7 @@ curl -X GET "{endpoint}/translator/document/formats?api-version=2026-03-01&type=
 
 | Status code | Description |
 |---|---|
-| `200` | OK. Returns a list of supported glossary formats. |
+| `200` | OK. Returns a list of supported document formats. |
 | `401` | Authentication failed. Check your subscription key. |
 | `500` | Internal server error. |
 
@@ -60,14 +60,14 @@ curl -X GET "{endpoint}/translator/document/formats?api-version=2026-03-01&type=
 | Field | Type | Description |
 |---|---|---|
 | `value` | array | Array of `FileFormat` objects. |
-| `value[].format` | string | Glossary format name (for example, `TSV`). |
-| `value[].fileExtensions` | array | List of supported file extensions (for example, `.tsv`). |
-| `value[].contentTypes` | array | List of MIME types for this glossary format. |
-| `value[].defaultVersion` | string | Default format version. |
+| `value[].format` | string | Format name (for example, `DOCX`). |
+| `value[].fileExtensions` | array | List of supported file extensions (for example, `.docx`). |
+| `value[].contentTypes` | array | List of MIME types for this format. |
+| `value[].defaultVersion` | string | Default format version used when `storageInputFileFormat` is not specified. |
 | `value[].versions` | array | Available format versions. |
 
 ## Related content
 
-* [Get supported document formats](get-supported-formats.md)
+* [Get supported glossary formats](get-supported-glossary-formats.md)
 * [Start batch translation](translate-asynchronous.md)
 * [Synchronous document translation](translate-synchronous.md)

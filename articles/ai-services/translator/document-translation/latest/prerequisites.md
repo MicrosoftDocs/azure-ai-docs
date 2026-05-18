@@ -1,5 +1,5 @@
 ---
-title: "Prerequisites and setup for Document Translation API"
+title: Prerequisites and Setup for Document Translation API
 titleSuffix: Foundry Tools
 description: Learn about the prerequisites and setup required to use the Document Translation API, including Azure resources, authentication methods, and infrastructure requirements for different translation processes.
 author: laujan
@@ -9,7 +9,7 @@ ms.service: azure-ai-translator
 ms.topic: checklist
 ms.date: 05/14/2026
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Prerequisites and setup
 
 The Document Translation API lets you translate documents at scale or on demand. Before you configure your environment, choose the translation process that fits your workload. Each process has different infrastructure requirements and is optimized for different scenarios.

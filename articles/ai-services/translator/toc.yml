@@ -154,10 +154,10 @@ items:
     items:
     - name: Asynchronous batch translation with REST API
       displayName: batch,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: document-translation/latest/rest-api/translate-asynchronous.md
+      href: document-translation/latest/quickstarts/asynchronous.md
     - name: Synchronous document translation with REST API
       displayName: rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: document-translation/latest/rest-api/translate-synchronous.md
+      href: document-translation/latest/quickstarts/synchronous.md
     - name: "Quickstart: Document translation SDKs"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
@@ -185,23 +185,23 @@ items:
         displayName: resource,endpoint,region,location,resource,token,header,header value
         href: document-translation/latest/rest-api/guide-overview.md
       - name: Synchronous document translation
-        href: document-translation/reference/translate-document.md
+        href: document-translation/latest/rest-api/translate-synchronous.md
       - name: Asynchronous batch translation
-        href: document-translation/reference/start-batch-translation.md
+        href: document-translation/latest/rest-api/translate-asynchronous.md
       - name: Get status of all translation jobs
-        href: document-translation/reference/get-translations-status.md
+        href: document-translation/latest/rest-api/get-status-all-translations.md
       - name: Get status of a specific translation job
-        href: document-translation/reference/get-translation-status.md
+        href: document-translation/latest/rest-api/get-status-specific-translation.md
       - name: Get status of all documents
-        href: document-translation/reference/get-documents-status.md
+        href: document-translation/latest/rest-api/get-status-all-documents.md
       - name: Get status of a specific document
-        href: document-translation/reference/get-document-status.md
+        href: document-translation/latest/rest-api/get-status-specific-document.md
       - name: Cancel translation
         href: document-translation/latest/rest-api/cancel-translation.md
       - name: Get supported document formats
-        href: document-translation/reference/get-supported-document-formats.md
+        href: document-translation/latest/rest-api/get-supported-document-formats.md
       - name: Get supported glossary formats
-        href: document-translation/reference/get-supported-glossary-formats.md
+        href: document-translation/latest/rest-api/get-supported-glossary-formats.md
   - name: Document translation SDK guide
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md

@@ -1,5 +1,5 @@
 ﻿---
-title: "Synchronous document translation"
+title: Synchronous Document Translation
 titleSuffix: Foundry Tools
 description: Translate a single document synchronously using the Document Translation REST API. No Azure Blob Storage required.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Synchronous document translation
 
 Translate a single document and receive the translated output in the HTTP response. This operation doesn't require Azure Blob Storage, which makes it well-suited for interactive translation, lightweight integrations, and testing. The request uses multipart/form-data to pass the document and returns the translated file as binary data in the response body.
@@ -99,6 +99,6 @@ The `200` response body is the translated document file. Save it using the `-o` 
 
 ## Related content
 
-* [Get supported document formats](get-supported-formats.md)
-* [Get supported glossary formats](get-supported-glossary.md)
+* [Get supported document formats](get-supported-document-formats.md)
+* [Get supported glossary formats](get-supported-glossary-formats.md)
 * [Quickstart: synchronous document translation](../quickstarts/synchronous.md)

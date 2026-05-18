@@ -1,5 +1,5 @@
 ﻿---
-title: "Get translation status"
+title: Get Translation Status
 titleSuffix: Foundry Tools
 description: Retrieve the overall status and document summary for a specific batch translation job using the Document Translation REST API.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Get translation status
 
 Retrieve the overall status and document summary for a specific batch translation job. Poll this endpoint after submitting a batch request until the job reaches a terminal state: `Succeeded`, `Failed`, `Cancelled`, or `ValidationFailed`.
@@ -63,7 +63,7 @@ curl -X GET "{endpoint}/translator/document/batches/{jobId}?api-version=2026-03-
 | `status` | string | Overall job status: `NotStarted`, `Running`, `Succeeded`, `Failed`, `Cancelled`, `Cancelling`, or `ValidationFailed`. |
 | `createdDateTimeUtc` | string | Job creation datetime (UTC). |
 | `lastActionDateTimeUtc` | string | Last status change datetime (UTC). |
-| `summary` | object | Counts of documents by status: succeeded, failed, inProgress, notStarted, cancelled, total. |
+| `summary` | object | Counts of documents by status: succeeded, failed, inProgress, notStarted, canceled, total. |
 | `error` | object | Error details if the job failed. Includes `code` and `message` fields. |
 
 ## Related content

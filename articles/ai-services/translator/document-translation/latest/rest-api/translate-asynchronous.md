@@ -1,5 +1,5 @@
 ﻿---
-title: "Start batch translation"
+title: Start Batch Translation
 titleSuffix: Foundry Tools
 description: Submit an asynchronous batch document translation job to the Document Translation service using the REST API.
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: reference
 ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Start batch translation
 
 Submit one or more documents stored in Azure Blob Storage for asynchronous translation. The service returns an `operation-location` header containing the job ID, which you use to poll for status. Each target container in a batch must be unique; submitting documents to a target container that already has translated output causes a file conflict error. Use the `targetUrl` for a specific container, not a shared destination.
