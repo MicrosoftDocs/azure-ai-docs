@@ -15,15 +15,15 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run optimization, and deploy the winning candidate — all in about 10 minutes.
+In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run optimization, and deploy the winning candidate.
 
 ## Prerequisites
 
 | Tool | Required | Purpose |
 | ------ | ---------- | --------- |
-| [azd CLI](https://aka.ms/azd) | Yes | Azure Developer CLI — provisions, deploys, and manages your agent |
-| [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) | Yes | Azure authentication (`az login`) |
-| [Docker Desktop](https://www.docker.com/products/docker-desktop/) | Yes | Builds and pushes container images for agent deployment |
+| [azd CLI](https://aka.ms/azd) | Yes | Azure Developer CLI. Provisions, deploys, and manages your agent. |
+| [Azure CLI](/cli/azure/install-azure-cli) | Yes | Azure authentication (`az login`) |
+| [Docker Desktop](https://www.docker.com/products/docker-desktop/) (must be running) | Yes | Builds and pushes container images for agent deployment |
 | [Python 3.12+](https://www.python.org/downloads/) | Yes | Agent runtime |
 | Git | Yes | Source control |
 
@@ -153,7 +153,7 @@ This creates:
 azd deploy
 ```
 
-This builds the container image, pushes it to Azure Container Registry, and registers the hosted agent (~1.5 min). The output includes a portal playground link you can use to chat with the agent.
+This command builds the container image, pushes it to Azure Container Registry, and registers the hosted agent. The process takes approximately 1.5 minutes. The output includes a portal playground link you can use to chat with the agent.
 
 Test the deployment:
 
@@ -167,14 +167,14 @@ azd ai agent invoke "What is 2+2?"
 azd ai agent optimize
 ```
 
-The agent name is auto-detected from `agent.yaml`. The service:
+The CLI auto-detects the agent name from `agent.yaml`. The service:
 
 1. Evaluates your baseline agent against a built-in dataset (3 tasks, 12 criteria)
 1. Generates improved instruction candidates
 1. Evaluates each candidate
 1. Ranks them by score
 
-This process takes ~5–20 minutes. You see real-time progress:
+This process takes 5 to 20 minutes. You see real-time progress:
 
 ```output
 Optimizing agent "faos-sample-agent"...
@@ -189,6 +189,9 @@ Results:
   baseline_instr_v4       0.87    100%      471
   baseline_instr_v1       0.86    100%      456
   baseline_instr_v3 ★     0.91    100%      438
+
+  Deploy the best candidate:
+    azd ai agent optimize deploy --candidate cand_91a5861f5c0245c4b2acb9ccaa48d4aa
 ```
 
 The *eval model* (defaults to `gpt-4.1-mini`) scores each response. This model must be deployed in your Foundry project.
@@ -204,13 +207,13 @@ azd ai agent optimize --eval
 
 ## Deploy the winner
 
-The ★ marks the best candidate. Copy the deploy command from the output:
+The ★ indicates the best candidate. Deploy it with the command shown in the optimization output:
 
 ```bash
 azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
-This creates a new agent version with the optimized instructions baked in. The `agent_optimization` SDK's `load_config()` function picks up the new config automatically at startup.
+This command creates a new agent version with the optimized instructions. The `agent_optimization` SDK's `load_config()` function picks up the new configuration automatically at startup.
 
 Invoke your agent again to verify the improvement:
 
@@ -241,14 +244,24 @@ azd ai agent optimize cancel <job-id>
 
 ## Clean up resources
 
-When you're done experimenting:
+When you finish experimenting, delete the provisioned resources:
 
 ```bash
 azd down --force --purge
 ```
 
 > [!TIP]
-> **Why `--purge`?** Foundry accounts use soft-delete by default. Without `--purge`, the resource name stays reserved for 48 hours and re-provisioning with the same name fails.
+> **Why `--purge`?** Foundry accounts use soft-delete by default. Without `--purge`, the resource name stays reserved for 48 hours, and reprovisioning with the same name fails.
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --------- | ------- | ----- |
+| `optimize` returns 404 | Wrong region | Reprovision in **North Central US** |
+| `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
+| All scores are zero | Eval model not deployed | Deploy `gpt-4.1-mini` in your Foundry project, or use `--eval-model` to specify a deployed model |
+| `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
+| `azd provision` fails with quota error | Subscription lacks capacity | Try a different subscription or request a quota increase |
 
 ## Related content
 

@@ -15,16 +15,17 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Adding optimization support to your agent requires **four lines of code**. No framework changes, no conditional logic — just call `load_config()` and use its values.
+Adding optimization support to your agent requires **four lines of code**. No framework changes or conditional logic are needed. Call `load_config()` and use its values.
 
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - Familiarity with [hosted agents](../concepts/hosted-agents.md)
+- Python 3.9 or later
 
 ## Add the `agent_optimization` package
 
-Your project needs the `agent_optimization/` package. If you started from the [FAOS template](https://github.com/microsoft/faos-pri-preview), it's already included. Otherwise, copy the `agent_optimization/` directory into your project root.
+Your project needs the `agent_optimization/` package. If you started from the [FAOS template](https://github.com/microsoft/faos-pri-preview), it's already included. Otherwise, copy the `agent_optimization/` directory from the [sample repository](https://github.com/microsoft/faos-pri-preview/tree/main/agent_optimization) into your project root.
 
 ```
 my-agent/
@@ -59,7 +60,7 @@ The `load_config()` function resolves the active configuration at startup and re
 
 | Parameter | Type | Description |
 | ----------- | ------ | ------------- |
-| `default_instructions` | `str` | Your current system prompt — used when not under optimization |
+| `default_instructions` | `str` | Your current system prompt. Used when not under optimization. |
 | `default_model` | `str \| None` | Default model deployment name |
 | `default_temperature` | `float \| None` | Default temperature (optional) |
 | `default_skills_dir` | `str \| None` | Directory for skill files (optional) |
@@ -72,7 +73,7 @@ The `load_config()` function resolves the active configuration at startup and re
 | `model` | `str \| None` | Model deployment name |
 | `temperature` | `float \| None` | Sampling temperature |
 | `skills` | `list[Skill]` | Discovered skills (empty if none) |
-| `source` | `str` | Where the config came from (`"defaults"`, `"env:..."`, `"api:candidate:..."`) |
+| `source` | `str` | Where the config came from: `"defaults"`, `"env:..."`, or `"api:candidate:..."` |
 
 ## Use the config values
 
@@ -156,13 +157,26 @@ if __name__ == "__main__":
 
 ## How it works
 
-1. **Normal operation**: No optimization env vars are set → `load_config()` returns your defaults → the agent works exactly as before.
+1. **Normal operation**: No optimization environment variables are set. `load_config()` returns your defaults. The agent works exactly as before.
 
-1. **During optimization**: The service sets `AGENT_OPTIMIZATION_CANDIDATE_ID` → `load_config()` calls the resolver API to fetch the candidate's config → your agent uses the candidate's instructions.
+1. **During optimization**: The service sets `AGENT_OPTIMIZATION_CANDIDATE_ID`. `load_config()` calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions.
 
-1. **After deploying a winner**: `azd ai agent optimize deploy` sets `OPTIMIZATION_CONFIG` in the agent's environment → `load_config()` reads the JSON → your agent uses the optimized instructions permanently.
+1. **After deploying a winner**: The `azd ai agent optimize deploy` command sets `OPTIMIZATION_CONFIG` in the agent's environment. `load_config()` reads the JSON and your agent uses the optimized instructions permanently.
 
 Your code never changes between these states. The config resolution is fully automatic.
+
+## Verify
+
+Confirm that the package is importable and the configuration loads correctly:
+
+```bash
+# Verify the package is importable
+python -c "from agent_optimization import load_config; print('OK')"
+
+# Run locally and check the log output
+azd ai agent run
+# Expected log: "Config loaded (source=defaults, model=gpt-4.1-mini)"
+```
 
 ## Related content
 

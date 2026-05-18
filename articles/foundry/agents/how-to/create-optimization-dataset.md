@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-By default, `azd ai agent optimize` uses a built-in dataset (3 general coding tasks, 25 criteria). For meaningful optimization of your specific agent, create a custom *dataset* — a collection of tasks used to evaluate an agent — that reflects your agent's real-world use cases.
+By default, `azd ai agent optimize` uses a built-in dataset with 3 general coding tasks and 25 criteria. For meaningful optimization of your specific agent, create a custom *dataset* that reflects your agent's real-world use cases. A dataset is a collection of tasks used to evaluate an agent.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ By default, `azd ai agent optimize` uses a built-in dataset (3 general coding ta
 
 ## Dataset format
 
-Datasets use **JSONL** (JSON Lines) format — one JSON object per line, each representing a single evaluation *task* (an individual scenario in the dataset containing a prompt and evaluation criteria).
+Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that represents a single evaluation *task*. A task is an individual scenario in the dataset. It contains a prompt and evaluation criteria.
 
 ```jsonl
 {"name": "task_1", "prompt": "Your prompt here", "criteria": [{"name": "criterion_name", "instruction": "What the evaluator checks for"}]}
@@ -39,7 +39,7 @@ Datasets use **JSONL** (JSON Lines) format — one JSON object per line, each re
 | `prompt` | Yes | The message sent to the agent |
 | `criteria` | Yes | Array of evaluation *criteria* — rules that define what "good" looks like for the task |
 | `criteria[].name` | Yes | Short name for the criterion (for example, `"is_polite"`) |
-| `criteria[].instruction` | Yes | What the *evaluator* checks — be specific and testable. The built-in evaluator (`task_adherence`) scores each criterion independently as a binary value (0 or 1). |
+| `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`task_adherence`) scores each criterion independently as a binary value (0 or 1). |
 | `groundTruth` | No | Expected answer (used by some evaluators for reference) |
 
 ## Example: Customer support agent
@@ -84,6 +84,12 @@ Then run:
 azd ai agent optimize --config spec.yaml
 ```
 
+Before you run the command, validate the JSONL syntax:
+
+```bash
+python -c "import json; [json.loads(l) for l in open('my_eval_dataset.jsonl')]"
+```
+
 ## Tips for writing good datasets
 
 ### Be specific in criteria
@@ -104,9 +110,9 @@ Specific criteria give the evaluator a clear, binary signal. Vague criteria lead
 
 ### Include edge cases
 
-Don't just test the happy path. Include:
+Test beyond the happy path. Include:
 
-- **Out-of-scope requests** — Things your agent should decline or redirect
+- **Out-of-scope requests** — Inputs your agent should decline or redirect
 - **Ambiguous queries** — Tasks where the agent should ask for clarification
 - **Adversarial inputs** — Attempts to trick the agent into bad behavior
 - **Multi-step tasks** — Complex requests that require structured reasoning
@@ -124,7 +130,7 @@ Each task can have multiple criteria. A dataset with 5 tasks × 4 criteria each 
 
 ### Write prompts like real users
 
-Use actual messages from your users if possible. Real prompts capture the vocabulary, specificity (or lack thereof), and context that your agent faces in production.
+Use actual messages from your users if possible. Real prompts capture the vocabulary and context that your agent faces in production.
 
 ### Criteria are scored independently
 
@@ -135,11 +141,19 @@ Each criterion gets a binary score (0 or 1). The task score is the average of it
 
 ### Ground truth is optional
 
-The `groundTruth` field provides a reference answer for evaluators that support it. It's not required — the `task_adherence` evaluator works entirely from criteria instructions.
+The `groundTruth` field provides a reference answer for evaluators that support it. This field isn't required. The `task_adherence` evaluator works entirely from criteria instructions.
 
 ```jsonl
 {"name": "geography_fact", "prompt": "What is the largest city in France by population?", "groundTruth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
 ```
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+| --------- | ------- | ----- |
+| `dataset_file not found` | Wrong path in `spec.yaml` | Use a path relative to the config file location |
+| `invalid JSON on line N` | Malformed JSONL | Validate that each line is valid JSON. Check for trailing commas. |
+| Scores are inconsistent between runs | Vague criteria | Make criteria specific and binary-testable |
 
 ## Related content
 

@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Foundry Agent Optimization Service automatically improves your hosted agents by evaluating their behavior and generating better configurations — primarily improved system instructions and discovered skills.
+Foundry Agent Optimization Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.
 
-Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and doesn't scale. Agent optimization automates this loop so you can focus on your agent's core logic instead of manual prompt iteration.
+Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and doesn't scale. Agent optimization automates this cycle so you can focus on your agent's core logic.
 
 ## How optimization works
 
@@ -26,10 +26,10 @@ The optimization service runs a closed-loop evaluation and improvement cycle:
 1. **Evaluate the baseline** — Your agent is invoked against a dataset of tasks. Each response is scored against criteria you define (or a built-in default set). The *baseline* is your agent's score before any changes.
 2. **Generate candidates** — The service produces alternative configurations called *candidates* (for example, rewritten instructions or discovered skills) designed to improve scores.
 3. **Evaluate candidates** — Each candidate is tested against the same dataset.
-4. **Rank and recommend** — Results are ranked by composite *score* (a float between 0.0 and 1.0 representing aggregate performance). The best candidate is marked with ★.
-5. **Deploy the winner** — A single command promotes the winning candidate, baking its config into your agent's environment.
+4. **Rank and recommend** — Results are ranked by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance. The best candidate is marked with ★.
+5. **Deploy the winner** — A single command promotes the winning candidate and saves its configuration to your agent's environment.
 
-The entire process runs in the cloud. You kick it off with `azd ai agent optimize` and come back when it's done (~5–20 minutes depending on dataset size).
+The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -69,9 +69,9 @@ azd ai agent optimize --strategy instruction
 
 ### Skill discovery
 
-The *skill strategy* discovers reusable capabilities your agent should have. It generates *skill* definitions — a named capability with a name, description, and implementation body — and appends them to the agent's instruction set.
+The *skill strategy* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The service appends these definitions to the agent's instruction set.
 
-**When to use:** Agents that need structured, repeatable behaviors, like a support agent that should always follow a specific escalation procedure or a coding agent that should use particular debugging patterns.
+**When to use:** Agents that need structured, repeatable behaviors. For example, a support agent that should always follow a specific escalation procedure, or a coding agent that should use particular debugging patterns.
 
 ```bash
 azd ai agent optimize --strategy skill
@@ -87,7 +87,7 @@ When your agent starts, the `load_config()` function checks three sources in ord
 | 2 | `AGENT_OPTIMIZATION_CONFIG` / `OPTIMIZATION_CONFIG` env var (inline JSON) | After deploying a candidate |
 | 3 | Your defaults in code | Normal operation (no optimization) |
 
-Your agent always works — with or without optimization. No feature flags or conditional logic. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md).
+Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md).
 
 ## What gets optimized
 
@@ -99,6 +99,8 @@ Your agent always works — with or without optimization. No feature flags or co
 | `temperature` | Sampling temperature | (future) |
 
 ## Understand optimization results
+
+This section describes the results table structure, how scores are computed, what score improvements mean, and how to diagnose common issues.
 
 After an optimization run completes, you see a results table:
 
@@ -125,7 +127,7 @@ The ★ marks the candidate with the highest composite score. This is the recomm
 
 ### How scores are computed
 
-Each criterion in the evaluation *dataset* is scored independently as a binary value (0 or 1). The evaluator model reads the agent's response and the criterion's instruction, then outputs a judgment: does the response satisfy this criterion?
+Each criterion in the evaluation *dataset* is scored independently as a binary value (0 or 1). The evaluator model reads the agent's response and the criterion's instruction, then determines whether the response satisfies that criterion.
 
 **Per-task score**: The average of a task's criteria scores:
 
@@ -150,26 +152,33 @@ Task "refund_policy":
 
 ### Token trade-offs
 
-Optimized instructions are often longer and more detailed. This can increase response token usage. Consider:
+Optimized instructions are often longer and more detailed, which can increase response token usage. Consider these factors:
 
-- Is the token increase proportional to the score improvement?
-- Does the cost increase fit your budget?
-- Are responses unnecessarily verbose, or is the extra length adding value?
+- Whether the token increase is proportional to the score improvement
+- Whether the cost increase fits your budget
+- Whether responses are unnecessarily verbose or adding value with the extra length
 
 ### Pass rate
 
-A pass rate below 100% means some tasks produced invalid responses (for example, the agent crashed, timed out, or returned empty). If a candidate has a lower pass rate than the baseline, it might have introduced instability.
+A pass rate below 100% means some tasks produced invalid responses. For example, the agent might have crashed, timed out, or returned empty. If a candidate has a lower pass rate than the baseline, it might have introduced instability.
 
 ### All scores are zero
 
-If all candidates (including baseline) score 0.00, the likely cause is a missing *eval model*. The eval model is the model used to score agent responses against criteria. It must be deployed in your Foundry project:
+If all candidates (including baseline) score 0.00, the likely cause is a missing *eval model*. The eval model is the model that scores agent responses against criteria. It must be deployed in your Foundry project.
 
 ```bash
 azd ai agent optimize --eval-model gpt-4.1-mini
 ```
 
 > [!IMPORTANT]
-> If the eval model isn't deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
+> If the eval model isn't deployed, all scores are zero with no error message. Always verify that your eval model exists in the project.
+
+## Limitations and availability
+
+- Agent optimization is in **private preview**. Your Azure subscription must be on the allowlist. Contact your Microsoft representative to request access.
+- The service is available in **North Central US** only. Other regions deploy the agent but return a 404 error for optimization commands.
+- Optimization is supported for hosted agents in Foundry Agent Service.
+- Optimization runs consume eval model tokens in your Foundry project.
 
 ## Related content
 

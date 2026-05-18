@@ -15,7 +15,15 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The optimization service supports two strategies: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both strategies in depth.
+The optimization service supports two strategies: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both strategies.
+
+| Scenario | Recommended strategy |
+| ---------- | ----------------------- |
+| Improve overall response quality | Instruction tuning |
+| Reduce hallucination | Instruction tuning |
+| Add repeatable behaviors (escalation, debugging patterns) | Skill discovery |
+| Agent needs structured procedures | Skill discovery |
+| First optimization, not sure which to choose | Instruction tuning (default) |
 
 ## Prerequisites
 
@@ -31,9 +39,9 @@ The *instruction strategy* is the default optimization approach. It rewrites and
 ### How it works
 
 1. **Baseline evaluation** — Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
-1. **Instruction generation** — The optimizer analyzes the baseline scores and generates alternative system prompts designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation** — Each candidate instruction set is injected into your agent (via `AGENT_OPTIMIZATION_CANDIDATE_ID`) and evaluated against the same dataset.
-1. **Ranking** — Candidates are ranked by composite score. The best is marked with ★.
+1. **Instruction generation** — The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
+1. **Candidate evaluation** — Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The optimization service sets this variable automatically during evaluation.
+1. **Ranking** — Candidates are ranked by composite score. The best candidate is marked with ★.
 
 ### Run instruction optimization
 
@@ -68,9 +76,9 @@ azd ai agent optimize --config spec.yaml
 
 ### What gets changed
 
-The optimizer rewrites the system prompt. Your code stays the same — `load_config()` returns the new instructions automatically. Common improvements include:
+The optimizer rewrites the system prompt. Your code stays the same because `load_config()` returns the new instructions automatically. Common improvements include:
 
-- Adding explicit constraints the original prompt implied but didn't state
+- Adding explicit constraints that the original prompt implied but didn't state
 - Restructuring instructions for clarity
 - Adding output format specifications
 - Strengthening safety and scope boundaries
@@ -104,7 +112,10 @@ The *budget* option controls how many candidate instruction sets are generated. 
 | 5 | 5 | 10–15 min | Good balance |
 | 10 | 10 | 20–30 min | Thorough exploration |
 
-Higher budgets explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to be better.
+Higher budgets explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
+
+> [!NOTE]
+> Times are approximate for a dataset of 3 to 10 tasks. Larger datasets or slower eval models increase run duration.
 
 ### Eval model
 
@@ -123,12 +134,19 @@ The *skill strategy* discovers reusable capabilities your agent should have. It 
 
 ### How it works
 
-1. **Baseline evaluation** — Same as the instruction strategy: your agent is evaluated against the dataset.
+1. **Baseline evaluation** — Same as the instruction strategy. Your agent is evaluated against the dataset.
 1. **Skill discovery** — The optimizer analyzes weak areas and generates skill definitions. A skill is a named capability with:
    - **Name** — For example, `"step_by_step_reasoning"`
    - **Description** — What the skill does and when to use it
    - **Body** — Implementation details or procedure
-1. **Injection** — Discovered skills are appended to the agent's instructions via `compose_instructions()`, creating a skill catalog the model can reference.
+1. **Injection** — Discovered skills are appended to the agent's instructions through `compose_instructions()`, which creates a skill catalog the model can reference.
+
+    ```python
+    # compose_instructions() appends discovered skills to your prompt
+    full_prompt = config.compose_instructions()
+    # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
+    ```
+
 1. **Evaluation** — The agent with skills is evaluated against the dataset.
 
 ### Run skill optimization
@@ -161,7 +179,7 @@ azd ai agent optimize --config spec.yaml
 
 ### Skill file downloads
 
-For candidates that include skill files (implementation code), `load_config()` can download them via the resolver API. The skills are stored in a local directory (default: `.agent_optimization_skills/`).
+For candidates that include skill files (implementation code), `load_config()` can download them through the resolver API. The skills are stored in a local directory. The default directory is `.agent_optimization_skills/`.
 
 ```python
 config = load_config(
@@ -183,10 +201,10 @@ Key thresholds:
 
 | Improvement | Interpretation |
 | ------------- | --------------- |
-| < 0.03 | Noise — not meaningful |
-| 0.03–0.10 | Moderate — worth deploying |
-| 0.10–0.20 | Significant improvement |
-| > 0.20 | Major improvement |
+| Less than 0.03 | Noise. Not meaningful. |
+| 0.03 to 0.10 | Moderate. Worth deploying. |
+| 0.10 to 0.20 | Significant improvement. |
+| Greater than 0.20 | Major improvement. |
 
 ## Deploy the winner
 
@@ -194,7 +212,9 @@ Key thresholds:
 azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
-This sets `OPTIMIZATION_CONFIG` in the agent's environment. On next startup, `load_config()` returns the optimized instructions.
+This command sets `OPTIMIZATION_CONFIG` in the agent's environment. On next startup, `load_config()` returns the optimized instructions.
+
+If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
 
 ## Troubleshooting
 
