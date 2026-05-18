@@ -101,7 +101,7 @@ To configure access for this solution:
 1. Install the required packages.
 
    ```console
-   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==11.7.0b2 requests openai
+   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==12.1.0a20260515004 requests openai
    ```
 
 1. Create a file named `.env` in the `tutorial-agentic-retrieval` folder.
@@ -329,7 +329,7 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint}/knowledgebases/{base_name}/mcp?api-version=2025-11-01-Preview"
+mcp_endpoint = f"{endpoint}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
 ```
 
 ### Set up a project client
