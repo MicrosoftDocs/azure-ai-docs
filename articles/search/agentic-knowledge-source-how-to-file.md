@@ -278,9 +278,57 @@ You can pass the following `ingestionParameters` properties to control how uploa
 After the source exists, upload files directly to it. The file knowledge source processing path is push-oriented rather than schedule-oriented. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
 
 > [!NOTE]
-> File upload and listing for file knowledge sources are currently REST-only operations in this preview. SDK clients can issue the same calls through their built-in HTTP pipelines or any HTTP client that signs requests with your search service credential.
+> The current preview C# and Python SDKs don't yet expose typed methods for file upload or file listing on a file knowledge source. Until they ship, send the same `2026-05-01-preview` REST calls through your language's HTTP client.
 
 The request body contains the file content.
+
+::: zone pivot="csharp"
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+using var http = new HttpClient();
+http.DefaultRequestHeaders.Add("api-key", searchApiKey);
+
+byte[] fileBytes = File.ReadAllBytes("installation-guide.pdf");
+var content = new ByteArrayContent(fileBytes);
+content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+{
+    FileName = "\"installation-guide.pdf\""
+};
+
+var url = $"{searchEndpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview";
+var resp = await http.PostAsync(url, content);
+resp.EnsureSuccessStatusCode();
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+import requests
+
+with open("installation-guide.pdf", "rb") as f:
+    body = f.read()
+
+response = requests.post(
+    f"{search_endpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview",
+    headers={
+        "api-key": search_api_key,
+        "Content-Type": "application/octet-stream",
+        "Content-Disposition": 'attachment; filename="installation-guide.pdf"',
+    },
+    data=body,
+)
+response.raise_for_status()
+```
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 POST {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
@@ -291,14 +339,59 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 <binary file content>
 ```
 
+::: zone-end
+
 ## List uploaded files
 
 List files on the knowledge source to inspect the uploaded file set.
+
+::: zone pivot="csharp"
+
+```csharp
+using System.Net.Http;
+using System.Text.Json;
+
+using var http = new HttpClient();
+http.DefaultRequestHeaders.Add("api-key", searchApiKey);
+
+var url = $"{searchEndpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview";
+var resp = await http.GetAsync(url);
+resp.EnsureSuccessStatusCode();
+
+using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync());
+foreach (var f in doc.RootElement.GetProperty("value").EnumerateArray())
+{
+    Console.WriteLine($"{f.GetProperty("fileName").GetString()} ({f.GetProperty("fileSizeBytes").GetInt64()} bytes)");
+}
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+import requests
+
+response = requests.get(
+    f"{search_endpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview",
+    headers={"api-key": search_api_key},
+)
+response.raise_for_status()
+
+for f in response.json().get("value", []):
+    print(f"{f['fileName']} ({f['fileSizeBytes']} bytes) error={f.get('errorMessage')}")
+```
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
 api-key: {{api-key}}
 ```
+
+::: zone-end
 
 A response includes metadata for each uploaded file. The `errorMessage` value is `null` when the upload is processed without an error.
 
