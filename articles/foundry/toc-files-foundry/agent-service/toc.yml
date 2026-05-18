@@ -148,6 +148,11 @@ items:
     href: ../../agents/how-to/agent-365.md
   - name: Enable incoming A2A (preview)
     href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
+# Automate
+- name: Automate
+  items:
+  - name: Automate agents with routines (preview)
+    href: ../../agents/how-to/use-routines.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:
