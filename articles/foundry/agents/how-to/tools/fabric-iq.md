@@ -281,7 +281,7 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 | **Authorization URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize` |
 | **Token URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Refresh URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
-| **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All,https://analysis.windows.net/powerbi/api/Item.Read.All` |
+| **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All https://analysis.windows.net/powerbi/api/Item.Read.All offline_access` |
 
 Replace `{tenant-id}` with your Directory (tenant) ID from step 6. Select **Save** to create the connection.
 
