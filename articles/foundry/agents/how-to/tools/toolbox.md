@@ -8,8 +8,8 @@ ms.reviewer: zhuoqunli
 ms.date: 04/25/2026
 ms.manager: nitinme
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-toolbox
@@ -605,7 +605,6 @@ toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
 tools = await toolbox.get_tools()
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 > [!IMPORTANT]
 > Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
