@@ -962,6 +962,7 @@ The following examples illustrate different ways to call the retrieve action usi
 + [Inspect model names in activity logs](#inspect-model-names-in-activity-logs)
 + [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed)
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
 
@@ -1083,6 +1084,46 @@ couldn't be queried. The setting is independent of `alwaysQuerySource`:
 `failOnError` controls what happens if that attempt fails. If a source must
 always participate and must fail the request on error, set both properties to
 `true`.
+
+### Tune candidate documents per knowledge source
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
+`maxOutputDocuments` to cap output documents per knowledge source before
+final result selection. Use this setting when you want one source to
+contribute a bounded number of documents to the retrieve pipeline.
+
+This setting is per source. It doesn't control the final number of grounding
+documents returned to the caller.
+
+```http
+POST {{search-url}}/knowledgebases/operations-kb/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What safety procedures apply?" }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "operations-ks",
+            "kind": "searchIndex",
+            "maxOutputDocuments": 100
+        }
+    ]
+}
+```
+
+For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
+is a per-source cap. The service can return fewer documents when fewer matches
+are available or when internal limits reduce the applied window.
 
 ### Override default reasoning effort and set request limits
 
