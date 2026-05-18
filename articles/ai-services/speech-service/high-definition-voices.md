@@ -109,9 +109,7 @@ The following Styles and Paralinguistic tags are supported in HD voices
 | Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`   |
 
 > [!NOTE]
-> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
->
-> Paralinguistics are available on all voices with all languages. See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
+> Styles and Paralinguistics are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text. See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Dragon HD Omni voices
 

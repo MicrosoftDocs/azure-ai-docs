@@ -8,6 +8,7 @@ ms.reviewer: aashishb
 ms.date: 01/05/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
