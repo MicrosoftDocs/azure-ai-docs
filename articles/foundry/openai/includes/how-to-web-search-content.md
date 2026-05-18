@@ -60,6 +60,8 @@ You use web search by declaring the tool `{"type": "web_search"}` in your reques
 > [!NOTE]
 > Web Search in the Responses API works with GPT-4 models and later.
 
+In the examples that follow, replace `gpt-5.5`, `gpt-5`, and `o3-deep-research` with the name of your own model deployment. The same `assert` pattern shown in the basic Microsoft Entra ID snippets applies to the API-key snippets and the user-location and domain-filtering examples.
+
 # [Python](#tab/python)
 
 **Microsoft Entra ID:**
@@ -86,6 +88,11 @@ response = openai.responses.create(
 )
 
 print(response.output_text)
+
+# Verify the call succeeded.
+assert response.output_text, "Empty output_text"
+assert any(item.type == "web_search_call" for item in response.output), \
+    "No web_search_call in response"
 ```
 
 **API key:**
@@ -118,6 +125,7 @@ print(response.output_text)
 using Azure.Identity;
 using OpenAI.Responses;
 using System.ClientModel.Primitives;
+using System.Diagnostics;
 
 #pragma warning disable OPENAI001
 
@@ -141,6 +149,12 @@ options.InputItems.Add(ResponseItem.CreateUserMessageItem(
 
 ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
+
+// Verify the call succeeded.
+Debug.Assert(!string.IsNullOrEmpty(response.GetOutputText()), "Empty output text");
+Debug.Assert(
+    response.OutputItems.Any(item => item is WebSearchCallResponseItem),
+    "No web_search_call in response");
 ```
 
 **API key:**
@@ -175,6 +189,7 @@ Console.WriteLine(response.GetOutputText());
 **Microsoft Entra ID:**
 
 ```javascript
+// Save this file with the .mjs extension, or add "type": "module" to your package.json.
 import { OpenAI } from "openai";
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
@@ -196,6 +211,13 @@ const response = await openai.responses.create({
 });
 
 console.log(response.output_text);
+
+// Verify the call succeeded.
+console.assert(response.output_text, "Empty output_text");
+console.assert(
+  response.output.some((item) => item.type === "web_search_call"),
+  "No web_search_call in response"
+);
 ```
 
 **API key:**
@@ -259,6 +281,11 @@ public class WebSearchExample {
         response.output().forEach(item -> item.message().ifPresent(msg ->
             msg.content().forEach(content -> content.outputText().ifPresent(
                 t -> System.out.println(t.text())))));
+
+        // Verify the call succeeded.
+        boolean hasWebSearchCall = response.output().stream()
+            .anyMatch(item -> item.webSearchCall().isPresent());
+        assert hasWebSearchCall : "No web_search_call in response";
     }
 }
 ```
@@ -314,6 +341,8 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
      "input": "Please perform a web search on the latest trends in renewable energy"
     }'
 ```
+
+The response returns HTTP 200 with a JSON body whose `output` array contains both a `web_search_call` item and a `message` item. If either is missing, the call didn't perform a web search.
 
 **API key:**
 
@@ -377,12 +406,14 @@ A successful response that uses web search typically contains two parts:
   - The grounded text in `message.content[0].text`.
   - URL citations in `message.content[0].annotations`, one or more `url_citation` objects that include the URL, title, and character ranges.
 
+When you use a reasoning model, the `output` array also contains a `reasoning` item alongside `web_search_call` and `message`. Parse the array by `type` rather than by position.
+
 ### Control results by user location
 
 You can refine search results by passing the approximate user location. The following fields are supported:
 
 | Field | Description | Example |
-|---|---|---|
+| --- | --- | --- |
 | `country` | Two-letter [ISO country/region code](https://en.wikipedia.org/wiki/ISO_3166-1). | `US` |
 | `city` | Free-text city name. | `Chicago` |
 | `region` | Free-text region or state name. | `Illinois` |
@@ -580,7 +611,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
 
-To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The response includes the matched URLs and titles in the `web_search_call` output item.
+To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
 
 # [Python](#tab/python)
 
