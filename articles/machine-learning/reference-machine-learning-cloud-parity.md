@@ -184,7 +184,7 @@ The information in the rest of this document provides information on what featur
 
 
 ### Azure OpenAI Models in Model Catalog in USGOV Virginia and Arizona 
-To learn more about attributes of Azure OpenAI and all Foundry Models sold by Azure in Azure Government, see [Models Sold by Azure in Azure Government](../foundry/foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+To learn more about attributes of Azure OpenAI and all Foundry Models sold by Azure in Azure Government, see [Models sold by Azure in Azure Government](../foundry/foundry-models/concepts/models-sold-directly-by-azure-gov.md).
 
 ### Azure Machine Learning Features
 

@@ -32,8 +32,8 @@ Foundry offers a comprehensive catalog of AI models. There are more than 1,900 m
 
 The catalog is organized into two main categories: 
 
-* [Models Sold by Azure](#foundry-models-sold-by-azure)
-* [Models from Partners and Community](#models-from-partners-and-community)
+* [Models sold by Azure](#foundry-models-sold-by-azure)
+* [Models from partners and community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
  
@@ -55,7 +55,7 @@ These models also have the benefit of fungible provisioned throughput, meaning y
 
 These models constitute most of the Foundry Models. Trusted organizations, partners, research labs, and community contributors provide these models. They offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
-Characteristics of models from partners and community: 
+Characteristics of Models from partners and community: 
 * Developed and supported by external partners and community contributors 
 * Diverse range of specialized models catering to niche or broad use cases 
 * Typically validated by providers themselves, with integration guidelines provided by Azure 

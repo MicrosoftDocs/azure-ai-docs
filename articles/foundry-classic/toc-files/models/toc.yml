@@ -49,7 +49,7 @@ items:
     href: ../../concepts/deployments-overview.md
   - name: Deployment types
     href: ../../foundry-models/concepts/deployment-types.md   
-  - name: Configure Models from Partners and Community
+  - name: Configure Models from partners and community
     href: ../../foundry-models/how-to/configure-marketplace.md
   - name: Deploy Foundry Models using the Foundry portal
     href: ../../foundry-models/how-to/deploy-foundry-models.md

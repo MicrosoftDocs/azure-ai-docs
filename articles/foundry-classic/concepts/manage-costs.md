@@ -97,7 +97,7 @@ Use the **Cost Analysis** tool to view costs grouped by billing meter:
 1. By default, cost analysis is scoped to the selected resource group.
 
    > [!IMPORTANT]
-   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from Partners and Community display under the resource group instead of the Foundry resource.
+   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from partners and community display under the resource group instead of the Foundry resource.
 
 1. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different model series.
 

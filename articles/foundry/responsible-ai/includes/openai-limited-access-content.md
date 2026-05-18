@@ -13,7 +13,7 @@ ms.custom: include, classic-and-new
 
 As part of Microsoft's commitment to responsible AI, we have designed and operate Foundry Models sold by Azure (as defined in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage)) with the intention of respecting the rights of individuals and society and fostering transparent human-computer interaction. For this reason, certain Models sold by Azure (or versions of them) are designated as Limited Access Services, and access and use are subject to eligibility criteria determined by Microsoft. Unless otherwise indicated in the service, all Azure customers are eligible for access to Models sold by Azure, and all uses consistent with the Product Terms and Code of Conduct are permitted, so customers are not required to submit a registration form unless they are: (a) accessing a model sold by Azure designated as a Limited Access Service, or (b) requesting approval to modify Guardrails (previously content filters) and/or abuse monitoring for a model sold by Azure. 
 
-Models sold by Azure are made available to customers under the terms governing their subscription to Microsoft Azure Services, including [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) such as the Universal License Terms applicable to Microsoft Generative AI Services and the product offering terms for models sold by Azure. Please review these terms carefully as they contain important conditions and obligations governing your use. 
+Models sold by Azure are made available to customers under the terms governing their subscription to Microsoft Azure Services, including [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) such as the Universal License Terms applicable to Microsoft Generative AI Services and the product offering terms for Models sold by Azure. Please review these terms carefully as they contain important conditions and obligations governing your use. 
 
 Azure OpenAI Service is made available to customers under the terms governing their subscription to Microsoft Azure Services, including such as the Universal License Terms applicable to Microsoft Generative AI Services and the product offering terms for Azure OpenAI. Please review these terms carefully as they contain important conditions and obligations governing your use of Azure OpenAI Service.
 
@@ -29,7 +29,7 @@ All customers have the ability to configure severity thresholds on Guardrails (p
 - [Register to modify Guardrails (previously content filters)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu) (if needed)
 - [Register to modify abuse monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu) (if needed)
 
-Some advanced models sold by Azure may have more stringent criteria for turning off abuse monitoring.  
+Some advanced Models sold by Azure may have more stringent criteria for turning off abuse monitoring.  
 
 ## Help and support
 

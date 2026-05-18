@@ -17,14 +17,14 @@ This article provides details regarding how data provided by you to Foundry Mode
 > [!IMPORTANT] 
 > Your prompts (inputs) and completions (outputs), your embeddings, and your training data:
 > - are NOT available to other customers. 
-> - are NOT available to OpenAI or other providers of models sold by Azure. 
-> - are NOT used by providers of models sold by Azure to improve their models or services. 
+> - are NOT available to OpenAI or other providers of Models sold by Azure. 
+> - are NOT used by providers of Models sold by Azure to improve their models or services. 
 > - are NOT used to train any generative AI foundation models without your permission or instruction. 
 > - Customer Data, Prompts, and Completions are NOT used to improve Microsoft or third-party products or services without your explicit permission or instruction.
 >
 > Your fine-tuned Models sold by Azure are available exclusively for your use.
 >
-> Foundry is an Azure service; Microsoft hosts the Models sold by Azure in Microsoft's Azure environment and Models sold by Azure do NOT interact with any services operated by providers of models sold by Azure, for example, OpenAI (e.g. ChatGPT, or the OpenAI API). 
+> Foundry is an Azure service; Microsoft hosts the Models sold by Azure in Microsoft's Azure environment and Models sold by Azure do NOT interact with any services operated by providers of Models sold by Azure, for example, OpenAI (e.g. ChatGPT, or the OpenAI API). 
 
 ## What data does Foundry process to provide Models sold by Azure? 
 

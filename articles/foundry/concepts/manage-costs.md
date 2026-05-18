@@ -149,7 +149,7 @@ Use the **Cost Analysis** tool to view costs grouped by billing meter:
 1. By default, cost analysis is scoped to the selected resource group.
 
    > [!IMPORTANT]
-   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from Partners and Community display under the resource group instead of the Foundry resource.
+   > Scope *Cost Analysis* to the resource group where you deployed the Foundry resource. The cost meters associated with Models from partners and community display under the resource group instead of the Foundry resource.
 
 1. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different model series.
 
@@ -184,7 +184,7 @@ Microsoft Foundry supports chargeback at the project level, so FinOps teams and 
 Every Foundry project is automatically tagged with a `project` tag on its underlying usage. In Cost Management, filter the cost analysis view by the `project` tag to see spend broken down per project. You don't need to add tags manually.
 
 > [!NOTE]
-> Project-level cost attribution is currently supported for models sold by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
+> Project-level cost attribution is currently supported for Models sold by Azure (Azure Direct models, including Azure OpenAI). It isn't yet supported for models served through Azure Marketplace.
 
 ### View costs by project
 
