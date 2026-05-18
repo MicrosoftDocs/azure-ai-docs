@@ -8,6 +8,7 @@ ms.reviewer: aashishb
 reviewer: aashishb
 ms.date: 09/26/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ms.custom:
   - ignite-2023
