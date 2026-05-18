@@ -202,9 +202,9 @@ Per-knowledge-base limits on knowledge sources depend on the API version used to
 | API version | Retrieval reasoning effort | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 |
 |--|--|--|--|--|--|--|--|--|--|
 | `2026-05-01-preview` | `minimal`, `low`, `medium` | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 |
-| `2025-11-01-preview`, `2025-08-01-preview` | `minimal` <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 |
-| `2025-11-01-preview`, `2025-08-01-preview` | `low` | 3 | 3 | 3 | 3 | 3 | 0 | 3 | 3 |
-| `2025-11-01-preview`, `2025-08-01-preview` | `medium` | 3 | 5 | 5 | 5 | 5 | 0 | 5 | 5 |
+| `2026-05-01-preview`, `2025-08-01-preview` | `minimal` <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 |
+| `2026-05-01-preview`, `2025-08-01-preview` | `low` | 3 | 3 | 3 | 3 | 3 | 0 | 3 | 3 |
+| `2026-05-01-preview`, `2025-08-01-preview` | `medium` | 3 | 5 | 5 | 5 | 5 | 0 | 5 | 5 |
 
 <sup>2</sup> In earlier preview API versions, the `minimal` reasoning effort supports more knowledge sources than `low` or `medium` because it bypasses LLM-based query planning.
 
