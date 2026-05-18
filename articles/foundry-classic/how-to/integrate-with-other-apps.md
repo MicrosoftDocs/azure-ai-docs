@@ -4,6 +4,7 @@ description: "Learn how to retrieve and use Microsoft Foundry endpoints for thir
 ms.topic: how-to
 ms.date: 04/08/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley

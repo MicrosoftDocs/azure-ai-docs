@@ -6,7 +6,7 @@ ms.author: mopeakande #aashcraft for azure-openai pivot
 manager: nitinme
 ms.date: 05/13/2026
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: product-comparison
 ms.custom:
   - classic-and-new
