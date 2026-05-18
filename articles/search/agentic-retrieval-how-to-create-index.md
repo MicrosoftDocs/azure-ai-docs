@@ -8,9 +8,6 @@ ms.date: 05/05/2026
 
 # Create an index for agentic retrieval in Azure AI Search
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
