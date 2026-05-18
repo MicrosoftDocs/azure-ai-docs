@@ -66,7 +66,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -78,7 +78,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + For the 2026-04-01 API version, the knowledge base must include a model reference to provide the LLM for web content summarization. Retrieval is always extractive (cited summaries). Answer synthesis and configurable reasoning effort aren't available in this version.
 
-+ For the 2025-11-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
++ For the 2025-11-01-preview and 2026-05-01-preview API versions, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
 
 ## Check for existing knowledge sources
 
@@ -105,6 +105,41 @@ Run the following code to create a web knowledge source.
 ::: zone pivot="csharp"
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
+
+```csharp
+// Create Web Knowledge Source
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var knowledgeSource = new WebKnowledgeSource(name: "my-web-ks")
+{
+    Description = "A sample Web Knowledge Source.",
+    WebParameters = new WebKnowledgeSourceParameters
+    {
+        Domains = new WebKnowledgeSourceDomains
+        {
+            AllowedDomains = 
+            {
+                new WebKnowledgeSourceDomain(address: "learn.microsoft.com") { IncludeSubpages = true }
+            },
+            BlockedDomains = 
+            {
+                new WebKnowledgeSourceDomain(address: "bing.com") { IncludeSubpages = false }
+            }
+        }
+    }
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
+```
+
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [WebKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.webknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create Web Knowledge Source
@@ -208,6 +243,34 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 **Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
 
+# [2026-05-01-preview](#tab/2026-05-01-preview)
+
+```python
+# Create Web Knowledge Source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import WebKnowledgeSource, WebKnowledgeSourceParameters, WebKnowledgeSourceDomains, WebKnowledgeSourceDomain
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = WebKnowledgeSource(
+    name = "my-web-ks",
+    description = "A sample Web Knowledge Source.",
+    encryption_key = None,
+    web_parameters = WebKnowledgeSourceParameters(
+        domains = WebKnowledgeSourceDomains(
+            allowed_domains = [ WebKnowledgeSourceDomain(address="learn.microsoft.com", include_subpages=True) ],
+            blocked_domains = [ WebKnowledgeSourceDomain(address="bing.com", include_subpages=False) ]
+        )
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
 # [2026-04-01](#tab/2026-04-01)
 
 ```python
@@ -266,6 +329,30 @@ api-key: {{api-key}}
 
 **Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
+# [2026-05-01-preview](#tab/2026-05-01-preview)
+
+```http
+### Create Web Knowledge Source
+PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-05-01-preview
+Content-Type: application/json
+api-key: {{api-key}}
+
+{
+  "name": "my-web-ks",
+  "kind": "web",
+  "description": "This knowledge source pulls content from the web.",
+  "encryptionKey": null,
+  "webParameters": {
+    "domains": {
+      "allowedDomains": [ { "address": "learn.microsoft.com", "includeSubpages": true } ],
+      "blockedDomains": [ { "address": "bing.com", "includeSubpages": false } ]
+    }
+  }
+}
+```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
 # [2026-04-01](#tab/2026-04-01)
 
 ```http
@@ -296,7 +383,7 @@ api-key: {{api-key}}
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a web knowledge source.
+For the 2025-11-01-preview, 2026-05-01-preview, and 2026-04-01 API versions, you can pass the following properties to create a web knowledge source.
 
 ::: zone pivot="csharp"
 
