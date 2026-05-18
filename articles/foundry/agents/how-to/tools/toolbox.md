@@ -575,6 +575,7 @@ Tool-specific `tools/call` argument examples:
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Step 4: Integrate the toolbox into your agent
@@ -2597,7 +2598,7 @@ tools = [
 
 For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
 
-
+Annotation chunks are returned in `result.structuredContent.documents[]`. Each document includes `title` and `url` fields that you can use to generate citation details in your application.
 
 ## Troubleshoot
 
