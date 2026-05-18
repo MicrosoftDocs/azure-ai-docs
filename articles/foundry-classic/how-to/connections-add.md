@@ -2,6 +2,7 @@
 title: "Add a new connection to your project (classic)"
 description: "Learn how to add a new connection to your Foundry project. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - ignite-2023

@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/18/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -48,6 +48,7 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `DeepSeek-V4-Pro` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V4-Flash` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2-Speciale` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
