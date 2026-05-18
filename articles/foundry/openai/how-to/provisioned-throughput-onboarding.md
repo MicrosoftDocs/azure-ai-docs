@@ -325,9 +325,7 @@ If 25% of input tokens are served from the prompt cache:
 - Converted input TPM = 75,000 + (8 × 50,000) = 475,000
 - PTUs required = 475,000 ÷ 3,400 = 139.71 (**150 PTUs** rounded up to the nearest 50 PTUs, matching the Regional Provisioned scale increment for gpt-5.2.)
 
-**Estimated PTUs for gpt-5.2 across workload variations:**
-
-The following table shows PTU estimates for the gpt-5.2 model (Input TPM per PTU = 3,400; output-to-input ratio = 8) across two workload shapes at 1,000 RPM, each with 0% and 25% cache hit rates.
+In summary, the PTUs needed for this example call shape with and without caching are as follows:
 
 | Peak calls per minute (RPM) | Prompt size (tokens) | Response size (tokens) | Cache rate | Input TPM | Output TPM | Converted input TPM | Estimated PTUs | PTUs (rounded up)<sup>1</sup> |
 |---|---|---|---|---|---|---|---|---|

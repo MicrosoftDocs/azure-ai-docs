@@ -142,6 +142,9 @@ items:
     href: ../../openai/concepts/priority-processing.md
   - name: Provisioned throughput
     items:
+    - name: "Quickstart: Create a provisioned throughput deployment"
+      displayName: Create a provisioned throughput deployment
+      href: ../../openai/provisioned-quickstart.md
     - name: Provisioned throughput offering (PTU)
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
