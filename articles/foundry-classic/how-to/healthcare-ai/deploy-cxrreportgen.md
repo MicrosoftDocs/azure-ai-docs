@@ -2,7 +2,7 @@
 title: "Deploy CXRReportGen Healthcare AI Model in Foundry (classic)"
 description: "Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.reviewer: itarapov

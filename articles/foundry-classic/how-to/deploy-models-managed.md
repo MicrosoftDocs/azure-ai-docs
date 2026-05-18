@@ -3,7 +3,7 @@ title: "Deploy models with managed compute (classic)"
 description: "Learn how to deploy large language models using managed compute in Microsoft Foundry. Perform real-time inference for production generative AI applications. (classic)"
 #customer intent: As an Azure AI developer, I want to deploy large language models on managed compute in Microsoft Foundry so that I can enable real-time generative AI applications in production.
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - build-2024
   - dev-focus
