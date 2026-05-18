@@ -195,9 +195,6 @@ To stop hourly billing, delete the deployment.
 > [!NOTE]
 > Deleting a deployment doesn't cancel an Azure Reservation. If you purchased one, cancel or exchange it separately on the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). Cancellation might incur an early termination fee.
 
-## Related content
+## Next step
 
-- [What is provisioned throughput for Foundry Models?](./concepts/provisioned-throughput.md)
-- [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md)
 - [Operate provisioned deployments in production](./how-to/provisioned-get-started.md)
-- [Deployment types overview](../foundry-models/concepts/deployment-types.md)
