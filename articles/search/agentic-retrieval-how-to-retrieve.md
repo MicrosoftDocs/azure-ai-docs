@@ -10,6 +10,10 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Query a knowledge base using the retrieve action or MCP endpoint
 
+<!-- build26-sdk-migration-note -->
+> [!NOTE]
+> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
@@ -955,10 +959,78 @@ Here's an example of the references array:
 
 The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
-+ [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
++ [Inspect model names in activity logs](#inspect-model-names-in-activity-logs)
 + [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed)
++ [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
 + [Use minimal reasoning effort](#use-minimal-reasoning-effort)
+
+### Inspect model names in activity logs
+
+In the `2026-05-01-preview` API, model-backed activity records can include
+`modelName` when `includeActivity` is enabled. Use this field to confirm which
+configured model handled query planning, answer synthesis, or web
+summarization during a retrieve request.
+
+The field is additive and appears only on activity entries that represent
+model-backed work. Nonmodel activity records, such as search index retrieval
+steps, don't include `modelName`.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "Which policy applies to returns?" }
+            ]
+        }
+    ],
+    "includeActivity": true
+}
+```
+
+The following response excerpt shows activity records with `modelName`:
+
+```json
+{
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "modelName": "gpt-5-mini",
+      "inputTokens": 1842,
+      "outputTokens": 87,
+      "elapsedMs": 1923
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "knowledgeSourceName": "operations-ks",
+      "count": 12,
+      "elapsedMs": 234
+    },
+    {
+      "type": "modelAnswerSynthesis",
+      "id": 2,
+      "modelName": "gpt-5-mini",
+      "inputTokens": 2418,
+      "outputTokens": 179,
+      "elapsedMs": 931
+    }
+  ]
+}
+```
+
+For this preview, `modelName` appears on model activity records, including
+`modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The
+value is the public model name used for the activity, such as `gpt-5-mini`, not
+the deployment name. If an activity step isn't backed by a single
+customer-visible model, the field is omitted.
 
 ### Require a knowledge source to succeed
 
