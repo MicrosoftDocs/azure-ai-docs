@@ -8,7 +8,6 @@ ms.topic: concept-article
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 # customer intent: As a developer or product engineer, I want to understand the details behind how the Azure AI Search Serverless pricing model works so that I can optimize my search service to use the most efficient pricing model suited to my needs and only pay for what I use.
-
 ---
 
 # Optimize costs with the Serverless pricing model in Azure AI Search
@@ -19,23 +18,23 @@ Azure AI Search supports two pricing models, each designed for different workloa
 
 - **Serverless (consumption-based)**: Metered pricing based on actual usage. *This model is currently in preview.* You're billed for:
 
-    - Compute (measured in compute units, or CUs/hr)
+    - Compute (measured in compute units, or CU/h)
     - Indexed storage (billed per GB/month based on on-disk index size)
 
 ## How cost is determined in the serverless model
 
 In the serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
 
-- Queries and indexing consume compute, measured in compute units per hour (CUs/hr).
+- Queries and indexing consume compute, measured in compute units per hour (CU/h).
 - Storage is billed separately based on index size on disk.
 - When the service is idle with no active queries or indexing, compute usage is zero. There is no reserved or minimum capacity charge.
 
 > [!IMPORTANT]
-> CUs/hr don't include all optional capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
+> CU/h don't include all optional capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
 
 ## Understand compute units (CUs)
 
-A compute unit (CU) represents the measured system resources required to perform search and indexing operations in the serverless model. CU cost is primarily driven by CPU utilization first, memory second, and storage I/O third. Index size (GB) and document payload size (KB) are close secondary drivers because they increase how much data each operation must process. Usage is billed per hour (CU/hr).
+A compute unit (CU) represents the measured system resources required to perform search and indexing operations in the serverless model. CU cost is primarily driven primarily by CPU, memory, and IO utilization and secondarily by Index size and document payload size with usage being billed per hour (CU/hr).
 
 Compute cost scales with:
 
@@ -118,9 +117,9 @@ Query design is a primary driver of variable cost:
     GET /docs?search=test&$select=id,title,url
     ```
 
-- **Use `searchFields` to limit where text is searched**: Restrict query-time matching to the fields that matter for the scenario. Each additional searchable field increases query work and can increase CUs/hr.
+- **Use `searchFields` to limit where text is searched**: Restrict query-time matching to the fields that matter for the scenario. Each additional searchable field increases query work and can increase CU/h.
 
-- **Prefer exact match or simple keyword queries**: Fuzzy, wildcard, regex, and prefix-style queries can force broad index scans and consume significantly more CUs/hr. Use them only when you need partial matching behavior and choose exact match or simpler keyword queries wherever possible.
+- **Prefer exact match or simple keyword queries**: Fuzzy, wildcard, regex, and prefix-style queries can force broad index scans and consume significantly more CU/h. Use them only when you need partial matching behavior and choose exact match or simpler keyword queries wherever possible.
 
 - **Use lookups instead of searches when possible**: Retrieving a document by ID is more efficient than running a search query. If you know the document ID, use a lookup instead of a search query. Lookups are more efficient because they retrieve a document directly by key, while search queries invoke the full query pipeline (parsing, index traversal, scoring, and ranking), which increases compute cost.
 
