@@ -3,6 +3,7 @@ title: "Guardrails and controls overview in Microsoft Foundry"
 description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: concept-article
 ms.date: 04/01/2026
 author: ssalgadodev
