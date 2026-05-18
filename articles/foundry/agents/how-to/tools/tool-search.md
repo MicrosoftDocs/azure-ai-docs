@@ -157,9 +157,15 @@ For the full `azd` workflow, see [Deploy with azd](toolbox.md#deploy-with-azd).
 
 ## Verify tool search is active
 
-After creating a toolbox version, verify that `tool_search` appears in `tools/list`.
+Use the version-specific endpoint to confirm that `tool_search` appears in `tools/list` and that no other toolbox tools are exposed in the initial listing.
 
 :::zone pivot="python"
+
+Install the MCP client SDK if you haven't already:
+
+```bash
+pip install mcp
+```
 
 ```python
 import asyncio
@@ -167,38 +173,42 @@ from azure.identity import DefaultAzureCredential
 from mcp.client.streamable_http import streamablehttp_client
 from mcp import ClientSession
 
-# Use the version-specific endpoint for validation
-url = (
-    "https://<account>.services.ai.azure.com/api/projects/<proj>"
-    "/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
-)
+url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
+
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
     "Foundry-Features": "Toolboxes=V1Preview",
 }
 
-async def verify():
+async def verify_toolbox():
     async with streamablehttp_client(url, headers=headers) as (read, write, _):
         async with ClientSession(read, write) as session:
             await session.initialize()
-            tools_result = await session.list_tools()
-            names = [t.name for t in tools_result.tools]
-            print("Visible tools:", names)
-            # tool_search should be in the list
-            assert "tool_search" in names, "tool_search not found — check ToolboxSearchPreviewTool config"
 
-asyncio.run(verify())
+            # List available tools -- only tool_search should appear initially
+            tools_result = await session.list_tools()
+            print(f"Tools found: {len(tools_result.tools)}")
+            for tool in tools_result.tools:
+                print(f"  - {tool.name}: {(tool.description or `"`")[:80]}")
+
+            # Confirm tool_search is present
+            names = [t.name for t in tools_result.tools]
+            assert "tool_search" in names, "tool_search not found -- check ToolboxSearchPreviewTool config"
+
+asyncio.run(verify_toolbox())
 ```
 
 :::zone-end
 
 :::zone pivot="rest-api"
 
-**List tools** and confirm `tool_search` appears:
+Use the version-specific endpoint (`/versions/{version}/mcp`) to validate before promoting.
+
+**1. Initialize the MCP session**:
 
 ```http
-POST {project_endpoint}/toolboxes/my-toolbox/versions/{version}/mcp?api-version=v1
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Foundry-Features: Toolboxes=V1Preview
@@ -206,8 +216,10 @@ Foundry-Features: Toolboxes=V1Preview
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
 
+**2. Send the initialized notification**:
+
 ```http
-POST {project_endpoint}/toolboxes/my-toolbox/versions/{version}/mcp?api-version=v1
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Foundry-Features: Toolboxes=V1Preview
@@ -215,8 +227,10 @@ Foundry-Features: Toolboxes=V1Preview
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
 
+**3. List available tools**:
+
 ```http
-POST {project_endpoint}/toolboxes/my-toolbox/versions/{version}/mcp?api-version=v1
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
 Foundry-Features: Toolboxes=V1Preview
@@ -224,11 +238,9 @@ Foundry-Features: Toolboxes=V1Preview
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
 
-In the response, `result.tools` should include `tool_search`.
+In `result.tools`, `tool_search` should be present and all other toolbox tools should be absent from the initial listing.
 
 :::zone-end
-
-
 
 :::zone pivot="azd"
 
@@ -236,7 +248,6 @@ In the response, `result.tools` should include `tool_search`.
 > Use the REST API tab or the Python MCP client SDK to verify tool availability after deployment.
 
 :::zone-end
-
 ## Configuration reference
 
 ### ToolboxSearchPreviewTool
