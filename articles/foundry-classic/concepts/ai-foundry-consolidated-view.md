@@ -8,6 +8,7 @@ ms.reviewer: aashishb
 ms.date: 01/05/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
@@ -23,7 +24,9 @@ The consolidated view for Foundry Tools in the Azure portal shows key insights a
 
 - An Azure account that can sign in to the [Azure portal](https://portal.azure.com/).
 - At least **Reader** access to the subscription or resource group that contains the resources you want to monitor.
-- To view costs in the consolidated view: the [Azure AI User role](rbac-foundry.md#built-in-roles) on your Foundry resource and the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group or subscription level.
+- To view costs in the consolidated view: the [Foundry User role](rbac-foundry.md#built-in-roles) on your Foundry resource and the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group or subscription level.
+
+  [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 - To view quota usage at subscription scope: the **Cognitive Services Usages Reader** role (recommended) or the **Reader** role. For more information, see [Role-based access control for Azure OpenAI in Microsoft Foundry Models](../openai/how-to/role-based-access-control.md).
 
 ## Open the consolidated view

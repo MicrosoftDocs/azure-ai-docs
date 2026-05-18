@@ -114,9 +114,11 @@ Use this starter role-to-scope mapping for rollout planning:
 
 | Persona | Starter role | Recommended scope |
 |---|---|---|
-| Admins | Owner or Azure AI Account Owner | Subscription or Foundry resource |
-| Project Managers | Azure AI Project Manager | Foundry resource |
-| Project Users | Azure AI User | Foundry project |
+| Admins | Owner or Foundry Account Owner | Subscription or Foundry resource |
+| Project Managers | Foundry Project Manager | Foundry resource |
+| Project Users | Foundry User | Foundry project |
+
+[!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 Adjust assignments based on least-privilege requirements and enterprise policies.
 
@@ -137,7 +139,7 @@ For data sources and tools integrated with Foundry, determine whether users shou
 
 Use Microsoft Entra ID groups to simplify access management and ensure consistency across environments.
 
-For least-privilege onboarding, start with the **Azure AI User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
+For least-privilege onboarding, start with the **Foundry User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
 
 ## Establish connectivity with other Azure services
 

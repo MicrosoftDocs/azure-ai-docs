@@ -5,7 +5,8 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/18/2026
+ai-usage: ai-assisted
 ms.custom: include, classic-and-new
 ---
 
