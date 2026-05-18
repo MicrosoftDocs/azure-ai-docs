@@ -2115,3 +2115,12 @@ groups:
     title: Foundry portal
   - id: azure-cli
     title: Azure CLI
+# Owner: aahi
+- id: foundry-connector-config
+  title: Interface
+  prompt: Choose a configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
