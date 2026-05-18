@@ -264,10 +264,9 @@ An Entra admin must complete the following steps before you can create a Fabric 
    - `Item.Execute.All`
    - `Item.Read.All`
 
-   :::image type="content" source="../../media/tools/fabric-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the Microsoft APIs tab with Power BI Service selected." lightbox="../../media/tools/fabric-iq/entra-api-permissions-search.png":::
+   :::image type="content" source="../../media/tools/fabric-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel for Power BI Service in the Microsoft Entra admin center, showing Item.Execute.All and Item.Read.All selected as delegated permissions, both with admin consent not required." lightbox="../../media/tools/fabric-iq/entra-api-permissions-search.png":::
 
    Select **Add permissions**.
-1. Select **Grant admin consent for [your tenant]**. Review the confirmation dialog and select **Yes**.
 1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, then immediately copy the secret **Value** — it's only shown once.
 1. Copy your **Directory (tenant) ID** from the **Microsoft Entra ID** overview page.
 
@@ -278,13 +277,13 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 | Field | Value |
 | --- | --- |
 | **Client ID** | Application (client) ID from step 3 |
-| **Client secret** | Client secret value from step 6 |
+| **Client secret** | Client secret value from step 5 |
 | **Authorization URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize` |
 | **Token URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Refresh URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All,https://analysis.windows.net/powerbi/api/Item.Read.All` |
 
-Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
+Replace `{tenant-id}` with your Directory (tenant) ID from step 6. Select **Save** to create the connection.
 
 > [!NOTE]
 > For data agent connections using BYO Entra, use the `DataAgent.Execute.All` delegated permission instead of the Power BI scopes listed above. Add `https://analysis.windows.net/powerbi/api/DataAgent.Execute.All` as the scope in the Foundry connection, and grant admin consent for that permission in your app registration.
@@ -299,13 +298,6 @@ After Foundry creates the connection, it displays an OAuth redirect URL. Add thi
 1. Select **Configure**.
 
 ## Admin management
-
-### Govern access with your Entra app registration
-
-For connections that use BYO Entra app authentication, your Entra admin controls which users in your organization can access Fabric IQ data on behalf of signed-in users through the app registration.
-
-- **Grant consent**: In the [Microsoft Entra admin center](https://entra.microsoft.com/), go to **Entra ID** > **App registrations** > select your app > **API permissions**. Select **Grant admin consent for [your tenant]**.
-- **Revoke consent**: On the same **API permissions** page, select the relevant permission and select **Revoke admin consent**. Existing tokens remain valid until they expire; no new tokens are issued after revocation.
 
 ### Restrict network access
 
