@@ -69,3 +69,5 @@ Follow the instructions in this section to get started with the Realtime API via
 [!INCLUDE [C# quickstart](../includes/realtime-csharp.md)]
 
 ::: zone-end
+
+[!INCLUDE [realtime-audio 2](../includes/how-to-realtime-audio-2.md)]
