@@ -10,10 +10,6 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a search index knowledge source
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
@@ -91,10 +87,6 @@ Run the following code to create a search index knowledge source.
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```csharp
 // Create a search index knowledge source
 using Azure.Search.Documents.Indexes;
@@ -120,10 +112,6 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [SearchIndexKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesource?view=azure-dotnet-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```csharp
 // Create a search index knowledge source
@@ -157,16 +145,8 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```python
 # Create a search index knowledge source
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
@@ -198,16 +178,8 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 # [2026-04-01](#tab/2026-04-01)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```python
 # Create a search index knowledge source
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
@@ -245,10 +217,6 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ```http
 ### Create a search index knowledge source
 PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
@@ -274,10 +242,6 @@ Content-Type: application/json
 **Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
-
-<!-- build26-sdk-migration-note -->
-> [!NOTE]
-> For 2026-05-01-preview SDK migration work, align code samples with the current preview SDK surface before publishing. Python and .NET support the message-based retrieve path used for answer synthesis. The tested Java, JavaScript, and TypeScript alpha packages currently use semantic intents for retrieve until their public models expose the full message-based REST contract. For the detailed migration checklist, see [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ```http
 ### Create a search index knowledge source
