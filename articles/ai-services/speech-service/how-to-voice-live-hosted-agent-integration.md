@@ -6,7 +6,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 05/14/2026
 author: PatrickFarley
-reviewer: QingyingLiao, YulinLi, JianMiao
+reviewer: QinyingLiao, YulinLi, JianMiao
 ms.author: pafarley
 ms.reviewer: qiliao, yulin, jianm
 ai-usage: ai-assisted
