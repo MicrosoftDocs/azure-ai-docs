@@ -19,6 +19,8 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 Use tracing to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
 
+The recommended starting point is **server-side tracing**. Foundry enables it for you automatically once you connect an Application Insights resource to your project. No code changes are required, and traces are available within minutes of enabling it. Server-side tracing works for any agent hosted in Foundry. When you need visibility into your own application code — for example, to trace custom logic surrounding an agent call — you can layer on client-side instrumentation as a second step.
+
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
