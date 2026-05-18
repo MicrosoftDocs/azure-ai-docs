@@ -35,8 +35,6 @@ Use GPT Audio 2 when you need:
 - **Input**: Text
 - **Output**: Audio
 
-> [!NOTE]
-> [TO VERIFY] Confirm whether GPT Audio 2 supports audio input (audio→audio) or is TTS-only.
 
 ## Get started
 
