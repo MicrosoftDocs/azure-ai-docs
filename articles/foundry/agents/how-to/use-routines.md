@@ -445,7 +445,7 @@ const routine = await client.routines.createOrUpdate("once-on-release-day", {
 
 A GitHub issue trigger fires when an issue is opened or closed in a connected repository. The `connection_id` value is the name of a project connection that stores GitHub credentials.
 
-**Before you begin:** Create a GitHub connection in your Foundry project. For full instructions on using the Foundry Tools Catalog to discover connectors and create project connections, see [Use connectors as MCP servers](tools/connectors.md).
+**Before you begin:** Create a GitHub connection in your Foundry project. For full instructions on using the Foundry Tools Catalog to discover connectors and create project connections, see [Model Context Protocol (MCP)](tools/model-context-protocol.md).
 
 :::zone pivot="foundry-portal"
 
@@ -464,7 +464,7 @@ A GitHub issue trigger fires when an issue is opened or closed in a connected re
 
 **Step 1: Create the GitHub project connection**
 
-Use the Foundry Tools Catalog to find the GitHub connector and create a project connection. The connection name you choose becomes your `CONNECTION_ID`. For full instructions, see [Use connectors as MCP servers](tools/connectors.md).
+Use the Foundry Tools Catalog to find the GitHub connector and create a project connection. The connection name you choose becomes your `CONNECTION_ID`. For full instructions, see [Model Context Protocol (MCP)](tools/model-context-protocol.md).
 
 **Step 2: Create the routine**
 
@@ -1329,8 +1329,7 @@ console.log("Routine deleted.");
 
 ## Related content
 
-- [What are routines?](../concepts/routines.md)
 - [Create a Foundry project](../../how-to/create-projects.md)
 - [Create and configure agents](configure-agent.md)
-- [Use connectors as MCP servers](tools/connectors.md)
+- [Model Context Protocol (MCP)](tools/model-context-protocol.md)
 - [Use toolboxes with agents](tools/toolbox.md)
