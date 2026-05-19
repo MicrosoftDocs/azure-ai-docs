@@ -1,6 +1,7 @@
 ---
 title: "Human Evaluation for Microsoft Foundry Agents"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 04/19/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance."

@@ -2,6 +2,7 @@
 title: Use LangChain with models in Microsoft Foundry
 description: Learn how to use OpenAI-compatible LangChain classes with chat and embedding models deployed in Microsoft Foundry, including prompt chains, async calls, and vector search.
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.author: fasantia

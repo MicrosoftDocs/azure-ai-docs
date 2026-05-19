@@ -863,8 +863,8 @@ groups:
       title: REST
 - id: models-sold-directly-by-azure
 # Owner: mopeakande
-  title: Azure direct models
-  prompt: Choose a collection from Foundry Models sold directly by Azure
+  title: Foundry Models sold by Azure
+  prompt: Choose a collection from Foundry Models sold by Azure
   pivots:
     - id: azure-openai
       title: Azure OpenAI models
@@ -872,8 +872,8 @@ groups:
       title: Other model collections
 - id: adm-region-availability
 # Owner: mopeakande
-  title: Region availability for Azure direct models
-  prompt: Choose a deployment category for your Foundry Model
+  title: Region availability for Foundry Models sold by Azure
+  prompt: Choose a deployment category for your Foundry Model sold by Azure
   pivots:
     - id: standard
       title: Standard deployment options

@@ -6,6 +6,7 @@ author: sdgilley
 ms.reviewer: deeikele
 ms.date: 01/07/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.custom:
   - dev-focus
@@ -24,7 +25,7 @@ When you upgrade your Azure OpenAI resource to a Foundry resource, you get acces
 
 |Feature|Azure OpenAI|Foundry|
 |---|---|---|
-|Models sold directly by Azure|Azure OpenAI only|Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft|
+|Foundry Models sold by Azure|Azure OpenAI only|Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft|
 |Partner and community models sold through Marketplace - Stability, Cohere, and others||✅|
 |Azure OpenAI API - batch, stored completions, fine-tuning, evaluation, and more|✅|✅|
 |Agent service||✅|

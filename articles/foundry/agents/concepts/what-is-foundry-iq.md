@@ -5,6 +5,7 @@ author: haileytap
 ms.author: haileytapia
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 05/13/2026
 ai-usage: ai-assisted
