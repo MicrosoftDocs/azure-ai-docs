@@ -1,9 +1,9 @@
 ---
 title: Azure OpenAI in Microsoft Foundry Models
-author: msakande
-ms.author: mopeakande
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
-ms.date: 04/24/2026
+ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
@@ -11,12 +11,19 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 
 ## Azure OpenAI in Microsoft Foundry models
 
-Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud.
+
+- To see **region availability for Azure OpenAI in Microsoft Foundry models grouped by deployment category**, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). 
+
+- For **Azure Government model availability**, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+
+### Model highlights
 
 | Models | Description |
 |--|--|
+| [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview**  |
 | [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | **NEW** `gpt-5.5` |
-| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) |`gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
 | [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) |  `gpt-5.3-chat`, `gpt-5.3-codex`  |
 | [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
 | [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) |  `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
@@ -33,12 +40,25 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
+## GPT-chat-latest
+
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
+### Capabilities
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+
+>[!NOTE]
+> You may also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, we are introducing `gpt-chat-latest` as the product name for this release. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. We are also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
+
+
 ## GPT-5.5
 
-| Model | Region |
-|---|---|
-| `gpt-5.5` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US <br> Poland Central <br> Sweden Central    |
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -49,13 +69,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-5.4
 
-| Model | Region |
-|---|---|
-| `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
-| `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
-| `gpt-5.4-mini` | See the [models table](#model-summary-table-and-region-availability)|
-| `gpt-5.4-nano` | See the [models table](#model-summary-table-and-region-availability) |
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -66,11 +82,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-5.3
 
-| Model | Region |
-|---|---|
-| `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
-| `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -79,15 +93,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-5.2
 
-### Region availability
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-| Model | Region |
-|---|---|
-| `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
-
-
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -108,16 +116,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-5.1
 
-### Region availability
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-| Model | Region |
-|---|---|
-| `gpt-5.1` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.1-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
-
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -139,17 +140,9 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-5
 
-### Region availability
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-| Model | Region |
-|---|---|
-| `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-08-07) **Preview** |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-10-03) **Preview** |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
+### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -157,7 +150,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | May 31, 2024 |
 | `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | May 31, 2024 |
 | `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
-| `gpt-5-chat` (2025-10-03)<br>**Preview**<sup>1<sup/> | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
+| `gpt-5-chat` (2025-10-03)<br>**Preview**<sup>1</sup> | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
 | `gpt-5-codex` (2025-09-11) | - [Responses API](../how-to/responses.md) only. <br> - **Input**: Text/Image <br> - **Output**: Text only  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | - |
 | `gpt-5-pro` (2025-10-06) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024 |
 
@@ -173,17 +166,13 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## gpt-oss
 
-### Region availability
-
-| Model | Region |
-|---|---|
-| `gpt-oss-120b`  | All Azure OpenAI regions |
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-120b`<sup>1</sup> (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
 | `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/what-is-foundry-local.md) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
@@ -204,36 +193,31 @@ az cognitiveservices account deployment create \
 
 ## GPT-4.1 series
 
-### Region availability
-
-| Model | Region |
-|---|---|
-| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
-
-> [!IMPORTANT]
-> A known issue is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.
->
-> The errors can vary based on API call and underlying payload characteristics.
->
-> Here are the error messages for the Chat Completions API:
->
-> - `Error code: 400 - {'error': {'message': "This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}`
->
-> - `Error code: 400 - {'error': {'message': "Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}`
->
-> Here's the error message for the Responses API:
->
-> - `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments) | 32,768 | May 31, 2024 |
 | `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
 | `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
+
+### Known issue
+
+A known issue is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.
+
+The errors can vary based on API call and underlying payload characteristics.
+
+Here are the error messages for the Chat Completions API:
+
+- `Error code: 400 - {'error': {'message': "This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}`
+
+- `Error code: 400 - {'error': {'message': "Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}`
+
+Here's the error message for the Responses API:
+
+- `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
 
 ## computer-use-preview
 
@@ -248,11 +232,7 @@ Registration is required to access `computer-use-preview`. Access is granted bas
 
 To request access, go to [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess). When access is granted, you need to create a deployment for the model.
 
-### Region availability
-
-| Model | Region |
-|---|---|
-| `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -264,6 +244,10 @@ To request access, go to [`computer-use-preview` limited access model applicatio
 
 The Azure OpenAI o-series models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math, compared to previous iterations.
 
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
+### Capabilities
+
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
 | `codex-mini` (2025-05-16) | Fine-tuned version of `o4-mini`. <br> - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text and image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
@@ -272,33 +256,31 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 | `o3` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
 | `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text-only processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 | `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
-|`o1-preview` (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global Standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
+|`o1-preview`<sup>1</sup> (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
+| `o1-mini`<sup>2</sup> (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global Standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
+
+<sup>1</sup> `o1-preview` is available only for customers who were granted access as part of the original limited access.
+
+<sup>2</sup> `o1-mini` is currently available to all customers for Global Standard deployment. Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
+
+`o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
 To learn more about advanced o-series models, see [Getting started with reasoning models](../how-to/reasoning.md).
-
-### Region availability
-
-| Model | Region |
-|---|---|
-|`codex-mini` | East US2 & Sweden Central (Global Standard).   |
-|`o3-pro`   | East US2 & Sweden Central (Global Standard).    |
-|`o4-mini`|   See the [models table](#model-summary-table-and-region-availability).  |
-| `o3` |   See the [models table](#model-summary-table-and-region-availability).  |
-|`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
-|`o1` | See the [models table](#model-summary-table-and-region-availability). |
-| `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is available only for customers who were granted access as part of the original limited access. |
-| `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
 
 ## GPT-4o and GPT-4 Turbo
 
 GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously. This multimodal approach enhances accuracy and responsiveness in human-computer interactions. GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
 
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
 ## GPT-4 and GPT-4 Turbo models
 
-These models can be used only with the Chat Completions API.
-
+These models can be used only with the Chat Completions API. 
 See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
+### Capabilities
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
@@ -306,7 +288,9 @@ See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md)
 |`gpt-4o` (2024-08-06) <br> GPT-4o (Omni) | - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 16,384 | October 2023 |
 |`gpt-4o-mini` (2024-07-18) <br> GPT-4o mini | - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text and image processing. <br>- JSON Mode. <br> - Parallel function calling. | Input: 128,000 <br> Output: 16,384  | October 2023 |
 |`gpt-4o` (2024-05-13) <br> GPT-4o (Omni) | - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 4,096| October 2023 |
-| `gpt-4` (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | December 2023 |
+| `gpt-4`<sup>1</sup> (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | December 2023 |
+
+<sup>1</sup> The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only. For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
 > [!CAUTION]
 > We don't recommend that you use preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
@@ -319,6 +303,10 @@ See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md)
 - `text-embedding-3-small`
 - `text-embedding-ada-002`
 
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+
+### Capabilities
+
 OpenAI reports that testing shows that both the large and small third generation embeddings models offer better average multi-language retrieval performance with the [MIRACL](https://github.com/project-miracl/miracl) benchmark. They still maintain performance for English tasks with the [MTEB](https://github.com/embeddings-benchmark/mteb) benchmark.
 
 |Evaluation benchmark| `text-embedding-ada-002` | `text-embedding-3-small` |`text-embedding-3-large` |
@@ -330,32 +318,47 @@ The third generation embeddings models support reducing the size of the embeddin
 
 OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than the 1,536 dimensions of `text-embeddings-ada-002`, performance remains slightly better.
 
+These models can be used only with Embedding API requests.
+
+|  Model ID | Max request (tokens) | Output dimensions |Training data (up to)
+|---|---| :---:|:---:|:---:|
+| `text-embedding-ada-002` (version 2) |8,192 | 1,536 | Sep 2021 |
+| `text-embedding-ada-002` (version 1) |2,046 | 1,536 | Sep 2021 |
+| `text-embedding-3-large` | 8,192 | 3,072 |Sep 2021 |
+| `text-embedding-3-small` | 8,192|  1,536 | Sep 2021 |
+
+> [!NOTE]
+> When you send an array of inputs for embedding, the maximum number of input items in the array per call to the embedding endpoint is 2,048.
+
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. GPT-image-1 series models include `gpt-image-1`, `gpt-image-1-mini`, and `gpt-image-1.5`.
+The image generation models generate images from text prompts that the user provides. Image generation models include `gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, and `gpt-image-2`.
 
-### Region availability
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
-| Model | Region |
-|---|---|
-|`gpt-image-1` |  See the [models table](#model-summary-table-and-region-availability)|
-|`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
-|`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
+|  Model ID  | Max request (characters) |
+|  --- | :---: |
+| `gpt-image-1` | 4,000 |
+| `gpt-image-1-mini` | 4,000 |
+| `gpt-image-1.5` | 4,000 |
 
 ## Video generation models
 
 Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in preview.
 
-### Region availability
+Video generation models include `sora` and `sora-2`.
 
-| Model | Region |
-|---|---|
-|`sora` |  See the [models table](#model-summary-table-and-region-availability) |
-| `sora-2` |  See the [models table](#model-summary-table-and-region-availability) |
+|  Model ID  | Max Request (characters) |
+|  --- | :---: |
+| sora | 4,000 |
+
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## Audio models
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
+
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### GPT-4o audio models
 
@@ -377,8 +380,6 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
-
-To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 
 ### Audio API
 
@@ -409,125 +410,13 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `gpt-4o-mini-tts` (2025-03-20) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 | `gpt-4o-mini-tts` (2025-12-15) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 
-## Model summary table and region availability
-
-### Models by deployment type
-
-Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment:
-
-- **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
-
-All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
-
-# [Global Standard](#tab/global-standard-aoai)
-
-### Global Standard model availability
-
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
-
-> [!NOTE]
-> `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
-
-# [Global Provisioned managed](#tab/global-ptum-aoai)
-
-### Global Provisioned managed model availability
-
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
-
-# [Global Batch](#tab/global-batch)
-
-### Global Batch model availability
-
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
-
-# [Data Zone Standard](#tab/datazone-standard)
-
-### Data Zone Standard model availability
-
-[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Data Zone Provisioned managed](#tab/datazone-provisioned-managed)
-
-### Data Zone Provisioned managed model availability
-
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
-
-# [Data Zone Batch](#tab/datazone-batch)
-
-### Data Zone Batch model availability
-
-[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
-
-# [Standard](#tab/standard)
-
-### Standard deployment model availability
-
-[!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-# [Provisioned managed](#tab/provisioned)
-
-### Provisioned deployment model availability
-
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
-
-> [!NOTE]
-> The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
-
-For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
-
----
-
-This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
-
-### Embeddings models
-
-These models can be used only with Embedding API requests.
-
-> [!NOTE]
-> `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embedding models. To migrate from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.  
-
-|  Model ID | Max request (tokens) | Output dimensions |Training data (up to)
-|---|---| :---:|:---:|:---:|
-| `text-embedding-ada-002` (version 2) |8,192 | 1,536 | Sep 2021 |
-| `text-embedding-ada-002` (version 1) |2,046 | 1,536 | Sep 2021 |
-| `text-embedding-3-large` | 8,192 | 3,072 |Sep 2021 |
-| `text-embedding-3-small` | 8,192|  1,536 | Sep 2021 |
-
-> [!NOTE]
-> When you send an array of inputs for embedding, the maximum number of input items in the array per call to the embedding endpoint is 2,048.
-
-### Image generation models
-
-|  Model ID  | Max request (characters) |
-|  --- | :---: |
-| `gpt-image-1` | 4,000 |
-| `gpt-image-1-mini` | 4,000 |
-| `gpt-image-1.5` | 4,000 |
-
-### Video generation models
-
-|  Model ID  | Max Request (characters) |
-|  --- | :---: |
-| sora | 4,000 |
-
 ## Fine-tuning models
 
 [!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
@@ -545,7 +434,7 @@ For Assistants, you need a combination of a supported model and a supported regi
 
 ## Model retirement
 
-For the latest information on model retirements, refer to the [model retirement guide](../concepts/model-retirements.md).
+For the latest information on model retirements, refer to the [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## Related content
 

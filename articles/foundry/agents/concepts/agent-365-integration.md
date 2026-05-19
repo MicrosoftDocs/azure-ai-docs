@@ -6,8 +6,8 @@ ms.author: deeikele
 ms.reviewer: jburchel
 ms.date: 03/19/2026
 ms.topic: concept-article
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As an IT admin or platform engineer, I want to understand how Foundry agents integrate with Agent 365 so that I can plan governance and security for AI agents in my organization.
 ---
@@ -38,7 +38,7 @@ Foundry and Agent 365 connect in two ways:
 
 - **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
 
-- **Digital worker publishing** &mdash; Foundry hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
+- **Digital worker publishing** &mdash; Foundry Hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
 
 For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md).
 

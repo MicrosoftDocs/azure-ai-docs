@@ -3,12 +3,12 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 02/02/2026
+ms.date: 05/05/2026
 ---
 
 # What is a knowledge source?
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 A knowledge source specifies the content used for agentic retrieval. It either encapsulates a search index populated by external data, or it's a direct connection to a remote target such as Bing or SharePoint that's queried directly. A knowledge source is a required definition in a knowledge base.
 
@@ -18,7 +18,7 @@ A knowledge source specifies the content used for agentic retrieval. It either e
 
 + For certain knowledge sources, you can use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, the information in the knowledge source is used to generate all objects, including a populated, chunked, and searchable index.
 
-Make sure you have at least one knowledge source before creating a knowledge base. The full specification of a knowledge source and a knowledge base can be found in the [preview REST API reference](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+Make sure you have at least one knowledge source before creating a knowledge base. The full specification for knowledge sources and knowledge bases can be found in the [REST API reference](/rest/api/searchservice/operation-groups).
 
 ## Working with a knowledge source
 
@@ -30,16 +30,16 @@ Make sure you have at least one knowledge source before creating a knowledge bas
 
 ## Supported knowledge sources
 
-In this preview, you can create the following knowledge sources:
+You can create the following knowledge sources:
 
 | Kind | Indexed or remote |
 |------|-------------------|
-| [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexknowledgesource) wraps an existing index. | Indexed |
-| [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
-| [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
-| [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
-| [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) retrieves content directly from SharePoint. | Remote |
-| [`"webParameters"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
+| [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource) wraps an existing index. | Indexed |
+| [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
+| [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
+| [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
+| [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
+| [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
 | [`"fabricDataAgent"` API (preview)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricdataagentknowledgesource) queries a Microsoft Fabric data agent directly. | Remote |
 
 Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
@@ -50,11 +50,11 @@ All retrieved content, whether indexed or remote, is pulled into the ranking pip
 
 ## Creating knowledge sources
 
-Create knowledge sources as standalone objects. Then, specify them in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) within a ["knowledgeSources" array](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgesourcereference).
+Create knowledge sources as standalone objects. Then, specify them in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) within a ["knowledgeSources" array](/rest/api/searchservice/knowledge-bases/create-or-update#knowledgesourcereference).
 
 To create objects on a search service, you need [**Search Service Contributor** permissions](search-security-rbac.md). If you're using a knowledge source that creates an indexer pipeline, you also need **Search Index Data Contributor** permissions to load an index. Alternatively, you can [use an API admin key](search-security-api-keys.md) instead of roles.
 
-Use the Azure portal, REST API, or an Azure SDK preview package to create a knowledge source. The following links provide instructions for creating a knowledge source:
+Use the Azure portal, REST API, or an Azure SDK package to create a knowledge source. The following links provide instructions for creating a knowledge source:
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)

@@ -3,7 +3,7 @@ ms.reviewer: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 03/04/2026
+ms.date: 04/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -18,7 +18,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md).
 
 + An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 

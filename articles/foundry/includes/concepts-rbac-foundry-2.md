@@ -10,6 +10,20 @@ ms.date: 03/20/2026
 ms.custom: include
 ---
 
+Use these tabs to explore the differences between the built-in roles, assigned at the Foundry resource level (except for Owner, which is assigned at the subscription level)
+# [Owner](#tab/owner)
+:::image type="content" source="../media/rbac-foundry/owner.png" alt-text="Diagram shows access for Owner.":::
+# [Azure AI Owner](#tab/ai-owner)
+:::image type="content" source="../media/rbac-foundry/azure-ai-owner.png" alt-text="Diagram shows access for Azure AI Owner.":::
+# [Azure AI Account Owner](#tab/ai-account-owner)
+:::image type="content" source="../media/rbac-foundry/azure-ai-account-owner.png" alt-text="Diagram shows access for Azure AI Account Owner.":::
+# [Azure AI Project Manager](#tab/ai-project-manager)
+:::image type="content" source="../media/rbac-foundry/azure-ai-project-manager.png" alt-text="Diagram shows access for Azure AI Project Manager.":::
+# [Azure AI User](#tab/ai-user)
+:::image type="content" source="../media/rbac-foundry/azure-ai-user.png" alt-text="Diagram shows access for Azure AI User.":::
+
+---
+
 ## Sample enterprise RBAC mappings for projects
 
 Here's an example of how to implement role-based access control (RBAC) for an enterprise Foundry resource. 

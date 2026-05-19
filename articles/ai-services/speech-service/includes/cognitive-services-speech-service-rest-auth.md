@@ -53,7 +53,7 @@ The body of the response contains the access token in JSON Web Token (JWT) forma
 
 #### PowerShell sample
 
-This example is a simple PowerShell script to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource. This example is currently set to West US.
+This example is a simple PowerShell script to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource.
 
 ```powershell
 $FetchTokenHeader = @{
@@ -84,7 +84,7 @@ curl -v -X POST \
 
 #### C# sample
 
-This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. If your Speech resource isn't in the West US region, change the value of `FetchTokenUri` to match the region for your Speech resource.
+This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. If your Speech resource is in a different region, change the value of `FetchTokenUri` to match the region for your Speech resource.
 
 ```csharp
 public class Authentication

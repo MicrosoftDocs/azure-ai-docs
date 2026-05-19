@@ -34,23 +34,19 @@ The following command shows the most basic way to use an image model with code. 
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Deploy a `gpt-image-1`-series or `gpt-image-2` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
-    - GPT-image-2 is available in public preview.
+    - GPT-image-2 is generally available (GA).
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
 
 Send a POST request to:
 
 ```
-https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deployment_name>/images/generations?api-version=<api_version>
+https://<your_resource_name>.openai.azure.com/openai/v1/images/generations?api-version=preview
 ```
 
 **URL**:
 
-Replace the following values:
-
-- `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
+Replace `<your_resource_name>` with the name of your Azure OpenAI resource.
 
 **Required headers**:
 
@@ -60,6 +56,9 @@ Replace the following values:
 **Body**:
 
 The following is a sample request body. You specify a number of options, defined in later sections.
+
+> [!NOTE]
+> Set the `model` parameter to the name of your model deployment (for example, `gpt-image-1.5`).
 
 ```json
 {

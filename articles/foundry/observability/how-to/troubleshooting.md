@@ -4,7 +4,7 @@ description: Learn how to troubleshoot common issues with evaluations and observ
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: naposani
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: troubleshooting
 ms.date: 04/14/2026
 ai-usage: ai-assisted

@@ -81,9 +81,6 @@ The following table lists common audience values for global Azure services:
 
 The Agent ID platform framework introduces formal *agent identities* and *agent identity blueprints* in Microsoft Entra ID to represent AI agents. You can use this framework to securely communicate with AI agents. This framework also enables those AI agents to securely communicate with web services, other AI agents, and various systems.
 
-> [!NOTE]
-> The Microsoft Entra Agent ID framework is currently in preview. Features and APIs might change before general availability.
-
 ### Agent identity
 
 An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate.
@@ -189,7 +186,7 @@ Deployment tools like the Azure Developer CLI (azd) provide limited automation f
 - **Development**: azd automatically assigns Azure AI User to the shared project agent identity for unpublished agents
 - **Production**: Published agents receive distinct identities that require manual role assignments
 
-azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for Hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ## Tool authentication
 
@@ -234,14 +231,14 @@ Common role assignments for agent tools:
 > When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
 
 > [!TIP]
-> For comprehensive details about all permissions involved in hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+> For comprehensive details about all permissions involved in Hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ### Supported tools
 
 Currently, the tools that support authentication with an agent identity are:
 
-* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication (preview). For details, see [Model Context Protocol](../how-to/tools/model-context-protocol.md) and [MCP server authentication](../how-to/mcp-authentication.md).
-* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities (preview). For details, see [Agent-to-Agent tool](../how-to/tools/agent-to-agent.md) and [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md).
+* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication. For details, see [Model Context Protocol](../how-to/tools/model-context-protocol.md) and [MCP server authentication](../how-to/mcp-authentication.md).
+* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities. For details, see [Agent-to-Agent tool](../how-to/tools/agent-to-agent.md) and [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md).
 
 Other tools and integrations might use different authentication methods (for example, key-based authentication or OAuth identity passthrough). Use the tool documentation to confirm supported authentication.
 
@@ -258,7 +255,7 @@ When the agent invokes the tool, Agent Service uses the agent identity to obtain
 
 For step-by-step configuration instructions, see:
 
-- [Set up MCP server authentication](../how-to/mcp-authentication.md#use-agent-identity-authentication-preview)
+- [Set up MCP server authentication](../how-to/mcp-authentication.md#use-agent-identity-authentication)
 - [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)
 
 ## Security considerations

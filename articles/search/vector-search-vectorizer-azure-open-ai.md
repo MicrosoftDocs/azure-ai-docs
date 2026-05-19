@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 10/23/2025
+ms.date: 05/09/2026
 ms.update-cycle: 365-days
 ---
 
@@ -73,6 +73,21 @@ The expected field dimensions for a field configured with an Azure OpenAI vector
     }
 ]
 ```
+
+## Best practices
+
+The following are some best practices you need to consider when utilizing this vectorizer:
+
+- If you are hitting your Azure OpenAI TPM (Tokens per minute) limit, consider the [quota limits advisory](/azure/ai-services/openai/quotas-limits) so you can address accordingly. Refer to the [Azure OpenAI monitoring](/azure/ai-services/openai/how-to/monitoring) documentation for more information about your Azure OpenAI instance performance.
+
+-	The Azure OpenAI embeddings model deployment you use for this vectorizer should be ideally separate from the deployment used for other use cases, including the [embedding skill](cognitive-search-skill-azure-openai-embedding.md). This helps each deployment to be tailored to its specific use case, leading to optimized performance and identifying traffic from the indexer and the index embedding calls easily.
+
+- Your Azure OpenAI instance should be in the same region or at least geographically close to the region where your AI Search service is hosted. This reduces latency and improves the speed of data transfer between the services.
+
+- To avoid experiencing 429 error codes often, consider implementing load balancing via [API Management](/azure/api-management/) by implementing a gateway [/azure/architecture/ai-ml/guide/azure-openai-gateway-multi-backend] in front of multiple Azure OpenAI embedding model deployments.
+
+-	If you have a larger than default Azure OpenAI TPM (Tokens per minute) limit as published in [quotas and limits](/azure/ai-services/openai/quotas-limits) documentation, open a [support case](/azure/azure-portal/supportability/how-to-create-azure-support-request) with the Azure AI Search team, so this can be adjusted accordingly. This helps your indexing process not being unnecessarily slowed down by the documented default TPM limit, if you have higher limits.
+
 
 ## See also
 
