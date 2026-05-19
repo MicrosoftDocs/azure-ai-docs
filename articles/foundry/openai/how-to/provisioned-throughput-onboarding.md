@@ -69,7 +69,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 [!INCLUDE [provisioned-throughput-onboarding 3](../includes/how-to-provisioned-throughput-onboarding-3.md)]
 
-## Direct from Azure models
+## Foundry Models sold by Azure
 
 |Topic| **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 |---|---|---|---|---|
