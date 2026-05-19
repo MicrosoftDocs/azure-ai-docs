@@ -1,6 +1,6 @@
 ---
 title: About Indexer Execution on Serverless and S3 HD
-description: Learn how Azure AI Search runs indexers on serverless indexes and S3 High Density (S3 HD) search services.
+description: Learn how Azure AI Search runs indexers on Serverless and S3 High Density (S3 HD) search services.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -14,20 +14,20 @@ ai-usage: ai-assisted
 
 # Indexer execution on serverless and Standard 3 High Density (S3 HD)
 
-This article describes the indexer execution model that Azure AI Search uses for serverless indexes and Standard 3 High Density (S3 HD) search services. Both options have a service-level daily runtime quota that governs how much total indexer time you can use per 24-hour UTC window.
+This article describes the indexer execution model that Azure AI Search uses for Serverless and Standard 3 High Density (S3 HD) search services. Both options have a service-level daily runtime quota that governs how much total indexer time you can use per 24-hour UTC window.
 
 > [!IMPORTANT]
 > The capabilities described in this article are in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> + Indexer support on S3 HD requires the [`2025-11-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or later.
+> + Indexer support on S3 HD requires the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or later.
 > + Serverless indexer support requires the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or later.
 
 ## Where it applies
 
 The execution model in this article applies to:
 
-+ Serverless indexes that run indexers using the `2026-05-01-preview` REST API or later.
-+ S3 HD search services that run indexers using the `2025-11-01-preview` REST API or later.
++ Serverless search services that run indexers using the `2026-05-01-preview` REST API or later.
++ S3 HD search services that run indexers using the `2026-05-01-preview` REST API or later.
 
 Existing indexer definitions, data sources, skillsets, and [knowledge sources](agentic-knowledge-source-overview.md) work without modification on both options.
 
@@ -135,7 +135,8 @@ During preview, S3 HD indexer support is designed for workloads with no skillset
 
 During preview, serverless indexers are designed to simplify ingestion for retrieval-augmented generation (RAG) and knowledge base scenarios:
 
-+ Indexer execution (excluding skills) is currently free. Pricing will be introduced at a later date.
++ Indexer execution (excluding skills) is currently free. Indexer billing itself might be introduced at a later date. Writing documents to an index incurs a cost. Serverless preview is starting out with billing disabled.
+  
 + **Skillset execution** is billed the same way as on dedicated indexers. Calls to external services—such as Azure OpenAI embeddings, chat completions, and the Azure Content Understanding skill—are billed through the attached [Foundry or Azure AI services resource](cognitive-search-attach-cognitive-services.md).
 
 ## Limits and quotas
