@@ -609,7 +609,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 ### Domain filtering
 
-You can limit results to a specific set of domains by using domain filtering. You can allowlist up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
+You can limit results to a specific set of domains by using domain filtering. You can allow list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
 
 To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
 
@@ -826,7 +826,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 ### Limitations
 
 - Live internet access isn't supported. Azure OpenAI always treats the `external_web_access` parameter as `false`.
-- The domain allowlist supports up to 100 URLs.
+- The domain allow list supports up to 100 URLs.
 - Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
 - The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
 - The `open_page` and `find_in_page` actions are available only with reasoning models.
