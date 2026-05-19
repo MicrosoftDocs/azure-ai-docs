@@ -13,7 +13,7 @@ ms.custom:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Limited access for Azure Direct Models (classic)
+# Limited access for Foundry Models sold by Azure (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/limited-access.md)
 
