@@ -17,13 +17,15 @@ ms.custom:
 
 Instant models let you call any supported model by name — no deployment required. Create a Foundry project, start coding, and use any available model immediately.
 
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+- A Foundry project in **West US 3** (the only supported region during preview). If you need to create a project, see [Create a project](../how-to/create-projects.md).
+
 ## Start using models instantly
 
-With instant models, the workflow is:
-
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-1. Create a Foundry project in **West US 3** (the only supported region during preview).
-1. Use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
+With instant models, the workflow is simple — use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
 # [Python](#tab/python)
 
@@ -81,7 +83,10 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
-To see all models that support instant access, from a project in **West US 3**, open the Foundry model catalog and filter **Deployment options** to **Instant**.
+To see all models that support instant access:
+1. Open a project in **West US 3** in the new Foundry experience, 
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. In the model catalog, select **Instant** under **Capabilities** to view the available instant models.
 
 > [!NOTE]
 > During the preview, instant models are available in projects in **West US 3** only.
