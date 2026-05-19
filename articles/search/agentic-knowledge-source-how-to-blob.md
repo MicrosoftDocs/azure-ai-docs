@@ -3,7 +3,8 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: A blob knowledge source specifies a blob container that you want to read from. It also includes models and properties for creating an indexer, data source, skillset, and index used for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 05/18/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -43,7 +44,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -53,7 +54,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -63,7 +64,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -137,7 +138,7 @@ Run the following code to create a blob knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create a blob knowledge source
@@ -264,7 +265,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create a blob knowledge source
@@ -372,11 +373,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 ### Create a blob knowledge source
-PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2026-05-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
 
@@ -419,7 +420,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -474,11 +475,11 @@ Content-Type: application/json
 ::: zone-end
 
 > [!NOTE]
-> Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2025-11-01-preview API version. 2026-04-01 doesn't support this feature.
+> Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2026-05-01-preview API version. 2026-04-01 doesn't support this feature.
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a blob knowledge source.
+For both the 2026-05-01-preview and 2026-04-01 API versions, you can pass the following properties to create a blob knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -528,7 +529,7 @@ For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the fo
 
 ### Ingestion parameters properties
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 [!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
 
