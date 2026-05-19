@@ -1,19 +1,22 @@
 ---
-title: Create a Work IQ Knowledge Source
+title: Create a Work IQ Knowledge Source (Preview)
 description: Learn how to create a Work IQ knowledge source to ground an agentic retrieval pipeline in Azure AI Search with organizational intelligence from Work IQ.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
-# Create a Work IQ knowledge source
+# Create a Work IQ knowledge source (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> [!IMPORTANT]
+> The 2026-05-01-preview REST API version is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> 
+> This feature and functionality supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
-A *Work IQ knowledge source* connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
+A *Work IQ knowledge source* (preview) connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
 
-Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
+Unlike indexed knowledge sources, a Work IQ knowledge source (preview) queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
 
 ### Usage support
 
@@ -25,13 +28,36 @@ Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ dir
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
-
-+ A Work IQ environment that is already configured and accessible to the calling tenant. <!-- TO-DO (PM): What Work IQ environment prerequisites does the caller need? Are there any Microsoft Learn articles for Work IQ that we can reference here? -->
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
++ Each end user who queries through this knowledge source must have a Microsoft 365 Copilot license.
+
++ The Azure AI Search service, the Work IQ environment, and end users must be in the same Microsoft Entra tenant. Cross-tenant retrieval isn't supported.
+
++ Approved access to Work IQ retrieval through Azure AI Search. For more information, see [Request access to Work IQ retrieval](#request-access-to-work-iq-retrieval).
+
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+### Request access to Work IQ retrieval
+
+Work IQ retrieval through Azure AI Search is off by default and requires a Microsoft-approved request before use.
+
+To request access:
+
+1. Register the `EnableFoundryIQWithWorkIQ` feature flag on your Azure subscription.
+
+   ```azurecli
+   az feature register --namespace Microsoft.Search --name EnableFoundryIQWithWorkIQ --subscription "<your-subscription-guid>"
+   ```
+
+1. Have a Microsoft Entra administrator for your tenant submit the following form: [FORM](form) <!-- TO-DO (PM): Add form link when available. -->
+    
+1. Wait for Microsoft to enable access manually after reviewing and approving the request.
+
+> [!TIP]
+> Registering a preview feature requires the **Owner** or **Contributor** built-in role on the subscription, which is a separate role from the Microsoft Entra administrator who submits the form. The two responsibilities can be held by different people in your organization. For more information about the registration mechanism, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features).
 
 ## Check for existing knowledge sources
 
@@ -59,7 +85,7 @@ api-key: {{api-key}}
 
 **Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
 
-The following JSON is an example response for a Work IQ knowledge source.
+The following JSON is an example response for a Work IQ knowledge source (preview).
 
 ```json
 {
@@ -72,7 +98,7 @@ The following JSON is an example response for a Work IQ knowledge source.
 
 ## Create a knowledge source
 
-Run the following code to create a Work IQ knowledge source. 
+Run the following code to create a Work IQ knowledge source (preview). 
 
 ```http
 ### Create a Work IQ knowledge source
@@ -93,7 +119,7 @@ Content-Type: application/json
 
 <!-- TO-DO (PM): Confirm whether these properties are correct for Work IQ knowledge sources and update as needed. -->
 
-The following properties apply to Work IQ knowledge sources.
+The following properties apply to Work IQ knowledge sources (preview).
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -117,15 +143,15 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Work IQ knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Work IQ–scoped token and uses it to query Work IQ on behalf of the end user.
+Work IQ knowledge sources (preview) use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Work IQ–scoped token and uses it to query Work IQ on behalf of the end user.
 
-Because Work IQ knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Because Work IQ knowledge sources (preview) don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Work IQ–specific response fields
 
-Work IQ knowledge sources return results in the `references` array and query diagnostics in the `activity` array. Each reference entry contains:
+Work IQ knowledge sources (preview) return results in the `references` array and query diagnostics in the `activity` array. Each reference entry contains:
 
 - `sourceData.extracts[].text`: Grounded text passages from Work IQ.
 - `attributions[].seeMoreWebUrl`: A link to the source document in Microsoft 365.
