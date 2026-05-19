@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2025
   - build-2026
 ms.topic: reference
-ms.date: 05/16/2026
+ms.date: 05/18/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -21,13 +21,13 @@ You can use the Azure Content Understanding skill for both content extraction an
 
 + Tables and figures are output in Markdown format, making them easier for large language models (LLMs) to understand. In contrast, the Document Layout skill outputs tables and figures as plain text, which can result in information loss.
 
-+ For tables that span multiple pages, the Document Layout skill extracts tables page by page. The Azure Content Understanding skill can recognize and extract cross-page tables as a single unit.
++ For tables that span multiple pages, the Azure Content Understanding skill can recognize and extract cross-page tables as a single unit.
 
-+ The Document Layout skill restricts chunks to a single page, but semantic units, such as cross-page tables, shouldn't be limited by page boundaries. The Azure Content Understanding skill allows chunks to span multiple pages.
++ The Azure Content Understanding skill allows chunks to span multiple pages via semantic units.
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
-Starting with the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-generated descriptions for document-embedded images, charts, and diagrams by using an Azure OpenAI chat-completion model that you deploy in the Foundry resource attached to the skillset. The same API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities are opt-in. When the new parameters are omitted, the skill behaves the same as in the `2026-04-01` stable API version.
+Starting with the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams by using an Azure OpenAI chat-completion model that you deploy in the Foundry resource attached to the skillset. The same API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities are opt-in. When the new parameters are omitted, the skill behaves the same as in the `2026-04-01` stable API version.
 
 The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
 Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
