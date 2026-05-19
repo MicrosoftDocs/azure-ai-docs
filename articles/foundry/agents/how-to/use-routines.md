@@ -56,6 +56,611 @@ Each routine specifies exactly one action that runs when the routine fires. Two 
 
 For required and optional fields of each action type, see [Action fields](#action-fields).
 
+## Discover connectors with trigger support
+
+:::zone pivot="foundry-portal"
+
+The portal handles connector browsing and connection setup for you. Skip to [Create a routine](#create-a-routine).
+
+:::zone-end
+
+:::zone pivot="programming-language-rest,programming-language-python,programming-language-csharp,programming-language-javascript"
+
+Event-based routines need two things: a **trigger event source** (a connector operation that fires when an external event occurs) and a **project connection** (credentials Foundry uses to subscribe to or poll that event). The catalog API exposes each connector's full spec, including which operations are triggers and what auth the connector requires.
+
+The end-to-end discovery flow has five steps:
+
+1. Acquire tokens for the catalog API and Azure Resource Manager.
+1. Query the catalog to list connectors that declare trigger support.
+1. Inspect the connector spec to extract trigger `operationId` values.
+1. Read `x-ms-connection-parameters` to determine required auth.
+1. Create the project connection.
+
+After completing these steps, use the trigger's `operationId` as the `event_name` when you [create a custom trigger routine](#event-based-triggers), or verify it matches a built-in trigger type such as `github_issue`.
+
+:::zone-end
+
+:::zone pivot="programming-language-rest"
+
+> [!NOTE]
+> The connector catalog is always served from the `eastus` region regardless of your project's location.
+
+### Step 1: Acquire tokens
+
+```bash
+# Token for the Foundry Tools Catalog
+CATALOG_TOKEN=$(az account get-access-token \
+  --resource https://ai.azure.com \
+  --query accessToken -o tsv)
+
+# Token for Azure Resource Manager (connection management)
+ARM_TOKEN=$(az account get-access-token \
+  --resource https://management.azure.com \
+  --query accessToken -o tsv)
+```
+
+### Step 2: List connectors with trigger support
+
+**List all trigger-enabled connectors:**
+
+```bash
+RESPONSE=$(curl -sS -X POST \
+  "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools" \
+  -H "Authorization: Bearer $CATALOG_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "x-ms-user-agent: AzureMachineLearningWorkspacePortal/12.0" \
+  -d '{
+    "freeTextSearch": "*",
+    "filters": [
+      { "field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"] },
+      { "field": "type",              "operator": "eq", "values": ["tools"] },
+      { "field": "kind",              "operator": "eq", "values": ["Versioned"] },
+      { "field": "labels",            "operator": "eq", "values": ["latest"] }
+    ],
+    "includeTotalResultCount": true,
+    "pageSize": 100,
+    "skip": 0
+  }')
+
+# Print connectors that declare trigger support
+echo "$RESPONSE" | jq -r '
+  .value[]
+  | select(.properties["x-ms-capabilities"] | arrays | contains(["triggers"]))
+  | "\(.annotations.name)\t\(.properties.title)"
+'
+```
+
+**Fetch details of a specific connector:**
+
+```bash
+CONNECTOR_NAME="github"   # value from annotations.name in the list above
+
+RESPONSE=$(curl -sS -X POST \
+  "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools" \
+  -H "Authorization: Bearer $CATALOG_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "x-ms-user-agent: AzureMachineLearningWorkspacePortal/12.0" \
+  -d "{
+    \"freeTextSearch\": \"*\",
+    \"filters\": [
+      { \"field\": \"entityContainerId\", \"operator\": \"eq\", \"values\": [\"connectors-registry-prod-bl\"] },
+      { \"field\": \"type\",              \"operator\": \"eq\", \"values\": [\"tools\"] },
+      { \"field\": \"kind\",              \"operator\": \"eq\", \"values\": [\"Versioned\"] },
+      { \"field\": \"labels\",            \"operator\": \"eq\", \"values\": [\"latest\"] },
+      { \"field\": \"annotations/name\",  \"operator\": \"eq\", \"values\": [\"$CONNECTOR_NAME\"] }
+    ],
+    \"includeTotalResultCount\": true,
+    \"pageSize\": 1
+  }")
+
+# Extract entity ID and runtime URL for later steps
+ENTITY_ID=$(echo "$RESPONSE" | jq -r '.value[0].entityId')
+TARGET_URL=$(echo "$RESPONSE" | jq -r '.value[0].properties["x-ms-runtime-urls"][0]')
+
+echo "entityId:  $ENTITY_ID"
+echo "targetURL: $TARGET_URL"
+```
+
+### Step 3: Identify trigger operations
+
+Each connector's `x-ms-operations` array lists all available operations. Operations with a non-null `x-ms-trigger` field are event triggers. The `x-ms-trigger` value indicates the trigger mechanism:
+
+| `x-ms-trigger` value | Mechanism | Routine `type` to use |
+|---|---|---|
+| `"batch"` | Foundry polls the connector endpoint at a fixed interval | `github_issue` (built-in) or `custom` |
+| `"single"` | Connector registers a webhook; Foundry receives push notifications | `custom` |
+
+```bash
+# Print all trigger operations for the fetched connector
+echo "$RESPONSE" | jq -r '
+  .value[0].properties["x-ms-operations"][]
+  | select(."x-ms-trigger" != null)
+  | "\(.operationId)\t trigger=\(."x-ms-trigger")\t \(.operationName)"
+'
+```
+
+Sample output for the GitHub connector:
+
+```
+IssueOpened               trigger=batch    When a new issue is opened and assigned to me
+IssueClosed               trigger=batch    When an issue assigned to me is closed
+IssueAssigned             trigger=batch    When an issue is assigned to me
+WebhookPullRequestTrigger trigger=single   When a pull request is created or modified
+```
+
+The `operationId` is the value you pass as `event_name` in a `custom` trigger. The GitHub issue operations are also covered by the built-in `github_issue` trigger type, which handles polling automatically.
+
+### Step 4: Determine connection auth requirements
+
+```bash
+AUTH_TYPE=$(echo "$RESPONSE" | jq -r '
+  .value[0].properties["x-ms-connection-parameters"]
+  | if . == null then "None"
+    elif ([.[].type] | any(. == "oauthSetting")) then "OAuth2"
+    elif ([.[].type] | any(. == "securestring")) then "CustomKeys"
+    else "None" end
+')
+
+echo "authType: $AUTH_TYPE"
+```
+
+| Auth type | Connection creation |
+|---|---|
+| `OAuth2` | Create the connection stub via API; complete the OAuth consent flow in the Foundry portal. |
+| `CustomKeys` | Create the connection with credentials in a single API call. |
+| `None` | Create an unauthenticated connection stub; no credentials required. |
+
+### Step 5: Create the project connection
+
+```bash
+SUBSCRIPTION_ID="<your-subscription-id>"
+RESOURCE_GROUP="<your-resource-group>"
+ACCOUNT_NAME="<your-foundry-account>"
+PROJECT_NAME="<your-project>"
+CONNECTION_NAME="<name-for-this-connection>"
+
+CONNECTION_URL="https://management.azure.com/subscriptions/$SUBSCRIPTION_ID\
+/resourceGroups/$RESOURCE_GROUP\
+/providers/Microsoft.CognitiveServices/accounts/$ACCOUNT_NAME\
+/projects/$PROJECT_NAME\
+/connections/$CONNECTION_NAME?api-version=2025-04-01-preview"
+```
+
+**OAuth2:**
+
+```bash
+curl -sS -X PUT "$CONNECTION_URL" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "authType": "OAuth2",
+      "category": "RemoteTool",
+      "connectorName": "'"$CONNECTOR_NAME"'",
+      "target": "'"$TARGET_URL"'",
+      "credentials": {},
+      "peRequirement": "NotRequired",
+      "metadata": {
+        "type": "gateway_connector",
+        "toolEntityId": "'"$ENTITY_ID"'",
+        "connectionproperties": "{\"connectorName\":\"'"$CONNECTOR_NAME"'\"}"
+      }
+    }
+  }'
+```
+
+A successful response returns HTTP 200 with `overallStatus: "Unauthenticated"`. Open the Foundry portal and complete the OAuth consent flow to bring the connection to `"Connected"` status.
+
+**CustomKeys (API key or PAT):**
+
+```bash
+curl -sS -X PUT "$CONNECTION_URL" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "authType": "CustomKeys",
+      "category": "RemoteTool",
+      "connectorName": "'"$CONNECTOR_NAME"'",
+      "target": "'"$TARGET_URL"'",
+      "credentials": {
+        "keys": {
+          "Authorization": "Bearer '"$YOUR_TOKEN"'"
+        }
+      },
+      "peRequirement": "NotRequired",
+      "metadata": {
+        "type": "gateway_connector",
+        "toolEntityId": "'"$ENTITY_ID"'",
+        "connectionproperties": "{\"connectorName\":\"'"$CONNECTOR_NAME"'\"}"
+      }
+    }
+  }'
+```
+
+Verify the connection was created:
+
+```bash
+curl -sS "$CONNECTION_URL" -H "Authorization: Bearer $ARM_TOKEN" \
+  | jq '{name: .name, status: .properties.overallStatus, authType: .properties.authType}'
+```
+
+Use `CONNECTION_NAME` as the `connection_id` and the `operationId` from Step 3 as the `event_name` when you create the routine. See [Event-based triggers](#event-based-triggers).
+
+:::zone-end
+
+:::zone pivot="programming-language-python"
+
+```python
+import os
+import requests
+from azure.identity import DefaultAzureCredential
+
+credential = DefaultAzureCredential()
+
+# ── Step 1: acquire tokens ─────────────────────────────────────────────────
+
+catalog_token = credential.get_token("https://ai.azure.com/.default").token
+arm_token     = credential.get_token("https://management.azure.com/.default").token
+
+CATALOG_URL = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools"
+catalog_headers = {
+    "Authorization": f"Bearer {catalog_token}",
+    "Content-Type": "application/json",
+    "x-ms-user-agent": "AzureMachineLearningWorkspacePortal/12.0",
+}
+arm_headers = {
+    "Authorization": f"Bearer {arm_token}",
+    "Content-Type": "application/json",
+}
+
+# ── Step 2: find trigger-enabled connectors ────────────────────────────────
+
+def list_trigger_connectors() -> list[dict]:
+    resp = requests.post(
+        CATALOG_URL,
+        headers=catalog_headers,
+        json={
+            "freeTextSearch": "*",
+            "filters": [
+                {"field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"]},
+                {"field": "type",              "operator": "eq", "values": ["tools"]},
+                {"field": "kind",              "operator": "eq", "values": ["Versioned"]},
+                {"field": "labels",            "operator": "eq", "values": ["latest"]},
+            ],
+            "includeTotalResultCount": True,
+            "pageSize": 100,
+            "skip": 0,
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    return [
+        item for item in resp.json()["value"]
+        if "triggers" in (item["properties"].get("x-ms-capabilities") or [])
+    ]
+
+for item in list_trigger_connectors():
+    print(f"{item['annotations']['name']:30s}  {item['properties'].get('title', '')}")
+
+# ── Steps 3–4: fetch connector spec, read trigger ops and auth type ────────
+
+def get_connector(name: str) -> dict:
+    resp = requests.post(
+        CATALOG_URL,
+        headers=catalog_headers,
+        json={
+            "freeTextSearch": "*",
+            "filters": [
+                {"field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"]},
+                {"field": "type",              "operator": "eq", "values": ["tools"]},
+                {"field": "kind",              "operator": "eq", "values": ["Versioned"]},
+                {"field": "labels",            "operator": "eq", "values": ["latest"]},
+                {"field": "annotations/name",  "operator": "eq", "values": [name]},
+            ],
+            "includeTotalResultCount": True,
+            "pageSize": 1,
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    return resp.json()["value"][0]
+
+connector = get_connector("github")
+entity_id  = connector["entityId"]
+target_url = connector["properties"]["x-ms-runtime-urls"][0]
+
+# Trigger operations
+trigger_ops = [
+    op for op in connector["properties"].get("x-ms-operations", [])
+    if op.get("x-ms-trigger") is not None
+]
+for op in trigger_ops:
+    print(f"  {op['operationId']:35s} trigger={op['x-ms-trigger']:8s} '{op['operationName']}'")
+
+# Auth type
+conn_params = connector["properties"].get("x-ms-connection-parameters") or {}
+if any(p.get("type") == "oauthSetting" for p in conn_params.values()):
+    auth_type = "OAuth2"
+elif any(p.get("type") == "securestring" for p in conn_params.values()):
+    auth_type = "CustomKeys"
+else:
+    auth_type = "None"
+print(f"auth_type: {auth_type}")
+
+# ── Step 5: create the project connection ──────────────────────────────────
+
+subscription = os.environ["AZURE_SUBSCRIPTION_ID"]
+rg           = os.environ["AZURE_RESOURCE_GROUP"]
+account      = os.environ["FOUNDRY_ACCOUNT_NAME"]
+project      = os.environ["FOUNDRY_PROJECT_NAME"]
+conn_name    = "my-connector-conn"
+
+conn_url = (
+    f"https://management.azure.com/subscriptions/{subscription}"
+    f"/resourceGroups/{rg}/providers/Microsoft.CognitiveServices"
+    f"/accounts/{account}/projects/{project}"
+    f"/connections/{conn_name}?api-version=2025-04-01-preview"
+)
+
+base_metadata = {
+    "type": "gateway_connector",
+    "toolEntityId": entity_id,
+    "connectionproperties": '{"connectorName":"github"}',
+}
+
+if auth_type == "OAuth2":
+    body = {
+        "properties": {
+            "authType": "OAuth2", "category": "RemoteTool",
+            "connectorName": "github", "target": target_url,
+            "credentials": {}, "peRequirement": "NotRequired",
+            "metadata": base_metadata,
+        }
+    }
+else:  # CustomKeys
+    pat = os.environ["CONNECTOR_PAT"]
+    body = {
+        "properties": {
+            "authType": "CustomKeys", "category": "RemoteTool",
+            "connectorName": "github", "target": target_url,
+            "credentials": {"keys": {"Authorization": f"Bearer {pat}"}},
+            "peRequirement": "NotRequired",
+            "metadata": base_metadata,
+        }
+    }
+
+resp = requests.put(conn_url, headers=arm_headers, json=body, timeout=30)
+resp.raise_for_status()
+print(f"Connection '{conn_name}' created. Status: {resp.json()['properties'].get('overallStatus')}")
+# For OAuth2: open the Foundry portal and complete the OAuth consent flow.
+```
+
+After the connection is ready, use `conn_name` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+```csharp
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using Azure.Identity;
+
+var credential = new DefaultAzureCredential();
+var catalogToken = await credential.GetTokenAsync(
+    new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"]));
+var armToken = await credential.GetTokenAsync(
+    new Azure.Core.TokenRequestContext(["https://management.azure.com/.default"]));
+
+using var http = new HttpClient();
+const string CatalogUrl = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools";
+
+// ── Steps 2–4: fetch connector spec ───────────────────────────────────────
+
+var filterBody = JsonSerializer.Serialize(new
+{
+    freeTextSearch = "*",
+    filters = new object[]
+    {
+        new { field = "entityContainerId", @operator = "eq", values = new[] { "connectors-registry-prod-bl" } },
+        new { field = "type",              @operator = "eq", values = new[] { "tools" } },
+        new { field = "kind",              @operator = "eq", values = new[] { "Versioned" } },
+        new { field = "labels",            @operator = "eq", values = new[] { "latest" } },
+        new { field = "annotations/name",  @operator = "eq", values = new[] { "github" } },
+    },
+    includeTotalResultCount = true,
+    pageSize = 1,
+    skip = 0,
+});
+
+using var req = new HttpRequestMessage(HttpMethod.Post, CatalogUrl)
+{
+    Content = new StringContent(filterBody, Encoding.UTF8, "application/json"),
+};
+req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", catalogToken.Token);
+req.Headers.Add("x-ms-user-agent", "AzureMachineLearningWorkspacePortal/12.0");
+
+var resp = await http.SendAsync(req);
+resp.EnsureSuccessStatusCode();
+using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync());
+var item  = doc.RootElement.GetProperty("value")[0];
+var props = item.GetProperty("properties");
+
+string entityId  = item.GetProperty("entityId").GetString()!;
+string targetUrl = props.GetProperty("x-ms-runtime-urls")[0].GetString()!;
+
+// Trigger operations
+foreach (var op in props.GetProperty("x-ms-operations").EnumerateArray())
+{
+    if (op.TryGetProperty("x-ms-trigger", out var trig) && trig.ValueKind != JsonValueKind.Null)
+        Console.WriteLine($"  {op.GetProperty("operationId").GetString(),-35} " +
+                          $"trigger={trig.GetString(),-8} '{op.GetProperty("operationName").GetString()}'");
+}
+
+// Auth type
+string authType = "None";
+if (props.TryGetProperty("x-ms-connection-parameters", out var cp))
+{
+    foreach (var p in cp.EnumerateObject())
+    {
+        if (!p.Value.TryGetProperty("type", out var t)) continue;
+        if (t.GetString() == "oauthSetting") { authType = "OAuth2";      break; }
+        if (t.GetString() == "securestring") { authType = "CustomKeys";  break; }
+    }
+}
+Console.WriteLine($"authType: {authType}");
+
+// ── Step 5: create the project connection ──────────────────────────────────
+
+var sub     = Environment.GetEnvironmentVariable("AZURE_SUBSCRIPTION_ID");
+var rg      = Environment.GetEnvironmentVariable("AZURE_RESOURCE_GROUP");
+var account = Environment.GetEnvironmentVariable("FOUNDRY_ACCOUNT_NAME");
+var project = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_NAME");
+var pat     = Environment.GetEnvironmentVariable("CONNECTOR_PAT") ?? "";
+const string ConnName = "my-connector-conn";
+
+var connUrl = $"https://management.azure.com/subscriptions/{sub}"
+            + $"/resourceGroups/{rg}/providers/Microsoft.CognitiveServices"
+            + $"/accounts/{account}/projects/{project}"
+            + $"/connections/{ConnName}?api-version=2025-04-01-preview";
+
+var metadata = new { type = "gateway_connector", toolEntityId = entityId,
+                     connectionproperties = "{\"connectorName\":\"github\"}" };
+
+object connBody = authType == "OAuth2"
+    ? new { properties = new { authType = "OAuth2", category = "RemoteTool",
+              connectorName = "github", target = targetUrl, credentials = new { },
+              peRequirement = "NotRequired", metadata } }
+    : new { properties = new { authType = "CustomKeys", category = "RemoteTool",
+              connectorName = "github", target = targetUrl,
+              credentials = new { keys = new { Authorization = $"Bearer {pat}" } },
+              peRequirement = "NotRequired", metadata } };
+
+using var putReq = new HttpRequestMessage(HttpMethod.Put, connUrl)
+{
+    Content = new StringContent(JsonSerializer.Serialize(connBody), Encoding.UTF8, "application/json"),
+};
+putReq.Headers.Authorization = new AuthenticationHeaderValue("Bearer", armToken.Token);
+var putResp = await http.SendAsync(putReq);
+putResp.EnsureSuccessStatusCode();
+using var putDoc = JsonDocument.Parse(await putResp.Content.ReadAsStringAsync());
+Console.WriteLine($"Connection '{ConnName}' created. " +
+    $"Status: {putDoc.RootElement.GetProperty("properties").GetProperty("overallStatus").GetString()}");
+// For OAuth2: open the Foundry portal and complete the OAuth consent flow.
+```
+
+After the connection is ready, use `ConnName` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
+
+:::zone-end
+
+:::zone pivot="programming-language-javascript"
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+
+const credential = new DefaultAzureCredential();
+const [catalogToken, armToken] = await Promise.all([
+  credential.getToken("https://ai.azure.com/.default"),
+  credential.getToken("https://management.azure.com/.default"),
+]);
+
+const CATALOG_URL = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools";
+const catalogHeaders = {
+  Authorization: `Bearer ${catalogToken.token}`,
+  "Content-Type": "application/json",
+  "x-ms-user-agent": "AzureMachineLearningWorkspacePortal/12.0",
+};
+
+// ── Steps 2–4: fetch connector spec ────────────────────────────────────────
+
+const connResp = await fetch(CATALOG_URL, {
+  method: "POST",
+  headers: catalogHeaders,
+  body: JSON.stringify({
+    freeTextSearch: "*",
+    filters: [
+      { field: "entityContainerId", operator: "eq", values: ["connectors-registry-prod-bl"] },
+      { field: "type",              operator: "eq", values: ["tools"] },
+      { field: "kind",              operator: "eq", values: ["Versioned"] },
+      { field: "labels",            operator: "eq", values: ["latest"] },
+      { field: "annotations/name",  operator: "eq", values: ["github"] },
+    ],
+    includeTotalResultCount: true,
+    pageSize: 1,
+    skip: 0,
+  }),
+});
+const catalog = await connResp.json();
+const item = catalog.value[0];
+
+const entityId  = item.entityId;
+const targetUrl = item.properties["x-ms-runtime-urls"][0];
+
+// Trigger operations: x-ms-trigger is non-null
+const triggerOps = (item.properties["x-ms-operations"] ?? [])
+  .filter((op) => op["x-ms-trigger"] != null);
+for (const op of triggerOps) {
+  console.log(
+    `  ${op.operationId.padEnd(35)} trigger=${op["x-ms-trigger"].padEnd(8)} '${op.operationName}'`
+  );
+}
+
+// Auth type
+const connParams = item.properties["x-ms-connection-parameters"] ?? {};
+let authType = "None";
+for (const param of Object.values(connParams)) {
+  if (param.type === "oauthSetting") { authType = "OAuth2";     break; }
+  if (param.type === "securestring") { authType = "CustomKeys"; break; }
+}
+console.log(`authType: ${authType}`);
+
+// ── Step 5: create the project connection ──────────────────────────────────
+
+const { AZURE_SUBSCRIPTION_ID: sub, AZURE_RESOURCE_GROUP: rg,
+        FOUNDRY_ACCOUNT_NAME: account, FOUNDRY_PROJECT_NAME: project,
+        CONNECTOR_PAT: pat } = process.env;
+const connName = "my-connector-conn";
+
+const connUrl =
+  `https://management.azure.com/subscriptions/${sub}` +
+  `/resourceGroups/${rg}/providers/Microsoft.CognitiveServices` +
+  `/accounts/${account}/projects/${project}` +
+  `/connections/${connName}?api-version=2025-04-01-preview`;
+
+const metadata = {
+  type: "gateway_connector",
+  toolEntityId: entityId,
+  connectionproperties: JSON.stringify({ connectorName: "github" }),
+};
+
+const connBody =
+  authType === "OAuth2"
+    ? { properties: { authType: "OAuth2", category: "RemoteTool",
+          connectorName: "github", target: targetUrl,
+          credentials: {}, peRequirement: "NotRequired", metadata } }
+    : { properties: { authType: "CustomKeys", category: "RemoteTool",
+          connectorName: "github", target: targetUrl,
+          credentials: { keys: { Authorization: `Bearer ${pat}` } },
+          peRequirement: "NotRequired", metadata } };
+
+const putResp = await fetch(connUrl, {
+  method: "PUT",
+  headers: { Authorization: `Bearer ${armToken.token}`, "Content-Type": "application/json" },
+  body: JSON.stringify(connBody),
+});
+if (!putResp.ok) throw new Error(await putResp.text());
+const conn = await putResp.json();
+console.log(`Connection '${connName}' created. Status: ${conn.properties.overallStatus}`);
+// For OAuth2: open the Foundry portal and complete the OAuth consent flow.
+```
+
+After the connection is ready, use `connName` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
+
+:::zone-end
+
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../how-to/create-projects.md) with at least one agent deployed.
@@ -728,6 +1333,7 @@ Invokes the agent through the Invocations API. Requires the endpoint-scoped agen
 | `type` | string | Yes | Must be `"invoke_agent_invocations_api"`. |
 | `agent_endpoint_id` | string | Yes | The endpoint-scoped agent identifier. Maximum 256 characters. |
 | `session_id` | string | No | An existing hosted-agent session to continue during the dispatch. Maximum 256 characters. |
+
 
 ## Enable and disable a routine
 
