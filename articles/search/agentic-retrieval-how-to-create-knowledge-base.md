@@ -95,6 +95,9 @@ GPT-5.4 family names to the supported set; it doesn't add chat, codex, or pro
 model variants. Regional availability is determined by Azure OpenAI in Foundry
 Models for the deployment you select.
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 ## Configure access
 
 Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We recommend Microsoft Entra ID for authentication and role-based access for authorization. To assign roles, you must be an **Owner or User Access Administrator**. If you can't use roles, use key-based authentication instead.
