@@ -115,7 +115,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 For **Global Standard**, **Data Zone Standard**, and **Standard** deployment types, Microsoft manages automatic upgrades when a model version is retired:
 
 - Auto-upgrades are scheduled on a **rolling, region-by-region** basis.
-- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirements.md).
+- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 - Upgrades can occur even if the new model version isn't yet separately available in that region, or for that SKU—the upgrade process will make it available.
 
 > [!IMPORTANT]
