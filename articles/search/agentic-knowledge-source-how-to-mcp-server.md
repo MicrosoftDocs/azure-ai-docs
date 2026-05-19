@@ -1,19 +1,20 @@
 ---
-title: Create an MCP Server Knowledge Source
+title: Create an MCP Server Knowledge Source (Preview)
 description: Learn how to create an MCP Server knowledge source for agentic retrieval in Azure AI Search, which connects to any external Model Context Protocol server.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
-# Create an MCP Server knowledge source
+# Create an MCP Server knowledge source (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> [!IMPORTANT]
+> The 2026-05-01-preview REST API version is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-An *MCP Server knowledge source* connects your agentic retrieval pipeline to any external system that exposes a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) (MCP)–compatible endpoint. Use this knowledge source to reach internal tools, third-party APIs, or custom backends that Azure AI Search doesn't natively support.
+An *MCP Server knowledge source* (preview) connects your agentic retrieval pipeline to any external system that exposes a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) (MCP)–compatible endpoint. Use this knowledge source to reach internal tools, third-party APIs, or custom backends that Azure AI Search doesn't natively support.
 
-Unlike indexed knowledge sources, MCP Server knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. You provide the MCP server URL and specify which tools to allow, and Azure AI Search calls those tools on each query.
+Unlike indexed knowledge sources, MCP Server knowledge sources (preview) query live data directly at retrieval time. No ingestion pipeline is needed. You provide the MCP server URL and specify which tools to allow, and Azure AI Search calls those tools on each query.
 
 ### Usage support
 
@@ -39,7 +40,7 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 
 + The `minimal` retrieval reasoning effort and `extractiveData` output mode aren't supported. Use the `low` or `medium` [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md).
 
-+ `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source.
++ `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source (preview).
 
 + MCP server tool calls involve external network requests and can take longer than typical search queries. Set `maxRuntimeInSeconds` on retrieve requests to give all configured tools sufficient time to respond.
 
@@ -69,7 +70,7 @@ api-key: {{api-key}}
 
 **Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
 
-The following JSON is an example response for an MCP Server knowledge source.
+The following JSON is an example response for an MCP Server knowledge source (preview).
 
 ```json
 {
@@ -106,7 +107,7 @@ The following JSON is an example response for an MCP Server knowledge source.
 
 -->
 
-Run the following code to create an MCP Server knowledge source.
+Run the following code to create an MCP Server knowledge source (preview).
 
 ```http
 ### Create an MCP Server knowledge source
@@ -146,7 +147,7 @@ Prefer: return=representation
 
 ### Source-specific properties
 
-The following properties apply to MCP Server knowledge sources.
+The following properties apply to MCP Server knowledge sources (preview).
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -261,7 +262,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query MCP server content. MCP Server knowledge sources have source-specific retrieval behavior and response fields.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query MCP server content. MCP Server knowledge sources (preview) have source-specific retrieval behavior and response fields.
 
 <!-- TO-DO (PM): Confirm the following behavior and response fields for MCP Server knowledge sources before publish. -->
 
@@ -271,7 +272,7 @@ At query time, the large language model (LLM) configured in the knowledge base r
 
 ### MCP Server–specific response fields
 
-MCP Server knowledge sources return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
+MCP Server knowledge sources (preview) return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
 
 The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
