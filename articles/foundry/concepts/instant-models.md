@@ -21,6 +21,7 @@ Instant models let you call any supported model by name — no deployment requir
 
 With instant models, the workflow is:
 
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 1. Create a Foundry project in **West US 3** (the only supported region during preview).
 1. Use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
