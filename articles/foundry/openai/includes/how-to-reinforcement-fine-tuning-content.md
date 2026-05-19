@@ -22,10 +22,9 @@ Reinforcement fine-tuning is supported for the following models:
 | Model | Version | RFT support | Status |
 | ----- | ------- | ----------- | ------ |
 | `o4-mini` | `2025-04-16` | Yes | GA |
-| `gpt-5` | `2025-08-07` | Yes | GA |
+| `gpt-5` | `2025-08-07` | Yes | GA<sup>*</sup> |
 
-> [!NOTE]
-> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
+<sup>*</sup> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
 
 ## Requirements
 
