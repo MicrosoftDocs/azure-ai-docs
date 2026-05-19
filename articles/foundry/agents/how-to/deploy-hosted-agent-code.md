@@ -19,7 +19,7 @@ This article shows you how to deploy a [Hosted agent](../concepts/hosted-agents.
 
 In this article, you complete the following tasks:
 
-- Pick a deployment method (Azure Developer CLI or REST API) and a dependency-resolution mode.
+- Pick a deployment method (Foundry Toolkit for VS Code, Azure Developer CLI, or REST API) and a dependency-resolution mode.
 - Create the agent, wait for it to reach `active`, and invoke it.
 - Iterate by deploying new versions.
 
@@ -33,6 +33,7 @@ Use this approach when you don't require full control of the operating system or
 - A [Microsoft Foundry project](../../how-to/create-projects.md) in a supported region.
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later, signed in to the tenant that owns the project.
 - For the azd path: the [Azure Developer CLI](/azure/developer/azure-developer-cli/) and the `azure.ai.agents` extension (installed in the [Install the azd extension](#install-the-azd-extension) step).
+- For the VS Code path: [Visual Studio Code](https://code.visualstudio.com/) and the [Foundry Toolkit for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
 - For local Python packaging: `pip` from Python 3.13 or later.
 - For local .NET packaging: the .NET 10 SDK.
 
@@ -52,11 +53,24 @@ The `code_configuration.runtime` field in the agent definition accepts the follo
 | Python | `python_3_13`, `python_3_14` |
 | .NET | `dotnet_10` |
 
+### Language version support policy
+
+The Agent Service runtime includes the platform-built container image for each value of `code_configuration.runtime`. To keep your deployed agents fully supported, Foundry aligns hosted agent language support with end-of-life support for each language. Support ends on the community end-of-support date for the language version. Microsoft might retire a `code_configuration.runtime` value earlier when platform constraints (such as the underlying base image) require it. 
+
+For upstream end-of-support schedules, see:
+
+- Python: [Status of Python versions](https://devguide.python.org/versions/) (python.org).
+- .NET: [.NET and .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
+
+#### Retirement phase
+
+After a language end-of-life date, you can still create, update, and run hosted agents that use the retired runtime value. However, those agents aren't eligible for support, new features, or security patches until you upgrade them to a supported runtime by setting a current `code_configuration.runtime` value and redeploying.
+
 ### Required permissions
 
 You need **Azure AI Project Manager** at project scope to deploy a Hosted agent. This role grants the data-plane permissions to create and update agents, plus the ability to assign **Azure AI User** to the platform-created agent identity that your running code uses to call models and tools.
 
-Your agent runs as a platform-assigned managed identity that's separate from your user identity. That identity needs **Azure AI User** to call models from inside the container. If you deploy with `azd` or the Visual Studio Code Foundry extension, the tooling assigns this role automatically. If you deploy with REST, grant it yourself — see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+Your agent runs as a platform-assigned managed identity that's separate from your user identity. That identity needs **Azure AI User** to call models from inside the container. If you deploy with `azd` or the Visual Studio Code Foundry extension, the tooling assigns this role automatically. If you deploy with REST, grant it yourself—see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For REST calls, include the preview feature header on every request:
 
@@ -66,11 +80,12 @@ Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview
 
 ## Choose a deployment method
 
-This article covers two deployment methods. Pick the one that matches your scenario:
+This article covers three deployment methods. Pick the one that matches your scenario:
 
 | Method | Best for | What you do |
 | --- | --- | --- |
-| [Azure Developer CLI (azd)](#deploy-by-using-the-azure-developer-cli) | First-time users, local inner loop, CI pipelines. | Run `azd ai agent init` and `azd deploy`. `azd` packages your source, handles the upload, polls for `active`, and configures role-based access control. |
+| [Foundry Toolkit for VS Code](#deploy-by-using-the-foundry-toolkit-for-vs-code) | VS Code users who want a guided, in-editor flow with a built-in playground. | Open the source folder, run a Command Palette command, and answer the prompts. The extension handles packaging, upload, and polling. |
+| [Azure Developer CLI (azd)](#deploy-by-using-the-azure-developer-cli) | First-time users on the command line, local inner loop, CI pipelines. | Run `azd ai agent init` and `azd deploy`. `azd` packages your source, handles the upload, polls for `active`, and configures role-based access control. |
 | [REST API](#deploy-by-using-the-rest-api) | Custom tooling, language-agnostic automation, integration with existing CD systems. | Build the zip yourself, send a `multipart/form-data` request, and poll for status. |
 
 Every deployment, regardless of method, follows the same lifecycle: **package → create or update → poll until `active` → invoke**.
@@ -85,6 +100,33 @@ Both deployment methods ask you to pick a value for `code_configuration.dependen
 | `bundled` | The zip is run as-is. You ship prebuilt Linux dependencies in `packages/` (Python) or `dotnet publish` output (.NET). | You need reproducible builds, your dependencies are private or wheels-only, or your project doesn't restore cleanly server-side. |
 
 For bundled mode, see [Package the zip manually](#package-the-zip-manually) for the local build commands.
+
+## Deploy by using the Foundry Toolkit for VS Code
+
+The [Foundry Toolkit for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension wraps the same management APIs as `azd` and adds an in-editor flow: it packages the open folder, uploads it, polls for `active`, and opens the Hosted Agent Playground when the version is ready.
+
+### Quickstart: deploy and invoke
+
+1. **Open the source folder.** In VS Code, open the folder that contains your `main.py` (Python) or `.csproj` (.NET) at the root.
+
+1. **Run the deploy command.** Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run **Foundry Toolkit: Deploy Hosted Agent**. 
+
+1. **Answer the prompts.** Use the following values for a hello-world agent.
+
+   | Prompt | Value |
+   | --- | --- |
+   | Deployment method | **Code** |
+   | Package mode | **Remote package** (service builds dependencies) or **Local package** (bundle locally). Matches [Choose how dependencies are resolved](#choose-how-dependencies-are-resolved). |
+   | Preparation mode (Local package only) | **No, prepare for me**—the extension runs `pip install` or `dotnet publish` before upload. **Yes, upload as-is**—the extension uploads the folder unchanged. |
+   | Runtime | **Python 3.13**, **Python 3.14**, or **.NET 10**. For .NET, the extension reads `TargetFramework` from `.csproj` and shows it as **Detected** when it matches a supported runtime. |
+   | Entry point | For example, `python main.py` or `dotnet MyAgent.dll`. |
+   | CPU / memory | Defaults to 0.5 cores / 1 Gi (fine for hello-world). |
+
+1. **Wait for deployment to finish.** The extension polls until the version reaches `active`, then opens the Hosted Agent Playground.
+
+1. **Invoke the agent** from the playground to verify the deployed version.
+
+To redeploy after a code change, rerun the same command. Each deploy creates a new version using the same content-addressable dedup rules as the REST API.
 
 ## Deploy by using the Azure Developer CLI
 
