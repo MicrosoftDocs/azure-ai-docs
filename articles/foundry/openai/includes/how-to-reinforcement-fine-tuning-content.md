@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/14/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by training them through a reward-based process, rather than relying only on labeled data. RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
@@ -21,10 +22,10 @@ Reinforcement fine-tuning is supported for the following models:
 | Model | Version | RFT support | Status |
 | ----- | ------- | ----------- | ------ |
 | `o4-mini` | `2025-04-16` | Yes | GA |
-| `gpt-5` | `2025-08-07` | Yes | Private preview |
+| `gpt-5` | `2025-08-07` | Yes | GA |
 
 > [!NOTE]
-> GPT-5 support for reinforcement fine-tuning is in private preview and might not be available in your subscription.
+> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
 
 ## Requirements
 
