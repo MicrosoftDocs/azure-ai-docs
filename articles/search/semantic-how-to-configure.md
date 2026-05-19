@@ -48,6 +48,9 @@ You can create up to 100 semantic configurations in a single index.
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 In the `2026-05-01-preview` API, supported agentic retrieval flows can use
 Azure AI Search ranking behavior without requiring an explicit semantic
 configuration on the underlying index. This preview behavior helps teams start
