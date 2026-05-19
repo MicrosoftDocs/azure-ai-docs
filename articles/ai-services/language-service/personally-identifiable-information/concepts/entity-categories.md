@@ -32,7 +32,6 @@ Supported API versions:
 
 The following entities are currently in preview:
 
-The following entities are currently in preview:
 
   * [Airport](#type-airport-preview)
   * [DateOfBirth](#type-date-of-birth-preview)
