@@ -81,7 +81,7 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 ### Hosted agents (preview)
 
-[Hosted agents](concepts/hosted-agents.md) are code-based agents built with a framework of your choice and deployed as containers on Agent Service. You write the orchestration logic — tool calls, multi-step reasoning, agent-to-agent coordination — and Foundry manages the runtime, scaling, and infrastructure. This infrastructure will consist of isolated Micro VMs that will independently scale out to support your solution
+[Hosted agents](concepts/hosted-agents.md) are code-based agents built with a framework of your choice and deployed as containers on Agent Service. You write the orchestration logic — tool calls, multi-step reasoning, agent-to-agent coordination — and Foundry manages the runtime, scaling, and infrastructure. This infrastructure consists of isolated Micro VMs that independently scale out to support your solution.
 
 > [!NOTE]
 > Hosted agents are currently in public preview.
