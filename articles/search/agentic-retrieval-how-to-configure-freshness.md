@@ -12,6 +12,9 @@ zone_pivot_groups: search-csharp-python-rest
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 Freshness-aware retrieval lets an indexed knowledge source prefer newer
 content during retrieval. The knowledge source can include a freshness
 policy so Azure AI Search biases ranking toward recent documents without
