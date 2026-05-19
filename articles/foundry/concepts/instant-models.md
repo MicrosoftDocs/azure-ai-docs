@@ -24,7 +24,7 @@ With instant models, the workflow is:
 1. Create a Foundry project in **West US 3** (the only supported region during preview).
 1. Use a supported model name in your code. No deployment needed.
 
-The only change from deployment-based code is the `model` parameter. In the code below, change the name from `"gpt-5-mini"` to any instant model name.
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
 
 # [Python](#tab/python)
 
@@ -48,7 +48,12 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
+# [Foundry portal](#tab/portal)
 
+1. On the Home page of your project, select **Explore playgrounds**.
+1. Use the **Model** dropdown to switch among deployed and instant models.
+
+---
 
 The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
