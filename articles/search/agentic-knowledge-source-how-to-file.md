@@ -271,7 +271,7 @@ You can pass the following `ingestionParameters` properties to control how uploa
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `contentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
-| `embeddingModel` | A text embedding model that vectorizes text during processing and at query time. Supported models are `text-embedding-ada-002`, `text-embedding-3-small`, and `text-embedding-3-large`. | Object | Only `apiKey` is editable | No |
+| `embeddingModel` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Must be a valid embedding model. Supported `kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
 
 ## Upload files
 
