@@ -1,5 +1,5 @@
 ---
-title: Region availability for Foundry Models sold directly by Azure (intro)
+title: Region availability for Foundry Models sold by Azure (intro)
 author: msakande
 ms.author: mopeakande
 manager: nitinme
