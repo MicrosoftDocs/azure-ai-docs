@@ -93,7 +93,7 @@ Prompt agents are defined entirely through configuration — instructions, model
 | | Prompt agents | Workflow agents | Hosted agents (preview) |
 | --- | --- | --- | --- |
 | **Code required** | No | No (YAML optional) | Yes |
-| **Hosting** | Fully managed | Fully managed | Container-based, managed via Micro VM compute instances |
+| **Hosting** | Fully managed | Fully managed | Container-based, managed on isolated Micro VMs |
 | **Orchestration** | Single agent | Multi-agent, branching | Custom logic |
 | **Best for** | Prototyping, simple tasks | Multi-step automation | Full control, custom frameworks |
 
