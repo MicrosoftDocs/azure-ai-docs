@@ -131,7 +131,7 @@ Instant models draw from a per-model **global quota** pool assigned to your subs
 - Other deployment types (Regional Standard, Provisioned) use separate regional quota and don't affect your instant model capacity.
 - If instant model requests are throttled, you can request a quota increase or create a deployment with reserved capacity.
 
-For more details on how global and regional quota interact, see [Manage and increase quotas](../how-to/quota.md).
+For more details on how global and regional quotas interact, see [Manage and increase quotas](../how-to/quota.md).
 
 ## Enterprise controls
 
