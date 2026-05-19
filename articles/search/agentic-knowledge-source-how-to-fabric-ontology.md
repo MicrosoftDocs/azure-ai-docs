@@ -1,19 +1,20 @@
 ---
-title: Create a Fabric Ontology Knowledge Source
+title: Create a Fabric Ontology Knowledge Source (Preview)
 description: Learn how to create a Fabric Ontology knowledge source, which connects a Microsoft Fabric ontology to an agentic retrieval pipeline in Azure AI Search for ontology-backed answers.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
-# Create a Fabric Ontology knowledge source
+# Create a Fabric Ontology knowledge source (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> [!IMPORTANT]
+> The 2026-05-01-preview REST API version is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum ("DPA")](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-A *Fabric Ontology knowledge source* connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search, providing ontology-defined entities, relationships, and content as grounding data. Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns.
+A *Fabric Ontology knowledge source* (preview) connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search, providing ontology-defined entities, relationships, and content as grounding data. Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns.
 
-Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live data directly. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
+Unlike indexed knowledge sources, Fabric Ontology knowledge sources (preview) query live data directly. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
 
 ### Usage support
 
@@ -59,7 +60,7 @@ api-key: {{api-key}}
 
 **Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
 
-The following JSON is an example response for a Fabric Ontology knowledge source.
+The following JSON is an example response for a Fabric Ontology knowledge source (preview).
 
 ```json
 {
@@ -76,7 +77,7 @@ The following JSON is an example response for a Fabric Ontology knowledge source
 
 ## Create a knowledge source
 
-Run the following code to create a Fabric Ontology knowledge source.
+Run the following code to create a Fabric Ontology knowledge source (preview).
 
 ```http
 ### Create a Fabric Ontology knowledge source
@@ -101,7 +102,7 @@ Content-Type: application/json
 
 <!-- TO-DO (PM): Confirm whether these properties are correct for Fabric Ontology knowledge sources and update as needed. -->
 
-The following properties apply to Fabric Ontology knowledge sources.
+The following properties apply to Fabric Ontology knowledge sources (preview).
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -118,7 +119,7 @@ The following properties apply to Fabric Ontology knowledge sources.
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!NOTE]
-> Fabric Ontology knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead. <!-- TO-DO (PM): Is answer synthesis also required? -->
+> Fabric Ontology knowledge sources (preview) don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead. <!-- TO-DO (PM): Is answer synthesis also required? -->
 
 ## Query a knowledge base
 
@@ -128,15 +129,15 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Fabric Ontology knowledge sources use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the ontology item on behalf of the end user.
+Fabric Ontology knowledge sources (preview) use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the ontology item on behalf of the end user.
 
-Because Fabric Ontology knowledge sources don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Because Fabric Ontology knowledge sources (preview) don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Fabric Ontology–specific response fields
 
-Fabric Ontology knowledge sources return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
+Fabric Ontology knowledge sources (preview) return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
 
 - `fabricAnswer`: The ontology's natural-language answer.
 - `fabricRawData`: The structured data that grounded the answer, returned in CSV format.
