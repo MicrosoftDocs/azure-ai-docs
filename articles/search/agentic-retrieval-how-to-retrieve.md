@@ -979,6 +979,9 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 In the `2026-05-01-preview` API, model-backed activity records can include
 `modelName` when `includeActivity` is enabled. Use this field to confirm which
 configured model handled query planning, answer synthesis, or web
@@ -1100,6 +1103,9 @@ customer-visible model, the field is omitted.
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
 `failOnError` to mark a specific knowledge source as required for the retrieve
 request. Use this setting when a partial answer would be misleading or
@@ -1216,6 +1222,9 @@ always participate and must fail the request on error, set both properties to
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+
 In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
 `maxOutputDocuments` to cap output documents per knowledge source before
 final result selection. Use this setting when you want one source to
@@ -1311,6 +1320,9 @@ are available or when internal limits reduce the applied window.
 ### Limit final grounding documents
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
 
 In the `2026-05-01-preview` API, top-level `maxOutputDocuments` caps how
 many grounding documents are returned in the final retrieve response. Use this
