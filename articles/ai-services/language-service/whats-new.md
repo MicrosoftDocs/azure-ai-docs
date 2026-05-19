@@ -6,13 +6,38 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 03/17/2026
+ms.date: 05/19/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 # What's new in Azure Language in Foundry Tools?
 
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## June 2026
+
+* **Text PII detection generally available (`2026-05-01`)**. The GA API delivers quality improvements across common entity types. The following capabilities, previously in preview, are now generally available:
+
+  * **Anonymization**. The `syntheticReplacement` [redaction policy](personally-identifiable-information/how-to/redact-text-pii.md#redaction-policies) masks detected entities with synthetic replacement values.
+  * **Disable type-validation enforcement**. Bypass strict [entity type validation](personally-identifiable-information/how-to/redact-text-pii.md#disableentityvalidation) when operational efficiency takes priority.
+  * **Confidence threshold score**. Set a minimum [confidence score](personally-identifiable-information/how-to/redact-text-pii.md#confidencescorethreshold) to filter output by detection confidence.
+  * **Exclude values** from PII output and use **entity synonyms** for tailored detection.
+
+* **New Text PII preview entities (`2026-04-15-preview`)**. The preview API adds support for Password, PIN code, Zip code, and Airport code entity types. For a full list, see [entity categories](personally-identifiable-information/concepts/entity-categories.md).
+
+* **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.
+
+* **PII detection capabilities available in New Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [New Foundry](https://ai.azure.com/). For more information, see:
+
+  * [Text PII detection](personally-identifiable-information/text-pii-playground.md)
+  * [Conversation PII detection](personally-identifiable-information/conversation-pii-playground.md)
+  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md) (preview)
+
+* **Text Analytics for Health available in New Foundry**. The Text Analytics for Health playground is now available in [New Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
+
+* **Language detection available in New Foundry**. The language detection playground is now available in [New Foundry](https://ai.azure.com/). For more information, see the [Language detection quickstart](language-detection/quickstart.md).
+
+* **Open in Visual Studio Code**. New Foundry playgrounds for language detection, text PII detection, conversation PII detection, and Text Analytics for Health now support **Open in VS Code**. Select the option in the playground to export your current configuration directly to a preconfigured code sample in Visual Studio Code.
 
 ## February 2026
 
