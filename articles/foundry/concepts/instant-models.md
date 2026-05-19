@@ -21,7 +21,7 @@ Instant models let you call any supported model by name — no deployment requir
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-- A Foundry project in **West US 3** (the only supported region during preview). If you need to create a project, see [Create a project](../how-to/create-projects.md).
+- A Foundry project in **West US 3** (the only supported region for instant models during preview). If you need to create a project, see [Create a project](../how-to/create-projects.md).
 
 ## Start using models instantly
 
