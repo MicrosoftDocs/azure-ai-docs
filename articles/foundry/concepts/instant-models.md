@@ -72,7 +72,7 @@ Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 ### Why instant models matter
 
 - **Switch models by changing one string** — use any instant model name in the `model=` line, without creating or deleting deployments.
-- **Same API and SDK** — the same `responses.create()` calls work for both instant models and deployments.
+- **Same API and SDK** — the same calls work for both instant models and deployments.
 - **Works with your dev tools** — instant models integrate with Foundry CLI, VS Code, and CI/CD pipelines the same way deployments do.
 
 Deployments aren't going away. They remain the right choice when you need reserved throughput, custom content filters, data residency, or advanced enterprise configurations. Instant models simplify the getting-started experience so that deployments become something you level up to, not a gate you must pass before you can use a model.
@@ -84,6 +84,7 @@ Deployments aren't going away. They remain the right choice when you need reserv
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
 To see all models that support instant access:
+
 1. Open a project in **West US 3** in the new Foundry experience, 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
 1. In the model catalog, select **Instant** under **Capabilities** to view the available instant models.
