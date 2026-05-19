@@ -467,7 +467,7 @@ pip install -r requirements.txt \
 zip -r agent-code.zip main.py requirements.txt packages/
 ```
 
-# [PowerShell / Windows cmd](#tab/cmd)
+# [PowerShell / Windows cmd](#tab/powershell)
 
 ```cmd
 pip install -r requirements.txt --target packages --platform manylinux2014_x86_64 --python-version 3.13 --implementation cp --only-binary=:all:
