@@ -22,11 +22,32 @@ Instant models let you call any supported model by name — no deployment requir
 With instant models, the workflow is:
 
 1. Create a Foundry project in **West US 3** (the only supported region during preview).
-1. Pass a supported model name in your code. No deployment needed.
+1. Use a supported model name in your code. No deployment needed.
 
 The only change from deployment-based code is the `model` parameter. In the code below, change the name from `"gpt-5-mini"` to any instant model name.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
+
+ # [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/responses/quickstart-responses.cs":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
+
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java":::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
+
 
 
 The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
