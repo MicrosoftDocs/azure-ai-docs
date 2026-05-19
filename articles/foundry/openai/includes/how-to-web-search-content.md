@@ -747,9 +747,9 @@ import com.openai.credential.BearerTokenCredential;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseIncludable;
+import com.openai.models.responses.ToolChoiceOptions;
 import com.openai.models.responses.WebSearchTool;
 import com.openai.models.responses.WebSearchTool.Filters;
-import java.util.List;
 
 public class WebSearchDomainFilterExample {
     public static void main(String[] args) {
@@ -778,9 +778,8 @@ public class WebSearchDomainFilterExample {
             .model("gpt-5.5")
             .input("Please perform a web search on how semaglutide is used in the treatment of diabetes.")
             .addTool(webSearchTool)
-            .toolChoice(ResponseCreateParams.ToolChoice.ofOptions(
-                ResponseCreateParams.ToolChoiceOptions.AUTO))
-            .include(List.of(ResponseIncludable.WEB_SEARCH_CALL_ACTION_SOURCES))
+            .toolChoice(ToolChoiceOptions.AUTO)
+            .addInclude(ResponseIncludable.WEB_SEARCH_CALL_ACTION_SOURCES)
             .build();
 
         Response response = openAIClient.responses().create(params);
