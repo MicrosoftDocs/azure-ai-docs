@@ -96,6 +96,7 @@ To see all models that support instant access, open the [Foundry model catalog](
 | Require provisioned throughput (PTU) | Deployment |
 | Need data residency in a specific region | Deployment |
 | Custom content filtering policies | Deployment |
+| [Guardrails](../guardrails/guardrails-overview.md) | Deployment |
 | Endpoint-specific configuration (for example, custom RAI, version locks per endpoint) | Deployment |
 | Fine-grained quota partitioning across teams | Deployment |
 | Fine-tuned models | Deployment |
@@ -135,7 +136,7 @@ For more details on how global and regional quota interact, see [Manage and incr
 | Disable instant models entirely | Administrators can turn off instant models at the subscription level through Azure Policy |
 
 > [!IMPORTANT]
-> Custom Responsible AI (RAI) policies at the project level aren't supported for instant models during the preview. If you need custom content filtering policies, use a deployment.
+> [Guardrails](../guardrails/guardrails-overview.md) and custom Responsible AI (RAI) policies aren't supported for instant models during the preview. If you need guardrails or custom content filtering policies, use a deployment.
 
 ## Deployment name collisions
 
@@ -145,7 +146,7 @@ New deployments can't use a name that matches an existing model name. If you hav
 
 - Available in **West US 3** only.
 - Fine-tuned models aren't supported. To use a fine-tuned model, create a deployment.
-- Custom RAI policies and content filters aren't configurable for instant models.
+- [Guardrails](../guardrails/guardrails-overview.md), custom RAI policies, and content filters aren't configurable for instant models.
 - Only the models listed in [Supported models](#supported-models) are eligible.
 
 ## Related content
