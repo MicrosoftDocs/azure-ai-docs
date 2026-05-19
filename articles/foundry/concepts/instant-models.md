@@ -81,7 +81,7 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
-To see all models that support instant access, open the [Foundry model catalog](https://ai.azure.com/explore/models) and filter **Deployment options** to **Instant**.
+To see all models that support instant access, from a project in **West US 3**, open the Foundry model catalog and filter **Deployment options** to **Instant**.
 
 > [!NOTE]
 > During the preview, instant models are available in projects in **West US 3** only.
