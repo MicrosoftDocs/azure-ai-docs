@@ -10,7 +10,6 @@ author: sdgilley
 ai-usage: ai-assisted
 ms.custom:
   - build-2025
-  - update-code
 # customer intent: As a developer, I want to understand how instant models work so that I can call models without creating deployments first.
 ---
 
