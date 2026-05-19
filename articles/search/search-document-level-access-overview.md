@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Conceptual overview of document-level permissions in Azure AI Search.
-ms.date: 05/17/2026
+ms.date: 05/19/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -111,7 +111,11 @@ The pattern includes the following components:
 
 - Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-honoring-at-query-time) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- Starting in the 2026-05-01-preview REST API, ACL changes on items with unique permissions are detected and refreshed on each successful indexer run. Changes on parent scopes (site, library, list, or folder) that are inherited by child items still require an explicit refresh. For details, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
+- Starting in the 2026-05-01-preview REST API, ACL changes on items with unique permissions are detected and refreshed on each successful indexer run. This applies to:
+  - Items with unique permissions
+  - Items that inherit permissions from parent scopes (such as libraries or folders)
+However, changes made at parent scopes (such as site, library, list, or folder-level updates that cascade to child items) aren't automatically detected when they occur at the source and still require an explicit refresh. For details, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
+
 - At query time, Azure AI Search checks the Microsoft Entra principal in the query token against SharePoint ACL metadata stored in the index. It excludes any items the caller isn't authorized to access.
 
 During preview, the following principal types are supported in SharePoint ACLs:
