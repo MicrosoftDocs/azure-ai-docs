@@ -122,6 +122,20 @@ After deployment finishes, verify that all resources are configured correctly:
 1. **Check public network access**: Open each resource (Foundry, Azure AI Search, Azure Storage, Azure Cosmos DB) and confirm **Public network access** is set to **Disabled**.
 1. **Validate private endpoint DNS resolution**: From a machine connected to the VNet, run `nslookup` against each endpoint listed in the [DNS zone configurations summary](#dns-zone-configurations-summary). Verify that each name resolves to a private IP address (10.x, 172.16-31.x, or 192.168.x).
 1. **Test agent connectivity**: Access your Foundry project from within the VNet (see [Access your secured agents](#access-your-secured-agents)) and confirm you can create and run an agent.
+1. **Configure Role assignments**: Run the following commands to assign the required roles. The first grants Managed Identity Operator on the user-assigned managed identity, and the second grants Network Contributor on the remote VNet for cross-tenant access. 
+
+```
+az role assignment create \
+   --assignee <your-principal-id> \
+   --role "Managed Identity Operator" \
+   --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<id>"
+```
+```
+ az role assignment create \
+   --assignee <service-principal-object-id-in-remote-tenant> \
+   --role "Network Contributor" \
+   --scope "/subscriptions/<remote-subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<vnet-name>"
+```
 
 ## Limitations 
 
