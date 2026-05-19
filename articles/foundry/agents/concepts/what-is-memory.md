@@ -111,7 +111,7 @@ The following limitations and quotas apply to memory in Foundry Agent Service. F
 
 ### Limitations
 
-- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - For low-level memory APIs, you must set `scope` explicitly in each request. Automatic scope resolution from the caller's identity is only supported when you use the memory search tool with `scope` set to `{{$userId}}`. For more information, see [Understand scope](../how-to/memory-usage.md#understand-scope).
 
 ### Quotas

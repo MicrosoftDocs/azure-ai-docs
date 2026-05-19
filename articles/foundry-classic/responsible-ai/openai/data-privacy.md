@@ -1,6 +1,6 @@
 ---
-title: "Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)" 
-description: "This document details issues for data, privacy, and security for Azure Direct Models (classic)"
+title: "Data, privacy, and security for Foundry Models sold by Azure in Microsoft Foundry (classic)" 
+description: "This document details issues for data, privacy, and security for Models sold by Azure (classic)"
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -14,7 +14,7 @@ ms.custom:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic) 
+# Data, privacy, and security for Models sold by Azure in Microsoft Foundry (classic) 
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/data-privacy.md)
 
