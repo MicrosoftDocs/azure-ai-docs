@@ -14,6 +14,6 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Limited access for Azure Direct Models
+# Limited access for Foundry Models sold by Azure
 
 [!INCLUDE [limited-access content](../includes/openai-limited-access-content.md)]

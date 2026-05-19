@@ -409,7 +409,7 @@ curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/edit
 
 See [the Black Forest Labs model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs) for available models.
 
-For more details about model capabilities, see [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about model capabilities, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### FLUX.2 \[flex\]
 
@@ -500,6 +500,6 @@ See the [GitHub sample for image generation with FLUX models in Microsoft Foundr
 
 ## Related content
 
-- [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Configure Microsoft Entra ID authentication](../how-to/configure-entra-id.md)

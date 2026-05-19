@@ -10,7 +10,7 @@ ms.date: 04/29/2026
 ms.custom: include, classic-and-new
 ---
 
-This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
 ## Updates to quota management after 05/07/2026
 
