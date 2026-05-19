@@ -430,7 +430,7 @@ String query = "Why do suburban belts display larger "
 messages.add(Map.of("role", "user", "content", query));
 
 KnowledgeBaseRetrievalResult retrievalResult =
-    retrieve(baseClient, query, knowledgeSourceName);
+    retrieve(baseClient, messages, knowledgeSourceName);
 
 String responseText =
     ((KnowledgeBaseMessageTextContent) retrievalResult
@@ -441,23 +441,37 @@ messages.add(
     Map.of("role", "assistant", "content", responseText));
 ```
 
-The `retrieve` helper builds a `KnowledgeBaseRetrievalOptions` that uses a `KnowledgeRetrievalSemanticIntent` for the latest user query, attaches the knowledge source parameters, and returns a `KnowledgeBaseRetrievalResult`:
+The `retrieve` helper builds a `KnowledgeBaseRetrievalOptions` from the conversation history, sets the retrieval reasoning effort, attaches the knowledge source parameters, and returns a `KnowledgeBaseRetrievalResult`:
 
 ```java
 private static KnowledgeBaseRetrievalResult retrieve(
         KnowledgeBaseRetrievalClient client,
-        String query,
+        List<Map<String, String>> messages,
         String knowledgeSourceName) {
+    List<KnowledgeBaseMessage> retrievalMessages = new ArrayList<>();
+    for (Map<String, String> message : messages) {
+        String role = message.get("role");
+        if ("system".equals(role)) {
+            continue;
+        }
+        retrievalMessages.add(
+            new KnowledgeBaseMessage(
+                new KnowledgeBaseMessageTextContent(
+                    message.get("content")))
+                .setRole(role));
+    }
+
     KnowledgeBaseRetrievalOptions request =
-        new KnowledgeBaseRetrievalOptions();
-    request.setIntents(
-        new KnowledgeRetrievalSemanticIntent(query));
-    request.setIncludeActivity(true);
-    request.setKnowledgeSourceParams(Arrays.asList(
-        new SearchIndexKnowledgeSourceParams(knowledgeSourceName)
-            .setIncludeReferences(true)
-            .setIncludeReferenceSourceData(true)
-    ));
+        new KnowledgeBaseRetrievalOptions()
+            .setMessages(retrievalMessages)
+            .setRetrievalReasoningEffort(
+                new KnowledgeRetrievalLowReasoningEffort())
+            .setIncludeActivity(true)
+            .setKnowledgeSourceParams(Arrays.asList(
+                new SearchIndexKnowledgeSourceParams(knowledgeSourceName)
+                    .setIncludeReferences(true)
+                    .setIncludeReferenceSourceData(true)
+            ));
 
     return client.retrieve(request);
 }
@@ -505,7 +519,7 @@ String nextQuery = "How do I find lava at night?";
 messages.add(
     Map.of("role", "user", "content", nextQuery));
 
-retrievalResult = retrieve(baseClient, nextQuery, knowledgeSourceName);
+retrievalResult = retrieve(baseClient, messages, knowledgeSourceName);
 ```
 
 #### Review the new response, activity, and references
