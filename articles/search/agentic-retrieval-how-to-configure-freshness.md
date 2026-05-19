@@ -13,24 +13,26 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Freshness-aware retrieval lets an indexed knowledge source prefer newer
-content during retrieval. In the `2026-05-01-preview` API, the knowledge
-source can include a freshness policy so Azure AI Search biases ranking
-toward recent documents without requiring callers to send custom ranking
-logic on each retrieve request.
+content during retrieval. The knowledge source can include a freshness
+policy so Azure AI Search biases ranking toward recent documents without
+requiring callers to send custom ranking logic on each retrieve request.
 
 Freshness is a ranking bias, not a hard filter. Older documents can still
 appear when they're strongly relevant to the query.
 
 ## Prerequisites
 
-+ An Azure AI Search service that supports the `2026-05-01-preview` REST API
-  or an equivalent preview SDK.
-
 + An ingestion-type knowledge source, such as an Azure Blob knowledge source,
   that creates and maintains an Azure AI Search index.
 
-+ Permission to create or update knowledge sources and query the associated
-  [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that
+  references the knowledge source.
+
++ Permission to create and use objects on Azure AI Search. We recommend
+  [role-based access](search-security-rbac.md). **Search Service Contributor**
+  can create and update knowledge sources. **Search Index Data Reader** can
+  query the knowledge base. Alternatively, you can use
+  [API keys](search-security-api-keys.md) if a role assignment isn't feasible.
 
 ## When to enable freshness-aware retrieval
 
@@ -127,31 +129,24 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-The freshness policy is part of the source ingestion parameters. For the
-preview, the service maps source modification metadata to a generated
-`Edm.DateTimeOffset` freshness field in the underlying index. The generated
-field is filterable, retrievable, and sortable. The `boostingDuration` value
-uses the same ISO 8601 duration format as scoring profile freshness functions,
-such as `P90D` for 90 days.
+The freshness policy is part of the source ingestion parameters. The service
+maps source modification metadata to a generated `Edm.DateTimeOffset`
+freshness field in the underlying index. The generated field is filterable,
+retrievable, and sortable. The `boostingDuration` value uses the same ISO 8601
+duration format as scoring profile freshness functions, such as `P90D` for
+90 days.
 
 ## Validate ranking behavior
 
-After you update the knowledge source, run queries that can return both recent
-and older content. A successful configuration surfaces newer relevant
-documents earlier without turning retrieval into a simple date sort.
+The freshness field is generated at ingestion time, so the policy applies to
+content that's ingested after the policy is in place. Once content is
+ingested, run retrieve requests that can return both recent and older
+content. A successful configuration surfaces newer relevant documents earlier
+without turning retrieval into a simple date sort.
 
-Use the following validation workflow:
-
-1. Run a retrieve request before enabling freshness-aware retrieval and save
-   the references returned by the response.
-1. Enable the freshness policy on the indexed knowledge source.
-1. Run the same retrieve request again.
-1. Compare the reference order and verify that recent, relevant documents move
-   higher in the result set.
-
-If ranking doesn't change as expected, inspect the freshness field in the
-underlying index. Missing, stale, or inconsistent date values reduce the
-quality of the freshness signal.
+If ranking doesn't reflect freshness as expected, inspect the freshness field
+in the underlying index. Missing, stale, or inconsistent date values reduce
+the quality of the freshness signal.
 
 ## Understand interaction with scoring profiles
 
@@ -159,13 +154,14 @@ Freshness-aware retrieval builds on Azure AI Search ranking behavior instead
 of replacing relevance scoring. The final ranking still considers query
 relevance, configured retrieval settings, and other ranking signals.
 
-In this preview, freshness-aware retrieval is implemented with an Azure AI
-Search scoring profile that applies a freshness function to the generated
-freshness field. The scoring profile influences the initial ranking set before
-semantic reranking, so freshness complements query relevance instead of
-replacing it. Existing knowledge sources that don't have the generated
-freshness field continue to work, but the freshness scoring profile isn't
-applied until the source is recreated or updated to produce that field.
+Freshness-aware retrieval is implemented with an Azure AI Search
+[scoring profile](index-add-scoring-profiles.md) that applies a freshness
+function to the generated freshness field. The scoring profile influences the
+initial ranking set before semantic reranking, so freshness complements query
+relevance instead of replacing it. Existing knowledge sources that don't have
+the generated freshness field continue to work, but the freshness scoring
+profile isn't applied until the source is recreated or updated to produce
+that field.
 
 ## Related content
 
