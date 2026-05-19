@@ -45,6 +45,8 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + The [2026-05-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) REST API. This article uses REST examples.
 
++ If Purview sensitivity labels functionality is enabled in the knowledge source, this feature isn't supported, since the images can't be exported to the asset store at this time.
+
 ## How image serving works
 
 Image serving has two phases:
