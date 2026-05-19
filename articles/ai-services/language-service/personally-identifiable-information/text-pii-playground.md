@@ -15,7 +15,7 @@ ms.custom: language-service-pii
 # Use the text PII playground in Azure AI Foundry
 
 > [!NOTE]
-> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [New Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using New Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 The text PII playground in Azure AI Foundry lets you detect and redact personally identifiable information (PII) from raw text interactively, without writing code. You can submit sample text, configure detection and redaction options, and review detected entities before integrating the feature into your application.
 
@@ -40,7 +40,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage.":::
+   :::image type="content" source="../media/new-foundry-homepage.png" alt-text="Screenshot of the New Foundry homepage.":::
 
 There are two ways to access the text PII interface:
 
@@ -86,3 +86,26 @@ The **Azure-Language-Text-PII redaction** model identifies and redacts personall
     | **Length** | The character length of the entity. |
 
 Verify that the detected entities match the PII in your input text. Use the **Edit** button to modify **Configure** parameters and rerun detection as needed.
+
+## Open in Visual Studio Code
+
+After validating your scenario in the playground, select **Open in VS Code** to carry your current configuration directly into a development environment—no manual setup required.
+
+1. Configure your scenario in the playground:
+   - Select your API version and model version.
+   - Enter and test your sample input.
+   - Adjust options such as entity types, redaction policy, and excluded values.
+1. Select **Open in VS Code**.
+1. Visual Studio Code opens with a preconfigured code sample that reflects your playground configuration, including your API version, model, and redaction settings.
+
+> [!TIP]
+> Use the playground to compare outputs across API versions—for example, preview versus GA—before exporting your configuration to code.
+
+## Next steps
+
+After opening in Visual Studio Code:
+
+1. Add your authentication credentials.
+1. Replace the sample input with your production data.
+1. Run and validate the request.
+1. Integrate the code into your application workflow.
