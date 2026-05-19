@@ -320,7 +320,7 @@ We recommend the [latest preview REST API](/rest/api/searchservice/documents/sea
 
    + `maxTextRecallSize` specifies the number of BM25-ranked results to provide to the Reciprocal Rank Fusion (RRF) ranker used in hybrid queries. The default is 1,000. The maximum is 10,000.
 
-   + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses all documents that match the text query, even if some of those documents aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
+   + `countAndFacetMode` reports the count and facet scope for a hybrid query. The default, `countAllResults`, uses the full hybrid result set, including all documents that match the text query, even if some of those text matches aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Use `countRetrievableResults` to scope count and facets to the documents retrieved for ranking, including `maxTextRecallSize` BM25-ranked documents and the `k` vector matches.
 
 1. Set `maxTextRecallSize`:
 
