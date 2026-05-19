@@ -380,6 +380,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
+|`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 ### Audio API
 
