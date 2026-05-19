@@ -46,7 +46,7 @@ If you use `azd` or the VS Code extension, the tooling handles most RBAC assignm
 - **Foundry User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity—which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
+> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Foundry User** to that identity—which is why **Foundry Project Manager** is recommended over **Foundry User** alone.
 > * While `azd` and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
