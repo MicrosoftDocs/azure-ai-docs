@@ -40,7 +40,7 @@ You can create the following knowledge sources:
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
-| [`"fabricDataAgent"` API (preview)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricdataagentknowledgesource) queries a Microsoft Fabric data agent directly. | Remote |
+| [`"fabricDataAgent"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricdataagentknowledgesource) (preview) queries a Microsoft Fabric data agent directly. | Remote |
 
 Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
 
@@ -61,7 +61,7 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
-+ [How to create a Fabric Data Agent knowledge source (preview) (queries a data agent directly)](agentic-knowledge-source-how-to-fabric-data-agent.md)
++ [How to create a Fabric Data Agent knowledge source (queries a data agent directly)](agentic-knowledge-source-how-to-fabric-data-agent.md)
 + [How to create a Web Knowledge Source resource (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After you create the knowledge source, reference it in a knowledge base.
