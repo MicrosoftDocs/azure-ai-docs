@@ -7,7 +7,7 @@ author: solarrezaei
 ms.author: solarrezaei
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 05/08/2026
+ms.date: 05/19/2026
 ms.custom: references_regions
 # Customer intent: As a developer, I want to evaluate the quality of my Voice Live voice agent so I can measure conversational quality and identify areas for improvement.
 ---
@@ -33,6 +33,15 @@ The harness supports two modes:
 > The evaluation harness measures conversational quality, such as task completion, intent resolution, and groundedness. It doesn't measure speech-specific metrics like Mean Opinion Score (MOS) or Word Error Rate (WER). It also isn't designed for competitive benchmarking.
 
 For the full source code and developer reference, see the [Voice Live evaluation harness on GitHub](https://github.com/microsoft-foundry/voicelive-evaluation).
+
+## Why evaluate your Voice Live agent?
+
+Voice Live supports multiple models, voice activity detection (VAD) modes, voices, and session configurations. Evaluation helps you make data-driven decisions about which combination works best for your scenario. Common reasons to evaluate include:
+
+- **Compare configurations.** Measure how different models (such as `gpt-realtime` versus `gpt-5`), VAD types, or voice settings affect response quality for your specific use case.
+- **Catch regressions.** Run evaluations before and after configuration changes to confirm that updates improve quality and don't introduce new problems.
+- **Identify weak points.** Find where your agent struggles, whether it's intent recognition, task completion, tool calling, or response accuracy, so you can improve prompts, tool definitions, or session settings.
+- **Validate before deployment.** Establish a quality baseline across a representative dataset before you move a configuration to production.
 
 ## Prerequisites
 
@@ -190,6 +199,21 @@ The evaluation harness uses Microsoft Foundry [built-in evaluators](/azure/ai-fo
 
 Additional evaluators available with `--evaluators all`: `groundedness`, `relevance`, `tool_call_success`, `fluency`, `coherence`. For details on each evaluator, see [Built-in evaluators reference](/azure/ai-foundry/concepts/built-in-evaluators).
 
+### Selecting evaluators
+
+By default, the harness runs the eight evaluators listed in the preceding table. You can customize evaluator selection with the `--evaluators` flag:
+
+```bash
+# Run all available evaluators (default + groundedness, relevance, fluency, coherence, tool_call_success)
+python voice_agent_audio_input_evaluation.py -f dataset.jsonl --evaluators all
+
+# Run only specific evaluators
+python voice_agent_audio_input_evaluation.py -f dataset.jsonl --evaluators intent_resolution task_completion response_completeness
+```
+
+> [!NOTE]
+> Custom evaluators aren't supported in this release. You can only select from the built-in evaluator set provided by Microsoft Foundry.
+
 ### Score interpretation
 
 Evaluators produce different output types depending on their category.
@@ -223,16 +247,39 @@ If your evaluation scores are unexpectedly low, complete these steps before you 
 
 1. **Try different session configurations.** Different model and VAD settings produce different response quality. Test VAD mode compared to PTT mode, and try different models.
 
+## Evaluation data and output
+
+The harness generates structured output at each stage of the pipeline that you can use for debugging and analysis.
+
+### Local output
+
+Each evaluation run produces an output folder with the following artifacts:
+
+- **Output JSONL** — One line per evaluation turn, containing the original dataset fields, the Voice Live response, transcriptions, latency measurements, and evaluator scores.
+- **Aggregated metrics** — Summary statistics across all turns, including per-evaluator averages.
+- **Run metadata** — Configuration, timestamps, API version, and environment details for reproducibility.
+
+### Data submitted to Foundry
+
+When the harness submits results to Foundry for scoring, it sends the conversation transcripts, ground truth answers, and system prompts. Audio files aren't uploaded to Foundry. The evaluators score the text-based conversation data and return results to the local output.
+
+### API version
+
+The harness uses the Voice Live preview API. The API version is pinned in the harness source code and appended automatically to the endpoint URL. For the current API version, see the [harness repository configuration](https://github.com/microsoft-foundry/voicelive-evaluation).
+
+> [!NOTE]
+> Session-level logging and OpenTelemetry integration for Voice Live evaluation aren't available in this release. These capabilities are planned for a future update.
+
 ## Known issues
 
 Some Foundry built-in evaluators have known issues that can affect Voice Live evaluation results.
 
 | Evaluator | Issue | Impact | Status |
 |-----------|-------|--------|--------|
-| **Task Adherence** | The model re-introduces itself every turn in multi-turn conversations. | Inflates scores for greetings and penalizes natural follow-ups. | Fix in progress |
-| **Task Completion** | High variance across identical runs. | Run-to-run comparison is unreliable for this metric. | Under investigation |
-| **Fluency / Coherence** | Consistently returns the maximum score regardless of actual response quality. | Provides no useful signal. Consider excluding these evaluators. | Consider removing |
-| **Response Completeness** | A known bug caused misleading scores when comparing certain model configurations. | Validate results by inspecting raw Voice Live responses in the output JSONL. | Mitigated |
+| **Task Adherence** | May overemphasize agent self-introduction in multi-turn conversations. | Can inflate scores for greetings and penalize natural follow-ups. | Known limitation |
+| **Task Completion** | Shows high variance across identical runs. | Run-to-run comparison is unreliable for this metric. Average multiple runs. | Known limitation |
+| **Fluency / Coherence** | Tends to return the maximum score regardless of actual response quality. | Provides limited useful signal. Consider excluding these evaluators from analysis. | Known limitation |
+| **Response Completeness** | A known issue can cause misleading scores when comparing certain model configurations. | Validate results by inspecting raw Voice Live responses in the output JSONL. | Mitigated |
 
 For the complete list of known issues and workarounds, see the [evaluation harness README](https://github.com/microsoft-foundry/voicelive-evaluation/blob/main/evaluation_harness/README.md#known-evaluator-issues).
 
@@ -254,5 +301,3 @@ For the complete list of known issues and workarounds, see the [evaluation harne
 - [View evaluation results](/azure/ai-foundry/how-to/evaluate-results)
 - [Voice Live evaluation harness on GitHub](https://github.com/microsoft-foundry/voicelive-evaluation)
 
-<!-- TODO: Add link to Foundry solution template when published -->
-<!-- - [Voice Live evaluation solution template](TBD) -->
