@@ -22,29 +22,36 @@ Instant models let you call any supported model by name — no deployment requir
 With instant models, the workflow is:
 
 1. Create a Foundry project in **West US 3** (the only supported region during preview).
-1. Use a supported instant model name in your code. No deployment needed.
-
-The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+1. Use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
 # [Python](#tab/python)
+
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
 
  # [C#](#tab/csharp)
 
+ The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/responses/quickstart-responses.cs":::
 
 # [TypeScript](#tab/typescript)
+
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java":::
 
 # [REST API](#tab/rest)
 
-Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
@@ -55,7 +62,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 ---
 
-The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
 ### Why instant models matter
 
