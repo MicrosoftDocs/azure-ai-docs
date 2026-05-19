@@ -5,7 +5,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ---
 
@@ -194,7 +194,7 @@ api-key: {admin-api-key}
   ],
   "knowledgeSourceParams": [
     {
-      "name": "my-blob-ks",
+      "knowledgeSourceName": "my-blob-ks",
       "kind": "azureBlob",
       "enableImageServing": true
     }
