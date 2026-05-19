@@ -47,7 +47,7 @@ Before you begin, make sure you have:
 - **Azure RBAC roles**:
   - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
   - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Work IQ endpoint.
-- A **Microsoft Entra admin** who can create app registrations and grant admin consent for `WorkIQAgent.Ask` in your tenant.
+- A **Microsoft Entra Global Administrator** who can grant admin consent for `WorkIQAgent.Ask` in your tenant and create or delegate app registrations.
 
 ## Connect to Work IQ
 
@@ -189,6 +189,12 @@ Only **Bring your own Entra app** (On-Behalf-Of authentication) is supported for
 
 An Entra admin must complete the following steps before you can create a Work IQ connection in Foundry.
 
+#### Provision the Work IQ service principal (one-time)
+
+Before you create the app registration, a Global Administrator must provision the Work IQ service principal in your tenant. If this step is skipped, the **Work IQ** option won't appear when you search API permissions.
+
+Follow [Step 1: Create the Work IQ service principal](/microsoft-365/copilot/extensibility/work-iq-api-quickstart?tabs=entra-admin#step-1-create-the-work-iq-service-principal-graph-explorer) in the Work IQ API quickstart. A 201 Created response from Graph Explorer confirms success. A conflict error means the principal already exists — continue to the next step.
+
 #### Create the app registration
 
 1. Go to the [Microsoft Entra admin center](https://entra.microsoft.com/). In the left navigation, select **Entra ID** > **App registrations**.
@@ -201,6 +207,9 @@ An Entra admin must complete the following steps before you can create a Work IQ
    :::image type="content" source="../../media/tools/work-iq/entra-work-iq-permission.png" alt-text="Screenshot of the Work IQ delegated permissions selection in the Microsoft Entra admin center, showing WorkIQAgent.Ask permission with Admin consent required." lightbox="../../media/tools/work-iq/entra-work-iq-permission.png":::
 
 1. Select **Grant admin consent for \[your tenant\]**. Review the confirmation dialog and select **Yes**.
+
+   > [!IMPORTANT]
+   > Granting tenant-wide admin consent requires the **Global Administrator** role in Microsoft Entra ID. If you don't have this role, ask your organization's Global Administrator to complete this step.
 1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, then immediately copy the secret **Value** — it's only shown once.
 1. Copy your **Directory (tenant) ID** from the **Microsoft Entra ID** overview page.
 
