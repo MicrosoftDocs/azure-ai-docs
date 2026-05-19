@@ -43,7 +43,7 @@ The Azure Content Understanding skill has the following limitations:
 
 ## Supported regions
 
-The Azure Content Understanding skill calls the [Content Understanding 2026-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2026-05-01-preview&preserve-view=true). Your Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
+The Azure Content Understanding skill calls the [Content Understanding 2025-11-01 REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-11-01&preserve-view=true). Your Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
 
 Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
 
@@ -90,7 +90,7 @@ Parameters are case sensitive.
 | Parameter name | Allowed values | Description |
 |--------------------|----------------|-------------|
 | `extractionOptions` |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For example, if `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata that provides page location and visual information related to where the content was extracted.  |
-| `modelName` | String, for example `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat-completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. |
+| `modelName` | String, for example `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat-completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. Here's the list of [generative models supported by this skill](/azure/ai-services/content-understanding/service-limits#supported-generative-models)  |
 | `modelDeployment` | String. | Optional. Available starting with the `2026-05-01-preview` REST API. The deployment name of the Azure OpenAI model in the Foundry resource that's attached to the skillset. Must be specified together with `modelName`. |
 | `chunkingProperties` | See the following table. | Options that encapsulate how to chunk text content. |
 
@@ -153,11 +153,8 @@ Each element in `normalized_images` has the following fields:
 
 | Field | Type | Description |
 |---|---|---|
-| `$type` | String | MIME type of the image, for example `"image/jpeg"`. |
+| `id` | String | Unique identifier for the image. |
 | `data` | String | Base64-encoded image data. |
-| `width` | Integer | Width of the image in pixels. |
-| `height` | Integer | Height of the image in pixels. |
-| `imageId` | String | Unique identifier for the image. |
 | `imagePath` | String | Path reference to the image within the document, for example `"figures/0"`. |
 | `locationMetadata` | Object | Page range and positional data. Present when `extractionOptions` includes `locationMetadata`. |
 
