@@ -78,6 +78,19 @@ Due to high demand, limit increase requests are evaluated individually.
 
 <sup>1</sup> Current APIs allow up to 10 custom headers, which the pipeline passes through and returns. If you exceed this header count, your request results in an HTTP 431 error. To resolve this error, reduce the header volume. **Future API versions won't pass through custom headers**. Don't depend on custom headers in future system architectures.
 
+### Model router quota tiers
+
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../../openai/quotas-limits.md#quota-and-limits-tiers).
+
+| Tier   | DataZoneStandard TPM | GlobalStandard TPM |
+|:-------|---------------------:|-------------------:|
+| Tier 1 | 300,000              | 1,000,000          |
+| Tier 2 | 670,000              | 2,000,000          |
+| Tier 3 | 1,000,000            | 4,000,000          |
+| Tier 4 | 2,000,000            | 7,000,000          |
+| Tier 5 | 3,000,000            | 10,000,000         |
+| Tier 6 | 4,000,000            | 15,000,000         |
+
 ## Usage tiers
 
 Global Standard deployments use Azure's global infrastructure to dynamically route customer traffic to the data center with best availability for the customer's inference requests. This infrastructure enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
