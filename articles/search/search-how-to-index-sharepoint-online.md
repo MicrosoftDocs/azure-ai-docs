@@ -236,7 +236,7 @@ For SharePoint indexing, the data source must have the following required proper
 
 + **name** is the unique name of the data source within your search service.
 + **type** must be "sharepoint". This value is case-sensitive.
-+ **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Microsoft Entra tokens. An example SharePoint endpoint is `https://microsoft.sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
++ **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Microsoft Entra tokens. An example SharePoint endpoint is `https://[your-tenant-name].sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
 + **container** specifies which document library to index. Properties [control which documents are indexed](#controlling-which-documents-are-indexed).
 
 To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
@@ -256,7 +256,7 @@ api-key: [admin key]
 }
 ```
 
-For user-assigned managed identities, supply the `identity` block in the data source and omit the FIC fields (`FederatedCredentialObjectId` or `FederatedCredentialApplicationId`) from the connection string. For system-assigned managed identities, set one of the FIC fields in the connection string (see the connection-string formats below).
+For user-assigned managed identities, supply the `identity` block in the data source and omit `FederatedCredentialApplicationId` from the connection string. For system-assigned managed identities, set `FederatedCredentialApplicationId` in the connection string (see the connection-string formats below).
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
@@ -287,9 +287,7 @@ The format of the connection string changes based on whether the indexer is usin
 
     `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];ApplicationSecret=[Azure AD App client secret];TenantId=[SharePoint site tenant id]`
 
-+ Application API permissions with secretless (federated identity credential) connection string format. Use either of the following FIC fields:
-
-    `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialObjectId=[selected managed identity object (principal) ID];TenantId=[SharePoint site tenant id]`
++ Application API permissions with secretless (federated identity credential) connection string format:
 
     `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialApplicationId=[Entra application (client) ID that the FIC federates to];TenantId=[SharePoint site tenant id]`
 
@@ -297,15 +295,17 @@ The following table describes each connection string field.
 
 | Field | Required | Description |
 |---|---|---|
-| `SharePointOnlineEndpoint` | Yes | SharePoint site URL (for example, `https://contoso.sharepoint.com`). |
+| `SharePointOnlineEndpoint` | Yes | SharePoint site URL (for example, `https://[your-tenant-name].sharepoint.com`). |
 | `ApplicationId` | Yes | Microsoft Entra application (client) ID of the ingestion app. Must be a valid GUID. |
 | `TenantId` | Optional | Microsoft Entra tenant GUID. Required when the SharePoint site is in a different tenant from the search service. |
 | `ApplicationSecret` | Conditional | Client secret of the ingestion app. Use for secret-based authentication. |
-| `FederatedCredentialObjectId` | Conditional (FIC mode) | Object (principal) ID of the federated identity credential on the ingestion app. Must be a valid GUID. |
-| `FederatedCredentialApplicationId` | Conditional (FIC mode) | Microsoft Entra application (client) ID that the federated identity credential federates to. Must be a valid GUID. Validated at runtime against the application ID resolved from the managed identity, which provides stronger validation than `FederatedCredentialObjectId`. Prefer this field for new configurations. |
+| `FederatedCredentialApplicationId` | Conditional (FIC mode) | Microsoft Entra application (client) ID that the federated identity credential federates to. Must be a valid GUID. |
 
 > [!IMPORTANT]
-> For FIC mode, supply exactly one of `FederatedCredentialObjectId` or `FederatedCredentialApplicationId` — they're mutually exclusive. Either FIC field is also mutually exclusive with `ApplicationSecret`. Connection strings that combine these fields are rejected on data source create or update.
+> `FederatedCredentialApplicationId` and `ApplicationSecret` are mutually exclusive. Connection strings that combine them are rejected on data source create or update.
+
+> [!NOTE]
+> For backward compatibility, the SharePoint indexer still accepts `FederatedCredentialObjectId` (the object/principal ID of the federated identity credential on the ingestion app) in the connection string, so existing data sources keep working without changes. Use `FederatedCredentialApplicationId` for new and updated data sources.
 
 You can get `tenantId` from the **Overview** page in the Microsoft Entra admin center in your Microsoft 365 subscription.
 
@@ -325,7 +325,7 @@ api-key: [admin key]
   "name": "sharepoint-ds",
   "type": "sharepoint",
   "credentials": {
-    "connectionString": "SharePointOnlineEndpoint=https://contoso.sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[Entra application (client) ID that the FIC federates to]"
+    "connectionString": "SharePointOnlineEndpoint=https://[your-tenant-name].sharepoint.com;ApplicationId=[Azure AD App ID];TenantId=[SharePoint site tenant id];FederatedCredentialApplicationId=[Entra application (client) ID that the FIC federates to]"
   },
   "container": { "name": "defaultSiteLibrary" }
 }
@@ -630,8 +630,8 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 | includeLibrariesInSite | Index content from all libraries under the specified site in the connection string. The value should be the URI of the site or subsite. <br><br>Example 1: <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/mysite" }``` <br><br>Example 2 (include a few subsites only): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite1;includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite2" }``` |
 | includeLibrary | Index all content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br>Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/mysite/MyDocumentLibrary" }``` <br><br>Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
 | excludeLibrary | Don't index content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br> Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mysite.sharepoint.com/subsite1; excludeLibrary=https://mysite.sharepoint.com/subsite1/MyDocumentLibrary" }``` <br><br> Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/teams/mysite; excludeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
-| includeFolder | Index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. Multiple folders can be specified by repeating the parameter with semicolons. Folder filters are scoped to a single document library. Root-only paths aren't supported. If a folder referenced is renamed, the query must be updated. <br><br> Example 1 (single folder): <br>```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies" }```<br><br> Example 2 (multiple folders): <br> ```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Specs;includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Designs" }``` |
-| excludeFolder | Don't index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. If a file matches both include and exclude rules, exclude takes precedence and the file is skipped. Folder filters are scoped to a single document library. <br><br> Example 1 (exclude folder): <br>```"container": { "name": "useQuery", "query": "excludeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies/Archive" }```<br><br> Example 2 (combine include + exclude): <br>```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies;excludeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies/Drafts" }```|
+| includeFolder | Index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. Multiple folders can be specified by repeating the parameter with semicolons. Folder filters are scoped to a single document library. Root-only paths aren't supported. If a folder referenced is renamed, the query must be updated. <br><br> Example 1 (single folder): <br>```"container": { "name": "useQuery", "query": "includeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Policies" }```<br><br> Example 2 (multiple folders): <br> ```"container": { "name": "useQuery", "query": "includeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Specs;includeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Designs" }``` |
+| excludeFolder | Don't index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. If a file matches both include and exclude rules, exclude takes precedence and the file is skipped. Folder filters are scoped to a single document library. <br><br> Example 1 (exclude folder): <br>```"container": { "name": "useQuery", "query": "excludeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Policies/Archive" }```<br><br> Example 2 (combine include + exclude): <br>```"container": { "name": "useQuery", "query": "includeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Policies;excludeFolder=[your-tenant-name].sharepoint.com/sites/hr/Shared Documents/Policies/Drafts" }```|
 | additionalColumns | Index columns from the document library. The value is a comma-separated list of column names you want to index. Use a double backslash to escape semicolons and commas in column names: <br><br> Example 1 (additionalColumns=MyCustomColumn,MyCustomColumn2):  <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/mysite/MyDocumentLibrary;additionalColumns=MyCustomColumn,MyCustomColumn2" }``` <br><br> Example 2 (escape characters using double backslash): <br><br> ```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx;additionalColumns=MyCustomColumnWith\\,,MyCustomColumnWith\\;" }``` |
 
 ## Handle errors
