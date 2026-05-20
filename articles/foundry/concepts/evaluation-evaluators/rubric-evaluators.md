@@ -140,10 +140,99 @@ For details on running evaluations and configuring data sources, see [Run evalua
 
 ## Example output
 
+### Passing example
+
 The rubric evaluator returns the score level that best matches your rubric, along with a reason explaining the decision. The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
 
 ```json
-To-be-update
+{
+  "score": 0.8428571429,
+  "label": "pass",
+  "reason": "The verdict is driven most by task_alignment (5), claim_accuracy (4), and conciseness (5). The assistant correctly searched May 20 flights, picked ANA NH1069 as the cheapest option at $835 from the tool results, booked it, and returned the matching confirmation ANA-77341 in a very compact message.",
+  "threshold": 0.5,
+  "passed": true,
+  "properties": {
+    "dimension_scores": [
+      {
+        "id": "task_alignment",
+        "score": 5,
+        "applicable": true,
+        "weight": 9,
+        "reason": "There are no visible shortcomings: the final response does exactly what the user asked by changing the date, selecting the cheapest flight from the search results, booking it, and reporting the confirmation."
+      },
+      {
+        "id": "claim_accuracy",
+        "score": 4,
+        "applicable": true,
+        "weight": 6,
+        "reason": "There are no visible factual inconsistencies: ANA NH1069 is the cheapest May 20 option in the tool results at $835, and the confirmation details match the booking tool output."
+      },
+      {
+        "id": "conciseness",
+        "score": 5,
+        "applicable": true,
+        "weight": 4,
+        "reason": "There are no unnecessary details or repetition: the assistant communicates the booking outcome, flight, date, price, and confirmation in a single efficient sentence."
+      },
+      {
+        "id": "general_quality",
+        "score": 4,
+        "applicable": true,
+        "weight": 5,
+        "reason": "Overall execution is strong: the assistant uses the search and booking tools correctly and provides a clean final confirmation."
+      }
+    ]
+  }
+}
+```
+
+### Failing example
+
+In this example, the user asks for a Q4 marketing report summary but the agent provides only a generic sign-off, scoring well below the pass threshold:
+
+```json
+{
+  "score": 0.140625,
+  "label": "fail",
+  "reason": "The verdict is driven primarily by very low task_alignment (1), coverage (1), uncertainty_handling (1), and general_quality (1): the assistant's final message is just a polite sign-off and does not help with the user's request for a Q4 report summary or ask for the missing report content.",
+  "threshold": 0.5,
+  "passed": false,
+  "properties": {
+    "dimension_scores": [
+      {
+        "id": "task_alignment",
+        "score": 1,
+        "applicable": true,
+        "weight": 9,
+        "reason": "The response does not address the user's actual request in this turn; it only offers a generic sign-off after failing to provide a Q4 summary."
+      },
+      {
+        "id": "coverage",
+        "score": 1,
+        "applicable": true,
+        "weight": 5,
+        "reason": "It omits the core requested content entirely: no summary of the Q4 marketing report is provided, nor is there any attempt to explain the limitation or request the report content."
+      },
+      {
+        "id": "uncertainty_handling",
+        "score": 1,
+        "applicable": true,
+        "weight": 3,
+        "reason": "Given the absence of the Q4 report content, the response should have acknowledged that limitation and asked for the document or clarified access."
+      },
+      {
+        "id": "general_quality",
+        "score": 1,
+        "applicable": true,
+        "weight": 5,
+        "reason": "Overall quality is poor because the final response is courteous but unhelpful, leaving the user's original need unresolved without any recovery attempt."
+      }
+    ]
+  }
+}
+```
+
+Each output item includes per-dimension scores with reasons. Dimensions marked `"applicable": false` are skipped and don't contribute to the overall score. The overall score is a weighted average of all applicable dimension scores, normalized to a 0–1 range.
 
 
 ```
