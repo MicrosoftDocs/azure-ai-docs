@@ -175,20 +175,20 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
+Hosted agent sandboxes support CPU and memory allocations ranging from 0.5 vCPU / 1 GiB to 2 vCPU / 4 GiB.
 
 ### Scaling and right-sizing
 
-Hosted agents scale per session, not per replica. The platform mints a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
 
-Because every session runs in its own sandbox, the `cpu` and `memory` values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on `cpu + memory` consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+Because every session runs in its own sandbox, the `cpu` and `memory` values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on `cpu` + `memory` consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
 To right-size, run a representative workload and read the per-process counters that the platform-injected Application Insights collector emits from inside each sandbox:
 
 - **Memory** &mdash; `performanceCounters` `Private Bytes` (bytes).
 - **CPU** &mdash; `performanceCounters` `% Processor Time Normalized` (fraction of one vCPU; `1.0` equals one full core).
 
-Each datapoint is a process snapshot from a single sandbox at a single moment. Because every session of a given agent version runs with the *same* CPU and memory limits, a high percentile across the pool of all sessions approximates the worst-case footprint of one session—which is the number you need to avoid out-of-memory failures and CPU throttling.
+Each datapoint is a process snapshot from a single sandbox at a single moment. Because every session of a given agent version runs with the same CPU and memory limits, a high percentile across the pool of all sessions approximates the worst-case footprint of one session—which is the number you need to avoid out-of-memory failures and CPU throttling.
 
 Example query in the linked Application Insights resource:
 
