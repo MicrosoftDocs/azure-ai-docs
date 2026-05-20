@@ -39,7 +39,7 @@ Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ dir
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
-### Request access to Work IQ retrieval
+## Request access to Work IQ retrieval
 
 Work IQ retrieval through Azure AI Search is off by default and requires a Microsoft-approved request before use.
 
