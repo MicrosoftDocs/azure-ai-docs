@@ -556,8 +556,41 @@ console.log(secondResponse.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response first = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Define and explain the concept of catastrophic forgetting?")
+        .build());
+
+Response second = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(first.id())
+        .input("Explain this at a level that could be understood by a college freshman.")
+        .build());
+
+second.output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(m -> m.content().stream())
+    .flatMap(c -> c.outputText().stream())
+    .forEach(t -> System.out.println(t.text()));
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -686,8 +719,45 @@ console.log(followUp.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.CompactedResponse;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCompactParams;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response initial = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Create a simple landing page for a dog cafe.")
+        .build());
+
+CompactedResponse compacted = openAIClient.responses().compact(
+    ResponseCompactParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(initial.id())
+        .build());
+
+Response followUp = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(compacted.id())
+        .input("Add a booking form.")
+        .build());
+
+System.out.println(followUp.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -922,8 +992,34 @@ for await (const event of stream) {
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.http.StreamResponse;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseStreamEvent;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test")
+    .build();
+
+try (StreamResponse<ResponseStreamEvent> stream = openAIClient.responses().createStreaming(params)) {
+    stream.stream()
+        .flatMap(event -> event.outputTextDelta().stream())
+        .forEach(delta -> System.out.print(delta.delta()));
+}
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1109,8 +1205,64 @@ console.log(finalResponse.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseFunctionToolCall;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.ArrayList;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Strongly-typed function parameter class.
+class GetWeather {
+    @JsonPropertyDescription("City and country, for example, Paris, France")
+    public String location;
+}
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is the weather like in Paris today?")
+        .addTool(GetWeather.class)
+        .build());
+
+List<ResponseInputItem> followUp = new ArrayList<>();
+response.output().forEach(item -> {
+    if (item.isFunctionCall()) {
+        ResponseFunctionToolCall call = item.asFunctionCall();
+        // Execute the tool with call.arguments() and capture the result.
+        String result = "{\"temperature\":\"22 C\",\"conditions\":\"Sunny\"}";
+        followUp.add(ResponseInputItem.ofFunctionCallOutput(
+            ResponseInputItem.FunctionCallOutput.builder()
+                .callId(call.callId())
+                .output(result)
+                .build()));
+    }
+});
+
+Response finalResponse = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(response.id())
+        .inputOfResponse(followUp)
+        .addTool(GetWeather.class)
+        .build());
+
+System.out.println(finalResponse.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1242,8 +1394,38 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool codeInterpreter = Tool.ofCodeInterpreter(
+    Tool.CodeInterpreter.builder()
+        .container(Tool.CodeInterpreter.Container.ofCodeInterpreterToolAuto(
+            Tool.CodeInterpreter.Container.CodeInterpreterToolAuto.builder().build()))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Solve 3x + 11 = 14.")
+        .addTool(codeInterpreter)
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1346,8 +1528,29 @@ console.log(JSON.stringify(items, null, 2));
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.inputitems.ResponseInputItemListPage;
+import com.openai.models.responses.inputitems.ResponseInputItemListParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseInputItemListPage page = openAIClient.responses().inputItems().list(
+    ResponseInputItemListParams.builder()
+        .responseId("<response_id>")
+        .build());
+
+page.autoPager().stream().forEach(item -> System.out.println(item));
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1471,8 +1674,45 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseInputImage image = ResponseInputImage.builder()
+    .detail(ResponseInputImage.Detail.AUTO)
+    .imageUrl("<image_url>")
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("What is in this image?")
+        .addContent(image)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1599,8 +1839,51 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+byte[] bytes = Files.readAllBytes(Paths.get("cat.jpg"));
+String dataUrl = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+
+ResponseInputImage image = ResponseInputImage.builder()
+    .detail(ResponseInputImage.Detail.AUTO)
+    .imageUrl(dataUrl)
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("What is in this image?")
+        .addContent(image)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1745,8 +2028,51 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputFile;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+byte[] pdfBytes = Files.readAllBytes(Paths.get("document.pdf"));
+String dataUrl = "data:application/pdf;base64," + Base64.getEncoder().encodeToString(pdfBytes);
+
+ResponseInputFile file = ResponseInputFile.builder()
+    .filename("document.pdf")
+    .fileData(dataUrl)
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("Summarize this PDF.")
+        .addContent(file)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -1889,8 +2215,54 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.FileCreateParams;
+import com.openai.models.FileObject;
+import com.openai.models.FilePurpose;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputFile;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Paths;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+FileObject uploaded = openAIClient.files().create(
+    FileCreateParams.builder()
+        .file(Paths.get("document.pdf"))
+        .purpose(FilePurpose.USER_DATA)
+        .build());
+
+ResponseInputFile file = ResponseInputFile.builder()
+    .fileId(uploaded.id())
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("Summarize this PDF.")
+        .addContent(file)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2019,8 +2391,40 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool mcpTool = Tool.ofMcp(
+    Tool.Mcp.builder()
+        .serverLabel("github")
+        .serverUrl("https://contoso.com/Azure/azure-rest-api-specs")
+        .requireApproval(Tool.Mcp.RequireApproval.ofMcpToolApprovalSetting(
+            Tool.Mcp.RequireApproval.McpToolApprovalSetting.NEVER))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is this repo in 100 words?")
+        .addTool(mcpTool)
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2175,8 +2579,38 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId("<previous_response_id>")
+        .inputOfResponse(List.of(
+            ResponseInputItem.ofMcpApprovalResponse(
+                ResponseInputItem.McpApprovalResponse.builder()
+                    .approvalRequestId("<approval_request_id>")
+                    .approve(true)
+                    .build())))
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2309,8 +2743,44 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.JsonValue;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool mcpTool = Tool.ofMcp(
+    Tool.Mcp.builder()
+        .serverLabel("github")
+        .serverUrl("https://contoso.com/Azure/azure-rest-api-specs")
+        .headers(Tool.Mcp.Headers.builder()
+            .putAdditionalProperty("Authorization", JsonValue.from("Bearer $YOUR_MCP_TOKEN"))
+            .build())
+        .requireApproval(Tool.Mcp.RequireApproval.ofMcpToolApprovalSetting(
+            Tool.Mcp.RequireApproval.McpToolApprovalSetting.NEVER))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is this repo in 100 words?")
+        .addTool(mcpTool)
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2411,8 +2881,31 @@ console.log(response.status);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Write a 1000-word essay on the history of computing.")
+        .background(true)
+        .build());
+
+System.out.println(response.status());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2495,8 +2988,31 @@ console.log(`Final status: ${current.status}\nOutput:\n${current.output_text}`);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response current = openAIClient.responses().retrieve("<response_id>");
+while (current.status().filter(s ->
+        s.equals(Response.Status.QUEUED) || s.equals(Response.Status.IN_PROGRESS)).isPresent()) {
+    System.out.println("Current status: " + current.status());
+    Thread.sleep(2000);
+    current = openAIClient.responses().retrieve(current.id());
+}
+System.out.println("Final status: " + current.status());
+System.out.println("Output:\n" + current.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2550,8 +3066,24 @@ console.log(cancelled.status);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response cancelled = openAIClient.responses().cancel("<response_id>");
+System.out.println(cancelled.status());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2657,8 +3189,30 @@ for await (const event of stream) {
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.http.StreamResponse;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.ResponseRetrieveParams;
+import com.openai.models.responses.ResponseStreamEvent;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+long cursor = 0L;
+try (StreamResponse<ResponseStreamEvent> stream = openAIClient.responses().retrieveStreaming(
+        "<response_id>",
+        ResponseRetrieveParams.builder().startingAfter(cursor).build())) {
+    stream.stream().forEach(event -> System.out.println(event));
+}
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2791,8 +3345,36 @@ console.log(response.output_text);
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Reasoning;
+import com.openai.models.responses.ReasoningEffort;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseIncludable;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Explain quantum entanglement.")
+        .reasoning(Reasoning.builder().effort(ReasoningEffort.MEDIUM).build())
+        .addInclude(ResponseIncludable.REASONING_ENCRYPTED_CONTENT)
+        .store(false)
+        .build());
+
+System.out.println(response.outputText());
+```
 
 # [REST](#tab/rest)
 ```bash
@@ -2946,8 +3528,50 @@ if (imageBase64) {
 ```
 
 # [Java](#tab/java)
-> [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseOutputItem;
+import com.openai.models.responses.Tool;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool imageGen = Tool.ofImageGeneration(Tool.ImageGeneration.builder().build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
+        .addTool(imageGen)
+        .build());
+
+response.output().stream()
+    .filter(ResponseOutputItem::isImageGenerationCall)
+    .map(ResponseOutputItem::asImageGenerationCall)
+    .findFirst()
+    .flatMap(call -> call.result())
+    .ifPresent(b64 -> {
+        try {
+            Files.write(Paths.get("otter.png"), Base64.getDecoder().decode(b64));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    });
+```
 
 # [REST](#tab/rest)
 ```bash
