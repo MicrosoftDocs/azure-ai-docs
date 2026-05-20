@@ -88,7 +88,7 @@ This article covers three deployment methods. Pick the one that matches your sce
 | [Azure Developer CLI (azd)](#deploy-by-using-the-azure-developer-cli) | First-time users on the command line, local inner loop, CI pipelines. | Run `azd ai agent init` and `azd deploy`. `azd` packages your source, handles the upload, polls for `active`, and configures role-based access control. |
 | [REST API](#deploy-by-using-the-rest-api) | Custom tooling, language-agnostic automation, integration with existing CD systems. | Build the zip yourself, send a `multipart/form-data` request, and poll for status. |
 
-Every deployment, regardless of method, follows the same lifecycle: **package → create or update → poll until `active` → invoke**.
+Every deployment, regardless of method, follows the same lifecycle: **package → create or update → poll until `active` → invoke**. Source-code deploy uses `code_configuration` in the agent definition; the image-based path uses `container_configuration` instead—the two are mutually exclusive on a single version.
 
 ## Choose how dependencies are resolved
 
@@ -277,6 +277,8 @@ This metadata matches the hello-world zip.
 
 For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
+`code_configuration` and `container_configuration` are mutually exclusive in the agent definition: include `code_configuration` for source-code deploy (this article) or `container_configuration` for image-based deploy. See [Deploy a hosted agent (container)](deploy-hosted-agent.md) for the image variant.
+
 ### Create the agent
 
 ```bash
@@ -367,18 +369,23 @@ If your tooling prefers a version-shaped response (a bare `AgentVersionObject` i
 
 #### Download the deployed zip
 
-Verify exactly what's deployed by downloading the zip for a version:
+Verify exactly what's deployed by downloading the zip. Omit `agent_version` to download the latest; pass `agent_version=<n>` to target a specific version.
 
 ```bash
+# Latest version
 curl -O -J "$ENDPOINT/agents/$AGENT/code:download?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Accept: application/zip" \
+  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview"
+
+# Specific version
+curl -O -J "$ENDPOINT/agents/$AGENT/code:download?api-version=$API_VERSION&agent_version=1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/zip" \
   -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview"
 ```
 
-The response header `x-ms-code-zip-sha256` echoes the SHA-256 of the uploaded zip—verify it matches your local computation.
-
-Use `/agents/{agent}/versions/{version}/code:download` to download a specific version. Image-based agents return `409 AgentNotCodeBased`.
+The response header `x-ms-code-zip-sha256` echoes the SHA-256 of the uploaded zip—verify it matches your local computation. Image-based agents return `409 AgentNotCodeBased`.
 
 #### Stream container logs
 
