@@ -21,7 +21,7 @@ For more information about the resource types for Azure AI Search, see [Azure AI
 [!INCLUDE [horz-monitor-data-storage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-data-storage.md)]
 
 [!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
-In Azure AI Search, platform metrics measure query performance, indexing volume, and skillset invocation. For a list of available metrics for Azure AI Search, see [Azure AI Search monitoring data reference](monitor-azure-cognitive-search-data-reference.md#metrics).
+In Azure AI Search, platform metrics measure query performance, indexing volume, and skillset invocation. If you are using the [Serverless pricing model](serverless-cost-optimization.md), you are measuring consumed compute units. For a list of available metrics for Azure AI Search, see [Azure AI Search monitoring data reference](monitor-azure-cognitive-search-data-reference.md#metrics).
 
 To learn how to analyze query and index performance, see [Analyze performance in Azure AI Search](search-performance-analysis.md).
 
