@@ -74,7 +74,7 @@ This value represents the compute consumed by the request and can be used to ide
 
 You can also use the metrics in the portal to understand the historical consumption. See [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#supported-metrics-for-microsoftsearchsearchservices).
 
-:::image type="content" source="media/serverless/serverless-monitor-cus.png" alt-text="Screenshot of monitoring Compute Unit usage in the Azure AI Search service portal." border="true":::
+:::image type="content" source="media/serverless/serverless-monitor-compute-units.png" alt-text="Screenshot of monitoring Compute Unit usage in the Azure AI Search service portal." border="true":::
 
 Additionally, you can use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
 
