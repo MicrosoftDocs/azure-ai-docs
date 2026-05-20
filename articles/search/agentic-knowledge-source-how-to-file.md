@@ -282,23 +282,13 @@ The request body contains the file content.
 ::: zone pivot="csharp"
 
 ```csharp
-using System.Net.Http;
-using System.Net.Http.Headers;
+using Azure;
+using Azure.Search.Documents.Indexes;
 
-using var http = new HttpClient();
-http.DefaultRequestHeaders.Add("api-key", searchApiKey);
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
 
 byte[] fileBytes = File.ReadAllBytes("installation-guide.pdf");
-var content = new ByteArrayContent(fileBytes);
-content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-{
-    FileName = "\"installation-guide.pdf\""
-};
-
-var url = $"{searchEndpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview";
-var resp = await http.PostAsync(url, content);
-resp.EnsureSuccessStatusCode();
+await indexClient.UploadKnowledgeSourceFileAsync("my-file-ks", BinaryData.FromBytes(fileBytes));
 ```
 
 ::: zone-end
@@ -345,20 +335,15 @@ List files on the knowledge source to inspect the uploaded file set.
 ::: zone pivot="csharp"
 
 ```csharp
-using System.Net.Http;
-using System.Text.Json;
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
 
-using var http = new HttpClient();
-http.DefaultRequestHeaders.Add("api-key", searchApiKey);
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
 
-var url = $"{searchEndpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview";
-var resp = await http.GetAsync(url);
-resp.EnsureSuccessStatusCode();
-
-using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync());
-foreach (var f in doc.RootElement.GetProperty("value").EnumerateArray())
+await foreach (KnowledgeSourceFile file in indexClient.GetKnowledgeSourceFilesAsync("my-file-ks"))
 {
-    Console.WriteLine($"{f.GetProperty("fileName").GetString()} ({f.GetProperty("fileSizeBytes").GetInt64()} bytes)");
+    Console.WriteLine($"{file.FileName} ({file.FileSizeBytes} bytes) error={file.ErrorMessage}");
 }
 ```
 
