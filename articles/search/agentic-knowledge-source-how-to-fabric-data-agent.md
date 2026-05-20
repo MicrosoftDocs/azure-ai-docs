@@ -71,16 +71,14 @@ Uri searchEndpoint = new Uri("<search-service-url>");
 AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
 var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
-var knowledgeSource = new FabricDataAgentKnowledgeSource("<knowledge-source-name>")
+var fabricDataAgent = new FabricDataAgentKnowledgeSource(
+    "<knowledge-source-name>",
+    new FabricDataAgentKnowledgeSourceParameters("<fabric-workspace-id>", "<fabric-data-agent-id>"))
 {
-    Description = "A Fabric Data Agent knowledge source.",
-    FabricDataAgentParameters = new FabricDataAgentKnowledgeSourceParameters(
-        workspaceId: "<fabric-workspace-id>",
-        dataAgentId: "<fabric-data-agent-id>"
-    )
+    Description = "A Fabric Data Agent knowledge source."
 };
 
-await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(fabricDataAgent);
 ```
 
 **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
