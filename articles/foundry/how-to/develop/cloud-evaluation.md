@@ -1466,7 +1466,10 @@ Create a JSONL file where each line contains a complete conversation in the `mes
 You can also include tool definitions and tool calls if your agent uses tools:
 
 ```json
-{"messages": [{"role": "user", "content": "What's the weather in Paris?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_123", "type": "function", "function": {"name": "get_weather", "arguments": "{\"location\": \"Paris\"}"}}]}, {"role": "tool", "tool_call_id": "call_123", "content": "{\"temperature\": 18, \"condition\": \"sunny\"}"}, {"role": "assistant", "content": "The weather in Paris is currently sunny with a temperature of 18°C (64°F)."}], "tool_definitions": [{"type": "function", "function": {"name": "get_weather", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}}}}]}
+{"messages": [{"role": "user", "content": "What's the weather in Paris?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_123", "type": "function", "function":
+{"name": "get_weather", "arguments": "{\"location\": \"Paris\"}"}}]}, {"role": "tool", "tool_call_id": "call_123", "content": "{\"temperature\": 18, \"condition\": \"sunny\"}"},
+{"role": "assistant", "content": "The weather in Paris is currently sunny with a temperature of 18°C (64°F)."}], "tool_definitions": [{"name": "get_weather", "description": "Get 
+current weather for a location", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}}}]}
 ```
 
 ### Define the data schema and evaluators
