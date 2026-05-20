@@ -177,6 +177,33 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
 
+### Scaling and right-sizing
+
+Hosted agents scale per session, not per replica. The platform mints a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+
+Because every session runs in its own sandbox, the `cpu` and `memory` values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on `cpu + memory` consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+
+To right-size, run a representative workload and read the per-process counters that the platform-injected Application Insights collector emits from inside each sandbox:
+
+- **Memory** &mdash; `performanceCounters` `Private Bytes` (bytes).
+- **CPU** &mdash; `performanceCounters` `% Processor Time Normalized` (fraction of one vCPU; `1.0` equals one full core).
+
+Example query in the linked Application Insights resource:
+
+```kusto
+performanceCounters
+| where timestamp > ago(1h)
+| where name in ("Private Bytes", "% Processor Time Normalized")
+| summarize p50 = percentile(value, 50),
+            p95 = percentile(value, 95),
+            p99 = percentile(value, 99)
+       by name
+```
+
+Compare the p95 or p99 against the `cpu` and `memory` you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
+
+Per-session attribution isn't built in. The default `cloud_RoleInstance` is a generic value (`adc-sandbox`) and isn't the session ID. To group metrics by session, agent ID, or tenant, read the session identifier from the request context in your agent code and emit it as a custom dimension or metric attribute.
+
 ### Private networking
 
 Hosted agents support deployment within network-isolated Foundry resources and can use a customer-provided Azure Virtual Network for outbound traffic. This enables agents in network-isolated Foundry deployments to reach private resources such as databases or internal APIs. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
