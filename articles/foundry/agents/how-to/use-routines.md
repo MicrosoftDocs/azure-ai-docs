@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Automate agents with routines (preview)"
 description: "Create, manage, and monitor routines that automatically trigger agents on a schedule, timer, GitHub issue event, or custom event in Microsoft Foundry."
 manager: nitinme
@@ -44,6 +44,31 @@ Routines support two categories of trigger.
 |---|---|
 | `github_issue` | Fires when a GitHub issue is opened or closed in a connected repository. |
 | `custom` | Fires on a provider-specific event you define. |
+
+Event-based routines are powered by the **Connector Namespace** — the same managed service that backs [managed MCP servers](tools/connectors.md) in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
+
+> [!NOTE]
+> Your connector credentials are stored and managed by the Connector Namespace, not in your routine definition. At runtime, the namespace retrieves and injects the right token or key when polling for events or receiving webhook calls. Your routine configuration never contains raw credentials.
+
+> [!IMPORTANT]
+> Non-Microsoft connectors available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool as an event source, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the connectors you use as event sources.
+>
+> Some of your information and data might be passed to the Third-Party Tool (for example, during webhook subscription or event polling). Review all data shared with Third-Party Tools and stay aware of third-party practices for data retention and location. You're responsible for managing whether your data flows outside your organization's Azure compliance and geographic boundaries.
+
+## Publisher tiers and data handling for event sources
+
+The same connector catalog and publisher tiers that apply to [managed MCP servers](tools/connectors.md#publisher-tiers-and-data-handling) also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-mcpserver-connectors).
+
+| Publisher tier | Examples | Data responsibility |
+|---|---|---|
+| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy and GDPR policies apply end-to-end |
+| **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
+| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and GDPR terms before connecting |
+| **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
+
+The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
+
+For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/en-us/connectors/protection).
 
 ## Supported action types
 
