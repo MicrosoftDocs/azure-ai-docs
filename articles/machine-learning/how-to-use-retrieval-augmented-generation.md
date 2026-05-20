@@ -16,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # Get started with RAG using a prompt flow sample (preview)
 
-In this article, you learn how to use retrieval-augmented generation (RAG) by creating a prompt flow. A prompt is an input—a text command or question—provided to an AI model to generate desired output such as content or answers. The process of crafting effective and efficient prompts is called prompt design or prompt engineering. [Prompt flow](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/harness-the-power-of-large-language-models-with-azure-machine/ba-p/3828459) is the interactive editor in Azure Machine Learning for prompt engineering projects. To get started, you can create a prompt flow sample that uses RAG from the samples gallery in Azure Machine Learning. You can use this sample to learn how to use Vector Index in a prompt flow. 
+In this article, you learn how to use retrieval-augmented generation (RAG) by creating a prompt flow. A prompt is an input—a text command or question—provided to an AI model to generate desired output such as content or answers. The process of crafting effective and efficient prompts is called prompt design or prompt engineering. [Prompt flow](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/harness-the-power-of-large-language-models-with-azure-machine-learning-prompt-fl/3828459) is the interactive editor in Azure Machine Learning for prompt engineering projects. To get started, you can create a prompt flow sample that uses RAG from the samples gallery in Azure Machine Learning. You can use this sample to learn how to use Vector Index in a prompt flow. 
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 

@@ -25,7 +25,7 @@ Before you can use a Linux DSVM, you must cover these prerequisites:
 
 * **Azure subscription**. To get an Azure subscription, visit [Create your free Azure account today](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* [**Ubuntu Data Science Virtual Machine**](https://marketplace.microsoft.com/product/saas/microsoft-dsvm.ubuntu-2204). For information about provisioning the virtual machine, visit [Provision the Ubuntu Data Science Virtual Machine](./release-notes.md).
+* [**Ubuntu Data Science Virtual Machine**](https://marketplace.microsoft.com/en-us/product/microsoft-dsvm.ubuntu-2204). For information about provisioning the virtual machine, visit [Provision the Ubuntu Data Science Virtual Machine](./release-notes.md).
 * [**X2Go**](https://wiki.x2go.org/doku.php) installed on your computer with an open XFCE session. For more information, visit [Install and configure the X2Go client](dsvm-ubuntu-intro.md#x2go).
 
 ## Download the spambase dataset
