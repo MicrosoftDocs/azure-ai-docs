@@ -1,5 +1,5 @@
 ---
-title: Create a Fabric Data Agent Knowledge Source (Preview)
+title: Create a Fabric Data Agent Knowledge Source
 description: Learn how to create a Fabric Data Agent knowledge source, which connects a Microsoft Fabric Data Agent to an agentic retrieval pipeline in Azure AI Search for live, data-driven answers as grounding data.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -184,7 +184,7 @@ Fabric Data Agent knowledge sources return results in the `sourceData` object of
 The following example shows a retrieve response containing a Fabric Data Agent knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 > [!TIP]
-> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
+> To receive `sourceData` for references, set `includeReferenceSourceData` to `true` on the knowledge source entry within `knowledgeSourceParams` on the retrieve request.
 
 ```json
 {
