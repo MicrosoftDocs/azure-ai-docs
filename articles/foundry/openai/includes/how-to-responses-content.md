@@ -1283,7 +1283,7 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1314,11 +1314,26 @@ console.log(response.output_text);
 ```
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
-> [!NOTE]
-> A REST code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_text", "text": "What is in this image?"},
+          {"type": "input_image", "image_url": "data:image/jpeg;base64,<BASE64_IMAGE>"}
+        ]
+      }
+    ]
+  }'
+```
 
 ---
 
@@ -1370,7 +1385,7 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1405,11 +1420,26 @@ console.log(response.output_text);
 ```
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
-> [!NOTE]
-> A REST code sample isn't available for this scenario. Select Python or JavaScript for an equivalent example.
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_file", "filename": "PDF-FILE-NAME.pdf", "file_data": "data:application/pdf;base64,<BASE64_PDF>"},
+          {"type": "input_text", "text": "Summarize this PDF."}
+        ]
+      }
+    ]
+  }'
+```
 
 ---
 
