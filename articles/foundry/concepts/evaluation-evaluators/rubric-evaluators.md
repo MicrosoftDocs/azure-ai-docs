@@ -240,7 +240,7 @@ Each output item includes per-dimension scores with reasons. Dimensions marked `
 
 ## Set up evaluation with rubric evaluators
 
-You can use your rubric evaluator in batch evaluation to create an evaluation to assess agent quality on production traffic. Once you're satisfied with your rubric evaluator, you can set up continious and scheduled evaluation in **Monitor settings** [monitoring dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run your rubric evaluators automatically. Both run your rubric evaluators automatically against your agents, helping you detect quality regressions without triggering manual evaluation runs.
+You can use your rubric evaluator in batch evaluation to create an evaluation to assess agent quality on production traffic. Once you're satisfied with your rubric evaluator, you can set up continious and scheduled evaluation in **Monitor settings** to run your rubric evaluators automatically. Both run your rubric evaluators automatically against your agents, helping you detect quality regressions without triggering manual evaluation runs.
 
 ## Related content
 
