@@ -37,22 +37,22 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
-| gpt-5-chat | 2025-08-07 | Preview | 2026-06-09 | gpt-5.3-chat |
-| gpt-5-chat | 2025-10-03 | Preview | 2026-06-09 | gpt-5.3-chat |
+| gpt-5-chat | 2025-08-07 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5-chat | 2025-10-03 | Preview | 2026-06-22 | gpt-chat-latest |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
-| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-09 | gpt-5.3-chat |
+| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-22 | gpt-chat-latest |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2026-12-05 | — |
 | gpt-5.1-codex-mini | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.2 | 2025-12-11 | GA | 2026-12-12 | — |
-| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-09 | gpt-5.3-chat |
-| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-09 | — |
+| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-22 | gpt-chat-latest |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-01-14 | — |
-| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-09 | — |
+| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-22 | gpt-chat-latest |
 | gpt-5.3-codex | 2026-02-24 | GA | 2027-02-25 | — |
 | gpt-5.4 | 2026-03-05 | GA | 2027-03-05 | — |
 | gpt-5.4-mini | 2026-03-17 | GA | 2027-03-18 | — |
@@ -78,6 +78,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-06-23 | sora-2 (2025-12-08) |
+| sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 1 | GA | 2027-04-15 | — |
