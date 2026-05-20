@@ -183,28 +183,13 @@ Hosted agents scale per session, not per replica. The platform creates a new VM-
 
 Because every session runs in its own sandbox, the `cpu` and `memory` values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on `cpu` + `memory` consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
-To right-size, run a representative workload and read the per-process counters that the platform-injected Application Insights collector emits from inside each sandbox:
+To right-size, run a representative workload and inspect resource usage in the linked Application Insights resource:
 
-- **Memory** &mdash; `performanceCounters` `Private Bytes` (bytes).
-- **CPU** &mdash; `performanceCounters` `% Processor Time Normalized` (fraction of one vCPU; `1.0` equals one full core).
+1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
+1. Switch to the **Roles** tab and filter to your agent's role name.
+1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
 
-Each datapoint is a process snapshot from a single sandbox at a single moment. Because every session of a given agent version runs with the same CPU and memory limits, a high percentile across the pool of all sessions approximates the worst-case footprint of one session—which is the number you need to avoid out-of-memory failures and CPU throttling.
-
-Example query in the linked Application Insights resource:
-
-```kusto
-performanceCounters
-| where timestamp > ago(1h)
-| where name in ("Private Bytes", "% Processor Time Normalized")
-| summarize p50 = percentile(value, 50),
-            p95 = percentile(value, 95),
-            p99 = percentile(value, 99)
-       by name
-```
-
-Compare the p95 or p99 against the `cpu` and `memory` you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. The more sessions you run during the measurement window, the more reliable the percentile becomes. Always retest after a change, because each new version is immutable.
-
-This pool-aggregate view has known limits. The default `cloud_RoleInstance` is a generic value (`adc-sandbox`) shared across every sandbox, so the linked Application Insights resource can't natively tell you which session produced a given measurement, trend a single session over time, or count active sandboxes. To get per-session, per-agent, or per-tenant attribution, read the session identifier from the request context in your agent code and emit it as a custom dimension or metric attribute.
+Compare the observed peaks against the `cpu` and `memory` you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
 
 ### Private networking
 
