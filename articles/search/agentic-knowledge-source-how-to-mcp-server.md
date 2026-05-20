@@ -89,23 +89,25 @@ Uri searchEndpoint = new Uri("<search-service-url>");
 AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
 var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
-var knowledgeSource = new McpServerKnowledgeSource("<knowledge-source-name>")
-{
-    Description = "An MCP Server knowledge source.",
-    McpServerParameters = new McpServerParameters(
-        serverUrl: "https://learn.microsoft.com/api/mcp",
-        tools: new[]
+var mcpServer = new McpServerKnowledgeSource(
+    "<knowledge-source-name>",
+    new McpServerKnowledgeSourceParameters(
+        "https://learn.microsoft.com/api/mcp",
+        new[]
         {
-            new McpServerTool("microsoft_docs_search")
+            new McpServerTool
             {
-                OutputParsing = new McpServerToolOutputParsing { Kind = McpServerToolOutputParsingKind.Auto },
+                Name = "microsoft_docs_search",
+                OutputParsing = new McpServerAutoOutputParsing(),
                 InclusionMode = McpServerToolInclusionMode.Reranked,
                 MaxOutputTokens = 1000
             }
-        })
+        }))
+{
+    Description = "An MCP Server knowledge source."
 };
 
-await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(mcpServer);
 ```
 
 **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
