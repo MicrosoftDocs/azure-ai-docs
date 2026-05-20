@@ -653,9 +653,6 @@ print(second_response.model_dump_json(indent=2))
 
 Compaction reduces the input context while preserving essential state for later turns.
 
-> [!NOTE]
-> The .NET SDK doesn't yet provide a strongly typed surface for Response compaction. C# callers can use the [REST tab](#tab/rest) or invoke the protocol method directly with `BinaryContent` JSON.
-
 # [Python](#tab/python)
 ```python
 import os
@@ -686,6 +683,10 @@ follow_up = client.responses.create(
 )
 print(follow_up.output_text)
 ```
+
+# [C#](#tab/csharp)
+> [!NOTE]
+> The .NET SDK doesn't yet provide a strongly typed surface for Response compaction. See the **REST** tab for the call shape, or invoke the protocol method directly with `BinaryContent` JSON.
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1495,9 +1496,6 @@ Any files in the model input get automatically uploaded to the container. You do
 
 ## List input items
 
-> [!NOTE]
-> The .NET SDK exposes this endpoint only as a protocol method. C# callers can use the [REST tab](#tab/rest) or invoke the protocol method directly.
-
 # [Python](#tab/python)
 ```python
 import os
@@ -1511,6 +1509,10 @@ client = OpenAI(
 items = client.responses.input_items.list("<response_id>")
 print(items.model_dump_json(indent=2))
 ```
+
+# [C#](#tab/csharp)
+> [!NOTE]
+> The .NET SDK exposes this endpoint only as a protocol method. See the **REST** tab for the call shape, or invoke the protocol method directly.
 
 # [JavaScript](#tab/javascript)
 ```javascript
