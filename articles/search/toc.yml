@@ -72,7 +72,7 @@ items:
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
     - name: Optimize costs with Serverless pricing
-      href: severless-cost-optimization.md
+      href: serverless-cost-optimization.md
     - name: Service tiers for Dedicated pricing
       href: search-sku-tier.md
     - name: Service limits
