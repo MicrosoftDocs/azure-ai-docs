@@ -84,7 +84,7 @@ The examples in this article use the iris flower dataset to train an MLFlow mode
 
 When you train in the cloud, you must connect to your Azure Machine Learning workspace and select a compute resource to run the training job.
 
-### 1. Connect to the workspace
+### Connect to the workspace
 
 > [!TIP]
 > Use the following tabs to select the method you want to use to train a model. Selecting a tab automatically switches all the tabs in this article to the same tab. You can select another tab at any time.
@@ -154,7 +154,7 @@ When you train by using the REST API, you must upload data and training scripts 
 
 ---
 
-### 2. Create a compute resource for training
+### Create a compute resource for training
 
 > [!NOTE]
 > To try [serverless compute](./how-to-use-serverless-compute.md), skip this step and proceed to [ 3. Submit the training job](#3-submit-the-training-job).
@@ -209,7 +209,7 @@ curl -X PUT \
 
 ---
 
-### 3. Submit the training job
+### Submit the training job
 
 # [Python SDK](#tab/python)
 
@@ -352,7 +352,7 @@ ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscr
 > - Use the default login server format (`<registry-name>.azurecr.io`) for your ACR.
 > - When you create the registry, set **Domain name label scope** to **Unsecure**.
 
-### 4. Monitor the training job
+### Monitor the training job
 
 Wait for the training job to complete before you register the model. The job status transitions through `Starting` → `Preparing` → `Running` → `Completed`.
 
