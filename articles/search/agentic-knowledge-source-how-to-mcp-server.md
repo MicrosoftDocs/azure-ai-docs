@@ -1,5 +1,5 @@
 ---
-title: Create an MCP Server Knowledge Source (Preview)
+title: Create an MCP Server Knowledge Source
 description: Learn how to create an MCP Server knowledge source for agentic retrieval in Azure AI Search, which connects to any external Model Context Protocol server.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -76,8 +76,7 @@ The following JSON is an example response for an MCP Server knowledge source.
 
 ## Create a knowledge source
 
-
-Run the following code to create an MCP Server knowledge source (preview).
+Run the following code to create an MCP Server knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -317,7 +316,7 @@ MCP Server knowledge sources return per-document citations in the `references` a
 The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
 > [!TIP]
-> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
+> To receive `sourceData` for references, set `includeReferenceSourceData` to `true` on the knowledge source entry within `knowledgeSourceParams` on the retrieve request.
 
 ```json
 {
