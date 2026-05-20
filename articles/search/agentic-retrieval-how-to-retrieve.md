@@ -541,7 +541,7 @@ Pass the following parameters to call the retrieve action.
 | `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
 | `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. | Boolean | Yes | No |
 | `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` if this knowledge source can't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`. For more information, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
-| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
+| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source setting at 50. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
 | `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. | Boolean | Yes | No |
 | `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. | Boolean | Yes | No |
 | `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
@@ -1238,8 +1238,9 @@ In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
 final result selection. Use this setting when you want one source to
 contribute a bounded number of documents to the retrieve pipeline.
 
-This setting is per source. It doesn't control the final number of grounding
-documents returned to the caller.
+This setting is per source. Use `50` for cross-region compatibility because
+some preview regions cap per-source output documents at 50. It doesn't control
+the final number of grounding documents returned to the caller.
 
 :::zone pivot="csharp"
 
@@ -1255,7 +1256,7 @@ retrievalRequest.Messages.Add(
 retrievalRequest.KnowledgeSourceParams.Add(
     new SearchIndexKnowledgeSourceParams("operations-ks")
     {
-        MaxOutputDocuments = 100
+        MaxOutputDocuments = 50
     }
 );
 
@@ -1279,7 +1280,7 @@ request = KnowledgeBaseRetrievalRequest(
     knowledge_source_params=[
         SearchIndexKnowledgeSourceParams(
             knowledge_source_name="operations-ks",
-            max_output_documents=100,
+            max_output_documents=50,
         ),
     ],
 )
@@ -1311,7 +1312,7 @@ Content-Type: application/json
         {
             "knowledgeSourceName": "operations-ks",
             "kind": "searchIndex",
-            "maxOutputDocuments": 100
+            "maxOutputDocuments": 50
         }
     ]
 }
@@ -1322,8 +1323,9 @@ Content-Type: application/json
 :::zone-end
 
 For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
-is a per-source cap. The service can return fewer documents when fewer matches
-are available or when internal limits reduce the applied window.
+is a per-source cap. Some preview regions cap this setting at 50. The service
+can return fewer documents when fewer matches are available or when internal
+limits reduce the applied window.
 
 ### Limit final grounding documents
 
