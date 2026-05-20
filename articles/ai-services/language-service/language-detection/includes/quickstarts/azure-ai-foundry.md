@@ -24,6 +24,7 @@ ai-usage: ai-assisted
 You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
+>
 > * Detect the language of input text
 > * Review confidence scores and ISO language codes
 > * Configure country/region hints for improved accuracy
@@ -80,6 +81,7 @@ Verify that the detected language matches the language of your input text. If th
 You can use [new Foundry](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
+>
 > * Detect the language of input text
 > * Review confidence scores and ISO language codes
 > * Configure country/region hints for improved accuracy
@@ -131,7 +133,7 @@ After you make your selections, choose the **Detect** button. Then review the te
 
 Verify that the detected language matches the language of your input text. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
 
-## Open in Visual Studio Code
+## Open in Visual Studio Code 🆕
 
 After validating your scenario in the playground, select **Open in VS Code** to carry your current configuration directly into a development environment—no manual setup required.
 

@@ -19,7 +19,7 @@ Conversation PII redaction in Azure AI Language helps you detect and redact sens
 Conversation PII is optimized for asynchronous conversation jobs and conversation-level context, so you can redact sensitive data across multiple speakers and turns.
 
 > [!IMPORTANT]
-> **Conversation PII API** (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) is licensed to you as part part of your Azure subscrition and is subject to applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> **Conversation PII API** (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part part of your Azure subscrition and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## At a glance
 

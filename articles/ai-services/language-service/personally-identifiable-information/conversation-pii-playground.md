@@ -1,6 +1,5 @@
 ---
-title: Use the conversation PII playground in Azure AI Foundry
-titleSuffix: Azure AI Language
+title: Use the conversation PII playground in Microsoft FoundrytitleSuffix: Azure AI Language
 description: Test conversation PII detection and redaction interactively in the Azure AI Foundry playground without writing code.
 author: laujan
 manager: nitinme
@@ -12,7 +11,7 @@ ms.custom: language-service-pii
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Use the conversation PII playground in Azure AI Foundry
+# Use the conversation PII playground in Microsoft Foundry
 
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
@@ -23,7 +22,7 @@ The conversation PII playground in Azure AI Foundry lets you detect and redact p
 * [**Preview: 2025-11-15-preview**](/rest/api/language/analyze-conversations/operation-groups?view=rest-language-analyze-conversations-2025-11-15-preview&preserve-view=true)
 
 > [!IMPORTANT]
-> **Conversation PII API** (2025-11-15-preview) and **Conversation PII model** (2026-04-15-preview) is licensed to you as part part of your Azure subscrition and is subject to applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> **Conversation PII API** (2025-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part part of your Azure subscrition and are subject to terms applicable  to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Prerequisites
 
@@ -102,7 +101,7 @@ The **extract PII from conversations** feature detects and masks personally iden
 
 Verify that the detected entities match the PII in your input conversation. Select **Edit** to modify the **Configure** settings and rerun detection as needed.
 
-## Open in Visual Studio Code
+## Open in Visual Studio Code 🆕
 
 After validating your scenario in the playground, select **Open in VS Code** to carry your current configuration directly into a development environment—no manual setup required.
 
