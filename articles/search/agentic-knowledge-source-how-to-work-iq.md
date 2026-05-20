@@ -85,8 +85,6 @@ Run the following code to create a Work IQ knowledge source.
 
 ::: zone pivot="csharp"
 
-<!-- TO-DO (PM): Verify C# class name for Work IQ knowledge source. -->
-
 ```csharp
 using Azure;
 using Azure.Search.Documents.Indexes;
@@ -110,8 +108,6 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 ::: zone-end
 
 ::: zone pivot="python"
-
-<!-- TO-DO (PM): Verify Python class name for Work IQ knowledge source. -->
 
 ```python
 from azure.core.credentials import AzureKeyCredential
@@ -157,8 +153,6 @@ Content-Type: application/json
 
 ### Source-specific properties
 
-<!-- TO-DO (PM): Confirm whether these properties are correct for Work IQ knowledge sources and update as needed. -->
-
 The following properties apply to Work IQ knowledge sources.
 
 | Name | Description | Type | Editable | Required |
@@ -175,8 +169,6 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 ## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Work IQ content. This knowledge source has unique query-time permissions enforcement and response characteristics.
-
-<!-- TO-DO (PM): Confirm the following details about query-time permissions and response characteristics for Work IQ knowledge sources and update as needed. -->
 
 > [!IMPORTANT]
 > Work IQ can take 40–60 seconds or more to respond. To avoid timeout errors, set `maxRuntimeInSeconds` on the retrieve request to `120` or higher.
