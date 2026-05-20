@@ -37,7 +37,8 @@ A knowledge base specifies:
 
 + (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. For both the 2026-05-01-preview and 2026-04-01 API versions, the LLM is required if your knowledge base includes a web knowledge source. For the 2026-05-01-preview only, the LLM is optional for all other knowledge source types. 2026-04-01 doesn't support an LLM for non-web knowledge sources. 
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone pivot="csharp"
 
