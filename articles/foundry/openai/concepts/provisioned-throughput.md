@@ -21,19 +21,22 @@ recommendations: false
 
 # What is provisioned throughput for Foundry Models?
 
-Provisioned throughput is a model deployment type in Microsoft Foundry that allocates dedicated model processing capacity to your deployment. Unlike standard deployments, where inference capacity is shared across customers and throughput can vary with demand, a provisioned deployment holds a fixed amount of processing capacity exclusively for your use, whether or not requests are being made.
+Provisioned throughput is a deployment type in Microsoft Foundry that provides dedicated model processing throughput for your deployment. Unlike standard deployments, where inference capacity is shared across customers and throughput can vary with demand, a provisioned deployment holds a fixed amount of processing capacity exclusively for your deployment's use, whether or not requests are being made.
 
 This article introduces the core concepts behind provisioned throughput: what it is, when to use it, how capacity is measured and billed, and what to know about quota and capacity before you deploy.
 
 ## Deployment categories compared
 
-Standard deployments, priority processing, and provisioned throughput are three ways to deploy models for real-time workloads in Microsoft Foundry. The right choice depends on your latency requirements, traffic patterns, and cost tolerance.
+Standard deployments, batch deployments, priority processing, and provisioned throughput are ways to deploy models in Microsoft Foundry. The right choice depends on your latency requirements, traffic patterns, and cost tolerance.
 
-| Deployment category | Billing | Latency guarantee | Best for |
+| Deployment category | Billing | Latency SLA | Workload type and needs |
 |---|---|---|---|
-| **Standard** | Pay per token | None | Development, testing, variable or unpredictable workloads |
-| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md#latency-target) | Bursty or business-hours traffic needing consistent low latency without a long-term commitment |
-| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour | [Defined latency target per model](../how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model) | Sustained high-volume production workloads |
+| **Standard** | Pay per token | None | Balanced workloads: development, testing, and production with variable or unpredictable traffic |
+| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md#latency-target) | Latency-sensitive production workloads needing consistent low latency without a long-term commitment |
+| **Batch** | Pay per token (discounted batch rate) | None | Bulk processing workloads without latency requirements. Results are returned asynchronously. |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour (or using Azure Reservations) | [Defined latency target per model](../how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model) | Mission-critical, high-scale production workloads requiring guaranteed throughput and consistent latency |
+
+
 
 ## When to use provisioned throughput
 
@@ -81,9 +84,9 @@ Because GPU capacity is a finite, dynamically changing resource:
 
 A default amount of global, data zone, and regional provisioned quota is assigned to eligible subscriptions in several regions. There are two ways to request additional quota:
 
-- Submit the [quota request form](https://aka.ms/oai/stuquotarequest).
+- Submit the [quota request form](https://aka.ms/oai/stuquotarequest) to request quota or capacity.
 
-- In the Foundry portal, go to **Operate** > **Quota**, select the target subscription and region, then select **Request Quota** and complete the form.
+- In the Foundry portal, go to **Operate** > **Quota**, select the target subscription and region, then select **Request Quota** and complete the form. (applies to nextgen only)
 
 Approval might take several days based on quota availability, and you receive an email notification when the request is approved.
 
@@ -91,7 +94,7 @@ Approval might take several days based on quota availability, and you receive an
 
 To check real-time capacity availability:
 
-- Use the **Foundry portal deployment experience**, which surfaces capacity status inline when you configure a deployment and lists alternative regions with available capacity if your target region doesn't have enough.
+- Use the **Foundry portal deployment experience**, which tells you if capacity is available when you try to create a deployment and lists alternative regions with available capacity if your target region doesn't have enough.
 - Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically query the maximum deployable PTU count for a given model and region.
 
 If your target region doesn't have available capacity:
@@ -99,6 +102,7 @@ If your target region doesn't have available capacity:
 - Try deploying with fewer PTUs.
 - Try a different region where quota is available.
 - Retry later, as capacity availability changes dynamically throughout the day.
+- Submit the [quota request form](https://aka.ms/oai/stuquotarequest) to request quota or capacity.
 
 For step-by-step guidance on creating provisioned deployments and handling capacity constraints, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
 
@@ -132,8 +136,6 @@ For a full comparison of all Foundry deployment types, including standard, batch
 
 For the full list of models that support provisioned throughput, including which deployment types each model supports and regional availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned).
 
-> [!NOTE]
-> The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
 ## Spillover
 
