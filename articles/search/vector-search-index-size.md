@@ -142,13 +142,6 @@ Response includes metrics for `storageSize`, which doesn't distinguish between v
 }
 ```
 
-The new counters use the same resource-counter shape as existing service
-statistics: `usage` reports the current object count, and `quota` reports the
-service limit when a quota value is available. Services that support knowledge
-bases or knowledge sources but haven't created any return a `usage` value of
-`0` for the corresponding counter. These counters are exposed by the data-plane
-service statistics API for the preview API version.
-
 You can also send a GET Index Statistics to get the physical size of the index on disk, plus the in-memory size of the vector fields.
 
 ```http
