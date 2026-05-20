@@ -27,17 +27,17 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.
 
-* **PII detection capabilities available in New Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [New Foundry](https://ai.azure.com/). For more information, see:
+* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [new Foundry](https://ai.azure.com/). For more information, see:
 
   * [Text PII detection](personally-identifiable-information/text-pii-playground.md)
   * [Conversation PII detection](personally-identifiable-information/conversation-pii-playground.md)
   * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md) (preview)
 
-* **Text Analytics for Health available in New Foundry**. The Text Analytics for Health playground is now available in [New Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
+* **Text Analytics for Health available in new Foundry**. The Text Analytics for Health playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
 
-* **Language detection available in New Foundry**. The language detection playground is now available in [New Foundry](https://ai.azure.com/). For more information, see the [Language detection quickstart](language-detection/quickstart.md).
+* **Language detection available in new Foundry**. The language detection playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Language detection quickstart](language-detection/quickstart.md).
 
-* **Open in Visual Studio Code**. New Foundry playgrounds for language detection, text PII detection, conversation PII detection, and Text Analytics for Health now support **Open in VS Code**. Select the option in the playground to export your current configuration directly to a preconfigured code sample in Visual Studio Code.
+* **Open in Visual Studio Code**. new Foundry playgrounds for language detection, text PII detection, conversation PII detection, and Text Analytics for Health now support **Open in VS Code**. Select the option in the playground to export your current configuration directly to a preconfigured code sample in Visual Studio Code.
 
 ## February 2026
 

@@ -21,12 +21,12 @@ ms.custom: doc-kit-assisted
 * **Foundry resource**. Create a [Foundry resource](../../../../multi-service-resource.md) or see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternatively, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project**. For more information, see [Create a Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
-### [New Foundry](#tab/new-foundry)
+### [new Foundry](#tab/new-foundry)
 
 > [!NOTE]
-> This content refers to the [New Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using New Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-You can use [New Foundry playground](https://ai.azure.com/) to:
+You can use [new Foundry playground](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 >
@@ -34,7 +34,7 @@ You can use [New Foundry playground](https://ai.azure.com/) to:
 > * Configure redaction policies, entity filters, and excluded values
 > * Review detected entities and confidence scores
 
-## Navigate to the New Foundry playground
+## Navigate to the new Foundry playground
 
 The active project appears in the upper-left corner. To create a new project:
 
@@ -42,7 +42,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the New Foundry homepage.":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the new Foundry homepage.":::
 
 There are two ways to access the PII playground:
 
@@ -56,7 +56,7 @@ There are two ways to access the PII playground:
    * Select the **AI services** tab.
    * Select your PII capability model to go to the playground.
 
-## Detect PII in the New Foundry playground
+## Detect PII in the new Foundry playground
 
 Each PII capability uses a dedicated model. On the **Playground** tab, select your capability from the drop-down menu:
 

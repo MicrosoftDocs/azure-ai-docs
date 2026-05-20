@@ -43,7 +43,7 @@ az resource update --namespace Microsoft.CognitiveServices --resource-type accou
 
 ### Which services support the autoscale feature?
 
-Autoscale feature is available in the paid subscription tier of the following services:
+N feature is available in the paid subscription tier of the following services:
 
 * [Azure Vision](computer-vision/index.yml)
 * [Language](language-service/overview.md) (only available for sentiment analysis, key phrase extraction, named entity recognition, and text analytics for health)

@@ -72,19 +72,19 @@ After the operation completes, the **Details** section displays the following fi
 
 Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country/region hint** for better accuracy.
 
-### [New Foundry](#tab/new-foundry)
+### [new Foundry](#tab/new-foundry)
 
 > [!NOTE]
-> This content refers to the [New Foundry](https://ai.azure.com/) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools. For more information, see [What is Microsoft Foundry?](../../../../../ai-foundry/what-is-foundry.md). To confirm that you're using New Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools. For more information, see [What is Microsoft Foundry?](../../../../../ai-foundry/what-is-foundry.md). To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-You can use [New Foundry](https://ai.azure.com/) to:
+You can use [new Foundry](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 > * Detect the language of input text
 > * Review confidence scores and ISO language codes
 > * Configure country/region hints for improved accuracy
 
-## Navigate to the New Foundry playground
+## Navigate to the new Foundry playground
 
 The active project appears in the upper-left corner. To create a new project:
 
@@ -92,7 +92,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the New Foundry homepage":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the new Foundry homepage":::
 
 There are two ways to access the Language Detection interface:
 

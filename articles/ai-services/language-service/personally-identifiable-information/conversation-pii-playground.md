@@ -15,7 +15,7 @@ ms.custom: language-service-pii
 # Use the conversation PII playground in Azure AI Foundry
 
 > [!NOTE]
-> This content refers to the [New Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using New Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 The conversation PII playground in Azure AI Foundry lets you detect and redact personally identifiable information (PII) in conversational text interactively, without writing code. You can submit transcript-style input, configure redaction options, and review detected entities before integrating the feature into your application.
 
@@ -40,7 +40,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../media/new-foundry-homepage.png" alt-text="Screenshot of the New Foundry homepage.":::
+   :::image type="content" source="../media/new-foundry-homepage.png" alt-text="Screenshot of the new Foundry homepage.":::
 
 There are two ways to access the conversation PII interface:
 
