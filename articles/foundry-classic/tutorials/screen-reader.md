@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: ailsaleen
 ms.date: 03/24/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:

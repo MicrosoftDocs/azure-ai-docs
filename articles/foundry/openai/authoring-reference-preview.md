@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference
-ms.date: 12/6/2025
+ms.date: 05/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false

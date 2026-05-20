@@ -97,17 +97,19 @@ Built-in Azure RBAC developer roles for Foundry include:
 
 |Role|Description|
 |---|---|
-|Azure AI Project Manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI User'.|
-|Azure AI User|Grants development permissions.|
-| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts. Can invite other users to collaborate on a project as 'Azure AI User'. |
-| **Azure AI Owner**    | Grants full access to managed AI projects and accounts and build and develop with projects. |
+|Foundry Project Manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Foundry User'.|
+|Foundry User|Grants development permissions.|
+| **Foundry Account Owner**   | Grants full access to manage AI projects and accounts. Can invite other users to collaborate on a project as 'Foundry User'. |
+| **Foundry Owner**    | Grants full access to managed AI projects and accounts and build and develop with projects. |
+
+[!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 >[!NOTE]
-> The Azure AI Owner role will be available to assign in the Azure and Foundry portal soon.
+> The Foundry Owner role will be available to assign in the Azure and Foundry portal soon.
 
 :::image type="content" source="../foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../foundry/media/how-to/network/detailed-rbac-diagram.png":::
 
-For larger enterprises with strict role based access requirements, we recommend utilizing the Azure AI User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Azure AI Owner role for developer permissions as well as resource creation permissions. 
+For larger enterprises with strict role based access requirements, we recommend utilizing the Foundry User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Foundry Owner role for developer permissions as well as resource creation permissions. 
 
 Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [Foundry portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-foundry.md).
 

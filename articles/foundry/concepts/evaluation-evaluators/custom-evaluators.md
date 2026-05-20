@@ -6,6 +6,7 @@ ms.author: lagayhar
 ms.reviewer: dlozier
 ms.date: 04/10/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: reference
 ms.custom:
   - classic-and-new

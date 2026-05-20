@@ -34,7 +34,9 @@ Incoming A2A requires the responses protocol. The following agent types support 
 
 - An Azure subscription with an active Foundry project.
 - A deployed agent in Foundry Agent Service that uses the responses protocol (prompt agent or a Hosted agent built to support it).
-- Required Azure role: **Azure AI User** or higher on the Foundry project.
+- Required Azure role: **Foundry User** or higher on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ## Enable incoming A2A
 
@@ -179,7 +181,7 @@ After you enable incoming A2A, your agent exposes two URLs that calling agents u
   `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a/agentCard/v0.3`
 
 > [!IMPORTANT]
-> Both URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Azure AI User** role on the Foundry project.
+> Both URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Foundry User** role on the Foundry project.
 
 To confirm your agent card is configured correctly, fetch it directly:
 
@@ -204,7 +206,7 @@ The response contains the agent card with the description and skills you configu
 
 ## Configure authentication for incoming requests
 
-Incoming A2A requests require Microsoft Entra ID authentication. Key-based and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Azure AI User** role (or higher) on the Foundry project that hosts your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry User** role (or higher) on the Foundry project that hosts your agent.
 
 Two authentication patterns are supported:
 
@@ -216,7 +218,7 @@ The calling agent passes through the end user's identity. Your agent receives a 
 
 The calling agent authenticates with its own identity — either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-To grant a calling identity access, assign the **Azure AI User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+To grant a calling identity access, assign the **Foundry User** role on the Foundry project that hosts your agent. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Supported A2A transports
 
