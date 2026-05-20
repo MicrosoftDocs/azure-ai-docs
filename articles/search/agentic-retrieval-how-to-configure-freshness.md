@@ -36,11 +36,6 @@ appear when they're strongly relevant to the query.
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
-  [role-based access](search-security-rbac.md). **Search Service Contributor**
-  can create and update knowledge sources. **Search Index Data Reader** can
-  query the knowledge base. Alternatively, you can use
-  [API keys](search-security-api-keys.md) if a role assignment isn't feasible.
-
 ## When to enable freshness-aware retrieval
 
 Enable freshness-aware retrieval when newer content is generally more useful
