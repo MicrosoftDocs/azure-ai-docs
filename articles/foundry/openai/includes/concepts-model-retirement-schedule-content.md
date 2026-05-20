@@ -30,11 +30,11 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | GA | 2026-10-01 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
-| gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
+| gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-06-01 | — |
 | gpt-4o-mini-tts | 2025-12-15 | GA | 2026-12-15 | — |
-| gpt-4o-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
+| gpt-4o-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-chat | 2025-08-07 | Preview | 2026-06-22 | gpt-chat-latest |
@@ -63,15 +63,18 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
+| gpt-chat-latest | 2026-05-05 | Preview | 2026-11-05 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-05-15 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
 | gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
+| gpt-realtime-2 | 2026-05-06 | GA | 2027-05-06 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-07-15 | — |
+| o1-pro | 2025-03-19 | GA | 2026-09-18 | — |
 | o3 | 2025-04-16 | GA | 2026-10-16 | — |
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
@@ -144,6 +147,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| model-router | 2025-05-19 | Preview | 2026-07-31 | — |
+| model-router | 2025-08-07 | Preview | 2026-07-31 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
 
 ### Mistral AI
