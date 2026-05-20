@@ -1,11 +1,11 @@
 ---
-title: Choose a Service Tier
-description: 'Learn about the service tiers (or SKUs) for Azure AI Search. A search service can be provisioned at these tiers: Free, Basic, Standard, and Storage Optimized. Standard is available in various resource configurations and capacity levels.'
+title: Choose a pricing model and service tier
+description: Learn about the Dedicated and Serverless (Preview) pricing models and service tiers (or SKUs) for Azure AI Search. A search service can be consumption-based (Serverless) or provisioned (Dedicated) at these tiers - Free, Basic, Standard, and Storage Optimized. Standard is available in various resource configurations and capacity levels.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 03/25/2026
+ms.date: 06/02/2026
 ---
 
 # Choose a pricing model and service tier in Azure AI Search
