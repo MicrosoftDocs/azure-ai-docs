@@ -82,9 +82,11 @@ To configure access for this solution:
 
     | Role | Assignee | Purpose |
     |------|----------|---------|
-    | Azure AI User | Your user account | Access model deployments and create agents |
-    | Azure AI Project Manager | Your user account | Create project connection and use MCP tool in agents |
+    | Foundry User | Your user account | Access model deployments and create agents |
+    | Foundry Project Manager | Your user account | Create project connection and use MCP tool in agents |
     | Cognitive Services User | Search service managed identity | Access knowledge base |
+
+[!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ## Set up your environment
 

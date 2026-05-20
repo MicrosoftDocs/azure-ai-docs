@@ -32,7 +32,7 @@ Use the Anomaly Detector multivariate client library for Java to:
 
 ### Create a new Gradle project
 
-This quickstart uses the Gradle dependency manager. You can find more client library information on the [Maven Central Repository](https://search.maven.org/artifact/com.azure/azure-ai-metricsadvisor).
+This quickstart uses the Gradle dependency manager. You can find more client library information on the [Maven Central Repository](https://central.sonatype.com/artifact/com.azure/azure-ai-metricsadvisor).
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. 
 

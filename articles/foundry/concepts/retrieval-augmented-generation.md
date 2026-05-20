@@ -2,6 +2,7 @@
 title: "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry"
 description: "Learn how retrieval augmented generation (RAG) uses indexes and grounding data to improve response accuracy in generative AI apps."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - classic-and-new
   - ignite-2023

@@ -4,6 +4,7 @@ description: "Learn how to use Foundry Tools and features responsibly with Micro
 manager: nitinme
 keywords: Foundry Tools, cognitive
 ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: overview
 ms.date: 02/13/2026
 ms.author: pafarley

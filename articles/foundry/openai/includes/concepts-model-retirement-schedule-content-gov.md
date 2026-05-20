@@ -12,9 +12,9 @@ ms.custom: include, classic-and-new
 
 This article lists the retirement schedule for Foundry Models in Azure Government — their current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy in Azure Government](../concepts/model-retirements-gov.md).
 
-## Foundry Models sold directly by Azure in Azure Government
+## Foundry Models sold by Azure in Azure Government
 
-This section lists the retirement lifecycle for Foundry Models sold directly by Azure in Azure Government.
+This section lists the retirement lifecycle for Foundry Models sold by Azure in Azure Government.
 
 ### Azure OpenAI
 
