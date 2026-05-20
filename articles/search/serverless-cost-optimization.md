@@ -10,16 +10,19 @@ ai-usage: ai-assisted
 # customer intent: As a developer or product engineer, I want to understand the details behind how the Azure AI Search Serverless pricing model works so that I can optimize my search service to use the most efficient pricing model suited to my needs and only pay for what I use.
 ---
 
-# Optimize costs with the Serverless pricing model in Azure AI Search
+# Optimize costs for the Serverless pricing model in Azure AI Search
 
 Azure AI Search supports two pricing models, each designed for different workload patterns:
 
-- **Dedicated (provisioned capacity)**: Fixed pricing based on search units. You select a pricing tier, and you're billed hourly based on provisioned units. For more information, see [Choose a service tier](search-sku-tier.md).
+- **Dedicated (provisioned capacity)**: Fixed pricing based on search units. You select a service tier, and you're billed hourly based on provisioned units. For more information, see [Choose a pricing model and service tier](search-sku-tier.md).
 
 - **Serverless (consumption-based)**: Metered pricing based on actual usage. *This model is currently in preview.* You're billed for:
 
     - Compute (measured in compute units, or CU/h)
     - Indexed storage (billed per GB/month based on on-disk index size)
+
+> [!IMPORTANT]
+> The Serverless pricing model is currently available to try at no cost during this early preview period. Usage-based billing will begin prior to the end of the public preview with details provided at least 30-days in advance.
 
 ## How cost is determined in the serverless model
 
@@ -29,17 +32,18 @@ In the serverless model, **performance optimization directly affects cost**. Cos
 - Storage is billed separately based on index size on disk.
 - When the service is idle with no active queries or indexing, compute usage is zero. There is no reserved or minimum capacity charge.
 
+The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
+
 > [!IMPORTANT]
-> CU/h don't include all optional capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
+> Your CU/h charges don't include all premium capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
 
 ## Understand compute units (CUs)
 
-A compute unit (CU) represents the measured system resources required to perform search and indexing operations in the serverless model. CU cost is primarily driven primarily by CPU, memory, and IO utilization and secondarily by Index size and document payload size with usage being billed per hour (CU/hr).
+A compute unit (CU) represents the measured system resources required to perform search and indexing operations in the Serverless model. CU cost is driven primarily by CPU, memory, and IO utilization and secondarily by Index size and document payload size with usage being billed per hour (CU/h).
 
 Compute cost scales with:
 
 - Query complexity
-- CPU, memory, and storage I/O utilization
 - Index size (GB) and structure
 - Document payload size (KB)
 - Number of fields and retrieved results
@@ -49,7 +53,7 @@ Different operations have different cost profiles:
 - **Lookup**: Low cost. Retrieving a single document by its ID is the most efficient operation.
 - **Keyword search**: Low cost. Text search uses inverted indexes, which are optimized for speed and low compute usage.
 - **Vector search**: High cost. Vector queries are computationally expensive because they require similarity calculations across high-dimensional embeddings. Compared to keyword search, they consume significantly more compute.
-- **Hybrid search**: Creates an average cost between the Keyword and Vector searches, plus a small overhead for Reciprocal Rank Fusion (RRF) to merge results.
+- **Hybrid search**: Combines the cost of keyword and vector search, as both pipelines run for each query, plus a small additional overhead for Reciprocal Rank Fusion (RRF) to merge results.
 
 ### Monitor compute usage
 
@@ -66,13 +70,14 @@ Content-Type: application/json
 x-ms-request-charge: 12.45
 ```
 
-This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 CUs.
+This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 mCU per minute.
 
 You can also use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
 
 > [!NOTE]
-> The Azure pricing calculator and SU-based capacity-planning worksheets don't apply to Serverless services. To estimate Serverless costs, index a representative sample of your data, run typical queries, and inspect the `x-ms-request-charge` header to measure actual CU consumption per operation type. Extrapolate to your expected volume, then apply current rates from the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
-> Usage is measured per minute and rounded up to the nearest 0.25 CU/minute, with 60 of these per minute segments added up over the period of an hour to calculate the full CU/hr amount that appears on the bill. CU costs are consistent - the same request on the same data produces similar CU consumption. The relative cost of different operation types follows this general pattern: keyword search (low) < vector search (higher) < hybrid search (combined cost of both).
+> The Azure pricing calculator and SU-based capacity-planning worksheets don't apply to the Serverless pricing model services. To estimate Serverless costs, index a representative sample of your data, run typical queries, and inspect the `x-ms-request-charge` header to measure actual CU consumption per operation type. Extrapolate to your expected volume using telemetry and the Azure portal to estimate costs.
+> The aggregate usage is measured each minute, converting from mCU to CU (divide by 1000) and from CU/min to CU/h (divide by 60), and then emitted to the meter each minute. If a minute has no usage, nothing is emitted.
+> To calculate the full CU/h amount that appears on the bill, usage is measured per minute and rounded up to the nearest 0.25 CU/minute, with 60 of these per minute segments added up over the period of an hour to calculate the full CU/h amount that appears on the bill. CU costs are consistent - the same request on the same data produces similar CU consumption. The relative cost of different operation types follows this general pattern: keyword search (low) < vector search (higher) < hybrid search (combined cost of both).
 
 ## Reduce compute costs through optimization
 
@@ -87,13 +92,13 @@ Your index schema determines baseline compute and storage costs:
 - **Set retrievable=false for filter-only or sort-only fields**: If a field is used for filtering or sorting but doesn't need to be returned in results, keep it indexed and set `retrievable=false` to reduce on-disk storage and per-GB/month storage cost.
 - **Use retrievable-only fields when possible**: For example, fields used only for display (such as image URLs) should not be searchable.
 - **Reduce vector dimensions**: Higher-dimensional vectors increase storage and query cost. Use smaller embedding models or quantization when appropriate.
-- **Minimize document payload size before indexing**: In the serverless model, indexing cost is influenced by how much data the system processes. Indexing cost includes a `payload_KB` factor. The `payload_KB` factor refers to the size of each document (in kilobytes) sent to the index during indexing. Larger payloads require more compute to process, increasing indexing cost. To reduce cost, remove unnecessary fields, trim long text, and strip HTML or other formatting before indexing so that each document contains only the data required for search.
+- **Minimize document payload size before indexing**: Larger documents cost more to index. Remove unnecessary fields, trim long text, and strip HTML before sending documents to the index.
 
 ### Optimize indexing requests
 
-How you send data to the index affects both cost and throughput. More efficient indexing patterns reduce compute (CUs) and improve ingestion performance. Larger payloads and more frequent indexing requests both increase compute consumption, so batching and incremental updates are key optimization strategies.
+How you send data to the index affects both cost and throughput:
 
-- **Use larger batches when possible**: Batch indexing reduces per-request overhead by amortizing network and processing costs across more documents. In general, batches of up to ~1,000 documents or ~16 MB are more CU-efficient than many small requests. However, optimal batch size depends on your workload—test to balance throughput, latency, and reliability.
+- **Use larger batches when possible**: Batch indexing reduces per-request overhead by amortizing network and processing costs across more documents. In general, batches of up to ~1,000 documents or ~16 MB are more CU-efficient than many small requests. However, optimal batch size depends on your workload. Test to balance throughput, latency, and reliability.
 
 - **Index only new or changed data**: Avoid full reindexing when possible. Sending only additions and updates reduces the number of documents processed, lowering compute cost and improving ingestion speed.
 
@@ -103,7 +108,7 @@ How you send data to the index affects both cost and throughput. More efficient 
 
 - **Target skills to relevant fields and documents**: Scope enrichment skills to the specific fields or documents they need. Avoid running skills across content that doesn't need enrichment, especially when the outputs aren't used downstream.
 
-- **Account for index size growth**: Indexing cost increases as the index grows, because more data must be maintained and updated. While the increase isn’t strictly linear, larger indexes require more compute per operation. For very large datasets, consider partitioning data across multiple indexes to improve performance and control costs.
+- **Account for index size growth**: Where possible, create smaller indexes. As an index grows, indexing costs increase because more data must be stored and maintained, and operations require more compute. For very large datasets, consider partitioning data across multiple indexes to help manage performance and costs. Although costs rise with index size, the increase is sublinear. Larger indexes cost more per operation, but not proportionally more.
 
 For more guidance, see [Tips for better performance in Azure AI Search](./search-performance-tips.md).
 
@@ -129,11 +134,17 @@ Query design is a primary driver of variable cost:
 
 - **Use `search.in` for filtering**: When filtering by a list of IDs or values, use the `search.in` function instead of multiple `or` conditions (for example, `id eq '1' or id eq '2'`). This approach is more efficient and reduces compute overhead. You should also avoid marking high-cardinality fields (those with a large number of unique values, such as unique IDs or free-text descriptions) as filterable or facetable unless required, as this increases index size and query cost.
 
-## Optimize vector costs
+### Optimize your administrative requests
+
+In addition to query and indexing operations, Azure AI Search includes object-level and service-level administrative operations (such as retrieving index schemas or service statistics). These requests have a flat per-request cost. While each request is inexpensive, repeated or unnecessary calls can accumulate over time and increase overall compute usage.
+
+- **Avoid excessive administrative requests**: Cache metadata, such as index schemas, on the client side instead of retrieving it repeatedly. For example, fetching the index schema before every write operation introduces unnecessary cost. In the Serverless model, this pattern directly increases compute charges, whereas in Dedicated services, the impact is often hidden by fixed hourly billing.
+
+### Optimize vector costs
 
 Vector workloads are typically the highest-cost component in serverless search because they impact both compute (queries and indexing) and storage (vector size on disk). To reduce cost, optimize both how vectors are stored and how they’re queried.
 
-### Optimize vector storage and schema
+#### Optimize vector storage and schema
 
 Vector fields can significantly increase index size and indexing cost. Use the following techniques to reduce storage overhead:
 
@@ -143,7 +154,7 @@ Vector fields can significantly increase index size and indexing cost. Use the f
 
 - **Use smaller embedding dimensions when possible**: Higher-dimensional vectors increase both storage and query cost. For non-critical workloads, use smaller embedding models (for example, 384 or 768 dimensions instead of 1536) to reduce cost.
 
-### Optimize vector query execution
+#### Optimize vector query execution
 
 Vector queries are compute-intensive because they require similarity calculations over high-dimensional data structures.
 
@@ -163,8 +174,6 @@ To minimize usage costs:
 
 > [!TIP]
 > The same query can have different latency and CU profiles depending on whether the service is warm or cold. After a period with no read or write traffic, serverless compute usage drops to zero. The next request might have higher latency and consume more CUs while data paths warm up. Larger indexes generally take longer to warm than smaller indexes, so cold-start effects are often more noticeable on larger services.
-
-Serverless is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
 ## Optimize storage costs
 
