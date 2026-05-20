@@ -61,8 +61,8 @@ To request access:
     
 1. Wait for Microsoft to enable access after reviewing and approving the request.
 
-> [!TIP]
-> Registering a preview feature requires the **Owner** or **Contributor** built-in role on the subscription, which is a separate role from the Microsoft Entra administrator who submits the form. The two responsibilities can be held by different people in your organization. For more information about the registration mechanism, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features).
+    > [!TIP]
+    > Registering a preview feature requires the **Owner** or **Contributor** built-in role on the subscription, which is a separate role from the Microsoft Entra administrator who submits the form. The two responsibilities can be held by different people in your organization. For more information about the registration mechanism, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features).
 
 ## Check for existing knowledge sources
 
