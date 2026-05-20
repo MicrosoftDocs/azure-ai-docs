@@ -1,6 +1,6 @@
 ﻿---
-title: "Use connectors as MCP servers in Foundry Agent Service (preview)"
-description: "Browse, configure, and use connectors from the Foundry Tools Catalog as Model Context Protocol (MCP) servers for your agents."
+title: "Add managed MCP servers powered by connector namespaces (preview)"
+description: "Add managed MCP servers powered by connector namespaces to your Foundry agents. Browse, configure, and connect to over 1,000 SaaS and line-of-business services from the Foundry Tools Catalog."
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -15,14 +15,14 @@ ai-usage: ai-assisted
 zone_pivot_groups: foundry-connector-config
 ---
 
-# Use connectors as MCP servers (preview)
+# Add managed MCP servers powered by connector namespaces (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-The Foundry Tools Catalog provides over 1,000 connectors. Foundry converts each connector into a Model Context Protocol (MCP) server based on your configuration. Each connector lets your agent call connector actions during a conversation — for example, creating a GitHub issue, querying a database, or sending a message.
+The Foundry Tools Catalog provides over 1,000 connectors — pre-built integrations to SaaS, data, and line-of-business systems. When you add a connector to your agent, Foundry creates a **managed MCP server**: an MCP server that Foundry provisions and manages in your Foundry account's Connector Namespace. Your agent calls the managed MCP server's tools to perform actions during a conversation — for example, creating a GitHub issue, querying a database, or sending a message.
 
 > [!IMPORTANT]
 > Non-Microsoft tools including third-party MCP servers available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the Third-Party Tools you add to your MCP client.
@@ -33,12 +33,32 @@ The Foundry Tools Catalog provides over 1,000 connectors. Foundry converts each 
 
 ## How it works
 
-When you configure a connector, Foundry creates a project-scoped connection that stores your credentials and maps to an MCP server endpoint. Attach that MCP server to any agent in your project without writing custom server code. The configuration flow has four steps:
+Each Foundry account has a **Connector Namespace** — a fully managed service that hosts connector runtimes and MCP servers. Each project maps to an environment in that namespace. When you configure a connector, Foundry publishes it as a managed MCP server in your project's environment. The namespace handles server hosting, tool definitions, authentication, credential management, and lifecycle. Your agent calls the managed MCP server's tools without you writing custom server code or managing infrastructure.
+
+The configuration flow has four steps:
 
 1. **Browse** — find the connector in the Tools Catalog.
 1. **Connect** — authenticate to the connector's service.
 1. **Select actions** — choose which connector actions to expose as MCP tools.
-1. **Add tool** — Foundry creates the MCP server and adds it to your agent.
+1. **Add tool** — Foundry creates the managed MCP server and adds it to your agent.
+
+## Publisher tiers and data handling
+
+The catalog includes connectors published by Microsoft, verified third-party publishers, and independent publishers. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-mcpserver-connectors).
+
+| Publisher tier | Examples | Data responsibility |
+|---|---|---|
+| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy and GDPR policies apply end-to-end |
+| **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
+| **Verified third-party** | Docusign, Databricks, Box | Same as Microsoft external; review the publisher's privacy policy and GDPR terms before connecting |
+| **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
+
+The Connector Namespace acts as a proxy to external services. While data is in transit through the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends the request to the external service, that company's policies govern data storage, retention, and geography.
+
+For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/en-us/connectors/protection).
+
+> [!NOTE]
+> Managed MCP servers are scoped to the Foundry project where they're created. Connector triggers aren't supported; only actions that your agent can invoke are available.
 
 ## Prerequisites
 
@@ -46,7 +66,16 @@ When you configure a connector, Foundry creates a project-scoped connection that
 - **Foundry Project Manager** role on the Foundry project.
 - Credentials for the service you want to connect to (for example, an API key, OAuth account, or personal access token).
 
-## Add a connector from the Tools Catalog
+## Authentication types
+
+| Auth type | When to use | Catalog signal |
+| --- | --- | --- |
+| **OAuth2** | The connector uses OAuth2 authorization code flow. Foundry manages the token exchange; you complete a one-time consent flow. | `x-ms-connection-parameters` contains a field with `"type": "oauthSetting"` |
+
+## Add a managed MCP server
+
+> [!NOTE]
+> The configuration experience in this article applies to managed MCP servers that support **OAuth2** authentication. For managed MCP servers with other authentication types, see [Add connector actions as agent tools in Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/add-agent-tools-connector-actions?wt.mc_id=AZ-MVP-5004796).
 
 :::zone pivot="foundry-portal"
 
@@ -80,7 +109,7 @@ When you configure a connector, Foundry creates a project-scoped connection that
 1. Review your configuration — the connector name, connection, and selected actions.
 1. Select **Add tool**.
 
-Foundry creates a new MCP server and adds it to your agent. You can view and edit the MCP server at any time from **Tools** in your project.
+Foundry creates a managed MCP server and adds it to your agent. You can view and edit it at any time from **Tools** in your project.
 
 :::zone-end
 
@@ -334,19 +363,6 @@ For full toolbox configuration and deployment, see [Create and use a Foundry Too
 > For OAuth2 connections, the first MCP call from your agent returns error code `-32006` with a `consent_url`. Open that URL in a browser and complete the OAuth flow. After consent, `overallStatus` transitions to `Connected` and subsequent calls succeed.
 
 :::zone-end
-
-## Authentication types
-
-| Auth type | When to use | Catalog signal |
-| --- | --- | --- |
-| **OAuth2** | The connector uses OAuth2 authorization code flow. Foundry manages the token exchange; you complete a one-time consent flow. | `x-ms-connection-parameters` contains a field with `"type": "oauthSetting"` |
-| **CustomKeys** | The service issues API keys, personal access tokens, or username/password credentials. | `x-ms-connection-parameters` contains a field with `"type": "securestring"` |
-| **None** | The connector's MCP server endpoint requires no authentication. | `x-ms-connection-parameters` is absent or empty |
-
-## Limitations
-
-- Connector MCP servers are scoped to the Foundry project where they're created.
-- Connector triggers aren't supported; only actions that your agent can invoke are available.
 
 ## Related content
 
