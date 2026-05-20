@@ -73,12 +73,14 @@ AzureDiagnostics
 
 The following table lists common and recommended alert rules for Azure AI Search. On a search service, throttling or query latency that exceeds a given threshold are the most commonly used alerts, but you might also want to be notified if a search service is deleted.
 
+Alerts can be configured so that you receive an email or SMS text depending on your preference.
+
 | Alert type | Condition | Description |
 | --- | --- | --- |
-| Search Latency (metric alert) | Whenever the average search latency is greater than a user-specified threshold (in  seconds) | Send an SMS alert when average query response time exceeds the threshold. |
-| Throttled search queries percentage (metric alert) | Whenever the total throttled search queries percentage is greater than or equal to a user-specified threshold | Send an SMS alert when dropped queries begin to exceed the threshold. |
-| Storage Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the index name dimension to monitor specific scenarios. | Send an email if the storage usage exceeds the expected limit. |
-| Compute Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the operation name and index name dimensions to monitor specific scenarios. | Send an SMS alert when compute consumed begin to exceed the threshold. |
+| Search Latency (metric alert) | Whenever the average search latency is greater than a user-specified threshold (in  seconds) | Send an alert when average query response time exceeds the threshold. |
+| Throttled search queries percentage (metric alert) | Whenever the total throttled search queries percentage is greater than or equal to a user-specified threshold | Send an alert when dropped queries begin to exceed the threshold. |
+| Storage Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the index name dimension to monitor specific scenarios. | Send an alert if the storage usage exceeds the expected limit. |
+| Compute Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the operation name and index name dimensions to monitor specific scenarios. | Send an alert when compute consumed begin to exceed the threshold. |
 
 [!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
 
