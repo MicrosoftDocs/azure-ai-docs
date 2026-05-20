@@ -89,6 +89,78 @@ sections:
           Where do I access pricing information for legacy models, which are no longer available for new deployments? 
         answer: | 
           Legacy pricing information is available via a [downloadable PDF file](https://download.microsoft.com/download/a/b/5/ab542db1-f1a7-4f92-b615-2e2eaccb64ea/Azure-OpenAI-Legacy-Pricing.pdf). For all other models, consult the [official pricing page](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/). 
+
+          **Looking up pricing programmatically**
+
+          If you can't find a specific model or SKU on the pricing page, you can query the [Azure Retail Prices REST API](/rest/api/cost-management/retail-prices/azure-retail-prices). It's public, requires no authentication, and returns per-region, per-SKU pricing for all Azure OpenAI meters.
+
+          Key concepts:
+
+          - **`productName`** — filter by `Azure OpenAI` (most models) or `Azure OpenAI GPT5` (GPT-5 family).
+          - **`skuName`** — encodes the model, direction (input/output), and deployment type. Examples: `gpt 4.1 Inp Data Zone`, `gpt 4o 0513 Input global`, `gpt 4o 1120 output`.
+          - **`armRegionName`** — the Azure region. Meters without `global` or `Data Zone` in the SKU name are regional and priced per-region.
+          - Pricing varies by deployment type: **Global** (lowest) → **Data Zone** (~10% premium) → **Regional** (10–25% premium over Global, varying by region).
+
+          Python example — look up input pricing for a model across all regions and deployment types:
+
+          ```python
+          import requests
+
+          BASE_URL = "https://prices.azure.com/api/retail/prices"
+
+          def get_model_pricing(model_filter: str, product_name: str = "Azure OpenAI") -> list[dict]:
+              """Fetch all consumption pricing for a given model from the Azure Retail Prices API."""
+              items = []
+              odata = (
+                  f"productName eq '{product_name}' "
+                  f"and priceType eq 'Consumption' "
+                  f"and contains(skuName, '{model_filter}')"
+              )
+              params = {"$filter": odata, "api-version": "2023-01-01-preview"}
+              url = BASE_URL
+              while url:
+                  resp = requests.get(url, params=params, timeout=30)
+                  resp.raise_for_status()
+                  data = resp.json()
+                  items.extend(data.get("Items", []))
+                  url = data.get("NextPageLink")
+                  params = {}  # NextPageLink already includes query params
+              return items
+
+          # Example: compare gpt-4o 2024-11-20 input pricing across deployment types
+          items = get_model_pricing("gpt 4o 1120")
+
+          input_items = [
+              i for i in items
+              if i["retailPrice"] > 0
+              and "inp" in i["skuName"].lower()
+              and not any(x in i["skuName"].lower() for x in ["batch", "prov", "ft "])
+          ]
+
+          for item in sorted(input_items, key=lambda x: x["retailPrice"]):
+              sku = item["skuName"]
+              tier = (
+                  "Global" if "global" in sku.lower()
+                  else "Data Zone" if "data zone" in sku.lower()
+                  else "Regional"
+              )
+              print(
+                  f"${item['retailPrice']:.4f} / {item['unitOfMeasure']:<12}  "
+                  f"{tier:<10}  {item['armRegionName']:<20}  SKU: {sku}"
+              )
+          ```
+
+          Sample output (abbreviated):
+
+          ```
+          $0.0025 / 1K Tokens    Global      eastus2          SKU: gpt 4o 1120 Inp global
+          $0.0025 / 1K Tokens    Regional    australiaeast    SKU: gpt 4o 1120 Inp
+          $0.0028 / 1K Tokens    Data Zone   eastus2          SKU: gpt 4o 1120 Inp Data Zone
+          $0.0028 / 1K Tokens    Regional    eastus           SKU: gpt 4o 1120 Inp
+          $0.0030 / 1K Tokens    Regional    swedencentral    SKU: gpt 4o 1120 Inp
+          ```
+
+          To compare pricing across all models at once, omit the `contains(skuName, ...)` filter and use `productName eq 'Azure OpenAI'`. For GPT-5 family models, use `productName eq 'Azure OpenAI GPT5'`.
       - question: |
           How do I fix InternalServerError - 500 - Failed to create completion as the model generated invalid Unicode output?
         answer:
