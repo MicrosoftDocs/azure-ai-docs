@@ -3,7 +3,7 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -542,9 +542,9 @@ Pass the following parameters to call the retrieve action.
 
 ### Include images in retrieve responses (preview)
 
-For `azureBlob`, indexed `sharePoint`, and `oneLake` knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition. This feature requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package.
+For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
 
-Image serving runs only when `outputMode` is `answerSynthesis`. For setup steps, the precedence table, and how to inspect image serving statistics, see [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ### Retrieval from a search index
 
@@ -582,7 +582,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 >
 > + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
 >
-> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
 ## Enforce permissions at query time
 
@@ -805,7 +805,7 @@ The output includes the following components:
 | source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
 | agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
 | modelAnswerSynthesis | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer, and the token count of the answer output. |
-| imageServing | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. You can calculate if any images were dropped during this process since this would be the `imagesRetrieved` minus the `imagesSentToModel` |
+| imageServing | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
 
 # [2026-04-01](#tab/2026-04-01)
 

@@ -202,6 +202,7 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
 
+---
 
 ## Next step
 

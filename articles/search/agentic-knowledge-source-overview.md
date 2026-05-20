@@ -66,7 +66,7 @@ After you create the knowledge source, reference it in a knowledge base.
 
 ### Asset store for image serving (preview)
 
-For file-based indexed knowledge sources (Azure Blob, indexed SharePoint, indexed OneLake), you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For details, see [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+For file-based indexed knowledge sources (blob, indexed OneLake, indexed SharePoint), you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Using knowledge sources
 
