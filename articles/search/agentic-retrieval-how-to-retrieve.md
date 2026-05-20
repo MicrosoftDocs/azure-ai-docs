@@ -1310,10 +1310,8 @@ Content-Type: application/json
 
 :::zone-end
 
-For search index knowledge sources, `knowledgeSourceParams.maxOutputDocuments`
-is a per-source cap. Some preview regions cap this setting at 50. The service
-can return fewer documents when fewer matches are available or when internal
-limits reduce the applied window.
+The service can return fewer documents when fewer matches are available or when
+internal limits reduce the applied window.
 
 ### Limit final grounding documents
 
