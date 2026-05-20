@@ -1738,38 +1738,68 @@ curl -N -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/
 
 ## Encrypted Reasoning Items
 
-When using the Responses API in stateless mode by setting `store` to false, you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
+When you use the Responses API in stateless mode (`store=false`), you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your requests.
 
-To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
+To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter. The response then contains an encrypted version of the reasoning trace, which you can pass to future requests.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-    "model": "o4-mini",
-    "reasoning": {"effort": "medium"},
-    "input": "What is the weather like today?",
-    "tools": [<YOUR_FUNCTION GOES HERE>],
-    "include": ["reasoning.encrypted_content"]
-  }'
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    reasoning={"effort": "medium"},
+    input="What is the weather like today?",
+    tools=[
+        # Replace with your function or tool definitions.
+    ],
+    include=["reasoning.encrypted_content"],
+    store=False,
+)
+
+print(response.output_text)
 ```
 
-## Image generation (preview)
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "reasoning": {"effort": "medium"},
+    "input": "What is the weather like today?",
+    "tools": [],
+    "include": ["reasoning.encrypted_content"],
+    "store": false
+  }'
+```
+---
 
-The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
+The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
 
-Compared to the standalone Image API, the Responses API offers several advantages:
+Compared to the standalone Image API, the Responses API offers two advantages:
 
 * **Streaming**: Display partial image outputs during generation to improve perceived latency.
-* **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
+* **Flexible inputs**: Accept image file IDs as inputs in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1`-series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, `gpt-5` and `gpt-5.1` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](../how-to/dall-e.md) directly outside of the Responses API.
+> The image generation tool in the Responses API is supported by `gpt-image-1`-series models, and you can call it from a set of compatible chat and reasoning models. For the current list of supported orchestration models, see the [Model support](#model-support) section later in this article.
+>
+> The image generation tool doesn't currently support streaming mode. To stream partial images, call the [image generation API](../how-to/dall-e.md) directly outside of the Responses API.
 
-Use the Responses API if you want to build conversational image experiences with GPT Image.
+Use the Responses API to build conversational image experiences with GPT Image models.
 
+# [Python](#tab/python)
 ```python
+import base64
+import os
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -1777,30 +1807,80 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+    default_headers={
+        "x-ms-oai-image-generation-deployment": os.getenv("IMAGE_MODEL_NAME"),
+        "api_version": "preview",
+    },
 )
 
 response = client.responses.create(
-    model="o3",
-    input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
+    model="MODEL_NAME",
+    input="Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
     tools=[{"type": "image_generation"}],
 )
 
-# Save the image to a file
 image_data = [
     output.result
     for output in response.output
     if output.type == "image_generation_call"
 ]
-    
+
 if image_data:
-    image_base64 = image_data[0]
     with open("otter.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
+        f.write(base64.b64decode(image_data[0]))
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import fs from "fs";
+import OpenAI from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: await tokenProvider(),
+  defaultHeaders: {
+    "x-ms-oai-image-generation-deployment": process.env.IMAGE_MODEL_NAME,
+    api_version: "preview",
+  },
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
+  tools: [{ type: "image_generation" }],
+});
+
+const imageBase64 = response.output
+  .filter((o) => o.type === "image_generation_call")
+  .map((o) => o.result)[0];
+
+if (imageBase64) {
+  fs.writeFileSync("otter.png", Buffer.from(imageBase64, "base64"));
+}
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H "x-ms-oai-image-generation-deployment: $IMAGE_MODEL_NAME" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
+    "tools": [{ "type": "image_generation" }]
+  }'
+```
+---
 
 ## Reasoning models
 
@@ -1814,7 +1894,7 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 
 ### API support
 
-- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
+- The v1 API is required for access to the latest features. For details, see the [API version lifecycle](../api-version-lifecycle.md).
 
 ### Region Availability
 
@@ -1900,7 +1980,7 @@ Not every model is available in the regions supported by the responses API. Chec
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
+- [Responses API reference documentation](../reference-preview-latest.md)
 
 ## Troubleshooting
 
