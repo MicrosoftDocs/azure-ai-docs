@@ -71,7 +71,7 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 1. Add new security principals for users and groups.
 
-1. Remove existing principals for owning groups, owning users, and other.  These principals aren't supported for ACL indexing during the public preview.
+1. Remove existing principals for owning groups, owning users, and other.  These principals aren't supported for ACL indexing during preview.
 
 ## Create a search index for permission metadata
 

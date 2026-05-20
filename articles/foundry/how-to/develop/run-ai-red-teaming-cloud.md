@@ -2,6 +2,7 @@
 title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK)"
 description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - references_regions
@@ -25,7 +26,9 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 ## Prerequisites
 
 - A [Foundry project](/azure/ai-foundry/how-to/create-projects).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Python 3.9 or later.
 - For agentic scenarios: an existing Foundry Agent deployed in your project. The agent's name is required as `AZURE_AI_AGENT_NAME`.
 

@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: jburchel
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/12/2026
 ms.custom: include
 ---
 
@@ -16,7 +16,7 @@ You create two capability hosts—one at the resource level and one at the proje
 
 1. Create a resource-level connection (as above) if not already present.
    > [!NOTE]
-   > As described in the previous section, select the **Catalog** tab and look for **Azure Blob Storage**.
+   > As described in the previous section, select **Operate** > **Admin** > your project > **Add connection** and choose **Azure Storage**.
 1. Create a resource-level capability host referencing that connection.
 1. Create (or open) a project under the resource.
 1. Create a project-level capability host referencing the resource-level capability host.
@@ -27,7 +27,7 @@ You create two capability hosts—one at the resource level and one at the proje
 Use the [Capability Hosts - Create Or Update](/rest/api/azureml/capability-hosts/create-or-update) REST API to create a capability host:
 
 ```http
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2025-05-01-preview
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2026-03-01
 
 {
   "properties": {
@@ -48,11 +48,13 @@ Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blo
 ```json
 {
   "type": "Microsoft.CognitiveServices/accounts/capabilityHosts",
-  "apiVersion": "2025-05-01-preview",
+  "apiVersion": "2026-03-01",
   "name": "[concat(parameters('foundryName'), '/agents-host')]",
   "properties": {
-    "feature": "agents",
-    "connectionId": "[resourceId('Microsoft.CognitiveServices/accounts/connections', parameters('foundryName'), 'myblobconnection')]"
+    "capabilityHostKind": "Agents",
+    "storageConnections": [
+      "[resourceId('Microsoft.CognitiveServices/accounts/connections', parameters('foundryName'), 'myblobconnection')]"
+    ]
   }
 }
 ```
@@ -104,7 +106,7 @@ Set the field during resource creation—via Bicep, ARM, Terraform, CLI, or Powe
 
 ### Bicep example
 ```bicep
-resource foundry 'Microsoft.CognitiveServices/accounts@2025-05-01-preview' = {
+resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
   name: myFoundryName
   location: location
   kind: 'AIServices'

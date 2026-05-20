@@ -5,9 +5,9 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/04/2025
-author: mrbullwinkle    
-ms.author: mbullwin
+ms.date: 05/13/2026
+author: alvinashcraft    
+ms.author: aashcraft
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new

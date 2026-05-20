@@ -2,6 +2,7 @@
 title: "How to configure a managed network for a hub (classic)"
 description: "Learn how to configure a managed network for Microsoft Foundry hubs. A managed network secures your computing resources. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom: 
   - ignite-2023
   - build-2024
@@ -34,7 +35,7 @@ Set up the following network isolation settings:
 - Choose a network isolation mode: allow internet outbound or allow only approved outbound.
 - If you use Visual Studio Code integration in **allow only approved outbound** mode, create FQDN outbound rules as described in the [use Visual Studio Code](#scenario-use-visual-studio-code) section.
 - If you use Hugging Face models in **allow only approved outbound** mode, create FQDN outbound rules as described in the [use Hugging Face models](#scenario-use-hugging-face-models) section.
-- If you use one of the open source models in **allow only approved outbound** mode, create FQDN outbound rules as described in the [Models sold directly by Azure](#scenario-models-sold-directly-by-azure) section.
+- If you use one of the open source models in **allow only approved outbound** mode, create FQDN outbound rules as described in the [Foundry Models sold by Azure](#scenario-models-sold-by-azure) section.
 
 ## Prerequisites
 
@@ -892,7 +893,7 @@ To use Hugging Face models with the hub, add outbound FQDN rules to allow traffi
 * `cas-bridge.xethub.hf.co`
 * `cdn-lfs.huggingface.co`
 
-### Scenario: Models sold directly by Azure
+### Scenario: Models sold by Azure
 
 These models install dependencies at runtime. Add outbound FQDN rules to allow traffic to the following hosts:
 
