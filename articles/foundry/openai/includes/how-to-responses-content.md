@@ -617,15 +617,41 @@ print(follow_up.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const compacted = await client.responses.compact({
+  model: "MODEL_NAME",
+  input: [
+    { role: "user", content: "Create a simple landing page for a dog cafe." },
+    {
+      id: "msg_001",
+      type: "message",
+      status: "completed",
+      role: "assistant",
+      content: [{ type: "output_text", text: "..." }],
+    },
+  ],
+});
+
+const followUp = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [...compacted.output, { role: "user", content: "Add a booking form." }],
+});
+console.log(followUp.output_text);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1128,15 +1154,24 @@ print(items.model_dump_json(indent=2))
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const items = await client.responses.inputItems.list("<response_id>");
+console.log(JSON.stringify(items, null, 2));
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1480,15 +1515,42 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import fs from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const file = await client.files.create({
+  file: fs.createReadStream("nucleus_sampling.pdf"),
+  purpose: "assistants",
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_file", file_id: file.id },
+        { type: "input_text", text: "Summarize this PDF." },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1663,15 +1725,43 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      require_approval: "never",
+    },
+  ],
+  previous_response_id: "<previous_response_id>",
+  input: [
+    {
+      type: "mcp_approval_response",
+      approve: true,
+      approval_request_id: "<approval_request_id>",
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1740,15 +1830,36 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "What is this repo in 100 words?",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      headers: { Authorization: "Bearer $YOUR_MCP_TOKEN" },
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1854,15 +1965,22 @@ print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+let current = response;
+while (current.status === "queued" || current.status === "in_progress") {
+  console.log(`Current status: ${current.status}`);
+  await new Promise((r) => setTimeout(r, 2000));
+  current = await client.responses.retrieve(current.id);
+}
+console.log(`Final status: ${current.status}\nOutput:\n${current.output_text}`);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1885,15 +2003,17 @@ print(response.status)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+const cancelled = await client.responses.cancel("<response_id>");
+console.log(cancelled.status);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1923,15 +2043,27 @@ for event in stream:
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+const stream = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Write me a very long story.",
+  background: true,
+  stream: true,
+});
+
+let cursor = null;
+for await (const event of stream) {
+  console.log(event);
+  cursor = event.sequence_number;
+}
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
@@ -1996,15 +2128,34 @@ print(response.output_text)
 
 # [C#](#tab/csharp)
 > [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [JavaScript](#tab/javascript)
-> [!NOTE]
-> A JavaScript code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  reasoning: { effort: "medium" },
+  input: "What is the weather like today?",
+  tools: [
+    // Replace with your function or tool definitions.
+  ],
+  include: ["reasoning.encrypted_content"],
+  store: false,
+});
+
+console.log(response.output_text);
+```
 
 # [Java](#tab/java)
 > [!NOTE]
-> A Java code sample isn't available for this scenario. Select Python or REST for an equivalent example.
+> A Java code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
 
 # [REST](#tab/rest)
 ```bash
