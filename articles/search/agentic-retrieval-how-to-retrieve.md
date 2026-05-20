@@ -534,7 +534,7 @@ Pass the following parameters to call the retrieve action.
 | `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
 | `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. | Boolean | Yes | No |
 | `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. For more information, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `maxOutputSize` | Limits the size, in characters, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
+| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
 | `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
 | `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 | `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
