@@ -198,7 +198,9 @@ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) specifies 
 ### Knowledge sources per knowledge base
 
 > [!IMPORTANT]
-> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 Per-knowledge-base limits on knowledge sources depend on the API version used to create or update the knowledge base. In `2026-05-01-preview`, all retrieval reasoning efforts support the same knowledge source limits. Earlier preview API versions have lower limits for `low` and `medium` reasoning efforts.
 
