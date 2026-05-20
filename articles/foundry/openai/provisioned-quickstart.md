@@ -100,7 +100,7 @@ az cognitiveservices account deployment create \
 --sku-name GlobalProvisionedManaged
 ```
 
-Reference: [az cognitiveservices account deployment](https://learn.microsoft.com/en-us/cli/azure/cognitiveservices/account/deployment)
+Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservices/account/deployment)
 
 Confirm that the deployment completed successfully:
  
@@ -114,7 +114,7 @@ az cognitiveservices account deployment show \
 
 The output should display `Succeeded`. The model is ready to use after provisioning completes.
 
-Reference: [az cognitiveservices account deployment show](https://learn.microsoft.com/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
+Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
 REST, ARM template, Bicep, and Terraform can also be used to create deployments. See [Automate deployments](../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) and replace `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
 
@@ -229,7 +229,7 @@ az cognitiveservices account deployment delete \
     --resource-group <myResourceGroupName>
 ```
 
-Reference: [az cognitiveservices account deployment delete](https://learn.microsoft.com/en-us/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete)
+Reference: [az cognitiveservices account deployment delete](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete)
 
 
 ## Next step
