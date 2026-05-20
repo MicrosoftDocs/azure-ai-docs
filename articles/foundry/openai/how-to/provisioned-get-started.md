@@ -4,7 +4,7 @@ description: "Learn to benchmark, monitor utilization, handle high load, and sca
 ai-usage: ai-assisted
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.custom:
   - openai, pilot-ai-workflow-jan-2026
   - classic-and-new

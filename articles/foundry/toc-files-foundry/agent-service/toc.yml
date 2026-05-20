@@ -5,7 +5,7 @@ items:
     href: ../../agents/overview.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
-  - name: Quickstart - Deploy a hosted agent
+  - name: Quickstart - Deploy a Hosted agent
     href: ../../agents/quickstarts/quickstart-hosted-agent.md
 
 # Concepts
@@ -134,13 +134,13 @@ items:
 # Deploy and Share
 - name: Deploy and share
   items:
-  - name: hosted agents
+  - name: Hosted agents
     items:
-    - name: Deploy a hosted agent
+    - name: Deploy a Hosted agent
       href: ../../agents/how-to/deploy-hosted-agent.md
-    - name: Manage hosted agent lifecycle
+    - name: Manage Hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
-    - name: Manage hosted agent sessions
+    - name: Manage Hosted agent sessions
       href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
@@ -173,7 +173,7 @@ items:
   items:
   - name: Migrate prompt agents to the new agent service
     href: ../../agents/how-to/migrate.md
-  - name: Migrate hosted agents to the new public preview
+  - name: Migrate Hosted agents to the new public preview
     href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Migrate from Agent Applications to the new agent model
     href: ../../agents/how-to/migrate-agent-applications.md

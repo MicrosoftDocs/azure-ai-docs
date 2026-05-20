@@ -140,4 +140,4 @@ A response from the query might look like the following JSON.
 
 + [Create a hybrid query](hybrid-search-how-to-query.md)
 + [Relevance scoring in hybrid search](hybrid-search-ranking.md)
-+ [Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)
++ [Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167)

@@ -4,7 +4,7 @@ description: Learn how query-time enforcement of Microsoft Purview sensitivity l
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/04/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -47,7 +47,7 @@ When you query an index that includes Microsoft Purview sensitivity labels, Azur
 ### 1. User identity and application role input
 
 At query time, Azure AI Search validates both:
-- The calling application's RBAC role, provided in the `Authorization` header.  
+- The calling application's RBAC role, provided in the `Authorization` header.  The minimum required role is `Search Index Data Reader`. For more details, review the [Azure AI Search RBAC guide](search-security-rbac.md).
 - The user identity via token, provided in the `x-ms-query-source-authorization` header.  
 
 Both are required to authorize label-based visibility.

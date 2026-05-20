@@ -48,7 +48,9 @@ The following table shows SDK and setup support.
   - **TypeScript**: `@azure/ai-projects` (latest)
   - **Java**: `azure-ai-agents`
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
-- **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
+- **Foundry Owner** role on your Foundry resource (required for creating agent resources)
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and model deployment name.
 

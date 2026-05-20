@@ -19,20 +19,22 @@ Each organization may have different access isolation requirements depending on 
 **No access isolation.** This means in your enterprise, you don't have any requirements separating permissions between a developer, project manager, or an admin. The permissions for these roles can be assigned across teams. 
 
 Therefore, you should...
-* Grant all users in your enterprise the **Azure AI Owner** role on the resource scope 
+* Grant all users in your enterprise the **Foundry Owner** role on the resource scope 
+
+  [!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 **Partial access isolation.** This means the project manager in your enterprise should be able to develop within projects as well as create projects. But your admins shouldn't be able to develop within Foundry, only create Foundry projects and accounts. 
 
 Therefore, you should...
-* Grant your admin with **Azure AI Account Owner** on the resource scope
-* Grant your developer and project managers with **Azure AI Project Manager** role on the resource 
+* Grant your admin with **Foundry Account Owner** on the resource scope
+* Grant your developer and project managers with **Foundry Project Manager** role on the resource 
 
 **Full access isolation.** This means your admins, project managers, and developers have clear permissions assigned that don't overlap for their different functions within an enterprise. 
 
 Therefore you should...
-* Grant your admin the **Azure AI Account Owner** on resource scope
-* Grant your developer the **Reader** role on Foundry resource scope and **Azure AI User** on project scope
-* Grant your project manager the **Azure AI Project Manager** role on resource scope
+* Grant your admin the **Foundry Account Owner** on resource scope
+* Grant your developer the **Reader** role on Foundry resource scope and **Foundry User** on project scope
+* Grant your project manager the **Foundry Project Manager** role on resource scope
 
 ### Use Microsoft Entra groups with Foundry
 
@@ -48,7 +50,7 @@ Complete the following steps to use Microsoft Entra ID groups with Foundry:
 
 Common examples:
 
-* To build agents, run traces, and use core Foundry capabilities, assign **Azure AI User** to the Microsoft Entra group.
+* To build agents, run traces, and use core Foundry capabilities, assign **Foundry User** to the Microsoft Entra group.
 * To use Tracing and Monitoring features, assign **Reader** on the connected Application Insights resource to the same group.
 
 To learn more about Microsoft Entra ID groups, prerequisites, and limitations, refer to:

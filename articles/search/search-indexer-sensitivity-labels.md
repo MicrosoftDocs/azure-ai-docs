@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers to ingest Microsoft
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 05/12/2026
 ---
 
 # Use an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels and enforce document-level security
@@ -141,9 +141,9 @@ $managedIdentityObjectId = (Get-AzResource -ResourceId $resourceIdWithManagedIde
 $MIPResourceSP = Get-EntraServicePrincipal -Filter "appID eq '870c4f2e-85b6-4d43-bdda-6ed9a579b725'"
 New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityObjectId -Principal $managedIdentityObjectId -ResourceId $MIPResourceSP.Id -Id "8b2071cd-015a-4025-8052-1c0dba2d3f64"
 
-# ARM Service Principal for policy read
-$ARMSResourceSP = Get-EntraServicePrincipal -Filter "appID eq '00000012-0000-0000-c000-000000000000'"
-New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityObjectId -Principal $managedIdentityObjectId -ResourceId $ARMSResourceSP.Id -Id "7347eb49-7a1a-43c5-8eac-a5cd1d1c7cf0"
+# Microsoft Rights Management Services (MRMS) - Service Principal for policy read
+$MRMSResourceSP = Get-EntraServicePrincipal -Filter "appID eq '00000012-0000-0000-c000-000000000000'"
+New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityObjectId -Principal $managedIdentityObjectId -ResourceId $MRMSResourceSP.Id -Id "7347eb49-7a1a-43c5-8eac-a5cd1d1c7cf0"
 
 ```
 
@@ -152,7 +152,7 @@ The appID roles in the provided PowerShell script are associated to the followin
 | AppID                                  | Service Principal                      | 
 | -------------------------------------- | -------------------------------------- | 
 | `870c4f2e-85b6-4d43-bdda-6ed9a579b725` | Microsoft Info Protection Sync Service | 
-| `00000012-0000-0000-c000-000000000000` | Azure Resource Manager            | 
+| `00000012-0000-0000-c000-000000000000` | Microsoft Rights Management Services   | 
 
 
 

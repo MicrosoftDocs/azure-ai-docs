@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 
 This article shows you how to deploy a containerized agent to Foundry Agent Service using the Python SDK or REST API. Use these approaches when you want to manage agent deployments directly from your own applications or services.
 
-If you're deploying for the first time or want the fastest path, use the [Quickstart: Create and deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md) instead. The quickstart uses the **Azure Developer CLI (azd)** or **VS Code extension**, which handle building, pushing, versioning, and RBAC configuration automatically.
+If you're deploying for the first time or want the fastest path, use the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md) instead. The quickstart uses the **Azure Developer CLI (azd)** or **VS Code extension**, which handle building, pushing, versioning, and RBAC configuration automatically.
 
 ## Deployment lifecycle
 
-Every hosted agent deployment follows this sequence:
+Every Hosted agent deployment follows this sequence:
 
 1. **Build and push** — Package your agent code into a container image and push it to Azure Container Registry.
 1. **Create an agent version** — Register the image with Foundry Agent Service. The platform provisions infrastructure and creates a dedicated Entra agent identity.
@@ -36,27 +36,27 @@ Every hosted agent deployment follows this sequence:
 
 ### Required permissions
 
-You need **Azure AI Project Manager** at project scope to create and deploy hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the **Azure AI User** role to the platform-created agent identity. The agent identity needs **Azure AI User** on the project to access models and artifacts at runtime.
+You need **Foundry Project Manager** at project scope to create and deploy Hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the **Foundry User** role to the platform-created agent identity. The agent identity needs **Foundry User** on the project to access models and artifacts at runtime.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
 - **Container Registry Repository Reader** for the project managed identity (image pulls)
-- **Azure AI User** for the platform-created agent identity (runtime model and tool access)
+- **Foundry User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity — which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
-
-> [!NOTE]
-> While azd and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity—which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
+> * While `azd` and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 
 > [!IMPORTANT]
-> The Azure Container Registry that holds your hosted agent's container image must currently be reachable over its public endpoint. Placing the registry behind a private network (private endpoint with public network access disabled) isn't currently supported for hosted agents — the platform can't pull the image. For the full list of network constraints, see [Limitations](virtual-networks.md#limitations).
+> The Azure Container Registry that holds your Hosted agent's container image must currently be reachable over its public endpoint. Placing the registry behind a private network (private endpoint with public network access disabled) isn't currently supported for Hosted agents — the platform can't pull the image. For the full list of network constraints, see [Limitations](virtual-networks.md#limitations).
 
 ## Container requirements
 
-Your container image must meet the following requirements to run on the hosted agent platform.
+Your container image must meet the following requirements to run on the Hosted agent platform.
 
 > [!IMPORTANT]
 > The hosting platform requires x86_64 (linux/amd64) container images. If you build on Apple Silicon or other ARM-based machines, use `docker build --platform linux/amd64 .` to avoid producing an incompatible ARM image.
@@ -127,7 +127,7 @@ Containers serve traffic on port **8088** locally. In production, the Foundry ga
 
 ### Platform-injected environment variables
 
-The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
+The Hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
 
 | Variable | Purpose |
 |----------|---------|
@@ -138,9 +138,58 @@ The hosted agent platform automatically injects environment variables into your 
 | `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request (hosted containers only) |
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry |
 
-Don't redeclare platform-injected variables in `agent.yaml` — they're set automatically.
+Don't redeclare platform-injected variables in `agent.yaml`—they're set automatically.
 
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
+
+### Reference project connections in environment variables
+
+Instead of hard-coding secrets (API keys, tokens, endpoints) into `agent.yaml` or your image, pull them from a Foundry project connection at sandbox start. Any value in `environment_variables` can be a placeholder expression that the platform resolves before your container starts.
+
+#### Placeholder syntax
+
+A placeholder has the form `${{connections.<name>.<path>}}`, where `<name>` is the connection's resource name (visible in the portal under **Project details** > **Connected resources**) and `<path>` is one of:
+
+| Path | Resolves to |
+|------|-------------|
+| `credentials.<field>` | A secret field on the connection |
+| `target` | The connection's `target` property (for example, an endpoint URL) |
+| `metadata.<field>` | A field under the connection's `metadata` |
+
+The field name to use depends on the connection category:
+
+| Connection category | Field name in placeholder |
+|---------------------|---------------------------|
+| `ApiKey`, `AppInsights` | Always `key`—for example, `credentials.key` |
+| `CustomKeys` | The key name you supplied when creating the connection—for example, `credentials.github_token` |
+
+#### Example
+
+First, create a `CustomKeys` connection on the project that holds the secret. See [Add a new connection in Microsoft Foundry](../../how-to/connections-add.md). Then reference it from `agent.yaml`:
+
+```yaml
+environment_variables:
+  - name: MODEL_DEPLOYMENT_NAME
+    value: gpt-5-mini
+  - name: GITHUB_TOKEN
+    value: ${{connections.agent-secrets.credentials.github_token}}
+```
+
+At sandbox start, Foundry resolves the placeholder and injects the resolved value as a plain environment variable. Your code reads it like any other env var:
+
+```python
+import os
+token = os.environ["GITHUB_TOKEN"]
+```
+
+A GET on the agent version returns the literal `${{...}}` text—the resolved secret is never echoed back through the management API.
+
+#### Considerations
+
+- **Create the connection before you deploy the version.** If the connection or the referenced field is missing at sandbox start, the placeholder doesn't resolve and the variable is empty.
+- **Secrets are write-only.** GET on a connection returns `credentials: null`. Verify resolution by reading the env var from inside your running container, not by inspecting the connection.
+- **Record `CustomKeys` field names yourself.** The management API never echoes them back after creation. Keep them next to your agent source (for example, in IaC templates or alongside `agent.yaml`) so you can construct placeholders later without guessing.
+- **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses — you can't reference a pre-existing Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 
 ## Package and test your agent locally
 
@@ -171,7 +220,7 @@ Content-Type: application/json
 
 ## Deploy using the Azure Developer CLI or VS Code
 
-The Azure Developer CLI (`azd`) and VS Code extension automate the full deployment lifecycle. For a step-by-step walkthrough, see the [Quickstart: Create and deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md).
+The Azure Developer CLI (`azd`) and VS Code extension automate the full deployment lifecycle. For a step-by-step walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md).
 
 ## Deploy using the Python SDK
 
@@ -349,7 +398,7 @@ response = requests.post(url, headers={
 print(response.json())
 ```
 
-For more complete examples, see the [hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
+For more complete examples, see the [Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
 
 ## Deploy using the REST API
 
@@ -520,11 +569,11 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Manage hosted agent lifecycle](manage-hosted-agent.md)
+> [Manage Hosted agent lifecycle](manage-hosted-agent.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
 - [Azure Container Registry documentation](/azure/container-registry/)
