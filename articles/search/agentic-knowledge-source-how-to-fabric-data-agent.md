@@ -17,7 +17,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *Fabric Data Agent knowledge source* (preview) connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. The data agent acts as a virtual analyst, generating and running queries against your live Microsoft Fabric data to return natural-language answers, tables, and charts as grounding data.
 
-Unlike indexed knowledge sources, Fabric Data Agent knowledge sources (preview) query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to query the Fabric Data Agent on behalf of the end user.
+Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to query the Fabric Data Agent on behalf of the end user.
 
 ### Usage support
 
@@ -39,7 +39,7 @@ Unlike indexed knowledge sources, Fabric Data Agent knowledge sources (preview) 
 
 [!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
 
-The following JSON is an example response for a Fabric Data Agent knowledge source (preview).
+The following JSON is an example response for a Fabric Data Agent knowledge source.
 
 ```json
 {
@@ -56,11 +56,9 @@ The following JSON is an example response for a Fabric Data Agent knowledge sour
 
 ## Create a knowledge source
 
-Run the following code to create a Fabric Data Agent knowledge source (preview).
+Run the following code to create a Fabric Data Agent knowledge source.
 
 ::: zone pivot="csharp"
-
-<!-- TO-DO (PM): Verify C# class names and parameters for Fabric Data Agent knowledge source. -->
 
 ```csharp
 using Azure;
@@ -74,7 +72,7 @@ var indexClient = new SearchIndexClient(searchEndpoint, credential);
 var knowledgeSource = new FabricDataAgentKnowledgeSource("<knowledge-source-name>")
 {
     Description = "A Fabric Data Agent knowledge source.",
-    FabricDataAgentParameters = new FabricDataAgentParameters(
+    FabricDataAgentParameters = new FabricDataAgentKnowledgeSourceParameters(
         workspaceId: "<fabric-workspace-id>",
         dataAgentId: "<fabric-data-agent-id>"
     )
@@ -89,14 +87,12 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 
 ::: zone pivot="python"
 
-<!-- TO-DO (PM): Verify Python class names and parameters for Fabric Data Agent knowledge source. -->
-
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import (
     FabricDataAgentKnowledgeSource,
-    FabricDataAgentParameters,
+    FabricDataAgentKnowledgeSourceParameters,
 )
 
 index_client = SearchIndexClient(
@@ -107,7 +103,7 @@ index_client = SearchIndexClient(
 knowledge_source = FabricDataAgentKnowledgeSource(
     name="<knowledge-source-name>",
     description="A Fabric Data Agent knowledge source.",
-    fabric_data_agent_parameters=FabricDataAgentParameters(
+    fabric_data_agent_parameters=FabricDataAgentKnowledgeSourceParameters(
         workspace_id="<fabric-workspace-id>",
         data_agent_id="<fabric-data-agent-id>"
     )
@@ -145,9 +141,7 @@ Content-Type: application/json
 
 ### Source-specific properties
 
-<!-- TO-DO (PM): Confirm whether these properties are correct for Fabric Data Agent knowledge sources and update as needed. -->
-
-The following properties apply to Fabric Data Agent knowledge sources (preview).
+The following properties apply to Fabric Data Agent knowledge sources.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -164,7 +158,7 @@ The following properties apply to Fabric Data Agent knowledge sources (preview).
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!IMPORTANT]
-> Fabric Data Agent knowledge sources (preview) don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead. <!-- TO-DO (PM): Is answer synthesis also required? -->
+> Fabric Data Agent knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
 
 ## Query a knowledge base
 
@@ -174,20 +168,23 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Fabric Data Agent knowledge sources (preview) use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the Fabric Data Agent on behalf of the end user.
+Fabric Data Agent knowledge sources use an on-behalf-of (OBO) token flow. You pass the end-user access token in the `x-ms-query-source-authorization` header on the retrieve request. The token must be scoped to the Azure AI Search audience (`https://search.azure.com/.default`). The retrieval engine exchanges this token for a Microsoft Fabric–scoped token and uses it to query the Fabric Data Agent on behalf of the end user.
 
-Because Fabric Data Agent knowledge sources (preview) don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Standard Azure AI Search authentication is also required on the retrieve request. The `x-ms-query-source-authorization` token is passed separately and doesn't replace service authentication.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Fabric Data Agent–specific response fields
 
-Fabric Data Agent knowledge sources (preview) return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
+Fabric Data Agent knowledge sources return results in the `sourceData` object of each `references` entry and query diagnostics in the `activity` array. `sourceData` contains:
 
 - `fabricAnswer`: The data agent's natural-language answer.
 - `fabricEmbeddedResources`: Any embedded resources, such as tables and charts, when the query produces structured output.
 
 The following example shows a retrieve response containing a Fabric Data Agent knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
+
+> [!TIP]
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ```json
 {
@@ -234,9 +231,6 @@ The following example shows a retrieve response containing a Fabric Data Agent k
   ]
 }
 ```
-
-> [!TIP]
-> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
