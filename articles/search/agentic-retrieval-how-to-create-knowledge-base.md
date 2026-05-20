@@ -33,13 +33,11 @@ A knowledge base specifies:
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
-+ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). If you plan to use the 2026-04-01 API version to create your knowledge base, your knowledge sources must be generally available. Otherwise, you can use preview knowledge source types.
++ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). Use the `2026-05-01-preview` API version for preview knowledge source types or to use an LLM with non-web knowledge sources. Use the `2026-04-01` API version for generally available knowledge source types and minimal, extractive retrieval.
 
-+ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. For both the 2026-05-01-preview and 2026-04-01 API versions, the LLM is required if your knowledge base includes a web knowledge source. For the 2026-05-01-preview only, the LLM is optional for all other knowledge source types. 2026-04-01 doesn't support an LLM for non-web knowledge sources. 
++ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. An LLM is required if your knowledge base includes a web knowledge source. For other knowledge source types, an LLM is optional in the `2026-05-01-preview` API version and unsupported in the `2026-04-01` API version.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone pivot="csharp"
 
