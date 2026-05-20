@@ -71,29 +71,23 @@ A knowledge base specifies:
 
 ### Supported models
 
-Use one of the following LLMs from Azure OpenAI in Foundry Models. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
+Use one of the following LLMs from Azure OpenAI in Foundry Models. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai). Regional availability is determined by Azure OpenAI in Foundry Models for the deployment you select.
 
-+ `gpt-4o`
-+ `gpt-4o-mini`
-+ `gpt-4.1`
-+ `gpt-4.1-mini`
-+ `gpt-4.1-nano`
-+ `gpt-5`
-+ `gpt-5-mini`
-+ `gpt-5-nano`
-+ `gpt-5.1`
-+ `gpt-5.2`
-+ `gpt-5.4`
-+ `gpt-5.4-mini`
-+ `gpt-5.4-nano`
-
-The `2026-05-01-preview` API expands the supported model catalog through the
-existing model allowlist, but the knowledge base schema is unchanged. You
-update the model deployment and `modelName` values, not the structure of the
-knowledge base request. The preview adds the listed GPT-5.1, GPT-5.2, and
-GPT-5.4 family names to the supported set; it doesn't add chat, codex, or pro
-model variants. Regional availability is determined by Azure OpenAI in Foundry
-Models for the deployment you select.
+| Model | Supported API versions |
+|--|--|
+| `gpt-4o` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-4o-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-4.1` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-4.1-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-4.1-nano` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-5` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-5-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-5-nano` | `2025-11-01-preview`, `2026-05-01-preview` |
+| `gpt-5.1` | `2026-05-01-preview` |
+| `gpt-5.2` | `2026-05-01-preview` |
+| `gpt-5.4` | `2026-05-01-preview` |
+| `gpt-5.4-mini` | `2026-05-01-preview` |
+| `gpt-5.4-nano` | `2026-05-01-preview` |
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
