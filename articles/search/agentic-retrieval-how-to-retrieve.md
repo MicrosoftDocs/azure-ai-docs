@@ -55,6 +55,9 @@ This article explains how to call both retrieval methods with optional permissio
 
 ::: zone-end
 
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ## Call the retrieve action
 
 You specify the retrieve action on a knowledge base. The request body includes the query input and an optional list of knowledge sources to target.
@@ -1103,7 +1106,6 @@ customer-visible model, the field is omitted.
 
 ### Require a knowledge source to succeed
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -1224,7 +1226,6 @@ always participate and must fail the request on error, set both properties to
 
 ### Tune candidate documents per knowledge source
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -1325,7 +1326,6 @@ are available or when internal limits reduce the applied window.
 
 ### Limit final grounding documents
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
