@@ -53,7 +53,7 @@ To request access:
 
 1. Have a Microsoft Entra administrator for your tenant submit the following form: [FORM](form) <!-- TO-DO (PM): Add form link when available. -->
     
-1. Wait for Microsoft to enable access manually after reviewing and approving the request.
+1. Wait for Microsoft to enable access after reviewing and approving the request.
 
 > [!TIP]
 > Registering a preview feature requires the **Owner** or **Contributor** built-in role on the subscription, which is a separate role from the Microsoft Entra administrator who submits the form. The two responsibilities can be held by different people in your organization. For more information about the registration mechanism, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features).
@@ -79,14 +79,17 @@ Run the following code to create a Work IQ knowledge source (preview).
 
 ::: zone pivot="csharp"
 
+<!-- TO-DO (PM): Verify C# class name for Work IQ knowledge source. -->
+
 ```csharp
 using Azure;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+Uri searchEndpoint = new Uri("<search-service-url>");
+AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
+var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
-// TO-DO (PM): Verify class name WorkIQKnowledgeSource
 var knowledgeSource = new WorkIQKnowledgeSource(name: "my-workiq-ks")
 {
     Description = "A sample Work IQ knowledge source."
@@ -102,12 +105,17 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
+<!-- TO-DO (PM): Verify Python class name for Work IQ knowledge source. -->
+
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import WorkIQKnowledgeSource  # TO-DO (PM): Verify class name
+from azure.search.documents.indexes.models import WorkIQKnowledgeSource
 
-index_client = SearchIndexClient(endpoint=search_endpoint, credential=AzureKeyCredential(api_key))
+index_client = SearchIndexClient(
+    endpoint="<search-service-url>",
+    credential=AzureKeyCredential("<api-key>")
+)
 
 knowledge_source = WorkIQKnowledgeSource(
     name="my-workiq-ks",
