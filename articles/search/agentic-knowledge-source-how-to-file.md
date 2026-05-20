@@ -296,21 +296,16 @@ await indexClient.UploadKnowledgeSourceFileAsync("my-file-ks", BinaryData.FromBy
 ::: zone pivot="python"
 
 ```python
-import requests
+from pathlib import Path
 
-with open("installation-guide.pdf", "rb") as f:
-    body = f.read()
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
 
-response = requests.post(
-    f"{search_endpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview",
-    headers={
-        "api-key": search_api_key,
-        "Content-Type": "application/octet-stream",
-        "Content-Disposition": 'attachment; filename="installation-guide.pdf"',
-    },
-    data=body,
-)
-response.raise_for_status()
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+file_bytes = Path("installation-guide.pdf").read_bytes()
+uploaded_file = index_client.upload_knowledge_source_file("my-file-ks", file_bytes)
+print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
 
 ::: zone-end
@@ -352,16 +347,13 @@ await foreach (KnowledgeSourceFile file in indexClient.GetKnowledgeSourceFilesAs
 ::: zone pivot="python"
 
 ```python
-import requests
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
 
-response = requests.get(
-    f"{search_endpoint}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview",
-    headers={"api-key": search_api_key},
-)
-response.raise_for_status()
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
 
-for f in response.json().get("value", []):
-    print(f"{f['fileName']} ({f['fileSizeBytes']} bytes) error={f.get('errorMessage')}")
+for file in index_client.list_knowledge_source_files("my-file-ks"):
+    print(f"{file.file_name} ({file.file_size_bytes} bytes) error={file.error_message}")
 ```
 
 ::: zone-end
@@ -393,6 +385,45 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 ```
 
 Wait until processing succeeds before you rely on the file content in retrieve requests. If processing fails, review responses for unsupported file types, extraction failures, model access issues, or quota limits.
+
+## Delete uploaded files
+
+Delete files from the knowledge source when you no longer want them available for retrieval.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+await indexClient.DeleteKnowledgeSourceFileAsync("my-file-ks", "file-abc123");
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
+```
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+DELETE {{search-url}}/knowledgesources/my-file-ks/files/file-abc123?api-version=2026-05-01-preview
+api-key: {{api-key}}
+```
+
+::: zone-end
 
 ## Create a knowledge base
 
