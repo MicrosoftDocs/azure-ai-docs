@@ -29,7 +29,7 @@ Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. I
 
 Generate a simple text response using the Responses API. Replace `YOUR-RESOURCE-NAME` and `MODEL_NAME` with your deployment values.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -61,7 +61,7 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2))
 ```
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp/responses)
 ```csharp
 #pragma warning disable OPENAI001
 using Azure.Identity;
@@ -92,7 +92,7 @@ ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { OpenAI } from "openai";
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -126,7 +126,7 @@ const responseEntra = await openaiEntra.responses.create({
 console.log(responseEntra.output_text);
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java/responses)
 ```java
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.identity.AuthenticationUtil;
@@ -161,7 +161,7 @@ Response response = openAIClient.responses().create(params);
 System.out.println(response.outputText());
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ### Microsoft Entra ID
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -183,7 +183,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-# [Output](#tab/output)
+# [Output](#tab/output/responses)
 ```json
 {
   "id": "resp_67cb32528d6881909eb2859a55e18a85",
@@ -198,7 +198,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 Retrieve a response by its ID from a previous Responses API call.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -224,7 +224,7 @@ response = client.responses.retrieve("<response_id>")
 print(response.model_dump_json(indent=2))
 ```
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp/responses)
 ```csharp
 #pragma warning disable OPENAI001
 using Azure.Identity;
@@ -250,7 +250,7 @@ ResponseResult response = await openAIClient.GetResponseAsync(responseId);
 Console.WriteLine(response.GetOutputText());
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { OpenAI } from "openai";
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -278,7 +278,7 @@ const responseEntra = await openaiEntra.responses.retrieve("<response_id>");
 console.log(responseEntra.output_text);
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java/responses)
 ```java
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.identity.AuthenticationUtil;
@@ -307,7 +307,7 @@ Response response = openAIClient.responses().retrieve("<response_id>");
 System.out.println(response.outputText());
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ### Microsoft Entra ID
 ```bash
 curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
@@ -321,7 +321,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<res
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
-# [Output](#tab/output)
+# [Output](#tab/output/responses)
 ```json
 {
   "id": "resp_67cb61fa3a448190bcf2c42d96f0d1a8",
@@ -335,7 +335,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<res
 
 By default, response data is retained for 30 days. Delete a stored response by ID.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -361,7 +361,7 @@ response = client.responses.delete("<response_id>")
 print(response)
 ```
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp/responses)
 ```csharp
 #pragma warning disable OPENAI001
 using Azure.Identity;
@@ -387,7 +387,7 @@ var result = await openAIClient.DeleteResponseAsync(responseId);
 Console.WriteLine(result); // result.Deleted == true if successful
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { OpenAI } from "openai";
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -415,7 +415,7 @@ const resultEntra = await openaiEntra.responses.delete("<response_id>");
 console.log(resultEntra);
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java/responses)
 ```java
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.identity.AuthenticationUtil;
@@ -444,7 +444,7 @@ Response result = openAIClient.responses().delete("<response_id>");
 System.out.println(result);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ### Microsoft Entra ID
 ```bash
 curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
@@ -463,7 +463,7 @@ curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<
 
 Chain turns by passing the previous response ID to `previous_response_id`.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -487,7 +487,7 @@ second_response = client.responses.create(
 print(second_response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { OpenAI } from "openai";
 
@@ -510,7 +510,7 @@ const secondResponse = await client.responses.create({
 console.log(secondResponse.output_text);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 # First turn
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -570,7 +570,7 @@ print(second_response.model_dump_json(indent=2))
 
 Compaction reduces the input context while preserving essential state for later turns.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -601,7 +601,7 @@ follow_up = client.responses.create(
 print(follow_up.output_text)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
   -H "Content-Type: application/json" \
@@ -746,7 +746,7 @@ while keep_going:
 > [!NOTE]
 > During streaming, the Responses API might return an error event ( `500`, `429`, and similar errors) if the service encounters an error, such as token limits or parsing problems. Applications should detect this event and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -767,7 +767,7 @@ for event in stream:
         print(event.delta, end="")
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { OpenAI } from "openai";
 
@@ -789,7 +789,7 @@ for await (const event of stream) {
 }
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -806,7 +806,7 @@ curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses 
 
 The Responses API supports function calling.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 import json
@@ -856,7 +856,7 @@ final_response = client.responses.create(
 print(final_response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import OpenAI from "openai";
 
@@ -903,7 +903,7 @@ const finalResponse = await client.responses.create({
 console.log(finalResponse.output_text);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -951,7 +951,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -971,7 +971,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import OpenAI from "openai";
 
@@ -990,7 +990,7 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1058,7 +1058,7 @@ Any files in the model input get automatically uploaded to the container. You do
 
 ## List input items
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1072,14 +1072,14 @@ items = client.responses.input_items.list("<response_id>")
 print(items.model_dump_json(indent=2))
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/input_items \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
-# [Output](#tab/output)
+# [Output](#tab/output/responses)
 ```json
 {
   "object": "list",
@@ -1101,7 +1101,7 @@ For vision-enabled models, supported image formats are PNG, JPEG, and WebP.
 
 ### Image URL
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1127,7 +1127,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import OpenAI from "openai";
 
@@ -1152,7 +1152,7 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1174,7 +1174,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### Base64-encoded image
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import base64
 import os
@@ -1204,7 +1204,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { readFileSync } from "node:fs";
 import OpenAI from "openai";
@@ -1245,7 +1245,7 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 
 ### Convert PDF to Base64 and analyze
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import base64
 import os
@@ -1279,7 +1279,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import { readFileSync } from "node:fs";
 import OpenAI from "openai";
@@ -1316,7 +1316,7 @@ console.log(response.output_text);
 
 Upload the PDF file with `purpose="assistants"`. A `purpose` of `user_data` isn't currently supported.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1347,7 +1347,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 # Upload the PDF
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
@@ -1382,7 +1382,7 @@ You can extend the capabilities of your model by connecting it to tools hosted o
 
 The following example shows how to use a remote MCP server to query information about an Azure REST API repository. The model retrieves and reasons over repository content in real time.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1408,7 +1408,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import OpenAI from "openai";
 
@@ -1433,7 +1433,7 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1475,7 +1475,7 @@ When an approval is required, the model returns a `mcp_approval_request` item in
 
 To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1508,7 +1508,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1546,7 +1546,7 @@ Unlike the GitHub MCP server, most remote MCP servers require authentication. Th
 
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1572,7 +1572,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1598,7 +1598,7 @@ Background mode lets you run long-running tasks asynchronously with reasoning mo
 
 ### Start a background task
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1617,7 +1617,7 @@ response = client.responses.create(
 print(response.status)
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import OpenAI from "openai";
 
@@ -1635,7 +1635,7 @@ const response = await client.responses.create({
 console.log(response.status);
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1652,7 +1652,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 Continue polling while the status is `queued` or `in_progress`. Once the response reaches a terminal state, it's available for retrieval.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 from time import sleep
 
@@ -1664,7 +1664,7 @@ while response.status in {"queued", "in_progress"}:
 print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
   -H "Content-Type: application/json" \
@@ -1676,13 +1676,13 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<res
 
 Cancel an in-progress background task with the `cancel` endpoint. Canceling is idempotent—subsequent calls return the final response object.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 response = client.responses.cancel("<response_id>")
 print(response.status)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/cancel \
   -H "Content-Type: application/json" \
@@ -1692,7 +1692,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<re
 
 To stream a background response, set both `background` and `stream` to `true`. This pattern lets you resume streaming if the connection drops. Track your position with the `sequence_number` from each event.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 stream = client.responses.create(
     model="MODEL_NAME",
@@ -1707,7 +1707,7 @@ for event in stream:
     cursor = event["sequence_number"]
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1743,7 +1743,7 @@ When you use the Responses API in stateless mode (`store=false`), you must still
 
 To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter. The response then contains an encrypted version of the reasoning trace, which you can pass to future requests.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import os
 from openai import OpenAI
@@ -1767,7 +1767,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
@@ -1797,7 +1797,7 @@ Compared to the standalone Image API, the Responses API offers two advantages:
 
 Use the Responses API to build conversational image experiences with GPT Image models.
 
-# [Python](#tab/python)
+# [Python](#tab/python/responses)
 ```python
 import base64
 import os
@@ -1834,7 +1834,7 @@ if image_data:
         f.write(base64.b64decode(image_data[0]))
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript/responses)
 ```javascript
 import fs from "fs";
 import OpenAI from "openai";
@@ -1869,7 +1869,7 @@ if (imageBase64) {
 }
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest/responses)
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
