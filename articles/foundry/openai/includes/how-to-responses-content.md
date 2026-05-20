@@ -692,10 +692,10 @@ print(follow_up_response.output_text)
 
 You can also use server-side compaction directly in Responses (`POST /responses` or `client.responses.create`) by setting `context_management` with a `compact_threshold`.
 
-* When the output token count crosses the configured threshold, the Responses API automatically runs compaction.
-* In this mode, you do not need to call `/responses/compact` separately.
-* The response includes an encrypted compaction item.
-* Server-side compaction will work when you set store=false on your Responses create requests.
+- When the output token count crosses the configured threshold, the Responses API automatically runs compaction.
+- In this mode, you do not need to call `/responses/compact` separately.
+- The response includes an encrypted compaction item.
+- Server-side compaction will work when you set store=false on your Responses create requests.
 
 The compaction item carries forward the essential prior state and reasoning into the next turn using fewer tokens. It is opaque and not intended to be human-readable.
 
@@ -707,10 +707,10 @@ If you are using stateless input-array chaining, append output items as usual. I
 #### Flow
 
 1. Call `responses` as usual. Add `context_management` with `compact_threshold` to enable server-side compaction.
-2. If the output crosses the threshold, the service triggers compaction, emits a compaction item in the output stream, and prunes the context before continuing inference.
-3. Continue the conversation using one of these patterns:
+1. If the output crosses the threshold, the service triggers compaction, emits a compaction item in the output stream, and prunes the context before continuing inference.
+1. Continue the conversation using one of these patterns:
    1. Stateless input-array chaining: append output items, including compaction items, to the next input array.
-   2. `previous_response_id` chaining: pass only the new user message on each turn and carry the latest response ID forward.
+   1. `previous_response_id` chaining: pass only the new user message on each turn and carry the latest response ID forward.
 
 #### Example
 
@@ -930,11 +930,11 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
 
-* Processing files with varied data formats and structures
-* Generating files that include data and visualizations (for example, graphs)
-* Iteratively writing and running code to solve problems—models can debug and retry code until successful
-* Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
-* This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
+- Processing files with varied data formats and structures
+- Generating files that include data and visualizations (for example, graphs)
+- Iteratively writing and running code to solve problems—models can debug and retry code until successful
+- Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
+- This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -1724,9 +1724,9 @@ curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses 
 
 ### Limitations
 
-* Background mode requires `store=true`. Stateless requests are not supported.
-* You can only resume streaming if the original request included `stream=true`.
-* To cancel a synchronous response, terminate the connection directly.
+- Background mode requires `store=true`. Stateless requests are not supported.
+- You can only resume streaming if the original request included `stream=true`.
+- To cancel a synchronous response, terminate the connection directly.
 
 ### Resume streaming from a specific point
 
@@ -1786,8 +1786,8 @@ The Responses API enables image generation as part of conversations and multi-st
 
 Compared to the standalone Image API, the Responses API offers two advantages:
 
-* **Streaming**: Display partial image outputs during generation to improve perceived latency.
-* **Flexible inputs**: Accept image file IDs as inputs in addition to raw image bytes.
+- **Streaming**: Display partial image outputs during generation to improve perceived latency.
+- **Flexible inputs**: Accept image file IDs as inputs in addition to raw image bytes.
 
 > [!NOTE]
 > The image generation tool in the Responses API is supported by `gpt-image-1`-series models, and you can call it from a set of compatible chat and reasoning models. For the current list of supported orchestration models, see the [Model support](#model-support) section later in this article.
