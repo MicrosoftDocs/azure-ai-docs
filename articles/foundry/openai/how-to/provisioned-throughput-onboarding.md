@@ -3,7 +3,7 @@ title: "Provisioned throughput billing, sizing, and cost management"
 description: "Estimate PTU requirements for your workload, choose between hourly billing and Azure Reservations, and monitor costs for provisioned throughput in Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 05/17/2026
 manager: nitinme

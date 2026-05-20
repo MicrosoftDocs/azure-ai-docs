@@ -23,7 +23,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ## May 2026
 
+### GPT Realtime 2.0 concept articles
 
+New concept articles describe the capabilities and key concepts for the latest realtime model:
+
+- [GPT Realtime 2.0 (preview) overview](./concepts/realtime-2.md) — covers reasoning support, response phases (preamble and final answer), and stricter instruction following.
 
 ### GPT Realtime Translate and GPT Realtime Whisper
 

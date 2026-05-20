@@ -4,7 +4,7 @@ description: "Learn how safety system messages (system prompts) guide Azure Open
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 01/20/2026
+ms.date: 05/13/2026
 ms.custom:
   - classic-and-new
   - ignite-2023

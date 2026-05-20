@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 11/26/2025
+ms.date: 05/13/2026
 ms.author: aashcraft
 ai-usage: ai-assisted
 zone_pivot_groups: openai-supported-languages

@@ -5,6 +5,7 @@ ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024
   - dev-focus

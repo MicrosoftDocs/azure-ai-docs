@@ -3,7 +3,7 @@ title: "Provisioned throughput for Foundry Models"
 description: "Provisioned throughput in Microsoft Foundry gives you dedicated AI model capacity with predictable latency. Learn how to size PTU deployments, manage quota, and optimize billing."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 05/13/2026
 ms.custom:

@@ -34,7 +34,7 @@ The following command shows the most basic way to use an image model with code. 
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Deploy a `gpt-image-1`-series or `gpt-image-2` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
-    - GPT-image-2 is available in public preview.
+    - GPT-image-2 is generally available (GA).
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
 

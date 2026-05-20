@@ -3,6 +3,7 @@ title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.date: 05/01/2026
 ms.author: lagayhar
 author: lgayhardt
@@ -31,7 +32,9 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 - Python 3.8 or later.
 - A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
