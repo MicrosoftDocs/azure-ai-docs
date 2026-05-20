@@ -299,14 +299,14 @@ You can perform a manual estimation of the PTUs needed or use the [capacity calc
 
 ### Estimate PTU for a workload manually
 
-You can estimate the PTUs your workload requires, using your expected traffic and the per-model values from the [tables in the previous section](#how-much-throughput-per-ptu-you-get-for-each-model). The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
+You can estimate the PTUs your workload requires, using your expected traffic and the per-model values from the [tables in the previous section](#how-much-throughput-per-ptu-you-get-for-each-model). The calculation converts your expected token volume into a single *normalized TPM* figure, then divides by the model's **Input TPM per PTU** value.
 
 **Formulas:**
 
 - Input TPM = Peak RPM × prompt size (tokens)
 - Output TPM = Peak RPM × response size (tokens)
-- Converted input TPM = (input TPM × (1 − cache rate)) + (output-to-input ratio × output TPM)
-- PTUs required = converted input TPM ÷ Input TPM per PTU
+- Normalized TPM = (input TPM × (1 − cache rate)) + (output-to-input ratio × output TPM)
+- PTUs required = normalized TPM ÷ Input TPM per PTU
 
 The **Output-to-input ratio** for each model is listed in the previous tables. The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). As described in [How much throughput per PTU you get for each model](#how-much-throughput-per-ptu-you-get-for-each-model), cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
 
@@ -316,18 +316,18 @@ Suppose your application sends requests at a peak rate of 1,000 RPM, with an ave
 
 - Input TPM = 1,000 × 100 = 100,000
 - Output TPM = 1,000 × 50 = 50,000
-- Converted input TPM (no cache) = 100,000 + (8 × 50,000) = 500,000
+- Normalized TPM (no cache) = 100,000 + (8 × 50,000) = 500,000
 - PTUs required = 500,000 ÷ 3,400 = 147.06 (**150 PTUs** rounded up to the nearest 50 PTUs, matching the Regional Provisioned scale increment for gpt-5.2.)
 
 If 25% of input tokens are served from the prompt cache:
 
 - Effective input TPM = 100,000 × (1 − 0.25) = 75,000
-- Converted input TPM = 75,000 + (8 × 50,000) = 475,000
+- Normalized TPM = 75,000 + (8 × 50,000) = 475,000
 - PTUs required = 475,000 ÷ 3,400 = 139.71 (**150 PTUs** rounded up to the nearest 50 PTUs, matching the Regional Provisioned scale increment for gpt-5.2.)
 
 In summary, the PTUs needed for this example call shape with and without caching are as follows:
 
-| Peak calls per minute (RPM) | Prompt size (tokens) | Response size (tokens) | Cache rate | Input TPM | Output TPM | Converted input TPM | Estimated PTUs | PTUs (rounded up)<sup>1</sup> |
+| Peak calls per minute (RPM) | Prompt size (tokens) | Response size (tokens) | Cache rate | Input TPM | Output TPM | Normalized TPM | Estimated PTUs | PTUs (rounded up)<sup>1</sup> |
 |---|---|---|---|---|---|---|---|---|
 | 1,000 | 100 | 50 | 0% | 100,000 | 50,000 | 500,000 | 147.06 | 150 |
 | 1,000 | 100 | 50 | 25% | 75,000 | 50,000 | 475,000 | 139.71 | 150 |
