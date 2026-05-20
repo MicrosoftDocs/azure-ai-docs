@@ -25,7 +25,6 @@ Unlike indexed knowledge sources, Fabric Data Agent knowledge sources (preview) 
 |--|--|--|--|--|--|--|
 | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-
 ## Prerequisites
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
@@ -57,9 +56,11 @@ The following JSON is an example response for a Fabric Data Agent knowledge sour
 
 ## Create a knowledge source
 
+Run the following code to create a Fabric Data Agent knowledge source (preview).
+
 ::: zone pivot="csharp"
 
-<!-- TO-DO (PM): Verify C# class names and parameters for Fabric Data Agent knowledge source -->
+<!-- TO-DO (PM): Verify C# class names and parameters for Fabric Data Agent knowledge source. -->
 
 ```csharp
 using Azure;
@@ -82,11 +83,13 @@ var knowledgeSource = new FabricDataAgentKnowledgeSource("<knowledge-source-name
 await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 ```
 
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
 
-<!-- TO-DO (PM): Verify Python class names and parameters for Fabric Data Agent knowledge source -->
+<!-- TO-DO (PM): Verify Python class names and parameters for Fabric Data Agent knowledge source. -->
 
 ```python
 from azure.core.credentials import AzureKeyCredential
@@ -113,11 +116,11 @@ knowledge_source = FabricDataAgentKnowledgeSource(
 index_client.create_or_update_knowledge_source(knowledge_source)
 ```
 
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="rest"
-
-Run the following code to create a Fabric Data Agent knowledge source (preview).
 
 ```http
 ### Create a Fabric Data Agent knowledge source
