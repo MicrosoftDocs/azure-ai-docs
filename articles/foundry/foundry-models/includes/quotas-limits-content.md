@@ -80,7 +80,7 @@ Due to high demand, limit increase requests are evaluated individually.
 
 ### Model router quota tiers
 
-Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../../openai/quotas-limits.md#quota-and-limits-tiers).
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../../openai/quotas-limits.md#quota-tiers).
 
 | Tier   | DataZoneStandard TPM | GlobalStandard TPM |
 |:-------|---------------------:|-------------------:|
