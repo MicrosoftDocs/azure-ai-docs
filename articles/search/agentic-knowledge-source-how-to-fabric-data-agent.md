@@ -29,7 +29,9 @@ Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-+ A Microsoft Fabric workspace with a [data agent](/fabric/data-science/how-to-create-data-agent). Your search service and workspace must be in the same Microsoft Entra ID tenant.
++ A Microsoft Fabric workspace with a [data agent](/fabric/data-science/how-to-create-data-agent).
+
++ Your search service and workspace must be in the same Microsoft Entra ID tenant.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
