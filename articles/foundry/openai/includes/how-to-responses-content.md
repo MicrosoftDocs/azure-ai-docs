@@ -86,7 +86,7 @@ ResponsesClient openAIClientEntra = new(
 CreateResponseOptions options = new()
 {
     Model = "MODEL_NAME",
-    Input = { ResponseItem.CreateUserMessageItem("This is a test.") }
+    InputItems = { ResponseItem.CreateUserMessageItem("This is a test.") }
 };
 ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
@@ -493,8 +493,44 @@ print(second_response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions firstOptions = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Define and explain the concept of catastrophic forgetting?") }
+};
+ResponseResult firstResponse = await openAIClient.CreateResponseAsync(firstOptions);
+Console.WriteLine(firstResponse.GetOutputText());
+
+CreateResponseOptions secondOptions = new()
+{
+    Model = "MODEL_NAME",
+    PreviousResponseId = firstResponse.Id,
+    InputItems = { ResponseItem.CreateUserMessageItem("Explain this at a level that could be understood by a college freshman") }
+};
+ResponseResult secondResponse = await openAIClient.CreateResponseAsync(secondOptions);
+Console.WriteLine(secondResponse.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -821,8 +857,47 @@ for event in stream:
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Summarize Azure OpenAI Responses API in one sentence.") },
+    StreamingEnabled = true
+};
+
+await foreach (StreamingResponseUpdate update in openAIClient.CreateResponseStreamingAsync(options))
+{
+    if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.Write(textDelta.Delta);
+    }
+    else if (update is StreamingResponseCompletedUpdate completed)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"[done] response id: {completed.Response.Id}");
+    }
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -919,8 +994,72 @@ print(final_response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.Text.Json;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+FunctionTool getWeatherTool = ResponseTool.CreateFunctionTool(
+    functionName: "get_weather",
+    functionParameters: BinaryData.FromBytes("""
+        {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string", "description": "The city, e.g. Boston, MA" }
+          },
+          "required": ["location"]
+        }
+        """u8.ToArray()),
+    strictModeEnabled: false,
+    functionDescription: "Get the current weather for a location.");
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What is the weather in San Francisco?") },
+    Tools = { getWeatherTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is FunctionCallResponseItem call && call.FunctionName == "get_weather")
+    {
+        using JsonDocument args = JsonDocument.Parse(call.FunctionArguments);
+        string location = args.RootElement.GetProperty("location").GetString();
+        string toolOutput = $"{{ \"location\": \"{location}\", \"temperature\": \"70 F\" }}";
+
+        CreateResponseOptions followUp = new()
+        {
+            Model = "MODEL_NAME",
+            PreviousResponseId = response.Id,
+            InputItems = { ResponseItem.CreateFunctionCallOutputItem(call.CallId, toolOutput) },
+            Tools = { getWeatherTool }
+        };
+
+        ResponseResult finalResponse = await openAIClient.CreateResponseAsync(followUp);
+        Console.WriteLine(finalResponse.GetOutputText());
+    }
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1043,8 +1182,45 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Containers;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CodeInterpreterToolContainer container = new(
+    CodeInterpreterToolContainerConfiguration.CreateAutomaticContainerConfiguration());
+CodeInterpreterTool codeInterpreterTool = new(container);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("Solve 3x + 11 = 14.")
+    },
+    Tools = { codeInterpreterTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1231,8 +1407,43 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("What is in this image?"),
+            ResponseContentPart.CreateInputImagePart(new Uri("<image_url>"))
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1317,8 +1528,48 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
+BinaryData imageData = BinaryData.FromBytes(imageBytes);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("What is in this image?"),
+            ResponseContentPart.CreateInputImagePart(imageData, "image/jpeg")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1419,8 +1670,48 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] pdfBytes = await File.ReadAllBytesAsync("PDF-FILE-NAME.pdf");
+BinaryData pdfData = BinaryData.FromBytes(pdfBytes);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputFilePart(pdfData, "application/pdf", "PDF-FILE-NAME.pdf"),
+            ResponseContentPart.CreateInputTextPart("Summarize this PDF.")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1514,8 +1805,57 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Files;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+OpenAIFileClient fileClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new OpenAIClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] pdfBytes = await File.ReadAllBytesAsync("nucleus_sampling.pdf");
+OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
+    BinaryData.FromBytes(pdfBytes),
+    "nucleus_sampling.pdf",
+    FileUploadPurpose.UserData);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputFilePart(uploadedFile.Id),
+            ResponseContentPart.CreateInputTextPart("Summarize this PDF.")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1615,8 +1955,43 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What transport protocols are supported in the 2025-03-26 version of the MCP spec?") },
+    Tools =
+    {
+        new McpTool(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"))
+        {
+            ToolCallApprovalPolicy = GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+        }
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1724,8 +2099,48 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+McpTool mcpTool = new(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"));
+
+ResponseResult priorResponse = await openAIClient.GetResponseAsync("<previous_response_id>");
+
+foreach (ResponseItem item in priorResponse.OutputItems)
+{
+    if (item is McpToolCallApprovalRequestItem approvalRequest)
+    {
+        CreateResponseOptions followUp = new()
+        {
+            Model = "MODEL_NAME",
+            PreviousResponseId = priorResponse.Id,
+            InputItems = { new McpToolCallApprovalResponseItem(approvalRequest.Id, approved: true) },
+            Tools = { mcpTool }
+        };
+
+        ResponseResult finalResponse = await openAIClient.CreateResponseAsync(followUp);
+        Console.WriteLine(finalResponse.GetOutputText());
+    }
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1829,8 +2244,44 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What is this repo in 100 words?") },
+    Tools =
+    {
+        new McpTool(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"))
+        {
+            AuthorizationToken = Environment.GetEnvironmentVariable("YOUR_MCP_TOKEN"),
+            ToolCallApprovalPolicy = GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+        }
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1908,8 +2359,38 @@ print(response.status)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Write me a very long story.") },
+    BackgroundModeEnabled = true
+};
+
+ResponseResult queued = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine($"Response id: {queued.Id}");
+Console.WriteLine($"Status: {queued.Status}");
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -1964,8 +2445,43 @@ print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ResponseResult current = await openAIClient.GetResponseAsync("<response_id>");
+
+while (current.Status == ResponseStatus.Queued || current.Status == ResponseStatus.InProgress)
+{
+    Console.WriteLine($"Current status: {current.Status}");
+    await Task.Delay(TimeSpan.FromSeconds(2));
+    current = await openAIClient.GetResponseAsync(current.Id);
+}
+
+Console.WriteLine($"Final status: {current.Status}");
+if (current.Status == ResponseStatus.Completed)
+{
+    Console.WriteLine(current.GetOutputText());
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -2002,8 +2518,30 @@ print(response.status)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ResponseResult cancelled = await openAIClient.CancelResponseAsync("<response_id>");
+Console.WriteLine($"Status: {cancelled.Status}");
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -2042,8 +2580,65 @@ for event in stream:
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions createOptions = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Write me a very long story.") },
+    BackgroundModeEnabled = true,
+    StreamingEnabled = true
+};
+
+string queuedResponseId = null;
+int lastSequenceNumber = 0;
+
+await foreach (StreamingResponseUpdate update in openAIClient.CreateResponseStreamingAsync(createOptions))
+{
+    if (update is StreamingResponseQueuedUpdate queuedUpdate)
+    {
+        queuedResponseId = queuedUpdate.Response.Id;
+        lastSequenceNumber = queuedUpdate.SequenceNumber;
+        Console.WriteLine($"Queued response: {queuedResponseId}, sequence {lastSequenceNumber}");
+        break;
+    }
+}
+
+// Resume streaming from where we disconnected.
+GetResponseOptions resumeOptions = new(queuedResponseId)
+{
+    StartingAfter = lastSequenceNumber,
+    StreamingEnabled = true
+};
+
+await foreach (StreamingResponseUpdate update in openAIClient.GetResponseStreamingAsync(resumeOptions))
+{
+    Console.WriteLine(update.GetType().Name);
+    if (update is StreamingResponseCompletedUpdate completed)
+    {
+        Console.WriteLine($"[done] final id: {completed.Response.Id}");
+    }
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -2127,8 +2722,50 @@ print(response.output_text)
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.Collections.Generic;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+List<ResponseItem> inputItems =
+[
+    ResponseItem.CreateUserMessageItem("<your_prompt>")
+];
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    StoredOutputEnabled = false,
+    IncludedProperties = { IncludedResponseProperty.ReasoningEncryptedContent }
+};
+foreach (ResponseItem item in inputItems)
+{
+    options.InputItems.Add(item);
+}
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+
+// To carry encrypted reasoning into a follow-up turn, append response.OutputItems to inputItems
+// and resend with StoredOutputEnabled = false. Don't use PreviousResponseId when not stored.
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -2226,8 +2863,52 @@ if image_data:
 ```
 
 # [C#](#tab/csharp)
-> [!NOTE]
-> A C# code sample isn't available for this scenario. Select Python, JavaScript, or REST for an equivalent example.
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ImageGenerationTool imageTool = ResponseTool.CreateImageGenerationTool(model: "gpt-image-1");
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("Generate an image of an otter swimming in a pond.")
+    },
+    Tools = { imageTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is ImageGenerationCallResponseItem imageCall && imageCall.ImageResultBytes is not null)
+    {
+        await File.WriteAllBytesAsync("otter.png", imageCall.ImageResultBytes.ToArray());
+        Console.WriteLine($"Saved image. Revised prompt: {imageCall.RevisedPrompt}");
+    }
+}
+```
 
 # [JavaScript](#tab/javascript)
 ```javascript
