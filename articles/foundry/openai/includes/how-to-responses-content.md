@@ -460,86 +460,81 @@ curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<
 
 ## Chaining responses together
 
-You can chain responses together by passing the `response.id` from the previous response to the `previous_response_id` parameter.
+Chain turns by passing the previous response ID to `previous_response_id`.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.create(
-    model="gpt-4o",  # replace with your model deployment name
-    input="Define and explain the concept of catastrophic forgetting?"
+first_response = client.responses.create(
+    model="MODEL_NAME",
+    input="Define catastrophic forgetting."
 )
 
 second_response = client.responses.create(
-    model="gpt-4o",  # replace with your model deployment name
-    previous_response_id=response.id,
-    input=[{"role": "user", "content": "Explain this at a level that could be understood by a college freshman"}]
+    model="MODEL_NAME",
+    previous_response_id=first_response.id,
+    input="Explain it for a college freshman."
 )
-print(second_response.model_dump_json(indent=2)) 
+
+print(second_response.output_text)
 ```
 
-Note from the output that even though we never shared the first input question with the `second_response` API call, by passing the `previous_response_id` the model has full context of previous question and response to answer the new question.
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
 
-**Output:**
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
 
-```json
-{
-  "id": "resp_67cbc9705fc08190bbe455c5ba3d6daf",
-  "created_at": 1741408624.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cbc970fd0881908353a4298996b3f6",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Sure! Imagine you are studying for exams in different subjects like math, history, and biology. You spend a lot of time studying math first and get really good at it. But then, you switch to studying history. If you spend all your time and focus on history, you might forget some of the math concepts you learned earlier because your brain fills up with all the new history facts. \n\nIn the world of artificial intelligence (AI) and machine learning, a similar thing can happen with computers. We use special programs called neural networks to help computers learn things, sort of like how our brain works. But when a neural network learns a new task, it can forget what it learned before. This is what we call \"catastrophic forgetting.\"\n\nSo, if a neural network learned how to recognize cats in pictures, and then you teach it how to recognize dogs, it might get really good at recognizing dogs but suddenly become worse at recognizing cats. This happens because the process of learning new information can overwrite or mess with the old information in its \"memory.\"\n\nScientists and engineers are working on ways to help computers remember everything they learn, even as they keep learning new things, just like students have to remember math, history, and biology all at the same time for their exams. They use different techniques to make sure the neural network doesn’t forget the important stuff it learned before, even when it gets new information.",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": "resp_67cbc96babbc8190b0f69aedc655f173",
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 405,
-    "output_tokens": 285,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 690
-  },
-  "user": null,
-  "reasoning_effort": null
-}
+const firstResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Define catastrophic forgetting."
+});
+
+const secondResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  previous_response_id: firstResponse.id,
+  input: "Explain it for a college freshman."
+});
+
+console.log(secondResponse.output_text);
 ```
+
+# [REST](#tab/rest)
+```bash
+# First turn
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Define catastrophic forgetting."
+  }'
+
+# Follow-up turn using previous_response_id from the first call
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "previous_response_id": "<response_id>",
+    "input": "Explain it for a college freshman."
+  }'
+```
+---
 
 ### Chaining responses manually
 
-Alternatively you can manually chain responses together using the method below:
+Alternatively, you can manually carry forward output items in the next request.
 
 ```python
 import os
@@ -562,28 +557,80 @@ inputs += response.output
 inputs.append({"role": "user", "type": "message", "content": "Explain this at a level that could be understood by a college freshman"}) 
                
 
-second_response = client.responses.create(  
-    model="gpt-4o",  
+second_response = client.responses.create(
+  model="MODEL_NAME",
     input=inputs
-)  
-      
-print(second_response.model_dump_json(indent=2))  
+)
+
+print(second_response.model_dump_json(indent=2))
 ```
 
 ## Compact a Response
 
-Compacting allows you to shrink the context window sent to the model while preserving the essential information for the model's understanding.
+Compaction reduces the input context while preserving essential state for later turns.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+compacted = client.responses.compact(
+  model="MODEL_NAME",
+  input=[
+    {"role": "user", "content": "Create a simple landing page for a dog cafe."},
+    {
+      "id": "msg_001",
+      "type": "message",
+      "status": "completed",
+      "role": "assistant",
+      "content": [{"type": "output_text", "text": "..."}],
+    },
+  ]
+)
+
+follow_up = client.responses.create(
+  model="MODEL_NAME",
+  input=[*compacted.output, {"role": "user", "content": "Add a booking form."}]
+)
+print(follow_up.output_text)
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {"role": "user", "content": "Create a simple landing page for a dog cafe."},
+      {
+      "id": "msg_001",
+      "type": "message",
+      "status": "completed",
+      "role": "assistant",
+      "content": [{"type": "output_text", "text": "..."}]
+      }
+    ]
+    }'
+```
+---
 
 ### Compact using items returned
 
 You can compact all items returned from previous requests like reasoning, message, function call, etc.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-        "model": "gpt-4.1",
+        "model": "MODEL_NAME",
         "input": [
           {
             "role"   : "user",
@@ -608,40 +655,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
 ```
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+# Use the compacted output as input for the next turn.
+next_response = client.responses.create(
+  model="MODEL_NAME",
+  input=[*compacted.output, {"role": "user", "content": "Add opening hours."}],
 )
-
-compacted_response = client.responses.compact(
-    model="gpt-4.1",
-    input=[
-    {
-        "role": "user",
-        "content": "Create a simple landing page for a dog petting cafe.",
-    },
-    # All items returned from previous requests are included here, like reasoning, message, function call, etc.
-    {
-        "id": "msg_001",
-        "type": "message",
-        "status": "completed",
-        "content": [
-        {
-            "type": "output_text",
-            "annotations": [],
-            "logprobs": [],
-            "text": "Below is a single file, ready-to-use landing page for a dog petting café:...",
-        },
-        ],
-        "role": "assistant",
-    },
-    ]
-)
-# Pass the compacted_response.output as input to the next request
-print(compacted_response)
+print(next_response.output_text)
 ```
 
 ### Compact using previous response ID
@@ -649,37 +668,24 @@ print(compacted_response)
 You can also compact using a previous response ID.
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-# Get back a full response
 initial_response = client.responses.create(
-        model="gpt-4.1",
-        input="What is the size of France?"
-    )
+  model="MODEL_NAME",
+  input="What is the size of France?"
+)
 
-print(f"Initial Response: {initial_response.output_text}")
-
-# Now compact the response
 compacted_response = client.responses.compact(
-    model="gpt-4.1",
-    previous_response_id=initial_response.id
+  model="MODEL_NAME",
+  previous_response_id=initial_response.id
 )
 
-# use the compacted response in a follow up
-followup_response = client.responses.create(
-    model="gpt-4.1",
-    input=[
-        *compacted_response.output,
-        {"role": "user", "content": "And what is the capital/major city"}
-    ]
+follow_up_response = client.responses.create(
+  model="MODEL_NAME",
+  input=[
+    *compacted_response.output,
+    {"role": "user", "content": "What is the capital?"}
+  ]
 )
-print(f"Follow-up Response: {followup_response.output_text}")
+print(follow_up_response.output_text)
 ```
 
 ### Server-side compaction
@@ -719,7 +725,7 @@ conversation = [
 
 while keep_going:
   response = client.responses.create(
-    model="gpt-5.3-codex",
+    model="MODEL_NAME",
     input=conversation,
     store=False,
     context_management=[{"type": "compaction", "compact_threshold": 200000}],
@@ -739,87 +745,186 @@ while keep_going:
 > [!NOTE]
 > During streaming, the Responses API might return an error event ( `500`, `429`, and similar errors) if the service encounters an error, such as token limits or parsing problems. Applications should detect this event and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.create(
-    input = "This is a test",
-    model = "o4-mini", # replace with model deployment name
-    stream = True
+stream = client.responses.create(
+    model="MODEL_NAME",
+    input="Summarize Azure OpenAI Responses API in one sentence.",
+    stream=True,
 )
 
-for event in response:
-    if event.type == 'response.output_text.delta':
-        print(event.delta, end='')
-
+for event in stream:
+    if event.type == "response.output_text.delta":
+        print(event.delta, end="")
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const stream = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Summarize Azure OpenAI Responses API in one sentence.",
+  stream: true,
+});
+
+for await (const event of stream) {
+  if (event.type === "response.output_text.delta") {
+    process.stdout.write(event.delta);
+  }
+}
+```
+
+# [REST](#tab/rest)
+```bash
+curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Summarize Azure OpenAI Responses API in one sentence.",
+    "stream": true
+  }'
+```
+---
 
 ## Function calling
 
-The responses API supports function calling.
+The Responses API supports function calling.
 
+# [Python](#tab/python)
 ```python
 import os
+import json
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.create(  
-    model="gpt-4o",  # replace with your model deployment name  
-    tools=[  
-        {  
-            "type": "function",  
-            "name": "get_weather",  
-            "description": "Get the weather for a location",  
-            "parameters": {  
-                "type": "object",  
-                "properties": {  
-                    "location": {"type": "string"},  
-                },  
-                "required": ["location"],  
-            },  
-        }  
-    ],  
-    input=[{"role": "user", "content": "What's the weather in San Francisco?"}],  
-)  
+response = client.responses.create(
+    model="MODEL_NAME",
+    tools=[
+        {
+            "type": "function",
+            "name": "get_weather",
+            "description": "Get weather for a location",
+            "parameters": {
+                "type": "object",
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
+            },
+        }
+    ],
+    input="What is the weather in San Francisco?",
+)
 
-print(response.model_dump_json(indent=2))  
-  
-# To provide output to tools, add a response for each tool call to an array passed  
-# to the next response as `input`  
-input = []  
-for output in response.output:  
-    if output.type == "function_call":  
-        match output.name:  
-            case "get_weather":  
-                input.append(  
-                    {  
-                        "type": "function_call_output",  
-                        "call_id": output.call_id,  
-                        "output": '{"temperature": "70 degrees"}',  
-                    }  
-                )  
-            case _:  
-                raise ValueError(f"Unknown function call: {output.name}")  
-  
-second_response = client.responses.create(  
-    model="gpt-4o",  
-    previous_response_id=response.id,  
-    input=input  
-)  
+tool_outputs = []
+for item in response.output:
+    if item.type == "function_call" and item.name == "get_weather":
+        args = json.loads(item.arguments)
+        weather = {"location": args["location"], "temperature": "70 F"}
+        tool_outputs.append(
+            {
+                "type": "function_call_output",
+                "call_id": item.call_id,
+                "output": json.dumps(weather),
+            }
+        )
 
-print(second_response.model_dump_json(indent=2)) 
+final_response = client.responses.create(
+    model="MODEL_NAME",
+    previous_response_id=response.id,
+    input=tool_outputs,
+)
 
+print(final_response.output_text)
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "function",
+      name: "get_weather",
+      description: "Get weather for a location",
+      parameters: {
+        type: "object",
+        properties: { location: { type: "string" } },
+        required: ["location"],
+      },
+    },
+  ],
+  input: "What is the weather in San Francisco?",
+});
+
+const toolOutputs = [];
+for (const item of response.output ?? []) {
+  if (item.type === "function_call" && item.name === "get_weather") {
+    const args = JSON.parse(item.arguments);
+    toolOutputs.push({
+      type: "function_call_output",
+      call_id: item.call_id,
+      output: JSON.stringify({ location: args.location, temperature: "70 F" }),
+    });
+  }
+}
+
+const finalResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  previous_response_id: response.id,
+  input: toolOutputs,
+});
+
+console.log(finalResponse.output_text);
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "function",
+        "name": "get_weather",
+        "description": "Get weather for a location",
+        "parameters": {
+          "type": "object",
+          "properties": {"location": {"type": "string"}},
+          "required": ["location"]
+        }
+      }
+    ],
+    "input": "What is the weather in San Francisco?"
+  }'
+```
+---
 
 ## Code Interpreter
 
@@ -832,11 +937,11 @@ The Code Interpreter tool enables models to write and execute Python code in a s
 * This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-        "model": "gpt-4.1",
+        "model": "MODEL_NAME",
         "tools": [
             { "type": "code_interpreter", "container": {"type": "auto"} }
         ],
@@ -845,31 +950,58 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
     }'
 ```
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
-
-instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
 
 response = client.responses.create(
-    model="gpt-4.1",
-    tools=[
-        {
-            "type": "code_interpreter",
-            "container": {"type": "auto"}
-        }
-    ],
-    instructions=instructions,
-    input="I need to solve the equation 3x + 11 = 14. Can you help me?",
+    model="MODEL_NAME",
+    tools=[{"type": "code_interpreter", "container": {"type": "auto"}}],
+    instructions="You are a math tutor. Write and run Python code to solve math problems.",
+    input="Solve 3x + 11 = 14."
 )
 
-print(response.output)
+print(response.output_text)
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [{ type: "code_interpreter", container: { type: "auto" } }],
+  instructions: "You are a math tutor. Write and run Python code to solve math problems.",
+  input: "Solve 3x + 11 = 14.",
+});
+
+console.log(response.output_text);
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [{"type": "code_interpreter", "container": {"type": "auto"}}],
+    "instructions": "You are a math tutor. Write and run Python code to solve math problems.",
+    "input": "Solve 3x + 11 = 14."
+  }'
+```
+---
 
 ### Containers
 
@@ -925,46 +1057,45 @@ Any files in the model input get automatically uploaded to the container. You do
 
 ## List input items
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
-
-print(response.model_dump_json(indent=2))
+items = client.responses.input_items.list("<response_id>")
+print(items.model_dump_json(indent=2))
 ```
 
-**Output:**
+# [REST](#tab/rest)
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/input_items \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
 
+# [Output](#tab/output)
 ```json
 {
+  "object": "list",
   "data": [
     {
-      "id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-      "content": [
-        {
-          "text": "This is a test.",
-          "type": "input_text"
-        }
-      ],
+      "id": "msg_...",
+      "type": "message",
       "role": "user",
-      "status": "completed",
-      "type": "message"
+      "content": [{"type": "input_text", "text": "This is a test."}]
     }
-  ],
-  "has_more": false,
-  "object": "list",
-  "first_id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-  "last_id": "msg_67d856fcfc1c8190ad3102fc01994c5f"
+  ]
 }
 ```
+---
 
 ## Image input
+
 For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
 
 ### Image url
