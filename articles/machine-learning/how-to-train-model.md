@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.date: 01/27/2026
+ms.date: 05/20/2026
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
@@ -36,7 +36,10 @@ Azure Machine Learning provides multiple ways to submit ML training jobs. In thi
 
 # [Python SDK](#tab/python)
 
-To use the __SDK__, install the Azure Machine Learning [SDK v2 for Python](https://aka.ms/sdk-v2-install).
+To use the __SDK__:
+
+- Install the Azure Machine Learning [SDK v2 for Python](https://aka.ms/sdk-v2-install).
+- Install the [azure-identity](/python/api/azure-identity) package: `pip install azure-identity`.
 
 # [Azure CLI](#tab/azurecli)
 
@@ -55,7 +58,7 @@ To use the __REST API__ information, you need the following items:
     >
     > While it's possible to call the REST API from PowerShell, the examples in this article assume you're using Bash.
 
-- The [jq](https://stedolan.github.io/jq/) utility for processing JSON. Use this utility to extract values from the JSON documents that REST API calls return.
+- The [jq](https://jqlang.github.io/jq/) utility for processing JSON. Use this utility to extract values from the JSON documents that REST API calls return.
 
 ---
 
@@ -65,10 +68,13 @@ The code snippets in this article are based on examples in the [Azure Machine Le
 
 ```bash
 git clone --depth 1 https://github.com/Azure/azureml-examples
+cd azureml-examples
 ```
 
 > [!TIP]
 > Use `--depth 1` to clone only the latest commit to the repository, which reduces the time to complete the operation.
+
+The remaining commands in this article assume you're running from the `azureml-examples` directory.
 
 ## Example job
 
@@ -99,6 +105,12 @@ workspace = '<AZUREML_WORKSPACE_NAME>'
 
 #connect to the workspace
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
+```
+
+Verify the connection by printing the workspace name:
+
+```python
+print(ml_client.workspace_name)
 ```
 
 
@@ -155,6 +167,13 @@ An Azure Machine Learning compute cluster is a fully managed compute resource th
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/configuration.ipynb?name=create-cpu-compute)]
 
+Verify the compute cluster exists:
+
+```python
+cpu_cluster = ml_client.compute.get("cpu-cluster")
+print(f"Compute '{cpu_cluster.name}' provisioning state: {cpu_cluster.provisioning_state}")
+```
+
 # [Azure CLI](#tab/azurecli)
 
 ```azurecli
@@ -201,17 +220,23 @@ To run this script, use a `command` that executes the main.py Python script loca
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/single-step/lightgbm/iris/lightgbm-iris-sweep.ipynb?name=create-command)]
 
+Submit the job in the same Python session:
+
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/single-step/lightgbm/iris/lightgbm-iris-sweep.ipynb?name=run-command)]
 
 In the preceding examples, you configured:
 - `code` - path where the code to run the command is located.
 - `command` - command that needs to run.
-- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3@latest`. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
+- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu@latest`. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
 - `inputs` - dictionary of inputs using name value pairs to the command. The key is a name for the input within the context of the job and the value is the input value. Reference inputs in the `command` by using the `${{inputs.<input_name>}}` expression. To use files or folders as inputs, use the `Input` class. For more information, see [SDK and CLI v2 expressions](concept-expressions.md).
 
 For more information, see the [reference documentation](/python/api/azure-ai-ml/azure.ai.ml?view=azure-python&preserve-view=true#azure-ai-ml-command).
 
 When you submit the job, the service returns a URL to the job status in the Azure Machine Learning studio. Use the studio UI to view the job progress. You can also use `returned_job.status` to check the current status of the job.
+
+```python
+print(f"Studio URL: {returned_job.studio_url}")
+```
 
 # [Azure CLI](#tab/azurecli)
 
@@ -327,6 +352,50 @@ ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscr
 > - Use the default login server format (`<registry-name>.azurecr.io`) for your ACR.
 > - When you create the registry, set **Domain name label scope** to **Unsecure**.
 
+### 4. Monitor the training job
+
+Wait for the training job to complete before you register the model. The job status transitions through `Starting` → `Preparing` → `Running` → `Completed`.
+
+# [Python SDK](#tab/python)
+
+Use `ml_client.jobs.stream()` to monitor the job output in real time:
+
+```python
+ml_client.jobs.stream(returned_job.name)
+```
+
+Alternatively, check the job status programmatically:
+
+```python
+returned_job = ml_client.jobs.get(returned_job.name)
+print(f"Job status: {returned_job.status}")
+```
+
+# [Azure CLI](#tab/azurecli)
+
+Use the `az ml job show` command with `--query status` to check job status:
+
+```azurecli
+az ml job show -n $run_id --query status -o tsv
+```
+
+To stream the job logs until completion:
+
+```azurecli
+az ml job stream -n $run_id
+```
+
+# [REST API](#tab/restapi)
+
+Check the job status with a GET request:
+
+```bash
+curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/$run_id?api-version=$API_VERSION" \
+--header "Authorization: Bearer $TOKEN" | jq -r '.properties.status'
+```
+
+---
+
 ## Register the trained model
 
 The following examples demonstrate how to register a model in your Azure Machine Learning workspace.
@@ -348,6 +417,13 @@ run_model = Model(
 )
 
 ml_client.models.create_or_update(run_model)
+```
+
+Verify the model was registered:
+
+```python
+registered_model = ml_client.models.get("run-model-example", version="1")
+print(f"Model '{registered_model.name}' version {registered_model.version} registered successfully.")
 ```
 
 # [Azure CLI](#tab/azurecli)
@@ -375,6 +451,43 @@ curl --location --request PUT "https://management.azure.com/subscriptions/$SUBSC
 ```
 
 ---
+
+## Clean up resources
+
+If you don't plan to use the compute cluster for more training jobs, delete it to stop incurring charges. The cluster continues to bill while it exists, even with zero nodes running.
+
+# [Python SDK](#tab/python)
+
+```python
+ml_client.compute.begin_delete("cpu-cluster").wait()
+```
+
+# [Azure CLI](#tab/azurecli)
+
+```azurecli
+az ml compute delete -n cpu-cluster --yes
+```
+
+# [REST API](#tab/restapi)
+
+```bash
+curl --location --request DELETE "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/computes/$COMPUTE_NAME?api-version=$API_VERSION" \
+--header "Authorization: Bearer $TOKEN"
+```
+
+---
+
+## Troubleshoot common errors
+
+| Error | Cause | Resolution |
+|---|---|---|
+| `ImportError: No module named 'azure.identity'` | Missing `azure-identity` package | Run `pip install azure-identity` |
+| `DefaultAzureCredential failed` | Not signed in to Azure | Run `az login` first, or set environment variables for [service principal authentication](how-to-setup-authentication.md#use-service-principal-authentication) |
+| `ComputeNotFound` | Cluster name mismatch or cluster deleted | Verify the cluster name and check provisioning state |
+| `EnvironmentNotFound` | Curated environment deprecated or unavailable | List available environments with `ml_client.environments.list()` and use a current version |
+| `QuotaExceeded` | Insufficient vCPU quota for the VM size | [Request a quota increase](/azure/quotas/quickstart-increase-quota-portal) or use a smaller VM size |
+
+For environment-specific issues, see [Troubleshoot environment image builds](how-to-troubleshoot-environments.md).
 
 ## Next steps
 
