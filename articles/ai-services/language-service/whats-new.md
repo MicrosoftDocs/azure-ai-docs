@@ -23,6 +23,9 @@ Stay informed about recent releases and enhancements designed to help you get th
   * **Confidence threshold score**. Set a minimum [confidence score](personally-identifiable-information/how-to/redact-text-pii.md#confidencescorethreshold) to filter output by detection confidence.
   * **Exclude values** from PII output and use **entity synonyms** for tailored detection.
 
+> [!IMPORTANT]
+> **Text PII API** (2026-05-15-preview) and **Conversation PII API** (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum ("DPA")](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/).
+
 * **New Text PII preview entities (`2026-04-15-preview`)**. The preview API adds support for Password, PIN code, Zip code, and Airport code entity types. For a full list, see [entity categories](personally-identifiable-information/concepts/entity-categories.md).
 
 * **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.

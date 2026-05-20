@@ -19,6 +19,12 @@ ms.custom: language-service-pii
 
 The text PII playground in Azure AI Foundry lets you detect and redact personally identifiable information (PII) from raw text interactively, without writing code. You can submit sample text, configure detection and redaction options, and review detected entities before integrating the feature into your application.
 
+* [**Stable 2026-05-01: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
+* [**Preview: 2026-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP).
+
+   > [!IMPORTANT]
+   > **Text PII API** (2026-05-15-preview) is licensed to you as part of your Azure subscrition and is subject to applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms).
+
 ## Prerequisites
 
 > [!TIP]
@@ -55,6 +61,8 @@ There are two ways to access the text PII interface:
   1. Select **Azure-Language-Text-PII redaction** to go directly to the playground.
 
 ## Extract PII from text
+
+
 
 The **Azure-Language-Text-PII redaction** model identifies and redacts personally identifiable information in text. The playground provides configuration options to customize detection and redaction preferences, and detailed output to review detected entities and confidence scores.
 
