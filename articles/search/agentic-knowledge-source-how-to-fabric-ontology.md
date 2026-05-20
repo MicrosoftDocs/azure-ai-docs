@@ -56,9 +56,11 @@ The following JSON is an example response for a Fabric Ontology knowledge source
 
 ## Create a knowledge source
 
-<!-- TO-DO (PM): Verify C# and Python class names -->
+Run the following code to create a Fabric Ontology knowledge source (preview).
 
 ::: zone pivot="csharp"
+
+<!-- TO-DO (PM): Verify C# class names and parameters for Fabric Ontology knowledge source. -->
 
 ```csharp
 using Azure;
@@ -86,6 +88,8 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 ::: zone-end
 
 ::: zone pivot="python"
+
+<!-- TO-DO (PM): Verify Python class names and parameters for Fabric Ontology knowledge source. -->
 
 ```python
 from azure.core.credentials import AzureKeyCredential
