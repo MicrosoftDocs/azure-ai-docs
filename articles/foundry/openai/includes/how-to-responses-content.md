@@ -13,277 +13,450 @@ Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. I
 
 ## Prerequisites
 
-- A deployed Azure OpenAI model
+- A deployed Azure OpenAI model.
 - An authentication method:
   - API key (for example, `AZURE_OPENAI_API_KEY`), or
   - Microsoft Entra ID (recommended).
-
-## Install or upgrade the OpenAI package
-
-Install or upgrade the OpenAI Python package.
-
-```cmd
-pip install --upgrade openai
-```
+- Install the client library for your language:
+  - **Python**: `pip install openai azure-identity`
+  - **.NET**: `dotnet add package OpenAI` and `dotnet add package Azure.Identity`
+  - **JavaScript/TypeScript**: `npm install openai @azure/identity`
+  - **Java**: Add `com.openai:openai-java` and `com.azure:azure-identity` to your project.
+- For REST examples, set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
 
 ## Generate a text response
 
-# [Python (API Key)](#tab/python-key)
+Generate a simple text response using the Responses API. Replace `YOUR-RESOURCE-NAME` and `MODEL_NAME` with your deployment values.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+# API key authentication
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
-
-response = client.responses.create(   
-  model="gpt-4.1-nano", # Replace with your model deployment name 
-  input="This is a test.",
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="This is a test."
 )
+print(response.model_dump_json(indent=2))
 
-print(response.model_dump_json(indent=2)) 
-```
+# Microsoft Entra ID authentication (recommended)
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
 )
-
 response = client.responses.create(
-    model="gpt-4.1-nano",
-    input= "This is a test" 
+    model="MODEL_NAME",
+    input="This is a test."
 )
-
-print(response.model_dump_json(indent=2)) 
+print(response.model_dump_json(indent=2))
 ```
 
-# [REST API](#tab/rest-api)
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    Input = { ResponseItem.CreateUserMessageItem("This is a test.") }
+};
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const response = await openai.responses.create({
+  model: "MODEL_NAME",
+  input: "This is a test."
+});
+console.log(response.output_text);
+
+// Microsoft Entra ID authentication (recommended)
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const responseEntra = await openaiEntra.responses.create({
+  model: "MODEL_NAME",
+  input: "This is a test."
+});
+console.log(responseEntra.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication (recommended)
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test.")
+    .build();
+Response response = openAIClient.responses().create(params);
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
 ### Microsoft Entra ID
-
-The REST examples use `AZURE_OPENAI_AUTH_TOKEN` for Microsoft Entra ID authentication. For details on required scopes and token acquisition options, see [Azure OpenAI REST API reference](../latest.md).
-
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-     "model": "gpt-4o",
-     "input": "This is a test"
+     "model": "MODEL_NAME",
+     "input": "This is a test."
     }'
 ```
-
 ### API Key
-
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
+     "model": "MODEL_NAME",
+     "input": "This is a test."
     }'
 ```
 
 # [Output](#tab/output)
-
-**Output:**
-
 ```json
 {
   "id": "resp_67cb32528d6881909eb2859a55e18a85",
   "created_at": 1741369938.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cb3252cfac8190865744873aada798",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Great! How can I help you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
   "output_text": "Great! How can I help you today?",
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 20,
-    "output_tokens": 11,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "reasoning_effort": null
+  ...
 }
 ```
-
 ---
 
 ## Retrieve a response
 
-To retrieve a response from a previous call to the responses API.
+Retrieve a response by its ID from a previous Responses API call.
 
-# [Python (API Key)](#tab/python-key)
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+# API key authentication
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
+response = client.responses.retrieve("<response_id>")
+print(response.model_dump_json(indent=2))
 
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-```
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
+# Microsoft Entra ID authentication
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
 )
-
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-
+response = client.responses.retrieve("<response_id>")
 print(response.model_dump_json(indent=2))
 ```
 
-# [REST API](#tab/rest-api)
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
 
-### Microsoft Entra ID
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
 
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+string responseId = "<response_id>";
+ResponseResult response = await openAIClient.GetResponseAsync(responseId);
+Console.WriteLine(response.GetOutputText());
 ```
 
-### API Key
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const response = await openai.responses.retrieve("<response_id>");
+console.log(response.output_text);
+
+// Microsoft Entra ID authentication
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const responseEntra = await openaiEntra.responses.retrieve("<response_id>");
+console.log(responseEntra.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+Response response = openAIClient.responses().retrieve("<response_id>");
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+### Microsoft Entra ID
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
   -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" 
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+### API Key
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
 # [Output](#tab/output)
-
 ```json
 {
   "id": "resp_67cb61fa3a448190bcf2c42d96f0d1a8",
-  "created_at": 1741382138.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cb61fa95588190baf22ffbdbbaaa9d",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Hello! How can I assist you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 20,
-    "output_tokens": 11,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "reasoning_effort": null
+  "output_text": "Hello! How can I assist you today?",
+  ...
 }
 ```
-
 ---
 
-## Delete response
+## Delete a response
 
-By default, response data is retained for 30 days. To delete a stored response, call `client.responses.delete("{response_id}")`.
+By default, response data is retained for 30 days. Delete a stored response by ID.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+# API key authentication
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
+response = client.responses.delete("<response_id>")
+print(response)
 
-response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-
+# Microsoft Entra ID authentication
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+response = client.responses.delete("<response_id>")
 print(response)
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+string responseId = "<response_id>";
+var result = await openAIClient.DeleteResponseAsync(responseId);
+Console.WriteLine(result); // result.Deleted == true if successful
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const result = await openai.responses.delete("<response_id>");
+console.log(result);
+
+// Microsoft Entra ID authentication
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const resultEntra = await openaiEntra.responses.delete("<response_id>");
+console.log(resultEntra);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+Response result = openAIClient.responses().delete("<response_id>");
+System.out.println(result);
+```
+
+# [REST](#tab/rest)
+### Microsoft Entra ID
+```bash
+curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+### API Key
+```bash
+curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+---
 
 ## Chaining responses together
 
@@ -398,9 +571,11 @@ print(second_response.model_dump_json(indent=2))
 ```
 
 ## Compact a Response
+
 Compacting allows you to shrink the context window sent to the model while preserving the essential information for the model's understanding.
 
 ### Compact using items returned
+
 You can compact all items returned from previous requests like reasoning, message, function call, etc.
 
 ```bash
