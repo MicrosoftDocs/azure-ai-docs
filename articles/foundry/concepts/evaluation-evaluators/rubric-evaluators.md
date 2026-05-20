@@ -140,7 +140,7 @@ For details on running evaluations and configuring data sources, see [Run evalua
 
 ## Example output
 
-### Passing example
+### Pass example
 
 The rubric evaluator returns the score level that best matches your rubric, along with a reason explaining the decision. The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
 
@@ -186,7 +186,7 @@ The rubric evaluator returns the score level that best matches your rubric, alon
 }
 ```
 
-### Failing example
+### Fail example
 
 In this example, the user asks for a Q4 marketing report summary but the agent provides only a generic sign-off, scoring well below the pass threshold:
 
