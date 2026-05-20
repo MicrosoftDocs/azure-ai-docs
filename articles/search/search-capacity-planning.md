@@ -4,9 +4,6 @@ description: Learn how capacity is structured and used in Azure AI Search, and h
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
-  - ignite-2024
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.update-cycle: 180-days
@@ -23,14 +20,11 @@ Azure AI Search offers two pricing models that handle capacity differently:
     - [Choose a pricing tier](./search-sku-tier.md) based on expected peak demand.
     - Once capacity is configured upfront, you pay an hourly rate, regardless of usage. 
 
-- **Serverless (Preview)**: Plan capacity by optimizing workload efficiency and cost drivers. See: [Plan capacity for the Serverless model](#plan-capacity-for-the-serverless-model).
-    - Capacity is managed automatically based on usage and service limits. No capacity pre-provisioning required.
+- **Serverless (Preview)**: Capacity is managed automatically based on usage and service limits. No capacity pre-provisioning required. Instead, focus on optimizing your cost by tuning workload efficiency. See: [Optimize cost for the Serverless model](#optimize-cost-for-the-serverless-model).
     - Capacity automatically scales with demand (can scale to zero when idle).
-    - You’re billed for [compute (CUs)](./serverless-cost-optimization.md) and storage based on actual usage.
+    - You’re billed for [compute (CUs)](./serverless-cost-optimization.md) and storage based on actual usage. See [Choose a pricing model and service tier](./search-sku-tier.md) for information about billing during the Public Preview.
     - Rather than infrastructure, planning focuses on these cost drivers: Query patterns, Index size and growth, and Data ingestion patterns.
 
-
-Both pricing models provide the same Azure AI Search features and APIs.
 
 | Dimension | Dedicated | Serverless |
 | --- | --- | --- |
@@ -290,13 +284,15 @@ The Free tier and preview features aren't covered by [service-level agreements (
 
 The number of partitions doesn't affect SLAs.
 
-## Plan capacity for the Serverless model
+## Optimize cost for the Serverless model
 
 In the Serverless pricing model:
 
 - Capacity is automatically managed by the service.
 - There are no replicas, partitions, or search units to configure.
 - Compute scales dynamically based on the workload (query and indexing demand) and can scale to zero when idle. 
+
+To learn more about limitations for the Serverless model, see [Service limits](./search-limits-quotas-capacity.md).
 
 Billing is based on two dimensions:
 - **Compute usage (CUs):** Charged based on query and indexing operations.
@@ -306,6 +302,8 @@ Because billing is consumption-based, cost is directly tied to usage:
 - Complex queries consume more compute.
 - Inefficient schema design increases both indexing and query costs.
 - Poor query patterns with large or frequently updated indexes increase storage and compute usage.
+
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 ### Optimize workload efficiency
 
@@ -331,11 +329,14 @@ To design workloads for efficiency when using the Serverless pricing model, cons
 
 In Serverless, improving performance (faster, more targeted queries) typically reduces cost.
 
-Learn more: [Optimize costs with the Serverless pricing model in Azure AI Search](serverless-cost-optimization.md)
+To learn more, see [Optimize costs with the Serverless pricing model in Azure AI Search](serverless-cost-optimization.md)
 
 ## Regional capacity considerations
 
 Capacity and availability can vary by the [supported region](search-region-support.md). Some regions may have constraints on provisioning new services or scaling existing ones.
+
+> [!NOTE]
+> The Serverless pricing model is currently available only in a limited set of preview regions. At this time, Serverless is offered in **West Central US, Switzerland North, and Japan East**. Availability will expand over time as the service progresses toward general availability.
 
 If your preferred Azure AI Search region is unavailable due to capacity constraints, see [How to handle regional capacity constraints in Azure AI Search](search-region-capacity.md).
 
