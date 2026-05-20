@@ -58,15 +58,15 @@ Use the Azure CLI to send requests. The service provider’s tenant that contain
 
 To use federated identity to support a cross-tenant CMK scenario:
 
-1. The service provider configures the AI Search service in their tenant (Tenant A). For guidance on how to do this, see [Create a Search Service (in the Azure Portal)](/azure/search/search-create-service-portal) or use the [az search service create](/cli/azure/search/service?view=azure-cli-latest#az-search-service-create) command in Azure CLI.
+1. The service provider configures the AI Search service in their tenant (Tenant A). For guidance on how to do this, see [Create a Search Service (in the Azure Portal)](/azure/search/search-create-service-portal) or use the [az search service create](/cli/azure/search/service#az-search-service-create) command in Azure CLI.
 
-1. The service provider creates a multitenant Microsoft Entra app registration. For guidance on how to do this, see [How to register an app in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app), or use the Azure CLI command: [az ad app create](/cli/azure/ad/app?view=azure-cli-latest#az-ad-app-create). Record the Application (client) ID once you complete the app registration.
+1. The service provider creates a multitenant Microsoft Entra app registration. For guidance on how to do this, see [How to register an app in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app), or use the Azure CLI command: [az ad app create](/cli/azure/ad/app#az-ad-app-create). Record the Application (client) ID once you complete the app registration.
 
 1. The service provider sets up a user-assigned managed identity. For guidance on how to do this, see [Manage user-assigned managed identities using Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp&preserve-view=true) or [Manage user-assigned managed identities using the Azure CLI](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-cli).
 
 1. The service provider configures the user-assigned managed identities as a federated identity credential on the app. For guidance on how to do this, see [Configure an app to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp)*.*
 
-1. Once the service provider shared the multitenant app ID, the customer grants the service provider’s app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create) command in Azure CLI.
+1. Once the service provider shared the multitenant app ID, the customer grants the service provider’s app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp#az-ad-sp-create) command in Azure CLI.
 
 1. If the customer doesn’t already have a key vault to use, see [Quickstart - Create an Azure Key Vault with the Azure portal](/azure/key-vault/general/quick-create-portal) or [Quickstart - Create an Azure Key Vault with the Azure CLI](/azure/key-vault/general/quick-create-cli). The Key Vault will need the permission model set to “Azure role-based access control (RBAC)” with the service provider’s multitenant application granted permission by assigning it the [Key Vault Crypto Service Encryption User role](/azure/key-vault/general/rbac-guide?preserve-view=true&tabs=azure-cli#azure-built-in-roles-for-key-vault-data-plane-operations). The customer can then create an encryption key. For guidance on how to do this, see [Grant permission to applications to access an Azure key vault using Azure RBAC](/azure/key-vault/general/rbac-guide?tabs=azure-cli).
 
@@ -80,7 +80,8 @@ Once these steps are completed, the service provider now has:
 
 With these three parameters, the service provider can now create Azure AI Search object in *Tenant A* that can be encrypted with the customer-managed key stored in *Tenant B*. For guidance on how to configure customer-managed keys on new search objects, see: [Configure Customer-Managed Keys for Azure AI Search.](/azure/search/search-security-manage-encryption-keys?tabs=azure-key-vault%2Cmanaged-id-sys%2Cportal%2Cmgmt-rest-create%2Cmgmt-rest-update)
 
-### Validate the federated identity cross-tenant CMK configuration
+
+### Validate the federated identity cross-tenant CMK configuration
 
 After you configure the multitenant Microsoft Entra application and connect it to the customer’s Key Vault, verify the setup by creating a test object in your search service (tenant A). We will create an idex for this example to confirm that the search service can access the customer-managed key using the federated identity.
 
