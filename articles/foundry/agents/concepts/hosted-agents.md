@@ -188,6 +188,8 @@ To right-size, run a representative workload and read the per-process counters t
 - **Memory** &mdash; `performanceCounters` `Private Bytes` (bytes).
 - **CPU** &mdash; `performanceCounters` `% Processor Time Normalized` (fraction of one vCPU; `1.0` equals one full core).
 
+Each datapoint is a process snapshot from a single sandbox at a single moment. Because every session of a given agent version runs with the *same* CPU and memory limits, a high percentile across the pool of all sessions approximates the worst-case footprint of one session—which is the number you need to avoid out-of-memory failures and CPU throttling.
+
 Example query in the linked Application Insights resource:
 
 ```kusto
@@ -200,9 +202,9 @@ performanceCounters
        by name
 ```
 
-Compare the p95 or p99 against the `cpu` and `memory` you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
+Compare the p95 or p99 against the `cpu` and `memory` you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. The more sessions you run during the measurement window, the more reliable the percentile becomes. Always retest after a change, because each new version is immutable.
 
-Per-session attribution isn't built in. The default `cloud_RoleInstance` is a generic value (`adc-sandbox`) and isn't the session ID. To group metrics by session, agent ID, or tenant, read the session identifier from the request context in your agent code and emit it as a custom dimension or metric attribute.
+This pool-aggregate view has known limits. The default `cloud_RoleInstance` is a generic value (`adc-sandbox`) shared across every sandbox, so the linked Application Insights resource can't natively tell you which session produced a given measurement, trend a single session over time, or count active sandboxes. To get per-session, per-agent, or per-tenant attribution, read the session identifier from the request context in your agent code and emit it as a custom dimension or metric attribute.
 
 ### Private networking
 
