@@ -1486,6 +1486,10 @@ project_client = AIProjectClient(
 
 openai_client = project_client.get_openai_client()
 
+# Model deployment name (for AI-assisted evaluators)
+# Example: gpt-5-mini
+model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
+
 data_source_config = {
     "type": "custom",
     "item_schema": {
@@ -1717,6 +1721,10 @@ Select evaluators designed for conversation-level assessment. The simulated conv
 # [Python](#tab/python)
 
 ```python
+# Model deployment name (for AI-assisted evaluators)
+# Example: gpt-5-mini
+model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
+
 # Simulation uses the same "custom" eval group type as dataset evaluation (S1),
 # since the generated conversations follow the same messages schema.
 data_source_config = {
