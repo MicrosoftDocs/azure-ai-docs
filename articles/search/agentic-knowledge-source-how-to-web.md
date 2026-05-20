@@ -45,6 +45,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 + An Azure AI Search service in any [public region that provides agentic retrieval](search-region-support.md). Web Knowledge Source isn't supported in private or sovereign clouds.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone pivot="csharp"
