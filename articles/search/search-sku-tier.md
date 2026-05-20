@@ -8,28 +8,64 @@ ms.topic: concept-article
 ms.date: 03/25/2026
 ---
 
-# Choose a service tier for the Dedicated pricing model in Azure AI Search
+# Choose a pricing model and service tier in Azure AI Search
 
 When you [create a search service](search-create-service-portal.md), you must choose a pricing model. Azure AI Search offers two pricing models, each suited to different workload patterns:
 
 | Pricing model | Best for | How you're billed |
 | --- | --- | --- |
-| Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#service-tier-descriptions) |
+| Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#choose-a-service-tier) |
 | Serverless | Infrequent, bursty, or highly variable workloads | Consumption-based: measured by [Compute Units](./serverless-cost-optimization.md) and indexed storage (GB/month) |
 
 > [!NOTE] 
 > Dedicated model Search Units (SUs) and Serverless model Compute Units (CUs) are not the same and cannot be used interchangeably. Don't use SU-based pricing calculators or estimates for Serverless workloads.
 
-Both models provide the same core search features. The difference is pricing and scale behavior, not capabilities.
+Both models provide the same core search features (with a few minor exceptions for the Serverless preview noted below). The primary difference is pricing and scale behavior, not capabilities.
+
+Selecting the Dedicated pricing model requires estimating your workload needs and then [choosing a service tier](#dedicated-pricing-model---choose-a-service-tier) with the appropriate pre-provisioned capacity.
+
+Selecting the Serverless pricing model does not require selecting a pre-provisioned service tier, but uses consumption-based pricing, so [performance optimization](./serverless-cost-optimization.md) will directly affect cost.
 
 ## Serverless pricing model (preview)
 
-The Serverless pricing model uses consumption-based pricing and does not require selecting a service tier.
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+The Serverless pricing model is a consumption-based offering that automatically scales compute and storage based on your workload. It eliminates the need to provision capacity upfront, allowing you to pay only for the resources you use.
+
+With the Serverless model, you don’t configure replicas, partitions, or search units. Instead, the service manages capacity dynamically in response to query volume, indexing activity, and workload complexity.
+
+Billing is based on two primary dimensions:
+
+- **Compute usage**: Measured in compute units per hour (CU/h) and charged based on the work performed (queries, indexing, and other operations).
+- **Indexed storage**: Charged per GB per month based on the size of your indexes.
+
+This model is designed for workloads with variable or unpredictable demand, including bursty traffic, multi-tenant applications, and agent-driven scenarios. It supports the same core search features and APIs as Dedicated services, so you can build and run search applications without rewriting code.
+
+In its current (Public Preview) state, the Serverless pricing model does not support certain features available in Dedicated pricing model. Known limitations include:
+
+- Index aliases: Not supported
+- Debug sessions: Not supported
+- Private networking for indexers: Not supported
+- File Knowledge Service (Preview): Not supported
+- Shared Private Link resources: No planned support for the Serverless model
+- Service-level agreement (SLA): Not available during Public Preview
+
+Additional capabilities (such as certain networking or security features) might be limited or introduced later as the service evolves.
 
 To learn more, see [Optimize costs with the Serverless pricing model](./serverless-cost-optimization.md).
 
-
 ## Dedicated pricing model
+
+The Dedicated pricing model is a provisioned-capacity offering that provides predictable performance and cost by allocating fixed infrastructure to your workload. You configure capacity upfront, allowing the service to handle consistent indexing and query demands with guaranteed resources.
+
+With the Dedicated model, you explicitly configure replicas, partitions, and search units (SUs). Replicas provide query throughput and high availability, while partitions define storage and indexing capacity. Together, they determine the total capacity and performance characteristics of your search service.
+
+Billing is based on:
+
+- **[Service tier](#choose-a-service-tier)**: The pre-selected provisioned capacity.
+- **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You’re billed at a fixed hourly rate based on the number of search units and selected service tier.
+
+This model is designed for workloads with steady, predictable demand, where consistent performance, low latency, and controlled scaling are important. It’s commonly used for production applications with sustained query volumes or large indexing workloads.
 
 In the Dedicated pricing model, the selected service tier determines:
 
@@ -40,7 +76,7 @@ In the Dedicated pricing model, the selected service tier determines:
 
 In some cases, the tier also determines the availability of [premium features](#feature-availability-by-tier).
 
-### Service tier descriptions
+### Choose a service tier
 
 **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling is not supported. Some premium features are unavailable, and the service may be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
@@ -85,7 +121,7 @@ Most features are available across all tiers. In some cases, feature availabilit
 
 | Feature | Tier considerations |
 | ------- | ------------------- |
-| [indexers](search-indexer-overview.md) | Indexers aren't available on S3 HD. Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
+| [indexers](search-indexer-overview.md) | Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
 | [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
 | [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended for large workloads. |
 | [Managed or trusted identities for outbound (indexer) access](search-how-to-managed-identities.md) | Not available on the Free tier.|
