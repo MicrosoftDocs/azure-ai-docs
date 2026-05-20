@@ -23,17 +23,14 @@ recommendations: false
 
 In this quickstart, you create a provisioned throughput deployment in Microsoft Foundry, make an inference call to confirm it works, and view its utilization metric.
 
-A provisioned throughput deployment gives your application dedicated model processing throughput with predictable latency. Billing is done per provisioned throughput unit (PTU) per hour. You also have the option of using Azure Reservations with provisioned throughput to obtain financial discounts that are more cost-effective than hourly billing for long-term, sustained workloads. For a full conceptual introduction, see [What is provisioned throughput for Foundry Models?](./concepts/provisioned-throughput.md).
+A provisioned throughput deployment gives your application dedicated model processing throughput with predictable latency. Billing is done per provisioned throughput unit (PTU) per hour. For long-term workloads, Azure Reservations offer financial discounts compared to hourly billing. For a full conceptual introduction, see [What is provisioned throughput for Foundry Models?](./concepts/provisioned-throughput.md).
 
-<!-- > [!NOTE]
-> If you don't already have PTU quota, request it through the [quota request form](https://aka.ms/oai/stuquotarequest) before following this quickstart. Quota approval can take several days, and you receive an email notification when the request is approved.. -->
 
 ## Prerequisites
 
-- An Azure subscription — [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - **Azure Contributor** or **Cognitive Services Contributor** role on the subscription or resource group where you plan to create the deployment.
-- A Foundry resource in the region where you have PTU quota. See [Create a Foundry resource](../../foundry-classic/openai/how-to/create-resource.md).
-<!-- - PTU quota approved for your target region and deployment type. To check your quota, go to **Operate** > **Quota** > **Provisioned throughput unit** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). If you don't have quota, select **Request Quota** and complete the form. -->
+- A [Microsoft Foundry project](../how-to/create-projects.md) in the region where you have PTU quota. A Foundry project is managed under a Foundry resource.
 - Optionally, for deployment using Azure CLI, have [Azure CLI installed](/cli/azure/install-azure-cli).
 
 ## Check model and region availability
@@ -44,6 +41,18 @@ Before creating a deployment, confirm that your model supports provisioned throu
 1. Filter by your region and verify that the model appears in a **Provisioned** deployment type.
 
 Also note the model's minimum PTU count, as you need this information when you configure the deployment. Minimums vary by model and are listed in [Throughput and deployment parameter values by model](./how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model).
+
+## Check PTU quota
+
+Before following this quickstart, check that you have quota for your target region and deployment type. To check your quota:
+
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+1. Select the subscription and the Foundry resource in the region where you have PTU quota.
+1. Select **Operate** in the upper-right navigation, then select **Quota** in the left pane.
+1. Select **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
+
+> [!TIP]
+> You can also follow this [direct link to the quota request form](https://aka.ms/oai/stuquotarequest).
 
 ## Create a provisioned deployment
 
@@ -75,9 +84,9 @@ Alternatively, you can create your deployment by using the Azure CLI. The follow
 
 - Replace `<myResourceName>`, `<myResourceGroupName>`, `<myDeploymentName>` with your values.
 
-- `--sku-name` specifies the deployment type, which could be one of `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`. 
+- `--sku-name` specifies the deployment type: `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
 
-- `--sku-capacity` is the number of PTUs. Here, it's set to 100.
+- `--sku-capacity` is the number of PTUs. Here, it's set to 50.
 
 ```azurecli
 az cognitiveservices account deployment create \
@@ -100,12 +109,12 @@ az cognitiveservices account deployment show \
     --deployment-name <myDeploymentName> \
     --name <myResourceName> \
     --resource-group <myResourceGroupName> \
-| jq '.properties.provisioningState'
+    --query "properties.provisioningState" -o tsv
 ```
 
-The output should display `"Succeeded"`. The model is ready to use after provisioning completes.
+The output should display `Succeeded`. The model is ready to use after provisioning completes.
 
-Reference: [az cognitiveservices account list-models](https://learn.microsoft.com/cli/azure/cognitiveservices/account#az-cognitiveservices-account-deployment-show)
+Reference: [az cognitiveservices account deployment show](https://learn.microsoft.com/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
 REST, ARM template, Bicep, and Terraform can also be used to create deployments. See [Automate deployments](../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) and replace `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
 
@@ -128,25 +137,25 @@ Before running the sample, set the following environment variable:
     pip install openai
     ```
 
-1. Configure the OpenAI client object in the project route, specify your deployment, and generate responses.
+1. Configure the OpenAI client, specify your deployment, and generate responses. Replace `<myResourceName>` with your Foundry resource name.
 
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://<myResourceName>.openai.azure.com/openai/v1/",
-)
-
-response = client.responses.create(
-    model="<myDeploymentName>",  # Your deployment name, not the model name
-    input="What is provisioned throughput?",
-    max_output_tokens=100,
-)
-
-print(response.choices[0].message.content)
-```
+    ```python
+    import os
+    from openai import OpenAI
+    
+    client = OpenAI(
+        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+        base_url="https://<myResourceName>.openai.azure.com/openai/v1/",
+    )
+    
+    response = client.responses.create(
+        model="<myDeploymentName>",  # Your deployment name, not the model name
+        input="What is provisioned throughput?",
+        max_output_tokens=100,
+    )
+    
+    print(response.output_text)
+    ```
 
 ## View deployment utilization
 
@@ -156,6 +165,10 @@ After making calls, confirm that traffic is reaching your deployment by checking
 1. Navigate to your Foundry resource and select **Metrics** in the left navigation.
 1. Select the **Provisioned-managed utilization V2** metric.
 1. If you have more than one deployment in the resource, filter by the deployment name to view utilization per deployment.
+
+A utilization reading near 0% immediately after your test call is normal — the metric updates on a monitoring window.
+
+:::image type="content" source="media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png" alt-text="Screenshot of Azure Metrics showing Provisioned-managed Utilization V2 chart filtered by deployment name." lightbox="media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png":::
 
 For a full explanation of how utilization is calculated and what to do when it reaches 100%, see [Operate provisioned deployments in production](./how-to/provisioned-get-started.md#measure-deployment-utilization).
 
@@ -171,7 +184,7 @@ To enable spillover for all requests on your deployment, you need an active stan
 
 Enable spillover during deployment creation by selecting **Traffic spillover** in the custom deployment settings. If you already created your deployment without spillover, delete and recreate it with **Traffic spillover** selected.
 
-**Optionally, enable spillover with the Azure CLI:**
+**Optionally, enable spillover via the REST API:**
 
 Set the `spilloverDeploymentName` property on an existing provisioned deployment to the name of the target standard deployment. This approach lets you add spillover to an existing deployment without recreating it.
 
