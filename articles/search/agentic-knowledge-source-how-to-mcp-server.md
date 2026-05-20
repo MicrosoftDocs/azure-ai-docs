@@ -55,7 +55,7 @@ The following JSON is an example response for an MCP Server knowledge source (pr
 {
   "name": "my-mcp-server-ks",
   "kind": "mcpServer",
-  "description": "An MCP server knowledge source.",
+  "description": "An MCP Server knowledge source.",
   "encryptionKey": null,
   "mcpServerParameters": {
     "serverURL": "https://learn.microsoft.com/api/mcp",
@@ -103,7 +103,7 @@ var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
 var knowledgeSource = new McpServerKnowledgeSource("<knowledge-source-name>")
 {
-    Description = "An MCP server knowledge source.",
+    Description = "An MCP Server knowledge source.",
     McpServerParameters = new McpServerParameters(
         serverUrl: "https://learn.microsoft.com/api/mcp",
         tools: new[]
@@ -153,7 +153,7 @@ index_client = SearchIndexClient(
 
 knowledge_source = McpServerKnowledgeSource(
     name="<knowledge-source-name>",
-    description="An MCP server knowledge source.",
+    description="An MCP Server knowledge source.",
     mcp_server_parameters=McpServerParameters(
         server_url="https://learn.microsoft.com/api/mcp",
         authentication=FoundryConnectionAuthentication(
@@ -191,7 +191,7 @@ Prefer: return=representation
 {
   "name": "my-mcp-server-ks",
   "kind": "mcpServer",
-  "description": "An MCP server knowledge source.",
+  "description": "An MCP Server knowledge source.",
   "encryptionKey": null,
   "mcpServerParameters": {
     "serverURL": "https://learn.microsoft.com/api/mcp",
