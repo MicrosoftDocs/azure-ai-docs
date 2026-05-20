@@ -294,9 +294,9 @@ same values every time.
 > [!NOTE]
 > Starting with `2026-05-01-preview`, `semanticConfigurationName` is optional
 > on search index knowledge sources. The examples in this section omit it.
-> Earlier API versions (`2026-05-01-preview` and `2026-04-01`) still require
-> `semanticConfigurationName`. If your knowledge source needs to support both
-> the older and newer API versions, keep specifying it.
+> Earlier API versions still require `semanticConfigurationName`. If your
+> knowledge source needs to support both the older and newer API versions, keep
+> specifying it.
 
 The effective value order is:
 
