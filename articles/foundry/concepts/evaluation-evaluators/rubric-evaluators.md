@@ -153,7 +153,7 @@ To-be-update
 
 ## Set up evaluation with rubric evaluators
 
-After you validate your rubric evaluator in batch evaluation, use it for creating an evaluation to assess agent quality on production traffic. You can set up continious and scheduled evaluation in Monitor settings to run your rubric evaluators automatically, so you can detect quality regressions without manual evaluation runs.
+You can use your rubric evaluator in batch evaluation to create an evaluation to assess agent quality on production traffic. Once you're satisfied with your rubric evaluator, you can set up continious and scheduled evaluation in Monitor settings to run your rubric evaluators automatically. Both run your rubric evaluators automatically against your agents, helping you detect quality regressions without triggering manual evaluation runs.
 
 ### Set up continuous evaluation
 
@@ -170,7 +170,7 @@ The service evaluates sampled agent traces with your rubric evaluators and surfa
 
 ### Set up scheduled evaluation
 
-Scheduled evaluation runs your rubric evaluators on a recurring basis against accumulated agent traces.
+Scheduled evaluation runs your rubric evaluators on a recurring basis.
 
 1. Connect an [Application Insights resource](../../observability/how-to/trace-agent-setup.md) to your Foundry project.
 1. Open the [monitoring dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md) and select **Monitor settings**.
