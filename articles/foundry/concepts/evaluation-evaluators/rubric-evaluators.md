@@ -151,17 +151,35 @@ To-be-update
 > [!NOTE]
 > Rubric evaluators use LLM-as-judge scoring and incur model inference costs per evaluation call. Scoring reliability might vary for very short responses. Write rubric descriptions that are specific and unambiguous to improve scoring consistency across evaluations.
 
-## Set up continuous evaluation with rubric evaluators
+## Set up evaluation with rubric evaluators
 
-After you validate your rubric evaluator in batch evaluation, use it for continuous evaluation to assess agent quality on production traffic. Continuous evaluation samples agent traces and runs your rubric evaluators automatically, so you can detect quality regressions without manual evaluation runs.
+After you validate your rubric evaluator in batch evaluation, use it for creating an evaluation to assess agent quality on production traffic. You can set up continious and scheduled evaluation in Monitor settings to run your rubric evaluators automatically, so you can detect quality regressions without manual evaluation runs.
 
-To set up continuous evaluation:
+### Set up continuous evaluation
+
+Continuous evaluation runs your rubric evaluators on sampled agent traces as they arrive in real time.
 
 1. Connect an [Application Insights resource](../../observability/how-to/trace-agent-setup.md) to your Foundry project.
-1. Configure [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) and add your rubric evaluator to the evaluator list.
+1. Open the [monitoring dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md) and select **Monitor settings**.
+1. Under **Continuous evaluation**, select **Enable**.
+1. Add your rubric evaluator to the evaluator list.
 1. Set a sample rate that balances evaluation coverage with cost.
+1. Select **Save**.
 
-The service evaluates sampled agent traces with your rubric evaluators and surfaces quality scores in the [monitoring dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md). Use the dashboard to track quality trends over time and set up alerts when scores drop below your threshold.
+The service evaluates sampled agent traces with your rubric evaluators and surfaces quality scores in the monitoring dashboard.
+
+### Set up scheduled evaluation
+
+Scheduled evaluation runs your rubric evaluators on a recurring basis against accumulated agent traces.
+
+1. Connect an [Application Insights resource](../../observability/how-to/trace-agent-setup.md) to your Foundry project.
+1. Open the [monitoring dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md) and select **Monitor settings**.
+1. Under **Scheduled evaluations**, select **Add schedule**.
+1. Add your rubric evaluator to the evaluator list.
+1. Set the recurrence interval (for example, daily or weekly) and the trace lookback window.
+1. Select **Save**.
+
+The service runs your rubric evaluators at each scheduled interval against traces collected within the lookback window. Use the dashboard to track quality trends over time and set up alerts when scores drop below your threshold.
 
 ## Related content
 
