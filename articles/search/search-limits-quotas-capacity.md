@@ -9,8 +9,6 @@ ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
-  - build-2024
-  - ignite-2024
 #customer intent: As a developer making decisions about the infrastructure we use, planning to optimize for usage need, capacity, and cost, I want to understand the limits, quotas, and capacities associated with Azure AI Search services, detailing how these factors depend on the chosen pricing tier.
 ---
 
@@ -30,10 +28,10 @@ You can create multiple *billable* search services (Basic and higher), up to the
 
 Maximum service limits can be raised upon request. If you need more services within the same subscription, [file a support request](/azure/search/search-create-service-portal#add-more-services-to-a-subscription).
 
-| Resource | Free <sup>1</sup> | Basic | S1  | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless (Developer Edition)|
+| Resource | Free <sup>1</sup> | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless Developer |
 | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Maximum services per region    |1     | 16    | 16  | 8  | 6  | 6     | 6  | 6  | N/A |
-| Maximum search units (SU)<sup>2</sup> |N/A |3 SU |36 SU |36 SU |36 SU |36 SU |36 SU |36 SU | N/A |
+| Maximum services per region | 1 | 16 | 16 | 8 | 6 | 6 | 6 | 6 | 5 |
+| Maximum search units (SU)<sup>2</sup> | N/A | 3 SU | 36 SU | 36 SU | 36 SU | 36 SU | 36 SU | 36 SU | N/A |
 
 <sup>1</sup> You can have one free search service per Azure subscription. The free tier is based on infrastructure shared with other customers. Because the hardware isn't dedicated, scale-up isn't supported, and storage is limited to 50 MB. A free search service might be deleted after extended periods of inactivity to make room for more services.
 
@@ -45,10 +43,10 @@ Maximum service limits can be raised upon request. If you need more services wit
 
 In the Dedicated pricing model, capacity planning is based on replicas multiplied by partitions (search units).
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless  (Developer Edition)|
+| Resource | Free | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless Developer |
 | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Partitions | N/A |3 <sup>1</sup> |12 |12 |12 |3 |12 |12 | N/A |
-| Replicas | N/A |3 |12 |12 |12 |12 |12 |12 | N/A |
+| Partitions | N/A | 3 <sup>1</sup> | 12 | 12 | 12 | 3 | 12 | 12 | N/A |
+| Replicas | N/A | 3 | 12 | 12 | 12 | 12 | 12 | 12 | N/A |
 
 <sup>1</sup> Basic tier supports three partitions and three replicas, for a total of nine search units (SU) on [new search services](/azure/search/search-create-service-portal) created after April 3, 2024. Older basic services are limited to one partition and three replicas.
 
@@ -64,7 +62,7 @@ Per-service storage limits vary by two things: [service creation date](/azure/se
 
 This table shows the progression of storage quota increases in GB over time. Starting in April 2024, higher capacity partitions were brought online in the regions listed in the footnotes. If you have an older service in a supported region, check if you can [upgrade your service](/azure/search/search-how-to-upgrade) to the higher storage limits.
 
-| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 | Serverless (Developer Edition) |
+| Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 | Serverless Developer |
 |---|---|---|---|---|---|---|---|
 | Before April 3, 2024 | 2  | 25 | 100 | 200 | 1,024 | 2,048 | N/A |
 | April 3, 2024 through May 17, 2024 <sup>1</sup> | **15**   | **160**  | **512**  | **1,024**  | 1,024 | 2,048 | N/A |
@@ -89,9 +87,7 @@ This table shows the progression of storage quota increases in GB over time. Sta
 
 ## Index limits
 
-## Index limits
-
-| Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless (Developer Edition) |
+| Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless Developer |
 |----------|------|--------------------|----|----|----|--------|----|----|------------|
 | Maximum indexes | 3 | 5 or 15 | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 | 30 |
 | Maximum simple fields per index <sup>2</sup> | 1000 | 100 | 1000 | 1000 | 1000 | 1000 | 1000 | 1000 | 1000 |
@@ -103,7 +99,7 @@ This table shows the progression of storage quota increases in GB over time. Sta
 | Maximum scoring profiles per index | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
 | Maximum semantic configurations per index | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
 | Maximum functions per profile | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
-| Maximum index size <sup>4</sup> | N/A | N/A | N/A | 1.88 TB | 2.34 TB | 100 GB | N/A | N/A | Defined per index (service-level limits apply) |
+| Maximum index size <sup>4</sup> | N/A | N/A | N/A | 1.88 TB | 2.34 TB | 100 GB | N/A | N/A | 1 GB |
 
 <sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes. Basic tier is the only tier with a lower limit of 100 fields per index.
 
@@ -111,7 +107,7 @@ This table shows the progression of storage quota increases in GB over time. Sta
 
 <sup>3</sup> An upper limit exists for elements because having a large number of them significantly increases the storage required for your index. An element of a complex collection is defined as a member of that collection. For example, assume a [Hotel document with a Rooms complex collection](search-howto-complex-data-types.md#complex-collection-limits). Each room in the Rooms collection is considered an element. During indexing, the indexing engine can safely process a maximum of 3,000 elements across the document as a whole. [This limit](search-api-migration.md#upgrade-to-2019-05-06) was introduced in `api-version=2019-05-06` and applies to complex collections only, and not to string collections or to complex fields.
 
-<sup>4</sup> For most tiers, the maximum index size is the total available storage on your search service. For S2, S3, and S3 HD services with multiple partitions, and therefore more storage, the maximum size of a single index is provided in the table. Applies to search services created after April 3, 2024.
+<sup>4</sup> For most tiers, the maximum index size is the total available storage on your search service. For S2, S3, and S3 HD services with multiple partitions, and therefore more storage, the maximum size of a single index is provided in the table. Applies to search services created after April 3, 2024. Indexes for services set up with the Serverless model (Preview) have a set maximum size provided in the table.
 
 You might find some variation in maximum limits if your service happens to be provisioned on a more powerful cluster. The limits here represent the common denominator. Indexes built to the above specifications are portable across equivalent service tiers in any region.
 
@@ -198,16 +194,16 @@ Maximum running times exist to provide balance and stability to the service as a
 > In the Serverless pricing model, indexer behavior differs from Dedicated services. Capacity isn’t defined by replicas or partitions. Instead, indexing limits are governed by per-service object limits, per-index storage caps, and service-level throttling. As a result, some limits (such as maximum execution time) are not fixed values.
 
 
-| Resource | Free&nbsp;<sup>1</sup> | Basic&nbsp;<sup>2</sup>| S1 | S2 | S3 | S3&nbsp;HD&nbsp;<sup>3</sup>| L1 | L2 | Serverless (Developer Edition) |
+| Resource | Free&nbsp;<sup>1</sup> | Basic&nbsp;<sup>2</sup>| S1 | S2 | S3 | S3&nbsp;HD&nbsp;<sup>3</sup>| L1 | L2 | Serverless Developer |
 |----------|------|--------|----|----|----|------------|----|----| --- |
 | Maximum indexers |3 |5 or 15|50 |200 |200 |N/A |10 |10 | 30 |
 | Maximum datasources |3 |5 or 15 |50 |200 |200 |N/A |10 |10 | 30 per service |
 | Maximum skillsets <sup>4</sup> |3 |5 or 15 |50 |200 |200 |N/A |10 |10 | 30 |
-| Maximum indexing load per invocation |10,000 documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |N/A |No limit |No limit | TO-DO |
-| Minimum schedule | 5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes |5 minutes | 5 minutes | TO-DO |
-| Maximum running time <sup>5</sup>| 1-3 or 3-10 minutes |2 or 24 hours |2 or 24 hours |2 or 24 hours |2 or 24 hours |N/A  |2 or 24 hours |2 or 24 hours | TO-DO |
-| Blob indexer <sup>7</sup>: maximum blob size, MB |16 |16 |128 |256 |256 |N/A  |256 |256 | TO-DO |
-| Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> <sup>8</sup> |256,000 |512,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |N/A |4&nbsp;million |4&nbsp;million | TO-DO |
+| Maximum indexing load per invocation |10,000 documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |Limited only by maximum documents |N/A |No limit |No limit | Limited only by maximum documents |
+| Minimum schedule | 5 minutes | 5 minutes | 5 minutes | 5 minutes | 5 minutes | 5 minutes | 5 minutes | 5 minutes | 5 minutes |
+| Maximum running time <sup>5</sup> | 1-3 or 3-10 minutes | 2 or 24 hours | 2 or 24 hours | 2 or 24 hours | 2 or 24 hours | N/A | 2 or 24 hours | 2 or 24 hours | 2 hours |
+| Blob indexer <sup>7</sup>: maximum blob size, MB | 16 | 16 | 128 | 256 | 256 | N/A  | 256 | 256 | 256 |
+| Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> <sup>8</sup> |256,000 |512,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |N/A |4&nbsp;million |4&nbsp;million | 16&nbsp;million |
 
 <sup>1</sup> Free services have indexer maximum execution time of 3 minutes for blob sources and 1 minute for all other data sources. Indexer invocation is once every 180 seconds. For AI indexing that calls Foundry Tools, free services are limited to 20 free transactions per indexer per day, where a transaction is defined as a document that successfully passes through the enrichment pipeline. (Tip: You can reset an indexer to reset its count.)
 
@@ -232,13 +228,12 @@ Maximum running times exist to provide balance and stability to the service as a
 
 Indexers can access other Azure resources [over private endpoints](search-indexer-howto-access-private.md) managed via the [shared private link resource API](/rest/api/searchmanagement/shared-private-link-resources). This section describes the limits associated with this capability.
 
-
 > [!NOTE]
-> The Serverless pricing model (Developer Edition) doesn't support private link resources. The Serverless model supports Private Enpoints and IP firewall rules.
+> The Serverless pricing model Developer tier doesn't support shared private links or network security perimeter (NSP) to data sources. Private Endpoints and IP firewall rules for a private connection to a Serverless Developer tier service are supported.
 
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless (Developer Edition) |
-|----|------|-------|----|----|----|-------|----|----|---|
+| Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless Developer |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Private endpoint indexer support | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No |
 | Private endpoint support for indexers with a skillset <sup>1</sup> | No | No | Yes | Yes | Yes | No | Yes | Yes | No |
 | Private endpoint support for skillsets with an embedding skill <sup>2</sup> | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No |
@@ -255,19 +250,19 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 Maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) would count as 3 expansions.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless (Developer Edition) |
+| Resource | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless Developer |
 |---|---|---|----|----|----|-------|----|----| --- |
 | Maximum synonym maps |3 |3|5 |10 |20 |20 | 10 | 10 | 20 per service |
-| Maximum number of rules per map |5000 |20000|20000 |20000 |20000 |20000 | 20000 | 20000  | TO-DO |
+| Maximum number of rules per map |5000 |20000|20000 |20000 |20000 |20000 | 20000 | 20000  | 20000 |
 
 ## Index alias limits
 
 Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). On all tiers, if the service was created after October 2022, the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
 > [!NOTE]
-> The Serverless model does not support index aliases.
+> The Serverless model Developer tier does not support index aliases.
 
-| Service creation date | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless (Developer Edition) |
+| Service creation date | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless Developer |
 |----------|------|-------|----|----|----|-------|----|----| --- |
 | Before October 2022 | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 | N/A |
 | After October 2022 | 6 | 30 | 100 | 400 | 400 | 2000 per partition or 6000 per service | 20 | 20 | N/A |
@@ -278,7 +273,7 @@ Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [se
 
 A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) specifies one or more [knowledge sources](agentic-knowledge-source-overview.md) and a [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) that controls the level of large language model (LLM) processing for [agentic retrieval](agentic-retrieval-overview.md). Limits vary by pricing tier and reasoning effort level.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless (Developer Edition) |
+| Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless Developer |
 |--|--|--|--|--|--|--|--|--|--|
 | Maximum knowledge sources per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
 | Maximum knowledge bases per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
@@ -336,10 +331,10 @@ Total semantic ranker queries per second varies based on the following factors:
 
 The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
-| Resource | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 |
-|----------|-------|----|----|----|-------|----|----|
-| Maximum concurrent requests (per search unit) | 2 | 3 | 4 | 4 | 4 | 4 | 4 |
-| Maximum request queue size (per search unit) | 4 | 6 | 8 | 8 | 8 | 8 | 8 |
+| Resource | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless Developer |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Maximum concurrent requests (per search unit) | 2 | 3 | 4 | 4 | 4 | 4 | 4 | 4 (per service) |
+| Maximum request queue size (per search unit) | 4 | 6 | 8 | 8 | 8 | 8 | 8 | 8 (per service) |
 
 ## API request limits
 
