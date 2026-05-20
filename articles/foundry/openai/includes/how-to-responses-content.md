@@ -1096,79 +1096,141 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<res
 
 ## Image input
 
-For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
+For vision-enabled models, supported image formats are PNG, JPEG, and WebP.
 
-### Image url
+### Image URL
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model="gpt-4o",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                { "type": "input_text", "text": "what is in this image?" },
-                {
-                    "type": "input_image",
-                    "image_url": "<image_URL>"
-                }
+                {"type": "input_text", "text": "What is in this image?"},
+                {"type": "input_image", "image_url": "<image_url>"}
             ]
         }
     ]
 )
 
-print(response)
-
+print(response.output_text)
 ```
 
-### Base64 encoded image
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
 
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "What is in this image?" },
+        { type: "input_image", image_url: "<image_url>" }
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_text", "text": "What is in this image?"},
+          {"type": "input_image", "image_url": "<image_url>"}
+        ]
+      }
+    ]
+  }'
+```
+---
+
+### Base64-encoded image
+
+# [Python](#tab/python)
 ```python
 import base64
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-
-# Path to your image
-image_path = "path_to_your_image.jpg"
-
-# Getting the Base64 string
-base64_image = encode_image(image_path)
+with open("path_to_your_image.jpg", "rb") as image_file:
+    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
 
 response = client.responses.create(
-    model="gpt-4o",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                { "type": "input_text", "text": "what is in this image?" },
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image}"
-                }
+                {"type": "input_text", "text": "What is in this image?"},
+                {"type": "input_image", "image_url": f"data:image/jpeg;base64,{base64_image}"}
             ]
         }
     ]
 )
 
-print(response)
+print(response.output_text)
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { readFileSync } from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const base64Image = readFileSync("path_to_your_image.jpg").toString("base64");
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "What is in this image?" },
+        { type: "input_image", image_url: `data:image/jpeg;base64,${base64Image}` }
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+---
 
 ## File input
 
@@ -1176,32 +1238,28 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
->
 > - In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
->
 > - Only models that support both text and image inputs can accept PDF files as input.
->
 > - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
 
 ### Convert PDF to Base64 and analyze
 
+# [Python](#tab/python)
 ```python
 import base64
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
-    data = f.read()
-
-base64_string = base64.b64encode(data).decode("utf-8")
+with open("PDF-FILE-NAME.pdf", "rb") as f:
+    base64_string = base64.b64encode(f.read()).decode("utf-8")
 
 response = client.responses.create(
-    model="gpt-4o-mini", # model deployment name
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
@@ -1211,10 +1269,7 @@ response = client.responses.create(
                     "filename": "PDF-FILE-NAME.pdf",
                     "file_data": f"data:application/pdf;base64,{base64_string}",
                 },
-                {
-                    "type": "input_text",
-                    "text": "Summarize this PDF",
-                },
+                {"type": "input_text", "text": "Summarize this PDF."},
             ],
         },
     ]
@@ -1223,70 +1278,66 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+# [JavaScript](#tab/javascript)
+```javascript
+import { readFileSync } from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const base64Pdf = readFileSync("PDF-FILE-NAME.pdf").toString("base64");
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "input_file",
+          filename: "PDF-FILE-NAME.pdf",
+          file_data: `data:application/pdf;base64,${base64Pdf}`,
+        },
+        { type: "input_text", text: "Summarize this PDF." },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+---
+
 ### Upload PDF and analyze
 
-Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
+Upload the PDF file with `purpose="assistants"`. A `purpose` of `user_data` isn't currently supported.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-# Upload a file with a purpose of "assistants"
 file = client.files.create(
-  file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
-  purpose="assistants"
-)
-
-print(file.model_dump_json(indent=2))
-file_id = file.id
-```
-
-**Output:**
-
-```
-{
-  "id": "assistant-KaVLJQTiWEvdz8yJQHHkqJ",
-  "bytes": 4691115,
-  "created_at": 1752174469,
-  "filename": "nucleus_sampling.pdf",
-  "object": "file",
-  "purpose": "assistants",
-  "status": "processed",
-  "expires_at": null,
-  "status_details": null
-}
-```
-
-You will then take the value of the `id` and pass that to a model for processing under `file_id`:
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+    file=open("nucleus_sampling.pdf", "rb"),
+    purpose="assistants"
 )
 
 response = client.responses.create(
-    model="gpt-4o-mini",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                {
-                    "type": "input_file",
-                    "file_id":"assistant-KaVLJQTiWEvdz8yJQHHkqJ"
-                },
-                {
-                    "type": "input_text",
-                    "text": "Summarize this PDF",
-                },
+                {"type": "input_file", "file_id": file.id},
+                {"type": "input_text", "text": "Summarize this PDF."},
             ],
         },
     ]
@@ -1295,34 +1346,32 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+# [REST](#tab/rest)
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+# Upload the PDF
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F purpose="assistants" \
-  -F file="@your_file.pdf" \
+  -F file="@your_file.pdf"
 
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+# Use the returned file ID with Responses
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-        "model": "gpt-4.1",
-        "input": [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_file",
-                        "file_id": "assistant-123456789"
-                    },
-                    {
-                        "type": "input_text",
-                        "text": "ASK SOME QUESTION RELATED TO UPLOADED PDF"
-                    }
-                ]
-            }
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_file", "file_id": "<file_id>"},
+          {"type": "input_text", "text": "Summarize this PDF."}
         ]
-    }'
+      }
+    ]
+  }'
 ```
+---
 
 ## Using remote MCP servers
 
@@ -1330,49 +1379,78 @@ You can extend the capabilities of your model by connecting it to tools hosted o
 
 [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
-The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
+The following example shows how to use a remote MCP server to query information about an Azure REST API repository. The model retrieves and reasons over repository content in real time.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-  "model": "gpt-4.1",
-  "tools": [
-    {
-      "type": "mcp",
-      "server_label": "github",
-      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-      "require_approval": "never"
-    }
-  ],
-  "input": "What is this repo in 100 words?"
-}'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
+
 response = client.responses.create(
-    model="gpt-4.1", # replace with your model deployment name 
+    model="MODEL_NAME",
     tools=[
         {
             "type": "mcp",
             "server_label": "github",
             "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
             "require_approval": "never"
-        },
+        }
     ],
-    input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?",
+    input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?"
 )
 
 print(response.output_text)
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      require_approval: "never",
+    },
+  ],
+  input: "What is this repo in 100 words?",
+});
+
+console.log(response.output_text);
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "require_approval": "never"
+      }
+    ],
+    "input": "What is this repo in 100 words?"
+  }'
+```
+---
 
 The MCP tool works only in the Responses API, and is available across all newer models (gpt-4o, gpt-4.1, and our reasoning models). When you're using the MCP tool, you only pay for tokens used when importing tool definitions or making tool calls—there are no additional fees involved.
 
@@ -1396,56 +1474,65 @@ When an approval is required, the model returns a `mcp_approval_request` item in
 
 To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-  "model": "gpt-4.1",
-  "tools": [
-    {
-      "type": "mcp",
-      "server_label": "github",
-      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-      "require_approval": "never"
-    }
-  ],
-  "previous_response_id": "resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-  "input": [{
-    "type": "mcp_approval_response",
-    "approve": true,
-    "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-  }]
-}'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model="gpt-4.1", # replace with your model deployment name 
+    model="MODEL_NAME",
     tools=[
         {
             "type": "mcp",
             "server_label": "github",
             "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
             "require_approval": "never"
-        },
+        }
     ],
-    previous_response_id="resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-    input=[{
-        "type": "mcp_approval_response",
-        "approve": True,
-        "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-    }],
+    previous_response_id="<previous_response_id>",
+    input=[
+        {
+            "type": "mcp_approval_response",
+            "approve": True,
+            "approval_request_id": "<approval_request_id>"
+        }
+    ]
 )
+
+print(response.output_text)
 ```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "require_approval": "never"
+      }
+    ],
+    "previous_response_id": "<previous_response_id>",
+    "input": [
+      {
+        "type": "mcp_approval_response",
+        "approve": true,
+        "approval_request_id": "<approval_request_id>"
+      }
+    ]
+  }'
+```
+---
 
 ### Authentication
 
@@ -1458,46 +1545,25 @@ Unlike the GitHub MCP server, most remote MCP servers require authentication. Th
 
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-        "model": "gpt-4.1",
-        "input": "What is this repo in 100 words?",
-        "tools": [
-            {
-                "type": "mcp",
-                "server_label": "github",
-                "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-                "headers": {
-                    "Authorization": "Bearer $YOUR_API_KEY"
-                }
-            }
-        ]
-    }'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model="gpt-4.1",
+    model="MODEL_NAME",
     input="What is this repo in 100 words?",
     tools=[
         {
             "type": "mcp",
             "server_label": "github",
-            "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
-            "headers": {
-                "Authorization": "Bearer $YOUR_API_KEY"
-            }
+            "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+            "headers": {"Authorization": "Bearer $YOUR_MCP_TOKEN"}
         }
     ]
 )
@@ -1505,66 +1571,89 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "What is this repo in 100 words?",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "headers": {"Authorization": "Bearer $YOUR_MCP_TOKEN"}
+      }
+    ]
+  }'
+```
+---
+
 ## Background tasks
 
-Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that can take several minutes to complete, such as those handled by agents like Codex or Deep Research.
+Background mode lets you run long-running tasks asynchronously with reasoning models such as `o3` and `o1-pro`. It's useful for complex tasks that can take several minutes to complete (for example, Codex- or Deep Research-style agents). When a request is sent with `"background": true`, the task is processed asynchronously, and you poll for its status.
 
-By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`, the task is processed asynchronously, and you can poll for its status over time.
+### Start a background task
 
-To start a background task, set the background parameter to true in your request:
-
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-    "model": "o3",
-    "input": "Write me a very long story",
-    "background": true
-  }'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model = "o3",
-    input = "Write me a very long story",
-    background = True
+    model="MODEL_NAME",
+    input="Write me a very long story.",
+    background=True
 )
 
 print(response.status)
 ```
 
-Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
 
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Write me a very long story.",
+  background: true,
+});
+
+console.log(response.status);
 ```
 
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Write me a very long story.",
+    "background": true
+  }'
+```
+---
+
+### Poll for completion
+
+Continue polling while the status is `queued` or `in_progress`. Once the response reaches a terminal state, it's available for retrieval.
+
+# [Python](#tab/python)
 ```python
 from time import sleep
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.create(
-    model = "o3",
-    input = "Write me a very long story",
-    background = True
-)
 
 while response.status in {"queued", "in_progress"}:
     print(f"Current status: {response.status}")
@@ -1574,58 +1663,39 @@ while response.status in {"queued", "in_progress"}:
 print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
-You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
-
+# [REST](#tab/rest)
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
+---
 
+### Cancel a background task
+
+Cancel an in-progress background task with the `cancel` endpoint. Canceling is idempotent—subsequent calls return the final response object.
+
+# [Python](#tab/python)
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.cancel("resp_1234567890")
-
+response = client.responses.cancel("<response_id>")
 print(response.status)
 ```
 
-### Stream a background response
-
-To stream a background response, set both `background` and `stream` to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
-
+# [REST](#tab/rest)
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/cancel \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-    "model": "o3",
-    "input": "Write me a very long story",
-    "background": true,
-    "stream": true
-  }'
-
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
+---
 
+To stream a background response, set both `background` and `stream` to `true`. This pattern lets you resume streaming if the connection drops. Track your position with the `sequence_number` from each event.
+
+# [Python](#tab/python)
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-# Fire off an async response but also start streaming immediately
 stream = client.responses.create(
-    model="o3",
-    input="Write me a very long story",
+    model="MODEL_NAME",
+    input="Write me a very long story.",
     background=True,
     stream=True,
 )
@@ -1636,7 +1706,20 @@ for event in stream:
     cursor = event["sequence_number"]
 ```
 
-> [!NOTE] 
+# [REST](#tab/rest)
+```bash
+curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Write me a very long story.",
+    "background": true,
+    "stream": true
+  }'
+```
+---
+
 > Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
 
 ### Limitations
@@ -1648,9 +1731,9 @@ for event in stream:
 ### Resume streaming from a specific point
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42 \
+curl -N -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>?stream=true&starting_after=42" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
 ## Encrypted Reasoning Items
