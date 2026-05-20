@@ -25,6 +25,11 @@ This article explains how query-time sensitivity label enforcement works and how
 > [!TIP]
 > If you consume labeled content through a knowledge base (agentic retrieval or MCP) instead of calling Azure AI Search directly, see [Inspect sensitivity label metadata in retrieve responses](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-retrieve-responses-preview) for the equivalent response fields. Elevated read and Microsoft Purview audit logging documented in this article apply to both paths.
 
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 ## Prerequisites
 
 - Complete all steps in [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).

@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2024
   - sfi-image-nochange
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Index data from OneLake files and shortcuts
@@ -59,7 +60,12 @@ This article uses the REST APIs to illustrate each step.
 + There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
 
 + Indexing files from [Fabric items with sensitivity labels](/fabric/fundamentals/apply-sensitivity-labels), for example, lakehouses, isn't supported. However, when sensitivity labels are applied directly to individual documents, ingestion of protected content and associated labels is supported. In these cases, Azure AI Search can extract and honor sensitivity labels and labeled documents' content through its [integration with Purview](search-indexer-sensitivity-labels.md). 
-  
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 + Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
 
 ## Supported tasks

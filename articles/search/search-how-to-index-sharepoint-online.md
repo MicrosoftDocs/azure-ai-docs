@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2025
   - sfi-image-nochange
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Index data from SharePoint document libraries
@@ -30,7 +31,12 @@ In Azure AI Search, an indexer extracts searchable data and metadata from a data
 + Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), such as optical character recognition (OCR) or entity recognition.
 + Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in preview during initial document sync. It also supports full data set incremental data sync.
 + Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in preview.
-  
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 ## Prerequisites
 
 + [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher.

@@ -8,6 +8,7 @@ ms.custom:
 ms.topic: troubleshooting-general
 ms.date: 10/23/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
@@ -298,6 +299,11 @@ On the other hand, if an indexer is associated with a skillset, it operates with
 ## Indexing documents with sensitivity labels
 
 If you have [sensitivity labels set on documents](/microsoft-365/compliance/sensitivity-labels), you might not be able to index them. If you're getting errors, remove the labels prior to indexing.
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 
 ## See also

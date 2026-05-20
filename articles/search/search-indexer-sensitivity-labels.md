@@ -25,6 +25,11 @@ This functionality is available for the following data sources:
 + [SharePoint in Microsoft 365 (Preview)](search-how-to-index-sharepoint-online.md)
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
 
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 :::image type="content" source="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png" alt-text="Architecture diagram showing a governed RAG solution where documents labeled with Microsoft Purview sensitivity labels are indexed into Azure AI Search, and a RAG orchestrator filters query results by label so junior users see only General content while executive users see General, Confidential, and Highly Confidential content." lightbox="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png":::
 
 ## Prerequisites

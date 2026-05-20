@@ -46,6 +46,11 @@ Indexed knowledge sources point to a target index on Azure AI Search. Query exec
 
 For blob, OneLake, and SharePoint-indexed knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. Once synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 If your indexed knowledge source uses a chunked index (for example, with integrated vectorization or a custom split skill), you must also map the sensitivity label to each chunk row via [index projections in the skillset](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Otherwise, chunk-level references in retrieve responses won't be returned if they have labels in the source document.
 
 You access remote knowledge sources at query time. The agentic retrieval engine calls the retrieval APIs that are native to the platform (Bing or SharePoint APIs).
