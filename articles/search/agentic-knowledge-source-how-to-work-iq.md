@@ -17,7 +17,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *Work IQ knowledge source* (preview) connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
 
-Unlike indexed knowledge sources, a Work IQ knowledge source (preview) queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
+Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
 
 ### Usage support
 
@@ -29,13 +29,13 @@ Unlike indexed knowledge sources, a Work IQ knowledge source (preview) queries W
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
-
 + Each end user who queries through this knowledge source must have a Microsoft 365 Copilot license.
 
 + The Azure AI Search service, the Work IQ environment, and end users must be in the same Microsoft Entra tenant. Cross-tenant retrieval isn't supported.
 
 + Approved access to Work IQ retrieval through Azure AI Search. For more information, see [Request access to Work IQ retrieval](#request-access-to-work-iq-retrieval).
+
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
@@ -51,7 +51,13 @@ To request access:
    az feature register --namespace Microsoft.Search --name EnableFoundryIQWithWorkIQ --subscription "<your-subscription-guid>"
    ```
 
-1. Have a Microsoft Entra administrator for your tenant submit the following form: [FORM](form) <!-- TO-DO (PM): Add form link when available. -->
+1. Re-register the `Microsoft.Search` resource provider.
+
+   ```azurecli
+   az provider register -n Microsoft.Search --subscription "<your-subscription-guid>"
+   ```
+
+1. Have a Microsoft Entra administrator for your tenant submit the [Work IQ access request form](https://aka.ms/foundry-iq-work-iq-admin-consent-form).
     
 1. Wait for Microsoft to enable access after reviewing and approving the request.
 
@@ -62,7 +68,7 @@ To request access:
 
 [!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
 
-The following JSON is an example response for a Work IQ knowledge source (preview).
+The following JSON is an example response for a Work IQ knowledge source.
 
 ```json
 {
@@ -75,7 +81,7 @@ The following JSON is an example response for a Work IQ knowledge source (previe
 
 ## Create a knowledge source
 
-Run the following code to create a Work IQ knowledge source (preview).
+Run the following code to create a Work IQ knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -153,7 +159,7 @@ Content-Type: application/json
 
 <!-- TO-DO (PM): Confirm whether these properties are correct for Work IQ knowledge sources and update as needed. -->
 
-The following properties apply to Work IQ knowledge sources (preview).
+The following properties apply to Work IQ knowledge sources.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -177,18 +183,21 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ### Enforce permissions at query time
 
-Work IQ knowledge sources (preview) use an on-behalf-of (OBO) token flow. You pass an access token scoped to the Azure AI Search audience (`https://search.azure.com/.default`) on the retrieve request. The retrieval engine exchanges this token for a Work IQ–scoped token and uses it to query Work IQ on behalf of the end user.
+Work IQ knowledge sources use an on-behalf-of (OBO) token flow. You pass the end-user access token in the `x-ms-query-source-authorization` header on the retrieve request. The token must be scoped to the Azure AI Search audience (`https://search.azure.com/.default`). The retrieval engine exchanges this token for a Work IQ–scoped token and uses it to query Work IQ on behalf of the end user.
 
-Because Work IQ knowledge sources (preview) don't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
+Standard Azure AI Search authentication is also required on the retrieve request. The `x-ms-query-source-authorization` token is passed separately and doesn't replace service authentication.
 
 For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ### Work IQ–specific response fields
 
-Work IQ knowledge sources (preview) return results in the `references` array and query diagnostics in the `activity` array. Each reference entry contains:
+Work IQ knowledge sources return results in the `references` array and query diagnostics in the `activity` array. Each reference entry contains:
 
 - `sourceData.extracts[].text`: Grounded text passages from Work IQ.
 - `attributions[].seeMoreWebUrl`: A link to the source document in Microsoft 365.
+
+> [!TIP]
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 The following example shows a retrieve response containing a Work IQ knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
 
@@ -238,9 +247,6 @@ The following example shows a retrieve response containing a Work IQ knowledge s
   ]
 }
 ```
-
-> [!TIP]
-> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
