@@ -14,7 +14,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 05/18/2026
+ms.date: 05/20/2026
 recommendations: false
 #customerIntent: As a developer, I want to create a provisioned throughput deployment and make my first inference call so I can start using dedicated model capacity for my application.
 ---
@@ -51,15 +51,13 @@ Before following this quickstart, check that you have quota for your target regi
 1. Select **Operate** in the upper-right navigation, then select **Quota** in the left pane.
 1. Select **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
 
-> [!TIP]
-> You can also follow this [direct link to the quota request form](https://aka.ms/oai/stuquotarequest).
+    > [!TIP]
+    > You can also follow this [direct link to the quota request form](https://aka.ms/oai/stuquotarequest).
 
 ## Create a provisioned deployment
 
-**Using the Foundry portal:**
+### Use the Foundry portal for deployment
 
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-1. Select the subscription and the Foundry resource in the region where you have PTU quota.
 1. Select **Discover** in the upper-right navigation, then select **Models** in the left pane.
 1. Select the model you want to deploy to open its model card, such as `gpt-5.1`.
 1. Select **Deploy** > **Custom settings**.
@@ -69,52 +67,54 @@ Before following this quickstart, check that you have quota for your target regi
    | Field | Description |
    |---|---|
    | **Deployment name** | A name you choose. Use this name in your code to call the model. |
-   | **Model** | The model to deploy. |
+   | **Model** | The model to deploy, e.g., `gpt-5.1`. |
    | **Model version** | The version of the model. |
-   | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum. |
+   | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum, e.g., `50`. |
    | **Content filter** | The filtering policy. See [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md). |
 
 1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md) before continuing.
 
 1. Confirm and create the deployment.
 
-**Optionally, create deployment with the Azure CLI:**
+### (Optional) Use the Azure CLI for deployment
 
-Alternatively, you can create your deployment by using the Azure CLI. The following code snippet shows how to use the CLI to create a provisioned deployment for GPT-5.1 with a PTU count of 50 PTUs.
+Alternatively, you can create your deployment by using the Azure CLI. 
 
-- Replace `<myResourceName>`, `<myResourceGroupName>`, `<myDeploymentName>` with your values.
+1. Create a provisioned deployment for GPT-5.1 with a PTU count of 50 PTUs.
 
-- `--sku-name` specifies the deployment type: `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
-
-- `--sku-capacity` is the number of PTUs. Here, it's set to 50.
-
-```azurecli
-az cognitiveservices account deployment create \
---name <myResourceName> \
---resource-group <myResourceGroupName> \
---deployment-name <myDeploymentName> \
---model-name GPT-5.1 \
---model-version "2025-11-13" \
---model-format OpenAI \
---sku-capacity 50 \
---sku-name GlobalProvisionedManaged
-```
-
-Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservices/account/deployment)
-
-Confirm that the deployment completed successfully:
- 
-```azurecli
-az cognitiveservices account deployment show \
-    --deployment-name <myDeploymentName> \
+    ```azurecli
+    az cognitiveservices account deployment create \
     --name <myResourceName> \
     --resource-group <myResourceGroupName> \
-    --query "properties.provisioningState" -o tsv
-```
+    --deployment-name <myDeploymentName> \
+    --model-name GPT-5.1 \
+    --model-version "2025-11-13" \
+    --model-format OpenAI \
+    --sku-capacity 50 \
+    --sku-name GlobalProvisionedManaged
+    ```
 
-The output should display `Succeeded`. The model is ready to use after provisioning completes.
+    - Replace `<myResourceName>`, `<myResourceGroupName>`, `<myDeploymentName>` with your values.
+    
+    - `--sku-name` specifies the deployment type: `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
+    
+    - `--sku-capacity` is the number of PTUs. Here, it's set to 50.
+    
+    Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservices/account/deployment)
 
-Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
+1. Confirm that the deployment completed successfully:
+ 
+    ```azurecli
+    az cognitiveservices account deployment show \
+        --deployment-name <myDeploymentName> \
+        --name <myResourceName> \
+        --resource-group <myResourceGroupName> \
+        --query "properties.provisioningState" -o tsv
+    ```
+
+    The output should display `Succeeded`. The model is ready to use after provisioning completes.
+
+    Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
 REST, ARM template, Bicep, and Terraform can also be used to create deployments. See [Automate deployments](../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) and replace `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
 
@@ -126,7 +126,7 @@ The code in this section uses API key authentication. You can also use Entra ID 
 
 Before running the sample, set the following environment variable:
 
-- `AZURE_OPENAI_API_KEY` — Your resource API key.
+- `AZURE_OPENAI_API_KEY`: your resource API key.
 
 > [!IMPORTANT]
 > Don't hard-code credentials in your application. For production workloads, use a secure credential store such as [Azure Key Vault](/azure/key-vault/general/overview). See [Security features for Azure AI services](../../ai-services/security-features.md).
@@ -180,11 +180,11 @@ Spillover automatically routes overflow requests from your provisioned deploymen
 
 To enable spillover for all requests on your deployment, you need an active standard deployment for the same model and version in the same Foundry resource as your provisioned deployment. Follow these steps to enable it:
 
-**Using the Foundry portal:**
+### Enable spillover in the Foundry portal
 
 Enable spillover during deployment creation by selecting **Traffic spillover** in the custom deployment settings. If you already created your deployment without spillover, delete and recreate it with **Traffic spillover** selected.
 
-**Optionally, enable spillover via the REST API:**
+### (Optional) Use the REST API to enable spillover
 
 Set the `spilloverDeploymentName` property on an existing provisioned deployment to the name of the target standard deployment. This approach lets you add spillover to an existing deployment without recreating it.
 
@@ -215,12 +215,12 @@ Deleting the Foundry resource doesn't automatically delete its deployments. Alwa
 
 Follow these steps to stop hourly billing by deleting the deployment.
 
-**Using the Foundry portal:**
+### Delete deployment in the Foundry portal
 
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to your resource.
 1. Select the deployment, then select **Delete** and confirm.
  
-**Optionally, delete deployment with the Azure CLI:**
+### (Optional) Delete deployment with the Azure CLI
 
 ```azurecli
 az cognitiveservices account deployment delete \
