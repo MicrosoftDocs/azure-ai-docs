@@ -72,7 +72,11 @@ x-ms-request-charge: 12.45
 
 This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 mCU per minute.
 
-You can also use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
+You can also use the metrics in the portal to understand the historical consumption. See [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#supported-metrics-for-microsoftsearchsearchservices).
+
+:::image type="content" source="media/serverless/serverless-monitor-cus.png" alt-text="Screenshot of monitoring Compute Unit usage in the Azure AI Search service portal." border="true":::
+
+Additionally, you can use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
 
 > [!NOTE]
 > The Azure pricing calculator and SU-based capacity-planning worksheets don't apply to the Serverless pricing model services. To estimate Serverless costs, index a representative sample of your data, run typical queries, and inspect the `x-ms-request-charge` header to measure actual CU consumption per operation type. Extrapolate to your expected volume using telemetry and the Azure portal to estimate costs.
