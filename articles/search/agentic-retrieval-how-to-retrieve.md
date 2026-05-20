@@ -57,8 +57,6 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
-
 ## Call the retrieve action
 
 You specify the retrieve action on a knowledge base. The request body includes the query input and an optional list of knowledge sources to target.
