@@ -57,7 +57,7 @@ Event-based routines are powered by the **Connector Namespace** — the same man
 
 ## Publisher tiers and data handling for event sources
 
-The same connector catalog and publisher tiers that apply to [managed MCP servers](tools/connectors.md#publisher-tiers-and-data-handling) also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-mcpserver-connectors).
+The same connector catalog and publisher tiers that apply to [managed MCP servers](tools/connectors.md#publisher-tiers-and-data-handling) also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/connectors/connector-reference/connector-reference-mcpserver-connectors).
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
@@ -68,7 +68,7 @@ The same connector catalog and publisher tiers that apply to [managed MCP server
 
 The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
 
-For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/en-us/connectors/protection).
+For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/connectors/protection).
 
 ## Supported action types
 
