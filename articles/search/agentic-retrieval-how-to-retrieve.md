@@ -808,7 +808,7 @@ Key points:
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2026-05-01-preview) on the retrieve request determines the length of the string.
 
     > [!IMPORTANT]
-    > A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document is too large to fit within the context window. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+    > A document that exceeds the `maxOutputSizeInTokens` output budget can be omitted from the response. The activity array includes a warning when the most relevant document exceeds the maximum output size. To retain more content, increase `maxOutputSizeInTokens`. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -1700,7 +1700,7 @@ Content-Type: application/json
 
 ## Troubleshoot empty responses
 
-A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document was too large to fit within the context window. The references array and grounded response content are empty for that document.
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
