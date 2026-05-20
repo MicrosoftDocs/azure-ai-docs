@@ -246,7 +246,7 @@ Each entry in the `tools` array is an `McpServerTool` object with the following 
 |--|--|--|--|--|
 | `name` | The name of the MCP tool to invoke. Must match a tool name exposed by the MCP server. | String | No | Yes |
 | `outputParsing` | Controls how the tool's raw output is parsed into rankable documents. Defaults to `auto`. For supported output parsing modes, see [Output parsing modes](#output-parsing-modes). | Object | No | No |
-| `inclusionMode` | Controls whether the tool's results are included only when ranked highly (`reranked`) or always regardless of relevance score (`always`). Defaults to `reranked`. | String | No | No |
+| `inclusionMode` | Controls whether the tool's results are included only when ranked highly (`reranked`) or always regardless of relevance score (`always`). Defaults to `reranked`. | String | Yes | No |
 | `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. Defaults to 10,000. | Integer | No | No |
 
 ### Output parsing modes
