@@ -143,7 +143,7 @@ Each element in `text_sections` has the following fields:
 | Field | Type | Description |
 |---|---|---|
 | `id` | String | Unique identifier for the chunk. |
-| `content` | String | Markdown content for the chunk. When `modelName` and `modelDeployment` are configured, the content includes AI-generated descriptions of figures and tables inlined as Markdown. |
+| `content` | String | Markdown content for the chunk. When `method` is `semantic`, the content includes AI-generated descriptions of figures and tables inlined as Markdown. |
 | `locationMetadata` | Object | Page range and positional data (`pageNumberFrom`, `pageNumberTo`, `ordinalPosition`, `source`). Present when `extractionOptions` includes `locationMetadata`. |
 | `imagePath` | String | Semicolon-separated list of paths to images that are contained in the chunk. Present when the chunk overlaps with figure spans in the document. |
 
