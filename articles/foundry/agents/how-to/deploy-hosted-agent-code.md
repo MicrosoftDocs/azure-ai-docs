@@ -312,7 +312,7 @@ done
 | --- | --- |
 | `creating` | Still provisioning. |
 | `active` | Ready to invoke. |
-| `failed` | Provisioning failed. Inspect the version's `error.message` field—for `remote_build`, it contains the full server-side build log. You can also [stream container logs](#stream-container-logs) once the container starts. |
+| `failed` | Provisioning failed. Inspect the version's `error` object—`error.code` (for example, `CodeError`) and `error.message` summarize the failure. For `remote_build`, `error.message` includes the final restore or compile error line (pip for Python, NuGet for .NET), an exit code, and an `aka.ms` troubleshooting link. You can also [stream container logs](#stream-container-logs) once the container starts. |
 
 ### Invoke the agent
 
@@ -516,7 +516,7 @@ Use `--self-contained true` if you want to ship the .NET runtime in the zip. The
 | `404` on the project endpoint | Project not in a supported region | Use a project in [North Central US or Canada Central](#supported-regions). |
 | `409 Conflict` on Create | Agent name already exists | Use Update, or pick a new name. |
 | Version stuck in `creating` (>10 min, remote build) | Server build failed or couldn't resolve `requirements.txt` | Switch to `dependency_resolution: bundled` and prebuild locally. |
-| Version transitions to `failed` | Bad zip layout, syntax error, or (`remote_build`) a restore/compile failure | Inspect the version's `error.message` field first—for `remote_build`, it contains the full server-side build log (NuGet restore output for .NET, `pip` output for Python). Verify the [folder structure](#package-the-zip-manually). Use [`:logstream`](#stream-container-logs) only after the container starts. |
+| Version transitions to `failed` | Bad zip layout, syntax error, or (`remote_build`) a restore/compile failure | Read the version's `error` object first—`error.code` classifies the failure and `error.message` contains the underlying restore or compile error line (pip for Python, NuGet for .NET) plus a troubleshooting link. Verify the [folder structure](#package-the-zip-manually). Use [`:logstream`](#stream-container-logs) only after the container starts. |
 | `424 session_not_ready` on first invoke | Container still warming | Retry with backoff. If it persists, stream logs. |
 | `ModuleNotFoundError` at runtime | `packages/` missing, contains raw `.whl` files, or has Windows binaries | Rebuild with `pip install --target packages/ --platform manylinux2014_x86_64 --only-binary=:all:`. |
 | `409 AgentNotCodeBased` on download | Agent is image-based | Use the [container-based deploy doc](deploy-hosted-agent.md). |
