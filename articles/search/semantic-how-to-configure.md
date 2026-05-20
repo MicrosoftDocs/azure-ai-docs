@@ -49,7 +49,9 @@ You can create up to 100 semantic configurations in a single index.
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the Search API 2026-05-01 (preview), which is subject to non-standard terms, including terms specific to Previews. Before using Search API 2026-05-01 (preview), learn more at [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md). [TO VERIFY: replace this link with the canonical preview-terms note URL when the full preview-terms page lands.]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 In the `2026-05-01-preview` API, supported agentic retrieval flows can use
 Azure AI Search ranking behavior without requiring an explicit semantic
