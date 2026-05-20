@@ -1,14 +1,13 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 05/16/2026
+ms.date: 05/05/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
   - references_regions
   - ignite-2024
   - build-2025
-  - build-2026
 ai-usage: ai-assisted
 ---
 
@@ -18,12 +17,6 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
-
-## May 2026
-
-| Item | Description |
-|--|--|
-| [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) (preview) | The REST API 2026-05-01-preview version adds optional AI-generated image descriptions and semantic (layout-aware) chunking to the skill. |
 
 ## April 2026
 

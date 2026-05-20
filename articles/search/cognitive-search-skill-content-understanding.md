@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2025
   - build-2026
 ms.topic: reference
-ms.date: 05/18/2026
+ms.date: 06/02/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 # Azure Content Understanding skill
 
 The **Azure Content Understanding** skill uses [document analyzers](/azure/ai-services/content-understanding/document/overview) from [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/overview) to analyze unstructured documents and other content types, generating organized, searchable outputs that can be integrated into automation workloads. This skill extracts both text and images, including location metadata that preserves each image's position within the document. Image proximity to related content is especially useful for [multimodal search](multimodal-search-overview.md), [agentic retrieval](agentic-retrieval-overview.md), and [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG).
+
+The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 You can use the Azure Content Understanding skill for both content extraction and chunking. There's no need to use the Text Split skill in your skillset. This skill implements the same interface as the Document Layout skill, which uses the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) when `outputFormat` is set to `text`. However, the Azure Content Understanding skill offers several advantages over the Document Layout skill:
 
@@ -27,11 +29,7 @@ You can use the Azure Content Understanding skill for both content extraction an
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
-Starting with the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams by using an Azure OpenAI chat-completion model that you deploy in the Foundry resource attached to the skillset. The same API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities are opt-in. When the new parameters are omitted, the skill behaves the same as in the `2026-04-01` stable API version.
-
-The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
-Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
-
+Starting with the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams. To enable descriptions, you must deploy an Azure OpenAI chat completion model in the Foundry resource attached to the skillset. This API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities require opt-in. When the new parameters are omitted, the skill behaves the same as in the `2026-04-01` stable API version.
 
 ## Limitations
 
@@ -90,14 +88,14 @@ Parameters are case sensitive.
 | Parameter name | Allowed values | Description |
 |--------------------|----------------|-------------|
 | `extractionOptions` |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For example, if `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata that provides page location and visual information related to where the content was extracted.  |
-| `modelName` | String, for example `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat-completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. Here's the list of [generative models supported by this skill](/azure/ai-services/content-understanding/service-limits#supported-generative-models)  |
+| `modelName` | String, such as `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. For a list of supported models, see [Supported generative models](/azure/ai-services/content-understanding/service-limits#supported-generative-models). |
 | `modelDeployment` | String. | Optional. Available starting with the `2026-05-01-preview` REST API. The deployment name of the Azure OpenAI model in the Foundry resource that's attached to the skillset. Must be specified together with `modelName`. |
 | `chunkingProperties` | See the following table. | Options that encapsulate how to chunk text content. |
 
 | `chunkingProperties` parameters | Allowed values | Description |
 |--------------------|-------------|-------------|
 | `method` | `fixedSize` (default) or `semantic`. Available starting with the `2026-05-01-preview` REST API. | The chunking strategy. `fixedSize` uses character-based windowed chunking. `semantic` uses layout-aware chunking that respects paragraph boundaries and intelligently handles large tables that span chunk boundaries. |
-| `unit` | `characters` (with `fixedSize`) or `tokens` (with `semantic`, available starting with the `2026-05-01-preview` REST API). | Controls the cardinality of the chunk unit. Only the `fixedSize` + `characters` and `semantic` + `tokens` combinations are supported. Other combinations aren't supported. If `unit` is omitted, it's inferred from `method`. |
+| `unit` | `characters` (with `fixedSize`) or `tokens` (with `semantic`, available starting with the `2026-05-01-preview` REST API). | Controls the cardinality of the chunk unit. Only the `fixedSize` + `characters` and `semantic` + `tokens` combinations are supported. If `unit` is omitted, it's inferred from `method`. |
 | `maximumLength` | When `unit` is `characters`, an integer between 300 and 50,000. When `unit` is `tokens`, an integer between 100 and 8,000. Default is 500. | The maximum chunk length, measured in the configured `unit`. |
 | `overlapLength` | Integer. The value must be less than half of `maximumLength`. | The length of overlap between two text chunks. Applies only when `method` is `fixedSize`. Must be omitted or set to `0` when `method` is `semantic`. |
 
@@ -145,7 +143,7 @@ Each element in `text_sections` has the following fields:
 | Field | Type | Description |
 |---|---|---|
 | `id` | String | Unique identifier for the chunk. |
-| `content` | String | Markdown content for the chunk. When `method` is `semantic`, the content includes AI-generated descriptions of figures and tables inlined as Markdown. |
+| `content` | String | Markdown content for the chunk. When `modelName` and `modelDeployment` are configured, the content includes AI-generated descriptions of figures and tables inlined as Markdown. |
 | `locationMetadata` | Object | Page range and positional data (`pageNumberFrom`, `pageNumberTo`, `ordinalPosition`, `source`). Present when `extractionOptions` includes `locationMetadata`. |
 | `imagePath` | String | Semicolon-separated list of paths to images that are contained in the chunk. Present when the chunk overlaps with figure spans in the document. |
 
@@ -155,7 +153,7 @@ Each element in `normalized_images` has the following fields:
 |---|---|---|
 | `id` | String | Unique identifier for the image. |
 | `data` | String | Base64-encoded image data. |
-| `imagePath` | String | Path reference to the image within the document, for example `"figures/0"`. |
+| `imagePath` | String | Path reference to the image within the document, such as `"figures/0"`. |
 | `locationMetadata` | Object | Page range and positional data. Present when `extractionOptions` includes `locationMetadata`. |
 
 ## Examples
@@ -259,7 +257,7 @@ The first example uses fixed-size chunking and demonstrates how to output text c
 
 ### Example 2: Semantic chunking with image description
 
-This example, available starting with the `2026-05-01-preview` REST API, uses semantic chunking and generates AI descriptions of embedded images, charts, and diagrams. The Foundry resource that's attached to the skillset must have the chat-completion model identified by `modelName` and `modelDeployment` deployed.
+This example, available starting with the `2026-05-01-preview` REST API, uses semantic chunking and produces AI-generated descriptions of embedded images, charts, and diagrams. The Foundry resource attached to the skillset must have the chat completion model identified by `modelName` and the deployed `modelDeployment`.
 
 ```json
 {

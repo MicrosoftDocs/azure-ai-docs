@@ -1,9 +1,9 @@
 ---
-title: Chunk and Vectorize Content with the Azure Content Understanding Skill
+title: Chunk and Vectorize Content with Azure Content Understanding Skill
 description: Use the Azure Content Understanding skill to semantically chunk documents, generate AI-based image descriptions, and vectorize the results in an Azure AI Search index.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/16/2026
+ms.date: 06/02/2026
 ms.custom:
   - references_regions
   - build-2026
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 # Chunk and vectorize content with the Azure Content Understanding skill
 
 > [!IMPORTANT]
-> The `2026-05-01-preview` features described in this article—semantic chunking and AI-generated image descriptions—are in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The preview is available through the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+> The `2026-05-01-preview` features described in this article, including semantic chunking and AI-generated image descriptions, are in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The preview is available through the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 In this article, you learn how to use the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to:
 
@@ -23,19 +23,9 @@ In this article, you learn how to use the [Azure Content Understanding skill](co
 > + Generate AI descriptions of charts, diagrams, and other inline images
 > + Embed each chunk for vector search and project it into an Azure AI Search index
 
-The Azure Content Understanding skill returns one or more chunks per document. Each chunk contains markdown-formatted content, location metadata (page numbers and bounding polygons), and optional references to extracted images. When you set `chunkingProperties.method` to `semantic`, chunks follow paragraph and heading boundaries instead of fixed-character spans. When you set `modelName` and `modelDeployment`, the skill calls an Azure OpenAI chat-completion deployment to generate descriptions of embedded images and merges those descriptions into the chunk content.
+The Azure Content Understanding skill returns one or more chunks per document. Each chunk contains Markdown-formatted content, location metadata (page numbers and bounding polygons), and optional references to extracted images. When you set `chunkingProperties.method` to `semantic`, chunks follow paragraph and heading boundaries instead of fixed-character spans. When you set `modelName` and `modelDeployment`, the skill calls an Azure OpenAI chat-completion deployment to generate descriptions of embedded images. The skill then merges those descriptions into the chunk content.
 
 This article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) for illustration. You can run the same pipeline against any [supported data source](search-indexer-overview.md#supported-data-sources) that exposes files in a [format that Content Understanding supports](/azure/ai-services/content-understanding/service-limits#document-and-text).
-
-## Pipeline overview
-
-The walkthrough builds a one-to-many indexing pipeline. Each source document produces multiple search documents (one per chunk):
-
-1. The indexer reads each file from Azure Blob Storage and passes the binary content to the skillset through `/document/file_data`.
-1. The **Azure Content Understanding skill** chunks the document into `text_sections`. When `modelName` and `modelDeployment` are set, it also generates AI descriptions of embedded images and inlines them into each chunk's markdown.
-1. The **Azure OpenAI Embedding skill** runs once per chunk and produces a vector for the chunk content.
-1. An **index projection** writes one search document per chunk into the target index, mapping content, page metadata, image references, and the vector to fields.
-1. (Optional) A **knowledge store** projects `normalized_images` to Azure Blob Storage so client apps can retrieve the extracted images by URL.
 
 ## Prerequisites
 
@@ -45,11 +35,26 @@ The walkthrough builds a one-to-many indexing pipeline. Each source document pro
 
 + A Microsoft Foundry resource [attached to the skillset](cognitive-search-attach-cognitive-services.md) for billing. The Azure Content Understanding skill is billed at [Azure Content Understanding pricing](https://azure.microsoft.com/pricing/details/content-understanding/).
 
-+ **Optional.** An Azure OpenAI deployment of a chat-completion model (such as `gpt-4.1`) in the same Foundry resource, used to generate image descriptions. Only required if you want AI image descriptions.
++ (Optional) An Azure OpenAI deployment of a chat completion model (such as `gpt-4.1`) in the same Foundry resource, used to generate image descriptions. Required only if you want AI-based image descriptions.
 
 + An Azure OpenAI deployment of an embedding model (such as `text-embedding-3-small`), used by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to vectorize chunks.
 
-+ An [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) container with the files you want to index. This walkthrough uses a Blob data source with the indexer setting `allowSkillsetToReadFileData` (used to pass file content to the Content Understanding skill).
++ An [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) container with the files you want to index. This article uses a blob data source with the `allowSkillsetToReadFileData` indexer setting (used to pass file content to the Content Understanding skill).
+
+## Overview
+
+The article builds a one-to-many indexing pipeline. Each source document produces multiple search documents (one per chunk):
+
+1. The indexer reads each file from Azure Blob Storage and passes the binary content to the skillset through `/document/file_data`.
+
+1. The **Azure Content Understanding skill** chunks the document into `text_sections`. When `modelName` and `modelDeployment` are set, it also produces AI-generated descriptions of embedded images and inlines them into each chunk's Markdown.
+
+1. The **Azure OpenAI Embedding skill** runs once per chunk and produces a vector for the chunk content.
+
+1. An **index projection** writes one search document per chunk into the target index, mapping content, page metadata, image references, and the vector to fields.
+
+1. (Optional) A **knowledge store** projects `normalized_images` to Azure Blob Storage so client apps can retrieve the extracted images by URL.
+
 
 ## Prepare data files
 
@@ -194,13 +199,13 @@ With the target index in place, define the skillset that produces the chunks, ve
 
 The skillset has two skills:
 
-+ The [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) chunks each document. Setting `chunkingProperties.method` to `semantic` makes the skill respect paragraph and heading boundaries. Setting `modelName` and `modelDeployment` enables AI-generated image descriptions, which the skill inlines into the chunk content before vectorization. The `modelName` field accepts `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, or `gpt-5.2`, and must match a chat-completion model deployed in your Foundry resource and referenced by `modelDeployment`.
++ The [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) chunks each document. Setting `chunkingProperties.method` to `semantic` makes the skill respect paragraph and heading boundaries. Setting `modelName` and `modelDeployment` enables AI-generated image descriptions, which the skill inlines into the chunk content before vectorization. For the list of supported chat completion models and other parameter details, see [Skill parameters](cognitive-search-skill-content-understanding.md#skill-parameters).
 
 + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) generates a vector for each chunk's content.
 
 The skillset uses `indexProjections` to map each chunk to a separate search document. For more information, see [Define an index projection](search-how-to-define-index-projections.md).
 
-Before sending the request, replace `<subdomain>` with your Azure OpenAI subdomain, `<Azure OpenAI api key>` with the embedding-resource key, and `<Cognitive Services api key>` with the Foundry resource key.
+Before you send the request, replace `<subdomain>` with your Azure OpenAI subdomain, `<Azure OpenAI api key>` with the embedding-resource key, and `<Foundry resource key>` with the key for the Foundry resource attached to the skillset.
 
 ```http
 POST {endpoint}/skillsets?api-version=2026-05-01-preview
@@ -262,7 +267,7 @@ POST {endpoint}/skillsets?api-version=2026-05-01-preview
   ],
   "cognitiveServices": {
     "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-    "key": "<Cognitive Services api key>"
+    "key": "<Foundry resource key>"
   },
   "indexProjections": {
     "selectors": [
@@ -308,13 +313,15 @@ POST {endpoint}/skillsets?api-version=2026-05-01-preview
 For the full parameter reference, supported values, and validation rules for the Content Understanding skill, see [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md).
 
 > [!NOTE]
-> This article uses API keys to keep the examples concise. For production, we recommend using a managed identity instead:
+> This article uses API keys to keep the examples concise. For production, we recommend using a managed identity:
 >
-> + **Skillset to Foundry resource.** To bind the skillset to the Foundry resource with a managed identity instead of a key, see [Connect a search service to Azure AI services](cognitive-search-attach-cognitive-services.md). When you use managed identity, omit the `key` property from the skillset's `cognitiveServices` block.
-> + **Skillset to Azure OpenAI.** The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) supports managed identity in place of `apiKey`.
-> + **Indexer to Azure Blob Storage.** Replace the connection string with a managed-identity connection. See [Set up a connection to a data source using a managed identity](search-how-to-managed-identities.md).
+> + **Skillset to Foundry resource:** To bind the skillset to the Foundry resource with a managed identity instead of a key, see [Connect a search service to Azure AI services](cognitive-search-attach-cognitive-services.md). When you use managed identity, omit the `key` property from the skillset's `cognitiveServices` block.
 >
-> For an end-to-end overview, see [Use roles for access control in Azure AI Search](search-security-rbac.md).
+> + **Skillset to Azure OpenAI:** The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) supports managed identity in place of `apiKey`.
+>
+> + **Indexer to Azure Blob Storage:** Replace the connection string with a managed-identity connection. See [Set up a connection to a data source using a managed identity](search-how-to-managed-identities.md).
+>
+> For an end-to-end overview, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Configure and run the indexer
 
@@ -353,13 +360,13 @@ Before you query, confirm the indexer run finished:
 GET {endpoint}/indexers/my_content_understanding_indexer/status?api-version=2026-05-01-preview
 ```
 
-Verify that `lastResult.status` is `success`. If it's `transientFailure` with `itemsProcessed` higher than `0`, the run is a partial success and you can still query the populated chunks. For more information, see [Monitor indexer status](search-monitor-indexers.md).
+Verify that `lastResult.status` is `success`. If it's `transientFailure` with `itemsProcessed` higher than `0`, the run is a partial success, and you can still query the populated chunks. For more information, see [Monitor indexer status](search-monitor-indexers.md).
 
 ## Verify results
 
 Query the index to verify that the chunks contain the expected content and that vector search works as expected. Use [Search Explorer](search-explorer.md) or any tool that sends HTTP requests.
 
-The following request runs a hybrid query — keyword search on `chunk` plus a vector query against `text_vector` — so you can confirm both the chunked text and the embeddings are populated.
+The following request runs a hybrid query (keyword search on `chunk` and a vector query against `text_vector`) to confirm that both the chunked text and the embeddings are populated.
 
 ```http
 POST /indexes/my_content_understanding_index/docs/search?api-version=2026-05-01-preview
@@ -406,17 +413,17 @@ A successful response looks similar to the following (trimmed for brevity):
 
 The response includes:
 
-+ `chunk`: the markdown content of each chunk. When you configure `modelName` and `modelDeployment`, AI-generated image descriptions appear inline within the markdown.
-+ `page_number_from` and `page_number_to`: the page range that produced the chunk.
-+ `image_path`: a path, or semicolon-separated list of paths when a chunk spans multiple images, to images extracted as part of the chunk. The exact shape depends on whether a knowledge-store file projection is configured. Without a file projection, the path is the short form shown in the example (`figures/3`). With a file projection, the path is the relative path of the image in the knowledge store. To make these images available to client apps, see [Project images for retrieval (optional)](#project-images-for-retrieval-optional).
++ `chunk`: The Markdown content of each chunk. When you configure `modelName` and `modelDeployment`, AI-generated image descriptions appear inline within the Markdown.
++ `page_number_from` and `page_number_to`: The page range that produced the chunk.
++ `image_path`: The path to the image extracted with the chunk or, when a chunk spans multiple images, a semicolon-separated list of paths. The exact shape depends on whether a knowledge store file projection is configured. Without a file projection, the path is the short form shown in the example (`figures/3`). With a file projection, the path is the relative path of the image in the knowledge store. To make these images available to client apps, see [(Optional) Project images for retrieval](#optional-project-images-for-retrieval).
 
-## Project images for retrieval (optional)
+## (Optional) Project images for retrieval
 
-The `image_path` values stored in the index are pointers into the skill's enrichment tree, not directly retrievable URLs. To retrieve images, project `normalized_images` to Azure Blob Storage by using a knowledge store, then derive a blob URL alongside each chunk.
+The `image_path` values stored in the index are pointers into the skill's enrichment tree, not directly retrievable URLs. To retrieve images, project `normalized_images` to Azure Blob Storage by using a knowledge store, and then derive a blob URL alongside each chunk.
 
 This step is optional. Add it only if your client app needs to display or download the extracted images.
 
-Add this property to the skillset payload from the previous section (the skillset request uses api-version `2026-05-01-preview`):
+Add the following property to the skillset payload from the previous section. The skillset request uses `api-version=2026-05-01-preview`.
 
 ```json
 "knowledgeStore": {
@@ -438,13 +445,13 @@ Add this property to the skillset payload from the previous section (the skillse
 
 After the indexer runs, each blob in the `extracted-images` container corresponds to one `normalized_images` element. The blob URL has the form `https://<storage-account>.blob.core.windows.net/<container>/<imagePath>`, where `<imagePath>` matches the value stored in the `image_path` field.
 
-For the full schema, including additional projection types (`tables` and `objects`) and authentication options, see [Projections in a knowledge store](knowledge-store-projection-overview.md).
+For the full schema, including additional projection types (`tables` and `objects`) and authentication options, see [Knowledge store "projections" in Azure AI Search](knowledge-store-projection-overview.md).
 
 ## Clean up resources
 
-When you're done, delete the indexer, skillset, and index to stop incurring Content Understanding and Azure OpenAI charges. Source files in Blob Storage and the Foundry resource itself remain until you delete them.
+When you're done, delete the indexer, skillset, and index to stop incurring Content Understanding and Azure OpenAI charges. Source files in Azure Blob Storage and the Foundry resource itself remain until you delete them.
 
-## Troubleshoot
+## Troubleshooting
 
 If the indexer fails or returns unexpected results, check the following common causes.
 
@@ -454,30 +461,30 @@ The skill returns a `400 Skill validation failed` error when parameter combinati
 
 + `modelName` is set without `modelDeployment`, or vice versa. Both must be set together.
 + `method` is `semantic` and `overlapLength` is greater than `0`. Set `overlapLength` to `0` or omit it.
-+ `method` and `unit` aren't a supported pair. Use `fixedSize` with `characters`, or `semantic` with `tokens`.
++ `method` and `unit` aren't a supported pair. Use `fixedSize` with `characters` or `semantic` with `tokens`.
 
 ### Authorization fails against the Foundry resource
 
 If the skill returns 401 or 403 when calling the Foundry resource, verify that:
 
 + The `cognitiveServices` block in the skillset points to the correct Foundry resource.
-+ The identity used by the search service has the required role on the Foundry resource. For managed-identity setups, see [role requirements for the search service identity](cognitive-search-attach-cognitive-services.md).
++ The identity used by the search service has the required role on the Foundry resource. For managed-identity setups, see [Attach a billable resource to a skillset in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
 ### `text_sections` is empty
 
-If indexed documents have no chunks, check:
+If indexed documents have no chunks, verify that:
 
-+ The file format is supported. For the list, see [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md#supported-file-formats).
++ The file format is supported. For the list, see [Supported file formats](cognitive-search-skill-content-understanding.md#supported-file-formats).
 + The Foundry resource is in a supported region.
 + Password-protected PDFs are unlocked before indexing.
 
 ### Image descriptions are missing
 
-If chunks don't include inline image descriptions:
+If chunks don't include inline image descriptions, verify that:
 
 + Both `modelName` and `modelDeployment` are set in the skillset.
-+ The chat-completion model in `modelName` is deployed in the same Foundry resource referenced by the skillset.
-+ The deployment has sufficient TPM/RPM quota for your document volume.
++ The chat completion model in `modelName` is deployed in the same Foundry resource referenced by the skillset.
++ The deployment has sufficient TPM or RPM quota for your document volume.
 
 ### Indexer times out on large documents
 
@@ -485,12 +492,13 @@ Content Understanding enforces a per-document processing timeout. If large PDFs 
 
 + Split the source document into smaller files before indexing.
 + Reduce `batchSize` to `1` so each document is processed independently.
-+ For full data limits, see [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md#data-limits).
+
+For the full data limits of the Azure Content Understanding skill, see [Data limits](cognitive-search-skill-content-understanding.md#data-limits).
 
 ## Related content
 
 + [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md)
-+ [Multimodal search in Azure AI Search](multimodal-search-overview.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
++ [Multimodal search in Azure AI Search](multimodal-search-overview.md)
 + [Define an index projection for parent-child indexing](search-how-to-define-index-projections.md)
 + [Chunk large documents for RAG and vector search](vector-search-how-to-chunk-documents.md)

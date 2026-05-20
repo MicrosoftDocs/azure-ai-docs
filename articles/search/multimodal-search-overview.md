@@ -62,8 +62,6 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 + [Document Extraction skill](cognitive-search-skill-document-extraction.md)
 + [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md)
 
-The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) remains supported for existing pipelines. For new skillsets, use the Azure Content Understanding skill. It offers semantic chunking, AI-generated image descriptions, cross-page table extraction, and a single skill for content extraction and chunking.
-
 | Characteristic | Document Extraction skill | Azure Content Understanding skill |
 |--|--|--|
 | Text location metadata extraction (pages and bounding polygons) | No | Yes |
@@ -75,6 +73,8 @@ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.
 | Built-in chunking | No (use Text Split skill) | Yes (semantic chunking) |
 | AI-generated image descriptions | No | Yes (when `modelName` and `modelDeployment` are configured, available starting with the `2026-05-01-preview` REST API) |
 | Recommended scenarios | Rapid prototyping or production pipelines where exact position or detailed layout information isn't required. | Advanced document analysis requiring cross-page table extraction, semantic chunking and AI-generated image descriptions. |
+
+The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) remains supported for existing pipelines. For new skillsets, use the Azure Content Understanding skill, which combines content extraction and chunking into a single skill and supports semantic chunking, AI-generated image descriptions, and cross-page table extraction.
 
 ## Options for multimodal content embedding
 
