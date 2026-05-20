@@ -71,16 +71,14 @@ Uri searchEndpoint = new Uri("<search-service-url>");
 AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
 var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
-var knowledgeSource = new FabricOntologyKnowledgeSource("<knowledge-source-name>")
+var fabricOntology = new FabricOntologyKnowledgeSource(
+    "<knowledge-source-name>",
+    new FabricOntologyKnowledgeSourceParameters("<fabric-workspace-id>", "<fabric-ontology-id>"))
 {
-    Description = "A Fabric Ontology knowledge source.",
-    FabricOntologyParameters = new FabricOntologyKnowledgeSourceParameters(
-        workspaceId: "<fabric-workspace-id>",
-        ontologyId: "<fabric-ontology-id>"
-    )
+    Description = "A Fabric Ontology knowledge source."
 };
 
-await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(fabricOntology);
 ```
 
 **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
