@@ -17,7 +17,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 An *MCP Server knowledge source* (preview) connects your agentic retrieval pipeline to any external system that exposes a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) (MCP)–compatible endpoint. Use this knowledge source to reach internal tools, third-party APIs, or custom backends that Azure AI Search doesn't natively support.
 
-Unlike indexed knowledge sources, MCP Server knowledge sources (preview) query live data directly at retrieval time. No ingestion pipeline is needed. You provide the MCP server URL and specify which tools to allow, and Azure AI Search calls those tools on each query.
+Unlike indexed knowledge sources, MCP Server knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. You provide the MCP server URL and specify which tools to allow, and Azure AI Search calls those tools on each query.
 
 ### Usage support
 
@@ -37,11 +37,9 @@ Unlike indexed knowledge sources, MCP Server knowledge sources (preview) query l
 
 ## Limitations and considerations
 
-<!-- TO-DO (PM): Confirm that the following limitations apply to MCP Server knowledge sources before publish. -->
++ The `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) isn't supported. Use `low` or `medium` instead.
 
-+ The `minimal` retrieval reasoning effort and `extractiveData` output mode aren't supported. Use the `low` or `medium` [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md).
-
-+ `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source (preview).
++ `alwaysQuerySource` isn't supported on retrieve requests that reference an MCP Server knowledge source.
 
 + MCP server tool calls involve external network requests and can take longer than typical search queries. Set `maxRuntimeInSeconds` on retrieve requests to give all configured tools sufficient time to respond.
 
@@ -49,7 +47,7 @@ Unlike indexed knowledge sources, MCP Server knowledge sources (preview) query l
 
 [!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
 
-The following JSON is an example response for an MCP Server knowledge source (preview).
+The following JSON is an example response for an MCP Server knowledge source.
 
 ```json
 {
@@ -78,19 +76,10 @@ The following JSON is an example response for an MCP Server knowledge source (pr
 
 ## Create a knowledge source
 
-<!-- TO-DO (PM): Before publish, confirm:
-
-(1) All property descriptions, editable values, and required values in the source-specific properties and tool properties tables.
-(2) Property descriptions and required values for jsonParameters.
-(3) Whether foundryConnection is supported at Build (bug bash doc marks it as "out of scope for now") or whether this tab should be removed. 
-
--->
 
 Run the following code to create an MCP Server knowledge source (preview).
 
 ::: zone pivot="csharp"
-
-<!-- TO-DO (PM): Verify class names and confirm foundryConnection support before publish. -->
 
 ```csharp
 using Azure;
@@ -115,12 +104,6 @@ var knowledgeSource = new McpServerKnowledgeSource("<knowledge-source-name>")
                 MaxOutputTokens = 1000
             }
         })
-    {
-        Authentication = new FoundryConnectionAuthentication
-        {
-            FoundryConnectionParameters = new FoundryConnectionParameters("<your-foundry-connection-id>")
-        }
-    }
 };
 
 await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
@@ -132,8 +115,6 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 
 ::: zone pivot="python"
 
-<!-- TO-DO (PM): Verify class names and confirm foundryConnection support before publish. -->
-
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
@@ -142,8 +123,6 @@ from azure.search.documents.indexes.models import (
     McpServerParameters,
     McpServerTool,
     McpServerToolOutputParsing,
-    FoundryConnectionAuthentication,
-    FoundryConnectionParameters,
 )
 
 index_client = SearchIndexClient(
@@ -156,11 +135,6 @@ knowledge_source = McpServerKnowledgeSource(
     description="An MCP Server knowledge source.",
     mcp_server_parameters=McpServerParameters(
         server_url="https://learn.microsoft.com/api/mcp",
-        authentication=FoundryConnectionAuthentication(
-            foundry_connection_parameters=FoundryConnectionParameters(
-                connection_id="<your-foundry-connection-id>"
-            )
-        ),
         tools=[
             McpServerTool(
                 name="microsoft_docs_search",
@@ -195,12 +169,6 @@ Prefer: return=representation
   "encryptionKey": null,
   "mcpServerParameters": {
     "serverURL": "https://learn.microsoft.com/api/mcp",
-    "authentication": {
-      "kind": "foundryConnection",
-      "foundryConnectionParameters": {
-        "connectionId": "<your-foundry-connection-id>"
-      }
-    },
     "tools": [
       {
         "name": "microsoft_docs_search",
@@ -221,7 +189,7 @@ Prefer: return=representation
 
 ### Source-specific properties
 
-The following properties apply to MCP Server knowledge sources (preview).
+The following properties apply to MCP Server knowledge sources.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -232,7 +200,7 @@ The following properties apply to MCP Server knowledge sources (preview).
 | `mcpServerParameters` | Parameters specific to MCP Server knowledge sources: `serverURL`, `authentication`, and `tools`. | Object | No | Yes |
 | `serverURL` | The URL of the MCP server. | String | No | Yes |
 | `authentication` | Authentication credentials for the MCP server. If omitted, requests are sent without authentication. For supported authentication options, see [Authentication options](#authentication-options). | Object | Yes | No |
-| `tools` | An array of tools to allow from the MCP server. Must contain at least one entry. Each tool name must be unique within the list and must match a tool exposed by the MCP server. This preview doesn't support dynamic tool discovery, so you must specify each tool explicitly. For supported tool properties, see [Tool properties](#tool-properties). | Array | No | Yes |
+| `tools` | An array of tools to allow from the MCP server. Must contain at least one entry. Each tool name must be unique within the list and must match a tool exposed by the MCP server. The knowledge source doesn't automatically allow all MCP server tools, so you must explicitly list each tool that is allowed. For supported tool properties, see [Tool properties](#tool-properties). | Array | Yes | Yes |
 
 ### Authentication options
 
@@ -280,7 +248,7 @@ Each entry in the `tools` array is an `McpServerTool` object with the following 
 | `name` | The name of the MCP tool to invoke. Must match a tool name exposed by the MCP server. | String | No | Yes |
 | `outputParsing` | Controls how the tool's raw output is parsed into rankable documents. Defaults to `auto`. For supported output parsing modes, see [Output parsing modes](#output-parsing-modes). | Object | No | No |
 | `inclusionMode` | Controls whether the tool's results are included only when ranked highly (`reranked`) or always regardless of relevance score (`always`). Defaults to `reranked`. | String | No | No |
-| `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. Use this property to limit large tool responses that might otherwise be truncated by output explosion detection. | Integer | No | No |
+| `maxOutputTokens` | Maximum number of tokens to retain from the tool output before ranking. Defaults to 10,000. | Integer | No | No |
 
 ### Output parsing modes
 
@@ -336,9 +304,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query MCP server content. MCP Server knowledge sources (preview) have source-specific retrieval behavior and response fields.
-
-<!-- TO-DO (PM): Confirm the following behavior and response fields for MCP Server knowledge sources before publish. -->
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query MCP server content. MCP Server knowledge sources have source-specific retrieval behavior and response fields.
 
 ### How retrieval works for MCP Server knowledge sources
 
@@ -346,9 +312,12 @@ At query time, the large language model (LLM) configured in the knowledge base r
 
 ### MCP Server–specific response fields
 
-MCP Server knowledge sources (preview) return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
+MCP Server knowledge sources return per-document citations in the `references` array and per-invocation diagnostics in the `activity` array. If the knowledge source lists multiple tools and the model selects more than one, a separate activity record appears for each invocation.
 
 The following example shows a retrieve response containing an MCP Server knowledge source reference and its corresponding activity record. For broader guidance on interpreting retrieve responses, see [Review the response](agentic-retrieval-how-to-retrieve.md#review-the-response).
+
+> [!TIP]
+> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ```json
 {
@@ -393,9 +362,6 @@ The following example shows a retrieve response containing an MCP Server knowled
   ]
 }
 ```
-
-> [!TIP]
-> To receive `sourceData` for references, set `knowledgeSourceParams.includeReferenceSourceData` to `true` on the retrieve request.
 
 ## Delete a knowledge source
 
