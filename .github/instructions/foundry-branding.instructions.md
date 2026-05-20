@@ -1,11 +1,11 @@
 ---
 description: 'Branding instructions for Microsoft and related services and components.'
-applyTo: '*/articles/ai-foundry/**/*.md'
+applyTo: '**/articles/foundry/**/*.md'
 ---
 
 # Branding instructions for Foundry documentation
 
-Your role is to ensure that all references to Microsoft  Foundry, its components, and related services are accurate and consistent with official branding guidelines.
+Your role is to ensure that all references to Microsoft Foundry, its components, and related services are accurate and consistent with official branding guidelines.
 
 ## First-mention vs. subsequent-mention patterns
 
@@ -38,10 +38,44 @@ When referencing individual AI services, use the pattern "Azure [Service] in Fou
 
 ### Model catalog
 
-| Original Term |New term - First Mention | New term - Subsequent Mentions |
+| Original Term | New term - First Mention | New term - Subsequent Mentions |
 |---------------|---------------|---------------------|
 | Azure AI model catalog | Foundry model catalog | model catalog |
 | Azure AI Foundry model catalog | Foundry model catalog | model catalog |
+
+### Foundry Models
+
+Use CELA-approved category names for Foundry Models. On first mention, include "Foundry Models" for context. On subsequent mentions, use the category name without the "Foundry Models" prefix.
+
+| Original Term | New term - First Mention | New term - Subsequent Mentions |
+|---------------|---------------|---------------------|
+| Models sold directly by Azure | Foundry Models sold by Azure | Models sold by Azure |
+| Azure Direct Models | Foundry Models sold by Azure | Models sold by Azure |
+| Direct from Azure Models | Foundry Models sold by Azure | Models sold by Azure |
+| AI Foundry Direct Models | Foundry Models sold by Azure | Models sold by Azure |
+| Foundry Models sold by Azure | Foundry Models sold by Azure | Models sold by Azure |
+| Partner models | Foundry Models from partners and community | Models from partners and community |
+| Community models | Foundry Models from partners and community | Models from partners and community |
+| Models from partners and community | Foundry Models from partners and community | Models from partners and community |
+
+Do not use "Direct Models," "Azure Direct Models," "Direct from Azure Models," or "AI Foundry Direct Models" as category names.
+
+### RBAC role names
+
+Use the current Foundry RBAC role names in Foundry documentation. The role IDs and core permissions did not change during the rename.
+
+| Original Term | New term |
+|---------------|----------|
+| Azure AI User | Foundry User |
+| Azure AI Owner | Foundry Owner |
+| Azure AI Account Owner | Foundry Account Owner |
+| Azure AI Project Manager | Foundry Project Manager |
+
+When an article mentions one of the renamed roles for the first time, add the include `foundry/includes/role-rename-note.md`.
+
+For code examples or CLI commands that assign one of these roles, prefer the role definition ID during the rename rollout and add the include `foundry/includes/role-rename-note-code.md` after the example.
+
+Do not rename **Azure AI Developer** to a Foundry role name. That role is not part of the Foundry RBAC role rename.
 
 ## Protected terms (never replace)
 
@@ -51,6 +85,7 @@ The following terms must **NEVER** be changed, regardless of context:
 - **Azure AI Projects client library** — SDK/library names remain unchanged (all case variations)
 - **Azure Project client library** — SDK/library names remain unchanged (all case variations)
 - **Azure AI services subscription** — Subscription terminology remains unchanged (all case variations)
+- **Azure AI Developer** — This role name is not part of the Foundry RBAC role rename
 - **"Azure AI Foundry is now Microsoft Foundry"** — The announcement phrase itself must not be altered
 
 **Rationale**: These terms represent specific technical artifacts (SDKs, subscription types) or the rebrand announcement that require exact terminology for accuracy.
