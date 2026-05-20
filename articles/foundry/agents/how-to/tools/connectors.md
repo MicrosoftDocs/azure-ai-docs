@@ -44,7 +44,7 @@ The configuration flow has four steps:
 
 ## Publisher tiers and data handling
 
-The catalog includes connectors published by Microsoft, verified third-party publishers, and independent publishers. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-mcpserver-connectors).
+The catalog includes connectors published by Microsoft, verified third-party publishers, and independent publishers. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/connectors/connector-reference/connector-reference-mcpserver-connectors).
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
@@ -55,7 +55,7 @@ The catalog includes connectors published by Microsoft, verified third-party pub
 
 The Connector Namespace acts as a proxy to external services. While data is in transit through the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends the request to the external service, that company's policies govern data storage, retention, and geography.
 
-For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/en-us/connectors/protection).
+For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/connectors/protection).
 
 > [!NOTE]
 > Managed MCP servers are scoped to the Foundry project where they're created. Connector triggers aren't supported; only actions that your agent can invoke are available.
@@ -75,7 +75,7 @@ For details on connector validation and data protection, see [Vet with data prot
 ## Add a managed MCP server
 
 > [!NOTE]
-> The configuration experience in this article applies to managed MCP servers that support **OAuth2** authentication. For managed MCP servers with other authentication types, see [Add connector actions as agent tools in Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/add-agent-tools-connector-actions?wt.mc_id=AZ-MVP-5004796).
+> The configuration experience in this article applies to managed MCP servers that support **OAuth2** authentication. For managed MCP servers with other authentication types, see [Add connector actions as agent tools in Azure Logic Apps](https://learn.microsoft.com/azure/logic-apps/add-agent-tools-connector-actions?wt.mc_id=AZ-MVP-5004796).
 
 :::zone pivot="foundry-portal"
 
