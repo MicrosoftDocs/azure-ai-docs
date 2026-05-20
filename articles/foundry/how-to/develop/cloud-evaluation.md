@@ -1486,8 +1486,7 @@ project_client = AIProjectClient(
 
 openai_client = project_client.get_openai_client()
 
-# Model deployment name (for AI-assisted evaluators)
-# Example: gpt-5-mini
+# Model Deployment - Example: gpt-5-mini
 model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
 
 data_source_config = {
@@ -1667,7 +1666,7 @@ To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Conversation simulation
 
-Generate simulated multi-turn conversations from scenario descriptions and evaluate them using the `azure_ai_conversation_simulation` data source type. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
+Generate simulated multi-turn conversations from scenario descriptions and evaluate them using the message schema definition for group (as before), and then reusing agent target to launch a run defining run time using the new conversation_gen_preview for item_generation_param. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
 
 This approach is useful for:
 
@@ -1860,6 +1859,9 @@ eval_object = openai_client.evals.create(
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
+
+# Model Deployment - Example: gpt-5-mini
+model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
 
 # Create a run that simulates conversations and evaluates them
 eval_run = openai_client.evals.runs.create(
