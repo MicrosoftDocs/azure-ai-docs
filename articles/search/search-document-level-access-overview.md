@@ -14,6 +14,11 @@ ms.custom:
 
 Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure agentic AI systems that ground on enterprise data, retrieval-augmented generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.
 
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+
 ## Approaches for document-level access control
 
 Azure AI Search provides four primary approaches to enforce document-level permissions, each suited to different data sources and identity models.
@@ -99,7 +104,7 @@ For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-li
 1. Verify that files in the directory are secured using the [ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model).
 1. Use the [Create Indexer REST API](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or [Create Knowledge Source REST API](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
 
-If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the permission metadata fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields--indexer-field-mappings-index-projections-or-both).
+If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the permission metadata fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
@@ -109,7 +114,7 @@ SharePoint ACL support is available in preview through the SharePoint indexer us
 
 The pattern includes the following components:
 
-- Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-honoring-at-query-time) for enablement and limitations.
+- Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-query-time-enforcement) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
 - Starting in the 2026-05-01-preview REST API, ACL changes on items with unique permissions are detected and refreshed on each successful indexer run. This applies to:
   - Items with unique permissions
@@ -130,7 +135,7 @@ During preview, the following principal types are supported in SharePoint ACLs:
 
 For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-access-control-lists.md). For an end-to-end configuration walkthrough including SharePoint site group support, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
 
-If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the ACL fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields--indexer-field-mappings-index-projections-or-both).
+If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the ACL fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 
 ## Pattern for Microsoft Purview sensitivity labels (preview)

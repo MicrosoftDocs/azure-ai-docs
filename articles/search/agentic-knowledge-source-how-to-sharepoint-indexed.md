@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/19/2026
 zone_pivot_groups: search-csharp-python-rest
+ai-usage: ai-assisted
 ---
 
 # Create an indexed SharePoint knowledge source (preview)
@@ -107,6 +108,11 @@ The following JSON is an example response for an indexed SharePoint knowledge so
 
 > [!NOTE]
 > Sensitive information is redacted. The generated resources appear at the end of the response.
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+> [!IMPORTANT]
+> Search API version 2025-11-01-preview cannot modify access permissions established outside of the Search API version 2025-11-01-preview. Accordingly, where Search API version 2025-11-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2025-11-01-preview.
 
 ## Incremental ACL synchronization
 
