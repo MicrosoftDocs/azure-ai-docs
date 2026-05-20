@@ -73,11 +73,12 @@ AzureDiagnostics
 
 The following table lists common and recommended alert rules for Azure AI Search. On a search service, throttling or query latency that exceeds a given threshold are the most commonly used alerts, but you might also want to be notified if a search service is deleted.
 
-| Alert type | Condition | Description  |
-|:---|:---|:---|
+| Alert type | Condition | Description |
+| --- | --- | --- |
 | Search Latency (metric alert) | Whenever the average search latency is greater than a user-specified threshold (in  seconds) | Send an SMS alert when average query response time exceeds the threshold. |
-| Throttled search queries percentage (metric alert) | Whenever the total throttled search queries percentage is greater than or equal to a user-specified threshold | Send an SMS alert when dropped queries begin to exceed the threshold.|
-| Delete Search Service (activity log alert) | Whenever the Activity Log has an event with Category='Administrative', Signal name='Delete Search Service (searchServices)', Level='critical' | Send an email if a search service is deleted in the subscription. |
+| Throttled search queries percentage (metric alert) | Whenever the total throttled search queries percentage is greater than or equal to a user-specified threshold | Send an SMS alert when dropped queries begin to exceed the threshold. |
+| Storage Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the index name dimension to monitor specific scenarios. | Send an email if the storage usage exceeds the expected limit. |
+| Compute Usage | When total storage usage exceeds a user-defined threshold, trigger an alert. Use the operation name and index name dimensions to monitor specific scenarios. | Send an SMS alert when compute consumed begin to exceed the threshold. |
 
 [!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
 
