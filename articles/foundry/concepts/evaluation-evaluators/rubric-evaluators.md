@@ -234,9 +234,6 @@ In this example, the user asks for a Q4 marketing report summary but the agent p
 
 Each output item includes per-dimension scores with reasons. Dimensions marked `"applicable": false` are skipped and don't contribute to the overall score. The overall score is a weighted average of all applicable dimension scores, normalized to a 0–1 range.
 
-
-```
-
 > [!NOTE]
 > Rubric evaluators use LLM-as-judge scoring and incur model inference costs per evaluation call. Scoring reliability might vary for very short responses. Write rubric descriptions that are specific and unambiguous to improve scoring consistency across evaluations.
 
