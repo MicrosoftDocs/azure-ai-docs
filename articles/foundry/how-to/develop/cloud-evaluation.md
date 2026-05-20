@@ -1688,19 +1688,12 @@ This approach is useful for:
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. Include details about the user's goal, context, and any constraints:
+Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints:
 
 ```json
-{"scenario": "You are a customer who purchased a laptop two weeks ago. The screen started flickering yesterday. You want to get it repaired or replaced under warranty. You are frustrated but willing to work with the support agent."}
-{"scenario": "You are planning a surprise birthday party for your spouse. You need to book a restaurant for 15 people next Saturday evening. You have a budget of $500 and some guests have dietary restrictions (2 vegetarian, 1 gluten-free)."}
-{"scenario": "You are a small business owner who received an invoice that seems incorrect. The amount charged is $500 more than expected. You want to understand the discrepancy and get it resolved."}
-```
 
-You can also include additional context fields that the simulator can use:
-
-```json
-{"scenario": "You need to cancel your subscription.", "user_persona": "Impatient, direct communicator", "expected_outcome": "Subscription cancelled with confirmation number"}
-{"scenario": "You want to upgrade your service plan.", "user_persona": "Detail-oriented, asks many questions", "expected_outcome": "Plan upgraded with clear explanation of new features"}
+{"id": "walmart_refund_timeline", "test_case_description": "Customer returned an item to Walmart 5 days ago and hasn't received their refund yet. They want to know how long Walmart refunds take.", "desired_num_turns": 10}
+{"id": "walmart_store_hours_lookup", "test_case_description": "Customer wants to know what time the Walmart store closes today. Simple single-fact question with possibly one clarifying turn about which location.", "desired_num_turns": 3}
 ```
 
 ### Parameters
@@ -1891,6 +1884,7 @@ eval_run = openai_client.evals.runs.create(
             "data_mapping": {},
         },
     },
+    extra_body={"evaluation_level": "conversation"},
 )
 
 print(f"Simulation started: {eval_run.id}")
@@ -1905,6 +1899,7 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --data '{
     "name": "conversation-simulation-run",
+    "evaluation_level": "conversation",
     "data_source": {
       "type": "azure_ai_target_completions",
       "source": {
