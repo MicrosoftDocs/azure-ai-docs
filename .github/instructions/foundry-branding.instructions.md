@@ -57,6 +57,7 @@ Use CELA-approved category names for Foundry Models. On first mention, include "
 | Partner models | Foundry Models from partners and community | Models from partners and community |
 | Community models | Foundry Models from partners and community | Models from partners and community |
 | Models from partners and community | Foundry Models from partners and community | Models from partners and community |
+| Third-party models | Foundry Models from partners and community | Models from partners and community |
 
 Do not use "Direct Models," "Azure Direct Models," "Direct from Azure Models," or "AI Foundry Direct Models" as category names.
 
