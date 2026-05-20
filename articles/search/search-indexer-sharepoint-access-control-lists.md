@@ -44,8 +44,8 @@ The Microsoft Entra application permissions and credential type required for ACL
 |---|---|---|
 | ACLs on document library files, when access is granted only through Microsoft Entra users and standard groups (Microsoft Entra security groups, Microsoft 365 groups, mail-enabled security groups) | **Microsoft Graph**: `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected` for scoped access) | Client secret or federated credential |
 | ACLs on document library files, when SharePoint site groups (Owners, Members, Visitors, or custom site groups) must also be honored | **Microsoft Graph**: `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected`)<br>**SharePoint**: `Sites.FullControl.All` (or `Sites.Selected`) | Federated credential (required) |
-| ACLs on SharePoint list items | **Microsoft Graph**: `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected`)<br>**SharePoint**: `Sites.FullControl.All` (or `Sites.Selected`) | Federated credential (required) |
-| Content and ACLs on ASPX site pages | **SharePoint**: `Sites.FullControl.All` (or `Sites.Selected`). Keep the Microsoft Graph permissions from the rows above if you're also indexing document libraries or lists. | Federated credential (required) |
+| ACLs on SharePoint list items | **Microsoft Graph**: `Files.Read.All`, `Sites.FullControl.All` (or `Sites.Selected`), `User.Read.All`<br>**SharePoint**: `Sites.FullControl.All` (or `Sites.Selected`) | Federated credential (required) |
+| Content and ACLs on ASPX site pages | **Microsoft Graph**: `Sites.FullControl.All` (or `Sites.Selected`), `User.Read.All` (keep `Files.Read.All` from the rows above if you're also indexing document libraries or lists)<br>**SharePoint**: `Sites.FullControl.All` (or `Sites.Selected`) | Federated credential (required) |
 | Query-time resolution of SharePoint site groups via [`sharePointConnectorAppRegistration`](#configure-sharepoint-groups-support) | Add **SharePoint**: `User.Read.All` to the same app registration used by the indexer | Federated credential (required) |
 
 > [!NOTE]
@@ -53,6 +53,9 @@ The Microsoft Entra application permissions and credential type required for ACL
 
 > [!IMPORTANT]
 > Use a federated credential whenever the scenario adds SharePoint API permissions. Client secrets work only for the Microsoft Graph–only document-library row.
+
+> [!NOTE]
+> `User.Read.All` is required for list items and ASPX site pages because the indexer reads those permissions through the SharePoint REST API, which returns only the user's email. The indexer then calls Microsoft Graph to resolve each email to its Microsoft Entra object ID, and that lookup requires `User.Read.All`.
 
 > [!IMPORTANT]
 > When you use `Sites.Selected`, grant the app explicit access to each target SharePoint site before indexing.
@@ -76,7 +79,7 @@ Complete these steps on your registered Microsoft Entra application:
 
 + Incremental ACL updates require the 2026-05-01-preview REST API or later. In earlier preview API versions, ACLs are captured only on the first ingestion of each item, and later permission changes require explicit reindexing. For migration steps, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
   
-+ Parent-scope permission changes aren't picked up automatically on subsequent indexer runs. If you change permissions on a site, library, list, or folder that's inherited by its child items (instead of on the items themselves), trigger a [`/resync` with `options: ["permissions"]`](#resync-acls-across-the-full-data-source) or [`/resetdocs`](#reset-specific-documents) to refresh ACLs for those items.
++ Parent-scope permission changes aren't picked up automatically on subsequent indexer runs. For the refresh options, see [Synchronize permissions between indexed and source content](#synchronize-permissions-between-indexed-and-source-content).
 
 + The Azure portal doesn't support this feature.
 
