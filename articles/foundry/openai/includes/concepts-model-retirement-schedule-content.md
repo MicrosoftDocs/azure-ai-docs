@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 04/30/2026
+ms.date: 05/20/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -77,7 +77,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
-| sora-2 | 2025-10-06 | Preview | 2026-06-03 | — |
+| sora-2 | 2025-10-06 | Preview | 2026-06-23 | sora-2 (2025-12-08) |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 1 | GA | 2027-04-15 | — |
