@@ -52,6 +52,8 @@ This functionality is available for the following data sources:
 
 + [Guest accounts](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.
 
++ User-managed identity for permission assignment to allow the search service to extract the sensitivity labels and sensitivity-labeled content isn't supported.
+
 + The following indexer features don't support documents with sensitivity labels. If you use any of these features in a skillset or indexer, documents with sensitivity labels aren't processed.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
