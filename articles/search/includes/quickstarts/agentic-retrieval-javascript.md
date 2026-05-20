@@ -38,6 +38,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Set up the environment
