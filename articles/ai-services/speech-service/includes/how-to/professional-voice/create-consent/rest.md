@@ -7,6 +7,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 With the professional voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
@@ -35,7 +36,7 @@ To add consent to a professional voice project from the URL of an audio file, us
 
 Make an HTTP PUT request using the URI as shown in the following [Consents_Create](/rest/api/aiservices/speechapi/consents/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `JessicaConsentId` with a consent ID of your choice. The case sensitive ID will be used in the consent's URI and can't be changed later. 
 
 ```azurecli-interactive
@@ -46,7 +47,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "companyName": "Contoso",
   "audioUrl": "https://contoso.blob.core.windows.net/public/jessica-consent.wav?mySasToken",
   "locale": "en-US"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -68,7 +69,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 

@@ -14,7 +14,7 @@ ms.custom:
 # Index data from SharePoint document libraries
 
 > [!IMPORTANT]
-> The SharePoint in Microsoft 365 indexer is in public preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
+> The SharePoint in Microsoft 365 indexer is in preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >
 > Before you proceed, review the [known limitations](#limitations-and-considerations).
 >
@@ -28,8 +28,8 @@ In Azure AI Search, an indexer extracts searchable data and metadata from a data
 + Indexes incrementally, picking up just the new and changed files and metadata. 
 + Detects deleted content automatically. Document deletion in the library is picked up on the next indexer run, and the corresponding search document is removed from the index.
 + Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), such as optical character recognition (OCR) or entity recognition.
-+ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in public preview during initial document sync. It also supports full data set incremental data sync.
-+ Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in public preview.
++ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in preview during initial document sync. It also supports full data set incremental data sync.
++ Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in preview.
   
 ## Prerequisites
 
@@ -67,7 +67,7 @@ Here are the limitations of this feature:
     
   +  No support for user-encrypted files and password-protected ZIP files. However, encrypted content is allowed if it's protected by [Microsoft Purview sensitivity labels](/purview/sensitivity-labels) and if the [configuration to preserve and honor those labels (preview)](search-indexer-sensitivity-labels.md) is enabled.
 
-  + Limited support for document-level access permissions. A basic level of ACL sync is currently in public preview. For details and setup, see the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md).
+  + Limited support for document-level access permissions. A basic level of ACL sync is currently in preview. For details and setup, see the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md).
 
 Here are some considerations when using this feature:
 
@@ -206,7 +206,7 @@ These are the instructions to configure the application so Microsoft Entra trust
 
 1. Under **Federated credential scenario** select **Managed Identity**. 
 
-1. Select managed identity: Choose the created managed identity created as part of step 1.
+1. Select managed identity: Choose the managed identity created in step 1.
 
 1. Add a name for your credential and select **Save**.
 

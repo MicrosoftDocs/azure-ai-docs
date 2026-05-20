@@ -2,6 +2,7 @@
 title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: tutorial
 ms.date: 03/31/2026
 ms.author: jburchel

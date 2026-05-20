@@ -6,15 +6,37 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/29/2026
 ms.custom: include, classic-and-new
 ---
 
-This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
+
+## Updates to quota management after 05/07/2026
+
+Microsoft Foundry is introducing an update to quota management to bring consistency and predictability to how quota is managed across deployments. Starting with Realtime Translate and Realtime Whisper, quota for deployments is tracked at the subscription level—shared across all resources and regions—rather than being allocated separately per resource or per region.
+
+This change consolidates quota into shared pools:
+
+* Global Standard: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* Data Zone Standard: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
+
+## What’s changing for me?
+
+For the models that are onboarded the new quota management system:
+
+* All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
+* All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
+* Existing approved quota is retained and automatically applies at the subscription level—no action required.
+
+This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
+
+> [!IMPORTANT]
+> The updated quota management currently applies only to Realtime Translate and Realtime Whisper. For all other Foundry Models covered in this article, quotas and limits are managed per region, per subscription, and per model or deployment type. In the future, these quota guidelines will also apply to some existing models and to new Foundry Model launches.
 
 ## Quotas and limits reference
 
-The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models:
+The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models. Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level. Tokens per minute (TPM) and requests per minute (RPM) limits are defined per region, per subscription, and per model or deployment type.
 
 ### Resource limits (per Azure subscription, per region)
 
@@ -56,6 +78,19 @@ Due to high demand, limit increase requests are evaluated individually.
 
 <sup>1</sup> Current APIs allow up to 10 custom headers, which the pipeline passes through and returns. If you exceed this header count, your request results in an HTTP 431 error. To resolve this error, reduce the header volume. **Future API versions won't pass through custom headers**. Don't depend on custom headers in future system architectures.
 
+### Model router quota tiers
+
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../../openai/quotas-limits.md#quota-tiers).
+
+| Tier   | DataZoneStandard TPM | GlobalStandard TPM |
+|:-------|---------------------:|-------------------:|
+| Tier 1 | 300,000              | 1,000,000          |
+| Tier 2 | 670,000              | 2,000,000          |
+| Tier 3 | 1,000,000            | 4,000,000          |
+| Tier 4 | 2,000,000            | 7,000,000          |
+| Tier 5 | 3,000,000            | 10,000,000         |
+| Tier 6 | 4,000,000            | 15,000,000         |
+
 ## Usage tiers
 
 Global Standard deployments use Azure's global infrastructure to dynamically route customer traffic to the data center with best availability for the customer's inference requests. This infrastructure enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
@@ -87,7 +122,7 @@ Set the client-side timeout explicitly based on the following guidance.
     - For streaming, up to 60 seconds.
     - For non-streaming requests, up to 29 minutes.
     
-29 minutes here does not mean all requests will take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
+29 minutes here doesn't mean all requests take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
 
 Set a timeout that's less than these values, tuned to your traffic patterns.
 

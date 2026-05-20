@@ -3,7 +3,8 @@ title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: microsoft-foundry
-ms.date: 04/29/2026
+ms.subservice: foundry-observability
+ms.date: 05/01/2026
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: dlozier
@@ -31,7 +32,9 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 - Python 3.8 or later.
 - A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
@@ -195,6 +198,9 @@ print(f"Evaluation run started: {eval_run.id}")
 > [!TIP]
 > This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
 
+> [!TIP]
+> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation) in the cloud evaluation guide.
+
 ## Interpret results
 
 Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL to view the results in the Microsoft Foundry portal under the **Evaluations** tab:
@@ -309,4 +315,5 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
+- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

@@ -116,7 +116,7 @@ To minimize the costs of your Azure AI Search solution, use the following strate
 
 + Use [enrichment caching](enrichment-cache-how-to-configure.md) and a [knowledge store](knowledge-store-concept-intro.md) to reuse previously enriched content. Although caching incurs a storage charge, it lowers the cumulative cost of [AI enrichment](cognitive-search-concept-intro.md).
 
-+ Keep vector payloads compact. For vector search, see the [vector  compression best practices](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/azure-ai-search-cut-vector-costs-up-to-92-5-with-new-compression-techniques/4404866).
++ Keep vector payloads compact. For vector search, see the [vector  compression best practices](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-cut-vector-costs-up-to-92-5-with-new-compression-techniques/4404866).
 
 ## Monitor costs
 
