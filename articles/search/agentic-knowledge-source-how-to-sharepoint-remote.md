@@ -37,6 +37,8 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents` preview package](https://www.nuget.org/packages/Azure.Search.Documents/11.8.0-beta.1): `dotnet add package Azure.Search.Documents --prerelease`
@@ -50,9 +52,6 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 ::: zone-end
 
 ::: zone pivot="rest"
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
-
 ::: zone-end
 
 ## Limitations
