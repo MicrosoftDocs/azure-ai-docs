@@ -43,8 +43,8 @@ Cloud evaluation supports the following scenarios:
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from an existing dataset. | `azure_ai_conversations` | — |
-| **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_conversation_simulation` | `azure_ai_agent` |
+| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from an existing dataset. | `jsonl` | — |
+| **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
 Most scenarios require input data. You can provide data in two ways:
