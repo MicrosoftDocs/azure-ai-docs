@@ -41,7 +41,7 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone-end
 
@@ -84,8 +84,6 @@ for ks in index_client.list_knowledge_sources():
 ::: zone-end
 
 ::: zone pivot="rest"
-
-[TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
 
 ```http
 ### List knowledge sources by name and type
@@ -223,7 +221,7 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a file knowledge source. [TO VERIFY: Replace with the 2026-05-01-preview REST reference link when available.]
+Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a file knowledge source.
 
 ```http
 PUT {{search-url}}/knowledgesources/my-file-ks?api-version=2026-05-01-preview

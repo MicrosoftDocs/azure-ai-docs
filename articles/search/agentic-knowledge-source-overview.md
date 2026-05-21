@@ -42,7 +42,7 @@ You can create the following knowledge sources:
 |------|-------------------|
 | [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource) wraps an existing index. | Indexed |
 | [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
-| `"file"` API uploads files directly to Azure AI Search for processing and retrieval. [TO VERIFY: Add REST API reference link when available.] | Indexed |
+| `"file"` API uploads files directly to Azure AI Search for processing and retrieval. | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
 | [`"indexedSql"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsqlknowledgesource) (preview) generates an indexer pipeline that pulls from an Azure SQL table or view. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
