@@ -43,7 +43,7 @@ Cloud evaluation supports the following scenarios:
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from an existing dataset. | `jsonl` | — |
+| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from a dataset, by conversation ID, or by agent filter. | `jsonl`, `azure_ai_traces`, or `azure_ai_trace_data_source_preview` | — |
 | **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -1440,7 +1440,17 @@ To poll for completion and interpret results, see [Get results](#get-results). T
 
 ## Multiturn conversation evaluation
 
-Evaluate complete multi-turn conversations by referencing messages as your custom item schema during group creation and setting evaluation_level to conversation for a run. Use this scenario when you have existing conversation data—such as real user interactions or previously generated conversations—and want to assess conversation-level metrics like customer satisfaction, task completion, groundedness, and overall coherence.
+Evaluate complete multi-turn conversations to assess agent quality across entire user interactions—not just individual responses. Use multiturn evaluation to identify conversation-level quality issues like incomplete task resolution, user frustration, and tool-call regressions that single-turn evaluation misses.
+
+For example, consider a support agent where the user grows frustrated over multiple turns:
+
+> **Turn 1** — User: "I need to reset my password." Agent: "I found your account. I'll send a reset link."
+>
+> **Turn 2** — User: "I didn't get the email." Agent: "I've resent the link. Please check spam."
+>
+> **Turn 3** — User: "Still nothing. Can you just reset it directly?" Agent: "I've sent another reset link."
+
+A single-turn evaluator scores only the last response—which is polite and takes action—so it scores well. A multiturn evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
 
 Multiturn evaluation differs from single-turn evaluation in several ways:
 
@@ -1450,6 +1460,14 @@ Multiturn evaluation differs from single-turn evaluation in several ways:
 | **Metrics** | Per-response quality and safety | Conversation-level outcomes and user satisfaction |
 | **Data format** | JSONL with `query` and `response` fields | JSONL with `messages` array containing the full conversation |
 | **Use case** | Testing individual model responses | Testing end-to-end agent experiences |
+
+Multiturn evaluation supports three data source options:
+
+| Option | When to use | Data source type |
+|--------|-------------|------------------|
+| [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` |
+| [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_traces` |
+| [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` |
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
@@ -1664,6 +1682,209 @@ curl --request POST \
 ```
 
 ---
+
+To poll for completion and interpret results, see [Get results](#get-results).
+
+### Evaluate conversations by ID from traces
+
+Evaluate specific conversations from Application Insights by providing their conversation IDs. Use this option to root-cause issues or verify fixes on specific interactions—for example, investigating a conversation flagged by an alert or verifying a fix for a known issue.
+
+#### Where to find conversation IDs
+
+You can find conversation IDs in:
+
+- **Application Insights trace logs UI** — Browse to interesting traces and locate the `conversation_id` field in the trace details.
+- **Your application's logging output** — If you set `conversation_id` explicitly when creating agent responses, retrieve it from your logs.
+- **OpenTelemetry trace context** — The `conversation_id` may also be derived from the [traceparent](https://www.w3.org/TR/trace-context/#traceparent-header) header if your agent uses standard trace context propagation.
+
+> [!NOTE]
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+
+#### Parameters for conversation ID lookup
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `conversation_ids` | Yes | Array of conversation IDs to evaluate. |
+| `lookback_hours` | No | Hours to search back from `end_time`. Defaults to 7 days (168 hours). |
+| `end_time` | No | End of the search window (ISO 8601 format). Defaults to the current time. |
+
+# [Python](#tab/python)
+
+```python
+# Create evaluation with traces scenario
+eval_object = openai_client.evals.create(
+    name="Conversation Trace Evaluation",
+    data_source_config={
+        "type": "azure_ai_source",
+        "scenario": "traces",
+    },
+    testing_criteria=[
+        {
+            "type": "azure_ai_evaluator",
+            "name": "customer_satisfaction",
+            "evaluator_name": "builtin.customer_satisfaction",
+            "initialization_parameters": {
+                "deployment_name": model_deployment_name,
+            },
+        },
+    ],
+)
+
+# Run evaluation on specific conversation IDs
+eval_run = openai_client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="conversation-trace-eval",
+    data_source={
+        "type": "azure_ai_traces",
+        "conversation_ids": [
+            "conversation_1234",
+            "conversation_5678",
+        ],
+        "lookback_hours": 24,  # Optional, defaults to 7 days
+        "end_time": "2026-05-21T00:00:00Z",  # Optional, defaults to now
+    },
+    extra_body={"evaluation_level": "conversation"},
+)
+```
+
+# [cURL](#tab/curl)
+
+```bash
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "conversation-trace-eval",
+    "evaluation_level": "conversation",
+    "data_source": {
+      "type": "azure_ai_traces",
+      "conversation_ids": ["conversation_1234", "conversation_5678"],
+      "lookback_hours": 24,
+      "end_time": "2026-05-21T00:00:00Z"
+    }
+  }'
+```
+
+---
+
+> [!NOTE]
+> - If `end_time` is very close to when the evaluation runs and traces can't be found, the API automatically retries to accommodate data ingestion delay.
+> - The maximum lookback is **7 days (168 hours)**. To access older traces, use `start_time` and `end_time` within your App Insights retention limits.
+
+### Evaluate sampled conversations by agent filter
+
+Evaluate a sampled set of conversations from Application Insights by filtering on agent name. Use this option to assess overall agent quality across production traffic—for example, running regular quality assessments or monitoring for quality degradation in production.
+
+The agent you specify for filtering can be part of a multi-agent conversation. The filter matches any conversation where that agent participated.
+
+> [!NOTE]
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+
+#### Agent identity fields
+
+Specify the agent to filter by using one of these formats:
+
+| Format | Example | Description |
+|--------|---------|-------------|
+| `agent_name` + `agent_version` | `"agent_name": "my-agent", "agent_version": "1"` | Two separate fields. If `agent_version` is omitted, uses the latest version. |
+| `agent_id` | `"agent_id": "my-agent:1"` | Single string in `"name:version"` format. |
+
+#### Filter strategies
+
+| Strategy | Description |
+|----------|-------------|
+| `random_sampling` | (Default) Uniformly random sample up to `max_traces` conversations. |
+| `smart_filtering` | Service-managed heuristic that biases toward "interesting" traces—conversations with potential issues, edge cases, or anomalies. |
+
+#### Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `agent_name` | Yes | The agent name to filter traces by. |
+| `agent_version` | No | The agent version. If omitted, uses the latest version. |
+| `agent_id` | No | Alternative to `agent_name` + `agent_version`. Single string in format `"name:version"`. |
+| `start_time` | Yes | Start of the time window (Unix epoch seconds, UTC). |
+| `end_time` | Yes | End of the time window (Unix epoch seconds, UTC). Pad by +600 seconds to avoid ingestion delay. |
+| `max_traces` | No | Maximum conversations to sample. Defaults to 1000. |
+| `filter_strategy` | No | `"random_sampling"` (default) or `"smart_filtering"` (service-managed heuristic that biases toward interesting traces). |
+
+> [!IMPORTANT]
+> The time window (`end_time - start_time`) must be at least **15 minutes** (900 seconds). This is required because conversation-level queries apply a 5-minute inactivity buffer on each edge to avoid partial conversations.
+
+# [Python](#tab/python)
+
+```python
+import time
+
+# Create evaluation with traces scenario
+eval_object = openai_client.evals.create(
+    name="Agent Quality Assessment",
+    data_source_config={
+        "type": "azure_ai_source",
+        "scenario": "traces",
+    },
+    testing_criteria=[
+        {
+            "type": "azure_ai_evaluator",
+            "name": "customer_satisfaction",
+            "evaluator_name": "builtin.customer_satisfaction",
+            "initialization_parameters": {
+                "deployment_name": model_deployment_name,
+            },
+        },
+    ],
+)
+
+# Run evaluation on sampled agent conversations
+eval_run = openai_client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="agent-quality-eval",
+    data_source={
+        "type": "azure_ai_trace_data_source_preview",
+        "trace_source": {
+            "type": "agent_filter",
+            "agent_name": "my-support-agent",
+            "agent_version": "1",
+            "start_time": 1743465600,  # Unix epoch seconds (UTC)
+            "end_time": 1743552600,    # Pad +600s to cover ingestion delay
+            "max_traces": 100,
+            "filter_strategy": "random_sampling",
+        },
+    },
+    extra_body={"evaluation_level": "conversation"},
+)
+```
+
+# [cURL](#tab/curl)
+
+```bash
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "agent-quality-eval",
+    "evaluation_level": "conversation",
+    "data_source": {
+      "type": "azure_ai_trace_data_source_preview",
+      "trace_source": {
+        "type": "agent_filter",
+        "agent_name": "my-support-agent",
+        "agent_version": "1",
+        "start_time": 1743465600,
+        "end_time": 1743552600,
+        "max_traces": 100,
+        "filter_strategy": "random_sampling"
+      }
+    }
+  }'
+```
+
+---
+
+> [!NOTE]
+> The App Insights query timespan is currently limited to a maximum of **7 days (168 hours)**. Traces older than 7 days aren't reachable without explicitly providing `start_time`/`end_time` within App Insights retention limits.
 
 To poll for completion and interpret results, see [Get results](#get-results).
 
