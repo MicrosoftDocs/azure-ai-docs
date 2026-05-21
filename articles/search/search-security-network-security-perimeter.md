@@ -58,7 +58,7 @@ To enable the private channel:
 
    1. Switch to enforced mode and rerun the same operation. Confirm success in indexer execution history and in the perimeter's outbound allow logs.
 
-Network security perimeter (NSP) support for `Microsoft.CognitiveServices` resources of kind `AIServices` (Microsoft Foundry) is generally available. NSP support for resources of kind `OpenAI` (Azure OpenAI Service) is in public preview.For the current support list, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
+Network security perimeter (NSP) support for `Microsoft.CognitiveServices` resources of kind `AIServices` (Microsoft Foundry) is generally available. NSP support for resources of kind `OpenAI` (Azure OpenAI Service) is in public preview. For the current support list, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
 
 Shared private link to the Foundry resource remains supported as an alternative.
 
