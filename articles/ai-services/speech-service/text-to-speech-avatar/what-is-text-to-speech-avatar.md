@@ -92,7 +92,7 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 
 * [Batch synthesis (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch-avatar)
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
-* [Use avatar in Voice live API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/voice-live-avatar)
+* [Use avatar in Voice live API](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Pricing
 
