@@ -1,6 +1,7 @@
 ---
 title: "Authentication and authorization in Microsoft Foundry (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.date: 02/23/2026
 ms.reviewer: meerakurup
 ms.author: jburchel

@@ -6,6 +6,7 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: ankamene
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.date: 03/16/2026
 ms.custom: dev-focus, doc-kit-assisted

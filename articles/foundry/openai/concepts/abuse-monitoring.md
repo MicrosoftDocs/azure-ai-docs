@@ -1,5 +1,5 @@
 ---
-title: "Azure Direct Models abuse monitoring"
+title: "Foundry Models sold by Azure abuse monitoring"
 description: "Learn about the abuse monitoring capabilities of Azure OpenAI"
 author: alvinashcraft
 ms.author: aashcraft

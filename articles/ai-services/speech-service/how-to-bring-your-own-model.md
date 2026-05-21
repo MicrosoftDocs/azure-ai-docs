@@ -43,7 +43,7 @@ az cognitiveservices account identity assign --name ${foundry_resource} --resour
 identity_principal_id=$(az cognitiveservices account show --name ${foundry_resource} --resource-group ${resource_group} --subscription ${subscription_id} --query "identity.principalId" -o tsv)
 
 # Assign the Foundry User role to the system identity of the foundry resource
-az role assignment create --assignee-object-id ${identity_principal_id} --role "Foundry User" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
+az role assignment create --assignee-object-id ${identity_principal_id} --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
 ```
 
 [!INCLUDE [role-rename-note-code](../../foundry/includes/role-rename-note-code.md)]
@@ -79,7 +79,7 @@ identity_principal_id=$(az cognitiveservices account show \
 # system identity on the model Foundry resource
 az role assignment create \
     --assignee-object-id ${identity_principal_id} \
-    --role "Foundry User" \
+    --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
     --scope /subscriptions/${subscription_id_for_model}/resourceGroups/${resource_group_for_model}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource_for_model}
 ```
 
