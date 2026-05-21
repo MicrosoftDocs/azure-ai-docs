@@ -23,7 +23,7 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you need paid usage beyond the monthly free allowance, set the `knowledgeRetrieval` service property to `standard` by using the [Search Management REST API](/rest/api/searchmanagement/services/create-or-update).
 
-+ Files in a [supported format](#review-supported-formats-and-limits).
++ Files in a [supported format](#supported-formats-and-limits).
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -47,7 +47,7 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 ## Check for existing knowledge sources
 
-A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
+Before you create a new file knowledge source, list the knowledge sources that already exist on your search service. You can avoid name conflicts and reuse an existing source instead of creating a duplicate.
 
 ::: zone pivot="csharp"
 
@@ -258,6 +258,30 @@ Prefer: return=representation
 
 You can pass the following properties to create a file knowledge source.
 
+::: zone pivot="csharp"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `Description` | A description of the knowledge source. | String | Yes | No |
+| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `FileParameters` | Parameters specific to file knowledge sources: `IngestionParameters`. | Object | Only nested model credentials are editable | No |
+
+::: zone-end
+
+::: zone pivot="python"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `file_parameters` | Parameters specific to file knowledge sources: `ingestion_parameters`. | Object | Only nested model credentials are editable | No |
+
+::: zone-end
+
+::: zone pivot="rest"
+
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
@@ -265,20 +289,43 @@ You can pass the following properties to create a file knowledge source.
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `fileParameters` | Parameters specific to file knowledge sources: `ingestionParameters`. | Object | Only nested model credentials are editable | No |
-| `ingestionParameters` | Parameters that control how uploaded files are cracked, chunked, vectorized, and prepared for retrieval. | Object | Only nested model credentials are editable | No |
+
+::: zone-end
 
 ### Ingestion parameters properties
 
-You can pass the following `ingestionParameters` properties to control how uploaded files are processed.
+You can pass the following ingestion parameter properties to control how uploaded files are processed.
+
+::: zone pivot="csharp"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `ContentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
+| `EmbeddingModel` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `Kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
+
+::: zone-end
+
+::: zone pivot="python"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `content_extraction_mode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
+| `embedding_model` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
+
+::: zone-end
+
+::: zone pivot="rest"
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `contentExtractionMode` | Controls how content is extracted from files. File knowledge sources support only `minimal`. | String | No | No |
 | `embeddingModel` | A [vectorizer](vector-search-how-to-configure-vectorizer.md) that generates embeddings for content during ingestion and for queries at retrieval time. Supported `kind` values are `azureOpenAI`, `customWebApi`, `aiServicesVision`, and `aml`. | Object | Vectorizer credentials are editable | No |
 
+::: zone-end
+
 ## Upload files
 
-After the source exists, upload files directly to it. The file knowledge source processing path is push-oriented rather than schedule-oriented. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
+After the source exists, upload files directly to it. Each file you upload is processed automatically as soon as it arrives, so you don't have to configure or run a separate ingestion pipeline. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
 
 The request body contains the file content.
 
@@ -387,7 +434,88 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-Wait until processing succeeds before you rely on the file content in retrieve requests. If processing fails, review responses for unsupported file types, extraction failures, model access issues, or quota limits.
+Processing happens asynchronously after upload, so the file might not be available for retrieval immediately. The service updates each file's `errorMessage` when processing fails; a `null` `errorMessage` indicates no processing failure.
+
+To wait for processing to complete, briefly delay after upload and then list the files to check `errorMessage`. The following pattern lists files, retries after a short pause, and stops when no file reports a non-`null` `errorMessage`.
+
+::: zone pivot="csharp"
+
+```csharp
+using System.Linq;
+using System.Threading;
+
+const int MaxAttempts = 12;
+const int DelaySeconds = 5;
+
+for (int attempt = 0; attempt < MaxAttempts; attempt++)
+{
+    var files = new List<KnowledgeSourceFile>();
+    await foreach (var file in indexClient.GetKnowledgeSourceFilesAsync("my-file-ks"))
+    {
+        files.Add(file);
+    }
+
+    var failed = files.Where(f => !string.IsNullOrEmpty(f.ErrorMessage)).ToList();
+    if (failed.Any())
+    {
+        foreach (var file in failed)
+        {
+            Console.WriteLine($"Processing failed for {file.FileName}: {file.ErrorMessage}");
+        }
+        break;
+    }
+
+    if (files.Count > 0)
+    {
+        Console.WriteLine("All files processed without errors.");
+        break;
+    }
+
+    Thread.Sleep(TimeSpan.FromSeconds(DelaySeconds));
+}
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+import time
+
+max_attempts = 12
+delay_seconds = 5
+
+for attempt in range(max_attempts):
+    files = list(index_client.list_knowledge_source_files("my-file-ks"))
+
+    failed = [f for f in files if f.error_message]
+    if failed:
+        for file in failed:
+            print(f"Processing failed for {file.file_name}: {file.error_message}")
+        break
+
+    if files:
+        print("All files processed without errors.")
+        break
+
+    time.sleep(delay_seconds)
+```
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+### Poll the file list until no errors are reported
+GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
+api-key: {{api-key}}
+```
+
+Re-send this request every few seconds until each file reports a `null` `errorMessage`. Stop and investigate if any file reports a non-`null` `errorMessage`.
+
+::: zone-end
+
+If processing fails, review the `errorMessage` value for unsupported file types, extraction failures, model access issues, or quota limits.
 
 ## Delete uploaded files
 
@@ -465,7 +593,11 @@ Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated suc
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeSourceReference
+from azure.search.documents.indexes.models import (
+    KnowledgeBase,
+    KnowledgeRetrievalOutputMode,
+    KnowledgeSourceReference,
+)
 from azure.search.documents.knowledgebases.models import KnowledgeRetrievalMinimalReasoningEffort
 
 index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
@@ -474,7 +606,7 @@ knowledge_base = KnowledgeBase(
     name="my-file-kb",
     description="A knowledge base for uploaded product manuals.",
     knowledge_sources=[KnowledgeSourceReference(name="my-file-ks")],
-    output_mode="extractiveData",
+    output_mode=KnowledgeRetrievalOutputMode.EXTRACTIVE_DATA,
     retrieval_reasoning_effort=KnowledgeRetrievalMinimalReasoningEffort(),
 )
 
@@ -604,9 +736,9 @@ Accept: application/json
 
 ::: zone-end
 
-## Review supported formats and limits
+## Supported formats and limits
 
-The following file types are supported in this preview. [TO VERIFY: Confirm that this list is accurate and complete.]
+The following file types are supported in this preview.
 
 | Category | Extensions |
 |--|--|
