@@ -5,7 +5,7 @@ author: soumyapatro
 ms.author: soumyapatro
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 05/19/2026
+ms.date: 05/21/2026
 ms.custom: training, custom-code
 ai-usage: ai-assisted
 #CustomerIntent: As a data scientist, I want to monitor my training job's progress and GPU utilization so that I can diagnose issues.
@@ -17,37 +17,31 @@ After you submit a custom code training job, monitor its progress through logs, 
 
 ## Prerequisites
 
-[!INCLUDE [training-prerequisites](../../includes/training-prerequisites.md)]
+[!INCLUDE [training-prerequisites](../includes/training-prerequisites.md)]
 
 - A submitted training job. For more information, see [Submit a training job](submit-training-job.md).
 
 ## View job status and metadata
 
-Check the current status of a training job and view its metadata, including the experiment name, compute target, and configuration.
-
 # [Python SDK](#tab/python)
 
 ```python
-job = project_client.beta.jobs.get(name="llama-sft")
-print(f"Job: {job.name}")
-print(f"Status: {job.status}")
-print(f"Experiment: {job.experiment}")
-print(f"Compute: {job.compute}")
-print(f"Created: {job.created_time}")
+retrieved_job = project_client.beta.jobs.get(name="llama-sft-run1")
+print(f"Job: {retrieved_job.name}")
+print(f"Display name: {retrieved_job.display_name}")
+print(f"Status: {retrieved_job.status}")
 ```
 
 ```output
-Job: llama-sft
+Job: llama-sft-run1
+Display name: llama-sft
 Status: Running
-Experiment: sft-experiments
-Compute: gpu-cluster
-Created: 2026-05-19T10:30:00Z
 ```
 
 # [Foundry CLI (Private Preview)](#tab/cli)
 
 ```bash
-foundry training jobs show --name llama-sft
+foundry training jobs show --name llama-sft-run1
 ```
 
 ---
@@ -62,30 +56,21 @@ foundry training jobs show --name llama-sft
 | `Failed` | Job encountered an error |
 | `Cancelled` | Job was cancelled by the user |
 
-## Tail job logs
+## Stream job logs
 
-Stream logs from your running job to monitor training progress, debug errors, and track output.
+Stream logs from your running job to monitor training progress. The `stream` method blocks until the job completes.
 
 # [Python SDK](#tab/python)
 
 ```python
-logs = project_client.beta.jobs.get_logs(name="llama-sft")
-for line in logs:
-    print(line)
-```
-
-```output
-[2026-05-19 10:35:12] Loading model from /mnt/inputs/base_model...
-[2026-05-19 10:36:45] Model loaded. Starting training...
-[2026-05-19 10:36:50] Epoch 1/3, Step 10/1000, Loss: 2.4532
-[2026-05-19 10:36:55] Epoch 1/3, Step 20/1000, Loss: 2.1287
+# Stream logs (blocks until job completes or fails)
+project_client.beta.jobs.stream(name="llama-sft-run1")
 ```
 
 # [Foundry CLI (Private Preview)](#tab/cli)
 
 ```bash
-# Follow logs in real time
-foundry training jobs logs --name llama-sft --follow
+foundry training jobs logs --name llama-sft-run1 --follow
 ```
 
 ---
@@ -102,9 +87,9 @@ The job details page includes the following tabs:
 
 | Tab | Description |
 |-----|-------------|
-| **Overview** | Job status, parameters, scalar inputs (shown as properties), experiment name, duration |
+| **Overview** | Job status, parameters, tags, duration |
 | **Logs** | Streaming logs from all nodes |
-| **Metrics** | Training metrics logged with MLflow (loss, learning rate, and custom metrics) |
+| **Metrics** | Training metrics logged with MLflow (loss, learning rate, custom metrics) |
 | **Code** | The training script and files submitted with the job |
 | **Infra metrics** | Infrastructure metrics for the compute nodes |
 | **Models** | Model assets created from job outputs |
@@ -112,8 +97,6 @@ The job details page includes the following tabs:
 ## View infrastructure metrics
 
 Infrastructure metrics help you identify resource bottlenecks and optimize your compute configuration.
-
-Available infrastructure metrics:
 
 | Metric | Description |
 |--------|-------------|
@@ -131,7 +114,16 @@ View infrastructure metrics in the Foundry portal:
 1. Select the node and metric type to visualize.
 
 > [!TIP]
-> Low GPU utilization combined with high CPU usage can indicate a data loading bottleneck. Consider increasing the number of data loader workers or using mounted data instead of downloaded data.
+> Low GPU utilization combined with high CPU usage can indicate a data loading bottleneck. Consider increasing `dataloader_num_workers` or using mounted data instead of downloaded data.
+
+## Troubleshooting
+
+| Issue | Possible cause | Resolution |
+|-------|---------------|------------|
+| Job stays in `Starting` | Insufficient quota or no available nodes | Check quota under **Compute** > **Quota**. Request an increase if needed. |
+| Job fails immediately | Image pull failure from ACR | Verify the ACR is attached to your project and the image URI is correct. |
+| NCCL timeout in multi-node jobs | Network communication failure between nodes | Ensure InfiniBand is available on your SKU. Set `NCCL_NVLS_ENABLE=1` in environment variables. |
+| Out of memory (OOM) | Model or batch too large for GPU | Reduce `per_device_train_batch_size`, enable gradient checkpointing, or use a larger GPU SKU. |
 
 ## Related content
 

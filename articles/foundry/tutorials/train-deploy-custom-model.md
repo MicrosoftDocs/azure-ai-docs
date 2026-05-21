@@ -1,114 +1,140 @@
 ---
-title: "Tutorial: Train and deploy a model with custom code in Microsoft Foundry"
-description: "Walk through an end-to-end workflow: prepare data, write a training script with MLflow, submit a training job, save the model, and deploy it for inference in Microsoft Foundry."
+title: "Tutorial: Train and deploy a custom model in Microsoft Foundry"
+description: "End-to-end tutorial for training and deploying a custom model in Microsoft Foundry. Prepare data, configure a training job, monitor training, and save the model."
 author: soumyapatro
 ms.author: soumyapatro
 ms.service: microsoft-foundry
 ms.topic: tutorial
-ms.date: 05/19/2026
+ms.date: 05/21/2026
 ms.custom: training, custom-code
 ai-usage: ai-assisted
-#CustomerIntent: As a data scientist, I want to walk through a complete end-to-end workflow from data prep to deployment so that I can learn custom code training in Foundry.
+#CustomerIntent: As a data scientist, I want to follow an end-to-end tutorial so that I can learn the full training workflow.
 ---
 
-# Tutorial: Train and deploy a model with custom code
+# Tutorial: Train and deploy a custom model
 
-In this tutorial, you fine-tune a Llama model using HuggingFace TRL on Foundry GPU compute, track metrics with MLflow, save the model, and deploy it for inference.
+In this tutorial, you train a custom model from start to finish using Microsoft Foundry. You prepare training data, write a supervised fine-tuning (SFT) script, submit a multi-GPU training job, monitor progress, and save the trained model.
 
 > [!div class="checklist"]
 > **In this tutorial, you:**
-> - Prepare a training dataset
-> - Write a training script with SFT and MLflow logging
-> - Submit a multi-node distributed training job
-> - Monitor training progress and metrics
-> - Save the trained model as a model asset
-> - Deploy the model and test it with a chat completion request
+> - Prepare and upload a training dataset
+> - Write an SFT training script
+> - Submit a distributed training job
+> - Monitor training with logs and MLflow
+> - Save and register the trained model
 
 ## Prerequisites
 
 [!INCLUDE [training-prerequisites](../includes/training-prerequisites.md)]
 
-- A GPU compute cluster with at least 2 nodes. For more information, see [Set up compute for training](../how-to/training/setup-compute.md).
-- An environment with TRL, MLflow, and `azureml-mlflow`. For more information, see [Use custom environments](../how-to/training/use-custom-environments.md).
-- Python 3.10 or later and the Microsoft Foundry SDK installed:
+- Python 3.10 or later.
+- The Microsoft Foundry SDK installed:
 
   ```bash
-  pip install azure-ai-projects azure-identity
+  pip install "azure-ai-projects>=2.0.0" azure-identity
   ```
 
-## Prepare the training data
+## Set up the project
 
-Create a training dataset in JSONL format for supervised fine-tuning. Each line contains a conversation with instruction-response pairs.
+Create a project directory with the following structure:
 
-Create a file called `train.jsonl`:
-
-```json
-{"messages": [{"role": "user", "content": "What is reinforcement learning from human feedback?"}, {"role": "assistant", "content": "Reinforcement learning from human feedback (RLHF) is a technique that uses human preferences to train reward models, which then guide policy optimization of language models to produce outputs better aligned with human intent."}]}
-{"messages": [{"role": "user", "content": "Explain the difference between SFT and DPO."}, {"role": "assistant", "content": "Supervised fine-tuning (SFT) trains a model on demonstration data to mimic desired behavior. Direct preference optimization (DPO) skips the reward model step and directly optimizes the policy using preference pairs, making it simpler to implement while achieving similar alignment quality."}]}
+```
+tutorial-sft/
+├── src/
+│   └── train_sft.py
+├── data/
+│   └── train.jsonl
+└── submit_job.py
 ```
 
-Upload the dataset to your project's datastore:
+Initialize the Foundry client in `submit_job.py`:
 
 ```python
 import os
-from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import Input, Output
-
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    CommandJob,
+    JobResourceConfiguration,
+    Input,
+    Output,
+    AssetTypes,
+    InputOutputModes,
+    PyTorchDistribution,
 )
 
-# Upload data to managed storage
-# [TO VERIFY] Data upload SDK signature
-train_data = Input(
-    type="uri_file",
-    path="azureml://datastores/workspaceblobstore/paths/training/train.jsonl",
-    mode="download",
+project_client = AIProjectClient(
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
 ```
 
-## Write the training script
+## Step 1: Prepare training data
 
-Create a folder called `src` and add a file called `train.py`. This script uses HuggingFace TRL for SFT and logs metrics with MLflow.
+Create a training dataset in JSONL format with chat-formatted messages. Save this file as `data/train.jsonl`:
+
+```json
+{"messages": [{"role": "system", "content": "You are a helpful coding assistant."}, {"role": "user", "content": "Write a Python function to reverse a string."}, {"role": "assistant", "content": "def reverse_string(s):\n    return s[::-1]"}]}
+{"messages": [{"role": "system", "content": "You are a helpful coding assistant."}, {"role": "user", "content": "What is a list comprehension?"}, {"role": "assistant", "content": "A list comprehension is a concise way to create lists in Python using the syntax [expression for item in iterable if condition]."}]}
+```
+
+Upload the dataset to your Foundry project:
 
 ```python
-# src/train.py
+dataset = project_client.datasets.upload_folder(
+    name="sft-tutorial-data",
+    version="1",
+    folder="./data",
+)
+print(f"Dataset: {dataset.id}")
+```
+
+```output
+Dataset: azureai://accounts/<acct>/projects/<proj>/data/sft-tutorial-data/versions/1
+```
+
+## Step 2: Write the training script
+
+Create `src/train_sft.py` with an SFT training script. This script uses HuggingFace Transformers and TRL:
+
+```python
+# src/train_sft.py
 import argparse
 import mlflow
-from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTTrainer, SFTConfig
+from datasets import load_dataset
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_dir", type=str, required=True, help="Path to base model")
-    parser.add_argument("--data_file", type=str, required=True, help="Path to training data")
-    parser.add_argument("--output_dir", type=str, required=True, help="Path to save trained model")
+    parser.add_argument("--model_dir", type=str, required=True)
+    parser.add_argument("--train_data", type=str, required=True)
+    parser.add_argument("--output_dir", type=str, default="./outputs")
     parser.add_argument("--num_epochs", type=int, default=3)
     parser.add_argument("--batch_size", type=int, default=4)
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     args = parser.parse_args()
 
-    # Log hyperparameters to MLflow
-    mlflow.log_param("num_epochs", args.num_epochs)
-    mlflow.log_param("batch_size", args.batch_size)
-    mlflow.log_param("learning_rate", args.learning_rate)
+    # Log hyperparameters
+    mlflow.log_params({
+        "num_epochs": args.num_epochs,
+        "batch_size": args.batch_size,
+        "learning_rate": args.learning_rate,
+    })
 
-    # Load model and tokenizer
+    # Load tokenizer and model
     tokenizer = AutoTokenizer.from_pretrained(args.model_dir)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_dir,
-        torch_dtype="auto",
-        device_map="auto",
+        args.model_dir, torch_dtype="auto"
     )
 
     # Load dataset
-    dataset = load_dataset("json", data_files=args.data_file, split="train")
+    dataset = load_dataset(
+        "json", data_files=f"{args.train_data}/train.jsonl", split="train"
+    )
 
     # Configure training
     training_config = SFTConfig(
@@ -118,21 +144,22 @@ def main():
         learning_rate=args.learning_rate,
         logging_steps=10,
         save_steps=100,
-        report_to="mlflow",
         bf16=True,
+        gradient_checkpointing=True,
+        report_to="mlflow",
     )
 
     # Train
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=dataset,
         args=training_config,
     )
 
     trainer.train()
 
-    # Save final model
+    # Save model in safetensors format for deployment eligibility
     trainer.save_model(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
 
@@ -144,163 +171,115 @@ if __name__ == "__main__":
     main()
 ```
 
-## Submit the training job
+## Step 3: Submit the training job
 
-Submit a distributed training job that runs the SFT script across multiple nodes.
+Build and submit the training job in `submit_job.py`:
 
 ```python
-base_model = Input(
-    type="model",
-    path="azureml://registries/azureml-openai-oss/models/Meta-Llama-3-8B/versions/1",
-    mode="download",
+compute_id = os.environ["JOB_COMPUTE_ID"]
+environment_image = os.environ.get(
+    "JOB_ENVIRONMENT_IMAGE",
+    "mcr.microsoft.com/azureml/curated/acpt-pytorch-2.2-cuda12.1:48",
 )
 
-model_output = Output(
-    type="safetensor_model",
-    name="llama-3-8b-sft",
-)
-
-job = project_client.beta.jobs.create(
-    name="llama-sft-tutorial",
-    experiment="llama-sft-tutorial",
-    environment="myregistry.azurecr.io/my-training:v1",
-    code="./src",
+job = CommandJob(
+    display_name="tutorial-sft-llama",
+    description="SFT tutorial — fine-tuning Llama-3-8B on coding dataset",
     command=(
-        "python train.py "
-        "--model_dir ${{inputs.base_model}} "
-        "--data_file ${{inputs.train_data}} "
-        "--output_dir ${{outputs.trained_model}} "
-        "--num_epochs ${{inputs.num_epochs}} "
-        "--batch_size ${{inputs.batch_size}} "
-        "--learning_rate ${{inputs.learning_rate}}"
+        'python "${{inputs.code}}/train_sft.py"'
+        ' --model_dir "${{inputs.base_model}}"'
+        ' --train_data "${{inputs.train_data}}"'
+        ' --output_dir "${{outputs.trained_model}}"'
+        ' --num_epochs 3'
+        ' --batch_size 4'
+        ' --learning_rate 2e-5'
     ),
-    compute="gpu-cluster",
-    instance_count=2,
-    process_per_node=4,
-    distribution="PyTorch",
+    environment_image_reference=environment_image,
+    compute=compute_id,
     inputs={
-        "base_model": base_model,
-        "train_data": train_data,
-        "num_epochs": 3,
-        "batch_size": 4,
-        "learning_rate": 2e-5,
+        "code": Input(path="./src", type=AssetTypes.URI_FOLDER),
+        "base_model": Input(
+            path="azureml://registries/azureml-meta/models/Meta-Llama-3-8B/versions/1",
+            type=AssetTypes.URI_FOLDER,
+            mode=InputOutputModes.READ_ONLY_MOUNT,
+        ),
+        "train_data": Input(
+            path=dataset.id,
+            type=AssetTypes.URI_FOLDER,
+            mode=InputOutputModes.READ_ONLY_MOUNT,
+        ),
     },
     outputs={
-        "trained_model": model_output,
+        "trained_model": Output(
+            type=AssetTypes.URI_FOLDER,
+            mode=InputOutputModes.READ_WRITE_MOUNT,
+            asset_name="tutorial-sft-model",
+        ),
+    },
+    resources=JobResourceConfiguration(instance_count=1),
+    environment_variables={
+        "NCCL_NVLS_ENABLE": "1",
+    },
+    tags={
+        "scenario": "tutorial-sft",
+        "base_model": "llama-3-8b",
     },
 )
 
-print(f"Job submitted: {job.name}, Status: {job.status}")
+created_job = project_client.beta.jobs.create_or_update(
+    name="tutorial-sft-run1", job=job
+)
+print(f"Job submitted: {created_job.name}")
+print(f"Status: {created_job.status}")
 ```
 
 ```output
-Job submitted: llama-sft-tutorial, Status: Starting
+Job submitted: tutorial-sft-run1
+Status: Starting
 ```
 
-## Monitor training progress
+## Step 4: Monitor training
 
-### Check job status
+### Stream logs
 
 ```python
-import time
-
-while True:
-    job = project_client.beta.jobs.get(name="llama-sft-tutorial")
-    print(f"Status: {job.status}")
-    if job.status in ["Completed", "Failed", "Cancelled"]:
-        break
-    time.sleep(60)
+project_client.beta.jobs.stream(name="tutorial-sft-run1")
 ```
 
-### Tail logs
+### Check status
 
 ```python
-logs = project_client.beta.jobs.get_logs(name="llama-sft-tutorial")
-for line in logs:
-    print(line)
+job = project_client.beta.jobs.get(name="tutorial-sft-run1")
+print(f"Status: {job.status}")
 ```
 
-```output
-[2026-05-19 10:35:12] Loading model from /mnt/inputs/base_model...
-[2026-05-19 10:40:00] Model loaded. Starting SFT training...
-[2026-05-19 10:40:15] Epoch 1/3, Step 10, Loss: 2.4532, LR: 1.98e-05
-[2026-05-19 10:40:30] Epoch 1/3, Step 20, Loss: 2.1287, LR: 1.95e-05
-[2026-05-19 10:45:00] Epoch 1/3, Step 100, Loss: 1.5432, LR: 1.80e-05
-...
-[2026-05-19 11:30:00] Training complete. Model saved to /mnt/outputs/trained_model
-```
-
-### View metrics in the portal
+### View in the portal
 
 1. Go to your project in the [Foundry portal](https://ai.azure.com).
-1. Select **Jobs** > **llama-sft-tutorial**.
-1. Select the **Metrics** tab to view loss curves and learning rate schedules.
+1. Select **Jobs** in the left navigation.
+1. Select **tutorial-sft-run1** to view logs, metrics, and infrastructure utilization.
 
-## Save the trained model
+## Step 5: Save the trained model
 
-When the job completes with status `Completed`, the model output is automatically registered as a model asset.
-
-Verify the model asset:
+The trained model is auto-registered because you specified `asset_name="tutorial-sft-model"` on the output. Verify the registration:
 
 ```python
-# List models in the project
-models = project_client.models.list()
-for m in models:
-    print(f"Model: {m.name}, Version: {m.version}")
+model = project_client.models.get(name="tutorial-sft-model", version="latest")
+print(f"Model: {model.name}, Version: {model.version}")
 ```
 
-```output
-Model: llama-3-8b-sft, Version: 1
-```
-
-You can also view the model in the portal by selecting **Jobs** > **llama-sft-tutorial** > **Models** tab.
-
-## Deploy the model
-
-Deploy the trained model for inference.
-
-### Deploy in the portal
-
-1. Select **Jobs** > **llama-sft-tutorial** > **Models** tab.
-1. Select **llama-3-8b-sft**.
-1. Map the model to the **Meta-Llama-3-8B** base architecture.
-1. Select **Deploy** and configure the deployment settings.
-1. Wait for the deployment to become active.
-
-## Test the deployment
-
-Send a chat completion request to verify the deployed model:
+Download the model for local inspection:
 
 ```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+project_client.beta.jobs.download(name="tutorial-sft-run1", all=True)
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model = AutoModelForCausalLM.from_pretrained("./outputs/trained_model")
+tokenizer = AutoTokenizer.from_pretrained("./outputs/trained_model")
 
-client = OpenAI(
-    base_url=f"{os.environ['AZURE_AI_PROJECT_ENDPOINT']}/openai/v1/",
-    api_key=token_provider(),
-)
-
-response = client.chat.completions.create(
-    model="llama-3-8b-sft",
-    messages=[
-        {"role": "user", "content": "What is the difference between SFT and RLHF?"}
-    ],
-    max_tokens=200,
-)
-
-print(response.choices[0].message.content)
-```
-
-```output
-Supervised fine-tuning (SFT) trains a language model directly on demonstration data,
-teaching it to mimic desired input-output behavior. RLHF adds a second stage where a
-reward model trained on human preferences guides policy optimization, allowing the
-model to generalize beyond the demonstration data and better align with nuanced human
-preferences.
+inputs = tokenizer("Write a function to sort a list:", return_tensors="pt")
+outputs = model.generate(**inputs, max_new_tokens=100)
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 ```
 
 ## Clean up resources
@@ -310,11 +289,4 @@ preferences.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Track experiments with MLflow](../how-to/training/track-experiments-mlflow.md)
-
-## Related content
-
-- [What is custom code training?](../concepts/custom-training-overview.md)
-- [Monitor training jobs](../how-to/training/monitor-training-jobs.md)
-- [Save and deploy trained models](../how-to/training/save-deploy-trained-model.md)
-- [Debug jobs interactively](../how-to/training/debug-jobs-interactively.md)
+> [Save and deploy trained models](../training/save-deploy-trained-model.md)

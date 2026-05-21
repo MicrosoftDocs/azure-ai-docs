@@ -78,7 +78,7 @@ A custom code training job follows this lifecycle:
 
 1. **Write training code**: Create a training script (`train.py`) using your preferred framework. Use MLflow to log metrics.
 1. **Prepare resources**: Set up a GPU compute cluster, configure a Docker environment, and upload training data.
-1. **Submit a command job**: Use the Microsoft Foundry SDK or Foundry CLI to submit the job. Specify the training script, compute target, environment, data inputs, and model inputs/outputs.
+1. **Submit a command job**: Use the Microsoft Foundry SDK or Foundry CLI to submit the job. Pass your training code as an input (along with data and model inputs), specify compute, environment, and outputs.
 1. **Monitor progress**: View logs, training metrics, and infrastructure metrics (GPU, memory, disk) in the Foundry portal or through the SDK.
 1. **Save the model**: When the job completes, model outputs (safetensor format) are automatically registered as model assets in your project.
 1. **Deploy for inference**: Map the trained model to a supported base model architecture and deploy it on a managed inferencing cluster.
@@ -87,7 +87,7 @@ A custom code training job follows this lifecycle:
 
 | Concept | Description |
 |---------|-------------|
-| **Command job** | A unit of work that runs your training script on a GPU compute cluster. Defined by code, command, compute, environment, inputs, and outputs. |
+| **Command job** | A unit of work that runs your training script on a GPU compute cluster. Defined by a command string, compute, environment, inputs (including code, data, and models), and outputs. |
 | **Experiment** | A named grouping for related job runs. Use experiments to organize and compare training runs with different hyperparameters. |
 | **Compute cluster** | A set of GPU virtual machines that run your training jobs. You specify the cluster, number of nodes, and processes per node. |
 | **Distribution** | The distributed training strategy. Foundry supports PyTorch and Ray distribution, setting up the required environment variables and rendezvous points. |
@@ -109,8 +109,8 @@ Custom code training in Foundry has the following limitations:
 ## Related content
 
 - [Quickstart: Submit a training job](../quickstarts/training-job-quickstart.md)
-- [Set up compute for training](../how-to/training/setup-compute.md)
-- [Submit a training job](../how-to/training/submit-training-job.md)
-- [Monitor training jobs](../how-to/training/monitor-training-jobs.md)
-- [Save and deploy trained models](../how-to/training/save-deploy-trained-model.md)
+- [Set up compute for training](../training/setup-compute.md)
+- [Submit a training job](../training/submit-training-job.md)
+- [Monitor training jobs](../training/monitor-training-jobs.md)
+- [Save and deploy trained models](../training/save-deploy-trained-model.md)
 - [Customize a model with fine-tuning](../openai/how-to/fine-tuning.md)
