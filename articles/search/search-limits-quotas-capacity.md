@@ -209,7 +209,7 @@ Maximum running times exist to provide balance and stability to the service as a
 
 <sup>2</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexers, data sources, and skillsets.
 
-<sup>3</sup> S3 HD services don't include indexer support.
+<sup>3</sup> S3 HD indexer support is in preview and requires REST API version `2025-11-01-preview` or later. S3 HD indexer support is governed by a service-level daily quota of 6 hours of cumulative indexer runtime shared across all indexers. 
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
