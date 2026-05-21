@@ -333,12 +333,34 @@ The request body contains the file content. The listed `fileName` is taken from 
 
 ```csharp
 using Azure;
+using Azure.Core;
+using Azure.Core.Pipeline;
 using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
 
 var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
 
-byte[] fileBytes = File.ReadAllBytes("installation-guide.pdf");
-await indexClient.UploadKnowledgeSourceFileAsync("my-file-ks", BinaryData.FromBytes(fileBytes));
+string fileName = "installation-guide.pdf";
+byte[] fileBytes = await File.ReadAllBytesAsync(fileName);
+
+var context = new RequestContext();
+context.AddPolicy(
+    new SetHeaderPolicy("Content-Disposition", $"attachment; filename=\"{fileName}\""),
+    HttpPipelinePosition.PerCall);
+
+Response response = await indexClient.UploadKnowledgeSourceFileAsync(
+    "my-file-ks",
+    RequestContent.Create(BinaryData.FromBytes(fileBytes)),
+    context);
+
+KnowledgeSourceFile uploadedFile = (KnowledgeSourceFile)response;
+Console.WriteLine($"Uploaded file ID: {uploadedFile.FileId}");
+
+sealed class SetHeaderPolicy(string name, string value) : HttpPipelineSynchronousPolicy
+{
+    public override void OnSendingRequest(HttpMessage message) =>
+        message.Request.Headers.SetValue(name, value);
+}
 ```
 
 ::: zone-end
