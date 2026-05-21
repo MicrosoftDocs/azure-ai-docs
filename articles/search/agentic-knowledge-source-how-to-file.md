@@ -327,7 +327,7 @@ You can pass the following ingestion parameter properties to control how uploade
 
 After the source exists, upload files directly to it. Each file you upload is processed automatically as soon as it arrives, so you don't have to configure or run a separate ingestion pipeline. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
 
-The request body contains the file content.
+The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`.
 
 ::: zone pivot="csharp"
 
@@ -353,8 +353,13 @@ from azure.search.documents.indexes import SearchIndexClient
 
 index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
 
-file_bytes = Path("installation-guide.pdf").read_bytes()
-uploaded_file = index_client.upload_knowledge_source_file("my-file-ks", file_bytes)
+file_path = Path("installation-guide.pdf")
+uploaded_file = index_client.upload_knowledge_source_file(
+    "my-file-ks",
+    file_path.read_bytes(),
+    content_type="application/octet-stream",
+    headers={"Content-Disposition": f'attachment; filename="{file_path.name}"'},
+)
 print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
 
