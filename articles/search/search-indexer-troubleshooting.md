@@ -299,8 +299,7 @@ On the other hand, if an indexer is associated with a skillset, it operates with
 
 If you have [sensitivity labels set on documents](/microsoft-365/compliance/sensitivity-labels), you might not be able to index them. If you're getting errors, remove the labels prior to indexing.
 
-
-## See also
+## Related content
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
 * [Monitor indexer-based indexing](search-monitor-indexers.md)
