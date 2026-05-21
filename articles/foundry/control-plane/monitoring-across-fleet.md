@@ -7,6 +7,7 @@ ms.reviewer: sonalimalik
 ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.

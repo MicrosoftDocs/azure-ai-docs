@@ -14,7 +14,7 @@ ms.custom: include
 
 The model leaderboards feature a curated selection of text-based language models from the Foundry model catalog. Models are included based on the following criteria:
 
-- **Azure Direct Models prioritized**: Azure Direct Models are selected for relevance to common generative AI scenarios.
+- **Foundry Models sold by Azure prioritized**: Models sold by Azure are selected for relevance to common generative AI scenarios.
 - **Core benchmark applicability**: Models must support general-purpose language tasks such as reasoning, knowledge, question answering, mathematical reasoning, and coding. Specialized models (for example, protein folding or domain-specific QA) and other modalities aren't supported.
 
 This scoping ensures the leaderboards reflect current, high-quality models relevant to core AI scenarios.
