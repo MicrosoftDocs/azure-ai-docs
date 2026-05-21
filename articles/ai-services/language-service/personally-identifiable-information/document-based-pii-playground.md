@@ -13,6 +13,7 @@ ms.custom: language-service-pii
 
 <!-- markdownlint-disable MD025 -->
 # Use the document PII playground in Microsoft Foundry
+
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 

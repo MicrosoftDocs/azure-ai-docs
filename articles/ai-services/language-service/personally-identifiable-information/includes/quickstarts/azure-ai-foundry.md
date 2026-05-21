@@ -32,7 +32,6 @@ Assign the correct roles to your user principal and project managed identity to 
 
 * Verify current assignments using [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access).
 
-
 ### [new Foundry](#tab/new-foundry)
 
 > [!NOTE]
@@ -45,6 +44,17 @@ You can use [new Foundry playground](https://ai.azure.com/) to:
 > * Detect and redact PII from text, conversations, or documents
 > * Configure redaction policies, entity filters, and excluded values
 > * Review detected entities and confidence scores
+
+## Role-based access control (RBAC) requirements
+
+Assign the correct roles to your user principal and project managed identity to access the new Foundry PII playgrounds. Microsoft recommends using Microsoft Entra ID authentication, which enforces role-based restrictions. Key-based authentication grants full access without role checks and should be avoided in production environments.
+
+> [!IMPORTANT]
+> The Foundry RBAC roles were recently renamed. **Foundry User**, **Foundry Owner**, **Foundry Account Owner**, and **Foundry Project Manager** were previously named Azure AI User, Azure AI Owner, Azure AI Account Owner, and Azure AI Project Manager. You might still see the previous names in some places while the rename rolls out. The role IDs and core permissions are unchanged.
+
+* Assign the minimum required roles to both your user principal and project managed identity so they can access Foundry features.
+
+* Verify current assignments using [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access).
 
 ## Navigate to the new Foundry playground
 

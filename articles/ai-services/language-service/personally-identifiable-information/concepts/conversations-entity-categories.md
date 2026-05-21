@@ -20,14 +20,14 @@ The API categorizes personal details into predefined entity types for precise id
 > [!TIP]
 > Try PII detection in text or conversations using the [Microsoft Foundry](https://ai.azure.com/explore/language) language playground.
 
-### Language Support
+## Language Support
 
 The [PII language support page](../language-support.md) lists all languages available for the PII entities in this article. Any exceptions are noted for specific named entities.
 
-Supported API versions:
+## Supported API versions:
 
-* [**Stable 2024-11-01: Generally Available (GA)**](/rest/api/language/analyze-conversations/operation-groups?view=rest-language-analyze-conversations-2024-11-01&preserve-view=true)
-* [**Preview: 2025-11-15-preview**](/rest/api/language/analyze-conversations/operation-groups?view=rest-language-analyze-conversations-2025-11-15-preview&preserve-view=true)
+* [Stable: **2024-11-01 (GA)**](/rest/api/language/analyze-conversations/operation-groups?view=rest-language-analyze-conversations-2024-11-01&preserve-view=true)
+* [Preview: **2025-11-15-preview**](/rest/api/language/analyze-conversations/operation-groups?view=rest-language-analyze-conversations-2025-11-15-preview&preserve-view=true)
 
 > [!IMPORTANT]
 > **Conversation PII API** (2025-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part of your Azure subscription and are subject to terms applicable  terms for "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).

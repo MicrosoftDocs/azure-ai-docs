@@ -20,14 +20,14 @@ The Personally Identifiable Information (PII) and Protected Health Information (
 > [!TIP]
 > Try PII detection in text or conversations using the [Microsoft Foundry](https://ai.azure.com/explore/language) language playground.
 
-### Language Support
+## Language Support
 
 The [PII language support page](../language-support.md) lists all languages available for the PII entities in this article. Any exceptions are noted for specific named entities.
 
-Supported API versions:
+## Supported API versions:
 
-* [**Stable 2026-05-01: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
-* [**Preview: 2026-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP).
+* [Stable: **2026-05-01 (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
+* [Preview: **2026-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP).
 
    > [!IMPORTANT]
    > **Text PII API** (2026-05-15-preview) is licensed to you as part of your Azure subscription and is subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
@@ -1202,7 +1202,6 @@ Any government-issued identification that can be used along or combined with oth
 |Details|Tag|
 |---|---|
 |To retrieve this entity type, specify **ZipCode** in the **piiCategories** request parameter. If detected, the entity appears in the **PII** response payload.|[**USUKPassportNumber**]|
-
 
 ## Related content
 
