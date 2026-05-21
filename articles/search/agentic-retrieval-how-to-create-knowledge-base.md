@@ -344,6 +344,9 @@ The following JSON is an example response for a knowledge base.
 
 ## Create a knowledge base
 
+> [!IMPORTANT]
+> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
+
 A knowledge base connects one or more knowledge sources (searchable content) to an optional LLM from Azure OpenAI in Foundry Models. The properties you set establish defaults for query execution and the retrieval response.
 
 After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next retrieval.
@@ -572,9 +575,6 @@ api-key: {{search-api-key}}
 ---
 
 ::: zone-end
-
-> [!IMPORTANT]
-> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
 ### Configure CORS for browser-based retrieve calls
 
