@@ -5,7 +5,6 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/28/2026
 zone_pivot_groups: search-csharp-python-rest
-ai-usage: ai-assisted
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2

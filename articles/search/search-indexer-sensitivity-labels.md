@@ -158,10 +158,13 @@ The appID roles in the provided PowerShell script are associated to the followin
 
 ## 4. Configure the index to enable Purview sensitivity label 
 
-When sensitivity label support is required, set the purviewEnabled property to true in your [index definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+When sensitivity label support is required, set the `purviewEnabled` property to `true` in your [index definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+
 > [!IMPORTANT]
-> **purviewEnabled** property must be set to true when the index is created. This setting is permanent and can't be modified later.
-> When **purviewEnabled** is set to true, only RBAC authentication is supported for all document operations APIs.
+> The `purviewEnabled` property must be set to `true` when the index is created. This setting is permanent and can't be modified later.
+>
+> When `purviewEnabled` is set to `true`, only RBAC authentication is supported for all document operations APIs.
+
 API key access is limited to index schema retrieval (list and get).
 
 ```
@@ -202,7 +205,7 @@ The `indexerPermissionOptions` property instructs the indexer to extract sensiti
 
 ## 6. Configure index projections in your skillset (if applicable)
 
-If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md) — for example, with integrated vectorization — project the sensitivity label onto each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through the [Text Split skill](cognitive-search-skill-textsplit.md), such as with integrated vectorization, project the sensitivity label onto each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 For the broader rule on when permission and ACL fields belong in indexer field mappings versus index projections, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 

@@ -7,7 +7,6 @@ ms.custom:
 ms.topic: how-to
 ms.date: 04/28/2026
 zone_pivot_groups: search-csharp-python-rest
-ai-usage: ai-assisted
 ---
 
 # Create an indexed OneLake knowledge source
