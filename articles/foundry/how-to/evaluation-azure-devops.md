@@ -2,6 +2,7 @@
 title: "How to run an evaluation in Azure DevOps"
 description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps." 
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 04/30/2026
 ms.reviewer: hanch

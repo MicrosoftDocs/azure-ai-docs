@@ -4,6 +4,7 @@ description: Learn how to use the REST APIs to define an indexer pipeline that i
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/16/2026
+ai-usage: ai-assisted
 ---
 
 # Set up integrated vectorization in Azure AI Search using REST
@@ -65,7 +66,7 @@ To configure role-based access for integrated vectorization:
 1. On your data source platform and embedding model provider, create role assignments that allow your search service to access data and models. See [Prepare your data](#prepare-your-data) and [Prepare your embedding model](#prepare-your-embedding-model).
 
 > [!NOTE]
-> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This lack of support requires that you use key-based authentication on connections between free search services and other Azure resources.
+> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This behavior requires that you use key-based authentication on connections between free search services and other Azure resources.
 >
 > For more secure connections, use the Basic tier or higher. You can then enable roles and configure a managed identity for authorized access.
 
@@ -250,10 +251,8 @@ Azure AI Search supports Azure Vision image retrieval through multimodal embeddi
 
    1. Copy the endpoint with the `https://[resource-name].services.ai.azure.com` format. You specify this URL later in [Set variables](#set-variables).
 
-   > [!NOTE]
-   > The multimodal embeddings are built into your Microsoft Foundry resource, so there's no model deployment step.
 
-<!--### [Foundry model catalog](#tab/prepare-model-catalog)
+### [Foundry model catalog](#tab/prepare-model-catalog)
 
 Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
@@ -287,7 +286,7 @@ For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how
 
    1. Select the model you deployed.
 
-   1. On the **Details** tab, copy the endpoint. You specify this URL later in [Set variables](#set-variables).-->
+   1. On the **Details** tab, copy the endpoint. You specify this URL later in [Set variables](#set-variables).
 
 ---
 
@@ -440,7 +439,7 @@ In this section, you create a [skillset](cognitive-search-working-with-skillsets
 
 Partitioning your content into chunks helps you meet the requirements of your embedding model and prevents data loss due to truncation. For more information about chunking, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
 
-For built-in data chunking, Azure AI Search offers the [Text Split skill](cognitive-search-skill-textsplit.md) and [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). The Text Split skill breaks text into sentences or pages of a particular length, while the Document Layout skill breaks content based on paragraph boundaries.
+For built-in data chunking, Azure AI Search offers the [Text Split skill](cognitive-search-skill-textsplit.md) and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md). The Text Split skill breaks text into sentences or pages of a particular length, while the Azure Content Understanding skill performs semantic, layout-aware chunking that respects paragraph boundaries.
 
 <!--### [REST](#tab/built-in-skill-rest)-->
 
@@ -458,7 +457,7 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
      }
    ```
 
-1. In the `skills` array, call the Text Split skill or Document Layout skill. You can paste one of the following definitions.
+1. In the `skills` array, call the Text Split skill or Azure Content Understanding skill. You can paste one of the following definitions.
 
    ```HTTP
        "skills": [
@@ -485,11 +484,14 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
           ]
         },
         {
-          "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
-          "name": "my-document-layout-skill",
+          "@odata.type": "#Microsoft.Skills.Util.ContentUnderstandingSkill",
+          "name": "my-content-understanding-skill",
           "context": "/document",
-          "outputMode": "oneToMany",
-          "markdownHeaderDepth": "h3",
+          "chunkingProperties": {
+            "method": "semantic",
+            "unit": "tokens",
+            "maximumLength": 500
+          },
           "inputs": [
            {
              "name": "file_data",
@@ -498,7 +500,8 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
           ],
           "outputs": [
            {
-             "name": "markdown_document"
+             "name": "text_sections",
+             "targetName": "text_sections"
            }
           ]
         }

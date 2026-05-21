@@ -36,7 +36,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
     :::image type="content" source="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png" alt-text="A screenshot of the Foundry portal showing where to disable deployment to Foundry resources." lightbox="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png":::
 
-- Foundry [Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure.md) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.
+- Foundry [Models from partners and community](../foundry-models/concepts/models-sold-directly-by-azure.md) require access to Azure Marketplace, while Foundry [Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
@@ -48,7 +48,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-# [Models sold directly by Azure](#tab/azure-direct)
+# [Foundry Models sold by Azure](#tab/azure-direct)
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
@@ -56,20 +56,20 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 1. In the deployment wizard, name the deployment. The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Foundry portal](../foundry-models/concepts/content-filter.md).
     
-    :::image type="content" source="../media/deploy-models-serverless/deepseek-deployment-wizard.png" alt-text="Screenshot showing the deployment wizard for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/deepseek-deployment-wizard.png":::
+    :::image type="content" source="../media/deploy-models-serverless/deepseek-deployment-wizard.png" alt-text="Screenshot showing the deployment wizard for a model sold by Azure." lightbox="../media/deploy-models-serverless/deepseek-deployment-wizard.png":::
     
    
-# [Models from Partners and Community](#tab/partner-models)
+# [Models from partners and community](#tab/partner-models)
 
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
 > [!NOTE]
-> [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+> [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
     
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For Models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -173,21 +173,21 @@ To delete the associated model subscription:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-# [Models sold directly by Azure](#tab/azure-direct)
+# [Models sold by Azure](#tab/azure-direct)
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
-    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
    
-# [Models from Partners and Community](#tab/partner-models)
+# [Models from partners and community](#tab/partner-models)
 
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
@@ -195,7 +195,7 @@ To delete the associated model subscription:
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For Models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -222,7 +222,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
 model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
 ## Deploy the model to a serverless API
@@ -314,21 +314,21 @@ az ml marketplace-subscription delete \
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-# [Models sold directly by Azure](#tab/azure-direct)
+# [Models sold by Azure](#tab/azure-direct)
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
-    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
    
-# [Models from Partners and Community](#tab/partner-models)
+# [Models from partners and community](#tab/partner-models)
 
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
@@ -336,7 +336,7 @@ az ml marketplace-subscription delete \
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For Models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -367,7 +367,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
 model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
 ## Deploy the model to a serverless API
@@ -454,21 +454,21 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-# [Models sold directly by Azure](#tab/azure-direct)
+# [Models sold by Azure](#tab/azure-direct)
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
-    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
    
-# [Models from Partners and Community](#tab/partner-models)
+# [Models from partners and community](#tab/partner-models)
 
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
@@ -476,7 +476,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For Models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -519,7 +519,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
 model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
 ## Deploy the model to a serverless API
@@ -604,9 +604,9 @@ az resource delete --name <resource-name>
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-- You can find pricing information for [Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
+- You can find pricing information for [Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
 
-- [Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure.md) are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+- [Models from partners and community](../foundry-models/concepts/models-sold-directly-by-azure.md) are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 ## Permissions required to subscribe to model offerings
 
