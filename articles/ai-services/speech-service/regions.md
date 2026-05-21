@@ -1,14 +1,15 @@
 ---
-title: Supported Regions for Azure Speech
+title: Supported regions for Azure Speech
 titleSuffix: Foundry Tools
-description: This article provides a list of available regions and endpoints for Azure Speech, including speech to text, text to speech, and speech translation.
+description: Find the Azure Speech regions and region identifiers for the Speech SDK and REST APIs, including speech to text, text to speech, and translation.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 11/09/2025
+ms.date: 05/21/2026
 ms.author: pafarley
-ms.custom: references_regions
+ms.custom: references_regions, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for Azure Speech so that I can decide how to use the features in my application.
 ---
 
@@ -16,11 +17,14 @@ ms.custom: references_regions
 
 Azure Speech allows your application to convert audio to text, perform speech translation, and convert text to speech. Azure Speech is available in multiple regions with unique endpoints for the Speech SDK and REST APIs.
 
-Keep in mind the following points:
 
-- If your application uses the [Speech SDK](speech-sdk.md), you provide the region identifier (such as `westus`) when you create a `SpeechConfig` instance. Make sure that the region matches the region of your Azure Speech resource.
-- If your application uses one of the Azure Speech REST APIs, the region is part of the endpoint URI that you use when making requests.
-- Keys created for a region are valid only in that region. If you try to use them with other regions, you get authentication errors.
+## Use region identifiers
+
+When configuring Azure Speech in your application:
+
+- Provide the region identifier (such as `westus`) when you create a `SpeechConfig` instance with the Speech SDK. Make sure the region matches your Azure Speech resource.
+- Use the region as part of the endpoint URI when making requests to the Speech REST APIs.
+- Keys are region-scoped — using a key with a different region returns authentication errors.
 
 > [!NOTE]
 > Azure Speech doesn't store or process your data outside the region of your Azure Speech resource. The data is stored or processed only in the region where the resource is created. For example, if you create a Foundry resource for speech in the `westus` region, the data is only in the `westus` region.
