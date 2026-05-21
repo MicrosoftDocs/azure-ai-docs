@@ -2,6 +2,7 @@
 title: Get started with LangChain and LangGraph with Foundry
 description: Learn how to use langchain-azure-ai as an entry point for LangChain and LangGraph apps with Microsoft Foundry capabilities.
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.author: fasantia
