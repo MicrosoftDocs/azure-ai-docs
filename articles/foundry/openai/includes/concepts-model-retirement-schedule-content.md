@@ -156,7 +156,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Mistral-Large-3 | 1 | GA | — | — |
-| mistral-document-ai-2505 | 1 | GA | — | — |
+| mistral-document-ai-2505 | 1 | GA | 2026-05-31 | mistral-document-ai-2512 |
 | mistral-document-ai-2512 | 1 | GA | — | — |
 
 ### MoonshotAI
@@ -164,6 +164,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
+| Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
 
 ### OpenAI-OSS
 
@@ -267,13 +268,6 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Mistral-large | 1 | GA | — | — |
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
-
-### MoonshotAI
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
-
 
 ## Related content
 

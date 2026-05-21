@@ -22,7 +22,7 @@ Microsoft Foundry Models include a comprehensive catalog of models organized int
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a hub project for Foundry](hub-create-projects.md). You can deploy to managed compute using a hub project. A Foundry project won't work for this purpose.
 
