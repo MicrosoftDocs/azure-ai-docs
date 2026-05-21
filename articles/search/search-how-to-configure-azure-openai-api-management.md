@@ -5,7 +5,7 @@ description: Configure Azure API Management as a gateway to Azure OpenAI or Micr
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
@@ -33,7 +33,7 @@ API Management isn't supported as a gateway for:
 
 ## Architecture
 
-There are two common flows. Both use the same API Management configuration on the backend side.
+There are two common flows. Both use the same API Management configuration on the backend.
 
 ### Public path
 
@@ -80,20 +80,22 @@ Two identities are involved. They have different responsibilities and different 
 | Azure AI Search managed identity | At the API Management gateway | Authorized by API Management policies. No role on the Microsoft Foundry resource is required when you use the credential-termination pattern below. |
 | API Management managed identity | At the Microsoft Foundry resource | **Cognitive Services OpenAI User** on the Microsoft Foundry resource. |
 
-The recommended pattern is **credential termination and re-establishment**: the caller authenticates to API Management, and API Management uses its own managed identity to authenticate to the Microsoft Foundry resource. This pattern is described in [Azure OpenAI authorization](/azure/architecture/ai-ml/guide/azure-openai-gateway-multi-backend#azure-openai-authorization) in the AOAI gateway architecture guide.
+The recommended pattern is **credential termination and re-establishment**: the caller authenticates to API Management, and API Management uses its own managed identity to authenticate to the Microsoft Foundry resource. For more information, see [Azure OpenAI authorization](/azure/architecture/ai-ml/guide/azure-openai-gateway-multi-backend#azure-openai-authorization) in the AOAI gateway architecture guide.
 
 ### Authentication options at the API Management gateway
 
-Choose one of the following options for how Azure AI Search authenticates to API Management. For details and policy examples, see [Authenticate and authorize access to LLM APIs by using API Management](/azure/api-management/api-management-authenticate-authorize-ai-apis).
+Choose one of the following options for how Azure AI Search authenticates to API Management. For more information and policy examples, see [Authenticate and authorize access to LLM APIs by using API Management](/azure/api-management/api-management-authenticate-authorize-ai-apis).
 
-+ **Subscription key**. API Management stores the Microsoft Foundry resource API key in a [named value](/azure/api-management/api-management-howto-properties), and a policy passes it on the backend request. Characteristics: simplest to configure; uses the `set-header` policy with the `api-key` header; the search service sends only the API Management subscription key, so no Microsoft Entra ID role is required on the search service managed identity.
-+ **Managed identity at the gateway with OAuth validation**. API Management uses the [`validate-azure-ad-token`](/azure/api-management/validate-azure-ad-token-policy) policy to validate a Microsoft Entra ID token presented by the search service managed identity. Use this option for defense in depth.
-+ **API Management managed identity to the backend (required for the recommended pattern)**. [Enable a system-assigned or user-assigned managed identity](/azure/api-management/api-management-howto-use-managed-service-identity) on the API Management instance, and assign it the **Cognitive Services OpenAI User** role on the Microsoft Foundry resource. See [Authenticate with managed identity](/azure/api-management/api-management-authenticate-authorize-ai-apis#authenticate-with-managed-identity) and [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control).
++ **Subscription key:** API Management stores the Microsoft Foundry resource API key in a [named value](/azure/api-management/api-management-howto-properties), and a policy passes it on the backend request. This is the simplest option to configure. It uses the `set-header` policy with the `api-key` header. Because the search service sends only the API Management subscription key, no Microsoft Entra ID role is required on the search service managed identity.
+
++ **Managed identity at the gateway with OAuth validation:** API Management uses the [`validate-azure-ad-token`](/azure/api-management/validate-azure-ad-token-policy) policy to validate a Microsoft Entra ID token presented by the search service managed identity. Use this option for defense in depth.
+
++ **(Required for the recommended pattern) API Management managed identity to the backend:** [Enable a system-assigned or user-assigned managed identity](/azure/api-management/api-management-howto-use-managed-service-identity) on the API Management instance, and then assign it the **Cognitive Services OpenAI User** role on the Microsoft Foundry resource. See [Authenticate with managed identity](/azure/api-management/api-management-authenticate-authorize-ai-apis#authenticate-with-managed-identity) and [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control).
 
 > [!TIP]
-> When you [import a Microsoft Foundry API](/azure/api-management/azure-ai-foundry-api) into API Management, the backend and managed identity wiring is created automatically.
-
-For circuit-breaker, retry, and backend pool guidance, see [Backends in API Management](/azure/api-management/backends).
+> + When you [import a Microsoft Foundry API](/azure/api-management/azure-ai-foundry-api) into API Management, the backend and managed identity wiring is created automatically.
+>
+> + For circuit-breaker, retry, and backend pool guidance, see [Backends in API Management](/azure/api-management/backends).
 
 ## Private connectivity from Azure AI Search to API Management
 
@@ -102,7 +104,9 @@ Skip this section if Azure AI Search calls API Management over its public endpoi
 To restrict outbound traffic from the search service to a private channel:
 
 1. Create a shared private link from the search service to the API Management instance. Use the `Microsoft.ApiManagement/service` resource type and the `Gateway` group ID. For steps, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
+
 1. Approve the private endpoint connection on the API Management instance.
+
 1. Configure indexers that use the skill or vectorizer to run in the [private execution environment](search-indexer-howto-access-private.md#4---configure-the-indexer-to-run-in-the-private-environment).
 
 The shared private link counts against the [shared private link limit](search-limits-quotas-capacity.md#shared-private-link-resource-limits) for your search service tier.
@@ -121,5 +125,3 @@ The private channel from API Management to the Microsoft Foundry resource is ind
 + [GenAI prompt skill](cognitive-search-skill-genai-prompt.md)
 + [Make outbound connections through a shared private link](search-indexer-howto-access-private.md)
 + [Use a gateway in front of multiple Azure OpenAI deployments or instances](/azure/architecture/ai-ml/guide/azure-openai-gateway-multi-backend)
-+ [Overview of generative AI gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
-+ [Authenticate and authorize access to LLM APIs by using API Management](/azure/api-management/api-management-authenticate-authorize-ai-apis)

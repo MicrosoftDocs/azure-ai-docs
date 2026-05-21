@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 06/02/2026
 ---
 
 # Add a search service to a network security perimeter
@@ -41,16 +41,24 @@ You can add a search service to a network security perimeter in the Azure portal
 A network security perimeter that includes both your search service and a [Microsoft Foundry resource](/azure/foundry/how-to/add-foundry-to-network-security-perimeter) provides a private channel for outbound calls between them. Because the perimeter operates at the resource and network layer, every search service feature that calls the Foundry resource uses the same allowed path, including:
 
 * All skills that call a Foundry resource, such as the [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI prompt skill](cognitive-search-skill-genai-prompt.md), [Content Understanding skill](cognitive-search-skill-content-understanding.md), and other [Foundry resource skills](cognitive-search-predefined-skills.md#foundry-resource) for AI enrichment and billing.
+
 * The [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) at query time during [integrated vectorization](vector-search-integrated-vectorization.md).
+
 * [Agentic retrieval](agentic-retrieval-overview.md) calls from a knowledge agent to a Foundry model deployment.
 
 To enable the private channel:
 
 1. Add both your search service and the Foundry resource to the same network security perimeter, or to perimeters that allow communication between them.
-1. If both resources are in the same perimeter and the search service authenticates to the Foundry resource by using a managed identity, you don't need to add an outbound rule. Intra-perimeter traffic is allowed implicitly. If the resources are in different perimeters, or the search service authenticates with API keys, add an outbound FQDN access rule on the perimeter associated with your search service that targets the Foundry resource's hostname. For guidance on the Foundry side of the configuration, see [Add Microsoft Foundry to a network security perimeter](/azure/foundry/how-to/add-foundry-to-network-security-perimeter).
-1. Validate access in two stages. With the perimeter in learning mode, run a skillset, vectorizer query, or agentic retrieval call that invokes the Foundry resource and review the perimeter logs to confirm the expected access path. Then switch to enforced mode and rerun the same operation. Confirm success in indexer execution history and in the perimeter's outbound allow logs.
 
-NSP support for `Microsoft.CognitiveServices` resources of kind `AIServices` (Microsoft Foundry) is generally available. NSP support for resources of kind `OpenAI` (Azure OpenAI Service) is in public preview. For the current support list, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
+1. If both resources are in the same perimeter and the search service authenticates to the Foundry resource by using a managed identity, you don't need to add an outbound rule. Intra-perimeter traffic is allowed implicitly. If the resources are in different perimeters, or the search service authenticates with API keys, add an outbound FQDN access rule on the perimeter associated with your search service that targets the Foundry resource's hostname. For guidance on the Foundry side of the configuration, see [Add Microsoft Foundry to a network security perimeter](/azure/foundry/how-to/add-foundry-to-network-security-perimeter).
+
+1. Validate access in two stages:
+
+   1. With the perimeter in learning mode, run a skillset, vectorizer query, or agentic retrieval call that invokes the Foundry resource. Review the perimeter logs to confirm the expected access path.
+
+   1. Switch to enforced mode and rerun the same operation. Confirm success in indexer execution history and in the perimeter's outbound allow logs.
+
+Network security perimeter (NSP) support for `Microsoft.CognitiveServices` resources of kind `AIServices` (Microsoft Foundry) is generally available. NSP support for resources of kind `OpenAI` (Azure OpenAI Service) is in public preview.For the current support list, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
 
 Shared private link to the Foundry resource remains supported as an alternative.
 
@@ -293,8 +301,10 @@ To test your connection through network security perimeter, you need access to a
 
 1. Change your network security perimeter association to [enforced mode](#network-security-perimeter-access-modes) to start enforcing network security perimeter requirements for network access to your search service.
 
-1. Choose a client: a local computer or an Azure VM.
+1. Choose a client:
+
    1. For a local computer, get your public IP address.
+
    1. For an Azure VM, use [private link](/azure/private-link/private-link-overview) or [find the IP address in the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
 1. Create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access.
@@ -302,6 +312,7 @@ To test your connection through network security perimeter, you need access to a
 1. In the Azure portal, open your search service and view its indexes.
 
    * **Expected success:** The index list loads and you can run a test query. The inbound IP rule is working.
+
    * **If you see a 403 or "Public network access is disabled" error:** Your client IP or the Azure portal isn't covered by an inbound rule. Check the [inbound access rules](#add-an-inbound-access-rule).
 
 ## Troubleshoot common issues

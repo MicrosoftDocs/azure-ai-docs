@@ -73,7 +73,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>[Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are also supported, including API Management custom domains. For setup—including authentication, RBAC, and optional private connectivity—see [Use Azure API Management with Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md). |
+| `uri` | string | Yes | Endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>[Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are also supported, including API Management custom domains. For setup, including authentication, RBAC, and optional private connectivity, see [Use Azure API Management with Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md). |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |
