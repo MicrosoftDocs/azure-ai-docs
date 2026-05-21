@@ -325,7 +325,7 @@ You can pass the following ingestion parameter properties to control how uploade
 
 ## Upload files
 
-After the source exists, upload files directly to it. Each file you upload is processed automatically as soon as it arrives, so you don't have to configure or run a separate ingestion pipeline. Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval.
+After the source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
 The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`.
 
@@ -464,88 +464,7 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-Processing happens asynchronously after upload, so the file might not be available for retrieval immediately. The service updates each file's `errorMessage` when processing fails; a `null` `errorMessage` indicates no processing failure.
-
-To wait for processing to complete, briefly delay after upload and then list the files to check `errorMessage`. The following pattern lists files, retries after a short pause, and stops when no file reports a non-`null` `errorMessage`.
-
-::: zone pivot="csharp"
-
-```csharp
-using System.Linq;
-using System.Threading;
-
-const int MaxAttempts = 12;
-const int DelaySeconds = 5;
-
-for (int attempt = 0; attempt < MaxAttempts; attempt++)
-{
-    var files = new List<KnowledgeSourceFile>();
-    await foreach (var file in indexClient.GetKnowledgeSourceFilesAsync("my-file-ks"))
-    {
-        files.Add(file);
-    }
-
-    var failed = files.Where(f => !string.IsNullOrEmpty(f.ErrorMessage)).ToList();
-    if (failed.Any())
-    {
-        foreach (var file in failed)
-        {
-            Console.WriteLine($"Processing failed for {file.FileName}: {file.ErrorMessage}");
-        }
-        break;
-    }
-
-    if (files.Count > 0)
-    {
-        Console.WriteLine("All files processed without errors.");
-        break;
-    }
-
-    Thread.Sleep(TimeSpan.FromSeconds(DelaySeconds));
-}
-```
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-import time
-
-max_attempts = 12
-delay_seconds = 5
-
-for attempt in range(max_attempts):
-    files = list(index_client.list_knowledge_source_files("my-file-ks"))
-
-    failed = [f for f in files if f.error_message]
-    if failed:
-        for file in failed:
-            print(f"Processing failed for {file.file_name}: {file.error_message}")
-        break
-
-    if files:
-        print("All files processed without errors.")
-        break
-
-    time.sleep(delay_seconds)
-```
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-### Poll the file list until no errors are reported
-GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
-api-key: {{api-key}}
-```
-
-Re-send this request every few seconds until each file reports a `null` `errorMessage`. Stop and investigate if any file reports a non-`null` `errorMessage`.
-
-::: zone-end
-
-If processing fails, review the `errorMessage` value for unsupported file types, extraction failures, model access issues, or quota limits.
+Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
 
 ## Delete uploaded files
 
