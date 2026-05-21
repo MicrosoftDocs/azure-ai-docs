@@ -2,6 +2,7 @@
 title: "Quickstart: Set up Microsoft Foundry resources"
 description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications."
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - build-2025
   - dev-focus

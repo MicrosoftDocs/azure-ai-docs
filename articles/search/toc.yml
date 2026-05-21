@@ -156,7 +156,9 @@ items:
       items:
       - name: Chunk documents
         href: vector-search-how-to-chunk-documents.md
-      - name: Chunk and vectorize by document layout
+      - name: Chunk and vectorize with Content Understanding
+        href: search-how-to-semantic-chunking-content-understanding.md
+      - name: Chunk and vectorize with Document Layout
         href: search-how-to-semantic-chunking.md
       - name: Generate embeddings
         href: vector-search-how-to-generate-embeddings.md
@@ -477,16 +479,26 @@ items:
       items:
       - name: Search index
         href: agentic-knowledge-source-how-to-search-index.md
+      - name: Freshness-aware retrieval (preview)
+        href: agentic-retrieval-how-to-configure-freshness.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
     - name: Create a remote source
       items:
+      - name: Fabric Data Agent (preview)
+        href: agentic-knowledge-source-how-to-fabric-data-agent.md
+      - name: Fabric Ontology (preview)
+        href: agentic-knowledge-source-how-to-fabric-ontology.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
+      - name: Work IQ (preview)
+        href: agentic-knowledge-source-how-to-work-iq.md
       - name: Web
         href: agentic-knowledge-source-how-to-web.md
       - name: Manage web access
@@ -497,6 +509,8 @@ items:
       href: agentic-retrieval-how-to-create-knowledge-base.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base via APIs or MCP

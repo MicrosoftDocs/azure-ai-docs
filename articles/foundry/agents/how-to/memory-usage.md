@@ -5,6 +5,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/10/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
