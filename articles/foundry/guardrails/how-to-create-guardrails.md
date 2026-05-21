@@ -3,6 +3,7 @@ title: "How to configure guardrails and controls in Microsoft Foundry"
 description: "Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API."
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: how-to
 ms.date: 02/13/2026
 author: ssalgadodev

@@ -1,6 +1,7 @@
 ---
 title: "Foundry Agent Service resource and data loss recovery"
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.reviewer: ckittel
 description: "Recover Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption."
 #customer intent: As a developer, I want to recreate a Microsoft Foundry project after accidental deletion so that I can redeploy agents and resume operations.
