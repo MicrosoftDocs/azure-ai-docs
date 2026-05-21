@@ -152,17 +152,21 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Text-to-speech avatar](#tab/ttsavatar)
 
-| Region | Real-time avatar | Batch avatar | Custom avatar | Custom avatar training<sup>1</sup> |
-| ----- | ----- | ----- | ----- | ----- |
-| `eastus2` | ✅ | ✅ | ✅ | |
-| `northeurope` | ✅ | ✅ | ✅ | |
-| `southcentralus` | ✅ | ✅ | ✅ | |
-| `southeastasia` | ✅ | ✅ | ✅ | ✅ |
-| `swedencentral` | ✅ | ✅ | ✅ | |
-| `westeurope` | ✅ | ✅ | ✅ | ✅ |
-| `westus2` | ✅ | ✅ | ✅ | ✅ |
+| Region | Real-time avatar | Batch avatar | Custom avatar | Custom video avatar training|Custom photo avatar creation|Voice sync for avatar|
+| ----- | ----- | ----- | ----- | ----- | ----- |----- |
+| `westus2` | ✅ | ✅ | ✅ | ✅ | ✅| ✅|
+| `eastus` | ✅ | ✅ | ✅ |  | ✅| ✅|
+| `eastus2` | ✅ | ✅ | ✅ | | ✅| ✅|
+| `southcentralus` | ✅ | ✅ | ✅ | | ✅|
+| `southeastasia` | ✅ | ✅ | ✅ | ✅ | ✅| ✅|
+| `centralindia` | ✅ | ✅ | ✅ |  | ✅|
+| `westeurope` | ✅ | ✅ | ✅ | ✅ | ✅| ✅|
+| `swedencentral` | ✅ | ✅ | ✅ | | ✅| ✅|
+| `northeurope` | ✅ | ✅ | ✅ | | ✅|
+| `italynorth` | ✅ | ✅ | ✅ |  | ✅|
+| `francecentral`<sup>1</sup> | ✅ | ✅ | ✅ |  | ✅|
 
-<sup>1</sup> Voice sync for avatars is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
+<sup>1</sup> Francecentral has limited capacity.
 
 # [Speech translation](#tab/speech-translation)
 
