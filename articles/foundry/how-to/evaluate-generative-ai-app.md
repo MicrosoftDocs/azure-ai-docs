@@ -3,6 +3,7 @@ title: "Run evaluations from the Microsoft Foundry portal"
 description: "Evaluate your generative AI models and agents by using Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new

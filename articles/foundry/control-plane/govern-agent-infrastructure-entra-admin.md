@@ -3,6 +3,7 @@ title: Govern agent infrastructure as a Microsoft Entra administrator
 description: Learn how to elevate access, assign the right roles, and take infrastructure-level actions on Foundry agents as a Microsoft Entra administrator.
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.date: 04/30/2026
 ms.author: mahender
 author: mattchenderson

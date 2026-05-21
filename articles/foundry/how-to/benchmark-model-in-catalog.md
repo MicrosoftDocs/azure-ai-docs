@@ -2,6 +2,7 @@
 title: "Compare models using the model leaderboard"
 description: "Compare model benchmarks across quality, safety, cost, and throughput using the model leaderboard and side-by-side comparison features in Foundry portal."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - ai-learning-hub
