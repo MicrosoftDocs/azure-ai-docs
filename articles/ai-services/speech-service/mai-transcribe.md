@@ -12,7 +12,6 @@ zone_pivot_groups: llm-speech-quickstart
 ai-usage: ai-assisted
 
 # Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
-ai-usage: ai-assisted
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
