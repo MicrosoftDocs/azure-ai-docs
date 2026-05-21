@@ -70,8 +70,6 @@ ms.date: 05/12/2026
 | gpt-image-2                    | DataZoneStandard  | 10          | -           |
 | gpt-image-2                    | GlobalStandard    | 30          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| model-router                   | DataZoneStandard  | 1,667       | 1,667,000   |
-| model-router                   | GlobalStandard    | 5,000       | 5,000,000   |
 | o1                             | DataZoneStandard  | 1,000       | 6,000,000   |
 | o1                             | GlobalStandard    | 5,000       | 30,000,000  |
 | o3                             | DataZoneStandard  | 3,000       | 3,000,000   |

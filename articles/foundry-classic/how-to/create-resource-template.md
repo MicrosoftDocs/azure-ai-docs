@@ -6,6 +6,7 @@ author: sdgilley
 reviewer: deeikele
 ms.date: 04/15/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: quickstart
 ms.custom:
   - classic-and-new
