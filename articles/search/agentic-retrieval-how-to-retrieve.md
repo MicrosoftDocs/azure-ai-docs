@@ -622,7 +622,7 @@ The following table shows which knowledge sources require ingestion-time configu
 | [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
 | [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
-| Work IQ | ❌ | Work IQ evaluates permissions directly using the user's token. |
+| [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
 | Fabric data agent | ❌ | Fabric evaluates permissions through the connected data agent using the user's token. |
 | Fabric ontology | ❌ | Fabric evaluates permissions through the connected ontology using the user's token. |
 | MCP server | ❌ | The MCP server enforces permissions according to its own authorization model. |

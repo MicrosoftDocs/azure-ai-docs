@@ -2,6 +2,7 @@
 title: Use LangGraph with the Agent Service
 description: "Learn how to build practical LangGraph and LangChain applications with Foundry Agent Service."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.author: sgilley

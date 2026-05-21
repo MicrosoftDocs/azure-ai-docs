@@ -10,7 +10,7 @@ ms.date: 04/29/2026
 ms.custom: include, classic-and-new
 ---
 
-This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
 ## Updates to quota management after 05/07/2026
 
@@ -77,6 +77,19 @@ Due to high demand, limit increase requests are evaluated individually.
 | Max number of custom headers in API requests<sup>1</sup> | 10 |
 
 <sup>1</sup> Current APIs allow up to 10 custom headers, which the pipeline passes through and returns. If you exceed this header count, your request results in an HTTP 431 error. To resolve this error, reduce the header volume. **Future API versions won't pass through custom headers**. Don't depend on custom headers in future system architectures.
+
+### Model router quota tiers
+
+Model router limits scale with your subscription's usage tier. For information on how tiers work, see [Quota tiers](../../openai/quotas-limits.md#quota-tiers).
+
+| Tier   | DataZoneStandard TPM | GlobalStandard TPM |
+|:-------|---------------------:|-------------------:|
+| Tier 1 | 300,000              | 1,000,000          |
+| Tier 2 | 670,000              | 2,000,000          |
+| Tier 3 | 1,000,000            | 4,000,000          |
+| Tier 4 | 2,000,000            | 7,000,000          |
+| Tier 5 | 3,000,000            | 10,000,000         |
+| Tier 6 | 4,000,000            | 15,000,000         |
 
 ## Usage tiers
 

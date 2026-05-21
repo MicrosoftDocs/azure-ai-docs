@@ -2,6 +2,7 @@
 title: "Model benchmarks and leaderboards in Microsoft Foundry"
 description: "Compare AI models using quality, safety, cost, and performance benchmarks on the model leaderboards (preview) in Microsoft Foundry portal."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - ai-learning-hub

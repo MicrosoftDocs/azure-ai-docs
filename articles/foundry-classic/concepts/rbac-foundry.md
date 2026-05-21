@@ -2,6 +2,7 @@
 title: "Role-based access control for Microsoft Foundry (classic)"
 description: "This article introduces role-based access control in Microsoft Foundry portal. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -64,7 +65,7 @@ You can manage permissions in the [Azure portal](https://portal.azure.com) under
 For example, the following command assigns the Foundry User role to `joe@contoso.com` for resource group `this-rg` in subscription `00000000-0000-0000-0000-000000000000`:
 
 ```azurecli
-az role assignment create --role "Foundry User" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
+az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
 ```
 
 [!INCLUDE [role-rename-note-code](../../foundry/includes/role-rename-note-code.md)]
