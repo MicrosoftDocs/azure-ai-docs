@@ -74,12 +74,6 @@ flows, you can omit it when you want the service to use the preview behavior
 that doesn't require an explicit semantic configuration on the underlying
 index.
 
-| Scenario | Semantic configuration guidance |
-| --- | --- |
-| Classic semantic search query | Configure semantic ranking on the index. |
-| Existing GA or older preview API versions | Configure semantic ranking on the index. |
-| Supported `2026-05-01-preview` agentic retrieval flow | Semantic configuration can be optional. |
-
 Semantic configuration is optional only for supported agentic retrieval
 knowledge base retrieve flows that use the `2026-05-01-preview` API. Classic
 semantic search queries and older API versions still require a semantic
