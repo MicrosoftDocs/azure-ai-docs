@@ -9,7 +9,6 @@ ms.custom: references_regions
 ms.date: 11/24/2025
 ms.author: pafarley
 author: PatrickFarley
-zone_pivot_groups: foundry-speech-studio
 ---
 
 # How to create a custom photo avatar
