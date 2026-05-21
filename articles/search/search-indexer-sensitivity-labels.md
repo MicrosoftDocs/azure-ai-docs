@@ -273,6 +273,6 @@ If your data source emits label metadata under a different field name (for examp
 
 ## Next steps
 
-+ [How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
-+ [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview)
-+ [Document-level security in Azure AI Search](search-document-level-access-overview.md)
+- [How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
+- [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview)
+- [Document-level security in Azure AI Search](search-document-level-access-overview.md)
