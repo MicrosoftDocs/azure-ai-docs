@@ -209,7 +209,7 @@ If your MCP server requires authentication, use one of the following options.
 
 # [foundryConnection](#tab/foundry-connection)
 
-Use `foundryConnection` to authenticate with credentials managed by Microsoft Foundry, which manages the full authentication lifecycle and injects the required credentials at query time. We recommend this option for production scenarios.
+Use `foundryConnection` only when an agent from Foundry Agent Service invokes a knowledge base that includes this MCP Server knowledge source. In that flow, the service resolves the connection and injects the required credentials when it calls the MCP server. If you call the knowledge base directly or from a client other than Foundry Agent Service, `foundryConnection` doesn't work.
 
 ```json
 "authentication": {
