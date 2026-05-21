@@ -6,6 +6,7 @@ ms.author: haileytapia
 ms.reviewer: fsunavala
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/30/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted

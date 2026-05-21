@@ -4,6 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/13/2024
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/rest.md)]
@@ -18,7 +19,7 @@ At a command prompt, run the following command. Insert the following values into
 - The path for input audio file
 
 ```curl
-curl --location --request POST 'https://INSERT_REGION_HERE.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US' \
+curl --location --request POST 'https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US' \
 --header 'Ocp-Apim-Subscription-Key: INSERT_SUBSCRIPTION_KEY_HERE' \
 --header 'Content-Type: audio/wav' \
 --data-binary @'INSERT_AUDIO_FILE_PATH_HERE'

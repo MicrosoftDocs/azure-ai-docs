@@ -7,6 +7,7 @@ ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 03/27/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
