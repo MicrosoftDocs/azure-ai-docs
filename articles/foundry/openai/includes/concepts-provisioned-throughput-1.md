@@ -31,7 +31,7 @@ Provisioned throughput units (PTU) are generic units of model processing capacit
 
 #### Cost management under shared PTU reservation
 
-Use the PTU capability to seamlessly manage costs for Foundry Models under a shared PTU reservation. But, the required PTU units for deployment and throughput performance are dynamically tailored to the chosen models. To learn more about PTU costs and model latency points, see [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md).
+Use the PTU capability to seamlessly manage costs for Foundry Models under a shared PTU reservation. But, the required PTU units for deployment and throughput performance are dynamically tailored to the chosen models. To learn more about PTU costs and model latency points, see [Understanding costs associated with PTU](../concepts/provisioned-throughput-billing.md).
 
 Existing PTU reservations are automatically upgraded to empower customers with enhanced efficiency and cost savings as they deploy Foundry Models. For example, suppose you have an existing PTU reservation with 500 PTU purchased. You use 300 units for Azure OpenAI models, and you choose to also use PTU to deploy Azure DeepSeek, Azure Llama, or other models with PTU capability on Foundry Models.
 
@@ -220,7 +220,7 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 ## Related content
 
-- [Learn about the onboarding steps for provisioned deployments](../how-to/provisioned-throughput-onboarding.md)
+- [Learn about the onboarding steps for provisioned deployments](../concepts/provisioned-throughput-billing.md)
 - [Provisioned Throughput Units (PTU) getting started guide](../how-to/provisioned-get-started.md)
 - [Understand deployment types](../../foundry-models/concepts/deployment-types.md)
 - [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)

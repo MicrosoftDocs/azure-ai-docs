@@ -40,7 +40,7 @@ Before creating a deployment, confirm that your model supports provisioned throu
 1. Go to the [model and region availability table](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned) to see if your model supports provisioned throughput deployment in your target region.
 1. Filter by your region and verify that the model appears in a **Provisioned** deployment type.
 
-Also note the model's minimum PTU count, as you need this information when you configure the deployment. Minimums vary by model and are listed in [Throughput and deployment parameter values by model](./how-to/provisioned-throughput-onboarding.md#throughput-and-deployment-parameter-values-by-model).
+Also note the model's minimum PTU count, as you need this information when you configure the deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](./how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model).
 
 ## Check PTU quota
 
@@ -72,7 +72,7 @@ Before following this quickstart, check that you have quota for your target regi
    | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum, e.g., `50`. |
    | **Content filter** | The filtering policy. See [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md). |
 
-1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./how-to/provisioned-throughput-onboarding.md) before continuing.
+1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing, sizing, and cost management](./concepts/provisioned-throughput-billing.md) before continuing.
 
 1. Confirm and create the deployment.
 
@@ -202,12 +202,12 @@ If you plan to purchase a reservation after creating your deployment, verify tha
 > [!IMPORTANT]
 > Always create and confirm your deployment before purchasing a reservation. The reservation must match your deployment's type (Global, Data Zone, or Regional), region, and subscription scope. Committing to a reservation for capacity you haven't confirmed is available can result in a financial commitment you can't use.
 
-For sizing guidance, purchase steps, and management, see [Azure Reservations for provisioned throughput](./how-to/provisioned-throughput-onboarding.md#azure-reservations-for-provisioned-throughput).
+For sizing guidance, purchase steps, and management, see [Azure Reservations for provisioned throughput](./concepts/provisioned-throughput-billing.md#azure-reservations-for-provisioned-throughput).
 
 
 ## Clean up resources
 
-Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Delete deployments before deleting resources](./how-to/provisioned-throughput-onboarding.md#delete-deployments-before-deleting-resources).
+Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Clean up resources](./how-to/provisioned-get-started.md#clean-up-resources).
 
 > [!NOTE]
 > Deleting a deployment doesn't cancel an Azure Reservation. If you purchased one, cancel or exchange it separately on the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). Cancellation might incur an early termination fee.

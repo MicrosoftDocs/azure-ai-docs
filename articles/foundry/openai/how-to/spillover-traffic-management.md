@@ -158,4 +158,4 @@ Because spillover uses a combination of provisioned and standard deployments to 
 
 - [What is provisioned throughput?](../concepts/provisioned-throughput.md)
 - [Get started with provisioned deployments](./provisioned-get-started.md)
-- [Onboarding to provisioned throughput](./provisioned-throughput-onboarding.md)
+- [Onboarding to provisioned throughput](../concepts/provisioned-throughput-billing.md)

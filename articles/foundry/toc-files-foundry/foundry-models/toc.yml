@@ -151,9 +151,12 @@ items:
     - name: What is provisioned throughput?
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
-    - name: PTU billing, sizing, and cost management
-      displayName: Provisioned throughput billing, sizing, and cost management
-      href: ../../openai/how-to/provisioned-throughput-onboarding.md
+    - name: Determine PTU requirements for a workload
+      displayName: Determine PTU requirements for a workload
+      href: ../../openai/how-to/determine-ptu-requirements.md
+    - name: PTU billing and cost management
+      displayName: Provisioned throughput billing and cost management
+      href: ../../openai/concepts/provisioned-throughput-billing.md
     - name: Operate provisioned deployments in production
       displayName: Operate provisioned deployments in production
       href: ../../openai/how-to/provisioned-get-started.md

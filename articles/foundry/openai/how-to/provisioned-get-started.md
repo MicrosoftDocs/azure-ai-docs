@@ -23,7 +23,7 @@ recommendations: false
 
 This article covers the operational tasks for running provisioned throughput deployments in production: sizing workloads, benchmarking, monitoring utilization, handling high load, and scaling. If you don't have a deployment yet, start with [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).
 
-This article assumes familiarity with the concepts in [What is provisioned throughput?](../concepts/provisioned-throughput.md) and the billing details in [PTU costs and billing](./provisioned-throughput-onboarding.md).
+This article assumes familiarity with the concepts in [What is provisioned throughput?](../concepts/provisioned-throughput.md) and the billing details in [PTU costs and billing](../concepts/provisioned-throughput-billing.md).
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 ## Estimate PTU requirements
 
-For the estimation formulas, worked example, and capacity calculator walkthrough, see [Determine PTU requirements for a workload](./provisioned-throughput-onboarding.md#determine-ptu-requirements-for-a-workload).
+For the estimation formulas, worked example, and capacity calculator walkthrough, see [Determine PTU requirements for a workload](./determine-ptu-requirements.md).
 
 ## Check and request PTU quota
 
@@ -56,16 +56,19 @@ You can manage your quota by requesting additional quota, or by deleting existin
 
 ## Scale your deployment
 
-You can increase or decrease the PTU count of a provisioned deployment at any time through the Foundry portal or the Azure CLI. For capacity constraints on scale-up, billing adjustment timing, and the effect on existing reservations, see [Scale provisioned deployments](./provisioned-throughput-onboarding.md#scale-provisioned-deployments).
+You can increase or decrease the PTU count of a provisioned deployment at any time through the Foundry portal or the Azure CLI. For capacity constraints on scale-up, billing adjustment timing, and the effect on existing reservations, see [Scale provisioned deployments](../concepts/provisioned-throughput-billing.md#scale-provisioned-deployments).
 
 ## Purchase a reservation
 
 After your provisioned deployment is in place, consider purchasing an Azure Reservation to get a discounted rate on your PTU billing. A reservation provides a significant discount over hourly billing for deployments you plan to run for more than a few days.
 
-> [!IMPORTANT]
-> Capacity availability is dynamic. Always create your deployments first to confirm capacity is available, then purchase the reservation to cover the PTUs you've deployed. This approach ensures you can take full advantage of the reservation discount and prevents you from committing to PTUs you can't use.
+Follow this order of operations to avoid purchasing a reservation for capacity that doesn't exist or doesn't match your deployed PTUs:
 
-For guidance on sizing and purchasing a reservation, see [Azure Reservations for provisioned throughput](./provisioned-throughput-onboarding.md#azure-reservations-for-provisioned-throughput).
+1. Use Foundry to deploy your model in a region with available quota. This step confirms capacity is available.
+1. After deployment, note the deployment details: deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region, and subscription.
+1. Purchase a new reservation that matches those details, or verify that an existing reservation already covers the deployment.
+
+For guidance on sizing, pricing, and managing reservations, see [PTU billing and cost management](../concepts/provisioned-throughput-billing.md).
 
 ## Make inference calls
 
@@ -162,11 +165,33 @@ client.with_options(max_retries=5).chat.completions.create(
 )
 ```
 
+## Clean up resources
+
+Hourly billing begins the moment a provisioned deployment is created and stops when the deployment is deleted. 
+
+> [!NOTE]
+> Deleting a deployment doesn't cancel or change any PTU reservation.
+
+### Delete deployments before deleting resources
+
+Charges for deployments on a deleted resource continue until the resource is purged. Always delete all deployments from a resource before you delete the resource itself.
+
+If you already deleted the resource without removing its deployments first, you can recover or purge the resource to stop billing. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+
+### Delete a provisioned deployment cleanly
+
+To delete a provisioned deployment cleanly:
+
+1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to the resource and delete the deployment.
+1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
+1. Purge the resource to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange a reservation in the Azure portal, but this action might incur fees. See [PTU billing and cost management](../concepts/provisioned-throughput-billing.md#adjust-reservations-as-your-workload-changes) for more information.
+
 ## Related content
 
 - [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md)
 - [What is provisioned throughput?](../concepts/provisioned-throughput.md)
-- [PTU costs and billing](./provisioned-throughput-onboarding.md)
+- [PTU billing and cost management](../concepts/provisioned-throughput-billing.md)
 - [Best practices in cloud applications](/azure/architecture/best-practices/index-best-practices)
 - Retry logic SDK documentation:
     - [Python](https://github.com/openai/openai-python?tab=readme-ov-file#retries)

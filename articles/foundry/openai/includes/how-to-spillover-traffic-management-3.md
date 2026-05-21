@@ -54,4 +54,4 @@ Applying the `IsSpillover` split lets you view the requests to your deployment t
 ## See also
 
 * [What is provisioned throughput?](../concepts/provisioned-throughput.md)
-* [Onboarding to provisioned throughput](../how-to/provisioned-throughput-onboarding.md)
+* [Onboarding to provisioned throughput](../concepts/provisioned-throughput-billing.md)
