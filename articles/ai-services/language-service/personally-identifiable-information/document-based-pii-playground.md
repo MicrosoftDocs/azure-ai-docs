@@ -1,5 +1,6 @@
 ---
-title: Use the document PII playground in Microsoft FoundrytitleSuffix: Azure AI Language
+title: Use the document PII playground in Microsoft 
+FoundrytitleSuffix: Azure AI Language
 description: Test document-based PII detection and redaction interactively in the Azure AI Foundry playground without writing code.
 author: laujan
 manager: nitinme
@@ -29,9 +30,21 @@ The document PII playground in Azure AI Foundry lets you detect and redact perso
 > * Consider using a Foundry resource for the best experience. You can also follow these instructions with a Language resource.
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the **Foundry Account Owner** role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 * **Foundry resource**. Create a [Foundry resource](../../multi-service-resource.md) or see [Configure a Foundry resource](../concepts/configure-azure-resources.md). Alternatively, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project**. For more information, see [Create a Foundry project](../../../ai-foundry/how-to/create-projects.md).
+
+## Role-based access control (RBAC) requirements
+
+Assign the correct roles to your user principal and project managed identity to access the document PII playground. Microsoft recommends using Microsoft Entra ID authentication, which enforces role-based restrictions. Key-based authentication grants full access without role checks and should be avoided in production environments.
+
+> [!IMPORTANT]
+> The Foundry RBAC roles were recently renamed. **Foundry User**, **Foundry Owner**, **Foundry Account Owner**, and **Foundry Project Manager** were previously named Azure AI User, Azure AI Owner, Azure AI Account Owner, and Azure AI Project Manager. You might still see the previous names in some places while the rename rolls out. The role IDs and core permissions are unchanged.
+
+* Assign the minimum required roles to both your user principal and project managed identity so they can access Foundry features.
+
+* Verify current assignments using [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access).
+
 
 ## Navigate to the playground
 
