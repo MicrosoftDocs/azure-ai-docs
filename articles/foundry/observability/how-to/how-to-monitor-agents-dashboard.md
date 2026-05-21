@@ -4,10 +4,11 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 #customer intent: As an AI operations manager, I want to monitor the performance of my AI agents in real time so that I can ensure optimal functionality and compliance.
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: sonalimalik
-ms.date: 04/10/2026
+ms.reviewer: none
+ms.date: 04/30/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -23,6 +24,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
+- Python 3.9 or later (required for Python SDK steps).
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 
 ## Connect Application Insights
@@ -37,7 +39,7 @@ To view metrics for an agent in the Foundry portal:
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 
-2. Navigate to the **Build** page using the top navigation and select the agent you'd like to view data for.
+2. In the top navigation, select **Build**, then select the agent you want to view data for.
 
 3. Select the **Monitor** tab to view operational, evaluation, and red-teaming data for your agent.
 
@@ -110,11 +112,13 @@ Set these environment variables with your own values:
 
 ### Assign permissions for continuous evaluation
 
-To enable continuous evaluation rules, assign the project managed identity the **Azure AI User** role.
+To enable continuous evaluation rules, assign the project managed identity the **Foundry User** role.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 1. In the Azure portal, open the resource for your Foundry project.
 1. Select **Access control (IAM)**, and then select **Add**.
-1. Create a role assignment for **Azure AI User**.
+1. Create a role assignment for **Foundry User**.
 1. For the member, select your Foundry project's managed identity.
 
 ### Create an agent
@@ -164,7 +168,7 @@ var endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT environment variable is not set.");
 
 AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
-#pragma warning disable OPENAI001
+#pragma warning disable OPENAI001 // Suppress experimental API warning for EvaluationClient (preview)
 EvaluationClient evaluationClient = projectClient.ProjectOpenAIClient.GetEvaluationClient();
 #pragma warning restore OPENAI001
 
@@ -287,7 +291,7 @@ Console.WriteLine(
     $" (id: {continuousEvalRule.Id}, name: {continuousEvalRule.DisplayName})");
 ```
 
-References: [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluationrule)
+References: [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluation.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluation.evaluationrule)
 
 ---
 
@@ -364,7 +368,7 @@ To view the full sample code, see:
 |---|---|---|
 | Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
 | You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
-| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Azure AI User** role. |
+| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Foundry User** role. |
 | Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
 
 ## Monitor and set up continuous evaluation for custom agents

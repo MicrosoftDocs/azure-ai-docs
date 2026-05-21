@@ -5,7 +5,7 @@ description: Quick reference, detailed description, and best practices for worki
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 03/23/2026
+ms.date: 05/04/2026
 ms.service: azure-ai-content-understanding
 ms.topic: limits-and-quotas
 ms.custom:
@@ -44,21 +44,25 @@ This article lists the quotas and limits for the Azure Content Understanding in 
 
 ## Supported generative models
 
+
 Content Understanding connects to Foundry Models for generative capabilities. The service periodically adds support for more models. To learn more, see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md).
 
 The currently supported models are:
 
 | Model Type | Model | Version |
 |--|--|--|
-|Chat Completion | gpt-4o | `2024-08-06` |
-|Chat Completion | gpt-4o | `2024-11-20` |
-|Chat Completion | gpt-4o-mini | `2024-11-20` |
+|Chat Completion | gpt-5.2 | `2025-12-11` |
 |Chat Completion | gpt-4.1 | `2025-04-14` |
 |Chat Completion | gpt-4.1-mini | `2025-04-14` |
 |Chat Completion | gpt-4.1-nano | `2025-04-14` |
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
+
+[!INCLUDE [gpt-4x-deprecation-notice](includes/gpt-4x-deprecation-notice.md)]
+
+
+For the model retirement schedule, see [Model retirements](/azure/foundry/openai/concepts/model-retirement-schedule).
 
 ## Input file limits
 

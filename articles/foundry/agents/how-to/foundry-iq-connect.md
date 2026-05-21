@@ -6,14 +6,16 @@ ms.author: haileytapia
 ms.reviewer: fsunavala
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/02/2026
+ms.date: 04/30/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+[!INCLUDE [Preview API usage](../../../search/includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
@@ -49,9 +51,11 @@ We recommend role-based access control for production deployments. If roles aren
 
 #### [Microsoft Foundry](#tab/foundry)
 
-- On the parent resource of your project, you need the **Azure AI User** role to access model deployments and create agents. **Owners** automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
+- On the parent resource of your project, you need the **Foundry User** role to access model deployments and create agents. **Owners** automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
 
-- On the parent resource of your project, you need the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+- On the parent resource of your project, you need the **Foundry Project Manager** role to create a project connection for MCP authentication and either **Foundry User** or **Foundry Project Manager** to use the MCP tool in agents.
 
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
@@ -284,7 +288,7 @@ Content-Type: application/json
 
 [!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](/azure/search/agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time).
 
 #### [Python](#tab/python)
 

@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2024
   - references_regions
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 04/24/2026
 ---
 
 # Rewrite queries with semantic ranker in Azure AI Search (Preview)
@@ -31,7 +31,7 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 ## Prerequisites
 
-- [Azure AI Search](search-create-service-portal.md) in any [region that provides query rewrite](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+- [Azure AI Search](search-create-service-portal.md) in any [region that provides query rewrite](search-region-support.md).
 
 - An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content. The examples in this guide use the [hotels-sample index](search-get-started-portal.md) to demonstrate query rewriting.
 

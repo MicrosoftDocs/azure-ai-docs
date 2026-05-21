@@ -2,12 +2,12 @@
 title: Trigger batch inference with trained model
 titleSuffix: Azure AI services
 description: Trigger batch inference with trained model
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Trigger batch inference with trained model

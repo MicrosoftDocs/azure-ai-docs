@@ -2,7 +2,7 @@
 title: "Configure Claude Code for Microsoft Foundry"
 description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration."
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 02/24/2026
 ms.custom: dev-focus, doc-kit-assisted
@@ -81,7 +81,7 @@ Benefits for Claude Code users:
 - **Cost optimization**: Use routing profiles to balance quality versus cost while maintaining baseline performance.
 - **Single endpoint**: One deployment handles all routing decisions across your model fleet.
 
-To use Model Router with Claude Code, first deploy the supported Claude models, then deploy Model Router and enable them through [model subset configuration](../../openai/how-to/model-router.md#select-your-model-subset).
+To use Model Router with Claude Code, first deploy the supported Claude models, then deploy Model Router and enable them through [model subset configuration](../../openai/how-to/model-router.md#optional-route-to-a-model-subset).
 
 ## Install Claude Code CLI
 
@@ -411,10 +411,12 @@ To grant team members access to your Foundry-hosted Claude models, assign one of
 
 | Role | Permissions |
 | --- | --- |
-| **Azure AI User** | Invoke models, view deployments |
+| **Foundry User** | Invoke models, view deployments |
 | **Cognitive Services User** | Invoke models, view deployments (legacy Azure AI Services role) |
 
-The **Azure AI User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+The **Foundry User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
 
 These roles include all required permissions for running Claude Code with Foundry.
 

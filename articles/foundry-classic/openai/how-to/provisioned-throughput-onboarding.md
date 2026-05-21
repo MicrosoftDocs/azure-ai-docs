@@ -3,9 +3,9 @@ title: "Provisioned throughput unit (PTU) costs and billing (classic)"
 description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 04/10/2026
+ms.date: 04/29/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
@@ -75,7 +75,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 [!INCLUDE [provisioned-throughput-onboarding 3](../../../foundry/openai/includes/how-to-provisioned-throughput-onboarding-3.md)]
 
-## Direct from Azure models
+## Foundry Models sold by Azure
 
 |Topic| **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 |---|---|---|---|---|
@@ -94,14 +94,14 @@ For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calc
 
 ## Fireworks on Microsoft Foundry models (Preview)
 
-The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
+The following Fireworks on Microsoft Foundry models currently support provisioned throughput.
 
-| Topic | **gpt-oss-120b** | **Kimi K2 Instruct 0905** | **Kimi K2 Thinking** | **Kimi K2.5** | **DeepSeek v3.1** | **DeepSeek v3.2** | **Qwen3 14B** | **MiniMax 2.5** | **GLM-5** | **GLM-4.7** |
-|---|---|---|---|---|---|---|---|---|---|---|
-|Global provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
-|Global provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
-|Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
-|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
+|Topic|**gpt-oss-120b**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**DeepSeek v3.1**|**DeepSeek v3.2**|**Qwen3 14B**|**MiniMax 2.5**|**GLM-5**|**GLM-4.7**|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|Global provisioned minimum deployment|80|500|500|800|800|800|1200|80|400|700|800|
+|Global provisioned scale increment|40|275|275|400|400|400|600|40|200|350|400|
+|Input TPM per PTU|13,500|1,250|700|530|2,000|1,050|1,500|4,800|3,000|3,500|3,000|
+|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 

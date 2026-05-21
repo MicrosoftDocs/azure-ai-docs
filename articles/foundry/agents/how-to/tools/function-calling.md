@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/30/2026
 author: jonburchel
 reviewer: lindazqli
 ms.author: jburchel
@@ -83,6 +83,9 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
+# Create a conversation for multi-turn interaction
+conversation = openai.conversations.create()
+
 # Define a function tool for the model to use
 func_tool = FunctionTool(
     name="get_horoscope",
@@ -115,6 +118,7 @@ agent = project.agents.create_version(
 # Prompt the model with tools defined
 response = openai.responses.create(
     input="What is my horoscope? I am an Aquarius.",
+    conversation=conversation.id,
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
@@ -138,7 +142,7 @@ for item in response.output:
 # Submit function results and get the final response
 response = openai.responses.create(
     input=input_list,
-    previous_response_id=response.id,
+    conversation=conversation.id,
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
@@ -146,6 +150,7 @@ print(f"Agent response: {response.output_text}")
 
 # Clean up resources
 project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+openai.conversations.delete(conversation_id=conversation.id)
 ```
 
 ### Expected output
@@ -534,6 +539,9 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
+  // Create a conversation for multi-turn interaction
+  const conversation = await openai.conversations.create();
+
   // Create agent with function tools
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
@@ -552,6 +560,7 @@ export async function main(): Promise<void> {
           content: "What is my horoscope? I am an Aquarius.",
         },
       ],
+      conversation: conversation.id,
     },
     {
       body: { agent: { name: agent.name, type: "agent_reference" } },
@@ -589,7 +598,7 @@ export async function main(): Promise<void> {
   const finalResponse = await openai.responses.create(
     {
       input: inputList,
-      previous_response_id: response.id,
+      conversation: conversation.id,
     },
     {
       body: { agent: { name: agent.name, type: "agent_reference" } },
@@ -601,6 +610,7 @@ export async function main(): Promise<void> {
 
   // Clean up
   await project.agents.deleteVersion(agent.name, agent.version);
+  await openai.conversations.delete(conversation.id);
 }
 
 main().catch((err) => {
@@ -728,7 +738,7 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
+| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and the `conversation` ID to continue. |
 | No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
 | Arguments aren't valid JSON. | Schema mismatch or model generated incorrect information. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
 | Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |

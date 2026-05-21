@@ -65,8 +65,8 @@ Use the following guidance to choose a method:
 | Method | Description | User context persists |
 | --- | --- | --- |
 | Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity (preview) | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity (preview) | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
 | OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
 | Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
 
@@ -96,7 +96,7 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
-### Use agent identity authentication (preview)
+### Use agent identity authentication
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
 
@@ -121,7 +121,9 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
 
@@ -278,7 +280,7 @@ After you configure authentication, verify the connection works correctly:
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | You don't get an `oauth_consent_request` when you expect one | The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
-| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Azure AI User** role (or higher) on the project. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Foundry User** role (or higher) on the project. |
 | Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
 | Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |

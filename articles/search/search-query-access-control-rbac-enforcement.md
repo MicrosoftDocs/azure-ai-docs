@@ -5,6 +5,7 @@ ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 01/15/2026
+ai-usage: ai-assisted
 ---
 
 # Query-time ACL and RBAC enforcement in Azure AI Search
@@ -123,8 +124,8 @@ After you set up permissions, you can run the query. The following example is a 
 
 ```http
 POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2025-11-01-preview
-Authorization: Bearer {AUTH_TOKEN} 
-x-ms-query-source-authorization: Bearer {TOKEN} 
+Authorization: Bearer {AUTH_TOKEN}
+x-ms-query-source-authorization: {TOKEN}
 x-ms-enable-elevated-read: true
 
 {

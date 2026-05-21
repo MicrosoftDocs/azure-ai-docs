@@ -58,7 +58,7 @@ Foundry supports use of MAI-Image-2 (Preview) and MAI-Image-2e (Preview). Each o
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
 - **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### MAI-Image-2 (Preview)
 

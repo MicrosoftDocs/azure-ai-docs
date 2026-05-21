@@ -1,8 +1,8 @@
 ---
 title: "Limited access to Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "This document details the limited access policy for Azure OpenAI (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -13,7 +13,7 @@ ms.custom:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Limited access for Azure Direct Models (classic)
+# Limited access for Foundry Models sold by Azure (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/limited-access.md)
 

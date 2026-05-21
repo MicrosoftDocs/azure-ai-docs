@@ -2,6 +2,7 @@
 title: "Get Answers in Chat Playground - Microsoft Foundry Quickstart (classic)"
 description: "Get answers using the chat playground in Microsoft Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - build-2024
   - ignite-2024
@@ -36,7 +37,9 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 * [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 * The following Azure RBAC roles are required. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
     * **Owner** on the subscription to create a project and assign roles.
-    * **Azure AI User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
+    * **Foundry User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
+
+      [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 
 ## Deploy a model
 

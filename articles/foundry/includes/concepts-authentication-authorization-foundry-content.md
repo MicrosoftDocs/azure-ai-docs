@@ -6,7 +6,7 @@ ms.author: jburchel
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -191,11 +191,13 @@ In Foundry, use the built-in roles to separate the allowed actions for a user. M
 
 | Scenario | Typical built-in roles | Notes |
 | --- | --- | --- |
-| Build agents with pre-deployed models | Azure AI User | Data plane usage only; no management writes. |
-| Manage deployments or fine-tune models | Azure AI Project Manager | Includes model deployment creation and update. |
-| Rotate keys or manage resource | Azure AI Account Owner | High privilege; consider custom role for least privilege. |
-| Manage resource, manage deployments, build agents | Azure AI Owner | Highly privileged self-serve role for users who need both control plane and data plane access. Combine with Azure Monitor Reader if observability required. |
-| Observability, tracing, monitoring | Azure AI User (minimum) | Add Azure Monitor Reader on Application Insights. |
+| Build agents with pre-deployed models | Foundry User | Data plane usage only; no management writes. |
+| Manage deployments or fine-tune models | Foundry Project Manager | Includes model deployment creation and update. |
+| Rotate keys or manage resource | Foundry Account Owner | High privilege; consider custom role for least privilege. |
+| Manage resource, manage deployments, build agents | Foundry Owner | Highly privileged self-serve role for users who need both control plane and data plane access. Combine with Azure Monitor Reader if observability required. |
+| Observability, tracing, monitoring | Foundry User (minimum) | Add Azure Monitor Reader on Application Insights. |
+
+[!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 To understand the breakdown of built-in roles and the control and data plane actions, review the following diagram. 
 
@@ -210,18 +212,20 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 
 1. Ensure your Microsoft Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is required for token-based authentication.
 1. Assign the needed built-in or custom role to each principal. You need the **Owner** or **User Access Administrator** role at the target scope to assign roles. Common role assignments:
-   - **Azure AI User**: For developers who need to build and test with pre-deployed models.
-   - **Azure AI Project Manager**: For team leads who need to create projects and manage deployments.
-   - **Azure AI Account Owner**: For administrators who need full resource management and can conditionally assign Azure AI User for data plane access.
-   - **Azure AI Owner**: For users who need both full resource management and data plane access.
-   Example CLI command to assign the Azure AI User role:
+   - **Foundry User**: For developers who need to build and test with pre-deployed models.
+   - **Foundry Project Manager**: For team leads who need to create projects and manage deployments.
+   - **Foundry Account Owner**: For administrators who need full resource management and can conditionally assign Foundry User for data plane access.
+   - **Foundry Owner**: For users who need both full resource management and data plane access.
+   Example CLI command to assign the Foundry User role:
 
    ```azurecli
    az role assignment create \
      --assignee <principal-id> \
-     --role "Azure AI User" \
+     --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
      --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<resource-name>
    ```
+
+[!INCLUDE [role-rename-note-code](./role-rename-note-code.md)]
 
    To verify the role assignment, run `az role assignment list --assignee <principal-id> --scope <resource-scope>` and confirm the role appears in the output.
 1. (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
@@ -235,7 +239,7 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 | Error | Cause | Resolution |
 | --- | --- | --- |
 | 401 Unauthorized | Missing or expired token; invalid API key | Verify the token acquisition scope is `https://ai.azure.com/.default`. Regenerate the API key if you use key-based auth. |
-| 403 Forbidden | Missing RBAC role assignment | Assign the appropriate built-in role (for example, Azure AI User) at the resource or project scope. |
+| 403 Forbidden | Missing RBAC role assignment | Assign the appropriate built-in role (for example, Foundry User) at the resource or project scope. |
 | AADSTS700016 | Application not found in tenant | Verify the app registration exists in the correct tenant and the client ID is correct. |
 | Custom subdomain required | Resource uses a regional endpoint instead of a custom subdomain | Configure a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) on the Foundry resource. Token-based auth requires a custom subdomain. |
 
