@@ -26,7 +26,7 @@ ms.custom: include
 
    ```azurecli
    az role assignment create \
-       --role "Foundry User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --assignee "user@contoso.com" \
        --scope $PROJECT_ID
    ```
@@ -37,7 +37,7 @@ ms.custom: include
 
    ```azurecli
    az role assignment create \
-       --role "Foundry User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --assignee-object-id "<security-group-object-id>" \
        --assignee-principal-type Group \
        --scope $PROJECT_ID
@@ -48,7 +48,7 @@ ms.custom: include
    ```azurecli
    az role assignment list \
        --scope $PROJECT_ID \
-       --role "Foundry User" \
+       --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
        --output table
    ```
 
