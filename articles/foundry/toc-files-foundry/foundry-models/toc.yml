@@ -153,7 +153,7 @@ items:
       href: ../../openai/concepts/provisioned-throughput.md
     - name: Determine PTU requirements for a workload
       displayName: Determine PTU requirements for a workload
-      href: ../../openai/how-to/determine-ptu-requirements.md
+      href: ../../openai/how-to/determine-provisioned-throughput-unit-requirements.md
     - name: PTU billing and cost management
       displayName: Provisioned throughput billing and cost management
       href: ../../openai/concepts/provisioned-throughput-billing.md

@@ -33,7 +33,7 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 ## Estimate PTU requirements
 
-For the estimation formulas, worked example, and capacity calculator walkthrough, see [Determine PTU requirements for a workload](./determine-ptu-requirements.md).
+For the estimation formulas, worked example, and capacity calculator walkthrough, see [Determine PTU requirements for a workload](./determine-provisioned-throughput-unit-requirements.md).
 
 ## Check and request PTU quota
 

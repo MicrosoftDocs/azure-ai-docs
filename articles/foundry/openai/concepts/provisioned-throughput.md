@@ -34,7 +34,7 @@ Standard deployments, batch deployments, priority processing, and provisioned th
 | **Standard** | Pay per token | None | Balanced workloads: development, testing, and production with variable or unpredictable traffic |
 | **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md#latency-target) | Latency-sensitive production workloads needing consistent low latency without a long-term commitment |
 | **Batch** | Pay per token (discounted batch rate) | None | Bulk processing workloads without latency requirements. Results are returned asynchronously. |
-| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour (or using [Azure reservations](#azure-reservations)) | [Defined latency target per model](../how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model) | Mission-critical, high-scale production workloads requiring guaranteed throughput and consistent latency |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour (or using [Azure reservations](#azure-reservations)) | [Defined latency target per model](../how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model) | Mission-critical, high-scale production workloads requiring guaranteed throughput and consistent latency |
 
 ## When to use provisioned throughput
 
@@ -55,8 +55,8 @@ Key characteristics of PTUs:
 
 - **Model-independent**: The same PTU quota can be used to deploy any [supported model](#supported-models). You don't buy PTUs for a specific model.
 - **Region-specific**: PTU quota is granted per subscription, per region, and per [deployment type](#provisioned-throughput-deployment-types). Quota in East US doesn't carry over to West Europe.
-- **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [Per-model throughput parameters](../how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model).
-- **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](../how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model).
+- **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [Per-model throughput parameters](../how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model).
+- **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](../how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model).
 
 ## Quota and capacity
 
@@ -111,14 +111,14 @@ For step-by-step guidance on creating provisioned deployments and handling capac
 Before creating a provisioned deployment, estimate how many PTUs your workload requires. Three factors drive the calculation:
 
 - **Request shape**: Your expected requests per minute (RPM), average prompt size (input tokens), and average response size (output tokens).
-- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. A model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/determine-ptu-requirements.md#models-with-a-non-standard-output-to-input-ratio).
+- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. A model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/determine-provisioned-throughput-unit-requirements.md#models-with-a-non-standard-output-to-input-ratio).
 - **Cache rate**: The fraction of input tokens served from the prompt cache. Cached tokens don't consume PTU capacity, so a higher cache rate reduces the PTUs required.
 
 The sizing calculation uses these factors to convert your expected token volumes into a single **normalized TPM** figure, then divides by the model's **Input TPM per PTU** value to arrive at the required PTU count.
 
 You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal (navigate to **Operate** > **Quota** > **Provisioned throughput unit**) for a guided estimate.
 
-For the complete sizing methodology that includes formulas, worked examples with cache variation, and the full capacity calculator reference, see [Determine PTU requirements for a workload](../how-to/determine-ptu-requirements.md).
+For the complete sizing methodology that includes formulas, worked examples with cache variation, and the full capacity calculator reference, see [Determine PTU requirements for a workload](../how-to/determine-provisioned-throughput-unit-requirements.md).
 
 ## Provisioned throughput deployment types
 
