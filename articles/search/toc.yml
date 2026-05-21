@@ -483,6 +483,8 @@ items:
         href: agentic-retrieval-how-to-configure-freshness.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
