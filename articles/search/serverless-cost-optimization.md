@@ -1,6 +1,6 @@
 ---
-title: Optimize costs for Azure AI Search serverless
-description: Learn how to reduce Azure AI Search serverless costs by tuning compute usage, managing on-disk index storage, and tracking separately billed features.
+title: Optimize costs for Azure AI Search Serverless
+description: Learn how to reduce costs for the Serverless pricing model in Azure AI Search costs by tuning compute usage, managing on-disk index storage, and tracking separately billed features.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
@@ -14,32 +14,31 @@ ai-usage: ai-assisted
 
 Azure AI Search supports two pricing models, each designed for different workload patterns:
 
-- **Dedicated (provisioned capacity)**: Fixed pricing based on search units. You select a service tier, and you're billed hourly based on provisioned units. For more information, see [Choose a pricing model and service tier](search-sku-tier.md).
+- **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a service tier, and you're billed hourly based on provisioned units.
 
-- **Serverless (consumption-based)**: Metered pricing based on actual usage. *This model is currently in preview.* You're billed for:
-
-    - Compute (measured in compute units, or CU/h)
-    - Indexed storage (billed per GB/month based on on-disk index size)
+- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
 
 > [!IMPORTANT]
 > The Serverless pricing model is currently available to try at no cost during this early preview period. Usage-based billing will begin prior to the end of the public preview with details provided at least 30-days in advance.
 
-## How cost is determined in the serverless model
+For more information about pricing model and service tier differences, see [Choose a pricing model and service tier](search-sku-tier.md).
 
-In the serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
+## How cost is determined in the Serverless model
 
-- Queries and indexing consume compute, measured in compute units per hour (CU/h).
+In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
+
+- Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
 - Storage is billed separately based on index size on disk.
-- When the service is idle with no active queries or indexing, compute usage is zero. There is no reserved or minimum capacity charge.
+- When the service is idle with no active queries or indexing, compute usage is zero. There's no reserved or minimum capacity charge.
 
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
 > [!IMPORTANT]
-> Your CU/h charges don't include all premium capabilities. Semantic ranker, agentic retrieval, image extraction, and skill execution are billed separately.
+> Your Compute Unit per hour (CU/h) charges don't include semantic ranker, agentic retrieval, image extraction and skill exectuion. These capabilities are billed separately.
 
-## Understand compute units (CUs)
+## Understand Compute Units (CUs)
 
-A compute unit (CU) represents the measured system resources required to perform search and indexing operations in the Serverless model. CU cost is driven primarily by CPU, memory, and IO utilization and secondarily by Index size and document payload size with usage being billed per hour (CU/h).
+A Compute Unit (CU) represents the measured system resources required to perform search and indexing operations in the Serverless model. CU cost is driven primarily by CPU, memory, and IO utilization and secondarily by Index size and document payload size with usage being billed as Compute Unit per hour (CU/h).
 
 Compute cost scales with:
 
@@ -146,7 +145,7 @@ In addition to query and indexing operations, Azure AI Search includes object-le
 
 ### Optimize vector costs
 
-Vector workloads are typically the highest-cost component in serverless search because they impact both compute (queries and indexing) and storage (vector size on disk). To reduce cost, optimize both how vectors are stored and how they’re queried.
+Vector workloads are typically the highest-cost component in search for the Serverless pricing model because they impact both Compute Units (queries and indexing) and storage (vector size on disk). To reduce cost, optimize both how vectors are stored and how they’re queried.
 
 #### Optimize vector storage and schema
 
@@ -168,7 +167,7 @@ Vector queries are compute-intensive because they require similarity calculation
 
 ## Reduce costs by minimizing usage
 
-The serverless model charges only for resources consumed. When there are no requests, compute usage drops accordingly.
+The Serverless model charges only for resources consumed. When there are no requests, compute usage drops accordingly.
 
 To minimize usage costs:
 
@@ -177,7 +176,7 @@ To minimize usage costs:
 - Monitor usage and tune workloads based on demand.
 
 > [!TIP]
-> The same query can have different latency and CU profiles depending on whether the service is warm or cold. After a period with no read or write traffic, serverless compute usage drops to zero. The next request might have higher latency and consume more CUs while data paths warm up. Larger indexes generally take longer to warm than smaller indexes, so cold-start effects are often more noticeable on larger services.
+> The same query can have different latency and CU profiles depending on whether the service is warm or cold. After a period with no read or write traffic, compute usage in the Serverless pricing model drops to zero. The next request might have higher latency and consume more CUs while data paths warm up. Larger indexes generally take longer to warm than smaller indexes, so cold-start effects are often more noticeable on larger services.
 
 ## Optimize storage costs
 
