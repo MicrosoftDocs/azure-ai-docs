@@ -39,7 +39,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
-- The latest preview Python SDK (version 2.0.0 or later) or the 2025-11-01-preview REST API version.
+- The latest preview Python SDK (version 2.0.0 or later) or the 2026-05-01-preview REST API version.
 
   ```bash
   pip install "azure-ai-projects>=2.0.0" requests
@@ -88,6 +88,10 @@ Use the following values in the code samples.
 > [!TIP]
 > We recommend you store the project endpoint, search endpoint, and knowledge base name in a `.env` file for local development.
 
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](/azure/search/search-security-rbac), but you can use [API keys](/azure/search/search-security-api-keys) if a role assignment isn't feasible. For more information, see [Connect to a search service](/azure/search/search-get-started-rbac).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ## Create a project connection
 
 Create a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
@@ -105,7 +109,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 credential = DefaultAzureCredential()
 project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 
 # Get bearer token for authentication
 bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
@@ -156,7 +160,7 @@ Content-Type: application/json
   "properties": {
     "authType": "ProjectManagedIdentity",
     "category": "RemoteTool",
-    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
+    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
     "isSharedToAll": true,
     "audience": "https://search.azure.com/",
     "metadata": {
@@ -207,7 +211,7 @@ from azure.identity import DefaultAzureCredential
 
 # Provide agent configuration details
 credential = DefaultAzureCredential()
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview"
 project_endpoint = "{project_endpoint}" # e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
 project_connection_name = "{project_connection_name}"
 agent_name = "{agent_name}"
@@ -268,7 +272,7 @@ Content-Type: application/json
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -322,7 +326,7 @@ Provide the header and token in the MCP tool configuration:
     "tools": [
       {
         "server_label": "knowledge-base",
-        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview",
         "require_approval": "never",
         "allowed_tools": [
           "knowledge_base_retrieve"
@@ -490,7 +494,7 @@ This section helps you troubleshoot common issues when connecting Foundry Agent 
 
 - Confirm `search_service_endpoint` is the Azure AI Search service URL, such as `https://<name>.search.windows.net`.
 - Confirm `knowledge_base_name` matches the knowledge base you created in Azure AI Search.
-- Confirm you use the `2025-11-01-preview` API version for the knowledge base MCP endpoint.
+- Confirm you use the `2026-05-01-preview` API version for the knowledge base MCP endpoint.
 
 ### The agent doesn't ground answers
 
