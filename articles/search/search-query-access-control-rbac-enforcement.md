@@ -10,16 +10,19 @@ ai-usage: ai-assisted
 
 # Query-time ACL and RBAC enforcement in Azure AI Search
 
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
+
 Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.
 
 Authorized access depends on permission metadata that's ingested during indexing. For indexer data sources that have built-in access models, such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365, an indexer can pull in the permission metadata for each document automatically. For other data sources, you must assemble the document payload yourself, and the payload must include both content and the associated permission metadata. You then use the [push APIs](search-index-access-control-lists-and-rbac-push-api.md) to load the index.
 
 This article explains how to set up queries that use permission metadata to filter results.
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 ## Prerequisites
 
@@ -86,7 +89,7 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 
 ## SharePoint groups at query time
 
-Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships (such as Owners, Members, Visitors, and custom site groups) at query time. To enable this scenario, the index must include:
+Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships, such as Owners, Members, Visitors, and custom site groups, at query time. To enable this scenario, the index must include:
 
 - A `sharePointConnectorAppRegistration` property that references the federated identity credential of the Microsoft Entra application used to call SharePoint on behalf of the user.
 - A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_sharepoint_site_url` source field).
@@ -95,7 +98,7 @@ At query time, Azure AI Search uses the registered application and the site URL 
 
 For configuration details and limitations, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
 
-### Example: query with SharePoint site group enforcement
+### Example: Query with SharePoint site group enforcement
 
 The request is identical to the standard ACL-enforced query. The search service uses the index's `sharePointConnectorAppRegistration` to resolve SharePoint group membership on the caller's behalf. Include `GroupIds` in the `select` clause to see `spg:`-prefixed values in the response.
 

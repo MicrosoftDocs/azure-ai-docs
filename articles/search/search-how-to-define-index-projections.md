@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ---
 
@@ -160,7 +160,7 @@ Index projections are generally available. We recommend the most recent stable A
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
 
-When the parent document carries permission metadata used for document-level access (for example, `metadata_user_ids`, `metadata_group_ids`, `metadata_sharepoint_site_url`), include those fields in `mappings` so every chunk inherits them. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
+When the parent document carries permission metadata used for document-level access, such as `metadata_user_ids`, `metadata_group_ids`, or `metadata_sharepoint_site_url`, include those fields in `mappings` so that every chunk inherits them. For more information, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ```json
 "indexProjections": {

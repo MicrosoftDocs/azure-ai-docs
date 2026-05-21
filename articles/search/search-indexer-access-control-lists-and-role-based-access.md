@@ -10,7 +10,13 @@ ai-usage: ai-assisted
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 Azure Data Lake Storage (ADLS) Gen2 supports per-user access to directories and files through [access control lists](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) (ACLs) and [role-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) (Azure RBAC). [Attribute-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) (Azure ABAC) isn't supported.
 
@@ -19,11 +25,6 @@ Preview APIs in Azure AI Search can ingest this permission metadata alongside do
 This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob knowledge source to automatically *pull* permission metadata into a search index. It supplements [Index data from ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) and [Create a blob knowledge source for ADLS Gen2](agentic-knowledge-source-how-to-blob.md) with information specific to permission ingestion. To manually *push* permission metadata, see [Index document ACLs using the push API](search-index-access-control-lists-and-rbac-push-api.md).
 
 :::image type="content" source="media/search-indexer-access-control-lists-and-role-based-access/security-trimmed-rag-adls-gen2.png" alt-text="Architecture diagram showing a security-trimmed RAG solution where an ADLS Gen2 indexer ingests documents and ACL and RBAC permission metadata from an ADLS Gen2 container, stores them in an Azure AI Search index, and a RAG orchestrator filters query results so each user retrieves only documents they're authorized to access." lightbox="media/search-indexer-access-control-lists-and-role-based-access/security-trimmed-rag-adls-gen2.png":::
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 ## Prerequisites
 

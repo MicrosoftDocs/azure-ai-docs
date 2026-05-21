@@ -10,7 +10,13 @@ ai-usage: ai-assisted
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 This article explains how to ingest an access control list (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
 
@@ -18,11 +24,6 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 > [!IMPORTANT]
 > For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview). Governance remains fully in SharePoint, and query results automatically respect all applicable permissions and labels.
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 ## Prerequisites
 
@@ -49,16 +50,13 @@ The Microsoft Entra application permissions and credential type required for ACL
 | Query-time resolution of SharePoint site groups via [`sharePointConnectorAppRegistration`](#configure-sharepoint-groups-support) | Add **SharePoint**: `User.Read.All` to the same app registration used by the indexer | Federated credential (required) |
 
 > [!NOTE]
-> When you add a permission, you choose between two API surfaces: **Microsoft Graph** and **SharePoint**. Both expose similarly named permissions (for example, `Sites.FullControl.All` exists under both). Add each permission under the API surface indicated in the table.
-
-> [!IMPORTANT]
-> Use a federated credential whenever the scenario adds SharePoint API permissions. Client secrets work only for the Microsoft Graph–only document-library row.
-
-> [!NOTE]
-> `User.Read.All` is required for list items and ASPX site pages because the indexer reads those permissions through the SharePoint REST API, which returns only the user's email. The indexer then calls Microsoft Graph to resolve each email to its Microsoft Entra object ID, and that lookup requires `User.Read.All`.
-
-> [!IMPORTANT]
-> When you use `Sites.Selected`, grant the app explicit access to each target SharePoint site before indexing.
+> + When you add a permission, you choose between two API surfaces: **Microsoft Graph** and **SharePoint**. Both expose similarly named permissions. For example, `Sites.FullControl.All` exists under both. Add each permission under the API surface indicated in the table.
+>
+> + Use a federated credential whenever the scenario adds SharePoint API permissions. Client secrets work only for the Microsoft Graph–only document-library row.
+>
+> + `User.Read.All` is required for list items and ASPX site pages because the indexer reads those permissions through the SharePoint REST API, which returns only the user's email. The indexer then calls Microsoft Graph to resolve each email to its Microsoft Entra object ID, and that lookup requires `User.Read.All`.
+>
+> + When you use `Sites.Selected`, grant the app explicit access to each target SharePoint site before indexing.
 
 A federated credential authenticates the app using a trusted managed identity instead of a client secret. The same federated credential covers both ingestion (indexer) and query-time evaluation of SharePoint site groups. For setup steps, see [Configuring the registered application with a managed identity](search-how-to-index-sharepoint-online.md#configuring-the-registered-application-with-a-managed-identity).
 
@@ -137,9 +135,9 @@ Where you map the ACL metadata fields depends on whether the indexer writes one 
 
 | Scenario | Populate ACL fields via | Why |
 |---|---|---|
-| No skillset, or skillset without chunking — one search document per source item | **Indexer field mappings** only (`metadata_user_ids` → `UserIds`, `metadata_group_ids` → `GroupIds`, and for SharePoint groups `metadata_sharepoint_site_url` → `SharePointSiteUrl`). | The indexer writes a single document to the target index, and field mappings carry source metadata to index fields. |
+| No skillset or skillset without chunking; one search document per source item | **Indexer field mappings** only (`metadata_user_ids` → `UserIds`, `metadata_group_ids` → `GroupIds`, and for SharePoint groups `metadata_sharepoint_site_url` → `SharePointSiteUrl`). | The indexer writes a single document to the target index, and field mappings carry source metadata to index fields. |
 | Skillset with chunking (for example, Text Split skill for integrated vectorization), single index with parent fields repeated on each chunk (`projectionMode: skipIndexingParentDocuments`) | **Index projections** in the skillset (`mappings` from `/document/metadata_user_ids`, `/document/metadata_group_ids`, and for SharePoint groups `/document/metadata_sharepoint_site_url`). | The parent document isn't indexed; only chunks are. ACL values must be projected onto every chunk so query-time filters apply on the chunk returned in results. Indexer field mappings for these fields are bypassed in this mode. |
-| Skillset with chunking, two-index pattern (parent index + child chunk index) | **Both** — indexer field mappings populate ACL fields on the parent index, index projections populate ACL fields on the child chunk index. | Both indexes are queryable, and each needs the metadata it filters on. |
+| Skillset with chunking, two-index pattern (parent index + child chunk index) | **Both**: indexer field mappings populate ACL fields on the parent index, index projections populate ACL fields on the child chunk index. | Both indexes are queryable, and each needs the metadata it filters on. |
 
 In all chunked scenarios, every chunk must carry the ACL fields. Permission filters apply per document, so a chunk missing ACL fields can't be returned to the right caller.
 
@@ -181,7 +179,7 @@ Set `retrievable` attribute to `true` only during development to verify values. 
 
 When chunking is enabled, the parent document isn't written to the index when `projectionMode` is `skipIndexingParentDocuments`. Carry the ACL metadata onto each chunk through `indexProjections.selectors[].mappings`.
 
-If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as a [split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
+If your indexer uses a [skillset](cognitive-search-working-with-skillsets.md) with data chunking, such as the [Text Split skill](cognitive-search-skill-textsplit.md) when enabling [integrated vectorization](vector-search-integrated-vectorization.md), make sure to map ACL properties to each chunk using [index projections](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true). The `//` lines in the following example are illustrative annotations and aren't valid JSON. Remove them before submitting the request.
 
 ```http
 PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2026-05-01-preview

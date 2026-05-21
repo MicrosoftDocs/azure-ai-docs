@@ -4,7 +4,7 @@ description: Learn how query-time enforcement of Microsoft Purview sensitivity l
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 

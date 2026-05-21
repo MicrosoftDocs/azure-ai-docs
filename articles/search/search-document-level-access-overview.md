@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Conceptual overview of document-level permissions in Azure AI Search.
-ms.date: 05/19/2026
+ms.date: 06/02/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -12,12 +12,13 @@ ms.custom:
 
 # Document-level access control in Azure AI Search
 
-Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure agentic AI systems that ground on enterprise data, retrieval-augmented generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.
-
 <!-- preserve -->
 <!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
 > [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 ## Approaches for document-level access control
 
@@ -30,16 +31,16 @@ Azure AI Search provides four primary approaches to enforce document-level permi
 | Microsoft Purview sensitivity labels (preview) | Indexer extracts sensitivity labels defined in Microsoft Purview from supported data sources (Azure Blob Storage, ADLS Gen2, SharePoint in Microsoft 365, OneLake). These labels are stored as metadata and evaluated at query time to enforce user access based on Microsoft Entra tokens and Purview policy assignments. This approach aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model.|
 | SharePoint in Microsoft 365 ACLs (preview) | When configured, Azure AI Search indexers extract SharePoint document, list item, and ASPX site page permissions directly from Microsoft 365 ACLs. Starting in the 2026-05-01-preview REST API, ACL changes for items with unique permissions are also picked up incrementally on each successful indexer run. Access checks use Microsoft Entra user and group memberships, with SharePoint site groups also supported in the same preview (subject to extra configuration). Requires Microsoft Graph `Sites.FullControl.All` (to read SharePoint content and ACLs) on the app registration; `User.Read.All` is additionally required when you index list items or ASPX site pages (to resolve the email addresses returned by the SharePoint REST API into Microsoft Entra object IDs). For the full per-scenario permission matrix, including minimum-permission combinations, see [Permissions by ACL scenario](search-indexer-sharepoint-access-control-lists.md#permissions-by-acl-scenario). |
 
-## Choosing an approach
+## Choose an approach
 
 Use the following criteria to identify the approach that best fits your data source, identity model, and compliance requirements.
 
 | Scenario | Recommended approach | Why |
 |----------|----------------------|-----|
-| Custom identity system, non-Microsoft security framework, or any push-model index | Security filters | API-agnostic, generally available, and based on simple string matching. |
-| Content in ADLS Gen2 or Azure Blob Storage with existing ACL or RBAC assignments | POSIX-like ACL / RBAC scopes | Native Microsoft Entra integration; query-time enforcement uses permission metadata written to the index by the documented synchronization mechanism. |
-| Enterprise content already governed by Microsoft Purview information protection policies | Microsoft Purview sensitivity labels | Reuses centralized classification and policy assignments across Azure AI Search. |
-| Content sourced from SharePoint in Microsoft 365 (libraries, lists, ASPX site pages) | SharePoint in Microsoft 365 ACLs | Honors native SharePoint permissions, including SharePoint site groups. |
+| Custom identity system, non-Microsoft security framework, or any push-model index. | Security filters | API-agnostic, generally available, and based on simple string matching. |
+| Content in ADLS Gen2 or Azure Blob Storage with existing ACL or RBAC assignments. | POSIX-like ACL / RBAC scopes | Native Microsoft Entra integration; query-time enforcement uses permission metadata written to the index by the documented synchronization mechanism. |
+| Enterprise content already governed by Microsoft Purview information protection policies. | Microsoft Purview sensitivity labels | Reuses centralized classification and policy assignments across Azure AI Search. |
+| Content sourced from SharePoint in Microsoft 365 (libraries, lists, ASPX site pages). | SharePoint in Microsoft 365 ACLs | Honors native SharePoint permissions, including SharePoint site groups. |
 
 For a side-by-side feature comparison (supported principals, item types, sync behavior, and API surface), see the linked pattern sections later in this article and [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-access-control-lists.md).
 
@@ -95,16 +96,16 @@ Start with a preview API that provides the feature:
 
 For the [push model approach](search-index-access-control-lists-and-rbac-push-api.md):
 
-1. Confirm that your index schema is created with a preview or prerelease SDK, and that the schema has permission filters.
+1. Confirm that your index schema is created with a preview or prerelease SDK and that the schema has permission filters.
 1. Consider using the Microsoft Graph SDK to get group or user identities.
 1. Use the [Index Documents](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexdocumentsresult) or equivalent Azure SDK API to push documents and their associated permission metadata into the search index. 
 
 For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md) or [Blob (ADLS Gen2) knowledge source](agentic-knowledge-source-how-to-blob.md):
 
 1. Verify that files in the directory are secured using the [ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model).
-1. Use the [Create Indexer REST API](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or [Create Knowledge Source REST API](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
+1. Use [Indexers - Create](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API), [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API), or an equivalent Azure SDK API to create the indexer, index, and data source.
 
-If your skillset chunks documents (for example, with the Text Split skill for integrated vectorization), the permission metadata fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
+If your skillset chunks documents, such as with the Text Split skill for integrated vectorization, the permission metadata fields move from indexer field mappings to index projections. See [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
@@ -174,11 +175,11 @@ For end-to-end query implementation steps, see [Query-time ACL and RBAC enforcem
 
 Native document-level access control in Azure AI Search delivers concrete advantages over application-side filtering:
 
-- **Eliminates custom permission code.** You don't need to implement nested group resolution, multi-level ACL traversal, or post-query trimming in your application. Azure AI Search handles the comparison and filtering during query execution.
-- **Aligns with existing compliance controls.** Reusing Microsoft Entra, Microsoft Purview, and SharePoint permissions metadata helps keep search results aligned with the source identity system. Review the permission synchronization model for each source to understand its limitations.
-- **Honors source permissions after each ACL synchronization.** For token-based approaches (ACL, RBAC scopes, Purview labels, SharePoint ACLs), query-time enforcement uses the permission metadata that the documented source-specific synchronization mechanism (indexer run, push-API update, or Purview refresh) has already written to the index.
-- **Improves performance versus post-query trimming.** Filtering inside the search pipeline is faster than loading larger result sets into your application and trimming there, especially at high query volumes.
-- **Reuses your existing identity infrastructure.** Microsoft Entra and SharePoint identities remain the source of truth for access decisions, which reduces identity duplication and the operational overhead of maintaining a parallel permission store.
+- **Eliminates custom permission code:** You don't need to implement nested group resolution, multi-level ACL traversal, or post-query trimming in your application. Azure AI Search handles the comparison and filtering during query execution.
+- **Aligns with existing compliance controls:** Reusing Microsoft Entra, Microsoft Purview, and SharePoint permissions metadata helps keep search results aligned with the source identity system. Review the permission synchronization model for each source to understand its limitations.
+- **Honors source permissions after each ACL synchronization:** For token-based approaches (ACL, RBAC scopes, Purview labels, SharePoint ACLs), query-time enforcement uses the permission metadata that the documented source-specific synchronization mechanism (indexer run, push-API update, or Purview refresh) has already written to the index.
+- **Improves performance versus post-query trimming:** Filtering inside the search pipeline is faster than loading larger result sets into your application and trimming there, especially at high query volumes.
+- **Reuses your existing identity infrastructure:** Microsoft Entra and SharePoint identities remain the source of truth for access decisions, which reduces identity duplication and the operational overhead of maintaining a parallel permission store.
 
 ## Tutorials and samples
 
