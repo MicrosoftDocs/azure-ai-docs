@@ -3,7 +3,9 @@
 - Read the [guide on when to use Foundry fine-tuning](../openai/concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
+
+  [!INCLUDE [role-rename-note](./role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../foundry-classic/openai/how-to/role-based-access-control.md).
 
 ### Supported models
@@ -131,7 +133,7 @@ The following hyperparameters are available:
 #### Automatic deployment
 
 > [!IMPORTANT]
-> For automatic deployment, you need the **Azure AI Owner** role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+> For automatic deployment, you need the **Foundry Owner** role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
 
 To save time, you can enable automatic deployment for your resulting model. If training finishes successfully, the model is deployed according to the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix that you might have provided earlier.
 
@@ -170,7 +172,7 @@ A checkpoint is a fully functional version of a model that can be both deployed 
 ## Deploy the fine-tuned model
 
 > [!IMPORTANT]
-> To deploy models, you need the **Azure AI Owner** role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+> To deploy models, you need the **Foundry Owner** role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
 
 When you're satisfied with the metrics from your fine-tuning job, you can deploy the model by selecting the **Deploy** button on the details page and then configuring your deployment settings.
 

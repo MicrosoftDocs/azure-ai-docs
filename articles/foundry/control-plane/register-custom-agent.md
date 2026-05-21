@@ -8,6 +8,7 @@ ms.date: 05/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---

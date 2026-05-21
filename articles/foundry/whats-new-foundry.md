@@ -6,6 +6,7 @@ author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
