@@ -13,9 +13,9 @@ ai-usage: ai-assisted
 
 # Configure guided guardrail setup for an agent
 
-In this article, you configure safety and security guardrails for an agent using guided setup in Microsoft Foundry. Instead of selecting controls manually, you answer a short set of questions about your agent's intended users, data handling, and tool usage. Foundry maps your responses to relevant risk categories and applies targeted controls at the correct intervention points: user input, tool calls, tool responses, and output.
+In this article, you configure safety and security guardrails for an agent using Microsoft Foundry. Instead of selecting controls manually, you answer a short set of questions about your agent's intended users, data handling, and tool usage. Foundry maps your responses to relevant risk categories and applies targeted controls at the correct intervention points: user input, tool calls, tool responses, and output.
 
-Each agent is purpose-built for a specific scenario, so guardrails should be tailored accordingly—not applied as a single default. Guided setup ensures that protections are scoped to where they're needed and that the agent stays both safe and usable. For more information about guardrails concepts, see [TO VERIFY: Guardrails overview link].
+Each agent is purpose-built for a specific scenario, so guardrails should be tailored accordingly—not applied as a single default. Guided setup ensures that protections are scoped to where they're needed and that the agent stays both safe and usable. Folow this link for more information about [guardrails concepts](/azure/foundry/guardrails/guardrails-overview).
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ Each agent is purpose-built for a specific scenario, so guardrails should be tai
 
 The first set of questions identifies who uses the agent and the level of trust to apply to their inputs.
 
-1. For **Who will use this agent?**, select whether the agent is accessed by public users or internal teams.
+1. For **Who will use this agent?**, select whether the agent is accessed by public users or internal teams. Examples include:
    - **Public users**: applies stricter content safety filtering and jailbreak protections, because broader access increases exposure to unexpected or adversarial inputs.
    - **Internal teams**: applies lighter controls appropriate for trusted, authenticated users.
 1. Select **Next** to continue.
