@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
-ms.date: 05/18/2026
+ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
@@ -131,7 +131,7 @@ Maximum running times exist to provide balance and stability to the service as a
 
 <sup>2</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexers, data sources, and skillsets.
 
-<sup>3</sup> S3 HD indexer support is in preview, requires REST API version `2025-11-01-preview` or later, and is governed by a service-level daily quota of **6 hours of cumulative indexer runtime** shared across all indexers. S3 HD indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) and don't support [shared private link resources](search-indexer-howto-access-private.md). During preview, S3 HD indexer support is best suited for small workloads (approximately 1 GB index size) with no or minimal skillsets. For details, see [About indexer execution on serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
+<sup>3</sup> S3 HD indexer support is in preview, requires the `2025-11-01-preview` REST API version or later, and is governed by a service-level daily quota of six hours of cumulative indexer runtime shared across all indexers. S3 HD indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) and don't support [shared private link resources](search-indexer-howto-access-private.md). During the preview, S3 HD indexer support is best suited for small workloads (approximately 1 GB index size) with no or minimal skillsets. For more information, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
