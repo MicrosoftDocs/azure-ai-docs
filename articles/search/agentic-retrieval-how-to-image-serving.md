@@ -19,9 +19,9 @@ Use *image serving* (preview) to surface images embedded in your source document
 
 When you enable image serving, Azure AI Search:
 
-1. Extracts images from supported documents at indexing time and stores them in a customer-provided Azure Blob asset store.
++ At indexing time, extracts images from supported documents and stores them in a customer-provided Azure Blob asset store.
 
-1. Fetches those images during the [retrieve action](agentic-retrieval-how-to-retrieve.md), base64-encodes them, and injects them as multimodal content into the LLM prompt that produces the synthesized answer.
++ At query time, fetches those images during the [retrieve action](agentic-retrieval-how-to-retrieve.md), base64-encodes them, and injects them as multimodal content into the LLM prompt that produces the synthesized answer.
 
 This article shows you how to enable image serving on a knowledge base, override it per request, inspect image serving statistics, and plan for the storage account lifecycle requirements.
 
@@ -47,7 +47,7 @@ This article shows you how to enable image serving on a knowledge base, override
 
 ## Limitations and considerations
 
-+ Image serving is available only through the retrieve API in agentic retrieval. Classic `/docs/search` queries don't return images without a custom solution or configuration.
++ Image serving is available only through the `retrieve` API in agentic retrieval. Classic `/docs/search` queries don't return images without a custom solution or configuration.
 
 + Image serving runs only in [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) output mode. The `extractiveData` output mode skips image serving.
 
@@ -73,7 +73,7 @@ Image serving has two phases:
 
 + **Indexing:** When you configure an asset store on a knowledge source, the search service extracts images from each source document and writes them to your Azure Blob asset store. Optionally, it also calls an LLM to generate a text description (*verbalization*) for each image and stores that description in the index next to the chunk that references the image.
 
-    When you configure an asset store, the search service also provisions a [knowledge store](knowledge-store-concept-intro.md) alongside the knowledge source to persist the extracted image artifacts. You can inspect and manage it like any other knowledge store.
+    When you configure an asset store, the search service also provisions a [knowledge store](knowledge-store-concept-intro.md) alongside the knowledge source to persist the extracted image artifacts. You can inspect and manage this knowledge store like any other.
 
 + **Retrieval:** When the retrieve action runs with image serving enabled, the search service fetches the matching images from the asset store, base64-encodes them, and includes them as multimodal content in the answer synthesis prompt. Image bytes aren't returned in the retrieve response; only references (the `image_path` field on each contributing chunk) are.
 
@@ -177,13 +177,13 @@ The combination of `assetStore`, `disableImageVerbalization`, and `chatCompletio
 
 Wait for ingestion to complete before continuing:
 
-+ Check indexer status in the [Azure portal](https://portal.azure.com) or with [Get Indexer Status](/rest/api/searchservice/indexers/get-status).
++ Check indexer status in the [Azure portal](https://portal.azure.com) or with [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API).
 
-+ Confirm that indexed chunks have a populated `image_path` field. Empty `image_path` values usually mean the source documents don't contain extractable images, the asset store isn't configured, or the indexer hasn't finished.
++ Verify that indexed chunks have a populated `image_path` field. Empty `image_path` values usually mean the source documents don't contain extractable images, the asset store isn't configured, or the indexer hasn't finished.
 
 + Inspect the asset store container. You should see image blobs that the indexer wrote during ingestion.
 
-## Enable image serving on the knowledge base
+## Enable image serving on a knowledge base
 
 Set `enableImageServing` to `true` on the knowledge source reference inside the knowledge base definition. This becomes the default for every retrieve request that targets the knowledge source.
 
@@ -218,7 +218,7 @@ api-key: {admin-api-key}
 
 ### Verify image serving enablement
 
-Send a `GET` to the knowledge base endpoint and confirm that the knowledge source reference includes `"enableImageServing": true`.
+Send a `GET` request to the knowledge base endpoint and verify that the knowledge source reference includes `"enableImageServing": true`.
 
 ## Retrieve with image serving
 
@@ -251,11 +251,11 @@ api-key: {admin-api-key}
 ```
 
 > [!NOTE]
-> Image serving runs only when `outputMode` is `answerSynthesis`. Requests that use `extractiveData` skip image serving even if `enableImageServing` is set.
+> Image serving runs only when `outputMode` is `answerSynthesis`. Requests that use `extractiveData` skip image serving, even when `enableImageServing` is set.
 
 ### What happens at retrieval time
 
-For chunks that have an `image_path`, the search service downloads the corresponding image from the asset store, base64-encodes it, and passes it as multimodal content to the LLM that produces the synthesized answer. The base64 image bytes are used only for that model call; they aren't returned to your application. Image download failures are non-fatal: successful images are forwarded to the model, and failures are silently counted in `imagesDropped`. For the exact response shape, see the [Knowledge Retrieval - Retrieve REST API reference](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+For chunks that have an `image_path`, the search service downloads the corresponding image from the asset store, base64-encodes it, and passes it as multimodal content to the LLM that produces the synthesized answer. The base64 image bytes are used only for that model call; they aren't returned to your application. Image download failures are non-fatal: successful images are forwarded to the model, and failures are silently counted in `imagesDropped`. For the exact response shape, see the reference documentation for [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API).
 
 ### Verify retrieve behavior
 
@@ -293,7 +293,7 @@ The following table summarizes the nine combinations.
 
 ## Inspect image serving statistics
 
-When image serving runs, the retrieve response includes an `imageServing` section per knowledge source inside the `activity` array. Use this section to confirm whether images were sent to the model and to diagnose dropped images.
+When image serving runs, the retrieve response includes an `imageServing` section per knowledge source inside the `activity` array. Use this section to verify whether images were sent to the model and to diagnose dropped images.
 
 ```json
 "activity": [
@@ -346,8 +346,8 @@ Use the `imageServing` activity block from [Inspect image serving statistics](#i
 
 | Symptom | Likely cause | What to try |
 |---|---|---|
-| `imagesDropped` is high and `imagesSentToModel` is low | The search service can't read from the asset store. | Confirm the search service managed identity has **Storage Blob Data Contributor** on the asset store container. Check storage account network rules and firewall settings. |
-| `imagesRetrieved` is `0` for image-rich documents | `image_path` isn't populated in the index, or no matching chunks contained images. | Re-run the indexer and confirm `image_path` is populated. Verify that the source documents contain extractable images (PDFs with embedded raster images, or supported image files). |
+| `imagesDropped` is high and `imagesSentToModel` is low | The search service can't read from the asset store. | Verify the search service managed identity has **Storage Blob Data Contributor** on the asset store container. Check storage account network rules and firewall settings. |
+| `imagesRetrieved` is `0` for image-rich documents | `image_path` isn't populated in the index, or no matching chunks contained images. | Re-run the indexer and verify `image_path` is populated. Verify that the source documents contain extractable images (PDFs with embedded raster images, or supported image files). |
 | Retrieve response has no `imageServing` block | `enableImageServing` is `false` (the default) or `outputMode` isn't `answerSynthesis`. | Set `enableImageServing` to `true` on the knowledge base or per request, and use `outputMode: "answerSynthesis"`. |
 | `verbalizationUsed` is `false` but you expected `true` | At indexing time, `disableImageVerbalization` was `true` or `chatCompletionModel` wasn't set on the knowledge source. | Update the knowledge source `ingestionParameters` and re-run ingestion. |
 | Answer synthesis fails or times out after you enable image serving | Multimodal token overhead exceeds the model context window, or the LLM deployment can't be reached. | Lower [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), tighten retrieval results, or use a model deployment with higher token limits. |
