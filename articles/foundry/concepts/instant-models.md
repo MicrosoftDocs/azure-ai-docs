@@ -4,12 +4,12 @@ description: "Learn about instant models in Microsoft Foundry, which let you cal
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/18/2026
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 ms.custom:
-  - build-2025
+  - update-code1
 # customer intent: As a developer, I want to understand how instant models work so that I can call models without creating deployments first.
 ---
 
@@ -17,24 +17,62 @@ ms.custom:
 
 Instant models let you call any supported model by name — no deployment required. Create a Foundry project, start coding, and use any available model immediately.
 
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+- A Foundry project in **West US 3** (the only supported region for instant models during preview). If you need to create a project, see [Create a project](../how-to/create-projects.md).
+
 ## Start using models instantly
 
-With instant models, the workflow is:
+With instant models, the workflow is simple — use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
-1. Create a Foundry project in South Central US (the only supported region during preview).
-1. Pass a supported model name in your code. No deployment needed.
+# [Python](#tab/python)
 
-The only change from deployment-based code is the `model` parameter. Pass the model name instead of a deployment name:
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/responses/quickstart-responses.py":::
 
+ # [C#](#tab/csharp)
 
-The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
+ The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/responses/quickstart-responses.cs":::
+
+# [TypeScript](#tab/typescript)
+
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
+
+# [Java](#tab/java)
+
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
+
+# [REST API](#tab/rest)
+
+The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
+Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
+
+# [Foundry portal](#tab/portal)
+
+1. On the Home page of your project, select **Explore playgrounds**.
+    
+    :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Explore playgrounds card with description to test models and get API key and endpoint.":::
+
+1. Use the **Model** dropdown in the playground to switch among deployed and instant models.
+
+---
+
 
 ### Why instant models matter
 
-- **Switch models by changing one string** — try `gpt-4o`, then switch to `gpt-4.1` without creating or deleting deployments.
-- **Same API and SDK** — the same `responses.create()` calls work for both instant models and deployments.
+- **Switch models by changing one string** — use any instant model name in the `model=` line, without creating or deleting deployments.
+- **Same API and SDK** — the same calls work for both instant models and deployments.
 - **Works with your dev tools** — instant models integrate with Foundry CLI, VS Code, and CI/CD pipelines the same way deployments do.
 
 Deployments aren't going away. They remain the right choice when you need reserved throughput, custom content filters, data residency, or advanced enterprise configurations. Instant models simplify the getting-started experience so that deployments become something you level up to, not a gate you must pass before you can use a model.
@@ -45,10 +83,14 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
-To see all models that support instant access, open the [Foundry model catalog](https://ai.azure.com/explore/models) and filter **Deployment options** to **Instant**.
+To see all models that support instant access:
+
+1. Open a project in **West US 3** in the new Foundry experience, 
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. In the model catalog, select **Instant** under **Capabilities** to view the available instant models.
 
 > [!NOTE]
-> During the preview, instant models are available in projects in South Central US only.
+> During the preview, instant models are available in projects in **West US 3** only.
 
 ## When to use instant models vs. deployments
 
@@ -60,6 +102,7 @@ To see all models that support instant access, open the [Foundry model catalog](
 | Require provisioned throughput (PTU) | Deployment |
 | Need data residency in a specific region | Deployment |
 | Custom content filtering policies | Deployment |
+| [Guardrails](../guardrails/guardrails-overview.md) | Deployment |
 | Endpoint-specific configuration (for example, custom RAI, version locks per endpoint) | Deployment |
 | Fine-grained quota partitioning across teams | Deployment |
 | Fine-tuned models | Deployment |
@@ -72,8 +115,8 @@ By default, instant models route to the latest evergreen version of a model. To 
 
 | What you pass as `model` | Behavior |
 |---|---|
-| `gpt-4o` | Routes to the latest version |
-| `gpt-4o-2024-05-13` | Routes to that specific version |
+| `model-name` | Routes to the latest version |
+| `model-name-2025-04-01` | Routes to that specific version |
 
 <!-- [TODO] Confirm version suffix format (hyphen vs. other delimiter) before publish -->
 
@@ -88,7 +131,7 @@ Instant models draw from a per-model **global quota** pool assigned to your subs
 - Other deployment types (Regional Standard, Provisioned) use separate regional quota and don't affect your instant model capacity.
 - If instant model requests are throttled, you can request a quota increase or create a deployment with reserved capacity.
 
-For more details on how global and regional quota interact, see [Manage and increase quotas](../how-to/quota.md).
+For more details on how global and regional quotas interact, see [Manage and increase quotas](../how-to/quota.md).
 
 ## Enterprise controls
 
@@ -99,7 +142,7 @@ For more details on how global and regional quota interact, see [Manage and incr
 | Disable instant models entirely | Administrators can turn off instant models at the subscription level through Azure Policy |
 
 > [!IMPORTANT]
-> Custom Responsible AI (RAI) policies at the project level aren't supported for instant models during the preview. If you need custom content filtering policies, use a deployment.
+> [Guardrails](../guardrails/guardrails-overview.md) and custom Responsible AI (RAI) policies aren't supported for instant models during the preview. If you need guardrails or custom content filtering policies, use a deployment.
 
 ## Deployment name collisions
 
@@ -107,9 +150,9 @@ New deployments can't use a name that matches an existing model name. If you hav
 
 ## Limitations during preview
 
-- Available in South Central US only.
+- Available in **West US 3** only.
 - Fine-tuned models aren't supported. To use a fine-tuned model, create a deployment.
-- Custom RAI policies and content filters aren't configurable for instant models.
+- [Guardrails](../guardrails/guardrails-overview.md), custom RAI policies, and content filters aren't configurable for instant models.
 - Only the models listed in [Supported models](#supported-models) are eligible.
 
 ## Related content

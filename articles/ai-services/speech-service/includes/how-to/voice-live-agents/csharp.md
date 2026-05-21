@@ -26,7 +26,9 @@ In this article, you'll learn how to use Voice Live with [Microsoft Foundry Agen
 - The required language runtimes, global tools, and Visual Studio Code extensions. See [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in a supported region. See [Voice Live overview documentation](../../../voice-live.md) for region availability.
 - A deployed model in Microsoft Foundry. If you don't have one, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../foundry/tutorials/quickstart-create-foundry-resources.md).
-- The `Azure AI User` role assigned to your user account. Assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- The `Foundry User` role assigned to your user account. Assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+  [!INCLUDE [role-rename-note](../../../../../foundry/includes/role-rename-note.md)]
 
 ## Prepare the environment and create the agent
 
@@ -92,7 +94,7 @@ The configuration is resolved in `Main()` and applied when the assistant is crea
 - In the constructor, set both values on `AgentSessionConfig` via `config.FoundryResourceOverride` and `config.AuthenticationIdentityClientId`. Send them in `StartSessionAsync(SessionTarget.FromAgent(agentConfig))`.
 
 > [!IMPORTANT]
-> Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Azure AI User` role on the target agent resource.
+> Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Foundry User` role on the target agent resource.
 
 ## Add a proactive message at session start
 

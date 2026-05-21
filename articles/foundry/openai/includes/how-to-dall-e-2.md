@@ -6,13 +6,13 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/13/2026
 ms.custom: include
 ---
 
 ## Call the image edit API
 
-The Image Edit API enables you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image.
+The Image Edit API enables you to modify existing images based on text prompts you provide. The image editing endpoint is generally available and supported for production use. The API call is similar to the image generation API call, but you also need to provide an input image.
 
 > [!IMPORTANT]
 > The input image must be less than 50 MB in size and must be a PNG or JPG file.
@@ -28,7 +28,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 Replace the following values:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<your_deployment_name>` is the name of your GPT-image series model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
+- `<api_version>` is the version of the API you want to use. For example, `2025-04-01`.
 
 **Required headers**:
 - `Content-Type`: `multipart/form-data`

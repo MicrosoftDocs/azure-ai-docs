@@ -42,7 +42,9 @@ Customers rely on data security in SharePoint to access, create, and share docum
 ## Prerequisites
 
 * Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-* Developers and end users have at least `Azure AI User` RBAC role. 
+* Developers and end users have at least `Foundry User` RBAC role. 
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 * Developers and end users have at least `READ` access to the SharePoint site.
 
 ## Setup  

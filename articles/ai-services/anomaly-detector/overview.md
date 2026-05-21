@@ -61,9 +61,9 @@ Imagine 20 sensors from an auto engine generating 20 different signals like rota
 ## Algorithms
 
 * Blogs and papers:
-    * [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Introducing-Azure-Anomaly-Detector-API/ba-p/490162)
-    * [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Overview-of-SR-CNN-algorithm-in-Azure-Anomaly-Detector/ba-p/982798)
-    * [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/t5/azure-ai/introducing-multivariate-anomaly-detection/ba-p/2260679)
+    * [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/introducing-azure-anomaly-detector-api/490162)
+    * [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/overview-of-sr-cnn-algorithm-in-azure-anomaly-detector/982798)
+    * [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-multivariate-anomaly-detection/2260679)
     * [Multivariate time series Anomaly Detection via Graph Attention Network](https://arxiv.org/abs/2009.02040)
     * [Time-Series Anomaly Detection Service at Microsoft](https://arxiv.org/abs/1906.03821) (accepted by KDD 2019)
 

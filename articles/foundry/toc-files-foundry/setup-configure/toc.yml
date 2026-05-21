@@ -63,4 +63,9 @@ items:
     href: ../../foundry-models/quotas-limits.md
   - name: Azure OpenAI quotas and limits
     href: ../../openai/quotas-limits.md
+
+# Cost Management
+- name: Plan and manage costs
+  displayName: Plan and manage costs for Microsoft Foundry
+  href: ../../concepts/manage-costs.md
   
