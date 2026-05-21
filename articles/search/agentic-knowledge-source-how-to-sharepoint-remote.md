@@ -11,6 +11,10 @@ zone_pivot_groups: search-csharp-python-rest
 
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 A *remote SharePoint knowledge source* uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint in Microsoft 365. No search index or connection string is needed. Only textual content is queried, and usage is billed through Microsoft 365 and a Copilot license.
 
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
@@ -19,7 +23,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
 |--|--|--|--|--|--|--|
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -32,6 +36,8 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 + A Microsoft 365 Copilot license for query-time access to SharePoint content.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone pivot="csharp"
 
@@ -46,9 +52,6 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 ::: zone-end
 
 ::: zone pivot="rest"
-
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
-
 ::: zone-end
 
 ## Limitations
@@ -160,7 +163,7 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```http
 ### Create a remote SharePoint knowledge source
-PUT {{search-url}}/knowledgesources/my-remote-sharepoint-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-remote-sharepoint-ks?api-version=2026-05-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
 
@@ -177,7 +180,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -329,7 +332,7 @@ You can pass a `filterExpressionAddOn` in the `knowledgeSourceParams` on the ret
 
 ```http
 ### Retrieve knowledge base content
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 x-ms-query-source-authorization: {{user-access-token}}
@@ -353,7 +356,7 @@ x-ms-query-source-authorization: {{user-access-token}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
