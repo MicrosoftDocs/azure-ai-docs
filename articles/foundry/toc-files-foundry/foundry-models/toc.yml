@@ -388,6 +388,57 @@ items:
   - name: Fine-tuning cost management
     href: ../../openai/how-to/fine-tuning-cost-management.md
 
+- name: Custom code training
+  items:
+  # Understand
+  - name: What is custom code training?
+    href: ../../concepts/custom-training-overview.md
+    displayName: command job, training, post-training, SFT, DPO, RL, custom code
+
+  # Get started
+  - name: "Quickstart: Submit a training job"
+    href: ../../quickstarts/training-job-quickstart.md
+    displayName: command job, training, quickstart
+
+  # Set up resources
+  - name: Set up resources
+    items:
+    - name: Set up compute for training
+      href: ../../how-to/training/setup-compute.md
+      displayName: compute cluster, GPU, training
+    - name: Use custom environments
+      href: ../../how-to/training/use-custom-environments.md
+      displayName: ACR, Docker, curated environment, ACPT
+    - name: Work with data
+      href: ../../how-to/training/work-with-data.md
+      displayName: data inputs, BYO storage, mount, download
+    - name: Work with models
+      href: ../../how-to/training/work-with-models.md
+      displayName: model asset, BYOW, catalog model, safetensor
+
+  # Run and monitor
+  - name: Submit a training job
+    href: ../../how-to/training/submit-training-job.md
+    displayName: command job, SDK, CLI, submit, experiment
+  - name: Monitor training jobs
+    href: ../../how-to/training/monitor-training-jobs.md
+    displayName: logs, metrics, infrastructure, GPU
+  - name: Track experiments with MLflow
+    href: ../../how-to/training/track-experiments-mlflow.md
+    displayName: MLflow, azureml-mlflow, experiment tracking
+  - name: Debug jobs interactively
+    href: ../../how-to/training/debug-jobs-interactively.md
+    displayName: SSH, JupyterLab, TensorBoard
+
+  # Save and deploy
+  - name: Save and deploy trained models
+    href: ../../how-to/training/save-deploy-trained-model.md
+    displayName: model asset, deploy, BYOW, safetensor, vLLM
+
+  # End-to-end
+  - name: "Tutorial: Train and deploy a model with custom code"
+    href: ../../tutorials/train-deploy-custom-model.md
+    displayName: SFT, TRL, tutorial, end-to-end
 
 # - name: Foundry Models FAQ
 #   href:
