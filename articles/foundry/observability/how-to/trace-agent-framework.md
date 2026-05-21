@@ -1,30 +1,28 @@
 ---
-title: "Configure tracing for AI agent frameworks"
-description: "Debug issues and monitor AI agent performance in production by configuring OpenTelemetry tracing for LangChain, LangGraph and OpenAI Agents SDK."
+title: Configure tracing for AI agent frameworks
+titleSuffix: Microsoft Foundry
+description: Debug issues and monitor AI agent performance in production by configuring OpenTelemetry tracing for LangChain, LangGraph, Semantic Kernel, and OpenAI Agents SDK.
 ai-usage: ai-assisted
-author: lgayhardt
+author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 03/27/2026
-ms.service: microsoft-foundry
-ms.subservice: foundry-observability
+ms.date: 01/20/2026
+ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 <!-- CustomerIntent: As a developer building AI agents, I want to configure tracing for my agent framework so that I can debug issues and monitor performance in production. -->
 
 # Configure tracing for AI agent frameworks (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-[!INCLUDE [trace-agent-preview](../../includes/trace-agent-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 When AI agents behave unexpectedly in production, tracing gives you the visibility to quickly identify the root cause. Tracing captures detailed telemetry—including LLM calls, tool invocations, and agent decision flows—so you can debug issues, monitor latency, and understand agent behavior across requests.
 
 Microsoft Foundry provides tracing integrations for popular agent frameworks that require minimal code changes. In this article, you learn how to:
 
-- Configure automatic tracing for Microsoft Agent Framework
+- Configure automatic tracing for Microsoft Agent Framework and Semantic Kernel
 - Set up the `langchain-azure-ai` tracer for LangChain and LangGraph
 - Instrument the OpenAI Agents SDK with OpenTelemetry
 - Verify that traces appear in the Foundry portal
@@ -32,7 +30,8 @@ Microsoft Foundry provides tracing integrations for popular agent frameworks tha
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with [tracing connected](trace-agent-setup.md) to Azure Monitor Application Insights.
+- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
+- Tracing connected to an Azure Monitor Application Insights resource. To set it up, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
 - Contributor or higher role on the Application Insights resource for trace ingestion.
 - Access to the connected Application Insights resource for viewing traces. For log-based queries, you might also need access to the associated Log Analytics workspace.
 - Python 3.10 or later (required for all code samples in this article).
@@ -61,9 +60,9 @@ For more guidance, see [Security and privacy](../concepts/trace-agent-concept.md
 > [!NOTE]
 > Trace data stored in Application Insights is subject to your workspace's data retention settings and Azure Monitor pricing. For cost management, consider adjusting sampling rates or retention periods in production. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) and [Configure data retention and archive](/azure/azure-monitor/logs/data-retention-configure).
 
-## Configure tracing for Microsoft Agent Framework
+## Configure tracing for Microsoft Agent Framework and Semantic Kernel
 
-Microsoft Foundry has native integrations with both Microsoft Agent Framework. Agents built with either framework automatically emit traces when tracing is enabled for your Foundry project—no additional code or packages are required.
+Microsoft Foundry has native integrations with both Microsoft Agent Framework and Semantic Kernel. Agents built with either framework automatically emit traces when tracing is enabled for your Foundry project—no additional code or packages are required.
 
 To verify tracing is working:
 
@@ -74,12 +73,13 @@ To verify tracing is working:
 Traces typically appear within 2–5 minutes after agent execution. For advanced configuration, see the framework-specific documentation:
 
 - [Microsoft Agent Framework Workflows – Observability](/agent-framework/user-guide/workflows/observability)
+- [Semantic Kernel observability](/semantic-kernel/concepts/enterprise-readiness/observability)
 
 ## Configure tracing with OpenInference instrumentation libraries
 
 Microsoft Foundry supports [OpenInference](https://pypi.org/search/?q=openinference) instrumentation libraries for tracing AI agents. These `openinference-*` packages provide automatic instrumentation for a wide range of frameworks and can be used to trace both hosted agents (agents deployed to Foundry) and non-Foundry agents (agents hosted outside of Foundry).
 
-Browse available instrumentation packages on [PyPI](https://pypi.org/search/?q=openinference).
+Browse available instrumentation packages on [PyPI](https://pypi.org/search/?q=openinference). A code sample can be found [here](https://github.com/ninghu/hosted-agents-vnext-private-preview/tree/ninhu/non-genai-trace-samples/samples/python/agentserver-invocations/langchain-travel-agent-openinference).
 
 The key requirement is correlating OpenInference traces to a specific agent. How you achieve this depends on where your agent runs:
 
@@ -90,11 +90,11 @@ When you deploy an agent to Foundry using one of the hosted agent server package
 - Configures Azure Monitor export for OpenTelemetry spans.
 - Enriches all spans with project, agent name, agent version, and agent ID attributes so the Foundry UI can query and display them.
 
-No additional configuration is required—install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
+No additional configuration is required. Install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
 
 ### Non-Foundry agents (hosted outside of Foundry)
 
-If your agent isn't deployed with a Foundry hosted agent server package, you need to manually configure trace correlation and export. Complete both of the following steps:
+If your agent isn't deployed with a Foundry hosted agent server package, you need to configure trace correlation and export. Complete both of the following steps:
 
 1. **Export traces to Application Insights.** Use the [Microsoft OpenTelemetry distro](https://pypi.org/project/azure-monitor-opentelemetry/) to export spans to the Application Insights resource connected to your Foundry project.
 
@@ -174,7 +174,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://ai.azure.com/.default",
+    "https://cognitiveservices.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -208,9 +208,11 @@ USER_LOCATION = {
     "2": "SF",
 }
 
+
 @dataclass
 class UserContext:
     user_id: str
+
 
 @tool
 def get_weather(city: str) -> str:
@@ -239,10 +241,12 @@ from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from dataclasses import dataclass
 
+
 @dataclass
 class WeatherResponse:
     conditions: str
     punny_response: str
+
 
 checkpointer = InMemorySaver()
 
@@ -277,6 +281,7 @@ def main():
         context=context,
     )
     print(r2.get("structured_response"))
+
 
 if __name__ == "__main__":
     main()
@@ -350,11 +355,13 @@ def play_song_on_spotify(song: str):
     # Integrate with Spotify API here.
     return f"Successfully played {song} on Spotify!"
 
+
 @tool
 def play_song_on_apple(song: str):
     """Play a song on Apple Music"""
     # Integrate with Apple Music API here.
     return f"Successfully played {song} on Apple Music!"
+
 
 tools = [play_song_on_apple, play_song_on_spotify]
 ```
@@ -368,7 +375,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://ai.azure.com/.default",
+    "https://cognitiveservices.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -393,10 +400,12 @@ def should_continue(state: MessagesState):
     last_message = messages[-1]
     return "continue" if getattr(last_message, "tool_calls", None) else "end"
 
+
 def call_model(state: MessagesState):
     messages = state["messages"]
     response = model.invoke(messages)
     return {"messages": [response]}
+
 
 workflow = StateGraph(MessagesState)
 workflow.add_node("agent", call_model)
@@ -573,4 +582,4 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 - Learn core concepts and architecture in the [Agent tracing overview](../concepts/trace-agent-concept.md).
 - If you haven't enabled tracing yet, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
 - Visualize agent health and performance metrics with the [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md).
-- Explore the broader observability capabilities in [Observability in generative AI](../../concepts/observability.md).
+- Explore the broader observability capabilities in [Observability in generative AI](../../../concepts/observability.md).
