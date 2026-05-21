@@ -29,7 +29,7 @@ Users can now create custom photo avatars directly in Microsoft Foundry. Self-cr
 
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../ai-foundry/how-to/create-projects.md).
 - Image to create the custom photo avatar, if you want to create an avatar from an existing image.
-- You need a video recording of the talent reading a consent statement acknowledging the use of their image. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
+- You need a video recording of the talent reading a consent statement acknowledging the use of their image. You upload this video when you set up the avatar talent. For more information, see [Prepare consent for real human photo](#step-3-prepare-consent-for-real-human-photo).
 
 ## Step 1: Start fine-tuning
 1. [!INCLUDE [foundry-sign-in](../../../foundry/includes/foundry-sign-in.md)]
