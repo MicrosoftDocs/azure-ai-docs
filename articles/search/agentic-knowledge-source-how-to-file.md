@@ -373,6 +373,9 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 
 ::: zone-end
 
+> [!NOTE]
+> Uploading a file doesn't replace an existing file even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, and the list of uploaded files can contain multiple entries that share a `fileName`. To replace content, delete the prior file by `fileId` before or after the new upload.
+
 ## List uploaded files
 
 List files on the knowledge source to inspect the uploaded file set.
