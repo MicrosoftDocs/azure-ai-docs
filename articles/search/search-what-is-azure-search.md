@@ -3,8 +3,6 @@ title: Introduction to Azure AI Search
 description: Learn how Azure AI Search helps you build rich search experiences and generative AI apps. Combine LLMs with enterprise data using classic search and agentic retrieval.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2024
 ms.topic: overview
 ms.date: 06/02/2026
 ---
@@ -13,7 +11,13 @@ ms.date: 06/02/2026
 
 Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
 
-Common use cases include *classic search* and modern retrieval-augmented generation (RAG) via *agentic retrieval*. These capabilities make Azure AI Search suitable for both enterprise and consumer scenarios, whether you're adding search functionality to a website, app, agent, or chatbot.
+Azure AI Search is available in two pricing models:
+
+- **Dedicated**: Provisioned capacity with fixed pricing. You select a service tier and you're billed per hour based on Search Units (SUs). Best for steady, predictable, high-utilization workloads.
+
+- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
+
+Common use cases include *classic search* and retrieval-augmented generation (RAG) using *agentic retrieval*, where the service orchestrates query planning, retrieval, and response construction. These capabilities support scenarios ranging from traditional search experiences to AI-powered agents and chat applications suitable for both enterprise and consumer scenarios.
 
 When you create a search service, the following capabilities are included:
 
@@ -58,13 +62,13 @@ In this architecture, your search service sits between the data stores that cont
 
 This architecture has two primary workloads:
 
-#### [Indexing](#tab/indexing)
+### [Indexing](#tab/indexing)
 
 [Indexing](search-what-is-an-index.md) loads content into an index and makes it searchable. Internally, inbound text is tokenized and stored in inverted indexes, while inbound vectors are stored in vector indexes. Azure AI Search can only index JSON documents. You can use the [push method](search-what-is-data-import.md#pushing-data-to-an-index) to upload JSON documents directly or the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) (indexer or logic app workflow) to retrieve and serialize data into JSON.
 
 During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) to chunk text, generate vectors, and apply other transformations that create structure and content. Azure AI Search then serializes the enriched output into JSON documents and ingests them into the index.
 
-#### [Querying](#tab/querying)
+### [Querying](#tab/querying)
 
 [Querying](search-query-overview.md) targets an index populated with searchable content. This step occurs when your client app sends a query request to your search service. In your code, set up a search client to handle requests for [full-text queries](search-query-create.md), [vector queries](vector-search-how-to-query.md), [hybrid queries](hybrid-search-how-to-query.md), [multimodal queries](multimodal-search-overview.md), fuzzy search, autocomplete, geo-search, and other query types.
 
@@ -111,7 +115,9 @@ The portal is useful for service administration and content management, with too
 
 Before you get started, use this checklist to make key decisions:
 
-+ **Choose a pricing model**: Select between the **[Dedicated](./search-sku-tier.md)** or **[Serverless](./serverless-cost-optimization.md)** pricing model. See [Plan and Manage Costs](./search-sku-manage-costs.md) for help with choosing a the model that best fits your needs.
++ **Choose a pricing model**: Select between the **Dedicated** or **Serverless** pricing model. See [Choose a pricing model and service tier](./search-sku-tier.md) for help with choosing the model that best fits your needs.
+
+**TO-DO: Add Public Preview and billing statement for Serverless**
 
 + **Choose how you want to retrieve data:** You can query directly from a search index for predictable, low-latency results, or use agentic retrieval to query across multiple indexes through a knowledge base. If you’re building a traditional app without an agent or chatbot, direct index queries can meet most needs with lower cost and complexity. If you want to work across multiple knowledge sources or support more advanced scenarios, consider agentic retrieval with minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
@@ -125,6 +131,8 @@ Before you get started, use this checklist to make key decisions:
 
 ### Choose your learning resources
 
+These quickstarts and samples are available to help you get started.
+
 ### [Quickstarts](#tab/quickstarts)
 
 + Quickstart: Agentic retrieval ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
@@ -133,7 +141,7 @@ Before you get started, use this checklist to make key decisions:
 
 ### [Samples](#tab/samples)
 
-We maintain samples that use REST APIs and supported SDK programming languages:
+Microsoft maintains samples that use REST APIs and supported SDK programming languages:
 
 + [REST samples](/azure/search/samples-rest)
 + [Python samples](/azure/search/samples-python)
