@@ -579,7 +579,7 @@ api-key: {{search-api-key}}
 ### Configure CORS for browser-based retrieve calls
 
 > [!IMPORTANT]
-> The 2026-05-01-preview API version allows you to enable Cross-Origin Resource Sharing (CORS) functionality, which permits browser-based applications to request data directly from the service. Depending on your CORS configuration, this can allow external web pages to access or invoke the service and associated data using a user's browser context.
+> The 2026-05-01-preview API version allows you to enable Cross-Origin Resource Sharing (CORS) functionality, which permits browser-based applications to request data directly from the service. Depending on your CORS configuration, this can allow external web pages to access or invoke the service and associated data using a user's browser context, as well as create other potential security threats. Enabling CORS is at your own risk.
 
 In the `2026-05-01-preview` API, a knowledge base can define `corsOptions`
 for browser-based applications that call the retrieve action directly from
