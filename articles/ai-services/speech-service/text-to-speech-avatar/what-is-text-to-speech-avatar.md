@@ -44,7 +44,7 @@ The voice in the synthetic video could be an Azure Speech in Foundry Tools stand
 
 ## Avatar type
 - Video Avatar: The avatar is generated using a fine tuned model with a video recording for fine tuning. It supports half-body and full-body representations.
-- Photo Avatar (preview): The avatar is created from a single input image as prompt and is limited to a head-only representation.
+- Photo Avatar: The avatar is created from a single input image as prompt and is limited to a head-only representation.
 
 
 ## Avatar video output
