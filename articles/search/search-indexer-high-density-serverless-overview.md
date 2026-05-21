@@ -70,7 +70,7 @@ To recover from quota exhaustion and reduce the likelihood of hitting it again:
 
 + Put indexers on [staggered schedules](search-howto-schedule-indexers.md) so that work spreads across the 24-hour window instead of running concurrently.
 
-+ Reduce skillset cost. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), consume runtime quickly. Lower the number of skills, batch documents, or [configure an enrichment cache](enrichment-cache-how-to-configure.md) to reuse prior results instead of reprocessing.
++ Reduce skillset cost. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), consume runtime quickly. Lower the number of skills, batch documents, or [configure an enrichment cache](enrichment-cache-how-to-configure.md) to reuse prior results instead of reprocessing.
 
 + Monitor `remainingSeconds` proactively at both the service and indexer level so that you can throttle workloads before they fail.
 
