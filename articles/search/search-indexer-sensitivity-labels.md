@@ -2,19 +2,23 @@
 title: Use Indexers to Ingest Microsoft Purview Sensitivity Labels
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.
 ms.reviewer: gimondra
-author: gmndrg
-ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
 # Use an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels and enforce document-level security
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
 
-Azure AI Search now supports automatic extraction of [Microsoft Purview sensitivity labels](/purview/sensitivity-labels) at document-level during indexing, with label-based access control enforced at query time. Available in preview, this feature enables organizations to align search experiences with existing [information protection policies](/purview/create-sensitivity-labels) defined in Microsoft Purview.
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
+
+Azure AI Search supports automatic extraction of [Microsoft Purview sensitivity labels](/purview/sensitivity-labels) at document-level during indexing, with label-based access control enforced at query time. Available in preview, this feature enables organizations to align search experiences with existing [information protection policies](/purview/create-sensitivity-labels) defined in Microsoft Purview.
 
 With sensitivity label indexing, Azure AI Search extracts and stores metadata that describes each document's sensitivity level. It also enforces label-based access control, ensuring that only authorized users can view or retrieve labeled content in search results.
 
@@ -24,11 +28,6 @@ This functionality is available for the following data sources:
 + [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
 + [SharePoint in Microsoft 365 (Preview)](search-how-to-index-sharepoint-online.md)
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 :::image type="content" source="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png" alt-text="Architecture diagram showing a governed RAG solution where documents labeled with Microsoft Purview sensitivity labels are indexed into Azure AI Search, and a RAG orchestrator filters query results by label so junior users see only General content while executive users see General, Confidential, and Highly Confidential content." lightbox="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png":::
 

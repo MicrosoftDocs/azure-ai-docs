@@ -10,7 +10,13 @@ ai-usage: ai-assisted
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 This article explains how to ingest an access control list (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
 
@@ -18,11 +24,6 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 > [!IMPORTANT]
 > For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview). Governance remains fully in SharePoint, and query results automatically respect all applicable permissions and labels.
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
 
 ## Prerequisites
 
@@ -34,7 +35,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 + Configure [application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires) with `Files.Read.All` and `Sites.FullControl.All` (or `Sites.Selected` instead of `Sites.FullControl.All`) to index only the content and permissions of specific sites. Then, grant the application full control permissions for those selected sites.
 
-+ REST API version 2025-11-01-preview or an equivalent preview SDK package.
++ The latest preview version of the Search Service REST APIs or an Azure SDK package that provides equivalent functionality.
 
 ## Limitations
 

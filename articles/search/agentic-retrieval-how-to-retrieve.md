@@ -3,7 +3,7 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 04/23/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -313,6 +313,8 @@ Authorization: Bearer {{accessToken}}
 
 :::zone-end
 
+> [!IMPORTANT]
+> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
 
 ## Filter at query time (Search index)
 
@@ -569,11 +571,22 @@ The MCP endpoint requires authentication via custom headers. You have two option
 
 + Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
+> [!TIP]
+> Each MCP client configures custom headers differently. For example:
+>
+> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+>
+> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), [Claude Desktop](https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop), and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`
 
 ## Enforce permissions at query time
 
-> [!NOTE]
-> Although knowledge retrieval is generally available, permissions enforcement remains in preview. You must use the 2025-11-01-preview API version for both ingestion-time and query-time configuration. Preview features are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -589,13 +602,13 @@ The following table shows which knowledge sources require ingestion-time configu
 
 | Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
-| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes, ACLs, or [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) matched against user identity. |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested document [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) matched against user identity. |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs or [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) matched against user identity. |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes, ACLs, or Microsoft Purview matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 
 > [!IMPORTANT]
-> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this,  recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
+> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
 
 ### Query-time authorization
 
@@ -781,6 +794,8 @@ Key points:
 
 + The `maxOutputSizeInTokens` property (`maxOutputSize` in 2025-11-01-preview) on the retrieve request determines the length of the string.
 
+    > [!IMPORTANT]
+    > A document that exceeds the `maxOutputSizeInTokens` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -805,6 +820,9 @@ The output includes the following components:
 | agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval. |
 
 ---
+
+> [!NOTE]
+> The `modelQueryPlanning` and `modelAnswerSynthesis` sections don't appear in the 2026-04-01 activity array because query planning and answer synthesis are preview-only features. For full activity output, use the 2025-11-01-preview.
 
 Here's an example of the activity array:
 
@@ -1242,21 +1260,24 @@ To avoid this behavior, index large source documents as smaller chunks with stab
 
 ## Inspect sensitivity label metadata in retrieve responses (preview)
 
-When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
-
 <!-- preserve -->
 <!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
 > [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
+
+When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
 
 | Location | Field | Description |
 |---|---|---|
 | Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
 | Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
 
-The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels) (typically the most restrictive label wins).
+The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
 
-The following example shows a retrieve response with two referenced documents (one Confidential, one Internal) and the resulting response-level label.
+The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
 
 ```json
 {
@@ -1317,23 +1338,26 @@ The following example shows a retrieve response with two referenced documents (o
 
 The field name and availability of label metadata depend on the knowledge source type that produced each reference.
 
-| Reference `type` | Label field | Notes |
+| Reference `type` | Label field | Available when... |
 |---|---|---|
-| `azureBlob` | `sensitivityLabelInfo` | Available when the blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedOneLake` | `sensitivityLabelInfo` | Available when the OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedSharePoint` | `sensitivityLabelInfo` | Available when the SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `searchIndex` | `sensitivityLabelInfo` | Available when the underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
+| `azureBlob` | `sensitivityLabelInfo` | The blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedOneLake` | `sensitivityLabelInfo` | The OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedSharePoint` | `sensitivityLabelInfo` | The SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `searchIndex` | `sensitivityLabelInfo` | The underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
 
 ### Display and audit recommendations
 
-- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties such as policy controls or permissions.
-- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or to apply policy controls (such as disabling copy and share) across the answer.
-- If your knowledge source points to a chunked index (for example, one populated through integrated vectorization or a custom split skill), make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
+- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties, such as policy controls or permissions.
+
+- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or apply policy controls, such as disabling copy and share, across the answer.
+
+- If your knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
+
 - For auditable administrative access to labeled content, see [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview).
 
 ### MCP server behavior
 
-The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the per-reference `sensitivityLabelInfo` and the response-level `metadata.responseSensitivityLabelInfo` exactly as documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
+The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
 ## Related content
 

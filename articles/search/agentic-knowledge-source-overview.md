@@ -3,7 +3,7 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/17/2026
+ms.date: 05/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -42,20 +42,17 @@ You can create the following knowledge sources:
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
 
-Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
-
-For blob, OneLake, and SharePoint-indexed knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. Once synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-> [!IMPORTANT]
-> Search API version 2026-05-01-preview cannot modify access permissions established outside of the Search API version 2026-05-01-preview. Accordingly, where Search API version 2026-05-01-preview is used with content that can be access-restricted, a timing lag will occur before changes to such access permissions are recognized by the Search API version 2026-05-01-preview.
-
-If your indexed knowledge source uses a chunked index (for example, with integrated vectorization or a custom split skill), you must also map the sensitivity label to each chunk row via [index projections in the skillset](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Otherwise, chunk-level references in retrieve responses won't be returned if they have labels in the source document.
+Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full-text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
 
 You access remote knowledge sources at query time. The agentic retrieval engine calls the retrieval APIs that are native to the platform (Bing or SharePoint APIs).
 
 All retrieved content, whether indexed or remote, is pulled into the ranking pipeline in Azure AI Search where it's scored for relevance, merged (assuming multiple queries), reranked, and returned in the retrieval response. 
+
+### Sensitivity label ingestion
+
+For blob, indexed OneLake, and indexed SharePoint knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. After they're synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+
+If your indexed knowledge source uses a chunked index, such as with integrated vectorization or a custom Text Split skill, you must also map the sensitivity label to each chunk row via [index projections in the skillset](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Otherwise, chunk-level references in retrieve responses won't be returned if they have labels in the source document.
 
 ## Creating knowledge sources
 
@@ -95,5 +92,3 @@ Knowledge source selection logic is based on these factors:
 Not all solutions benefit from LLM query planning and execution. If simplicity and speed outweigh the benefits the LLM query planning and context engineering provide, specify a minimal reasoning effort to prevent LLM processing in your pipeline.
 
 For low and medium, the level of LLM processing is either a balanced or maximal approach that improves relevance. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
-
-
