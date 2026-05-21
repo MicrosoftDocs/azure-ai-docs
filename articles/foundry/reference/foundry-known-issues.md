@@ -3,6 +3,7 @@ title: "Known issues - Microsoft Foundry"
 description: "Find known issues, workarounds, and solutions for Microsoft Foundry, including Speech, Translator, and portal services. Review before submitting a support request."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: troubleshooting-known-issue
 ms.date: 05/06/2026
 author: s-polly
