@@ -828,7 +828,7 @@ To complete your migration, follow these cleanup steps:
 
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
-+ [2026-05-01-preview](#2026-05-01-preview)
++ [2026-05-01-preview](#2026-05-01-preview-1)
 + [2026-04-01](#2026-04-01-1)
 + [2025-11-01-preview](#2025-11-01-preview-1)
 + [2025-08-01-preview](#2025-08-01-preview-1)
@@ -875,6 +875,8 @@ These nonbreaking additions are available in 2026-05-01-preview:
 + Paging support (`$top`, `$skip`, `$count`) on knowledge base and knowledge source list operations and other preview list endpoints.
 
 + The per-knowledge-base limit on knowledge sources is the same for `minimal`, `low`, and `medium` retrieval reasoning efforts. Earlier preview API versions retain lower limits for `low` and `medium`.
+
+---
 
 ### 2026-04-01
 
