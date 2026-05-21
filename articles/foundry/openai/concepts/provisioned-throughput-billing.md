@@ -194,10 +194,6 @@ As your provisioned deployment footprint grows or shrinks, some ways to adjust y
 
 - **Disable auto-renew**: If you no longer need a reservation, turn off auto-renew to prevent it from renewing at the end of its term. See [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew).
 
-## Determine number of PTUs needed for a workload
-
-Before creating your provisioned deployment, estimate how many PTUs your workload needs. For the per-model throughput parameters and step-by-step PTU estimation using formulas or the Foundry capacity calculator, see [Determine PTU requirements for a workload](./determine-ptu-requirements.md).
-
 ## Related content
 
 - [What is provisioned throughput?](./provisioned-throughput.md)

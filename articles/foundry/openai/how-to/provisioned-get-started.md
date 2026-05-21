@@ -27,10 +27,9 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 ## Prerequisites
 
-- An Azure subscription — [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Azure Contributor or Cognitive Services Contributor role.
-- A [Foundry resource](../../../foundry-classic/openai/how-to/create-resource.md) in each region where you intend to create a deployment. Foundry resources support multiple deployment types simultaneously. You don't need to dedicate a separate resource to provisioned deployments.
-- (For Azure CLI-based deployment only) [Azure CLI installed](/cli/azure/install-azure-cli).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- **Azure Contributor** or **Cognitive Services Contributor** role on the subscription or resource group where you plan to create the deployment.
+- A [Microsoft Foundry project](./create-projects.md) in the region where you have PTU quota. A Foundry project is managed under a Foundry resource.
 
 ## Estimate PTU requirements
 
@@ -45,6 +44,9 @@ To check current usage or request additional quota:
 1. Go to **Operate** > **Quota** > **Provisioned throughput unit** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select the desired subscription and region to view current usage.
 1. To request more quota, select **Request Quota** and complete the form.
+
+> [!TIP]
+> You can also follow this [direct link to the quota request form](https://aka.ms/oai/stuquotarequest).
 
 ## Create a provisioned deployment
 
@@ -124,7 +126,7 @@ Accepted requests always complete with predictable latency, because 429 response
 
 When utilization reaches 100%, the service returns HTTP 429 immediately and includes the `retry-after` and `retry-after-ms` response headers indicating how long to wait before the next request is accepted. This approach maintains per-call latency targets while giving you control over how to handle high-load situations.
 
-A 429 from a provisioned deployment is not a service error; rather, it's a traffic-management signal.
+A 429 from a provisioned deployment isn't a service error; rather, it's a traffic-management signal.
 
 ### What to do when you receive a 429 response
 
@@ -184,7 +186,7 @@ To delete a provisioned deployment cleanly:
 
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to the resource and delete the deployment.
 1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
-1. Purge the resource to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+1. If you deleted the resource in the previous step, purge it to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
 1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange a reservation in the Azure portal, but this action might incur fees. See [PTU billing and cost management](../concepts/provisioned-throughput-billing.md#adjust-reservations-as-your-workload-changes) for more information.
 
 ## Related content

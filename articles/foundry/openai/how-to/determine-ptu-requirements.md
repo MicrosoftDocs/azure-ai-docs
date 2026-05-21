@@ -30,7 +30,7 @@ If you're new to provisioned throughput, start with [What is provisioned through
 - Familiarity with the concepts in [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md).
 - An estimate of your workload characteristics: expected peak requests per minute (RPM), average prompt size in tokens, and average response size in tokens.
 
-## How throughput is determined
+## How input and output tokens affect throughput
 
 The throughput (measured as tokens per minute, or TPM) that a deployment gets per PTU depends on the model and the mix of input and output tokens in a given minute. Generating output tokens requires more processing capacity than consuming input tokens.
 
