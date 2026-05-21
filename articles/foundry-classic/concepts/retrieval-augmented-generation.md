@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - pilot-ai-workflow-jan-2026
 ms.topic: concept-article
-ms.date: 02/04/2026
+ms.date: 05/20/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 ai-usage: ai-assisted
