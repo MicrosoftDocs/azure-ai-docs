@@ -127,7 +127,7 @@ Here are some best practices for prompts:
 
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 
-- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 1,000 words or phrases.
+- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 2,000 words or phrases.
 
 - Prompts that aren't related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
