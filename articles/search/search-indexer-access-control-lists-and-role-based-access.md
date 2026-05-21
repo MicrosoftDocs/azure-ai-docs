@@ -5,11 +5,18 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 Azure Data Lake Storage (ADLS) Gen2 supports per-user access to directories and files through [access control lists](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) (ACLs) and [role-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) (Azure RBAC). [Attribute-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) (Azure ABAC) isn't supported.
 
