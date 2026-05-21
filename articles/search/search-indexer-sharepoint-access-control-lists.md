@@ -35,7 +35,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 + Configure [application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires) with `Files.Read.All` and `Sites.FullControl.All` (or `Sites.Selected` instead of `Sites.FullControl.All`) to index only the content and permissions of specific sites. Then, grant the application full control permissions for those selected sites.
 
-+ The latest preview version of the Search Service REST APIs or an Azure SDK package that provides equivalent functionality.
++ REST API version 2025-11-01-preview or an equivalent preview SDK package.
 
 ## Limitations
 

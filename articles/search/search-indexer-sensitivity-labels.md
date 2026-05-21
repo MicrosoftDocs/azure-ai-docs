@@ -78,13 +78,13 @@ When configured [on a schedule](search-howto-schedule-indexers.md), the indexer 
 - Changes to content or labels since the last indexer run
 
 > [!NOTE]
-> There might be a delay between when a label changes on a document and when the indexer detects the update, since the labels will be updated in the index during the subsequent successful indexer runs after the change.
+> Label changes on source documents aren't reflected in the index until the next successful indexer run.
 
 ### Query-time enforcement
 
 At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) based on the user's Microsoft Entra ID token and Microsoft Purview label policies. Only users authorized to access content with [READ usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results.
 
-Authorized administrators can also issue [elevated read](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview) requests, which return labeled documents that the calling user wouldn't normally see and emit a Microsoft Purview audit log entry for every document returned. Elevated read requires Search Index Data Contributor role on the search service and the 2026-05-01-preview API version.
+Authorized administrators can also issue [elevated read](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview) requests, which return labeled documents that the calling user wouldn't normally see and emit a Microsoft Purview audit log entry for every document returned. Elevated read requires the **Search Index Data Contributor** role on the search service and the 2026-05-01-preview API version.
 
 ### End-to-end example
 
@@ -271,13 +271,8 @@ If your data source emits label metadata under a different field name (for examp
 
 - Sensitivity label updates are indexed automatically when changes to a document's label, content, or metadata are detected during a scheduled indexer run. [Configure the indexer on a recurring schedule](search-howto-schedule-indexers.md). The minimum supported interval is every 5 minutes. 
 
-
-
-
 ## Next steps
 
-[How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
-
-[Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview)
-
-[Document-level security in Azure AI Search](search-document-level-access-overview.md)
++ [How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
++ [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview)
++ [Document-level security in Azure AI Search](search-document-level-access-overview.md)

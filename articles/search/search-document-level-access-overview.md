@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Learn how Azure AI Search enforces document-level access control with security filters, ACLs, RBAC scopes, SharePoint permissions, and Purview sensitivity labels.
-ms.date: 05/17/2026
+ms.date: 06/02/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
