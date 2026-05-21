@@ -45,7 +45,6 @@ Indexers on Serverless and S3 HD have the following execution characteristics:
 Indexer execution is governed by a daily runtime quota that resets at 00:00 UTC. The quota is:
 
 + **Service level:** It applies to the search service as a whole.
-
 + **Cumulative:** Runtime from every indexer in the service counts toward the same budget. The quota isn't applied per indexer.
 
 The following table lists the daily quota by SKU and the minimum API version that supports it:
@@ -126,9 +125,7 @@ The response includes a `runtime` section. The following JSON shows an indexer o
 **Key points:**
 
 + `usedSeconds`: Total seconds the indexer has run during the current window.
-
 + `remainingSeconds`: Seconds still available to *all indexers in the service*, not just this indexer. Present when a tier-specific limit applies.
-
 + `beginningTime` and `endingTime`: Start and end of the current 24-hour UTC counting window.
 
 ## Best practices
@@ -151,7 +148,7 @@ During the preview, Serverless indexers are designed to simplify ingestion for r
 
 + Indexer execution (excluding skills) is currently free. Writing documents to an index incurs a cost.
 
-+ Skillset execution is billed the same way as on dedicated indexers. Calls to external services—such as Azure OpenAI embeddings, chat completions, and the Azure Content Understanding skill—are billed through the attached [Foundry or Azure AI services resource](cognitive-search-attach-cognitive-services.md).
++ Skillset execution is billed the same way as on dedicated indexers. Calls to external services, such as the Azure OpenAI Embedding skill, GenAI Prompt skill, and Azure Content Understanding skill, are billed through the attached [Foundry or Azure AI services resource](cognitive-search-attach-cognitive-services.md).
 
 ## Limits and quotas
 
