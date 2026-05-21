@@ -68,10 +68,11 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-image-2 | 2026-04-21 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-realtime | 2025-08-28 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-realtime-2 | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-10-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-12-15 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
-| gpt-realtime-translate | 2026-05-06 | - | ✅ | - | - | - | - | - | - | - | - |
-| gpt-realtime-whisper | 2026-05-06 | - | ✅ | - | - | - | - | - | - | - | - |
+| gpt-realtime-translate | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-realtime-whisper | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | model-router | 2025-05-19 | - | - | - | - | - | ✅ | - | - | - | - |
 | model-router | 2025-08-07 | - | - | - | - | - | ✅ | - | - | - | - |
 | model-router | 2025-11-18 | - | - | - | - | - | ✅ | - | - | - | - |
@@ -137,10 +138,11 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-image-2 | 2026-04-21 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime | 2025-08-28 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-realtime-2 | 2026-05-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-10-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-mini | 2025-12-15 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
-| gpt-realtime-translate | 2026-05-06 | ✅ | - | - | - | - | - | - | - | - | - | - |
-| gpt-realtime-whisper | 2026-05-06 | ✅ | - | - | - | - | - | - | - | - | - | - |
+| gpt-realtime-translate | 2026-05-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
+| gpt-realtime-whisper | 2026-05-06 | ✅ | - | - | - | - | - | ✅ | - | - | - | - |
 | model-router | 2025-05-19 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | model-router | 2025-08-07 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | model-router | 2025-11-18 | - | - | - | - | - | - | ✅ | - | - | - | - |
@@ -195,6 +197,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
 | gpt-realtime-1.5 | 2026-02-23 | - | - | - | - | ✅ |
+| gpt-realtime-2 | 2026-05-06 | - | - | - | - | ✅ |
 | gpt-realtime-mini | 2025-10-06 | - | - | - | - | ✅ |
 | gpt-realtime-mini | 2025-12-15 | - | - | - | - | ✅ |
 | gpt-realtime-translate | 2026-05-06 | - | - | - | - | ✅ |
