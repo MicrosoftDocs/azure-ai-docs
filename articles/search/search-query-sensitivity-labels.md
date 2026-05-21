@@ -4,13 +4,19 @@ description: Learn how query-time enforcement of Microsoft Purview sensitivity l
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
 # Query-time enforcement of Microsoft Purview sensitivity labels in Azure AI Search  
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
 
 At query time, Azure AI Search can enforce sensitivity label policies defined in [Microsoft Purview](/purview/create-sensitivity-labels). These policies include the evaluation of [`EXTRACT` usage rights](/purview/rights-management-usage-rights) associated with each document, ensuring users can only retrieve documents they're permitted to access.
 
@@ -20,13 +26,16 @@ When Purview sensitivity label indexing is enabled, Azure AI Search checks each 
 
 This article explains how query-time sensitivity label enforcement works and how to issue secure search queries.
 
+> [!TIP]
+> If you consume labeled content through a knowledge base (retrieve action or MCP endpoint) instead of calling Azure AI Search directly, see [Inspect sensitivity label metadata in retrieve responses](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-retrieve-responses-preview) for the equivalent response fields. Elevated read and Microsoft Purview audit logging documented in this article apply to both paths.
+
 ## Prerequisites
 
 - Complete all steps in [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
 - Both the Azure AI Search service and the user issuing the query must be in the same Microsoft Entra tenant.
 
-- REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index.
+- REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index. The [elevated read](#elevated-read-for-administrative-investigations-preview) capability and Purview audit logging require [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or later.
 
 - Authenticate queries using [Azure role-based access control](search-security-rbac.md) (RBAC), not API keys. When Purview sensitivity labels are enabled, API key access is restricted to index schema retrieval.
 
@@ -114,6 +123,7 @@ Sensitivity label permissions, including `EXTRACT`, aren't represented as OAuth 
 ## Query example
 
 Here's an example of a query request using Microsoft Purview sensitivity label enforcement.
+
 The application token is passed as a bearer token in the `Authorization` header. The user token is passed as the raw token value in the `x-ms-query-source-authorization` header, without the `Bearer` prefix.
 
 ```http
@@ -128,6 +138,86 @@ Content-Type: application/json
     "orderby": "title asc"
 }
 ```
+
+## Elevated read for administrative investigations (preview)
+
+Elevated read lets an authorized developer return labeled documents that the calling user wouldn't normally see, while emitting a Microsoft Purview audit log entry for every document the request returns. Use it for compliance reviews, eDiscovery, incident response, and other administrative investigations where an auditable record of access is required.
+
+Elevated read is available on Purview-enabled indexes in REST API version [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and later.
+
+### How elevated read works
+
+1. The calling application sets the `x-ms-enable-elevated-read: true` header on the search request.
+
+1. Azure AI Search skips the per-document label-based access check and returns matching documents, regardless of the requesting user's `EXTRACT` permissions on each label.
+
+1. For each document in the response, Azure AI Search emits one entry to the [Microsoft Purview audit log](#find-elevated-read-audit-logs-in-microsoft-purview) on behalf of the requesting tenant. A single search request that returns *N* documents produces *N* audit entries.
+
+1. Audit entries are uploaded to Purview asynchronously after the search response is returned.
+
+### Required role assignment
+
+The calling developer user must hold the **Search Index Data Contributor** role on the search service or index scope. **Search Index Data Reader** isn't sufficient. Elevated read fails with `403 Forbidden` if the role isn't assigned. For more information about Azure AI Search roles, see [Connect to Azure AI Search using roles](search-security-rbac.md).
+
+When the `x-ms-enable-elevated-read` header is set to `true`, the `x-ms-query-source-authorization` header isn't allowed to be used. 
+
+### Elevated read example
+
+```http
+POST  {{endpoint}}/indexes/sensitivity-docs/docs/search?api-version=2026-05-01-preview
+Authorization: Bearer {{contributor-token}}
+x-ms-enable-elevated-read: true
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "title,summary,sensitivityLabel",
+    "orderby": "title asc"
+}
+```
+
+### Audit fields emitted to Microsoft Purview
+
+Each audit entry follows the [Office 365 management activity API](/office/office-365-management-api/office-365-management-activity-api-schema) schema and includes the following fields.
+
+| Category | Field | Description |
+|---|---|---|
+| Standard schema | `CreationTime` | UTC timestamp of the elevated read request. |
+| Standard schema | `Operation` | The operation name that identifies the elevated read action. |
+| Standard schema | `OrganizationId` | The Microsoft Entra tenant ID of the search service. |
+| Standard schema | `RecordType` | The Office 365 management activity record type for Azure AI Search. |
+| Standard schema | `UserType` | The type of user that issued the request. |
+| Standard schema | `UserId` | The unique identifier (PUID) of the requesting user. |
+| Standard schema | `UserPrincipalName` | The user principal name (UPN) of the requesting user. |
+| Standard schema | `ClientIP` | The IP address of the calling application. |
+| Azure AI Search | `UserObjectId` | The Microsoft Entra object ID of the requesting user. |
+| Azure AI Search | `DocumentDataSourceType` | The type of source for the accessed document, such as `azureblob`, `sharepoint`, `onelake`, or `searchIndex`. |
+| Azure AI Search | `DocumentDataSourceId` | The source-specific identifier of the accessed document, such as the blob URL or SharePoint item ID. |
+| Azure AI Search | `SensitivityLabelName` | The display name of the sensitivity label applied to the accessed document. |
+
+### Graceful degradation
+
+If Azure AI Search can't reach Microsoft Purview while processing a query, such as during a transient Purview outage, label evaluation is skipped for that request. The behavior depends on whether the request includes a user identity token:
+
+- **Elevated read requests** (`x-ms-enable-elevated-read: true`): The request fails with `5xx`. Azure AI Search doesn't return labeled documents without first being able to emit audit logs.
+
+- **Standard label-enforced requests** (with `x-ms-query-source-authorization`): The request fails with `5xx`. Azure AI Search doesn't return partial or unfiltered results when label policies can't be evaluated.
+
+- **Calls without `x-ms-query-source-authorization`** issued by an application with at least the **Search Index Data Reader** role: The request succeeds and returns only documents that don't have a sensitivity label. Labeled documents are omitted from the response.
+
+This degraded path is intended only for non-user-facing workflows that explicitly accept unlabeled-only results. Don't rely on it for end-user search experiences.
+
+### Find elevated read audit logs in Microsoft Purview
+
+Azure AI Search uploads audit entries to the calling tenant's Microsoft Purview audit log. To investigate elevated read activity:
+
+1. In the [Microsoft Purview portal](https://purview.microsoft.com), select **Solutions** > **Audit**.
+
+1. Select **Audit Search**, and then filter by date range, user, or the Azure AI Search record type.
+
+1. Open an entry to view the standard schema fields and the Azure AI Search custom fields, including `SensitivityLabelName`, `DocumentDataSourceType`, and `DocumentDataSourceId`.
+
+For step-by-step guidance on running audit searches, retention behavior, and required Purview roles, see [Search the audit log in the Microsoft Purview portal](/purview/audit-search).
 
 ## Sensitivity label handling in Azure AI Search
 
