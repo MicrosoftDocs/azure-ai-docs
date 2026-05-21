@@ -12,6 +12,7 @@ ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
+ai-usage: ai-assisted
 ---
 
 # Text to speech REST API
@@ -34,7 +35,7 @@ Before you use the text to speech REST API, understand that you need to complete
 
 ## Get a list of voices
 
-You can use the `tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint to get a full list of voices for a specific region or endpoint. Prefix the voices list endpoint with a region to get a list of voices for that region. For example, to get a list of voices for the `westus` region, use the `https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
+You can use your Speech resource endpoint to get a full list of voices. Use the `/tts/cognitiveservices/voices/list` path with your resource endpoint. For example, use the `https://YourResourceName.cognitiveservices.azure.com/tts/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
 
 > [!NOTE]
 > [Voices and styles in preview](language-support.md?tabs=tts) are only available in a subset of regions. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](./regions.md?tabs=tts).
@@ -57,16 +58,16 @@ A body isn't required for `GET` requests to this endpoint.
 This request requires only an authorization header:
 
 ```http
-GET /cognitiveservices/voices/list HTTP/1.1
+GET /tts/cognitiveservices/voices/list HTTP/1.1
 
-Host: westus.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 
 Here's an example curl command:
 
 ```curl
-curl --location --request GET 'https://YOUR_RESOURCE_REGION.tts.speech.microsoft.com/cognitiveservices/voices/list' \
+curl --location --request GET 'https://YourResourceName.cognitiveservices.azure.com/tts/cognitiveservices/voices/list' \
 --header 'Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY'
 ```
 
@@ -236,7 +237,7 @@ POST /cognitiveservices/v1 HTTP/1.1
 
 X-Microsoft-OutputFormat: riff-24khz-16bit-mono-pcm
 Content-Type: application/ssml+xml
-Host: westus.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Content-Length: <Length>
 Authorization: Bearer [Base64 access_token]
 User-Agent: <Your application name>
