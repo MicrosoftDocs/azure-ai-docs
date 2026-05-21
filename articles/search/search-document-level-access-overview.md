@@ -5,7 +5,6 @@ ms.date: 06/02/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ai-usage: ai-assisted
 ms.custom:
   - build-2025
 ai-usage: ai-assisted
