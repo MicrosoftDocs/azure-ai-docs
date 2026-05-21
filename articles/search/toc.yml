@@ -483,7 +483,9 @@ items:
         href: agentic-retrieval-how-to-configure-freshness.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
-      - name: File
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
+      - name: File (preview)
         href: agentic-knowledge-source-how-to-file.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
@@ -491,6 +493,12 @@ items:
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
     - name: Create a remote source
       items:
+      - name: Fabric Data Agent (preview)
+        href: agentic-knowledge-source-how-to-fabric-data-agent.md
+      - name: Fabric Ontology (preview)
+        href: agentic-knowledge-source-how-to-fabric-ontology.md
+      - name: MCP Server (preview)
+        href: agentic-knowledge-source-how-to-mcp-server.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
       - name: Work IQ (preview)
@@ -505,6 +513,8 @@ items:
       href: agentic-retrieval-how-to-create-knowledge-base.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base via APIs or MCP

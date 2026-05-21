@@ -44,10 +44,14 @@ You can create the following knowledge sources:
 | [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
 | `"file"` API uploads files directly to Azure AI Search for processing and retrieval. [TO VERIFY: Add REST API reference link when available.] | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
+| [`"indexedSql"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsqlknowledgesource) (preview) generates an indexer pipeline that pulls from an Azure SQL table or view. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
+| [`"fabricOntology"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricontologyknowledgesource) (preview) queries a Microsoft Fabric ontology for entity-based and relationship-based answers. | Remote |
 | [`"workIQ"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#workiqknowledgesource) (preview) queries Work IQ directly for organizational intelligence. | Remote |
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
+| [`"mcpServer"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#mcpserverknowledgesource) (preview) connects to an external MCP server for live, tool-backed retrieval. | Remote |
+| [`"fabricDataAgent"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricdataagentknowledgesource) (preview) queries a Microsoft Fabric data agent directly. | Remote |
 
 Indexed knowledge sources point to a target index on Azure AI Search. Query execution is local to the search engine on your search service. Keyword (full text search), vector, and hybrid query capabilities are used for retrieving data from indexed knowledge sources.
 
@@ -67,12 +71,20 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a file knowledge source (uploads files directly)](agentic-knowledge-source-how-to-file.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create an Azure SQL knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-azure-sql.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
++ [How to create a Fabric Data Agent knowledge source (queries a data agent directly)](agentic-knowledge-source-how-to-fabric-data-agent.md)
++ [How to create a Fabric Ontology knowledge source (queries an ontology item directly)](agentic-knowledge-source-how-to-fabric-ontology.md)
 + [How to create a Work IQ knowledge source (queries Work IQ directly)](agentic-knowledge-source-how-to-work-iq.md)
 + [How to create a Web Knowledge Source resource (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
++ [How to create an MCP Server knowledge source (queries external MCP tools at retrieval time)](agentic-knowledge-source-how-to-mcp-server.md)
 
 After you create the knowledge source, reference it in a knowledge base.
+
+### Asset store for image serving (preview)
+
+For file-based indexed knowledge sources (blob, indexed OneLake, and indexed SharePoint), you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Using knowledge sources
 
