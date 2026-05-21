@@ -509,6 +509,8 @@ items:
       href: agentic-retrieval-how-to-create-knowledge-base.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base via APIs or MCP

@@ -72,6 +72,10 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 
 After you create the knowledge source, reference it in a knowledge base.
 
+### Asset store for image serving (preview)
+
+For file-based indexed knowledge sources (blob, indexed OneLake, and indexed SharePoint), you can configure an `assetStore` in the knowledge source's `ingestionParameters` to persist images that are embedded in your source documents. When you also enable image serving on the knowledge base, the [retrieve action](agentic-retrieval-how-to-retrieve.md) injects those images into the answer synthesis prompt so the LLM can reason over diagrams, charts, and extracted image content. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+
 ## Using knowledge sources
 
 You can explicitly control knowledge source usage by setting `alwaysQuery` on the knowledge source definition or through steering instructions used during query planning. Steering instructions refer to descriptions on an index, or explicit retrieval instructions in the knowledge source, that provide guidance on when to use the index. Query planning happens when you use a low or medium [retrieval reasoning effort from the LLM](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). For a minimal reasoning effort, all knowledge sources listed in the knowledge base are in scope for every query. For low and medium, the knowledge base and the LLM can determine at query time which knowledge sources are likely to provide the best search corpus.  
