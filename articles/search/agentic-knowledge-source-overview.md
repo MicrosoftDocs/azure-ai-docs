@@ -37,8 +37,11 @@ You can create the following knowledge sources:
 | [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource) wraps an existing index. | Indexed |
 | [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
+| [`"indexedSql"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsqlknowledgesource) (preview) generates an indexer pipeline that pulls from an Azure SQL table or view. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
 | [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
+| [`"fabricOntology"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricontologyknowledgesource) (preview) queries a Microsoft Fabric ontology for entity-based and relationship-based answers. | Remote |
+| [`"workIQ"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#workiqknowledgesource) (preview) queries Work IQ directly for organizational intelligence. | Remote |
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
 | [`"mcpServer"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#mcpserverknowledgesource) (preview) connects to an external MCP server for live, tool-backed retrieval. | Remote |
 
@@ -59,8 +62,11 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create an Azure SQL knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-azure-sql.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
++ [How to create a Fabric Ontology knowledge source (queries an ontology item directly)](agentic-knowledge-source-how-to-fabric-ontology.md)
++ [How to create a Work IQ knowledge source (queries Work IQ directly)](agentic-knowledge-source-how-to-work-iq.md)
 + [How to create a Web Knowledge Source resource (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 + [How to create an MCP Server knowledge source (queries external MCP tools at retrieval time)](agentic-knowledge-source-how-to-mcp-server.md)
 

@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/15/2026
+ms.date: 05/13/2026
 ms.custom: include
 ---
 
@@ -15,8 +15,14 @@ ms.custom: include
 If you already configured a Foundry resource in the Azure portal, you can export that configuration as a Bicep file. The exported file captures your current resource settings, including network rules, identity configuration, and project associations. Use it as a starting point for repeatable deployments across environments.
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry resource.
-1. In the left menu under **Automation**, select **Export template**.
+1. In the left menu, expand **Automation**, and then select **Export template**.
+
+   :::image type="content" source="../how-to/media/export-template/foundry-resource-export-template-menu.png" alt-text="Screenshot of a Foundry resource left menu with the Automation group expanded and Export template selected." lightbox="../how-to/media/export-template/foundry-resource-export-template-menu.png":::
+
 1. Select the **Bicep** tab to view the generated Bicep code.
+
+   :::image type="content" source="../how-to/media/export-template/foundry-export-template-bicep.png" alt-text="Screenshot of the Foundry Export template page with the Bicep tab selected, showing the Download and Copy buttons above the generated Bicep code." lightbox="../how-to/media/export-template/foundry-export-template-bicep.png":::
+
 1. Select **Download** to save the file locally, or **Copy** to copy the code to your clipboard.
 
 > [!NOTE]

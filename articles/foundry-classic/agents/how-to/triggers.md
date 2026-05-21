@@ -46,7 +46,9 @@ For a Microsoft Foundry project:
 
 1. In the Azure portal, go to the Foundry project that has the AI agent that you want to use.
 1. Select **Access control** > **Add role assignment**.
-1. Select at least **Azure AI Project Manager**, and then select **Next**.
+1. Select at least **Foundry Project Manager**, and then select **Next**.
+
+   [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 1. Select **User, group, or service principal**, and then select members.
 1. Paste the object ID that you got from the Logic Apps resource to search for your Logic Apps resource. Then select **Finish**.
 

@@ -132,7 +132,9 @@ The Microsoft Foundry model catalog provides LLMs for image verbalization and em
 
 On the parent resource of your Microsoft Foundry project:
 
-+ Assign **Azure AI Project Manager** to the managed identity of your search service.
++ Assign **Foundry Project Manager** to the managed identity of your search service.
+
+  [!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ### [**Azure OpenAI**](#tab/openai)
 

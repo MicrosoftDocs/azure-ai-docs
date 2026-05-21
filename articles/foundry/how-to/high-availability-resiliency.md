@@ -2,6 +2,7 @@
 title: "High availability and resiliency for Microsoft Foundry projects and Agent Services"
 description: "Learn how to plan for high availability and resiliency for Microsoft Foundry projects and Agent Service."
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 

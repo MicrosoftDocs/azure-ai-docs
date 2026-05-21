@@ -7,6 +7,7 @@ ms.reviewer: skohlmeier
 ms.date: 02/10/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - references_regions
   - classic-and-new

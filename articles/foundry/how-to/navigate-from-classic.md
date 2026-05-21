@@ -5,6 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: nbrady
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.date: 03/10/2026
 ms.custom:
@@ -58,7 +59,7 @@ The following table maps classic concepts to their current equivalents.
 | Resource type | Azure OpenAI + Hub | Foundry Resource | Single `AIServices` kind with child projects. |
 | AI services | Azure AI Services | Foundry Tools | Speech, Vision, Language, Content Safety, Content Understanding. |
 | Model billing | Model-as-a-Service (MaaS) | Foundry Direct Models | First-party models billed directly via Azure meters. |
-| RBAC roles | Cognitive Services OpenAI User | Azure AI User, Azure AI Project Manager, Azure AI Owner | New roles with control/data plane separation. |
+| RBAC roles | Cognitive Services OpenAI User | Foundry User, Foundry Project Manager, Foundry Owner | New roles with control/data plane separation. |
 | API wire protocol | Assistants API | Responses API | Assistants API sunset: August 26, 2026. |
 | API versioning | Monthly `api-version` params | v1 stable routes | No version parameter required. |
 | Conversation state | Threads | Conversations | Conversations store items (messages, tool calls, outputs), not just messages. |
@@ -68,6 +69,8 @@ The following table maps classic concepts to their current equivalents.
 | Agent creation | `create_agent()` | `create_version()` | Uses `PromptAgentDefinition`. |
 | Endpoints | Multiple (openai, azureml, cognitiveservices, search, speech) | Single project endpoint + OpenAI v1 endpoint | Simplified endpoint management. |
 | Documentation | [Classic docs](../../foundry-classic/what-is-foundry.md) | [Current docs](../what-is-foundry.md) | Content in two separate doc sets. |
+
+[!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## SDK mapping
 

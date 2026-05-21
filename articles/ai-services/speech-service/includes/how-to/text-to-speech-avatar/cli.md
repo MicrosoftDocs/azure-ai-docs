@@ -4,6 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/05/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 
@@ -37,7 +38,7 @@ To submit a batch synthesis request, construct the HTTP POST request body follow
 >
 > The maximum length for the output video is currently 20 minutes, with potential increases in the future.
 
-To make an HTTP PUT request, use the URI format shown in the following example. Replace `YourSpeechKey` with your Speech resource key, `YourSpeechRegion` with your Speech resource region, and set the request body properties as described previously.
+To make an HTTP PUT request, use the URI format shown in the following example. Replace `YourSpeechKey` with your Speech resource key, `YourResourceName` with your Speech resource name, and set the request body properties as described previously.
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechKey" -H "Content-Type: application/json" -d '{
@@ -51,7 +52,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechKey" -H "Content-Type: a
         "talkingAvatarCharacter": "lisa",
         "talkingAvatarStyle": "graceful-sitting"
     }
-}'  "https://YourSpeechRegion.api.cognitive.microsoft.com/avatar/batchsyntheses/my-job-01?api-version=2024-08-01"
+}'  "https://YourResourceName.cognitiveservices.azure.com/avatar/batchsyntheses/my-job-01?api-version=2024-08-01"
 ```
 
 You should receive a response body in the following format:
@@ -90,7 +91,7 @@ To get the status of a batch synthesis job, make an HTTP GET request using the U
 Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourSpeechRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourSpeechRegion.api.cognitive.microsoft.com/avatar/batchsyntheses/YourSynthesisId?api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/avatar/batchsyntheses/YourSynthesisId?api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
 ```
 
 You should receive a response body in the following format:
@@ -138,10 +139,10 @@ From the `outputs.result` field, you can download a video file containing the av
 
 To list all batch synthesis jobs for your Speech resource, make an HTTP GET request using the URI as shown in the following example.
 
-Replace `YourSpeechKey` with your Speech resource key and `YourSpeechRegion` with your Speech resource region. Optionally, you can set the `skip` and `top` (page size) query parameters in the URL. The default value for `skip` is 0, and the default value for `maxpagesize` is 100.
+Replace `YourSpeechKey` with your Speech resource key and `YourResourceName` with your Speech resource name. Optionally, you can set the `skip` and `top` (page size) query parameters in the URL. The default value for `skip` is 0, and the default value for `maxpagesize` is 100.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourSpeechRegion.api.cognitive.microsoft.com/avatar/batchsyntheses?skip=0&maxpagesize=2&api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/avatar/batchsyntheses?skip=0&maxpagesize=2&api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
 ```
 
 You receive a response body in the following format:
@@ -216,7 +217,7 @@ You receive a response body in the following format:
             }
         }
     ],
-    "nextLink": "https://YourSpeechRegion.api.cognitive.microsoft.com/avatar/batchsyntheses/?api-version=2024-08-01&skip=2&maxpagesize=2"
+    "nextLink": "https://YourResourceName.cognitiveservices.azure.com/avatar/batchsyntheses/?api-version=2024-08-01&skip=2&maxpagesize=2"
 }
 ```
 
@@ -264,10 +265,10 @@ The summary file has the synthesis results for each text input. Here's an exampl
 
 After you get the audio output results and no longer need the batch synthesis job history, you can delete it. The Speech service keeps each synthesis history for up to 31 days or the duration specified by the request's `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the `lastActionDateTime` and `timeToLive` properties.
 
-To delete a batch synthesis job, make an HTTP DELETE request using the following URI format. Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourSpeechRegion` with your Speech resource region.
+To delete a batch synthesis job, make an HTTP DELETE request using the following URI format. Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X DELETE "https://YourSpeechRegion.api.cognitive.microsoft.com/avatar/batchsyntheses/YourSynthesisId?api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
+curl -v -X DELETE "https://YourResourceName.cognitiveservices.azure.com/avatar/batchsyntheses/YourSynthesisId?api-version=2024-08-01" -H "Ocp-Apim-Subscription-Key: YourSpeechKey"
 ```
 
 The response headers include `HTTP/1.1 204 No Content` if the delete request was successful.

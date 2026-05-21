@@ -2,6 +2,7 @@
 title: "Role-based access control for Microsoft Foundry (classic)"
 description: "This article introduces role-based access control in Microsoft Foundry portal. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -37,13 +38,15 @@ Use the following table and diagram to see the permissions allowed for each buil
 
 |Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|
 |---|---|---|---|---|---|---|
-|**Azure AI User**|||✔||✔||
-|**Azure AI Project Manager**|✔||✔|✔ (only assign Azure AI User role)|✔||
-|**Azure AI Account Owner**|✔|✔||✔ (only assign Azure AI User role)|✔|✔|
-|**Azure AI Owner**|✔|✔|✔|✔|✔|✔|
+|**Foundry User**|||✔||✔||
+|**Foundry Project Manager**|✔||✔|✔ (only assign Foundry User role)|✔||
+|**Foundry Account Owner**|✔|✔||✔ (only assign Foundry User role)|✔|✔|
+|**Foundry Owner**|✔|✔|✔|✔|✔|✔|
 |**Owner**|✔|✔||✔ (assign any role to any user)|✔|✔|
 |**Contributor**|✔|✔|||✔|✔|
 |**Reader**|||||✔||
+
+[!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 
 
 [!INCLUDE [rbac-foundry 2](../../foundry/includes/concepts-rbac-foundry-2.md)]
@@ -59,11 +62,13 @@ In the Foundry portal, manage permissions by:
 
 You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
 
-For example, the following command assigns the Azure AI User role to `joe@contoso.com` for resource group `this-rg` in subscription `00000000-0000-0000-0000-000000000000`:
+For example, the following command assigns the Foundry User role to `joe@contoso.com` for resource group `this-rg` in subscription `00000000-0000-0000-0000-000000000000`:
 
 ```azurecli
-az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
+az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
 ```
+
+[!INCLUDE [role-rename-note-code](../../foundry/includes/role-rename-note-code.md)]
 
 [!INCLUDE [rbac-foundry 3](../../foundry/includes/concepts-rbac-foundry-3.md)]
 
