@@ -130,7 +130,7 @@ To optimize performance and cost, estimate how many PTUs your workload needs bef
 
 - **Call shape distribution**: For GPT-4o and later models, the TPM per PTU is set for input and output tokens separately. For GPT-4.1 and later Azure OpenAI models, larger calls are progressively more expensive to compute. A small number of large calls (for example, one call with 100,000 tokens in the prompt) can consume significantly more capacity and experience lower throughput per PTU than many small calls with the same average token count (for example, 100 calls each with a 1000 token prompt size).
 
-- **Model type and version**: The minimum PTU deployment, increments, and processing capacity per PTU varies by model type and version. See [Per-model throughput parameters](#per-model-throughput-parameters) for per-model data in the tables.
+- **Model type and version**: The minimum PTU deployment, increments, and processing capacity per PTU varies by model type and version. See [Deployment parameters and throughput values by model](#deployment-parameters-and-throughput-values-by-model) for per-model data in the tables.
 
 You can estimate PTUs manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal for a guided estimate. For more accurate evaluations, benchmark a deployment against representative traffic for your use case.
 

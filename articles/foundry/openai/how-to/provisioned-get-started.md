@@ -29,7 +29,7 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - **Azure Contributor** or **Cognitive Services Contributor** role on the subscription or resource group where you plan to create the deployment.
-- A [Microsoft Foundry project](./create-projects.md) in the region where you have PTU quota. A Foundry project is managed under a Foundry resource.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) in the region where you have PTU quota. A Foundry project is managed under a Foundry resource.
 
 ## Estimate PTU requirements
 

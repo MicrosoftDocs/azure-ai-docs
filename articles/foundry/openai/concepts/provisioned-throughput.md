@@ -55,7 +55,7 @@ Key characteristics of PTUs:
 
 - **Model-independent**: The same PTU quota can be used to deploy any [supported model](#supported-models). You don't buy PTUs for a specific model.
 - **Region-specific**: PTU quota is granted per subscription, per region, and per [deployment type](#provisioned-throughput-deployment-types). Quota in East US doesn't carry over to West Europe.
-- **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [Per-model throughput parameters](../how-to/determine-ptu-requirements.md#per-model-throughput-parameters).
+- **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [Per-model throughput parameters](../how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model).
 - **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](../how-to/determine-ptu-requirements.md#deployment-parameters-and-throughput-values-by-model).
 
 ## Quota and capacity
