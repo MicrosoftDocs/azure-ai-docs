@@ -22,23 +22,31 @@ Azure Translator in Foundry Tools is a language service that enables users to tr
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
 
+
 ## June 2026
 
 ### Azure Translator 2026-06-06 (GA) release
 
 Translator **2026-06-06** is our latest cloud-based multilingual translation service. You can choose between neural machine translation (NMT) or generative AI language models (LLMs) for each request. Both approaches are available at production scale. To learn more about migrating to Translator 2026-06-06, *see* [Migrate from Azure Translator Text API v3 to Azure Translator Text API 2026-06-06](text-translation/how-to/migrate-to-2026-06-06.md).
 
-### Microsoft Foundry (new)
+### Document translation updates
 
-**Microsoft Foundry portal**: Provides unified access to translation models, agents, and tools in a single interface. Enables you to manage projects and experiments, build end-to-end translation workflows, and test configurations in real time before deployment.
+Document translation now includes enhancements to improve workflow flexibility and in-portal testing:
 
-**Text translation**: Lets you choose from multiple models and tailor translations by gender or tone. Allows you to refine output using domain-specific data and terminology, with access to a playground for testing translation quality.
+* **In-portal testing (Foundry playground)**  
+  Upload or paste document content and preview translations without calling the API.
 
-**Document translation**: Enables you to upload or paste content, select a target language, and preview translated output directly in an integrated playground.
+* **Integrated workflow alignment with Foundry**  
+  Document translation is now part of the end-to-end Foundry experience, enabling testing alongside text translation and model selection.
 
-**Adaptive custom translation (AdaptCT)**: Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
+* **Batch and single document parity (ongoing alignment)**  
+  Continued improvements ensure a more consistent experience across asynchronous batch and synchronous single-document workflows.
 
-  :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screenshot of the adaptive custom translation pane in Foundry." lightbox="media/adaptive-custom-translation.png":::
+### Adaptive custom translation (AdaptCT)
+
+Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
+
+:::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screenshot of the adaptive custom translation pane in Foundry." lightbox="media/adaptive-custom-translation.png":::
 
 ## December 2025
 
