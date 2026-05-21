@@ -75,6 +75,40 @@ Traces typically appear within 2–5 minutes after agent execution. For advanced
 
 - [Microsoft Agent Framework Workflows – Observability](/agent-framework/user-guide/workflows/observability)
 
+## Configure tracing with OpenInference instrumentation libraries
+
+Microsoft Foundry supports [OpenInference](https://pypi.org/search/?q=openinference) instrumentation libraries for tracing AI agents. These `openinference-*` packages provide automatic instrumentation for a wide range of frameworks and can be used to trace both hosted agents (agents deployed to Foundry) and non-Foundry agents (agents hosted outside of Foundry).
+
+Browse available instrumentation packages on [PyPI](https://pypi.org/search/?q=openinference).
+
+The key requirement is correlating OpenInference traces to a specific agent. How you achieve this depends on where your agent runs:
+
+### Hosted agents (deployed to Foundry)
+
+When you deploy an agent to Foundry using one of the hosted agent server packages, trace correlation is handled automatically. The server package:
+
+- Configures Azure Monitor export for OpenTelemetry spans.
+- Enriches all spans with project, agent name, agent version, and agent ID attributes so the Foundry UI can query and display them.
+
+No additional configuration is required—install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
+
+### Non-Foundry agents (hosted outside of Foundry)
+
+If your agent isn't deployed with a Foundry hosted agent server package, you need to manually configure trace correlation and export. Complete both of the following steps:
+
+1. **Export traces to Application Insights.** Use the [Microsoft OpenTelemetry distro](https://pypi.org/project/azure-monitor-opentelemetry/) to export spans to the Application Insights resource connected to your Foundry project.
+
+1. **Enrich spans with agent correlation attributes.** Add a span processor (or another enrichment mechanism) that sets the following attributes on all spans:
+
+   | Attribute | Description |
+   |---|---|
+   | `microsoft.foundry.project.id` | The Foundry project ID where traces should appear. |
+   | `gen_ai.agent.id` | A unique identifier for the agent. |
+   | `gen_ai.agent.name` | The display name of the agent. |
+   | `gen_ai.agent.version` | The version of the agent. |
+
+   These attributes allow the Foundry UI to associate traces with the correct agent and display them in the **Observability** > **Traces** view.
+
 ## Configure tracing for LangChain and LangGraph
 
 > [!NOTE]
