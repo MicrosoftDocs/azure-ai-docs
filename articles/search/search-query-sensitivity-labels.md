@@ -123,6 +123,7 @@ Sensitivity label permissions, including `EXTRACT`, aren't represented as OAuth 
 ## Query example
 
 Here's an example of a query request using Microsoft Purview sensitivity label enforcement.
+
 The application token is passed as a bearer token in the `Authorization` header. The user token is passed as the raw token value in the `x-ms-query-source-authorization` header, without the `Bearer` prefix.
 
 ```http
@@ -165,7 +166,6 @@ When the `x-ms-enable-elevated-read` header is set to `true`, the `x-ms-query-so
 ```http
 POST  {{endpoint}}/indexes/sensitivity-docs/docs/search?api-version=2026-05-01-preview
 Authorization: Bearer {{contributor-token}}
-x-ms-query-source-authorization: {{user-query-token}}
 x-ms-enable-elevated-read: true
 Content-Type: application/json
 
