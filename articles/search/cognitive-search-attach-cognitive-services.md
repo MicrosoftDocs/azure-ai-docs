@@ -36,7 +36,7 @@ To attach a Foundry resource, provide connection information in the skillset. Yo
   :::image type="content" source="media/cognitive-search-attach-cognitive-services/ai-services-kind.png" alt-text="Screenshot of the API kind property in the Azure portal." border="true" lightbox="media/cognitive-search-attach-cognitive-services/ai-services-kind.png":::
 
 > [!NOTE]
-> + If your Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+> + If your Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits). Alternatively, place the search service and the Foundry resource in the same [network security perimeter](search-security-network-security-perimeter.md#outbound-access-to-microsoft-foundry-resources) to keep outbound calls to the Foundry resource on a private channel.
 >
 > + Starting with the 2025-11-01-preview, skillsets support the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for new skillsets, we recommend that you use `AIServices` and Foundry resources.
 
