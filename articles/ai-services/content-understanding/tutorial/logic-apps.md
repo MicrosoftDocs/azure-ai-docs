@@ -57,13 +57,10 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 
    - **Subscription**: Select your current subscription.
    - **Resource group**: Select the same resource group as your Microsoft Foundry resource.
-   - **Type**: Select **Consumption**. This type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](https://learn.microsoft.com/azure/logic-apps/logic-apps-pricing#consumption-pricing).
+   - **Type**: Select **Consumption**. This type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](/azure/logic-apps/logic-apps-pricing#consumption-pricing).
    - **Logic App name**: Enter a descriptive name.
-   - **Publish**: Select **Workflow**.
    - **Region**: Select your region.
    - **Enable log analytics**: Select **No** for this tutorial.
-   - **Plan Type**: Select **Consumption**.
-   - **Zone Redundancy**: Select **Disabled**.
 
 1. Select **Review + create**. After validation completes, select **Create**.
 1. When deployment finishes, select **Go to resource**.
@@ -78,6 +75,10 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 
 1. When prompted, sign in to your OneDrive account.
 1. After connecting, select the folder you created earlier. Leave the other default values in place.
+
+   > [!NOTE]
+   > The **When a file is created** trigger uses polling to detect new files. The default polling interval is 3 minutes, so there can be a delay of up to 3 minutes between uploading a file and the workflow starting. You can change the interval in the trigger settings.
+
 1. Select the **➕ New step** button to add the next step.
 1. In the **Choose an operation** search bar, enter **Content Understanding**. Select **Analyze Content** from the results.
 
@@ -106,15 +107,7 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 1. Select **Add an action** from inside the **For each** step.
 1. Search for **Outlook** and select **Outlook.com** (personal) or **Office 365 Outlook** (work). In the actions list, select **Send an email (V2)**.
 1. Sign in to your Outlook account when prompted.
-1. In the **Send an email (V2)** window, use the following expression pattern to access extracted field values. Select **Add dynamic content**, choose the **Expression** tab, and enter the expression in the **fx** box:
-
-   ```
-   items('For_each')?['fields']?['FIELD-NAME']?['valueString']
-   ```
-
-   Replace `FIELD-NAME` with the name of the field you want to extract. For a complete list of available fields, see [Prebuilt analyzers](../concepts/prebuilt-analyzers.md).
-
-1. Complete the **Send an email (V2)** fields as follows:
+1. Complete the **Send an email (V2)** fields as follows. For each expression, select **Add dynamic content**, choose the **Expression** tab, and enter the expression in the **fx** box. For a complete list of available fields, see [Prebuilt analyzers](../concepts/prebuilt-analyzers.md).
 
    1. In the **To** field, enter your email address.
 
@@ -146,7 +139,7 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
         items('For_each')?['fields']?['AmountDue']?['valueObject']?['Amount']?['confidence']
         ```
 
-1. Select **Save** in the upper-left corner to save the workflow.
+1. Select **Publish** in the upper-left corner to save and publish the workflow.
 
 > [!NOTE]
 > The **For each** loop is required around the **Send email** action to support response formats that might return more than one document result per file.
