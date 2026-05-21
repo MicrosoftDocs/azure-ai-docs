@@ -57,7 +57,7 @@ Before you create the Logic App, set up a OneDrive folder to use as the document
 
    - **Subscription**: Select your current subscription.
    - **Resource group**: Select the same resource group as your Microsoft Foundry resource.
-   - **Type**: Select **Consumption**. This type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](https://learn.microsoft.com/azure/logic-apps/logic-apps-pricing#consumption-pricing).
+   - **Type**: Select **Consumption**. This type runs in global, multi-tenant Azure Logic Apps and uses the [Consumption billing model](/azure/logic-apps/logic-apps-pricing#consumption-pricing).
    - **Logic App name**: Enter a descriptive name.
    - **Region**: Select your region.
    - **Enable log analytics**: Select **No** for this tutorial.
