@@ -188,6 +188,8 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
+      - name: Indexer execution on Serverless and S3 HD
+        href: search-indexer-high-density-serverless-overview.md
       - name: Create and manage
         items:
         - name: Create an indexer
@@ -196,8 +198,6 @@ items:
           href: search-howto-schedule-indexers.md
         - name: Run or reset an indexer
           href: search-howto-run-reset-indexers.md
-        - name: Indexer execution on standard 3 high density and serverless
-          href: search-indexer-high-density-serverless-overview.md
         - name: Define field mappings
           href: search-indexer-field-mappings.md
       - name: Index from data sources

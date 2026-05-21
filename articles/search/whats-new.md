@@ -22,7 +22,6 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 | Item | Description |
 |--|--|
-| [S3 HD indexer support (preview)](search-indexer-high-density-serverless-overview.md) | Standard 3 High Density (S3 HD) search services now support [indexers](search-indexer-overview.md). |
 | [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
 | [Knowledge bases](agentic-retrieval-how-to-create-knowledge-base.md) | Now generally available. REST API version 2026-04-01 supports extractive retrieval from generally available knowledge source types. Preview-only capabilities, including query planning, answer synthesis, and configurable reasoning effort, require the 2025-11-01-preview. For help with migration and breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 | [Search index knowledge sources](agentic-knowledge-source-how-to-search-index.md) | Now generally available. |

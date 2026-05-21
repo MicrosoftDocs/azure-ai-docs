@@ -132,7 +132,6 @@ Maximum running times exist to provide balance and stability to the service as a
 <sup>2</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexers, data sources, and skillsets.
 
 <sup>3</sup> S3 HD indexer support is in preview, requires REST API version `2025-11-01-preview` or later, and is governed by a service-level daily quota of **6 hours of cumulative indexer runtime** shared across all indexers. S3 HD indexers run only in the [public execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) and don't support [shared private link resources](search-indexer-howto-access-private.md). During preview, S3 HD indexer support is best suited for small workloads (approximately 1 GB index size) with no or minimal skillsets. For details, see [About indexer execution on serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
-Additionally, the service-level daily quota caps cumulative indexer runtime across all indexers at 6 hours per 24-hour UTC window.
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
