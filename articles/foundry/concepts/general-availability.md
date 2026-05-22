@@ -5,7 +5,7 @@ description: Learn what general availability means for Microsoft Foundry, includ
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 05/21/2026
+ms.date: 05/22/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
@@ -33,7 +33,7 @@ Before you standardize on GA features for production, make sure you:
 
 - **GA**: Generally available features supported for production use.
 - **Preview**: Features that are not yet generally available.
-- **Foundry projects**: Workspace containers that organize your AI assets, deployments, and agent configurations within the new Foundry experience.
+- **Foundry projects**: Workspace containers that organize your AI assets, deployments, and agent configurations within the new Foundry portal.
 - **AOAI**: Azure OpenAI resources and workflows.
 
 ## What GA means for customers
@@ -41,17 +41,26 @@ Before you standardize on GA features for production, make sure you:
 At GA, the new Microsoft Foundry portal provides:
 
 - **Production-ready core platform** with validated end-to-end core scenarios.
-- **Enterprise capabilities** such as RBAC, audit logs, compliance controls, monitoring, alerting, virtual network integration. Also API keys are supported for all areas except for evals, dataset tab, content understanding, agents and workflows.
+- **Enterprise capabilities** including RBAC, audit logs, compliance controls, monitoring, alerting, and virtual network integration.
 - **Governed lifecycle consistency** across the portal, APIs, SDKs, CLI, and developer tools.
 - **Defined GA scope** for Foundry projects, with out-of-scope capabilities continuing in Foundry (classic) portal.
+
+> [!NOTE]
+> Foundry supports API key authentication for most areas. Exceptions: evaluations, dataset tab, Content Understanding, agents, and workflows require Microsoft Entra ID authentication.
 
 For governance-sensitive production workloads, use Microsoft Entra ID with RBAC for role-based access control. API key-based access is available, but it doesn't provide the same role-based permission granularity. For billing and cost management details, see [Plan and manage costs for Microsoft Foundry](planning.md).
 
 ## GA scope by project type
 
-At GA, the new Foundry experience supports Foundry projects for core end-to-end scenarios. Confirm that your target regions support the models and features you need. For region details, see [Feature availability across cloud regions](../reference/region-support.md).
+At GA, the new Foundry portal supports Foundry projects for core end-to-end scenarios. Not all project and resource types are supported in the new portal:
 
-For scenarios not yet available in the new Foundry portal, you can continue to use Foundry (classic) portal to maintain continuity while capabilities continue to evolve.
+- **Foundry projects**: Fully supported at GA with end-to-end coverage for model deployment, agent development, and operations.
+- **Standalone Azure OpenAI resources**: Not supported in the new Foundry portal. Continue using Foundry (classic) portal, or upgrade to a Foundry project. For upgrade guidance, see [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md).
+- **Hub-based projects (classic)**: Not supported in the new Foundry portal. For migration guidance, see [Migrate from hub-based to Foundry projects](../../foundry-classic/how-to/migrate-project.md).
+
+Confirm that your target regions support the models and features you need. For region details, see [Feature availability across cloud regions](../reference/region-support.md).
+
+For scenarios not yet available in the new Foundry portal, you can continue to use Foundry (classic) portal to maintain continuity while capabilities evolve.
 
 ## Core scenarios at GA
 
@@ -79,18 +88,24 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Discover | Search | GA |
 | Discover | Instant Models | Preview |
 | Discover | Ask AI | Preview |
-| Build | Agents | GA (minus Voice Live, traces in agent builder in Preview) |
+| Build | Agents (core) | GA |
+| Build | Agents — Voice Live | Preview |
+| Build | Agents — traces in agent builder | Preview |
 | Build | Workflows | Preview |
 | Build | Models | GA |
-| Build | Tracing (including Trace Replay) and tracing VNet | Preview |
+| Build | Tracing (including Trace Replay) | Preview |
+| Build | Tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | Fine-tuning | GA |
 | Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview) |
 | Build | Knowledge (Foundry IQ) | Partial GA (API-level GA; portal access remains Preview). See [What is Foundry IQ?](../agents/concepts/what-is-foundry-iq.md). |
-| Build | Data | GA (minus stored completions in Preview) |
+| Build | Data (core) | GA |
+| Build | Data — stored completions | Preview |
 | Build | Evaluations | GA |
 | Build | Memory | Preview |
-| Build | Guardrails | Agents = Preview; Models = GA; Controls and intervention = Preview |
+| Build | Guardrails — Models | GA |
+| Build | Guardrails — Agents | Preview |
+| Build | Guardrails — Controls and intervention | Preview |
 | Build | Monitoring | Preview |
 | Build | Red teaming | GA |
 | Build | AI services speech playgrounds | GA |
@@ -106,14 +121,14 @@ The following table summarizes feature readiness. Most core capabilities across 
 The following items are out of scope at GA for the new Foundry portal and require the classic portal:
 
 - Standalone Azure OpenAI or other single-service resources that aren't connected to a Foundry project.
-- Assistant creation and authoring in the new Foundry experience.
+- Assistant creation and authoring in the new Foundry portal.
 - Listing AOAI evaluation files as datasets for upgrade workflows.
 - Audio playground.
-- AI service fine-tuning.
+- AI service fine-tuning (for example, Speech or Vision custom model training). Model fine-tuning through Foundry projects is GA; see the [feature readiness table](#feature-readiness-at-ga).
 - Content Understanding.
 - Prebuilt prompts in video playground.
 - Adding data directly from the Data tab (users can add data during agent creation workflows).
-- Private/Government cloud support for the new Foundry experience.
+- Private/Government cloud support for the new Foundry portal.
 
 ## FAQ
 
@@ -123,7 +138,7 @@ GA means the new Foundry portal is supported for production use for defined core
 
 ### Which projects are supported at GA?
 
-At GA, the new Foundry experience supports Foundry projects with end-to-end coverage for core scenarios. Other resource types can continue in the Foundry (classic) portal where needed.
+At GA, the new Foundry portal supports Foundry projects with end-to-end coverage for core scenarios. Other resource types can continue in the Foundry (classic) portal where needed.
 
 ### Are all Foundry features GA?
 
@@ -143,7 +158,7 @@ For project migration guidance, see [Migrate from hub-based to Foundry projects 
 
 ### Are assistants supported in Foundry projects?
 
-Agents v2 are supported in the new Foundry UI. Existing assistants and v1 agents aren't supported in the new Foundry experience. To use or edit assistants, continue using Foundry (classic) portal until assistant upgrade is available.
+The new Foundry portal supports Agents v2. Existing assistants and v1 agents aren't supported in the new Foundry portal. To use or edit assistants, continue using Foundry (classic) portal until assistant upgrade is available.
 
 ### Can customers use Foundry GA through APIs and developer tools?
 
@@ -163,7 +178,7 @@ Before production rollout, validate the following:
 - Dependencies on **Preview** features are documented and approved for nonproduction use only.
 - Role assignments and authentication model are aligned to your governance policy, especially where API keys are used.
 - Target-region model and feature availability are confirmed in [Feature availability across cloud regions](../reference/region-support.md).
-- Teams supporting migration scenarios have a documented path between the new Foundry experience and Foundry (classic) portal workflows.
+- Teams supporting migration scenarios have a documented path between the new Foundry portal and Foundry (classic) portal workflows.
 
 ## Common rollout pitfalls
 
@@ -171,11 +186,14 @@ Before production rollout, validate the following:
 - Assuming API key authentication provides the same governance granularity as Entra ID with RBAC. See [Role-based access control for Microsoft Foundry](rbac-foundry.md) for proper configuration.
 - Skipping region availability validation for required models and services. See [Feature availability across cloud regions](../reference/region-support.md).
 - Migrating assistants or AOAI workflows without a documented fallback path in Foundry (classic) portal. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
-- Assuming all GA features work behind a virtual network. Some features, including Hosted Agents, Traces, and Workflow Agents, don't yet fully support network isolation. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
+- Assuming all GA features work behind a virtual network. Some features, including Traces and Workflow Agents, don't yet fully support network isolation. Hosted Agents require public access to Azure Container Registry. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
 
 ## Next steps
 
 - [What is Microsoft Foundry?](../what-is-foundry.md)
+- [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md)
+- [Migrate from hub-based to Foundry projects](../../foundry-classic/how-to/migrate-project.md)
+- [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
 - [Microsoft Foundry rollout across my organization](planning.md)
 - [Role-based access control for Microsoft Foundry](rbac-foundry.md)
 - [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md)
