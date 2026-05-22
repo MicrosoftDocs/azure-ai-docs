@@ -15,7 +15,7 @@ This article focuses on where there are differences from Commercial for Azure Go
 
 ## How model lifecycle works
 
-Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies across Foundry Models in Azure Government [sold directly by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov).
+Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies across Foundry Models in Azure Government [sold by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov).
 
 ### Lifecycle stages
 

@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+author: alvinashcraft #ChrisHMSFT
+ms.author: aashcraft #chrhoder
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -60,10 +60,10 @@ The corresponding property can also be accessed via [REST](../how-to/working-wit
 There are three distinct model deployment upgrade options:
 
 | Name | Description |
-|------|--------|
+| ---- | ----------- |
 | `OnceNewDefaultVersionAvailable` | Once a new version is designated as the default, the model deployment automatically upgrades to the default version within two weeks of that designation change being made. |
-|`OnceCurrentVersionExpired` | Once the retirement date is reached the model deployment automatically upgrades to the current default version. |
-|`NoAutoUpgrade` | The model deployment never automatically upgrades. Once the retirement date is reached the model deployment stops working. You need to update your code referencing that deployment to point to a nonexpired model deployment. |
+| `OnceCurrentVersionExpired` | Once the retirement date is reached the model deployment automatically upgrades to the current default version. |
+| `NoAutoUpgrade` | The model deployment never automatically upgrades. Once the retirement date is reached the model deployment stops working. You need to update your code referencing that deployment to point to a nonexpired model deployment. |
 
 > [!NOTE]
 > `null` is equivalent to `OnceCurrentVersionExpired`. If the **Version update policy** option isn't present in the properties for a model that supports model upgrades this indicates the value is currently `null`. Once you explicitly modify this value, the property is visible in the studio properties page as well as via the REST API.
@@ -360,6 +360,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 ### Multi-deployment migrations for provisioned deployments
 
 Multi-deployment migrations allow you to have greater control over the model migration process. With multi-deployment migrations, you can dictate how quickly you would like to migrate your existing traffic to the target model version or model family on a new provisioned deployment. The process to migrate to a new model version or model family using the multi-deployment migration approach is as follows:
+
 - Create a new provisioned deployment. For this new deployment, you can choose to maintain the same provisioned deployment type as your existing deployment or select a new deployment type if desired.
 - Transition traffic from the existing provisioned deployment to the newly created provisioned deployment with your target model version or model family until all traffic is offloaded from the original deployment. 
 - Once traffic is migrated over to the new deployment, validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric doesn't show any API calls made within 5-10 minutes of the inference traffic being migrated over to the new deployment. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).

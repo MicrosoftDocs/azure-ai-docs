@@ -61,6 +61,7 @@ You can create a shared private link for the following resources.
 | Microsoft.CognitiveServices/accounts <sup>8</sup> | `cognitiveservices_account` |
 | Microsoft.CognitiveServices/accounts <sup>9</sup> | `foundry_account` |
 | Microsoft.Fabric/privateLinkServicesForFabric <sup>10</sup> | `workspace` |
+| Microsoft.ApiManagement/service <sup>11</sup> | `Gateway` |
 
 <sup>1</sup> If Azure Storage and Azure AI Search are in the same region, the connection to storage is made over the Microsoft backbone network, which means a shared private link is redundant for this configuration. However, if you already set up a private endpoint for Azure Storage, you should also set up a shared private link or the connection is refused on the storage side. Also, if you're using multiple storage formats for various scenarios in search, make sure to create a separate shared private link for each subresource.
 
@@ -68,7 +69,7 @@ You can create a shared private link for the following resources.
 
 <sup>3</sup> The `Microsoft.Sql/servers` resource type is used for connections to Azure SQL database. There's currently no support for a shared private link to Azure Synapse SQL.
 
-<sup>4</sup> The `Microsoft.Web/sites` resource type is used for App service and Azure functions. In the context of Azure AI Search, an Azure function is the more likely scenario. An Azure function is commonly used for hosting the logic of a custom skill. Azure Function has Consumption, Premium, and Dedicated [App Service hosting plans](/azure/app-service/overview-hosting-plans). The [App Service Environment (ASE)](/azure/app-service/environment/overview), [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and [Azure API Management](/azure/api-management/api-management-key-concepts) aren't supported at this time.
+<sup>4</sup> The `Microsoft.Web/sites` resource type is used for App service and Azure functions. In the context of Azure AI Search, an Azure function is the more likely scenario. An Azure function is commonly used for hosting the logic of a custom skill. Azure Function has Consumption, Premium, and Dedicated [App Service hosting plans](/azure/app-service/overview-hosting-plans). The [App Service Environment (ASE)](/azure/app-service/environment/overview) and [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) aren't supported at this time. For shared private link support to [Azure API Management](/azure/api-management/api-management-key-concepts), use the `Microsoft.ApiManagement/service` resource type.
 
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
@@ -81,6 +82,8 @@ You can create a shared private link for the following resources.
 <sup>9</sup> Shared private links are supported for connections to Foundry resources. For Azure-hosted model skills such as [GenAI prompt skill](cognitive-search-skill-genai-prompt.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), or [Content Understanding skill](cognitive-search-skill-content-understanding.md), Azure AI Search connects to a Foundry resource to execute the underlying processing. 
 
 <sup>10</sup> Shared private link is supported for connections to OneLake workspace. To create a `privateLinkServicesForFabric` resource specific to a workspace, [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) `Microsoft.Fabric` namespace to your subscription and refer to step 2 as documented in [Create the private link service in Azure](/fabric/security/security-workspace-level-private-links-set-up#step-2-create-the-private-link-service-in-azure). Note that when using a shared private link, the OneLake data source configuration must be defined with a specific connection string as outlined in the [OneLake indexer documentation](search-how-to-index-onelake-files.md#define-the-data-source).
+
+<sup>11</sup> The `Microsoft.ApiManagement/service` resource type provides private connectivity to an [Azure API Management](/azure/api-management/api-management-key-concepts) gateway that fronts model endpoints. 
 
 ## 1 - Create a shared private link
 
@@ -292,7 +295,7 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 Alternatively, you can also obtain connection state by using the [Shared Private Link Resources - Get](/rest/api/searchmanagement/shared-private-link-resources/get).
 
 ```dotnetcli
-az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2025-09-01
+az rest --method get --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Search/searchServices/contoso-search/sharedPrivateLinkResources/blob-pe?api-version=2025-05-01
 ```
 
 This would return a JSON, where the connection state shows up as "status" under the "properties" section. Following is an example for a storage account.

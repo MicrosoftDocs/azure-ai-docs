@@ -53,7 +53,9 @@ The following table shows SDK and setup support.
 
 - An Azure subscription with an active Foundry project.
 - A model deployment (for example, `gpt-4.1-mini`) in your Foundry project.
-- Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
+- Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Foundry User** for building an agent.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - SDK installation:
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C#: `Azure.AI.Projects` NuGet package

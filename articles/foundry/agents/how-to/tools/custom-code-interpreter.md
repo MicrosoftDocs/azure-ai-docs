@@ -46,7 +46,9 @@ The custom code interpreter uses the MCP tool type. Any SDK that supports MCP to
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later.
 - (Optional) [uv](https://docs.astral.sh/uv/getting-started/installation/) for faster Python package management.
 - An Azure subscription and resource group with the following role assignments:
-  - [Azure AI Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner)
+  - [Foundry Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner)
+
+    [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
 - An Azure AI Foundry SDK. See the [quickstart](../../../quickstarts/get-started-code.md) for installation.
 
@@ -478,7 +480,7 @@ After you've provisioned the infrastructure and run the sample:
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | Feature registration is still pending | The `az feature register` command returns `Registering` state. | Wait for registration to complete (can take 15-30 minutes). Check status with `az feature show --namespace Microsoft.App --name SessionPoolsSupportMCP`. Then run `az provider register -n Microsoft.App` again. |
-| Deployment fails with permission error | Missing required role assignments. | Confirm you have **Azure AI Owner** and **Container Apps ManagedEnvironment Contributor** roles on the subscription or resource group. |
+| Deployment fails with permission error | Missing required role assignments. | Confirm you have **Foundry Owner** and **Container Apps ManagedEnvironment Contributor** roles on the subscription or resource group. |
 | Deployment fails with region error | The selected region doesn't support Azure Container Apps Dynamic Sessions. | Try a different region. See [Azure Container Apps regions](/azure/container-apps/overview#regions) for supported regions. |
 | Agent doesn't call the tool | The MCP connection isn't configured correctly, or the agent instructions don't prompt tool use. | Use tracing in Microsoft Foundry to confirm tool invocation. Verify the `MCP_SERVER_URL` matches your deployed Container Apps endpoint. See [Best practices](../../concepts/tool-best-practice.md). |
 | MCP server connection timeout | The Container Apps session pool isn't running or has no standby instances. | Check the session pool status in the Azure portal. Increase `standbyInstanceCount` in your Bicep template if needed. |

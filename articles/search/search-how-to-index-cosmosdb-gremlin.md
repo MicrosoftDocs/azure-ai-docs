@@ -14,7 +14,7 @@ ms.custom:
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search
 
 > [!IMPORTANT]
-> The Azure Cosmos DB for Apache Gremlin indexer is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Currently, there is no SDK support.
+> The Azure Cosmos DB for Apache Gremlin indexer is currently in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Currently, there is no SDK support.
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from [Azure Cosmos DB for Apache Gremlin](/azure/cosmos-db/gremlin/introduction) and makes it searchable in Azure AI Search.
 

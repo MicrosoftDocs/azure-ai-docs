@@ -7,6 +7,7 @@ ms.reviewer: skohlmeier
 ms.date: 04/03/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ai-usage: ai-assisted
 ms.custom:
   - references_regions

@@ -4,9 +4,10 @@ description: "Quickly learn how to associate a Microsoft Foundry resource with a
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.date: 02/23/2026
+ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new

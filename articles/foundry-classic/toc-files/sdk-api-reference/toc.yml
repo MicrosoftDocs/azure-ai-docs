@@ -129,7 +129,7 @@ items:
     href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
   - name: Azure OpenAI monitoring data reference
     href: ../../openai/monitor-openai-reference.md
-  - name: Audio events reference (preview)
+  - name: Realtime API reference (preview)
     href: ../../openai/realtime-audio-reference.md
-  - name: Audio events reference (GA)
+  - name: Realtime API reference (GA)
     href: ../../openai/realtime-audio-reference-ga.md

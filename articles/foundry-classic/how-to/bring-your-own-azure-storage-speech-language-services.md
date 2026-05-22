@@ -6,6 +6,7 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024, build-2025, dev-focus
   - classic-and-new

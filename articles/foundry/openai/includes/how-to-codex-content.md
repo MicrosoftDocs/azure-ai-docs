@@ -1,35 +1,35 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
-OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT’s Codex. You can run this coding agent entirely on Azure infrastructure, while keeping your data inside your compliance boundary with the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that can be triggered from your terminal, VS Code, or from a GitHub Actions runner. Codex allows you to automatically open pull requests, refactor files, and write tests with the credentials of your Foundry project and Azure OpenAI deployments.
+OpenAI's [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT's Codex. You can run this coding agent entirely on Azure infrastructure while keeping your data inside your compliance boundary. You get the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that you can trigger from your terminal, VS Code, or from a GitHub Actions runner. Codex enables you to automatically open pull requests, refactor files, and write tests by using the credentials of your Foundry project and Azure OpenAI deployments.
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Contributor permissions in [Microsoft Foundry](https://ai.azure.com/).
 - `homebrew` (macOS) or Node.js with `npm` for installing the Codex CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-- For Windows, install and configure WSL2. See [Install WSL](https://learn.microsoft.com/windows/wsl/install).
+- For Windows, install and configure WSL2. See [Install WSL](/windows/wsl/install).
 
-| Requirements      | Details      |
-|-------------------|--------------|
-| Operating systems |macOS 12+, Ubuntu 20.04+/Debian 10+, or Windows 11 via WSL2 |
+| Requirements | Details |
+| ------------ | ------- |
+| Operating systems | macOS 12+, Ubuntu 20.04+/Debian 10+, or Windows 11 via WSL2 |
 | Git (optional, recommended) | 2.23+ for built-in pull request helpers |
 | RAM | 4-GB minimum (8-GB recommended) |
 
 ## Deploy a model in Foundry
 
 1. Go to [Foundry](https://ai.azure.com) and create a new project.
-2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](../how-to/reasoning.md) such as `gpt-5.3-codex`, `gpt-5.2-codex`,`gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
-3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select **deploy model**.
-4. Copy the endpoint **URL** and the **API Key**.
+1. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](../how-to/reasoning.md) such as `gpt-5.3-codex`, `gpt-5.2-codex`,`gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+1. To deploy the model from the model catalog, select **Use this model**. If you're using the Azure OpenAI **Deployments** pane, select **deploy model**.
+1. Copy the endpoint **URL** and the **API Key**.
 
 ## Install the Codex CLI
 
@@ -55,16 +55,16 @@ If Homebrew can't find the package, follow the latest installation instructions 
 
 ## Create and configure config.toml
 
-1. In order to use Codex CLI with Azure, you need to create and set up a `config.toml` file.
+1. To use Codex CLI with Azure, create and set up a `config.toml` file.
 
-    The config.toml file needs to be stored in the `~/.codex` directory. Create a `config.toml` file inside this directory or edit the existing file if it already exists:
+    Store the `config.toml` file in the `~/.codex` directory. Create a `config.toml` file inside this directory or edit the existing file if it already exists:
 
     ```bash
     cd ~/.codex
     nano config.toml
     ```
 
-2. Copy the text below to use the [v1 Responses API](../how-to/responses.md). With the [v1 API](../api-version-lifecycle.md) you no longer need to pass api-version, but you must include /v1 in the `base_url` path. You can't pass your API key as a string directly to `env_key`. `env_key` must point to an environment variable. Update your `base_url` with your resource name:
+1. Copy the following text to use the [v1 Responses API](../how-to/responses.md). With the [v1 API](../api-version-lifecycle.md) you no longer need to pass `api-version`, but you must include `/v1` in the `base_url` path. You can't pass your API key as a string directly to `env_key`. `env_key` must point to an environment variable. Update your `base_url` with your resource name:
 
     ```text
     model = "gpt-5-codex"  # Replace with your actual Azure model deployment name
@@ -78,28 +78,28 @@ If Homebrew can't find the package, follow the latest installation instructions 
     wire_api = "responses"
     ```
 
-3. Once you have saved the updates to your `config.toml` file return to the terminal and create an instance of the environment variable that is referenced in your config file.  
+1. After you save the updates to your `config.toml` file, return to the terminal and create an instance of the environment variable that the config file references.  
 
     ```bash
     # Linux, macOS, or WSL 
     export AZURE_OPENAI_API_KEY="<your-api-key>"
     ```
 
-4. Now run one of the following commands in the terminal to test if your Codex CLI configuration was successful:
+1. Run one of the following commands in the terminal to test if your Codex CLI configuration was successful:
 
-    |Command| Purpose|
+    | Command | Purpose |
     |----|----|
     | codex | Launch interactive Terminal User Interface (TUI) |
     | codex "Initial prompt" | Launch TUI with an initial prompt |
     | codex exec "Initial prompt" | Launch TUI in non-interactive "automation mode" |
 
-## Use codex in Visual Studio Code
+## Use Codex in Visual Studio Code
 
-You can also use Codex directly inside Visual Studio Code when using the [OpenAI Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt)
+You can also use Codex directly inside Visual Studio Code when using the [OpenAI Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt).
 
-1. If you don't already have Visual Studio Code, you can install it for [macOS](https://code.visualstudio.com/docs/setup/mac) and [Linux](https://code.visualstudio.com/docs/setup/linux).
-2. Install the [OpenAI Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt). The extension relies on your `config.toml` file that was configured for Codex CLI.
-3. If you are in a new terminal session setup the environment variable for `AZURE_OPENAI_API_KEY`:
+1. If you don't already have Visual Studio Code, install it for [macOS](https://code.visualstudio.com/docs/setup/mac) and [Linux](https://code.visualstudio.com/docs/setup/linux).
+1. Install the [OpenAI Codex extension](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt). The extension relies on your `config.toml` file that you configured for Codex CLI.
+1. If you're in a new terminal session, set up the environment variable for `AZURE_OPENAI_API_KEY`:
 
     ```bash
     export OPENAI_API_KEY="<your-azure-api-key-here>"
@@ -108,13 +108,13 @@ You can also use Codex directly inside Visual Studio Code when using the [OpenAI
     > [!NOTE]
     > If you use WSL, also set the same environment variable on the Windows host so the extension can read it when needed.
 
-4. Launch VS Code from the same Terminal session. (Launching from an app launcher can result in your API key environment variable not being available to the Codex extension.)
+1. Launch VS Code from the same terminal session. (Launching from an app launcher can result in your API key environment variable not being available to the Codex extension.)
 
     ```bash
     code .
     ```
 
-5. You'll now be able to use Codex in Visual Studio Code to chat, edit, and preview changes while toggling between three approval modes.
+1. You can now use Codex in Visual Studio Code to chat, edit, and preview changes while toggling between three approval modes.
 
 ### Approval modes
 
@@ -123,19 +123,19 @@ Approval modes determine how much autonomy and interaction you want to have with
 | Approval mode | Description |
 |---------------|-------------|
 | Chat          | To chat and plan with the model. |
-| Agent         | Codex can read files, make edits, and run commands in the working directory automatically. Codex will need approval for activities outside the working directory or to access the internet. |
-| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Full access mode shouldn't be used without full understanding of the potential risks as well as implementing additional guardrails such as running in a controlled sandbox environment. |
+| Agent         | Codex can read files, make edits, and run commands in the working directory automatically. Codex needs approval for activities outside the working directory or to access the internet. |
+| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Don't use full access mode without full understanding of the potential risks as well as implementing additional guardrails such as running in a controlled sandbox environment. |
 
 > [!IMPORTANT]
 > We recommend reviewing OpenAI's guidance on [Codex security](https://developers.openai.com/codex/security).
 
 ## Persistent guidance with AGENTS.md
 
-You can give Codex extra instructions and guidance using `AGENTS.md` files. Codex looks for `AGENTS.md` files in the following places and merges them top-down, giving it context about your personal preferences, project-specific details, and the current task:
+You can give Codex extra instructions and guidance by using `AGENTS.md` files. Codex looks for `AGENTS.md` files in the following places and merges them top-down, giving it context about your personal preferences, project-specific details, and the current task:
 
-- `~/.codex/AGENTS.md`– personal global guidance.
+- `~/.codex/AGENTS.md` – personal global guidance.
 - `AGENTS.md` at your repository’s root – shared project notes.
-- `AGENTS.md` in the current working directory – subfolder/feature specifics.
+- `AGENTS.md` in the current working directory – subfolder or feature specifics.
 
 For example, to help Codex understand how to write code for Foundry Agents, you could create an `AGENTS.md` in your project root with the following content, derived from the Azure AI Agents SDK documentation:
 
@@ -183,7 +183,7 @@ with project_client:
 
 ```
 
-In the previous example backticks in the Python code block are escaped to allow proper rendering. The `\`'s can be removed.
+In the previous example, backticks in the Python code block are escaped to allow proper rendering. You can remove the `\` characters.
 
 ## Experiment with Codex CLI
 
@@ -228,4 +228,4 @@ jobs:
 | `ENOTFOUND`, `DNS error`, or `404 Not Found` |Verify `base_url` in `config.toml` uses your resource name, correct domain, and contains `/v1`. <br> For example, `base_url = "https://<your-resource>.openai.azure.com/openai/v1"`.|
 | CLI ignores Azure settings | Open `~/.codex/config.toml` and ensure: <br> - `model_provider = "azure"` is set. <br> - The `[model_providers.azure]` section exists. <br> - `env_key = "AZURE_OPENAI_API_KEY"` matches your environment variable name. |
 | Entra ID support | Entra ID support is currently not available for Codex. |
-| `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension may check for the API key environment variable on the local windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local windows host as well, then launch a new terminal from WSL and launch VS Code with `code .`.|
+| `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension might check for the API key environment variable on the local Windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local Windows host as well, then launch a new terminal from WSL and launch VS Code with `code .`.|
