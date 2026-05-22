@@ -320,16 +320,12 @@ Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn
 All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy). Key commitments:
 
 - Work IQ doesn't use customer content to train or improve underlying AI models.
-- Data retrieved from Microsoft 365 is used only to fulfill the specific request and isn't retained by Work IQ beyond the scope of that request.
-- Microsoft 365 audit logging captures Work IQ access events. Administrators can review access through the Microsoft Purview compliance portal.
 
 ### Access control and permissions
 
 Work IQ enforces Microsoft 365 permissions automatically on every request. Agents can only access data that the signed-in user is already authorized to see — no elevation of privilege is possible:
 
 - Role-based access control, sensitivity labels, and information barriers defined in Microsoft 365 are respected.
-- Conditional access policies in your Entra tenant apply to the OAuth token issued for Work IQ connections.
-- Application-only access isn't supported — a signed-in user context is always required.
 
 ### Compliance certifications
 
