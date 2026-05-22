@@ -5,7 +5,7 @@ author: zhuoqunli
 ms.author: zhuoqunli
 ms.reviewer: shpeng
 ms.date: 05/10/2026
-ms.manager: nitinme
+manager: nitinme
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
