@@ -14,7 +14,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 05/18/2026
+ms.date: 05/22/2026
 recommendations: false
 #customerIntent: As a developer with a provisioned throughput deployment, I want to benchmark, monitor, and scale it so I can run it reliably in production.
 ---
@@ -33,7 +33,7 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 ## Estimate PTU requirements
 
-Before creating a provisioned deployment, you should estimate how many PTUs your workload needs. For the estimation formulas, a worked example, and walkthrough of the capacity calculator, see [Determine PTU requirements for a workload](./determine-provisioned-throughput-unit-requirements.md).
+Before creating a provisioned deployment, you should estimate how many PTUs your workload needs. For the estimation formulas, a worked example, and walkthrough of the capacity calculator, see [Determine PTU sizing for a workload](./provisioned-throughput-sizing.md).
 
 ## Check and request PTU quota
 

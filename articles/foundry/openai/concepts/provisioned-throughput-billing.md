@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 05/17/2026
+ms.date: 05/22/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
@@ -23,7 +23,7 @@ recommendations: false
 
 Provisioned throughput deployments in Microsoft Foundry support hourly billing for flexible, short-term usage, and Azure Reservations for sustained production workloads at a discounted rate. This article explains how PTU billing works, helps you choose between hourly billing and Azure Reservations, and covers how to monitor and manage reservation costs.
 
-If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](./provisioned-throughput.md). To estimate the number of PTUs your workload needs, see [Determine PTU requirements for a workload](../how-to/determine-provisioned-throughput-unit-requirements.md). When you're ready to create your first deployment, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
+If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](./provisioned-throughput.md). To estimate the number of PTUs your workload needs, see [Determine PTU sizing for a workload](../how-to/provisioned-throughput-sizing.md). When you're ready to create your first deployment, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
 
 ## How PTU billing works
 
@@ -194,7 +194,7 @@ As your provisioned deployment footprint grows or shrinks, some ways to adjust y
 ## Related content
 
 - [What is provisioned throughput?](./provisioned-throughput.md)
-- [Determine PTU requirements for a workload](../how-to/determine-provisioned-throughput-unit-requirements.md)
+- [Determine PTU sizing for a workload](../how-to/provisioned-throughput-sizing.md)
 - [Get started with provisioned deployments](../how-to/provisioned-get-started.md)
 - [Foundry Provisioned Throughput reservation documentation](https://aka.ms/oai/docs/ptum-reservations)
 - [Performance and latency](../how-to/latency.md)

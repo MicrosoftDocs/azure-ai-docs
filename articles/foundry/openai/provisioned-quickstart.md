@@ -14,7 +14,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 05/20/2026
+ms.date: 05/22/2026
 recommendations: false
 #customerIntent: As a developer, I want to create a provisioned throughput deployment and make my first inference call so I can start using dedicated model capacity for my application.
 ---
@@ -40,7 +40,7 @@ Before creating a deployment, confirm that your model supports provisioned throu
 1. Go to the [model and region availability table](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned) to see if your model supports provisioned throughput deployment in your target region.
 1. Filter by your region and verify that the model appears in a **Provisioned** deployment type.
 
-Also note the model's minimum PTU count, as you need this information when you configure the deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](./how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model).
+Also note the model's minimum PTU count, as you need this information when you configure the deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](./how-to/provisioned-throughput-sizing.md#deployment-parameters-and-throughput-values-by-model).
 
 ## Check PTU quota
 
