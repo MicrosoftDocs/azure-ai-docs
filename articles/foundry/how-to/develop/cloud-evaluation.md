@@ -77,7 +77,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.2.0"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ```python
@@ -1522,6 +1522,10 @@ Specify the schema for your conversation data, "messages", and select evaluators
 
 # [Python](#tab/python)
 
+```bash
+pip install "azure-ai-projects>=2.2.0"
+```
+
 ```python
 import os
 from openai.types.eval_create_params import DataSourceConfigCustom
@@ -1648,33 +1652,33 @@ from openai.types.evals.create_eval_jsonl_run_data_source_param import (
     SourceFileID,
 )
 
-    # Upload conversation data
-    data_id = project_client.datasets.upload_file(
-        name="multiturn-conversation-data",
-        version="1",
-        file_path="./conversations.jsonl",
-    ).id
+# Upload conversation data
+data_id = project_client.datasets.upload_file(
+    name="multiturn-conversation-data",
+    version="1",
+    file_path="./conversations.jsonl",
+).id
 
-    # Create the evaluation
-    eval_object = openai_client.evals.create(
-        name="Multi-turn Conversation Evaluation",
-        data_source_config=data_source_config,
-        testing_criteria=testing_criteria,
-    )
+# Create the evaluation
+eval_object = openai_client.evals.create(
+    name="Multi-turn Conversation Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
 
-    # Create a run with evaluation_level set to "conversation"
-    eval_run = openai_client.evals.runs.create(
-        eval_id=eval_object.id,
-        name="multiturn-conversation-run",
-        data_source=CreateEvalJSONLRunDataSourceParam(
-            type="jsonl",
-            source=SourceFileID(
-                type="file_id",
-                id=data_id,
-            ),
+# Create a run with evaluation_level set to "conversation"
+eval_run = openai_client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="multiturn-conversation-run",
+    data_source=CreateEvalJSONLRunDataSourceParam(
+        type="jsonl",
+        source=SourceFileID(
+            type="file_id",
+            id=data_id,
         ),
-        extra_body={"evaluation_level": "conversation"},
-    )
+    ),
+    extra_body={"evaluation_level": "conversation"},
+)
 ```
 
 # [cURL](#tab/curl)
@@ -1815,7 +1819,7 @@ curl --request POST \
     "data_source": {
       "type": "azure_ai_trace_data_source_preview",
       "trace_source": {
-        "type": "conversation_ids",
+        "type": "conversation_id_source",
         "conversation_ids": ["conversation_1234", "conversation_5678"],
         "lookback_hours": 24,
         "end_time": "2026-05-21T00:00:00Z"
@@ -1827,7 +1831,7 @@ curl --request POST \
 ---
 
 > [!NOTE]
-> - If `end_time` is very close to when the evaluation runs and traces can't be found, the API automatically retries to accommodate data ingestion delay.
+> - There may be a delay between when traces are generated and when they become available for evaluation due to Application Insights data ingestion. If traces aren't found, wait a few minutes and retry.
 > - The maximum lookback is **7 days (168 hours)**. To access older traces, use `start_time` and `end_time` within your App Insights retention limits.
 
 ### Evaluate sampled conversations by agent filter
@@ -1995,7 +1999,7 @@ To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Conversation simulation
 
-Generate simulated multi-turn conversations from scenario descriptions and evaluate them using the message schema definition for group (as before), and then reusing agent target to launch a run defining run time using the new conversation_gen_preview for item_generation_param. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
+Generate simulated multi-turn conversations from scenario descriptions and evaluate them. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
 
 This approach is useful for:
 
@@ -2160,63 +2164,63 @@ curl --request POST \
 # [Python](#tab/python)
 
 ```python
-    # Create (or update) an agent to simulate against
-    agent = project_client.agents.create_version(
-        agent_name=agent_name,
-        definition=PromptAgentDefinition(
-            model=model_deployment_name,
-            instructions="You are a helpful customer service agent. Be empathetic and solution-oriented.",
-        ),
-    )
+# Create (or update) an agent to simulate against
+agent = project_client.agents.create_version(
+    agent_name=agent_name,
+    definition=PromptAgentDefinition(
+        model=model_deployment_name,
+        instructions="You are a helpful customer service agent. Be empathetic and solution-oriented.",
+    ),
+)
 
-    # Upload scenario data
-    scenarios_id = project_client.datasets.upload_file(
-        name="simulation-scenarios",
-        version="1",
-        file_path="./scenarios.jsonl",
-    ).id
+# Upload scenario data
+scenarios_id = project_client.datasets.upload_file(
+    name="simulation-scenarios",
+    version="1",
+    file_path="./scenarios.jsonl",
+).id
 
-    # Create the evaluation
-    eval_object = openai_client.evals.create(
-        name="Multi-turn Conversation Simulation",
-        data_source_config=data_source_config,
-        testing_criteria=testing_criteria,
-    )
+# Create the evaluation
+eval_object = openai_client.evals.create(
+    name="Multi-turn Conversation Simulation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
 
-    # Create a simulation run
-    eval_run = openai_client.evals.runs.create(
-        eval_id=eval_object.id,
-        name="conversation-simulation-run",
-        data_source={
-            "type": "azure_ai_target_completions",
-            "source": {
-                "type": "file_id",
-                "id": scenarios_id,
+# Create a simulation run
+eval_run = openai_client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="conversation-simulation-run",
+    data_source={
+        "type": "azure_ai_target_completions",
+        "source": {
+            "type": "file_id",
+            "id": scenarios_id,
+        },
+        "target": {
+            "type": "azure_ai_agent",
+            "name": agent.name,
+            "version": agent.version,
+        },
+        "item_generation_params": {
+            "type": "conversation_gen_preview",
+            "model": model_deployment_name,
+            "num_conversations": 2,
+            "max_turns": 5,
+            "sampling_params": {
+                "temperature": 0.7,
+                "top_p": 1.0,
+                "max_completion_tokens": 800,
             },
-            "target": {
-                "type": "azure_ai_agent",
-                "name": agent.name,
-                "version": agent.version,
-            },
-            "item_generation_params": {
-                "type": "conversation_gen_preview",
-                "model": model_deployment_name,
-                "num_conversations": 2,
-                "max_turns": 5,
-                "sampling_params": {
-                    "temperature": 0.7,
-                    "top_p": 1.0,
-                    "max_completion_tokens": 800,
-                },
-                "data_mapping": {
-                    "test_case_description": "test_case_description",
-                    "id": "id",
-                    "desired_num_turns": "desired_num_turns",
-                },
+            "data_mapping": {
+                "test_case_description": "test_case_description",
+                "id": "id",
+                "desired_num_turns": "desired_num_turns",
             },
         },
-        extra_body={"evaluation_level": "conversation"},
-    )
+    },
+    extra_body={"evaluation_level": "conversation"},
+)
 ```
 
 # [cURL](#tab/curl)
