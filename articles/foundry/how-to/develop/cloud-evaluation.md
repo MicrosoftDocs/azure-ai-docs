@@ -997,7 +997,26 @@ Trace evaluation supports two modes:
 
 ### Intelligent sampling
  
-Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity—ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity — ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+
+#### How intelligent sampling works
+
+The sampling algorithm uses a MinHash farthest-first diversity approach that runs in multiple stages:
+
+1. **Exact deduplication** — Removes duplicate traces from the pool.
+1. **Hard filters** — Removes broken sessions, truncated traces, and malformed tool calls that aren't suitable for evaluation.
+1. **Aggregation** — Combines trace-level signals into a unified representation.
+1. **MinHash farthest-first selection** — Computes locality-sensitive hashes (MinHash signatures) of user text to estimate similarity between traces, then iteratively selects the most dissimilar trace from the remaining pool. Each successive pick maximizes distance from all previously selected traces.
+
+This approach produces significantly higher lexical diversity and broader vocabulary coverage compared to random sampling, which means the evaluated set better represents the full range of agent interactions — including rare, hard, and novel cases that random sampling tends to miss.
+
+Intelligent sampling is particularly effective for:
+
+- **Evaluation and benchmarks** — Maximizes coverage of the input distribution so evaluation scores reflect real-world diversity.
+- **Rubric generation** — Produces more focused and actionable rubrics by exposing diverse conversation patterns.
+- **Finetuning dataset curation** — Selects traces that help models learn more efficiently.
+
+The algorithm runs entirely on local compute with no additional API calls, so it doesn't incur extra model inference costs beyond the evaluation itself.
 
 ### Trace data requirements
 
