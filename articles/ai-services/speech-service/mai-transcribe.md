@@ -37,9 +37,7 @@ The following models are supported:
 You can use MAI‑Transcribe models with the LLM Speech API to generate transcriptions from audio input.
 
 Note the following limitations when you use a MAI-Transcribe model:
-
 - Diarization isn't supported.
-
 - Prompt-tuning isn't supported.
 
 ::: zone pivot="ai-foundry"
