@@ -107,7 +107,7 @@ Not every model is available in every supported region. Check the [models page](
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
+> - Performance issues when background mode is used with streaming. Microsoft is working to resolve this issue.
 
 ## Generate a text response
 
@@ -2738,7 +2738,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 > [!IMPORTANT]
 > - The MCP client within the Responses API requires TLS 1.2 or greater.
-> - mutual TLS (mTLS) is currently not supported.
+> - Mutual TLS (mTLS) is currently not supported.
 > - [Azure service tags](/azure/virtual-network/service-tags-overview) are currently not supported for MCP client traffic.
 
 Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
@@ -3325,7 +3325,7 @@ curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses 
 
 ---
 
-> Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
+Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
 
 ### Limitations
 
@@ -3692,7 +3692,7 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
 
 ## Troubleshooting
 
