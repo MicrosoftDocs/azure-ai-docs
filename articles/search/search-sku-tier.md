@@ -10,7 +10,7 @@ ms.date: 06/02/2026
 
 # Choose a pricing model and service tier in Azure AI Search
 
-When you [create a search service](search-create-service-portal.md), you must choose a pricing model. Azure AI Search offers two pricing models, each suited to different workload patterns:
+When you [create a search service](search-create-service-portal.md), you must choose a pricing model and service tier. Azure AI Search offers two pricing models, each suited to different workload patterns, with associated service tiers that determine capacity and features:
 
 | Pricing model | Best for | How you're billed |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ Selecting the Serverless pricing model does not require selecting a pre-provisio
 
 ## Serverless (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 The Serverless pricing model is a consumption-based offering that automatically scales compute and storage based on your workload. It eliminates the need to provision capacity upfront, allowing you to pay only for the resources you use.
 
