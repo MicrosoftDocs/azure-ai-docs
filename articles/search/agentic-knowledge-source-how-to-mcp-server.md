@@ -253,6 +253,98 @@ Use the knowledge source name as the prefix:
 
 `<N>` is an optional numeric suffix that pairs multiple headers. For example, `my-mcp-server-ks-header-name1` pairs with `my-mcp-server-ks-header-value1`.
 
+::: zone pivot="csharp"
+
+Create the retrieval client with a policy that adds the control headers to the retrieve request.
+
+```csharp
+using Azure;
+using Azure.Core;
+using Azure.Core.Pipeline;
+using Azure.Search.Documents;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+string knowledgeSourceName = "my-mcp-server-ks";
+
+var options = new SearchClientOptions();
+options.AddPolicy(new McpPassthroughHeaderPolicy(knowledgeSourceName), HttpPipelinePosition.PerCall);
+
+var retrievalClient = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri(searchEndpoint),
+    knowledgeBaseName: knowledgeBaseName,
+    credential: credential,
+    options: options);
+
+var request = new KnowledgeBaseRetrievalRequest();
+request.Messages.Add(
+    new KnowledgeBaseMessage(new[] { new KnowledgeBaseMessageTextContent("Find Azure AI Search MCP guidance.") })
+    {
+        Role = "user"
+    });
+request.KnowledgeSourceParams.Add(new SearchIndexKnowledgeSourceParams(knowledgeSourceName));
+
+Response<KnowledgeBaseRetrievalResponse> response = await retrievalClient.RetrieveAsync(request);
+
+sealed class McpPassthroughHeaderPolicy(string knowledgeSourceName) : HttpPipelineSynchronousPolicy
+{
+    public override void OnSendingRequest(HttpMessage message)
+    {
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-name", "Authorization");
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-value", "Bearer <mcp-server-access-token>");
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-name1", "x-api-key");
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-value1", "<mcp-server-api-key>");
+    }
+}
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+Pass the control headers in the `headers` keyword argument on the retrieve call.
+
+```python
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+    SearchIndexKnowledgeSourceParams,
+)
+
+knowledge_source_name = "my-mcp-server-ks"
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="Find Azure AI Search MCP guidance."
+                )
+            ],
+        )
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(knowledge_source_name=knowledge_source_name)
+    ],
+)
+
+result = retrieval_client.retrieve(
+    request,
+    headers={
+        f"{knowledge_source_name}-header-name": "Authorization",
+        f"{knowledge_source_name}-header-value": "Bearer <mcp-server-access-token>",
+        f"{knowledge_source_name}-header-name1": "x-api-key",
+        f"{knowledge_source_name}-header-value1": "<mcp-server-api-key>",
+    },
+)
+```
+
+::: zone-end
+
+::: zone pivot="rest"
+
 ```http
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Authorization: Bearer {{search-access-token}}
@@ -282,6 +374,8 @@ my-mcp-server-ks-header-value1: {{mcp-server-api-key}}
   ]
 }
 ```
+
+::: zone-end
 
 Each header pair must include exactly one name control header and one matching value control header. Header names and values must be valid HTTP request headers. If a query-time header uses the same target header name as a `storedHeaders` entry, the query-time value overrides the stored value for that request.
 
