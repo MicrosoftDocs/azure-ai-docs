@@ -609,7 +609,10 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 ### Domain filtering
 
-You can limit results to a specific set of domains by using domain filtering. You can allow list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
+You can limit results to a specific set of domains by using domain filtering. Use the `allowed_domains` field to allowlist up to 100 URLs, or the `blocked_domains` field to exclude domains from results. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
+
+> [!NOTE]
+> The Python, JavaScript, and REST examples in this section show both `allowed_domains` and `blocked_domains`. The .NET and Java SDKs don't yet expose a typed builder for `blocked_domains`; typed support is rolling out. Until then, use REST or one of the other languages to set `blocked_domains`.
 
 To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
 
@@ -641,7 +644,11 @@ response = openai.responses.create(
                     "www.who.int",
                     "www.cdc.gov",
                     "www.fda.gov",
-                ]
+                ],
+                "blocked_domains": [
+                    "en.wikipedia.org",
+                    "www.reddit.com",
+                ],
             },
         }
     ],
@@ -724,6 +731,10 @@ const response = await openai.responses.create({
           "www.who.int",
           "www.cdc.gov",
           "www.fda.gov",
+        ],
+        blocked_domains: [
+          "en.wikipedia.org",
+          "www.reddit.com",
         ],
       },
     },
@@ -809,6 +820,10 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
             "www.who.int",
             "www.cdc.gov",
             "www.fda.gov"
+          ],
+          "blocked_domains": [
+            "en.wikipedia.org",
+            "www.reddit.com"
           ]
         }
       }
