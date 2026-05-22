@@ -25,28 +25,39 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ## June 2026
 
-### Azure Translator 2026-06-06 (GA) release
+### Azure Translator text translation 2026-06-06 (GA) release
 
-Translator **2026-06-06** is our latest cloud-based multilingual translation service. You can choose between neural machine translation (NMT) or generative AI language models (LLMs) for each request. Both approaches are available at production scale. To learn more about migrating to Translator 2026-06-06, *see* [Migrate from Azure Translator Text API v3 to Azure Translator Text API 2026-06-06](text-translation/how-to/migrate-to-2026-06-06.md).
-
-### Document translation updates
-
-Document translation now includes enhancements to improve workflow flexibility and in-portal testing:
-
-* **In-portal testing (Foundry playground)**  
-  Upload or paste document content and preview translations without calling the API.
-
-* **Integrated workflow alignment with Foundry**  
-  Document translation is now part of the end-to-end Foundry experience, enabling testing alongside text translation and model selection.
-
-* **Batch and single document parity (ongoing alignment)**  
-  Continued improvements ensure a more consistent experience across asynchronous batch and synchronous single-document workflows.
+Text transltion API **2026-06-06** is our latest cloud-based multilingual translation service. You can choose between neural machine translation (NMT) or generative AI language models (LLMs) for each request. Both approaches are available at production scale. To learn more about migrating to Translator 2026-06-06, *see* [Migrate from Azure Translator Text API v3 to Azure Translator Text API 2026-06-06](text-translation/how-to/migrate-to-2026-06-06.md).
 
 ### Adaptive custom translation (AdaptCT)
 
 Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
 
 :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screenshot of the adaptive custom translation pane in Foundry." lightbox="media/adaptive-custom-translation.png":::
+
+
+### Document translation (2026-03-01 GA)
+
+Azure Translator Document Translation API version `2026-03-01` introduces expanded translation capabilities and model flexibility.
+
+**Key updates:**
+
+* **Model selection (NMT + LLMs)**  
+  * Choose between neural machine translation (NMT) and large language models (LLMs) for document translation.
+
+* **Image translation support**  
+  * Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`).
+
+* **PDF translation improvements (batch)**  
+  * Translate PDF documents using Azure Document Intelligence to preserve layout and structure.
+
+* **Translate images within documents (batch)**  
+  * Translate text embedded in images in Word (`.docx`) and PowerPoint (`.pptx`) files.
+
+* **Unified translation modes**  
+  * Supports both:  
+    * **Synchronous translation** for single documents (no storage required)  
+    * **Asynchronous batch translation** for large-scale workloads using Blob Storage
 
 ## December 2025
 
