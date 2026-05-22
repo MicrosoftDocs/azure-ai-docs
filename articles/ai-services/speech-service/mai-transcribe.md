@@ -138,7 +138,7 @@ By default, the model operates in multi-lingual mode. The following languages ar
 | `vi` | Vietnamese |
 
 
-Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). For example:
+Optionally, specify a language code in `locales` to force recognition in a single language. For example:
 
 ```
 --form 'definition={
