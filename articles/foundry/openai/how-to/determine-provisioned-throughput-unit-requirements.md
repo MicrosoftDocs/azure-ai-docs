@@ -93,7 +93,7 @@ The tables in this section list the throughput and deployment parameters for eac
 
 ### Foundry Models sold by Azure
 
-This section lists the other Foundry Models sold by Azure, not including the Azure OpenAI in Foundry Models listed in the previous tables.
+This section lists other Foundry Models sold by Azure, not including the Azure OpenAI in Foundry Models listed in the previous tables.
 
 | Topic | **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 |---|---|---|---|---|

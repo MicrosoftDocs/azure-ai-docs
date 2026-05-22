@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 # Manage traffic with spillover for provisioned deployments
 
-Spillover manages traffic fluctuations on provisioned deployments by automatically routing overage requests to a corresponding standard deployment. When your provisioned deployment is fully utilized and returns non-200 responses—such as a `429` when PTU are exhausted—spillover redirects those requests to the standard deployment, helping you reduce disruptions during traffic bursts. This optional capability can be configured for all requests on a deployment or managed on a per-request basis.
+Spillover manages traffic fluctuations on provisioned deployments by automatically routing overage requests to a corresponding standard deployment. When your provisioned deployment is fully utilized and returns non-200 responses (such as a `429` when PTU are exhausted), spillover redirects those requests to the standard deployment, helping you reduce disruptions during traffic bursts. This optional capability can be configured for all requests on a deployment or managed on a per-request basis.
 
 ## Prerequisites
 

@@ -27,23 +27,17 @@ If you're new to provisioned throughput, start with [What is provisioned through
 
 ## How PTU billing works
 
-**Provisioned throughput units (PTUs)** are generic units of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves and holds that PTU capacity for the deployment, and you're charged for it hourly whether or not the deployment is handling requests. In other words, you're billed hourly based on the number of Provisioned Throughput Units (PTUs) you deploy—not on tokens consumed.
+**Provisioned throughput units (PTUs)** are generic units of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves and holds that PTU capacity for the deployment, and you're charged for it hourly whether or not the deployment is handling requests. In other words, you're billed hourly based on the number of Provisioned Throughput Units (PTUs) you deploy, rather than the number of tokens consumed. 
 
 PTU billing has two important characteristics:
 
 - **Billed on deployed capacity, not token consumption**: Unlike pay-per-token billing, you pay for reserved capacity. Requests that complete successfully consume that capacity, but you're billed for the full deployed PTU count regardless of actual utilization. 
 - **Model-independent**: Your [PTU quota](./provisioned-throughput.md#quota-and-capacity) is shared across all [supported models](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned) in a region and [deployment type](./provisioned-throughput.md#provisioned-throughput-deployment-types). The same PTU pool can be used to deploy any supported model. You don't buy PTUs for a specific model. PTU quota for each provisioned deployment type appears in the Foundry portal's **Operate** section > **Quota** pane.
 
-:::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
-
 Provisioned deployments support two billing modes: **hourly billing** for flexible, short-term usage, and **Azure Reservations** for sustained production workloads at a discounted rate.
 
 > [!NOTE]
 > Foundry provisioned customers onboarded before the August 2024 self-service update use a purchase model called the Commitment model. These customers can continue to use the Commitment model alongside hourly/reservation billing. The Commitment model isn't available for new customers or [certain models introduced after August 2024](../../../foundry-classic/openai/concepts/provisioned-migration.md#supported-models-on-commitment-payment-model). For details on the Commitment purchase model and options for coexistence and migration, see [Foundry Provisioned August Update](../../../foundry-classic/openai/concepts/provisioned-migration.md).
-
-**Unanswered questions for this section:**
-- **How much does a PTU cost per hour?** See the pricing links above for current $/PTU/hr rates by model family.
-
 
 ## Hourly billing
 
@@ -57,6 +51,7 @@ If a deployment exists for only part of an hour, it receives a prorated charge:
 :::image type="content" source="../media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing for provisioned deployments, where cost is determined by PTU count and hours deployed." lightbox="../media/provisioned/hourly-billing.png":::
 
 Provisioned deployments can't be paused. Billing stops only when the deployment is deleted. 
+
 For current PTU pricing by model family, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/), and [DeepSeek model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
 
 ### When to use hourly billing
@@ -91,18 +86,20 @@ Reservations and deployments are loosely coupled: you create deployments and res
 > [!IMPORTANT]
 > Because capacity availability for model deployments is dynamic and changes frequently across regions and models, always create deployments first, then purchase the Azure Reservation to cover the PTUs you've deployed. This approach protects you from committing to a reservation for PTUs you can't deploy and ensures that you receive the full reservation discount.
 
-Key reservation facts:
+### Key reservation facts
 
-- **Purchased in the Azure portal**: Azure Reservations are purchased via the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
-- **Purchased per deployment type**: Global Provisioned, Data Zone Provisioned, and Regional Provisioned reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment.
-- **Discounted rate for a term commitment**: In exchange for a 1-month or 1-year term commitment, you receive a discounted effective $/PTU/hr rate compared to hourly billing. The discount varies by model family and term length. For current rates, see [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry) or use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
-- **Flexibly scoped**: A reservation can be scoped to cover an individual resource group or subscription, a group of subscriptions in a management group, or all subscriptions in a billing account. All matching deployments within the covered scope share the discount, up to the reservation's PTU quantity. See [How reservation matching works](#how-reservation-matching-works).
-- **Overlapping and updatable**: New reservations can be purchased to cover the same scope as existing reservations, allowing you to discount new provisioned deployments. The scope of existing reservations can be updated at any time without penalty. For example, you can update the scope of your existing reservation to cover a new subscription.
-- **Model-independent**: The reservation discount applies to any supported model deployed within the matching scope. You don't purchase a reservation for a specific model. When you add a new model to your deployment portfolio, the existing reservation covers it automatically if it falls within scope.
-- **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate. See [Reservation overage example](#reservation-overage-example).
-- **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve capacity on the service. Create deployments first to confirm that capacity is available, then purchase the reservation.
-- **Cancelable, with limits**: Reservations can be canceled or exchanged after purchase, but those actions might incur fees. See [Adjust reservations as your workload changes](#adjust-reservations-as-your-workload-changes) for more information.
-- **Active immediately**: The reservation discount applies to matching deployments as soon as the reservation enters the **Active** state after purchase. There's no delay between purchase and discount activation.
+| Topic | Details |
+|---|---|
+| **Purchased in the Azure portal** | Azure Reservations are purchased via the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). |
+| **Purchased per deployment type** | Global Provisioned, Data Zone Provisioned, and Regional Provisioned reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment. |
+| **Discounted rate for a term commitment** | In exchange for a 1-month or 1-year term commitment, you receive a discounted effective $/PTU/hr rate compared to hourly billing. The discount varies by model family and term length. For current rates, see [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry) or use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). |
+| **Flexibly scoped** | A reservation can be scoped to cover an individual resource group or subscription, a group of subscriptions in a management group, or all subscriptions in a billing account. All matching deployments within the covered scope share the discount, up to the reservation's PTU quantity. See [How reservation matching works](#how-reservation-matching-works). |
+| **Overlapping and updatable** | New reservations can be purchased to cover the same scope as existing reservations, allowing you to discount new provisioned deployments. The scope of existing reservations can be updated at any time without penalty. For example, you can update the scope of your existing reservation to cover a new subscription. |
+| **Model-independent** | The reservation discount applies to any supported model deployed within the matching scope. You don't purchase a reservation for a specific model. When you add a new model to your deployment portfolio, the existing reservation covers it automatically if it falls within scope. |
+| **Active immediately** | The reservation discount applies to matching deployments as soon as the reservation enters the **Active** state after purchase. There's no delay between purchase and discount activation. |
+| **Excess is billed hourly** | If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate. See [Reservation overage example](#reservation-overage-example). |
+| **Reservations don't guarantee capacity** | Purchasing a reservation doesn't reserve capacity on the service. Create deployments first to confirm that capacity is available, then purchase the reservation. |
+| **Cancelable, with limits** | Reservations can be canceled or exchanged after purchase, but those actions might incur fees. See [Adjust reservations as your workload changes](#adjust-reservations-as-your-workload-changes) for more information. |
 
 To verify that your existing deployments are covered after purchasing a reservation, see [Check that your deployments are covered](#check-that-your-deployments-are-covered).
 

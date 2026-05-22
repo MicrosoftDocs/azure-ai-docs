@@ -1,6 +1,6 @@
 ---
 title: Operate provisioned throughput deployments in production
-description: "Learn to benchmark, monitor utilization, handle high load, and scale provisioned throughput deployments in production. Get started today."
+description: "Manage PTU quota, create and scale deployments, purchase reservations, benchmark, monitor utilization, and handle high load for provisioned throughput in production."
 ai-usage: ai-assisted
 manager: nitinme
 ms.service: microsoft-foundry
@@ -21,9 +21,9 @@ recommendations: false
 
 # Operate provisioned deployments in production
 
-This article covers the operational tasks for running provisioned throughput deployments in production: sizing workloads, benchmarking, monitoring utilization, handling high load, and scaling. If you don't have a deployment yet, start with [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).
+This article covers the end-to-end tasks for operating provisioned throughput deployments in production: managing provisioned throughput unit (PTU) quota, creating deployments, purchasing Azure Reservations, making inference calls, benchmarking, monitoring utilization, handling high load, scaling, and cleaning up resources.
 
-This article assumes familiarity with the concepts in [What is provisioned throughput?](../concepts/provisioned-throughput.md) and the billing details in [PTU costs and billing](../concepts/provisioned-throughput-billing.md).
+This article assumes familiarity with the concepts in [What is provisioned throughput?](../concepts/provisioned-throughput.md) and the billing details in [PTU billing and cost management](../concepts/provisioned-throughput-billing.md).
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ This article assumes familiarity with the concepts in [What is provisioned throu
 
 ## Estimate PTU requirements
 
-For the estimation formulas, worked example, and capacity calculator walkthrough, see [Determine PTU requirements for a workload](./determine-provisioned-throughput-unit-requirements.md).
+Before creating a provisioned deployment, you should estimate how many PTUs your workload needs. For the estimation formulas, a worked example, and walkthrough of the capacity calculator, see [Determine PTU requirements for a workload](./determine-provisioned-throughput-unit-requirements.md).
 
 ## Check and request PTU quota
 
@@ -54,7 +54,7 @@ To create a provisioned deployment, see [Quickstart: Create a provisioned throug
 
 PTU quota is shared across all provisioned deployments of the same deployment type within a region. If you have remaining quota after your initial deployment, you can use it to deploy other supported models without requesting more quota. Check your quota usage in the **Quota** pane under **Operate** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
-You can manage your quota by requesting additional quota, or by deleting existing deployments to free up PTUs for new deployments.
+You can manage your quota by [requesting additional quota](https://aka.ms/oai/stuquotarequest), or by deleting existing deployments to free up PTUs for new deployments.
 
 ## Scale your deployment
 
@@ -87,7 +87,7 @@ Recommended benchmarking workflow:
 1. Estimate your PTU requirements using the capacity calculator.
 1. Run a benchmark with this traffic shape for at least 10 minutes to observe steady-state results.
 1. Observe utilization, tokens processed, and call rate from the benchmark tool and Azure Monitor.
-1. Run a benchmark with your own traffic shape and workload using your client implementation. Implement retry logic using an Azure OpenAI client library or custom retry logic.
+1. Run a benchmark with your own traffic shape and workload using your client implementation. Implement retry logic using the OpenAI client library or custom retry logic.
 
 ## Measure deployment utilization
 
@@ -141,44 +141,38 @@ The number of concurrent calls a deployment can sustain depends on each call's s
 
 ### Modify retry logic in the client libraries
 
-The Azure OpenAI SDKs retry 429 responses by default, respecting the `retry-after` time. You can configure or disable the retry behavior using the `max_retries` option:
+The OpenAI SDKs retry 429 responses by default, respecting the `retry-after` time. You can configure or disable the retry behavior using the `max_retries` option:
+
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
 # Configure the default for all requests:
-client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
+client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    api_version="2024-10-21",
-    max_retries=5,# default is 2
+    base_url="https://<myResourceName>.openai.azure.com/openai/v1/",
+    max_retries=5, # default is 2
 )
 
 # Or, configure per-request:
 client.with_options(max_retries=5).chat.completions.create(
-    model="gpt-4", # model = "deployment_name".
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure services support this too?"}
-    ]
+        {
+            "role": "user",
+            "content": "When was Microsoft founded?",
+        }
+    ],
+    model="gpt-5.1",
 )
 ```
 
+Reference: [Azure OpenAI supported programming languages](../supported-languages.md)
+
+
 ## Clean up resources
 
-Hourly billing begins the moment a provisioned deployment is created and stops when the deployment is deleted. 
-
-> [!NOTE]
-> Deleting a deployment doesn't cancel or change any PTU reservation.
-
-### Delete deployments before deleting resources
-
-Charges for deployments on a deleted resource continue until the resource is purged. Always delete all deployments from a resource before you delete the resource itself.
-
-If you already deleted the resource without removing its deployments first, you can recover or purge the resource to stop billing. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+Hourly billing begins the moment a provisioned deployment is created and stops when the deployment is deleted. Charges for deployments on a deleted resource continue until the resource is purged, so always delete all deployments before deleting the resource itself.
 
 ### Delete a provisioned deployment cleanly
 

@@ -33,8 +33,8 @@ Standard deployments, batch deployments, priority processing, and provisioned th
 |---|---|---|---|
 | **Standard** | Pay per token | None | Balanced workloads: development, testing, and production with variable or unpredictable traffic |
 | **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](priority-processing.md#latency-target) | Latency-sensitive production workloads needing consistent low latency without a long-term commitment |
-| **Batch** | Pay per token (discounted batch rate) | None | Bulk processing workloads without latency requirements. Results are returned asynchronously. |
 | **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour (or using [Azure reservations](#azure-reservations)) | [Defined latency target per model](../how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model) | Mission-critical, high-scale production workloads requiring guaranteed throughput and consistent latency |
+| **Batch** | Pay per token (discounted batch rate) | None | Bulk processing workloads without latency requirements. Results are returned asynchronously. |
 
 ## When to use provisioned throughput
 
