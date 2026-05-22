@@ -2554,12 +2554,11 @@ Use this pattern to give the agent access to the user's Microsoft 365 work conte
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import WorkIQPreviewTool
-
 tools = [
-    WorkIQPreviewTool(
-        project_connection_id="<CONNECTION_NAME>",
-    )
+    {
+        "type": "work_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+    }
 ]
 ```
 
