@@ -25,13 +25,9 @@ Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. I
   - **Java**: Add `com.openai:openai-java` and `com.azure:azure-identity` to your project.
 - For REST examples, set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
 
-## Supported regions and models
+## Supported regions
 
-Before you run the examples in this article, confirm that your resource region and model deployment support the Responses API. The v1 API is required to access the latest features — for details, see the [API version lifecycle](../api-version-lifecycle.md).
-
-### Region availability
-
-The Responses API is currently available in the following regions:
+Before you run the examples in this article, confirm that your resource region supports the Responses API. The v1 API is required to access the latest features — for details, see the [API version lifecycle](../api-version-lifecycle.md). The Responses API is currently available in the following regions:
 
 - australiaeast
 - brazilsouth
@@ -59,7 +55,9 @@ The Responses API is currently available in the following regions:
 - westus
 - westus3
 
-### Model support
+## Supported models
+
+The Responses API supports the following models:
 
 - `gpt-chat-latest` (Version: `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
