@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optimize a hosted agent in Foundry Agent Service (preview)"
-description: "Set up the optimization CLI extension, deploy a hosted agent, and run your first optimization to improve agent instructions automatically."
+description: "Set up the optimization CLI extension, deploy a hosted agent, and run your first optimization using the agent optimizer to improve agent instructions automatically."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run optimization, and deploy the winning candidate.
+In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run the agent optimizer, and deploy the winning candidate.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ In this quickstart, you install the optimization CLI extension, deploy a hosted 
 | [Python 3.12+](https://www.python.org/downloads/) | Yes | Agent runtime |
 | Git | Yes | Source control |
 
-Your Azure subscription must be on the allowlist for agent optimization. Contact your Microsoft representative to request access.
+Your Azure subscription must be on the allowlist for the agent optimizer. Contact your Microsoft representative to request access.
 
 ## Install the CLI extension
 
@@ -116,21 +116,20 @@ az account set --subscription "<subscription-name-or-id>"
 
 ## Configure and provision
 
-> [!IMPORTANT]
-> **Region matters.** The optimization service is currently only available in **North Central US**. Other regions deploy the agent fine, but `azd ai agent optimize` returns a 404.
+Set your Azure subscription and location, then provision the required resources. Choose any [region where hosted agents are available](../concepts/hosted-agents.md#region-availability):
 
 # [Bash](#tab/bash)
 
 ```bash
 azd env set AZURE_SUBSCRIPTION_ID $(az account show --query id -o tsv)
-azd env set AZURE_LOCATION northcentralus
+azd env set AZURE_LOCATION <your-region>
 ```
 
 # [PowerShell](#tab/powershell)
 
 ```powershell
 azd env set AZURE_SUBSCRIPTION_ID (az account show --query id -o tsv)
-azd env set AZURE_LOCATION northcentralus
+azd env set AZURE_LOCATION <your-region>
 ```
 
 ---
@@ -167,7 +166,7 @@ azd ai agent invoke "What is 2+2?"
 azd ai agent optimize
 ```
 
-The CLI auto-detects the agent name from `agent.yaml`. The service completes the following steps:
+The CLI auto-detects the agent name from `agent.yaml`. The agent optimizer completes the following steps:
 
 1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
 1. Generates improved instruction candidates.
@@ -257,7 +256,6 @@ azd down --force --purge
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| `optimize` returns 404 | Wrong region | Reprovision in **North Central US** |
 | `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
 | All scores are zero | Eval model not deployed | Deploy `gpt-4.1-mini` in your Foundry project, or use `--eval-model` to specify a deployed model |
 | `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
@@ -265,8 +263,8 @@ azd down --force --purge
 
 ## Related content
 
-- [Agent optimization overview](../concepts/agent-optimization-overview.md)
-- [Create a custom evaluation dataset](../how-to/create-optimization-dataset.md)
+- [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)
-- [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md)
+- [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 

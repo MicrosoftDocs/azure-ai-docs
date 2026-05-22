@@ -1,6 +1,6 @@
 ---
-title: "Make your hosted agent optimization-ready in Foundry Agent Service (preview)"
-description: "Add four lines of code to your hosted agent to enable automatic optimization of system instructions and skills in Foundry Agent Service."
+title: "Make your hosted agent optimizer-ready in Foundry Agent Service (preview)"
+description: "Add four lines of code to your hosted agent to enable the agent optimizer for automatic improvement of system instructions and skills in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,11 +11,11 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Make your agent optimization-ready (preview)
+# Make your agent optimizer-ready (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Adding optimization support to your agent requires **four lines of code**. No framework changes or conditional logic are needed. Call `load_config()` and use its values.
+Adding support for the agent optimizer to your agent requires **four lines of code**. No framework changes or conditional logic are needed. Call `load_config()` and use its values.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Adding optimization support to your agent requires **four lines of code**. No fr
 
 ## Add the `agent_optimization` package
 
-Your project needs the `agent_optimization/` package. If you started from the [FAOS template](https://github.com/microsoft/faos-pri-preview), it's already included. Otherwise, copy the `agent_optimization/` directory from the [sample repository](https://github.com/microsoft/faos-pri-preview/tree/main/agent_optimization) into your project root.
+Your project needs the `agent_optimization/` package. If you started from the [agent optimizer template](https://github.com/microsoft/faos-pri-preview), it's already included. Otherwise, copy the `agent_optimization/` directory from the [sample repository](https://github.com/microsoft/faos-pri-preview/tree/main/agent_optimization) into your project root.
 
 ```
 my-agent/
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 1. **Normal operation**: No optimization environment variables are set. `load_config()` returns your defaults. The agent works exactly as before.
 
-1. **During optimization**: The service sets `AGENT_OPTIMIZATION_CANDIDATE_ID`. `load_config()` calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions.
+1. **During optimization**: The agent optimizer sets `AGENT_OPTIMIZATION_CANDIDATE_ID`. `load_config()` calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions.
 
 1. **After deploying a winner**: The `azd ai agent optimize deploy` command sets `OPTIMIZATION_CONFIG` in the agent's environment. `load_config()` reads the JSON and your agent uses the optimized instructions permanently.
 
@@ -181,6 +181,6 @@ azd ai agent run
 ## Related content
 
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
-- [Create a custom evaluation dataset](create-optimization-dataset.md)
+- [Create a custom evaluation dataset](create-optimizer-dataset.md)
 - [Optimize agent instructions and skills](optimize-agent-strategies.md)
-- [Agent optimization overview](../concepts/agent-optimization-overview.md)
+- [Agent optimizer overview](../concepts/agent-optimizer-overview.md)

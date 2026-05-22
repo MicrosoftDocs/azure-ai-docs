@@ -1,6 +1,6 @@
 ---
-title: "Create a custom evaluation dataset for agent optimization (preview)"
-description: "Define tasks and evaluation criteria in JSONL format to evaluate and optimize your hosted agent in Foundry Agent Service."
+title: "Create a custom evaluation dataset for the agent optimizer (preview)"
+description: "Define tasks and evaluation criteria in JSONL format to evaluate and optimize your hosted agent using the agent optimizer in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -157,6 +157,6 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 ## Related content
 
-- [Agent optimization overview](../concepts/agent-optimization-overview.md)
+- [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Optimize agent instructions and skills](optimize-agent-strategies.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

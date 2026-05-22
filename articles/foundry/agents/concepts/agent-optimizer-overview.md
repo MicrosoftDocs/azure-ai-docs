@@ -1,6 +1,6 @@
 ---
-title: "Agent optimization overview for Foundry Agent Service (preview)"
-description: "Automatically improve hosted agents by evaluating behavior and generating better system instructions and skills using the Foundry Agent Optimization Service."
+title: "Agent optimizer in Foundry Agent Service overview (preview)"
+description: "Automatically improve hosted agents by evaluating behavior and generating better system instructions and skills using the agent optimizer in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,20 +11,20 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# What is agent optimization? (preview)
+# What is the agent optimizer? (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Foundry Agent Optimization Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.
+The agent optimizer in Foundry Agent Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.
 
-Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and does not scale. Agent optimization automates this cycle so you can focus on your agent's core logic.
+Building effective AI agents requires extensive prompt engineering. You deploy an agent with hand-crafted instructions, test it against real scenarios, identify weaknesses, revise the prompt, and repeat. This loop is slow, subjective, and does not scale. The agent optimizer automates this cycle so you can focus on your agent's core logic.
 
-## How optimization works
+## How the agent optimizer works
 
-The optimization service runs a closed-loop evaluation and improvement cycle:
+The agent optimizer runs a closed-loop evaluation and improvement cycle:
 
 1. **Evaluate the baseline.** Your agent is invoked against a dataset of tasks. Each response is scored against criteria you define or a built-in default set. The *baseline* is your agent's score before any changes.
-1. **Generate candidates.** The service produces alternative configurations called *candidates*, such as rewritten instructions or discovered skills, that are designed to improve scores.
+1. **Generate candidates.** The agent optimizer produces alternative configurations called *candidates*, such as rewritten instructions or discovered skills, that are designed to improve scores.
 1. **Evaluate candidates.** Each candidate is tested against the same dataset.
 1. **Rank and recommend.** Results are ranked by composite *score*, a value between 0.0 and 1.0 that represents aggregate performance. The best candidate is marked with ★.
 1. **Deploy the winner.** A single command promotes the winning candidate and saves its configuration to your agent's environment.
@@ -46,7 +46,7 @@ The entire process runs in the cloud. Start it with `azd ai agent optimize` (req
          │                          │ Invoked during eval
          │                          ▼
 ┌────────┴──────────────────────────────────┐
-│  Optimization Service                     │
+│  Agent Optimizer                          │
 │                                           │
 │  1. Evaluate baseline                     │
 │  2. Generate candidate configs            │
@@ -64,17 +64,17 @@ The *instruction strategy* rewrites and refines your agent's system prompt. It a
 **When to use:** Most agents. This is the default and works well for improving response quality, adherence to task requirements, and reducing hallucination.
 
 ```bash
-azd ai agent optimize --strategy instruction
+azd ai agent optimize --target instruction
 ```
 
 ### Skill discovery
 
-The *skill strategy* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The service appends these definitions to the agent's instruction set.
+The *skill strategy* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The agent optimizer appends these definitions to the agent's instruction set.
 
 **When to use:** Agents that need structured, repeatable behaviors. For example, a support agent that should always follow a specific escalation procedure, or a coding agent that should use particular debugging patterns.
 
 ```bash
-azd ai agent optimize --strategy skill
+azd ai agent optimize --target skill
 ```
 
 ## Config resolution
@@ -87,7 +87,7 @@ When your agent starts, the `load_config()` function checks three sources in ord
 | 2 | `AGENT_OPTIMIZATION_CONFIG` or `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
 | 3 | Your defaults in code | Normal operation (no optimization) |
 
-Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md).
+Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
 
 ## What gets optimized
 
@@ -175,14 +175,14 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 
 ## Limitations and availability
 
-- Agent optimization is in **private preview**. Your Azure subscription must be on the allowlist. Contact your Microsoft representative to request access.
-- The service is available in **North Central US** only. Other regions deploy the agent but return a 404 error for optimization commands.
-- Optimization is supported for hosted agents in Foundry Agent Service.
+- The agent optimizer is in **private preview**. Your Azure subscription must be on the allowlist. Contact your Microsoft representative to request access.
+- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
+- The agent optimizer is supported for hosted agents in Foundry Agent Service.
 - Optimization runs consume eval model tokens in your Foundry project.
 
 ## Related content
 
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
-- [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md)
-- [Create a custom evaluation dataset](../how-to/create-optimization-dataset.md)
+- [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
+- [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)

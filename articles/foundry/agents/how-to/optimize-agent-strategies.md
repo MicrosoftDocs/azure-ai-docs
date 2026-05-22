@@ -1,6 +1,6 @@
 ---
 title: "Optimize agent instructions and skills in Foundry Agent Service (preview)"
-description: "Run instruction tuning or skill discovery to automatically improve your hosted agent's performance in Foundry Agent Service."
+description: "Run instruction tuning or skill discovery using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The optimization service supports two strategies: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both strategies.
+The agent optimizer supports two strategies: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both strategies.
 
 | Scenario | Recommended strategy |
 | ---------- | ----------------------- |
@@ -30,7 +30,7 @@ The optimization service supports two strategies: **instruction tuning** (the de
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - The `azure.ai.agents` CLI extension installed (see [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md))
 - An eval model deployed in your Foundry project (defaults to `gpt-4.1-mini`)
-- Your agent is [optimization-ready](make-agent-optimization-ready.md) (calls `load_config()`)
+- Your agent is [optimizer-ready](make-agent-optimizer-ready.md) (calls `load_config()`)
 
 ## Optimize instructions
 
@@ -40,7 +40,7 @@ The *instruction strategy* is the default optimization approach. It rewrites and
 
 1. **Baseline evaluation.** Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
 1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The optimization service sets this variable automatically during evaluation.
+1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The agent optimizer sets this variable automatically during evaluation.
 1. **Ranking.** Candidates are ranked by composite score. The best candidate is marked with ★.
 
 ### Run instruction optimization
@@ -48,7 +48,7 @@ The *instruction strategy* is the default optimization approach. It rewrites and
 ```bash
 # Default strategy is 'instruction' — these are equivalent:
 azd ai agent optimize
-azd ai agent optimize --strategy instruction
+azd ai agent optimize --target instruction
 ```
 
 With a custom dataset:
@@ -152,7 +152,7 @@ The *skill strategy* discovers reusable capabilities your agent should have. It 
 ### Run skill optimization
 
 ```bash
-azd ai agent optimize --strategy skill
+azd ai agent optimize --target skill
 ```
 
 With a config file:
@@ -195,7 +195,7 @@ if config.has_skills:
 
 ## Interpret results
 
-After optimization completes, review the results table. For detailed scoring guidance, see [Understand optimization results](../concepts/agent-optimization-overview.md#understand-optimization-results).
+After optimization completes, review the results table. For detailed scoring guidance, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
 
 Key thresholds:
 
@@ -221,7 +221,6 @@ If all candidates score lower than the baseline, do not deploy any candidate. Th
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | All scores are 0.00 | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify one that exists |
-| `optimize` returns 404 | Wrong region | Reprovision in **North Central US** |
 | `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
 | `"agent.yaml does not declare any protocols"` | Invalid `agent.yaml` format | Use flat format: `kind: hosted` at top level with `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
@@ -229,7 +228,7 @@ If all candidates score lower than the baseline, do not deploy any candidate. Th
 
 ## Related content
 
-- [Agent optimization overview](../concepts/agent-optimization-overview.md)
-- [Create a custom evaluation dataset](create-optimization-dataset.md)
-- [Make your agent optimization-ready](make-agent-optimization-ready.md)
+- [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Create a custom evaluation dataset](create-optimizer-dataset.md)
+- [Make your agent optimizer-ready](make-agent-optimizer-ready.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
