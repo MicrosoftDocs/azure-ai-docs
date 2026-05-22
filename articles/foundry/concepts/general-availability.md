@@ -5,7 +5,7 @@ description: Learn what general availability means for Microsoft Foundry, includ
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 03/03/2026
+ms.date: 05/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
@@ -77,15 +77,16 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Discover | Tools | GA |
 | Discover | Solution Templates | GA |
 | Discover | Search | GA |
+| Discover | Instant Models | Preview |
 | Discover | Ask AI | Preview |
 | Build | Agents | GA (minus Voice Live, traces in agent builder in Preview) |
 | Build | Workflows | Preview |
 | Build | Models | GA |
-| Build | Tracing and tracing VNet | Preview |
+| Build | Tracing (including Trace Replay) and tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | Fine-tuning | GA |
-| Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview)|
-| Build | Knowledge | Preview |
+| Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview) |
+| Build | Knowledge (Foundry IQ) | Partial GA (API-level GA; portal access remains Preview). See [What is Foundry IQ?](../agents/concepts/what-is-foundry-iq.md). |
 | Build | Data | GA (minus stored completions in Preview) |
 | Build | Evaluations | GA |
 | Build | Memory | Preview |
@@ -97,7 +98,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Operate | Assets | Preview |
 | Operate | Compliance | Preview |
 | Operate | Quota | GA |
-| Operate | Admin | GA (minus AI Gateway in Preview) |
+| Operate | Admin | GA |
 | Docs | All | GA |
 
 ## Unsupported at GA
