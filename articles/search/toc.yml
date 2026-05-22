@@ -483,8 +483,6 @@ items:
       items:
       - name: Search index
         href: agentic-knowledge-source-how-to-search-index.md
-      - name: Freshness-aware retrieval (preview)
-        href: agentic-retrieval-how-to-configure-freshness.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
       - name: Azure SQL (preview)
@@ -495,6 +493,8 @@ items:
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
+      - name: Configure freshness-aware retrieval (preview)
+        href: agentic-retrieval-how-to-configure-freshness.md
     - name: Create a remote source
       items:
       - name: Fabric Data Agent (preview)
@@ -586,7 +586,7 @@ items:
       href: search-document-level-access-overview.md
     - name: Use security filters
       href: search-security-trimming-for-azure-search.md
-    - name: ACLs or RBAC scopes
+    - name: ACLs or RBAC scopes (preview)
       items:
       - name: Push document-level permissions to an index
         href: search-index-access-control-lists-and-rbac-push-api.md
@@ -600,9 +600,9 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
-    - name: Sensitivity labels
+    - name: Microsoft Purview sensitivity labels (preview)
       items:
-      - name: Pull Purview sensitivity labels into an index
+      - name: Pull sensitivity labels into an index
         href: search-indexer-sensitivity-labels.md
       - name: Query honoring sensitivity labels
         href: search-query-sensitivity-labels.md

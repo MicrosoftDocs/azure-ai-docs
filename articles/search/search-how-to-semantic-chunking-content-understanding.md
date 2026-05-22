@@ -13,7 +13,9 @@ ai-usage: ai-assisted
 # Chunk and vectorize content with the Azure Content Understanding skill
 
 > [!IMPORTANT]
-> The `2026-05-01-preview` features described in this article, including semantic chunking and AI-generated image descriptions, are in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The preview is available through the [`2026-05-01-preview` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 In this article, you learn how to use the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to:
 

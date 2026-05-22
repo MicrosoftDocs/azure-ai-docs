@@ -56,6 +56,9 @@ Use the Azure CLI to send requests. The service provider’s tenant that contain
 
 ## Use federated identity support (preview)
 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
 To use federated identity to support a cross-tenant CMK scenario:
 
 1. The service provider configures the AI Search service in their tenant (Tenant A). For guidance on how to do this, see [Create a Search Service (in the Azure portal)](/azure/search/search-create-service-portal) or use the [az search service create](/cli/azure/search/service#az-search-service-create) command in Azure CLI.
