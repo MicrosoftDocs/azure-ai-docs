@@ -45,9 +45,17 @@ Before you begin, make sure you have:
   - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
   - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Fabric IQ endpoint.
 
-## Connect to Fabric IQ
+## How it works
 
-Fabric IQ acts as a server-side tool. Your agent delegates natural-language tasks to it — Fabric IQ handles data retrieval from Microsoft Fabric, reasoning, and response synthesis — then returns the result to your agent.
+1. **Your agent dispatches a tool call** — When the agent model identifies a task that requires Fabric data, it emits a tool call to the `fabric_iq_preview` tool.
+1. **Fabric IQ processes the request** — Fabric IQ receives the natural-language query and routes it based on the target item type:
+   - **Ontology** — The Natural Language to Ontology (NL2Ontology) layer converts the query into a structured ontology query against your enterprise entities, relationships, and data bindings.
+   - **Fabric data agent** — The query goes directly to the data agent for conversational Q&A over ontology-grounded data.
+   - **Power BI semantic models** — Fabric IQ queries the semantic model's measures and hierarchies to return analytics results.
+   - **Graph traversal** — For relationship queries, Fabric IQ traverses entity relationships defined in the ontology.
+1. **The result is returned to your agent** — Fabric IQ returns the synthesized response. Your agent incorporates it into its reply to the user. All requests run in the context of the signed-in user and honor Fabric permissions and governance policies.
+
+## Connect to Fabric IQ
 
 ### Find your Fabric IQ server details
 
@@ -77,11 +85,6 @@ For **`server_label`**, use any short lowercase identifier with hyphens, for exa
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-    PromptAgentDefinition,
-    FabricIQPreviewTool,
-)
-
 PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 MODEL_DEPLOYMENT = os.environ.get("FOUNDRY_MODEL_DEPLOYMENT_NAME", "gpt-4o-mini")
 FABRICIQ_CONNECTION_NAME = "fabriciq-conn"
@@ -99,24 +102,25 @@ openai = project.get_openai_client()
 fabriciq_conn = project.connections.get(FABRICIQ_CONNECTION_NAME)
 
 # Create an agent with the Fabric IQ tool
-tool = FabricIQPreviewTool(
-    project_connection_id=fabriciq_conn.id,
-    server_label=FABRICIQ_SERVER_LABEL,
-    server_url=FABRICIQ_SERVER_URL,
-)
-
 agent = project.agents.create_version(
     agent_name=AGENT_NAME,
-    definition=PromptAgentDefinition(
-        model=MODEL_DEPLOYMENT,
-        instructions=(
+    definition={
+        "model": MODEL_DEPLOYMENT,
+        "instructions": (
             "You are a helpful assistant with access to your organization's "
             "Microsoft Fabric data through Fabric IQ. "
             "Use Fabric IQ to answer questions about business entities, "
             "relationships, and data in the ontology—such as customers, orders, products, and pipelines."
         ),
-        tools=[tool],
-    ),
+        "tools": [
+            {
+                "type": "fabric_iq_preview",
+                "project_connection_id": fabriciq_conn.id,
+                "server_label": FABRICIQ_SERVER_LABEL,
+                "server_url": FABRICIQ_SERVER_URL,
+            }
+        ],
+    },
 )
 print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
@@ -208,7 +212,7 @@ The response includes metadata about the agent execution and a `text` field in `
 
 ## Optional parameters
 
-`FabricIQPreviewTool` accepts the following optional parameter in addition to the required fields:
+The `fabric_iq_preview` tool accepts the following optional parameter in addition to the required fields:
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -217,11 +221,21 @@ The response includes metadata about the agent execution and a `text` field in `
 :::zone pivot="python"
 
 ```python
-tool = FabricIQPreviewTool(
-    project_connection_id=fabriciq_conn.id,
-    server_label=FABRICIQ_SERVER_LABEL,
-    server_url=FABRICIQ_SERVER_URL,
-    require_approval="never",  # optional; "always" (default) or "never"
+agent = project.agents.create_version(
+    agent_name=AGENT_NAME,
+    definition={
+        "model": MODEL_DEPLOYMENT,
+        "instructions": "...",
+        "tools": [
+            {
+                "type": "fabric_iq_preview",
+                "project_connection_id": fabriciq_conn.id,
+                "server_label": FABRICIQ_SERVER_LABEL,
+                "server_url": FABRICIQ_SERVER_URL,
+                "require_approval": "never",  # optional; "always" (default) or "never"
+            }
+        ],
+    },
 )
 ```
 
