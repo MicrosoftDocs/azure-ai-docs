@@ -338,7 +338,7 @@ Microsoft Fabric's governance policies are applied automatically to every Fabric
 
 ### Compliance certifications
 
-Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see the [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability) page and the [Microsoft Trust Center](https://www.microsoft.com/trust-center/compliance/compliance-overview).
+Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability).
 
 ## Admin management
 
