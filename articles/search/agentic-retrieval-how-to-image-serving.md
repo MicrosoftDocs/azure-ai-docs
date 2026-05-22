@@ -11,9 +11,11 @@ ai-usage: ai-assisted
 # Surface document-embedded images in agentic retrieval (preview)
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 
 Use *image serving* (preview) to surface images embedded in your source documents (such as diagrams, charts, infographics, scanned forms, and product images) during agentic retrieval, so your large language model (LLM) can reason over visual context alongside text when it synthesizes an answer.
 
@@ -59,7 +61,7 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + The retrieve response returns image references in the asset store, not inline Base64 image bytes. Inline image bytes in the response payload aren't supported because they increase payload size and can degrade latency and overall performance.
 
-+ Image serving doesn't bypass index-level security. To control who can see image references, use [document-level access control](search-document-level-access-overview.md) on the underlying knowledge source. Set `ingestionPermissionOptions` at ingestion time and pass the user's access token at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
++ Image serving doesn't bypass index-level security. To control who can see image references, use [document-level access control](search-document-level-access-overview.md) on the underlying knowledge source. Set `ingestionPermissionOptions` at ingestion time and pass the user's access token at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 + Document-level permissions apply only to index content. They don't automatically propagate to the asset store. Any identity with read access to the asset store container can fetch images. If you need per-document authorization for image retrieval, place a service layer in front of blob access and validate caller permissions before returning the blob.
 

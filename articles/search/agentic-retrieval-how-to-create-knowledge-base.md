@@ -10,8 +10,12 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a knowledge base in Azure AI Search
 
-
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
@@ -71,12 +75,7 @@ A knowledge base specifies:
 
 ### Supported models
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
-
-Use one of the following LLMs from Azure OpenAI in Foundry Models. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai). Regional availability is determined by Azure OpenAI in Foundry Models for the deployment you select.
+Use one of the following LLMs from Azure OpenAI in Foundry Models.  Regional availability is determined by Azure OpenAI for the deployment you select. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
 | Model | Supported API versions |
 |--|--|
@@ -576,10 +575,10 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-### Configure CORS for browser-based retrieve calls
+### Configure CORS for browser-based retrieve calls (preview)
 
 > [!IMPORTANT]
-> The 2026-05-01-preview API version allows you to enable Cross-Origin Resource Sharing (CORS) functionality, which permits browser-based applications to request data directly from the service. Depending on your CORS configuration, this can allow external web pages to access or invoke the service and associated data using a user's browser context, as well as create other potential security threats. Enabling CORS is at your own risk.
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
 
 In the `2026-05-01-preview` API, a knowledge base can define `corsOptions`
 for browser-based applications that call the retrieve action directly from

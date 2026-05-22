@@ -1,21 +1,21 @@
 ---
-title: Create a file knowledge source for agentic retrieval
+title: Create File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/07/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
-# Create a file knowledge source
+# Create a file knowledge source (preview)
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
-Use a *file knowledge source* to upload small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+Use a *file knowledge source* (preview) to upload small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
 
 A file knowledge source is useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base. Use [blob knowledge sources](agentic-knowledge-source-how-to-blob.md) instead when your content already lives in Azure Blob Storage or ADLS Gen2, when you need large-scale ingestion, or when you depend on storage-account capabilities.
 
@@ -171,7 +171,7 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
 ```
 
-**Reference:** [FileKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesource?view=azure-dotnet-preview&preserve-view=true), [FileKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -215,7 +215,7 @@ index_client.create_or_update_knowledge_source(knowledge_source=knowledge_source
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
 
-**Reference:** [FileKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesource), [FileKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesourceparameters)
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
 
 ::: zone-end
 

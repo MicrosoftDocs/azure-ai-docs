@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 06/02/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -16,6 +16,11 @@ ai-usage: ai-assisted
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
 
 [!INCLUDE [Preview API usage](../../../search/includes/previews/agentic-retrieval-preview-api-usage.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
@@ -87,10 +92,6 @@ Use the following values in the code samples.
 
 > [!TIP]
 > We recommend you store the project endpoint, search endpoint, and knowledge base name in a `.env` file for local development.
-
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](/azure/search/search-security-rbac), but you can use [API keys](/azure/search/search-security-api-keys) if a role assignment isn't feasible. For more information, see [Connect to a search service](/azure/search/search-get-started-rbac).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Create a project connection
 

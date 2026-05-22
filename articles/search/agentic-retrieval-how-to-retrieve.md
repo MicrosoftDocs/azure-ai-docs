@@ -10,13 +10,12 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Query a knowledge base using the retrieve action or MCP endpoint
 
-
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
@@ -324,7 +323,88 @@ Authorization: Bearer {{accessToken}}
 > [!IMPORTANT]
 > The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
-## Filter at query time (Search index)
+### Request parameters
+
+Pass the following parameters to call the retrieve action.
+
+# [2026-05-01-preview](#tab/2026-05-01-preview)
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
+| `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
+| `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
+| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. | Boolean | Yes | No |
+| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. For more information, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
+| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
+| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
+| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
+| `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
+| `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
+| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. | Boolean | Yes | No |
+| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` if this knowledge source can't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`. For more information, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
+| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source setting at 50. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
+| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. | Boolean | Yes | No |
+| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. | Boolean | Yes | No |
+| `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
+| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. | String | Yes | No |
+
+# [2026-04-01](#tab/2026-04-01)
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `intents` | A list of search intents sent to the agentic retrieval pipeline. Each intent specifies a query type and a search string. | Array | Yes | Yes |
+| `intents.type` | The query type. The only valid value is `semantic`. | String | Yes | Yes |
+| `intents.search` | The search string for the query. | String | Yes | Yes |
+| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
+
+---
+
+### Include images in retrieve responses (preview)
+
+For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
+
+Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+
+### Retrieval from a search index
+
+For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
+
+If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
+
+For more information, see [Create an index for agentic retrieval](agentic-retrieval-how-to-create-index.md).
+
+## Call the MCP endpoint
+
+[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
+
+In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
+
+### MCP endpoint format
+
+Each knowledge base has an MCP endpoint at the following URL:
+```
+https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
+```
+
+The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
+
+### Authenticate to the MCP endpoint
+
+The MCP endpoint requires authentication via custom headers. You have two options:
+
++ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
+
++ Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
+
+> [!TIP]
+> Each MCP client configures custom headers differently. For example:
+>
+> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+>
+> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+
+## Filter at query time (search index)
 
 When retrieving from a search index knowledge source, you can apply an [OData filter](search-query-odata-filter.md) at query time to narrow the results to specific documents or fields. The filter expression uses OData syntax and is passed via the `filterAddOn` parameter.
 
@@ -338,14 +418,12 @@ The `filterAddOn` parameter accepts OData filter expressions. Example patterns i
 - **Text matching**: `substringof('climate', description)`, `indexof(title, 'urgent') ge 0`
 - **Logical operators**: `(category eq 'News' or category eq 'Analysis') and status eq 'published'`
 
-**Example filter expressions:**
+Example filter expressions:
 
 - `status eq 'published'`
 - `created ge 2025-01-01`
 - `city eq 'Redmond' and department eq 'Engineering'`
 - `(priority eq 'High' or priority eq 'Critical') and resolved eq false`
-
-### Examples by language
 
 :::zone pivot="csharp"
 
@@ -524,96 +602,13 @@ filter_add_on="(status eq 'published' or status eq 'internal') and created ge 20
 
 :::zone-end
 
-### Request parameters
-
-Pass the following parameters to call the retrieve action.
-
-# [2026-05-01-preview](#tab/2026-05-01-preview)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
-| `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
-| `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
-| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. | Boolean | Yes | No |
-| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. For more information, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
-| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-| `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
-| `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
-| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. | Boolean | Yes | No |
-| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` if this knowledge source can't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`. For more information, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
-| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source setting at 50. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
-| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. | Boolean | Yes | No |
-| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. | Boolean | Yes | No |
-| `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
-| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. | String | Yes | No |
-
-# [2026-04-01](#tab/2026-04-01)
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `intents` | A list of search intents sent to the agentic retrieval pipeline. Each intent specifies a query type and a search string. | Array | Yes | Yes |
-| `intents.type` | The query type. The only valid value is `semantic`. | String | Yes | Yes |
-| `intents.search` | The search string for the query. | String | Yes | Yes |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
-
----
-
-### Include images in retrieve responses (preview)
-
-For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), and [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md) knowledge sources configured with an asset store, you can return document-embedded images alongside text and inject them into the answer synthesis prompt. Set `enableImageServing` on the matching entry in `knowledgeSourceParams` to override the default that's set on the knowledge base definition.
-
-Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
-
-### Retrieval from a search index
-
-For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
-
-If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
-
-For more information, see [Create an index for agentic retrieval](agentic-retrieval-how-to-create-index.md).
-
-## Call the MCP endpoint
-
-[MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
-
-In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Claude](https://claude.ai), and [Cursor](https://cursor.com), can invoke this tool to query the knowledge base.
-
-### MCP endpoint format
-
-Each knowledge base has an MCP endpoint at the following URL:
-```
-https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
-```
-
-The API version you specify determines what the connection returns. With `2026-05-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
-
-### Authenticate to the MCP endpoint
-
-The MCP endpoint requires authentication via custom headers. You have two options:
-
-+ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
-
-+ Pass an admin key in the `api-key` header. An admin key provides full read-write access to the search service, so use it with caution. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
-
-> [!TIP]
-> Each MCP client configures custom headers differently. For example:
->
-> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
->
-> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
-
-## Enforce permissions at query time
+## Enforce permissions at query time (preview)
 
 <!-- preserve -->
 <!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 
 If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
@@ -636,9 +631,6 @@ The following table shows which knowledge sources require ingestion-time configu
 | [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the data agent on their behalf. |
 | [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
 | [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
-| Fabric data agent | ❌ | Fabric evaluates permissions through the connected data agent using the user's token. |
-| Fabric ontology | ❌ | Fabric evaluates permissions through the connected ontology using the user's token. |
-| MCP server | ❌ | The MCP server enforces permissions according to its own authorization model. |
 
 > [!IMPORTANT]
 > If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
@@ -989,6 +981,105 @@ Here's an example of the references array:
     }
   ]
 ```
+
+## Inspect sensitivity label metadata in the response (preview)
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+
+When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
+
+| Location | Field | Description |
+|---|---|---|
+| Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
+| Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
+
+The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
+
+The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
+
+```json
+{
+  "response": [
+    {
+      "role": "assistant",
+      "content": [
+        { "type": "text", "text": "[ ... grounding data ... ]" }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "azureBlob",
+      "id": "0",
+      "activitySource": 1,
+      "docKey": "contract-2026.pdf",
+      "sensitivityLabelInfo": {
+        "labelId": "<label-guid>",
+        "labelName": "Confidential",
+        "color": "#FF0000",
+        "tooltip": "Confidential — Recipients can read but not forward.",
+        "isEncrypted": true,
+        "priority": 3
+      },
+      "sourceData": null
+    },
+    {
+      "type": "azureBlob",
+      "id": "1",
+      "activitySource": 1,
+      "docKey": "policy-overview.pdf",
+      "sensitivityLabelInfo": {
+        "labelId": "<label-guid>",
+        "labelName": "Internal",
+        "color": "#FFA500",
+        "tooltip": "For internal use only.",
+        "isEncrypted": false,
+        "priority": 1
+      },
+      "sourceData": null
+    }
+  ],
+  "metadata": {
+    "responseSensitivityLabelInfo": {
+      "labelId": "<label-guid>",
+      "labelName": "Confidential",
+      "color": "#FF0000",
+      "tooltip": "Confidential — Recipients can read but not forward.",
+      "isEncrypted": true,
+      "priority": 3
+    }
+  }
+}
+```
+
+### Reference types that surface sensitivity labels
+
+The field name and availability of label metadata depend on the knowledge source type that produced each reference.
+
+| Reference `type` | Label field | Available when... |
+|---|---|---|
+| `azureBlob` | `sensitivityLabelInfo` | The blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedOneLake` | `sensitivityLabelInfo` | The OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedSharePoint` | `sensitivityLabelInfo` | The SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `searchIndex` | `sensitivityLabelInfo` | The underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
+
+### Display and audit recommendations
+
+- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties, such as policy controls or permissions.
+
+- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or apply policy controls, such as disabling copy and share, across the answer.
+
+- If your knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
+
+- For auditable administrative access to labeled content, see [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview).
+
+### MCP server behavior
+
+The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
 ## Examples
 
@@ -1715,107 +1806,6 @@ Content-Type: application/json
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
-
-## Inspect sensitivity label metadata in retrieve responses (preview)
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access-restricted content, there might be a delay before permission changes take effect.
-
-When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
-
-| Location | Field | Description |
-|---|---|---|
-| Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
-| Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
-
-The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
-
-The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
-
-```json
-{
-  "response": [
-    {
-      "role": "assistant",
-      "content": [
-        { "type": "text", "text": "[ ... grounding data ... ]" }
-      ]
-    }
-  ],
-  "references": [
-    {
-      "type": "azureBlob",
-      "id": "0",
-      "activitySource": 1,
-      "docKey": "contract-2026.pdf",
-      "sensitivityLabelInfo": {
-        "labelId": "<label-guid>",
-        "labelName": "Confidential",
-        "color": "#FF0000",
-        "tooltip": "Confidential — Recipients can read but not forward.",
-        "isEncrypted": true,
-        "priority": 3
-      },
-      "sourceData": null
-    },
-    {
-      "type": "azureBlob",
-      "id": "1",
-      "activitySource": 1,
-      "docKey": "policy-overview.pdf",
-      "sensitivityLabelInfo": {
-        "labelId": "<label-guid>",
-        "labelName": "Internal",
-        "color": "#FFA500",
-        "tooltip": "For internal use only.",
-        "isEncrypted": false,
-        "priority": 1
-      },
-      "sourceData": null
-    }
-  ],
-  "metadata": {
-    "responseSensitivityLabelInfo": {
-      "labelId": "<label-guid>",
-      "labelName": "Confidential",
-      "color": "#FF0000",
-      "tooltip": "Confidential — Recipients can read but not forward.",
-      "isEncrypted": true,
-      "priority": 3
-    }
-  }
-}
-```
-
-### Reference types that surface sensitivity labels
-
-The field name and availability of label metadata depend on the knowledge source type that produced each reference.
-
-| Reference `type` | Label field | Available when... |
-|---|---|---|
-| `azureBlob` | `sensitivityLabelInfo` | The blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedOneLake` | `sensitivityLabelInfo` | The OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedSharePoint` | `sensitivityLabelInfo` | The SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `searchIndex` | `sensitivityLabelInfo` | The underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
-
-### Display and audit recommendations
-
-- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties, such as policy controls or permissions.
-
-- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or apply policy controls, such as disabling copy and share, across the answer.
-
-- If your knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
-
-- For auditable administrative access to labeled content, see [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview).
-
-### MCP server behavior
-
-The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
 ## Related content
 
