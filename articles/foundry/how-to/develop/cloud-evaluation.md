@@ -1493,9 +1493,6 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 |-------|-------|----------|
 | Incompatible evaluation level | Using `evaluation_level="conversation"` with a turn-only evaluator | Remove the turn-only evaluator or change to `evaluation_level="turn"` |
 
-> [!TIP]
-> Before you begin, complete [Get started](#get-started).
-
 ### Prepare conversation data
 
 Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`:
@@ -1521,83 +1518,68 @@ You can also include tool definitions and tool calls if your agent uses tools:
 
 ### Define the data schema and evaluators
 
-Specify the schema for your conversation data and select evaluators designed for multiturn conversations. Conversation-level evaluators assess the entire interaction rather than individual turns.
+Specify the schema for your conversation data, "messages", and select evaluators designed for multi-turn conversations. Conversation-level evaluators assess the entire interaction rather than individual turns.
 
 # [Python](#tab/python)
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
+from openai.types.eval_create_params import DataSourceConfigCustom
 from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
 
-project_client = AIProjectClient(
-    endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
 
-openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    data_source_config = DataSourceConfigCustom(
+        type="custom",
+        item_schema={
+            "type": "object",
+            "properties": {
+                "messages": {"type": "array"},
+                "tool_definitions": {"type": "array"},
+            },
+            "required": ["messages"],
+        },
+        include_sample_schema=False,
+    )
 
-# Model Deployment - Example: gpt-5-mini
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
-
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
-        "type": "object",
-        "properties": {
-            "messages": {"type": "array"},
-            "tool_definitions": {"type": "array"},
-        },
-        "required": ["messages"],
-    },
-    "include_sample_schema": False,
-}
-
-testing_criteria = [
-    {
-        "type": "azure_ai_evaluator",
-        "name": "customer_satisfaction",
-        "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "task_completion",
-        "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "conversation_coherence",
-        "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "groundedness",
-        "evaluator_name": "builtin.groundedness",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-]
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
 ```
 
 # [cURL](#tab/curl)
@@ -1661,33 +1643,38 @@ curl --request POST \
 # [Python](#tab/python)
 
 ```python
-# Upload conversation data
-data_id = project_client.datasets.upload_file(
-    name="conversation-eval-data",
-    version="1",
-    file_path="./conversations.jsonl",
-).id
-
-# Create the evaluation
-eval_object = openai_client.evals.create(
-    name="Multiturn Conversation Evaluation",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,
+from openai.types.evals.create_eval_jsonl_run_data_source_param import (
+    CreateEvalJSONLRunDataSourceParam,
+    SourceFileID,
 )
 
-# Create a run using the conversation data
-eval_run = openai_client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="multiturn-conversation-run",
-    data_source={
-        "type": "jsonl",
-        "source": {
-            "type": "file_id",
-            "id": data_id,
-        },
-    },
-    extra_body={"evaluation_level": "conversation"},
-)
+    # Upload conversation data
+    data_id = project_client.datasets.upload_file(
+        name="multiturn-conversation-data",
+        version="1",
+        file_path="./conversations.jsonl",
+    ).id
+
+    # Create the evaluation
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Conversation Evaluation",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
+
+    # Create a run with evaluation_level set to "conversation"
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="multiturn-conversation-run",
+        data_source=CreateEvalJSONLRunDataSourceParam(
+            type="jsonl",
+            source=SourceFileID(
+                type="file_id",
+                id=data_id,
+            ),
+        ),
+        extra_body={"evaluation_level": "conversation"},
+    )
 ```
 
 # [cURL](#tab/curl)
@@ -1740,43 +1727,79 @@ You can find conversation IDs in:
 # [Python](#tab/python)
 
 ```python
-# Create evaluation with traces scenario
-eval_object = openai_client.evals.create(
-    name="Conversation Trace Evaluation",
-    data_source_config={
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+
+# Provide conversation IDs or trace IDs from App Insights
+conversation_ids = ["conversation_1234", "conversation_5678"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Eval group for trace-based evaluations
+    data_source_config = {
         "type": "azure_ai_source",
         "scenario": "traces",
-    },
-    testing_criteria=[
-        {
-            "type": "azure_ai_evaluator",
-            "name": "customer_satisfaction",
-            "evaluator_name": "builtin.customer_satisfaction",
-            "initialization_parameters": {
-                "model": model_deployment_name,
+    }
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
+
+    # Create evaluation with traces scenario
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Trace Evaluation (by ID)",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
+
+    # Run evaluation on specific conversation IDs
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="multiturn-trace-by-id-run",
+        data_source={
+            "type": "azure_ai_trace_data_source_preview",
+            "trace_source": {
+                "type": "conversation_id_source",
+                "conversation_ids": conversation_ids,
             },
         },
-    ],
-)
-
-# Run evaluation on specific conversation IDs
-eval_run = openai_client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="conversation-trace-eval",
-    data_source={
-        "type": "azure_ai_trace_data_source_preview",
-        "trace_source": {
-            "type": "conversation_ids",
-            "conversation_ids": [
-                "conversation_1234",
-                "conversation_5678",
-            ],
-            "lookback_hours": 24,  # Optional, defaults to 7 days
-            "end_time": "2026-05-21T00:00:00Z",  # Optional, defaults to now
-        },
-    },
-    extra_body={"evaluation_level": "conversation"},
-)
+        extra_body={"evaluation_level": "conversation"},
+    )
 ```
 
 # [cURL](#tab/curl)
@@ -1850,45 +1873,92 @@ Specify the agent to filter by using one of these formats:
 # [Python](#tab/python)
 
 ```python
+import os
 import time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
 
-# Create evaluation with traces scenario
-eval_object = openai_client.evals.create(
-    name="Agent Quality Assessment",
-    data_source_config={
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+agent_name = os.environ["FOUNDRY_AGENT_NAME"]
+agent_version = os.environ.get("FOUNDRY_AGENT_VERSION", "")
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Eval group for trace-based evaluations
+    data_source_config = {
         "type": "azure_ai_source",
         "scenario": "traces",
-    },
-    testing_criteria=[
-        {
-            "type": "azure_ai_evaluator",
-            "name": "customer_satisfaction",
-            "evaluator_name": "builtin.customer_satisfaction",
-            "initialization_parameters": {
-                "model": model_deployment_name,
-            },
-        },
-    ],
-)
+    }
 
-# Run evaluation on sampled agent conversations
-eval_run = openai_client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="agent-quality-eval",
-    data_source={
-        "type": "azure_ai_trace_data_source_preview",
-        "trace_source": {
-            "type": "agent_filter",
-            "agent_name": "my-support-agent",
-            "agent_version": "1",
-            "start_time": 1743465600,  # Unix epoch seconds (UTC)
-            "end_time": 1743552600,    # Pad +600s to cover ingestion delay
-            "max_traces": 100,
-            "filter_strategy": "random_sampling",
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
+
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Trace Evaluation (Agent Filter)",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
+
+    # Compute time window in unix seconds
+    # Pad end_time by +600s (10 min) to avoid ingestion-delay edge exclusion
+    now_unix = int(time.time())
+    end_time = now_unix + 600
+    start_time = now_unix - (24 * 3600)  # 24 hours lookback
+
+    # Build trace_source with agent filter
+    trace_source = {
+        "type": "agent_filter",
+        "agent_name": agent_name,
+        "start_time": start_time,
+        "end_time": end_time,
+        "max_traces": 5,
+    }
+    if agent_version:
+        trace_source["agent_version"] = agent_version
+
+    # Run evaluation on sampled agent conversations
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="multiturn-agent-filter-run",
+        data_source={
+            "type": "azure_ai_trace_data_source_preview",
+            "trace_source": trace_source,
         },
-    },
-    extra_body={"evaluation_level": "conversation"},
-)
+        extra_body={"evaluation_level": "conversation"},
+    )
 ```
 
 # [cURL](#tab/curl)
@@ -1934,9 +2004,6 @@ This approach is useful for:
 - **Regression testing**: Ensure agent updates don't degrade performance on known scenarios.
 - **Scale testing**: Generate many conversations quickly to stress-test agent capabilities.
 
-> [!TIP]
-> Before you begin, complete [Get started](#get-started).
-
 ### How conversation simulation works
 
 1. You provide a dataset of scenario descriptions—each row describes a situation the simulated user will try to accomplish.
@@ -1972,70 +2039,65 @@ Select evaluators designed for conversation-level assessment. The simulated conv
 # [Python](#tab/python)
 
 ```python
-# Model deployment name (for AI-assisted evaluators)
-# Example: gpt-5-mini
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
+import os
+from openai.types.eval_create_params import DataSourceConfigCustom
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator, PromptAgentDefinition
 
-# Simulation uses the same "custom" eval group type as dataset evaluation (S1),
-# since the generated conversations follow the same messages schema.
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
-        "type": "object",
-        "properties": {
-            "messages": {"type": "array"},
-        },
-        "required": ["messages"],
-    },
-    "include_sample_schema": False,
-}
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+agent_name = os.environ.get("FOUNDRY_AGENT_NAME", "")
 
-testing_criteria = [
-    {
-        "type": "azure_ai_evaluator",
-        "name": "customer_satisfaction",
-        "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {
-            "model": model_deployment_name,
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Simulation uses the same "custom" eval group type as dataset evaluation (S1),
+    # since the generated conversations follow the same messages schema.
+    data_source_config = DataSourceConfigCustom(
+        type="custom",
+        item_schema={
+            "type": "object",
+            "properties": {
+                "messages": {"type": "array"},
+            },
+            "required": ["messages"],
         },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "task_completion",
-        "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "conversation_coherence",
-        "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "groundedness",
-        "evaluator_name": "builtin.groundedness",
-        "initialization_parameters": {
-            "model": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-]
+        include_sample_schema=False,
+    )
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
 ```
 
 # [cURL](#tab/curl)
@@ -2098,55 +2160,63 @@ curl --request POST \
 # [Python](#tab/python)
 
 ```python
-# Upload scenario data
-scenarios_id = project_client.datasets.upload_file(
-    name="simulation-scenarios",
-    version="1",
-    file_path="./scenarios.jsonl",
-).id
+    # Create (or update) an agent to simulate against
+    agent = project_client.agents.create_version(
+        agent_name=agent_name,
+        definition=PromptAgentDefinition(
+            model=model_deployment_name,
+            instructions="You are a helpful customer service agent. Be empathetic and solution-oriented.",
+        ),
+    )
 
-# Create the evaluation
-eval_object = openai_client.evals.create(
-    name="Conversation Simulation Evaluation",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,
-)
+    # Upload scenario data
+    scenarios_id = project_client.datasets.upload_file(
+        name="simulation-scenarios",
+        version="1",
+        file_path="./scenarios.jsonl",
+    ).id
 
-# Model Deployment - Example: gpt-5-mini
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
+    # Create the evaluation
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Conversation Simulation",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
 
-# Create a run that simulates conversations and evaluates them
-eval_run = openai_client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="conversation-simulation-run",
-    data_source={
-        "type": "azure_ai_target_completions",
-        "source": {
-            "type": "file_id",
-            "id": scenarios_id,
-        },
-        "target": {
-            "type": "azure_ai_agent",
-            "name": "my-agent",
-            "version": "1",
-        },
-        "item_generation_params": {
-            "type": "conversation_gen_preview",
-            "model": model_deployment_name,
-            "num_conversations": 2,
-            "max_turns": 5,
-            "sampling_params": {
-                "temperature": 0.7,
-                "top_p": 1.0,
-                "max_completion_tokens": 800,
+    # Create a simulation run
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="conversation-simulation-run",
+        data_source={
+            "type": "azure_ai_target_completions",
+            "source": {
+                "type": "file_id",
+                "id": scenarios_id,
             },
-            "data_mapping": {},
+            "target": {
+                "type": "azure_ai_agent",
+                "name": agent.name,
+                "version": agent.version,
+            },
+            "item_generation_params": {
+                "type": "conversation_gen_preview",
+                "model": model_deployment_name,
+                "num_conversations": 2,
+                "max_turns": 5,
+                "sampling_params": {
+                    "temperature": 0.7,
+                    "top_p": 1.0,
+                    "max_completion_tokens": 800,
+                },
+                "data_mapping": {
+                    "test_case_description": "test_case_description",
+                    "id": "id",
+                    "desired_num_turns": "desired_num_turns",
+                },
+            },
         },
-    },
-    extra_body={"evaluation_level": "conversation"},
-)
-
-print(f"Simulation started: {eval_run.id}")
+        extra_body={"evaluation_level": "conversation"},
+    )
 ```
 
 # [cURL](#tab/curl)
