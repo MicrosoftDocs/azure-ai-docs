@@ -227,7 +227,7 @@ The following steps use the Agent 365 MCP server as an example:
    - token URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
    - auth URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
    - refresh URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-   - scopes: `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above} offline_access`
+   - scopes: `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above},offline_access`
 
 1. After you complete the configuration, you receive a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri). Add it to your Microsoft Entra app.
 
