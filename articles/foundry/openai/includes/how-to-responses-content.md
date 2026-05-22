@@ -47,12 +47,12 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2))
 
 # Microsoft Entra ID authentication (recommended)
-
+token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 client = OpenAI(
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    api_key=token_provider,
+    api_key=token_provider(),
 )
 response = client.responses.create(
     model="MODEL_NAME",
