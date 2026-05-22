@@ -35,7 +35,7 @@ When you connect your Foundry agent to Fabric IQ by registering it as a server-s
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Fabric IQ | ✔️ | — | — | - | ✔️ | ✔️ | ✔️ |
+| Fabric IQ | ✔️ | — | — | — | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
