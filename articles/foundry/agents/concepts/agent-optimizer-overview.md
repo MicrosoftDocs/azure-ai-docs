@@ -92,7 +92,7 @@ The eval model runs once per task per candidate — it reads the agent's respons
 # spec.yaml
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5
+  reflection_model: gpt-5.1
 ```
 
 > [!IMPORTANT]

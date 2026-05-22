@@ -65,8 +65,8 @@ evaluators:
 
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5
-  strategies:
+  reflection_model: gpt-5.1
+  target_attributes:
     - instruction
   max_iterations: 5
 ```
@@ -109,7 +109,7 @@ The `max_iterations` option controls how many candidate instruction sets are gen
 
 | Max iterations | Candidates | Time | Best for |
 | ---------------- | ----------- | ------ | ---------- |
-| 3 (default) | 3 | 5 to 10 min | Quick experiments |
+| 4 (default) | 4 | 5 to 10 min | Quick experiments |
 | 5 | 5 | 10 to 15 min | Good balance |
 | 10 | 10 | 20 to 30 min | Thorough exploration |
 
@@ -139,7 +139,7 @@ Specify the reflection model in your config file:
 
 ```yaml
 options:
-  reflection_model: gpt-5
+  reflection_model: gpt-5.1
 ```
 
 > [!IMPORTANT]
@@ -200,8 +200,8 @@ evaluators:
 
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5
-  strategies:
+  reflection_model: gpt-5.1
+  target_attributes:
     - skill
   max_iterations: 5
 ```
