@@ -3,21 +3,15 @@ title: Run evaluations from the Microsoft Foundry portal
 description: Learn how to evaluate the performance and safety of your generative AI models and agents using the Foundry portal.
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-<<<<<<< multiturneval0526
-=======
 ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
->>>>>>> release-build-foundry
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-ms.custom:
-  - ignite-2023, references_regions, build-2024, ignite-2024
-  - classic-and-new
 ---
 
 # Run evaluations from the Microsoft Foundry portal
@@ -30,7 +24,6 @@ This article shows you how to create and run evaluations in the Foundry portal.
 
 ## Prerequisites
 
-<<<<<<< multiturneval0526
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A Microsoft Foundry project. [Create a project](../create-project.md) if you don't have one.
 - One of the following, depending on your evaluation target:
@@ -38,14 +31,10 @@ This article shows you how to create and run evaluations in the Foundry portal.
   - **Model evaluation**: A deployed model or access to instant models.
   - **Dataset evaluation**: A test dataset in CSV or JSONL format containing preexisting model or agent outputs.
 - An Azure OpenAI connection with a deployed GPT model (for example, `gpt-4.1-mini`). Required for AI-assisted quality evaluations.
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
-=======
-- A test dataset in CSV or JSON Lines (JSONL) format, or a model or agent to evaluate.
-- An Azure OpenAI connection with a deployed GPT model that supports chat completion (for example, `gpt-5-mini`). Required only for AI-assisted quality evaluations.
 - **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
->>>>>>> release-build-foundry
+
 
 ## Choose an evaluation approach
 
