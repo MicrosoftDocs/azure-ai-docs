@@ -158,5 +158,5 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 ## Related content
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Optimize agent instructions and skills](optimize-agent-strategies.md)
+- [Optimize agent instructions and skills](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

@@ -172,7 +172,7 @@ items:
     - name: Create a custom evaluation dataset
       href: ../../agents/how-to/create-optimizer-dataset.md
     - name: Optimize agent instructions and skills
-      href: ../../agents/how-to/optimize-agent-strategies.md
+      href: ../../agents/how-to/optimize-agent-targets.md
   - name: Optimize agent prompts
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard

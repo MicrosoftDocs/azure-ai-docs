@@ -33,11 +33,11 @@ The entire process runs in the cloud. Start it with `azd ai agent optimize` (req
 
 :::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them.":::
 
-## Optimization strategies
+## Optimization targets
 
 ### Instruction tuning (default)
 
-The *instruction strategy* rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
+The *instruction target* rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
 
 **When to use:** Most agents. This is the default and works well for improving response quality, adherence to task requirements, and reducing hallucination.
 
@@ -47,7 +47,7 @@ azd ai agent optimize --target instruction
 
 ### Skill discovery
 
-The *skill strategy* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The agent optimizer appends these definitions to the agent's instruction set.
+The *skill target* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The agent optimizer appends these definitions to the agent's instruction set.
 
 **When to use:** Agents that need structured, repeatable behaviors. For example, a support agent that should always follow a specific escalation procedure, or a coding agent that should use particular debugging patterns.
 
@@ -69,7 +69,7 @@ Your agent always works with or without optimization. No feature flags or condit
 
 ## What gets optimized
 
-| Field | Description | Strategy |
+| Field | Description | Target |
 | ------- | ------------- | ---------- |
 | `instructions` | System prompt and instructions | instruction, skill |
 | `skills` | Discovered skill catalog | skill |
@@ -163,4 +163,4 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 - [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)
+- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)

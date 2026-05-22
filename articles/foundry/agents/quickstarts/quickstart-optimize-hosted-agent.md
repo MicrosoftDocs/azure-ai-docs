@@ -265,6 +265,6 @@ azd down --force --purge
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)
+- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 

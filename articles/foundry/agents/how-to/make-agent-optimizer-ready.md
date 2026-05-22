@@ -182,5 +182,5 @@ azd ai agent run
 
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
 - [Create a custom evaluation dataset](create-optimizer-dataset.md)
-- [Optimize agent instructions and skills](optimize-agent-strategies.md)
+- [Optimize agent instructions and skills](optimize-agent-targets.md)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)

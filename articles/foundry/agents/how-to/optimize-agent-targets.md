@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The agent optimizer supports two strategies: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both strategies.
+The agent optimizer supports two optimization targets: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both targets.
 
-| Scenario | Recommended strategy |
+| Scenario | Recommended target |
 | ---------- | ----------------------- |
 | Improve overall response quality | Instruction tuning |
 | Reduce hallucination | Instruction tuning |
@@ -34,7 +34,7 @@ The agent optimizer supports two strategies: **instruction tuning** (the default
 
 ## Optimize instructions
 
-The *instruction strategy* is the default optimization approach. It rewrites and refines your agent's system prompt to improve performance on your evaluation dataset.
+The *instruction target* is the default optimization approach. It rewrites and refines your agent's system prompt to improve performance on your evaluation dataset.
 
 ### How it works
 
@@ -46,7 +46,7 @@ The *instruction strategy* is the default optimization approach. It rewrites and
 ### Run instruction optimization
 
 ```bash
-# Default strategy is 'instruction' — these are equivalent:
+# Default target is 'instruction' — these are equivalent:
 azd ai agent optimize
 azd ai agent optimize --target instruction
 ```
@@ -130,11 +130,11 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 
 ## Optimize with skill discovery
 
-The *skill strategy* discovers reusable capabilities your agent should have. It generates skill definitions and appends them to the agent's instruction set.
+The *skill target* discovers reusable capabilities your agent should have. It generates skill definitions and appends them to the agent's instruction set.
 
 ### How it works
 
-1. **Baseline evaluation.** Same as the instruction strategy. Your agent is evaluated against the dataset.
+1. **Baseline evaluation.** Same as the instruction target. Your agent is evaluated against the dataset.
 1. **Skill discovery.** The optimizer analyzes weak areas and generates skill definitions. A skill is a named capability with:
    - **Name**: For example, `"step_by_step_reasoning"`
    - **Description**: What the skill does and when to use it
