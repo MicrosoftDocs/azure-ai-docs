@@ -73,6 +73,7 @@ evaluators:
 
 options:
   eval_model: gpt-4.1-mini
+  reflection_model: gpt-5
   strategies:
     - instruction
   budget: 10

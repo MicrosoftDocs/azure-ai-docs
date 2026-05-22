@@ -76,6 +76,27 @@ Your agent always works with or without optimization. No feature flags or condit
 | `model` | Model deployment name | (future) |
 | `temperature` | Sampling temperature | (future) |
 
+## Models
+
+The agent optimizer uses two models during an optimization run. Both must be deployed in your Foundry project.
+
+| Model | Config key | Role | Supported models |
+| ------- | ------------ | ------ | ------------------ |
+| **Eval model** | `eval_model` | Scores agent responses against criteria in the dataset | `gpt-4.1-mini` (default) |
+| **Reflection model** | `reflection_model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
+
+The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The reflection model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable reflection model typically produces better candidates.
+
+```yaml
+# spec.yaml
+options:
+  eval_model: gpt-4.1-mini
+  reflection_model: gpt-5
+```
+
+> [!IMPORTANT]
+> Both models are required. If `reflection_model` is not specified in your config, the optimization API returns an error.
+
 ## Understand optimization results
 
 This section describes the results table structure, how scores are computed, what score improvements mean, and how to diagnose common issues.
@@ -153,10 +174,8 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 
 ## Limitations and availability
 
-- The agent optimizer is in **private preview**. Your Azure subscription must be on the allowlist. Contact your Microsoft representative to request access.
 - The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
-- The agent optimizer is supported for hosted agents in Foundry Agent Service.
-- Optimization runs consume eval model tokens in your Foundry project.
+- The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-and-invocations).
 
 ## Related content
 

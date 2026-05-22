@@ -65,6 +65,7 @@ evaluators:
 
 options:
   eval_model: gpt-4.1-mini
+  reflection_model: gpt-5
   strategies:
     - instruction
   budget: 5
@@ -128,6 +129,24 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 > [!IMPORTANT]
 > If the eval model is not deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
 
+### Reflection model
+
+The reflection model generates candidate instructions and skills. It analyzes baseline results and produces improved variants. It must be deployed in your Foundry project.
+
+Supported reflection models: `gpt-5`, `gpt-5.1`, `gpt-5.3`.
+
+Specify the reflection model in your config file:
+
+```yaml
+options:
+  reflection_model: gpt-5
+```
+
+> [!IMPORTANT]
+> The `reflection_model` field is required. If it's not specified, the optimization API returns an error.
+
+For more details on how these models are used, see [Models](../concepts/agent-optimizer-overview.md#models).
+
 ## Optimize with skill discovery
 
 The *skill target* discovers reusable capabilities your agent should have. It generates skill definitions and appends them to the agent's instruction set.
@@ -168,6 +187,8 @@ evaluators:
   - task_adherence
 
 options:
+  eval_model: gpt-4.1-mini
+  reflection_model: gpt-5
   strategies:
     - skill
   budget: 5
