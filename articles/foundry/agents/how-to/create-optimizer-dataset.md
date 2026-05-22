@@ -1,6 +1,6 @@
 ---
-title: "Create a custom evaluation dataset for the agent optimizer (preview)"
-description: "Define tasks and evaluation criteria in JSONL format to evaluate and optimize your hosted agent using the agent optimizer in Foundry Agent Service."
+title: "Create an evaluation dataset for the agent optimizer (preview)"
+description: "Generate or manually define evaluation datasets used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,18 +11,92 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Create a custom evaluation dataset (preview)
+# Create an evaluation dataset (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-By default, `azd ai agent optimize` uses a built-in dataset with 3 general coding tasks and 25 criteria. For meaningful optimization of your specific agent, create a custom *dataset* that reflects your agent's real-world use cases. A dataset is a collection of tasks used to evaluate an agent.
+The agent optimizer evaluates your agent against a *dataset* — a collection of tasks with evaluation criteria. You can generate a dataset automatically from the CLI or create one manually for full control.
 
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - The `azure.ai.agents` CLI extension installed (see [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md))
 
-## Dataset format
+## Generate a dataset (recommended)
+
+The fastest way to create an evaluation dataset is with `azd ai agent eval init`. This command generates a dataset and adaptive evaluators tuned to your agent's domain:
+
+```bash
+azd ai agent eval init
+```
+
+The interactive wizard auto-detects your agent from `azure.yaml` and prompts for a generation instruction describing what your agent does and what scenarios to test.
+
+Example output:
+
+```text
+Detecting agent...
+  Found: my-support-agent (hosted)
+
+Generation prompt
+  Describe what this agent does and what scenarios to test.
+  > This agent handles customer support for electronics. Test returns, troubleshooting, and out-of-scope requests.
+
+Generating dataset and evaluators...
+  Dataset generation:    done  (registered: my-support-agent-eval-seed/v1)
+  Evaluator generation:  done  (registered: my-support-agent-quality/v1)
+
+Eval suite created
+  Config:     eval.yaml
+  Dataset:    .azure/.foundry/datasets/my-support-agent-eval-seed.v1.jsonl
+  Evaluator:  .azure/.foundry/evaluators/my-support-agent-quality.v1.yaml
+
+Review the generated assets, then run:
+  azd ai agent eval run
+```
+
+### Non-interactive mode
+
+For scripted workflows, pass the inputs directly:
+
+```bash
+azd ai agent eval init \
+  --gen-instruction "Customer support agent. Test refund handling, troubleshooting, and out-of-scope deflection." \
+  --eval-model gpt-4.1-mini \
+  --max-samples 50
+```
+
+### Use your own data with generated evaluators
+
+If you already have a golden dataset but want auto-generated evaluators:
+
+```bash
+azd ai agent eval init --dataset ./my-golden-dataset.jsonl
+```
+
+### Run optimization with the generated config
+
+After `eval init` completes, `azd ai agent optimize` auto-detects the generated `eval.yaml`:
+
+```bash
+azd ai agent optimize
+```
+
+Or pass it explicitly:
+
+```bash
+azd ai agent optimize --config eval.yaml
+```
+
+For the full evaluation CLI workflow, see [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation).
+
+## Create a custom dataset manually (advanced)
+
+For full control over evaluation tasks and criteria, create a JSONL dataset by hand. This is useful when you need precise control over test scenarios or have production data to use directly.
+
+By default, `azd ai agent optimize` uses a built-in dataset with 3 general coding tasks and 25 criteria. For meaningful optimization of your specific agent, create a custom *dataset* that reflects your agent's real-world use cases.
+
+### Dataset format
 
 Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that represents a single evaluation *task*. A task is an individual scenario in the dataset. It contains a prompt and evaluation criteria.
 
@@ -31,7 +105,7 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 {"name": "task_2", "prompt": "Another prompt", "criteria": [{"name": "check_1", "instruction": "..."}, {"name": "check_2", "instruction": "..."}]}
 ```
 
-## Field reference
+### Field reference
 
 | Field | Required | Description |
 | ------- | ---------- | ------------- |
@@ -42,7 +116,7 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 | `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`task_adherence`) scores each criterion independently as a binary value (0 or 1). |
 | `groundTruth` | No | Expected answer (used by some evaluators for reference) |
 
-## Example: Customer support agent
+### Example: Customer support agent
 
 ```jsonl
 {"name": "refund_policy", "prompt": "What is your refund policy?", "criteria": [{"name": "mentions_30_days", "instruction": "Response must mention the 30-day refund window"}, {"name": "polite_tone", "instruction": "Response must be professional and empathetic"}]}
@@ -50,14 +124,14 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 {"name": "out_of_scope", "prompt": "Can you help me fix my car?", "criteria": [{"name": "polite_decline", "instruction": "Agent should politely explain this is outside its scope"}, {"name": "redirect", "instruction": "Agent should suggest contacting an appropriate service"}]}
 ```
 
-## Example: Coding assistant
+### Example: Coding assistant
 
 ```jsonl
 {"name": "python_function", "prompt": "Write a Python function to reverse a linked list", "criteria": [{"name": "correct_algorithm", "instruction": "The function must correctly reverse a singly linked list"}, {"name": "handles_empty", "instruction": "The function must handle an empty list without errors"}, {"name": "includes_docstring", "instruction": "The function should include a descriptive docstring"}]}
 {"name": "explain_concept", "prompt": "Explain what a closure is in JavaScript", "criteria": [{"name": "accurate_definition", "instruction": "Must correctly define a closure as a function that captures variables from its enclosing scope"}, {"name": "includes_example", "instruction": "Must include at least one working code example"}]}
 ```
 
-## Use a custom dataset
+### Use a custom dataset
 
 Reference your dataset in a YAML config file:
 
@@ -158,6 +232,7 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 ## Related content
 
+- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Optimize agent instructions and skills](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

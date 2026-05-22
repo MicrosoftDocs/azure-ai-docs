@@ -31,6 +31,9 @@ The agent optimizer runs a closed-loop evaluation and improvement cycle:
 
 The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
 
+> [!TIP]
+> For the best results, generate a dataset tailored to your agent with `azd ai agent eval init` before running optimization. The optimizer auto-detects the generated `eval.yaml`. For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
+
 :::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them.":::
 
 ## Optimization targets
@@ -185,5 +188,6 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
-- [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)

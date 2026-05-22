@@ -265,6 +265,22 @@ You can also re-run eval-only to confirm the score improvement:
 azd ai agent optimize --eval
 ```
 
+## Next steps: Use a custom dataset
+
+This quickstart uses the built-in dataset (3 tasks, 12 criteria). For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
+
+```bash
+azd ai agent eval init
+```
+
+The command creates an `eval.yaml` with a dataset and evaluators tuned to your agent's domain. Then run optimization with the generated config:
+
+```bash
+azd ai agent optimize --config eval.yaml
+```
+
+For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
+
 ## Monitor and manage
 
 Use the *job ID*, which is formatted as `opt_<hex>` and is printed in optimization output, to track and manage runs:
@@ -303,7 +319,8 @@ azd down --force --purge
 ## Related content
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Create a custom evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 
