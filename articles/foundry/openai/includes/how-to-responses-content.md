@@ -3499,7 +3499,7 @@ Compared to the standalone Image API, the Responses API offers two advantages:
 - **Flexible inputs**: Accept image file IDs as inputs in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is supported by `gpt-image-1`-series models, and you can call it from a set of compatible chat and reasoning models. For the current list of supported orchestration models, see the [Model support](#model-support) section later in this article.
+> The image generation tool in the Responses API is supported by `gpt-image-1`-series models, and you can call it from a set of compatible chat and reasoning models. For the current list of supported orchestration models, see the [Supported models](#supported-models) section later in this article.
 >
 > The image generation tool doesn't currently support streaming mode. To stream partial images, call the [image generation API](../how-to/dall-e.md) directly outside of the Responses API.
 
