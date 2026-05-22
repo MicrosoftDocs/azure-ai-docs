@@ -23,9 +23,9 @@ zone_pivot_groups: selection-work-iq
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> When you connect to Work IQ, your agent sends user queries to the Work IQ service endpoint hosted within the Microsoft 365 trust boundary. Data is processed according to [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy), not Foundry's compliance boundary. You're responsible for ensuring that your Work IQ integration complies with your organization's regulatory, geographic, and data-handling requirements before deploying to users.
+> When you connect to Work IQ, you may incur costs and data may be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
-> You're also responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations—such as metaprompts, content filters, or other safety systems—and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
