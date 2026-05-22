@@ -18,9 +18,7 @@ ai-usage: ai-assisted
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset.
+In this article, you learn how to run evaluations in the cloud for predeployment testing on a test dataset.
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
 
@@ -1464,13 +1462,14 @@ Multiturn evaluation differs from single-turn evaluation in several ways:
 | **Data format** | JSONL with `query` and `response` fields | JSONL with `messages` array containing the full conversation |
 | **Use case** | Testing individual model responses | Testing end-to-end agent experiences |
 
-Multiturn evaluation supports three data source options:
+Multiturn evaluation supports four data source options:
 
 | Option | When to use | Data source type |
 |--------|-------------|------------------|
 | [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` with `file_id` or `file_content` |
 | [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_trace_data_source_preview` with `trace_source` |
 | [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` with `trace_source` |
+| [Simulated conversations](#conversation-simulation) | You want to generate synthetic test conversations | `simulator` with target configuration |
 
 ### Choose an evaluation level
 
@@ -1486,16 +1485,13 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 > **Evaluator compatibility**: Each evaluator supports specific evaluation levels. Check the evaluator's `supported_evaluation_levels` field in the [evaluator catalog](../evaluate-generative-ai-app.md).
 >
 > - **Turn-only evaluators** (for example, `fluency`, `relevance`) can't be used with `evaluation_level="conversation"`.
-> - **Conversation-only evaluators** (for example, `customer_satisfaction`) can't be used with `evaluation_level="turn"`.
-> - **Mix and match isn't supported**: You can't combine turn-only and conversation-only evaluators in the same evaluation run.
+> - Currently, all multiturn evaluators support both `"turn"` and `"conversation"` levels.
 
 #### Common errors
 
 | Error | Cause | Solution |
 |-------|-------|----------|
 | Incompatible evaluation level | Using `evaluation_level="conversation"` with a turn-only evaluator | Remove the turn-only evaluator or change to `evaluation_level="turn"` |
-| Incompatible evaluation level | Using `evaluation_level="turn"` with a conversation-only evaluator | Remove the conversation-only evaluator or change to `evaluation_level="conversation"` |
-| Mixed evaluator levels | Combining turn-only and conversation-only evaluators in one run | Use only evaluators that share a compatible level |
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
