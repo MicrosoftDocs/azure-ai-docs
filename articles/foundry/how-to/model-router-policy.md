@@ -46,7 +46,7 @@ Model discoverability is preserved. Unapproved models remain visible in the mode
 
 The following screenshot shows the deployment pane in the Foundry portal when a policy is active. The restriction banner explains that the organization's policy excludes certain models from routing, and developers can select **View blocked** to see which models are blocked.
 
-:::image type="content" source="media/model-router-policy/deploy-pane-all-models.png" alt-text="Screenshot of the Deploy model-router pane with the policy restriction banner at the top of the model list, and a View blocked button.":::
+:::image type="content" source="media/model-router-policy/deploy-pane-all-models.png" alt-text="Screenshot of the Deploy model-router pane with the policy restriction banner at the top of the model list, and a View blocked button." lightbox="media/model-router-policy/deploy-pane-all-models.png":::
 
 ## Assign a policy that governs model router
 
@@ -69,11 +69,11 @@ The following sections describe what a developer experiences when a policy that 
 
    When a policy is active, a restriction banner appears at the top of the model details page. The banner tells you that your organization's policy excludes certain models from routing.
 
-   :::image type="content" source="media/model-router-policy/model-card-restriction-banner.png" alt-text="Screenshot of the model-router details page with a restriction banner that explains some models are restricted by organizational policy.":::
+   :::image type="content" source="media/model-router-policy/model-card-restriction-banner.png" alt-text="Screenshot of the model-router details page with a restriction banner that explains some models are restricted by organizational policy." lightbox="media/model-router-policy/model-card-restriction-banner.png":::
 
 1. To preview which models are excluded, select **View blocked**. The **Models blocked by IT Admin** dialog lists the models that your organization's policy excludes from routing.
 
-   :::image type="content" source="media/model-router-policy/blocked-models-dialog.png" alt-text="Screenshot of the Models blocked by IT Admin dialog showing a list of blocked models and their versions.":::
+   :::image type="content" source="media/model-router-policy/blocked-models-dialog.png" alt-text="Screenshot of the Models blocked by IT Admin dialog showing a list of blocked models and their versions." lightbox="media/model-router-policy/blocked-models-dialog.png":::
 
 1. In the deployment pane, choose **Custom settings** to expand model subset configuration.
 
@@ -83,11 +83,11 @@ The following sections describe what a developer experiences when a policy that 
 
 1. Select from the enabled (approved) models. Unapproved models remain visible but their checkboxes are disabled.
 
-   :::image type="content" source="media/model-router-policy/deploy-pane-subset-selection.png" alt-text="Screenshot of the Deploy model-router pane with Route to a subset of models selected and a list of selectable models with checkboxes.":::
+   :::image type="content" source="media/model-router-policy/deploy-pane-subset-selection.png" alt-text="Screenshot of the Deploy model-router pane with Route to a subset of models selected and a list of selectable models with checkboxes." lightbox="media/model-router-policy/deploy-pane-subset-selection.png":::
 
    To review the full list of blocked models from the deployment pane, select **View blocked** in the restriction banner.
 
-   :::image type="content" source="media/model-router-policy/deploy-pane-blocked-models-dialog.png" alt-text="Screenshot of the Models blocked by IT Admin dialog opened from the Deploy model-router pane, listing the blocked models.":::
+   :::image type="content" source="media/model-router-policy/deploy-pane-blocked-models-dialog.png" alt-text="Screenshot of the Models blocked by IT Admin dialog opened from the Deploy model-router pane, listing the blocked models." lightbox="media/model-router-policy/deploy-pane-blocked-models-dialog.png":::
 
 1. Select **Deploy**. The deployment uses the compliant model subset.
 
