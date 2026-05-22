@@ -7,6 +7,7 @@ ms.reviewer: andyaviles
 ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new

@@ -6,6 +6,7 @@ author: sdgilley
 ms.reviewer: deeikele
 ms.date: 12/24/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ms.custom:
   - ignite-2023

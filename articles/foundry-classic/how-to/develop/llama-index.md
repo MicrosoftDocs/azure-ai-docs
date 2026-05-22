@@ -2,6 +2,7 @@
 title: "Develop application with LlamaIndex and Microsoft Foundry (classic)"
 description: "This article explains how to use LlamaIndex with models deployed in Microsoft Foundry portal to build advance intelligent applications. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024
   - dev-focus
@@ -43,7 +44,9 @@ To run this tutorial, you need:
 <!-- :::moniker range="foundry-classic" -->
 * Required role: 
     * **Owner** or **Contributor** on the Foundry resource or AI Hub to deploy models
-    * **Azure AI User** to use the model in a Foundry project
+    * **Foundry User** to use the model in a Foundry project
+
+      [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
     * **Azure AI Developer** to use the model in a hub-based project
 <!-- :::moniker-end
 

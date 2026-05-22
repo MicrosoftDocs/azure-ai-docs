@@ -2,6 +2,7 @@
 title: "See Evaluation Results in Microsoft Foundry portal"
 description: "See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization."
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -27,7 +28,9 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 - A completed evaluation run.
     - To run evaluations in the portal, see [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
     - To run evaluations from the SDK, see [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).

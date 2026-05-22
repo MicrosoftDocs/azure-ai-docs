@@ -7,7 +7,7 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: product-comparison
-ms.date: 02/12/2026
+ms.date: 05/19/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
