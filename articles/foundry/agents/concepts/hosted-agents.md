@@ -86,7 +86,7 @@ Every Hosted agent deployed to a Foundry project gets its own **dedicated Micros
 
 The endpoint is available immediately after deployment—publishing isn't required for programmatic access:
 
-- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
+- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses?api-version=v1
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
