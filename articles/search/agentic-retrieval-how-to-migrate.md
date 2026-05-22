@@ -200,7 +200,7 @@ To complete your migration:
 
 ### [**2026-05-01-preview**](#tab/2026-05-01-preview)
 
-If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to 2026-05-01-preview. The wire shape and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
+If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to 2026-05-01-preview. Requests, responses, and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
 
 1. Update the API version to `2026-05-01-preview` on REST requests. SDK clients use the package's default API version, so you don't need to pass an explicit `serviceVersion` argument. Instead, upgrade to the 2026-05-01-preview SDK package.
 
