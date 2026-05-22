@@ -602,6 +602,8 @@ toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
 tools = await toolbox.get_tools()
 ```
 
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
+
 > [!IMPORTANT]
 > Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
 
