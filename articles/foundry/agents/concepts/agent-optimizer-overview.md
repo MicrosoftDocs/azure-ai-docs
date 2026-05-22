@@ -102,6 +102,9 @@ options:
 
 This section describes the results table structure, how scores are computed, what score improvements mean, and how to diagnose common issues.
 
+> [!TIP]
+> You can also view optimization results in the [Azure AI Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab to see score comparisons, charts, and deployment options.
+
 After an optimization run completes, you see a results table:
 
 ```

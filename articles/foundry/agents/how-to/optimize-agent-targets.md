@@ -158,13 +158,25 @@ The *skill target* discovers reusable capabilities your agent should have. It ge
    - **Name**: For example, `"step_by_step_reasoning"`
    - **Description**: What the skill does and when to use it
    - **Body**: Implementation details or procedure
-1. **Injection.** Discovered skills are appended to the agent's instructions through `compose_instructions()`, which creates a skill catalog the model can reference.
+1. **Injection.** Discovered skills are appended to the agent's instructions through `ComposeInstructions()` (C#) or `compose_instructions()` (Python), which creates a skill catalog the model can reference.
+
+    # [Python](#tab/python)
 
     ```python
     # compose_instructions() appends discovered skills to your prompt
     full_prompt = config.compose_instructions()
     # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
     ```
+
+    # [C#](#tab/csharp)
+
+    ```csharp
+    // ComposeInstructions() appends discovered skills to your prompt
+    var fullPrompt = config.ComposeInstructions();
+    // Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
+    ```
+
+    ---
 
 1. **Evaluation.** The agent with skills is evaluated against the dataset.
 
@@ -200,7 +212,9 @@ azd ai agent optimize --config spec.yaml
 
 ### Skill file downloads
 
-For candidates that include skill files (implementation code), `load_config()` can download them through the resolver API. The skills are stored in a local directory. The default directory is `.agent_optimization_skills/`.
+For candidates that include skill files (implementation code), the config loader can download them through the resolver API. The skills are stored in a local directory.
+
+# [Python](#tab/python)
 
 ```python
 config = load_config(
@@ -214,6 +228,26 @@ if config.has_skills:
         print(f"  - {skill.name}: {skill.description}")
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+var config = OptimizationConfigLoader.LoadConfig(
+    defaultInstructions: "You are a helpful assistant.",
+    defaultSkillsDir: "./my_skills"
+);
+
+if (config.HasSkills)
+{
+    Console.WriteLine($"Skills dir: {config.SkillsDir}");
+    foreach (var skill in config.Skills)
+    {
+        Console.WriteLine($"  - {skill.Name}: {skill.Description}");
+    }
+}
+```
+
+---
+
 ## Interpret results
 
 After optimization completes, review the results table. For detailed scoring guidance, see [Understand optimization results](../concepts/agent-optimizer-overview.md#understand-optimization-results).
@@ -226,6 +260,9 @@ Key thresholds:
 | 0.03 to 0.10 | Moderate. Worth deploying. |
 | 0.10 to 0.20 | Significant improvement. |
 | Greater than 0.20 | Major improvement. |
+
+> [!TIP]
+> To view optimization results in more detail, open the [Azure AI Foundry portal](https://ai.azure.com). Navigate to your project, select **Agents**, choose your agent, and then select the **Optimize** tab. The portal shows score comparisons, score-versus-token charts, and a **Deploy best candidate** button.
 
 ## Deploy the winner
 
