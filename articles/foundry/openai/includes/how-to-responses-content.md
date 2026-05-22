@@ -3343,7 +3343,7 @@ curl -N -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
-## Encrypted Reasoning Items
+## Encrypted reasoning items
 
 When you use the Responses API in stateless mode (`store=false`), you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your requests.
 
