@@ -52,7 +52,6 @@ Before you begin, make sure you have:
    - **Ontology** — The Natural Language to Ontology (NL2Ontology) layer converts the query into a structured ontology query against your enterprise entities, relationships, and data bindings.
    - **Fabric data agent** — The query goes directly to the data agent for conversational Q&A over ontology-grounded data.
    - **Power BI semantic models** — Fabric IQ queries the semantic model's measures and hierarchies to return analytics results.
-   - **Graph traversal** — For relationship queries, Fabric IQ traverses entity relationships defined in the ontology.
 1. **The result is returned to your agent** — Fabric IQ returns the synthesized response. Your agent incorporates it into its reply to the user. All requests run in the context of the signed-in user and honor Fabric permissions and governance policies.
 
 ## Connect to Fabric IQ
