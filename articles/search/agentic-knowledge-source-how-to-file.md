@@ -171,7 +171,7 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
 ```
 
-**Reference:** [FileKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesource?view=azure-dotnet-preview&preserve-view=true), [FileKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.fileknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -215,7 +215,7 @@ index_client.create_or_update_knowledge_source(knowledge_source=knowledge_source
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
 
-**Reference:** [FileKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesource), [FileKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.fileknowledgesourceparameters)
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
 
 ::: zone-end
 

@@ -27,7 +27,7 @@ When Purview sensitivity label indexing is enabled, Azure AI Search checks each 
 This article explains how query-time sensitivity label enforcement works and how to issue secure search queries.
 
 > [!TIP]
-> If you consume labeled content through a knowledge base (retrieve action or MCP endpoint) instead of calling Azure AI Search directly, see [Inspect sensitivity label metadata in retrieve responses](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-retrieve-responses-preview) for the equivalent response fields. Elevated read and Microsoft Purview audit logging documented in this article apply to both paths.
+> If you consume labeled content through a knowledge base (retrieve action or MCP endpoint) instead of calling Azure AI Search directly, see [Inspect sensitivity label metadata in retrieve responses](agentic-retrieval-how-to-retrieve.md#inspect-sensitivity-label-metadata-in-the-response-preview) for the equivalent response fields. Elevated read and Microsoft Purview audit logging documented in this article apply to both paths.
 
 ## Prerequisites
 

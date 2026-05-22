@@ -61,7 +61,7 @@ All retrieved content, whether indexed or remote, is pulled into the ranking pip
 
 ### Sensitivity label ingestion (preview)
 
-For blob, indexed OneLake, and indexed SharePoint knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. After they're synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+For blob, indexed OneLake, and indexed SharePoint knowledge sources, you can also ingest [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md) by setting `ingestionPermissionOptions` to include `sensitivityLabel`. Make sure that you follow all the requirements before setting this value. After they're synchronized to the index, labels are surfaced in retrieve responses and used to enforce document-level access at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 If your indexed knowledge source uses a chunked index, such as with integrated vectorization or a custom Text Split skill, you must also map the sensitivity label to each chunk row via [index projections in the skillset](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Otherwise, chunk-level references in retrieve responses won't be returned if they have labels in the source document.
 

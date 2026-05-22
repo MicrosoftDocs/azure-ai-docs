@@ -628,9 +628,9 @@ The following table shows which knowledge sources require ingestion-time configu
 | [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested document Microsoft Purview sensitivity labels matched against user identity. |
 | [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs or Microsoft Purview sensitivity labels matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
-| [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the data agent on their behalf. |
-| [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
-| [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
+| [Fabric Data Agent](agentic-knowledge-source-how-to-fabric-data-agent.md#enforce-permissions-at-query-time-preview) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the data agent on their behalf. |
+| [Fabric Ontology](agentic-knowledge-source-how-to-fabric-ontology.md#enforce-permissions-at-query-time-preview) | ❌ | The retrieval engine exchanges the user's token for a Microsoft Fabric–scoped token and queries the ontology item on their behalf. |
+| [Work IQ](agentic-knowledge-source-how-to-work-iq.md#enforce-permissions-at-query-time-preview) | ❌ | The retrieval engine exchanges the user's token for a Work IQ–scoped token and queries Work IQ on their behalf. |
 
 > [!IMPORTANT]
 > If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, recreate the knowledge source with the appropriate `ingestionPermissionOptions` values.
@@ -981,6 +981,105 @@ Here's an example of the references array:
     }
   ]
 ```
+
+## Inspect sensitivity label metadata in the response (preview)
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+
+When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
+
+| Location | Field | Description |
+|---|---|---|
+| Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
+| Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
+
+The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
+
+The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
+
+```json
+{
+  "response": [
+    {
+      "role": "assistant",
+      "content": [
+        { "type": "text", "text": "[ ... grounding data ... ]" }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "azureBlob",
+      "id": "0",
+      "activitySource": 1,
+      "docKey": "contract-2026.pdf",
+      "sensitivityLabelInfo": {
+        "labelId": "<label-guid>",
+        "labelName": "Confidential",
+        "color": "#FF0000",
+        "tooltip": "Confidential — Recipients can read but not forward.",
+        "isEncrypted": true,
+        "priority": 3
+      },
+      "sourceData": null
+    },
+    {
+      "type": "azureBlob",
+      "id": "1",
+      "activitySource": 1,
+      "docKey": "policy-overview.pdf",
+      "sensitivityLabelInfo": {
+        "labelId": "<label-guid>",
+        "labelName": "Internal",
+        "color": "#FFA500",
+        "tooltip": "For internal use only.",
+        "isEncrypted": false,
+        "priority": 1
+      },
+      "sourceData": null
+    }
+  ],
+  "metadata": {
+    "responseSensitivityLabelInfo": {
+      "labelId": "<label-guid>",
+      "labelName": "Confidential",
+      "color": "#FF0000",
+      "tooltip": "Confidential — Recipients can read but not forward.",
+      "isEncrypted": true,
+      "priority": 3
+    }
+  }
+}
+```
+
+### Reference types that surface sensitivity labels
+
+The field name and availability of label metadata depend on the knowledge source type that produced each reference.
+
+| Reference `type` | Label field | Available when... |
+|---|---|---|
+| `azureBlob` | `sensitivityLabelInfo` | The blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedOneLake` | `sensitivityLabelInfo` | The OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `indexedSharePoint` | `sensitivityLabelInfo` | The SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
+| `searchIndex` | `sensitivityLabelInfo` | The underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
+
+### Display and audit recommendations
+
+- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties, such as policy controls or permissions.
+
+- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or apply policy controls, such as disabling copy and share, across the answer.
+
+- If your knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
+
+- For auditable administrative access to labeled content, see [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview).
+
+### MCP server behavior
+
+The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
 ## Examples
 
@@ -1707,105 +1806,6 @@ Content-Type: application/json
 A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2026-05-01-preview) output budget. When this happens, the activity array shows that matches were found, and the activity record includes a warning that the most relevant document exceeded the maximum output size. The references array and grounded response content are empty for that document. To retain more content, increase `maxOutputSizeInTokens`.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
-
-## Inspect sensitivity label metadata in retrieve responses (preview)
-
-<!-- preserve -->
-<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
-
-> [!IMPORTANT]
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
-
-When you query a knowledge base that ingests [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md), the retrieve response includes label metadata at two levels:
-
-| Location | Field | Description |
-|---|---|---|
-| Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
-| Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
-
-The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
-
-The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
-
-```json
-{
-  "response": [
-    {
-      "role": "assistant",
-      "content": [
-        { "type": "text", "text": "[ ... grounding data ... ]" }
-      ]
-    }
-  ],
-  "references": [
-    {
-      "type": "azureBlob",
-      "id": "0",
-      "activitySource": 1,
-      "docKey": "contract-2026.pdf",
-      "sensitivityLabelInfo": {
-        "labelId": "<label-guid>",
-        "labelName": "Confidential",
-        "color": "#FF0000",
-        "tooltip": "Confidential — Recipients can read but not forward.",
-        "isEncrypted": true,
-        "priority": 3
-      },
-      "sourceData": null
-    },
-    {
-      "type": "azureBlob",
-      "id": "1",
-      "activitySource": 1,
-      "docKey": "policy-overview.pdf",
-      "sensitivityLabelInfo": {
-        "labelId": "<label-guid>",
-        "labelName": "Internal",
-        "color": "#FFA500",
-        "tooltip": "For internal use only.",
-        "isEncrypted": false,
-        "priority": 1
-      },
-      "sourceData": null
-    }
-  ],
-  "metadata": {
-    "responseSensitivityLabelInfo": {
-      "labelId": "<label-guid>",
-      "labelName": "Confidential",
-      "color": "#FF0000",
-      "tooltip": "Confidential — Recipients can read but not forward.",
-      "isEncrypted": true,
-      "priority": 3
-    }
-  }
-}
-```
-
-### Reference types that surface sensitivity labels
-
-The field name and availability of label metadata depend on the knowledge source type that produced each reference.
-
-| Reference `type` | Label field | Available when... |
-|---|---|---|
-| `azureBlob` | `sensitivityLabelInfo` | The blob knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedOneLake` | `sensitivityLabelInfo` | The OneLake knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `indexedSharePoint` | `sensitivityLabelInfo` | The SharePoint-indexed knowledge source includes `sensitivityLabel` in `ingestionPermissionOptions`. |
-| `searchIndex` | `sensitivityLabelInfo` | The underlying index has `purviewEnabled` set to `true` and a field marked with `sensitivityLabel: true`. |
-
-### Display and audit recommendations
-
-- Use `sensitivityLabelInfo.labelId` to look up the full label definition through the [Microsoft Graph sensitivity label APIs](/graph/api/sensitivitylabel-get) when you need additional properties, such as policy controls or permissions.
-
-- Use `metadata.responseSensitivityLabelInfo` to render a response-level sensitivity banner or apply policy controls, such as disabling copy and share, across the answer.
-
-- If your knowledge source points to a chunked index, such as one populated through integrated vectorization or a custom Text Split skill, make sure the skillset [projects the sensitivity label to each chunk row](search-indexer-sensitivity-labels.md#6-configure-index-projections-in-your-skillset-if-applicable). Without this mapping, chunk-level references aren't filtered correctly at query time.
-
-- For auditable administrative access to labeled content, see [Elevated read for administrative investigations](search-query-sensitivity-labels.md#elevated-read-for-administrative-investigations-preview).
-
-### MCP server behavior
-
-The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
 ## Related content
 
