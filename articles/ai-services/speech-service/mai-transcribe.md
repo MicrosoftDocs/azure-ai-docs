@@ -158,5 +158,5 @@ You can also use the MAI-Transcribe model for input audio transcription in the [
 ## Related content
 
 - For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
-- [MAI-Voice-1 in Azure Speech](mai-voices.md)
+- [MAI-Voice in Azure Speech](mai-voices.md)
 - [How to customize Voice Live input and output](./voice-live-how-to-customize.md)
