@@ -20,7 +20,7 @@ zone_pivot_groups: selection-fabric-iq
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> When you connect to non-Foundry Microsoft services, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable service terms and data handling policies. You're responsible for managing whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and for ensuring that appropriate permissions, boundaries, and approvals are provisioned.
+> When you connect to Fabric IQ, your agent sends user queries to the Fabric IQ MCP endpoint hosted within the Microsoft Fabric trust boundary. Data is processed within your Fabric workspace's region, subject to the [Microsoft Fabric regional availability and compliance scope](https://learn.microsoft.com/en-us/fabric/admin/region-availability), not Foundry's compliance boundary. You're responsible for ensuring that your Fabric IQ integration complies with your organization's regulatory, geographic, and data-handling requirements before deploying to users.
 >
 > You're also responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations—such as metaprompts, content filters, or other safety systems—and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
@@ -315,6 +315,30 @@ After Foundry creates the connection, it displays an OAuth redirect URL. Add thi
 1. Select **Authentication** > **Add a platform** > **Web**.
 1. Under **Redirect URIs**, paste the OAuth redirect URL from Foundry.
 1. Select **Configure**.
+
+## Data governance and compliance
+
+Fabric IQ processes requests within the Microsoft Fabric compliance boundary for your workspace's region. The following commitments apply when you route agent queries through Fabric IQ.
+
+### Data residency
+
+Fabric IQ retrieves and processes data within the region where your Microsoft Fabric workspace resides. Data doesn't cross regional boundaries during query execution. The applicable region and its compliance scope are determined by your workspace location — see [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability) for the list of supported regions and the compliance frameworks each region satisfies.
+
+> [!NOTE]
+> If your Foundry project is in a different Azure region than your Fabric workspace, query results are returned cross-region. Review [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability) and your organization's data residency requirements before connecting a Fabric workspace in a different region.
+
+### Data governance policies enforced
+
+Microsoft Fabric's governance policies are applied automatically to every Fabric IQ request:
+
+- **Row-level security (RLS)** — Fabric enforces RLS rules defined on semantic models and lakehouses. Agents can never retrieve rows that the signed-in user isn't authorized to see.
+- **Column-level security (CLS)** — Column-level permissions on semantic models restrict which fields are available to the user's identity.
+- **Sensitivity labels** — Microsoft Purview sensitivity labels on Fabric items are honored. Data classified as restricted or confidential follows your organization's label-based access policies.
+- **OneLake access control** — Access to underlying data in OneLake is subject to OneLake role-based access control. Fabric IQ queries only data the signed-in user can reach through normal OneLake paths.
+
+### Compliance certifications
+
+Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see the [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability) page and the [Microsoft Trust Center](https://www.microsoft.com/trust-center/compliance/compliance-overview).
 
 ## Admin management
 
