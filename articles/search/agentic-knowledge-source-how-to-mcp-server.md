@@ -240,6 +240,51 @@ Use `storedHeaders` to send static HTTP headers with every MCP request. We recom
 
 ---
 
+### Pass headers at query time
+
+If an MCP server requires per-request credentials, pass them on the retrieve request using paired control headers. This syntax forwards headers to the MCP server without conflicting with the `Authorization` or `api-key` header used to authenticate to Azure AI Search.
+
+Use the knowledge source name as the prefix:
+
+| Control header | Description |
+|--|--|
+| `<knowledge-source-name>-header-name<N>` | The name of the HTTP header to send to the MCP server. |
+| `<knowledge-source-name>-header-value<N>` | The value of the HTTP header to send to the MCP server. |
+
+`<N>` is an optional numeric suffix that pairs multiple headers. For example, `my-mcp-server-ks-header-name1` pairs with `my-mcp-server-ks-header-value1`.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+Authorization: Bearer {{search-access-token}}
+Content-Type: application/json
+my-mcp-server-ks-header-name: Authorization
+my-mcp-server-ks-header-value: Bearer {{mcp-server-access-token}}
+my-mcp-server-ks-header-name1: x-api-key
+my-mcp-server-ks-header-value1: {{mcp-server-api-key}}
+
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Find Azure AI Search MCP guidance."
+        }
+      ]
+    }
+  ],
+  "knowledgeSourceParams": [
+    {
+      "knowledgeSourceName": "my-mcp-server-ks",
+      "kind": "mcpServer"
+    }
+  ]
+}
+```
+
+Each header pair must include exactly one name control header and one matching value control header. Header names and values must be valid HTTP request headers. If a query-time header uses the same target header name as a `storedHeaders` entry, the query-time value overrides the stored value for that request.
+
 ### Tool properties
 
 Each entry in the `tools` array is an `McpServerTool` object with the following properties.
