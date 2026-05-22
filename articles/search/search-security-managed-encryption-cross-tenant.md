@@ -58,7 +58,7 @@ Use the Azure CLI to send requests. The service provider’s tenant that contain
 
 To use federated identity to support a cross-tenant CMK scenario:
 
-1. The service provider configures the AI Search service in their tenant (Tenant A). For guidance on how to do this, see [Create a Search Service (in the Azure Portal)](/azure/search/search-create-service-portal) or use the [az search service create](/cli/azure/search/service#az-search-service-create) command in Azure CLI.
+1. The service provider configures the AI Search service in their tenant (Tenant A). For guidance on how to do this, see [Create a Search Service (in the Azure portal)](/azure/search/search-create-service-portal) or use the [az search service create](/cli/azure/search/service#az-search-service-create) command in Azure CLI.
 
 1. The service provider creates a multitenant Microsoft Entra app registration. For guidance on how to do this, see [How to register an app in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app), or use the Azure CLI command: [az ad app create](/cli/azure/ad/app#az-ad-app-create). Record the Application (client) ID once you complete the app registration.
 
