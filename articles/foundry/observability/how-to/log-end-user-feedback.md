@@ -105,71 +105,7 @@ Rules:
 
 ### Example: End user gives thumbs up
 
-```python
-import json
-import uuid
-from opentelemetry import trace
-
-tracer = trace.get_tracer(__name__)
-
-
-def log_binary_feedback(
-    response_id: str,
-    project_id: str,
-    evaluation_name: str,
-    passed: bool,
-    explanation: str = "",
-    user_id: str = "",
-    tags: dict = None,
-):
-    """Emit a binary (thumbs up/down) human evaluation event."""
-    with tracer.start_as_current_span("gen_ai.evaluation.result") as span:
-        span.set_attribute("microsoft.custom_event.name", "gen_ai.evaluation.result")
-        span.set_attribute("gen_ai.evaluation.name", evaluation_name)
-        span.set_attribute("gen_ai.evaluation.score.value", 1.0 if passed else 0.0)
-        span.set_attribute("gen_ai.evaluation.score.label", "pass" if passed else "fail")
-        span.set_attribute("gen_ai.evaluation.explanation", explanation)
-        span.set_attribute("gen_ai.response.id", response_id)
-        span.set_attribute("microsoft.human_evaluation.id", str(uuid.uuid4()))
-
-        if user_id:
-            span.set_attribute("enduser.id", user_id)
-
-        if tags:
-            for key, value in tags.items():
-                span.set_attribute(f"microsoft.human_evaluation.tags.{key}", value)
-
-        internal_props = {
-            "gen_ai.evaluation.azure_ai_scheduled": "one_off",
-            "gen_ai.azure_ai_project.id": project_id,
-            "gen_ai.evaluation.threshold": "1.0",
-            "gen_ai.evaluation.min_value": "0.0",
-            "gen_ai.evaluation.max_value": "1.0",
-            "gen_ai.evaluation.desirable_direction": "increase",
-            "gen_ai.evaluation.type": "boolean",
-            "gen_ai.response.id.type": "responses",
-            "microsoft.human_evaluation.source": "end_user",
-            "microsoft.human_evaluation.kind": "binary",
-        }
-        span.set_attribute("internal_properties", json.dumps(internal_props))
-```
-
-The resulting event payload looks like:
-
-```json
-{
-    "microsoft.custom_event.name": "gen_ai.evaluation.result",
-    "gen_ai.evaluation.name": "task_completion",
-    "gen_ai.evaluation.score.value": 1.0,
-    "gen_ai.evaluation.score.label": "pass",
-    "gen_ai.evaluation.explanation": "The agent provided accurate weather information as requested.",
-    "gen_ai.response.id": "resp_64904952b20872620069f8d600779c81908f58b0a3be090ef0",
-    "enduser.id": "241964ad-a8db-4318-9f2e-5a7dc1f05349",
-    "microsoft.human_evaluation.tags.subscription_tier": "basic_plan",
-    "microsoft.human_evaluation.id": "0b27be45-cd65-4671-ab08-c3eafd4c9613",
-    "internal_properties": "{\"gen_ai.evaluation.azure_ai_scheduled\": \"one_off\", \"gen_ai.azure_ai_project.id\": \"/subscriptions/57cb43f3-de25-4074-9a99-84d3964965e3/resourceGroups/some-rg/providers/Microsoft.CognitiveServices/accounts/some-acc/projects/some-proj\", \"gen_ai.evaluation.threshold\": \"1.0\", \"gen_ai.evaluation.min_value\": \"0.0\", \"gen_ai.evaluation.max_value\": \"1.0\", \"gen_ai.evaluation.desirable_direction\": \"increase\", \"gen_ai.evaluation.type\": \"boolean\", \"gen_ai.response.id.type\": \"responses\", \"microsoft.human_evaluation.source\": \"end_user\", \"microsoft.human_evaluation.kind\": \"binary\"}"
-}
-```
+For a complete Python implementation of binary feedback logging, see the [Azure SDK for Python sample](https://github.com/Azure/azure-sdk-for-python/pull/46962/files).
 
 ## Emit a Likert 5-point evaluation (rating scale)
 
@@ -186,95 +122,15 @@ Rules:
 - `internal_properties.gen_ai.evaluation.desirable_direction`: `"increase"`
 - `internal_properties.microsoft.human_evaluation.kind`: `"likert_5"`
 
-### Example: Builder rates relevance in Foundry portal
+### Example: End user rates relevance
 
-```python
-import json
-import uuid
-from opentelemetry import trace
-
-tracer = trace.get_tracer(__name__)
-
-
-def log_likert_feedback(
-    response_id: str,
-    project_id: str,
-    evaluation_name: str,
-    score: int,
-    explanation: str = "",
-    threshold: float = 3.0,
-    tags: dict = None,
-):
-    """Emit a Likert 5-point human evaluation event."""
-    passed = score >= threshold
-
-    with tracer.start_as_current_span("gen_ai.evaluation.result") as span:
-        span.set_attribute("microsoft.custom_event.name", "gen_ai.evaluation.result")
-        span.set_attribute("gen_ai.evaluation.name", evaluation_name)
-        span.set_attribute("gen_ai.evaluation.score.value", float(score))
-        span.set_attribute("gen_ai.evaluation.score.label", "pass" if passed else "fail")
-        span.set_attribute("gen_ai.evaluation.explanation", explanation)
-        span.set_attribute("gen_ai.response.id", response_id)
-        span.set_attribute("microsoft.human_evaluation.id", str(uuid.uuid4()))
-
-        if tags:
-            for key, value in tags.items():
-                span.set_attribute(f"microsoft.human_evaluation.tags.{key}", value)
-
-        internal_props = {
-            "gen_ai.evaluation.azure_ai_scheduled": "one_off",
-            "gen_ai.azure_ai_project.id": project_id,
-            "gen_ai.evaluation.threshold": str(threshold),
-            "gen_ai.evaluation.min_value": "1.0",
-            "gen_ai.evaluation.max_value": "5.0",
-            "gen_ai.evaluation.desirable_direction": "increase",
-            "gen_ai.evaluation.type": "ordinal",
-            "gen_ai.response.id.type": "responses",
-            "microsoft.human_evaluation.source": "builder",
-            "microsoft.human_evaluation.kind": "likert_5",
-        }
-        span.set_attribute("internal_properties", json.dumps(internal_props))
-```
-
-The resulting event payload looks like:
-
-```json
-{
-    "microsoft.custom_event.name": "gen_ai.evaluation.result",
-    "gen_ai.evaluation.name": "relevance",
-    "gen_ai.evaluation.score.value": 4.0,
-    "gen_ai.evaluation.score.label": "pass",
-    "gen_ai.evaluation.explanation": "The agent's response is relevant to the query, providing useful information that addresses the user's intent.",
-    "gen_ai.response.id": "resp_1234567890abcdef",
-    "microsoft.human_evaluation.tags.department": "marketing",
-    "microsoft.human_evaluation.id": "69d937a7-32e2-412e-97c9-119e2d282723",
-    "internal_properties": "{\"gen_ai.evaluation.azure_ai_scheduled\": \"one_off\", \"gen_ai.azure_ai_project.id\": \"/subscriptions/57cb43f3-de25-4074-9a99-84d3964965e3/resourceGroups/some-rg/providers/Microsoft.CognitiveServices/accounts/some-acc/projects/some-proj\", \"gen_ai.evaluation.threshold\": \"3.0\", \"gen_ai.evaluation.min_value\": \"1.0\", \"gen_ai.evaluation.max_value\": \"5.0\", \"gen_ai.evaluation.desirable_direction\": \"increase\", \"gen_ai.evaluation.type\": \"ordinal\", \"gen_ai.response.id.type\": \"responses\", \"microsoft.human_evaluation.source\": \"builder\", \"microsoft.human_evaluation.kind\": \"likert_5\"}"
-}
-```
+For a complete Python implementation of Likert 5-point feedback logging, see the [Azure SDK for Python sample](https://github.com/Azure/azure-sdk-for-python/pull/46962/files).
 
 ## View feedback in Application Insights
 
-After feedback events are exported through your OTel pipeline, you can query them in Application Insights using KQL:
+After feedback events are exported through your OTel pipeline, they appear in the `customEvents` table in Application Insights with `name == "gen_ai.evaluation.result"`. You can query and visualize this data using Log Analytics.
 
-```kusto
-customEvents
-| where name == "gen_ai.evaluation.result"
-| extend
-    eval_name = tostring(customDimensions["gen_ai.evaluation.name"]),
-    score = todouble(customDimensions["gen_ai.evaluation.score.value"]),
-    label = tostring(customDimensions["gen_ai.evaluation.score.label"]),
-    internal = parse_json(tostring(customDimensions["internal_properties"]))
-| extend
-    eval_kind = tostring(internal["microsoft.human_evaluation.kind"]),
-    eval_source = tostring(internal["microsoft.human_evaluation.source"])
-| where eval_source in ("builder", "end_user")
-| summarize
-    total = count(),
-    pass_rate = round(countif(label == "pass") * 100.0 / count(), 1),
-    avg_score = round(avg(score), 2)
-  by eval_name, eval_kind, bin(timestamp, 1h)
-| order by timestamp desc
-```
+To learn how to view and query telemetry in Application Insights, see [View and analyze traces](trace-agent-setup.md#view-and-analyze-traces). For dashboard-based monitoring, see [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md).
 
 ## Related content
 
