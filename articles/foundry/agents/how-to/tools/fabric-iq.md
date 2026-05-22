@@ -76,6 +76,9 @@ Replace the placeholders as follows:
 
 You can find the workspace and item GUIDs in the Microsoft Fabric portal: open your workspace, select the item, and copy the IDs from the browser URL.
 
+> [!TIP]
+> For **Power BI semantic models**, we highly recommend using the latest models such as `gpt-5.4` or `opus 4.7`. Semantic model queries involve complex measure and hierarchy reasoning that benefits significantly from the improved reasoning capability of newer models.
+
 For **`server_label`**, use any short lowercase identifier with hyphens, for example `fabriciq-ontology`. This label appears in approval prompts when the model calls the tool.
 
 ### Add the Fabric IQ tool to your agent
@@ -333,6 +336,17 @@ To restrict agent traffic to your private network, configure Foundry Agent Servi
 ### Publish Fabric items before use
 
 A Fabric admin must publish each Fabric item — ontology, data agent, or Power BI semantic model — before it can be consumed through Fabric IQ. Unpublished items aren't reachable at the MCP endpoint, and requests against them fail. Confirm that the item is published in the Microsoft Fabric portal before configuring the Foundry connection.
+
+## Troubleshoot
+
+| Symptom | Likely cause | Fix |
+|---------|-------------|-----|
+| 404 or `Not Found` error when connecting | The `server_url` is incorrect or the Fabric item isn't published. | Verify the workspace and item GUIDs in the Fabric portal URL. Confirm the item is published. |
+| 401 Unauthorized | Admin consent hasn't been granted or the Entra app is misconfigured. | Verify admin consent was granted for all required API permissions. Check that the client ID, secret, and scopes match what you configured in Foundry. |
+| `CONSENT_REQUIRED` error at runtime | The signed-in user hasn't completed the OAuth flow for the connection. | Open the consent URL returned in the error, complete the OAuth flow in a browser, then retry. |
+| Empty or incorrect results from ontology queries | Ontology entities, properties, or data bindings are incomplete. | Verify the ontology item is published and that entity types, properties, and data bindings are fully configured in Fabric IQ. |
+| Poor-quality answers from Power BI semantic models | The model doesn't have strong enough reasoning for complex measure queries. | Use a latest-generation model such as `gpt-5.4` or `opus 4.7`. These models handle semantic model complexity significantly better than older models. |
+| Agent never calls the Fabric IQ tool | The model doesn't recognize when to delegate to Fabric IQ. | Add guidance in the system prompt, for example: *"Use the Fabric IQ tool for any question about business data, entities, metrics, or organizational knowledge."* |
 
 ## Related content
 
