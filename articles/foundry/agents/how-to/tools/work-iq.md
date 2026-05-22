@@ -30,7 +30,7 @@ zone_pivot_groups: selection-work-iq
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user, honor Microsoft 365 permissions and sensitivity labels, and remain within the Microsoft 365 trust boundary.
+[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
 
 You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) protocol. Your agent delegates natural-language tasks to Work IQ as a peer agent — for example, "Summarize my recent emails about Project Contoso" — and Work IQ handles retrieval, reasoning, and response synthesis against the user's Microsoft 365 data.
 
