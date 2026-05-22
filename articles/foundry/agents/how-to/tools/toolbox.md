@@ -2559,7 +2559,7 @@ resources:
 
 ### [Tool Search](tool-search.md)
 
-Use this pattern to enable intent-based tool routing. When `ToolboxSearchPreviewTool` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+Use this pattern to enable intent-based tool routing. When `toolbox_search_preview` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
 
 :::zone pivot="rest-api"
 
@@ -2579,17 +2579,15 @@ Use this pattern to enable intent-based tool routing. When `ToolboxSearchPreview
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import ToolboxSearchPreviewTool
-
 tools = [
-    ToolboxSearchPreviewTool()
+    {"type": "toolbox_search_preview"}
 ]
 ```
 
 :::zone-end
 
 > [!NOTE]
-> `ToolboxSearchPreviewTool` is a routing directive, not a callable tool. It does not appear in `tools/list` responses and does not count toward the unnamed-tool-per-type limit.
+> `toolbox_search_preview` is a routing directive, not a callable tool. It does not appear in `tools/list` responses and does not count toward the unnamed-tool-per-type limit.
 
 ## Troubleshoot
 
