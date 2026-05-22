@@ -138,7 +138,7 @@ During the preview, S3 HD indexer support is designed for workloads with no skil
 
 + Plan for small indexes of about 1 GB in size.
 
-+ Size skillset usage carefully. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), significantly increase runtime and can consume the daily quota quickly, especially in multi-tenant scenarios.
++ Size skillset usage carefully. Skills that call external services, such as the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), significantly increase runtime and can consume the daily quota quickly, especially in multitenant scenarios.
 
 + Expect limited parallelism during the preview. Use scheduled, staggered runs for large indexer fleets so that work spreads across the 24-hour window rather than competing for the same budget.
 
