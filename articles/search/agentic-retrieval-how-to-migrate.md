@@ -210,7 +210,7 @@ If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#20
 
 #### Update code and clients for 2026-05-01-preview
 
-The 2026-05-01-preview language SDKs introduce code-shape changes across the supported languages. Install instructions and version pins for the 2026-05-01-preview SDK packages are added when the packages are published.
+The 2026-05-01-preview language SDKs introduce code-shape changes across the supported languages.
 
 | Language | Migration updates |
 | --- | --- |
