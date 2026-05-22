@@ -23,8 +23,8 @@ In this configuration, the customer uses Azure Key Vault in their own tenant to 
 
 - **Tenant B:** A separate customer tenant with an Azure Key Vault and the necessary permissions on that tenant:
   - **[Key Vault Contributor](/azure/role-based-access-control/built-in-roles#key-vault-contributor)**: This role is required if you need to create a new key vault.
-    - **Permission to register applications in Microsoft Entra ID**: To install the multitenant app configured by the service provider for cross-tenant CMK, you must have permission to create app registrations in Microsoft Entra ID. This typically requires the [Application Developer role](/entra/identity/role-based-access-control/permissions-reference#application-developer) or a higher administrative role, such as Application Administrator or Global Administrator.
-    - [Key Vault Crypto Officer](/azure/role-based-access-control/built-in-roles#key-vault-crypto-officer): This role is required to add a new key to the key vault.
+  - **Permission to register applications in Microsoft Entra ID**: To install the multitenant app configured by the service provider for cross-tenant CMK, you must have permission to create app registrations in Microsoft Entra ID. This typically requires the [Application Developer role](/entra/identity/role-based-access-control/permissions-reference#application-developer) or a higher administrative role, such as Application Administrator or Global Administrator.
+  - [Key Vault Crypto Officer](/azure/role-based-access-control/built-in-roles#key-vault-crypto-officer): This role is required to add a new key to the key vault.
   - [Key Vault Crypto Service Encryption User](/azure/role-based-access-control/built-in-roles#key-vault-crypto-service-encryption-user): This role must be assigned to the service principal created for the installed multitenant application in order to grant the service principal access to the customer-managed key in the key vault. You must have [User Access Administrator permission](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to do this. You can view the service principal GUID (aka Object ID) under: `Enterprise applications\<installed multitenant application>\Manage\Properties\Object ID`.
 
 - The Azure Key Vault must also be [configured for role-based access](/azure/key-vault/general/rbac-guide).
@@ -66,7 +66,7 @@ To use federated identity to support a cross-tenant CMK scenario:
 
 1. The service provider configures the user-assigned managed identities as a federated identity credential on the app. For guidance on how to do this, see [Configure an app to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp)*.*
 
-1. Once the service provider shared the multitenant app ID, the customer grants the service provider’s app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp#az-ad-sp-create) command in Azure CLI.
+1. Once the service provider shares the multitenant app ID, the customer grants the service provider’s app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp#az-ad-sp-create) command in Azure CLI.
 
 1. If the customer doesn’t already have a key vault to use, see [Quickstart - Create an Azure Key Vault with the Azure portal](/azure/key-vault/general/quick-create-portal) or [Quickstart - Create an Azure Key Vault with the Azure CLI](/azure/key-vault/general/quick-create-cli). The Key Vault will need the permission model set to “Azure role-based access control (RBAC)” with the service provider’s multitenant application granted permission by assigning it the [Key Vault Crypto Service Encryption User role](/azure/key-vault/general/rbac-guide?preserve-view=true&tabs=azure-cli#azure-built-in-roles-for-key-vault-data-plane-operations). The customer can then create an encryption key. For guidance on how to do this, see [Grant permission to applications to access an Azure key vault using Azure RBAC](/azure/key-vault/general/rbac-guide?tabs=azure-cli).
 
@@ -83,7 +83,7 @@ With these three parameters, the service provider can now create Azure AI Search
 
 ### Validate the federated identity cross-tenant CMK configuration
 
-After you configure the multitenant Microsoft Entra application and connect it to the customer's Key Vault, verify the setup by creating a test object in your search service (tenant A). This example creates an index to confirm that the search service can access the customer-managed key using federated identity.
+After you configure the multitenant Microsoft Entra application and connect it to the customer's Key Vault, verify the setup by creating a test object in your search service (tenant A). This example creates an index to confirm that the search service can access the customer-managed key using federated identity authentication.
 
 1. See [Configure customer-managed keys for Azure AI Search encrypted data](search-security-manage-encryption-keys.md) for guidance on how to create a search service and a new index object with a customer-managed key.
 
@@ -131,7 +131,7 @@ If index creation fails with a key access error, verify that:
 
 ## Use a client secret (if using federated identity is not an option)
 
-If using federated identity is not an option, you can add a client secret to the multitenant application to support a cross-tenant CMK scenario:
+If federated identity isn't an option, you can add a client secret to the multitenant application to support a cross-tenant CMK scenario:
 
 1. To add the client secret to the multitenant application in tenant A, run the following command:
 
