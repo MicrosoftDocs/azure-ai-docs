@@ -23,7 +23,7 @@ zone_pivot_groups: selection-work-iq
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> When you connect to non-Foundry Microsoft services, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable service terms and data handling policies. You're responsible for managing whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and for ensuring that appropriate permissions, boundaries, and approvals are provisioned.
+> When you connect to Work IQ, your agent sends user queries to the Work IQ service endpoint hosted within the Microsoft 365 trust boundary. Data is processed according to [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy), not Foundry's compliance boundary. You're responsible for ensuring that your Work IQ integration complies with your organization's regulatory, geographic, and data-handling requirements before deploying to users.
 >
 > You're also responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations—such as metaprompts, content filters, or other safety systems—and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
@@ -306,6 +306,34 @@ curl --request PUT \
 ```
 
 A successful response returns HTTP 200 or 201. The response body includes a `properties.oauthRedirectUrl` field — use that value as the redirect URI in your Entra app registration (see [Add the redirect URI to your app registration](#add-the-redirect-uri-to-your-app-registration)).
+
+## Data governance and compliance
+
+Work IQ operates entirely within the Microsoft 365 trust boundary. The following commitments apply when you route agent requests through Work IQ.
+
+### Data residency
+
+Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details about where Microsoft 365 stores your data, see the [Microsoft 365 data location documentation](/microsoft-365/enterprise/o365-data-locations).
+
+### Privacy and data handling
+
+All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy). Key commitments:
+
+- Work IQ doesn't use customer content to train or improve underlying AI models.
+- Data retrieved from Microsoft 365 is used only to fulfill the specific request and isn't retained by Work IQ beyond the scope of that request.
+- Microsoft 365 audit logging captures Work IQ access events. Administrators can review access through the [Microsoft Purview compliance portal](https://compliance.microsoft.com/).
+
+### Access control and permissions
+
+Work IQ enforces Microsoft 365 permissions automatically on every request. Agents can only access data that the signed-in user is already authorized to see — no elevation of privilege is possible:
+
+- Role-based access control, sensitivity labels, and information barriers defined in Microsoft 365 are respected.
+- Conditional access policies in your Entra tenant apply to the OAuth token issued for Work IQ connections.
+- Application-only access isn't supported — a signed-in user context is always required.
+
+### Compliance certifications
+
+Work IQ inherits Microsoft 365's compliance certifications. For the full list of applicable certifications and audit reports, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center/compliance/compliance-overview).
 
 ## Admin management
 
