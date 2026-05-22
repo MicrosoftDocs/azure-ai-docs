@@ -80,7 +80,7 @@ A custom code training job follows this lifecycle:
 1. **Prepare resources**: Set up a GPU compute cluster, configure a Docker environment, and upload training data.
 1. **Submit a command job**: Use the Microsoft Foundry SDK or Foundry CLI to submit the job. Pass your training code as an input (along with data and model inputs), specify compute, environment, and outputs.
 1. **Monitor progress**: View logs, training metrics, and infrastructure metrics (GPU, memory, disk) in the Foundry portal or through the SDK.
-1. **Save the model**: When the job completes, model outputs (safetensor format) are automatically registered as model assets in your project.
+1. **Save the model**: When the job completes, model outputs (safetensors format) are automatically registered as model assets in your project.
 1. **Deploy for inference**: Map the trained model to a supported base model architecture and deploy it on a managed inferencing cluster.
 
 ## Key concepts
@@ -103,7 +103,7 @@ Custom code training in Foundry has the following limitations:
 - **Generative AI training only**: Custom code training supports generative AI model training. Traditional machine learning workloads aren't supported.
 - **No pipeline orchestration**: Multi-step training pipelines aren't available. Submit individual command jobs.
 - **No hyperparameter search**: Automated hyperparameter tuning isn't supported. Submit separate jobs with different hyperparameters and compare results.
-- **Deployment constraints**: Only full-weight safetensor models can be deployed. LoRA adapter deployment isn't yet supported.
+- **Deployment constraints**: Only full-weight safetensors models can be deployed. LoRA adapter deployment isn't yet supported.
 - **No job migration**: Existing Azure Machine Learning job histories aren't migrated to Foundry.
 
 ## Related content
