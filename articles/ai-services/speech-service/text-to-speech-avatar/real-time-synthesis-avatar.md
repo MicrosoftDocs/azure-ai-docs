@@ -111,9 +111,9 @@ First, create a WebRTC peer connection object. WebRTC is peer-to-peer and relies
 Sample request to fetch ICE info:
 
 ```HTTP
-GET /cognitiveservices/avatar/relay/token/v1 HTTP/1.1
+GET /tts/cognitiveservices/avatar/relay/token/v1 HTTP/1.1
 
-Host: westus2.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 

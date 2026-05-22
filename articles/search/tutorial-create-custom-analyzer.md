@@ -65,7 +65,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -101,7 +101,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -155,7 +155,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http  
     ### Search for a phone number
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -197,7 +197,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
    ```http  
    ### Search for a phone number
-   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
    Content-Type: application/json
    api-key: {{apiKey}}
 
@@ -264,7 +264,7 @@ Call the Analyze API using the following request:
 
 ```http
 ### Test analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -449,7 +449,7 @@ All of the tokens in the output column exist in the index. If your query include
 
    ```http
    ### Delete the index
-   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
+   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2026-04-01 HTTP/1.1
    api-key: {{apiKey}}
     ```
 
@@ -457,7 +457,7 @@ All of the tokens in the output column exist in the index. If your query include
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
     
@@ -527,7 +527,7 @@ After you recreate the index, test the analyzer using the following request:
 
 ```http
 ### Test custom analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}} 
 

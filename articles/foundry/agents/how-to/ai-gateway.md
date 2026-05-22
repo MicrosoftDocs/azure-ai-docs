@@ -4,8 +4,8 @@ description: "Connect and bring your own models hosted behind enterprise AI gate
 author: aahil
 ms.author: aahi
 ms.date: 04/27/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
@@ -16,7 +16,7 @@ zone_pivot_groups: foundry-portal-and-cli
 Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model*, allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
-> For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
+> For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Foundry Models sold by Azure. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
 >
 > If you use Foundry Agent Service to interact with BYOM models, you are responsible for implementing your own responsible AI mitigations within Foundry Agent Service, such as metaprompt, content filters, or other safety systems.
 >
@@ -49,8 +49,10 @@ You need the following role assignments:
 
 | Resource | Required role |
 |----------|---------------|
-| Foundry project | **Azure AI User** or higher |
+| Foundry project | **Foundry User** or higher |
 | Resource group (for connection deployment) | **Contributor** |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ::: zone pivot="foundry-portal"
 

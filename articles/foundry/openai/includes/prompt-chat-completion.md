@@ -2,8 +2,8 @@
 title: How to work with prompt engineering and the Chat Completion API
 titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API for prompt engineering.
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: alvinashcraft 
+ms.author: aashcraft 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

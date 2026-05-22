@@ -6,7 +6,7 @@ ms.author: jburchel
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -50,7 +50,9 @@ Before following the steps in this article, make sure you have the following pre
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
 * Azure CLI installed to version 2.86.0. Required to create outbound rules from the managed network. 
 * The `Microsoft.Network`, `Microsoft.KeyVault`, `Microsoft.CognitiveServices`, `Microsoft.Storage`, `Microsoft.Search`, and `Microsoft.ContainerService` resource providers registered for your Azure subscription. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
-* Permissions to deploy a managed network resource. `Azure AI Account Owner` on the Foundry resource scope is needed to create a Foundry account and project. `Owner` or `Role Based Access Administrator` is needed to assign RBAC to the required resources. `Azure AI User` on project scope is required to create and build Agents. 
+* Permissions to deploy a managed network resource. `Foundry Account Owner` on the Foundry resource scope is needed to create a Foundry account and project. `Owner` or `Role Based Access Administrator` is needed to assign RBAC to the required resources. `Foundry User` on project scope is required to create and build Agents. 
+
+  [!INCLUDE [role-rename-note](./role-rename-note.md)]
 * Sufficient quota for all resources in your target Azure region. If no parameters are passed in, this template creates a Foundry resource, Foundry project, Azure Cosmos DB for NoSQL, Azure AI Search, and Azure Storage account. 
 
 ## Limitations
@@ -86,7 +88,7 @@ The account must be created with `customSubDomainName`, `allowProjectManagement`
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
   --body '{
     "location": "{region}",
     "kind": "AIServices",
@@ -112,7 +114,7 @@ Wait for `provisioningState` to reach `Succeeded` before proceeding:
 
 ```azurecli
 az rest --method GET \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}?api-version=2026-03-01" \
   --query "properties.provisioningState" -o tsv
 ```
 
@@ -233,7 +235,7 @@ After the deployment completes, verify that the managed virtual network is confi
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2025-10-01-preview" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default?api-version=2026-03-01" \
      --query "properties.managedNetwork"
    ```
 
@@ -243,7 +245,7 @@ After the deployment completes, verify that the managed virtual network is confi
 
    ```azurecli
    az rest --method GET \
-     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2025-10-01-preview" \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2026-03-01" \
      --query "value[].{name:name, type:properties.type, status:properties.status}"
    ```
 
@@ -347,7 +349,7 @@ To update outbound rules using ARM REST API, use the `az rest` command. The foll
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-03-01" \
   --body '{
     "properties": {
       "type": "PrivateEndpoint",

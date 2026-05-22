@@ -6,7 +6,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Feature preview](../previews/preview-generic.md)]
+[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
 
 In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
@@ -36,6 +36,10 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
+
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Set up the environment
 
@@ -411,8 +415,8 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 1. Synthesizes the top results into a natural-language answer.
 
 ```java
-SearchKnowledgeBaseClient baseClient =
-    new SearchKnowledgeBaseClientBuilder()
+KnowledgeBaseRetrievalClient baseClient =
+    new KnowledgeBaseRetrievalClientBuilder()
         .endpoint(searchEndpoint)
         .knowledgeBaseName(knowledgeBaseName)
         .credential(
@@ -429,8 +433,8 @@ String query = "Why do suburban belts display larger "
 
 messages.add(Map.of("role", "user", "content", query));
 
-KnowledgeBaseRetrievalResponse retrievalResult =
-    retrieve(baseClient, messages);
+KnowledgeBaseRetrievalResult retrievalResult =
+    retrieve(baseClient, messages, knowledgeSourceName);
 
 String responseText =
     ((KnowledgeBaseMessageTextContent) retrievalResult
@@ -441,35 +445,43 @@ messages.add(
     Map.of("role", "assistant", "content", responseText));
 ```
 
-The `retrieve` helper method builds `KnowledgeBaseMessage` objects from the conversation history and sends the retrieval request:
+The `retrieve` helper builds a `KnowledgeBaseRetrievalOptions` from the conversation history, sets the retrieval reasoning effort, attaches the knowledge source parameters, and returns a `KnowledgeBaseRetrievalResult`:
 
 ```java
-private static KnowledgeBaseRetrievalResponse retrieve(
-        SearchKnowledgeBaseClient client,
-        List<Map<String, String>> messages) {
-    List<KnowledgeBaseMessage> kbMessages = new ArrayList<>();
-    for (Map<String, String> msg : messages) {
-        if (!"system".equals(msg.get("role"))) {
-            kbMessages.add(
-                new KnowledgeBaseMessage(Arrays.asList(
-                    new KnowledgeBaseMessageTextContent(
-                        msg.get("content"))
-                )).setRole(msg.get("role"))
-            );
+private static KnowledgeBaseRetrievalResult retrieve(
+        KnowledgeBaseRetrievalClient client,
+        List<Map<String, String>> messages,
+        String knowledgeSourceName) {
+    List<KnowledgeBaseMessage> retrievalMessages = new ArrayList<>();
+    for (Map<String, String> message : messages) {
+        String role = message.get("role");
+        if ("system".equals(role)) {
+            continue;
         }
+        retrievalMessages.add(
+            new KnowledgeBaseMessage(
+                new KnowledgeBaseMessageTextContent(
+                    message.get("content")))
+                .setRole(role));
     }
 
-    KnowledgeBaseRetrievalRequest request =
-        new KnowledgeBaseRetrievalRequest();
-    request.setMessages(kbMessages);
-    request.setRetrievalReasoningEffort(
-        new KnowledgeRetrievalLowReasoningEffort());
+    KnowledgeBaseRetrievalOptions request =
+        new KnowledgeBaseRetrievalOptions()
+            .setMessages(retrievalMessages)
+            .setRetrievalReasoningEffort(
+                new KnowledgeRetrievalLowReasoningEffort())
+            .setIncludeActivity(true)
+            .setKnowledgeSourceParams(Arrays.asList(
+                new SearchIndexKnowledgeSourceParams(knowledgeSourceName)
+                    .setIncludeReferences(true)
+                    .setIncludeReferenceSourceData(true)
+            ));
 
-    return client.retrieve(request, null);
+    return client.retrieve(request);
 }
 ```
 
-**Reference:** [SearchKnowledgeBaseClient](/java/api/com.azure.search.documents.knowledgebases.searchknowledgebaseclient?view=azure-java-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/java/api/com.azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-java-preview&preserve-view=true)
+**Reference:** [KnowledgeBaseRetrievalClient](/java/api/com.azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-java-preview&preserve-view=true), [KnowledgeBaseRetrievalOptions](/java/api/com.azure.search.documents.knowledgebases.models.knowledgebaseretrievaloptions?view=azure-java-preview&preserve-view=true)
 
 #### Review the response, activity, and references
 
@@ -511,7 +523,7 @@ String nextQuery = "How do I find lava at night?";
 messages.add(
     Map.of("role", "user", "content", nextQuery));
 
-retrievalResult = retrieve(baseClient, messages);
+retrievalResult = retrieve(baseClient, messages, knowledgeSourceName);
 ```
 
 #### Review the new response, activity, and references

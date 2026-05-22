@@ -2,13 +2,13 @@
 title: Best practices when using the Anomaly Detector univariate API
 titleSuffix: Azure AI services
 description: Learn about best practices when detecting anomalies with the Anomaly Detector API.
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: best-practice
 ms.custom: cogserv-non-critical-anomaly-detector
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Best practices for using the Anomaly Detector univariate API
@@ -48,7 +48,7 @@ Below is the same data set using batch anomaly detection. The model built for th
 
 ## Data preparation
 
-The Anomaly Detector API accepts time series data formatted into a JSON request object. A time series can be any numerical data recorded over time in sequential order. You can send windows of your time series data to the Anomaly Detector API endpoint to improve the API's performance. The minimum number of data points you can send is 12, and the maximum is 8640 points. [Granularity](/dotnet/api/microsoft.azure.cognitiveservices.anomalydetector.models.granularity) is defined as the rate that your data is sampled at. 
+The Anomaly Detector API accepts time series data formatted into a JSON request object. A time series can be any numerical data recorded over time in sequential order. You can send windows of your time series data to the Anomaly Detector API endpoint to improve the API's performance. The minimum number of data points you can send is 12, and the maximum is 8640 points. [Granularity](/azure/foundry/responsible-ai/anomaly-detector/ad-transparency-note#key-terms) is defined as the rate that your data is sampled at. 
 
 Data points sent to the Anomaly Detector API must have a valid Coordinated Universal Time (UTC) timestamp, and a numerical value. 
 

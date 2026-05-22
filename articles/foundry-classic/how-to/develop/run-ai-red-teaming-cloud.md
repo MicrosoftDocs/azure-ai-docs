@@ -2,6 +2,7 @@
 title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK) (classic)"
 description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - references_regions

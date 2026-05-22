@@ -2,6 +2,7 @@
 title: "Evaluation Cluster Analysis" 
 description: "Learn how to run and interact with an evaluation cluster analysis." 
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 04/14/2026
 ms.reviewer: hanch

@@ -337,7 +337,7 @@ If the underlying model doesn't support the `predict_proba()` function or the fo
 
 ## BERT integration in AutoML
 
-[Bidirectional Encoder Representations from Transformers (BERT)](https://techcommunity.microsoft.com/t5/azure-ai/how-bert-is-integrated-into-azure-automated-machine-learning/ba-p/1194657) is used in the featurization layer of AutoML. In this layer, if a column contains free text or other types of data like timestamps or simple numbers, featurization is applied accordingly.
+[Bidirectional Encoder Representations from Transformers (BERT)](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/how-bert-is-integrated-into-azure-automated-machine-learning/1194657) is used in the featurization layer of AutoML. In this layer, if a column contains free text or other types of data like timestamps or simple numbers, featurization is applied accordingly.
 
 For BERT, the model is fine-tuned and trained by using the labels you provide. The model outputs document embeddings as features alongside other features, like timestamp-based features and day of week.
 

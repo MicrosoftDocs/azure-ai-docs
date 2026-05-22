@@ -73,7 +73,7 @@ Capacity for provisioned throughput is subject to regional availability and real
 
 ### Capacity transparency
 
-The models sold directly by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region—even if they have quota available in that region.
+The Foundry Models sold by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region—even if they have quota available in that region.
 
 > [!IMPORTANT]
 > Quota limits the maximum number of PTUs that can be deployed in a subscription and region, but it doesn't guarantee capacity availability. Capacity is allocated at deployment time.
@@ -153,7 +153,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 
 The number of concurrent calls you can achieve on a deployment depends on each call's shape (prompt size, `max_tokens` parameter, and similar factors). The service continues to accept calls until the utilization reaches 100%. To determine the approximate number of concurrent calls, you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://ai.azure.com/resource/calculator). If the system generates less than the number of output tokens set for the `max_tokens` parameter, then the provisioned deployment will accept more requests.
 
-## Provisioned throughput capability for models sold directly by Azure
+## Provisioned throughput capability for Models sold by Azure
 
 This section lists Foundry Models that support the provisioned throughput capability. Use your PTU quota and PTU reservation across the models shown in the table.
 
@@ -161,7 +161,7 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 - Regional provisioned throughput deployment options vary by region.  
 
-- New models sold directly by Azure are onboarded with the Global provisioned throughput deployment option first. The Data zone provisioned option comes later.  
+- New Models sold by Azure are onboarded with the Global provisioned throughput deployment option first. The Data zone provisioned option comes later.  
 
 - PTUs are managed regionally and by offer type. PTU quota and any reservations must be in the region and shape (Global, Data zone, Regional) you wish to use. 
 

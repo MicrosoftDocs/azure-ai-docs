@@ -2,8 +2,9 @@
 title: "Optimize model cost and performance"
 description: "Use Ask AI in Microsoft Foundry to detect cost spikes, switch to cost-efficient models, evaluate quality, and track performance improvements."
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: how-to
-ms.date: 02/17/2026
+ms.date: 05/12/2026
 ms.reviewer: hanch
 ms.author: scottpolly
 author: bhcglx

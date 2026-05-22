@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 05/12/2026
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
@@ -43,7 +43,22 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + You should understand how indexers and knowledge sources work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
-+ This functionality isn't currently supported in the Azure portal, which includes permission filters created through the [**Import data** wizard](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
+## Limitations
+
++ The Azure portal doesn't support this feature.
+
++ The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
+
+  + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+
+  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+
+  + [Knowledge store](knowledge-store-concept-intro.md)
+
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
+
+  + [Debug sessions](cognitive-search-debug-session.md)
+
 
 ## Configure Blob Storage
 
@@ -136,7 +151,7 @@ If you're using an indexer, configure it, the data source, and the index to pull
 
   + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
 
-  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
+  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity), you must also specify the `identity` property.
 
 <!-- Question/Comment: check this example -->
 JSON example with system managed identity and `indexerPermissionOptions`:
