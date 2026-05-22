@@ -116,7 +116,11 @@ az account set --subscription "<subscription-name-or-id>"
 
 ## Configure and provision
 
-Set your Azure subscription and location, then provision the required resources. Choose any [region where hosted agents are available](../concepts/hosted-agents.md#region-availability):
+Choose one of the following options based on whether you need to create new Azure resources or already have an existing Foundry project.
+
+### Option A: Create new resources
+
+Set your Azure subscription and location, then provision. Choose any [region where hosted agents are available](../concepts/hosted-agents.md#region-availability):
 
 # [Bash](#tab/bash)
 
@@ -146,6 +150,33 @@ This step creates:
 - An Azure Container Registry
 - A model deployment for gpt-4.1-mini
 
+### Option B: Use an existing Foundry project
+
+If you already have a Foundry project with a model deployed, skip provisioning and configure your environment manually:
+
+```bash
+azd env new my-optimizer-env
+
+azd env set AZURE_SUBSCRIPTION_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+azd env set AZURE_TENANT_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+azd env set AZURE_AI_PROJECT_ENDPOINT "https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
+azd env set AZURE_CONTAINER_REGISTRY_ENDPOINT "<your-registry>.azurecr.io"
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+```
+
+Use the following table to find each value:
+
+| Variable | Where to find it |
+| -------- | ---------------- |
+| `AZURE_SUBSCRIPTION_ID` | Azure portal → **Subscriptions** |
+| `AZURE_TENANT_ID` | Run `az account show --query tenantId -o tsv` |
+| `AZURE_AI_PROJECT_ENDPOINT` | Foundry portal → your project → **Overview** → **Project endpoint** |
+| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Azure portal → **Container Registry** → **Overview** → **Login server** |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Foundry portal → your project → **Models + endpoints** → **Deployments** |
+
+> [!NOTE]
+> The project endpoint (not "project ID") is the value the CLI uses to identify your project. It appears on the project **Overview** page in the Foundry portal.
+
 ## Deploy the agent
 
 ```bash
@@ -166,7 +197,15 @@ azd ai agent invoke "What is 2+2?"
 azd ai agent optimize
 ```
 
-The CLI auto-detects the agent name from `agent.yaml`. The agent optimizer completes the following steps:
+The CLI reads the `name` field from your `agent.yaml` file to determine which deployed agent to optimize. If you have multiple agents or want to target a different one, use the `--agent` flag:
+
+```bash
+azd ai agent optimize --agent <your-agent-name>
+```
+
+For more details on agent targeting, see [Which agent gets optimized](../how-to/optimize-agent-targets.md#which-agent-gets-optimized).
+
+The agent optimizer completes the following steps:
 
 1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
 1. Generates improved instruction candidates.

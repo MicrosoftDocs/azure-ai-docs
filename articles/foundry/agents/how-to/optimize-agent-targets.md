@@ -32,6 +32,25 @@ The agent optimizer supports two optimization targets: **instruction tuning** (t
 - An eval model deployed in your Foundry project (defaults to `gpt-4.1-mini`)
 - Your agent is [optimizer-ready](make-agent-optimizer-ready.md) (calls `load_config()`)
 
+## Which agent gets optimized
+
+The optimizer needs to know which deployed hosted agent to target. It resolves the agent name using the following priority order:
+
+| Priority | Source | Example |
+| -------- | ------ | ------- |
+| 1 (highest) | `--agent` CLI flag | `azd ai agent optimize --agent my-support-agent` |
+| 2 | `agent.name` field in `spec.yaml` | `agent:\n  name: my-support-agent` |
+| 3 (default) | `name` field in `agent.yaml` | `name: my-support-agent` |
+
+In most cases, you don't need to specify the agent name explicitly. The CLI reads it from your project's `agent.yaml` file. Use the `--agent` flag when you have multiple agents in your project or want to override the default:
+
+```bash
+azd ai agent optimize --agent my-support-agent --target instruction
+```
+
+> [!NOTE]
+> The agent name must match a deployed hosted agent in your Foundry project. Run `azd ai agent invoke "test"` to verify your agent responds before starting optimization.
+
 ## Optimize instructions
 
 The *instruction target* is the default optimization approach. It rewrites and refines your agent's system prompt to improve performance on your evaluation dataset.
