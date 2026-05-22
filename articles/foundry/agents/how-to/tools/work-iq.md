@@ -49,9 +49,14 @@ Before you begin, make sure you have:
   - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Work IQ endpoint.
 - A **Microsoft Entra Global Administrator** who can grant admin consent for `WorkIQAgent.Ask` in your tenant and create or delegate app registrations.
 
-## Connect to Work IQ
+## How it works
 
-Work IQ acts as a peer agent. Your agent delegates natural-language tasks to it — Work IQ handles retrieval from Microsoft 365, reasoning, and response synthesis — then returns the synthesized answer to your agent.
+1. **Your agent dispatches a tool call** — When the agent model identifies a task that requires Microsoft 365 data, it emits a tool call to the `work_iq_preview` tool.
+1. **Foundry routes the request to Work IQ via A2A** — Foundry uses the Agent-to-Agent (A2A) protocol to forward the natural-language query to Work IQ as a peer agent. Authentication uses On-Behalf-Of (OBO) so the request runs in the context of the signed-in user.
+1. **Work IQ retrieves and reasons over M365 data** — Work IQ queries the user's emails, meetings, files, chats, and other Microsoft 365 signals. It applies semantic understanding to synthesize a response grounded in the user's actual work context, honoring Microsoft 365 permissions and sensitivity labels throughout.
+1. **The result is returned to your agent** — Work IQ returns the synthesized response to Foundry via A2A. Your agent incorporates it into its reply to the user.
+
+## Connect to Work IQ
 
 ### Add the Work IQ tool to your agent
 
@@ -61,10 +66,6 @@ Work IQ acts as a peer agent. Your agent delegates natural-language tasks to it 
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-    PromptAgentDefinition,
-    WorkIQPreviewTool,
-)
 
 PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 MODEL_DEPLOYMENT = os.environ.get("FOUNDRY_MODEL_DEPLOYMENT_NAME", "gpt-4o-mini")
@@ -81,22 +82,23 @@ openai = project.get_openai_client()
 workiq_conn = project.connections.get(WORKIQ_CONNECTION_NAME)
 
 # Create an agent with the Work IQ tool
-tool = WorkIQPreviewTool(
-    project_connection_id=workiq_conn.id
-)
-
 agent = project.agents.create_version(
     agent_name=AGENT_NAME,
-    definition=PromptAgentDefinition(
-        model=MODEL_DEPLOYMENT,
-        instructions=(
+    definition={
+        "model": MODEL_DEPLOYMENT,
+        "instructions": (
             "You are a helpful assistant with access to the user's "
             "Microsoft 365 work context through Work IQ. "
             "Use Work IQ to answer questions about emails, meetings, "
             "documents, and organizational knowledge."
         ),
-        tools=[tool],
-    ),
+        "tools": [
+            {
+                "type": "work_iq_preview",
+                "project_connection_id": workiq_conn.id,
+            }
+        ],
+    },
 )
 print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
