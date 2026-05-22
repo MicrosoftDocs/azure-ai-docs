@@ -57,13 +57,14 @@ azd ai agent optimize --target skill
 
 ## Config resolution
 
-When your agent starts, the `load_config()` function checks three sources in order:
+When your agent starts, the `load_config()` function checks four sources in order:
 
 | Priority | Source | When it's used |
 | ---------- | -------- | ---------------- |
-| 1 | `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable, resolved through the API | During optimization evaluation |
-| 2 | `AGENT_OPTIMIZATION_CONFIG` or `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
-| 3 | Your defaults in code | Normal operation (no optimization) |
+| 1 | `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
+| 2 | `OPTIMIZATION_CANDIDATE_ID` environment variable, resolved through the API | During optimization evaluation |
+| 3 | Local directory (`.agent_configs/`) | After resolver persists config locally |
+| 4 | Your defaults in code | Normal operation (no optimization) |
 
 Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
 

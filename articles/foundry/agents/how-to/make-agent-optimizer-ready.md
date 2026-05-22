@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 1. **Normal operation**: No optimization environment variables are set. `load_config()` returns your defaults. The agent works exactly as before.
 
-1. **During optimization**: The agent optimizer sets `AGENT_OPTIMIZATION_CANDIDATE_ID`. `load_config()` calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions.
+1. **During optimization**: The agent optimizer sets `OPTIMIZATION_CANDIDATE_ID`. `load_config()` calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions.
 
 1. **After deploying a winner**: The `azd ai agent optimize deploy` command sets `OPTIMIZATION_CONFIG` in the agent's environment. `load_config()` reads the JSON and your agent uses the optimized instructions permanently.
 

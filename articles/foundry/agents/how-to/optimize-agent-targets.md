@@ -40,7 +40,7 @@ The *instruction target* is the default optimization approach. It rewrites and r
 
 1. **Baseline evaluation.** Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
 1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `AGENT_OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The agent optimizer sets this variable automatically during evaluation.
+1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The agent optimizer sets this variable automatically during evaluation.
 1. **Ranking.** Candidates are ranked by composite score. The best candidate is marked with ★.
 
 ### Run instruction optimization
@@ -68,7 +68,7 @@ options:
   reflection_model: gpt-5
   strategies:
     - instruction
-  budget: 5
+  max_iterations: 5
 ```
 
 ```bash
@@ -103,17 +103,17 @@ You are a helpful coding assistant. Follow these guidelines:
 5. Handle edge cases in code examples
 ```
 
-### Budget
+### Max iterations
 
-The *budget* option controls how many candidate instruction sets are generated. Each iteration produces one candidate.
+The `max_iterations` option controls how many candidate instruction sets are generated. Each iteration produces one candidate.
 
-| Budget | Candidates | Time | Best for |
-| -------- | ----------- | ------ | ---------- |
+| Max iterations | Candidates | Time | Best for |
+| ---------------- | ----------- | ------ | ---------- |
 | 3 (default) | 3 | 5 to 10 min | Quick experiments |
 | 5 | 5 | 10 to 15 min | Good balance |
 | 10 | 10 | 20 to 30 min | Thorough exploration |
 
-Higher budgets explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
+Higher values explore more variations but take longer. The optimizer learns from earlier iterations, so later candidates tend to score higher.
 
 > [!NOTE]
 > Times are approximate for a dataset of 3 to 10 tasks. Larger datasets or slower eval models increase run duration.
@@ -191,7 +191,7 @@ options:
   reflection_model: gpt-5
   strategies:
     - skill
-  budget: 5
+  max_iterations: 5
 ```
 
 ```bash

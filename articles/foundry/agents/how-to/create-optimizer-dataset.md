@@ -76,7 +76,7 @@ options:
   reflection_model: gpt-5
   strategies:
     - instruction
-  budget: 10
+  max_iterations: 10
 ```
 
 Then run:
