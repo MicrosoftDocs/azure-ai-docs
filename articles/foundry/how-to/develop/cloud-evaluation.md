@@ -43,7 +43,7 @@ Cloud evaluation supports the following scenarios:
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from a dataset, by conversation ID, or by agent filter. | `jsonl`, `azure_ai_traces`, or `azure_ai_trace_data_source_preview` | — |
+| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from a dataset, by conversation ID, or by agent filter. | `jsonl` or `azure_ai_trace_data_source_preview` | — |
 | **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -1465,9 +1465,9 @@ Multiturn evaluation supports three data source options:
 
 | Option | When to use | Data source type |
 |--------|-------------|------------------|
-| [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` |
-| [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_traces` |
-| [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` |
+| [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` with `file_id` or `file_content` |
+| [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_trace_data_source_preview` with `trace_source` |
+| [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` with `trace_source` |
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
@@ -1735,13 +1735,16 @@ eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="conversation-trace-eval",
     data_source={
-        "type": "azure_ai_traces",
-        "conversation_ids": [
-            "conversation_1234",
-            "conversation_5678",
-        ],
-        "lookback_hours": 24,  # Optional, defaults to 7 days
-        "end_time": "2026-05-21T00:00:00Z",  # Optional, defaults to now
+        "type": "azure_ai_trace_data_source_preview",
+        "trace_source": {
+            "type": "conversation_ids",
+            "conversation_ids": [
+                "conversation_1234",
+                "conversation_5678",
+            ],
+            "lookback_hours": 24,  # Optional, defaults to 7 days
+            "end_time": "2026-05-21T00:00:00Z",  # Optional, defaults to now
+        },
     },
     extra_body={"evaluation_level": "conversation"},
 )
@@ -1758,10 +1761,13 @@ curl --request POST \
     "name": "conversation-trace-eval",
     "evaluation_level": "conversation",
     "data_source": {
-      "type": "azure_ai_traces",
-      "conversation_ids": ["conversation_1234", "conversation_5678"],
-      "lookback_hours": 24,
-      "end_time": "2026-05-21T00:00:00Z"
+      "type": "azure_ai_trace_data_source_preview",
+      "trace_source": {
+        "type": "conversation_ids",
+        "conversation_ids": ["conversation_1234", "conversation_5678"],
+        "lookback_hours": 24,
+        "end_time": "2026-05-21T00:00:00Z"
+      }
     }
   }'
 ```
