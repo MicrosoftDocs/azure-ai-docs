@@ -229,7 +229,7 @@ Use `storedHeaders` to send static HTTP headers with every MCP request. We recom
   "kind": "storedHeaders",
   "storedHeadersParameters": {
     "headers": {
-      "x-api-key": "<your-api-key>"
+      "x-custom-auth": "<your-header-value>"
     }
   }
 }
@@ -292,8 +292,8 @@ sealed class McpPassthroughHeaderPolicy(string knowledgeSourceName) : HttpPipeli
     {
         message.Request.Headers.Add($"{knowledgeSourceName}-header-name", "Authorization");
         message.Request.Headers.Add($"{knowledgeSourceName}-header-value", "Bearer <mcp-server-access-token>");
-        message.Request.Headers.Add($"{knowledgeSourceName}-header-name1", "x-api-key");
-        message.Request.Headers.Add($"{knowledgeSourceName}-header-value1", "<mcp-server-api-key>");
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-name1", "x-custom-auth");
+        message.Request.Headers.Add($"{knowledgeSourceName}-header-value1", "<mcp-server-header-value>");
     }
 }
 ```
@@ -335,8 +335,8 @@ result = retrieval_client.retrieve(
     headers={
         f"{knowledge_source_name}-header-name": "Authorization",
         f"{knowledge_source_name}-header-value": "Bearer <mcp-server-access-token>",
-        f"{knowledge_source_name}-header-name1": "x-api-key",
-        f"{knowledge_source_name}-header-value1": "<mcp-server-api-key>",
+        f"{knowledge_source_name}-header-name1": "x-custom-auth",
+        f"{knowledge_source_name}-header-value1": "<mcp-server-header-value>",
     },
 )
 ```
@@ -351,8 +351,8 @@ Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 my-mcp-server-ks-header-name: Authorization
 my-mcp-server-ks-header-value: Bearer {{mcp-server-access-token}}
-my-mcp-server-ks-header-name1: x-api-key
-my-mcp-server-ks-header-value1: {{mcp-server-api-key}}
+my-mcp-server-ks-header-name1: x-custom-auth
+my-mcp-server-ks-header-value1: {{mcp-server-header-value}}
 
 {
   "messages": [
