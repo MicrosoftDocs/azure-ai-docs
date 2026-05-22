@@ -213,7 +213,7 @@ The regions in the following tables support most of the core features of Azure S
 | `centralindia` | ✅ | ✅ | |
 | `eastus` | ✅ | ✅ | ✅ |
 | `northeurope` | ✅ | ✅ | ✅ |
-| `southeastasia` | ✅ | ✅ | |
+| `southeastasia` | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | |
 
