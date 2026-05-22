@@ -19,7 +19,7 @@ In this configuration, the customer uses Azure Key Vault in their own tenant to 
 
 - **Tenant A**: A tenant and the necessary permissions to create the Azure AI Search service and associated objects (indexes, synonym lists, indexers, data sources, vectorizers, skillsets). Support for customer-managed keys (CMK) requires Basic pricing tier or higher.
 
-- The search service must be [configured for role-based access](/azure/search/search-security-enable-roles).
+- Configure the search service for [role-based access](/azure/key-vault/general/rbac-guide)(recommended for enhanced security, not required).
 
 - **Tenant B:** A separate customer tenant with an Azure Key Vault and the necessary permissions on that tenant:
   - **[Key Vault Contributor](/azure/role-based-access-control/built-in-roles#key-vault-contributor)**: This role is required if you need to create a new key vault.
