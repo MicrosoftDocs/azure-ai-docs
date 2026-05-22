@@ -72,10 +72,6 @@ Core GA coverage includes:
 
 ## Feature readiness at GA
 
-> [!IMPORTANT]
-> The status values in this section include roadmap-sensitive items.
-> Confirm current status before making production commitments.
-
 The following table summarizes feature readiness. Most core capabilities across Home, Discover, Build, and Operate are GA, while some capabilities remain in Preview.
 
 | Area | Feature | Status |
