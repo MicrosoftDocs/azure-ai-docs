@@ -194,6 +194,8 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
+      - name: Indexer execution on Serverless and S3 HD
+        href: search-indexer-high-density-serverless-overview.md
       - name: Create and manage
         items:
         - name: Create an indexer
