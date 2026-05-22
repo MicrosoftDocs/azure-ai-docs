@@ -1,6 +1,6 @@
 ---
 title: Custom code training in Microsoft Foundry
-description: "Learn how custom code training in Microsoft Foundry lets you bring your own code, frameworks, and techniques to post-train any open-weight or proprietary model."
+description: Learn how custom code training in Microsoft Foundry lets you bring your own code, frameworks, and techniques to post-train any open-weight or proprietary model.
 author: soumyapatro
 ms.author: soumyapatro
 ms.service: microsoft-foundry
@@ -13,18 +13,18 @@ ai-usage: ai-assisted
 
 # Custom code training in Microsoft Foundry
 
-Custom code training in Microsoft Foundry lets you bring your own training scripts to post-train any open-weight or proprietary foundation model on GPU compute. Because you bring your own code, you have full control over the training framework, technique, and model architecture. Run supervised fine-tuning (SFT), direct preference optimization (DPO), reinforcement learning (RL), continued pretraining, distillation, or any other technique — on any model you have access to.
+Custom code training in Microsoft Foundry lets you bring your own training scripts to post-train any open-weight or proprietary foundation model on GPU compute. Because you bring your own code, you have full control over the training framework, technique, and model architecture. Run supervised fine-tuning (SFT), direct preference optimization (DPO), reinforcement learning (RL), continued pretraining, distillation, or any other technique - on any model you have access to.
 
-Custom code training runs as command jobs in your Foundry project. You submit a training script, specify compute resources and a Docker environment, attach data and model inputs, and Foundry orchestrates the job on GPU clusters. When the job completes, save the trained model as an asset in your project and deploy it for inference.
+Custom code training runs as command jobs in your Foundry project. You submit a training script, specify compute resources and a Docker environment, attach data and model inputs, and Foundry orchestrates the job on GPU clusters. When the job completes, you can save the trained model as an asset in your project and deploy it for inference.
 
 ## Why custom code training?
 
-Custom code training gives you capabilities that managed fine-tuning doesn't offer:
+Custom code training offers capabilities that managed fine-tuning doesn't:
 
 - **Any framework**: Use HuggingFace TRL, Accelerate, Unsloth, VERL, Slime, native PyTorch, or any framework that runs on GPU.
 - **Any technique**: Apply SFT, DPO, GRPO, RFT, continued pretraining, distillation, quantization, or any custom training loop.
 - **Any open-weight model**: Train Llama, Mistral, Phi, DeepSeek, Qwen, or any model available in the Foundry model catalog or your own storage.
-- **Multi-node distributed training**: Scale across multiple GPU nodes with PyTorch or Ray distribution.
+- **Multinode distributed training**: Scale across multiple GPU nodes with PyTorch or Ray distribution.
 - **Custom environments**: Package your dependencies in a Docker image from Azure Container Registry (ACR) or use curated environments like Azure Container for PyTorch (ACPT).
 - **Experiment tracking**: Log metrics with MLflow, group runs under experiments, and compare results.
 - **End-to-end workflow**: Train, save, and deploy models within a single Foundry project. Use trained models with agents.
@@ -36,9 +36,9 @@ Foundry offers two approaches to model customization. Choose the one that fits y
 | Capability | Managed fine-tuning | Custom code training |
 |------------|--------------------|--------------------|
 | **Models supported** | Specific models with fine-tuning support (Azure OpenAI, select catalog models) | Any open-weight or proprietary model you have access to |
-| **Techniques** | LoRA SFT, DPO, reinforcement fine-tuning (model-dependent) | Any technique — SFT, DPO, GRPO, RL, distillation, quantization, continued pretraining |
-| **Code required** | No — configure through portal or API | Yes — bring your own training script |
-| **Framework** | Managed by Foundry | Your choice — TRL, Accelerate, Unsloth, VERL, PyTorch |
+| **Techniques** | LoRA SFT, DPO, reinforcement fine-tuning (model-dependent) | Any technique - SFT, DPO, GRPO, RL, distillation, quantization, continued pretraining |
+| **Code required** | No - configure through portal or API | Yes - bring your own training script |
+| **Framework** | Managed by Foundry | Your choice - TRL, Accelerate, Unsloth, VERL, PyTorch |
 | **Compute** | Managed by Foundry | You specify GPU cluster, node count, and distribution |
 | **Environment** | Managed by Foundry | Custom Docker image (ACR) or curated environments |
 | **Best for** | Quick customization of supported models with minimal setup | Full control over training, advanced techniques, unsupported models |
@@ -49,7 +49,7 @@ Foundry offers two approaches to model customization. Choose the one that fits y
 
 ## Supported frameworks and techniques
 
-Because you bring your own code, you aren't limited to a fixed set of frameworks or techniques. Any training loop that runs on PyTorch or Ray works with custom code training.
+Because you bring your own code, you're not limited to a fixed set of frameworks or techniques. Any training loop that runs on PyTorch or Ray works with custom code training.
 
 Common frameworks and techniques include:
 
@@ -100,10 +100,10 @@ A custom code training job follows this lifecycle:
 
 Custom code training in Foundry has the following limitations:
 
-- **GenAI training only**: Custom code training supports generative AI model training. Traditional machine learning workloads aren't supported.
+- **Generative AI training only**: Custom code training supports generative AI model training. Traditional machine learning workloads aren't supported.
 - **No pipeline orchestration**: Multi-step training pipelines aren't available. Submit individual command jobs.
 - **No hyperparameter search**: Automated hyperparameter tuning isn't supported. Submit separate jobs with different hyperparameters and compare results.
-- **Deployment constraints**: At launch, only full-weight safetensor models can be deployed. LoRA adapter deployment is planned for a future release.
+- **Deployment constraints**: Only full-weight safetensor models can be deployed. LoRA adapter deployment isn't yet supported.
 - **No job migration**: Existing Azure Machine Learning job histories aren't migrated to Foundry.
 
 ## Related content
