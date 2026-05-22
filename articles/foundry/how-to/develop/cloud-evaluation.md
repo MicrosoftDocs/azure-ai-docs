@@ -77,7 +77,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.2.0"
 ```
 
 ```python
@@ -205,7 +205,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name
+            "model": model_deployment_name
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -217,7 +217,7 @@ testing_criteria = [
         "name": "violence",
         "evaluator_name": "builtin.violence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name
+            "model": model_deployment_name
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -318,7 +318,7 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "initialization_parameters": { "model": "gpt-5-mini" },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -328,7 +328,7 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
-        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "initialization_parameters": { "model": "gpt-5-mini" },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -423,7 +423,7 @@ testing_criteria = [
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        "initialization_parameters": {"deployment_name": model_deployment_name},
+        "initialization_parameters": {"model": model_deployment_name},
     },
     {
         "type": "azure_ai_evaluator",
@@ -433,7 +433,7 @@ testing_criteria = [
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        "initialization_parameters": {"deployment_name": model_deployment_name},
+        "initialization_parameters": {"model": model_deployment_name},
     },
     {
         "type": "azure_ai_evaluator",
@@ -524,7 +524,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -693,7 +693,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -714,7 +714,7 @@ testing_criteria = [
         "name": "task_adherence",
         "evaluator_name": "builtin.task_adherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -915,7 +915,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     {
@@ -1032,7 +1032,7 @@ In addition to the general [prerequisites](#prerequisites), trace evaluation req
 - The `azure-monitor-query` Python package (only needed if you collect trace IDs manually).
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" azure-monitor-query
+pip install "azure-ai-projects>=2.2.0" azure-monitor-query
 ```
 
 Set these environment variables:
@@ -1186,7 +1186,7 @@ testing_criteria = [
             "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     # Tool evaluators — assess tool usage quality
@@ -1201,7 +1201,7 @@ testing_criteria = [
             "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     # Safety evaluators — work even with partial trace data
@@ -1259,7 +1259,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -1392,7 +1392,7 @@ curl --request POST \
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-          "deployment_name": "gpt-5-mini"
+          "model": "gpt-5-mini"
         },
         "data_mapping": {
           "query": "{{item.query}}",
@@ -1501,17 +1501,22 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`:
 
 ```json
-{"messages": [{"role": "system", "content": "You are a helpful travel assistant."}, {"role": "user", "content": "I need to book a flight to Paris."}, {"role": "assistant", "content": "I'd be happy to help you book a flight to Paris. What dates are you looking to travel?"}, {"role": "user", "content": "Next Friday, returning Sunday."}, {"role": "assistant", "content": "I found several options for flights departing next Friday and returning Sunday. The best value is a direct flight on Air France for $450 round trip. Would you like me to book this for you?"}]}
-{"messages": [{"role": "system", "content": "You are a helpful travel assistant."}, {"role": "user", "content": "What hotels are available near the Eiffel Tower?"}, {"role": "assistant", "content": "I found several hotels within walking distance of the Eiffel Tower. The top-rated option is Hotel Le Walt, a 4-star hotel about 500 meters away. Prices start at $180 per night. Would you like more details or other options?"}]}
+ {"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": "Your current balance is $1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}]}
 ```
 
 You can also include tool definitions and tool calls if your agent uses tools:
 
 ```json
-{"messages": [{"role": "user", "content": "What's the weather in Paris?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_123", "type": "function", "function":
-{"name": "get_weather", "arguments": "{\"location\": \"Paris\"}"}}]}, {"role": "tool", "tool_call_id": "call_123", "content": "{\"temperature\": 18, \"condition\": \"sunny\"}"},
-{"role": "assistant", "content": "The weather in Paris is currently sunny with a temperature of 18°C (64°F)."}], "tool_definitions": [{"name": "get_weather", "description": "Get 
-current weather for a location", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}}}]}
+{"messages": [{"role": "user", "content": "What is the capital of France?"}, {"role": "assistant", "content": "Paris"}]}
+{"messages": [{"role": "user", "content": "How do I reverse a string in Python?"}, {"role": "assistant", "content": "You can reverse a string in Python by using slicing: string[::-1]"}]}
+{"messages": [{"role": "user", "content": "What are the main causes of climate change?"}, {"role": "assistant", "content": "The main causes of climate change are the increase in greenhouse gases in the atmosphere, primarily due to human activities such as burning fossil fuels and deforestation."}]}
+{"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_abc123", "type": "function", "function": {"name": "get_account_balance", "arguments": "{\"account_id\": \"ACCT-7890\"}"}}]}, {"role": "tool", "tool_call_id": "call_abc123", "content": "{ \"balance\": 1234.56, \"currency\": \"USD\" }"}, {"role": "assistant", "content": "Your current balance is 1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}], "tool_definitions": [{"name": "get_account_balance", "description": "Retrieves the current balance for a customer account", "parameters": {"type": "object", "properties": {"account_id": {"type": "string"}}, "required": ["account_id"]}}]}
+{"messages": [{"role": "user", "content": "Explain the theory of relativity in simple terms."}, {"role": "assistant", "content": "Einstein's theory of relativity shows that space and time are interconnected and relative to the observer's frame of reference."}]}
+{"messages": [{"role": "user", "content": "What's the weather in Seattle?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_002", "type": "function", "function": {"name": "get_weather", "arguments": "{\"location\": \"Seattle, WA\"}"}}]}, {"role": "tool", "tool_call_id": "call_002", "content": "{ \"temperature\": 55, \"condition\": \"Cloudy\" }"}, {"role": "assistant", "content": "It's currently 55F and cloudy in Seattle."}], "tool_definitions": [{"name": "get_weather", "description": "Get the current weather for a location", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}, "required": ["location"]}}]}
+{"messages": [{"role": "user", "content": "What is the tallest mountain in the world?"}, {"role": "assistant", "content": "Mount Everest is the tallest mountain in the world."}]}
+{"messages": [{"role": "user", "content": "Is 4 x 2 = 16?"}, {"role": "assistant", "content": "No, 4 x 2 = 8."}]}
+{"messages": [{"role": "user", "content": "What is the best Italian desert?"}, {"role": "assistant", "content": "Tiramisu is a popular Italian dessert."}]}
+{"messages": [{"role": "user", "content": "What is the chemical formula for water?"}, {"role": "assistant", "content": "The chemical formula for water is H2O."}]}
 ```
 
 ### Define the data schema and evaluators
@@ -1553,7 +1558,7 @@ testing_criteria = [
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -1564,7 +1569,7 @@ testing_criteria = [
         "name": "task_completion",
         "evaluator_name": "builtin.task_completion",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -1575,7 +1580,7 @@ testing_criteria = [
         "name": "conversation_coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -1621,21 +1626,21 @@ curl --request POST \
         "type": "azure_ai_evaluator",
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
         "type": "azure_ai_evaluator",
         "name": "task_completion",
         "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
         "type": "azure_ai_evaluator",
         "name": "conversation_coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
@@ -1748,7 +1753,7 @@ eval_object = openai_client.evals.create(
             "name": "customer_satisfaction",
             "evaluator_name": "builtin.customer_satisfaction",
             "initialization_parameters": {
-                "deployment_name": model_deployment_name,
+                "model": model_deployment_name,
             },
         },
     ],
@@ -1860,7 +1865,7 @@ eval_object = openai_client.evals.create(
             "name": "customer_satisfaction",
             "evaluator_name": "builtin.customer_satisfaction",
             "initialization_parameters": {
-                "deployment_name": model_deployment_name,
+                "model": model_deployment_name,
             },
         },
     ],
@@ -1991,7 +1996,7 @@ testing_criteria = [
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -2002,7 +2007,7 @@ testing_criteria = [
         "name": "task_completion",
         "evaluator_name": "builtin.task_completion",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -2013,7 +2018,7 @@ testing_criteria = [
         "name": "conversation_coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "messages": "{{item.messages}}",
@@ -2058,21 +2063,21 @@ curl --request POST \
         "type": "azure_ai_evaluator",
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
         "type": "azure_ai_evaluator",
         "name": "task_completion",
         "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
         "type": "azure_ai_evaluator",
         "name": "conversation_coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
