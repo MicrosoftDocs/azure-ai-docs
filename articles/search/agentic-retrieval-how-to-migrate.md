@@ -842,7 +842,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 #### [**Breaking changes**](#tab/breaking)
 
-There are no wire-level breaking changes between 2025-11-01-preview and 2026-05-01-preview. Existing requests that target 2025-11-01-preview continue to work when you change the API version to 2026-05-01-preview.
+There are no breaking changes between 2025-11-01-preview and 2026-05-01-preview. Existing requests that target 2025-11-01-preview continue to work when you change the API version to 2026-05-01-preview.
 
 The language SDKs that ship 2026-05-01-preview support introduce code-shape changes that are breaking at the SDK layer. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
 
