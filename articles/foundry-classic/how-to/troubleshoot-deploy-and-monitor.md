@@ -2,7 +2,7 @@
 title: "How to troubleshoot your deployments and monitors in Microsoft Foundry portal (classic)"
 description: "Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - ignite-2023
   - build-2024

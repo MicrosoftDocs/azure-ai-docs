@@ -51,7 +51,7 @@ Considerations for setting `"stored": false`:
 For new vector fields in a search index, set `"stored": false` to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
-PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2025-09-01 
+PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2026-04-01 
   Content-Type: application/json  
   api-key: [admin key]  
 
@@ -110,7 +110,7 @@ To set this property:
 1. Under `vectorSearch.compressions`, add `rescoringOptions` with `enableRescoring` set to true, `defaultOversampling` set to a positive integer, and `rescoreStorageMethod` set to `discardOriginals` for binary quantization and `preserveOriginals` for scalar quantization.
 
     ```http
-    PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2025-09-01
+    PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2026-04-01
     
     {
         "name": "demo-index",

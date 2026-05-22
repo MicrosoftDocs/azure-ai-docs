@@ -5,6 +5,7 @@ ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/31/2026
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -17,9 +18,6 @@ ms.date: 01/31/2026
 
 The next several sections provide details about how to use this API.
 
-### Supported languages
-
-The following input languages are currently supported for both `transcribe` and `translate` tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``German``, ``English``, ``Spanish``, ``Finnish``, ``French``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Dutch``, ``Polish``, ``Portuguese``, ``Russian``, ``Swedish``, ``Thai``, ``Turkish``.
 
 ### Upload audio
 
@@ -49,7 +47,7 @@ In your POST request to the `transcriptions` endpoint, use the multipart/form-da
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
@@ -60,7 +58,7 @@ The following example shows how to transcribe an audio file with a specified loc
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -77,7 +75,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -110,7 +108,7 @@ The following target languages are supported in `targetLanguage` by specifying t
 You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -140,7 +138,7 @@ Here are some best practices for prompts:
 You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features, such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -160,34 +158,6 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM Speech. You can omit these options from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options).
 
-#### Use the MAI-Transcribe model (preview)
-
-You can also use the MAI-Transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API.
-
-For the current list of regions where this model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
-
-The following languages are currently supported for mai-transcribe-1 model: `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
-
-To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
-
-```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
---header 'Content-Type: multipart/form-data' \
---header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
---form 'audio=@"YourAudioFile.wav"' \
---form 'definition={
-  "enhancedMode": {
-    "enabled": true,
-    "model":"mai-transcribe-1"
-  }
-}'
-```
-
-When you use this model, be aware of the following limitations:
-
-- The audio file should be less than 70 MB in size.
-
-- Diarization isn't supported.
 
 #### Sample response
 

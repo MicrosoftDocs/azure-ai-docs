@@ -5,9 +5,9 @@ description: "Learn how to manage traffic bursts in Azure OpenAI provisioned dep
 author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.custom:

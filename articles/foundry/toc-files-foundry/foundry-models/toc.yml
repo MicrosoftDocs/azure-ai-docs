@@ -5,11 +5,11 @@ items:
 
 - name: Explore Foundry Models
   items:
-  - name: Foundry Models sold directly by Azure
-    displayName: Foundry Models sold directly by Azure
+  - name: Foundry Models sold by Azure
+    displayName: Foundry Models sold by Azure
     href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
-  - name: Foundry Models sold directly by Azure (government)
-    displayName: Foundry Models sold directly by Azure (government)
+  - name: Foundry Models sold by Azure (government)
+    displayName: Foundry Models sold by Azure (government)
     href: ../../foundry-models/concepts/models-sold-directly-by-azure-gov.md
   - name: Foundry Models sold from partners and community
     displayName: Foundry Models from partners and community
@@ -67,7 +67,7 @@ items:
       href: ../../openai/concepts/retired-models.md
 
   - name: Data, privacy, and security for model catalog
-    displayName: Data, privacy, and security for Azure Direct Models
+    displayName: Data, privacy, and security for Models sold by Azure
     href: ../../responsible-ai/openai/data-privacy.md
   - name: Data, privacy, and security for model catalog (classic)
     displayName: Data, privacy, and security for partner models in the model catalog
@@ -93,12 +93,18 @@ items:
 
 - name: Quota limits and region availability
   items:
+  - name: Region availability for Foundry Models sold by Azure
+    displayName: Region availability for Foundry Models sold by Azure
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
   - name: Manage quotas for Foundry resources
     displayName: Manage and increase quotas for resources with Microsoft Foundry
     href: ../../how-to/quota.md
   - name: Manage Azure OpenAI deployment quotas
     displayName: Manage Azure OpenAI deployment quotas in Microsoft Foundry models
     href: ../../openai/how-to/quota.md
+  - name: Automate Azure OpenAI deployments with quota
+    displayName: Automate Azure OpenAI deployments with quota in Microsoft Foundry
+    href: ../../openai/how-to/automate-quota-deployments.md
   - name: Foundry Model quotas and limits
     displayName: Microsoft Foundry Models quotas and limits
     href: ../../foundry-models/quotas-limits.md
@@ -314,6 +320,9 @@ items:
   #   href:
   - name: Realtime API
     items:
+    - name: GPT Realtime 2.0 (preview)
+      displayName: GPT Realtime 2 concept overview (preview)
+      href: ../../openai/concepts/realtime-2.md
     - name: Realtime API for speech and audio
       displayName: Use the GPT Realtime API for speech and audio
       href: ../../openai/how-to/realtime-audio.md

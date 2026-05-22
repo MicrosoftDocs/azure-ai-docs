@@ -6,7 +6,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -22,9 +23,11 @@ This article explains how to configure a search index for semantic reranking.
 
 + Azure AI Search in any [region that provides semantic ranking](search-region-support.md).
 
-+ Semantic ranker [enabled on your search service](semantic-how-to-enable-disable.md).
-
 + An existing search index with rich text content. Semantic ranking applies to strings (nonvector) fields and works best on content that is informational or descriptive.
+
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Choose a client
 
@@ -45,6 +48,36 @@ For other workloads, you can set up a semantic configuration yourself. A *semant
 
 You can create up to 100 semantic configurations in a single index.
 
+### When semantic configuration is optional
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+In the `2026-05-01-preview` API, supported agentic retrieval flows can use
+Azure AI Search ranking behavior without requiring an explicit semantic
+configuration on the underlying index. This preview behavior helps teams start
+with knowledge base retrieval without blocking on semantic configuration
+authoring.
+
+This change doesn't remove classic semantic ranking configuration. Continue to
+define a semantic configuration for classic semantic search queries, older API
+versions, and workloads that need explicit control over title, content, and
+keyword fields.
+
+For search index knowledge sources, `semanticConfigurationName` remains a
+supported property. Set it when you want the knowledge source to use a specific
+semantic configuration. In supported `2026-05-01-preview` agentic retrieval
+flows, you can omit it when you want the service to use the preview behavior
+that doesn't require an explicit semantic configuration on the underlying
+index.
+
+Semantic configuration is optional only for supported agentic retrieval
+knowledge base retrieve flows that use the `2026-05-01-preview` API. Classic
+semantic search queries and older API versions still require a semantic
+configuration when you use semantic ranking. If you create an index without a
+semantic configuration for the preview flow, don't assume that the same index
+can be used unchanged with GA or older preview semantic ranking APIs.
+
 A semantic configuration has a name and the following properties:
 
 | Property | Characteristics |
@@ -62,7 +95,7 @@ Across all semantic configuration properties, the fields you assign must be:
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and go to a search service that has [semantic ranking enabled](semantic-how-to-enable-disable.md).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From **Indexes** on the left-navigation pane, select an index.
 
@@ -163,12 +196,12 @@ SearchIndex searchIndex = new(indexName)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Using [previewREST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and preview Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
+Using [preview REST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and preview Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
 
 The configuration property is `"flightingOptIn": true`, and it's set in the semantic configuration section of an index. The property is null or false by default. You can set it true on a create or update request at any time, and it affects semantic queries moving forward, assuming the query stipulates a semantic configuration that includes the property.
 
 ```rest
-PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2025-11-01-preview
+PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2026-05-01-preview
 
 {
   "name": "hotels",

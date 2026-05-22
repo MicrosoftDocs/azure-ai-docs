@@ -2,12 +2,12 @@
 title: Metrics Advisor metrics graph
 titleSuffix: Azure AI services
 description: How to configure your Metrics graph and visualize related anomalies in your data.
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # How-to: Build a metrics graph to analyze related metrics

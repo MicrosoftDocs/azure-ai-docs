@@ -1,15 +1,16 @@
 ---
-title: 'Tutorial: Multimodal Chunking and Embedding'
+title: 'Tutorial: Multimodal Chunking and Embedding with the Document Layout Skill'
 description: Learn how to extract, chunk, index, and search multimodal content using an indexer and skills.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 02/25/2026
+ms.date: 04/17/2026
+ai-usage: ai-assisted
 # This is the primary instructional guidance for GenAI prompt, Document Layout, Azure AI Vision.
 ---
 
-# Tutorial: Extract, chunk, and embed multimodal content
+# Tutorial: Extract, chunk, and embed multimodal content with the Document Layout skill
 
 In this tutorial, you'll build a multimodal indexer pipeline that performs these tasks:
 
@@ -19,7 +20,10 @@ In this tutorial, you'll build a multimodal indexer pipeline that performs these
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-This tutorial shows multiple skillsets side by side to illustrate different ways to extract, chunk, and vectorize multimodal content.
+This tutorial shows multiple skillsets side by side to illustrate different ways to extract, chunk, and vectorize multimodal content. It uses the [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for content extraction.
+
+> [!TIP]
+> For new skillsets, we recommend the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md). This skill provides semantic chunking, AI-generated image descriptions, and improved document-embedded table extraction in a single skill. To get started, see [Chunk and vectorize content with the Azure Content Understanding skill](search-how-to-semantic-chunking-content-understanding.md).
 
 ## Prerequisites
 
@@ -1145,7 +1149,6 @@ This pattern uses:
       "name": "genAI-prompt-skill",
       "description": "GenAI Prompt skill for image verbalization",
       "uri": "{{chatCompletionModelUri}}",
-      "timeout": "PT1M",
       "apiKey": "{{chatCompletionModelKey}}",
       "context": "/document/normalized_images/*",
       "responseFormat": { "type": "text" },
@@ -1536,7 +1539,6 @@ This pattern uses:
          "name":"genAI-prompt-skill",
          "description":"GenAI Prompt skill for image verbalization",
          "uri":"{{chatCompletionModelUri}}",
-         "timeout":"PT1M",
          "apiKey":"{{chatCompletionModelKey}}",
          "context":"/document/normalized_images/*",
          "inputs":[

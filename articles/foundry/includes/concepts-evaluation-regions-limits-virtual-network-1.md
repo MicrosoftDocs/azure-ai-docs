@@ -85,7 +85,9 @@ Virtual network support for evaluation requires network injection (subnet delega
 > If you connect Application Insights, evaluation data is sent to it.
 
 > [!IMPORTANT]
-> To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.
+> To prevent evaluation and red teaming run failures, assign the Foundry User role to the project's Managed Identity during initial project setup.
+
+[!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 ### Virtual network region support
 

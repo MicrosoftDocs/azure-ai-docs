@@ -3,6 +3,7 @@ title: "Run evaluations from the Microsoft Foundry portal"
 description: "Evaluate your generative AI models and agents by using Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
@@ -26,7 +27,9 @@ Use the Foundry portal to run evaluations, view results, and analyze metrics.
 
 - A test dataset in CSV or JSON Lines (JSONL) format, or a model or agent to evaluate.
 - An Azure OpenAI connection with a deployed GPT model that supports chat completion (for example, `gpt-5-mini`). Required only for AI-assisted quality evaluations.
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Create an evaluation
 
