@@ -6,6 +6,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ---
 
 # Configure customer-managed keys across different tenants
@@ -14,33 +15,32 @@ This article describes a cross-tenant scenario where a service provider hosts Az
 
 In this configuration, the customer uses Azure Key Vault in their own tenant to manage their encryption key. The service provider has no access to this key.
 
+## Prerequisites
+
+- **Tenant A**: A tenant and the necessary permissions to create the Azure AI Search service and associated objects (indexes, synonym lists, indexers, data sources, vectorizers, skillsets). Support for customer-managed keys (CMK) requires Basic pricing tier or higher.
+
+- The search service must be [configured for role-based access](/azure/search/search-security-enable-roles).
+
+- **Tenant B:** A separate customer tenant with an Azure Key Vault and the necessary permissions on that tenant:
+  - **[Key Vault Contributor](/azure/role-based-access-control/built-in-roles#key-vault-contributor)**: This role is required if you need to create a new key vault.
+    - **Permission to register applications in Microsoft Entra ID**: To install the multitenant app configured by the service provider for cross-tenant CMK, you must have permission to create app registrations in Microsoft Entra ID. This typically requires the [Application Developer role](/entra/identity/role-based-access-control/permissions-reference#application-developer) or a higher administrative role, such as Application Administrator or Global Administrator.
+    - [Key Vault Crypto Officer](/azure/role-based-access-control/built-in-roles#key-vault-crypto-officer): This role is required to add a new key to the key vault.
+  - [Key Vault Crypto Service Encryption User](/azure/role-based-access-control/built-in-roles#key-vault-crypto-service-encryption-user): This role must be assigned to the service principal created for the installed multitenant application in order to grant the service principal access to the customer-managed key in the key vault. You must have [User Access Administrator permission](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to do this. You can view the service principal GUID (aka Object ID) under: `Enterprise applications\<installed multitenant application>\Manage\Properties\Object ID`.
+
+- The Azure Key Vault must also be [configured for role-based access](/azure/key-vault/general/rbac-guide).
+
+- [Azure CLI](/cli/azure/install-azure-cli) for sending requests.
+
 ## Choose an authentication approach
 
 You can configure a multitenant Microsoft Entra application to use customer-managed keys in a cross-tenant scenario by using one of the following approaches:
 
-1.	**Federated identity support (recommended)**: Configure Microsoft Entra federated identity credentials (FIC) with a user-assigned managed identity (UAMI). This approach uses managed identity tokens and exchanges them for access tokens, eliminating the need for long-lived secrets and aligning with workload identity federation principles. This approach requires the preview `federatedIdentityClientId` property, introduced in API version `2026-05-01-preview`.
+1. **Federated identity support (recommended)**: Configure Microsoft Entra federated identity credentials (FIC) with a user-assigned managed identity (UAMI). This approach uses managed identity tokens and exchanges them for access tokens, eliminating the need for long-lived secrets and aligning with workload identity federation principles. This approach requires the preview `federatedIdentityClientId` property, introduced in API version `2026-05-01-preview`.
 
-
-2.	**Client secrets**: Configure a client secret using the `accessCredentials` property. This approach is less secure and requires additional management to rotate and protect the secret. 
+1. **Client secrets**: Configure a client secret using the `accessCredentials` property. This approach is less secure and requires additional management to rotate and protect the secret.
 
 > [!NOTE]
 > Azure Key Vault and Azure Key Vault Managed HSM use the same APIs and management interfaces for customer-managed keys. Any supported operation in Azure Key Vault is also supported in Azure Key Vault Managed HSM.
-
-## Prerequisites
-
-- **Tenant A**: A tenant and the necessary permissions to create the Azure AI Search service and associated objects (indexes, synonym lists, indexers, data sources, vectorizers, skillsets). Support for customer-manage keys (CMK) requires Basic pricing tier or higher.
-
-- The search service must be [configured for role-based access](/azure/search/search-security-enable-roles).
-
-- **Tenant B:** A separate customer tenant with an Azure Key Vault and the necessary permissions on that tenant:
-    - **[Key Vault Contributor](/azure/role-based-access-control/built-in-roles#key-vault-contributor)**: This role is required if you need to create a new key vault.
-    - **Permission to register applications in Microsoft Entra ID**: To install the multitenant app configured by the service provider for cross-tenant CMK, you must have permission to create app registrations in Microsoft Entra ID. This typically requires the [Application Developer role](/entra/identity/role-based-access-control/permissions-reference#application-developer) or a higher administrative role, such as Application Administrator or Global Administrator.
-    - [Key Vault Crypto Officer](/azure/role-based-access-control/built-in-roles#key-vault-crypto-officer): This role is required to add a new key to the key vault and grant the service principal access to the customer-managed key in the key vault.
-    - [Key Vault Crypto Service Encryption User](/azure/role-based-access-control/built-in-roles#key-vault-crypto-service-encryption-user): This role must be assigned to the service principle created for the installed multitenant application. You can view the service principal GUID (aka Object ID) under: `Enterprise applications\<installed multitenant application>\Manage\Properties\Object ID`.
-
-- The Azure Key Vault must also be [configured for role-based access](/azure/key-vault/general/rbac-guide).
-
-- [Azure CLI](/cli/azure/install-azure-cli) for sending requests.
 
 ## Create a multitenant Microsoft Entra application in tenant A
 
@@ -78,12 +78,12 @@ Once these steps are completed, the service provider now has:
 
 - The location of the key in the customer's key vault.
 
-With these three parameters, the service provider can now create Azure AI Search object in *Tenant A* that can be encrypted with the customer-managed key stored in *Tenant B*. For guidance on how to configure customer-managed keys on new search objects, see: [Configure Customer-Managed Keys for Azure AI Search.](/azure/search/search-security-manage-encryption-keys?tabs=azure-key-vault%2Cmanaged-id-sys%2Cportal%2Cmgmt-rest-create%2Cmgmt-rest-update)
+With these three parameters, the service provider can now create Azure AI Search objects in *Tenant A* that can be encrypted with the customer-managed key stored in *Tenant B*. For guidance on how to configure customer-managed keys on new search objects, see [Configure customer-managed keys for Azure AI Search encrypted data](/azure/search/search-security-manage-encryption-keys?tabs=azure-key-vault%2Cmanaged-id-sys%2Cportal%2Cmgmt-rest-create%2Cmgmt-rest-update).
 
 
 ### Validate the federated identity cross-tenant CMK configuration
 
-After you configure the multitenant Microsoft Entra application and connect it to the customer’s Key Vault, verify the setup by creating a test object in your search service (tenant A). We will create an idex for this example to confirm that the search service can access the customer-managed key using the federated identity.
+After you configure the multitenant Microsoft Entra application and connect it to the customer's Key Vault, verify the setup by creating a test object in your search service (tenant A). This example creates an index to confirm that the search service can access the customer-managed key using federated identity.
 
 1. See [Configure customer-managed keys for Azure AI Search encrypted data](search-security-manage-encryption-keys.md) for guidance on how to create a search service and a new index object with a customer-managed key.
 
@@ -118,7 +118,7 @@ After you configure the multitenant Microsoft Entra application and connect it t
     }
     ```
 
-1. Verify the index by sending a `GET` request: `GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2025-09-01`
+1. Verify the index by sending a `GET` request: `GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2026-05-01-preview`
 
 If the request succeeds, the cross-tenant CMK configuration is working correctly.
 
@@ -179,9 +179,9 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
    `az role assignment create --assignee 12345678-1234-1234-1234-123456789012 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
 
-### Validate the client secret cross-tenant CMK configuration
+### Validate the client secret cross-tenant CMK configuration
 
-After you configure the multitenant Microsoft Entra application and connect it to the customer’s Key Vault, verify the setup by creating a test object in your search service (tenant A). We will create an idex for this example to confirm that the search service can access the customer-managed key using the client secret.
+After you configure the multitenant Microsoft Entra application and connect it to the customer's Key Vault, verify the setup by creating a test object in your search service (tenant A). This example creates an index to confirm that the search service can access the customer-managed key using the client secret.
 
 1. See [Configure customer-managed keys for Azure AI Search encrypted data](search-security-manage-encryption-keys.md) for guidance on how to create a search service and a new index object with a customer-managed key.
 
