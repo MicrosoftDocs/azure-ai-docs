@@ -313,7 +313,7 @@ Work IQ operates entirely within the Microsoft 365 trust boundary. The following
 
 ### Data residency
 
-Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details about where Microsoft 365 stores your data, see the [Microsoft 365 data location documentation](/microsoft-365/enterprise/o365-data-locations).
+Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
@@ -321,7 +321,7 @@ All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data
 
 - Work IQ doesn't use customer content to train or improve underlying AI models.
 - Data retrieved from Microsoft 365 is used only to fulfill the specific request and isn't retained by Work IQ beyond the scope of that request.
-- Microsoft 365 audit logging captures Work IQ access events. Administrators can review access through the [Microsoft Purview compliance portal](https://compliance.microsoft.com/).
+- Microsoft 365 audit logging captures Work IQ access events. Administrators can review access through the Microsoft Purview compliance portal.
 
 ### Access control and permissions
 
@@ -333,7 +333,7 @@ Work IQ enforces Microsoft 365 permissions automatically on every request. Agent
 
 ### Compliance certifications
 
-Work IQ inherits Microsoft 365's compliance certifications. For the full list of applicable certifications and audit reports, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center/compliance/compliance-overview).
+Work IQ inherits Microsoft 365's compliance certifications. For details, see [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ## Admin management
 
