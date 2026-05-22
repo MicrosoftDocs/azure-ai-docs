@@ -97,10 +97,6 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
       { "name": "hotelName", "sourceField": "HotelName", "searchFieldType": "Edm.String" },
       { "name": "description", "sourceField": "Description", "searchFieldType": "Edm.String" }
     ],
-    "filterColumns": [
-      { "name": "category", "sourceField": "Category", "searchFieldType": "Edm.String" },
-      { "name": "lastUpdatedTime", "sourceField": "LastUpdatedTime", "searchFieldType": "Edm.DateTimeOffset" }
-    ],
     "embeddingColumns": [
       { "name": "descriptionVector", "sourceField": "Description" }
     ],
@@ -148,9 +144,6 @@ Content-Type: application/json
       { "name": "hotelName", "sourceField": "HotelName", "searchFieldType": "Edm.String" },
       { "name": "description", "sourceField": "Description", "searchFieldType": "Edm.String" }
     ],
-    "filterColumns": [
-      { "name": "category", "sourceField": "Category", "searchFieldType": "Edm.String" }
-    ],
     "embeddingColumns": [
       { "name": "descriptionVector", "sourceField": "Description" }
     ],
@@ -194,19 +187,18 @@ The following properties are specific to the `indexedSqlParameters` object of an
 | `tableOrView` | The fully qualified name of the SQL table or view to ingest, specified in the `schema.objectName` format. A knowledge source ingests from exactly one table or one view. | Yes |
 | `highWaterMarkColumn` | Required when `tableOrView` refers to a view. The name of the column used for high-water-mark change detection. We strongly recommend a `rowversion` column. For more information, see [High water mark change detection policy](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). | Conditional |
 | `contentColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are treated as searchable text content in the generated index. Each mapping must use `Edm.String` as the `searchFieldType`. | No |
-| `filterColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are added to the generated index as filterable, sortable, or facetable fields. | No |
 | `embeddingColumns` | An array of [embedding mappings](#embedding-mapping) that defines which SQL columns are used to generate vector fields. | No |
 | `ingestionParameters` | A subset of the standard knowledge source [ingestion parameters](#ingestionparameters-properties). | No |
 
 ### Column mapping
 
-`contentColumns` and `filterColumns` use the following column mapping shape.
+`contentColumns` uses the following column mapping shape.
 
 | Property | Description |
 |--|--|
 | `name` | The name of the field as it appears in the generated Azure AI Search index. |
 | `sourceField` | The SQL column whose value populates the target field. |
-| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. For `filterColumns`, use the type that matches the SQL column. The samples in this article use `Edm.String` for text columns and `Edm.DateTimeOffset` for date and time columns. |
+| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. |
 
 ### Embedding mapping
 
