@@ -17,6 +17,8 @@ Azure AI Search is available in two pricing models:
 
 - **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
 
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
+
 Common use cases include *classic search* and retrieval-augmented generation (RAG) using *agentic retrieval*, where the service orchestrates query planning, retrieval, and response construction. These capabilities support scenarios ranging from traditional search experiences to AI-powered agents and chat applications suitable for both enterprise and consumer scenarios.
 
 When you create a search service, the following capabilities are included:
