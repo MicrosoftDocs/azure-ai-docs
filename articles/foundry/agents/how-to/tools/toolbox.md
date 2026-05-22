@@ -2582,14 +2582,13 @@ Use this pattern to give the agent access to Microsoft Fabric data - ontologies,
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import FabricIQPreviewTool
-
 tools = [
-    FabricIQPreviewTool(
-        project_connection_id="<CONNECTION_NAME>",
-        server_label="<SERVER_LABEL>",
-        server_url="<SERVER_URL>",
-    )
+    {
+        "type": "fabric_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+        "server_label": "<SERVER_LABEL>",
+        "server_url": "<SERVER_URL>",
+    }
 ]
 ```
 
