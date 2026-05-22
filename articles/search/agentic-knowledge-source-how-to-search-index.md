@@ -127,6 +127,7 @@ var indexKnowledgeSource = new SearchIndexKnowledgeSource(
     name: knowledgeSourceName,
     searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
     {
+        SemanticConfigurationName = "semantic_config",
         SearchFields = { new SearchIndexFieldReference(name: "page_chunk") },
         SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
     }
@@ -276,36 +277,19 @@ Content-Type: application/json
 
 For both the 2026-05-01-preview and 2026-04-01 API versions, you can pass the following properties to create a search index knowledge source.
 
-### Persist retrieve defaults on a knowledge source
-
+### Persist a base filter on a knowledge source
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
-In the `2026-05-01-preview` API, a knowledge source definition can persist
-source-specific retrieve defaults. Use persisted defaults for settings that
-should apply to most retrieve requests so callers don't have to repeat the
-same values every time.
+In the `2026-05-01-preview` API, a search index knowledge source can persist a default filter through the `baseFilter` property. Use `baseFilter` when the same filter expression should apply to every retrieve request that uses the knowledge source, so callers don't have to repeat the filter on every call.
 
 > [!NOTE]
-> Starting with `2026-05-01-preview`, `semanticConfigurationName` is optional
-> on search index knowledge sources. The examples in this section omit it.
-> Earlier API versions still require `semanticConfigurationName`. If your
-> knowledge source needs to support both the older and newer API versions, keep
-> specifying it.
+> Starting with `2026-05-01-preview`, `semanticConfigurationName` is optional on search index knowledge sources. The examples in this section omit it. Earlier API versions still require `semanticConfigurationName`. If your knowledge source needs to support both the older and newer API versions, keep specifying it.
 
-The effective value order is:
-
-| Priority | Source |
-| --- | --- |
-| Lowest | Service defaults |
-| Middle | Knowledge source definition defaults |
-| Highest | Retrieve-time `knowledgeSourceParams` overrides |
-
-The following example stores a default filter on a search index knowledge
-source:
+The following example stores a base filter on a search index knowledge source:
 
 ::: zone pivot="csharp"
 
@@ -364,7 +348,7 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-A retrieve request can still add request-specific constraints:
+At retrieve time, `knowledgeSourceParams.filterAddOn` adds request-specific constraints to the stored base filter:
 
 ::: zone pivot="csharp"
 
@@ -411,18 +395,13 @@ request = KnowledgeBaseRetrievalRequest(
 
 ::: zone-end
 
-For search index knowledge sources, the persisted retrieve default in this
-preview is `searchIndexParameters.baseFilter`. At query time,
-`knowledgeSourceParams.filterAddOn` adds request-specific constraints to the
-stored base filter. The intended composed filter is:
+The effective filter is composed as:
 
 ```text
 baseFilter AND filterAddOn
 ```
 
-Because the filters are combined with `AND`, request-time `filterAddOn` can
-only narrow the persisted default filter. It doesn't replace or broaden
-`baseFilter`.
+Because the filters are combined with `AND`, `filterAddOn` can only narrow the persisted base filter. It can't replace or broaden it.
 
 ::: zone pivot="csharp"
 
