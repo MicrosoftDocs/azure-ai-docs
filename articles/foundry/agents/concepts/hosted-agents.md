@@ -175,7 +175,26 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
+Hosted agent sandboxes support the following CPU and memory combinations:
+
+| CPU | Memory |
+| --- | --- |
+| 0.5 vCPU | 1 GiB |
+| 1 vCPU | 2 GiB |
+| 2 vCPU | 4 GiB |
+
+### Scaling and right-sizing
+
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+
+Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+
+To right-size, run a representative workload and inspect resource usage in the linked Application Insights resource:
+
+1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
+1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
+
+Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
 
 ### Private networking
 
