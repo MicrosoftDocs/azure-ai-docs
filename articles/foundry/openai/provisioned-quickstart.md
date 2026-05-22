@@ -56,6 +56,8 @@ Before following this quickstart, check that you have quota for your target regi
 
 ## Create a provisioned deployment
 
+In this section, you create a provisioned deployment using the Foundry portal or the Azure CLI.
+
 ### Use the Foundry portal for deployment
 
 1. Select **Discover** in the upper-right navigation, then select **Models** in the left pane.
@@ -131,6 +133,8 @@ Before running the sample, set the following environment variable:
 > [!IMPORTANT]
 > Don't hard-code credentials in your application. For production workloads, use a secure credential store such as [Azure Key Vault](/azure/key-vault/general/overview). See [Security features for Azure AI services](../../ai-services/security-features.md).
 
+# [Python SDK](#tab/python)
+
 1. Install the OpenAI SDK:
 
     ```bash
@@ -157,6 +161,23 @@ Before running the sample, set the following environment variable:
     print(response.output_text)
     ```
 
+# [REST API](#tab/rest-api)
+
+Send a POST request to the Responses API endpoint. Replace `<myResourceName>` with your Foundry resource name and `<myDeploymentName>` with your deployment name.
+
+```bash
+curl https://<myResourceName>.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "<myDeploymentName>",
+    "input": "What is provisioned throughput?",
+    "max_output_tokens": 100
+  }'
+```
+
+---
+
 ## View deployment utilization
 
 After making calls, confirm that traffic is reaching your deployment by checking its utilization in the Azure portal.
@@ -175,22 +196,7 @@ For a full explanation of how utilization is calculated and what to do when it r
 
 ## Consider setting up spillover
 
-Spillover automatically routes overflow requests from your provisioned deployment to a standard deployment in the same Foundry resource. When your provisioned deployment is fully utilized and returns a `429` code, spillover redirects those excess requests to the standard deployment instead of failing them, helping reduce disruptions during traffic bursts.
-
-
-To enable spillover for all requests on your deployment, you need an active standard deployment for the same model and version in the same Foundry resource as your provisioned deployment. Follow these steps to enable it:
-
-### Enable spillover in the Foundry portal
-
-Enable spillover during deployment creation by selecting **Traffic spillover** in the custom deployment settings. If you already created your deployment without spillover, delete and recreate it with **Traffic spillover** selected.
-
-### (Optional) Use the REST API to enable spillover
-
-Set the `spilloverDeploymentName` property on an existing provisioned deployment to the name of the target standard deployment. This approach lets you add spillover to an existing deployment without recreating it.
-
-You can also enable spillover selectively per request, using the `x-ms-spillover-deployment` request header, which gives you fine-grained control over when overflow routing applies.
-
-For step-by-step instructions on both approaches, and guidance on monitoring spillover requests, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
+Spillover automatically routes overflow requests from your provisioned deployment to a standard deployment in the same Foundry resource. When your provisioned deployment is fully utilized and returns a `429` code, spillover redirects those excess requests to the standard deployment instead of failing them, helping reduce disruptions during traffic bursts. To learn more about enabling spillover and monitoring spillover requests, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
 
 
 ## Consider purchasing a reservation
@@ -234,4 +240,4 @@ Reference: [az cognitiveservices account deployment delete](/cli/azure/cognitive
 
 ## Next step
 
-- [Operate provisioned deployments in production](./how-to/provisioned-get-started.md)
+- [What is provisioned throughput for Foundry Models?](concepts/provisioned-throughput.md)

@@ -70,12 +70,12 @@ A default amount of quota is assigned to eligible subscriptions in several regio
 
 ### What is capacity?
 
-Capacity is the actual GPU compute available to serve your deployment when you create it. Capacity is allocated at deployment time and held for the deployment's lifetime.
+Capacity is the actual amount of PTUs per model version that's available to be deployed. Capacity is allocated at deployment time and held for the deployment's lifetime.
 
 > [!IMPORTANT]
-> Having PTU quota doesn't guarantee that capacity is available. If GPU capacity in the region is insufficient for the requested PTU count, the deployment fails. Always [verify capacity availability](#how-to-check-available-capacity) before planning a deployment or purchasing a reservation.
+> Having PTU quota doesn't guarantee that capacity is available. If capacity in the region is insufficient for the requested PTU count, the deployment fails. Always [verify capacity availability](#how-to-check-available-capacity) before planning a deployment or purchasing a reservation.
 
-Because GPU capacity is a finite, dynamically changing resource:
+Because capacity is a finite, dynamically changing resource:
 
 - **Capacity availability changes throughout the day** based on customer demand across all regions and models.
 - **Deleting or scaling down a deployment releases its capacity** back to the region pool. There's no guarantee the same capacity is available if you re-create or scale the deployment up later.
@@ -99,10 +99,9 @@ To check real-time capacity availability:
 
 If your target region doesn't have available capacity:
 
-- Try deploying with fewer PTUs.
-- Try a different region where quota is available.
-- Retry later, as capacity availability changes dynamically throughout the day.
 - Submit the [quota request form](https://aka.ms/oai/stuquotarequest) to request more quota or capacity.
+- Try deploying with fewer PTUs.
+- Retry later, as capacity availability changes dynamically throughout the day.
 
 For step-by-step guidance on creating provisioned deployments and handling capacity constraints, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
 
@@ -111,14 +110,14 @@ For step-by-step guidance on creating provisioned deployments and handling capac
 Before creating a provisioned deployment, estimate how many PTUs your workload requires. Three factors drive the calculation:
 
 - **Request shape**: Your expected requests per minute (RPM), average prompt size (input tokens), and average response size (output tokens).
-- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. A model that costs more per output token has a higher ratio. Some models use a [ratio that differs from their pricing ratio](../how-to/determine-provisioned-throughput-unit-requirements.md#models-with-a-non-standard-output-to-input-ratio).
+- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. For more information on this ratio, see [Deployment parameters and throughput values by model](../how-to/determine-provisioned-throughput-unit-requirements.md#deployment-parameters-and-throughput-values-by-model).
 - **Cache rate**: The fraction of input tokens served from the prompt cache. Cached tokens don't consume PTU capacity, so a higher cache rate reduces the PTUs required.
 
 The sizing calculation uses these factors to convert your expected token volumes into a single **normalized TPM** figure, then divides by the model's **Input TPM per PTU** value to arrive at the required PTU count.
 
-You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal (navigate to **Operate** > **Quota** > **Provisioned throughput unit**) for a guided estimate.
+You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal for a guided estimate.
 
-For the complete sizing methodology that includes formulas, worked examples with cache variation, and the full capacity calculator reference, see [Determine PTU requirements for a workload](../how-to/determine-provisioned-throughput-unit-requirements.md).
+For the complete sizing methodology, including formulas, worked examples, and the capacity calculator reference, see [Determine PTU requirements for a workload](../how-to/determine-provisioned-throughput-unit-requirements.md).
 
 ## Provisioned throughput deployment types
 
