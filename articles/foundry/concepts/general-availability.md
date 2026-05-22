@@ -83,36 +83,36 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Home | All | GA |
 | Discover | Overview | GA |
 | Discover | Model | GA |
+| Discover | [Instant Models](instant-models.md) | Preview |
 | Discover | Tools | GA |
-| Discover | Solution Templates | GA |
+| Discover | [Solution Templates](../how-to/develop/ai-template-get-started.md) | GA |
 | Discover | Search | GA |
-| Discover | Instant Models | Preview |
 | Discover | Ask AI | Preview |
-| Build | Agents (core) | GA |
+| Build | [Agents](../agents/overview.md) (core) | GA |
 | Build | Agents — Voice Live | Preview |
 | Build | Agents — traces in agent builder | Preview |
-| Build | Workflows | Preview |
-| Build | Models | GA |
-| Build | Tracing (including Trace Replay) | Preview |
+| Build | [Workflows](../agents/concepts/workflow.md) | Preview |
+| Build | [Models](foundry-models-overview.md) | GA |
+| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Preview |
 | Build | Tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
-| Build | Fine-tuning | GA |
+| Build | [Fine-tuning](../openai/how-to/fine-tuning.md) | GA |
 | Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview) |
-| Build | Knowledge (Foundry IQ) | Partial GA (API-level GA; portal access remains Preview). See [What is Foundry IQ?](../agents/concepts/what-is-foundry-iq.md). |
+| Build | [Knowledge (Foundry IQ)](../agents/concepts/what-is-foundry-iq.md) | Partial GA (API-level GA; portal access remains Preview) |
 | Build | Data (core) | GA |
 | Build | Data — stored completions | Preview |
-| Build | Evaluations | GA |
+| Build | [Evaluations](../how-to/evaluate-generative-ai-app.md) | GA |
 | Build | Memory | Preview |
-| Build | Guardrails — Models | GA |
-| Build | Guardrails — Agents | Preview |
+| Build | [Guardrails](../guardrails/guardrails-overview.md) — Models | GA |
+| Build | [Guardrails](../guardrails/guardrails-overview.md) — Agents | Preview |
 | Build | Guardrails — Controls and intervention | Preview |
-| Build | Monitoring | Preview |
-| Build | Red teaming | GA |
+| Build | [Monitoring](observability.md) | Preview |
+| Build | [Red teaming](../openai/concepts/red-teaming.md) | GA |
 | Build | AI services speech playgrounds | GA |
 | Operate | Overview | Preview |
 | Operate | Assets | Preview |
 | Operate | Compliance | Preview |
-| Operate | Quota | GA |
+| Operate | [Quota](../how-to/quota.md) | GA |
 | Operate | Admin | GA |
 | Docs | All | GA |
 
