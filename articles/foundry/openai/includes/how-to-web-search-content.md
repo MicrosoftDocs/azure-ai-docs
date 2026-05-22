@@ -612,7 +612,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 You can limit results to a specific set of domains by using domain filtering. Use the `allowed_domains` field to allowlist up to 100 URLs, or the `blocked_domains` field to exclude domains from results. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use `microsoft.com` instead of `https://www.microsoft.com/`. Subdomains are also included in the search. Domain filtering works with the `web_search` tool only in the Responses API.
 
 > [!NOTE]
-> The Python, JavaScript, and REST examples in this section show both `allowed_domains` and `blocked_domains`. The .NET and Java SDKs don't yet expose a typed builder for `blocked_domains`; typed support is rolling out. Until then, use REST or one of the other languages to set `blocked_domains`.
+> The OpenAI .NET and Java SDKs don't yet expose typed builders for `blocked_domains`. The C# and Java examples here use the SDKs' public escape hatches (`JsonPatch.Set` for .NET, `putAdditionalProperty` for Java) to set the field. When typed builders ship, replace those calls with the typed equivalents.
 
 To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
 
@@ -686,6 +686,13 @@ filters.AllowedDomains.Add("www.who.int");
 filters.AllowedDomains.Add("www.cdc.gov");
 filters.AllowedDomains.Add("www.fda.gov");
 
+// blocked_domains isn't yet a typed property on WebSearchToolFilters; use the
+// JsonPatch escape hatch until the typed setter ships in OpenAI.Responses.
+#pragma warning disable SCME0001
+filters.Patch.Set("$.blocked_domains"u8,
+    """["en.wikipedia.org","www.reddit.com"]"""u8);
+#pragma warning restore SCME0001
+
 CreateResponseOptions options = new()
 {
     Model = "gpt-5.5",
@@ -754,6 +761,7 @@ import com.azure.identity.AuthenticationUtil;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.JsonValue;
 import com.openai.credential.BearerTokenCredential;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -761,6 +769,7 @@ import com.openai.models.responses.ResponseIncludable;
 import com.openai.models.responses.ToolChoiceOptions;
 import com.openai.models.responses.WebSearchTool;
 import com.openai.models.responses.WebSearchTool.Filters;
+import java.util.List;
 
 public class WebSearchDomainFilterExample {
     public static void main(String[] args) {
@@ -782,6 +791,11 @@ public class WebSearchDomainFilterExample {
                 .addAllowedDomain("www.who.int")
                 .addAllowedDomain("www.cdc.gov")
                 .addAllowedDomain("www.fda.gov")
+                // blocked_domains isn't yet a typed builder on Filters; use
+                // putAdditionalProperty until addBlockedDomain ships in openai-java.
+                .putAdditionalProperty("blocked_domains", JsonValue.from(List.of(
+                    "en.wikipedia.org",
+                    "www.reddit.com")))
                 .build())
             .build();
 
