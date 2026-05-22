@@ -2,12 +2,12 @@
 title: Quota tier 4
 description: Quota tier limits for tier 4
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/18/2026
+ms.date: 05/12/2026
 ---
 
 
@@ -67,10 +67,11 @@ ms.date: 02/18/2026
 | gpt-image-1-mini               | GlobalStandard    | 84          | -           |
 | gpt-image-1.5                  | DataZoneStandard  | 15          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 45          | -           |
-| gpt-image-2                    | DataZoneStandard  | 15          | -           |
-| gpt-image-2                    | GlobalStandard    | 45          | -           |
+| gpt-image-2                    | DataZoneStandard  | 8          | -           |
+| gpt-image-2                    | GlobalStandard    | 24          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| model-router                   | DataZoneStandard  | 270         | 270,000     |
+| model-router                   | DataZoneStandard  | 1,162       | 1,162,000   |
+| model-router                   | GlobalStandard    | 3,465       | 3,465,000   |
 | o1                             | DataZoneStandard  | 700         | 4,200,000   |
 | o1                             | GlobalStandard    | 4,000       | 24,000,000  |
 | o3                             | DataZoneStandard  | 2,000       | 2,000,000   |

@@ -1,15 +1,15 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
-The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+The Azure OpenAI Batch API efficiently handles large-scale and high-volume processing tasks. It processes asynchronous groups of requests with separate quota and offers a 24-hour target turnaround at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, you send a large number of requests in a single file instead of sending one request at a time. Global batch requests have a separate enqueued token quota, so your online workloads aren't disrupted.  
 
 Key use cases include:
 
@@ -28,14 +28,14 @@ Key use cases include:
 * **Marketing and Personalization:** Generate personalized content and recommendations at scale.
 
 > [!TIP]
-> If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new feature that allows you to queue multiple batch jobs with exponential backoff. 
+> If your batch jobs are so large that you hit the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new feature that allows you to queue multiple batch jobs with exponential backoff. 
 >
 >Once your enqueued token quota is available, the next batch job can be created and kicked off automatically. To learn more, see [**automating retries of large batch jobs with exponential backoff**](#queueing-batch-jobs).
 
 > [!IMPORTANT]
-> We aim to process batch requests within 24 hours; we don't expire the jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, any remaining work is canceled and any already completed work is returned. You'll be charged for any completed work.
+> The service aims to process batch requests within 24 hours, but it doesn't expire jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, the service cancels any remaining work and returns any already completed work. You pay for any completed work.
 >
-> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).  
+> Data stored at rest remains in the designated Azure geography, while data might be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).  
 
 ## Batch support
 
@@ -45,7 +45,7 @@ Key use cases include:
 
 [!INCLUDE [Global batch](model-matrix/global-batch.md)]
 
-Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](../how-to/reasoning.md).
+To access `gpt-5` and `o3`, you need to register. For more information, see the [reasoning models guide](../how-to/reasoning.md).
 
 # [Data Zone Batch](#tab/datazone-batch)
 
@@ -53,7 +53,7 @@ Registration is required for access to `gpt-5` and `o3`. For more information, s
 
 [!INCLUDE [Data zone batch](model-matrix/global-batch-datazone.md)]
 
-Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](../how-to/reasoning.md).
+To access `gpt-5` and `o3`, you need to register. For more information, see the [reasoning models guide](../how-to/reasoning.md).
 
 ---
 
@@ -62,7 +62,7 @@ Registration is required for access to `gpt-5` and `o3`. For more information, s
 
 ### Feature support
 
-The following aren't currently supported:
+The following features aren't currently supported:
 
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
@@ -70,7 +70,7 @@ The following aren't currently supported:
 ### Batch deployment
 
 > [!NOTE]
-> In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see the [deployment types guide](../../foundry-models/concepts/deployment-types.md).
+> In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), the batch deployment types appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see the [deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Using dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
@@ -97,16 +97,16 @@ The following aren't currently supported:
 
 ## Batch object
 
-|Property | Type | Definition|
+| Property | Type | Definition |
 |---|---|---|
 | `id` | string | The identifier of the batch. |
 | `object` | string| `batch` |
-| `endpoint` | string | The API endpoint used by the batch |
+| `endpoint` | string | The API endpoint used by the batch. |
 | `errors` | object | Error information for the batch, if any. |
-| `input_file_id` | string | The ID of the input file for the batch |
-| `completion_window` | string | The time frame within which the batch should be processed |
+| `input_file_id` | string | The ID of the input file for the batch. |
+| `completion_window` | string | The time frame within which the batch should be processed. |
 | `status` | string | The current status of the batch. Possible values: `validating`, `failed`, `in_progress`, `finalizing`, `completed`, `expired`, `cancelling`, `cancelled`. |
-| `output_file_id` | string |The ID of the file containing the outputs of successfully executed requests. |
+| `output_file_id` | string | The ID of the file containing the outputs of successfully executed requests. |
 | `error_file_id` | string | The ID of the file containing the outputs of requests with errors. |
 | `created_at` | integer | A timestamp when this batch was created (in Unix epoch seconds). |
 | `in_progress_at` | integer | A timestamp when this batch started progressing (in Unix epoch seconds). |
@@ -117,22 +117,22 @@ The following aren't currently supported:
 | `expired_at` | integer | A timestamp when this batch expired (in Unix epoch seconds). |
 | `cancelling_at` | integer | A timestamp when this batch started `cancelling` (in Unix epoch seconds). |
 | `cancelled_at` | integer | A timestamp when this batch was `cancelled` (in Unix epoch seconds). |
-| `request_counts` | object | Object structure:<br><br> `total` *integer* <br> The total number of requests in the batch.  <br>`completed`  *integer* <br> The number of requests in the batch that have been completed successfully. <br> `failed` *integer* <br> The number of requests in the batch that have failed. 
-| `metadata` | map | A set of key-value pairs that can be attached to the batch. This property can be useful for storing additional information about the batch in a structured format. |
+| `request_counts` | object | Object structure:<br><br> `total` *integer* <br> The total number of requests in the batch.  <br>`completed`  *integer* <br> The number of requests in the batch that are completed successfully. <br> `failed` *integer* <br> The number of requests in the batch that failed. | 
+| `metadata` | map | A set of key-value pairs that you can attach to the batch. This property can be useful for storing additional information about the batch in a structured format. |
 
 ## Frequently asked questions (FAQ)
 
 ### Can images be used with the batch API?
 
-This capability is limited to certain multimodal models. Images can be provided as input either via [image url or a base64 encoded representation of the image](#input-format).
+This capability is limited to certain multimodal models. You can provide images as input either through [an image URL or a base64 encoded representation of the image](#input-format).
 
 ### Can I use the batch API with fine-tuned models?
 
-This is currently not supported.
+The batch API doesn't currently support fine-tuned models.
 
 ### Can I use the batch API for embeddings models?
 
-This is currently not supported.
+The batch API doesn't currently support fine-tuned models.
 
 ### Does content filtering work with Global Batch deployment?
 

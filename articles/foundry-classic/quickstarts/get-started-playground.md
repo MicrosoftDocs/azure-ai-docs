@@ -36,7 +36,9 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 * [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 * The following Azure RBAC roles are required. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
     * **Owner** on the subscription to create a project and assign roles.
-    * **Azure AI User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
+    * **Foundry User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
+
+      [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 
 ## Deploy a model
 

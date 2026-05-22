@@ -2,12 +2,12 @@
 title: Manage data feeds in Metrics Advisor
 titleSuffix: Azure AI services
 description: Learn how to manage data feeds that you've added to Metrics Advisor.
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # How to: Manage your data feeds

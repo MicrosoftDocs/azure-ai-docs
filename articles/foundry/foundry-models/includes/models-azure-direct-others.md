@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 04/17/2026
+ms.date: 05/12/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -48,7 +48,7 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
-| `DeepSeek-V4-Fast` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-V4-Flash` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (1,000,000 tokens) <br /> - **Output:** text (384,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2-Speciale` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.2` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `DeepSeek-V3.1` <br> **Preview** | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
@@ -120,6 +120,7 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `grok-4.3` <br> **Preview** | chat-completion | - **Input:** text (200,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4-20-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4-20-non-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-4.1-fast-reasoning` <br> **Preview** | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
@@ -130,12 +131,12 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 ## Model region availability by deployment type
 
-Foundry Models gives you choices for the hosting structure that fits your business and usage patterns. The service offers two main types of deployment:
+Microsoft Foundry provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main deployment categories:
 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned**: Also has a global deployment option, allowing you to purchase and deploy provisioned throughput units across Azure global infrastructure.
+- **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments perform the same inference operations, but the billing, scale, and performance differ. For more information about deployment types, see [Deployment types in Foundry Models](../concepts/deployment-types.md).
+Other deployment categories like *batch* are also available. To learn about all available model deployment types, see  [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md).
 
 # [Global Standard](#tab/global-standard)
 

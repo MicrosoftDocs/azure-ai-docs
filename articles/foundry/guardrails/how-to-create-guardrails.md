@@ -23,7 +23,9 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
-- **Azure AI Account Owner** role or higher on the Azure AI resource.
+- **Foundry Account Owner** role or higher on the Azure AI resource.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Availability
 

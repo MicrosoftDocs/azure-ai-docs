@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: nisi
-ms.date: 02/23/2026
+ms.date: 05/12/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.custom:

@@ -96,4 +96,4 @@ It's also commonly used in open-source frameworks like [LangChain](https://js.la
 + [Create a vector index](vector-search-how-to-create-index.md)
 + [Create a vector query](vector-search-how-to-query.md)
 + [azure-vector-search-samples](https://github.com/Azure-Samples/azure-vector-search-samples)
-+ [Azure Cognitive Search and LangChain: A Seamless Integration for Enhanced Vector Search Capabilities](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-and-langchain-a-seamless-integration-for/ba-p/3901448)
++ [Azure Cognitive Search and LangChain: A Seamless Integration for Enhanced Vector Search Capabilities](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-cognitive-search-and-langchain-a-seamless-integration-for-enhanced-vector-/3901448)

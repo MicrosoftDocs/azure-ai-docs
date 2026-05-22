@@ -12,7 +12,7 @@ ms.date: 01/28/2026
 # Use embedding models from the Microsoft Foundry model catalog for integrated vectorization
 
 > [!IMPORTANT]
-> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
+> This feature is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
 
 In this article, you learn how to access embedding models from the [Microsoft Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) for vector conversions during indexing and query execution in Azure AI Search.
 

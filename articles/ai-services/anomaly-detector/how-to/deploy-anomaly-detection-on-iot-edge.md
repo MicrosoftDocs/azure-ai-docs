@@ -2,12 +2,12 @@
 title: Run Anomaly Detector on IoT Edge
 titleSuffix: Azure AI services
 description: Deploy the Anomaly Detector module to IoT Edge. 
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Deploy an Anomaly Detector univariate module to IoT Edge
