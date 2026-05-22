@@ -327,15 +327,6 @@ Fabric IQ retrieves and processes data within the region where your Microsoft Fa
 > [!NOTE]
 > If your Foundry project is in a different Azure region than your Fabric workspace, query results are returned cross-region. Review [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability) and your organization's data residency requirements before connecting a Fabric workspace in a different region.
 
-### Data governance policies enforced
-
-Microsoft Fabric's governance policies are applied automatically to every Fabric IQ request:
-
-- **Row-level security (RLS)** — Fabric enforces RLS rules defined on semantic models and lakehouses. Agents can never retrieve rows that the signed-in user isn't authorized to see.
-- **Column-level security (CLS)** — Column-level permissions on semantic models restrict which fields are available to the user's identity.
-- **Sensitivity labels** — Microsoft Purview sensitivity labels on Fabric items are honored. Data classified as restricted or confidential follows your organization's label-based access policies.
-- **OneLake access control** — Access to underlying data in OneLake is subject to OneLake role-based access control. Fabric IQ queries only data the signed-in user can reach through normal OneLake paths.
-
 ### Compliance certifications
 
 Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see [Microsoft Fabric region availability](https://learn.microsoft.com/en-us/fabric/admin/region-availability).
