@@ -63,7 +63,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
-| [Tool Search](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
 ## Prerequisites
 
@@ -2585,7 +2585,7 @@ tools = [
 :::zone-end
 
 > [!NOTE]
-> `toolbox_search_preview` is a routing directive, not a callable tool. It does not appear in `tools/list` responses and does not count toward the unnamed-tool-per-type limit.
+> `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
 
 ## Troubleshoot
 

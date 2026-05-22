@@ -32,7 +32,6 @@ Use tool search when:
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - An existing or new toolbox with at least one tool. See [Curate intent-based toolbox in Foundry](toolbox.md).
 - **RBAC**: Grant the **Foundry User** role on the Foundry project to each relevant identity (developer, agent managed identity, and end users in OAuth flows).
-- **Python SDK**: `pip install azure-ai-projects azure-identity`
 
 ## How tool search works
 
@@ -112,13 +111,13 @@ Content-Type: application/json
       "server_label": "github",
       "server_url": "https://api.githubcopilot.com/mcp",
       "require_approval": "never",
-      "project_connection_id": "github-mcp-conn",
+      "project_connection_id": "github-mcp-conn"
     },
     {
       "type": "mcp",
       "server_label": "calendar",
       "server_url": "https://your-calendar-mcp.example.com",
-      "require_approval": "never",
+      "require_approval": "never"
     }
   ]
 }
@@ -187,7 +186,7 @@ async def verify_toolbox():
             tools_result = await session.list_tools()
             print(f"Tools found: {len(tools_result.tools)}")
             for tool in tools_result.tools:
-                print(f"  - {tool.name}: {(tool.description or `"`")[:80]}")
+                print(f"  - {tool.name}: {(tool.description or '')[:80]}")
 
             # Confirm tool_search is present
             names = [t.name for t in tools_result.tools]
@@ -269,7 +268,7 @@ Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to ena
 - **Add a description to every tool.** Tool search uses descriptions to match tools to queries. A missing or vague description causes poor discovery.
 - **Use tool search for large toolboxes.** This is the most effective configuration when you have 10 or more tools.
 - **Use tool search together with toolbox versioning.** Test your configuration on a version-specific endpoint before promoting it to default.
-- **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."
+- **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."*
 
 ## Troubleshoot
 
