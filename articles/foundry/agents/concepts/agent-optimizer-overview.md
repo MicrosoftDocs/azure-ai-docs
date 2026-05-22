@@ -31,29 +31,7 @@ The agent optimizer runs a closed-loop evaluation and improvement cycle:
 
 The entire process runs in the cloud. Start it with `azd ai agent optimize` (requires the [azd CLI extension](../quickstarts/quickstart-optimize-hosted-agent.md#install-the-cli-extension)). The run takes 5 to 20 minutes depending on dataset size.
 
-```
-┌─────────────────────────────────────────────┐
-│  Your Agent (Hosted in Microsoft Foundry)   │
-│                                             │
-│  main.py                                    │
-│    └─ load_config()  ←─ reads optimized     │
-│         │               config at startup   │
-│         ▼                                   │
-│  agent_optimization/                        │
-│    └─ Resolves: env var → API → defaults    │
-└─────────────────────────────────────────────┘
-         ▲                          │
-         │                          │ Invoked during eval
-         │                          ▼
-┌────────┴──────────────────────────────────┐
-│  Agent Optimizer                          │
-│                                           │
-│  1. Evaluate baseline                     │
-│  2. Generate candidate configs            │
-│  3. Evaluate candidates                   │
-│  4. Rank by score                         │
-└───────────────────────────────────────────┘
-```
+:::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them.":::
 
 ## Optimization strategies
 
