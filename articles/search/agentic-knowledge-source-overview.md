@@ -3,7 +3,7 @@ title: What is a Knowledge Source?
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 05/05/2026
+ms.date: 05/07/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,7 +11,12 @@ ai-usage: ai-assisted
 
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
-A knowledge source specifies the content used for agentic retrieval. It either encapsulates a search index populated by external data, or it's a direct connection to a remote target such as Bing or SharePoint that's queried directly. A knowledge source is a required definition in a knowledge base.
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API version. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> These 2026-05-01-preview features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+
+A knowledge source specifies the content used for agentic retrieval.It either encapsulates a search index populated by external data, or it's a direct connection to a remote target such as Bing or SharePoint that's queried directly. A knowledge source is a required definition in a knowledge base.
 
 + Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one data structure, either a search index that [meets the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md) or a supported external resource.
 
@@ -37,6 +42,7 @@ You can create the following knowledge sources:
 |------|-------------------|
 | [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource) wraps an existing index. | Indexed |
 | [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource) generates an indexer pipeline that pulls from a blob container. | Indexed |
+| `"file"` API uploads files directly to Azure AI Search for processing and retrieval. | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
 | [`"indexedSql"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsqlknowledgesource) (preview) generates an indexer pipeline that pulls from an Azure SQL table or view. | Indexed |
 | [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
@@ -69,6 +75,7 @@ Use the Azure portal, REST API, or an Azure SDK package to create a knowledge so
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
++ [How to create a file knowledge source (uploads files directly)](agentic-knowledge-source-how-to-file.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create an Azure SQL knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-azure-sql.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
