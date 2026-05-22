@@ -16,15 +16,15 @@ ms.custom:
 
 Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the pricing model of your Azure AI Search service (see [Plan and manage costs](./search-sku-manage-costs.md)).
 
-Azure AI Search supports two pricing models:
+Azure AI Search supports two pricing models, each with associated service tiers. The tier selected will impact the service limits outlined in this guidance.
 
-- **[Dedicated](./search-sku-tier.md)**: You must choose a service tier in this model, with options for Free, Basic, Standard (S1-S3, including S3 HD), and Storage Optimized (L1-L2) tiers. The tier selected will impact the service limits outlined in this guidance.
-- **[Serverless](./serverless-cost-optimization.md) (Preview)**: In the Serverless model, limits are defined by per-index caps, per-service object counts, and Serverless throttling behavior. 
+- **[Dedicated](./search-sku-tier.md)**: Fixed pricing measured by Search Units (SUs). Service tier options include: Basic, Standard (S1-S3, including S3 HD), Storage Optimized (L1-L2), and a Free tier with limited search service capabilities.
+- **[Serverless](./serverless-cost-optimization.md) (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. The current preview tier is: Serverless Developer. Limits are defined by per-index caps, per-service object counts, and Serverless throttling behavior. 
 
 ## Subscription limits
 <!-- [!INCLUDE [azure-search-limits-per-subscription](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription.md)] -->
 
-You can create multiple *billable* search services (Basic and higher), up to the maximum number of services allowed at each tier, per region. For example, you could create up to 16 services at the Basic tier and another 16 services at the S1 tier within the same subscription and region. You could then create an additional 16 Basic services in another region for a combined total of 32 Basic services under the same subscription. For more information about tiers, see [Choose a tier (or SKU) for Azure AI Search](/azure/search/search-sku-tier).
+You can create multiple *billable* search services (Basic and higher), up to the maximum number of services allowed at each tier, per region. For example, you could create up to 16 services at the Basic tier and another 16 services at the S1 tier within the same subscription and region. You could then create an additional 16 Basic services in another region for a combined total of 32 Basic services under the same subscription. For more information about service tiers, see [Choose a pricing model and service tier](/azure/search/search-sku-tier).
 
 Maximum service limits can be raised upon request. If you need more services within the same subscription, [file a support request](/azure/search/search-create-service-portal#add-more-services-to-a-subscription).
 
