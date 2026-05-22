@@ -103,7 +103,7 @@ When you deploy with azd, the required RBAC role (Azure AI User at account scope
 
 When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can operate in two identity modes depending on how they are invoked:
 
-- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services using the user’s identity, subject to Microsoft Entra ID tenant policies.
+- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
 
 - **Autonomous or background scenarios**: If no user token is available, the agent authenticates using its own Microsoft Entra ID (agent identity), typically via managed identity, to access downstream services.
 
