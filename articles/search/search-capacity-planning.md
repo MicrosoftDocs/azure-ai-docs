@@ -37,6 +37,8 @@ Azure AI Search offers two pricing models that handle capacity differently:
 | Capacity planning approach | Size and scale infrastructure (replicas and partitions) | Optimize workload efficiency and usage patterns |
 | Inefficiency impact | Latency and scaling pressure | Direct cost increase |
 
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
+
 To learn more, see how to:
 
 - [Plan and manage costs](search-sku-manage-costs.md)
@@ -298,8 +300,6 @@ Because billing is consumption-based, cost is directly tied to usage:
 - Inefficient schema design increases both indexing and query costs.
 - Poor query patterns with large or frequently updated indexes increase storage and compute usage.
 
-[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
-
 ### Optimize workload efficiency
 
 Because inefficiency shows up as cost in the Serverless model, you pay more for the same work if you don't practice workload-aware design. The best way to control Serverless spend is to design your indexes and queries efficiently from the start.
@@ -331,7 +331,7 @@ To learn more, see [Optimize costs with the Serverless pricing model in Azure AI
 Capacity and availability can vary by the [supported region](search-region-support.md). Some regions might have constraints on provisioning new services or scaling existing ones.
 
 > [!NOTE]
-> During public preview, the Serverless pricing model is available only in a limited set of regions. See the public preview notice earlier in this article. 
+> During public preview, the Serverless pricing model is available only in a limited set of regions. See the preview notice at the beginning of this article. 
 
 If your preferred Azure AI Search region is unavailable due to capacity constraints, see [How to handle regional capacity constraints in Azure AI Search](search-region-capacity.md).
 
