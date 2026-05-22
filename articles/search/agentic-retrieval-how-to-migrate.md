@@ -198,6 +198,29 @@ To complete your migration:
 
 1. Delete preview objects only after the new objects are fully validated and deployed.
 
+### [**2026-05-01-preview**](#tab/2026-05-01-preview)
+
+If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to 2026-05-01-preview. Requests, responses, and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
+
+1. Update the API version to `2026-05-01-preview` on REST requests. SDK clients use the package's default API version, so you don't need to pass an explicit `serviceVersion` argument. Instead, upgrade to the 2026-05-01-preview SDK package.
+
+1. If you use the Python or JavaScript SDK, update the retrieve client to `KnowledgeBaseRetrievalClient` and call `retrieve(...)` instead of the legacy `retrieveKnowledge(...)`. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
+
+1. Optionally adopt the new 2026-05-01-preview features, such as [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md), per-source and final-result document caps, persisted retrieve defaults, knowledge base CORS, and Purview sensitivity-label metadata in retrieve responses. None of these features are required to keep an existing solution working.
+
+#### Update code and clients for 2026-05-01-preview
+
+The 2026-05-01-preview language SDKs introduce code-shape changes across the supported languages.
+
+| Language | Migration updates |
+| --- | --- |
+| Python | Create the retrieve client as `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Construct reasoning effort instances such as `KnowledgeRetrievalLowReasoningEffort()` and pass the string `output_mode="answerSynthesis"` on the knowledge base or retrieve request. Pass `AzureOpenAIVectorizerParameters(resource_url=...)` (renamed from `resource_uri`), using the resource root endpoint rather than an `/openai/v1` endpoint. |
+| .NET | Create the retrieve client as `new KnowledgeBaseRetrievalClient(endpoint, knowledgeBaseName, credential)` and pass an `AzureKeyCredential` or token credential. To attach a key-based Azure OpenAI model to a knowledge base, set the model API key on `AzureOpenAIVectorizerParameters.ApiKey`. |
+| Java | Use `KnowledgeBaseRetrievalClientBuilder` to create the retrieve client and read results as `KnowledgeBaseRetrievalResult`. `KnowledgeBaseRetrievalOptions` now exposes `setMessages(...)` alongside `setIntents(...)`, plus `setRetrievalReasoningEffort`, `setOutputMode`, `setMaxOutputSize`, and `setMaxOutputDocuments`, so message-based retrieve and answer synthesis work without a semantic-intent workaround. `KnowledgeBase` adds `setOutputMode`, `setRetrievalReasoningEffort`, `setRetrievalInstructions`, `setAnswerInstructions`, and `setCorsOptions`. `SearchIndexKnowledgeSourceParams` adds `setAlwaysQuerySource`, `setFailOnError`, `setMaxOutputDocuments`, and `setEnableImageServing`. |
+| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve({ intents: [{ type: "semantic", search: query }] })`. The previous `retrieveKnowledge(...)` method is removed in favor of `retrieve(...)`. |
+
+After you update the client shapes, run the full flow that creates the index, uploads documents, creates a knowledge source, creates a knowledge base, issues a retrieve request, and cleans up resources to confirm the migration end to end.
+
 ### [**2025-11-01-preview**](#tab/2025-11-01-preview)
 
 If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), "knowledge agent" is renamed to "knowledge base," and multiple properties are relocated to different objects and levels within an object definition.
@@ -805,10 +828,55 @@ To complete your migration, follow these cleanup steps:
 
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
++ [2026-05-01-preview](#2026-05-01-preview-1)
 + [2026-04-01](#2026-04-01-1)
 + [2025-11-01-preview](#2025-11-01-preview-1)
 + [2025-08-01-preview](#2025-08-01-preview-1)
 + [2025-05-01-preview](#2025-05-01-preview)
+
+### 2026-05-01-preview
+
+2026-05-01-preview adds knowledge base, knowledge source, and retrieve features on top of [2025-11-01-preview](#2025-11-01-preview-1) without removing previously persisted properties. Existing knowledge bases and knowledge sources created on earlier preview versions continue to work; this version mostly exposes new functionality and reverts a few preview-only limits.
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for this version, select the 2026-05-01-preview API version filter at the top of the page.
+
+#### [**Breaking changes**](#tab/breaking)
+
+There are no breaking changes between 2025-11-01-preview and 2026-05-01-preview. Existing requests that target 2025-11-01-preview continue to work when you change the API version to 2026-05-01-preview.
+
+The language SDKs that ship 2026-05-01-preview support introduce code-shape changes that are breaking at the SDK layer. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
+
+#### [**Nonbreaking changes**](#tab/nonbreaking)
+
+These nonbreaking additions are available in 2026-05-01-preview:
+
++ Freshness-aware retrieval on indexed knowledge sources through a `freshnessPolicy` on `ingestionParameters`.
+
++ Knowledge base `corsOptions` for browser-origin access to the REST retrieve endpoint.
+
++ Knowledge base support for the GPT-5 model family (such as `gpt-5.4-mini`).
+
++ Per-source `knowledgeSourceParams.maxOutputDocuments` to cap candidate documents from each knowledge source.
+
++ Top-level `maxOutputDocuments` on the retrieve request to cap the final number of grounding documents.
+
++ Per-source `knowledgeSourceParams.failOnError` to require a knowledge source to succeed during retrieve.
+
++ Persisted retrieve defaults on search index knowledge sources (such as `searchIndexParameters.baseFilter`) and a runtime `filterAddOn` override.
+
++ Optional `semanticConfigurationName` on search index knowledge sources for supported retrieve flows.
+
++ Purview sensitivity-label metadata in retrieve responses: per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo`.
+
++ `modelName` on model-backed activity records when `includeActivity` is set on a retrieve request.
+
++ Service statistics counters `knowledgeBasesCount` and `knowledgeSourcesCount`.
+
++ Paging support (`$top`, `$skip`, `$count`) on knowledge base and knowledge source list operations and other preview list endpoints.
+
++ The per-knowledge-base limit on knowledge sources is the same for `minimal`, `low`, and `medium` retrieval reasoning efforts. Earlier preview API versions retain lower limits for `low` and `medium`.
+
+---
 
 ### 2026-04-01
 

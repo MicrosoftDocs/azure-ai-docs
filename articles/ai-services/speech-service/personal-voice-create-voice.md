@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to get a speaker profile ID for the personal voice.
+ai-usage: ai-assisted
 ---
 
 # Get a speaker profile ID for the personal voice
@@ -45,11 +46,11 @@ To create a personal voice and get the speaker profile ID, use the [PersonalVoic
 
 Make an HTTP POST request using the URI as shown in the following [PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region. 
+- Replace `YourResourceName` with your Speech resource name. 
 - Replace `JessicaPersonalVoiceId` with a personal voice ID of your choice. The case sensitive ID will be used in the personal voice's URI and can't be changed later. 
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'projectId="ProjectId"' -F 'consentId="JessicaConsentId"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample001.wav"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample002.wav"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'projectId="ProjectId"' -F 'consentId="JessicaConsentId"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample001.wav"' -F 'audiodata=@"D:\PersonalVoiceTest\CNVSample002.wav"' "https://YourResourceName.cognitiveservices.azure.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -71,7 +72,7 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
 Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
 ```
 
@@ -90,7 +91,7 @@ To create a personal voice and get the speaker profile ID, use the [PersonalVoic
 
 Make an HTTP PUT request using the URI as shown in the following [PersonalVoices_Create](/rest/api/aiservices/speechapi/personal-voices/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region. 
+- Replace `YourResourceName` with your Speech resource name. 
 - Replace `JessicaPersonalVoiceId` with a personal voice ID of your choice. The case sensitive ID will be used in the personal voice's URI and can't be changed later. 
 
 ```azurecli-interactive
@@ -104,7 +105,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
       ".wav"
     ]
   }
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/personalvoices/JessicaPersonalVoiceId?api-version=2026-01-01"
 
 # Ensure the `containerUrl` has both read and list permissions. 
 # Ensure the `.wav` files are located in the "jessica" folder within the container. The `prefix` matches all `.wav` files in the "jessica" folder. If there is no such folder, the prefix will match `.wav` files with names starting with "jessica". 
@@ -129,7 +130,7 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Create](/rest/api/aiservices/speechapi/personal-voices/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2026-01-01
 Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
 ```
 
