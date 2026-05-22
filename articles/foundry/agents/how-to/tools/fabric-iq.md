@@ -20,7 +20,9 @@ zone_pivot_groups: selection-fabric-iq
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> When you connect to non-Foundry tools, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable terms and data handling policies. See [Admin management](#admin-management) to learn how to manage access to the tool.
+> When you connect to non-Foundry Microsoft services, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable service terms and data handling policies. You're responsible for managing whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and for ensuring that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're also responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations—such as metaprompts, content filters, or other safety systems—and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
