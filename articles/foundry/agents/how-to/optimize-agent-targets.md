@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The agent optimizer supports two optimization targets: **instruction tuning** (the default) rewrites your agent's system prompt, and **skill discovery** generates reusable capabilities. This guide covers both targets.
+The agent optimizer supports three optimization targets: **instruction tuning** (the default) rewrites your agent's system prompt, **skill discovery** generates reusable capabilities, and **model selection** evaluates across multiple model deployments. This guide covers all targets.
 
 | Scenario | Recommended target |
 | ---------- | ----------------------- |
@@ -23,6 +23,7 @@ The agent optimizer supports two optimization targets: **instruction tuning** (t
 | Reduce hallucination | Instruction tuning |
 | Add repeatable behaviors (escalation, debugging patterns) | Skill discovery |
 | Agent needs structured procedures | Skill discovery |
+| Find the best quality/cost model trade-off | Model selection |
 | First optimization, not sure which to choose | Instruction tuning (default) |
 
 ## Prerequisites
@@ -264,6 +265,67 @@ if (config.HasSkills)
     }
 }
 ```
+
+---
+
+## Optimize model selection
+
+The *model target* evaluates your agent across multiple model deployments to find the best quality/cost trade-off. Each model is scored against the same dataset, so you can compare results directly.
+
+### Configure target models
+
+Specify the models to evaluate in your spec.yaml:
+
+```yaml
+# spec.yaml
+agent:
+  name: my-agent
+
+dataset_file: ./eval.jsonl
+
+evaluators:
+  - task_adherence
+
+options:
+  eval_model: gpt-4.1-mini
+  reflection_model: gpt-5.1
+  target_attributes:
+    - model
+  target_config:
+    model:
+      - gpt-4.1
+      - gpt-4.1-mini
+      - gpt-4o
+  max_iterations: 5
+```
+
+Each model listed under `target_config.model` must be deployed in your Foundry project.
+
+### Run model optimization
+
+```bash
+azd ai agent optimize --config spec.yaml
+```
+
+The optimizer evaluates your agent using each specified model deployment and ranks the results by score and token cost.
+
+### Combine with other targets
+
+You can optimize instructions, skills, and model selection in a single run:
+
+```yaml
+options:
+  target_attributes:
+    - instruction
+    - skill
+    - model
+  target_config:
+    model:
+      - gpt-4.1
+      - gpt-4.1-mini
+```
+
+This produces candidates that combine improved instructions with different model options, giving you the full picture of what works best.
 
 ---
 

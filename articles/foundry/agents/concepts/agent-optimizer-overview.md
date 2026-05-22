@@ -58,6 +58,40 @@ The *skill target* discovers reusable capabilities your agent should have. It ge
 azd ai agent optimize --target skill
 ```
 
+### Model selection
+
+The *model target* evaluates your agent across multiple model deployments in the same run. Use it when you want to find the best quality/cost trade-off — for example, whether `gpt-4.1-mini` handles your workload at lower cost, or whether `gpt-4.1` gives a quality improvement that justifies the token cost.
+
+**When to use:** You have multiple model deployments and want data-driven selection. The optimizer scores each model option against the same dataset and shows the trade-offs.
+
+Configure the model target in your spec.yaml:
+
+```yaml
+# spec.yaml
+options:
+  target_attributes:
+    - model
+  target_config:
+    model:
+      - gpt-4.1
+      - gpt-4.1-mini
+      - gpt-4o
+```
+
+You can combine model selection with other targets:
+
+```yaml
+options:
+  target_attributes:
+    - instruction
+    - skill
+    - model
+  target_config:
+    model:
+      - gpt-4.1
+      - gpt-4.1-mini
+```
+
 ## Config resolution
 
 When your agent starts, the `load_config()` function checks four sources in order:
@@ -77,7 +111,7 @@ Your agent always works with or without optimization. No feature flags or condit
 | ------- | ------------- | ---------- |
 | `instructions` | System prompt and instructions | instruction, skill |
 | `skills` | Discovered skill catalog | skill |
-| `model` | Model deployment name | (future) |
+| `model` | Model deployment name | model |
 | `temperature` | Sampling temperature | (future) |
 
 ## Models
