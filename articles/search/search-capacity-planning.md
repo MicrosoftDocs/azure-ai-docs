@@ -14,43 +14,38 @@ ai-usage: ai-assisted
 
 Azure AI Search offers two pricing models that handle capacity differently:
 
-- **Dedicated**: Plan capacity by sizing replicas and partitions. See: [Plan capacity for the Dedicated model](#plan-capacity-for-the-dedicated-model).
-    - You pre-provision capacity directly using replicas and partitions.
-    - Estimate: Required storage (partitions) and required throughput (replicas). 
-    - [Choose a pricing tier](./search-sku-tier.md) based on expected peak demand.
-    - Once capacity is configured upfront, you pay an hourly rate, regardless of usage. 
+- **Dedicated**: Plan capacity by sizing replicas and partitions and selecting a service tier.
+    - Pre-provision capacity directly by using replicas and partitions.
+    - Estimate required storage (partitions) and required throughput (replicas). 
+    - Choose a service tier to provision the capacity needed based on expected peak demand.
+    - Once you configure capacity upfront, you pay an hourly rate measured by Search Units (SUs), regardless of usage.
 
-- **Serverless (Preview)**: Capacity is managed automatically based on usage and service limits. No capacity pre-provisioning required. Instead, focus on optimizing your cost by tuning workload efficiency. See: [Optimize cost for the Serverless model](#optimize-cost-for-the-serverless-model).
+- **Serverless (Preview)**: The service automatically manages capacity based on usage and service limits. You don't need to pre-provision capacity. Instead, optimize your workload efficiency to manage cost.
     - Capacity automatically scales with demand (can scale to zero when idle).
-    - You’re billed for [compute (CUs)](./serverless-cost-optimization.md) and storage based on actual usage. See [Choose a pricing model and service tier](./search-sku-tier.md) for information about billing during the Public Preview.
-    - Rather than infrastructure, planning focuses on these cost drivers: Query patterns, Index size and growth, and Data ingestion patterns.
-
+    - You're billed based on actual usage as measured by Compute Units (CUs) and storage.
+    - Rather than infrastructure, planning focuses on these cost drivers: Query patterns, Index size and growth, and Data ingestion patterns. See [Optimize cost for the Serverless model](#optimize-cost-for-the-serverless-model).
 
 | Dimension | Dedicated | Serverless |
 | --- | --- | --- |
 | Capacity model | Provisioned (replicas × partitions) | Consumption-based |
 | Scaling | Manual | Automatic |
 | User control | Explicit (configure replicas and partitions) | Indirect (influenced by workload characteristics) |
-| Billing | Fixed hourly rate per SU | Pay for compute (CUs) and storage |
+| Billing | Fixed hourly rate per Search Units (SUs) | Consumption-based payments for Compute Units (CUs) and storage |
 | Idle cost | Always incurred (minimum provisioned capacity) | Scales to zero when idle |
 | Optimization focus | Infrastructure sizing | Workload efficiency |
-| Best for | Predictable, steady workloads | Variable, bursty, or multi-tenant workloads, including agent-driven scenarios |
+| Best for | Predictable, steady workloads | Variable, bursty, or multitenant workloads, including agent-driven scenarios |
 | Capacity planning approach | Size and scale infrastructure (replicas and partitions) | Optimize workload efficiency and usage patterns |
 | Inefficiency impact | Latency and scaling pressure | Direct cost increase |
 
-
-> [!NOTE]
-> If your service was created before April or May 2024 with the Dedicated pricing model, a one-time upgrade to higher storage limits might be available at no extra cost. For more information, see [Upgrade your search service](search-how-to-upgrade.md).
-
-Learn more about how to:
+To learn more, see how to:
 
 - [Plan and manage costs](search-sku-manage-costs.md)
+- [Choose a pricing model and service tier](search-sku-tier.md)
 - [Optimize costs with the Serverless pricing model](serverless-cost-optimization.md)
-- [Choose a service tier for the Dedicated pricing model](search-sku-tier.md)
 
 ## Plan capacity for the Dedicated model
 
-In the Dedicated model, you provision capacity using **search units (SU)**:
+In the Dedicated model, you provision capacity by using **Search Units (SU)**:
 
 - **Search unit (SU)** = replicas × partitions
 - **Replica**: Copies of the search engine. Provides query throughput and high availability.
@@ -58,23 +53,23 @@ In the Dedicated model, you provision capacity using **search units (SU)**:
 
 Each service starts with 1 replica × 1 partition (1 SU). You can add or remove replicas and partitions independently to accommodate fluctuating workloads. Adding capacity increases the [cost of running a search service](search-sku-manage-costs.md#billable-events).
 
-| Concept  | Definition|
-|----------|-----------|
-|*Search unit* | A single increment of total available capacity. A minimum of one search unit is required to run the service. Depending on your pricing tier, the maximum ranges from one to 36 units.<br><br>The number of search units equals the number of replicas multiplied by the number of partitions: R × P = SU. Each service starts with one replica and one partition, which consumes one unit: 1 × 1 = 1. Adding a second replica consumes two units: 2 × 1 = 2.<br><br>A search unit is also the billing unit for a search service. |
-|*Replica* | Instances of the search service, used primarily to load balance query operations. Each replica hosts one copy of an index. If you allocate three replicas, you have three copies of an index available for servicing query requests.|
-|*Partition* | Physical storage and I/O for read/write operations (for example, when rebuilding or refreshing an index). Each partition has a slice of the total index. If you allocate three partitions, your index is divided into thirds. |
+| Concept | Definition |
+| --- | --- |
+| *Search unit* | A single increment of total available capacity. A minimum of one search unit is required to run the service. Depending on your pricing tier, the maximum ranges from one to 36 units.<br><br>The number of search units equals the number of replicas multiplied by the number of partitions: R × P = SU. Each service starts with one replica and one partition, which consumes one unit: 1 × 1 = 1. Adding a second replica consumes two units: 2 × 1 = 2.<br><br>A search unit is also the billing unit for a search service. |
+| *Replica* | Instances of the search service, used primarily to load balance query operations. Each replica hosts one copy of an index. If you allocate three replicas, you have three copies of an index available for servicing query requests. |
+| *Partition* | Physical storage and I/O for read/write operations (for example, when rebuilding or refreshing an index). Each partition has a slice of the total index. If you allocate three partitions, your index is divided into thirds. |
 
 Review the [partitions and replicas table](#partition-and-replica-combinations-for-the-dedicated-model) for possible combinations that stay under the 36 unit limit.
 
-The physical characteristics of replicas and partitions, such as processing speed and disk IO, vary by [pricing tier](search-sku-tier.md). On a standard search service, the replicas and partitions are faster and larger than those of a basic service.
+The physical characteristics of replicas and partitions, such as processing speed and disk IO, vary by [service tier](search-sku-tier.md). On a standard search service, the replicas and partitions are faster and larger than those of a basic service.
 
 ### When to add capacity for the Dedicated model
 
 Consider adding replicas or partitions when:
 
-- Query latency increases or service-level agreement criteria aren't being met.
-- The frequency of HTTP 503 (Service unavailable) errors is increasing.
-- The frequency of HTTP 429 (Too many requests) errors is increasing, an indication of request throttling.
+- Query latency increases or service-level agreement criteria aren't met.
+- The frequency of HTTP 503 (Service unavailable) errors increases.
+- The frequency of HTTP 429 (Too many requests) errors increases, indicating request throttling.
 - Large query volumes are expected.
 - Indexing jobs are slow or falling behind.
 - Storage or indexing throughput is insufficient.
@@ -84,24 +79,24 @@ Scaling guidance:
 - Add **replicas** to increase query throughput and availability.
 - Add **partitions** to increase storage and indexing performance.
 - Query-heavy workloads typically require more replicas.
-- Large indexes may require additional replicas to maintain performance.
+- Large indexes might require extra replicas to maintain performance.
 
 > [!IMPORTANT]
-> Scaling operations can take time to complete and increase cost. Always validate changes using performance testing and pricing estimates.
+> Scaling operations can take time to complete and increase cost. Always validate changes by using performance testing and pricing estimates.
 
-The [tier you choose](search-sku-tier.md) determines partition size and speed, and each tier is optimized around a set of characteristics that fit various scenarios. If you choose a higher-end tier, you might [need fewer partitions](search-performance-tips.md#service-capacity) than if you go with S1. One of the questions you need to answer through self-directed testing is whether a larger and more expensive partition yields better performance than two cheaper partitions on a service provisioned at a lower tier.
+The [service tier you choose](search-sku-tier.md) determines partition size and speed. Each tier is optimized around a set of characteristics that fit various scenarios. If you choose a higher-end tier, you might [need fewer partitions](search-performance-tips.md#service-capacity) than if you go with S1. One of the questions you need to answer through self-directed testing is whether a larger and more expensive partition yields better performance than two cheaper partitions on a service provisioned at a lower tier.
 
 A single service must have sufficient resources to handle all workloads (indexing and queries). Neither workload runs in the background. You can schedule indexing for times when query requests are naturally less frequent, but the service doesn't otherwise prioritize one task over another. Additionally, a certain amount of redundancy smooths out query performance when services or nodes are updated internally.
 
-As a general rule, search applications tend to need more replicas than partitions, particularly when the service operations are biased toward query workloads. Each replica is a copy of your index, allowing the service to load balance requests against multiple copies. Azure AI Search manages all load balancing and replication of an index, and you can alter the number of replicas allocated for your service at any time. You can allocate up to 12 replicas in a Standard search service and 3 replicas in a Basic search service. Replica allocation can be made either from the [Azure portal](search-create-service-portal.md) or one of the programmatic options.
+As a general rule, search applications tend to need more replicas than partitions, particularly when the service operations are biased toward query workloads. Each replica is a copy of your index, so the service can load balance requests against multiple copies. Azure AI Search manages all load balancing and replication of an index. You can change the number of replicas allocated for your service at any time. You can allocate up to 12 replicas in a Standard search service and 3 replicas in a Basic search service. You can make replica allocation from either the [Azure portal](search-create-service-portal.md) or one of the programmatic options.
 
-Extra partitions are helpful for intensive indexing workloads. Extra partitions spread read/write operations across a larger number of compute resources.
+Extra partitions are helpful for intensive indexing workloads. Extra partitions spread read and write operations across a larger number of compute resources.
 
 Finally, larger indexes take longer to query. As such, you might find that every incremental increase in partitions requires a smaller but proportional increase in replicas. The complexity of your queries and query volume factors into how quickly query execution is turned around.
 
 For service limits and valid scaling ranges, see:
 - [Service limits for tiers and SKUs](search-limits-quotas-capacity.md)
-- [Choose a service tier](search-sku-tier.md)
+- [Choose a pricing model and service tier](search-sku-tier.md)
 
 > [!NOTE]
 > Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [partition and replica combinations table](#partition-and-replica-combinations-for-the-dedicated-model) can help you cross-reference the number of search units required for a specific configuration. For more information on how extra replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
@@ -192,16 +187,16 @@ To change your pricing tier:
 
 ### How scale requests are handled for the Dedicated model
 
-Upon receipt of a scale request, the search service:
+When the search service receives a scale request, it:
 
 1. Checks whether the request is valid.
 1. Starts backing up data and system information.
 1. Checks whether the service is already in a provisioning state (currently adding or eliminating either replicas or partitions).
 1. Starts provisioning.
 
-Scaling a service can take from several minutes to several hours, depending on the size of the service and the scope of the request. Backup duration also varies based on the amount of data and number of partitions and replicas.
+Scaling a service can take several minutes to several hours, depending on the size of the service and the scope of the request. Backup duration also varies based on the amount of data and number of partitions and replicas.
 
-The above steps aren't entirely consecutive. For example, the system starts provisioning when it can safely do so, which could be while backup is winding down.
+The preceding steps aren't entirely consecutive. For example, the system starts provisioning when it can safely do so, which could be while backup is winding down.
 
 #### Errors during scaling
 
@@ -242,13 +237,13 @@ For billing rates per tier and currency, see the [Azure AI Search pricing page](
 
 ### Estimate capacity using a Dedicated pricing model tier
 
-The size of the indexes you expect to build determines storage needs. There are no solid heuristics or generalities that help with estimates. The only way to determine the size of an index is [build one](search-what-is-an-index.md). Its size is based on tokenization and embeddings, and whether you enable suggesters, filtering, and sorting, or can take advantage of [vector compression](vector-search-how-to-quantization.md).
+Your storage needs depend on the size of the indexes you expect to build. There aren't any solid heuristics or general guidelines that help with estimates. The only way to determine the size of an index is to [build one](search-what-is-an-index.md). Its size depends on tokenization and embeddings, and whether you enable suggesters, filtering, and sorting, or can take advantage of [vector compression](vector-search-how-to-quantization.md).
 
-We recommend estimating on a billable tier, Basic or higher. The Free tier runs on physical resources shared by multiple customers and is subject to factors beyond your control. Only the dedicated resources of a billable search service can accommodate larger sampling and processing times for more realistic estimates of index quantity, size, and query volumes during development. 
+Estimate capacity on a billable tier, Basic or higher. The Free tier runs on physical resources shared by multiple customers and is subject to factors beyond your control. Only the dedicated resources of a billable search service can accommodate larger sampling and processing times for more realistic estimates of index quantity, size, and query volumes during development. 
 
 1. [Review service limits at each tier](search-limits-quotas-capacity.md#service-limits) to determine whether lower tiers can support the number of indexes you need. Consider whether you need multiple copies of an index for active development, testing, and production. 
 
-   A search service is subject to object limits (maximum number of indexes, indexers, skillsets, etc.) and storage limits. Whichever limit is reached first is the effective limit. 
+   A search service is subject to object limits (maximum number of indexes, indexers, skillsets, and so on) and storage limits. Whichever limit is reached first is the effective limit. 
 
 1. [Create a service at a billable tier](search-create-service-portal.md). Tiers are optimized for certain workloads. For example, the Storage Optimized tier has a limit of 10 indexes because it's designed to support a low number of large indexes.
 
@@ -272,11 +267,11 @@ We recommend estimating on a billable tier, Basic or higher. The Free tier runs 
 
 For an [inverted index](https://en.wikipedia.org/wiki/Inverted_index), size and complexity are determined by content, not necessarily by the amount of data that you feed into it. A large data source with high redundancy could result in a smaller index than a smaller dataset that contains highly variable content. So it's rarely possible to infer index size based on the size of the original dataset.
 
-Storage requirements can be inflated if you include data that will never be searched. Ideally, documents contain only the data that you need for the search experience.
+Storage requirements can be inflated if you include data that you never search. Ideally, documents contain only the data that you need for the search experience.
 
 ### Service-level agreement considerations
 
-The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service.
+[Service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/) don't cover the Free tier and preview features. For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service.
 
 - Two or more replicas satisfy query (read) SLAs.
 
@@ -288,8 +283,8 @@ The number of partitions doesn't affect SLAs.
 
 In the Serverless pricing model:
 
-- Capacity is automatically managed by the service.
-- There are no replicas, partitions, or search units to configure.
+- The service automatically manages capacity.
+- You don't need to configure replicas, partitions, or search units.
 - Compute scales dynamically based on the workload (query and indexing demand) and can scale to zero when idle. 
 
 To learn more about limitations for the Serverless model, see [Service limits](./search-limits-quotas-capacity.md).
@@ -307,7 +302,7 @@ Because billing is consumption-based, cost is directly tied to usage:
 
 ### Optimize workload efficiency
 
-Because inefficiency manifests as cost in the Serverless model, you will pay more for the same work if you don't practice workload-aware design. The best way to control Serverless spend is to design your indexes and queries efficiently from the start.
+Because inefficiency shows up as cost in the Serverless model, you pay more for the same work if you don't practice workload-aware design. The best way to control Serverless spend is to design your indexes and queries efficiently from the start.
 
 To design workloads for efficiency when using the Serverless pricing model, consider:
 
@@ -329,14 +324,14 @@ To design workloads for efficiency when using the Serverless pricing model, cons
 
 In Serverless, improving performance (faster, more targeted queries) typically reduces cost.
 
-To learn more, see [Optimize costs with the Serverless pricing model in Azure AI Search](serverless-cost-optimization.md)
+To learn more, see [Optimize costs with the Serverless pricing model in Azure AI Search](serverless-cost-optimization.md).
 
 ## Regional capacity considerations
 
-Capacity and availability can vary by the [supported region](search-region-support.md). Some regions may have constraints on provisioning new services or scaling existing ones.
+Capacity and availability can vary by the [supported region](search-region-support.md). Some regions might have constraints on provisioning new services or scaling existing ones.
 
 > [!NOTE]
-> The Serverless pricing model is currently available only in a limited set of preview regions. At this time, Serverless is offered in **West Central US, Switzerland North, and Japan East**. Availability will expand over time as the service progresses toward general availability.
+> During public preview, the Serverless pricing model is available only in a limited set of regions. See the public preview notice earlier in this article. 
 
 If your preferred Azure AI Search region is unavailable due to capacity constraints, see [How to handle regional capacity constraints in Azure AI Search](search-region-capacity.md).
 
