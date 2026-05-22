@@ -5,26 +5,19 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 06/02/2026
 ---
 
 # Plan and manage costs of an Azure AI Search service
 
-***TO-DO**: Address free period and when billing for serverless will begin during Public Preview.*
+Azure AI Search is available in two pricing models:
 
-Azure AI Search offers two pricing models: 
+- **Dedicated**: Provisioned capacity with fixed pricing. You select a service tier and you're billed per hour based on Search Units (SUs). Best for steady, predictable, high-utilization workloads.
 
-- **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a pricing tier, and you're billed hourly based on provisioned units. For more information, see [Choose a service tier](search-sku-tier.md).
-- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. For more information, see [Optimize costs with the Serverless pricing model](serverless-cost-optimization.md).
+- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
 
 This article explains how billing works under each model and provides guidance for cost estimation, minimization, and monitoring.
-
-For Dedicated services, you can use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs based on your planned [capacity](search-capacity-planning.md) and features. A capacity-planning worksheet can help you model expected index size, indexing throughput, and indexing costs.
-
-As your search workload evolves, follow our tips to minimize costs during both deployment and operation. You can also use built-in metrics to monitor query requests and [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) to create budgets, alerts, and data exports.
 
 ## Understand the pricing model
 
@@ -32,7 +25,9 @@ Azure AI Search has two primary pricing models: Dedicated and Serverless. Both m
 
 Azure AI Search charges are one component of your overall Azure bill. You’re billed for all Azure services and resources used in your subscription, including services outside of Azure AI Search.
 
-For current rates, see the [Azure AI Search pricing page](https://azure.microsoft.com/en-us/pricing/details/search/).
+For Dedicated services, you can use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs based on your planned [capacity](search-capacity-planning.md) and features. A capacity-planning worksheet can help you model expected index size, indexing throughput, and indexing costs.
+
+As your search workload evolves, follow our tips to minimize costs during both deployment and operation. You can also use built-in metrics to monitor query requests and [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) to create budgets, alerts, and data exports.
 
 ### Dedicated pricing model
 
@@ -40,9 +35,9 @@ When you create or use a Dedicated search service, you're charged for the minimu
 
 As you increase or decrease the number of replicas or partitions, your total search units change, and costs scale accordingly. For more information and examples, see [Billing rates](search-sku-tier.md#billing-rates).
 
-### Serverless pricing model
+### Serverless pricing model (Preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 The Serverless pricing model charges based on usage, with no pre-provisioned or idle capacity. You pay only for the compute resources consumed by operations and the storage used by your indexes.
 
@@ -51,7 +46,7 @@ Unlike the Dedicated model, you don't configure replicas or partitions. Capacity
 Serverless billing has two independent dimensions:
 
 - **Compute (Compute Units, CU):**  
-  Compute usage is measured in compute units per hour (CUs/hr). Compute cost is driven by factors such as query complexity, index size, data volume, and operation type (querying, indexing, or enrichment).
+  Compute usage is measured in Compute Units per hour (CUs/hr). Compute cost is driven by factors such as query complexity, index size, data volume, and operation type (querying, indexing, or enrichment).
 
 - **Indexed storage:**  
   Storage is billed per GB per month based on the on-disk size of your indexes. This includes indexed content and supporting data structures used for retrieval.
@@ -63,7 +58,7 @@ Premium features are charged in addition to the compute and storage charges for 
 The following table lists premium features and their billing units. All of these features are optional, so if you don't use them, you don't incur any charges.
 
 | Feature | Billing unit |
-|-------|------|
+| --- | --- |
 | Image extraction (AI enrichment) <sup>1</sup> | Per 1,000 images. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
 | [Custom Entity Lookup skill](cognitive-search-skill-custom-entity-lookup.md) (AI enrichment) | Per 1,000 text records. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing) |
 | [Built-in or custom skills](cognitive-search-predefined-skills.md) (AI enrichment) <sup>2</sup> | Number of transactions. Billed at the rate of the model provider: Microsoft Foundry or Azure-hosted models or resources. |
