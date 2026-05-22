@@ -1469,6 +1469,31 @@ Multiturn evaluation supports three data source options:
 | [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_trace_data_source_preview` with `trace_source` |
 | [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` with `trace_source` |
 
+### Choose an evaluation level
+
+The `evaluation_level` parameter on the run determines whether evaluators score individual turns or complete conversations:
+
+| Value | Behavior |
+|-------|----------|
+| `"turn"` | Evaluators score each turn independently. |
+| `"conversation"` | Evaluators score the entire conversation as a whole. |
+| (omitted) | Defaults to `"turn"`. |
+
+> [!IMPORTANT]
+> **Evaluator compatibility**: Each evaluator supports specific evaluation levels. Check the evaluator's `supported_evaluation_levels` field in the [evaluator catalog](../evaluate-generative-ai-app.md).
+>
+> - **Turn-only evaluators** (for example, `fluency`, `relevance`) can't be used with `evaluation_level="conversation"`.
+> - **Conversation-only evaluators** (for example, `customer_satisfaction`) can't be used with `evaluation_level="turn"`.
+> - **Mix and match isn't supported**: You can't combine turn-only and conversation-only evaluators in the same evaluation run.
+
+#### Common errors
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Incompatible evaluation level | Using `evaluation_level="conversation"` with a turn-only evaluator | Remove the turn-only evaluator or change to `evaluation_level="turn"` |
+| Incompatible evaluation level | Using `evaluation_level="turn"` with a conversation-only evaluator | Remove the conversation-only evaluator or change to `evaluation_level="conversation"` |
+| Mixed evaluator levels | Combining turn-only and conversation-only evaluators in one run | Use only evaluators that share a compatible level |
+
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
