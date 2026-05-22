@@ -69,7 +69,7 @@
     {
       "source_path": "articles/foundry/openai/how-to/provisioned-throughput-onboarding.md",
       "redirect_url": "/azure/foundry/openai/concepts/provisioned-throughput-billing",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/ai-services/luis/encrypt-data-at-rest.md",
