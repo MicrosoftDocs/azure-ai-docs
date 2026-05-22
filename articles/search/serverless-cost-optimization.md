@@ -18,8 +18,7 @@ Azure AI Search supports two pricing models, each designed for different workloa
 
 - **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
 
-> [!IMPORTANT]
-> The Serverless pricing model is currently available to try at no cost during this early preview period. Usage-based billing will begin prior to the end of the public preview with details provided at least 30-days in advance.
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 For more information about pricing model and service tier differences, see [Choose a pricing model and service tier](search-sku-tier.md).
 
