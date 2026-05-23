@@ -77,9 +77,6 @@ Start with server-side traces. Foundry logs traces for common agent and workflow
 
 Install OpenTelemetry and the Azure SDK tracing plugin using:
 
-> [!NOTE]
-> Python 3.8 or later is required.
-
 ```bash
 pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
 ```
@@ -106,43 +103,6 @@ For detailed setup instructions and SDK-specific code examples, see [Tracing in 
 In your Foundry project, go to the **Traces** tab in your agents or workflows. You can search, filter, or sort ingested traces from the last 90 days.
 
 Select a trace to step through each span, identify issues, and observe how your application responds. This helps you debug and pinpoint issues in your application.
-
-### Traces, conversations, and sessions
-
-The Foundry portal organizes observability data into three distinct views. Understanding the difference helps you navigate to the right data for your task:
-
-| View | What it represents | When to use it |
-|------|--------------------|----------------|
-| **Traces** | A single agent execution — one turn or one request-response cycle. Each trace captures spans, latency, tool calls, and token usage for that run. | Debugging a specific failure, inspecting a single execution, or analyzing performance of one request. |
-| **Conversations** | The aggregate history of a multi-turn interaction. A conversation groups multiple traces that belong to the same back-and-forth exchange with the agent. | Understanding the full context of a user session, reviewing what was said across multiple turns, or correlating a response to its conversation history. |
-| **Sessions** | The container runtime state for a hosted agent. A session tracks whether the agent container is active and its lifecycle, independent of the conversation content. | Monitoring container health and availability, not the agent's dialogue. |
-
-### Trace tabs for hosted agents
-
-The tabs available in the Traces view depend on which communication protocol your hosted agent uses. Hosted agents support two protocols, each offering different visibility into agent behavior. The protocol is set when you implement the agent — see [Protocols: Responses and Invocations](../../agents/concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on choosing the right protocol for your scenario.
-
-#### Response Protocol
-
-Hosted agents using the Response Protocol display three tabs in the trace details:
-
-- **Traces** — View detailed span information and execution flow
-- **Conversations** — Review the persistent dialogue history between user and agent, including conversation metadata and response details (see [View conversation results](#view-conversation-results))
-- **Sessions** — Analyze individual agent sessions and their execution context
-
-:::image type="content" source="../../media/observability/tracing/hosted-agents-response-protocol.png" alt-text="Screenshot showing the Traces view for a hosted agent using the Response Protocol, displaying Traces, Conversations, and Sessions tabs." lightbox="../../media/observability/tracing/hosted-agents-response-protocol.png":::
-
-#### Invocation Protocol
-
-Hosted agents using the Invocation Protocol display two tabs:
-
-- **Traces** — View detailed span information and execution flow
-- **Sessions** — Analyze individual agent sessions and their execution context
-
-:::image type="content" source="../../media/observability/tracing/hosted-agents-invocation-protocol.png" alt-text="Screenshot showing the Traces view for a hosted agent using the Invocation Protocol, displaying Traces and Sessions tabs." lightbox="../../media/observability/tracing/hosted-agents-invocation-protocol.png":::
-
-#### Both Protocols
-
-When a hosted agent is configured to use both the Response and Invocation protocols, all three tabs (**Traces**, **Conversations**, and **Sessions**) are available in the trace details view. This configuration provides complete visibility into both agent responses and invocation patterns.
 
 ### View traces in Azure Monitor
 
@@ -195,7 +155,6 @@ Foundry stores traces in the Application Insights resource connected to your pro
 | You see authorization errors when you query or view telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Client-side traces don't appear | Instrumentation isn't installed or configured | Recheck your package installation and follow the SDK guidance linked in [Client-side traces with the Microsoft Foundry SDK (Python)](#client-side-traces-with-the-microsoft-foundry-sdk-python). |
 | Sensitive content appears in traces | Prompts, tool arguments, or outputs contain sensitive data | Redact sensitive data before it enters telemetry and follow the guidance in [Security and privacy](#security-and-privacy). |
-| The **Conversations** tab isn't visible for a hosted agent | The agent uses the Invocation Protocol, which doesn't produce conversation records | Confirm the agent's protocol configuration. The **Conversations** tab appears only for agents using the Response Protocol or both protocols. See [Trace tabs for hosted agents](#trace-tabs-for-hosted-agents). |
 
 ## Related content
 
