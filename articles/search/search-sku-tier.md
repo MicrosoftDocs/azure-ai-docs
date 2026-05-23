@@ -22,7 +22,7 @@ When you [create a search service](search-create-service-portal.md), you must ch
 
 Both models provide the same core search features (with a few minor exceptions for the Serverless preview noted below). The primary difference is pricing and scale behavior, not capabilities.
 
-Selecting the Dedicated pricing model requires estimating your workload needs and then [choosing a service tier](#choose-a-service-tier) with the appropriate pre-provisioned capacity.
+Selecting the Dedicated pricing model requires estimating your workload needs and then [choosing a service tier](#tier-descriptions) with the appropriate pre-provisioned capacity.
 
 Selecting the Serverless pricing model does not require selecting a pre-provisioned service tier, but uses consumption-based pricing, so [performance optimization](./serverless-cost-optimization.md) will directly affect cost.
 
@@ -62,7 +62,7 @@ With the Dedicated tiers, you explicitly configure replicas, partitions, and sea
 
 Billing is based on:
 
-- **[Service tier](#choose-a-service-tier)**: The pre-selected provisioned capacity.
+- **[Service tier](#tier-descriptions)**: The pre-selected provisioned capacity.
 - **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You’re billed at a fixed hourly rate based on the number of search units and selected service tier.
 
 This model is designed for workloads with steady, predictable demand, where consistent performance, low latency, and controlled scaling are important.
