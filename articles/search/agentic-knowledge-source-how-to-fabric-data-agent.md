@@ -15,7 +15,9 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see [Transparency note: Azure AI Search](/legal/search/transparency-note).
+> When you connect to Fabric IQ, you may incur costs and data may be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Azure Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 A *Fabric Data Agent knowledge source* (preview) connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. The data agent acts as a virtual analyst, generating and running queries against your live Microsoft Fabric data to return natural-language answers, tables, and charts as grounding data.
 
@@ -38,6 +40,21 @@ Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+## Data governance and compliance
+
+Fabric IQ processes requests within the Microsoft Fabric compliance boundary for your workspace's region. The following commitments apply when you route agent queries through Fabric IQ.
+
+### Data residency
+
+Fabric IQ retrieves and processes data within the region where your Microsoft Fabric workspace resides. Data doesn't cross regional boundaries during query execution. The applicable region and its compliance scope are determined by your workspace location. For the list of supported regions and the compliance frameworks each region satisfies, see [Microsoft Fabric region availability](/fabric/admin/region-availability).
+
+> [!NOTE]
+> If your Azure AI Search service is in a different Azure region than your Fabric workspace, query results are returned cross-region. Review [Microsoft Fabric region availability](/fabric/admin/region-availability) and your organization's data residency requirements before connecting a Fabric workspace in a different region.
+
+### Compliance certifications
+
+Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see [Microsoft Fabric region availability](/fabric/admin/region-availability).
 
 ## Check for existing knowledge sources
 
