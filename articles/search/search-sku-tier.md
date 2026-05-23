@@ -22,7 +22,7 @@ When you [create a search service](search-create-service-portal.md), you must ch
 
 Both models provide the same core search features (with a few minor exceptions for the Serverless preview noted below). The primary difference is pricing and scale behavior, not capabilities.
 
-Selecting the Dedicated pricing model requires estimating your workload needs and then [choosing a service tier](#dedicated-pricing-model---choose-a-service-tier) with the appropriate pre-provisioned capacity.
+Selecting the Dedicated pricing model requires estimating your workload needs and then [choosing a service tier](#choose-a-service-tier) with the appropriate pre-provisioned capacity.
 
 Selecting the Serverless pricing model does not require selecting a pre-provisioned service tier, but uses consumption-based pricing, so [performance optimization](./serverless-cost-optimization.md) will directly affect cost.
 
