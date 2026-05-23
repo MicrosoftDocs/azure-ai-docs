@@ -14,7 +14,7 @@ When you [create a search service](search-create-service-portal.md), you must ch
 
 | Pricing model | Best for | How you're billed |
 | --- | --- | --- |
-| Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#choose-a-service-tier) |
+| Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#tier-descriptions) |
 | Serverless (Preview) | Infrequent, bursty, or highly variable workloads | Consumption-based: measured by [Compute Units](./serverless-cost-optimization.md) (CUs) and indexed storage (GB/month) |
 
 > [!NOTE] 
@@ -76,7 +76,7 @@ In the Dedicated pricing model, the selected service tier determines:
 
 In some cases, the tier also determines the availability of [premium features](#feature-availability-by-tier).
 
-### Choose a service tier
+### Tier descriptions
 
 The most commonly used billable tiers include:
 
