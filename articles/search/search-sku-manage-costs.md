@@ -25,13 +25,15 @@ Azure AI Search has two primary pricing models: Dedicated and Serverless. Both m
 
 Azure AI Search charges are one component of your overall Azure bill. You’re billed for all Azure services and resources used in your subscription, including services outside of Azure AI Search.
 
-For Dedicated services, you can use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs based on your planned [capacity](search-capacity-planning.md) and features. A capacity-planning worksheet can help you model expected index size, indexing throughput, and indexing costs.
+For Dedicated services, use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs based on your planned [capacity](search-capacity-planning.md) and features. A capacity-planning worksheet can help you model expected index size, indexing throughput, and indexing costs.
 
-As your search workload evolves, follow our tips to minimize costs during both deployment and operation. You can also use built-in metrics to monitor query requests and [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) to create budgets, alerts, and data exports.
+As your search workload evolves, follow these tips to minimize costs during both deployment and operation. You can also use built-in metrics to monitor query requests and [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) to create budgets, alerts, and data exports.
 
 ### Dedicated pricing model
 
-When you create or use a Dedicated search service, you're charged for the minimum required replica and partition combination (R × P) at the prorated hourly rate of the service tier that you select. (See [Choose a service tier](search-sku-tier.md)). Each replica and partition combination represents a unit of dedicated capacity.
+When you create or use a Dedicated search service, you pay for the minimum required replica and partition combination (R × P) at the prorated hourly rate of the service tier that you select. Each replica and partition combination represents a unit of dedicated capacity.
+
+For more details on the service tiers available, see [Choose a pricing model and service tier](search-sku-tier.md).
 
 As you increase or decrease the number of replicas or partitions, your total search units change, and costs scale accordingly. For more information and examples, see [Billing rates](search-sku-tier.md#billing-rates).
 
@@ -41,7 +43,7 @@ As you increase or decrease the number of replicas or partitions, your total sea
 
 The Serverless pricing model charges based on usage, with no pre-provisioned or idle capacity. You pay only for the compute resources consumed by operations and the storage used by your indexes.
 
-Unlike the Dedicated model, you don't configure replicas or partitions. Capacity is managed automatically by the service based on workload demand and service limits.
+Unlike the Dedicated model, you don't configure replicas or partitions. The service automatically manages capacity based on workload demand and service limits.
 
 Serverless billing has two independent dimensions:
 
@@ -49,11 +51,11 @@ Serverless billing has two independent dimensions:
   Compute usage is measured in Compute Units per hour (CUs/hr). Compute cost is driven by factors such as query complexity, index size, data volume, and operation type (querying, indexing, or enrichment).
 
 - **Indexed storage:**  
-  Storage is billed per GB per month based on the on-disk size of your indexes. This includes indexed content and supporting data structures used for retrieval.
+  Storage is billed per GB per month based on the on-disk size of your indexes. This size includes indexed content and supporting data structures used for retrieval.
 
 ### How you're charged for premium features
 
-Premium features are charged in addition to the compute and storage charges for your search service, regardless of whether you use the Dedicated or Serverless pricing model.
+Premium features incur charges in addition to the compute and storage charges for your search service, regardless of whether you use the Dedicated or Serverless pricing model.
 
 The following table lists premium features and their billing units. All of these features are optional, so if you don't use them, you don't incur any charges.
 
@@ -93,9 +95,9 @@ Depending on your configuration and usage, the following charges might apply:
 
 ## Estimate and plan costs for the Dedicated pricing model
 
-To estmiate costs for the Dedicated pricing model, you can use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate your baseline costs for Azure AI Search. You can also  find estimated costs and tier comparisons on the [Select Pricing Tier](search-create-service-portal.md#choose-a-tier) page during service creation. 
+To estimate costs for the Dedicated pricing model, use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate your baseline costs for Azure AI Search. You can also find estimated costs and tier comparisons on the [Select Pricing Tier](search-create-service-portal.md#choose-a-tier) page during service creation. 
 
-For initially testing the Dedicated pricing model, we recommend that you create a capacity-planning worksheet. The worksheet helps you understand the index-to-source ratio and the effect of enrichment or vector features on both capacity and cost.
+For initial testing of the Dedicated pricing model, create a capacity-planning worksheet. The worksheet helps you understand the index-to-source ratio and the effect of enrichment or vector features on both capacity and cost.
 
 To create a capacity-planning worksheet:
 
@@ -109,11 +111,11 @@ To create a capacity-planning worksheet:
 
 To estimate and manage costs in Serverless, monitor both compute consumption and index size, and optimize queries and schema design to reduce resource usage.
 
-First index a representative sample, then run typical queries and measure CU consumption via `x-ms-request-charge`. Once you have a consumption average, you can extrapolate costs based on that average. See the guidance for monitoring compute usage in [Optimize costs with the Serverless pricing model](serverless-cost-optimization.md#monitor-compute-usage).
+First index a representative sample, then run typical queries and measure CU consumption via `x-ms-request-charge`. Once you have a consumption average, extrapolate costs based on that average. For guidance on monitoring compute usage, see [Optimize costs with the Serverless pricing model](serverless-cost-optimization.md#monitor-compute-usage).
 
 ## Minimize costs for the Dedicated pricing model
 
-To minimize the costs for the Dedicated pricing model, use the following strategies:
+To minimize costs for the Dedicated pricing model, use the following strategies:
 
 ### Deployment and configuration
 
@@ -121,7 +123,7 @@ To minimize the costs for the Dedicated pricing model, use the following strateg
 
 + Create all related Azure resources in the same region (or as few regions as possible) to minimize or eliminate bandwidth charges.
 
-+ Choose the lightest [pricing tier](search-sku-tier.md) that meets your needs. Basic and S1 offer full access to the modern API at the lowest hourly rate per SU. **For workloads with variable or bursty traffic, the Serverless pricing model may be more cost-effective than a continuously provisioned Basic or S1 service.*
++ Choose the lightest [service tier](search-sku-tier.md) that meets your needs. Basic and S1 offer full access to the modern API at the lowest hourly rate per SU. **For workloads with variable or bursty traffic, the Serverless pricing model might be more cost-effective than a continuously provisioned Basic or S1 service.*
 
 + Use [Azure Web Apps](/azure/app-service/overview) for your front-end application to keep requests and responses within the data center boundary.
 
@@ -147,7 +149,7 @@ To minimize the costs for the Dedicated pricing model, use the following strateg
 
 ## Minimize costs for the Serverless pricing model
 
-To minimize the costs for the Dedicated pricing model, use the following strategies:
+To minimize costs for the Dedicated pricing model, use the following strategies:
 
 - Monitor CU/hr telemetry to identify expensive queries.
 - Use the simplest query type that meets relevance needs.
@@ -166,17 +168,17 @@ How you use these metrics depends on your pricing model:
   Use QPS, latency, and throttling metrics to determine when to add or remove replicas or partitions. Scaling capacity directly affects both performance and cost, so monitoring these signals helps you optimize your search units.
 
 - **Serverless pricing model:**  
-  Use these metrics to understand workload patterns and identify cost drivers. Because Serverless capacity is managed automatically, you don’t scale by adding replicas or partitions. Instead, focus on monitoring compute consumption and optimizing usage.
+  Use these metrics to understand workload patterns and identify cost drivers. Because Serverless capacity is managed automatically, you don't scale by adding replicas or partitions. Instead, focus on monitoring compute consumption and optimizing usage.
 
-For Serverless, you can monitor compute usage per request using the `x-ms-request-charge` response header and analyze query patterns using Azure Monitor logs. Tracking CU consumption by query type or workload helps identify opportunities to reduce cost through query optimization, schema design, or workload distribution.
+For Serverless, you can monitor compute usage per request by using the `x-ms-request-charge` response header and analyze query patterns by using Azure Monitor logs. Tracking CU consumption by query type or workload helps identify opportunities to reduce cost through query optimization, schema design, or workload distribution.
 
-At the subscription or resource group level, [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) provides tools to track, analyze, and control costs. You can use Cost Management to:
+At the subscription or resource group level, [Cost Management](/azure/cost-management-billing/costs/overview-cost-management) provides tools to track, analyze, and control costs. Use Cost Management to:
 
-+ [Create budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that define and track progress against spending limits. For more granular monitoring, customize your budgets using [filters](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) for specific Azure resources or services. Filters help ensure that cost tracking aligns to specific workloads or deployments.
++ [Create budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that define and track progress against spending limits. For more granular monitoring, customize your budgets by using [filters](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) for specific Azure resources or services. Filters help ensure that cost tracking aligns to specific workloads or deployments.
 
 + [Create alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that automatically notify stakeholders of spending anomalies or overspending risks. Alerts are based on spending compared to budget and cost thresholds, and apply at the subscription or resource group level.
 
-+ [Export cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account for deeper analysis. For example, finance teams can analyze exported data using Excel or Power BI. Exporting cost data on a schedule is the recommended method for retrieving cost datasets.
++ [Export cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account for deeper analysis. For example, finance teams can analyze exported data by using Excel or Power BI. Exporting cost data on a schedule is the recommended method for retrieving cost datasets.
 
 ## FAQ
 
@@ -186,18 +188,18 @@ Search runs as a continuous service. Dedicated resources are always operational 
 
 In the Dedicated pricing model, to stop billing entirely, you must delete the service. Deleting a service is permanent and also deletes its associated data.
 
-In the Serverless pricing model, there is no compute charge when idle. You pay only for indexed storage while the service is not processing requests.
+In the Serverless pricing model, there's no compute charge when idle. You pay only for indexed storage while the service isn't processing requests.
 
 **Can I change the pricing model or billing rate (tier) of an existing search service?**
 
-Once you have chosen the Dedicated or Serverless pricing model, you cannot convert your AI Search services between the two.
+After you choose the Dedicated or Serverless pricing model, you can't convert your AI Search services between the two.
 
-If you have chose the Dedicated pricing model, your existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+If you choose the Dedicated pricing model, your existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Related content
 
 - [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/)
 - [Optimize costs with the Serverless pricing model](serverless-cost-optimization.md#monitor-compute-usage)
-- [Choose a pricing tier for Azure AI Search](search-sku-tier.md)
+- [Choose a pricing model and service tier](search-sku-tier.md)
 - [Optimize your cloud investment with Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
 - [Quickstart: Start using Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
