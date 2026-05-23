@@ -84,6 +84,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Use model router with agents
+      displayName: Use model router with Foundry agents
+      href: ../../openai/how-to/model-router-agents.md
     - name: Auto and direct routing with Responses API
       displayName: Auto and direct model routing with the Responses API
       href: ../../openai/how-to/responses-model-routing.md
