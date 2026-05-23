@@ -14,19 +14,23 @@ ms.custom:
 
 # Service limits in Azure AI Search
 
-Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the pricing model of your Azure AI Search service (see [Plan and manage costs](./search-sku-manage-costs.md)).
+Maximum limits on storage, workloads, and quantities of indexes and other objects depend on the pricing model of your Azure AI Search service.
 
-Azure AI Search supports two pricing models, each with associated service tiers. The tier selected will impact the service limits outlined in this guidance.
+Azure AI Search supports two pricing models, each with associated service tiers. The tier you select impacts the service limits outlined in this guidance.
 
-- **[Dedicated](./search-sku-tier.md)**: Fixed pricing measured by Search Units (SUs). Service tier options include: Basic, Standard (S1-S3, including S3 HD), Storage Optimized (L1-L2), and a Free tier with limited search service capabilities.
-- **[Serverless](./serverless-cost-optimization.md) (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. The current preview tier is: Serverless Developer. Limits are defined by per-index caps, per-service object counts, and Serverless throttling behavior. 
+- **Dedicated**: Fixed pricing measured by Search Units (SUs). Service tier options include: Basic, Standard (S1-S3, including S3 HD), Storage Optimized (L1-L2), and a Free tier with limited search service capabilities.
+- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. The current preview tier is: Serverless Developer. Limits are defined by per-index caps, per-service object counts, and Serverless throttling behavior. 
+
+[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
+
+To learn more, see [Choose a pricing model and service tier](search-sku-tier.md).
 
 ## Subscription limits
 <!-- [!INCLUDE [azure-search-limits-per-subscription](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription.md)] -->
 
-You can create multiple *billable* search services (Basic and higher), up to the maximum number of services allowed at each tier, per region. For example, you could create up to 16 services at the Basic tier and another 16 services at the S1 tier within the same subscription and region. You could then create an additional 16 Basic services in another region for a combined total of 32 Basic services under the same subscription. For more information about service tiers, see [Choose a pricing model and service tier](/azure/search/search-sku-tier).
+You can create multiple *billable* search services (Basic and higher), up to the maximum number of services allowed at each tier, per region. For example, you can create up to 16 services at the Basic tier and another 16 services at the S1 tier within the same subscription and region. You can then create an additional 16 Basic services in another region for a combined total of 32 Basic services under the same subscription. For more information about service tiers, see [Choose a pricing model and service tier](/azure/search/search-sku-tier).
 
-Maximum service limits can be raised upon request. If you need more services within the same subscription, [file a support request](/azure/search/search-create-service-portal#add-more-services-to-a-subscription).
+You can raise maximum service limits by request. If you need more services within the same subscription, [file a support request](/azure/search/search-create-service-portal#add-more-services-to-a-subscription).
 
 | Resource | Free <sup>1</sup> | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless Developer |
 | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
@@ -41,16 +45,16 @@ Maximum service limits can be raised upon request. If you need more services wit
 ## Service limits
 <!-- [!INCLUDE [azure-search-limits-per-service](~/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-service.md)] -->
 
-In the Dedicated pricing model, capacity planning is based on replicas multiplied by partitions (search units).
+In the Dedicated pricing model, plan capacity by multiplying replicas by partitions (search units).
 
 | Resource | Free | Basic | S1 | S2 | S3 | S3&nbsp;HD | L1 | L2 | Serverless Developer |
 | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
 | Partitions | N/A | 3 <sup>1</sup> | 12 | 12 | 12 | 3 | 12 | 12 | N/A |
 | Replicas | N/A | 3 | 12 | 12 | 12 | 12 | 12 | 12 | N/A |
 
-<sup>1</sup> Basic tier supports three partitions and three replicas, for a total of nine search units (SU) on [new search services](/azure/search/search-create-service-portal) created after April 3, 2024. Older basic services are limited to one partition and three replicas.
+<sup>1</sup> The Basic tier supports three partitions and three replicas, for a total of nine search units (SU) on [new search services](/azure/search/search-create-service-portal) created after April 3, 2024. Older Basic services are limited to one partition and three replicas.
 
-A search service is subject to a maximum storage limit (partition size multiplied by the number of partitions) or by a hard limit on the [maximum number of indexes](/azure/search/search-limits-quotas-capacity#index-limits) or [indexers](/azure/search/search-limits-quotas-capacity#indexer-limits), whichever comes first.
+A search service is subject to a maximum storage limit (partition size multiplied by the number of partitions) or a hard limit on the [maximum number of indexes](/azure/search/search-limits-quotas-capacity#index-limits) or [indexers](/azure/search/search-limits-quotas-capacity#indexer-limits), whichever limit comes first.
 
 Service-level agreements (SLAs) apply to billable services that have two or more replicas for query workloads, or three or more replicas for query and indexing workloads. The number of partitions isn't an SLA consideration. For more information, see [Reliability in Azure AI Search](/azure/search/search-reliability#high-availability).
 
@@ -58,9 +62,9 @@ Free services don't have fixed partitions or replicas and share resources with o
 
 ### Partition storage (GB)
 
-Per-service storage limits vary by two things: [service creation date](/azure/search/search-how-to-upgrade#check-your-service-creation-or-upgrade-date) and [region](/azure/search/search-region-support). There are higher limits for [newer services](/azure/search/search-create-service-portal) in most supported regions.
+Per-service storage limits vary based on two factors: [service creation date](/azure/search/search-how-to-upgrade#check-your-service-creation-or-upgrade-date) and [region](/azure/search/search-region-support). Most supported regions offer higher limits for [newer services](/azure/search/search-create-service-portal).
 
-This table shows the progression of storage quota increases in GB over time. Starting in April 2024, higher capacity partitions were brought online in the regions listed in the footnotes. If you have an older service in a supported region, check if you can [upgrade your service](/azure/search/search-how-to-upgrade) to the higher storage limits.
+This table shows the progression of storage quota increases in GB over time. Starting in April 2024, higher capacity partitions came online in the regions listed in the footnotes. If you have an older service in a supported region, check if you can [upgrade your service](/azure/search/search-how-to-upgrade) to get higher storage limits.
 
 | Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 | Serverless Developer |
 |---|---|---|---|---|---|---|---|
@@ -69,7 +73,7 @@ This table shows the progression of storage quota increases in GB over time. Sta
 | After May 17, 2024 <sup>2</sup> | 15  | 160 | 512 | 1,024 | **2,048**  | **4,096**  | N/A |
 | After February 10, 2025 <sup>3</sup> | 15  | 160 | 512 | 1,024 | 2,048  | 4,096  | N/A |
 
-<sup>1</sup> Higher capacity storage for Basic, S1, S2, S3 in these regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
+<sup>1</sup> Higher capacity storage for Basic, S1, S2, and S3 in these regions. **Americas**: Brazil South​, Canada Central​, Canada East​​, East US​, East US 2, ​Central US​, North Central US​, South Central US​, West US​, West US 2​, West US 3​, West Central US. **Europe**: France Central​. Italy North​​, North Europe​​, Norway East, Poland Central​​, Switzerland North​, Sweden Central​, UK South​, UK West​. **Middle East**:  UAE North. **Africa**: South Africa North. **Asia Pacific**: Australia East​, Australia Southeast​​, Central India, Jio India West​, East Asia, Southeast Asia​, Japan East, Japan West​, Korea Central, Korea South​.
 
 <sup>2</sup> Higher capacity storage for L1 and L2. More regions provide higher capacity at every billable tier. **Americas:** East US 2 EUAP. **Europe**: Germany North​, Germany West Central, Switzerland West​. **Azure Government**: Texas, Arizona, Virginia. **Africa**: South Africa North​. **Asia Pacific**: China North 3, China East 3.
 
@@ -113,16 +117,16 @@ You might find some variation in maximum limits if your service happens to be pr
 
 ## Document limits
 
-Maximum number of documents per index are:
+Each index supports up to the following number of documents:
 
-+ 24 billion on Basic, S1, S2, S3
++ 24 billion on Basic, S1, S2, and S3
 + 2 billion on S3 HD
 + 288 billion on L1
 + 576 billion on L2
 
-Maximum size of each document is approximately 16 megabytes. Document size is actually a limit on the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document, or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON.
+Each document can be up to approximately 16 megabytes in size. The document size limit actually applies to the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON.
 
-Document size applies to *push mode* indexing that uploads documents to a search service. If you're using an indexer for *pull mode* indexing, your source files can be any file size, subject to [indexer limits](#indexer-limits). For the blob indexer, file size limits are larger for higher tiers. For example, the S1 limit is 128 megabytes, S2 limit is 256 megabytes, and so forth.
+The document size limit applies to *push mode* indexing that uploads documents to a search service. If you're using an indexer for *pull mode* indexing, your source files can be any file size, subject to [indexer limits](#indexer-limits). For the blob indexer, file size limits are larger for higher tiers. For example, the S1 limit is 128 megabytes, the S2 limit is 256 megabytes, and so forth.
 
 When you estimate document size, remember to index only the fields that add value to your search scenarios. Exclude source fields that have no purpose in the queries you intend to run.
 
@@ -140,7 +144,7 @@ Vector limits vary by:
 
 - [Service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date)
 - [Region](search-region-support.md)
-- Pricing model ([Dedicated](./search-sku-tier.md) or [Serverless](./serverless-cost-optimization.md))
+- [Pricing model and service tier selected](search-sku-tier.md)
 
 Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them. If you have an older service in a supported region, check if you can [upgrade your service](search-how-to-upgrade.md) to the higher vector limits.
 
@@ -148,8 +152,8 @@ Higher vector limits from April 2024 onwards exist on *new search services* in r
 In the Serverless pricing model, vector limits are defined per index rather than per partition.
 
 - **Maximum vector index size per index (Serverless):** 300 MB  
-  - This represents approximately **30% of total index storage**, consistent with the vector-to-storage ratio used in Dedicated service tiers.
-  - This is a hard limit per index. Attempts to exceed this limit during indexing will fail.
+  - This size represents approximately **30% of total index storage**, consistent with the vector-to-storage ratio used in Dedicated service tiers.
+  - This size is a hard limit per index. Attempts to exceed this limit during indexing fail.
 
 This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, the total vector quota is 35 multiplied by 6.
 
@@ -191,7 +195,7 @@ This quota is a hard limit to ensure your service remains healthy. Further index
 Maximum running times exist to provide balance and stability to the service as a whole, but larger data sets might need more indexing time than the maximum allows. If an indexing job can't complete within the maximum time allowed, try running it on a schedule. The scheduler keeps track of indexing status. If a scheduled indexing job is interrupted for any reason, the indexer can pick up where it last left off at the next scheduled run.
 
 > [!NOTE]
-> In the Serverless pricing model, indexer behavior differs from Dedicated services. Capacity isn’t defined by replicas or partitions. Instead, indexing limits are governed by per-service object limits, per-index storage caps, and service-level throttling. As a result, some limits (such as maximum execution time) are not fixed values.
+> In the Serverless pricing model, indexer behavior differs from Dedicated services. Capacity isn't defined by replicas or partitions. Instead, per-service object limits, per-index storage caps, and service-level throttling govern indexing limits. As a result, some limits, such as maximum execution time, aren't fixed values.
 
 
 | Resource | Free&nbsp;<sup>1</sup> | Basic&nbsp;<sup>2</sup> | S1 | S2 | S3 | S3&nbsp;HD&nbsp;<sup>3</sup> | L1 | L2 | Serverless Developer |
@@ -246,7 +250,7 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 ## Synonym limits
 
-Maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) would count as 3 expansions.
+The maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) counts as three expansions.
 
 | Resource | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless Developer |
 |---|---|---|----|----|----|-------|----|----| --- |
@@ -255,10 +259,10 @@ Maximum number of synonym maps varies by tier. Each rule can have up to 20 expan
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). On all tiers, if the service was created after October 2022, the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
+The maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). On all tiers, if the service was created after October 2022, the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
 > [!NOTE]
-> The Serverless model Developer tier does not support index aliases.
+> The Serverless model Developer tier doesn't support index aliases.
 
 | Service creation date | Free | Basic | S1 | S2 | S3 | S3 HD |L1 | L2 | Serverless Developer |
 |----------|------|-------|----|----|----|-------|----|----| --- |
@@ -275,9 +279,9 @@ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) specifies 
 |--|--|--|--|--|--|--|--|--|--|
 | Maximum knowledge sources per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
 | Maximum knowledge bases per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
-| Maximum knowledge sources per knowledge base (`minimal`) <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 | TO-DO |
-| Maximum knowledge sources per knowledge base  (`low`) | 3 | 3 | 3 | 3 | 3 | 0 | 3 | 3 | TO-DO |
-| Maximum knowledge sources per knowledge base  (`medium`) | 3 | 5 | 5 | 5 | 5 | 0 | 5 | 5 | TO-DO |
+| Maximum knowledge sources per knowledge base (`minimal`) <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 | 10 |
+| Maximum knowledge sources per knowledge base  (`low`) | 3 | 3 | 3 | 3 | 3 | 0 | 3 | 3 | 3 |
+| Maximum knowledge sources per knowledge base  (`medium`) | 3 | 5 | 5 | 5 | 5 | 0 | 5 | 5 | 5 |
 
 <sup>1</sup> Basic services created before April 3, 2024 have lower limits (5) on knowledge sources and knowledge bases.
 
@@ -301,9 +305,9 @@ Per-knowledge-base limits on knowledge sources depend on the API version used to
 
 Data limits apply to an [AI enrichment pipeline](cognitive-search-concept-intro.md) that makes calls to Azure Language in Foundry Tools for [entity recognition](cognitive-search-skill-entity-recognition-v3.md), [entity linking](cognitive-search-skill-entity-linking-v3.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [sentiment analysis](cognitive-search-skill-sentiment-v3.md), [language detection](cognitive-search-skill-language-detection.md), and [personal-information detection](cognitive-search-skill-pii-detection.md).
 
-The maximum size of a record should be 50,000 characters as measured by [`String.Length`](/dotnet/api/system.string.length). If you need to break up your data before sending it to the sentiment analyzer, use the [Text Split skill](cognitive-search-skill-textsplit.md).
+The maximum size of a record is 50,000 characters as measured by [`String.Length`](/dotnet/api/system.string.length). If you need to break up your data before sending it to the sentiment analyzer, use the [Text Split skill](cognitive-search-skill-textsplit.md).
 
-These limits apply to both Dedicated and Serverless pricing models
+These limits apply to both Dedicated and Serverless pricing models.
 
 ## Throttling limits
 
@@ -312,7 +316,7 @@ Throttling limits help ensure service stability by controlling the rate of API r
 
 In the Dedicated pricing model, throttling is based on search units (replicas × partitions).  
 
-In the Serverless pricing model, throttling isn’t based on search units. Instead, throughput is governed by service-level operation limits and overall consumption behavior. Capacity is managed by usage and service limits, not by configuring replicas and partitions.
+In the Serverless pricing model, throttling isn't based on search units. Instead, service-level operation limits and overall consumption behavior govern throughput. Usage and service limits manage capacity, not the configuration of replicas and partitions.
 
 
 
@@ -332,14 +336,14 @@ In the Serverless pricing model, throttling isn’t based on search units. Inste
 
 #### Semantic ranker throttling limits
 
-[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This system allows search services get the highest number of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
+[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This system allows search services to get the highest number of queries per second possible. When the limit of concurrent requests is reached, the system places additional requests in a queue. If the queue is full, the system rejects further requests and they must be retried.
 
-Total semantic ranker queries per second varies based on the following factors:
+Total semantic ranker queries per second vary based on the following factors:
 
 + The tier of the search service. Both queue capacity and concurrent request limits vary by tier.
 + The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md#how-to-change-capacity).
 + The total available semantic ranker capacity in the region.
-+ The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
++ The amount of time it takes to serve a query using semantic ranker. This time varies based on how busy the search service is.
 
 The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
@@ -350,11 +354,11 @@ The following table describes the semantic ranker throttling limits by tier, sub
 
 ## API request limits
 
-Limits on queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size.
+Limits on queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, design it so it doesn't generate queries of unbounded size.
 
 Limits on payloads exist for similar reasons, ensuring the stability of your search service. The limit applies to the entire request, inclusive of all its components. For example, if the request batches several documents or commands, the entire request must fit within the supported limit.
 
-If you must exceed a supported limit, you should [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
+If you must exceed a supported limit, [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
 
 Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
 
@@ -383,14 +387,14 @@ Search terms:
 
 ## API response limits
 
-+ Maximum 1,000 documents returned per page of search results
-+ Maximum 100 suggestions returned per Suggest API request
++ Each page of search results returns up to 1,000 documents.
++ Each Suggest API request returns up to 100 suggestions.
 
 The search engine returns 50 results by default, but you can [override this parameter](search-pagination-page-layout.md#number-of-results-in-the-response) up to the maximum limit.
 
 ## API key limits
 
-API keys are used for service authentication. There are two types. Admin keys are specified in the request header and grant full read-write access to the service. Query keys are read-only, specified on the URL, and typically distributed to client applications.
+Use API keys for service authentication. Two types of API keys exist. Admin keys, which you specify in the request header, provide full read-write access to the service. Query keys, which you specify on the URL, are read-only and typically distributed to client applications.
 
-+ Maximum of 2 admin keys per service
-+ Maximum of 50 query keys per service
++ Each service supports up to two admin keys.
++ Each service supports up to 50 query keys.
