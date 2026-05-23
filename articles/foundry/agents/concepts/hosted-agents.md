@@ -31,7 +31,7 @@ Choose Hosted agents over prompt-based agents when you need to:
 You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Microsoft Entra ID (agent identity), and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
 > [!IMPORTANT]
-> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that aren't Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs. Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation to use of Third-Party Systems, and you're responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
+> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that aren't Foundry Models sold by Azure ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs. Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. It's your responsibility to manage whether your data flows outside of your organization's Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation to use of Third-Party Systems, and you're responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
 
 ## Key concepts
 
@@ -86,7 +86,7 @@ Every Hosted agent deployed to a Foundry project gets its own **dedicated Micros
 
 The endpoint is available immediately after deployment—publishing isn't required for programmatic access:
 
-- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
+- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
@@ -175,7 +175,26 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
+Hosted agent sandboxes support the following CPU and memory combinations:
+
+| CPU | Memory |
+| --- | --- |
+| 0.5 vCPU | 1 GiB |
+| 1 vCPU | 2 GiB |
+| 2 vCPU | 4 GiB |
+
+### Scaling and right-sizing
+
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+
+Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+
+To right-size, run a representative workload and inspect resource usage in the linked Application Insights resource:
+
+1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
+1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
+
+Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
 
 ### Private networking
 

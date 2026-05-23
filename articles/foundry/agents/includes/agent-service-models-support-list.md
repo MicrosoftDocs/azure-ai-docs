@@ -9,7 +9,7 @@ ms.date: 01/07/2026
 ai-usage: ai-assisted
 ---
 
-**Models sold directly by Azure:**
+**Foundry Models sold by Azure:**
 
 - **MAI-DS-R1**: Deterministic, precision-focused reasoning.
 - **grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.

@@ -3,6 +3,7 @@ title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.date: 05/01/2026
 ms.author: lagayhar
 author: lgayhardt

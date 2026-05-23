@@ -3,13 +3,19 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: A blob knowledge source specifies a blob container that you want to read from. It also includes models and properties for creating an indexer, data source, skillset, and index used for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 05/18/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
 
@@ -43,7 +49,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -53,7 +59,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -63,7 +69,7 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -137,7 +143,7 @@ Run the following code to create a blob knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create a blob knowledge source
@@ -264,7 +270,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create a blob knowledge source
@@ -372,11 +378,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 ### Create a blob knowledge source
-PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2026-05-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
 
@@ -419,7 +425,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -474,11 +480,11 @@ Content-Type: application/json
 ::: zone-end
 
 > [!NOTE]
-> Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2025-11-01-preview API version. 2026-04-01 doesn't support this feature.
+> Document-level permissions enforcement using `ingestionPermissionOptions` requires the 2026-05-01-preview API version. 2026-04-01 doesn't support this feature.
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a blob knowledge source.
+For both the 2026-05-01-preview and 2026-04-01 API versions, you can pass the following properties to create a blob knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -528,7 +534,7 @@ For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the fo
 
 ### Ingestion parameters properties
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 [!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
 
@@ -562,7 +568,9 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 > [!TIP]
-> To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+> + To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+>
+> + To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source and enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Delete a knowledge source
 

@@ -97,6 +97,8 @@ items:
       items:
       - name: REST
         href: search-manage-rest.md
+      - name: Page list API results (preview)
+        href: search-how-to-page-list-results.md
       - name: PowerShell
         href: search-manage-powershell.md
       - name: Azure CLI
@@ -158,7 +160,9 @@ items:
       items:
       - name: Chunk documents
         href: vector-search-how-to-chunk-documents.md
-      - name: Chunk and vectorize by document layout
+      - name: Chunk and vectorize with Content Understanding
+        href: search-how-to-semantic-chunking-content-understanding.md
+      - name: Chunk and vectorize with Document Layout
         href: search-how-to-semantic-chunking.md
       - name: Generate embeddings
         href: vector-search-how-to-generate-embeddings.md
@@ -166,6 +170,8 @@ items:
         href: search-how-to-integrated-vectorization.md
       - name: Use embedding models from Microsoft Foundry
         href: vector-search-integrated-vectorization-ai-studio.md
+      - name: Use Azure API Management with Azure OpenAI skills and vectorizers
+        href: search-how-to-configure-azure-openai-api-management.md
       - name: Reduce vector size
         items:
         - name: Understand vector quotas and limits
@@ -190,6 +196,8 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
+      - name: Indexer execution on Serverless and S3 HD
+        href: search-indexer-high-density-serverless-overview.md
       - name: Create and manage
         items:
         - name: Create an indexer
@@ -481,14 +489,28 @@ items:
         href: agentic-knowledge-source-how-to-search-index.md
       - name: Azure blob
         href: agentic-knowledge-source-how-to-blob.md
+      - name: Azure SQL (preview)
+        href: agentic-knowledge-source-how-to-azure-sql.md
+      - name: File (preview)
+        href: agentic-knowledge-source-how-to-file.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
+      - name: Configure freshness-aware retrieval (preview)
+        href: agentic-retrieval-how-to-configure-freshness.md
     - name: Create a remote source
       items:
+      - name: Fabric Data Agent (preview)
+        href: agentic-knowledge-source-how-to-fabric-data-agent.md
+      - name: Fabric Ontology (preview)
+        href: agentic-knowledge-source-how-to-fabric-ontology.md
+      - name: MCP Server (preview)
+        href: agentic-knowledge-source-how-to-mcp-server.md
       - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
+      - name: Work IQ (preview)
+        href: agentic-knowledge-source-how-to-work-iq.md
       - name: Web
         href: agentic-knowledge-source-how-to-web.md
       - name: Manage web access
@@ -499,6 +521,8 @@ items:
       href: agentic-retrieval-how-to-create-knowledge-base.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Enable image serving (preview)
+      href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base via APIs or MCP
@@ -566,7 +590,7 @@ items:
       href: search-document-level-access-overview.md
     - name: Use security filters
       href: search-security-trimming-for-azure-search.md
-    - name: ACLs or RBAC scopes
+    - name: ACLs or RBAC scopes (preview)
       items:
       - name: Push document-level permissions to an index
         href: search-index-access-control-lists-and-rbac-push-api.md
@@ -580,9 +604,9 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
-    - name: Sensitivity labels
+    - name: Microsoft Purview sensitivity labels (preview)
       items:
-      - name: Pull Purview sensitivity labels into an index
+      - name: Pull sensitivity labels into an index
         href: search-indexer-sensitivity-labels.md
       - name: Query honoring sensitivity labels
         href: search-query-sensitivity-labels.md

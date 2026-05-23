@@ -68,7 +68,7 @@ Use these links to jump directly to sections that address common permission issu
 - **Agent can't pull images at runtime**: See [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent interaction fails**: See [Agent interaction](#agent-interaction)
 - **Role assignment fails**: See [Creating that role assignment requires](#azure-resource-setup) sections and [Connections setup](#connections-setup)
-- **Can't publish agent to Teams or M365 Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
+- **Can't publish agent to Teams or Microsoft 365 Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
 
 ## Hosted agent solution architecture
 
@@ -97,8 +97,6 @@ Role assignments:
 Optional (Teams / M365 Copilot publishing):
 └── Azure Bot Service → connected to agent application (Channels auth mode)
 ```
-
-[!INCLUDE [role-rename-note-code](../../includes/role-rename-note-code.md)]
 
 The diagram above shows how resources are organized hierarchically and which role assignments enable communication between them. The following sections provide detailed configuration requirements for each component.
 

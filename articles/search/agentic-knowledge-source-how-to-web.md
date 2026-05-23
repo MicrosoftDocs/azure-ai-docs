@@ -11,6 +11,13 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a Web Knowledge Source resource
 
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+
 > [!IMPORTANT]
 > + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/privacy/privacystatement).
 >
@@ -19,8 +26,6 @@ zone_pivot_groups: search-csharp-python-rest
 > + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
 >
 > + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md).
-
-[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 *Web Knowledge Source* enables retrieval of real-time web data from Microsoft Bing in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
 
@@ -42,11 +47,13 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ::: zone pivot="csharp"
 
 + Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -56,7 +63,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -66,7 +73,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -78,7 +85,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + For the 2026-04-01 API version, the knowledge base must include a model reference to provide the LLM for web content summarization. Retrieval is always extractive (cited summaries). Answer synthesis and configurable reasoning effort aren't available in this version.
 
-+ For the 2025-11-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
++ For the 2026-05-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
 
 ## Check for existing knowledge sources
 
@@ -104,7 +111,7 @@ Run the following code to create a web knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create Web Knowledge Source
@@ -180,7 +187,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create Web Knowledge Source
@@ -242,11 +249,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 ### Create Web Knowledge Source
-PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 
@@ -264,7 +271,7 @@ api-key: {{api-key}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -296,7 +303,7 @@ api-key: {{api-key}}
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a web knowledge source.
+For the 2026-05-01-preview and 2026-04-01 API versions, you can pass the following properties to create a web knowledge source.
 
 ::: zone pivot="csharp"
 

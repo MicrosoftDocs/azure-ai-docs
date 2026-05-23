@@ -7,6 +7,7 @@ ms.author: sgilley
 ms.reviewer: shwinne
 ms.date: 03/03/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---

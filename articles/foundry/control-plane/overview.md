@@ -1,6 +1,7 @@
 ---
 title: "What is Microsoft Foundry Control Plane?"
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: concept-article
 ms.date: 05/06/2026
 ms.reviewer: mesameki

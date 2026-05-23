@@ -7,7 +7,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 10/30/2025
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Chunk large documents for RAG and vector search in Azure AI Search
@@ -19,7 +20,7 @@ Chat completion models have the same input token restrictions, so chunking is he
 Azure AI Search has built-in solutions for chunking content, and also for vectorizing chunked content if you're using vector search. The built-in approach takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](vector-search-integrated-vectorization.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
 
 > [!TIP]
-> If you're chunking content for agentic retrieval, several knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure blob](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
+> If you're chunking content for agentic retrieval, multiple knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and index are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure Blob Storage or Azure Data Lake Storage Gen2](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
 
 ## Common chunking techniques
 
@@ -30,7 +31,7 @@ Here are some common chunking techniques, associated with built-in features if y
 | Approach | Usage | Built-in functionality |
 |----------|-------|-----------------|
 | Fixed-size chunks | Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words or 600 characters) and allows for some overlap (for example, 10-15% of the content) can produce good chunks as input for embedding vector generators. | [Text Split skill](cognitive-search-skill-textsplit.md), splitting by pages (defined by character length) |
-| Variable-sized chunks based on content characteristics | Partition your data based end-of-sentence punctuation marks, end-of-line markers, or using features in the Natural Language Processing (NLP) libraries that detect document structure. Embedded markup, like HTML or Markdown, have heading syntax that can be used to chunk data by sections. | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) or [Text Split skill](cognitive-search-skill-textsplit.md) (splitting by sentences). |
+| Variable-sized chunks based on content characteristics | Partition your data based end-of-sentence punctuation marks, end-of-line markers, or using features in the Natural Language Processing (NLP) libraries that detect document structure. Embedded markup, like HTML or Markdown, have heading syntax that can be used to chunk data by sections. | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) or [Text Split skill](cognitive-search-skill-textsplit.md) (splitting by sentences). |
 | Semantic chunks | Break content into meaningful units that preserve context and semantic relationships across sentences and paragraphs. This approach produces chunks that better maintain semantic coherence and can span page boundaries. | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) (semantic chunking with markdown output) |
 | Custom combinations | Use a combination of fixed and variable sized chunking, or extend an approach. For example, when dealing with large documents, you might use variable-sized chunks, but also append the document title to chunks from the middle of the document to prevent context loss. | None |
 | Document parsing | Indexers can parse larger source documents into smaller search documents for indexing. Strictly speaking, this approach isn't *chunking* but it can sometimes achieve the same objective. | [Index Markdown blobs and files](search-how-to-index-azure-blob-markdown.md), [one-to-many indexing](search-how-to-index-azure-blob-one-to-many.md), or [Index JSON blobs and files](search-how-to-index-azure-blob-json.md) |
