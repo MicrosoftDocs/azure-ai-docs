@@ -291,7 +291,7 @@ In practice, this scenario only happens when on-demand indexers are manually inv
 
 ## Parallel indexing
 
-When multiple indexers are operating simultaneously, it's typical for some to enter a queue, waiting for available resources to begin execution. The number of indexers that can run concurrently depends on several factors. If the indexers aren't linked with [skillsets](cognitive-search-working-with-skillsets.md), the capacity to run in parallel relies on the number of [replicas and partitions](search-capacity-planning.md#concepts-search-units-replicas-partitions) set up in the AI Search service.
+When multiple indexers are operating simultaneously, it's typical for some to enter a queue, waiting for available resources to begin execution. The number of indexers that can run concurrently depends on several factors. If the indexers aren't linked with [skillsets](cognitive-search-working-with-skillsets.md), the capacity to run in parallel relies on the number of [replicas and partitions](search-capacity-planning.md) set up in the AI Search service.
 
 On the other hand, if an indexer is associated with a skillset, it operates within the AI Search's internal clusters. The ability to run concurrently in this case is determined by the complexity of the skillset and whether other skillsets are running simultaneously. Built-in indexers are designed to reliably extract data from the source, so no data is missed if running on a schedule. However, it's expected that the indexer processes of parallelization and scaling out require some time to complete. 
 

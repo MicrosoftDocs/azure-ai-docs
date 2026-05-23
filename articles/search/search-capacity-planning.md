@@ -53,7 +53,7 @@ In the Dedicated model, you provision capacity by using **Search Units (SU)**:
 - **Replica**: Copies of the search engine. Provides query throughput and high availability.
 - **Partition**: Units of storage. Provides storage and indexing throughput.
 
-Each service starts with 1 replica × 1 partition (1 SU). You can add or remove replicas and partitions independently to accommodate fluctuating workloads. Adding capacity increases the [cost of running a search service](search-sku-manage-costs.md#billable-events).
+Each service starts with 1 replica × 1 partition (1 SU). You can add or remove replicas and partitions independently to accommodate fluctuating workloads. Adding capacity increases the [cost of running a search service](search-sku-manage-costs.md).
 
 | Concept | Definition |
 | --- | --- |
@@ -61,7 +61,7 @@ Each service starts with 1 replica × 1 partition (1 SU). You can add or remove 
 | *Replica* | Instances of the search service, used primarily to load balance query operations. Each replica hosts one copy of an index. If you allocate three replicas, you have three copies of an index available for servicing query requests. |
 | *Partition* | Physical storage and I/O for read/write operations (for example, when rebuilding or refreshing an index). Each partition has a slice of the total index. If you allocate three partitions, your index is divided into thirds. |
 
-Review the [partitions and replicas table](#partition-and-replica-combinations-for-the-dedicated-model) for possible combinations that stay under the 36 unit limit.
+Review the [partitions and replicas table](#partition-and-replica-combinations) for possible combinations that stay under the 36 unit limit.
 
 The physical characteristics of replicas and partitions, such as processing speed and disk IO, vary by [service tier](search-sku-tier.md). On a standard search service, the replicas and partitions are faster and larger than those of a basic service.
 
@@ -101,15 +101,15 @@ For service limits and valid scaling ranges, see:
 - [Choose a pricing model and service tier](search-sku-tier.md)
 
 > [!NOTE]
-> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [partition and replica combinations table](#partition-and-replica-combinations-for-the-dedicated-model) can help you cross-reference the number of search units required for a specific configuration. For more information on how extra replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
+> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [partition and replica combinations table](#partition-and-replica-combinations) can help you cross-reference the number of search units required for a specific configuration. For more information on how extra replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
 
-### How to manage and adjust capacity for the Dedicated model
+### How to manage and adjust capacity
 
 Changing capacity isn't instantaneous. Depending on data volume and operation type, scaling can take from minutes to several hours.
 
 When scaling a search service, you can choose from the following tools and approaches:
 
-- [Azure portal](#add-or-remove-partitions-and-replicas-for-the-dedicated-model)
+- [Azure portal](#add-or-remove-partitions-and-replicas)
 - [Azure PowerShell](search-manage-powershell.md#scale-replicas-and-partitions)
 - [Azure CLI](/cli/azure/search/service#az-search-service-create-optional-parameters)
 - [Management REST API](/rest/api/searchmanagement/services/create-or-update)
@@ -119,10 +119,10 @@ When scaling a search service, you can choose from the following tools and appro
 
 To increase or decrease the capacity of your service, you have two options:
 
-- [Add or remove partitions and replicas](#add-or-remove-partitions-and-replicas-for-the-dedicated-model)
-- [Change your pricing tier](#change-your-pricing-tier-for-the-dedicated-model)
+- [Add or remove partitions and replicas](#add-or-remove-partitions-and-replicas)
+- [Change your pricing tier](#change-your-pricing-tier)
 
-#### Add or remove partitions and replicas for the Dedicated model
+#### Add or remove partitions and replicas
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
@@ -150,12 +150,12 @@ To increase or decrease the capacity of your service, you have two options:
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
 
-### Change your pricing tier for the Dedicated model
+### Change your pricing tier
 
 > [!NOTE]
 > The Azure portal and [Services - Update (REST API)](/rest/api/searchmanagement/services/update) support changes between Basic and Standard (S1, S2, and S3) tiers. You can upgrade or downgrade tiers, provided your current service configuration doesn't exceed the [limits of the target tier](search-limits-quotas-capacity.md). Your region also can't have [capacity constraints on the target tier](search-region-support.md).
 
-Your pricing tier determines the maximum storage of your search service. If you need more or less capacity, you can switch to a different pricing tier that accommodates your storage needs.
+Your pricing tier determines the maximum storage of your search service for the Dedicated pricing model. If you need more or less capacity, you can switch to a different pricing tier that accommodates your storage needs. (This applies only to the Dedicated pricing model tiers. The Serverless model Deverloper tier can't be changed once selected).
 
 In addition to capacity, pricing tiers determine limits on indexes, indexers, and other search objects. Compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier before you proceed. Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier has the opposite effect.
 
@@ -213,7 +213,7 @@ The following table lists causes and solutions for errors that can occur during 
 
 <sup>2</sup> If your search service appears to be stalled in a provisioning state, check for orphaned indexes that are unusable, with zero query volumes and no index updates. An unusable index can block changes to service capacity. In particular, look for [CMK-encrypted](search-security-manage-encryption-keys.md) indexes whose keys are no longer valid. Either delete the index or restore the keys to bring the index back online and unblock your scaling operation.
 
-### Partition and replica combinations for the Dedicated model
+### Partition and replica combinations
 
 The following chart applies to Standard tier and higher. It shows all possible combinations of partitions and replicas, subject to the 36 search unit maximum per service. 
 

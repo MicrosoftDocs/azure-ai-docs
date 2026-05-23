@@ -23,7 +23,7 @@ This article is a collection of tips and best practices for boosting query and i
 
 ## Index size and schema
 
-Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), or [switching to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
+Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md), or [switching to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
 
 Schema complexity can also adversely affect indexing and query performance. Excessive field attribution builds in limitations and processing requirements. [Complex types](search-howto-complex-data-types.md) take longer to index and query. The next few sections explore each condition.
 
@@ -94,7 +94,7 @@ When query performance is slowing down in general, adding more replicas frequent
 
 One positive side-effect of adding partitions is that slower queries sometimes perform faster due to parallel computing. We've noted parallelization on low selectivity queries, such as queries that match many documents, or facets providing counts over a large number of documents. Since significant computation is required to score the relevancy of the documents, or to count the numbers of documents, adding extra partitions helps queries complete faster.  
 
-To add partitions, use the [Azure portal](search-capacity-planning.md#add-or-remove-partitions-and-replicas), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
+To add partitions, use the [Azure portal](search-capacity-planning.md), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
 
 ## Service capacity
 

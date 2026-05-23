@@ -106,7 +106,7 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 AI enrichment is available in regions that offer Foundry Tools. To check the availability of AI enrichment, see the [regions list](search-region-support.md).
 
-Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Foundry Models resource or Foundry resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
+Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Foundry Models resource or Foundry resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [Plan and manage costs of an Azure AI Search service](search-sku-manage-costs.md).
 
 ## Checklist: A typical workflow
 

@@ -341,7 +341,7 @@ In the Serverless pricing model, throttling isn't based on search units. Instead
 Total semantic ranker queries per second vary based on the following factors:
 
 + The tier of the search service. Both queue capacity and concurrent request limits vary by tier.
-+ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md#how-to-change-capacity).
++ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md).
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This time varies based on how busy the search service is.
 
