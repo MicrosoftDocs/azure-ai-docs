@@ -25,14 +25,12 @@ Personal voice projects contain the user consent statement and the personal voic
 
 To create a personal voice fine-tuning project in the Microsoft Foundry portal, follow these steps:
 
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. In the upper right, select **Build**, and then select **Models** from the left pane.
-1. Select the **AI Services** tab.
-1. Select **Azure Speech - Text to Speech**.
-1. In the upper right, select **Fine-tune**. The **Fine-tune a model** wizard opens.
+1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](../../ai-foundry/how-to/create-projects.md).
+1. Select **Fine-tuning** from the left pane.
+1. Select the **AI Service** tab, and then select the **Fine-tune** button. The **Fine-tune a model** wizard opens.
 1. On the **Basic details** pane of the wizard:
-   - Verify that **Select model** is set to the personal voice model.
-   - Verify that **Type** is set to **Personal voice**.
+   - Select **Azure Speech - Text to Speech** as the model to fine-tune.
+   - Set **Type** to **Personal voice**.
    - Enter a **Name** and **Description** for the fine-tuning task.
    - Select the **Language** of the voice you want to create.
 1. Select **Next**.

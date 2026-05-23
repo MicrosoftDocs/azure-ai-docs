@@ -17,17 +17,23 @@ ai-usage: ai-assisted
 
 # Add user consent to the personal voice project
 
-With the personal voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
+A voice talent is the individual or target speaker whose voice is recorded and used to create personal voice profiles. With the personal voice feature, every voice must be created with explicit consent from the voice talent. A recorded statement from the voice talent is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) creates and uses their voice. The consent statement is also used to verify that the voice talent is the same person as the speaker in the fine-tuning data.
+
+> [!TIP]
+> Before you get started, learn how to [define and record your voice samples](./record-custom-voice-samples.md). See also the [responsible AI disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
 ## Consent statement
 
-You need an audio recording of the user speaking the consent statement.
+You need an audio recording of the voice talent speaking the consent statement. The language of the verbal statement must match the language of your training data.
 
 You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. The following example is for the `en-US` locale:
 
 ```
 "I [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
 ```
+
+> [!TIP]
+> For a sample consent statement and training data, see the [Custom Voice sample data](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data) on GitHub.
 
 ### Supported audio formats for consent audio
 
@@ -44,7 +50,7 @@ See the following table for the supported formats for consent audio files:
 
 These steps continue from the **Fine-tune a model** wizard you opened in [Create a personal voice project](./personal-voice-create-project.md).
 
-1. On the **Register voice talent** pane of the wizard, select **Add voice talent**, and then select one of the following options:
+1. On the **Register voice talent** pane of the wizard, select an existing voice talent, or select **+ New data** to add a new one. When you add new data, select one of the following options:
 
    - **Upload data** to upload a prerecorded consent statement audio file.
    - **Record data** to record the consent statement directly in the portal.
@@ -77,7 +83,7 @@ These steps continue from the **Fine-tune a model** wizard you opened in [Create
 1. Press the microphone button to start recording. Have the voice talent read the consent statement, then stop the recording.
 1. Review the recording and submit it.
 
-After you add the voice talent, select them on the **Register voice talent** pane, and then select **Next** to continue to the **Training data** step in [Get a speaker profile ID](./personal-voice-create-voice.md).
+After you add the voice talent and the status is **Succeeded**, select them on the **Register voice talent** pane, and then select **Next** to continue to the **Training data** step in [Get a speaker profile ID](./personal-voice-create-voice.md).
 
 ::: zone-end
 
