@@ -2085,8 +2085,6 @@ groups:
     title: Python
   - id: rest-api
     title: REST API
-  - id: azd
-    title: azd (deploy)
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?

@@ -133,29 +133,6 @@ Content-Type: application/json
 
 :::zone-end
 
-
-:::zone pivot="azd"
-
-In `agent.yaml`, add `type: toolbox_search_preview` to your toolbox version's tools list:
-
-```yaml
-resources:
-  - kind: toolbox
-    name: my-toolbox
-    tools:
-      - type: toolbox_search_preview
-      - type: mcp
-        server_label: github
-        server_url: https://api.githubcopilot.com/mcp
-        require_approval: never
-        project_connection_id: github-mcp-conn
-        description: Access GitHub repositories, issues, and pull requests
-```
-
-For the full `azd` workflow, see [Deploy with azd](toolbox.md#deploy-with-azd).
-
-:::zone-end
-
 ## Verify tool search is active
 
 Use the version-specific endpoint to confirm that `tool_search` appears in `tools/list` and that no other toolbox tools are exposed in the initial listing.
@@ -243,13 +220,6 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 
 :::zone-end
 
-:::zone pivot="azd"
-
-> [!NOTE]
-> Use the REST API tab or the Python MCP client SDK to verify tool availability after deployment.
-
-:::zone-end
-
 ## Fine-tune tool discovery
 
 Tool search works without additional configuration. For predictable usage patterns, you can tune how specific tools are surfaced and indexed.
@@ -296,21 +266,6 @@ tools=[
 
 :::zone-end
 
-:::zone pivot="azd"
-
-```yaml
-tools:
-  - type: toolbox_search_preview
-  - type: mcp
-    server_label: analytics
-    server_url: https://db-mcp.internal/sse
-    tool_configs:
-      execute_query:
-        pin: true
-```
-
-:::zone-end
-
 ### Add search keywords
 
 If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords with `additional_search_text`. The extra text is used only for search ranking—it's never exposed to the model in the tool schema.
@@ -353,22 +308,6 @@ If a tool's MCP description doesn't match the vocabulary users naturally use, ad
     }
   }
 }
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-```yaml
-- type: mcp
-  server_label: analytics
-  server_url: https://db-mcp.internal/sse
-  tool_configs:
-    execute_query:
-      pin: true
-      additional_search_text: "SQL database analytics reporting dashboard queries"
-    list_tables:
-      additional_search_text: "schema columns metadata table structure discover"
 ```
 
 :::zone-end
