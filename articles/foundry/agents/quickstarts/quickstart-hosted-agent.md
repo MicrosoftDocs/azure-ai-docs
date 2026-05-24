@@ -134,7 +134,7 @@ This step takes a few minutes and creates the following resources. To run provis
     azd ai agent run
     ```
 
-    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`.
+    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are non-blocking. The agent starts and responds correctly despite them.
 
 1. In a separate terminal, send a test prompt:
 
@@ -152,7 +152,7 @@ Build and deploy the agent container:
 azd deploy
 ```
 
-The container is built remotely, so Docker Desktop isn't required locally. When the command finishes, the output shows links to the agent playground and the agent endpoint:
+When the command finishes, the output shows links to the agent playground and the agent endpoint:
 
 ```output
 Deploying services (azd deploy)
