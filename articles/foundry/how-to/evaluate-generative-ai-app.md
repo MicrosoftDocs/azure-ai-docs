@@ -3,6 +3,7 @@ title: "Run evaluations from the Microsoft Foundry portal"
 description: "Evaluate your generative AI models and agents by using Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
@@ -56,7 +57,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 - **Synthetic dataset generation**: Generate a synthetic dataset when you don't have test data. Specify the resource, the number of rows, and a prompt that describes the data to generate. You can also upload files to improve relevance.
 
 > [!NOTE]
-> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
+> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#supported-regions).
 
 #### Multimodal content (preview)
 

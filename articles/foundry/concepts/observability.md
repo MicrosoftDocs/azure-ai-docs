@@ -7,6 +7,7 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 04/03/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: concept-article
 ms.custom:
   - classic-and-new

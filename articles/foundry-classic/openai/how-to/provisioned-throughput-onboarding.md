@@ -3,7 +3,7 @@ title: "Provisioned throughput unit (PTU) costs and billing (classic)"
 description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 04/29/2026
 manager: nitinme
@@ -75,7 +75,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 [!INCLUDE [provisioned-throughput-onboarding 3](../../../foundry/openai/includes/how-to-provisioned-throughput-onboarding-3.md)]
 
-## Direct from Azure models
+## Foundry Models sold by Azure
 
 |Topic| **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 |---|---|---|---|---|
