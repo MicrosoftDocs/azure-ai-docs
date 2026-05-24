@@ -39,6 +39,9 @@ When you connect your Foundry agent to Fabric IQ by registering it as a server-s
 
 ## Prerequisites
 
+> [!NOTE]
+> Virtual network (VNet) integration is not supported. Your Foundry project must not use a VNet-restricted endpoint.
+
 Before you begin, make sure you have:
 
 - A [Microsoft Fabric license](https://www.microsoft.com/microsoft-fabric) that grants access to the Fabric items your agent queries. Users who invoke Fabric IQ through your agent must also have this license.
