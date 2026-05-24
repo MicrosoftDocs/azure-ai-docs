@@ -27,6 +27,9 @@ zone_pivot_groups: hosted-agent-deploy-method
 Choose your preferred development experience to get started, VS Code or CLI.
 
 > [!NOTE]
+> This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.27-preview or later.
+> For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
+>
 > Hosted agents are currently in preview.
 
 ## Prerequisites
