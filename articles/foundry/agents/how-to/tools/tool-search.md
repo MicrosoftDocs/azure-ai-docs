@@ -226,7 +226,7 @@ Tool search works without additional configuration. For predictable usage patter
 
 ### Pin critical tools
 
-Use `pin` to make a specific tool always appear in `tools/list` alongside `tool_search` and `call_tool`. Pinned tools are callable immediately without a search round-trip.
+Use `pin` to make a specific tool always appear in `tools/list` alongside `tool_search` and `call_tool`. Pinned tools are callable immediately without a search round-trip. To pin every tool in an MCP server or built-in tool entry, use `"*"` as the key.
 
 :::zone pivot="python"
 
@@ -261,6 +261,38 @@ tools=[
       }
     }
   ]
+}
+```
+
+:::zone-end
+
+To pin every tool in an entry, use `"*"` as the key:
+
+:::zone pivot="python"
+
+```python
+{
+    "type": "mcp",
+    "server_label": "analytics",
+    "server_url": "https://db-mcp.internal/sse",
+    "tool_configs": {
+        "*": {"pin": True},  # every tool in this server is always visible
+    },
+}
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "type": "mcp",
+  "server_label": "analytics",
+  "server_url": "https://db-mcp.internal/sse",
+  "tool_configs": {
+    "*": { "pin": true }
+  }
 }
 ```
 
@@ -331,7 +363,7 @@ Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to ena
 
 ### `tool_configs` (per-tool)
 
-Set `tool_configs` on an individual MCP tool entry to control how specific tools behave within the search context.
+Set `tool_configs` on an individual MCP tool entry to control how specific tools behave within the search context. Use an exact tool name as the key to configure a specific tool, or `"*"` to apply the configuration to all tools in that entry.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
