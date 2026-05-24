@@ -63,6 +63,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
 ## Prerequisites
 
@@ -557,7 +558,7 @@ For version-specific validation before you promote a new toolbox version, use th
 **Check - `tools/call`**:
 
 - No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
-  - `-32006` → OAuth consent required (extract URL from `error.message`).
+  - `-32007` → OAuth consent required (extract URL from `error.message`).
   - Other codes → server-side failure.
 - `result.content[]` contains entries with `"type": "text"` - this is the tool output.
 - For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
@@ -1713,12 +1714,12 @@ resources:
 :::zone-end
 
 > [!IMPORTANT]
-> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32007`) with a consent URL:
 >
 > ```json
 > {
 >   "error": {
->     "code": -32006,
+>     "code": -32007,
 >     "message": "User consent is required. Please visit: https://..."
 >   }
 > }
@@ -2556,6 +2557,38 @@ resources:
 
 :::zone-end
 
+### [Tool Search](tool-search.md)
+
+Use this pattern to enable intent-based tool routing. When `toolbox_search_preview` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Toolbox with intent-based tool routing",
+  "tools": [
+    {
+      "type": "toolbox_search_preview"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {"type": "toolbox_search_preview"}
+]
+```
+
+:::zone-end
+
+> [!NOTE]
+> `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
+
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2565,7 +2598,7 @@ resources:
 | `tools/list` returns fewer tools than expected | The `allowed_tools` filter contains incorrect or misspelled tool names. Tool names are case-sensitive and must follow the [MCP specification for tool names](https://modelcontextprotocol.io/specification/2025-03-26/server/tools) (no whitespace or special characters). | Remove `allowed_tools` temporarily and call `tools/list` to get the full tool list. Use the exact names from the response to set values for `allowed_tools`. |
 | `tools/list` returns zero tools (other tool types) | Toolbox not fully provisioned or tool type unsupported in region. For built-in tools (Web Search, AI Search, Code Interpreter, File Search), tool manifests are constructed server-side and don't require auth — if they return empty, the toolbox version might not be provisioned yet. | Wait 10 seconds and retry. |
 | `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools. |
-| `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
+| `CONSENT_REQUIRED` (code `-32007`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
 | `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
 | Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`). |
 | `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Don't call `send_ping()`. If your framework calls it automatically (for example, Microsoft Agent Framework's `MCPStreamableHTTPTool._ensure_connected()`), disable the ping check or override the method with a no-op. |
