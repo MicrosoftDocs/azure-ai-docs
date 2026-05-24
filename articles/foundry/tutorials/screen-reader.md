@@ -1,10 +1,10 @@
 ---
 title: "Use a screen reader with Microsoft Foundry"
-description: "This quickstart guides you in how to get oriented and navigate Microsoft Foundry with a screen reader."
+description: "Learn how to get oriented and navigate Microsoft Foundry with a screen reader."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 12/09/2025
+ms.date: 05/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
@@ -109,6 +109,12 @@ To export results:
 1. Navigate to **Raw JSON** and select it.
 1. Select **Copy JSON** to copy.
 1. Select **Close** to close the dialog.
+
+To compare evaluation runs:
+
+1. Return to the main evaluations list.
+1. Select multiple evaluation runs.
+1. Select **Compare** to open a comparison view.
 
 ## Verify your navigation setup
 
