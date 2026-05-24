@@ -697,7 +697,7 @@ agent = Agent(
 )
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complete implementation.
+<!-- TODO: Add link to full Copilot SDK sample when aka.ms/foundry-toolbox-copilotsdk is published -->
 
 :::zone-end
 
