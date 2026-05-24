@@ -2593,7 +2593,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
-| [Fabric IQ](fabric-iq.md) | ❌ Not supported | External service; requires public endpoint |
+| Fabric IQ | ❌ Not supported | External service; requires public endpoint |
 | [Work IQ](work-iq.md) | ❌ Not supported | External service; requires public endpoint |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
