@@ -18,9 +18,9 @@ zone_pivot_groups: selection-foundry-tool-search
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-When a toolbox contains many tools, listing all of them at once in `tools/list` can overwhelm the model's context window and reduce the quality of tool selection. Tool search solves this by giving the model a built-in search function that dynamically discovers the right tools for the current task.
+When a toolbox contains many tools, passing all tool definitions to the model on every turn creates three compounding problems: token costs grow with every tool added to the context, the context window fills with definitions the current task doesn't need, and the model picks the wrong tools from an overcrowded list. Tool search solves this by replacing the full tool list with two focused meta-tools—keeping cost flat regardless of toolbox size.
 
-When tool search is enabled, the model receives a built-in `tool_search` function it can call with a natural-language query. Foundry evaluates the query against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
+When tool search is enabled, the model receives two built-in meta-tools: `tool_search`, which it calls with a natural-language description of the capability it needs, and `call_tool`, which it uses to invoke any discovered tool by name. Foundry evaluates `tool_search` queries against the full set of tools in the toolbox and returns only the ones that match, keeping the active context focused and relevant.
 
 Use tool search when:
 
@@ -35,7 +35,12 @@ Use tool search when:
 
 ## How tool search works
 
-When you include `{"type": "toolbox_search_preview"}` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects a single `tool_search` function. The model calls `tool_search` with a natural-language description of the capability it needs. Foundry evaluates the query against every tool in the toolbox and returns the matching tool definitions, making them immediately callable by the model.
+When you include `{"type": "toolbox_search_preview"}` in a toolbox, all tools in the toolbox are hidden from the initial `tools/list` response. Instead, Foundry injects two meta-tools:
+
+- `tool_search` — the model calls this with a natural-language description of the capability it needs. Foundry evaluates the query and returns the matching tool definitions.
+- `call_tool` — the model uses this to invoke any discovered tool by name.
+
+The model doesn't browse a full tool list—it describes intent, discovers the right tools, and calls them.
 
 The `tool_search` function accepts the following parameters:
 
@@ -244,15 +249,155 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 > Use the REST API tab or the Python MCP client SDK to verify tool availability after deployment.
 
 :::zone-end
+
+## Fine-tune tool discovery
+
+Tool search works without additional configuration. For predictable usage patterns, you can tune how specific tools are surfaced and indexed.
+
+### Pin critical tools
+
+Use `pin` to make a specific tool always appear in `tools/list` alongside `tool_search` and `call_tool`. Pinned tools are callable immediately without a search round-trip.
+
+:::zone pivot="python"
+
+```python
+tools=[
+    {"type": "toolbox_search_preview"},
+    {
+        "type": "mcp",
+        "server_label": "analytics",
+        "server_url": "https://db-mcp.internal/sse",
+        "tool_configs": {
+            "execute_query": {"pin": True},  # always visible — no search needed
+        },
+    },
+]
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "tools": [
+    { "type": "toolbox_search_preview" },
+    {
+      "type": "mcp",
+      "server_label": "analytics",
+      "server_url": "https://db-mcp.internal/sse",
+      "tool_configs": {
+        "execute_query": { "pin": true }
+      }
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+tools:
+  - type: toolbox_search_preview
+  - type: mcp
+    server_label: analytics
+    server_url: https://db-mcp.internal/sse
+    tool_configs:
+      execute_query:
+        pin: true
+```
+
+:::zone-end
+
+### Add search keywords
+
+If a tool's MCP description doesn't match the vocabulary users naturally use, add keywords with `additional_search_text`. The extra text is used only for search ranking—it's never exposed to the model in the tool schema.
+
+:::zone pivot="python"
+
+```python
+{
+    "type": "mcp",
+    "server_label": "analytics",
+    "server_url": "https://db-mcp.internal/sse",
+    "tool_configs": {
+        "execute_query": {
+            "pin": True,
+            "additional_search_text": "SQL database analytics reporting dashboard queries",
+        },
+        "list_tables": {
+            "additional_search_text": "schema columns metadata table structure discover",
+        },
+    },
+}
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "type": "mcp",
+  "server_label": "analytics",
+  "server_url": "https://db-mcp.internal/sse",
+  "tool_configs": {
+    "execute_query": {
+      "pin": true,
+      "additional_search_text": "SQL database analytics reporting dashboard queries"
+    },
+    "list_tables": {
+      "additional_search_text": "schema columns metadata table structure discover"
+    }
+  }
+}
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+- type: mcp
+  server_label: analytics
+  server_url: https://db-mcp.internal/sse
+  tool_configs:
+    execute_query:
+      pin: true
+      additional_search_text: "SQL database analytics reporting dashboard queries"
+    list_tables:
+      additional_search_text: "schema columns metadata table structure discover"
+```
+
+:::zone-end
+
+### Auto-pinning
+
+Foundry automatically tracks which tools each user calls most frequently and surfaces them directly in `tools/list`—no configuration required. After a short warmup period, frequently used tools appear without a search round-trip. The hot set is per-user and updates as usage patterns shift; stale entries age out automatically.
+
+Auto-pinning composes with explicit `pin` and `additional_search_text` configuration. Pin the critical tools you know about upfront, add keywords for tools with ambiguous names, and let auto-pinning handle the long tail as usage patterns emerge.
+
 ## Configuration reference
 
 ### `toolbox_search_preview`
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-| `type` | `"toolbox_search_preview"` | Yes | Activates tool search for the toolbox. No other fields are required. |
+| `type` | `"toolbox_search_preview"` | Yes | Activates tool search for the toolbox. |
+| `default_defer.enabled` | boolean | No | When `true` (default), all tools are hidden from the initial `tools/list` response and discoverable only through `tool_search`. |
 
-Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to enable tool search. No additional configuration is required.
+Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to enable tool search. All other configuration fields are optional.
+
+### `tool_configs` (per-tool)
+
+Set `tool_configs` on an individual MCP tool entry to control how specific tools behave within the search context.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `pin` | boolean | When `true`, the tool appears directly in `tools/list` alongside `tool_search` and `call_tool`. The model can call it without searching first. |
+| `additional_search_text` | string | Extra keywords added to the tool's search index entry. Used for search ranking only—never visible to the model in the tool schema. |
 
 ## Considerations
 
@@ -261,6 +406,8 @@ Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to ena
 - **`tool_search` doesn't count toward tool limits.** It's injected by the platform and doesn't consume the unnamed-tool-per-type slot.
 - **Multiple searches per turn are supported.** The model can call `tool_search` more than once in a single turn if different steps need different capabilities.
 - **Returned tools persist for the turn.** Once a tool is returned by `tool_search`, the model can call it multiple times without re-searching.
+- **Pinned tools always appear in `tools/list`.** Tools with `"pin": True` in `tool_configs` appear alongside `tool_search` and `call_tool` on every turn, regardless of search queries.
+- **Auto-pinning surfaces frequently used tools automatically.** Foundry tracks per-user tool call frequency and promotes the most-called tools to `tools/list` after a short warmup period. The hot set is per-user and updates as usage patterns shift.
 - **OAuth consent may be required.** If any tool in the toolbox connects to an OAuth-based MCP server, the first call returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL in the response. Open that URL in a browser, complete the OAuth flow, then retry. Subsequent calls succeed without re-prompting. See [Troubleshoot toolbox errors](toolbox.md#troubleshoot) for handling this error.
 
 ## Best practices
@@ -269,6 +416,8 @@ Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to ena
 - **Use tool search for large toolboxes.** This is the most effective configuration when you have 10 or more tools.
 - **Use tool search together with toolbox versioning.** Test your configuration on a version-specific endpoint before promoting it to default.
 - **Mention tool search in the system prompt.** Guide the model to call `tool_search` before concluding that a capability is unavailable. For example: *"If you need a tool that isn't in your current list, call `tool_search` with a description of what you need before responding that you can't help."*
+- **Pin always-needed tools.** Use `"pin": True` in `tool_configs` for tools called on nearly every turn to skip the search round-trip.
+- **Use `additional_search_text` when descriptions are ambiguous.** If your team uses different vocabulary than the MCP server's tool descriptions, add keywords to improve search precision without modifying the server.
 
 ## Troubleshoot
 
