@@ -2593,6 +2593,8 @@ tools = [
 ```
 
 :::zone-end
+| [Fabric IQ](fabric-iq.md) | ❌ Not supported | External service; requires public endpoint |
+| [Work IQ](work-iq.md) | ❌ Not supported | External service; requires public endpoint |
 
 For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
 
