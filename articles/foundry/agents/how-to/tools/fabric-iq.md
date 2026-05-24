@@ -64,7 +64,7 @@ Fabric IQ exposes different MCP endpoint URLs depending on the type of Fabric it
 
 | Fabric item type | `server_url` pattern | Supported authentication |
 |---|---|---|
-| **Power BI semantic model** | `https://{host}/v1/mcp/powerbi` | BYO Entra app, managed OAuth |
+| **Power BI semantic model** | `https://{host}/v1/mcp/fabricaihub/integrations/m365` | BYO Entra app, managed OAuth |
 | **Ontology** | `https://{host}/v1/mcp/dataPlane/workspaces/{workspaceId}/items/{itemId}/ontologyEndpoint` | BYO Entra app |
 | **Data agent** | `https://{host}/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent` | BYO Entra app, managed OAuth |
 
@@ -119,7 +119,7 @@ agent = project.agents.create_version(
         "tools": [
             {
                 "type": "fabric_iq_preview",
-                "project_connection_id": fabriciq_conn.id,
+                "project_connection_id": fabriciq_conn.name,
                 "server_label": FABRICIQ_SERVER_LABEL,
                 "server_url": FABRICIQ_SERVER_URL,
             }
@@ -169,7 +169,7 @@ Content-Type: application/json
     "tools": [
       {
         "type": "fabric_iq_preview",
-        "project_connection_id": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}/connections/{connection-name}",
+        "project_connection_id": "{connection-name}",
         "server_label": "{fabric-iq-server-label}",
         "server_url": "{fabric-iq-server-url}"
       }
@@ -214,51 +214,6 @@ The response includes metadata about the agent execution and a `text` field in `
 
 :::zone-end
 
-## Optional parameters
-
-The `fabric_iq_preview` tool accepts the following optional parameter in addition to the required fields:
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `require_approval` | `string` | `"always"` | Controls whether the agent must ask for user approval before executing actions. Accepted values: `"always"`, `"never"`. |
-
-:::zone pivot="python"
-
-```python
-agent = project.agents.create_version(
-    agent_name=AGENT_NAME,
-    definition={
-        "model": MODEL_DEPLOYMENT,
-        "instructions": "...",
-        "tools": [
-            {
-                "type": "fabric_iq_preview",
-                "project_connection_id": fabriciq_conn.id,
-                "server_label": FABRICIQ_SERVER_LABEL,
-                "server_url": FABRICIQ_SERVER_URL,
-                "require_approval": "never",  # optional; "always" (default) or "never"
-            }
-        ],
-    },
-)
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```json
-{
-  "type": "fabric_iq_preview",
-  "project_connection_id": "...",
-  "server_label": "{fabric-iq-server-label}",
-  "server_url": "https://{fabric-iq-server-url}",
-  "require_approval": "never"
-}
-```
-
-:::zone-end
-
 ## Authentication and security
 
 Fabric IQ uses Microsoft Entra ID delegated authentication (On-Behalf-Of, OBO). All requests run in the context of the signed-in user. Application-only (app-only) authentication isn't supported. Microsoft Fabric permissions and data governance policies are enforced automatically — Fabric IQ can never surface data that the signed-in user isn't already permitted to see.
@@ -300,7 +255,7 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 | **Authorization URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize` |
 | **Token URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Refresh URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
-| **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All https://analysis.windows.net/powerbi/api/Item.Read.All offline_access` |
+| **Scopes** | `https://analysis.windows.net/powerbi/api/Item.Execute.All,https://analysis.windows.net/powerbi/api/Item.Read.All,offline_access` |
 
 Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
 
