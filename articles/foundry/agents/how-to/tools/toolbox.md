@@ -46,6 +46,7 @@ In this article, you learn how to:
 - Verify that tools load correctly.
 - Integrate a toolbox into your Hosted agent.
 - Manage toolbox versions and promote a version to default.
+- Apply a guardrail (RAI policy) to a toolbox version.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
 
@@ -63,6 +64,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| Guardrail (RAI policy) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
@@ -1049,7 +1051,7 @@ Toolbox versions are immutable snapshots of a toolbox's tool configuration. Ever
 | Object | Key fields | Description |
 |--------|-----------|-------------|
 | `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
-| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
+| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. `policies.rai_config.rai_policy_name` specifies the optional guardrail applied to this version. |
 
 ### Create a new version
 
@@ -2574,6 +2576,114 @@ resources:
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |
 | Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
 
+## Configure guardrails
+
+Apply a named [guardrail policy](../../../guardrails/guardrails-overview.md) to a toolbox version to enforce responsible AI content filtering on tool inputs and outputs. The guardrail runs at the toolbox layer, independently of any model-level content filter.
+
+A guardrail is referenced by its policy name, which you configure in the Foundry portal under **Guardrails**. Set `policies.rai_config.rai_policy_name` to the name of the policy when creating a toolbox version.
+
+:::zone pivot="python"
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import WebSearchTool
+
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
+project = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
+
+toolbox_version = project.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    description="Toolbox with guardrail",
+    tools=[WebSearchTool()],
+    policies={
+        "rai_config": {
+            "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>"
+        }
+    },
+)
+print(f"Created version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
+
+{
+  "description": "Toolbox with guardrail",
+  "tools": [{ "type": "web_search" }],
+  "policies": {
+    "rai_config": {
+      "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>"
+    }
+  }
+}
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+#pragma warning disable AAIP001
+var toolboxVersion = toolboxesClient.CreateToolboxVersion(
+    toolboxName: "my-toolbox",
+    description: "Toolbox with guardrail",
+    tools: [new WebSearchTool()],
+    policies: new ToolboxPolicies
+    {
+        RaiConfig = new RaiConfig { RaiPolicyName = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>" }
+    }
+);
+Console.WriteLine($"Created version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const toolboxVersion = await project.beta.toolboxes.createVersion("my-toolbox", {
+  description: "Toolbox with guardrail",
+  tools: [{ type: "web_search" }],
+  policies: {
+    raiConfig: {
+      raiPolicyName: "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>",
+    },
+  },
+});
+console.log(`Created version: ${toolboxVersion.version}`);
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+name: my-toolbox
+description: Toolbox with guardrail
+policies:
+  rai_config:
+    rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>
+tools:
+  - type: web_search
+```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Guardrail configuration isn't yet available in the VS Code extension. Use the REST API, SDK, or `azd` to configure guardrails.
+
+:::zone-end
+
+
 ## Virtual network support
 
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
@@ -2604,6 +2714,7 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
+- [Guardrails overview](../../../guardrails/guardrails-overview.md)
 - [Deploy a Hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)
