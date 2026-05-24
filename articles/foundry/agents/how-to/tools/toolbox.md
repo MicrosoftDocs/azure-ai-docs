@@ -698,8 +698,6 @@ agent = Agent(
 )
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complete implementation.
-
 :::zone-end
 
 :::zone pivot="dotnet"
