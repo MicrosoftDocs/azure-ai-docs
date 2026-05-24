@@ -228,7 +228,7 @@ In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go t
 | **Authorization URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize` |
 | **Token URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
 | **Refresh URL** | `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` |
-| **Scopes** | `api://workiq.svc.cloud.microsoft/WorkIQAgent.Ask offline_access` |
+| **Scopes** | `api://workiq.svc.cloud.microsoft/WorkIQAgent.Ask,offline_access` |
 
 Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save** to create the connection.
 
