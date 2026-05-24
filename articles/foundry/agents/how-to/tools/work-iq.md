@@ -42,6 +42,9 @@ You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) proto
 
 ## Prerequisites
 
+> [!NOTE]
+> Virtual network (VNet) integration is not supported. Your Foundry project must not use a VNet-restricted endpoint.
+
 Before you begin, make sure you have:
 
 - A [Microsoft 365 Copilot license](https://www.microsoft.com/microsoft-365-copilot/pricing/individuals). Users who call Work IQ tools through your agent must also have this license.
