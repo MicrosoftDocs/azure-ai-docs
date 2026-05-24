@@ -584,6 +584,8 @@ Tool-specific `tools/call` argument examples:
 
 ### LangGraph
 
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
+
 **`.env` file**:
 
 ```
