@@ -15,8 +15,6 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent to Foundry Agent Service. You scaffold a basic agent sample, test it locally, deploy it, and chat with it from the Foundry playground. Choose your preferred deployment method to get started.
-
 **In this quickstart, you:**
 
 > [!div class="checklist"]
@@ -25,6 +23,8 @@ In this quickstart, you deploy a containerized AI agent to Foundry Agent Service
 > * Deploy to Foundry Agent Service
 > * Chat with the agent in the playground
 > * Clean up resources
+
+Choose your preferred development experience to get started, VS Code or CLI.
 
 > [!NOTE]
 > Hosted agents are currently in preview.
@@ -40,17 +40,16 @@ Before you begin, you need:
 
 :::zone pivot="azd"
 
-* [Azure Developer CLI (azd) 1.25.0 or later](/azure/developer/azure-developer-cli/install-azd).
-* The `azd ai agent` extension, version 0.1.34-preview or later. Install and verify the extension:
+* [Azure Developer CLI (AZD) 1.25.0 or later](/azure/developer/azure-developer-cli/install-azd).
+* The `azd ai agent` extension, version 0.1.34-preview or later. Install and verify the extension after AZD is installed:
 
-    ```azdeveloper
+    ```
     azd ext install azure.ai.agents
-    azd ext list
     ```
 
 * Sign in to Azure:
 
-    ```azdeveloper
+    ```
     azd auth login
     ```
 
@@ -76,28 +75,39 @@ You need the **Foundry Project Manager** role at project scope to create and dep
 
 ## Step 1: Scaffold the sample project
 
-Initialize a new hosted agent project in an empty directory:
+Initialize a new hosted agent project in an empty directory and choose the recommended options for each question below:
 
-```azdeveloper
+```
 azd ai agent init
 ```
 
 The interactive flow prompts for:
 
 * **Language** -- Select Python.
-* **Agent template** -- Select **Basic agent (Responses, Agent Framework, Python)**.
-* **Model deployment** -- Choose **Deploy a new model in a new Foundry project**, or **Reuse a model deployment from an existing Foundry project**.
-* **Azure subscription** -- The subscription that hosts the Foundry resources.
-* **Location** -- A region for the resources.
-* **Model SKU** -- A SKU available in your region and subscription.
-* **Deployment name** -- A name for the model deployment.
-* **Container size** -- The CPU and memory allocation, or accept the defaults.
+* **Starter template** -- Select **Basic agent (Responses, Agent Framework, Python)**
+* **Agent name** -- Choose the default **agent-framework-agent-basic-responses**
+* **Deployment type** -- Select **Source code (ZIP upload)
+* **Runtime** -- Select Python 3.13
+* **Entry point** -- Chose the default **main.py**
+* **Dependency resolution** -- Select **Remote build (dependencies installed on server during deployment)**
+* **Foundry Project** -- Select **Create a new Foundry project**
+* **Azure Tenant** -- Select your Azure direction for the subscription you want to use
+* **Azure subscription** -- The subscription that hosts the Foundry resources
+* **Location** -- A region for the resources
+* **Model deployment** -- Select the default **Use 'gpt-4.1-mini' (from manifest)**
+* **Model version** -- Select the default **2025-04-14 (default)**
+* **Model SKU** -- A SKU available in your region and subscription and has quota available
+* **Deployment capacity** -- Select the default **10**
+* **Deployment name** -- Choose the default **gpt-4.1-mini**
+* **Container resources** -- Select the default **0.5 cores, 1Gi memory**
+
+When complete, you should see **AI agent definition added to your azd project successfully!**.
 
 ## Step 2: Provision Azure resources
 
 Provision the resources defined in `azure.yaml`:
 
-```azdeveloper
+```
 azd provision
 ```
 
@@ -117,15 +127,15 @@ This step takes a few minutes and creates the following resources. To run provis
 
 1. Start the agent:
 
-    ```azdeveloper
+    ```
     azd ai agent run
     ```
 
-    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Pip dependency-conflict warnings during setup are non-blocking; the agent still runs.
+    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`.
 
 1. In a separate terminal, send a test prompt:
 
-    ```azdeveloper
+    ```
     azd ai agent invoke --local "Write a haiku about deploying cloud applications."
     ```
 
@@ -135,7 +145,7 @@ This step takes a few minutes and creates the following resources. To run provis
 
 Build and deploy the agent container:
 
-```azdeveloper
+```
 azd deploy
 ```
 
@@ -228,15 +238,13 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
 
 1. Check the agent status:
 
-    ```azdeveloper
-    azd ai agent show --output table
     ```
-
-    If the project has more than one agent service, pass the agent name as a positional argument. You can find the name under `services:` in `azure.yaml`.
+    azd ai agent show
+    ```
 
 1. Send the same prompt to the deployed agent:
 
-    ```azdeveloper
+    ```
     azd ai agent invoke "Write a haiku about deploying cloud applications."
     ```
 
@@ -244,7 +252,7 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
 
 1. (Optional) Stream container logs while you interact with the agent:
 
-    ```azdeveloper
+    ```
     azd ai agent monitor --follow
     ```
 
@@ -275,14 +283,14 @@ Delete the resources when you're finished so you stop incurring charges.
 
 :::zone pivot="azd"
 
-```azdeveloper
+> [!WARNING]
+> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+
+```
 azd down
 ```
 
 `azd` lists the resources it will delete and prompts for confirmation. Cleanup takes about 2-5 minutes.
-
-> [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
 
 :::zone-end
 
