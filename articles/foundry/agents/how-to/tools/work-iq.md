@@ -313,11 +313,11 @@ Work IQ operates entirely within the Microsoft 365 trust boundary. The following
 
 ### Data residency
 
-Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Work IQ retrieves data from your organization's Microsoft 365 tenant. Data doesn't leave your tenant or cross regional boundaries during retrieval. The data's location follows your Microsoft 365 tenant data residency configuration, not your Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
-All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-privacy). Key commitments:
+All Work IQ requests are governed by the [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy). Key commitments:
 
 - Work IQ doesn't use customer content to train or improve underlying AI models.
 
@@ -329,7 +329,7 @@ Work IQ enforces Microsoft 365 permissions automatically on every request. Agent
 
 ### Compliance certifications
 
-Work IQ inherits Microsoft 365's compliance certifications. For details, see [Microsoft 365 Copilot privacy and data handling policies](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Work IQ inherits Microsoft 365's compliance certifications. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ## Admin management
 
