@@ -322,14 +322,14 @@ Fabric IQ processes requests within the Microsoft Fabric compliance boundary for
 
 ### Data residency
 
-Fabric IQ retrieves and processes data within the region where your Microsoft Fabric workspace resides. Data doesn't cross regional boundaries during query execution. The applicable region and its compliance scope are determined by your workspace location — see [Microsoft Fabric region availability](https://learn.microsoft.com/fabric/admin/region-availability) for the list of supported regions and the compliance frameworks each region satisfies.
+Fabric IQ retrieves and processes data within the region where your Microsoft Fabric workspace resides. Data doesn't cross regional boundaries during query execution. The applicable region and its compliance scope are determined by your workspace location — see [Microsoft Fabric region availability](/fabric/admin/region-availability) for the list of supported regions and the compliance frameworks each region satisfies.
 
 > [!NOTE]
-> If your Foundry project is in a different Azure region than your Fabric workspace, query results are returned cross-region. Review [Microsoft Fabric region availability](https://learn.microsoft.com/fabric/admin/region-availability) and your organization's data residency requirements before connecting a Fabric workspace in a different region.
+> If your Foundry project is in a different Azure region than your Fabric workspace, query results are returned cross-region. Review [Microsoft Fabric region availability](/fabric/admin/region-availability) and your organization's data residency requirements before connecting a Fabric workspace in a different region.
 
 ### Compliance certifications
 
-Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see [Microsoft Fabric region availability](https://learn.microsoft.com/fabric/admin/region-availability).
+Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspace region. For compliance documentation, audit reports, and the frameworks applicable to each region, see [Microsoft Fabric region availability](/fabric/admin/region-availability).
 
 ## Admin management
 
