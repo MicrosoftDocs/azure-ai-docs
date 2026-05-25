@@ -964,22 +964,6 @@ azd ai toolbox create my-toolbox \
   --no-prompt
 ```
 
-**Retarget the default version:**
-
-Toolbox versions are immutable. Use `update` to point the default to any existing version:
-
-```bash
-# List all versions (the current default is marked with *)
-azd ai toolbox version list my-toolbox --project-endpoint $PROJECT_ENDPOINT
-
-# Roll back or forward to a specific version
-azd ai toolbox update my-toolbox \
-  --default-version <version> \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --no-prompt
-```
-
-`--default-version` is the only field `update` accepts.
 :::zone-end
 
 ### Handle tool approval requirements
@@ -1144,7 +1128,7 @@ resources:
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
-> You can manage toolbox versions (list, get, promote, delete) through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
+> You can delete toolbox versions through the Python SDK, .NET SDK, JavaScript SDK, and REST API only. The azd CLI supports list, get, and update operations.
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it - you decide when to update `default_version`. This process lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
@@ -1283,7 +1267,10 @@ Use the Python, .NET, JavaScript, or REST API tab to list toolbox versions.
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To list toolbox versions, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+```bash
+# The current default version is marked with *
+azd ai toolbox version list my-toolbox --project-endpoint $PROJECT_ENDPOINT
+```
 
 :::zone-end
 
@@ -1342,7 +1329,9 @@ Use the Python, .NET, JavaScript, or REST API tab to get a specific toolbox vers
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To get a specific toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+```bash
+azd ai toolbox version get my-toolbox <version_id> --project-endpoint $PROJECT_ENDPOINT
+```
 
 :::zone-end
 
@@ -1410,7 +1399,17 @@ Use the Python, .NET, JavaScript, or REST API tab to promote a toolbox version t
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To promote a version to default, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+Toolbox versions are immutable. Use `update` to point the default to any existing version:
+
+```bash
+# Roll back or forward to a specific version
+azd ai toolbox update my-toolbox \
+  --default-version <version_id> \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --no-prompt
+```
+
+`--default-version` is the only field `update` accepts.
 
 :::zone-end
 
