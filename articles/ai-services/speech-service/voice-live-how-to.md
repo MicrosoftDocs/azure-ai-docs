@@ -462,22 +462,6 @@ The following `azure-realtime-native` voice names are supported:
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 
-### Switch voices mid-session
-
-You can switch the voice during an active session by sending another `session.update` message with a different `name`:
-
-```json
-{
-  "type": "session.update",
-  "session": {
-    "voice": {
-      "type": "azure-realtime-native",
-      "name": "florian"
-    }
-  }
-}
-```
-
 ### Voice compatibility
 
 - The `azure-realtime` model only accepts `azure-realtime-native` voices. Other voice types (such as `openai`, `azure-standard`, `azure-custom`, or `azure-personal`) are rejected with an `invalid_voice_type` error.
