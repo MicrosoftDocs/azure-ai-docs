@@ -1740,6 +1740,58 @@ resources:
 > [!NOTE]
 > The `audience` field is required for `UserEntraToken` connections. Without it, `tools/list` returns zero tools.
 
+**Create a project connection (azd CLI):**
+
+> [!NOTE]
+> Export your project endpoint to a variable to reuse across commands:
+>
+> ```bash
+> PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+> ```
+
+```bash
+# No auth — public MCP server
+azd ai agent connection create my-mslearn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://learn.microsoft.com/api/mcp \
+  --auth-type none
+
+# Custom-keys header (for example, GitHub PAT)
+azd ai agent connection create my-gh-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp/ \
+  --auth-type custom-keys \
+  --custom-key "Authorization=Bearer $GITHUB_PAT"
+
+# User Entra token passthrough (for example, Microsoft Fabric)
+azd ai agent connection create my-fabric-uet \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.fabric.microsoft.com/v1/mcp/fabricaihub/integrations/m365 \
+  --auth-type user-entra-token \
+  --audience https://analysis.windows.net/powerbi/api
+
+# Agentic identity — agent's managed identity, no user token
+# Assign the agent identity the required RBAC role on the target resource before use.
+azd ai agent connection create my-language-mcp \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target "https://<resource>.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview" \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+`--custom-key` is singular and repeatable — one flag per header. The `"Header=Value"` format sends the header verbatim on every MCP request.
+
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `agentic-identity` | `--audience <entra-audience>` |
+
 :::zone-end
 
 > [!IMPORTANT]
@@ -1884,6 +1936,19 @@ resources:
           instance_name: your-bing-custom-instance
         project_connection_id: bing-custom-conn
 ```
+
+**Create a Bing Custom Search connection (azd CLI):**
+
+```bash
+azd ai agent connection create my-bing-custom \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind GroundingWithCustomSearch \
+  --target https://api.bing.microsoft.com/ \
+  --auth-type api-key \
+  --key "<bing-custom-search-key>"
+```
+
+`--kind GroundingWithCustomSearch` requires exact PascalCase.
 
 :::zone-end
 
@@ -2045,6 +2110,17 @@ resources:
       - type: azure_ai_search
         index_name: your-index-name
         project_connection_id: aisearch-conn
+```
+
+**Create an Azure AI Search connection (azd CLI):**
+
+```bash
+azd ai agent connection create my-search \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind cognitive-search \
+  --target "https://<your-search>.search.windows.net/" \
+  --auth-type api-key \
+  --key "<aisearch-admin-key>"
 ```
 
 :::zone-end
@@ -2584,90 +2660,47 @@ resources:
         project_connection_id: a2a-conn
 ```
 
-:::zone-end
-
-### Manage connections and toolbox versions (azd CLI)
-
-:::zone pivot="azd"
-
-As an alternative to declaring connections in `agent.yaml`, use the `azd ai` CLI to create and manage connections and toolbox versions directly.
-
-> [!NOTE]
-> Export your project endpoint to a variable to reuse across commands:
->
-> ```bash
-> PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
-> ```
-
-**Create a project connection:**
+**Create a project connection (azd CLI):**
 
 ```bash
-# A. Public MCP server — no auth
-# For A2A connections, replace --kind remote-tool with --kind remote-a2a
-azd ai agent connection create my-mslearn \
+# No auth
+azd ai agent connection create my-a2a-conn \
   --project-endpoint $PROJECT_ENDPOINT \
-  --kind remote-tool \
-  --target https://learn.microsoft.com/api/mcp \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
   --auth-type none
 
-# B. Remote MCP server — custom-keys header (for example, GitHub PAT)
-azd ai agent connection create my-gh-conn \
+# Custom-keys header
+azd ai agent connection create my-a2a-auth-conn \
   --project-endpoint $PROJECT_ENDPOINT \
-  --kind remote-tool \
-  --target https://api.githubcopilot.com/mcp/ \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
   --auth-type custom-keys \
-  --custom-key "Authorization=Bearer $GITHUB_PAT"
+  --custom-key "Authorization=Bearer <token>"
 
-# C. Azure AI Search — api-key
-azd ai agent connection create my-search \
+# User Entra token passthrough
+azd ai agent connection create my-a2a-entra-conn \
   --project-endpoint $PROJECT_ENDPOINT \
-  --kind cognitive-search \
-  --target "https://<your-search>.search.windows.net/" \
-  --auth-type api-key \
-  --key "<aisearch-admin-key>"
-
-# D. Remote MCP server — user Entra token passthrough (for example, Microsoft Fabric)
-azd ai agent connection create my-fabric-uet \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --kind remote-tool \
-  --target https://api.fabric.microsoft.com/v1/mcp/fabricaihub/integrations/m365 \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
   --auth-type user-entra-token \
-  --audience https://analysis.windows.net/powerbi/api
+  --audience "<entra-audience>"
 
-# E. Bing Custom Search — api-key (--kind uses exact PascalCase)
-azd ai agent connection create my-bing-custom \
+# Agentic identity
+azd ai agent connection create my-a2a-mi-conn \
   --project-endpoint $PROJECT_ENDPOINT \
-  --kind GroundingWithCustomSearch \
-  --target https://api.bing.microsoft.com/ \
-  --auth-type api-key \
-  --key "<bing-custom-search-key>"
-
-# F. Remote MCP server — agentic identity (agent's managed identity, no user token)
-# Assign the agent identity the required RBAC role on the target resource before use.
-azd ai agent connection create my-language-mcp \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --kind remote-tool \
-  --target "https://<resource>.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview" \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
   --auth-type agentic-identity \
   --audience "<entra-audience>"
 ```
 
-`--custom-key` is singular and repeatable — one flag per header. The `"Header=Value"` format sends the header verbatim on every MCP request. For `--kind GroundingWithCustomSearch`, the exact PascalCase form is required.
-
-The following table lists every supported combination:
-
-| Tool type | `--kind` | `--auth-type` | Additional flags |
-|-----------|----------|---------------|-----------------|
-| Remote MCP server | `remote-tool` | `none` | — |
-| Remote MCP server | `remote-tool` | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
-| Remote MCP server | `remote-tool` | `user-entra-token` | `--audience <entra-audience>` |
-| Remote MCP server | `remote-tool` | `agentic-identity` | `--audience <entra-audience>` |
-| Remote A2A server | `remote-a2a` | `none` | — |
-| Remote A2A server | `remote-a2a` | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
-| Remote A2A server | `remote-a2a` | `user-entra-token` | `--audience <entra-audience>` |
-| Remote A2A server | `remote-a2a` | `agentic-identity` | `--audience <entra-audience>` |
-| Azure AI Search | `cognitive-search` | `api-key` | `--key <admin-key>` |
-| Bing Custom Search | `GroundingWithCustomSearch` | `api-key` | `--key <bing-key>` |
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `agentic-identity` | `--audience <entra-audience>` |
 
 :::zone-end
 
