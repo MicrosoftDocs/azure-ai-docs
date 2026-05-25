@@ -7,8 +7,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/05/2025
+ms.date: 05/25/2026
 ms.custom: custom speech, custom voice, custom avatar, fine-tuning
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn how to use custom models with the Voice Live API for real-time voice agents.
 ---
 
@@ -108,6 +109,26 @@ Use the `custom_lexicon_url` string property to customize pronunciation for bo
   }
 }
 ```
+
+### Azure realtime native voices
+
+The `azure-realtime` model uses a dedicated voice type, `azure-realtime-native`, with a curated set of voices designed for natural-sounding real-time speech output. Specify the voice as a structured object with `type` set to `azure-realtime-native` and `name` set to one of the supported voice names.
+
+```json
+{
+  "voice": {
+    "type": "azure-realtime-native",
+    "name": "ava"
+  }
+}
+```
+
+The following `azure-realtime-native` voice names are supported: `aarti`, `andrew`, `ava` (default), `denise`, `elsa`, `florian`, `francisca`, `meera`, `xiaoxiao`, `ximena`, and `yunxi`. If you don't specify a voice, `ava` is used by default.
+
+You can switch voices mid-session by sending another `session.update` message with a different `name`.
+
+> [!NOTE]
+> The `azure-realtime` model only accepts `azure-realtime-native` voices. Other voice types (such as `openai`, `azure-standard`, or `azure-custom`) are rejected. Conversely, `azure-realtime-native` voices aren't accepted by other models such as `gpt-realtime`. The model also requires API version `2026-01-01-preview` or later; older API versions return an `api_version_too_low` error.
 
 ### Azure custom voices
 

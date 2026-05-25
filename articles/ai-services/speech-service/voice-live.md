@@ -9,8 +9,9 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 01/16/2026
+ms.date: 05/25/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
 ---
 
@@ -84,6 +85,7 @@ The Voice Live API supports the following models. For supported regions, see the
 | `gpt-5-chat` | GPT-5 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
 | `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `azure-realtime` | Azure real-time model with a dedicated set of native voices (`azure-realtime-native`) designed for natural-sounding real-time speech output. Requires API version `2026-01-01-preview` or later. |
 
 ## Compare Voice Live API with other speech-to-speech solutions
 
