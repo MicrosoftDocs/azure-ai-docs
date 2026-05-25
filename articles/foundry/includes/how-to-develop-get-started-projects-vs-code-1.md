@@ -25,7 +25,7 @@ To use Foundry capabilities in VS Code, install the Microsoft Foundry Toolkit fo
 
 Use the marketplace to install the extension without opening VS Code first.
 
-1. Open the [Microsoft Foundry Toolkit for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio).
+1. Open the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) page.
 1. Select the **Install** button.
 1. Follow the prompts to install the extension in Visual Studio Code.
 1. After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.

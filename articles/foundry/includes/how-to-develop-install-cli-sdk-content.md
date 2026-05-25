@@ -87,7 +87,7 @@ Many of the [AI solution templates](../how-to/develop/ai-template-get-started.md
 
 ## Install the Microsoft Foundry Toolkit for Visual Studio Code extension
 
-The Microsoft Foundry Toolkit for Visual Studio Code extension lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Microsoft Foundry Toolkit for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio).
+The Microsoft Foundry Toolkit for Visual Studio Code extension lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk).
 
 ## Install Git
 

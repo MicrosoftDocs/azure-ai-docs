@@ -18,7 +18,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Create hosted agent workflows in the Microsoft Foundry Toolkit for Visual Studio Code extension
-Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
+Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
 Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.
 
@@ -27,7 +27,7 @@ This article covers creating a workflow project, running it locally, visualizing
 ## Prerequisites
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
-- The [Microsoft Foundry Toolkit for Visual Studio Code extension](httpshttps://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) installed.
+- The [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) installed.
 - The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]

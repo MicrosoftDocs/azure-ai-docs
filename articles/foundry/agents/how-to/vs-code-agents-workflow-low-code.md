@@ -16,7 +16,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Add declarative agent workflows in Visual Studio Code
-Declarative agent workflows define predefined sequences of actions for your agents using configurations rather than explicit programming logic. In this article, you add [Foundry Agent workflows](../concepts/workflow.md) to an agent and test them by using the [Microsoft Foundry for Visual Studio Code (VS Code) extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+Declarative agent workflows define predefined sequences of actions for your agents using configurations rather than explicit programming logic. In this article, you add [Foundry Agent workflows](../concepts/workflow.md) to an agent and test them by using the [Microsoft Foundry for Visual Studio Code extension](https://aka.ms/foundrytk).
 
 After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent) in the portal, you can add workflows to orchestrate multiple agents into predefined action sequences for complex automation scenarios.
 
@@ -24,7 +24,7 @@ After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstart
 
 - A Foundry project with at least one deployed agent. To create one in the Foundry portal, see [Quickstart: Chat with an agent](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent).
 - At least one workflow created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about workflows, see [Foundry Agent workflows](../concepts/workflow.md).
-- The [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The [Microsoft Foundry for Visual Studio Code extension](https://aka.ms/foundrytk) installed.
 - A [GitHub Copilot](https://github.com/features/copilot) subscription (required for converting YAML workflows to Agent Framework code).
 
 ## View a declarative agent workflow
