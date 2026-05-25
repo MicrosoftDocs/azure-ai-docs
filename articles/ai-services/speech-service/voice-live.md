@@ -87,6 +87,9 @@ The Voice Live API supports the following models. For supported regions, see the
 | `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `azure-realtime` | Azure real-time + dedicated `azure-realtime-native` voices for audio. |
 
+> [!NOTE]
+> Models `gpt-5.5`, `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).
+
 ## Compare Voice Live API with other speech-to-speech solutions
 
 The Voice Live API is an alternative to orchestrating multiple components such as speech recognition, generative AI, and text to speech. This orchestration can be complex and time-consuming, requiring significant engineering effort to integrate and maintain. The Voice Live API simplifies this process by providing a single interface for all these components. Developers can focus on building their applications rather than managing the underlying infrastructure.
