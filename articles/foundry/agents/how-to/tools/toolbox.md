@@ -75,7 +75,7 @@ For tool configuration syntax and authentication options for each tool type, see
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
-- Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) (formerly AI Toolkit for VS Code) from the Visual Studio Code Marketplace. Toolbox support in Foundry Toolkit is currently in preview.
+- Install the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) from the Visual Studio Code Marketplace.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -222,7 +222,7 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox from the **Tools** view.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to create and publish a toolbox from the **Tools** view.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -231,7 +231,7 @@ Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox from t
 
 Publishing a new toolbox creates its first version. That version becomes the default version automatically.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of the Microsoft Foundry Toolkit for Visual Studio Code extension showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
 
 :::zone-end
 
@@ -352,7 +352,7 @@ Two endpoint patterns exist depending on your role:
 
 :::zone pivot="vscode"
 
-In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer endpoint from the **Toolboxes** view.
+In the Microsoft Foundry Toolkit for Visual Studio Code extension, copy the toolbox consumer endpoint from the **Toolboxes** view.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -361,7 +361,7 @@ In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer endpoint fr
 
 The **Endpoint URL** value is the toolbox consumer endpoint. To construct a version-specific endpoint, use the developer pattern shown in the previous table.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of the Microsoft Foundry Toolkit for Visual Studio Code extension showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
 
 :::zone-end
 
@@ -766,7 +766,7 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to your toolbox.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to scaffold a Hosted agent sample that's already wired to your toolbox.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -1019,7 +1019,7 @@ const tools = [
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, REST API, or azd tab to configure `require_approval` in your toolbox definition. The Foundry Toolkit workflow in this article focuses on creating and consuming the toolbox in Visual Studio Code.
+Use the Python, .NET, JavaScript, REST API, or azd tab to configure `require_approval` in your toolbox definition. The Microsoft Foundry Toolkit for Visual Studio Code extension workflow in this article focuses on creating and consuming the toolbox in Visual Studio Code.
 
 :::zone-end
 
@@ -1113,7 +1113,7 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
+Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Microsoft Foundry Toolkit for Visual Studio Code extension workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
 
 :::zone-end
 

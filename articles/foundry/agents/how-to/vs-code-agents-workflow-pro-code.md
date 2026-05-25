@@ -27,7 +27,7 @@ This article covers creating a workflow project, running it locally, visualizing
 ## Prerequisites
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
-- The [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The [Microsoft Foundry Toolkit for Visual Studio Code extension](httpshttps://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) installed.
 - The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -43,7 +43,7 @@ This article covers creating a workflow project, running it locally, visualizing
 
 ## Create a hosted agent workflow  
 
-You can use the Foundry Toolkit for Visual Studio Code to create Hosted agent workflows. A Hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+You can use the Microsoft Foundry Toolkit for Visual Studio Code extension to create Hosted agent workflows. A Hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
@@ -214,7 +214,7 @@ To run the agent in container mode:
 
 ## Visualize hosted agent workflow execution
 
-The Foundry Toolkit for Visual Studio Code provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
+The Microsoft Foundry Toolkit for Visual Studio Code extension provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
 
 Add the following reference to your csproj file:
 

@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit extension for VS Code."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit for Visual Studio Code extension."
 author: aahill
 ms.author: aahi
 ms.date: 03/12/2026
@@ -206,7 +206,7 @@ Deploying services (azd deploy)
 
 ## Step 1: Create a Foundry project
 
-Use the Microsoft Foundry Toolkit extension in VS Code to create a new Microsoft Foundry Project resource.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to create a new Microsoft Foundry Project resource.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create Project**.
 
@@ -220,7 +220,7 @@ Once the project creation is complete, continue to the next step and deploy a mo
 
 ## Step 2: Deploy a model
 
-Use the Microsoft Foundry Toolkit extension in VS Code to deploy a model to Foundry.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to deploy a model to Foundry.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Open Model Catalog**.
 
@@ -232,7 +232,7 @@ Once the model is deployed successfully, move on to the next step and create a H
 
 ## Step 3: Create a Hosted Agent project
 
-Use the Microsoft Foundry Toolkit extension in VS Code to scaffold a new Hosted agent project.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to scaffold a new Hosted agent project.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create new Hosted Agent**.
 
@@ -292,7 +292,7 @@ Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Co
 This will:
 
 1. Start the HTTP server with debugging enabled
-2. Open the Foundry Toolkit Agent Inspector for interactive testing
+2. Open the Microsoft Foundry Toolkit for Visual Studio Code extension Agent Inspector for interactive testing
 3. Allow you to set breakpoints and inspect the workflow
 
 #### Option 2: Run in Terminal
@@ -336,7 +336,7 @@ Deploy your agent directly from VS Code.
 
 1. Select the CPU and Memory configuration for the Hosted Agent container.
 
-Switch to the Microsoft Foundry Toolkit explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
+Switch to the Microsoft Foundry Toolkit for Visual Studio Code extension explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
 
 :::zone-end
 
@@ -358,7 +358,7 @@ The detail page shows the Status under the Container Details section.
 
 ### Test in the playground using VS Code
 
-Microsoft Foundry Toolkit for VS Code includes an integrated playground to chat and interact with your agent. 
+Microsoft Foundry Toolkit for Visual Studio Code extension includes an integrated playground to chat and interact with your agent. 
 
 1. Select your Hosted agent from the Hosted Agents (Preview) tree view.
 
@@ -534,7 +534,7 @@ You can download, upload, and create folders within the current folder, clicking
 
 | Issue | Solution |
 | ----- | -------- |
-| Extension not found | Install the [Microsoft Foundry Toolkit for VS Code extension](https://aka.ms/foundrytk) from the VS Code Marketplace. |
+| Extension not found | Install the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) from the VS Code Marketplace. |
 
 :::zone-end
 
