@@ -1574,13 +1574,6 @@ connections:
     # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
 ```
 
-```bash
-azd ai toolbox create my-toolbox \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --from-file ./my-toolbox.yaml \
-  --no-prompt
-```
-
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
 :::zone pivot="rest-api"
