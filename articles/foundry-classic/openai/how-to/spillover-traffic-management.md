@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/spillover-traffic-management.md)
 
-[!INCLUDE [how-to-spillover-traffic-management-1](../includes/how-to-spillover-traffic-management-1.md)]
+[!INCLUDE [how-to-spillover-traffic-management-1](../../../foundry/openai/includes/how-to-spillover-traffic-management-1.md)]
 
 ## Enable spillover for all requests on a provisioned deployment
 
@@ -34,7 +34,7 @@ First, create a provisioned throughput deployment. See [Use the Foundry portal f
 
 Once you have a provisioned deployment, update it to enable traffic spillover as follows: 
 
-1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Select the subscription and the Foundry resource in the region where you deployed your model.
 1. In the Foundry portal, on the left navigation menu, select **Models + endpoints** > **Model deployments**.
 1. Select the deployment.
@@ -47,4 +47,4 @@ Once you have a provisioned deployment, update it to enable traffic spillover as
 1. Submit changes.
 
 
-[!INCLUDE [how-to-spillover-traffic-management-2](../includes/how-to-spillover-traffic-management-2.md)]
+[!INCLUDE [how-to-spillover-traffic-management-2](../../../foundry/openai/includes/how-to-spillover-traffic-management-2.md)]
