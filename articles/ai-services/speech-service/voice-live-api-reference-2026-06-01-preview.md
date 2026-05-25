@@ -30,7 +30,6 @@ This API version adds the following capabilities on top of [2026-04-10](./voice-
 - **Parallel tool calls**: New optional `parallel_tool_calls` boolean on the session object (default `true`). Set to `false` to require the model to issue tool calls sequentially.
 - **Hosted agent invocation events**: New server events for surfacing hosted agent invocation lifecycle and tool activity.
 - **WebRTC feature events**: Additional events that support the [Voice Live WebRTC](./voice-live-webrtc.md) transport.
-- **Image content part field name**: The `RequestImageContentPart` field is named `image_url` (URI) starting in `2026-06-01-preview`. Earlier API versions continue to expose `url`.
 
 ## Endpoint and authentication
 
@@ -81,6 +80,8 @@ The Voice Live API supports the following client events that can be sent from th
 | [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
 | [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
 | [input_audio_buffer.clear](#input_audio_bufferclear) | Clear the input audio buffer |
+| [input_text.delta](#input_textdelta) | Append a chunk of text to a streamed user-text input |
+| [input_text.done](#input_textdone) | Signal that streamed user-text input is complete |
 | [conversation.item.create](#conversationitemcreate) | Add a new item to the conversation context |
 | [conversation.item.retrieve](#conversationitemretrieve) | Retrieve a specific item from the conversation |
 | [conversation.item.truncate](#conversationitemtruncate) | Truncate an assistant audio message |
@@ -233,6 +234,44 @@ Clear the input audio buffer.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"input_audio_buffer.clear"` |
+
+### input_text.delta
+
+Append a chunk of text to the current streamed user-text input. Use this event to stream text into a conversation item incrementally, similar to how audio is streamed with [`input_audio_buffer.append`](#input_audio_bufferappend). The streamed text is finalized by sending an [`input_text.done`](#input_textdone) event.
+
+#### Event Structure
+
+```json
+{
+  "type": "input_text.delta",
+  "delta": "Hello, "
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"input_text.delta"` |
+| delta | string | The incremental text content to append to the current streamed input. |
+
+### input_text.done
+
+Signal that the streamed user-text input is complete. The accumulated text becomes a user message item in the conversation.
+
+#### Event Structure
+
+```json
+{
+  "type": "input_text.done"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"input_text.done"` |
 
 ### conversation.item.create
 
@@ -2707,6 +2746,26 @@ Azure personal voice configuration.
 | rate | string | Optional. Speaking rate adjustment for the voice output. Follows the same rules as the `rate` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`x-slow`, `slow`, `medium`, `fast`, `x-fast`, `default`), a relative percentage (for example `+20%`, `-10%`), or a non-negative multiplier (for example `0.5`, `1.5`). |
 | volume | string | Optional. Volume adjustment for the voice output. Follows the same rules as the `volume` attribute of the SSML `prosody` element (see [Adjust prosody](./speech-synthesis-markup-voice.md#adjust-prosody)). Typical values: a named level (`silent`, `x-soft`, `soft`, `medium`, `loud`, `x-loud`, `default`), an absolute number from 0.0 to 100.0, or a relative change (for example `+10`, `-6dB`). |
 
+##### RealtimeAzureRealtimeNativeVoice
+
+Voice configuration for the `azure-realtime` model. The `azure-realtime` model accepts only `azure-realtime-native` voices, and `azure-realtime-native` voices aren't accepted by other models.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"azure-realtime-native"` |
+| name | string | Voice name. One of `aarti`, `andrew`, `ava` (default), `denise`, `elsa`, `florian`, `francisca`, `meera`, `ximena`, `xiaoxiao`, `yunxi`. If not specified, `ava` is used. |
+
+Example:
+
+```json
+{
+  "voice": {
+    "type": "azure-realtime-native",
+    "name": "ava"
+  }
+}
+```
+
 
 ### Turn Detection
 
@@ -2776,6 +2835,16 @@ Azure semantic VAD (default variant).
 | create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+
+##### SmartEndOfTurnDetection
+
+Audio-based end-of-turn (EOU) detection. Operates directly on the input audio stream rather than text. Use `threshold_level` and `timeout_ms` to tune detection.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| model | string | Must be `"smart_end_of_turn_detection"` |
+| threshold_level | string | Optional. Threshold level setting. One of `low`, `medium`, `high`, or `default`. |
+| timeout_ms | integer | Optional. Maximum time in milliseconds to wait for more user speech before triggering end-of-turn. |
 
 ### RealtimeEOUDetection
 
@@ -2911,6 +2980,7 @@ Session configuration object used in `session.update` events.
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
+| parallel_tool_calls | boolean | Optional. Whether the model may issue tool calls in parallel. Defaults to `true`. Set to `false` to require tool calls to be issued sequentially. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 | interim-response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. |
@@ -3372,6 +3442,16 @@ Audio content part.
 | type | string | Must be `"audio"` |
 | audio | string | Base64-encoded audio data |
 | transcript | string | Optional. Audio transcript |
+
+#### RealtimeRequestImageContentPart
+
+Input image content part. Use it in a user message to attach an image alongside text or audio.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"input_image"` |
+| image_url | string (URI) | Optional. URL of the image. Starting in `2026-06-01-preview`, this field is named `image_url`. Earlier API versions expose the same field as `url`. |
+| detail | string | Optional. Image detail level. |
 
 ### Response Objects
 
