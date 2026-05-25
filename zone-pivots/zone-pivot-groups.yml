@@ -753,6 +753,15 @@ groups:
     title: Speech Studio
   - id: rest-api
     title: REST
+- id: foundry-portal-rest
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: rest-api
+    title: REST
 - id: speech-studio-rest
 # Owner: eur
   title: Programming languages

@@ -154,6 +154,8 @@ The `model` property specifies the base model voice name. Supported base model n
 
 [Text to speech avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice.
 
+You can use either a standard voice or a custom voice with the avatar. If you trained a custom video avatar together with [voice sync for avatar](./text-to-speech-avatar/voice-sync-for-avatar.md), that voice is selected as the default voice for the avatar.
+
 The configuration for a custom avatar doesn't differ from the configuration of a standard avatar. Refer to [How to use the Voice Live API - Azure text to speech avatar](./voice-live-how-to.md#azure-text-to-speech-avatar) for a detailed example.
 
 > [!IMPORTANT]

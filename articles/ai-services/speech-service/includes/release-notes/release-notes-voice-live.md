@@ -8,6 +8,11 @@ ms.author: pafarley
 ai-usage: ai-assisted
 ---
 
+### May 2026 release
+
+The Voice Live evaluation harness is available in preview. Evaluate the quality of your Voice Live voice agents by running pre-recorded audio through different session configurations and scoring responses with Microsoft Foundry built-in evaluators. For more information, see [How to evaluate Voice Live agents](../../how-to-voice-live-evaluate.md).
+
+
 ### February 2026 release
 
 Voice Agent integration with Foundry Agent Service is available in preview with SDK support for Python, Java, C#, and JavaScript. Build real-time voice agents with the new quickstart and how-to guidance. For more information, see [Get started with Voice Live and Foundry Agent Service](../../voice-live-agents-quickstart.md) and [How to build a voice agent](../../how-to-voice-agent-integration.md).
