@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -416,6 +416,72 @@ And a `response.animation_viseme.done` message is sent when all viseme messages 
     "item_id": "<item_id>",
 }
 ```
+
+## Audio output through the azure-realtime model
+
+The `azure-realtime` model is a dedicated real-time model that uses a curated set of native voices designed for natural-sounding real-time speech output. Unlike `gpt-realtime` models, which use OpenAI voices or Azure text to speech voices, `azure-realtime` uses a dedicated voice type called `azure-realtime-native`.
+
+> [!NOTE]
+> The `azure-realtime` model requires API version `2026-01-01-preview` or later. Connecting with an older API version returns an `api_version_too_low` error before `session.created`.
+
+### Voice configuration
+
+Specify the voice as a structured object with `type` set to `azure-realtime-native` and `name` set to one of the supported voice names:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "voice": {
+      "type": "azure-realtime-native",
+      "name": "ava"
+    },
+    "modalities": ["text", "audio"],
+    "instructions": "You are a helpful assistant."
+  }
+}
+```
+
+### Supported voices
+
+The following `azure-realtime-native` voice names are supported:
+
+| Voice name | Description |
+|---|---|
+| `aarti` | Azure Speech native voice |
+| `andrew` | Azure Speech native voice |
+| `ava` | Azure Speech native voice (default) |
+| `denise` | Azure Speech native voice |
+| `elsa` | Azure Speech native voice |
+| `florian` | Azure Speech native voice |
+| `francisca` | Azure Speech native voice |
+| `meera` | Azure Speech native voice |
+| `ximena` | Azure Speech native voice |
+| `xiaoxiao` | Azure Speech native voice |
+| `yunxi` | Azure Speech native voice |
+
+If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
+
+### Switch voices mid-session
+
+You can switch the voice during an active session by sending another `session.update` message with a different `name`:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "voice": {
+      "type": "azure-realtime-native",
+      "name": "florian"
+    }
+  }
+}
+```
+
+### Voice compatibility
+
+- The `azure-realtime` model only accepts `azure-realtime-native` voices. Other voice types (such as `openai`, `azure-standard`, `azure-custom`, or `azure-personal`) are rejected with an `invalid_voice_type` error.
+- Other models (such as `gpt-realtime` or `gpt-realtime-mini`) don't accept `azure-realtime-native` voices.
 
 ## Azure text to speech avatar
 
