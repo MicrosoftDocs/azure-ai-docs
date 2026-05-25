@@ -54,7 +54,7 @@ The Foundry extension lets you discover, deploy, and interact with models from t
 
 The model catalog provides access to models from Microsoft, OpenAI, Meta, DeepSeek, and other providers. You can open the model catalog in several ways:
 
-- Run the **Foundry: Open Model Catalog** command from the command palette.
+- Run the **Foundry Toolkit: Show model catalog** command from the command palette.
 - Select the **plus** icon next to **Models** in the **Resources** section of the Foundry extension view.
 - Select the **Model Catalog** link in the **Tools** section of the Foundry extension view.
 
@@ -64,7 +64,7 @@ Use the command palette to open the model catalog without navigating the extensi
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **Foundry: Open Model Catalog** and press Enter.
+1. Enter **Foundry Toolkit: show model catalog** and press Enter.
 
 1. The **Model Catalog** page opens.
 

@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 author: sdgilley
 ms.reviewer: erichen
-ms.author: sgilley
+ms.author: rotabor
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/25/2026
