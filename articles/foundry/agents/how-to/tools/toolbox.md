@@ -373,24 +373,6 @@ connections:
   - name: my-gh-conn
 ```
 
-**Example: MCP server with OAuth2 managed connector**
-
-OAuth2 managed connector connections must be created through the Foundry portal. After creation, reference them by name in your toolbox YAML.
-
-```yaml
-# my-toolbox.yaml
-description: GitHub OAuth MCP toolbox
-connections:
-  - name: github-oauth-conn   # created in Foundry portal with connectorName: foundrygithubmcp
-```
-
-```bash
-azd ai toolbox create my-toolbox \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --from-file ./my-toolbox.yaml \
-  --no-prompt
-```
-
 :::zone-end
 
 ## Step 2: Get the toolbox MCP endpoint
