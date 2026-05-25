@@ -335,6 +335,19 @@ resources:
         project_connection_id: github-mcp-conn
 ```
 
+### Create a toolbox (azd)
+
+Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
+
+```yaml
+# my-toolbox.yaml
+description: <human-readable description>
+connections:
+  - name: <project-connection-name>   # must already exist in the project
+    # index: <search-index>           # required only for CognitiveSearch connections
+    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
+```
+
 :::zone-end
 
 ## Step 2: Get the toolbox MCP endpoint
@@ -2657,19 +2670,6 @@ The following table lists every supported combination:
 | Bing Custom Search | `GroundingWithCustomSearch` | `api-key` | `--key <bing-key>` |
 
 :::zone-end
-
-### Create a toolbox (azd)
-
-Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
-
-```yaml
-# my-toolbox.yaml
-description: <human-readable description>
-connections:
-  - name: <project-connection-name>   # must already exist in the project
-    # index: <search-index>           # required only for CognitiveSearch connections
-    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
-```
 
 ## Troubleshoot
 
