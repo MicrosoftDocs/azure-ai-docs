@@ -45,7 +45,7 @@ Sign in to your Azure subscription so the extension can access your Foundry proj
 
 1. Select **Foundry** and right-click your project.
 
-1. Select **Open in Foundry Extension**.
+1. Select **Open in Foundry Toolkit Extension**.
 
     Your Foundry project resources appear in the extension view, and the Foundry icon displays on the VS Code navigation bar.
 
@@ -57,8 +57,8 @@ The Microsoft Foundry Toolkit for Visual Studio Code extension organizes your wo
 
 | Section | What it contains | When to use it |
 | ------- | --------------- | -------------- |
-| **Resources** | Deployed models, declarative agents, hosted agents, connections, and vector stores for your Foundry project. | View and manage your project resources. |
-| **Tools** | Model Catalog, Model Playground, Agent Playgrounds (remote and local), Local Visualizer, and Deploy Hosted Agents. | Deploy new models, test prompts, and interact with agents. |
+| **My Resources** | Deployed models, declarative agents, hosted agents, connections, and vector stores for your Foundry project. | View and manage your project resources. |
+| **Developer Tools** | Model Catalog, Model Playground, Agent Playgrounds (remote and local), Local Visualizer, and Deploy Hosted Agents. | Deploy new models, test prompts, and interact with agents. |
 | **Help and Feedback** | Documentation, GitHub repository, Microsoft Privacy Statement, and community links. | Get help or provide feedback. |
 
 [!INCLUDE [get-started-projects-vs-code 2](../../includes/how-to-develop-get-started-projects-vs-code-2.md)]

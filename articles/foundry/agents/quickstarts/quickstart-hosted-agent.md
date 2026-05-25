@@ -202,9 +202,7 @@ Deploying services (azd deploy)
 :::zone pivot="vscode"
 
 > [!IMPORTANT]
-> Make sure you are using the prelease version of the Microsoft Foundry Toolkit extension and the Foundry extension in VS Code.
->
-> In your VS Code extensions page, choose Foundry Toolkit extension and Foundry extension and switch to the pre-release version.
+> Make sure you are using the latest version of Microsoft Foundry Toolkit for Visual Studio Code extension.
 
 ## Step 1: Create a Foundry project
 
