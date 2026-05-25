@@ -895,7 +895,7 @@ As an alternative to declaring connections in `agent.yaml`, use the `azd ai` CLI
 
 ```bash
 # A. Public MCP server — no auth
-# --kind remote-tool also applies to remote A2A connections
+# For A2A connections, replace --kind remote-tool with --kind remote-a2a
 azd ai agent connection create my-mslearn \
   --project-endpoint $PROJECT_ENDPOINT \
   --kind remote-tool \
