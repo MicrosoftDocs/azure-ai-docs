@@ -2722,36 +2722,6 @@ async def list_skills():
 asyncio.run(list_skills())
 ```
 
-Skills appear as MCP resources with URIs in the format `skill://{name}`
-
-### Validate skill discovery
-
-After attaching skills to a toolbox version, verify that they're discoverable through the toolbox MCP endpoint using the MCP Python SDK:
-
-```python
-import asyncio
-from azure.identity import DefaultAzureCredential
-from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
-
-async def list_skills():
-    credential = DefaultAzureCredential()
-    token = credential.get_token("https://ai.azure.com/.default").token
-    toolbox_url = "{endpoint}/toolboxes/my-toolbox/mcp?api-version=v1"
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolboxes=V1Preview",
-    }
-    async with streamablehttp_client(toolbox_url, headers=headers) as (read, write, _):
-        async with ClientSession(read, write) as session:
-            await session.initialize()
-            resources = await session.list_resources()
-            for resource in resources.resources:
-                print(f"Skill: {resource.uri} - {resource.name}")
-
-asyncio.run(list_skills())
-```
-
 Skills appear as MCP resources with URIs in the format `skill://{name}`.
 
 
