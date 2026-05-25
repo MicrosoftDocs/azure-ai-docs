@@ -1,6 +1,6 @@
 ---
-title: "Create hosted agent workflows in Visual Studio Code"
-description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Foundry Toolkit for Visual Studio Code."
+title: "Create hosted agent workflows in the Microsoft Foundry Toolkit for Visual Studio Code extension"
+description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry Toolkit for Visual Studio Code extension."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -17,8 +17,8 @@ zone_pivot_groups: ai-foundry-vsc-extension-languages
 ms.custom: doc-kit-assisted
 ---
 
-# Create hosted agent workflows in Visual Studio Code (preview)
-Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
+# Create hosted agent workflows in the Microsoft Foundry Toolkit for Visual Studio Code extension
+Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
 Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.
 
@@ -269,7 +269,7 @@ A new tab opens in VS Code to display the execution graph. The visualization upd
 
 #### Port conflicts
 
-For port conflicts, you can change the visualization port by setting it in the Foundry extension settings. To do that, follow these steps:
+For port conflicts, you can change the visualization port by setting it in the Microsoft Foundry Toolkit for Visual Studio Code extension settings. To do that, follow these steps:
 
 1. In the left sidebar of VS Code, select the gear icon to open the settings menu.
 1. Select `Extensions` > `Microsoft Foundry Configuration`.
@@ -305,7 +305,7 @@ After testing your Hosted agent locally, deploy it to your Foundry workspace so 
 
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
-1. Upon successful deployment, the Hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
+1. Upon successful deployment, the Hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry Toolkit for Visual Studio Code extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
 ::: zone-end
 
@@ -313,7 +313,7 @@ After testing your Hosted agent locally, deploy it to your Foundry workspace so 
 
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
-1. Upon successful deployment, the Hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
+1. Upon successful deployment, the Hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry Toolkit for Visual Studio Code extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
 
 ::: zone-end

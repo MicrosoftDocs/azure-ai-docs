@@ -1,5 +1,5 @@
 ---
-title: "Add declarative agent workflows in Visual Studio Code"
+title: "Add declarative agent workflows in Microsoft Foundry Toolkit for Visual Studio Code extension"
 description: "Add and test declarative agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension. Convert YAML workflows to Agent Framework code."
 manager: mcleans
 ms.service: microsoft-foundry
@@ -53,9 +53,9 @@ Then choose one of the following options to open the workflow in VS Code for the
 
 ## Test a workflow in the playground
 
-Test your declarative agent workflow by using the remote agent playground in the VS Code extension.
+Test your declarative agent workflow by using the remote agent playground in the Microsoft Foundry Toolkit for Visual Studio Code extension.
 
-1. In the **My Resources** section of the VS Code extension, locate and select your Foundry project.
+1. In the **My Resources** section of the Microsoft Foundry Toolkit for Visual Studio Code extension, locate and select your Foundry project.
 1. Select **Declarative Agents**.
 1. Select the version of the workflow you want to test. 
 1. The **Remote Agent Playground** pane opens and starts a conversation with your agent.
