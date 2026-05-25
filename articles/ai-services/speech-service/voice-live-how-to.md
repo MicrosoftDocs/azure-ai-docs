@@ -417,12 +417,12 @@ And a `response.animation_viseme.done` message is sent when all viseme messages 
 }
 ```
 
-## Audio output through the azure-realtime model
+## azure-realtime model
 
-The `azure-realtime` model is a dedicated real-time model that uses a curated set of native voices designed for natural-sounding real-time speech output. Unlike `gpt-realtime` models, which use OpenAI voices or Azure text to speech voices, `azure-realtime` uses a dedicated voice type called `azure-realtime-native`.
+The `azure-realtime` model is a dedicated real-time model that uses a curated set of native voices designed for natural-sounding real-time speech output.
 
 > [!NOTE]
-> The `azure-realtime` model requires API version `2026-01-01-preview` or later. Connecting with an older API version returns an `api_version_too_low` error before `session.created`.
+> The `azure-realtime` model requires API version `2026-01-01-preview` or later.
 
 ### Voice configuration
 
@@ -461,11 +461,6 @@ The following `azure-realtime-native` voice names are supported:
 | `yunxi` | Azure Speech native voice |
 
 If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
-
-### Voice compatibility
-
-- The `azure-realtime` model only accepts `azure-realtime-native` voices. Other voice types (such as `openai`, `azure-standard`, `azure-custom`, or `azure-personal`) are rejected with an `invalid_voice_type` error.
-- Other models (such as `gpt-realtime` or `gpt-realtime-mini`) don't accept `azure-realtime-native` voices.
 
 ## Azure text to speech avatar
 
