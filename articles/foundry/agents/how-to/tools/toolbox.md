@@ -895,6 +895,7 @@ As an alternative to declaring connections in `agent.yaml`, use the `azd ai` CLI
 
 ```bash
 # A. Public MCP server — no auth
+# --kind remote-tool also applies to remote A2A connections
 azd ai agent connection create my-mslearn \
   --project-endpoint $PROJECT_ENDPOINT \
   --kind remote-tool \
@@ -932,6 +933,15 @@ azd ai agent connection create my-bing-custom \
   --target https://api.bing.microsoft.com/ \
   --auth-type api-key \
   --key "<bing-custom-search-key>"
+
+# F. Remote MCP server — agentic identity (agent's managed identity, no user token)
+# Assign the agent identity the required RBAC role on the target resource before use.
+azd ai agent connection create my-language-mcp \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target "https://<resource>.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview" \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
 ```
 
 `--custom-key` is singular and repeatable — one flag per header. The `"Header=Value"` format sends the header verbatim on every MCP request. For `--kind GroundingWithCustomSearch`, the exact PascalCase form is required.
