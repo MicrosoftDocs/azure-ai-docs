@@ -21,6 +21,8 @@ recommendations: false
 
 # Determine PTU sizing for a workload
 
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **New Foundry portal version** - [Switch to version for the classic Foundry portal](../../../foundry-classic/openai/how-to/provisioned-throughput-sizing.md)
+
 Before creating a provisioned deployment, estimate how many provisioned throughput units (PTUs) your workload needs. This article provides the per-model throughput parameters you need and shows how to calculate PTU requirements using sizing formulas or the Foundry capacity calculator.
 
 If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md). When you're ready to create your deployment, see [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).

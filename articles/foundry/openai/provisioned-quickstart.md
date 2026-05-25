@@ -21,6 +21,8 @@ recommendations: false
 
 # Quickstart: Create a provisioned throughput deployment
 
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **New Foundry portal version** - [Switch to version for the classic Foundry portal](../../foundry-classic/openai/provisioned-quickstart.md)
+
 In this quickstart, you create a provisioned throughput deployment in Microsoft Foundry, make an inference call to confirm it works, and view its utilization metric.
 
 A provisioned throughput deployment gives your application dedicated model processing throughput with predictable latency. Billing is done per provisioned throughput unit (PTU) per hour. For long-term workloads, Azure Reservations offer financial discounts compared to hourly billing. For a full conceptual introduction, see [What is provisioned throughput for Foundry Models?](./concepts/provisioned-throughput.md).
