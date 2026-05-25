@@ -101,7 +101,7 @@ items:
         displayName: pricing, budget, estimate
       - name: Priority processing
         href: ../../openai/concepts/priority-processing.md
-      - name: "Quickstart: Create a provisioned throughput deployment"
+      - name: Create a provisioned throughput deployment
         href: ../../openai/provisioned-quickstart.md
         displayName: PTU, provisioned, provisioned throughput units
       - name: What is the Provisioned Throughput offering?
