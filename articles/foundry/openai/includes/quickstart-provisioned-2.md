@@ -50,20 +50,20 @@ Alternatively, you can create your deployment by using the Azure CLI.
 
     Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
-REST, ARM template, Bicep, and Terraform can also be used to create deployments. See [Automate deployments](../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) and replace `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
+REST, ARM template, Bicep, and Terraform can also be used to create deployments. See [Automate deployments](../../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) and replace `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged`.
 
 ## Make an inference call
 
 The inference code for a provisioned deployment is the same as for any other deployment type. Use your deployment name (not the model name) as the `model` parameter value.
 
-The code in this section uses API key authentication. You can also use Entra ID authentication. For details on using Entra ID authentication when making an inference call, see [How to generate text responses with Microsoft Foundry Models](../foundry-models/how-to/generate-responses.md).
+The code in this section uses API key authentication. You can also use Entra ID authentication. For details on using Entra ID authentication when making an inference call, see [How to generate text responses with Microsoft Foundry Models](../../foundry-models/how-to/generate-responses.md).
 
 Before running the sample, set the following environment variable:
 
 - `AZURE_OPENAI_API_KEY`: your resource API key.
 
 > [!IMPORTANT]
-> Don't hard-code credentials in your application. For production workloads, use a secure credential store such as [Azure Key Vault](/azure/key-vault/general/overview). See [Security features for Azure AI services](../../ai-services/security-features.md).
+> Don't hard-code credentials in your application. For production workloads, use a secure credential store such as [Azure Key Vault](/azure/key-vault/general/overview). See [Security features for Azure AI services](../../../ai-services/security-features.md).
 
 # [Python SDK](#tab/python)
 
@@ -121,14 +121,14 @@ After making calls, confirm that traffic is reaching your deployment by checking
 
 A utilization reading near 0% immediately after your test call is normal — the metric updates on a monitoring window.
 
-:::image type="content" source="../../foundry/openai/media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png" alt-text="Screenshot of Azure Metrics showing Provisioned-managed Utilization V2 chart filtered by deployment name." lightbox="../../foundry/openai/media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png":::
+:::image type="content" source="../media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png" alt-text="Screenshot of Azure Metrics showing Provisioned-managed Utilization V2 chart filtered by deployment name." lightbox="../media/provisioned-quickstart/provisioned-managed-utilization-v2-metric.png":::
 
-For a full explanation of how utilization is calculated and what to do when it reaches 100%, see [Operate provisioned deployments in production](./how-to/provisioned-get-started.md#measure-deployment-utilization).
+For a full explanation of how utilization is calculated and what to do when it reaches 100%, see [Operate provisioned deployments in production](../how-to/provisioned-get-started.md#measure-deployment-utilization).
 
 
 ## Consider setting up spillover
 
-Spillover automatically routes overflow requests from your provisioned deployment to a standard deployment in the same Foundry resource. When your provisioned deployment is fully utilized and returns a `429` code, spillover redirects those excess requests to the standard deployment instead of failing them, helping reduce disruptions during traffic bursts. To learn more about enabling spillover and monitoring spillover requests, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
+Spillover automatically routes overflow requests from your provisioned deployment to a standard deployment in the same Foundry resource. When your provisioned deployment is fully utilized and returns a `429` code, spillover redirects those excess requests to the standard deployment instead of failing them, helping reduce disruptions during traffic bursts. To learn more about enabling spillover and monitoring spillover requests, see [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md).
 
 
 ## Consider purchasing a reservation
@@ -140,12 +140,12 @@ If you plan to purchase a reservation after creating your deployment, verify tha
 > [!IMPORTANT]
 > Always create and confirm your deployment before purchasing a reservation. The reservation must match your deployment's type (Global, Data Zone, or Regional), region, and subscription scope. Committing to a reservation for capacity you haven't confirmed is available can result in a financial commitment you can't use.
 
-For sizing guidance, purchase steps, and management, see [Azure Reservations for provisioned throughput](./concepts/provisioned-throughput-billing.md#azure-reservations-for-provisioned-throughput).
+For sizing guidance, purchase steps, and management, see [Azure Reservations for provisioned throughput](../concepts/provisioned-throughput-billing.md#azure-reservations-for-provisioned-throughput).
 
 
 ## Clean up resources
 
-Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Clean up resources](./how-to/provisioned-get-started.md#clean-up-resources).
+Deleting the Foundry resource doesn't automatically delete its deployments. Always delete all deployments before deleting the resource, as charges for deployments on a deleted resource continue until the resource is purged. See [Clean up resources](../how-to/provisioned-get-started.md#clean-up-resources).
 
 > [!NOTE]
 > Deleting a deployment doesn't cancel an Azure Reservation. If you purchased one, cancel or exchange it separately on the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). Cancellation might incur an early termination fee.
@@ -172,4 +172,4 @@ Reference: [az cognitiveservices account deployment delete](/cli/azure/cognitive
 
 ## Next step
 
-- [What is provisioned throughput for Foundry Models?](concepts/provisioned-throughput.md)
+- [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md)
