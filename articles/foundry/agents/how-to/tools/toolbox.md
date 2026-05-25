@@ -946,6 +946,21 @@ azd ai agent connection create my-language-mcp \
 
 `--custom-key` is singular and repeatable — one flag per header. The `"Header=Value"` format sends the header verbatim on every MCP request. For `--kind GroundingWithCustomSearch`, the exact PascalCase form is required.
 
+The following table lists every supported combination:
+
+| Tool type | `--kind` | `--auth-type` | Additional flags |
+|-----------|----------|---------------|-----------------|
+| Remote MCP server | `remote-tool` | `none` | — |
+| Remote MCP server | `remote-tool` | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| Remote MCP server | `remote-tool` | `user-entra-token` | `--audience <entra-audience>` |
+| Remote MCP server | `remote-tool` | `agentic-identity` | `--audience <entra-audience>` |
+| Remote A2A server | `remote-a2a` | `none` | — |
+| Remote A2A server | `remote-a2a` | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| Remote A2A server | `remote-a2a` | `user-entra-token` | `--audience <entra-audience>` |
+| Remote A2A server | `remote-a2a` | `agentic-identity` | `--audience <entra-audience>` |
+| Azure AI Search | `cognitive-search` | `api-key` | `--key <admin-key>` |
+| Bing Custom Search | `GroundingWithCustomSearch` | `api-key` | `--key <bing-key>` |
+
 **Create a toolbox from a YAML file:**
 
 ```yaml
