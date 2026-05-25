@@ -348,6 +348,49 @@ connections:
     # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
 ```
 
+**Example: MCP server with key-based auth**
+
+```bash
+# 1. Create the connection
+azd ai agent connection create my-gh-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp/ \
+  --auth-type custom-keys \
+  --custom-key "Authorization=Bearer $GITHUB_PAT"
+
+# 2. Create the toolbox
+azd ai toolbox create my-toolbox \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --from-file ./my-toolbox.yaml \
+  --no-prompt
+```
+
+```yaml
+# my-toolbox.yaml
+description: GitHub MCP toolbox
+connections:
+  - name: my-gh-conn
+```
+
+**Example: MCP server with OAuth2 managed connector**
+
+OAuth2 managed connector connections must be created through the Foundry portal. After creation, reference them by name in your toolbox YAML.
+
+```yaml
+# my-toolbox.yaml
+description: GitHub OAuth MCP toolbox
+connections:
+  - name: github-oauth-conn   # created in Foundry portal with connectorName: foundrygithubmcp
+```
+
+```bash
+azd ai toolbox create my-toolbox \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --from-file ./my-toolbox.yaml \
+  --no-prompt
+```
+
 :::zone-end
 
 ## Step 2: Get the toolbox MCP endpoint
