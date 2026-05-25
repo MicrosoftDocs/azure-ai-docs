@@ -961,23 +961,7 @@ The following table lists every supported combination:
 | Azure AI Search | `cognitive-search` | `api-key` | `--key <admin-key>` |
 | Bing Custom Search | `GroundingWithCustomSearch` | `api-key` | `--key <bing-key>` |
 
-**Create a toolbox from a YAML file:**
-
-```yaml
-# my-toolbox.yaml
-description: <human-readable description>
-connections:
-  - name: <project-connection-name>   # must already exist in the project
-    # index: <search-index>           # required only for CognitiveSearch connections
-    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
-```
-
-```bash
-azd ai toolbox create my-toolbox \
-  --project-endpoint $PROJECT_ENDPOINT \
-  --from-file ./my-toolbox.yaml \
-  --no-prompt
-```
+For a complete YAML toolbox file example, see [Create a toolbox (azd)](#create-a-toolbox-azd) in the **Configure tools** section below.
 
 :::zone-end
 
@@ -1576,6 +1560,26 @@ Use the `name` field to include multiple instances of the same tool type in one 
 ```
 
 The following sections show each tool type's configuration in detail.
+
+### Create a toolbox (azd)
+
+Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
+
+```yaml
+# my-toolbox.yaml
+description: <human-readable description>
+connections:
+  - name: <project-connection-name>   # must already exist in the project
+    # index: <search-index>           # required only for CognitiveSearch connections
+    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
+```
+
+```bash
+azd ai toolbox create my-toolbox \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --from-file ./my-toolbox.yaml \
+  --no-prompt
+```
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
