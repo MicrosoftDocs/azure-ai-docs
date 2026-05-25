@@ -1561,19 +1561,6 @@ Use the `name` field to include multiple instances of the same tool type in one 
 
 The following sections show each tool type's configuration in detail.
 
-### Create a toolbox (azd)
-
-Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
-
-```yaml
-# my-toolbox.yaml
-description: <human-readable description>
-connections:
-  - name: <project-connection-name>   # must already exist in the project
-    # index: <search-index>           # required only for CognitiveSearch connections
-    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
-```
-
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
 :::zone pivot="rest-api"
@@ -2668,6 +2655,19 @@ resources:
 ```
 
 :::zone-end
+
+### Create a toolbox (azd)
+
+Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
+
+```yaml
+# my-toolbox.yaml
+description: <human-readable description>
+connections:
+  - name: <project-connection-name>   # must already exist in the project
+    # index: <search-index>           # required only for CognitiveSearch connections
+    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
+```
 
 ## Troubleshoot
 
