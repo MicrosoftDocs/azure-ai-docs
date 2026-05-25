@@ -12,7 +12,7 @@ ms.custom: include, classic-and-new
 
 Set up your development environment to use the Microsoft Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
-In this article, you install language runtimes, Azure CLI, Azure Developer CLI, the Foundry VS Code extension, and Git.
+In this article, you install language runtimes, Azure CLI, Azure Developer CLI, the Microsoft Foundry Toolkit for Visual Studio Code extension, and Git.
 
 > [!IMPORTANT]  
 > This article covers **general prerequisites** only, such as language runtimes, global tools, and VS Code and extension setup.  
@@ -85,9 +85,9 @@ The Azure Developer CLI (azd) is an open-source tool that helps you set up and d
 
 Many of the [AI solution templates](../how-to/develop/ai-template-get-started.md) include a deployment option using `azd`.
 
-## Install the Foundry VS Code extension
+## Install the Microsoft Foundry Toolkit for Visual Studio Code extension
 
-The Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Install the Foundry VS Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+The Microsoft Foundry Toolkit for Visual Studio Code extension lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Microsoft Foundry Toolkit for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio).
 
 ## Install Git
 
