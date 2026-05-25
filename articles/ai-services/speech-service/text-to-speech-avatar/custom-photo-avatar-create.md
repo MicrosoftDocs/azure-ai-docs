@@ -57,7 +57,7 @@ If you are creating a custom photo avatar from a real person’s photo, you must
 For an example of the consent statement see the verbal-statement-all-locales.txt file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository.
 
 ## Step 4: Create custom photo avatar
-1. Review the avatar details, confirm the acknowledgement, and then select **Submit**
+1. Review the avatar details, confirm the acknowledgment, and then select **Submit**
 2. After you submit, the custom photo avatar is created and you’re returned to the fine-tuning job list. The new fine-tuning job appears in the list immediately.
 3. When the job status shows Succeeded, open the fine-tuning job to view the avatar preview.
 
