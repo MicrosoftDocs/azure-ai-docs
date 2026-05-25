@@ -34,7 +34,7 @@ Before following this quickstart, check that you have quota for your target regi
 
 1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select the subscription and the Foundry resource in the region where you have PTU quota.
-1. On the left navigation menu, select **Quota**.
+1.  **Management center** > **Quota**.
 1. Select **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
 
     > [!TIP]
@@ -46,8 +46,9 @@ In this section, you create a provisioned deployment using the Foundry portal or
 
 ### Use the Foundry portal for deployment
 
-1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left navigation menu, select **Deployments**.
-1. Select **Deploy model**. In the menu that appears, select **Customize**.
+1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left navigation menu, select **Models + endpoints** > **Model deployments**.
+1. Select **+ Deploy model** > **Deploy base model**.
+1. In the menu that appears, search for the model you want to deploy, such as `gpt-5.1`, and select it.
 1. In the **Deployment type** dropdown, select a provisioned deployment type: **Global Provisioned Throughput**, **Data Zone Provisioned Throughput**, or **Regional Provisioned Throughput**.
 1. Fill in the deployment fields:
 
@@ -57,7 +58,6 @@ In this section, you create a provisioned deployment using the Foundry portal or
    | **Model** | The model to deploy, e.g., `gpt-5.1`. |
    | **Model version** | The version of the model. |
    | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum, e.g., `50`. |
-   | **Content filter** | The filtering policy. See [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md). |
 
 1. Select **Confirm Pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing and cost management](./concepts/provisioned-throughput-billing.md) before continuing.
 

@@ -51,7 +51,7 @@ If a deployment exists for only part of an hour, it receives a prorated charge:
 - A deployment that exists for 15 minutes is charged at 1/4 of the hourly rate.
 - If you resize the deployment, billing adjusts to the new PTU count immediately.
 
-:::image type="content" source="../media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing for provisioned deployments, where cost is determined by PTU count and hours deployed." lightbox="../media/provisioned/hourly-billing.png":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing for provisioned deployments, where cost is determined by PTU count and hours deployed." lightbox="../../../foundry/openai/media/provisioned/hourly-billing.png":::
 
 Provisioned deployments can't be paused. Billing stops only when the deployment is deleted. 
 

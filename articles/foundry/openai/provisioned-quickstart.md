@@ -55,7 +55,6 @@ In this section, you create a provisioned deployment using the Foundry portal or
    | **Model** | The model to deploy, e.g., `gpt-5.1`. |
    | **Model version** | The version of the model. |
    | **Provisioned throughput units** | The number of PTUs to allocate. Must meet the model's minimum, e.g., `50`. |
-   | **Content filter** | The filtering policy. See [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md). |
 
 1. Select **Confirm pricing** to review the hourly rate for the deployment. **Billing starts immediately the deployment is created, even when no requests are being sent**. You stop billing by deleting your deployment. If you're unsure of the costs, select **Cancel** and review [PTU billing and cost management](./concepts/provisioned-throughput-billing.md) before continuing.
 

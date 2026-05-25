@@ -21,6 +21,6 @@ recommendations: false
 
 # What is provisioned throughput for Foundry Models?
 
-**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **New Foundry portal version** - [Switch to version for the classic Foundry portal](../../../foundry-classic/openai/concepts/provisioned-throughput.md)
+**Currently viewing:** :::image type="icon" source="../../media/yes-icon.svg" border="false"::: **New Foundry portal version** - [Switch to version for the classic Foundry portal](../../../foundry-classic/openai/concepts/provisioned-throughput.md)
 
 [!INCLUDE [concepts-provisioned-throughput-1](../includes/concepts-provisioned-throughput-1.md)]
