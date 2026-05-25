@@ -85,7 +85,7 @@ The Voice Live API supports the following models. For supported regions, see the
 | `gpt-5-chat` | GPT-5 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
 | `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `azure-realtime` | Azure real-time model with a dedicated set of native voices (`azure-realtime-native`) designed for natural-sounding real-time speech output. Requires API version `2026-01-01-preview` or later. |
+| `azure-realtime` | Azure real-time + dedicated `azure-realtime-native` voices for audio. |
 
 ## Compare Voice Live API with other speech-to-speech solutions
 
