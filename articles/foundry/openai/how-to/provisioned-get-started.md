@@ -21,6 +21,8 @@ recommendations: false
 
 # Operate provisioned deployments in production
 
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **New Foundry portal version** - [Switch to version for the classic Foundry portal](../../../foundry-classic/openai/how-to/provisioned-get-started.md)
+
 [!INCLUDE [how-to-provisioned-get-started-1](../includes/how-to-provisioned-get-started-1.md)]
 
 

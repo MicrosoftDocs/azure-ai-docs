@@ -34,8 +34,7 @@ Before following this quickstart, check that you have quota for your target regi
 
 1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select the subscription and the Foundry resource in the region where you have PTU quota.
-1.  **Management center** > **Quota**.
-1. Select **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
+1. Go to **Management center** > **Quota** > **Provisioned throughput unit** to see your available quota. If you don't have quota, select **Request Quota** and complete the form. Quota approval can take several days, and you receive an email notification when the request is approved.
 
     > [!TIP]
     > You can also follow this [direct link to the quota request form](https://aka.ms/oai/stuquotarequest).
@@ -47,7 +46,7 @@ In this section, you create a provisioned deployment using the Foundry portal or
 ### Use the Foundry portal for deployment
 
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left navigation menu, select **Models + endpoints** > **Model deployments**.
-1. Select **+ Deploy model** > **Deploy base model**.
+1. Select **Deploy model** > **Deploy base model**.
 1. In the menu that appears, search for the model you want to deploy, such as `gpt-5.1`, and select it.
 1. In the **Deployment type** dropdown, select a provisioned deployment type: **Global Provisioned Throughput**, **Data Zone Provisioned Throughput**, or **Regional Provisioned Throughput**.
 1. Fill in the deployment fields:

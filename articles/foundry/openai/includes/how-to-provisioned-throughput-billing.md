@@ -1,3 +1,15 @@
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: seramasu
+ms.author: mopeakande
+ms.service: microsoft-foundry
+ms.topic: include
+ms.date: 05/25/2026
+ms.custom: include
+---
+
 Provisioned throughput deployments in Microsoft Foundry support hourly billing for flexible, short-term usage, and Azure Reservations for sustained production workloads at a discounted rate. This article explains how PTU billing works, helps you choose between hourly billing and Azure Reservations, and covers how to monitor and manage reservation costs.
 
 If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md). To estimate the number of PTUs your workload needs, see [Determine PTU sizing for a workload](../how-to/provisioned-throughput-sizing.md). When you're ready to create your first deployment, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).

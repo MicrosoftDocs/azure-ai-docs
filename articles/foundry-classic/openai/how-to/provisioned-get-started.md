@@ -20,9 +20,7 @@ recommendations: false
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-
-
-# Get started with provisioned deployments in Microsoft Foundry (classic)
+# Operate provisioned deployments in production (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/provisioned-get-started.md)
 
