@@ -324,5 +324,5 @@ For embedded voices, it's essential to note that certain [Speech synthesis marku
 
 ## Related content
 
-- [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
+- [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and-hybrid-scenarios/3716797)
 - [Limited Access to embedded Speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech)
