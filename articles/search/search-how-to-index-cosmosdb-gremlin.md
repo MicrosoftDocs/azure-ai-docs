@@ -40,10 +40,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 For this call, specify a [preview REST API version](search-api-preview.md) to create a data source that connects via an Azure Cosmos DB for Apache Gremlin. You can use 2021-04-01-preview or later. We recommend the latest preview API.
 
-1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -102,7 +102,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store data:
 
    ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -161,10 +161,10 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -196,7 +196,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-05-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -273,7 +273,7 @@ When graph data is deleted, you might want to delete its corresponding document 
 The following example creates a data source with a soft-deletion policy:
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [Search service admin key]
 

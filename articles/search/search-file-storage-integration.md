@@ -67,10 +67,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 You can use 2020-06-30-preview or later for "type": `"azurefile"`. We recommend the latest preview API.
 
-1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
+1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
 
     ```http
-    POST /datasources?api-version=2024-05-01-preview
+    POST /datasources?api-version=2026-05-01-preview
     {
         "name" : "my-file-datasource",
         "type" : "azurefile",

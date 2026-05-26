@@ -1,4 +1,4 @@
----
+﻿---
 title: Multi-Vector Field Support
 description: Learn how Azure AI Search enables multi-vector field support for better search experiences with long-form or multimodal content.
 ms.reviewer: gimondra
@@ -162,7 +162,7 @@ When a document includes multiple embedded vectors, such as text and image embed
 To debug how each vector contributed, use the `innerHits` debug mode (available in the latest preview REST API).
 
 ```json
-POST /indexes/my-index/docs/search?api-version=2025-11-01-preview
+POST /indexes/my-index/docs/search?api-version=2026-05-01-preview
 {
   "vectorQueries": [
     {

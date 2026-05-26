@@ -1,4 +1,4 @@
----
+﻿---
 title: Indexer Execution on Serverless and S3 HD
 description: Learn how Azure AI Search runs indexers on Serverless and S3 High Density (S3 HD) search services.
 author: gmndrg
@@ -83,7 +83,7 @@ This section explains how to track runtime usage and remaining budget using the 
 Use [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) (REST API) to retrieve cumulative indexer runtime across all indexers in the service for the current 24-hour window:
 
 ```http
-GET {endpoint}/servicestats?api-version=2025-11-01-preview
+GET {endpoint}/servicestats?api-version=2026-05-01-preview
 ```
 
 The response includes an `indexersRuntime` section. The following JSON shows a service whose six-hour daily quota hasn't been used:
@@ -108,7 +108,7 @@ The response includes an `indexersRuntime` section. The following JSON shows a s
 Use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API) to retrieve cumulative runtime for an individual indexer:
 
 ```http
-GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2025-11-01-preview
+GET {endpoint}/indexers('{indexerName}')/search.status?api-version=2026-05-01-preview
 ```
 
 The response includes a `runtime` section. The following JSON shows an indexer on a service whose six-hour daily quota hasn't been used:

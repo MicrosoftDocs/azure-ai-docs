@@ -1,4 +1,4 @@
----
+﻿---
 title: Use ADLS Gen2 Indexer to Ingest Permission Metadata
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.reviewer: gimondra
@@ -34,7 +34,7 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
 
-+ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
++ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview or later for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
 
 ## Limitations
 
@@ -154,7 +154,7 @@ Key points about the configuration that make it work for this scenario:
 ```http
 # Create / Update Azure Blob Knowledge Source
 ###
-PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2026-05-01-preview
 api-key: {{key}}
 Content-Type: application/json
  
@@ -330,7 +330,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resetdocs (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-11-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-05-01-preview 
    { 
      "documentKeys": [ 
        "1001", 
@@ -342,7 +342,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resync (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-11-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-05-01-preview 
    { 
      "options": [ 
        "permissions" 

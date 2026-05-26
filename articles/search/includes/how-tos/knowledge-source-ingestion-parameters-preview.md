@@ -6,8 +6,8 @@ zone_pivot_groups: search-csharp-python-rest
 ---
 
 <!--
-Preview (2025-11-01-preview) ingestion parameters properties table.
-Included in all indexed KS how-to articles under the [2025-11-01-preview] tab.
+Ltest preview ingestion parameters properties table.
+Included in all indexed KS how-to articles under the preview tab.
 Includes preview-only properties (e.g., ingestionPermissionOptions) not in the GA version.
 -->
 

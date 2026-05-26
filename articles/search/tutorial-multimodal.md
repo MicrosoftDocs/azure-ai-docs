@@ -1,4 +1,4 @@
----
+﻿---
 title: 'Tutorial: Multimodal Chunking and Embedding with the Document Layout Skill'
 description: Learn how to extract, chunk, index, and search multimodal content using an indexer and skills.
 ms.service: azure-ai-search
@@ -189,7 +189,7 @@ The [azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-re
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
-POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 
@@ -218,7 +218,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('demo-multimodal-ds')?api-version=2025-11-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('demo-multimodal-ds')?api-version=2026-05-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -1675,7 +1675,7 @@ This pattern uses:
 
 ```http
 ### Create and run an indexer
-POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 
@@ -1712,7 +1712,7 @@ You can start searching as soon as the first document is loaded. This is an unsp
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1748,7 +1748,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview "
 }
 ```
 
@@ -1761,7 +1761,7 @@ Use a filter to exclude all non-image content. The `$filter` parameter only work
 For filters, you can also use logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
 
 ```http
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1787,7 +1787,7 @@ Query for text or images with content related to energy, returning the content I
 This query is full-text search only, but you can [query the vector field](vector-search-how-to-query.md) for similarity search.
 
 ```http
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1804,21 +1804,21 @@ Indexers can be reset to clear the high-water mark, which allows a full rebuild.
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2026-05-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```

@@ -21,7 +21,7 @@ Here are the most recent versions of the REST APIs:
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
 | Data plane | [`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Stable |
-| Data plane | [`2025-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2026-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) | Preview |
 

@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/17/2025
+ms.date: 06/02/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Migrate semantic ranking code from previous versions
@@ -30,19 +31,22 @@ Check your code for the REST API version or SDK package version to confirm which
 
 | Release&nbsp;type | REST&nbsp;API&nbsp;version | Semantic ranker updates |
 |--|--|--|
-| initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds `queryType=semantic` to Search Documents |
-| preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds `semanticConfiguration` to Create or Update Index |
-| preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Updates `semanticConfiguration`. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
-| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Adds `semanticQuery` to send a query used only for reranking purposes. |
-| stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to `semanticConfiguration` that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
-| preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change |
-| stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
-| preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | No change |
-| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md).  |
-| preview | [2025-03-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | Adds opt-in to prerelease versions of semantic models. |
-| preview | [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | No API updates in this preview, but semantic ranking now has [better integration with scoring profiles](semantic-how-to-enable-scoring-profiles.md). |
-| preview | [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | No change |
-| preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
+| Initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds `queryType=semantic` to Search Documents. |
+| Preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds `semanticConfiguration` to Create or Update Index. |
+| Preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Updates `semanticConfiguration`. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
+| Preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Adds `semanticQuery` to send a query used only for reranking purposes. |
+| Stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to `semanticConfiguration` that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
+| Preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change. |
+| Stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change. |
+| Preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | No change. |
+| Preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md).  |
+| Preview | [2025-03-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | Adds opt-in to prerelease versions of semantic models. |
+| Preview | [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | No API updates in this preview, but semantic ranking now has [better integration with scoring profiles](semantic-how-to-enable-scoring-profiles.md). |
+| Preview | [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | No change. |
+| Stable | [2025-09-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) | No change. |
+| Preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
+| Stable | [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Separates billing consent for semantic ranker and agentic retrieval. `semanticSearch` controls only semantic ranker billing. Before upgrading, if you have `semanticSearch=standard`, you must also set `knowledgeRetrieval=standard`. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md). |
+| Preview | [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | No change. |
 
 ## Change logs for Azure SDKs
 
