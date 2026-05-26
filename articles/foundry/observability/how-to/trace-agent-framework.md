@@ -6,10 +6,11 @@ ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 01/20/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
 <!-- CustomerIntent: As a developer building AI agents, I want to configure tracing for my agent framework so that I can debug issues and monitor performance in production. -->
@@ -591,7 +592,7 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 | You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Sensitive content appears in traces | Content recording is enabled and prompts, tool arguments, or outputs include sensitive data | Disable content recording in production and redact sensitive data before it enters telemetry. |
 
-## Next steps
+## Related content
 
 - Learn core concepts and architecture in the [Agent tracing overview](../concepts/trace-agent-concept.md).
 - If you haven't enabled tracing yet, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
