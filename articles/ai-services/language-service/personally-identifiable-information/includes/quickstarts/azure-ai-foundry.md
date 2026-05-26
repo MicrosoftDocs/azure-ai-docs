@@ -32,7 +32,7 @@ Assign the correct roles to your user principal and project managed identity to 
 
 * Verify current assignments using [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access).
 
-### [new Foundry](#tab/new-foundry)
+### [New Foundry](#tab/new-foundry)
 
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
