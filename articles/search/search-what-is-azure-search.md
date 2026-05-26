@@ -119,8 +119,6 @@ Before you get started, use this checklist to make key decisions:
 
 + **Choose a pricing model**: Select between the **Dedicated** or **Serverless** pricing model. See [Choose a pricing model and service tier](./search-sku-tier.md) for help with choosing the model that best fits your needs.
 
-**TO-DO: Add Public Preview and billing statement for Serverless**
-
 + **Choose how you want to retrieve data:** You can query directly from a search index for predictable, low-latency results, or use agentic retrieval to query across multiple indexes through a knowledge base. If you’re building a traditional app without an agent or chatbot, direct index queries can meet most needs with lower cost and complexity. If you want to work across multiple knowledge sources or support more advanced scenarios, consider agentic retrieval with minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 + **Choose a region:** If you're using agentic retrieval, choose a [supported region](search-region-support.md). For classic search, choose a region that offers the features and capacity you need.
