@@ -69,16 +69,18 @@ items:
     href: search-manage.md
   - name: Quotas, limits, and planning
     items:
-    - name: Supported regions
-      href: search-region-support.md
-    - name: Supported tiers
+    - name: Plan and manage costs
+      href: search-sku-manage-costs.md
+    - name: Optimize costs with Serverless pricing
+      href: serverless-cost-optimization.md
+    - name: Service tiers for Dedicated pricing
       href: search-sku-tier.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
     - name: Plan and manage capacity
       href: search-capacity-planning.md
-    - name: Plan and manage costs
-      href: search-sku-manage-costs.md
+    - name: Supported regions
+      href: search-region-support.md
     - name: Handling regional capacity constraints 
       href: search-region-capacity.md
   - name: Reliability and tenancy
