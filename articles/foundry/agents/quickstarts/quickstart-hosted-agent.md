@@ -89,7 +89,7 @@ The interactive flow prompts for:
 * **Language**--Select Python.
 * **Starter template**--Select **Basic agent (Responses, Agent Framework, Python)**
 * **Agent name**--Choose the default **agent-framework-agent-basic-responses**
-* **Deployment type**--Select **Source code (ZIP upload)
+* **Deployment type**--Select **Container deploy**
 * **Runtime**--Select Python 3.13
 * **Entry point**--Chose the default **main.py**
 * **Dependency resolution**--Select **Remote build (dependencies installed on server during deployment)**
