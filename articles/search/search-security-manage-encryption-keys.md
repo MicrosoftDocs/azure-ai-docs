@@ -78,6 +78,14 @@ Enabling CMK at the service level means:
 
 You can also rotate this default key by specifying a new key, specific to the object that you are creating. The object-level key that you specify will override the default service-level key for that object.
 
+## Choose between service-level and object-level CMK
+
+Use service-level CMK by default to apply a single key across all objects. You configure the key once, and new objects inherit that protection automatically.
+
+Use object-level CMK for workloads that require an independent key lifecycle. Existing object-level CMK configurations continue to function without changes. Service-level CMK simplifies key management but does not replace object-level CMK.
+
+A common enterprise pattern is to configure a service-level key for most objects (indexes, indexers, data sources, skillsets, vectorizers, and synonym maps). Workloads with stricter compliance requirements can configure an object-level key to manage access, rotation, and revocation independently.
+
 ## Step 1: Create an encryption key
 
 Use either Azure Key Vault or Azure Key Vault Managed HSM to create a key. Azure AI Search encryption supports RSA keys of sizes 2048, 3072 and 4096. For more information about supported key types, see [About keys](/azure/key-vault/keys/about-keys).
@@ -502,21 +510,17 @@ Configuration of service-level CMK is supported in Azure SDK packages that targe
 
 ---
 
-## Choose between service-level and object-level CMK
+### Check inherited encryption state using isServiceLevelKey
 
-Use service-level CMK by default to apply a single key across all objects. You configure the key once, and new objects inherit that protection automatically.
+To check whether a search object is using a customer-managed key configured at the service-level as a default or a unique customer-managed key configured at the object-level, you can use the `isServiceLevelKey` property.
 
-Use object-level CMK for workloads that require an independent key lifecycle. Existing object-level CMK configurations continue to function without changes. Service-level CMK simplifies key management but does not replace object-level CMK.
+### [**Azure portal**](#tab/portal)
 
-A common enterprise pattern is to configure a service-level key for most objects (indexes, indexers, data sources, skillsets, vectorizers, and synonym maps). Workloads with stricter compliance requirements can configure an object-level key to manage access, rotation, and revocation independently.
+Currently, the Azure portal doesn't support service-level encryption. Use the REST API directly.
 
+### [**REST APIs**](#tab/rest)
 
-> [!NOTE]
-> To use `isServiceLevelKey`, the search service must be configured with a service-level customer-managed key. The caller must have permissions to read the object definition.
-
-## Check inherited encryption state using isServiceLevelKey
-
-In data plane API version `2026-05-01-preview`, use an object GET call to inspect `encryptionKey.isServiceLevelKey`.
+In data plane API version `2026-05-01-preview`, use an object `GET` call to inspect `encryptionKey.isServiceLevelKey`.
 
 The code snippet below is an example. You will need to update it with the values specific to your use-case.
 
@@ -548,9 +552,7 @@ api-key: {{admin-api-key}}
 
 When `isServiceLevelKey` is `true`, the object inherits the service-level key and does not have an explicit object-level override.
 
-## Override lifecycle with an object-level key
-
-To decouple lifecycle for a specific object, set an explicit object-level key and set `isServiceLevelKey` to `false` in a create-or-update request.
+To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a create-or-update request.
 
 ```http
 PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
@@ -580,6 +582,17 @@ Content-Type: application/json
 ```
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
+
+### [**Azure SDKs**](#tab/sdks)
+
+Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
+
+- .NET: [Azure.ResourceManager.Search changelog](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md)
+- Java: [azure-resourcemanager-search changelog](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md)
+- JavaScript: [@azure/arm-search changelog](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md)
+- Python: [azure-mgmt-search changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md)
+
+---
 
 ## Step 5: Test encryption
 
