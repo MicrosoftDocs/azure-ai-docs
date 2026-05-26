@@ -73,7 +73,7 @@ After the operation completes, the **Details** section displays the following fi
 
 Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country/region hint** for better accuracy.
 
-### [new Foundry](#tab/new-foundry)
+### [New Foundry](#tab/new-foundry)
 
 > [!NOTE]
 > This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools. For more information, see [What is Microsoft Foundry?](../../../../../ai-foundry/what-is-foundry.md). To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
