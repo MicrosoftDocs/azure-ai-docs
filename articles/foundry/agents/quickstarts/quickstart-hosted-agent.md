@@ -245,6 +245,8 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
     azd ai agent show
     ```
 
+    Verify that the agent is "Active".
+
 1. Send the same prompt to the deployed agent:
 
     ```
