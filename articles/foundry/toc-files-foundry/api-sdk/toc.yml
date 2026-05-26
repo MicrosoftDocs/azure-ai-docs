@@ -1,4 +1,8 @@
 items:
+# Foundry API Reference
+- name: Foundry API Reference
+  href: https://ai.azure.com/api-reference/
+
 # SDK Overview
 - name: Microsoft Foundry SDKs
   href: ../../how-to/develop/sdk-overview.md
@@ -17,8 +21,6 @@ items:
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-latest&preserve-view=true
   - name: Python
     href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
-  - name: REST API
-    href: /rest/api/aifoundry/aiproject
 
 # Azure OpenAI SDK and APIs
 - name: Azure OpenAI
@@ -35,16 +37,10 @@ items:
       href: ../../openai/latest.md#create-chat-completion
     - name: Embeddings
       href: ../../openai/latest.md#create-embedding
-    - name: Evals (preview)
-      href: ../../openai/latest.md#list-evals
     - name: Files
       href: ../../openai/latest.md#create-file
-    - name: Fine-tuning
-      href: ../../openai/latest.md#create-fine-tuning-job
     - name: Models
       href: ../../openai/latest.md#list-models
-    - name: Responses
-      href: ../../openai/latest.md#create-response
     - name: Vector stores
       href: ../../openai/latest.md#list-vector-stores
   - name: Previous versions
