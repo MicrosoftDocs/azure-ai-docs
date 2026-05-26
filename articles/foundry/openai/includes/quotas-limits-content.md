@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/14/2026
+ms.date: 05/27/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -151,11 +151,10 @@ print(json.dumps(response.json(), indent=2))
 
 [!INCLUDE [Quota](quota-tier/tier-6.md)]
 
-<!--
 # [Free](#tab/tierfree)
 
 [!INCLUDE [Quota](quota-tier/free.md)]
--->
+
 ---
 
 ## Quotas and limits reference
