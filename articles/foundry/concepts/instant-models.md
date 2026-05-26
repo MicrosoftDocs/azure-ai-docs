@@ -62,7 +62,7 @@ Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 1. On the Home page of your project, select **Explore playgrounds**.
     
-    :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Explore playgrounds card with description to test models and get API key and endpoint.":::
+    <!-- :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Explore playgrounds card with description to test models and get API key and endpoint."::: -->
 
 1. Use the **Model** dropdown in the playground to switch among deployed and instant models.
 

@@ -45,6 +45,8 @@ items:
    - name: Run agent evaluations with the Azure Developer CLI
      displayName: azd cli
      href: ../../observability/how-to/azure-developer-cli-evaluation.md
+   - name: Benchmark evaluations
+     href: ../../observability/how-to/benchmark-evaluations.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md
 
