@@ -37,10 +37,16 @@ items:
       href: ../../openai/latest.md#create-chat-completion
     - name: Embeddings
       href: ../../openai/latest.md#create-embedding
+    - name: Evals (preview)
+      href: ../../openai/latest.md#list-evals
     - name: Files
       href: ../../openai/latest.md#create-file
+    - name: Fine-tuning
+      href: ../../openai/latest.md#create-fine-tuning-job
     - name: Models
       href: ../../openai/latest.md#list-models
+    - name: Responses
+      href: ../../openai/latest.md#create-response
     - name: Vector stores
       href: ../../openai/latest.md#list-vector-stores
   - name: Previous versions
