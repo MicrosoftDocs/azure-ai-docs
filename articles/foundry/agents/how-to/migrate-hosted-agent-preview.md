@@ -13,12 +13,12 @@ ai-usage: ai-assisted
 
 # Migrate hosted agents to the refreshed public preview
 
-This article walks you through migrating hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
+This article walks you through migrating Hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
 
 > [!IMPORTANT]
 > The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically and will be supported only until May 22, 2026. 
 
-This guide applies to you if you deployed a hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
+This guide applies to you if you deployed a Hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
 
 ## What changed
 
@@ -28,7 +28,7 @@ The refreshed preview updates the existing platform with a session-based sandbox
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
-- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
+- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
 - **New protocols** — Invocations, Activity, and A2A protocols join the existing Responses protocol. A single agent can expose multiple protocols simultaneously.
 - **REST API for full lifecycle** — Complete REST coverage for agent, version, session, and file operations. See [SDK method changes](#sdk-method-changes).
 - **Capability host creation removed** — The platform handles infrastructure provisioning automatically. You no longer need to create an account-level capability host. See [Removed APIs](#removed-apis).
@@ -179,10 +179,10 @@ mcp_tool = client.get_mcp_tool(
 agent = Agent(client=client, tools=[mcp_tool], ...)
 ```
 
-For samples, see the [Agent Framework hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework).
+For samples, see the [Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework).
 
 > [!NOTE]
-> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/AgentFramework) for complete examples.
+> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/AgentFramework) for complete examples.
 
 ## Migrate LangGraph agents
 
@@ -341,7 +341,7 @@ langchain-mcp-adapters>=0.1.0
 mcp>=1.0.0
 ```
 
-For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langgraph).
+For complete samples, see the [LangGraph Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langgraph).
 
 ## Migrate custom or BYO agents
 
@@ -398,7 +398,7 @@ app.run()
 
 The Invocations protocol also supports long-running operations with `@app.get_invocation_handler` and `@app.cancel_invocation_handler` for polling and cancellation.
 
-Choose your protocol based on your agent's interaction pattern. See [What are hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on which protocol to use.
+Choose your protocol based on your agent's interaction pattern. See [What are Hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on which protocol to use.
 
 ## Protocol version format change
 
@@ -501,9 +501,9 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 ```
 
 > [!IMPORTANT]
-> REST calls to hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
+> REST calls to Hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
 
-Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
+Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
 
 ## Version status changes
 
@@ -526,13 +526,15 @@ The identity model changed significantly:
 | **Unpublished agent runtime identity** | Project managed identity (shared) | Dedicated Entra agent identity (per agent) |
 | **When dedicated identity is created** | At publish time only | At deploy time (every agent) |
 | **Project managed identity role** | Runtime identity for all unpublished agents | Infrastructure only — used for container image pulls |
-| **Required deployment role** | Azure AI Owner (new project), AI Owner + Contributor (new resources), or Reader + Azure AI User (existing project) | **Azure AI Project Manager** at project scope |
+| **Required deployment role** | Foundry Owner (new project), AI Owner + Contributor (new resources), or Reader + Foundry User (existing project) | **Foundry Project Manager** at project scope |
 | **Post-publish RBAC reconfiguration** | Required — project MI permissions don't transfer to agent identity | Not required — agent has its own identity from the start |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Action required
 
 1. **Update RBAC assignments**: The project managed identity is no longer the runtime identity. Grant RBAC roles for any downstream Azure resources directly to the agent's Entra identity instead.
-2. **Simplify deployment roles**: You need **Azure AI Project Manager** at project scope to create and deploy hosted agents.
+2. **Simplify deployment roles**: You need **Foundry Project Manager** at project scope to create and deploy Hosted agents.
 
 ## Azure Developer CLI changes
 
@@ -603,10 +605,10 @@ Use this checklist to track your migration:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Deploy a hosted agent](deploy-hosted-agent.md)
+> [Deploy a Hosted agent](deploy-hosted-agent.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Manage hosted agents](manage-hosted-agent.md)
-- [Manage hosted agent sessions](manage-hosted-sessions.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Manage Hosted agents](manage-hosted-agent.md)
+- [Manage Hosted agent sessions](manage-hosted-sessions.md)

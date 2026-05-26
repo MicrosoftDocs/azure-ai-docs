@@ -322,7 +322,7 @@ There are steps to follow in both OneLake and Azure AI Search, but there are no 
 1. In Azure AI Search, edit the data source definition to include a "dataDeletionDetectionPolicy" property. For example, the following policy considers a file to be deleted if it has a metadata property "IsDeleted" with the value true:
 
     ```https
-    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2025-09-01
+    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2026-04-01
     {
         "name" : "onelake-datasource",
         "type" : "onelake",

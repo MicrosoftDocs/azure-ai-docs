@@ -1,8 +1,8 @@
 ---
 title: "Work with chat completion models"
 description: "Learn about the options for how to use models with the chat completions API"
-author: mrbullwinkle #dereklegenzoff
-ms.author: mbullwin #delegenz
+author: alvinashcraft #dereklegenzoff
+ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

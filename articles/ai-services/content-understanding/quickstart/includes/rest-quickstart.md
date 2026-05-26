@@ -532,8 +532,8 @@ The 200 (`OK`) JSON response includes a `status` field. If the operation isn't c
 		"audioHours": 0.032,
     "contextualization": 3194.445,
     "tokens": {
-      "gpt-4.1-input": 1234, 
-      "gpt-4.1-output": 2345,
+      "gpt-5.2-input": 1234, 
+      "gpt-5.2-output": 2345,
       "text-embedding-3-large": 3456 
     }
  

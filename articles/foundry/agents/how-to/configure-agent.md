@@ -31,7 +31,9 @@ This article shows you how to select the active version, enable protocols, set a
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Foundry project scope to create, manage, and invoke agents
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
@@ -70,9 +72,12 @@ An agent can expose multiple protocols simultaneously:
 
 | Protocol | Endpoint pattern |
 |----------|-----------------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/responses` |
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
+| **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+
+To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
 
 ### Authorization schemes
 
@@ -80,7 +85,7 @@ You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** role on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Foundry User** role on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
 | **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
 | **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
 
@@ -111,7 +116,6 @@ By default, the routing policy is **Always use latest**. To pin traffic to a spe
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
@@ -182,11 +186,10 @@ Updating protocols and authorization schemes isn't yet configurable in the Found
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations"],
+    "protocols": ["activity", "responses", "invocations", "a2a"],
     "authorization_schemes": [
       {
         "type": "Entra",
@@ -231,6 +234,7 @@ with project_client:
             AgentEndpointProtocol.RESPONSES,
             AgentEndpointProtocol.ACTIVITY,
             AgentEndpointProtocol.INVOCATIONS,
+            AgentEndpointProtocol.A2A,
         ],
         authorization_schemes=[
             EntraAuthorizationScheme(
@@ -263,7 +267,6 @@ Adding an agent card isn't yet configurable in the Foundry portal. Use the REST 
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
-Foundry-Features: AgentEndpoints=V1Preview
 
 {
   "agent_card": {
@@ -312,7 +315,6 @@ To view your agent's current properties—identity, protocols, authorization, an
 GET {endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/json
-Foundry-Features: AgentEndpoints=V1Preview
 ```
 
 
@@ -331,7 +333,7 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| `403 Forbidden` when invoking the endpoint | Caller lacks the required role on the agent | Assign the **Azure AI User** role on the Foundry project resource. |
+| `403 Forbidden` when invoking the endpoint | Caller lacks the required role on the agent | Assign the **Foundry User** role on the Foundry project resource. |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail | The agent identity doesn't have access to downstream resources | Assign the required RBAC roles to the agent's identity for any Azure resources it accesses. |
 | Publishing to M365/Teams fails | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |

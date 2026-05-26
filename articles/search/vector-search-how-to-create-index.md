@@ -234,7 +234,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    The following example shows the fields collection:
 
     ```http
-    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01&allowIndexDowntime=true
+    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01&allowIndexDowntime=true
     Content-Type: application/json
     api-key: {{admin-api-key}}
     {
@@ -313,7 +313,7 @@ For data ingestion, you can use [push or pull methodologies](search-what-is-data
 Use [Documents - Index](/rest/api/searchservice/documents) to load vector and nonvector data into an index. The push APIs for indexing are identical across all stable and preview versions. Use any of the following APIs to load documents:
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/index?api-version=2025-09-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/index?api-version=2026-04-01
 
 {
     "value": [
@@ -406,7 +406,7 @@ For more information, see [Create a vector query](vector-search-how-to-query.md)
 The following REST API example is a vector query, but it returns only nonvector fields (`title`, `content`, and `category`). Only fields marked as `retrievable` can be returned in search results.
 
 ```http
-POST https://my-search-service.search.windows.net/indexes/my-index/docs/search?api-version=2025-09-01
+POST https://my-search-service.search.windows.net/indexes/my-index/docs/search?api-version=2026-04-01
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {

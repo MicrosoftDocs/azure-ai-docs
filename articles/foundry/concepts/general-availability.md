@@ -7,6 +7,7 @@ ms.author: sgilley
 ms.reviewer: shwinne
 ms.date: 03/03/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---
@@ -75,7 +76,6 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Discover | Model | GA |
 | Discover | Tools | GA |
 | Discover | Solution Templates | GA |
-| Discover | Agent Manifests | Preview |
 | Discover | Search | GA |
 | Discover | Ask AI | Preview |
 | Build | Agents | GA (minus Voice Live, traces in agent builder in Preview) |

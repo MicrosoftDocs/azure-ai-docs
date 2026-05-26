@@ -6,6 +6,15 @@ items:
 # Development Best Practices
 - name: Prompt engineering techniques
   href: ../../openai/concepts/prompt-engineering.md
+# System Messages
+- name: System messages
+  items:
+  - name: System message design
+    href: ../../openai/concepts/advanced-prompt-engineering.md
+  - name: Safety system messages
+    href: ../../openai/concepts/system-message.md
+  - name: Safety system message templates
+    href: ../../openai/concepts/safety-system-message-templates.md
 - name: Performance & latency
   href: ../../openai/how-to/latency.md
 - name: Integrate with your applications
