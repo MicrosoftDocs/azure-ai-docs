@@ -1,5 +1,5 @@
 ---
-title: Generate a synthetic evaluation dataset (Preview)
+title: Generate a synthetic evaluation dataset (preview)
 titleSuffix: Azure AI Foundry
 description: Use the Microsoft Foundry data generation service to bootstrap an evaluation dataset from an agent's instructions, a prompt, or a reference document.
 author: ssalgadodev
@@ -12,19 +12,19 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Generate a synthetic evaluation dataset (Preview)
+# Generate a synthetic evaluation dataset (preview)
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-When your agent doesn't have production traffic yet, you can still build a meaningful evaluation set. The Microsoft Foundry Data Generation API synthesizes question-and-answer pairs from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. The output is a versioned dataset you can run evaluators against, the same way you would with a dataset built from traces.
+When your agent doesn't have production traffic yet, you can still build a meaningful evaluation dataset. The Microsoft Foundry data generation service synthesizes question-and-answer pairs from material you already have: an agent's instructions, an inline prompt, or a reference document you upload. The output is a versioned dataset you can run evaluators against.
 
 Three input source types are available, and you can combine them in a single job for richer coverage:
 
-- **Agent definition** — seed generation from a deployed agent's instructions or prompt.
-- **Prompt** — pass an inline text prompt that describes the domain or steers difficulty.
-- **Reference file** — upload a document (for example, a policy, spec, or knowledge-base export) and generate questions grounded in its content.
+- **Agent definition**—seed generation from a deployed agent's instructions or prompt.
+- **Prompt**—pass an inline text prompt that describes the domain or steers difficulty.
+- **Reference file**—upload a document (for example, a policy, spec, or knowledge-base export) and generate questions grounded in its content.
 
-Once production traffic exists, switch to the trace-based flow for the most representative evaluation signal. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
+Synthetic generation and trace-based generation are complementary: synthetic datasets cover edge cases and pre-launch scenarios, while trace-based datasets reflect real production behavior. Using both gives the strongest evaluation signal. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
 
 ## When to use synthetic generation
 
@@ -53,7 +53,25 @@ You can combine sources in a single job. A common pattern is to pair a reference
 - Azure AI Project Contributor role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
 
-Unlike the trace-based flow, you don't need Application Insights or a deployed agent that's emitting traces.
+## Generate a dataset from the portal
+
+<!-- [TO VERIFY] Confirm the inner dialog field labels (source-type choices, configuration fields, judge-model selector) before publishing. The "Create dataset > Generate synthetic" entry path is confirmed. -->
+
+1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **Generate synthetic**.
+1. Select one or more source types: **Agent definition**, **Prompt**, or **Reference file**. Combine sources to broaden coverage (for example, a reference file plus a prompt).
+1. Configure each selected source:
+
+   - **Agent definition**—[TO VERIFY: describe selection of an existing agent or inline entry of agent instructions.]
+   - **Prompt**—[TO VERIFY: describe inline prompt entry.]
+   - **Reference file**—[TO VERIFY: describe the file upload path and supported file types.]
+
+1. Select the judge model used for generation. [TO VERIFY]
+1. Select **Create**. The dataset generation job appears in the **Data Generation** tab; track its status there.
+1. When the job finishes, preview the generated rows on the **Data** tab.
+
+<!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/eval-dataset-synthetic/create-synthetic-dataset-dialog.png is added.
+:::image type="content" source="media/eval-dataset-synthetic/create-synthetic-dataset-dialog.png" alt-text="Screenshot of the Create dataset dialog with source type, configuration, and judge model fields.":::
+-->
 
 ## Generate a dataset from an agent definition
 
@@ -94,13 +112,14 @@ TERMINAL_STATUSES = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
 
 # 1. Reference (or create) a prompt agent whose instructions seed generation.
 agent = project_client.agents.create_version(
-    agent_name="widgets-gizmos-support",
+    agent_name="retail-agent",
     definition=PromptAgentDefinition(
         model=MODEL_NAME,
         instructions=(
-            "You are a customer support assistant for Acme's Widgets & Gizmos line. "
-            "Answer questions about the product catalog, warranty, returns, and pricing. "
-            "If a question falls outside this scope, say you don't have that information."
+            "You are a customer support assistant for Contoso Retail. "
+            "Answer questions about the product catalog, loyalty program, store hours, "
+            "and the return policy. If a question falls outside this scope, say you "
+            "don't have that information."
         ),
     ),
 )
@@ -108,7 +127,7 @@ agent = project_client.agents.create_version(
 # 2. Define a SimpleQnA evaluation job sourced from the agent definition.
 job = DataGenerationJob(
     inputs=DataGenerationJobInputs(
-        name="widgets-gizmos-eval-set",
+        name="retail-agent-eval-set",
         scenario=DataGenerationJobScenario.EVALUATION,
         sources=[
             AgentDataGenerationJobSource(
@@ -123,7 +142,7 @@ job = DataGenerationJob(
             # simple_qna requires model_options.
             model_options=DataGenerationModelOptions(model=MODEL_NAME),
         ),
-        output_options=DataGenerationJobOutputOptions(name="widgets-gizmos-eval-set"),
+        output_options=DataGenerationJobOutputOptions(name="retail-agent-eval-set"),
     ),
 )
 
@@ -222,12 +241,12 @@ from azure.ai.projects.models import (
 )
 
 MODEL_NAME = "gpt-4.1-mini"
-REFERENCE_DOCUMENT = open("widgets-gizmos-reference.md", "rb").read()
+REFERENCE_DOCUMENT = open("retail-agent-reference.md", "rb").read()
 
 # 1. Upload the reference document via the Azure OpenAI Files API.
 openai_client = project_client.get_openai_client()
 seed_file = openai_client.files.create(
-    file=("widgets-gizmos-reference.md", io.BytesIO(REFERENCE_DOCUMENT)),
+    file=("retail-agent-reference.md", io.BytesIO(REFERENCE_DOCUMENT)),
     purpose="user_data",
 )
 
@@ -241,11 +260,11 @@ if seed_file.status != "processed":
 # 3. Submit a SimpleQnA job that references the uploaded file.
 job = DataGenerationJob(
     inputs=DataGenerationJobInputs(
-        name="widgets-gizmos-file-eval-set",
+        name="retail-agent-file-eval-set",
         scenario=DataGenerationJobScenario.EVALUATION,
         sources=[
             FileDataGenerationJobSource(
-                description="Widgets & Gizmos product and operations reference.",
+                description="Contoso Retail product catalog and policy reference.",
                 id=seed_file.id,
             ),
         ],
@@ -253,7 +272,7 @@ job = DataGenerationJob(
             max_samples=15,
             model_options=DataGenerationModelOptions(model=MODEL_NAME),
         ),
-        output_options=DataGenerationJobOutputOptions(name="widgets-gizmos-file-eval-set"),
+        output_options=DataGenerationJobOutputOptions(name="retail-agent-file-eval-set"),
     ),
 )
 
@@ -278,11 +297,11 @@ from azure.ai.projects.models import (
 
 job = DataGenerationJob(
     inputs=DataGenerationJobInputs(
-        name="widgets-gizmos-expert-eval-set",
+        name="retail-agent-expert-eval-set",
         scenario=DataGenerationJobScenario.EVALUATION,
         sources=[
             FileDataGenerationJobSource(
-                description="Widgets & Gizmos product and operations reference.",
+                description="Contoso Retail product catalog and policy reference.",
                 id=seed_file.id,
             ),
             PromptDataGenerationJobSource(
@@ -294,7 +313,7 @@ job = DataGenerationJob(
             max_samples=15,
             model_options=DataGenerationModelOptions(model=MODEL_NAME),
         ),
-        output_options=DataGenerationJobOutputOptions(name="widgets-gizmos-expert-eval-set"),
+        output_options=DataGenerationJobOutputOptions(name="retail-agent-expert-eval-set"),
     ),
 )
 
@@ -317,7 +336,7 @@ Use the same `project_client.beta.datasets` operations to list, cancel, and dele
 - **Combine a reference file with a prompt for grounded coverage.** The file anchors generated questions in real domain content; the prompt steers tone, difficulty, or topic emphasis.
 - **Generate a small batch first.** Start at the minimum `max_samples` of 15, review the rows manually on the **Data** tab, then scale up once the output quality looks right.
 - **Regenerate when the agent's instructions change.** A dataset generated from one version of an agent's prompt becomes stale when the prompt changes significantly. Re-run the job and version the new output.
-- **Switch to trace-based generation once you have production traffic.** Synthetic data fills gaps before launch and for edge cases; production traces are the most representative source of how your agent actually behaves. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
+- **Combine synthetic and trace-based generation for the strongest coverage.** Synthetic data fills gaps before launch and for edge cases; production traces reflect how your agent actually behaves. Use both sources together rather than treating them as alternatives. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
-title: Convert agent traces into evaluation datasets (Preview)
+title: Convert agent traces into evaluation datasets (preview)
 titleSuffix: Azure AI Foundry
-description: Learn how to use the Data Generation API in Microsoft Foundry to turn production agent traces into evaluation and fine-tuning datasets.
+description: Learn how to use data generation in Microsoft Foundry to turn production agent traces into evaluation and fine-tuning datasets.
 author: ssalgadodev
 manager: nitinme
 ms.service: microsoft-foundry
@@ -12,18 +12,15 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Convert agent traces into evaluation datasets (Preview)
+# Convert agent traces into evaluation datasets (preview)
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use the Data Generation API in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against, then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to auto-select a representative set, so you get a high-value dataset without manual cleanup.
+Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to auto-select a representative set, so you get a high-value dataset without manual cleanup.
 
-Converting traces into a dataset closes the observability loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality. The same job can also produce fine-tuning data. For the fine-tuning path, see [Generate training and evaluation data from agent traces](../../fine-tuning/agent-traces.md).
+Converting traces into a dataset closes the observability loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality. The same job can also produce fine-tuning data.
 
-If your agent doesn't have production traces yet, bootstrap a synthetic starter dataset instead. See [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md).
-
-> [!IMPORTANT]
-> The Data Generation API is in public preview. APIs may change. You must opt in by setting `allow_preview=True` when you create the client.
+Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers pre-launch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md).
 
 ## Intelligent sampling
 
@@ -33,13 +30,13 @@ When you select a time range of traces, the service doesn't just randomly sample
 - **Selects a diverse, representative sample** using MinHash so the result covers the range of your agent's scenarios rather than over-indexing on frequent, near-identical prompts.
 - **Handles sensitive content** including personally identifiable information (PII).
 
-This matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces, so a representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, and it's a capability competitors don't offer out of the box.
+This matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
 
 Intelligent sampling powers trace selection in three places in Foundry. In the first two, you reach it by toggling **Intelligent sampling** (on by default) when you pick a time range:
 
-- **Creating an evaluation** — when you evaluate against existing traces, a representative set within your time range is auto-selected.
-- **Creating a dataset from traces** — covered in this article.
-- **Generating a rubric evaluator from production traces** — the same sampling algorithm runs by default to select the traces used as input. This behavior isn't user-configurable; no separate toggle is needed.
+- **Creating a dataset from traces**—covered in this article.
+- **Creating a trace-based evaluation**—when you evaluate against existing traces, a representative set within your time range is auto-selected.
+- **Generating a rubric evaluator from production traces**—the same sampling algorithm runs by default to select the traces used as input.
 
 ## Prerequisites
 
@@ -51,29 +48,35 @@ Intelligent sampling powers trace selection in three places in Foundry. In the f
 
 ## Generate an evaluation dataset from traces (portal)
 
-You can create a dataset from traces directly in the portal without writing code. This is the quickest way to turn recent production traffic into an evaluation set.
+You can create a dataset from traces directly in the portal without writing code. This is the quickest way to turn recent production traffic into an evaluation dataset.
 
-1. In the portal, open the **Data** tab and select **Create dataset from traces**.
+<!-- [TO VERIFY] The "From traces" option label was not confirmed by the user; only the parallel "Generate synthetic" label was confirmed in eval-dataset-synthetic.md. Verify the exact label for the trace-based entry under **Create dataset** before publishing. -->
+1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **From traces**. [TO VERIFY]
 
-   <!-- TODO: screenshot — Data tab with "Create dataset from traces" entry point -->
-   :::image type="content" source="media/trace-to-dataset/create-dataset-entry.png" alt-text="Screenshot of the Data tab showing the option to create a dataset from traces.":::
+   <!-- TODO: screenshot — Data Generation tab with "Create dataset from traces" entry point -->
+   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/create-dataset-entry.png is added.
+   :::image type="content" source="media/traces-to-dataset/create-dataset-entry.png" alt-text="Screenshot of the Data Generation tab showing the option to create a dataset from traces.":::
+   -->
 
 2. Configure the dataset:
 
-   - **Agent** — select the deployed agent whose traces you want to use.
-   - **Date range** — choose the window to pull traces from, such as the last day or last 7 days.
-   - **Maximum number of samples** — set the cap on rows in the dataset. The default is a manageable starting point; increase or decrease it to fit your needs.
-   - **Intelligent sampling** — leave this on (the default) so a representative set is auto-selected from the window. See [Intelligent sampling](#intelligent-sampling).
+   - **Agent**—select the deployed agent whose traces you want to use.
+   - **Date range**—choose the window to pull traces from, such as the last day or last 7 days.
+   - **Maximum number of samples**—set the cap on rows in the dataset. The default is a manageable starting point; increase or decrease it to fit your needs.
 
    <!-- TODO: screenshot — Create dataset from traces dialog with agent, date range, max samples, and intelligent sampling toggle -->
-   :::image type="content" source="media/trace-to-dataset/create-dataset-dialog.png" alt-text="Screenshot of the create dataset from traces dialog showing agent selection, date range, maximum samples, and the intelligent sampling toggle.":::
+   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/create-dataset-dialog.png is added.
+   :::image type="content" source="media/traces-to-dataset/create-dataset-dialog.png" alt-text="Screenshot of the create dataset from traces dialog showing agent selection, date range, maximum samples, and the intelligent sampling toggle.":::
+   -->
 
-3. Submit the job. Dataset generation runs as a background job; you can track its status on the **Data** tab.
+3. Submit the job. Dataset generation runs as a background job; you can track its status on the **Data Generation** tab.
 
 4. When the job finishes, select the dataset to preview the generated rows, including the description, query, and response for each. From here you can download or delete the dataset.
 
    <!-- TODO: screenshot — generated dataset preview showing description, query, response columns -->
-   :::image type="content" source="media/trace-to-dataset/dataset-preview.png" alt-text="Screenshot of the generated dataset preview with description, query, and response columns.":::
+   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/dataset-preview.png is added.
+   :::image type="content" source="media/traces-to-dataset/dataset-preview.png" alt-text="Screenshot of the generated dataset preview with description, query, and response columns.":::
+   -->
 
 5. Use the dataset. Finished generation jobs link directly to the next step: evaluation jobs link to starting an evaluation run, and fine-tuning jobs link to starting a fine-tuning job.
 
@@ -112,7 +115,7 @@ from azure.ai.projects.models import (
     TracesDataGenerationJobSource,
 )
 
-AGENT_NAME = "retail-agent-langgraph"
+AGENT_NAME = "retail-agent"
 TERMINAL_STATUSES = {JobStatus.SUCCEEDED, JobStatus.FAILED, JobStatus.CANCELLED}
 
 # 1. Record the window around your traffic.
@@ -169,7 +172,7 @@ if job.result is not None and job.result.generated_samples is not None:
     print(f"Generated samples: {job.result.generated_samples}")
 ```
 
-The job produces a versioned dataset registered in your project. The number of rows is capped by `max_samples` but may be lower if the window doesn't contain enough distinct, high-quality traces after intelligent sampling.
+The job produces a versioned dataset registered in your project. The number of rows is capped by `max_samples` but might be lower if the window doesn't contain enough distinct, high-quality traces after intelligent sampling.
 
 Whether you created the dataset from the portal or the SDK, you can preview it on the **Data** tab to inspect the generated rows before evaluating, and download or delete it from there.
 
@@ -201,14 +204,12 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 
 ## Best practices
 
-- **Wait before submitting trace jobs.** Application Insights takes 30–90 seconds to ingest spans. Submitting too quickly results in an empty window and zero samples.
 - **Pin `agent_version` for trace jobs.** Without it, the job mixes spans from every active version, which can include stale behavior and weaken your evaluation signal.
 - **Check `generated_samples` after every job.** `max_samples` is a ceiling, not a guarantee. Intelligent sampling removes duplicates and low-quality traces, so you can get fewer rows than the cap.
 - **Use a representative time window.** A seven-day window usually captures enough variety. Narrow windows around a known incident are useful for building targeted regression sets.
 
 ## Related content
 
-- [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md) — bootstrap an evaluation dataset without production traces.
+- [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
-- [Generate training and evaluation data from agent traces](../../fine-tuning/agent-traces.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
