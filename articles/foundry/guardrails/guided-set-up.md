@@ -21,7 +21,7 @@ Each agent is purpose-built for a specific scenario, so guardrails should be tai
 
 ## Prerequisites
 
-- An active agent in Microsoft Foundry. To create one, see [create a prompt agent quickstart](../../../foundry/agents/quickstarts/prompt-agent.md).
+- An active agent in Microsoft Foundry. To create one, see [create a prompt agent quickstart](../agents/quickstarts/prompt-agent.md).
 
 ## Open guided guardrail setup
 
