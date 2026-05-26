@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: hanch
-ms.date: 05/08/2026
+ms.date: 06/02/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ---
@@ -22,7 +22,8 @@ This article covers how to create a benchmark evaluation in the Foundry portal, 
 
 - A [Foundry project](../../how-to/create-projects.md).
 - Access to the **Build** experience in the Foundry portal.
-- The **Azure AI User** role, or equivalent permissions, on the project.
+- The **Foundry User** role, or equivalent permissions, on the project.
+     [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - At least one target to evaluate, such as a deployed model or an agent.
 - Access to built-in benchmark datasets in your project.
 - A model deployment that you can select as the **Judge model** when the benchmark flow asks for one.
@@ -342,4 +343,3 @@ If a benchmark requires model-based judging and you don't provide a `grader_mode
 - [Evaluation cluster analysis](cluster-analysis.md) — Group and explore evaluation outputs to identify patterns, failure modes, and improvement areas.
 - [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md) — Track operational metrics, token usage, latency, and evaluation results for agents in production.
 - [Troubleshoot evaluation and observability issues](troubleshooting.md) — Resolve common issues with evaluations, storage account access, RBAC, and network configuration.
-

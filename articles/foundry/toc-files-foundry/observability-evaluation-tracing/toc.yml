@@ -43,7 +43,7 @@ items:
    - name: Analyze evaluation results
      href: ../../observability/how-to/cluster-analysis.md
    - name: Benchmark evaluations
-     href: ../../observability/how-to/run-benchmark-evaluations.md
+     href: ../../observability/how-to/benchmark-evaluations.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md
 
