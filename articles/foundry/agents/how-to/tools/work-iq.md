@@ -209,7 +209,7 @@ Follow [Step 1: Create the Work IQ service principal](/microsoft-365/copilot/ext
 1. Copy the **Application (client) ID**. You need this value when creating the Foundry connection.
 1. Select **API permissions** > **Add a permission** > **APIs my organization uses**. Search for **Work IQ** (application ID `fdcc1f02-fc51-4226-8753-f668596af7f7`), select **Delegated permissions**, select **WorkIQAgent.Ask**, then select **Add permissions**.
 
-   :::image type="content" source="../../media/tools/work-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the APIs my organization uses tab with Work IQ found by application ID fdcc1f02-fc51-4226-8753-f668596af7f7." lightbox="../../media/tools/work-iq/entra-api-permissions-search.png":::
+   :::image type="content" source="../../media/tools/work-iq/entra-api-permissions-search.png" alt-text="Screenshot of the Request API permissions panel in the Microsoft Entra admin center, showing the APIs my organization uses tab with Work IQ entered in the search box." lightbox="../../media/tools/work-iq/entra-api-permissions-search.png":::
 
    :::image type="content" source="../../media/tools/work-iq/entra-work-iq-permission.png" alt-text="Screenshot of the Work IQ delegated permissions selection in the Microsoft Entra admin center, showing WorkIQAgent.Ask permission with Admin consent required." lightbox="../../media/tools/work-iq/entra-work-iq-permission.png":::
 
