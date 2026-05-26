@@ -1,4 +1,4 @@
----
+﻿---
 title: Integrated Vectorization Using REST APIs
 description: Learn how to use the REST APIs to define an indexer pipeline that includes chunking and vectorization.
 ms.service: azure-ai-search
@@ -600,7 +600,7 @@ or [Azure Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure Op
         }
    ```
 
-The Azure Vision multimodal embeddings skill and AML skill (for indexer connections to the Foundry model catalog) are in preview. If you want to call these skills, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+The Azure Vision multimodal embeddings skill and AML skill (for indexer connections to the Foundry model catalog) are in preview. If you want to call these skills, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ### [Python](#tab/embedding-skill-python)
 
@@ -756,7 +756,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer is in preview. If you want to call this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in preview. If you want to call this vectorizer, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 1. Specify your vectorizer in `vectorSearch.profiles`.
 
@@ -787,7 +787,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you want to call these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you want to call these vectorizers, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 <!--### [Python](#tab/vectorizer-python)
 
@@ -860,7 +860,7 @@ In this section, you verify that your content was successfully indexed by [creat
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer is in preview. If you previously called this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in preview. If you previously called this vectorizer, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
    For queries that invoke integrated vectorization, `kind` must be set to `text`, and `text` must specify a text string. This string is passed to the vectorizer assigned to the vector field. For more information, see [Query with integrated vectorization](vector-search-how-to-query.md#query-with-integrated-vectorization).
 
@@ -869,7 +869,7 @@ In this section, you verify that your content was successfully indexed by [creat
 <!--
 
    > [!NOTE]
-   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you previously called these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you previously called these vectorizers, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ### [Python](#tab/vector-queries-python)
 

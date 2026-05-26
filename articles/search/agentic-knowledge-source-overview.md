@@ -45,8 +45,8 @@ You can create the following knowledge sources:
 | `"file"` API uploads files directly to Azure AI Search for processing and retrieval. | Indexed |
 | [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update#indexedonelakeknowledgesource) generates an indexer pipeline that pulls from a lakehouse. | Indexed |
 | [`"indexedSql"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsqlknowledgesource) (preview) generates an indexer pipeline that pulls from an Azure SQL table or view. | Indexed |
-| [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
-| [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
+| [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#indexedsharepointknowledgesource) (preview) generates an indexer pipeline that pulls from a SharePoint site. | Indexed |
+| [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#remotesharepointknowledgesource) (preview) retrieves content directly from SharePoint. | Remote |
 | [`"fabricOntology"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#fabricontologyknowledgesource) (preview) queries a Microsoft Fabric ontology for entity-based and relationship-based answers. | Remote |
 | [`"workIQ"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#workiqknowledgesource) (preview) queries Work IQ directly for organizational intelligence. | Remote |
 | [`"web"` API](/rest/api/searchservice/knowledge-sources/create-or-update#webknowledgesource) retrieves real-time grounding data from Microsoft Bing. | Remote |
@@ -104,9 +104,9 @@ Knowledge source selection logic is based on these factors:
 
 + The `description` of an index, assuming an indexed knowledge source.
 
-+ The `retrievalInstructions` specified in the [retrieve action](agentic-retrieval-how-to-retrieve.md) or in the [knowledge base definition](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) provides guidance that includes or excludes a knowledge source. It's similar to a prompt. You can specify brevity, tone, and formatting as a retrieval instruction.
++ The `retrievalInstructions` specified in the [retrieve action](agentic-retrieval-how-to-retrieve.md) or in the [knowledge base definition](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) provides guidance that includes or excludes a knowledge source. It's similar to a prompt. You can specify brevity, tone, and formatting as a retrieval instruction.
 
-+ [`outputMode`](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgeretrievaloutputmode) on a knowledge base also affects query output and what goes in the response.
++ [`outputMode`](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true#knowledgeretrievaloutputmode) on a knowledge base also affects query output and what goes in the response.
 
 ### Use a retrieval reasoning effort to control LLM usage (preview)
 
