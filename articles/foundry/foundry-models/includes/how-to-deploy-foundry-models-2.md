@@ -14,7 +14,7 @@ ms.custom: include
 
 To run inference on the deployed model, see the following examples:
 
-- To use the **Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md).
+- To use the **Responses API with Foundry Models sold by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md).
 
 - To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../openai/how-to/responses.md).
 

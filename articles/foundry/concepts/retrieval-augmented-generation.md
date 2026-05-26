@@ -2,6 +2,7 @@
 title: "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry"
 description: "Learn how retrieval augmented generation (RAG) uses indexes and grounding data to improve response accuracy in generative AI apps."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -9,7 +10,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 02/04/2026
+ms.date: 05/20/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 ai-usage: ai-assisted
@@ -49,4 +50,3 @@ To get started, choose one of these paths based on your needs:
 
 - [File search tool for agents](../agents/how-to/tools/file-search.md)
 - [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md)
-- [File search tool for agents](../agents/how-to/tools/file-search.md)

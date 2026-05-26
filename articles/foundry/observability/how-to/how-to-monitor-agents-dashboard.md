@@ -8,6 +8,7 @@ ms.reviewer: none
 ms.date: 04/30/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -111,11 +112,13 @@ Set these environment variables with your own values:
 
 ### Assign permissions for continuous evaluation
 
-To enable continuous evaluation rules, assign the project managed identity the **Azure AI User** role.
+To enable continuous evaluation rules, assign the project managed identity the **Foundry User** role.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 1. In the Azure portal, open the resource for your Foundry project.
 1. Select **Access control (IAM)**, and then select **Add**.
-1. Create a role assignment for **Azure AI User**.
+1. Create a role assignment for **Foundry User**.
 1. For the member, select your Foundry project's managed identity.
 
 ### Create an agent
@@ -365,7 +368,7 @@ To view the full sample code, see:
 |---|---|---|
 | Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
 | You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
-| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Azure AI User** role. |
+| Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Foundry User** role. |
 | Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
 
 ## Monitor and set up continuous evaluation for custom agents

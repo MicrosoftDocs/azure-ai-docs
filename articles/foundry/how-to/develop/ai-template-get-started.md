@@ -3,6 +3,7 @@ title: "How to get started with an AI template"
 description: "Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development."
 keywords: ai templates, solution accelerators, foundry templates, code samples
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - classic-and-new
   - dev-focus

@@ -2,6 +2,7 @@
 title: "Microsoft Foundry architecture"
 description: "Learn about the architecture of Microsoft Foundry."
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - build-2024

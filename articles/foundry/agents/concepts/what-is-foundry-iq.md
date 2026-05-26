@@ -1,18 +1,23 @@
 ---
-title: "What is Foundry IQ?"
-description: "Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents."
+title: What is Foundry IQ?
+description: Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 05/19/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
 
-# Foundry IQ (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# What is Foundry IQ?
+
+> [!NOTE]
+> Some Foundry IQ features are now generally available, while others remain in preview. Availability depends on the Search Service REST API version you use. The Microsoft Foundry portal and Azure portal continue to provide preview-only access to all agentic retrieval features.
+>
+> For migration guidance, including a breakdown of what's generally available and what remains in preview, see [Migrate agentic retrieval code to the latest version](/azure/search/agentic-retrieval-how-to-migrate).
 
 Agents need context from scattered enterprise content to accurately answer questions. The Foundry model powering an agent has a knowledge cutoff and can't access your proprietary data on its own. With Foundry IQ, you can create a configurable, multi-source *knowledge base* that provides agents with permission-aware responses based on your organization's data.
 
@@ -53,6 +58,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 ### [Portal](#tab/portal)
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+
 1. Create a project or select an existing project.
 
 1. From the top menu, select **Build**.
@@ -71,7 +77,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 > [!NOTE]
 > + The playground provides a simplified workflow for proof-of-concept testing. When you move to code, configure managed identities and permissions to meet your organization's security requirements.
 >
-> + You can use the [Azure portal](/azure/search/get-started-portal-agentic-retrieval) to create knowledge bases and knowledge sources, but agent configuration and integration must be done in the Microsoft Foundry (new) portal or programmatically.
+> + You can use the [Azure portal](/azure/search/get-started-portal-agentic-retrieval) to create knowledge bases and knowledge sources, but agent configuration and integration must be done in the Microsoft Foundry portal or programmatically.
 
 ### [Programmatic](#tab/programmatic)
 
@@ -79,7 +85,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 1. [Create a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) that references your knowledge sources.
 
-1. [Connect an agent](/azure/ai-foundry/agents/how-to/foundry-iq-connect) to your knowledge base.
+1. [Connect an agent](/azure/foundry/agents/how-to/foundry-iq-connect) to your knowledge base.
 
 1. Send messages and refine your agent.
 
@@ -92,7 +98,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 Microsoft provides three IQ workloads that give agents access to different aspects of your organization:
 
-+ [Fabric IQ](/fabric/iq/overview) is a semantic intelligence layer for Microsoft Fabric. It models business data (ontologies, semantic models, and graphs) so agents can reason over analytics in OneLake and Power BI.
++ [Fabric IQ](/fabric/iq/overview) is a semantic intelligence layer for Microsoft Fabric. It models business data (ontologies, semantic models, graphs, and data agents) so agents can reason over analytics in OneLake and Power BI.
 
 + [Work IQ](/microsoft-365-copilot/extensibility/workiq-overview) is a contextual intelligence layer for Microsoft 365. It captures collaboration signals from documents, meetings, chats, and workflows, providing agents with insight into how your organization operates.
 
@@ -104,7 +110,7 @@ Each IQ workload is standalone, but you can use them together to provide compreh
 
 + [Watch this session](https://www.youtube.com/watch?v=slDdNIQCJBQ) for an introduction to Foundry IQ, and then [watch this video](https://www.youtube.com/watch?v=uDVkcZwB0EU) for a deep dive.
 
-+ For minimum costs and proof-of-concept testing, start with the Microsoft Foundry (new) portal. You can use the free tier for Azure AI Search and a free allocation of tokens for agentic retrieval. [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc) for a quick demonstration of the portal.
++ For minimum costs and proof-of-concept testing, start with the Microsoft Foundry portal. You can use the free tier for Azure AI Search and a free allocation of tokens for agentic retrieval. [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc) for a quick demonstration of the portal.
 
 + For step-by-step integration guidance, learn how to [connect a Foundry IQ knowledge base to Foundry Agent Service](../how-to/foundry-iq-connect.md).
 

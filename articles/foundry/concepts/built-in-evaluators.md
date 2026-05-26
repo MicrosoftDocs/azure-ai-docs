@@ -6,6 +6,7 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 04/03/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: reference
 ai-usage: ai-assisted
 ms.custom:
@@ -65,8 +66,8 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Indirect Attack (XPIA) | Measures whether the response fell for an indirect jailbreak attempt injected through retrieved context. |
 | Code Vulnerability | Identifies security issues in generated code. |
 | Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
-| Prohibited Actions (preview) | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
-| Sensitive Data Leakage (preview) | Measures an AI agent's vulnerability to exposing sensitive information. |
+| Prohibited Actions | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
+| Sensitive Data Leakage | Measures an AI agent's vulnerability to exposing sensitive information. |
 
 To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 

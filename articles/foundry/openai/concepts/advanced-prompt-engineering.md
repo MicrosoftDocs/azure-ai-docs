@@ -1,12 +1,12 @@
 ---
 title: "System message design for Azure OpenAI"
 description: "Learn how system messages shape Azure OpenAI chat responses, with best practices for control, safety, and consistency."
-author: mrbullwinkle
-ms.author: mbullwin 
+author: alvinashcraft
+ms.author: aashcraft 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article 
-ms.date: 01/20/2026
+ms.date: 05/13/2026
 manager: nitinme
 keywords: system message, system prompt, metaprompt, prompt engineering, safety, grounding
 ai-usage: ai-assisted

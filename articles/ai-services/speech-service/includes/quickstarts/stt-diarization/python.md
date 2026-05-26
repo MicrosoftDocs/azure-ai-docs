@@ -4,6 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 7/16/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -70,7 +71,7 @@ Follow these steps to create a new console application.
 
     def recognize_from_file():
         # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
-        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourResourceName.cognitiveservices.azure.com"
         speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
         speech_config.speech_recognition_language="en-US"
         speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, value='true')

@@ -84,7 +84,7 @@ Azure notifies you of upcoming retirements through email to subscription owners 
 
 ## Related content
 
-- [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
 - [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md)
 - [Instant models in Microsoft Foundry (preview)](../../concepts/instant-models.md)

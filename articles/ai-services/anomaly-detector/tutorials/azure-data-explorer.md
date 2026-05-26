@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: tutorial
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Tutorial: Use Univariate Anomaly Detector in Azure Data Explorer

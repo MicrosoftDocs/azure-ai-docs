@@ -1,74 +1,55 @@
 ---
-title: "Microsoft Foundry docs: What's new for April 2026"
-description: "Discover key changes and updates in Microsoft Foundry documentation for April 2026."
+title: "Microsoft Foundry docs: What's new for May 2026"
+description: "Discover documentation and product updates in Microsoft Foundry for May 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
-ms.date: 04/01/2026
+ms.date: 05/26/2026
 ---
 
-# What's new in Microsoft Foundry documentation?
-Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for April 2026.
+# What's new in Microsoft Foundry?
+Welcome! This article highlights key article and product updates in Microsoft Foundry for May 2026.
+<br>
 
 ## New articles
 
-- [Agentic Workflows: Task Adherence (preview)](../foundry/guardrails/task-adherence.md)
-- [Auto-upgrade Azure OpenAI resources to Microsoft Foundry](../foundry/how-to/upgrade-azure-openai-auto.md)
-- [Customize agent behavior at runtime with structured inputs](../foundry/agents/how-to/structured-inputs.md)
-- [Deploy and use FLUX models in Microsoft Foundry](../foundry/foundry-models/how-to/use-foundry-models-flux.md)
-- [Develop agents with LangGraph and Microsoft Foundry Agent Service (classic)](../foundry-classic/how-to/develop/langchain-agents.md)
-- [Fine-tune AI models in Microsoft Foundry with the Azure Developer CLI fine-tuning extension](../foundry/fine-tuning/fine-tune-cli.md)
-- [Fireworks models on Microsoft Foundry (preview)](../foundry/how-to/fireworks/enable-fireworks-models.md)
-- [Foundry Local Legacy SDK reference](../foundry-local/reference/reference-sdk-legacy.md)
-- [Foundry Local SDK migration guide](../foundry-local/reference/reference-sdk-migration.md)
-- [Foundry Local SDK reference](../foundry-local/reference/reference-sdk-current.md)
-- [Get started with LangChain and LangGraph with Foundry](../foundry/how-to/develop/langchain.md)
-- [Govern agent infrastructure as a Microsoft Entra administrator](../foundry/control-plane/govern-agent-infrastructure-entra-admin.md)
-- [How to use Task Adherence for your Agentic workflows](../foundry/guardrails/how-to-task-adherence.md)
-- [Import custom models with Fireworks (preview)](../foundry/how-to/fireworks/import-custom-models.md)
-- [Microsoft Foundry Models overview](../foundry/concepts/foundry-models-overview.md)
-- [Optimize agent prompts by using Prompt Optimizer (preview)](../foundry/observability/how-to/prompt-optimizer.md)
-- [Quickstart: Create a prompt agent](../foundry/agents/quickstarts/prompt-agent.md)
-- [Trace LangChain and LangGraph apps with Microsoft Foundry and Azure Monitor](../foundry/how-to/develop/langchain-traces.md)
-<br>
-
+- Azure OpenAI
+  - [Quickstart: Create a provisioned throughput deployment](openai/provisioned-quickstart.md)
+  - [Determine provisioned throughput unit (PTU) sizing for a workload](openai/how-to/provisioned-throughput-sizing.md)
+  - [Auto and direct model routing with the Responses API](../foundry/openai/how-to/responses-model-routing.md)
+  - [Automate Azure OpenAI deployments with quota](../foundry/openai/how-to/automate-quota-deployments.md)
+  - [Get started with Azure OpenAI audio generation](../foundry/openai/audio-completions-quickstart.md)
+- Foundry Agent Service
+  - [Enable incoming A2A on a Foundry agent (preview)](../foundry/agents/how-to/enable-agent-to-agent-endpoint.md)
+- Foundry Models and platform
+  - [Instant models in Microsoft Foundry (preview)](../foundry/concepts/instant-models.md)
+  - [Region availability for Foundry Models sold directly by Azure](../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
 ## Updated articles
 
-- [Add an A2A agent endpoint to Foundry Agent Service (preview)](../foundry/agents/how-to/tools/agent-to-agent.md)
-- [Agent tools overview for Foundry Agent Service](../foundry/agents/concepts/tool-catalog.md)
-- [Automate browser tasks with the Browser Automation tool (preview)](../foundry/agents/how-to/tools/browser-automation.md)
-- [Available tools and example prompts for Foundry MCP Server (preview)](../foundry/mcp/available-tools.md)
-- [Azure OpenAI in Microsoft Foundry Models v1 REST API reference](../foundry/openai/latest.md)
-- [Build with agents, conversations, and responses](../foundry/agents/concepts/runtime-components.md)
-- [Code Interpreter tool for Microsoft Foundry agents](../foundry/agents/how-to/tools/code-interpreter.md)
-- [Connect agents to Model Context Protocol servers](../foundry/agents/how-to/tools/model-context-protocol.md)
-- [Connect agents to OpenAPI tools](../foundry/agents/how-to/tools/openapi.md)
-- [Connect an Azure AI Search index to Foundry agents](../foundry/agents/how-to/tools/ai-search.md)
-- [Create and use memory in Foundry Agent Service (preview)](../foundry/agents/how-to/memory-usage.md)
-- [Custom code interpreter tool for agents (preview)](../foundry/agents/how-to/tools/custom-code-interpreter.md)
-- [File search tool for agents](../foundry/agents/how-to/tools/file-search.md)
-- [Grounding agents with Bing Search tools](../foundry/agents/how-to/tools/bing-tools.md)
-- [How to configure network isolation for Microsoft Foundry](../foundry/how-to/configure-private-link.md)
-- [Migrate to the new agents developer experience](../foundry/agents/how-to/migrate.md)
-- [Monitor agents with the Agent Monitoring Dashboard](../foundry/observability/how-to/how-to-monitor-agents-dashboard.md)
-- [Quickstart: Deploy your first hosted agent](../foundry/agents/quickstarts/quickstart-hosted-agent.md)
-- [Run evaluations from the SDK](../foundry/how-to/develop/cloud-evaluation.md)
-- [Tool best practices for Microsoft Foundry Agent Service](../foundry/agents/concepts/tool-best-practice.md)
-- [Use Azure AI Content Safety middleware with LangChain](../foundry/how-to/develop/langchain-middleware.md)
-- [Use Foundry Agent Service with LangGraph](../foundry/how-to/develop/langchain-agents.md)
-- [Use Foundry Memory with LangChain and LangGraph](../foundry/how-to/develop/langchain-memory.md)
-- [Use function calling with Microsoft Foundry agents](../foundry/agents/how-to/tools/function-calling.md)
-- [Use LangChain with models in Microsoft Foundry](../foundry/how-to/develop/langchain-models.md)
-- [Use SharePoint tool with the agent API (preview)](../foundry/agents/how-to/tools/sharepoint.md)
-- [Use the computer use tool for agents (Preview)](../foundry/agents/how-to/tools/computer-use.md)
-- [Use the image generation tool (preview)](../foundry/agents/how-to/tools/image-generation.md)
-- [Use the Microsoft Fabric data agent (preview)](../foundry/agents/how-to/tools/fabric.md)
+- Azure OpenAI
+  - [What is provisioned throughput for Foundry Models?](openai/concepts/provisioned-throughput.md)
+  - [Provisioned throughput billing and cost management](openai/concepts/provisioned-throughput-billing.md)
+  - [Operate provisioned deployments in production](openai/how-to/provisioned-get-started.md)
+  - [Manage traffic with spillover for provisioned deployments](openai/how-to/spillover-traffic-management.md)
+  - [Latency and performance optimization](../foundry/openai/how-to/latency.md)
+  - [Monitor Azure OpenAI reference](../foundry/openai/monitor-openai-reference.md)
+  - [Priority processing for model deployments](../foundry/openai/concepts/priority-processing.md)
+  - [Quota management and rate limits](../foundry/openai/how-to/quota.md)
+- Foundry Agent Service
+  - [Connect to an A2A agent endpoint from Foundry Agent Service](../foundry/agents/how-to/tools/agent-to-agent.md)
+  - [Deploy a hosted agent](../foundry/agents/how-to/deploy-hosted-agent.md)
+  - [Hosted agents in Foundry Agent Service (preview)](../foundry/agents/concepts/hosted-agents.md)
+  - [Tool support by model and region](../foundry/agents/concepts/tool-best-practice.md)
+- Foundry Models and platform
+  - [Customer-managed key encryption](../foundry/concepts/encryption-keys-portal.md)
+  - [Foundry Models sold directly by Azure](../foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
 
 

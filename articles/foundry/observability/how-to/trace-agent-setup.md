@@ -1,6 +1,7 @@
 ---
 title: "Set Up Tracing for AI Agents in Microsoft Foundry"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Azure Monitor Application Insights with OpenTelemetry."
 ai-usage: ai-assisted
 author: lgayhardt
@@ -19,11 +20,14 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 Use tracing to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
 
+The recommended starting point is **server-side tracing**. Foundry enables it for you automatically once you connect an Application Insights resource to your project. No code changes are required, and traces are available within minutes of enabling it. Server-side tracing works for any agent hosted in Foundry. When you need visibility into your own application code — for example, to trace custom logic surrounding an agent call — you can layer on client-side instrumentation as a second step.
+
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) to store traces (create a new one or connect an existing one).
 - Access to the Application Insights resource connected to your project.
+- The [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the connected Application Insights resource (required to query telemetry).
 
 ## Connect Application Insights to your Foundry project
 
