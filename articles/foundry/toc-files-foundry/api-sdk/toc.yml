@@ -15,12 +15,14 @@ items:
 # Azure AI Projects SDK
 - name: Foundry SDK Reference
   items:
+  - name: Python
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
   - name: C#
     href: /dotnet/api/overview/azure/ai.projects-readme
   - name: JavaScript
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-latest&preserve-view=true
-  - name: Python
-    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
+  - name: Java
+    href: /java/api/overview/azure/ai-projects-readme?view=azure-java-latest&preserve-view=true
 
 # Azure OpenAI SDK and APIs
 - name: Azure OpenAI
