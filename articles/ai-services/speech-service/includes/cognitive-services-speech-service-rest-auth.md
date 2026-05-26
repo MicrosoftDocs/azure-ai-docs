@@ -2,7 +2,7 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 07/01/2021
+ms.date: 05/21/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
@@ -36,6 +36,9 @@ https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken
 
 Replace `YourResourceName` with the name of your Speech resource.
 
+> [!NOTE]
+> This endpoint requires your resource to have a [custom subdomain](../../cognitive-services-custom-subdomains.md) configured. For resources without a custom domain, use the regional endpoint instead: `https://<region>.api.cognitive.microsoft.com/sts/v1.0/issueToken`. Replace `<region>` with your resource's Azure region (for example, `eastus`).
+
 Use the following samples to create your access token request.
 
 #### HTTP sample
@@ -63,8 +66,9 @@ $FetchTokenHeader = @{
   'Ocp-Apim-Subscription-Key' = 'YourSpeechResourceKey'
 }
 
-$OAuthToken = Invoke-RestMethod -Method POST -Uri https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken
- -Headers $FetchTokenHeader
+$OAuthToken = Invoke-RestMethod -Method POST `
+    -Uri https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken `
+    -Headers $FetchTokenHeader
 
 # show the token received
 $OAuthToken
@@ -144,6 +148,9 @@ def get_token(subscription_key):
 ### How to use an access token
 
 The access token should be sent to the service as the `Authorization: Bearer <TOKEN>` header. Each access token is valid for 10 minutes. You can get a new token at any time, but to minimize network traffic and latency, we recommend using the same token for nine minutes.
+
+> [!IMPORTANT]
+> Bearer tokens are scoped to the endpoint that issued them. A token obtained from `YourResourceName.cognitiveservices.azure.com` works only for requests to that same host. A token from `<region>.api.cognitive.microsoft.com` works only against regional Speech endpoints. If you receive a 401 error when using a Bearer token, use `Ocp-Apim-Subscription-Key` with your resource key instead, which works with all endpoint formats.
 
 Here's a sample HTTP request to the Speech to text REST API for short audio:
 
