@@ -1,18 +1,18 @@
 ---
 title: Log end user feedback
 description: Learn how to log end user feedback such as thumbs up/down or rating scales from your AI application using OpenTelemetry semantics in Microsoft Foundry.
+ms.service: microsoft-foundry
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: sonalimalik
+ms.reviewer: skohlmeier
 ms.date: 05/22/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.custom: doc-kit-assisted
 ---
 
 # Log end user feedback (preview)
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Capture end user feedback—such as thumbs up/down reactions or numeric rating scales—from your AI application and route it to your observability backend using OpenTelemetry (OTel) semantics. Logging user feedback enables you to correlate subjective quality signals with trace data, measure user satisfaction over time, and drive continuous improvement of your agents and models.
 
