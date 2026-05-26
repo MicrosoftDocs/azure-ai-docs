@@ -158,7 +158,7 @@ api-key: {admin-api-key}
     },
     "contentExtractionMode": "standard",
     "aiServices": {
-      "subdomainUrl": "https://{foundry-resource}.cognitiveservices.azure.com"
+      "uri": "https://{foundry-resource}.services.ai.azure.com"
     }
   }
 }
