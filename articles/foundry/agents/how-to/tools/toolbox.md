@@ -63,6 +63,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Skill references](skills.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
 ## Prerequisites
@@ -2607,6 +2608,157 @@ tools = [
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |
 | Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
 
+## Attach skills to a toolbox
+
+Attach [skills](skills.md) to a toolbox version to make them available to agents through the toolbox MCP endpoint. Each skill reference specifies the skill name and an optional version. Omit `version` to use the skill's `default_version`; pin a `version` string to use an immutable snapshot.
+
+> [!IMPORTANT]
+> Skills must be in the same Foundry project as the toolbox. Cross-project skill references aren't supported.
+
+When an agent or MCP client connects to the toolbox endpoint, skills are exposed as [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources). The MCP client or agent framework must support the MCP Resources protocol to auto-discover and load skills. To verify that skills are discoverable, call `resources/list` on the toolbox MCP endpoint and confirm your skill names appear in the response.
+
+:::zone pivot="rest-api"
+
+```http
+POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+Accept: application/json
+Foundry-Features: Toolboxes=V1Preview
+
+{
+  "description": "Toolbox with a skill reference",
+  "tools": [],
+  "skills": [
+    {
+      "type": "skill_reference",
+      "name": "greeting"
+    }
+  ]
+}
+```
+
+To pin a specific version:
+
+```json
+{
+  "skills": [
+    {
+      "type": "skill_reference",
+      "name": "greeting",
+      "version": "v1"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import ToolboxSkillReference
+
+toolbox_version = project.beta.toolboxes.create_version(
+    toolbox_name="my-toolbox",
+    description="Toolbox with a skill reference",
+    tools=[],
+    skills=[
+        ToolboxSkillReference(name="greeting"),              # use default version
+        # ToolboxSkillReference(name="greeting", version="v1"),  # pin to v1
+    ],
+)
+print(f"Created toolbox version: {toolbox_version.id}")
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+#pragma warning disable AAIP001
+var skillRef = new ToolboxSkillReference("greeting");
+// To pin: new ToolboxSkillReference("greeting") { Version = "v1" }
+
+AgentsToolboxVersion toolboxVersion = toolboxesClient.CreateToolboxVersion(
+    toolboxName: "my-toolbox",
+    description: "Toolbox with a skill reference",
+    tools: [],
+    skills: [skillRef]
+);
+Console.WriteLine($"Created toolbox version: {toolboxVersion.Id}");
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const toolboxVersion = await project.beta.toolboxes.createVersion("my-toolbox", {
+  description: "Toolbox with a skill reference",
+  tools: [],
+  skills: [
+    { type: "skill_reference", name: "greeting" },
+    // { type: "skill_reference", name: "greeting", version: "v1" },  // pin to v1
+  ],
+});
+console.log(`Created toolbox version: ${toolboxVersion.id}`);
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+name: my-toolbox
+description: Toolbox with a skill reference
+skills:
+  - type: skill_reference
+    name: greeting
+    # version: v1  # optional; omit to use the default version
+tools: []
+```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Skill references aren't currently configurable through the VS Code extension. Use the REST API, SDK, or `azd` to configure skills.
+
+:::zone-end
+
+### Validate skill discovery
+
+After attaching skills to a toolbox version, verify that they're discoverable through the toolbox MCP endpoint using the MCP Python SDK:
+
+```python
+import asyncio
+from azure.identity import DefaultAzureCredential
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+async def list_skills():
+    credential = DefaultAzureCredential()
+    token = credential.get_token("https://ai.azure.com/.default").token
+    toolbox_url = "{endpoint}/toolboxes/my-toolbox/mcp?api-version=v1"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Foundry-Features": "Toolboxes=V1Preview",
+    }
+    async with streamablehttp_client(toolbox_url, headers=headers) as (read, write, _):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+            resources = await session.list_resources()
+            for resource in resources.resources:
+                print(f"Skill: {resource.uri} - {resource.name}")
+
+asyncio.run(list_skills())
+```
+
+Skills appear as MCP resources with URIs in the format `skill://{name}`.
+
+
+
 ## Virtual network support
 
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
@@ -2637,6 +2789,7 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
+- [Manage skills](skills.md)
 - [Deploy a Hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)
