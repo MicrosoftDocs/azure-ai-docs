@@ -79,7 +79,7 @@ Examples:
 
 ## Quality evaluation
 
-Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator examines multiple dimensions of response quality:
+Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator is the same quality evaluator used in [Microsoft Copilot Studio agent evaluations](/microsoft-copilot-studio/analytics-agent-evaluation-overview#general-quality). It examines multiple dimensions of response quality:
 
 - **Relevance** - Is the response relevant to the user's query?
 - **Abstention** - Does the agent appropriately abstain when it cannot or should not answer?
