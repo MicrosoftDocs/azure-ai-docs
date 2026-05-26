@@ -13,7 +13,7 @@ items:
   href: ../../openai/how-to/responses-model-routing.md
 
 # Azure AI Projects SDK
-- name: Azure AI Projects
+- name: Foundry SDK Reference
   items:
   - name: C#
     href: /dotnet/api/overview/azure/ai.projects-readme
