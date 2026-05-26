@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.custom: language-service-question-answering
 ---
 # Configure your environment for Azure AI resources and permissions
