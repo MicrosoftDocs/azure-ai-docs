@@ -71,6 +71,8 @@ items:
     items:
     - name: Connect to MCP server
       href: ../../agents/how-to/tools/model-context-protocol.md
+    - name: Managed MCP servers (preview)
+      href: ../../agents/how-to/tools/connectors.md
     - name: MCP authentication
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
