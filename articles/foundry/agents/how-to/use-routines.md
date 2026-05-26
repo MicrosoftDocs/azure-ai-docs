@@ -45,7 +45,7 @@ Routines support two categories of trigger.
 | `github_issue` | Fires when a GitHub issue is opened or closed in a connected repository. |
 | `custom` | Fires on a provider-specific event you define. |
 
-Event-based routines are powered by the **Connector Namespace** — the same managed service that backs [managed MCP servers](tools/connectors.md) in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
+Event-based routines are powered by the **Connector Namespace** — the same managed service that backs managed MCP servers in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
 
 > [!NOTE]
 > Your connector credentials are stored and managed by the Connector Namespace, not in your routine definition. At runtime, the namespace retrieves and injects the right token or key when polling for events or receiving webhook calls. Your routine configuration never contains raw credentials.
@@ -57,7 +57,7 @@ Event-based routines are powered by the **Connector Namespace** — the same man
 
 ## Publisher tiers and data handling for event sources
 
-The same connector catalog and publisher tiers that apply to [managed MCP servers](tools/connectors.md#publisher-tiers-and-data-handling) also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/connectors/connector-reference/connector-reference-mcpserver-connectors).
+The same connector catalog and publisher tiers that apply to managed MCP servers also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](/connectors/connector-reference/connector-reference-mcpserver-connectors).
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
@@ -68,7 +68,7 @@ The same connector catalog and publisher tiers that apply to [managed MCP server
 
 The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
 
-For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/connectors/protection).
+For details on connector validation and data protection, see [Vet with data protection in connectors](/connectors/protection).
 
 ## Supported action types
 
