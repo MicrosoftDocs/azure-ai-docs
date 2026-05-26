@@ -4,7 +4,7 @@ description: Learn how to initialize evaluation assets, run an evaluation, and i
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 05/20/2026
+ms.date: 05/26/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -28,16 +28,13 @@ This article covers how to run the first agent evaluation with `azd ai agent eva
 - The Foundry agent extension for `azd`. Install it by running:
 
   ```bash
-  azd extension install <foundry-agent-extension-id>
+  azd extension install azure.ai.agents
   ```
-
-  [TO VERIFY: confirm the correct extension ID and registry URL with the azd Foundry team.]
-
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 - **For hosted agents:** No pre-existing Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
 - **For prompt-based agents:** An existing Foundry project with the agent already deployed and available as an evaluation target.
-- A model deployment that supports chat completions in the same Foundry project. The default model used for evaluation generation is `gpt-4o`.
+- A model deployment that supports chat completions in the same Foundry project.
 - Optional: a JSONL evaluation dataset with representative examples, if you do not want `eval init` to generate a smoke dataset.
 
 ## How azd agent evaluations work
@@ -60,8 +57,8 @@ The evaluation flow includes the following artifacts and commands.
 | Item | Description |
 |---|---|
 | `eval init` | Creates or repairs local evaluation assets for an agent target. |
-| `eval.yaml` | Local runnable evaluation recipe. It records the agent target, dataset reference, evaluator references, thresholds, generation options, and pending operation IDs. |
-| Generated review artifacts | Local copies of generated datasets and evaluator rubrics for inspection and editing. Generated review artifacts are stored under `.azure/.foundry/`. |
+| `eval.yaml` | Local runnable evaluation recipe. It records the agent target, dataset reference, evaluator references, and generation options |
+| Generated local artifacts | Editable local copies of generated datasets and evaluator rubrics. The artifacts are stored under `datasets/` and `evaluators/` in the agent folder (for example, `src/<agent-name>/datasets/` and `src/<agent-name>/evaluators/`). |
 | Registered service artifacts | The Foundry dataset and evaluator versions used by evaluation runs. These are the source of truth for generated assets. |
 | `eval run` | Runs the evaluation recipe against the selected agent target. |
 | `eval update` | Registers new service versions from local dataset or evaluator edits and updates `eval.yaml` after confirmation. |
@@ -98,10 +95,7 @@ The hosted agent must be deployed and invokable before you initialize evaluation
 After a successful deployment, the CLI suggests evaluation as an explicit next step:
 
 ```text
-Deployment succeeded and the hosted agent is invokable.
-
-Evaluation next steps:
-  Next:  azd ai agent eval init
+Set up an evaluation suite to measure quality and impact in one step with `azd ai agent eval init`
 ```
 
 To evaluate a prompt-based agent, skip the hosted-agent creation and deployment commands. Continue to the next section after you confirm that the prompt-based agent exists in the Foundry project and is available as an evaluation target.
@@ -114,34 +108,47 @@ Run `eval init` from the azd workspace or agent project folder:
 azd ai agent eval init
 ```
 
-With no flags, the command starts an interactive wizard. The wizard asks for a generation instruction so the service can create useful seed evaluation data and an evaluator rubric.
+With no flags, the command starts an interactive wizard. The wizard detects the agent target from the azd environment, then asks for a generation instruction so the service can create useful seed evaluation data and an evaluator rubric.
 
 Example interactive output:
 
 ```text
-Detecting agent...
-  Found: reservation-agent (hosted)
-
-Generation prompt
-  Describe what this agent does and what scenarios to test.
-  > This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement.
-
-Generation model
-  gpt-4o (default)
-
-Max samples: 100
-
-Generating dataset and evaluators...
-  Dataset generation:    done  (registered: reservation-agent-dev-eval-seed/v1)
-  Evaluator generation:  done  (registered: reservation-agent-quality/v1)
+? Eval suite name: reservation-agent
+? How would you like to provide the agent instruction?: Type inline
+? Describe what this agent does and what scenarios to test: This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement.
+? Include agent traces for evaluator generation?: No
+? Select the model for evaluation and generation: gpt-4o (deployed)
+? Max samples (between 15 and 1000): 100
+  (–) Running  Evaluator generation  (evaluatorgen-reservation-agent-v3-abc12345)
+  (–) Running  Dataset generation  (datagen-abc123456)
+  (✓) Done  Evaluator generation  (20 seconds)
+  (✓) Done  Dataset generation  (2m 9s)
 
 Eval suite created
-  Config:     eval.yaml
-  Dataset:    .azure/.foundry/datasets/reservation-agent-dev-eval-seed.v1.jsonl
-  Evaluator:  .azure/.foundry/evaluators/reservation-agent-quality.v1.yaml
+  Config:     src/reservation-agent/eval.yaml
+  Dataset:    reservation-agent-dev-eval-seed (1.0)
+              src/reservation-agent/datasets/reservation-agent-dev-eval-seed
+  Evaluator:  builtin.task_adherence
+  Evaluator:  reservation-agent-quality (1)
+              src/reservation-agent/evaluators/reservation-agent-quality/rubric_dimensions.json
 
-Review the generated assets, then run:
-  azd ai agent eval run
+  Evaluator dimensions (4):
+    Weight  Dimension
+    ──────  ─────────
+        10  booking_accuracy
+         5  policy_enforcement
+         6  cancellation_handling
+         5  general_quality
+
+  Portal:
+    Dataset:   https://ai.azure.com/.../build/data/datasets/reservation-agent-dev-eval-seed/1.0
+    Evaluator: https://ai.azure.com/.../build/evaluations/catalog/reservation-agent-quality/1
+
+  Next steps:
+    azd ai agent eval run
+      Run the eval suite against your agent.
+    azd ai agent eval update
+      Edit the generated dataset or evaluator locally, then upload changes.
 ```
 
 For scripted use, pass the generation inputs directly:
@@ -163,7 +170,7 @@ azd ai agent eval init \
   --gen-instruction "Support quality, policy adherence, and escalation behavior" \
   --max-samples 50 \
   --evaluator builtin.intent_resolution \
-  --evaluator custom.support-quality \
+  --evaluator support-quality \
   --output eval.yaml
 ```
 
@@ -172,7 +179,7 @@ Replace `./tests/support-golden.jsonl` with the path to your own evaluation data
 The `--dataset` value can point to a local file or a registered dataset name. Repeat `--evaluator` to include multiple built-in or registered custom evaluators. Evaluator references use the format `<source>.<name>`:
 
 - `builtin.<name>` — references a [built-in evaluator](../../concepts/built-in-evaluators.md) provided by Foundry.
-- `custom.<name>` — references a [custom evaluator](../../concepts/evaluation-evaluators/custom-evaluators.md) registered in the Foundry project. Use the evaluator's registered name without the version suffix.
+- `<name>` — references a [custom evaluator](../../concepts/evaluation-evaluators/custom-evaluators.md) registered in the Foundry project. Use the evaluator's registered name without the version suffix.
 
 ### Defer generation with `--no-wait`
 
@@ -209,7 +216,7 @@ Then use the same commands to run and inspect the evaluation:
 
 ```bash
 azd ai agent eval run --config eval.yaml
-azd ai agent eval show latest
+azd ai agent eval show
 ```
 
 ## Review eval.yaml
@@ -223,23 +230,33 @@ src/reservation-agent/eval.yaml
 Run `eval run` from this directory, or pass the path explicitly with `--config src/reservation-agent/eval.yaml`. The file identifies the agent target, dataset reference, evaluator references, and generation options. A simplified shape is:
 
 ```yaml
-name: smoke-core
+name: reservation-agent
 agent:
   name: reservation-agent
-  kind: hosted     # Use "hosted" for hosted agents or "prompt" for prompt-based agents.
+  kind: hosted
   version: "3"
+  config: .agent_configs\baseline\metadata.yaml
 dataset_reference:
   name: reservation-agent-dev-eval-seed
-  version: "1"
+  version: "1.0"
+  local_uri: datasets\reservation-agent-dev-eval-seed
 evaluators:
-  - reservation-agent-quality    # Custom evaluators use their registered name; built-in evaluators omit the "builtin." prefix.
+  - builtin.task_adherence
+  - name: reservation-agent-quality
+    version: "1"
+    local_uri: evaluators\reservation-agent-quality\rubric_dimensions.json
 options:
   eval_model: gpt-4o
-generation_instruction: Test booking, modification, cancellation, and policy enforcement.
 max_samples: 100
 ```
 
-Treat version fields as strings, even if they look numeric, so the recipe remains stable across YAML parsers.
+- `eval.yaml` lives at the agent project root, for example `src/<agent-name>/eval.yaml`.
+- Generated datasets live under `datasets/` and generated evaluator rubrics live under `evaluators/` in the agent folder.
+- `local_uri` paths in `eval.yaml` are relative to the agent project directory.
+- Local files referenced by `local_uri` are editable. Run `azd ai agent eval update` to register local changes as a new version in the service and bump the version in `eval.yaml`.
+- `eval run` uses the registered version pinned in `eval.yaml`. To apply local edits, run `eval update` before `eval run`.
+- Evaluators can be built-in references (for example, `builtin.task_adherence`) or generated custom evaluators with `name`, `version`, and `local_uri`.
+- Treat version fields as strings, even if they look numeric, so the recipe remains stable across YAML parsers.
 
 ## Run the evaluation
 
@@ -268,10 +285,10 @@ azd ai agent eval list
 Show the latest run:
 
 ```bash
-azd ai agent eval show latest
+azd ai agent eval show
 ```
 
-`latest` is a reserved alias that resolves to the most recently completed evaluation run.
+With no flags, `eval show` defaults to the most recently completed evaluation run.
 
 Show a specific run by its run ID. Copy the ID from the `azd ai agent eval list` output:
 
@@ -281,7 +298,7 @@ run-a1b2c3d4-e5f6-7890-abcd-ef1234567890   completed  reservation-agent  2026-05
 ```
 
 ```bash
-azd ai agent eval show <evaluation-run-id>
+azd ai agent eval show --eval-id run-a1b2c3d4-e5f6-7890-abcd-ef1234567890
 ```
 
 Use the run output to answer:
@@ -319,7 +336,7 @@ To update what an evaluation run uses, choose the path that matches the type of 
 | Register local edits to a generated dataset or evaluator rubric | Run `azd ai agent eval update`, review the detected changes, and confirm the version-reference update in `eval.yaml`. |
 | Start over from the default generated setup | Run `azd ai agent eval init --reset-defaults`. |
 
-For example, after editing a generated evaluator rubric under `.azure/.foundry/evaluators/`, run:
+For example, after editing a generated evaluator rubric under `evaluators/` in the agent folder, run:
 
 ```bash
 azd ai agent eval update
@@ -328,16 +345,24 @@ azd ai agent eval run --config eval.yaml
 
 The update command creates new registered dataset or evaluator versions. Existing evaluation runs remain tied to the versions they originally used.
 
-When `eval.yaml` already exists, `eval init` detects it and suggests `eval run` instead of overwriting it:
+When `eval.yaml` already exists, `eval init` detects it and prints the existing config:
 
 ```text
-Eval config already exists: eval.yaml
+Eval config already exists: src/reservation-agent/eval.yaml
+  Dataset:    reservation-agent-dev-eval-seed (1.0)
+              src/reservation-agent/datasets/reservation-agent-dev-eval-seed
+  Evaluator:  builtin.task_adherence
+  Evaluator:  reservation-agent-quality (1)
+              src/reservation-agent/evaluators/reservation-agent-quality/rubric_dimensions.json
 
-To run the evaluation:
-  azd ai agent eval run
+  To run the evaluation:
+    azd ai agent eval run
 
-To overwrite and regenerate:
-  azd ai agent eval init --reset-defaults
+  To update local edits as new versions:
+    azd ai agent eval update
+
+  To overwrite and regenerate:
+    azd ai agent eval init --reset-defaults
 ```
 
 To overwrite the local config and regenerate the default evaluation assets, run:
@@ -376,7 +401,7 @@ The optimize command reads the agent target, dataset, evaluators, and thresholds
 - Check generated dataset and evaluator review artifacts before trusting scores.
 - After editing generated dataset or evaluator files, run `azd ai agent eval update` to register the edited assets before running the evaluation again.
 - Source-control `eval.yaml` if your team wants a reviewable, reproducible evaluation recipe.
-- Keep generated review copies out of source control unless your team intentionally reviews them. The recommended generated-artifact path is `.azure/.foundry/`.
+- Consider source-controlling generated datasets and evaluator rubrics under `datasets/` and `evaluators/` in the agent folder if your team reviews and edits them as part of the evaluation recipe.
 - Re-run the same `eval.yaml` after agent changes so comparisons use the same test recipe.
 - Use `azd ai agent optimize --config eval.yaml` only after you have a useful baseline evaluation result and the agent is prepared for optimization.
 
