@@ -40,9 +40,9 @@ Cloud evaluation supports the following scenarios:
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
 | **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent (prompt or hosted) at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
-| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
+| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). Use azure_ai_trace_data_source_preview to also evaluate conversational traces by conversation ID. | `azure_ai_traces_preview` or `azure_ai_trace_data_source_preview` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from a dataset, by conversation ID, or by agent filter. | `jsonl` or `azure_ai_trace_data_source_preview` | — |
+| **[Conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from input conversation data. | `jsonl` | — |
 | **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -2032,7 +2032,7 @@ Create a JSONL file where each line describes a scenario for the simulated user.
 |-----------|----------|-------------|
 | `num_conversations` | No | Number of conversations to generate per scenario. Defaults to 5, server-side cap of 5. |
 | `max_turns` | No | Maximum number of turns (exchanges) per conversation. Defaults to 10, server-side cap of 20. |
-| `model` | No | Model deployment to use for simulating the user. For example, `gpt-4.1`. |
+| `model` | Yes | Model deployment to use for simulating the user. For example, `gpt-4.1`. |
 | `sampling_params` | No | Sampling parameters for the simulator model, including `temperature`, `top_p`, and `max_completion_tokens`. |
 | `data_mapping` | No | Maps fields from your scenario JSONL to simulation parameters. Common mappings: `test_case_description`, `id`, `desired_num_turns`. |
 
