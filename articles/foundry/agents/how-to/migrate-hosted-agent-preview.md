@@ -182,7 +182,7 @@ agent = Agent(client=client, tools=[mcp_tool], ...)
 For samples, see the [Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework).
 
 > [!NOTE]
-> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/AgentFramework) for complete examples.
+> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework) for complete examples.
 
 ## Migrate LangGraph agents
 
@@ -341,7 +341,7 @@ langchain-mcp-adapters>=0.1.0
 mcp>=1.0.0
 ```
 
-For complete samples, see the [LangGraph Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langgraph).
+For complete samples, see the [LangGraph Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
 
 ## Migrate custom or BYO agents
 
