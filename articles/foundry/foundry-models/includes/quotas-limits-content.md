@@ -1,6 +1,7 @@
 ---
 title: include file
-description: include file
+title: Include file
+description: Include file
 author: msakande
 ms.author: mopeakande
 ms.reviewer: haakar
@@ -23,7 +24,7 @@ This change consolidates quota into shared pools:
 
 ## What’s changing for me?
 
-For the models that are onboarded the new quota management system:
+For the models that are onboarded to the new quota management system:
 
 * All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
 * All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
@@ -63,12 +64,7 @@ The following table lists limits for Foundry Models for the following rates:
 |- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
-To increase your quota:
-
-- For Azure OpenAI, use [Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
-- For other models, see [request increases to the default limits](#request-increases-to-the-default-limits). 
- 
-Due to high demand, limit increase requests are evaluated individually.
+To increase your quota, use [Microsoft Foundry Service: Request for Quota Increase](https://aka.ms/oai/stuquotarequest) to submit your request. Due to high demand, requests to increase quota are evaluated individually. For more information on quota increase requests, see [request increases to the default limits](#request-increases-to-the-default-limits). 
 
 ### Other limits
 
@@ -82,7 +78,7 @@ Due to high demand, limit increase requests are evaluated individually.
 
 Global Standard deployments use Azure's global infrastructure to dynamically route customer traffic to the data center with best availability for the customer's inference requests. This infrastructure enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
 
-The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
+The Usage Limit determines the level of usage beyond which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
 ## Request increases to the default limits
 
@@ -102,7 +98,7 @@ To minimize issues related to rate limits, use the following techniques:
 Set the client-side timeout explicitly based on the following guidance.
 
 > [!NOTE]
-> If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
+> If not explicitly set, the client side timeout exists as per the library used, and might not be the same limits as above.
 
 - Reasoning models (models that generate intermediate reasoning tokens before producing a summarized response): up to 29 minutes. 
 - Non-reasoning models: 

@@ -245,7 +245,7 @@ Use the SDK when you want to manage agent deployments directly from Python code.
     docker build --platform linux/amd64 -t myagent:v1 .
     ```
 
-    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
+    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/csharp/getting-started-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
 
 1. Push to Azure Container Registry:
 
