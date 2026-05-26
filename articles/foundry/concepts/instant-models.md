@@ -27,9 +27,6 @@ Instant models let you call any supported model by name — no deployment requir
 
 With instant models, the workflow is simple — use a supported instant model name in your code. No deployment needed. The same API, SDK, and client you already use for deployments works with instant models. No second SDK, no separate client, no configuration changes.
 
-1. Create a Foundry project in *West US 3* (the only supported region during preview).
-1. Pass a *supported model name* in your code. No deployment needed.
-
 # [Python](#tab/python)
 
 The only change from deployment-based code is the `model` parameter. In the code below, replace `"gpt-5-mini"` with the name any instant model.
