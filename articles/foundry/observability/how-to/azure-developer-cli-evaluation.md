@@ -4,7 +4,7 @@ description: Learn how to initialize evaluation assets, run an evaluation, and i
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 05/20/2026
+ms.date: 06/02/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -25,19 +25,12 @@ This article covers how to run the first agent evaluation with `azd ai agent eva
 
 - An Azure subscription with access to Microsoft Foundry.
 - The Azure Developer CLI (`azd`). For installation instructions, see [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
-- The Foundry agent extension for `azd`. Install it by running:
-
-  ```bash
-  azd extension install <foundry-agent-extension-id>
-  ```
-
-  [TO VERIFY: confirm the correct extension ID and registry URL with the azd Foundry team.]
-
+- The `azd ai agent` extension installed (`azd extension install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. To learn more about the `azd` AI agent extension see, [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension)
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 - **For hosted agents:** No pre-existing Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
 - **For prompt-based agents:** An existing Foundry project with the agent already deployed and available as an evaluation target.
-- A model deployment that supports chat completions in the same Foundry project. The default model used for evaluation generation is `gpt-4o`.
+- A model deployment that supports chat completions in the same Foundry project.
 - Optional: a JSONL evaluation dataset with representative examples, if you do not want `eval init` to generate a smoke dataset.
 
 ## How azd agent evaluations work
@@ -52,7 +45,7 @@ azd ai agent eval init
 azd ai agent eval run
 azd ai agent eval update
 # Optional, after the agent and eval recipe meet optimization prerequisites:
-azd ai agent optimize --config eval.yaml
+azd ai agent optimize
 ```
 
 The evaluation flow includes the following artifacts and commands.
@@ -127,7 +120,7 @@ Generation prompt
   > This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement.
 
 Generation model
-  gpt-4o (default)
+  gpt-5.5
 
 Max samples: 100
 
@@ -137,8 +130,8 @@ Generating dataset and evaluators...
 
 Eval suite created
   Config:     eval.yaml
-  Dataset:    .azure/.foundry/datasets/reservation-agent-dev-eval-seed.v1.jsonl
-  Evaluator:  .azure/.foundry/evaluators/reservation-agent-quality.v1.yaml
+  Dataset:    src//datasets/reservation-agent-dev-eval-seed.jsonl
+  Evaluator:  src//evaluators/reservation-agent-dev-eval-seed.yaml
 
 Review the generated assets, then run:
   azd ai agent eval run

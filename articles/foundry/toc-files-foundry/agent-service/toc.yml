@@ -161,6 +161,9 @@ items:
       href: ../../observability/how-to/trace-agent-client-side.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
+  - name: Run agent evaluations with the Azure Developer CLI
+    displayName: azd cli
+    href: ../../observability/how-to/azure-developer-cli-evaluation.md
   - name: Optimize agent prompts 
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
