@@ -89,7 +89,7 @@ The Voice Live API supports three BYOM integration modes:
 
 | Mode                                | Description                                                                                           | Example Models                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                         | `gpt-realtime`, `gpt-realtime-mini`     |
+| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                        | `gpt-realtime`, `gpt-realtime-mini`     |
 | `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
 | `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
 

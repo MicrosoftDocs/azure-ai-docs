@@ -10,7 +10,7 @@ ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 04/28/2026
-ms.custom: languages
+ms.custom: languages, references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---

@@ -1042,7 +1042,7 @@ The server `response.content_part.added` event is returned when a new content pa
 
 The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event Structure
 
@@ -1720,7 +1720,7 @@ The server `response.audio.delta` event is returned when the model-generated aud
 
 The server `response.audio.done` event is returned when the model-generated audio is done.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -1776,7 +1776,7 @@ The server `response.audio_transcript.delta` event is returned when the model-ge
 
 The server `response.audio_transcript.done` event is returned when the model-generated transcription of audio output is done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -1834,7 +1834,7 @@ The server `response.function_call_arguments.delta` event is returned when the m
 
 The server `response.function_call_arguments.done` event is returned when the model-generated function call arguments are done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -2185,7 +2185,7 @@ The server `response.output_item.added` event is returned when a new item is cre
 
 The server `response.output_item.done` event is returned when an item is done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -2238,7 +2238,7 @@ The server `response.text.delta` event is returned when the model-generated text
 
 The server `response.text.done` event is returned when the model-generated text is done streaming. The text corresponds to the `text` content part of an assistant message item.
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -3386,7 +3386,7 @@ Response status values.
 **Allowed Values:**
 * `in_progress` - Response is being generated
 * `completed` - Response completed successfully
-* `cancelled` - Response was cancelled
+* `cancelled` - Response was canceled
 * `incomplete` - Response incomplete (interrupted)
 * `failed` - Response failed with error
 
