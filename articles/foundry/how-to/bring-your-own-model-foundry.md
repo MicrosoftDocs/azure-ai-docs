@@ -9,8 +9,8 @@ ms.topic: how-to
 ms.date: 05/25/2026
 ms.author: mopeakande
 author: msakande
-ms.reviewer: mabables
-reviewer: ManojBableshwar
+ms.reviewer: gulsimoosimi
+reviewer: GulsimoOsimi
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer, I want to register a fine-tuned or custom-weight model in Microsoft Foundry by uploading the weights from my local machine and deploy it on managed compute so that I can serve my own model with the same APIs, identity, and scaling experience as a catalog model.
