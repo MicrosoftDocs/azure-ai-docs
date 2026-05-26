@@ -869,7 +869,7 @@ Add the greeting skill you created in the [Author a skill](#author-a-skill) sect
 mkdir skills/greeting
 ```
 
-Copy the greeting `SKILL.md` content from the [Author a skill](#author-a-skill) section into `skills/greeting/SKILL.md`. You can also use the download operation from [Download a skill](#download-a-skill) if you imported the skill to Foundry earlier.
+Copy the greeting `SKILL.md` content from the [Author a skill](#author-a-skill) section into `skills/greeting/SKILL.md`. You can also use the download operation from [Download skill content](#download-skill-content) if you imported the skill to Foundry earlier.
 
 The project now includes both skills:
 
