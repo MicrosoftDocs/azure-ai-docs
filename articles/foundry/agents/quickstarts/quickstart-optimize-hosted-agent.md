@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optimize a hosted agent in Foundry Agent Service (preview)"
-description: "Set up the optimization CLI extension, deploy a hosted agent, and run your first optimization to improve agent instructions automatically."
+description: "Set up the optimization CLI extension, deploy a hosted agent, and run your first optimization using the agent optimizer to improve agent instructions automatically."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run optimization, and deploy the winning candidate.
+In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run the agent optimizer, and deploy the winning candidate.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ In this quickstart, you install the optimization CLI extension, deploy a hosted 
 | [Python 3.12+](https://www.python.org/downloads/) | Yes | Agent runtime |
 | Git | Yes | Source control |
 
-Your Azure subscription must be on the allowlist for agent optimization. Contact your Microsoft representative to request access.
+Your Azure subscription must be on the allowlist for the agent optimizer. Contact your Microsoft representative to request access.
 
 ## Install the CLI extension
 
@@ -116,21 +116,24 @@ az account set --subscription "<subscription-name-or-id>"
 
 ## Configure and provision
 
-> [!IMPORTANT]
-> **Region matters.** The optimization service is currently only available in **North Central US**. Other regions deploy the agent fine, but `azd ai agent optimize` returns a 404.
+Choose one of the following options based on whether you need to create new Azure resources or already have an existing Foundry project.
+
+### Option A: Create new resources
+
+Set your Azure subscription and location, then provision. Choose any [region where hosted agents are available](../concepts/hosted-agents.md#region-availability):
 
 # [Bash](#tab/bash)
 
 ```bash
 azd env set AZURE_SUBSCRIPTION_ID $(az account show --query id -o tsv)
-azd env set AZURE_LOCATION northcentralus
+azd env set AZURE_LOCATION <your-region>
 ```
 
 # [PowerShell](#tab/powershell)
 
 ```powershell
 azd env set AZURE_SUBSCRIPTION_ID (az account show --query id -o tsv)
-azd env set AZURE_LOCATION northcentralus
+azd env set AZURE_LOCATION <your-region>
 ```
 
 ---
@@ -146,6 +149,33 @@ This step creates:
 - A Foundry account and project
 - An Azure Container Registry
 - A model deployment for gpt-4.1-mini
+
+### Option B: Use an existing Foundry project
+
+If you already have a Foundry project with a model deployed, skip provisioning and configure your environment manually:
+
+```bash
+azd env new my-optimizer-env
+
+azd env set AZURE_SUBSCRIPTION_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+azd env set AZURE_TENANT_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+azd env set AZURE_AI_PROJECT_ENDPOINT "https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
+azd env set AZURE_CONTAINER_REGISTRY_ENDPOINT "<your-registry>.azurecr.io"
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+```
+
+Use the following table to find each value:
+
+| Variable | Where to find it |
+| -------- | ---------------- |
+| `AZURE_SUBSCRIPTION_ID` | Azure portal → **Subscriptions** |
+| `AZURE_TENANT_ID` | Run `az account show --query tenantId -o tsv` |
+| `AZURE_AI_PROJECT_ENDPOINT` | Foundry portal → your project → **Overview** → **Project endpoint** |
+| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Azure portal → **Container Registry** → **Overview** → **Login server** |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Foundry portal → your project → **Models + endpoints** → **Deployments** |
+
+> [!NOTE]
+> The project endpoint (not "project ID") is the value the CLI uses to identify your project. It appears on the project **Overview** page in the Foundry portal.
 
 ## Deploy the agent
 
@@ -167,7 +197,15 @@ azd ai agent invoke "What is 2+2?"
 azd ai agent optimize
 ```
 
-The CLI auto-detects the agent name from `agent.yaml`. The service completes the following steps:
+The CLI reads the `name` field from your `agent.yaml` file to determine which deployed agent to optimize. If you have multiple agents or want to target a different one, use the `--agent` flag:
+
+```bash
+azd ai agent optimize --agent <your-agent-name>
+```
+
+For more details on agent targeting, see [Which agent gets optimized](../how-to/optimize-agent-targets.md#which-agent-gets-optimized).
+
+The agent optimizer completes the following steps:
 
 1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
 1. Generates improved instruction candidates.
@@ -227,6 +265,22 @@ You can also re-run eval-only to confirm the score improvement:
 azd ai agent optimize --eval
 ```
 
+## Next steps: Use a custom dataset
+
+This quickstart uses the built-in dataset (3 tasks, 12 criteria). For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
+
+```bash
+azd ai agent eval init
+```
+
+The command creates an `eval.yaml` with a dataset and evaluators tuned to your agent's domain. Then run optimization with the generated config:
+
+```bash
+azd ai agent optimize --config eval.yaml
+```
+
+For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
+
 ## Monitor and manage
 
 Use the *job ID*, which is formatted as `opt_<hex>` and is printed in optimization output, to track and manage runs:
@@ -257,7 +311,6 @@ azd down --force --purge
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| `optimize` returns 404 | Wrong region | Reprovision in **North Central US** |
 | `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
 | All scores are zero | Eval model not deployed | Deploy `gpt-4.1-mini` in your Foundry project, or use `--eval-model` to specify a deployed model |
 | `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
@@ -265,8 +318,9 @@ azd down --force --purge
 
 ## Related content
 
-- [Agent optimization overview](../concepts/agent-optimization-overview.md)
-- [Create a custom evaluation dataset](../how-to/create-optimization-dataset.md)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-strategies.md)
-- [Make your agent optimization-ready](../how-to/make-agent-optimization-ready.md)
+- [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
+- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
+- [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 
