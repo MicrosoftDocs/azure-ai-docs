@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/20/2026
+ms.date: 06/18/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -37,22 +37,22 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
-| gpt-5-chat | 2025-08-07 | Preview | 2026-06-22 | gpt-chat-latest |
-| gpt-5-chat | 2025-10-03 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5-chat | 2025-08-07 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5-chat | 2025-10-03 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
-| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2026-12-05 | — |
 | gpt-5.1-codex-mini | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.2 | 2025-12-11 | GA | 2026-12-12 | — |
-| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-22 | gpt-chat-latest |
-| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-01-14 | — |
-| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-22 | gpt-chat-latest |
+| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.3-codex | 2026-02-24 | GA | 2027-02-25 | — |
 | gpt-5.4 | 2026-03-05 | GA | 2027-03-05 | — |
 | gpt-5.4-mini | 2026-03-17 | GA | 2027-03-18 | — |
