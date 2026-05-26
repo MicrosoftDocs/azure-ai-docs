@@ -61,12 +61,12 @@ The same connector catalog and publisher tiers that apply to managed MCP servers
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
-| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy and GDPR policies apply end-to-end |
+| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy policies apply end-to-end |
 | **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
-| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and GDPR terms before connecting |
+| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and data-protection terms before connecting |
 | **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
 
-The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
+The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft privacy policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
 
 For details on connector validation and data protection, see [Vet with data protection in connectors](/connectors/protection).
 
