@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/18/2026
+ms.date: 05/26/2026
 ms.custom: include, classic-and-new
 ---
 
