@@ -41,8 +41,9 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox (preview)
     href: ../../agents/how-to/tools/toolbox.md
-  - name: Tool search (preview)
-    href: ../../agents/how-to/tools/tool-search.md
+    items:
+    - name: Tool search (preview)
+      href: ../../agents/how-to/tools/tool-search.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
