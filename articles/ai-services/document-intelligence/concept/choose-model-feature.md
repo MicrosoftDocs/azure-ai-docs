@@ -6,18 +6,18 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
-
+<!-- markdownlint-disable MD025 -->
 
 # Which model should I choose?
 
-Azure Document Intelligence in Foundry Tools (now part of Azure Content Understanding) supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
+Azure Document Intelligence in Foundry Tools supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
 
 > [!NOTE]
-> Azure Document Intelligence is now part of Azure Content Understanding. Existing APIs, endpoints, and pricing remain unchanged. To compare Document Intelligence and Content Understanding capabilities for your document processing scenarios, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md).
+> Azure Document Intelligence is available both as a standalone service and as a capability within Azure Content Understanding. Azure Content Understanding brings together comprehensive and complementary capabilities for different document needs. Your existing Document Intelligence APIs, endpoints, and pricing remain unchanged. To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md).
 
 > [!VIDEO 364078d4-14bc-4b16-995a-526db31ea1ee]
 
