@@ -44,19 +44,19 @@ The first set of questions identifies who uses the agent and the level of trust 
 The second set of questions determines how the agent receives information and what data it processes. External or untrusted inputs increase the risk of prompt injection. Sensitive data increases the risk of unintended exposure.
 
 1. For **Where does the agent receive inputs from?**, select all sources that apply—for example, user messages, uploaded files, or external APIs.
-1. For **Will the agent access, process, or return sensitive data?**, select **Yes** or **No**.
-   - If **yes**, select whether the data includes personally identifiable information (PII). Selecting **Yes** enables PII detection and data protection controls.
+1. For **Will the agent access, process, or return sensitive data?**, select **yes** or **no**.
+   - If **yes**, select whether the data includes personally identifiable information (PII). Selecting **yes** enables PII detection and data protection controls.
 1. Select **Next** to continue.
 
 ## Configure tool and action usage
 
 The third set of questions covers the agent's tool integrations and action capabilities. Tool usage and real-world actions introduce additional risks that require targeted controls.
 
-1. For **Does the agent call external tools?**, select **Yes** or **No**.
+1. For **Does the agent call external tools?**, select **yes** or **No**.
    - If **yes**, Foundry enables tool response validation and spotlighting to guard against prompt injection via tool outputs.
-1. For **Can the agent take real-world or consequential actions?** (for example, send emails, modify records, or call external services), select **Yes** or **No**.
+1. For **Can the agent take real-world or consequential actions?** (for example, send emails, modify records, or call external services), select **yes** or **No**.
    - If **yes**, task adherence controls and action validation are added to reduce the risk of misaligned or unintended actions.
-1. For **Does the agent generate, modify, or execute code?**, select **Yes** or **No**.
+1. For **Does the agent generate, modify, or execute code?**, select **yes** or **No**.
    - If **yes**, protected material detection and code safety controls are enabled.
 1. Select **Next** to review your recommendations.
 
@@ -83,4 +83,4 @@ The guardrails are now active for your agent. You can return to the **Guardrails
 ## Next step
 
 > [!div class="nextstepaction"]
-> [[TO VERIFY: Next step link text]](../how-to/monitor-agents.md)
+> [How to monitor agents](../how-to/monitor-agents.md)
