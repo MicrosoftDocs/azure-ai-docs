@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 05/05/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
@@ -101,6 +101,14 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2026-05-01-preview
+
+[`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) adds new knowledge source types, new parameters on the retrieve action, new SharePoint indexer content types and ACL options, and other capabilities.
+
+There are no wire-level breaking changes from `2025-11-01-preview`. However, if you use the Python or JavaScript SDK for agentic retrieval, the retrieve client is renamed to `KnowledgeBaseRetrievalClient`, and `retrieveKnowledge(...)` is replaced with `retrieve(...)`. For SDK migration guidance, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
+For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2026-04-01
 
