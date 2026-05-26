@@ -52,7 +52,7 @@ To view trace data, make sure your account has access to the connected Applicati
 
 Tracing can capture sensitive information (for example, user inputs, model outputs, and tool arguments and results).
 
-- Enable content recording during development and debugging to see full request and response data. Disable content recording in production environments to protect sensitive data. In the samples in this article, content recording is controlled by settings like `enable_content_recording` and `OTEL_RECORD_CONTENT`.
+- Enable content recording during development and debugging to see full request and response data. Disable content recording in production environments to protect sensitive data. In the samples in this article, content recording is controlled by the environment variables `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`, `OTEL_SEMCONV_STABILITY_OPT_IN`, and `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING`.
 - Don't store secrets, credentials, or tokens in prompts or tool arguments.
 
 For more guidance, see [Security and privacy](../concepts/trace-agent-concept.md#security-and-privacy).
@@ -92,7 +92,7 @@ When you deploy an agent to Foundry using one of the hosted agent server package
 
 No additional configuration is required. Install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
 
-### Non-Foundry agents (hosted outside of Foundry)
+### LangChain agents hosted outside of Foundry
 
 If your agent isn't deployed with a Foundry hosted agent server package, configure Azure Monitor export and LangChain instrumentation with the [Microsoft OpenTelemetry distro](https://pypi.org/project/microsoft-opentelemetry/). The distro can enable the Azure Monitor exporter and add agent identity attributes to LangChain spans:
 
@@ -319,8 +319,8 @@ This sample shows a simple LangGraph agent instrumented with the Microsoft OpenT
 ```bash
 pip install \
   microsoft-opentelemetry \
-  langgraph>=1.0.0 \
-  langchain>=1.0.0 \
+  "langgraph>=1.0.0" \
+  "langchain>=1.0.0" \
   langchain-openai \
   azure-identity \
   python-dotenv
@@ -587,7 +587,7 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 | You don't see traces in Foundry | Tracing isn't connected, there is no recent traffic, or ingestion is delayed | Confirm the Application Insights connection, generate new traffic, and refresh after 2–5 minutes. |
 | You don't see LangChain or LangGraph spans | The Microsoft OpenTelemetry distro isn't initialized or LangChain instrumentation isn't enabled | Confirm you call `use_microsoft_opentelemetry(...)` with `"langchain": {"enabled": True}` before running your agent. |
 | LangChain spans appear but tool calls are missing | Tools aren't bound to the model or tool node isn't configured | Verify tools are passed to `bind_tools()` on the model and that tool nodes are added to your graph. |
-| Traces appear but are incomplete or missing spans | Content recording is disabled, or some operations aren't instrumented | Enable `enable_content_recording=True` for full telemetry. For custom operations, add manual spans using the OpenTelemetry SDK. |
+| Traces appear but are incomplete or missing spans | Content recording is disabled, the GenAI semantic convention opt-in isn't set, or some operations aren't instrumented | For LangChain and LangGraph, set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=SPAN_AND_EVENT`, `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental`, and `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true` during development. For custom operations, add manual spans using the OpenTelemetry SDK. |
 | You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Sensitive content appears in traces | Content recording is enabled and prompts, tool arguments, or outputs include sensitive data | Disable content recording in production and redact sensitive data before it enters telemetry. |
 
