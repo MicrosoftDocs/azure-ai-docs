@@ -1,17 +1,15 @@
 ---
 title: Convert agent traces into evaluation datasets (preview)
-titleSuffix: Azure AI Foundry
 description: Learn how to use data generation in Microsoft Foundry to turn production agent traces into evaluation and fine-tuning datasets.
-author: ssalgadodev
-manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 05/22/2026
-ms.author: ssalgado
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
-
 # Convert agent traces into evaluation datasets (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]

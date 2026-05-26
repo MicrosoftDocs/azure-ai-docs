@@ -1,15 +1,15 @@
 ---
 title: Generate a synthetic evaluation dataset (preview)
-titleSuffix: Azure AI Foundry
 description: Use the Microsoft Foundry data generation service to bootstrap an evaluation dataset from an agent's instructions, a prompt, or a reference document.
-author: ssalgadodev
-manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 05/26/2026
-ms.author: ssalgado
+ms.date: 06/02/2026
 ai-usage: ai-assisted
+---
 ---
 
 # Generate a synthetic evaluation dataset (preview)
