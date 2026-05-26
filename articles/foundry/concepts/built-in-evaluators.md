@@ -4,7 +4,7 @@ description: "Comprehensive reference for all built-in evaluators in Microsoft F
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/03/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -87,6 +87,14 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
+## Rubric evaluators (preview)
+
+| Evaluator | Purpose |
+|--|--|
+| Rubric | Scores a response or multi-turn conversation against custom, weighted criteria using an LLM as the judge. Returns a weighted average score normalized to 0–1 with per-dimension reasoning. |
+
+To learn more, see [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md).
+
 ## Azure OpenAI graders
 
 | Evaluator | Purpose |
@@ -109,7 +117,7 @@ To learn more, see [Custom evaluators](./evaluation-evaluators/custom-evaluators
 For comprehensive quality assessment, combine multiple evaluators:
 
 - **RAG applications**: Retrieval + Groundedness + Relevance + Content Safety
-- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Content Safety
+- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Rubric + Content Safety
 - **Translation applications**: BLEU + METEOR + Fluency + Coherence
 - **All applications**: Add risk and safety evaluators (Hate and Unfairness, Sexual, Violence, Self-Harm) for responsible AI practices
 
@@ -121,6 +129,7 @@ For comprehensive quality assessment, combine multiple evaluators:
 - [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md)
 - [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md)
 - [Agent evaluators](./evaluation-evaluators/agent-evaluators.md)
+- [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md)
 - [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md)
 - [Custom evaluators](./evaluation-evaluators/custom-evaluators.md)
 - [Evaluate generative AI apps in Foundry](../how-to/evaluate-generative-ai-app.md)

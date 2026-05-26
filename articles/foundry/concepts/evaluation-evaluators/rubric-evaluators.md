@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 05/12/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.topic: reference
 
@@ -136,7 +136,6 @@ Rubric evaluators work well for domain-specific or organization-specific quality
 The LLM judge reads the rubric, examines the mapped input data, assigns a score, and provides a reason for its scoring decision. This approach combines the flexibility of custom criteria with the consistency of LLM-based evaluation.
 
 For details on running evaluations and configuring data sources, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
-
 
 ## Example output
 
