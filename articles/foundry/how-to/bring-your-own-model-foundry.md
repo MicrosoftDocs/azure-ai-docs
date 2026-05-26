@@ -9,8 +9,8 @@ ms.topic: how-to
 ms.date: 05/25/2026
 ms.author: mopeakande
 author: msakande
-ms.reviewer: gulsimoosimi
-reviewer: GulsimoOsimi
+ms.reviewer: mabables
+reviewer: ManojBableshwar
 ai-usage: ai-assisted
 
 #CustomerIntent: As an Azure AI developer, I want to register a fine-tuned or custom-weight model in Microsoft Foundry by uploading the weights from my local machine and deploy it on managed compute so that I can serve my own model with the same APIs, identity, and scaling experience as a catalog model.
@@ -28,9 +28,8 @@ This article walks through the **local upload** ingestion path: you upload weigh
 In this article, you learn how to:
 
 > [!div class="checklist"]
-> * Start a pending upload and get a SAS URI for project-managed storage.
-> * Upload weight files directly to blob storage with `azcopy`.
-> * Finalize registration with a base-model reference.
+> * Register a local model with the one-call `AIProjectClient.beta.models.create()` helper, or with the three-step REST API.
+> * Inspect, update, and manage registered model versions.
 > * Resolve a deployment template from the base model.
 > * Deploy the model on managed compute and send an inference request.
 
@@ -40,7 +39,7 @@ In this article, you learn how to:
 - A Microsoft Foundry account and project. To create one, see [Create a Foundry project](../../how-to/create-projects.md).
 - The **Cognitive Services Contributor** role (or an equivalent custom role) on the Foundry resource.
 - Approved managed-compute quota for the GPU accelerator family you plan to use (A100, H100, H200, or MI300X). For details, see [Deploy open-source AI models with managed compute](deploy-models.md).
-- A **base model** in the Foundry model catalog that your weights are derived from or architecturally compatible with — for example, `azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4`. Every BYOW model **must** reference a base model; the base model determines which deployment templates and accelerator families are available.
+- A **base model** in the Foundry model catalog that your weights are derived from or architecturally compatible with — for example, `azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4`. The base model determines which deployment templates and accelerator families are available at deployment time.
 - Model artifacts on your local machine:
 
     | Artifact | Required | Notes |
@@ -50,196 +49,96 @@ In this article, you learn how to:
     | `tokenizer.json` / `tokenizer_config.json` | Recommended | Required by most inference runtimes at serving time. |
     | `generation_config.json`, `special_tokens_map.json` | Optional | Default generation parameters and special tokens. |
 
-- For the SDK examples in this article, Python 3.10 or later and the following packages:
+- For the SDK examples, Python 3.10 or later and the following packages:
 
     ```bash
-    pip install azure-ai-projects azure-identity azure-mgmt-cognitiveservices openai
+    pip install "azure-ai-projects>=2.2.0" azure-identity azure-mgmt-cognitiveservices python-dotenv openai
     ```
 
-- For the CLI examples, the Azure Developer CLI (`azd`) with the Foundry AI extension, plus [`azcopy`](/azure/storage/common/storage-use-azcopy-v10) on your PATH.
+- [AzCopy](/azure/storage/common/storage-use-azcopy-v10) on your `PATH`. The SDK helper and the REST flow both rely on AzCopy to upload weight files directly to project storage.
+
+    ```bash
+    # Windows (winget)
+    winget install --id Microsoft.Azure.AZCopy.10 -e
+    ```
+
+- The `FOUNDRY_PROJECT_ENDPOINT` environment variable set to your project endpoint, which you can find on the **Overview** page of your Foundry project:
+
+    ```bash
+    set FOUNDRY_PROJECT_ENDPOINT=https://my-foundry-account.services.ai.azure.com/api/projects/my-project
+    ```
 
 ## How BYOW registration works
 
-BYOW registration is a **data-plane** operation against your Foundry project; deployment creation is a **control-plane** operation against the Foundry account. A single BYOW workflow spans both planes:
+BYOW registration is a **data-plane** operation against your Foundry project; deployment is a **control-plane** operation against the Foundry account. A single BYOW workflow spans both planes:
 
 | Stage | Plane | Operation |
 |---|---|---|
 | 1. Start pending upload | Data plane | `POST /models/{name}/versions/{version}/startPendingUpload` — returns a SAS URI. |
-| 2. Upload weights | Storage | Direct upload to the SAS URI with `azcopy`. Bypasses Foundry services. |
-| 3. Register the model | Data plane | `PUT /models/{name}/versions/{version}` — finalizes the model asset against the base model. |
+| 2. Upload weights | Storage | Direct AzCopy upload to the SAS URI. Bypasses Foundry services. |
+| 3. Register the model | Data plane | `PUT /models/{name}/versions/{version}` — finalizes the model asset. |
 | 4. Resolve deployment template | Data plane | Read the base model's allowed deployment templates and accelerator maps. |
 | 5. Deploy on managed compute | Control plane | `PUT /acceleratorDeployments/{name}` — same API as catalog model deployments. |
 
-Foundry validates that the upload completed before finalizing the registration in step 3. The base model is the **sole authoritative mechanism** for deployment template matching — you can't author your own deployment templates, and `config.json` validation is advisory only.
+The Python SDK collapses stages 1–3 into a single `models_create()` call. The Azure Developer CLI does the same with `azd ai models create`. The REST API exposes the three steps individually for full control.
 
-## Step 1: Start a pending upload
+## Register the model
 
-Starting a pending upload reserves a container in project-managed blob storage and returns a SAS URI scoped to that container. The SAS URI expires after a fixed window — you must complete the upload and finalize registration before then.
+Pick the path that fits your workflow. All three produce the same `FoundryModelDto`.
 
 # [Python SDK](#tab/python)
 
+`AIProjectClient.beta.models.create()` packs the three required steps — `startPendingUpload` → AzCopy upload → `PUT /models` — into a single call and polls until the new model version is observable.
+
 ```python
-from azure.ai.projects import AIProjectClient
+import os
+from dotenv import load_dotenv
+
 from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import FoundryModelWeightType
 
-ENDPOINT = "https://my-foundry-account.services.ai.azure.com/api/projects/my-project"
+load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=ENDPOINT,
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_name = "my-gpt-oss-120B"
+model_version = "1"
+data_folder = "./model-weights"  # local folder with .safetensors, config.json, tokenizer files
 
-upload_info = project_client.models.start_pending_upload(
-    model_name="my-gpt-oss-120B",
-    version="1",
-    pending_upload_type="TemporaryBlobReference",
-)
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+):
+    model = project_client.beta.models.create(
+        name=model_name,
+        version=model_version,
+        source=data_folder,
+        weight_type=FoundryModelWeightType.FULL_WEIGHT,
+        base_model="azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
+        description="Fine-tuned gpt-oss-120B for medical Q&A",
+        tags={"team": "medical-ai"},
+    )
 
-print(f"Upload ID: {upload_info.pending_upload_id}")
-print(f"SAS URI:   {upload_info.blob_reference.sas_uri}")
-print(f"Expires:   {upload_info.blob_reference.expires_on}")
+    print(f"Registered: {model.name} v{model.version}")
+    print(f"Blob URI:   {model.blob_uri}")
 ```
 
-# [Azure Developer CLI](#tab/azure-cli)
-
-The `azd ai models create` command wraps the full three-step flow (start upload → `azcopy` upload → register) into a single operation. Skip ahead to [Step 4](#step-4-register-the-model-and-upload-in-one-step-with-azd) for the single-command experience, or use the SDK or REST examples in this article to see the steps individually.
-
-# [REST](#tab/rest)
-
-```http
-POST https://my-foundry-account.services.ai.azure.com/api/projects/my-project/models/my-gpt-oss-120B/versions/1/startPendingUpload?api-version=v1
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "pendingUploadType": "TemporaryBlobReference"
-}
-```
-
-Response:
-
-```json
-{
-  "pendingUploadId": "upload-abc123",
-  "pendingUploadType": "TemporaryBlobReference",
-  "blobReference": {
-    "sasUri": "https://projstorage.blob.core.windows.net/models/my-gpt-oss-120B/v1?sp=rcw&se=2026-05-26T20:00:00Z&...",
-    "containerPath": "models/my-gpt-oss-120B/v1/",
-    "expiresOn": "2026-05-26T20:00:00Z"
-  }
-}
-```
-
----
-
-| Field | Description |
+| Argument | Description |
 |---|---|
-| `pendingUploadId` | Opaque session ID. Used for listing and cleanup tracking. |
-| `blobReference.sasUri` | SAS URI scoped to the upload container. Used as the destination for `azcopy`. |
-| `blobReference.expiresOn` | SAS expiration timestamp (ISO 8601). Complete the upload and call `PUT /models` before this time. |
-
-> [!IMPORTANT]
-> Treat the SAS URI as a secret. Anyone with the URI can write to your project's model storage until it expires.
-
-## Step 2: Upload weight files
-
-Upload your weight files directly to the SAS URI with `azcopy`. This call goes straight to Azure Storage and does not transit Foundry services, so it scales to hundreds of gigabytes and supports resumable transfers.
-
-```bash
-azcopy copy "./model-weights/*" \
-  "https://projstorage.blob.core.windows.net/models/my-gpt-oss-120B/v1?sp=rcw&se=..." \
-  --recursive
-```
-
-> [!TIP]
-> For multi-shard full-weight models in the hundreds of GBs range, `azcopy` is strongly recommended over the block-blob SDK — it parallelizes block uploads, fully utilizes available bandwidth, and resumes after transient network failures.
-
-Verify that all expected files — every `.safetensors` shard, `config.json`, and the tokenizer files — are present in the container before continuing. Registration in [Step 3](#step-3-finalize-registration) fails with `UploadIncomplete` if shards are missing.
-
-## Step 3: Finalize registration
-
-Call `PUT /models` to finalize the model asset. The service validates that the upload completed, binds the uploaded blob to a `FoundryModelDto`, and links the model to the base model you specify.
-
-# [Python SDK](#tab/python)
-
-```python
-model = project_client.models.create_or_update(
-    model_name="my-gpt-oss-120B",
-    version="1",
-    weight_type="FullWeight",
-    base_model="azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
-    description="Fine-tuned gpt-oss-120B for medical Q&A",
-    tags={"team": "medical-ai"},
-)
-
-print(f"Model:     {model.name} v{model.version}")
-print(f"State:     {model.provisioning_state}")
-print(f"Blob URI:  {model.blob_uri}")
-print(f"Artifacts: {model.artifact_profile.category}")
-```
+| `name`, `version` | Identifier for the model version. |
+| `source` | Local folder containing the weight files. The helper uploads every file via AzCopy. |
+| `weight_type` | `FoundryModelWeightType.FULL_WEIGHT` for full checkpoints. |
+| `base_model` | Catalog model URI. Determines which deployment templates are available later. |
+| `description`, `tags` | Free-form metadata. |
 
 # [Azure Developer CLI](#tab/azure-cli)
 
-The CLI performs steps 1–3 as one command. See [Step 4](#step-4-register-the-model-and-upload-in-one-step-with-azd).
-
-# [REST](#tab/rest)
-
-```http
-PUT https://my-foundry-account.services.ai.azure.com/api/projects/my-project/models/my-gpt-oss-120B/versions/1?api-version=v1
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "weightType": "FullWeight",
-  "baseModel": "azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
-  "description": "Fine-tuned gpt-oss-120B for medical Q&A",
-  "tags": {
-    "team": "medical-ai"
-  }
-}
-```
-
-`PUT /models` is asynchronous. The 202 response includes a polling URL; poll until `provisioningState` is `Succeeded`.
-
-Final response (200 OK after polling):
-
-```json
-{
-  "name": "my-gpt-oss-120B",
-  "version": "1",
-  "weightType": "FullWeight",
-  "baseModel": "azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
-  "blobUri": "https://<storage>.blob.core.windows.net/<container>",
-  "artifactProfile": {
-    "category": "DataOnly",
-    "signals": []
-  },
-  "systemData": {
-    "createdAt": "2026-05-25T15:30:00Z"
-  }
-}
-```
-
----
-
-| Field | Required | Description |
-|---|---|---|
-| `weightType` | Yes | Must be `"FullWeight"` for full-weight checkpoints. |
-| `baseModel` | Yes | Fully-qualified catalog model URI. Determines deployment template compatibility. |
-| `description`, `tags` | No | Free-form metadata. |
-
-> [!IMPORTANT]
-> `baseModel` is required and immutable for the version. If the base model isn't in the catalog or has no approved deployment templates, registration fails with `BaseModelNotFound` or `BaseModelNoDTs`. See [Validation errors](#validation-errors).
-
-## Step 4: Register the model and upload in one step with `azd`
-
-If you prefer a single command for the entire upload + registration flow, use the Azure Developer CLI. `azd ai models create` performs `startPendingUpload`, the `azcopy` transfer, and the `PUT /models` commit in sequence, with a progress bar for the upload phase.
+`azd ai models create` wraps the same three-step flow into one command and renders a progress bar for the upload phase.
 
 ```bash
-# Optional: set defaults so you don't need --project-endpoint and --subscription each call
+# One-time defaults so you don't need --project-endpoint and --subscription each call
 azd ai models init
 
-# Register the model (auto-version: omit --version to default to "1")
 azd ai models create \
   --name my-gpt-oss-120B \
   --version 1 \
@@ -259,10 +158,149 @@ Step 2/3: Uploading model files...
 ✓ Model registered successfully!
   Name:        my-gpt-oss-120B
   Version:     1
-  Description: Fine-tuned for medical Q&A
 ```
 
-## Step 5: Resolve a deployment template from the base model
+# [REST (three steps)](#tab/rest)
+
+Use the REST flow when you need to script the upload yourself or run it from an environment where the SDK and `azd` aren't available.
+
+**Step 1 — Start a pending upload.** Returns a SAS URI scoped to a project-managed blob container. Treat the URI as a secret.
+
+```http
+POST {endpoint}/models/my-gpt-oss-120B/versions/1/startPendingUpload?api-version=v1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "pendingUploadType": "TemporaryBlobReference"
+}
+```
+
+```json
+{
+  "pendingUploadId": "upload-abc123",
+  "pendingUploadType": "TemporaryBlobReference",
+  "blobReference": {
+    "sasUri": "https://projstorage.blob.core.windows.net/models/my-gpt-oss-120B/v1?sp=rcw&se=2026-05-26T20:00:00Z&...",
+    "containerPath": "models/my-gpt-oss-120B/v1/",
+    "expiresOn": "2026-05-26T20:00:00Z"
+  }
+}
+```
+
+**Step 2 — Upload weight files with AzCopy.** This call goes straight to Azure Storage and does not transit Foundry services.
+
+```bash
+azcopy copy "./model-weights/*" \
+  "https://projstorage.blob.core.windows.net/models/my-gpt-oss-120B/v1?sp=rcw&se=..." \
+  --recursive
+```
+
+Verify that every `.safetensors` shard, `config.json`, and the tokenizer files arrived in the container. Step 3 fails with `UploadIncomplete` if shards are missing.
+
+**Step 3 — Finalize registration.** `PUT /models` is asynchronous; the 202 response includes a polling URL. Poll until `provisioningState` is `Succeeded`.
+
+```http
+PUT {endpoint}/models/my-gpt-oss-120B/versions/1?api-version=v1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "weightType": "FullWeight",
+  "baseModel": "azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
+  "description": "Fine-tuned gpt-oss-120B for medical Q&A",
+  "tags": { "team": "medical-ai" }
+}
+```
+
+Final response (200 OK after polling):
+
+```json
+{
+  "name": "my-gpt-oss-120B",
+  "version": "1",
+  "weightType": "FullWeight",
+  "baseModel": "azureml://registries/azureml-openai-oss/models/gpt-oss-120B/versions/4",
+  "blobUri": "https://<storage>.blob.core.windows.net/<container>",
+  "artifactProfile": { "category": "DataOnly", "signals": [] },
+  "systemData": { "createdAt": "2026-05-25T15:30:00Z" }
+}
+```
+
+---
+
+> [!IMPORTANT]
+> The `baseModel` field is required and immutable for a given version. If the base model isn't in the catalog or has no approved deployment templates, registration fails with `BaseModelNotFound` or `BaseModelNoDTs`. See [Validation errors](#validation-errors).
+
+## Inspect, update, and manage versions
+
+Once a model version exists, use `beta.models` to get it, list versions, update metadata, retrieve blob credentials, or delete it.
+
+# [Python SDK](#tab/python)
+
+```python
+from azure.ai.projects.models import (
+    ModelCredentialRequest,
+    UpdateModelVersionRequest,
+)
+
+# Get a specific version
+fetched = project_client.beta.models.get(name=model_name, version=model_version)
+
+# List all versions of one model
+for mv in project_client.beta.models.list_versions(name=model_name):
+    print(f"  v{mv.version}")
+
+# List the latest version of every model in the project
+for mv in project_client.beta.models.list():
+    print(f"  {mv.name}@{mv.version}")
+
+# Retrieve a short-lived SAS for the model's blob storage (for inspection, audit, or download)
+creds = project_client.beta.models.get_credentials(
+    name=model_name,
+    version=model_version,
+    body=ModelCredentialRequest(blob_uri=fetched.blob_uri),
+)
+
+# Update description and tags (weight_type and base_model are immutable)
+updated = project_client.beta.models.update(
+    name=model_name,
+    version=model_version,
+    body=UpdateModelVersionRequest(
+        description="Updated description",
+        tags={"team": "medical-ai", "stage": "validated"},
+    ),
+)
+
+# Delete a version (blocked if any accelerator deployment references it)
+project_client.beta.models.delete(name=model_name, version=model_version)
+```
+
+# [Azure Developer CLI](#tab/azure-cli)
+
+```bash
+azd ai models list                                          # latest version of each model
+azd ai models show --name my-gpt-oss-120B                   # latest version of one model
+azd ai models show --name my-gpt-oss-120B --version 1       # specific version
+azd ai models delete --name my-gpt-oss-120B --version 1 --force
+```
+
+# [REST](#tab/rest)
+
+```http
+GET    {endpoint}/models?api-version=v1
+GET    {endpoint}/models/{name}/versions?api-version=v1
+GET    {endpoint}/models/{name}/versions/{version}?api-version=v1
+PATCH  {endpoint}/models/{name}/versions/{version}?api-version=v1
+POST   {endpoint}/models/{name}/versions/{version}/getCredentials?api-version=v1
+DELETE {endpoint}/models/{name}/versions/{version}?api-version=v1
+```
+
+---
+
+`get_credentials` returns a short-lived SAS scoped to the model's blob storage — useful for downloading the weights back to a local machine for inspection or audit. It doesn't grant deployment permission; deployment uses the model reference, not the SAS.
+
+## Resolve a deployment template from the base model
 
 Managed compute deployments require three inputs that aren't on the registered model itself:
 
@@ -278,9 +316,7 @@ You resolve the last two by reading the base model from the Azure ML Registry an
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
 
-credential = DefaultAzureCredential()
 SUBSCRIPTION_ID = "<your-subscription-id>"
 
 # Parse the base model URI: azureml://registries/{registry}/models/{model}/versions/{version}
@@ -294,14 +330,14 @@ ml_client = MLClient(
     resource_group="my-rg",
     registry_name=registry_name,
 )
-base_model = ml_client.models.get(name=base_name, version=base_version)
+base_model_asset = ml_client.models.get(name=base_name, version=base_version)
 
-# Pick the default deployment template (or choose any from allowed_deployment_templates)
-dt_uri = base_model.default_deployment_template.asset_id
+# Pick the default deployment template (or any entry in allowed_deployment_templates)
+dt_uri = base_model_asset.default_deployment_template.asset_id
 dt_parts = dt_uri.replace("azureml://registries/", "").split("/")
 template = ml_client.deployment_templates.get(name=dt_parts[2], version=dt_parts[4])
 
-# Pick the default accelerator
+# Pick the default accelerator family
 accelerator = next(am for am in template.accelerator_maps if am.default)
 
 print(f"Template:    {template.name} v{template.version}")
@@ -310,8 +346,6 @@ print(f"Accelerator: {accelerator.accelerator_type} "
 ```
 
 # [REST](#tab/rest)
-
-Fetch the base model from the ML Registry:
 
 ```http
 GET https://cert-<region>.experiments.azureml.net/mrsasset/v2.0/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.MachineLearningServices/registries/azureml-openai-oss/models/gpt-oss-120B/versions/4?api-version=2024-04-01-preview
@@ -337,11 +371,11 @@ Relevant response fields:
 }
 ```
 
-Then fetch the deployment template to inspect its `accelerator_maps` and pick an accelerator family.
+Then fetch the chosen deployment template to inspect its `accelerator_maps` and pick an accelerator family.
 
 ---
 
-Models often have multiple deployment templates for different runtimes and workload profiles. Pick one based on your traffic shape:
+Most catalog models expose multiple deployment templates. Pick one based on your traffic shape:
 
 | Template suffix | Runtime | Best for |
 |---|---|---|
@@ -350,9 +384,9 @@ Models often have multiple deployment templates for different runtimes and workl
 | `*-sglang-throughput` | SGLang | Prefix-heavy or structured-output workloads |
 | `*-sglang-latency` | SGLang | Multi-turn chat, latency-sensitive |
 
-## Step 6: Deploy on managed compute
+## Deploy on managed compute
 
-Custom-weight deployments use the **same** `acceleratorDeployments` API as catalog model deployments. The only difference is that `properties.model` references your project-registered model with the `azureai://accounts/.../projects/.../models/...` URI instead of a catalog URI.
+Custom-weight deployments use the **same** `acceleratorDeployments` API as catalog model deployments. The only difference is that `properties.model` references your project-registered model with an `azureai://accounts/.../projects/.../models/...` URI instead of a catalog URI.
 
 # [Python SDK](#tab/python)
 
@@ -374,7 +408,7 @@ deployment = AcceleratorDeployment(
     properties=AcceleratorDeploymentProperties(
         model=(
             f"azureai://accounts/{ACCOUNT}/projects/{PROJECT}"
-            f"/models/my-gpt-oss-120B/versions/1"
+            f"/models/{model_name}/versions/{model_version}"
         ),
         deployment_template=dt_uri,
         accelerator_type=accelerator.accelerator_type,
@@ -385,7 +419,7 @@ deployment = AcceleratorDeployment(
 poller = cog.accelerator_deployments.begin_create_or_update(
     resource_group_name=RG,
     account_name=ACCOUNT,
-    deployment_name="my-gpt-oss-120B-gpu",
+    deployment_name=f"{model_name}-gpu",
     accelerator_deployment=deployment,
 )
 
@@ -422,10 +456,7 @@ Content-Type: application/json
     "deploymentTemplate": "azureml://registries/azureml-openai-oss/deploymenttemplates/gpt-oss-120b-vllm-throughput/versions/1",
     "acceleratorType": "H100_80GB"
   },
-  "sku": {
-    "name": "GlobalManagedCompute",
-    "capacity": 1
-  }
+  "sku": { "name": "GlobalManagedCompute", "capacity": 1 }
 }
 ```
 
@@ -435,7 +466,7 @@ Provisioning typically takes 10–15 minutes. When `provisioning_state` is `Succ
 
 For scaling, scale-to-zero, version upgrades, observability, and pricing, see [Manage and scale a deployment](deploy-models.md#manage-and-scale-a-deployment) and [Pricing and billing](deploy-models.md#pricing-and-billing) in the managed compute article.
 
-## Step 7: Send an inference request
+## Send an inference request
 
 Once the deployment reports `Succeeded`, your custom model is served exactly like a catalog model. Use the OpenAI-compatible route for chat completions:
 
@@ -458,55 +489,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-For more on endpoint routing, custom routes (rerankers, embeddings, speech), and switching between the Azure AI Inference SDK and the OpenAI SDK, see [Send inference requests to the deployment](deploy-models.md#send-inference-requests-to-the-deployment).
-
-## Manage registered models
-
-The data-plane `/models` API supports listing, inspecting, and deleting registered models.
-
-# [Python SDK](#tab/python)
-
-```python
-# List the latest version of each model in the project
-for m in project_client.models.list():
-    print(f"{m.name} v{m.version}: weightType={m.weight_type}, base={m.base_model}")
-
-# List all versions of a single model
-for v in project_client.models.list_versions(name="my-gpt-oss-120B"):
-    print(f"  v{v.version}: {v.provisioning_state}")
-
-# Get a single version
-detail = project_client.models.get(name="my-gpt-oss-120B", version="1")
-
-# Delete a version (blocked if it has active deployments)
-project_client.models.delete(name="my-gpt-oss-120B", version="1")
-```
-
-# [Azure Developer CLI](#tab/azure-cli)
-
-```bash
-# List the latest version of each model
-azd ai models list
-
-# Show a specific version (omit --version for latest)
-azd ai models show --name my-gpt-oss-120B --version 1
-
-# Delete a version
-azd ai models delete --name my-gpt-oss-120B --version 1 --force
-```
-
-# [REST](#tab/rest)
-
-```http
-GET    /api/projects/{project}/models?api-version=v1
-GET    /api/projects/{project}/models/{name}/versions?api-version=v1
-GET    /api/projects/{project}/models/{name}/versions/{version}?api-version=v1
-DELETE /api/projects/{project}/models/{name}/versions/{version}?api-version=v1
-```
-
----
-
-Deleting a model version is blocked while any accelerator deployment references it. Delete the deployments first.
+For endpoint routing details, custom routes (rerankers, embeddings, speech), and switching between the Azure AI Inference SDK and the OpenAI SDK, see [Send inference requests to the deployment](deploy-models.md#send-inference-requests-to-the-deployment).
 
 ## Validation errors
 
@@ -519,7 +502,7 @@ The most common errors you'll encounter during BYOW registration and deployment:
 | `BaseModelNoDTs` | The base model has no approved deployment templates. | Pick a different base model that exposes deployment templates. |
 | `BaseModelDeprecated` | The base model has been deprecated. | Pick the current version of the base model in the catalog. |
 | `UnsupportedWeightFormat` | One or more weight files are not `.safetensors`. | Re-export the model in SafeTensors format and re-upload. |
-| `UploadIncomplete` | Fewer shard files were uploaded than expected. | Re-run `azcopy` to upload missing shards before calling `PUT /models`. |
+| `UploadIncomplete` | Fewer shard files were uploaded than expected. | Re-run AzCopy to upload missing shards before calling `PUT /models`. |
 | `UploadExpired` | The SAS URI expired before `PUT /models` was called. | Call `startPendingUpload` again to get a new SAS URI. |
 | `ModelVersionConflict` | The version already exists with different content. | Use a different version, or commit the pending upload to the new version. |
 | `ModelInUse` | Deletion is blocked because active deployments reference the model. | Delete the dependent accelerator deployments first. |
@@ -533,4 +516,4 @@ For deployment-time errors (quota, capacity, cold-start latency), see [Troublesh
 - [Create a Foundry project](../../how-to/create-projects.md)
 - [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)
 - [Deployment templates reference](../foundry-models/reference/deployment-templates.md)
-- [`azcopy` documentation](/azure/storage/common/storage-use-azcopy-v10)
+- [AzCopy documentation](/azure/storage/common/storage-use-azcopy-v10)
