@@ -2723,7 +2723,7 @@ tools: []
 
 :::zone pivot="vscode"
 
-Skill references aren't yet configurable through the VS Code extension. Use the REST API, SDK, or `azd` to configure skills.
+Skill references aren't currently configurable through the VS Code extension. Use the REST API, SDK, or `azd` to configure skills.
 
 :::zone-end
 
