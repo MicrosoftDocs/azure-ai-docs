@@ -77,10 +77,10 @@ The WebSocket protocol uses the identifier `invocations_ws` and ships in the sam
 > The `invocations_ws` WebSocket protocol is in preview and is currently available only in **North Central US**.
 
 A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing the required libraries. Use the protocol libraries within your existing framework, whether that’s Microsoft Agent Framework, LangChain, or custom code.
-
+<!--
 > [!TIP]
 > If you already have a Hosted agent that uses the **Responses** or **Invocations** protocol and you want to add real-time voice interaction without rewriting it as a WebSocket agent, see [Use Voice Live with hosted agents](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md).
-
+-->
 ### Responses protocol library
 
 The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
@@ -586,5 +586,5 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 - [What are Hosted agents?](../concepts/hosted-agents.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
-- [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md)
+<!-- - [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md) -->
 - [Azure Container Registry documentation](/azure/container-registry/)
