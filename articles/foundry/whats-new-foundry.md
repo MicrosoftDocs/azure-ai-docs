@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
-ms.date: 05/13/2026
+ms.date: 05/26/2026
 ---
 
 # What's new in Microsoft Foundry?
@@ -21,6 +21,8 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
 ## New articles
 
 - Azure OpenAI
+  - [Quickstart: Create a provisioned throughput deployment](openai/provisioned-quickstart.md)
+  - [Determine provisioned throughput unit (PTU) sizing for a workload](openai/how-to/provisioned-throughput-sizing.md)
   - [Auto and direct model routing with the Responses API](../foundry/openai/how-to/responses-model-routing.md)
   - [Automate Azure OpenAI deployments with quota](../foundry/openai/how-to/automate-quota-deployments.md)
   - [Get started with Azure OpenAI audio generation](../foundry/openai/audio-completions-quickstart.md)
@@ -33,10 +35,13 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
 ## Updated articles
 
 - Azure OpenAI
+  - [What is provisioned throughput for Foundry Models?](openai/concepts/provisioned-throughput.md)
+  - [Provisioned throughput billing and cost management](openai/concepts/provisioned-throughput-billing.md)
+  - [Operate provisioned deployments in production](openai/how-to/provisioned-get-started.md)
+  - [Manage traffic with spillover for provisioned deployments](openai/how-to/spillover-traffic-management.md)
   - [Latency and performance optimization](../foundry/openai/how-to/latency.md)
   - [Monitor Azure OpenAI reference](../foundry/openai/monitor-openai-reference.md)
   - [Priority processing for model deployments](../foundry/openai/concepts/priority-processing.md)
-  - [Provisioned throughput onboarding](../foundry/openai/how-to/provisioned-throughput-onboarding.md)
   - [Quota management and rate limits](../foundry/openai/how-to/quota.md)
 - Foundry Agent Service
   - [Connect to an A2A agent endpoint from Foundry Agent Service](../foundry/agents/how-to/tools/agent-to-agent.md)

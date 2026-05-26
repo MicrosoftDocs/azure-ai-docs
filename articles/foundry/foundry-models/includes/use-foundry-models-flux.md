@@ -36,7 +36,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md). FLUX models are available for global standard deployment in all regions.
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
@@ -409,7 +409,7 @@ curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/edit
 
 See [the Black Forest Labs model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs) for available models.
 
-For more details about model capabilities, see [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about model capabilities, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### FLUX.2 \[flex\]
 
@@ -500,6 +500,6 @@ See the [GitHub sample for image generation with FLUX models in Microsoft Foundr
 
 ## Related content
 
-- [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Configure Microsoft Entra ID authentication](../how-to/configure-entra-id.md)
