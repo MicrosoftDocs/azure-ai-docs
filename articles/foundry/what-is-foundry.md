@@ -84,11 +84,9 @@ For help choosing between models, see the [GPT-5 vs GPT-4.1 model choice guide](
 ## What's new
 
 Foundry is evolving fast. Here are some of the latest additions:
-
-- [Prompt Optimizer (preview)](./observability/how-to/prompt-optimizer.md) — Automatically improve agent prompts based on evaluation results.
-- [Task Adherence guardrails (preview)](./guardrails/task-adherence.md) — Keep agentic workflows on track with built-in adherence controls.
-- [LangChain and LangGraph integration](./how-to/develop/langchain.md) — Build and trace agents with popular open-source frameworks.
-- [Fireworks model import (preview)](./how-to/fireworks/enable-fireworks-models.md) — Bring custom models into Foundry through Fireworks.
+- [Model routing with the Responses API](./openai/how-to/responses-model-routing.md) — Use a single API to route to any model automatically or by name.
+- [A2A agent endpoints (preview)](./agents/how-to/enable-agent-to-agent-endpoint.md) — Expose agents as Agent2Agent endpoints so other agents can discover and call them.
+- [Instant models (preview)](./concepts/instant-models.md) — Call any supported model by name without creating a deployment first.
 
 See [What's new in Microsoft Foundry](./whats-new-foundry.md) for the full list.
 

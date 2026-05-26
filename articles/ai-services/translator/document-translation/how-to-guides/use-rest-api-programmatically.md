@@ -5,14 +5,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 05/01/2026
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
 ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Use Document Translation APIs programmatically
 
  Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
@@ -153,7 +153,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-## Translate a specific document in a container
+## Translate a specific document in blob storage container
 
 * Specify `"storageType": "File"`.
 * If you aren't using a [**system-assigned managed identity**](create-use-managed-identities.md) for authentication, make sure you created source URL & SAS tokens for the specific blob/document (not for the container).
@@ -183,23 +183,16 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-## Translate images in Word document files (.docx)
+## Translate images in Word documents (.docx) and PowerPoint files (.pptx)
 
-> [!Note]
->
-> * This feature requires API version 2024-11-01-preview
-> * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure Vision in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
-> * This feature is currently available only with the Batch Document translation API.
-> * The Supported file format is `.docx` only.
-> * An Azure AI services multi-service resource (not the standalone Translator resource) is required to use this feature.
+Document translation supports text translation within images in Word documents and PowerPoint files. This feature is available with the batch document translation API for `.docx` and `.pptx` file formats.
 
 ### Request configuration
 
 * Use the optional `translateTextWithinImage` parameter in the `options` field
 
-   * Data type: Boolean (`true` or `false`) 
-   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
+  * Data type: Boolean (`true` or `false`)
+  * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
 
 * Here's a sample JSON request:
 
@@ -220,17 +213,16 @@ The following headers are included with each Document translation API request:
       }
     ],
     "options": {
-      "experimental": false,
       "translateTextWithinImage": true
     }
   }
   ```
 
-* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
+* **Response Details**. When the feature is enabled, added image processing information is included with the response:
 
-   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+  * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
 
-   * **`totalImageScansFailed`**. The number of image scans that failed processing.
+  * **`totalImageScansFailed`**. The number of image scans that failed processing.
 
 * Here's a sample JSON response:
 
