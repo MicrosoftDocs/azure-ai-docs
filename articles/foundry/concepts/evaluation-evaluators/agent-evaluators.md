@@ -77,9 +77,9 @@ Examples:
 - [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
-## Quality evaluation
+## Quality evaluation (preview)
 
-Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator is the same quality evaluator used in [Microsoft Copilot Studio agent evaluations](/microsoft-copilot-studio/analytics-agent-evaluation-overview#general-quality). It examines multiple dimensions of response quality:
+Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator is the same quality evaluator used in [Microsoft Copilot Studio agent evaluation](/microsoft-copilot-studio/analytics-agent-evaluation-overview#general-quality). It examines multiple dimensions of response quality:
 
 - **Relevance** - Is the response relevant to the user's query?
 - **Abstention** - Does the agent appropriately abstain when it cannot or should not answer?
