@@ -158,7 +158,7 @@ For complete guidance on sizing, purchasing, and managing reservations, see [Azu
 
 ## How to track PTU costs and billing
 
-Use Azure Cost Management to track and analyze your PTU usage and reservation costs:
+Use Microsoft Cost Management to track and analyze your PTU usage and reservation costs:
 
 | What you want to do | Article |
 |---|---|

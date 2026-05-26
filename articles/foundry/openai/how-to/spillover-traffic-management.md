@@ -33,7 +33,7 @@ ai-usage: ai-assisted
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
 1. Select the **Collections** filter and filter by **Direct from Azure** to see models sold directly by Azure. A selection of these models support the provisioned throughput deployment option.
 1. Select the model you want to deploy to open its model card.
-1. Select **Deploy** > **Custom settings** to configure your deployment. The **Deployment type** drop down menu lists provisioned deployment types that are available for the selected model. 
+1. Select **Deploy** > **Custom settings** to configure your deployment. The **Deployment type** dropdown menu lists provisioned deployment types that are available for the selected model. 
 
     > [!NOTE]
     > To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.

@@ -141,7 +141,7 @@ Monitoring reservation utilization helps you identify over-provisioning, catch u
 
 ### Track reservation utilization and costs
 
-Use these Azure Cost Management resources to track and analyze your reservation usage:
+Use these Microsoft Cost Management resources to track and analyze your reservation usage:
 
 | What you want to do | Article |
 |---|---|
