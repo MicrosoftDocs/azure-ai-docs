@@ -30,51 +30,40 @@ When you select a time range of traces, the service doesn't just randomly sample
 
 This matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
 
-Intelligent sampling powers trace selection in three places in Foundry. In the first two, you reach it by toggling **Intelligent sampling** (on by default) when you pick a time range:
+Intelligent sampling uses the same trace-selection algorithm across three experiences in Foundry:
 
 - **Creating a dataset from traces**—covered in this article.
-- **Creating a trace-based evaluation**—when you evaluate against existing traces, a representative set within your time range is auto-selected.
-- **Generating a rubric evaluator from production traces**—the same sampling algorithm runs by default to select the traces used as input.
+- **Creating a trace-based evaluation**—evaluate against existing traces with a representative sample from the selected time range.
+- **Generating a rubric evaluator from production traces**—the same sampling algorithm selects traces used as input.
+
+In the trace-based dataset flow, the **Intelligent sampling** option appears in the time-range UI and is on by default.
 
 ## Prerequisites
 
 - Python SDK version `2.2.0` or later: `pip install "azure-ai-projects>=2.2.0" azure-identity` (SDK path only)
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`
-- Azure AI Project Contributor role or higher on the project
-- Application Insights attached to your project. Configure this in the portal under **Project settings** > **Telemetry**.
-- A deployed agent that emits traces. Foundry agents emit traces automatically; OpenTelemetry-instrumented third-party agents are also supported.
+- Foundry User role or higher on the project.
+- Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
 
 ## Generate an evaluation dataset from traces (portal)
 
 You can create a dataset from traces directly in the portal without writing code. This is the quickest way to turn recent production traffic into an evaluation dataset.
 
-<!-- [TO VERIFY] The "From traces" option label was not confirmed by the user; only the parallel "Generate synthetic" label was confirmed in eval-dataset-synthetic.md. Verify the exact label for the trace-based entry under **Create dataset** before publishing. -->
-1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **From traces**. [TO VERIFY]
+1. In the portal, open the **Data Generation** tab. Select **Create dataset** > **From traces**.
 
-   <!-- TODO: screenshot — Data Generation tab with "Create dataset from traces" entry point -->
-   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/create-dataset-entry.png is added.
-   :::image type="content" source="media/traces-to-dataset/create-dataset-entry.png" alt-text="Screenshot of the Data Generation tab showing the option to create a dataset from traces.":::
-   -->
+2. In the **Create dataset** dialog, confirm the subtitle **Curate a dataset from production traces for evaluation or fine-tuning.** Then configure the dataset:
 
-2. Configure the dataset:
+    - **Dataset usage**: Set to **Evaluation**.
+    - **Name**: Enter a dataset name.
+    - **Agent**: Select the deployed agent whose traces you want to use.
+    - **Date range**: Choose the window to pull traces from, such as the last day or last 7 days.
+    - **Maximum samples**: Set the cap on rows in the dataset. Use at least 15 samples.
 
-   - **Agent**—select the deployed agent whose traces you want to use.
-   - **Date range**—choose the window to pull traces from, such as the last day or last 7 days.
-   - **Maximum number of samples**—set the cap on rows in the dataset. The default is a manageable starting point; increase or decrease it to fit your needs.
+    :::image type="content" source="../../media/observability/data_generation_from_traces.png" alt-text="Screenshot of the Create dataset from traces dialog showing Dataset usage, Name, Agent, Date range, and Maximum samples.":::
 
-   <!-- TODO: screenshot — Create dataset from traces dialog with agent, date range, max samples, and intelligent sampling toggle -->
-   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/create-dataset-dialog.png is added.
-   :::image type="content" source="media/traces-to-dataset/create-dataset-dialog.png" alt-text="Screenshot of the create dataset from traces dialog showing agent selection, date range, maximum samples, and the intelligent sampling toggle.":::
-   -->
+3. Select **Create** to submit the job. Dataset generation runs as a background job; track its status on the **Data Generation** tab.
 
-3. Submit the job. Dataset generation runs as a background job; you can track its status on the **Data Generation** tab.
-
-4. When the job finishes, select the dataset to preview the generated rows, including the description, query, and response for each. From here you can download or delete the dataset.
-
-   <!-- TODO: screenshot — generated dataset preview showing description, query, response columns -->
-   <!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/traces-to-dataset/dataset-preview.png is added.
-   :::image type="content" source="media/traces-to-dataset/dataset-preview.png" alt-text="Screenshot of the generated dataset preview with description, query, and response columns.":::
-   -->
+4. When the job finishes, go to the **Data** tab and select the dataset to preview the generated rows, including the description, query, and response for each. From there you can download or delete the dataset.
 
 5. Use the dataset. Finished generation jobs link directly to the next step: evaluation jobs link to starting an evaluation run, and fine-tuning jobs link to starting a fine-tuning job.
 
@@ -181,6 +170,8 @@ Once the dataset exists, evaluate your agent against it. The generated dataset u
 For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md).
 
 ## Manage data generation jobs
+
+Use `project_client.beta.datasets` APIs to list, inspect, cancel, and delete data generation jobs.
 
 ```python
 from azure.ai.projects.models import DataGenerationJobScenario

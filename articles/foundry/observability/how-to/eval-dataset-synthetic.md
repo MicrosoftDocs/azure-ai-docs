@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
----
 
 # Generate a synthetic evaluation dataset (preview)
 
@@ -50,12 +49,10 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 - Python SDK version `2.2.0` or later: `pip install "azure-ai-projects>=2.2.0" azure-identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
-- Azure AI Project Contributor role or higher on the project.
+- Foundry User role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
 
 ## Generate a dataset from the portal
-
-<!-- [TO VERIFY] Confirm supported file types for **Reference file** uploads in the **Generate synthetic data** dialog. -->
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **Generate synthetic**.
 1. In **Generate synthetic data**, set **Dataset usage** to **Evaluation**.
@@ -283,7 +280,7 @@ For the full evaluation flow, including selecting evaluators and reviewing resul
 
 ## Manage data generation jobs
 
-Use the same `project_client.beta.datasets` job-management APIs for synthetic generation jobs that you use for trace-based generation jobs.
+Use `project_client.beta.datasets` job-management APIs to list, inspect, cancel, and delete synthetic generation jobs.
 
 ```python
 from azure.ai.projects.models import DataGenerationJobScenario
