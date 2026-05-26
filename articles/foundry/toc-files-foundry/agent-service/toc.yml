@@ -57,9 +57,9 @@ items:
     href: ../../agents/how-to/tools/function-calling.md
   - name: Voice integration (preview)  
     items:
-    - name: Quickstart - Talk to a voice agent
+    - name: Quickstart - Talk to prompt agents with voice
       href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
-    - name: How to build a voice agent
+    - name: How to enable voice for prompt agents
       href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
   - name: Web search capabilities
     items:
@@ -148,6 +148,8 @@ items:
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
       href: ../../agents/how-to/manage-hosted-sessions.md
+    - name: Deploy a Hosted voice agent (preview)
+      href: ../../agents/how-to/build-voice-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
