@@ -11,7 +11,9 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Configure guided guardrail setup for an agent
+# Configure guided guardrail setup for an agent (preview)
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 In this article, you configure safety and security guardrails for an agent using Microsoft Foundry. Instead of selecting controls manually, you answer a short set of questions about your agent's intended users, data handling, and tool usage. Foundry maps your responses to relevant risk categories and applies targeted controls at the correct intervention points: user input, tool calls, tool responses, and output.
 
@@ -24,9 +26,9 @@ Each agent is purpose-built for a specific scenario, so guardrails should be tai
 ## Open guided guardrail setup
 
 1. In [Microsoft Foundry](https://ai.azure.com), open a project.
-1. In the left navigation, select **Agents**, then select the agent you want to configure.
+1. Navigate to the **Build** tab in the top bar. In the left navigation, select **Agents**, then select the agent you want to configure.
 1. On the agent detail page, select the **Guardrails** tab.
-1. Select **Guided setup** to start the guided configuration experience.
+1. Select **Manage guardrail**, then select **Guided guardrails setup** to start the guided configuration experience.
 
 ## Specify who the agent is for
 
@@ -70,7 +72,7 @@ Foundry displays a summary of the recommended guardrails based on your answers, 
 | Output | Controls applied to the agent's final response |
 
 1. Review the recommended controls. To adjust a recommendation, select **Edit** next to the control and modify the configuration.
-1. When you're satisfied with the configuration, select **Apply guardrails**.
+1. When you're satisfied with the configuration, select **Create guardrails**.
 1. Confirm the changes when prompted.
 
 The guardrails are now active for your agent. You can return to the **Guardrails** tab at any time to update the configuration as your agent's scenario evolves.
