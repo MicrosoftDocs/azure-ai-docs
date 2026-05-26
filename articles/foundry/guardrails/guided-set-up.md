@@ -83,4 +83,4 @@ The guardrails are now active for your agent. You can return to the **Guardrails
 ## Next step
 
 > [!div class="nextstepaction"]
-> [How to monitor agents](../how-to/monitor-agents.md)
+> [How to monitor agents](../observability/how-to/how-to-monitor-agents-dashboard.md)
