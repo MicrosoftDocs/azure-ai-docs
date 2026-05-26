@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: checklist
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ---
 <!-- markdownlint-disable MD025 -->
 # Prerequisites and setup

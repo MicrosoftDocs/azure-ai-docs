@@ -135,21 +135,18 @@ items:
           - name: Ruby
             href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
 
-- name: Document translation
+- name: Document translation (2026-03-01)
   items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
-    href: document-translation/overview.md
+    href: document-translation/latest/overview.md
   - name: Prerequisites and setup
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value,keys,subscription
     href: document-translation/latest/prerequisites.md
   - name: End-to-end batch workflow
     displayName: batch,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
     href: document-translation/latest/end-to-end-batch-workflow.md
-  - name: Document translation FAQ
-    href: document-translation/faq.md
-  
-
+    
   - name: Quickstarts
     items:
     - name: Asynchronous batch translation with REST API
@@ -158,27 +155,7 @@ items:
     - name: Synchronous document translation with REST API
       displayName: rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: document-translation/latest/quickstarts/synchronous.md
-    - name: "Quickstart: Document translation SDKs"
-      displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
-      href: document-translation/quickstarts/client-library-sdks.md
 
-  - name: How-to guides
-    items:
-    - name: Translate documents programmatically
-      displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
-      href: document-translation/how-to-guides/use-rest-api-programmatically.md
-    - name: Create and use glossaries
-      displayName: glossary, dictionary, case-sensitive, match
-      href: document-translation/how-to-guides/create-use-glossaries.md
-
-  - name: Authentication and authorization
-    items:
-    - name: Create and use managed identities
-      displayName: batch,azure active directory,azure ad,azure role-based access control,azure RBAC,sas,assignment,role,owner,user access administrator,contributor
-      href: document-translation/how-to-guides/create-use-managed-identities.md
-    - name: Create SAS tokens for storage containers
-      displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
-      href: document-translation/how-to-guides/create-sas-tokens.md
   - name: Document translation REST APIs 2026-03-01
     items:
       - name: REST API guide
@@ -201,7 +178,68 @@ items:
       - name: Get supported document formats
         href: document-translation/latest/rest-api/get-supported-document-formats.md
       - name: Get supported glossary formats
-        href: document-translation/latest/rest-api/get-supported-glossary-formats.md
+        href: document-translation/latest/rest-api/get-supported-glossary-formats.md    
+
+- name: Document translation
+  items:
+  - name: What is Azure Translator document translation?
+    displayName: ocr,batch,features,development,formats,file types
+    href: document-translation/overview.md
+  - name: Document translation FAQ
+    href: document-translation/faq.md
+  
+
+  - name: Quickstarts
+    items:
+    
+    - name: "Quickstart: Document translation SDKs"
+      displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
+      href: document-translation/quickstarts/client-library-sdks.md
+    - name: "Quickstart: Document translation REST APIs"
+      displayName: get,post,cancel,delete
+      href: document-translation/quickstarts/rest-api.md  
+
+  - name: How-to guides
+    items:
+    - name: Translate documents programmatically
+      displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
+      href: document-translation/how-to-guides/use-rest-api-programmatically.md
+    - name: Create and use glossaries
+      displayName: glossary, dictionary, case-sensitive, match
+      href: document-translation/how-to-guides/create-use-glossaries.md
+
+  - name: Authentication and authorization
+    items:
+    - name: Create and use managed identities
+      displayName: batch,azure active directory,azure ad,azure role-based access control,azure RBAC,sas,assignment,role,owner,user access administrator,contributor
+      href: document-translation/how-to-guides/create-use-managed-identities.md
+    - name: Create SAS tokens for storage containers
+      displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
+      href: document-translation/how-to-guides/create-sas-tokens.md
+
+  - name: Document translation REST APIs
+    items:
+      - name: Document translation operations
+        href: document-translation/reference/rest-api-guide.md
+      - name: Synchronous document translation
+        href: document-translation/reference/translate-document.md
+      - name: Asynchronous batch translation
+        href: document-translation/reference/start-batch-translation.md
+      - name: Get status of all translation jobs
+        href: document-translation/reference/get-translations-status.md
+      - name: Get status of a specific translation job
+        href: document-translation/reference/get-translation-status.md
+      - name: Get status of all documents
+        href: document-translation/reference/get-documents-status.md
+      - name: Get status of a specific document
+        href: document-translation/reference/get-document-status.md
+      - name: Cancel translation
+        href: document-translation/reference/cancel-translation.md
+      - name: Get supported document formats
+        href: document-translation/reference/get-supported-document-formats.md
+      - name: Get supported glossary formats
+        href: document-translation/reference/get-supported-glossary-formats.md
+        
   - name: Document translation SDK guide
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md

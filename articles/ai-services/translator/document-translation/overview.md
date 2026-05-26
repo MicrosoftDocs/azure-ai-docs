@@ -1,12 +1,12 @@
 ---
-title: What is Azure Translator document translation?
+title: What is Azure Translator document translation in Foundry Tools?
 titleSuffix: Foundry Tools
-description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
+description: Learn about Azure Translator in Foundry Tools document translation for batch and single-file translation while preserving document structure and formatting.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -19,63 +19,55 @@ ai-usage: ai-assisted
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
-<!-- markdownlint-disable MD025 -->
 
-# What is Azure Translator document translation?
+# What is Azure Translator document translation in Foundry Tools?
 
-Document translation (**2026-03-01** GA) is a cloud-based feature of Azure Translator and part of the Foundry Tools family of REST APIs. It provides:
+Document translation is a cloud-based machine translation feature of [Azure Translator in Foundry Tools](../overview.md). Translate multiple and complex documents across all [supported languages and dialects](../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
-* **Translation** across all [supported languages and dialects](../language-support.md).
-* **Preservation** of the original document structure and data format.
-* **Neural machine translation (NMT) engine support** for standard translations (default).
-* **Large language model (LLM) support** for higher-quality, context-aware translations (optional).
+* [Asynchronous batch translation](#key-features) supports the processing of multiple documents and large files. The batch translation process requires an Azure Blob storage account with storage containers for your source and translated documents.
 
-The Document Translation API supports two translation processes:
+* [Synchronous single file](#key-features) supports the processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
-* **[Asynchronous batch translation](#key-features):** Translate multiple documents or large files in parallel. Upload documents to Blob Storage, submit a batch job, poll for status, then download translated output from your target container. Requires an Azure Blob Storage account with source and target containers. For a full walkthrough, see [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md) and [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md).
+## Prerequisites
 
-* **[Synchronous single-file translation](#key-features):** POST a single document and receive the translated output directly in the response. No Azure Blob Storage required. For a full walkthrough, see [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md).
+### Asynchronous batch translation prerequisites
 
-## What's new in version 2026-03-01
+Before you start, you need:
 
-API version **2026-03-01** introduces the following capabilities for Document Translation:
+* An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* A Translator resource. For resource creation and endpoint/key retrieval steps, see [Use Document translation APIs programmatically](how-to-guides/use-rest-api-programmatically.md).
+* An Azure Blob Storage account with source and target containers. For setup guidance, see [Create Azure Blob Storage containers](how-to-guides/use-rest-api-programmatically.md#create-azure-blob-storage-containers).
+* A way to authorize access to your storage URLs:
+	* [Shared access signature (SAS) tokens](how-to-guides/create-sas-tokens.md), or
+	* [Managed identities for Document translation](how-to-guides/create-use-managed-identities.md).
 
-* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../how-to/create-translator-resource.md).
+### Synchronous translation prerequisites
 
-* **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
+Before you start, you need:
 
-* **PDF translation with Azure Document Intelligence (batch only)**: Translate PDF files using Azure Document Intelligence to preserve layout and structure in the translated output.
+* An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* A Translator resource with a custom domain endpoint. For setup and endpoint/key retrieval, see [Use Document translation APIs programmatically](how-to-guides/use-rest-api-programmatically.md).
 
-* **Image translation in Office documents (batch only)**: Translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) documents while preserving overall document structure.
-
-## Before you begin
-
-Prerequisites differ by translation method:
-
-* **Asynchronous batch translation**: Requires an Azure Blob Storage account and storage authorization (SAS tokens or managed identity).
-* **Synchronous single-file translation**: Requires only a Translator resource with a custom domain endpoint.
-
-For the full prerequisites list, see [Prerequisites and setup](latest/prerequisites.md).
+> [!TIP]
+> Store subscription keys in a secure location such as [Azure Key Vault](/azure/key-vault/general/overview), and avoid putting keys in source control.
 
 ## Key features
 
-Document Translation supports different features for each translation method. Select the tab for your scenario.
+### [Asynchronous (batch)](#tab/async)
 
-### [**Asynchronous (batch)**](#tab/async)
+|Feature | Description |
+| ---------| -------------|
+|**Translate large files**| Translate whole documents asynchronously.|
+|**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
+|**Translate image file formats (preview)** | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).|
+|[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) API for `.docx` file format.|
+|**Preserve source file presentation**| Translate files while preserving the original layout and format.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
+|**Apply custom glossaries**|Translate documents using custom glossaries.|
+|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
+|**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
 
-| Feature | Description |
-| --- | --- |
-| **Translate large files** | Translate whole documents asynchronously. |
-| **Translate numerous files** | Translate multiple files across all supported languages and dialects while preserving document structure and data format. |
-| **Translate image file formats** 🆕 | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator). |
-| [**Translate image text in Word documents (.docx) and PowerPoint files (.pptx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx). | This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` and `.pptx` file formats. |
-| **Preserve source file presentation** | Translate files while preserving the original layout and format. |
-| **Apply custom translation** | Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models. |
-| **Apply custom glossaries** | Translate documents using custom glossaries. |
-| **Automatically detect document language** | Let the Document translation service determine the language of the document. |
-| **Translate documents with content in multiple languages** | Use the autodetect feature to translate documents with content in multiple languages into your target language. |
-
-### [**Synchronous**](#tab/sync)
+### [Synchronous](#tab/sync)
 
 |Feature | Description |
 | ---------| -------------|
@@ -88,13 +80,25 @@ Document Translation supports different features for each translation method. Se
 
 ---
 
-## Language support
+## How document translation works
 
-For the full list of languages supported for document translation features, including LLM-based translation, see [Language support](../language-support.md).
+Document translation supports two workflows. Choose the approach that matches your scenario.
 
-### LLM data processing
+### Asynchronous (batch)
 
-When you deploy an LLM, the configuration you choose — global, data zone, or regional — determines where your data is processed. Your selections during resource setup define the geographical boundaries for model processing.
+1. Upload source documents to your source container.
+2. Submit a batch translation request.
+3. Monitor job and document status.
+4. Download translated documents from your target container.
+
+For detailed request/response flows, see the [Document translation REST API reference guide](reference/rest-api-guide.md).
+
+### Synchronous
+
+1. Send a request that includes one document (and an optional glossary).
+2. Receive the translated document in the response.
+
+For request details and examples, see [Synchronous document translation](reference/translate-document.md).
 
 ## Development options
 
@@ -103,16 +107,16 @@ Add document translation to your projects and applications using the following d
 > [!NOTE]
 > Foundry portal currently supports synchronous (single-file) document translation only. Use the REST API or client libraries for asynchronous batch document translation.
 
-### [**Asynchronous (batch)**](#tab/async)
+### [Asynchronous (batch)](#tab/async)
 
 Use asynchronous workflows to translate multiple documents and large files.
 
 |Development option|Description|
 |---|---|
-|**REST API**|The [REST API](latest/rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
+|**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
-### [**Synchronous**](#tab/sync)
+### [Synchronous](#tab/sync)
 
 Use synchronous document translation to translate a single file and return the translated file in the response.
 
@@ -120,7 +124,7 @@ Use synchronous document translation to translate a single file and return the t
 |---|---|
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
-|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](latest/rest-api/guide-overview.md#synchronous-operations).|
+|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](reference/translate-document.md).|
 |**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
@@ -128,24 +132,92 @@ Use synchronous document translation to translate a single file and return the t
 
 ## Supported document and glossary formats
 
-Document translation supports a broad range of file formats for both translation input and glossary files. Supported formats differ slightly between asynchronous batch and synchronous translation.
+The following tables list the document and glossary file formats supported by each translation method.
 
-To query supported formats at runtime:
+### [Asynchronous (batch)](#tab/async)
 
-* **Document formats**: Use the [Get supported document formats](latest/rest-api/get-supported-document-formats.md) API.
-* **Glossary formats**: Use the [Get supported glossary formats](latest/rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
+### Batch document supported formats
 
-For a complete list of supported formats by method, see [Supported document formats](latest/rest-api/guide-overview.md).
+The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes common file extensions and content types.
+
+| File type| File extension|Description|
+|---|---|---|
+|Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
+|Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
+|HTML|`html`, `htm`|Hyper Text Markup Language.|
+|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that store digital image data.|
+|OpenDocument Presentation|`odp`|An open-source presentation file.|
+|OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
+|OpenDocument Text|`odt`|An open-source text document file.|
+|Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
+|M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
+|Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
+|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook.|
+|Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
+|Microsoft Word|`doc`, `docx`| A text document file.|
+|Rich text format|`rtf`|A text document containing formatting.|
+|Tab separated values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+|Text|`txt`| An unformatted text document.|
+|XLIFF|`xlf`|A parallel document format used in translation and localization.|
+
+### Batch Legacy file types
+
+Source file types are preserved during the document translation with the following **exceptions**:
+
+| Source file extension | Translated file extension|
+| --- | --- |
+| .doc, .odt, .rtf, | .docx |
+| .xls, .ods | .xlsx |
+| .ppt, .odp | .pptx |
+
+### Batch glossary supported formats
+
+Document translation supports the following glossary file types:
+
+| File type| File extension|Description|
+|---|---|--|
+|Comma-Separated Values| `csv` |A comma-delimited raw-data file used by spreadsheet programs.|
+|XLIFF|`xlf`|A parallel document format used in translation and localization.|
+|Tab-Separated Values/TAB|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+
+### [Synchronous](#tab/sync)
+
+### Synchronous document supported formats
+
+|File type|File extension| Content type|Description|
+|---|---|--|---|
+|**Plain Text**|`.txt`|`text/plain`| An unformatted text document.|
+|**Tab Separated Values**|`.tsv`<br> `.tab`|`text/tab-separated-values`|A text file format that uses tabs to separate values and newlines to separate records.|
+|**Comma Separated Values**|`.csv`|`text/csv`|A text file format that uses commas as a delimiter between values.|
+|**HyperText Markup Language**|`.html`<br> `.htm`|`text/html`|HTML is a standard markup language used to structure web pages and content.|
+|**M&#8203;HTML**|`.mhtml`<br> `.mht`|`message/rfc822`<br>`application/x-mimearchive`<br>`multipart/related`|A web page archive file format.|
+|**Microsoft PowerPoint**|`.pptx`|`application/vnd.openxmlformats-officedocument.presentationml.presentation` |An XML-based file format used for PowerPoint slideshow presentations.|
+|**Microsoft Excel**|`.xlsx`| `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`| An XML-based file format used for Excel spreadsheets.|
+|**Microsoft Word**|`.docx`| `application/vnd.openxmlformats-officedocument.wordprocessingml.document`|An XML-based file format used for Word documents.|
+|**Microsoft Outlook**|`.msg`|`application/vnd.ms-outlook`|A file format used for stored Outlook mail message objects.|
+|**XLIFF**|`.xlf`|`application/xliff+xml`|A standardized XML-based file format widely used in translation and localization software processing.|
+
+### Synchronous glossary supported formats
+
+Document translation supports the following glossary file types:
+
+| File type| File extension|Description|
+|---|---|--|
+|**Comma-Separated Values**| `csv` |A comma-delimited raw-data file used by spreadsheet programs.|
+|**XLIFF**|`xlf`|An XML-based format designed to standardize how data is passed during the localization process.|
+|**Tab-Separated Values**|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+
+---
 
 ## Document translation request limits
 
-Document translation enforces limits on request size, document count, file size, and concurrent operations. Understanding these limits helps you design batch jobs and avoid throttling errors. For detailed information, see [Document translation request limits](../service-limits.md#document-translation).
+For detailed information about Translator request limits, see [Document translation request limits](../service-limits.md#document-translation).
 
 ## Document translation data residency
 
-Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the processing location is determined by the Azure region where your Translator resource was created. The following table maps resource regions to their corresponding request processing data centers:
+Document translation data residency depends on the Azure region where your Translator resource was created:
 
-✔️ Feature: **Document translation**
+✔️ Feature: **Document translation**</br>
 ✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
 
 |Resource created region| Request processing data center |
@@ -156,25 +228,27 @@ Data residency determines where your document content is processed and temporari
 |**Europe (except Switzerland)**| France Central &bull; West Europe|
 |**Switzerland**|Switzerland North &bull; Switzerland West|
 
-## Service limits and troubleshooting
+## Troubleshooting
 
-If you encounter unexpected behavior, errors, or performance issues, the following resources can help you diagnose and resolve them:
+Use the following checks to diagnose common issues.
 
-* **Service limits:** See [Document translation request limits](../service-limits.md#document-translation).
+### Batch translation
 
-* **Translation errors and known issues:** See [Known issues](../reference/known-issues.md).
+* If translated files don't appear in the target container, check job status using [Get status for a specific translation job](reference/get-translation-status.md) and document status using [Get status for a specific document](reference/get-document-status.md).
+* If the service can't read from or write to your storage containers, confirm storage authorization:
+	* If you use SAS tokens, see [Create shared access signature (SAS) tokens for storage containers and blobs](how-to-guides/create-sas-tokens.md).
+	* If you use managed identities, see [Create and use managed identities](how-to-guides/create-use-managed-identities.md).
+* If a job fails due to unsupported inputs, confirm the format using [Get supported document formats](reference/get-supported-document-formats.md).
 
-## Pricing
+### Synchronous translation
 
-Pricing depends on whether you use NMT-based or LLM-based translation. The two models have different billing units.
-
-* Document translations using **NMT models** are billed by the number of characters or images in the source document. For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
-
-* Document translations using **LLMs** are charged by the number of input and output tokens processed. For more information, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+* If the request fails due to invalid parameters or unsupported file types, review the required parameters and supported formats in [Synchronous document translation](reference/translate-document.md).
+* If you hit rate limits, see [Document translation request limits](../service-limits.md#document-translation).
 
 ## Related content
 
-* [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md)
-* [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md)
-* [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md)
-
+* [Document translation quickstart](quickstarts/rest-api.md)
+* [Use Document translation APIs programmatically](how-to-guides/use-rest-api-programmatically.md)
+* [Use glossaries with Document translation](how-to-guides/create-use-glossaries.md)
+* [Document translation REST API reference](reference/rest-api-guide.md)
+* [Translator language support](../language-support.md)
