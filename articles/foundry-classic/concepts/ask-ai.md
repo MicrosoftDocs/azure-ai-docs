@@ -2,6 +2,7 @@
 title: "Ask AI for help (classic)"
 description: "Learn how to ask AI for help, getting your questions answered and tasks supported. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: jeomhove

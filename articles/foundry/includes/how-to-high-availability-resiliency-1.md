@@ -96,7 +96,9 @@ Use Azure role-based access control (RBAC) to limit access to control and data p
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Azure AI User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Foundry User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+
+[!INCLUDE [role-rename-note](./role-rename-note.md)]
 
 ### Implement the single responsibility principle
 

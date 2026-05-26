@@ -2,12 +2,12 @@
 title: How to use the Anomaly Detector API on your time series data
 titleSuffix: Azure AI services
 description: Learn how to detect anomalies in your data either as a batch, or on streaming data.
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # How to: Use the Anomaly Detector univariate API on your time series data  

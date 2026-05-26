@@ -2,6 +2,7 @@
 title: "Add a new connection to your project (classic)"
 description: "Learn how to add a new connection to your Foundry project. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -34,7 +35,9 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 * If you don't have one, [create a project](../how-to/create-projects.md).
 * Make sure you can open your project in Microsoft Foundry.
-* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Azure AI User**, **Azure AI Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
+* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Foundry User**, **Foundry Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 
 ## Connection types
 

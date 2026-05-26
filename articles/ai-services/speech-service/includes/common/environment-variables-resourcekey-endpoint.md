@@ -4,6 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 8/11/2024
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 You need to authenticate your application to access Foundry Tools. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials.
@@ -62,7 +63,7 @@ For iOS and macOS development, you set the environment variables in Xcode. For e
 1. Under **Environment Variables** select the plus (+) sign to add a new environment variable.
 1. Enter `SPEECH_KEY` for the **Name** and enter your Speech resource key for the **Value**.
 
-To set the environment variable for your Speech resource endpoint, follow the same steps. Set `ENDPOINT` to the endpoint of your resource. For example, `https://YourServiceRegion.api.cognitive.microsoft.com`.
+To set the environment variable for your Speech resource endpoint, follow the same steps. Set `ENDPOINT` to the endpoint of your resource. For example, `https://YourResourceName.cognitiveservices.azure.com`.
 
 
 

@@ -70,7 +70,7 @@ Region and model determine which tools are available to your agent.
 > [!NOTE]
 > In the tables below: **Yes** means fully supported, **No** means not supported, and **Limited** means partial support that varies by tool configuration. Check individual tool documentation for details.
 
-The following table shows tool availability by [region](../../openai/how-to/responses.md#region-availability).
+The following table shows tool availability by [region](../../openai/how-to/responses.md#supported-regions).
 
 > [!NOTE]
 > This region availability table only accounts for service availability. You need to make sure the model you want to use is also available in the same region.
@@ -107,81 +107,93 @@ Tools are supported by the following models.
 > [!NOTE]
 > For the image generation tool, you need both the `gpt-image-1` model and a large language model (LLM) as the orchestrator in the same Microsoft Foundry project.
 
-| Model | Agent2Agent | Azure AI Search | Azure Functions | Grounding Bing Custom | Grounding Bing Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Functions | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cohere-command-r | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| Cohere-command-r-plus | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| DeepSeek-R1-0528 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| DeepSeek-V3-0324 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
-| DeepSeek-V3.1 | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
-| FW-DeepSeek-V3.1 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-DeepSeek-V3.2 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-GLM-4.7 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-GLM-5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-GPT-OSS-120B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-Kimi-K2-Instruct-0905 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-Kimi-K2-Thinking | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-Kimi-K2.5 | No | No | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-MiniMax-M2.5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
-| FW-Qwen3.5-122B-A10B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes |
-| FW-Qwen3.5-397B-A17B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes |
-| Llama-3.3-70B-Instruct | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| Llama-4-Maverick-17B-128E-Instruct-FP8 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| Llama-4-Scout-17B-16E-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
-| Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No |
-| gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-4.1 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-4.1-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-4.1-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-4.5-preview | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-4o | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-4o-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-5 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-5-chat | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No |
-| gpt-5-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | Yes |
-| gpt-5-nano | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5-pro | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.1 | No | Yes | Yes | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-5.1-chat | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.1-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No |
-| gpt-5.1-codex-max | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.1-codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.2 | No | Yes | Yes | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| gpt-5.2-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | No | Yes |
-| gpt-5.2-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No |
-| gpt-5.3-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.3-codex | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.4 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.4-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.4-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.4-pro | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-5.5 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
-| gpt-oss-120b | No | No | No | No | No | No | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
-| grok-3 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
-| grok-3-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| grok-4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| grok-4-1-fast-non-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| grok-4-1-fast-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| grok-4-20-non-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| grok-4-20-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | 
-| grok-4-fast-non-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| grok-4-fast-reasoning | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
-| mistral-small-2503 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| model-router | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
-| o1 | No | Yes | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | Yes | Yes |
-| o1-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| o1-preview | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| o3 | Yes | Yes | No | Yes | No | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | No | Yes |
-| o3-deep-research | No | No | No | No | No | No | No | No | No | No | No | No | Yes | No | No | Yes |
-| o3-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | No | No | No | No |
-| o3-pro | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| o4-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | No | Yes | Yes |
+| Model | Agent2Agent | Azure AI Search | Azure Functions | Grounding Bing Custom | Grounding Bing Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Functions | Image Generation | MCP | OpenAPI | SharePoint | Web Search | Work IQ (preview) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Cohere-command-r | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| Cohere-command-r-plus | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| DeepSeek-R1-0528 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| DeepSeek-V3-0324 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| DeepSeek-V3.1 | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| FW-DeepSeek-V3.1 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-DeepSeek-V3.2 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-GLM-4.7 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-GLM-5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-GLM-5.1 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-GPT-OSS-120B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Kimi-K2-Instruct-0905 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Kimi-K2-Thinking | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Kimi-K2.5 | No | No | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Kimi-K2.6 | No | No | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-MiniMax-M2.5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Qwen3.5-122B-A10B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| FW-Qwen3.5-397B-A17B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | Yes |
+| GROK-4-20-REASONING | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| Llama-3.3-70B-Instruct | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| Llama-4-Maverick-17B-128E-Instruct-FP8 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| Llama-4-Scout-17B-16E-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No | No |
+| Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-mythos-preview | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | Yes | Yes |
+| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-opus-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-opus-4-7 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| claude-sonnet-4-6 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No |
+| gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | Yes |
+| gpt-4.1 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-4.1-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-4.1-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-4.5-preview | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-4o | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-4o-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| gpt-5-chat | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | Yes |
+| gpt-5-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No | Yes |
+| gpt-5-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | Yes | Yes |
+| gpt-5-nano | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | Yes |
+| gpt-5-pro | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-5.1 | No | Yes | Yes | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.1-chat | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-5.1-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No | Yes |
+| gpt-5.1-codex-max | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-5.1-codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| gpt-5.2 | No | Yes | Yes | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.2-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | No | Yes | Yes |
+| gpt-5.2-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No | Yes |
+| gpt-5.3-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.3-codex | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.4 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.4-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.4-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.4-pro | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-5.5 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-chat-latest | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes |
+| gpt-oss-120b | No | No | No | No | No | No | Yes | No | No | Yes | Yes | No | Yes | No | No | No | Yes |
+| grok-3 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-3-mini | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| grok-4-1-fast-non-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4-1-fast-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4-20-non-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4-20-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4-fast-non-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| grok-4-fast-reasoning | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes |
+| mistral-small-2503 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| model-router | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes |
+| o1 | No | Yes | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | Yes | Yes | Yes |
+| o1-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| o1-preview | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| o3 | Yes | Yes | No | Yes | No | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | No | Yes | Yes |
+| o3-deep-research | No | No | No | No | No | No | No | No | No | No | No | No | Yes | No | No | Yes | Yes |
+| o3-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | No | No | No | No | Yes |
+| o3-pro | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No |
+| o4-mini | Yes | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | No | Yes | Yes | Yes |
 
 ## Troubleshooting
 
@@ -198,6 +210,10 @@ Use these checks to resolve common issues:
 - **Tool calls fail**:
     - Verify tool configuration and authentication.
     - For MCP and OpenAPI tools, validate the endpoint is reachable and returns expected responses.
+- **Foundry returns a "tool not supported" error even though the tables show support**:
+    - Tool availability requires support from **both** the model and the region. Check the [region availability table](#tool-support-by-region-and-model) for your region and the [model support table](#tool-support-by-region-and-model) for your model. If either shows `No`, the tool can't run, even if the other shows `Yes`.
+    - Confirm the model is actually deployed in the project and region you're targeting. A model that supports a tool in general might not be deployed in every region.
+    - Try a different region or a different model deployment that supports the tool. For example, code interpreter doesn't run in regions that show `no` for Code Interpreter (such as `southcentralus` and `spaincentral`), regardless of which model you use.
 
 ## FAQ
 

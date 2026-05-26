@@ -3,13 +3,9 @@ items:
   items: 
   - name: What is the Foundry Agent service
     href: ../../agents/overview.md
-  - name: Agent manifests
-    href: ../../agents/concepts/agent-catalog.md
-  - name: Quickstart - Create an agent from a manifest
-    href: ../../agents/quickstarts/quickstart-agent-catalog.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
-  - name: Quickstart - Deploy a hosted agent
+  - name: Quickstart - Deploy a Hosted agent
     href: ../../agents/quickstarts/quickstart-hosted-agent.md
 
 # Concepts
@@ -20,19 +16,7 @@ items:
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Hosted agents
-    items:
-    - name: What is a hosted agent?
-      href: ../../agents/concepts/hosted-agents.md
-    - name: Deploy a hosted agent
-      href: ../../agents/how-to/deploy-hosted-agent.md
-    - name: Manage hosted agent lifecycle
-      href: ../../agents/how-to/manage-hosted-agent.md
-    - name: Manage hosted agent sessions
-      href: ../../agents/how-to/manage-hosted-sessions.md
-  - name: Migrate agents
-    href: ../../agents/how-to/migrate.md
-  - name: Migrate hosted agents to the refreshed public preview
-    href: ../../agents/how-to/migrate-hosted-agent-preview.md
+    href: ../../agents/concepts/hosted-agents.md
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
   - name: Agent applications
@@ -57,6 +41,8 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox (preview)
     href: ../../agents/how-to/tools/toolbox.md
+  - name: Tool search (preview)
+    href: ../../agents/how-to/tools/tool-search.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
@@ -107,7 +93,7 @@ items:
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
-    - name: Foundry IQ (preview)
+    - name: Foundry IQ
       items:
       - name: What is Foundry IQ?
         href: ../../agents/concepts/what-is-foundry-iq.md
@@ -150,14 +136,20 @@ items:
 # Deploy and Share
 - name: Deploy and share
   items:
-  - name: Deploy a hosted agent
-    href: ../../agents/how-to/deploy-hosted-agent.md
+  - name: Hosted agents
+    items:
+    - name: Deploy a Hosted agent
+      href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Manage Hosted agent lifecycle
+      href: ../../agents/how-to/manage-hosted-agent.md
+    - name: Manage Hosted agent sessions
+      href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
-  - name: Migrate from Agent Applications to the new agent model
-    href: ../../agents/how-to/migrate-agent-applications.md
+  - name: Enable incoming A2A (preview)
+    href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:
@@ -179,7 +171,14 @@ items:
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
     href: ../../agents/concepts/agent-365-integration.md
-
+- name: Migrate
+  items:
+  - name: Migrate prompt agents to the new agent service
+    href: ../../agents/how-to/migrate.md
+  - name: Migrate Hosted agents to the new public preview
+    href: ../../agents/how-to/migrate-hosted-agent-preview.md
+  - name: Migrate from Agent Applications to the new agent model
+    href: ../../agents/how-to/migrate-agent-applications.md
 # Reference
 - name: Reference
   items:
@@ -193,12 +192,3 @@ items:
     href: ../../agents/concepts/capability-hosts.md
   - name: Tool governance
     href: ../../agents/how-to/tools/governance.md
-# System Messages
-- name: System messages
-  items:
-  - name: System message design
-    href: ../../openai/concepts/advanced-prompt-engineering.md
-  - name: Safety system messages
-    href: ../../openai/concepts/system-message.md
-  - name: Safety system message templates
-    href: ../../openai/concepts/safety-system-message-templates.md

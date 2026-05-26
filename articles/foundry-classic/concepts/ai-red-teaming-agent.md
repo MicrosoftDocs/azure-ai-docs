@@ -2,6 +2,7 @@
 title: "AI Red Teaming Agent (classic)"
 description: "This article provides conceptual overview of the AI Red Teaming Agent. (classic)"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.reviewer: minthigpen

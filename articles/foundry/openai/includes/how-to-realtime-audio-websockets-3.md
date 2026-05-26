@@ -41,13 +41,13 @@ sequenceDiagram
 
 Events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
 
-- A client-side caller establishes a connection to `/realtime`, which starts a new [`session`](../realtime-audio-reference.md#realtimerequestsession).
+- A client-side caller establishes a connection to `/realtime`, which starts a new [`session`](../realtime-audio-reference.md).
 - A `session` automatically creates a default `conversation`. Multiple concurrent conversations aren't supported.
 - The `conversation` accumulates input signals until a `response` is started, either via a direct event by the caller or automatically by voice activity detection (VAD).
 - Each `response` consists of one or more `items`, which can encapsulate messages, function calls, and other information.
 - Each message `item` has `content_part`, allowing multiple modalities (text and audio) to be represented across a single item.
 - The `session` manages configuration of caller input handling (for example, user audio) and common output generation handling.
-- Each caller-initiated [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) can override some of the output [`response`](../realtime-audio-reference.md#realtimeresponse) behavior, if desired.
+- Each caller-initiated [`response.create`](../realtime-audio-reference.md) can override some of the output [`response`](../realtime-audio-reference.md) behavior, if desired.
 - Server-created `item` and the `content_part` in messages can be populated asynchronously and in parallel. For example, receiving audio, text, and function information concurrently in a round robin fashion.
 
 ## Try the quickstart

@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 10/31/2025
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #Customer intent: As a developer using speech to text, I want to learn how to log audio and transcriptions for speech recognition.
+ai-usage: ai-assisted
 ---
 
 # How to log audio and transcriptions for speech recognition
@@ -264,7 +265,7 @@ Each [TranslationRecognizer](/objectivec/cognitive-services/speech/spxtranslatio
 If you use [Speech to text REST API for short audio](rest-speech-to-text-short.md) and want to enable audio and transcription logging, you need to use the query parameter and value `storeAudio=true` as a part of your REST request. A sample request looks like this:
 
 ```http
-https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US&storeAudio=true
+https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US&storeAudio=true
 ```
 
 ### Enable audio and transcription logging for a custom model endpoint
@@ -288,35 +289,35 @@ To turn off logging for a custom endpoint, use the [Endpoints_Update](/rest/api/
 
 - Set the `contentLoggingEnabled` property within `properties`. Set this property to `true` to enable logging of the endpoint's traffic. Set this property to `false` to disable logging of the endpoint's traffic. 
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourResourceName` with your Speech resource name, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "properties": {
     "contentLoggingEnabled": false
   },
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/YourEndpointId"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "logs": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "restConversation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "restDictation": "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketInteractive": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketConversation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketDictation": "wss://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
   },
   "properties": {
     "loggingEnabled": false
@@ -374,7 +375,7 @@ Here's a sample output of [Endpoints_ListLogs](/rest/api/speechtotext/endpoints/
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json",
       "name": "163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9.v2.json",
       "kind": "Transcription",
       "properties": {
@@ -386,7 +387,7 @@ Here's a sample output of [Endpoints_ListLogs](/rest/api/speechtotext/endpoints/
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_wav",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_wav",
       "name": "163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9.wav",
       "kind": "Audio",
       "properties": {
@@ -406,7 +407,7 @@ The locations of each audio and transcription log file are returned in the respo
 The log ID for each log file is the last part of the URL in the `"self"` element value. The log ID in the following example is `2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json`. 
 
 ```json
-"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json"
+"self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json"
 ```
 
 ## Delete audio and transcription logs
