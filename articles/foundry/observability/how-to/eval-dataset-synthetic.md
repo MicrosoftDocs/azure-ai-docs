@@ -44,7 +44,7 @@ Use synthetic generation when:
 | **Prompt** (`PromptDataGenerationJobSource`) | You want to generate from inline text such as a policy snippet, or steer generation with an instruction like "expert-level questions only." |
 | **Reference file** (`FileDataGenerationJobSource`) | You have a longer document (spec, policy, knowledge base) that should ground the generated questions in real domain content. |
 
-You can combine sources in a single job. A common pattern is to pair a reference file (for grounding) with a prompt (for steering tone or difficulty). See [Combine source types](#combine-source-types).
+You can combine sources in a single job. A common pattern is to pair a reference file (for grounding) with a prompt (for steering tone or difficulty).
 
 ## Prerequisites
 
@@ -55,25 +55,21 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 ## Generate a dataset from the portal
 
-<!-- [TO VERIFY] Confirm the inner dialog field labels (source-type choices, configuration fields, judge-model selector) before publishing. The "Create dataset > Generate synthetic" entry path is confirmed. -->
+<!-- [TO VERIFY] Confirm supported file types for **Reference file** uploads in the **Generate synthetic data** dialog. -->
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **Generate synthetic**.
-1. Select one or more source types: **Agent definition**, **Prompt**, or **Reference file**. Combine sources to broaden coverage (for example, a reference file plus a prompt).
-1. Configure each selected source:
-
-   - **Agent definition**—[TO VERIFY: describe selection of an existing agent or inline entry of agent instructions.]
-   - **Prompt**—[TO VERIFY: describe inline prompt entry.]
-   - **Reference file**—[TO VERIFY: describe the file upload path and supported file types.]
-
-1. Select the judge model used for generation. [TO VERIFY]
-1. Select **Create**. The dataset generation job appears in the **Data Generation** tab; track its status there.
+1. In **Generate synthetic data**, set **Dataset usage** to **Evaluation**.
+1. Confirm **Task type** is **Simple Q&A**.
+1. Select a **Generator model**.
+1. Provide one or more source inputs: **Agent**, **Prompt**, or **Reference file**.
+1. Set **Maximum number of samples** and **Output file name**.
+1. Select **Generate**.
+1. Track the dataset generation job status in the **Data Generation** tab.
 1. When the job finishes, preview the generated rows on the **Data** tab.
 
-<!-- Image temporarily hidden — source PNG not yet checked into repo. Restore once media/eval-dataset-synthetic/create-synthetic-dataset-dialog.png is added.
-:::image type="content" source="media/eval-dataset-synthetic/create-synthetic-dataset-dialog.png" alt-text="Screenshot of the Create dataset dialog with source type, configuration, and judge model fields.":::
--->
+:::image type="content" source="../../media/observability/data_generation_synthetic_eval.png" alt-text="Screenshot of the Generate synthetic data dialog showing Dataset usage set to Evaluation, Task type set to Simple Q&A, Generator model, source inputs, Maximum number of samples, and Output file name.":::
 
-## Generate a dataset from an agent definition
+## Generate a dataset from an agent definition (SDK)
 
 This flow seeds generation from a deployed agent's instructions. The service fetches the agent's prompt and uses your configured model to synthesize question-and-answer pairs from it.
 
@@ -174,7 +170,7 @@ print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})"
 
 The job produces a versioned dataset with single-turn `query` and `ground_truth` fields. Preview it on the **Data** tab in the portal to spot-check the generated rows before evaluating.
 
-## Generate a dataset from a prompt
+## Generate a dataset from a prompt (SDK)
 
 When you don't have a deployed agent yet, or you want to generate from a self-contained snippet of source material, pass the text as a `PromptDataGenerationJobSource`. This is useful for policy documents, FAQ content, or short specs.
 
@@ -220,7 +216,7 @@ job = project_client.beta.datasets.create_generation_job(job=job)
 
 Poll and resolve the dataset using the same pattern shown in the previous section.
 
-## Generate a dataset from reference files
+## Generate a dataset from reference files (SDK)
 
 For longer source material, upload a document as an Azure OpenAI file and reference it by id. This is the best option when the agent's domain knowledge lives in a spec, knowledge-base export, or policy document, because the generated questions stay grounded in that content.
 
@@ -279,47 +275,6 @@ job = DataGenerationJob(
 job = project_client.beta.datasets.create_generation_job(job=job)
 ```
 
-### Combine source types
-
-You can pass multiple sources to a single job. A reference file plus a steering prompt is a common pairing: the file grounds generated questions in real domain content, and the prompt controls tone or difficulty.
-
-```python
-from azure.ai.projects.models import (
-    DataGenerationJob,
-    DataGenerationJobInputs,
-    DataGenerationJobOutputOptions,
-    DataGenerationJobScenario,
-    DataGenerationModelOptions,
-    FileDataGenerationJobSource,
-    PromptDataGenerationJobSource,
-    SimpleQnADataGenerationJobOptions,
-)
-
-job = DataGenerationJob(
-    inputs=DataGenerationJobInputs(
-        name="retail-agent-expert-eval-set",
-        scenario=DataGenerationJobScenario.EVALUATION,
-        sources=[
-            FileDataGenerationJobSource(
-                description="Contoso Retail product catalog and policy reference.",
-                id=seed_file.id,
-            ),
-            PromptDataGenerationJobSource(
-                description="Steers question difficulty for SimpleQnA generation.",
-                prompt="Generate expert-level questions of high difficulty.",
-            ),
-        ],
-        options=SimpleQnADataGenerationJobOptions(
-            max_samples=15,
-            model_options=DataGenerationModelOptions(model=MODEL_NAME),
-        ),
-        output_options=DataGenerationJobOutputOptions(name="retail-agent-expert-eval-set"),
-    ),
-)
-
-job = project_client.beta.datasets.create_generation_job(job=job)
-```
-
 ## Run an evaluation against the generated dataset
 
 The generated dataset uses the standard `query` and `ground_truth` schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
@@ -328,7 +283,31 @@ For the full evaluation flow, including selecting evaluators and reviewing resul
 
 ## Manage data generation jobs
 
-Use the same `project_client.beta.datasets` operations to list, cancel, and delete synthetic generation jobs as you do for trace jobs. See [Manage data generation jobs](traces-to-dataset.md#manage-data-generation-jobs).
+Use the same `project_client.beta.datasets` job-management APIs for synthetic generation jobs that you use for trace-based generation jobs.
+
+```python
+from azure.ai.projects.models import DataGenerationJobScenario
+
+# List recent evaluation jobs.
+for job in project_client.beta.datasets.list_generation_jobs(
+    limit=20,
+    order="desc",
+    scenario=DataGenerationJobScenario.EVALUATION,
+):
+    print(f"{job.id}  {job.status:<12}  {job.inputs.name}")
+
+# Inspect a specific job's status.
+job = project_client.beta.datasets.get_generation_job(job_id="job_...")
+print(f"{job.id}  {job.status}")
+
+# Cancel a running job.
+project_client.beta.datasets.cancel_generation_job(job_id="job_...")
+
+# Delete a job record (produced datasets are not deleted).
+project_client.beta.datasets.delete_generation_job(job_id="job_...")
+```
+
+For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-data-generation-jobs).
 
 ## Best practices
 
