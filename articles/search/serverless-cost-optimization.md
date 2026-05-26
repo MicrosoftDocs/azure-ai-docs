@@ -33,7 +33,7 @@ In the Serverless model, **performance optimization directly affects cost**. Cos
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
 > [!IMPORTANT]
-> Your Compute Unit per hour (CU/h) charges don't include semantic ranker, agentic retrieval, image extraction and skill exectuion. These capabilities are billed separately.
+> Your Compute Unit per hour (CU/h) charges don't include semantic ranker, agentic retrieval, image extraction and skill execution. These capabilities are billed separately.
 
 ## Understand Compute Units (CUs)
 
@@ -71,8 +71,6 @@ x-ms-request-charge: 12.45
 This value represents the compute consumed by the request and can be used to identify high-cost query patterns. In this example, the query consumed 12.45 mCU per minute.
 
 You can also use the metrics in the portal to understand the historical consumption. See [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#supported-metrics-for-microsoftsearchsearchservices).
-
-:::image type="content" source="media/serverless/serverless-monitor-compute-units.png" alt-text="Screenshot of monitoring Compute Unit usage in the Azure AI Search service portal." border="true":::
 
 Additionally, you can use [Azure Monitor logs](search-monitor-queries.md) to track aggregate CU usage over time and correlate it with query volume and workload changes.
 

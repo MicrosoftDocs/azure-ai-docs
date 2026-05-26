@@ -46,7 +46,8 @@ Summarized, the ramifications of over-attribution include:
 + In many cases, over attribution limits the capabilities of the field. For example, if a field is facetable, filterable, and searchable, you can only store 16 KB of text within a field, whereas a searchable field can hold up to 16 MB of text.
 
 > [!NOTE]
-> Only unnecessary attribution should be avoided. Filters and facets are often essential to the search experience, and in cases where filters are used, you frequently need sorting so that you can order the results (filters by themselves return in an unordered set).
+> > [!NOTE]
+> Avoid unnecessary field attribution, but don’t remove capabilities that are essential to your search experience. Filters and facets are often core features, and when filtering is used, sorting is typically required to produce ordered results. Apply attributes deliberately, only where they support actual query or UI requirements.
 
 ### Tip: Consider alternatives to complex types
 

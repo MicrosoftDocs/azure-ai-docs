@@ -39,7 +39,7 @@ Billing is based on two primary dimensions:
 - **Compute usage**: Measured in Compute Units per hour (CU/h) and charged based on the work performed (queries, indexing, and other operations).
 - **Indexed storage**: Charged per GB per month based on the size of your indexes.
 
-This model is designed for workloads with variable demand, including bursty traffic and multi-tenant applications. It supports the same core search features and APIs as Dedicated services, so you can build and run search applications without rewriting code.
+This model is designed for workloads with variable demand, including bursty traffic and multitenant applications. It supports the same core search features and APIs as Dedicated services, so you can build and run search applications without rewriting code.
 
 The Serverless Developer tier is in Public Preview and doesn't currently support the following features:
 
@@ -96,7 +96,7 @@ There is also a free, limited search service tier:
 
 Billing rates are shown in the [Azure portal](https://portal.azure.com/auth/login/) when you're creating a new AI Search service in the **Select Pricing Tier** page. 
 
-:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
+:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Screenshot of the Azure portal Select a pricing tier chart listing the service tiers and their associated SKU." border="true":::
 
 You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates.
 

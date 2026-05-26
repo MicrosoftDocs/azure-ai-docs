@@ -2,6 +2,9 @@
 title: Include file
 description: Include file
 ms.topic: include
+ms.service: azure-ai-search
+author: mattwojo
+ms.author: mattwoj
 ms.date: 06/02/2026
 ---
 
