@@ -2077,7 +2077,6 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
-# Owner: aahi
 - id: selection-foundry-tool-search
   title: Selections
   prompt: What would you like to see?
