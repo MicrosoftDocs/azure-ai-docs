@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit extension for VS Code."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit extension for Visual Studio Code."
 author: aahill
 ms.author: aahi
 ms.date: 05/23/2026
@@ -28,7 +28,7 @@ Choose your preferred development experience to get started, VS Code or CLI.
 
 > [!NOTE]
 > This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.27-preview or later.
-> For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
+> For the legacy experience that uses Azure Container Apps, continue using 0.1.25-preview.
 >
 > Hosted agents are currently in preview.
 
@@ -36,7 +36,7 @@ Choose your preferred development experience to get started, VS Code or CLI.
 
 Before you begin, you need:
 
-* An Azure subscription -- [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure subscription--[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The **Foundry Project Manager** role at project scope (or another role that grants both data-plane and role-assignment permissions). For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 * [Python 3.10 or later](https://www.python.org/downloads/).
 * [Git](https://git-scm.com/downloads).
@@ -70,7 +70,7 @@ To switch an extension to its prerelease channel, open the extension in VS Code,
 
 ## Required permissions
 
-You need the **Foundry Project Manager** role at project scope to create and deploy hosted agents. azd and the VS Code extension handle the remaining role assignments (project managed identity, agent identity, and ACR pull) automatically when you also have **Owner** or **User Access Administrator** on the subscription. If you don't have those subscription-level roles, ask an administrator to assign the roles described in [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+You need the **Foundry Project Manager** role at project scope to create and deploy hosted agents. The Azure Developer CLI and the Visual Studio Code extension handle the remaining role assignments (project managed identity, agent identity, and Azure Container Registry (ACR) pull) automatically when you also have **Owner** or **User Access Administrator** on the subscription. If you don't have those subscription-level roles, ask an administrator to assign the roles described in [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
@@ -78,7 +78,7 @@ You need the **Foundry Project Manager** role at project scope to create and dep
 
 ## Step 1: Scaffold the sample project
 
-Initialize a new hosted agent project in an empty directory and choose the recommended options for each question below:
+Initialize a new hosted agent project in an empty directory and choose the recommended options for each prompt:
 
 ```
 azd ai agent init
@@ -86,23 +86,23 @@ azd ai agent init
 
 The interactive flow prompts for:
 
-* **Language** -- Select Python.
-* **Starter template** -- Select **Basic agent (Responses, Agent Framework, Python)**
-* **Agent name** -- Choose the default **agent-framework-agent-basic-responses**
-* **Deployment type** -- Select **Source code (ZIP upload)
-* **Runtime** -- Select Python 3.13
-* **Entry point** -- Chose the default **main.py**
-* **Dependency resolution** -- Select **Remote build (dependencies installed on server during deployment)**
-* **Foundry Project** -- Select **Create a new Foundry project**
-* **Azure Tenant** -- Select your Azure direction for the subscription you want to use
-* **Azure subscription** -- The subscription that hosts the Foundry resources
-* **Location** -- A region for the resources
-* **Model deployment** -- Select the default **Use 'gpt-4.1-mini' (from manifest)**
-* **Model version** -- Select the default **2025-04-14 (default)**
-* **Model SKU** -- A SKU available in your region and subscription and has quota available
-* **Deployment capacity** -- Select the default **10**
-* **Deployment name** -- Choose the default **gpt-4.1-mini**
-* **Container resources** -- Select the default **0.5 cores, 1Gi memory**
+* **Language**--Select Python.
+* **Starter template**--Select **Basic agent (Responses, Agent Framework, Python)**
+* **Agent name**--Choose the default **agent-framework-agent-basic-responses**
+* **Deployment type**--Select **Source code (ZIP upload)
+* **Runtime**--Select Python 3.13
+* **Entry point**--Chose the default **main.py**
+* **Dependency resolution**--Select **Remote build (dependencies installed on server during deployment)**
+* **Foundry Project**--Select **Create a new Foundry project**
+* **Azure Tenant**--Select your Azure direction for the subscription you want to use
+* **Azure subscription**--The subscription that hosts the Foundry resources
+* **Location**--A region for the resources
+* **Model deployment**--Select the default **Use 'gpt-4.1-mini' (from manifest)**
+* **Model version**--Select the default **2025-04-14 (default)**
+* **Model SKU**--A SKU available in your region and subscription and has quota available
+* **Deployment capacity**--Select the default **10**
+* **Deployment name**--Choose the default **gpt-4.1-mini**
+* **Container resources**--Select the default **0.5 cores, 1Gi memory**
 
 When complete, you should see **AI agent definition added to your azd project successfully!**.
 
@@ -134,7 +134,7 @@ This step takes a few minutes and creates the following resources. To run provis
     azd ai agent run
     ```
 
-    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are non-blocking. The agent starts and responds correctly despite them.
+    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are nonblocking. The agent starts and responds correctly despite them.
 
 1. In a separate terminal, send a test prompt:
 
@@ -293,7 +293,7 @@ Delete the resources when you're finished so you stop incurring charges.
 azd down
 ```
 
-`azd` lists the resources it will delete and prompts for confirmation. Cleanup takes about 2-5 minutes.
+`azd` lists the resources it deletes and prompts for confirmation. Cleanup takes about 2-5 minutes.
 
 :::zone-end
 
@@ -313,7 +313,7 @@ azd down
 | ----- | -------- |
 | `SubscriptionNotRegistered` | Register the provider: `az provider register --namespace Microsoft.CognitiveServices`. |
 | `AuthorizationFailed` during provisioning | Request the **Contributor** role on the subscription or resource group. |
-| `AuthenticationError` or `DefaultAzureCredential` failure | Run `azd auth logout` and then `azd auth login` to refresh credentials. |
+| `AuthenticationError` or `DefaultAzureCredential` failure | To refresh credentials, run `azd auth logout` and then `azd auth login`. |
 | `ResourceNotFound` or `DeploymentNotFound` | Verify the endpoint URL and model deployment name in the Foundry portal under **Build** > **Deployments**. |
 | `AcrPullUnauthorized` | Grant the **AcrPull** role to the project's managed identity on the Container Registry. |
 | `Connection refused` on local run | Ensure no other process is using port 8088. |
@@ -340,9 +340,9 @@ In this quickstart, you:
 Extend the agent with built-in tools and capabilities:
 
 * [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
-* [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality.
+* [Connect Model Context Protocol (MCP) tools](../how-to/tools/model-context-protocol.md) to extend agent functionality.
 * [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic.
-* [Add file search](../how-to/tools/file-search.md) to search your documents.
+* [To search your documents, add file search](../how-to/tools/file-search.md).
 * [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code.
 
 See the [tool catalog](../concepts/tool-catalog.md) for the full list.
