@@ -5,8 +5,9 @@ description: "Discover how to manage compliance and secure your Microsoft Foundr
 author: s-polly
 ms.author: scottpolly
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 05/15/2026
 ai-usage: ai-assisted
 ms.custom: dev-focus, doc-kit-assisted
 
@@ -37,7 +38,9 @@ Use the compliance workspace tabs to reach the right surface quickly.
   - **To view compliance status and guardrail policies**: No special permissions are required beyond project access.
   - **To create or edit guardrail policies**: You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
   - **To enable Defender for Cloud**: You need the Security Admin role or the Owner role for a subscription so that you can turn on Defender plans and agentless protections.
-  - **To configure Microsoft Purview integration**: You need the Azure AI Account Owner role.
+  - **To configure Microsoft Purview integration**: You need the Foundry Account Owner role.
+
+    [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
@@ -198,7 +201,7 @@ This feature requires a Microsoft Purview license in the tenant. To learn about 
 
 ### Enable Microsoft Purview in Foundry
 
-You must have the Azure AI Account Owner role to enable Microsoft Purview integration.
+You must have the Foundry Account Owner role to enable Microsoft Purview integration.
 
 To enable Microsoft Purview in Foundry:
 

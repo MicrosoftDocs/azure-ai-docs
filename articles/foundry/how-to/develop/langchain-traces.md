@@ -2,6 +2,7 @@
 title: Trace LangChain and LangGraph apps with Microsoft Foundry and Azure Monitor
 description: Learn how to trace LangChain and LangGraph applications in Foundry with the AzureAIOpenTelemetryTracer callback handler.
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.author: fasantia

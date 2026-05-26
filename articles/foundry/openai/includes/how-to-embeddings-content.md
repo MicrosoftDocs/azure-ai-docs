@@ -1,15 +1,15 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/14/2026
 ms.custom: include, classic-and-new
 ---
 
-An embedding is a special format of data representation that can be easily utilized by machine learning models and algorithms. The embedding is an information dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating point numbers, such that the distance between two embeddings in the vector space is correlated with semantic similarity between two inputs in the original format. For example, if two texts are similar, then their vector representations should also be similar. Embeddings power vector similarity search in Azure Databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search) or [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
+An embedding is a special format of data representation that machine learning models and algorithms can easily use. An embedding is an information-dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating-point numbers, such that the distance between two embeddings in the vector space correlates with the semantic similarity between two inputs in the original format. For example, if two texts are similar, their vector representations are also similar. Embeddings power vector similarity search in Azure databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search), and [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
 
 ## Prerequisites
 
@@ -23,10 +23,10 @@ For more language-specific setup guidance, see [Azure OpenAI supported programmi
 
 ## How to get embeddings
 
-To obtain an embedding vector for a piece of text, make a request to the embeddings endpoint as shown in the following code snippets:
+To get an embedding vector for a piece of text, make a request to the embeddings endpoint as shown in the following code snippets:
 
 > [!NOTE]
-> The Azure OpenAI embeddings API does not currently support Microsoft Entra ID with the v1 API. Use API key authentication for the examples in this article.
+> The Azure OpenAI embeddings API doesn't currently support Microsoft Entra ID with the v1 API. Use API key authentication for the examples in this article.
 
 # [C#](#tab/csharp)
 
@@ -178,11 +178,15 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
 
 ## Best practices
 
+> [!TIP]
+> Embedding requests return HTTP 400 when the **sum** of input tokens exceeds 300,000, even if every individual input is well under the per-input limit. If you previously batched large arrays of long inputs successfully, split them into smaller requests.
+
 ### Verify inputs don't exceed the maximum length
 
-- The maximum length of input text for our latest embedding models is 8,192 tokens. You should verify that your inputs don't exceed this limit before making a request.
-- If sending an array of inputs in a single embedding request the max array size is 2048.
-- When sending an array of inputs in a single request, remember that the number of tokens per minute in your requests must remain below the quota limit that was assigned at model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
+- The maximum length of input text for the latest embedding models is 8,192 tokens. Verify that your inputs don't exceed this limit before making a request.
+- If you send an array of inputs in a single embedding request, the maximum array size is 2,048.
+- Each `/embeddings` request also has a hard cap of 300,000 tokens summed across all inputs. Requests that exceed this aggregate limit fail with HTTP 400, even when every individual input is under 8,192 tokens and the array length is under 2,048. Batch large workloads into multiple smaller requests to stay under the cap.
+- When you send an array of inputs in a single request, remember that the number of tokens per minute in your requests must stay below the quota limit assigned to the model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
 
 ## Troubleshooting
 
@@ -192,15 +196,14 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
 
 ## Limitations & risks
 
-Our embedding models may be unreliable or pose social risks in certain cases, and may cause harm in the absence of mitigations. Review our Responsible AI content for more information on how to approach their use responsibly.
+Embedding models might be unreliable or pose social risks in certain cases. They might cause harm if used without mitigations. For more information about how to approach their use responsibly, see the [Responsible AI](/azure/foundry/responsible-use-of-ai-overview) content.
 
 ## Next steps
 
-* Learn more about using Azure OpenAI and embeddings to perform document search with our [embeddings tutorial](../tutorials/embeddings.md).
-* Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* Store your embeddings and perform vector (similarity) search using your choice of service:
+* To learn more about using Azure OpenAI and embeddings to perform document search, see the [embeddings tutorial](../tutorials/embeddings.md).
+* To learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+* To store your embeddings and perform vector (similarity) search, choose from the following services:
   * [Azure AI Search](/azure/search/vector-search-overview)
-  * [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search)
   * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
   * [Azure Cosmos DB for NoSQL](/azure/cosmos-db/vector-search)
   * [Azure Cosmos DB for PostgreSQL](/azure/cosmos-db/postgresql/howto-use-pgvector)

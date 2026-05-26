@@ -6,8 +6,8 @@ ms.date: 12/6/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 

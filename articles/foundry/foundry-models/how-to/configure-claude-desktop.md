@@ -20,7 +20,7 @@ This article shows you how to set up Claude Desktop with a Microsoft Foundry inf
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). Free trial, student, credit–based accounts, Enterprise accounts in South Korea, and Cloud Solution Provider subscriptions aren't supported for Claude models. For details on these restrictions, see [subscription type and region support](#subscription-type-and-region-support).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Free trial, student, credit–based accounts, Enterprise accounts in South Korea, and Cloud Solution Provider subscriptions aren't supported for Claude models. For details on these restrictions, see [subscription type and region support](#subscription-type-and-region-support).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A Microsoft Foundry resource with one or more Claude models deployed. See [Deploy and use Claude models in Microsoft Foundry (preview)](use-foundry-models-claude.md).
 - Your Foundry resource name. In the Foundry portal, select your project name > **Project details** > **Parent resource** to find it.

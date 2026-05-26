@@ -68,7 +68,7 @@ items:
   items:
   - name: Azure OpenAI monitoring data reference
     href: ../../openai/monitor-openai-reference.md
-  - name: Audio events reference
+  - name: Realtime API reference
     href: ../../openai/realtime-audio-reference.md
 
 # Foundry Tools APIs and SDKs

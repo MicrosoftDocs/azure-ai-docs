@@ -6,6 +6,7 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: ankamene
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
 ms.date: 03/16/2026
 ms.custom: dev-focus, doc-kit-assisted
@@ -24,7 +25,9 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
   - To manage an existing APIM instance: **API Management Service Contributor** (or **Owner**) on the APIM instance. For more information, see [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control).
 
 - Access to the Foundry portal (**Admin console**) for the target Foundry resource.
-  - For example: **Azure AI Account Owner** or **Azure AI Owner** on the Foundry resource. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+  - For example: **Foundry Account Owner** or **Foundry Owner** on the Foundry resource. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+    [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 

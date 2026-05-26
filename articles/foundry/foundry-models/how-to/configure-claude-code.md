@@ -2,7 +2,7 @@
 title: "Configure Claude Code for Microsoft Foundry"
 description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration."
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 02/24/2026
 ms.custom: dev-focus, doc-kit-assisted
@@ -29,7 +29,7 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../../foundry-classic/how-to/deploy-models-serverless-availability.md#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only.
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
@@ -411,10 +411,12 @@ To grant team members access to your Foundry-hosted Claude models, assign one of
 
 | Role | Permissions |
 | --- | --- |
-| **Azure AI User** | Invoke models, view deployments |
+| **Foundry User** | Invoke models, view deployments |
 | **Cognitive Services User** | Invoke models, view deployments (legacy Azure AI Services role) |
 
-The **Azure AI User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+The **Foundry User** role is the recommended Foundry-native role. The **Cognitive Services User** role is a legacy role that also grants model invocation permissions at the Azure resource level.
 
 These roles include all required permissions for running Claude Code with Foundry.
 
