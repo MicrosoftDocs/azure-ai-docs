@@ -63,6 +63,9 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Browser Automation tool](browser-automation.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
@@ -557,7 +560,7 @@ For version-specific validation before you promote a new toolbox version, use th
 **Check - `tools/call`**:
 
 - No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
-  - `-32006` → OAuth consent required (extract URL from `error.message`).
+  - `-32007` → OAuth consent required (extract URL from `error.message`).
   - Other codes → server-side failure.
 - `result.content[]` contains entries with `"type": "text"` - this is the tool output.
 - For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
@@ -574,6 +577,7 @@ Tool-specific `tools/call` argument examples:
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Step 4: Integrate the toolbox into your agent
@@ -581,6 +585,8 @@ Tool-specific `tools/call` argument examples:
 :::zone pivot="python"
 
 ### LangGraph
+
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 **`.env` file**:
 
@@ -601,7 +607,6 @@ toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
 tools = await toolbox.get_tools()
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 > [!IMPORTANT]
 > Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
@@ -697,7 +702,7 @@ agent = Agent(
 )
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complete implementation.
+<!-- TODO: Add link to full Copilot SDK sample when aka.ms/foundry-toolbox-copilotsdk is published -->
 
 :::zone-end
 
@@ -886,7 +891,7 @@ The toolbox returns a `_meta.tool_configuration` object into every tool entry re
 
 ### Read `require_approval` from `tools/list`
 
-Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox :
+Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox:
 
 ```json
 {
@@ -1713,12 +1718,12 @@ resources:
 :::zone-end
 
 > [!IMPORTANT]
-> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32007`) with a consent URL:
 >
 > ```json
 > {
 >   "error": {
->     "code": -32006,
+>     "code": -32007,
 >     "message": "User consent is required. Please visit: https://..."
 >   }
 > }
@@ -2556,6 +2561,179 @@ resources:
 
 :::zone-end
 
+### [Fabric IQ](fabric-iq.md)
+
+Use this pattern to give the agent access to Microsoft Fabric data - ontologies, data agents, and Power BI semantic models - through Fabric IQ. Provide the project connection, MCP server URL, and server label for the target Fabric item.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Fabric IQ for enterprise Fabric data access",
+  "tools": [
+    {
+      "type": "fabric_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>",
+      "server_label": "<SERVER_LABEL>",
+      "server_url": "<SERVER_URL>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {
+        "type": "fabric_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+        "server_label": "<SERVER_LABEL>",
+        "server_url": "<SERVER_URL>",
+    }
+]
+```
+
+:::zone-end
+
+For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
+
+Annotation chunks are returned in `result.structuredContent.documents[]`. Each document includes `title` and `url` fields that you can use to generate citation details in your application.
+
+### [Tool Search](tool-search.md)
+
+Use this pattern to enable intent-based tool routing. When `toolbox_search_preview` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Toolbox with intent-based tool routing",
+  "tools": [
+    {
+      "type": "toolbox_search_preview"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {"type": "toolbox_search_preview"}
+]
+```
+
+:::zone-end
+
+> [!NOTE]
+> `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
+
+When tool search is enabled, Foundry injects two meta-tools alongside your toolbox tools: `tool_search` and `call_tool`. The `call_tool` meta-tool acts as a proxy that lets agent frameworks invoke any discovered tool by name through a single declared entry point. This avoids schema-validation errors that occur when a framework tries to call a tool that wasn't present in the initial `tools/list`. If your framework supports direct tool calls without schema pre-validation, you can also call a discovered tool directly after finding it with `tool_search`.
+
+### [Browser Automation](browser-automation.md)
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Perform actions using a real web browser",
+  "tools": [
+    {
+      "type": "browser_automation_preview",
+      "name": "<OPTIONAL_TOOL_NAME>",
+      "description": "<Optional description for the model>",
+      "browser_automation_preview": {
+        "connection": {
+          "project_connection_id": "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
+        }
+      }
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import (
+    BrowserAutomationPreviewTool,
+    BrowserAutomationToolParameters,
+    BrowserAutomationToolConnectionParameters,
+)
+
+tools = [
+    BrowserAutomationPreviewTool(
+        browser_automation_preview=BrowserAutomationToolParameters(
+            connection=BrowserAutomationToolConnectionParameters(
+                project_connection_id="<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>",
+            )
+        )
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool tool = new BrowserAutomationPreviewTool(
+    new BrowserAutomationToolOptions(
+        new BrowserAutomationToolConnectionParameters("<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>")
+    )
+);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "browser_automation_preview",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+    browser_automation_preview: {
+      connection: {
+          project_connection_id: "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
+      }
+    }
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: connection
+    name: browser-automation-conn
+    category: PlaywrightWorkspace
+    authType: ApiKey
+    target: wss://your-browser-endpoint.api.playwright.microsoft.com/playwrightworkspaces/browsers
+    credentials:
+      key: "{{ playwright_workspaces_access_token }}"
+  - kind: toolbox
+    name: browser-tools
+    description: Browser Automation toolbox
+    tools:
+      - type: browser_automation_preview
+        project_connection_id: browser-automation-conn
+```
+
+:::zone-end
+
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2565,7 +2743,7 @@ resources:
 | `tools/list` returns fewer tools than expected | The `allowed_tools` filter contains incorrect or misspelled tool names. Tool names are case-sensitive and must follow the [MCP specification for tool names](https://modelcontextprotocol.io/specification/2025-03-26/server/tools) (no whitespace or special characters). | Remove `allowed_tools` temporarily and call `tools/list` to get the full tool list. Use the exact names from the response to set values for `allowed_tools`. |
 | `tools/list` returns zero tools (other tool types) | Toolbox not fully provisioned or tool type unsupported in region. For built-in tools (Web Search, AI Search, Code Interpreter, File Search), tool manifests are constructed server-side and don't require auth — if they return empty, the toolbox version might not be provisioned yet. | Wait 10 seconds and retry. |
 | `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools. |
-| `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
+| `CONSENT_REQUIRED` (code `-32007`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
 | `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
 | Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`). |
 | `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Don't call `send_ping()`. If your framework calls it automatically (for example, Microsoft Agent Framework's `MCPStreamableHTTPTool._ensure_connected()`), disable the ping check or override the method with a no-op. |
@@ -2587,6 +2765,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
+| [Browser Automation](browser-automation.md) | ❌ Not supported | Not yet available |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
