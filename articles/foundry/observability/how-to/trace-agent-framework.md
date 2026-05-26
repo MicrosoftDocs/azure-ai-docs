@@ -570,6 +570,47 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
+## Fabric Data Agent tracing (preview)
+
+Once you add Fabric data agent as a tool to your Foundry agent, you get detailed telemetry for every call to it. You can see latency (how long the data agent took to respond), status (did it succeed or fail), and error details when something goes wrong. Agent builders in Foundry can now debug their Fabric data agent calls properly. Instead of guessing why a response was slow or wrong, you have concrete data to work with.
+
+Two things are sent per data agent call:
+
+- **Agent Span**: Information about the overall agent run
+- **Tool Span**: Information about each tool the data agent uses
+
+### Agent Span
+
+The Agent Span includes:
+
+- Operation type (for example, "invoke_agent")
+- Provider name (always "microsoft.fabric")
+- Agent ID (a system-generated GUID—not customer content)
+- Run ID (unique ID for this invocation)
+- Conversation ID (thread ID for multi-turn chats)
+- Agent display name
+- Finish reason (for example, "stop" = completed normally)
+- Timing (start time, end time, duration)
+- Status (OK / error)
+
+### Tool Span
+
+The Tool Span includes:
+
+- Operation type ("execute_tool")
+- Tool name (for example, "analyze_data_warehouse")
+- Data source name (for example, the warehouse it queried)
+- Timing (start time, end time, duration)
+- Status (OK / error)
+
+### Trace correlation IDs
+
+The following trace correlation IDs are sent in both the Agent Span and Tool Span:
+
+- Trace ID (links everything together across services)
+- Span ID (unique ID for each span)
+- Parent Span ID (shows what called what)
+
 ## Verify traces in the Foundry portal
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
