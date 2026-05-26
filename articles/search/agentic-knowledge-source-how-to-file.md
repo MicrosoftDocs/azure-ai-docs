@@ -25,7 +25,7 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you need paid usage beyond the monthly free allowance, set the `knowledgeRetrieval` service property to `standard` by using the [Search Management REST API](/rest/api/searchmanagement/services/create-or-update).
++ A dedicated Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). File knowledge sources aren't supported on serverless search services. For more information about dedicated tiers, see [Choose a service tier](search-sku-tier.md). If you need paid usage beyond the monthly free allowance, set the `knowledgeRetrieval` service property to `standard` by using the [Search Management REST API](/rest/api/searchmanagement/services/create-or-update).
 
 + Files in a [supported format](#supported-formats-and-limits).
 
