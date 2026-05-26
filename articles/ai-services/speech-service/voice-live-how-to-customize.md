@@ -26,6 +26,9 @@ Voice Live provides multiple options to optimize performance and quality by usin
 
 ## Speech input customization
 
+> [!NOTE]
+> The speech input customization options in this section (phrase list and custom speech) are only available with the `azure-speech` transcription model. They aren't supported with `mai-transcribe-1`.
+
 ### Phrase list
 
 Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
