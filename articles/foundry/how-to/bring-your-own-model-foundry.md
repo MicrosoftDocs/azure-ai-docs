@@ -28,10 +28,10 @@ This article walks through the **local upload** ingestion path: you upload weigh
 In this article, you learn how to:
 
 > [!div class="checklist"]
-> * Register a local model with the one-call `AIProjectClient.beta.models.create()` helper, or with the three-step REST API.
-> * Inspect, update, and manage registered model versions.
+> * Register a local model with the one-call `AIProjectClient.beta.models.models_create()` helper, or with the three-step REST API.
 > * Resolve a deployment template from the base model.
 > * Deploy the model on managed compute and send an inference request.
+> * Inspect, update, and manage registered model versions.
 
 ## Prerequisites
 
@@ -88,7 +88,7 @@ Pick the path that fits your workflow. All three produce the same `FoundryModelD
 
 # [Python SDK](#tab/python)
 
-`AIProjectClient.beta.models.create()` packs the three required steps — `startPendingUpload` → AzCopy upload → `PUT /models` — into a single call and polls until the new model version is observable.
+`AIProjectClient.beta.models.models_create()` packs the three required steps — `startPendingUpload` → AzCopy upload → `PUT /models` — into a single call and polls until the new model version is observable.
 
 ```python
 import os
@@ -109,7 +109,7 @@ with (
     DefaultAzureCredential() as credential,
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-    model = project_client.beta.models.create(
+    model = project_client.beta.models.models_create(
         name=model_name,
         version=model_version,
         source=data_folder,
@@ -160,7 +160,7 @@ Step 2/3: Uploading model files...
   Version:     1
 ```
 
-# [REST (three steps)](#tab/rest)
+# [REST](#tab/rest)
 
 Use the REST flow when you need to script the upload yourself or run it from an environment where the SDK and `azd` aren't available.
 
@@ -230,75 +230,7 @@ Final response (200 OK after polling):
 ---
 
 > [!IMPORTANT]
-> The `baseModel` field is required and immutable for a given version. If the base model isn't in the catalog or has no approved deployment templates, registration fails with `BaseModelNotFound` or `BaseModelNoDTs`. See [Validation errors](#validation-errors).
-
-## Inspect, update, and manage versions
-
-Once a model version exists, use `beta.models` to get it, list versions, update metadata, retrieve blob credentials, or delete it.
-
-# [Python SDK](#tab/python)
-
-```python
-from azure.ai.projects.models import (
-    ModelCredentialRequest,
-    UpdateModelVersionRequest,
-)
-
-# Get a specific version
-fetched = project_client.beta.models.get(name=model_name, version=model_version)
-
-# List all versions of one model
-for mv in project_client.beta.models.list_versions(name=model_name):
-    print(f"  v{mv.version}")
-
-# List the latest version of every model in the project
-for mv in project_client.beta.models.list():
-    print(f"  {mv.name}@{mv.version}")
-
-# Retrieve a short-lived SAS for the model's blob storage (for inspection, audit, or download)
-creds = project_client.beta.models.get_credentials(
-    name=model_name,
-    version=model_version,
-    body=ModelCredentialRequest(blob_uri=fetched.blob_uri),
-)
-
-# Update description and tags (weight_type and base_model are immutable)
-updated = project_client.beta.models.update(
-    name=model_name,
-    version=model_version,
-    body=UpdateModelVersionRequest(
-        description="Updated description",
-        tags={"team": "medical-ai", "stage": "validated"},
-    ),
-)
-
-# Delete a version (blocked if any accelerator deployment references it)
-project_client.beta.models.delete(name=model_name, version=model_version)
-```
-
-# [Azure Developer CLI](#tab/azure-cli)
-
-```bash
-azd ai models list                                          # latest version of each model
-azd ai models show --name my-gpt-oss-120B                   # latest version of one model
-azd ai models show --name my-gpt-oss-120B --version 1       # specific version
-azd ai models delete --name my-gpt-oss-120B --version 1 --force
-```
-
-# [REST](#tab/rest)
-
-```http
-GET    {endpoint}/models?api-version=v1
-GET    {endpoint}/models/{name}/versions?api-version=v1
-GET    {endpoint}/models/{name}/versions/{version}?api-version=v1
-PATCH  {endpoint}/models/{name}/versions/{version}?api-version=v1
-POST   {endpoint}/models/{name}/versions/{version}/getCredentials?api-version=v1
-DELETE {endpoint}/models/{name}/versions/{version}?api-version=v1
-```
-
----
-
-`get_credentials` returns a short-lived SAS scoped to the model's blob storage — useful for downloading the weights back to a local machine for inspection or audit. It doesn't grant deployment permission; deployment uses the model reference, not the SAS.
+> The `baseModel` field is required and immutable for a given version. If the base model isn't in the catalog or has no approved deployment templates, registration fails with `BaseModelNotFound` or `BaseModelNoDTs`. See [Troubleshooting](#troubleshooting).
 
 ## Resolve a deployment template from the base model
 
@@ -491,7 +423,75 @@ print(response.choices[0].message.content)
 
 For endpoint routing details, custom routes (rerankers, embeddings, speech), and switching between the Azure AI Inference SDK and the OpenAI SDK, see [Send inference requests to the deployment](deploy-models.md#send-inference-requests-to-the-deployment).
 
-## Validation errors
+## Inspect, update, and manage registered models
+
+Once a model version exists, use `beta.models` to get it, list versions, update metadata, retrieve blob credentials, or delete it.
+
+# [Python SDK](#tab/python)
+
+```python
+from azure.ai.projects.models import (
+    ModelCredentialRequest,
+    UpdateModelVersionRequest,
+)
+
+# Get a specific version
+fetched = project_client.beta.models.get(name=model_name, version=model_version)
+
+# List all versions of one model
+for mv in project_client.beta.models.list_versions(name=model_name):
+    print(f"  v{mv.version}")
+
+# List the latest version of every model in the project
+for mv in project_client.beta.models.list():
+    print(f"  {mv.name}@{mv.version}")
+
+# Retrieve a short-lived SAS for the model's blob storage (for inspection, audit, or download)
+creds = project_client.beta.models.get_credentials(
+    name=model_name,
+    version=model_version,
+    body=ModelCredentialRequest(blob_uri=fetched.blob_uri),
+)
+
+# Update description and tags (weight_type and base_model are immutable)
+updated = project_client.beta.models.update(
+    name=model_name,
+    version=model_version,
+    body=UpdateModelVersionRequest(
+        description="Updated description",
+        tags={"team": "medical-ai", "stage": "validated"},
+    ),
+)
+
+# Delete a version (blocked if any accelerator deployment references it)
+project_client.beta.models.delete(name=model_name, version=model_version)
+```
+
+# [Azure Developer CLI](#tab/azure-cli)
+
+```bash
+azd ai models list                                          # latest version of each model
+azd ai models show --name my-gpt-oss-120B                   # latest version of one model
+azd ai models show --name my-gpt-oss-120B --version 1       # specific version
+azd ai models delete --name my-gpt-oss-120B --version 1 --force
+```
+
+# [REST](#tab/rest)
+
+```http
+GET    {endpoint}/models?api-version=v1
+GET    {endpoint}/models/{name}/versions?api-version=v1
+GET    {endpoint}/models/{name}/versions/{version}?api-version=v1
+PATCH  {endpoint}/models/{name}/versions/{version}?api-version=v1
+POST   {endpoint}/models/{name}/versions/{version}/getCredentials?api-version=v1
+DELETE {endpoint}/models/{name}/versions/{version}?api-version=v1
+```
+
+---
+
+`get_credentials` returns a short-lived SAS scoped to the model's blob storage — useful for downloading the weights back to a local machine for inspection or audit. It doesn't grant deployment permission; deployment uses the model reference, not the SAS.
+
+## Troubleshooting
 
 The most common errors you'll encounter during BYOW registration and deployment:
 
@@ -510,9 +510,13 @@ The most common errors you'll encounter during BYOW registration and deployment:
 
 For deployment-time errors (quota, capacity, cold-start latency), see [Troubleshooting](deploy-models.md#troubleshooting) in the managed compute article.
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Deploy open-source AI models with managed compute](deploy-models.md)
+
 ## Related content
 
-- [Deploy open-source AI models with managed compute](deploy-models.md)
 - [Create a Foundry project](../../how-to/create-projects.md)
 - [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)
 - [Deployment templates reference](../foundry-models/reference/deployment-templates.md)
