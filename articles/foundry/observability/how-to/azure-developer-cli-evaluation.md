@@ -4,11 +4,7 @@ description: Learn how to initialize evaluation assets, run an evaluation, and i
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-<<<<<<< HEAD
-ms.date: 05/26/2026
-=======
 ms.date: 06/02/2026
->>>>>>> azdclieval0526
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -29,15 +25,7 @@ This article covers how to run the first agent evaluation with `azd ai agent eva
 
 - An Azure subscription with access to Microsoft Foundry.
 - The Azure Developer CLI (`azd`). For installation instructions, see [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
-<<<<<<< HEAD
-- The Foundry agent extension for `azd`. Install it by running:
-
-  ```bash
-  azd extension install azure.ai.agents
-  ```
-=======
 - The `azd ai agent` extension installed (`azd extension install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. To learn more about the `azd` AI agent extension see, [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension)
->>>>>>> azdclieval0526
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 - **For hosted agents:** No pre-existing Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
@@ -121,7 +109,6 @@ With no flags, the command starts an interactive wizard. The wizard detects the 
 Example interactive output:
 
 ```text
-<<<<<<< HEAD
 ? Eval suite name: reservation-agent
 ? How would you like to provide the agent instruction?: Type inline
 ? Describe what this agent does and what scenarios to test: This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement.
@@ -140,28 +127,6 @@ Eval suite created
   Evaluator:  builtin.task_adherence
   Evaluator:  reservation-agent-quality (1)
               src/reservation-agent/evaluators/reservation-agent-quality/rubric_dimensions.json
-=======
-Detecting agent...
-  Found: reservation-agent (hosted)
-
-Generation prompt
-  Describe what this agent does and what scenarios to test.
-  > This agent handles restaurant reservations. Test booking, modification, cancellation, and policy enforcement.
-
-Generation model
-  gpt-5.5
-
-Max samples: 100
-
-Generating dataset and evaluators...
-  Dataset generation:    done  (registered: reservation-agent-dev-eval-seed/v1)
-  Evaluator generation:  done  (registered: reservation-agent-quality/v1)
-
-Eval suite created
-  Config:     eval.yaml
-  Dataset:    src//datasets/reservation-agent-dev-eval-seed.jsonl
-  Evaluator:  src//evaluators/reservation-agent-dev-eval-seed.yaml
->>>>>>> azdclieval0526
 
   Evaluator dimensions (4):
     Weight  Dimension
