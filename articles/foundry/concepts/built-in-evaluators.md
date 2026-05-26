@@ -84,6 +84,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. |
 | Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
 | Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. |
+| Quality Grader (preview) | Enables quality evaluation across multiple dimensions—relevance, abstention, answer completeness, groundedness, and context coverage—in a single evaluator instead of running individual evaluators separately. |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 

@@ -39,6 +39,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Tool Input Accuracy | Process evaluation | Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Binary: Pass/Fail |
 | Tool Output Utilization | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Binary: Pass/Fail |
 | Tool Call Success | Process evaluation | Monitoring tool reliability, detecting API failures, timeout issues, or technical errors in tool execution | Measures if tool calls succeeded or resulted in technical errors or exceptions | Binary: Pass/Fail |
+| Quality Grader (preview) | Quality evaluation | Assessing overall response quality at the turn level, including relevance, abstention, answer completeness, and optionally groundedness and context coverage | Enables quality evaluation across multiple dimensions—relevance, abstention, answer completeness, groundedness, and context coverage—in a single evaluator instead of running individual evaluators separately | Binary: Pass/Fail based on threshold (1-5 scale) |
 
 ## System evaluation
 
@@ -75,6 +76,23 @@ Examples:
 - [Tool input accuracy sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
 - [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
+
+## Quality evaluation
+
+Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator examines multiple dimensions of response quality:
+
+- **Relevance** - Is the response relevant to the user's query?
+- **Abstention** - Does the agent appropriately abstain when it cannot or should not answer?
+- **Answer completeness** - Does the response fully address the user's question?
+
+When context is provided, the Quality Grader additionally evaluates:
+
+- **Groundedness** - Is the response grounded in the provided context?
+- **Context coverage** - Does the response make use of the relevant information in the context?
+
+Examples:
+
+- [Quality grader sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_quality_grader.py)
 
 ## Model and tool support
 
