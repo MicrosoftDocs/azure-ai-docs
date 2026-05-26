@@ -63,12 +63,7 @@ The following table lists limits for Foundry Models for the following rates:
 |- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
-To increase your quota:
-
-- For Azure OpenAI, use [Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
-- For other models, see [request increases to the default limits](#request-increases-to-the-default-limits). 
- 
-Due to high demand, limit increase requests are evaluated individually.
+To increase your quota, use [Microsoft Foundry Service: Request for Quota Increase](https://aka.ms/oai/stuquotarequest) to submit your request. Due to high demand, requests to increase quota are evaluated individually. For more information on quota increase requests, see [request increases to the default limits](#request-increases-to-the-default-limits). 
 
 ### Other limits
 
