@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Configure guided guardrail setup for an agent (preview)
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+[!INCLUDE [preview-notice](../includes/code-preview.md)] 
 
 In this article, you configure safety and security guardrails for an agent using Microsoft Foundry. Instead of selecting controls manually, you answer a short set of questions about your agent's intended users, data handling, and tool usage. Foundry maps your responses to relevant risk categories and applies targeted controls at the correct intervention points: user input, tool calls, tool responses, and output.
 
