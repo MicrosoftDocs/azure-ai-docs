@@ -18,9 +18,7 @@ ai-usage: ai-assisted
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset.
+In this article, you learn how to run evaluations in the cloud for predeployment testing on a test dataset.
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
 
@@ -44,8 +42,8 @@ Cloud evaluation supports the following scenarios:
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from an existing dataset. | `azure_ai_conversations` | — |
-| **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_conversation_simulation` | `azure_ai_agent` |
+| **[Multiturn conversation evaluation](#multiturn-conversation-evaluation)** | Evaluate complete multi-turn conversations from a dataset, by conversation ID, or by agent filter. | `jsonl` or `azure_ai_trace_data_source_preview` | — |
+| **[Conversation simulation](#conversation-simulation)** | Generate simulated multi-turn conversations from scenario descriptions and evaluate them. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
 Most scenarios require input data. You can provide data in two ways:
@@ -207,7 +205,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name
+            "model": model_deployment_name
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -219,7 +217,7 @@ testing_criteria = [
         "name": "violence",
         "evaluator_name": "builtin.violence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name
+            "model": model_deployment_name
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -320,7 +318,7 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "initialization_parameters": { "model": "gpt-5-mini" },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -330,7 +328,7 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
-        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "initialization_parameters": { "model": "gpt-5-mini" },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
@@ -425,7 +423,7 @@ testing_criteria = [
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        "initialization_parameters": {"deployment_name": model_deployment_name},
+        "initialization_parameters": {"model": model_deployment_name},
     },
     {
         "type": "azure_ai_evaluator",
@@ -435,7 +433,7 @@ testing_criteria = [
             "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
-        "initialization_parameters": {"deployment_name": model_deployment_name},
+        "initialization_parameters": {"model": model_deployment_name},
     },
     {
         "type": "azure_ai_evaluator",
@@ -526,7 +524,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -695,7 +693,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -716,7 +714,7 @@ testing_criteria = [
         "name": "task_adherence",
         "evaluator_name": "builtin.task_adherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -917,7 +915,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     {
@@ -1034,7 +1032,7 @@ In addition to the general [prerequisites](#prerequisites), trace evaluation req
 - The `azure-monitor-query` Python package (only needed if you collect trace IDs manually).
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" azure-monitor-query
+pip install "azure-ai-projects>=2.2.0" azure-monitor-query
 ```
 
 Set these environment variables:
@@ -1188,7 +1186,7 @@ testing_criteria = [
             "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     # Tool evaluators — assess tool usage quality
@@ -1203,7 +1201,7 @@ testing_criteria = [
             "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
     },
     # Safety evaluators — work even with partial trace data
@@ -1261,7 +1259,7 @@ testing_criteria = [
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+            "model": model_deployment_name,
         },
         "data_mapping": {
             "query": "{{item.query}}",
@@ -1394,7 +1392,7 @@ curl --request POST \
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-          "deployment_name": "gpt-5-mini"
+          "model": "gpt-5-mini"
         },
         "data_mapping": {
           "query": "{{item.query}}",
@@ -1443,7 +1441,17 @@ To poll for completion and interpret results, see [Get results](#get-results). T
 
 ## Multiturn conversation evaluation
 
-Evaluate complete multi-turn conversations using the `azure_ai_conversations` data source type. Use this scenario when you have existing conversation data—such as real user interactions or previously generated conversations—and want to assess conversation-level metrics like customer satisfaction, task completion, and overall coherence.
+Evaluate complete multi-turn conversations to assess agent quality across entire user interactions—not just individual responses. Use multiturn evaluation to identify conversation-level quality issues like incomplete task resolution, user frustration, and tool-call regressions that single-turn evaluation misses.
+
+For example, consider a support agent where the user grows frustrated over multiple turns:
+
+> **Turn 1** — User: "I need to reset my password." Agent: "I found your account. I'll send a reset link."
+>
+> **Turn 2** — User: "I didn't get the email." Agent: "I've resent the link. Please check spam."
+>
+> **Turn 3** — User: "Still nothing. Can you just reset it directly?" Agent: "I've sent another reset link."
+
+A single-turn evaluator scores only the last response—which is polite and takes action—so it scores well. A multiturn evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
 
 Multiturn evaluation differs from single-turn evaluation in several ways:
 
@@ -1454,87 +1462,135 @@ Multiturn evaluation differs from single-turn evaluation in several ways:
 | **Data format** | JSONL with `query` and `response` fields | JSONL with `messages` array containing the full conversation |
 | **Use case** | Testing individual model responses | Testing end-to-end agent experiences |
 
-> [!TIP]
-> Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
+Multiturn evaluation supports four data source options:
+
+| Option | When to use | Data source type |
+|--------|-------------|------------------|
+| [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` with `file_id` or `file_content` |
+| [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_trace_data_source_preview` with `trace_source` |
+| [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` with `trace_source` |
+| [Simulated conversations](#conversation-simulation) | You want to generate synthetic test conversations | `simulator` with target configuration |
+
+### Choose an evaluation level
+
+The `evaluation_level` parameter on the run determines whether evaluators score individual turns or complete conversations:
+
+| Value | Behavior |
+|-------|----------|
+| `"turn"` | Evaluators score each turn independently. |
+| `"conversation"` | Evaluators score the entire conversation as a whole. |
+| (omitted) | Defaults to `"turn"`. |
+
+> [!IMPORTANT]
+> **Evaluator compatibility**: Each evaluator supports specific evaluation levels. Check the evaluator's `supported_evaluation_levels` field in the [evaluator catalog](../evaluate-generative-ai-app.md).
+>
+> - **Turn-only evaluators** (for example, `fluency`, `relevance`) can't be used with `evaluation_level="conversation"`.
+> - Currently, all multiturn evaluators support both `"turn"` and `"conversation"` levels.
+
+#### Common errors
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Incompatible evaluation level | Using `evaluation_level="conversation"` with a turn-only evaluator | Remove the turn-only evaluator or change to `evaluation_level="turn"` |
 
 ### Prepare conversation data
 
 Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`:
 
 ```json
-{"messages": [{"role": "system", "content": "You are a helpful travel assistant."}, {"role": "user", "content": "I need to book a flight to Paris."}, {"role": "assistant", "content": "I'd be happy to help you book a flight to Paris. What dates are you looking to travel?"}, {"role": "user", "content": "Next Friday, returning Sunday."}, {"role": "assistant", "content": "I found several options for flights departing next Friday and returning Sunday. The best value is a direct flight on Air France for $450 round trip. Would you like me to book this for you?"}]}
-{"messages": [{"role": "system", "content": "You are a helpful travel assistant."}, {"role": "user", "content": "What hotels are available near the Eiffel Tower?"}, {"role": "assistant", "content": "I found several hotels within walking distance of the Eiffel Tower. The top-rated option is Hotel Le Walt, a 4-star hotel about 500 meters away. Prices start at $180 per night. Would you like more details or other options?"}]}
+ {"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": "Your current balance is $1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}]}
 ```
 
 You can also include tool definitions and tool calls if your agent uses tools:
 
 ```json
-{"messages": [{"role": "user", "content": "What's the weather in Paris?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_123", "type": "function", "function": {"name": "get_weather", "arguments": "{\"location\": \"Paris\"}"}}]}, {"role": "tool", "tool_call_id": "call_123", "content": "{\"temperature\": 18, \"condition\": \"sunny\"}"}, {"role": "assistant", "content": "The weather in Paris is currently sunny with a temperature of 18°C (64°F)."}], "tool_definitions": [{"type": "function", "function": {"name": "get_weather", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}}}}]}
+{"messages": [{"role": "user", "content": "What is the capital of France?"}, {"role": "assistant", "content": "Paris"}]}
+{"messages": [{"role": "user", "content": "How do I reverse a string in Python?"}, {"role": "assistant", "content": "You can reverse a string in Python by using slicing: string[::-1]"}]}
+{"messages": [{"role": "user", "content": "What are the main causes of climate change?"}, {"role": "assistant", "content": "The main causes of climate change are the increase in greenhouse gases in the atmosphere, primarily due to human activities such as burning fossil fuels and deforestation."}]}
+{"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_abc123", "type": "function", "function": {"name": "get_account_balance", "arguments": "{\"account_id\": \"ACCT-7890\"}"}}]}, {"role": "tool", "tool_call_id": "call_abc123", "content": "{ \"balance\": 1234.56, \"currency\": \"USD\" }"}, {"role": "assistant", "content": "Your current balance is 1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}], "tool_definitions": [{"name": "get_account_balance", "description": "Retrieves the current balance for a customer account", "parameters": {"type": "object", "properties": {"account_id": {"type": "string"}}, "required": ["account_id"]}}]}
+{"messages": [{"role": "user", "content": "Explain the theory of relativity in simple terms."}, {"role": "assistant", "content": "Einstein's theory of relativity shows that space and time are interconnected and relative to the observer's frame of reference."}]}
+{"messages": [{"role": "user", "content": "What's the weather in Seattle?"}, {"role": "assistant", "content": null, "tool_calls": [{"id": "call_002", "type": "function", "function": {"name": "get_weather", "arguments": "{\"location\": \"Seattle, WA\"}"}}]}, {"role": "tool", "tool_call_id": "call_002", "content": "{ \"temperature\": 55, \"condition\": \"Cloudy\" }"}, {"role": "assistant", "content": "It's currently 55F and cloudy in Seattle."}], "tool_definitions": [{"name": "get_weather", "description": "Get the current weather for a location", "parameters": {"type": "object", "properties": {"location": {"type": "string"}}, "required": ["location"]}}]}
+{"messages": [{"role": "user", "content": "What is the tallest mountain in the world?"}, {"role": "assistant", "content": "Mount Everest is the tallest mountain in the world."}]}
+{"messages": [{"role": "user", "content": "Is 4 x 2 = 16?"}, {"role": "assistant", "content": "No, 4 x 2 = 8."}]}
+{"messages": [{"role": "user", "content": "What is the best Italian desert?"}, {"role": "assistant", "content": "Tiramisu is a popular Italian dessert."}]}
+{"messages": [{"role": "user", "content": "What is the chemical formula for water?"}, {"role": "assistant", "content": "The chemical formula for water is H2O."}]}
 ```
 
 ### Define the data schema and evaluators
 
-Specify the schema for your conversation data and select evaluators designed for multiturn conversations. Conversation-level evaluators assess the entire interaction rather than individual turns.
+Specify the schema for your conversation data, "messages", and select evaluators designed for multi-turn conversations. Conversation-level evaluators assess the entire interaction rather than individual turns.
 
 # [Python](#tab/python)
 
-```python
-# TODO: Engineering to provide final schema and evaluator configuration
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
-        "type": "object",
-        "properties": {
-            "messages": {"type": "array"},
-            "tool_definitions": {"type": "array"},
-        },
-        "required": ["messages"],
-    },
-}
+```bash
+pip install "azure-ai-projects>=2.2.0"
+```
 
-testing_criteria = [
-    {
-        "type": "azure_ai_evaluator",
-        "name": "customer_satisfaction",
-        "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+```python
+import os
+from openai.types.eval_create_params import DataSourceConfigCustom
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    data_source_config = DataSourceConfigCustom(
+        type="custom",
+        item_schema={
+            "type": "object",
+            "properties": {
+                "messages": {"type": "array"},
+                "tool_definitions": {"type": "array"},
+            },
+            "required": ["messages"],
         },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "task_completion",
-        "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "conversation_coherence",
-        "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-        "data_mapping": {
-            "messages": "{{item.messages}}",
-        },
-    },
-]
+        include_sample_schema=False,
+    )
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
 ```
 
 # [cURL](#tab/curl)
 
 ```bash
-# TODO: Engineering to provide final cURL example
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=2025-11-15-preview" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -1548,14 +1604,36 @@ curl --request POST \
           "tool_definitions": {"type": "array"}
         },
         "required": ["messages"]
-      }
+      },
+      "include_sample_schema": false
     },
     "testing_criteria": [
       {
         "type": "azure_ai_evaluator",
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "task_completion",
+        "evaluator_name": "builtin.task_completion",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "conversation_coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "groundedness",
+        "evaluator_name": "builtin.groundedness",
+        "initialization_parameters": {"model": "gpt-5-mini"},
         "data_mapping": {"messages": "{{item.messages}}"}
       }
     ]
@@ -1569,47 +1647,52 @@ curl --request POST \
 # [Python](#tab/python)
 
 ```python
-# TODO: Engineering to provide final implementation
+from openai.types.evals.create_eval_jsonl_run_data_source_param import (
+    CreateEvalJSONLRunDataSourceParam,
+    SourceFileID,
+)
+
 # Upload conversation data
 data_id = project_client.datasets.upload_file(
-    name="conversation-eval-data",
+    name="multiturn-conversation-data",
     version="1",
     file_path="./conversations.jsonl",
 ).id
 
 # Create the evaluation
-eval_object = client.evals.create(
-    name="Multiturn Conversation Evaluation",
+eval_object = openai_client.evals.create(
+    name="Multi-turn Conversation Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
 
-# Create a run using the conversation data
-eval_run = client.evals.runs.create(
+# Create a run with evaluation_level set to "conversation"
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="multiturn-conversation-run",
-    data_source={
-        "type": "azure_ai_conversations",
-        "source": {
-            "type": "file_id",
-            "id": data_id,
-        },
-    },
+    data_source=CreateEvalJSONLRunDataSourceParam(
+        type="jsonl",
+        source=SourceFileID(
+            type="file_id",
+            id=data_id,
+        ),
+    ),
+    extra_body={"evaluation_level": "conversation"},
 )
 ```
 
 # [cURL](#tab/curl)
 
 ```bash
-# TODO: Engineering to provide final cURL example
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "multiturn-conversation-run",
+    "evaluation_level": "conversation",
     "data_source": {
-      "type": "azure_ai_conversations",
+      "type": "jsonl",
       "source": {
         "type": "file_id",
         "id": "YOUR_DATASET_ID"
@@ -1622,9 +1705,301 @@ curl --request POST \
 
 To poll for completion and interpret results, see [Get results](#get-results).
 
+### Evaluate conversations by ID from traces
+
+Evaluate specific conversations from Application Insights by providing their conversation IDs. Use this option to root-cause issues or verify fixes on specific interactions—for example, investigating a conversation flagged by an alert or verifying a fix for a known issue.
+
+#### Where to find conversation IDs
+
+You can find conversation IDs in:
+
+- **Application Insights trace logs UI** — Browse to interesting traces and locate the `conversation_id` field in the trace details.
+- **Your application's logging output** — If you set `conversation_id` explicitly when creating agent responses, retrieve it from your logs.
+- **OpenTelemetry trace context** — The `conversation_id` may also be derived from the [traceparent](https://www.w3.org/TR/trace-context/#traceparent-header) header if your agent uses standard trace context propagation.
+
+> [!NOTE]
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+
+#### Parameters for conversation ID lookup
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `conversation_ids` | Yes | Array of conversation IDs to evaluate. |
+| `lookback_hours` | No | Hours to search back from `end_time`. Defaults to 7 days (168 hours). |
+| `end_time` | No | End of the search window (ISO 8601 format). Defaults to the current time. |
+
+# [Python](#tab/python)
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+
+# Provide conversation IDs or trace IDs from App Insights
+conversation_ids = ["conversation_1234", "conversation_5678"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Eval group for trace-based evaluations
+    data_source_config = {
+        "type": "azure_ai_source",
+        "scenario": "traces",
+    }
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
+
+    # Create evaluation with traces scenario
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Trace Evaluation (by ID)",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
+
+    # Run evaluation on specific conversation IDs
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="multiturn-trace-by-id-run",
+        data_source={
+            "type": "azure_ai_trace_data_source_preview",
+            "trace_source": {
+                "type": "conversation_id_source",
+                "conversation_ids": conversation_ids,
+            },
+        },
+        extra_body={"evaluation_level": "conversation"},
+    )
+```
+
+# [cURL](#tab/curl)
+
+```bash
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "conversation-trace-eval",
+    "evaluation_level": "conversation",
+    "data_source": {
+      "type": "azure_ai_trace_data_source_preview",
+      "trace_source": {
+        "type": "conversation_id_source",
+        "conversation_ids": ["conversation_1234", "conversation_5678"],
+        "lookback_hours": 24,
+        "end_time": "2026-05-21T00:00:00Z"
+      }
+    }
+  }'
+```
+
+---
+
+> [!NOTE]
+> - There may be a delay between when traces are generated and when they become available for evaluation due to Application Insights data ingestion. If traces aren't found, wait a few minutes and retry.
+> - The maximum lookback is **7 days (168 hours)**. To access older traces, use `start_time` and `end_time` within your App Insights retention limits.
+
+### Evaluate sampled conversations by agent filter
+
+Evaluate a sampled set of conversations from Application Insights by filtering on agent name. Use this option to assess overall agent quality across production traffic—for example, running regular quality assessments or monitoring for quality degradation in production.
+
+The agent you specify for filtering can be part of a multi-agent conversation. The filter matches any conversation where that agent participated.
+
+> [!NOTE]
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+
+#### Agent identity fields
+
+Specify the agent to filter by using one of these formats:
+
+| Format | Example | Description |
+|--------|---------|-------------|
+| `agent_name` + `agent_version` | `"agent_name": "my-agent", "agent_version": "1"` | Two separate fields. If `agent_version` is omitted, uses the latest version. |
+| `agent_id` | `"agent_id": "my-agent:1"` | Single string in `"name:version"` format. |
+
+#### Filter strategies
+
+| Strategy | Description |
+|----------|-------------|
+| `random_sampling` | (Default) Uniformly random sample up to `max_traces` conversations. |
+| `smart_filtering` | Service-managed heuristic that biases toward "interesting" traces—conversations with potential issues, edge cases, or anomalies. |
+
+#### Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `agent_name` | Yes | The agent name to filter traces by. |
+| `agent_version` | No | The agent version. If omitted, uses the latest version. |
+| `agent_id` | No | Alternative to `agent_name` + `agent_version`. Single string in format `"name:version"`. |
+| `start_time` | Yes | Start of the time window (Unix epoch seconds, UTC). |
+| `end_time` | Yes | End of the time window (Unix epoch seconds, UTC). Pad by +600 seconds to avoid ingestion delay. |
+| `max_traces` | No | Maximum conversations to sample. Defaults to 1000. |
+| `filter_strategy` | No | `"random_sampling"` (default) or `"smart_filtering"` (service-managed heuristic that biases toward interesting traces). |
+
+> [!IMPORTANT]
+> The time window (`end_time - start_time`) must be at least **15 minutes** (900 seconds). This is required because conversation-level queries apply a 5-minute inactivity buffer on each edge to avoid partial conversations.
+
+# [Python](#tab/python)
+
+```python
+import os
+import time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+agent_name = os.environ["FOUNDRY_AGENT_NAME"]
+agent_version = os.environ.get("FOUNDRY_AGENT_VERSION", "")
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Eval group for trace-based evaluations
+    data_source_config = {
+        "type": "azure_ai_source",
+        "scenario": "traces",
+    }
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
+
+    eval_object = openai_client.evals.create(
+        name="Multi-turn Trace Evaluation (Agent Filter)",
+        data_source_config=data_source_config,
+        testing_criteria=testing_criteria,
+    )
+
+    # Compute time window in unix seconds
+    # Pad end_time by +600s (10 min) to avoid ingestion-delay edge exclusion
+    now_unix = int(time.time())
+    end_time = now_unix + 600
+    start_time = now_unix - (24 * 3600)  # 24 hours lookback
+
+    # Build trace_source with agent filter
+    trace_source = {
+        "type": "agent_filter",
+        "agent_name": agent_name,
+        "start_time": start_time,
+        "end_time": end_time,
+        "max_traces": 5,
+    }
+    if agent_version:
+        trace_source["agent_version"] = agent_version
+
+    # Run evaluation on sampled agent conversations
+    eval_run = openai_client.evals.runs.create(
+        eval_id=eval_object.id,
+        name="multiturn-agent-filter-run",
+        data_source={
+            "type": "azure_ai_trace_data_source_preview",
+            "trace_source": trace_source,
+        },
+        extra_body={"evaluation_level": "conversation"},
+    )
+```
+
+# [cURL](#tab/curl)
+
+```bash
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "agent-quality-eval",
+    "evaluation_level": "conversation",
+    "data_source": {
+      "type": "azure_ai_trace_data_source_preview",
+      "trace_source": {
+        "type": "agent_filter",
+        "agent_name": "my-support-agent",
+        "agent_version": "1",
+        "start_time": 1743465600,
+        "end_time": 1743552600,
+        "max_traces": 100,
+        "filter_strategy": "random_sampling"
+      }
+    }
+  }'
+```
+
+---
+
+> [!NOTE]
+> The App Insights query timespan is currently limited to a maximum of **7 days (168 hours)**. Traces older than 7 days aren't reachable without explicitly providing `start_time`/`end_time` within App Insights retention limits.
+
+To poll for completion and interpret results, see [Get results](#get-results).
+
 ## Conversation simulation
 
-Generate simulated multi-turn conversations from scenario descriptions and evaluate them using the `azure_ai_conversation_simulation` data source type. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
+Generate simulated multi-turn conversations from scenario descriptions and evaluate them. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
 
 This approach is useful for:
 
@@ -1632,9 +2007,6 @@ This approach is useful for:
 - **Edge case coverage**: Test scenarios that rarely occur naturally but are important to handle well.
 - **Regression testing**: Ensure agent updates don't degrade performance on known scenarios.
 - **Scale testing**: Generate many conversations quickly to stress-test agent capabilities.
-
-> [!TIP]
-> Before you begin, complete [Get started](#get-started).
 
 ### How conversation simulation works
 
@@ -1646,29 +2018,23 @@ This approach is useful for:
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. Include details about the user's goal, context, and any constraints:
+Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints:
 
 ```json
-{"scenario": "You are a customer who purchased a laptop two weeks ago. The screen started flickering yesterday. You want to get it repaired or replaced under warranty. You are frustrated but willing to work with the support agent."}
-{"scenario": "You are planning a surprise birthday party for your spouse. You need to book a restaurant for 15 people next Saturday evening. You have a budget of $500 and some guests have dietary restrictions (2 vegetarian, 1 gluten-free)."}
-{"scenario": "You are a small business owner who received an invoice that seems incorrect. The amount charged is $500 more than expected. You want to understand the discrepancy and get it resolved."}
-```
 
-You can also include additional context fields that the simulator can use:
-
-```json
-{"scenario": "You need to cancel your subscription.", "user_persona": "Impatient, direct communicator", "expected_outcome": "Subscription cancelled with confirmation number"}
-{"scenario": "You want to upgrade your service plan.", "user_persona": "Detail-oriented, asks many questions", "expected_outcome": "Plan upgraded with clear explanation of new features"}
+{"id": "walmart_refund_timeline", "test_case_description": "Customer returned an item to Walmart 5 days ago and hasn't received their refund yet. They want to know how long Walmart refunds take.", "desired_num_turns": 10}
+{"id": "walmart_store_hours_lookup", "test_case_description": "Customer wants to know what time the Walmart store closes today. Simple single-fact question with possibly one clarifying turn about which location.", "desired_num_turns": 3}
 ```
 
 ### Parameters
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `samples_count` | No | Number of conversations to generate per scenario. Defaults to 1. |
-| `max_turns` | No | Maximum number of turns (exchanges) per conversation. Defaults to 10. |
-| `simulator_model` | No | Model deployment to use for simulating the user. Defaults to the project's default model. |
-| `output_dataset_name` | No | Name for the dataset where generated conversations are stored. |
+| `num_conversations` | No | Number of conversations to generate per scenario. Defaults to 5, server-side cap of 5. |
+| `max_turns` | No | Maximum number of turns (exchanges) per conversation. Defaults to 10, server-side cap of 20. |
+| `model` | No | Model deployment to use for simulating the user. For example, `gpt-4.1`. |
+| `sampling_params` | No | Sampling parameters for the simulator model, including `temperature`, `top_p`, and `max_completion_tokens`. |
+| `data_mapping` | No | Maps fields from your scenario JSONL to simulation parameters. Common mappings: `test_case_description`, `id`, `desired_num_turns`. |
 
 ### Define evaluators
 
@@ -1677,66 +2043,115 @@ Select evaluators designed for conversation-level assessment. The simulated conv
 # [Python](#tab/python)
 
 ```python
-# TODO: Engineering to provide final schema and evaluator configuration
-data_source_config = {
-    "type": "azure_ai_source",
-    "scenario": "conversation_simulation",
-}
+import os
+from openai.types.eval_create_params import DataSourceConfigCustom
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator, PromptAgentDefinition
 
-testing_criteria = [
-    {
-        "type": "azure_ai_evaluator",
-        "name": "customer_satisfaction",
-        "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["FOUNDRY_MODEL_NAME"]
+agent_name = os.environ.get("FOUNDRY_AGENT_NAME", "")
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Simulation uses the same "custom" eval group type as dataset evaluation (S1),
+    # since the generated conversations follow the same messages schema.
+    data_source_config = DataSourceConfigCustom(
+        type="custom",
+        item_schema={
+            "type": "object",
+            "properties": {
+                "messages": {"type": "array"},
+            },
+            "required": ["messages"],
         },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "task_completion",
-        "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "groundedness",
-        "evaluator_name": "builtin.groundedness",
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-    },
-]
+        include_sample_schema=False,
+    )
+
+    testing_criteria = [
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="conversation_coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+    ]
 ```
 
 # [cURL](#tab/curl)
 
 ```bash
-# TODO: Engineering to provide final cURL example
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=2025-11-15-preview" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "conversation-simulation-evaluation",
     "data_source_config": {
-      "type": "azure_ai_source",
-      "scenario": "conversation_simulation"
+      "type": "custom",
+      "item_schema": {
+        "type": "object",
+        "properties": {
+          "messages": {"type": "array"}
+        },
+        "required": ["messages"]
+      },
+      "include_sample_schema": false
     },
     "testing_criteria": [
       {
         "type": "azure_ai_evaluator",
         "name": "customer_satisfaction",
         "evaluator_name": "builtin.customer_satisfaction",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"}
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
       },
       {
         "type": "azure_ai_evaluator",
         "name": "task_completion",
         "evaluator_name": "builtin.task_completion",
-        "initialization_parameters": {"deployment_name": "gpt-5-mini"}
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "conversation_coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "groundedness",
+        "evaluator_name": "builtin.groundedness",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {"messages": "{{item.messages}}"}
       }
     ]
   }'
@@ -1749,7 +2164,15 @@ curl --request POST \
 # [Python](#tab/python)
 
 ```python
-# TODO: Engineering to provide final implementation
+# Create (or update) an agent to simulate against
+agent = project_client.agents.create_version(
+    agent_name=agent_name,
+    definition=PromptAgentDefinition(
+        model=model_deployment_name,
+        instructions="You are a helpful customer service agent. Be empathetic and solution-oriented.",
+    ),
+)
+
 # Upload scenario data
 scenarios_id = project_client.datasets.upload_file(
     name="simulation-scenarios",
@@ -1758,73 +2181,87 @@ scenarios_id = project_client.datasets.upload_file(
 ).id
 
 # Create the evaluation
-eval_object = client.evals.create(
-    name="Conversation Simulation Evaluation",
+eval_object = openai_client.evals.create(
+    name="Multi-turn Conversation Simulation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
 
-# Create a run that simulates conversations and evaluates them
-eval_run = client.evals.runs.create(
+# Create a simulation run
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="conversation-simulation-run",
     data_source={
-        "type": "azure_ai_conversation_simulation",
+        "type": "azure_ai_target_completions",
         "source": {
             "type": "file_id",
             "id": scenarios_id,
         },
-        "simulation_params": {
-            "samples_count": 2,  # Generate 2 conversations per scenario
-            "max_turns": 10,     # Up to 10 turns per conversation
-            "simulator_model": model_deployment_name,
-            "output_dataset_name": "simulated-conversations",
-        },
         "target": {
             "type": "azure_ai_agent",
-            "name": "my-agent",
-            "version": "1",
+            "name": agent.name,
+            "version": agent.version,
+        },
+        "item_generation_params": {
+            "type": "conversation_gen_preview",
+            "model": model_deployment_name,
+            "num_conversations": 2,
+            "max_turns": 5,
+            "sampling_params": {
+                "temperature": 0.7,
+                "top_p": 1.0,
+                "max_completion_tokens": 800,
+            },
+            "data_mapping": {
+                "test_case_description": "test_case_description",
+                "id": "id",
+                "desired_num_turns": "desired_num_turns",
+            },
         },
     },
+    extra_body={"evaluation_level": "conversation"},
 )
-
-print(f"Simulation started: {eval_run.id}")
 ```
 
 # [cURL](#tab/curl)
 
 ```bash
-# TODO: Engineering to provide final cURL example
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=2025-11-15-preview" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "conversation-simulation-run",
+    "evaluation_level": "conversation",
     "data_source": {
-      "type": "azure_ai_conversation_simulation",
+      "type": "azure_ai_target_completions",
       "source": {
         "type": "file_id",
         "id": "YOUR_SCENARIOS_DATASET_ID"
-      },
-      "simulation_params": {
-        "samples_count": 2,
-        "max_turns": 10,
-        "simulator_model": "gpt-5-mini",
-        "output_dataset_name": "simulated-conversations"
       },
       "target": {
         "type": "azure_ai_agent",
         "name": "my-agent",
         "version": "1"
+      },
+      "item_generation_params": {
+        "type": "conversation_gen_preview",
+        "model": "gpt-4.1",
+        "num_conversations": 2,
+        "max_turns": 5,
+        "sampling_params": {
+          "temperature": 0.7,
+          "top_p": 1.0,
+          "max_completion_tokens": 800
+        },
+        "data_mapping": {
+        }
       }
     }
   }'
 ```
 
 ---
-
-The response includes an `output_dataset_id` property containing the ID of the generated conversations dataset. You can download this dataset to review the simulated conversations or reuse them in future evaluations.
 
 To poll for completion and interpret results, see [Get results](#get-results).
 
@@ -1838,7 +2275,7 @@ Evaluation runs are asynchronous. Poll the run status until it completes, then r
 
 ```python
 import time
-from pprint import pprint
+from print import print
 
 while True:
     run = client.evals.runs.retrieve(
