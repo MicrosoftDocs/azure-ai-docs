@@ -58,11 +58,11 @@ Not all models perform equally as rubric judges. The following table ranks model
 | 4 | `gpt-5.4-mini` | Recommended |
 | 5 | `gpt-5.2` | Recommended |
 | 8 | `gpt-4.1` | Acceptable |
-| 9 | `gpt-4o` | Not recommended |
+| 9 | `gpt-4o` | Acceptable |
 | 10 | `gpt-4o-mini` | Not recommended |
 
 > [!IMPORTANT]
-> Avoid using `gpt-4o` and `gpt-4o-mini` as rubric judges. These models produce noticeably less reliable scores compared to newer models. For the best balance of performance and cost, use `gpt-5.4-mini`.
+> Avoid using `gpt-4o-mini` as a rubric judge. This model produces noticeably less reliable scores compared to newer models. For the best balance of performance and cost, use `gpt-5.4-mini`.
 
 ### Manually create a rubric
 
