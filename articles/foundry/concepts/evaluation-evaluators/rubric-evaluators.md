@@ -50,7 +50,6 @@ Each generated rubric contains the following fields:
 
 Not all models perform equally as rubric judges. The following table ranks models by judge quality.
 
-<!-- [TO VERIFY] Confirm the exact list of supported judge models before publishing, especially non-OpenAI entries (Grok-4, Claude Opus 4.7). Remove any models that aren't actually supported as rubric judges. -->
 | Rank | Model | Recommendation |
 |------|-------|----------------|
 | 1 | `gpt-5.5` | Recommended |
@@ -58,8 +57,6 @@ Not all models perform equally as rubric judges. The following table ranks model
 | 3 | `gpt-5.4-nano` | Recommended |
 | 4 | `gpt-5.4-mini` | Recommended |
 | 5 | `gpt-5.2` | Recommended |
-| 6 | `Grok-4` | Acceptable |
-| 7 | `Claude Opus 4.7` | Acceptable |
 | 8 | `gpt-4.1` | Acceptable |
 | 9 | `gpt-4o` | Not recommended |
 | 10 | `gpt-4o-mini` | Not recommended |
