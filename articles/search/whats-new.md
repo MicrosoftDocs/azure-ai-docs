@@ -32,7 +32,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the data plane operations described in this table. |
-| [Serverless pricing model](search-sku-tier.md) (preview) | Serverless is a new consumption-based pricing model that Azure AI Search offers alongside the existing dedicated (provisioned) tiers. With Serverless, you pay only for compute (CUs/hr) and indexed storage (GB/month) used, with scale-to-zero when idle and no minimum capacity charge. |
+| [Serverless pricing model](search-sku-tier.md) (preview) | Serverless is a new consumption-based pricing model that Azure AI Search offers alongside the existing Dedicated (provisioned) tiers. With Serverless, you only pay for the compute and indexed storage that you use, with scale-to-zero when idle and no minimum capacity charge. |
 | [File knowledge source](agentic-knowledge-source-how-to-file.md) (preview) | New indexed knowledge source for uploading files directly to a knowledge base without a separate indexer pipeline. |
 | [Azure SQL knowledge source](agentic-knowledge-source-how-to-azure-sql.md) (preview) | New indexed knowledge source backed by Azure SQL Database. |
 | [Fabric Data Agent knowledge source](agentic-knowledge-source-how-to-fabric-data-agent.md) (preview) | New remote knowledge source backed by a Microsoft Fabric Data Agent, enabling retrieval from Fabric-managed data in agentic workflows. |
