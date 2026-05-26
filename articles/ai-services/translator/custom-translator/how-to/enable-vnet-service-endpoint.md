@@ -5,7 +5,7 @@ description: This article describes how to use Custom Translator service with an
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: moelghaz
 ms.topic: how-to
 ---
