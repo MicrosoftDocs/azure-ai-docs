@@ -77,7 +77,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.2.0"
 ```
 
 ```python
@@ -1495,7 +1495,7 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 
 ### Prepare conversation data
 
-Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`:
+Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`. For a complete example, see [sample repo for multi-turn](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations):
 
 ```json
  {"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": "Your current balance is $1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}]}
@@ -1646,6 +1646,8 @@ curl --request POST \
 
 # [Python](#tab/python)
 
+Prep: download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl))
+
 ```python
 from openai.types.evals.create_eval_jsonl_run_data_source_param import (
     CreateEvalJSONLRunDataSourceParam,
@@ -1656,7 +1658,7 @@ from openai.types.evals.create_eval_jsonl_run_data_source_param import (
 data_id = project_client.datasets.upload_file(
     name="multiturn-conversation-data",
     version="1",
-    file_path="./conversations.jsonl",
+    file_path="./sample_data_multiturn_conversations.jsonl",
 ).id
 
 # Create the evaluation
@@ -2018,7 +2020,7 @@ This approach is useful for:
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints:
+Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints. For a complete example, see [sample repo for multi-turn](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations).
 
 ```json
 
@@ -2163,6 +2165,8 @@ curl --request POST \
 
 # [Python](#tab/python)
 
+Prep: download [sample_data_simulation_scenarios.jsonl]([sample_data_simulation_scenarios.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_simulation_scenarios.jsonl))).
+
 ```python
 # Create (or update) an agent to simulate against
 agent = project_client.agents.create_version(
@@ -2177,7 +2181,7 @@ agent = project_client.agents.create_version(
 scenarios_id = project_client.datasets.upload_file(
     name="simulation-scenarios",
     version="1",
-    file_path="./scenarios.jsonl",
+    file_path="./sample_data_simulation_scenarios.jsonl",
 ).id
 
 # Create the evaluation
