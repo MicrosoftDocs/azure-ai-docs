@@ -27,7 +27,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 >
 > The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 >
-> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context.
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
 
 | Item | Description |
 |--|--|
