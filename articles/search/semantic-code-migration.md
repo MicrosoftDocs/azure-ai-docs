@@ -45,7 +45,7 @@ Check your code for the REST API version or SDK package version to confirm which
 | Preview | [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | No change. |
 | Stable | [2025-09-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) | No change. |
 | Preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
-| Stable | [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Separates billing consent for semantic ranker and agentic retrieval. `semanticSearch` controls only semantic ranker billing. Before upgrading, if you have `semanticSearch=standard`, you must also set `knowledgeRetrieval=standard`. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md). |
+| Stable | [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Separates billing consent for semantic ranker and agentic retrieval. `semanticSearch` now only controls semantic ranker billing. Before upgrading, if you have `semanticSearch=standard`, you must also set `knowledgeRetrieval=standard`. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md). |
 | Preview | [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | No change. |
 
 ## Change logs for Azure SDKs
