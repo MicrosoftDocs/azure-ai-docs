@@ -329,14 +329,12 @@ You can pass the following ingestion parameter properties to control how uploade
 
 After the source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
-The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`.
+The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
 
 ::: zone pivot="csharp"
 
 ```csharp
 using Azure;
-using Azure.Core;
-using Azure.Core.Pipeline;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 
@@ -344,25 +342,14 @@ var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCre
 
 string fileName = "installation-guide.pdf";
 byte[] fileBytes = await File.ReadAllBytesAsync(fileName);
+string contentDisposition = $"attachment; filename=\"{fileName}\"";
 
-var context = new RequestContext();
-context.AddPolicy(
-    new SetHeaderPolicy("Content-Disposition", $"attachment; filename=\"{fileName}\""),
-    HttpPipelinePosition.PerCall);
-
-Response response = await indexClient.UploadKnowledgeSourceFileAsync(
+KnowledgeSourceFile uploadedFile = (await indexClient.UploadKnowledgeSourceFileAsync(
     "my-file-ks",
-    RequestContent.Create(BinaryData.FromBytes(fileBytes)),
-    context);
+    contentDisposition,
+    BinaryData.FromBytes(fileBytes))).Value;
 
-KnowledgeSourceFile uploadedFile = (KnowledgeSourceFile)response;
 Console.WriteLine($"Uploaded file ID: {uploadedFile.FileId}");
-
-sealed class SetHeaderPolicy(string name, string value) : HttpPipelineSynchronousPolicy
-{
-    public override void OnSendingRequest(HttpMessage message) =>
-        message.Request.Headers.SetValue(name, value);
-}
 ```
 
 ::: zone-end
@@ -381,8 +368,7 @@ file_path = Path("installation-guide.pdf")
 uploaded_file = index_client.upload_knowledge_source_file(
     "my-file-ks",
     file_path.read_bytes(),
-    content_type="application/octet-stream",
-    headers={"Content-Disposition": f'attachment; filename="{file_path.name}"'},
+    filename=file_path.name,
 )
 print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
