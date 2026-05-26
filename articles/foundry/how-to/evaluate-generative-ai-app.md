@@ -25,7 +25,7 @@ This article shows you how to create and run evaluations in the Foundry portal.
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A Microsoft Foundry project. [Create a project](./create-project.md) if you don't have one.
+- A Microsoft Foundry project. [Create a project](create-projects.md) if you don't have one.
 - One of the following, depending on your evaluation target:
   - **Agent evaluation**: An agent in your project.
   - **Model evaluation**: A deployed model or access to instant models.
