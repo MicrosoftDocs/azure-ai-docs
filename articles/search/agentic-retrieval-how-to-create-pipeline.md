@@ -13,6 +13,11 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+
 Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for [agentic retrieval](agentic-retrieval-overview.md). You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
 
 In this tutorial, you:
@@ -49,6 +54,10 @@ In this tutorial, you:
 
 > [!IMPORTANT]
 > If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
+
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Understand the solution
 
@@ -101,7 +110,7 @@ To configure access for this solution:
 1. Install the required packages.
 
    ```console
-   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==11.7.0b2 requests openai
+   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel python-dotenv azure-search-documents==11.7.0b2 requests openai
    ```
 
 1. Create a file named `.env` in the `tutorial-agentic-retrieval` folder.
@@ -285,7 +294,12 @@ ks = SearchIndexKnowledgeSource(
     description="Knowledge source for Earth at night data",
     search_index_parameters=SearchIndexKnowledgeSourceParameters(
         search_index_name=index_name,
-        source_data_fields=[SearchIndexFieldReference(name="id"), SearchIndexFieldReference(name="page_number")]
+        semantic_configuration_name="semantic_config",
+        source_data_fields=[
+            SearchIndexFieldReference(name="id"),
+            SearchIndexFieldReference(name="page_chunk"),
+            SearchIndexFieldReference(name="page_number")
+        ]
     ),
 )
 
@@ -308,10 +322,8 @@ For more information about this step, see [Create a knowledge base in Azure AI S
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    KnowledgeBase, KnowledgeRetrievalMinimalReasoningEffort,
-    KnowledgeRetrievalOutputMode, KnowledgeSourceReference
-)
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeSourceReference
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalMinimalReasoningEffort
 
 knowledge_base = KnowledgeBase(
     name=base_name,
@@ -320,7 +332,7 @@ knowledge_base = KnowledgeBase(
             name=knowledge_source_name
         )
     ],
-    output_mode=KnowledgeRetrievalOutputMode.EXTRACTIVE_DATA,
+    output_mode="extractiveData",
     retrieval_reasoning_effort=KnowledgeRetrievalMinimalReasoningEffort()
 )
 
@@ -329,7 +341,7 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint}/knowledgebases/{base_name}/mcp?api-version=2025-11-01-Preview"
+mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
 ```
 
 ### Set up a project client
@@ -419,7 +431,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
@@ -554,7 +566,7 @@ index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
 print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
 
 # Delete the search index
-index_client.delete_index(index)
+index_client.delete_index(index_name)
 print(f"Index '{index_name}' deleted successfully")
 ```
 

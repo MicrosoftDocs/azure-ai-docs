@@ -8,6 +8,7 @@ ms.date: 05/05/2026
 
 # Create an index for agentic retrieval in Azure AI Search
 
+
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 In Azure AI Search, agentic retrieval uses context and user questions to generate a range of subqueries that can execute against your content in a [knowledge source](agentic-knowledge-source-overview.md). A knowledge source can point to indexed content on Azure AI Search, or remote content that's retrieved using the APIs that are native to the provider. When indexes are used in agentic retrieval, they are either:
