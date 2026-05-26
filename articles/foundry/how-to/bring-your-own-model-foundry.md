@@ -1,6 +1,6 @@
 ---
-title: Register and deploy your model (BYOW) on managed compute
-description: Learn how to register a Bring Your Own Weights (BYOW) model in Microsoft Foundry by uploading model files from your local machine, and deploy it on managed compute GPUs.
+title: Register and deploy your custom-weight model on managed compute
+description: Learn how to register your custom-weight model in Microsoft Foundry by uploading model files from your local machine, and deploy it on managed compute GPUs.
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.custom:
