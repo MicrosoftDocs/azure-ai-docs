@@ -274,7 +274,7 @@ Creating a version triggers the platform to provision the agent automatically. T
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol, ContainerConfiguration
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -292,12 +292,14 @@ project = AIProjectClient(
 agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
-        container_protocol_versions=[
+        protocol_versions=[
             ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
         ],
         cpu="1",
         memory="2Gi",
-        image="your-registry.azurecr.io/your-image:tag",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-image:tag"
+        ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
         }
@@ -307,10 +309,10 @@ agent = project.agents.create_version(
 print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
-To expose both protocols, pass both in `container_protocol_versions`:
+To expose both protocols, pass both in `protocol_versions`:
 
 ```python
-container_protocol_versions=[
+protocol_versions=[
     ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
     ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0")
 ],
@@ -321,10 +323,10 @@ Key parameters:
 | Parameter | Description |
 | ----------- | ------------- |
 | `agent_name` | Unique name (alphanumeric with hyphens, max 63 characters) |
-| `image` | Full Azure Container Registry image URL with tag |
+| `container_configuration.image` | Full Azure Container Registry image URL with tag |
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
-| `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+| `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
 
 ### Poll for version status
 
@@ -424,10 +426,12 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     "name": "my-agent",
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v1",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v1"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "environment_variables": {
@@ -493,10 +497,12 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
   -d '{
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v2",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v2"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "environment_variables": {
