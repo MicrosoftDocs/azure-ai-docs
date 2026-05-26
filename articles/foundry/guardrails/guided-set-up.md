@@ -1,5 +1,5 @@
 ---
-title: Configure guided guardrail setup for an agent
+title: Configure guided guardrail set-up for an agent
 titleSuffix: Azure AI services
 description: Learn how to configure guardrails for your agent in Microsoft Foundry by answering guided questions about its users, data, and tools.
 author: ssalgadodev
@@ -11,13 +11,13 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Configure guided guardrail setup for an agent (preview)
+# Configure guided guardrail set-up for an agent (preview)
 
 [!INCLUDE [preview-notice](../includes/code-preview.md)] 
 
 In this article, you configure safety and security guardrails for an agent using Microsoft Foundry. Instead of selecting controls manually, you answer a short set of questions about your agent's intended users, data handling, and tool usage. Foundry maps your responses to relevant risk categories and applies targeted controls at the correct intervention points: user input, tool calls, tool responses, and output.
 
-Each agent is purpose-built for a specific scenario, so guardrails should be tailored accordingly—not applied as a single default. Guided setup ensures that protections are scoped to where they're needed and that the agent stays both safe and usable. Folow this link for more information about [guardrails concepts](/azure/foundry/guardrails/guardrails-overview).
+Each agent is purpose-built for a specific scenario, so guardrails should be tailored accordingly—not applied as a single default. Guided set-up ensures that protections are scoped to where they're needed and that the agent stays both safe and usable. Follow this link for more information about [guardrails concepts](/azure/foundry/guardrails/guardrails-overview).
 
 ## Prerequisites
 
