@@ -27,7 +27,7 @@ Each agent is purpose-built for a specific scenario, so guardrails should be tai
 
 1. In [Microsoft Foundry](https://ai.azure.com), open a project.
 1. Navigate to the **Build** tab in the top bar. In the left navigation, select **Agents**, then select the agent you want to configure.
-1. On the agent detail page, select the **Guardrails** tab.
+1. On the agent detail page, expand the Guardrails section on the left pane within the agent playground. 
 1. Select **Manage guardrail**, then select **Guided guardrails setup** to start the guided configuration experience.
 
 ## Specify who the agent is for
