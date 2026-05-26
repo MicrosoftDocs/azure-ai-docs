@@ -890,7 +890,7 @@ The toolbox returns a `_meta.tool_configuration` object into every tool entry re
 
 ### Read `require_approval` from `tools/list`
 
-Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox :
+Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox:
 
 ```json
 {

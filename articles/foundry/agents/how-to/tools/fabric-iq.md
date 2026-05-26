@@ -247,7 +247,7 @@ An Entra admin must complete the following steps before you can create a Fabric 
 1. Select **Certificates & secrets** > **New client secret**. Add a description and expiration. Select **Add**, then immediately copy the secret **Value** — it's only shown once.
 1. Copy your **Directory (tenant) ID** from the **Microsoft Entra ID** overview page.
 
-### Fill in the Foundry connection values
+#### Fill in the Foundry connection values
 
 In [Microsoft Foundry](https://ai.azure.com/nextgen), open your project and go to **Settings** > **Connections** > **New connection** > **Fabric IQ**. Fill in the following fields:
 
@@ -265,7 +265,7 @@ Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save
 > [!NOTE]
 > For data agent connections using BYO Entra, use the `DataAgent.Execute.All` delegated permission instead of the Power BI scopes listed above. Add `https://analysis.windows.net/powerbi/api/DataAgent.Execute.All` as the scope in the Foundry connection, and grant admin consent for that permission in your app registration.
 
-### Add the redirect URI to your app registration
+#### Add the redirect URI to your app registration
 
 After Foundry creates the connection, it displays an OAuth redirect URL. Add this URL to your app registration:
 
