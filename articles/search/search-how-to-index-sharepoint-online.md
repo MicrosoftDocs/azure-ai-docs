@@ -12,14 +12,21 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Index content from SharePoint in Microsoft 365
+# Index content from SharePoint in Microsoft 365 (preview)
 
-> [!IMPORTANT]
+> [!NOTE]
 > The SharePoint in Microsoft 365 indexer is in preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >
 > Before you proceed, review the [known limitations](#limitations-and-considerations).
 >
 > [Fill out this form](https://aka.ms/azure-cognitive-search/indexer-preview) to register for the preview. All requests are approved automatically. After you fill out the form, use a [preview REST API](search-api-preview.md) to index your content. 
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 This article explains how to configure a [search indexer](search-indexer-overview.md) to index documents stored in SharePoint document libraries for full-text search in Azure AI Search. The configuration steps are first, followed by behaviors and scenarios.
 

@@ -218,7 +218,7 @@ items:
             href: search-how-to-index-azure-data-lake-storage.md
           - name: Blobs
             href: search-how-to-index-azure-blob-storage.md
-          - name: Files
+          - name: Files (preview)
             href: search-file-storage-integration.md
           - name: Tables
             href: search-how-to-index-azure-tables.md
@@ -228,11 +228,11 @@ items:
           items:
           - name: Azure Cosmos DB for NoSQL
             href: search-how-to-index-cosmosdb-sql.md
-          - name: Azure Cosmos DB for MongoDB
+          - name: Azure Cosmos DB for MongoDB (preview)
             href: search-how-to-index-cosmosdb-mongodb.md
-          - name: Azure Cosmos DB for Apache Gremlin
+          - name: Azure Cosmos DB for Apache Gremlin (preview)
             href: search-how-to-index-cosmosdb-gremlin.md
-        - name: Azure DB for MySQL
+        - name: Azure DB for MySQL (preview)
           href: search-how-to-index-mysql.md
         - name: Azure SQL
           items:
@@ -244,7 +244,7 @@ items:
             href: search-how-to-index-sql-server.md
         - name: OneLake
           href: search-how-to-index-onelake-files.md
-        - name: SharePoint in Microsoft 365
+        - name: SharePoint in Microsoft 365 (preview)
           href: search-how-to-index-sharepoint-online.md
       - name: Index whole files
         items:

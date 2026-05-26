@@ -12,6 +12,13 @@ ms.custom:
 
 # Search over Azure Blob Storage content
 
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 Searching across the variety of content types stored in Azure Blob Storage can be a difficult problem to solve, but [Azure AI Search](search-what-is-azure-search.md) provides deep integration at the content layer, extracting and inferring textual information, which can then be queried in a search index.
 
 In this article, review the basic workflow for extracting content and metadata from blobs and sending it to a [search index](search-what-is-an-index.md) in Azure AI Search. The resulting index can be queried using full text search or vector search. Optionally, you can send processed blob content to a [knowledge store](knowledge-store-concept-intro.md) for non-search scenarios.
