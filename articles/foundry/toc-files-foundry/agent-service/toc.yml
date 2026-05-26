@@ -161,6 +161,8 @@ items:
       href: ../../observability/how-to/trace-agent-client-side.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
+    - name: Review agent interactions with Trace Replay
+      href: ../../observability/how-to/trace-agent-replay.md
   - name: Run agent evaluations with the Azure Developer CLI
     displayName: azd cli
     href: ../../observability/how-to/azure-developer-cli-evaluation.md
@@ -168,6 +170,7 @@ items:
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+
   - name: Evaluate agent quality
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
