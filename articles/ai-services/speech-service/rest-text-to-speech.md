@@ -7,7 +7,7 @@ reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 05/21/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
@@ -31,7 +31,17 @@ The text to speech REST API supports neural text to speech voices in many locale
 > [!IMPORTANT]
 > Costs vary for standard voices and custom voices. For more information, see [text to speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
-Before you use the text to speech REST API, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
+## Prerequisites
+
+To use the text to speech REST API, you need:
+
+- An Azure account. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Speech resource in the [Azure portal](https://portal.azure.com).
+- The resource key and endpoint from your Speech resource's **Keys and Endpoint** page.
+
+## Authentication
+
+[!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
 ## Get a list of voices
 
@@ -102,12 +112,9 @@ You should receive a response with a JSON body that includes all supported local
           "whispering",
           "hopeful"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
-        "ExtendedPropertyMap": {
-          "IsHighQuality48K": "True"
-        },
         "WordsPerMinute": "152"
     },
     // Redacted for brevity
@@ -134,7 +141,7 @@ You should receive a response with a JSON body that includes all supported local
           "pt-BR",
           "zh-CN"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "WordsPerMinute": "190"
@@ -148,7 +155,7 @@ You should receive a response with a JSON body that includes all supported local
         "Gender": "Female",
         "Locale": "ga-IE",
         "LocaleName": "Irish (Ireland)",
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "WordsPerMinute": "139"
@@ -176,7 +183,7 @@ You should receive a response with a JSON body that includes all supported local
           "assistant",
           "newscast"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "RolePlayList": [
@@ -321,10 +328,6 @@ riff-48khz-16bit-mono-pcm
 > If you select 48kHz output format, the high-fidelity voice model with 48kHz will be invoked accordingly. The sample rates other than 24kHz and 48kHz can be obtained through upsampling or downsampling when synthesizing, for example, 44.1kHz is downsampled from 48kHz.
 >
 > If your selected voice and output format have different bit rates, the audio is resampled as necessary. You can decode the `ogg-24khz-16bit-mono-opus` format by using the [Opus codec](https://opus-codec.org/downloads/).
-
-## Authentication
-
-[!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
 ## Next steps
 
