@@ -1,5 +1,5 @@
 ---
-title: Register and deploy a custom-weight (BYOW) model on managed compute
+title: Register and deploy your model (BYOW) on managed compute
 description: Learn how to register a Bring Your Own Weights (BYOW) model in Microsoft Foundry by uploading model files from your local machine, and deploy it on managed compute GPUs.
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Register and deploy a custom-weight (BYOW) model on managed compute
 
-Bring Your Own Weights (BYOW) in Microsoft Foundry lets you register a full-weight model — a complete checkpoint that you fine-tuned, distilled, or assembled yourself — into a Foundry project and serve it on [managed compute](deploy-models.md). After registration, your custom model uses the same deployment templates, GPU families, scaling, endpoints, and SDKs as a catalog model.
+Bring Your Own Weights (BYOW) in Microsoft Foundry lets you register a full-weight model — a complete checkpoint that you fine-tuned, distilled, or assembled yourself — into a Foundry project and serve it on [managed compute](deploy-models.md). After registration, your model uses the same deployment templates, GPU families, scaling, endpoints, and SDKs as a catalog model.
 
 This article walks through the **local upload** ingestion path: you upload weight files from your local machine to project-managed storage, finalize registration against a catalog **base model**, resolve a deployment template, and deploy the model on managed compute.
 
