@@ -30,6 +30,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Evaluator | Best practice | Use when | Purpose | Output |
 |--|--|--|--|--|
 | Task Completion (preview) | System evaluation | Assessing end-to-end task success in workflow automation, goal-oriented AI interactions, or any scenario where full task completion is critical | Measures if the agent completed the requested task with a usable deliverable that meets all user requirements | Binary: Pass/Fail |
+| Customer Satisfaction (preview) | System evaluation | Measuring overall user satisfaction across a conversation, detecting user frustration | Measures holistic user satisfaction across six dimensions: helpfulness, completeness, clarity, tone, resolution, and adaptability | 1-5 Likert scale |
 | Task Adherence (preview) | System evaluation | Ensuring agents follow system instructions, validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Binary: Pass/Fail |
 | Task Navigation Efficiency | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Binary: Pass/Fail |
 | Intent Resolution (preview) | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Binary: Pass/Fail based on threshold (1-5 scale) |
@@ -44,6 +45,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 System evaluation examines the quality of the final outcome of your agentic workflow. These evaluators are applicable to single agents and, in multi-agent systems, to the main orchestrator or the final agent responsible for task completion:
 
 - Task Completion - Did the agent fully complete the requested task?
+- Customer Satisfaction - How satisfied would a user be with the agent's performance?
 - Task Adherence - Did the agent follow the rules and constraints in its instructions?
 - Task Navigation Efficiency - Did the agent perform the expected steps efficiently?
 - Intent Resolution - Did the agent correctly identify and address user intentions?
@@ -104,7 +106,8 @@ Agent evaluators assess how well AI agents perform tasks, follow instructions, a
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Task Completion (preview) | `query`, `response` | `deployment_name` |
+| Task Completion (preview) | `query`, `response`; optional: `tool_definitions` | `deployment_name` |
+| Customer Satisfaction (preview) | `messages` | `model` |
 | Task Adherence (preview) | `query`, `response` | `deployment_name` |
 | Intent Resolution (preview) | `query`, `response` | `deployment_name` |
 | Tool Call Accuracy | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
@@ -179,6 +182,87 @@ Agent evaluators return Pass/Fail results with reasoning. Key output fields:
     "reason": "Agent followed system instructions correctly",
     "threshold": 3,
     "passed": true
+}
+```
+
+For evaluators that use a 1–5 scale before thresholding (such as `intent_resolution` and `tool_call_accuracy`), the output includes a numeric `score` field alongside the pass/fail result:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "Intent Resolution",
+    "metric": "intent_resolution",
+    "label": "pass",
+    "score": 4,
+    "reason": "Agent correctly identified the user's intent to book a flight to Paris",
+    "threshold": 3,
+    "passed": true
+}
+```
+
+## Customer Satisfaction (preview)
+
+The Customer Satisfaction (CSAT) evaluator measures how satisfied a user would be with the agent's performance across an entire conversation. Unlike per-turn evaluators, CSAT takes the full conversation as input—system messages, user queries, assistant responses, tool calls, and tool results—and returns a holistic score.
+
+CSAT is *cumulative* rather than per-turn: a session with a rocky start followed by a strong recovery can still earn a high score, because that mirrors how real users judge an interaction. This makes it complementary to Task Completion—Task Completion tells you whether the job got done, while CSAT tells you how it felt to get there.
+
+### Six evaluation dimensions
+
+The evaluator scores the session across six dimensions of user experience:
+
+| Dimension | What it measures |
+|-----------|------------------|
+| Helpfulness | Did the agent move the user toward their goal? |
+| Completeness | Were all requests addressed, including mid-conversation refinements? |
+| Clarity | Were responses easy to follow? |
+| Tone | Was the agent appropriately professional and empathetic? |
+| Resolution | Did the session end in a usable state? |
+| Adaptability | Did the agent recover gracefully from errors, clarifications, or direction changes? |
+
+### Required inputs
+
+| Evaluator | Required inputs | Required parameters |
+|-----------|-----------------|---------------------|
+| Customer Satisfaction (preview) | `messages` | `model` |
+
+### Configuration example
+
+```python
+{
+    "type": "azure_ai_evaluator",
+    "name": "customer_satisfaction",
+    "evaluator_name": "builtin.customer_satisfaction",
+    "initialization_parameters": {
+        "model": "connection-name/gpt-4o"
+    },
+    "data_mapping": {
+        "messages": "{{item.messages}}"
+    }
+}
+```
+
+### Example output
+
+Customer Satisfaction returns a 1-5 Likert score (1 = very dissatisfied, 5 = very satisfied), a natural-language explanation, and a per-dimension breakdown:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "customer_satisfaction",
+    "metric": "customer_satisfaction",
+    "score": 5,
+    "label": "pass",
+    "reason": "The agent provided a clear and accurate account balance and offered further assistance. The interaction was professional and left the user satisfied.",
+    "threshold": 3,
+    "passed": true,
+    "dimensions": {
+        "helpfulness": "The agent directly addressed the user's request for their account balance.",
+        "completeness": "All user requests were handled thoroughly.",
+        "clarity": "Responses were clear and easy to understand.",
+        "tone": "The tone was friendly and professional throughout.",
+        "resolution": "The session ended with the user's question fully answered.",
+        "adaptability": "No errors or direction changes occurred, but the agent remained responsive."
+    }
 }
 ```
 

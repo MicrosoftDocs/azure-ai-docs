@@ -446,6 +446,55 @@ After you create a custom evaluator, use it in an evaluation run from the portal
 
 For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation).
 
+## Conversation-level custom evaluators
+
+Custom evaluators can score entire conversations instead of individual turns. To enable conversation-level evaluation:
+
+1. Set `evaluation_level="conversation"` on the evaluation run
+2. Design your `grade()` function to expect `item["messages"]` as a conversation array
+
+When running at the conversation level, the `item` dict receives the full conversation messages array instead of a single query/response pair. This enables you to build custom metrics that assess the entire user interaction.
+
+### Example: Session-level compliance check
+
+This example checks whether the agent disclosed a required disclaimer at any point during the conversation:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Check if agent disclosed required disclaimer during conversation."""
+    messages = item.get("messages", [])
+    
+    for msg in messages:
+        if msg.get("role") == "assistant":
+            content = msg.get("content", "")
+            if isinstance(content, str) and "not financial advice" in content.lower():
+                return 1.0
+    
+    return 0.0  # Disclaimer never provided
+```
+
+### Example: Conversation length scorer
+
+This example scores conversations based on whether they resolved within a target number of turns:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Score based on conversation length (prefer shorter resolutions)."""
+    messages = item.get("messages", [])
+    
+    # Count user turns (excludes system messages)
+    user_turns = sum(1 for msg in messages if msg.get("role") == "user")
+    
+    if user_turns <= 2:
+        return 1.0  # Resolved quickly
+    elif user_turns <= 4:
+        return 0.7  # Reasonable length
+    elif user_turns <= 6:
+        return 0.4  # Getting long
+    else:
+        return 0.2  # Too many turns
+```
+
 ## Related content
 
 - [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)

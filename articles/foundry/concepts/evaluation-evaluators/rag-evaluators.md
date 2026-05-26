@@ -66,7 +66,7 @@ RAG evaluators assess how well AI systems retrieve and use context to generate g
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Groundedness | (`response`, `context`) OR (`query`, `response`) | `deployment_name` |
+| Groundedness | `response`, `context`; optional: `query`, `tool_definitions` | `deployment_name` |
 | Groundedness Pro (preview) | `query`, `response`, `context` | *(none)* |
 | Relevance | `query`, `response` | `deployment_name` |
 | Response Completeness (preview) | `ground_truth`, `response` | `deployment_name` |
@@ -81,6 +81,20 @@ Your test dataset should contain the fields referenced in your data mappings:
 {"query": "What are the store hours?", "context": "Our store is open Monday-Friday 9am-6pm and Saturday 10am-4pm.", "response": "The store is open weekdays from 9am to 6pm and Saturdays from 10am to 4pm."}
 {"query": "What is the return policy?", "context": "Items can be returned within 30 days with original receipt for full refund.", "response": "You can return items within 30 days if you have your receipt."}
 ```
+
+### Context format
+
+The `context` field is a plain string containing the retrieved context provided to the model. For multi-chunk retrieval, concatenate chunks into a single string using a separator such as `\n\n` between chunks:
+
+```jsonl
+{"query": "What is the return policy?", "context": "Items can be returned within 30 days with receipt.\n\nGift items are eligible for store credit only.", "response": "You can return items within 30 days with your receipt."}
+```
+
+> [!NOTE]
+> For agent evaluation with `{{sample.output_items}}`, the `context` field is optional if the response contains tool call messages — the evaluator can extract context from tool call results.
+
+> [!TIP]
+> **Tool definitions for agent evaluation**: When evaluating agent responses, provide `tool_definitions` to help the Groundedness evaluator better assess whether tool-assisted responses are grounded in the retrieved context. If your agent traces already include tool definitions, they're used automatically.
 
 ### Configuration example
 
