@@ -17,6 +17,10 @@ ai-usage: ai-assisted
 > The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 >
 > You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an earlier REST API version, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all API versions that support agentic retrieval.
 
