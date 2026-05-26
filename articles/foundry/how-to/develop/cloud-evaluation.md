@@ -35,8 +35,8 @@ Cloud evaluation supports the following scenarios:
 
 | Scenario | When to use | Data source type | Target |
 |----------|-------------|------------------|--------|
-| **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL or CSV file. | `jsonl` (with `messages` for multi-turn (preview) or `query`/`response` for single-turn) or `csv` (with `query`/`response`) | — |
-| **[Target completions evaluation](#model-target-evaluation)** | Provide queries, generate responses from a model or Foundry agent at runtime, and evaluate them. Includes [conversation simulation (preview)](#conversation-simulation) for generating multi-turn conversations from scenario descriptions. | `azure_ai_target_completions` | `azure_ai_model` or `azure_ai_agent` |
+| **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL or CSV file. | `jsonl` (with `messages` for [multi-turn (preview)](#multiturn-conversation-evaluation) or `query`/`response` for single-turn) or [`csv`](#csv-dataset-evaluation) (with `query`/`response`) | — |
+| **[Target completions evaluation](#model-target-evaluation)** | Provide queries, generate responses from a [model](#model-target-evaluation) or [Foundry agent](#agent-target-evaluation) at runtime, and evaluate them. Includes [conversation simulation (preview)](#conversation-simulation) for generating multi-turn conversations from scenario descriptions. | `azure_ai_target_completions` | `azure_ai_model` or `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). Use azure_ai_trace_data_source_preview to also evaluate conversational traces by conversation ID. | `azure_ai_traces_preview` (legacy) or `azure_ai_trace_data_source_preview` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
@@ -1642,7 +1642,7 @@ curl --request POST \
 
 # [Python](#tab/python)
 
-Prep: download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl))
+Prep: download [sample_data_multiturn_conversations.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_multiturn_conversations.jsonl)
 
 ```python
 from openai.types.evals.create_eval_jsonl_run_data_source_param import (
@@ -2161,7 +2161,7 @@ curl --request POST \
 
 # [Python](#tab/python)
 
-Prep: download [sample_data_simulation_scenarios.jsonl]([sample_data_simulation_scenarios.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_simulation_scenarios.jsonl))).
+Prep: download [sample_data_simulation_scenarios.jsonl](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/data_folder/sample_data_simulation_scenarios.jsonl).
 
 ```python
 # Create (or update) an agent to simulate against
