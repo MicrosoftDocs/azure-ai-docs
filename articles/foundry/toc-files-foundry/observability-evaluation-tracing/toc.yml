@@ -78,6 +78,8 @@ items:
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
+   - name: Review agent interactions with Trace Replay
+     href: ../../observability/how-to/trace-agent-replay.md
    - name: Add client-side tracing
      href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations

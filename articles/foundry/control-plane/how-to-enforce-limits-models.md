@@ -5,6 +5,7 @@ author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: how-to
 ms.custom: dev-focus, doc-kit-assisted
 ms.date: 04/13/2026

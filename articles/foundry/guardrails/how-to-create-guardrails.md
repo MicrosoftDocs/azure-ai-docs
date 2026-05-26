@@ -3,6 +3,7 @@ title: "How to configure guardrails and controls in Microsoft Foundry"
 description: "Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API."
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: how-to
 ms.date: 02/13/2026
 author: ssalgadodev
@@ -23,7 +24,9 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
-- **Azure AI Account Owner** role or higher on the Azure AI resource.
+- **Foundry Account Owner** role or higher on the Azure AI resource.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Availability
 

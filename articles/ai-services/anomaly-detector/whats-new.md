@@ -29,7 +29,7 @@ We have also added links to some user-generated content. Those items will be mar
     |---------|---------|
     | [Python](https://pypi.org/project/azure-ai-anomalydetector/3.0.0b6/)|[sample_multivariate_detect.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/anomalydetector/azure-ai-anomalydetector/samples/sample_multivariate_detect.py)|
     | [.NET](https://www.nuget.org/packages/Azure.AI.AnomalyDetector/3.0.0-preview.6) | [Sample4_MultivariateDetect.cs](https://github.com/Azure/azure-sdk-for-net/blob/40a7d122ac99a3a8a7c62afa16898b7acf82c03d/sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/samples/Sample4_MultivariateDetect.cs)|
-    | [JAVA](https://search.maven.org/artifact/com.azure/azure-ai-anomalydetector/3.0.0-beta.5/jar) | [MultivariateSample.java](https://github.com/Azure/azure-sdk-for-java/blob/e845677d919d47a2c4837153306b37e5f4ecd795/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/java/com/azure/ai/anomalydetector/MultivariateSample.java)|
+    | [JAVA](https://central.sonatype.com/artifact/com.azure/azure-ai-anomalydetector/3.0.0-beta.5) | [MultivariateSample.java](https://github.com/Azure/azure-sdk-for-java/blob/e845677d919d47a2c4837153306b37e5f4ecd795/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/java/com/azure/ai/anomalydetector/MultivariateSample.java)|
     | [JS/TS](https://www.npmjs.com/package/@azure-rest/ai-anomaly-detector/v/1.0.0-beta.1) |[sample_multivariate_detection.ts](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk)|
 
 * Check out this AI Show video to learn more about the GA version of Multivariate Anomaly Detection: [AI Show | Multivariate Anomaly Detection is Generally Available](/shows/ai-show/ep-70-the-latest-from-azure-multivariate-anomaly-detection).
@@ -40,20 +40,20 @@ We have also added links to some user-generated content. Those items will be mar
 
 ### June 2022
 
-* New blog released: [Four sets of best practices to use Multivariate Anomaly Detector when monitoring your equipment](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/4-sets-of-best-practices-to-use-multivariate-anomaly-detector/ba-p/3490848#footerContent).
+* New blog released: [Four sets of best practices to use Multivariate Anomaly Detector when monitoring your equipment](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/4-sets-of-best-practices-to-use-multivariate-anomaly-detector-when-monitoring-yo/3490848).
 
 ### May 2022
 
-* New blog released: [Detect anomalies in equipment with Multivariate Anomaly Detector in Azure Databricks](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/detect-anomalies-in-equipment-with-anomaly-detector-in-azure/ba-p/3390688).
+* New blog released: [Detect anomalies in equipment with Multivariate Anomaly Detector in Azure Databricks](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/detect-anomalies-in-equipment-with-anomaly-detector-in-azure-databricks/3390688).
 
 ### April 2022
-* Univariate Anomaly Detector is now integrated in Azure Data Explorer(ADX). Check out this [announcement blog post](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/announcing-univariate-anomaly-detector-in-azure-data-explorer/ba-p/3285400) to learn more!
+* Univariate Anomaly Detector is now integrated in Azure Data Explorer(ADX). Check out this [announcement blog post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-univariate-anomaly-detector-in-azure-data-explorer/3285400) to learn more!
 
 ### March 2022
 * Anomaly Detector (univariate) available in Sweden Central.
 
 ### February 2022
-* **Multivariate Anomaly Detector API has been integrated with Synapse.** Check out this [blog](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/announcing-multivariate-anomaly-detector-in-synapseml/ba-p/3122486) to learn more! 
+* **Multivariate Anomaly Detector API has been integrated with Synapse.** Check out this [blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-multivariate-anomaly-detector-in-synapseml/3122486) to learn more! 
 
 ### January 2022
 * **Multivariate Anomaly Detector API v1.1-preview.1 public preview on 1/18.** In this version, Multivariate Anomaly Detector supports synchronous API for inference and added new fields in API output interpreting the correlation change of variables. 
@@ -98,11 +98,11 @@ We have also added links to some user-generated content. Those items will be mar
 
 ## Technical articles
 
-* March 12, 2021 [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/t5/azure-ai/introducing-multivariate-anomaly-detection/ba-p/2260679) - Technical blog on the new multivariate APIs
+* March 12, 2021 [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-multivariate-anomaly-detection/2260679) - Technical blog on the new multivariate APIs
 * September 2020 [Multivariate Time-series Anomaly Detection via Graph Attention Network](https://arxiv.org/abs/2009.02040) - Paper on multivariate anomaly detection accepted by ICDM 2020
-* November 5, 2019 [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/overview-of-sr-cnn-algorithm-in-azure-anomaly-detector/ba-p/982798) - Technical blog on SR-CNN
+* November 5, 2019 [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/overview-of-sr-cnn-algorithm-in-azure-anomaly-detector/982798) - Technical blog on SR-CNN
 * June 10, 2019 [Time-Series Anomaly Detection Service at Microsoft](https://arxiv.org/abs/1906.03821) - Paper on SR-CNN accepted by KDD 2019
-* April 20, 2019 [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/t5/ai-customer-engineering-team/introducing-azure-anomaly-detector-api/ba-p/490162) - Announcement blog
+* April 20, 2019 [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/introducing-azure-anomaly-detector-api/490162) - Announcement blog
 
 ## Videos
 

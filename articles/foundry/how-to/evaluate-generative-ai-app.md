@@ -3,6 +3,7 @@ title: Run evaluations from the Microsoft Foundry portal
 description: Learn how to evaluate the performance and safety of your generative AI models and agents using the Foundry portal.
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 06/02/2026
 ms.reviewer: dlozier
@@ -30,7 +31,9 @@ This article shows you how to create and run evaluations in the Foundry portal.
   - **Model evaluation**: A deployed model or access to instant models.
   - **Dataset evaluation**: A test dataset in CSV or JSONL format containing preexisting model or agent outputs.
 - An Azure OpenAI connection with a deployed GPT model (for example, `gpt-4.1-mini`). Required for AI-assisted quality evaluations.
-- **Azure AI User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 ## Choose an evaluation approach
 

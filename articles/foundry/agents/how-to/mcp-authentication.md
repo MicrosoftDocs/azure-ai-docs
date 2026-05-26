@@ -121,7 +121,9 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
 
@@ -278,7 +280,7 @@ After you configure authentication, verify the connection works correctly:
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | You don't get an `oauth_consent_request` when you expect one | The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
-| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Azure AI User** role (or higher) on the project. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Foundry User** role (or higher) on the project. |
 | Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
 | Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |
