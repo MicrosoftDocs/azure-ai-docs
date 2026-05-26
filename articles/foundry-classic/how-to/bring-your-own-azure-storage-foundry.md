@@ -6,6 +6,7 @@ description: "Learn how to bring your own storage to Microsoft Foundry for agent
 author: jonburchel
 ms.author: jburchel
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024, build-2025
   - classic-and-new

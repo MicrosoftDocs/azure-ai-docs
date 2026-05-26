@@ -4,6 +4,7 @@ description: "In this article, you create a Microsoft Foundry hub, a Microsoft F
 ms.topic: how-to
 ms.date: 12/22/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.reviewer: andyaviles 
 ms.author: sgilley
 author: sdgilley

@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/08/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -45,7 +45,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 | [Developer](#developer-for-fine-tuned-models) | `DeveloperTier` | Any Azure region | Pay-per-token | Fine-tuned model evaluation only |
 
 > [!NOTE]
-> Not all models support all deployment types. Check [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) for model availability by deployment type and region.
+> Not all models support all deployment types. Check [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) for model availability by deployment type and region.
 
 > [!NOTE]
 > SLA guarantees vary by deployment type. Provisioned types provide guaranteed throughput and lower latency variance. Standard types offer best-effort service. Developer deployments don't include an SLA. For details, see the [Azure SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
@@ -94,9 +94,11 @@ Global deployments receive new models and features first.
 For **Global** deployment types, prompts and responses might be processed in any geography where the model is deployed. For **DataZone** deployment types, prompts and responses are processed only within the specified data zone:
 
 - **United States**: Data processed anywhere within the US
-- **European Union**: Data processed within any EU member nation
+- **European Union**: Data processed within the [EU Data Boundary](/privacy/eudb/eu-data-boundary-learn)
 
-Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+The EU Data Zone processes data within regions located in countries covered by the [Azure EU Data Boundary](/privacy/eudb/eu-data-boundary-learn). As of May 2026, this includes regions in: France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, and Switzerland. Additional regions within the EU Data Boundary may be added without prior notice to improve capacity and availability.
+
+Learn more in the "Model region availability by deployment type" section of [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 > [!NOTE]
 > With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [high availability and disaster recovery guide](../../../foundry-classic/how-to/high-availability-resiliency.md).
@@ -222,7 +224,7 @@ Use the following policy to disable access to a specific Foundry deployment type
 
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../../foundry-classic/openai/how-to/create-resource.md)
-- [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Model region availability by deployment type](../concepts/models-sold-directly-by-azure.md)
 - [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)

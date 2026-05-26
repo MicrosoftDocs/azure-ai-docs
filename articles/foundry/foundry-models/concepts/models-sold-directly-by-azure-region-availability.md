@@ -1,6 +1,6 @@
 ---
-title: "Region availability for Foundry Models sold directly by Azure"
-description: "Find region availability, capabilities, and deployments types available for Microsoft Foundry Models sold directly by Azure, to inform their use in AI applications."
+title: "Region availability for Foundry Models sold by Azure"
+description: "Find region availability, capabilities, and deployments types available for Microsoft Foundry Models sold by Azure, to inform their use in AI applications."
 author: msakande
 ms.author: mopeakande
 manager: nitinme
@@ -13,10 +13,10 @@ ms.custom:
 ai-usage: ai-assisted
 zone_pivot_groups: adm-region-availability
 
-#CustomerIntent: As a developer, I want to browse the list of Microsoft Foundry Models sold directly by Azure based on the supported deployment types, availability in Azure regions, and model capabilities,, so that I can select the right model for my application.
+#CustomerIntent: As a developer, I want to browse the list of Microsoft Foundry Models sold by Azure based on the supported deployment types, availability in Azure regions, and model capabilities,, so that I can select the right model for my application.
 ---
 
-# Region availability for Foundry Models sold directly by Azure
+# Region availability for Foundry Models sold by Azure
 
 [!INCLUDE [models-sold-directly-by-azure-region-availability-intro](../includes/models-sold-directly-by-azure-region-availability-intro.md)]
 

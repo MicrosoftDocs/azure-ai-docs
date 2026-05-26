@@ -1,6 +1,7 @@
 ---
 title: "Human Evaluation for Microsoft Foundry Agents"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 04/19/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance."
@@ -18,8 +19,10 @@ This article explains how to set up human evaluation for your Foundry agent. As 
 
 - A [Foundry project](../../how-to/create-projects.md) with one or more [agents](../../agents/overview.md).
 - [Application Insights configured](trace-agent-setup.md) for your project.
-- **Azure AI Project Manager** role (or higher) on the Foundry project, to create and manage evaluation templates. For more information, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
-- For human reviewers: **Azure AI User** role (minimum) on the Foundry project and **Reader** on the account, to access the preview web app and submit feedback. 
+- **Foundry Project Manager** role (or higher) on the Foundry project, to create and manage evaluation templates. For more information, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- For human reviewers: **Foundry User** role (minimum) on the Foundry project and **Reader** on the account, to access the preview web app and submit feedback. 
 ## Create a human evaluation template
 
 To begin human evaluation for your Foundry agent, define a template that contains the set of questions you want human reviewers to complete based on agent responses.
@@ -55,7 +58,7 @@ You can create multiple evaluation templates based on your assessment needs. The
 After the evaluation template is configured and set as active for the target agent, human reviewers can begin their evaluation through the preview web app — a browser-based chat interface launched directly from the agent builder.
 
 > [!NOTE]
-> Human reviewers need the **Azure AI User** role on the Foundry project to access the preview web app and submit feedback.
+> Human reviewers need the **Foundry User** role on the Foundry project to access the preview web app and submit feedback.
 
 1. Select **Preview** in the top-right corner of the agent builder to open the agent in a browser-based chat interface.  
 2. Enter input and select **Send** to trigger an agent run.  

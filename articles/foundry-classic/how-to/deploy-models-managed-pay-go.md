@@ -1,8 +1,8 @@
 ---
 title: "Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic)" 
-description: "Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing. (classic)"
+description: "Learn how to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
 ms.topic: how-to
 ms.date: 4/09/2026
@@ -11,18 +11,18 @@ reviewer: AmarBadal
 ms.author: mopeakande
 manager: nitinme
 author: msakande
-#CustomerIntent: As a developer or data scientist, I want to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
+#CustomerIntent: As a developer or data scientist, I want to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
 ---
 
 # Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic) 
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—models sold directly by Azure, and [models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
+Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—Foundry Models sold by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The Models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected Models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a hub project for Foundry](hub-create-projects.md). You can deploy to managed compute using a hub project. A Foundry project won't work for this purpose.
 

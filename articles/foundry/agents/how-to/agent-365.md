@@ -45,7 +45,9 @@ The rest of this article walks through that process.
 - An Azure subscription where you can create resources.
 - The required permissions:
   - **Owner** role on the Azure subscription
-  - **Azure AI User** or **Cognitive Services User** role at subscription or resource group scope
+  - **Foundry User** or **Cognitive Services User** role at subscription or resource group scope
+
+    [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
   - A tenant admin role that can approve agent requests in the Microsoft 365 admin center
 - Use a region that supports Hosted agents. For the current supported regions, see [Hosted agents in Microsoft Foundry](../concepts/hosted-agents.md#region-availability).
 - [Azure CLI](/cli/azure/install-azure-cli)
@@ -106,7 +108,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| `azd provision` fails before resource creation starts | Missing permissions | Confirm you have **Owner** on the subscription and **Azure AI User** (or **Cognitive Services User**) at subscription or resource group scope. |
+| `azd provision` fails before resource creation starts | Missing permissions | Confirm you have **Owner** on the subscription and **Foundry User** (or **Cognitive Services User**) at subscription or resource group scope. |
 | `azd provision` fails with a region or hosted-agent availability message | Wrong region | Create all resources for this sample in a region that Hosted agents are supported in. |
 | Container build or push fails | Docker isn't running | Start Docker, and then run `azd provision --verbose` again. |
 | You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Verify tenant admin permissions and confirm the deployment completed successfully. |

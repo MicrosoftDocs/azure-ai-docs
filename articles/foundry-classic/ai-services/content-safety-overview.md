@@ -3,6 +3,7 @@ title: "Content Safety in Microsoft Foundry portal overview (classic)"
 description: "Learn how to use Azure AI Content Safety in Microsoft Foundry portal to detect harmful user-generated and AI-generated content in applications and services. (classic)"
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024
 ms.topic: overview
