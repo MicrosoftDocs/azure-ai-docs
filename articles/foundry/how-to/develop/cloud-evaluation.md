@@ -2020,8 +2020,8 @@ Create a JSONL file where each line describes a scenario for the simulated user.
 
 ```json
 
-{"id": "walmart_refund_timeline", "test_case_description": "Customer returned an item to Walmart 5 days ago and hasn't received their refund yet. They want to know how long Walmart refunds take.", "desired_num_turns": 10}
-{"id": "walmart_store_hours_lookup", "test_case_description": "Customer wants to know what time the Walmart store closes today. Simple single-fact question with possibly one clarifying turn about which location.", "desired_num_turns": 3}
+{"id": "contoso_refund_timeline", "test_case_description": "Customer returned an item to Contoso Electronics 5 days ago and hasn't received their refund yet. They want to know how long Contoso refunds take.", "desired_num_turns": 10}
+{"id": "contoso_store_hours_lookup", "test_case_description": "Customer wants to know what time the Contoso Electronics store closes today. Simple single-fact question with possibly one clarifying turn about which location.", "desired_num_turns": 3}
 ```
 
 ### Parameters
