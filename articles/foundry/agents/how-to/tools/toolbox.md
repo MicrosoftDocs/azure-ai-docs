@@ -63,6 +63,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 | [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 | [Browser Automation tool](browser-automation.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
@@ -576,6 +577,7 @@ Tool-specific `tools/call` argument examples:
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Step 4: Integrate the toolbox into your agent
@@ -583,6 +585,8 @@ Tool-specific `tools/call` argument examples:
 :::zone pivot="python"
 
 ### LangGraph
+
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 **`.env` file**:
 
@@ -603,7 +607,6 @@ toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
 tools = await toolbox.get_tools()
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 > [!IMPORTANT]
 > Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
@@ -888,7 +891,7 @@ The toolbox returns a `_meta.tool_configuration` object into every tool entry re
 
 ### Read `require_approval` from `tools/list`
 
-Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox :
+Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox:
 
 ```json
 {
@@ -2557,6 +2560,47 @@ resources:
 ```
 
 :::zone-end
+
+### [Fabric IQ](fabric-iq.md)
+
+Use this pattern to give the agent access to Microsoft Fabric data - ontologies, data agents, and Power BI semantic models - through Fabric IQ. Provide the project connection, MCP server URL, and server label for the target Fabric item.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Fabric IQ for enterprise Fabric data access",
+  "tools": [
+    {
+      "type": "fabric_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>",
+      "server_label": "<SERVER_LABEL>",
+      "server_url": "<SERVER_URL>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {
+        "type": "fabric_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+        "server_label": "<SERVER_LABEL>",
+        "server_url": "<SERVER_URL>",
+    }
+]
+```
+
+:::zone-end
+
+For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
+
+Annotation chunks are returned in `result.structuredContent.documents[]`. Each document includes `title` and `url` fields that you can use to generate citation details in your application.
 
 ### [Tool Search](tool-search.md)
 
