@@ -8,6 +8,10 @@ ms.author: pafarley
 ai-usage: ai-assisted
 ---
 
+### May 2026 release
+
+The Voice Live evaluation harness is available in preview. Evaluate the quality of your Voice Live voice agents by running pre-recorded audio through different session configurations and scoring responses with Microsoft Foundry built-in evaluators. For more information, see [How to evaluate Voice Live agents](../../how-to-voice-live-evaluate.md).
+
 ### April 2026 release
 
 Voice Live API version `2026-04-10` is available, adding new generally available features and preview capabilities. For the full API reference, see [Voice Live API Reference 2026-04-10](../../voice-live-api-reference-2026-04-10.md).

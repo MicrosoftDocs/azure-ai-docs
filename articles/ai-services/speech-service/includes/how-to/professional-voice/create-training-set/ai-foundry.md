@@ -25,6 +25,20 @@ All data you upload must meet the requirements for the data type that you choose
 When you're ready to upload your data, go to the **Prepare training data** tab to add your first training set and upload data. A *training set* is a set of audio utterances and their mapping scripts used for training a voice model. You can use a training set to organize your training data. The service checks data readiness for each training set. You can import multiple data files to a training set.
 
 To upload training data, follow these steps:
+
+# [Foundry (new)](#tab/foundry-new)
+
+These steps continue from the **Fine-tune a model** wizard you opened in [Create a professional voice](../../../../professional-voice-create-project.md).
+
+1. On the **Training data** pane of the wizard, select **Create new dataset**.
+1. In the **Upload data** flyout, choose a [data type](../../../../how-to-custom-voice-training-data.md). If you're using the sample data, select **Individual utterances + matching transcript**.
+1. Select the **Recording file** and **Script file**. You can upload local files from your computer or enter the Azure Blob storage URL.
+1. Enter a name and description for the dataset.
+1. Confirm the upload.
+1. On the **Training data** pane, select the new dataset from the **Select dataset** dropdown.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
@@ -44,6 +58,8 @@ To upload training data, follow these steps:
 1. Select **Next**.
 1. Enter a name and description for your data and then select **Next**.
 1. Review the upload details, and select **Upload data**.
+
+---
 
 > [!NOTE]
 > Duplicate IDs aren't accepted. Utterances with the same ID are removed.

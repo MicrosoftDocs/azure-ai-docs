@@ -380,6 +380,8 @@ items:
         href: voice-live-telephony.md
       - name: Enable telemetry and tracing
         href: how-to-voice-live-telemetry.md
+      - name: How to evaluate Voice Live agents (preview)
+        href: how-to-voice-live-evaluate.md
     - name: Voice Live FAQ
       href: voice-live-faq.yml
       displayName: FAQ,frequently asked questions

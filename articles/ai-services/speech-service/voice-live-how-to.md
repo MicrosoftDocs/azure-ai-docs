@@ -482,6 +482,9 @@ And the service responds with the server SDP.
 
 Then you can connect the avatar with the server SDP.
 
+Refer to this sample code [use avatar in Voice live API](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar) for more details.
+
+
 > [!NOTE]
 > Azure text to speech avatar is currently supported in limited regions. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=ttsavatar).
 
