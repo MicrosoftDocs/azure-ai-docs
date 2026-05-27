@@ -85,14 +85,14 @@ Choose how you want to evaluate your agent's performance:
 
 | Scope | Description | Best for |
 |-------|-------------|----------|
-| **Full conversations** | Evaluates complete multi-turn conversations from start to finish. Measures overall conversation quality, task completion, and user satisfaction. | Testing end-to-end agent experiences, customer satisfaction, and conversation flow. |
+| **Full conversations (preview)** | Evaluates complete multi-turn conversations from start to finish. Measures overall conversation quality, task completion, and user satisfaction. | Testing end-to-end agent experiences, customer satisfaction, and conversation flow. |
 | **Individual turns** | Evaluates individual agent responses within conversations. Measures per-turn metrics like tool selection accuracy and response quality. | Debugging specific agent behaviors, testing tool usage, and fine-grained analysis. |
 
 ### Step 3: Select data source
 
 The data source options depend on your evaluation target and scope.
 
-#### For conversation evaluations (agent > full conversations)
+#### For conversation evaluations (agent > full conversations) (preview)
 
 Choose where your conversation data comes from:
 

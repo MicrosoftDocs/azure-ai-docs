@@ -1564,7 +1564,7 @@ curl --request POST \
 
 To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
 
-## <a name="multiturn-conversation-evaluation"></a>Conversation-level evaluation
+## <a name="multiturn-conversation-evaluation"></a>Conversation-level evaluation (preview)
 
 Evaluate complete conversations to assess agent quality across entire user interactions - not just individual responses. Use conversation-level evaluation to identify quality problems like incomplete task resolution, user frustration, and tool-call regressions that turn-level evaluation misses.
 
