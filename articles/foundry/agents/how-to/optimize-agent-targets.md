@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The agent optimizer supports four optimization targets: **instruction tuning** rewrites your agent's system prompt, **skill improvement** refines reusable capabilities, **tool optimization** improves tool descriptions and parameters, and **model selection** evaluates across multiple model deployments. The optimizer automatically determines which targets to improve based on your agent's baseline configuration.
+The agent optimizer supports four optimization targets: **instruction tuning** (rewrites your agent's system prompt), **skill improvement** (refines reusable capabilities), **tool optimization** (improves tool descriptions and parameters), and **model selection** (evaluates across multiple model deployments). The optimizer automatically determines which targets to improve based on your agent's baseline configuration.
 
 | Scenario | What the optimizer does |
 | ---------- | ----------------------- |
@@ -58,10 +58,10 @@ The optimizer rewrites and refines your agent's system prompt to improve perform
 
 ### How it works
 
-1. **Baseline evaluation.** Your agent is invoked with its current instructions against every task in the dataset. Each response is scored against the task's criteria.
-1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts. These alternatives are designed to improve weak areas while maintaining strong areas.
-1. **Candidate evaluation.** Each candidate instruction set is injected into your agent through the `OPTIMIZATION_CANDIDATE_ID` environment variable and evaluated against the same dataset. The agent optimizer sets this variable automatically during evaluation.
-1. **Ranking.** Candidates are ranked by composite score. The best candidate is marked with ★.
+1. **Baseline evaluation.** Your agent runs with its current instructions against every task in the dataset. The evaluator scores each response against the task's criteria.
+1. **Instruction generation.** The optimizer analyzes the baseline scores and generates alternative system prompts designed to improve weak areas while maintaining strong areas.
+1. **Candidate evaluation.** The optimizer injects each candidate instruction set into your agent through the `OPTIMIZATION_CANDIDATE_ID` environment variable and evaluates it against the same dataset.
+1. **Ranking.** The optimizer ranks candidates by composite score and marks the best candidate with ★.
 
 ### Run instruction optimization
 
@@ -95,7 +95,7 @@ azd ai agent optimize --config eval.yaml
 
 The optimizer rewrites the system prompt. Your code stays the same because `load_config()` returns the new instructions automatically. Common improvements include:
 
-- Adding explicit constraints that the original prompt implied but did not state
+- Adding explicit constraints that the original prompt implied but didn't state
 - Restructuring instructions for clarity
 - Adding output format specifications
 - Strengthening safety and scope boundaries
@@ -143,7 +143,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ```
 
 > [!IMPORTANT]
-> If the eval model is not deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
+> If the eval model isn't deployed, all scores are zero with no error message. Always verify your eval model exists in the project.
 
 ### Optimization model (reflection)
 
@@ -165,7 +165,7 @@ azd ai agent optimize --optimize-model gpt-5.1
 ```
 
 > [!IMPORTANT]
-> The `optimization_model` field is required. If it's not specified and `--optimize-model` is not passed, the optimization API returns an error.
+> The `optimization_model` field is required. If you don't specify it and don't pass `--optimize-model`, the optimization API returns an error.
 
 For more details on how these models are used, see [Models](../concepts/agent-optimizer-overview.md#models).
 
@@ -175,12 +175,12 @@ The optimizer improves existing skills your agent uses. It refines skill descrip
 
 ### How it works
 
-1. **Baseline evaluation.** Same as instruction tuning. Your agent is evaluated against the dataset.
+1. **Baseline evaluation.** Same as instruction tuning. The optimizer evaluates your agent against the dataset.
 1. **Skill improvement.** The optimizer analyzes weak areas and refines skill definitions. A skill is a named capability with:
    - **Name**: For example, `"step_by_step_reasoning"`
    - **Description**: What the skill does and when to use it
    - **Body**: Implementation details or procedure
-1. **Injection.** Improved skills are loaded through `load_config()`, which makes them available to your agent's instruction set.
+1. **Injection.** The agent loads improved skills through `load_config()`, which makes them available to your agent's instruction set.
 
     ```python
     # load_config() returns skills from .agent_configs/baseline/skills/
@@ -189,7 +189,7 @@ The optimizer improves existing skills your agent uses. It refines skill descrip
     # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
     ```
 
-1. **Evaluation.** The agent with improved skills is evaluated against the dataset.
+1. **Evaluation.** The optimizer evaluates the agent with improved skills against the dataset.
 
 ### Run skill optimization
 
@@ -251,10 +251,10 @@ The optimizer improves tool descriptions and parameters in your `tools.json` fil
 
 ### How it works
 
-1. **Baseline evaluation.** Your agent is evaluated against the dataset, including any tool calls it makes.
-1. **Tool analysis.** The optimizer identifies tool calls that fail or produce suboptimal results, and analyzes whether the issue is unclear descriptions, missing parameters, or ambiguous naming.
-1. **Description refinement.** The optimizer generates improved tool definitions — clearer descriptions, better parameter documentation, and more precise function names.
-1. **Evaluation.** The agent with improved tool definitions is evaluated against the dataset.
+1. **Baseline evaluation.** The optimizer evaluates your agent against the dataset, including any tool calls it makes.
+1. **Tool analysis.** The optimizer identifies tool calls that fail or produce suboptimal results and analyzes the root cause—unclear descriptions, missing parameters, or ambiguous naming.
+1. **Description refinement.** The optimizer generates improved tool definitions with clearer descriptions, better parameter documentation, and more precise function names.
+1. **Evaluation.** The optimizer evaluates the agent with improved tool definitions against the dataset.
 
 ### Run tool optimization
 
@@ -268,15 +268,15 @@ azd ai agent optimize
 
 The optimizer refines your `tools.json` definitions. Common improvements include:
 
-- Clearer function descriptions that help the model know *when* to call a tool
+- Clearer function descriptions that help the model know when to call a tool
 - More specific parameter descriptions that reduce hallucinated arguments
 - Added constraints (enums, required fields) that prevent invalid inputs
 
-Your tool implementation code stays the same — only the definitions the model sees are changed.
+Your tool implementation code stays the same. Only the definitions the model sees change.
 
 ## Optimize model selection
 
-The optimizer evaluates your agent across multiple model deployments to find the best quality/cost trade-off. Each model is scored against the same dataset, so you can compare results directly. Model optimization activates when you specify model candidates in `optimization_config`.
+The optimizer evaluates your agent across multiple model deployments to find the best quality-to-cost trade-off. Each model runs against the same dataset, so you can compare results directly. Model optimization activates when you specify model candidates in `optimization_config`.
 
 ### Configure model candidates
 
@@ -311,7 +311,7 @@ Each model listed under `optimization_config.model` must be deployed in your Fou
 azd ai agent optimize --config eval.yaml
 ```
 
-The optimizer evaluates your agent using each specified model deployment and ranks the results by score and token cost.
+The optimizer evaluates your agent with each specified model deployment and ranks the results by score and token cost.
 
 ### Combine with other targets
 
@@ -381,7 +381,7 @@ azd ai agent optimize deploy --candidate <candidate-id>
 > [!WARNING]
 > Direct deploy updates the agent service without changing your local files. Use the `apply` → `deploy` workflow for production.
 
-If all candidates score lower than the baseline, do not deploy any candidate. The baseline configuration remains active.
+If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
 
 ## Troubleshooting
 
