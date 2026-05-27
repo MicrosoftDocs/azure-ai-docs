@@ -25,22 +25,22 @@ ai-usage: ai-assisted
 
 Document translation (**2026-03-01** GA) is a cloud-based feature of Azure Translator and part of the Foundry Tools family of REST APIs. It provides:
 
-* **Translation** across all [supported languages and dialects](../language-support.md).
+* **Translation** across all [supported languages and dialects](../../language-support.md).
 * **Preservation** of the original document structure and data format.
 * **Neural machine translation (NMT) engine support** for standard translations (default).
 * **Large language model (LLM) support** for higher-quality, context-aware translations (optional).
 
 The Document Translation API supports two translation processes:
 
-* **[Asynchronous batch translation](#key-features):** Translate multiple documents or large files in parallel. Upload documents to Blob Storage, submit a batch job, poll for status, then download translated output from your target container. Requires an Azure Blob Storage account with source and target containers. For a full walkthrough, see [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md) and [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md).
+* **[Asynchronous batch translation](#key-features):** Translate multiple documents or large files in parallel. Upload documents to Blob Storage, submit a batch job, poll for status, then download translated output from your target container. Requires an Azure Blob Storage account with source and target containers. For a full walkthrough, see [Quickstart: asynchronous document translation](quickstarts/asynchronous.md) and [End-to-end batch translation workflow](end-to-end-batch-workflow.md).
 
-* **[Synchronous single-file translation](#key-features):** POST a single document and receive the translated output directly in the response. No Azure Blob Storage required. For a full walkthrough, see [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md).
+* **[Synchronous single-file translation](#key-features):** POST a single document and receive the translated output directly in the response. No Azure Blob Storage required. For a full walkthrough, see [Quickstart: synchronous document translation](quickstarts/synchronous.md).
 
 ## What's new in version 2026-03-01
 
 API version **2026-03-01** introduces the following capabilities for Document Translation:
 
-* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../how-to/create-translator-resource.md).
+* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 * **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
 
@@ -55,7 +55,7 @@ Prerequisites differ by translation method:
 * **Asynchronous batch translation**: Requires an Azure Blob Storage account and storage authorization (SAS tokens or managed identity).
 * **Synchronous single-file translation**: Requires only a Translator resource with a custom domain endpoint.
 
-For the full prerequisites list, see [Prerequisites and setup](latest/prerequisites.md).
+For the full prerequisites list, see [Prerequisites and setup](prerequisites.md).
 
 ## Key features
 
@@ -70,7 +70,7 @@ Document Translation supports different features for each translation method. Se
 | **Translate image file formats** 🆕 | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator). |
 | [**Translate image text in Word documents (.docx) and PowerPoint files (.pptx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx). | This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` and `.pptx` file formats. |
 | **Preserve source file presentation** | Translate files while preserving the original layout and format. |
-| **Apply custom translation** | Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models. |
+| **Apply custom translation** | Translate documents using general and [custom translation](../../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models. |
 | **Apply custom glossaries** | Translate documents using custom glossaries. |
 | **Automatically detect document language** | Let the Document translation service determine the language of the document. |
 | **Translate documents with content in multiple languages** | Use the autodetect feature to translate documents with content in multiple languages into your target language. |
@@ -81,16 +81,16 @@ Document Translation supports different features for each translation method. Se
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries. For guidance, see [Use glossaries with Document translation](how-to-guides/create-use-glossaries.md).|
-|**Single language translation**|Translate to and from one [supported language](../language-support.md).|
+|**Single language translation**|Translate to and from one [supported language](../../language-support.md).|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
 
 ---
 
 ## Language support
 
-For the full list of languages supported for document translation features, including LLM-based translation, see [Language support](../language-support.md).
+For the full list of languages supported for document translation features, including LLM-based translation, see [Language support](../../language-support.md).
 
 ### LLM data processing
 
@@ -109,7 +109,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 
 |Development option|Description|
 |---|---|
-|**REST API**|The [REST API](latest/rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
+|**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
 ### [**Synchronous**](#tab/sync)
@@ -120,9 +120,9 @@ Use synchronous document translation to translate a single file and return the t
 |---|---|
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
-|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](latest/rest-api/guide-overview.md#synchronous-operations).|
+|**REST API**|Integrate synchronous document translation into your applications by using the [REST API](rest-api/guide-overview.md#synchronous-operations).|
 |**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
-|**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../containers/translate-document-parameters.md).|
+|**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../../containers/translate-document-parameters.md).|
 
 ---
 
@@ -132,14 +132,14 @@ Document translation supports a broad range of file formats for both translation
 
 To query supported formats at runtime:
 
-* **Document formats**: Use the [Get supported document formats](latest/rest-api/get-supported-document-formats.md) API.
-* **Glossary formats**: Use the [Get supported glossary formats](latest/rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
+* **Document formats**: Use the [Get supported document formats](rest-api/get-supported-document-formats.md) API.
+* **Glossary formats**: Use the [Get supported glossary formats](rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
 
-For a complete list of supported formats by method, see [Supported document formats](latest/rest-api/guide-overview.md).
+For a complete list of supported formats by method, see [Supported document formats](rest-api/guide-overview.md).
 
 ## Document translation request limits
 
-Document translation enforces limits on request size, document count, file size, and concurrent operations. Understanding these limits helps you design batch jobs and avoid throttling errors. For detailed information, see [Document translation request limits](../service-limits.md#document-translation).
+Document translation enforces limits on request size, document count, file size, and concurrent operations. Understanding these limits helps you design batch jobs and avoid throttling errors. For detailed information, see [Document translation request limits](../../service-limits.md#document-translation).
 
 ## Document translation data residency
 
@@ -160,9 +160,9 @@ Data residency determines where your document content is processed and temporari
 
 If you encounter unexpected behavior, errors, or performance issues, the following resources can help you diagnose and resolve them:
 
-* **Service limits:** See [Document translation request limits](../service-limits.md#document-translation).
+* **Service limits:** See [Document translation request limits](../../service-limits.md#document-translation).
 
-* **Translation errors and known issues:** See [Known issues](../reference/known-issues.md).
+* **Translation errors and known issues:** See [Known issues](../../reference/known-issues.md).
 
 ## Pricing
 
@@ -174,7 +174,7 @@ Pricing depends on whether you use NMT-based or LLM-based translation. The two m
 
 ## Related content
 
-* [Quickstart: asynchronous document translation](latest/quickstarts/asynchronous.md)
-* [Quickstart: synchronous document translation](latest/quickstarts/synchronous.md)
-* [End-to-end batch translation workflow](latest/end-to-end-batch-workflow.md)
+* [Quickstart: asynchronous document translation](quickstarts/asynchronous.md)
+* [Quickstart: synchronous document translation](quickstarts/synchronous.md)
+* [End-to-end batch translation workflow](end-to-end-batch-workflow.md)
 

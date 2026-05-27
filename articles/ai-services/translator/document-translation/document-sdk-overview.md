@@ -214,4 +214,4 @@ The [`Microsoft Q&A`](/answers/tags/132/azure-translator) and [Stack Overflow](h
 ## Next steps
 
 >[!div class="nextstepaction"]
-> [**Document translation SDK quickstart**](quickstarts/client-library-sdks.md) [**Document translation v1.1 REST API reference**](latest/rest-api/guide-overview.md)
+> [**Document translation SDK quickstart**](quickstarts/client-library-sdks.md) [**Document translation v1.1 REST API reference**](rest-api/guide-overview.md)
