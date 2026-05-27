@@ -46,7 +46,7 @@ Initialize a new project from the agent optimizer sample. Create a folder, then 
 
 ```bash
 mkdir my-agent && cd my-agent
-azd ai agent init -m https://github.com/microsoft/faos-pri-preview/blob/main/samples/python/customer-support/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml
 ```
 
 This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
