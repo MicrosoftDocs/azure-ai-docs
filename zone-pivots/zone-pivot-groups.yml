@@ -2118,6 +2118,15 @@ groups:
     title: Python
   - id: rest-api
     title: REST API
+# Owner: aahi
+- id: selection-work-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?
