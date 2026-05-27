@@ -23,13 +23,13 @@ Three input source types are available, and you can combine them in a single job
 - **Prompt**—pass an inline text prompt that describes the domain or steers difficulty.
 - **Reference file**—upload a document (for example, a policy, spec, or knowledge-base export) and generate questions grounded in its content.
 
-Synthetic generation and trace-based generation are complementary: synthetic datasets cover edge cases and pre-launch scenarios, while trace-based datasets reflect real production behavior. Using both gives the strongest evaluation signal. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
+Synthetic generation and trace-based generation are complementary: synthetic datasets cover edge cases and prelaunch scenarios, while trace-based datasets reflect real production behavior. Using both gives the strongest evaluation signal. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
 
 ## When to use synthetic generation
 
 Use synthetic generation when:
 
-- You're pre-launch and have no production traces yet.
+- You're prelaunch and have no production traces yet.
 - Your agent has low traffic and a trace window doesn't yield enough distinct samples.
 - You need a stable regression baseline that doesn't drift with changing production behavior.
 - You want to expand coverage of edge cases the agent hasn't encountered in production.
@@ -54,7 +54,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 ## Generate a dataset from the portal
 
-1. In the portal, open the **Data Generation** tab. Select **Create dataset**, then select **Generate synthetic**.
+1. In the portal, open the **Data Generation** tab. Select **Create dataset**, and then select **Generate synthetic**.
 1. In **Generate synthetic data**, set **Dataset usage** to **Evaluation**.
 1. Confirm **Task type** is **Simple Q&A**.
 1. Select a **Generator model**.
@@ -70,7 +70,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 This flow seeds generation from a deployed agent's instructions. The service fetches the agent's prompt and uses your configured model to synthesize question-and-answer pairs from it.
 
-First, create an `AIProjectClient` using your project endpoint and `DefaultAzureCredential`. All data generation operations are available under `project_client.beta.datasets`.
+First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -169,7 +169,7 @@ The job produces a versioned dataset with single-turn `query` and `ground_truth`
 
 ## Generate a dataset from a prompt (SDK)
 
-When you don't have a deployed agent yet, or you want to generate from a self-contained snippet of source material, pass the text as a `PromptDataGenerationJobSource`. This is useful for policy documents, FAQ content, or short specs.
+If you don't have a deployed agent yet, or if you want to generate data from a self-contained snippet of source material, pass the text as a `PromptDataGenerationJobSource`. This approach is useful for policy documents, FAQ content, or short specs.
 
 ```python
 from azure.ai.projects.models import (
@@ -211,11 +211,11 @@ job = DataGenerationJob(
 job = project_client.beta.datasets.create_generation_job(job=job)
 ```
 
-Poll and resolve the dataset using the same pattern shown in the previous section.
+Poll and resolve the dataset by using the same pattern shown in the previous section.
 
 ## Generate a dataset from reference files (SDK)
 
-For longer source material, upload a document as an Azure OpenAI file and reference it by id. This is the best option when the agent's domain knowledge lives in a spec, knowledge-base export, or policy document, because the generated questions stay grounded in that content.
+For longer source material, upload a document as an Azure OpenAI file and reference it by ID. This option works best when the agent's domain knowledge lives in a spec, knowledge-base export, or policy document, because the generated questions stay grounded in that content.
 
 The file must be in the `processed` state before the data generation service can use it, and it needs to contain at least 1 KB of content.
 
@@ -311,7 +311,7 @@ For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-
 - **Mirror your production system prompt.** When you generate from an agent definition or a prompt, use instructions that match what your production agent actually runs. Drift here weakens the evaluation signal.
 - **Combine a reference file with a prompt for grounded coverage.** The file anchors generated questions in real domain content; the prompt steers tone, difficulty, or topic emphasis.
 - **Generate a small batch first.** Start at the minimum `max_samples` of 15, review the rows manually on the **Data** tab, then scale up once the output quality looks right.
-- **Regenerate when the agent's instructions change.** A dataset generated from one version of an agent's prompt becomes stale when the prompt changes significantly. Re-run the job and version the new output.
+- **Regenerate when the agent's instructions change.** A dataset generated from one version of an agent's prompt becomes stale when the prompt changes significantly. Rerun the job and version the new output.
 - **Combine synthetic and trace-based generation for the strongest coverage.** Synthetic data fills gaps before launch and for edge cases; production traces reflect how your agent actually behaves. Use both sources together rather than treating them as alternatives. See [Convert agent traces into evaluation datasets](traces-to-dataset.md).
 
 ## Related content
