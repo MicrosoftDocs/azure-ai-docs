@@ -78,6 +78,7 @@ Choose the right tool between Content Understanding (CU) analyzers and Document 
 | Custom extraction with labels for highly structured documents (for example, claims, standard applications) | **DI custom model** | Neural model training with as few as 5 labeled samples |
 | on-premises or air-gapped deployment | **DI containers** | Only option today |
 
+Choose the right tool between Content Understanding (CU) analyzers and Document Intelligence (DI) models depending on your document needs. 
 
 ## Scenario walkthroughs
 
