@@ -14,6 +14,40 @@ This article provides an overview of which regions support AI-assisted evaluator
 
 ## Region support
 
+### Supported regions for Agent playground evaluations
+
+The agent playground evaluations are supported in the following regions:
+
+| Americas | Europe |
+|--|--|
+| East US 2 | France Central |
+| West US | Norway East |
+| West US 2 | Sweden Central |
+| West US 3 | Germany West Central |
+| Central US | Italy North |
+| East US | Poland Central |
+| North Central US | Spain Central |
+| South Central US |  |
+
+### Supported regions for batch evaluations
+
+The batch evaluations are supported in the following regions:
+
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|--|--|--|--|
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Central India | UAE North |
+| Canada East | Italy North | East Asia |  |
+| Central US | North Europe | Japan East |  |
+| East US | Norway East | Japan West |  |
+| East US 2 | Poland Central | Korea Central |  |
+| North Central US | Spain Central | South India |  |
+| South Central US | Sweden Central | Southeast Asia |  |
+| West Central US | Switzerland North |  |  |
+| West US | UK South |  |  |
+| West US 2 | West Europe |  |  |
+| West US 3 |  |  |  |
+
 ### Risk and safety evaluators and AI red teaming region support
 
 Certain AI-assisted evaluators and AI red teaming are available only in the following regions:
@@ -26,38 +60,9 @@ Certain AI-assisted evaluators and AI red teaming are available only in the foll
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
 
-### Agent playground evaluation region support
+### Azure OpenAI graders regional availability
 
-The Foundry portal supports agent playground evaluation in the following regions:
-
-- East US 2
-- West US
-- West US 2
-- West US 3
-- France Central
-- Norway East
-- Sweden Central
-
-### Unsupported regions for batch evaluation
-
-Batch evaluations aren't supported in the following regions:
-
-- Canada Central
-- Qatar Central
-- South Central US
-- Southeast Asia
-- Spain Central
-
-### Unsupported regions for Azure OpenAI graders
-
-The following regions don't support Azure OpenAI graders or custom code evaluator:
-
-- Canada East
-- Central India
-- East Asia
-- East US
-- North Europe
-- South India
+For the Azure OpenAI graders regional list, see [Regional availability](../../foundry-classic/openai/how-to/evaluations.md#regional-availability).
 
 ## Rate limits
 
