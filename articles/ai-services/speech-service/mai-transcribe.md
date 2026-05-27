@@ -71,6 +71,7 @@ You can use MAI‑Transcribe models with the LLM Speech API to generate transcri
 Note the following limitations when you use a MAI-Transcribe model:
 - Diarization isn't supported.
 - Prompt-tuning isn't supported.
+- Phrase list and transcribe style are supported only in `mai-transcribe-1.5`.
 
 
 ::: zone pivot="ai-foundry"
@@ -120,7 +121,7 @@ Optionally, for `mai-transcribe-1.5`, you can specify the style of the transcrip
   }
 ```
 
-Optionally, for `mai-transcribe-1.5`, you can add a list of phrases to boost up the accuracy by using `phraseList`. 
+Optionally, for `mai-transcribe-1.5`, you can add a list of phrases to increase accuracy in specialized domains by using `phraseList`. This implements entity biasing.
 
 ```
  --form 'definition={
