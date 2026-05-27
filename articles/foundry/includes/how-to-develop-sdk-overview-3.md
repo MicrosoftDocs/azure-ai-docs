@@ -10,13 +10,36 @@ ms.date: 03/20/2026
 ms.custom: include
 ---
 
-## Using the Agent Framework for local orchestration
+## Agent Framework
 
-Microsoft Agent Framework is an open-source SDK for building multi-agent systems in code (for example, .NET and Python) with a cloud-provider-agnostic interface.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [code-based agents](../agents/overview.md#code-based-agents) on Microsoft Foundry, and it's cloud-provider-agnostic so the same code can run in your own process or be packaged as a Foundry-managed Hosted agent.
 
-Use Agent Framework when you want to define and orchestrate agents locally. Pair it with the Foundry SDK when you want those agents to run against Foundry models or when you want Agent Framework to orchestrate agents hosted in Foundry.
+### How it connects to Foundry
 
-For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview).
+Agent Framework calls the **Foundry Responses API** through the `FoundryChatClient` provider. The `FoundryChatClient` targets your project endpoint:
+
+```
+{project_endpoint}/openai/v1/responses
+```
+
+Going through the project endpoint — instead of a resource-level OpenAI endpoint — gives your agent:
+
+- Foundry models from the catalog (Azure OpenAI and Foundry direct models) through one API.
+- Platform tools beyond the OpenAI tool set, including file search, code interpreter, memory, web search, MCP servers, SharePoint, WorkIQ, and Fabric IQ.
+- Project-scoped data, On-Behalf-Of (OBO) tool authentication, and the project's tracing, content filters, and identity configuration.
+
+### When to use it
+
+Use Agent Framework when you want your agent definition (instructions, tools, model) to live in your application code and ship in the same release cycle as the app, rather than as a portal-defined [prompt agent](../agents/quickstarts/prompt-agent.md) or a [workflow agent](../agents/concepts/workflow.md).
+
+The same Agent Framework code supports two hosting modes — they're additive, not alternatives:
+
+- **Self-hosted** — Run the agent in your own process or infrastructure. You manage the endpoint, scaling, and lifecycle; Foundry provides the models, platform tools, and API. Best for local iteration and integrating with existing code. See [Quickstart: Use the Foundry Responses API](../agents/quickstarts/responses-api.md).
+- **Hosted agent (preview)** — Package the same code as a container and deploy it to Foundry. You get a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability. See [Deploy your first Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md).
+
+Start self-hosted while you iterate, then graduate the same codebase to a Hosted agent when you need a managed, network-addressable endpoint that other apps or agents can call.
+
+For a full comparison of agent types and hosting choices, see [What is Microsoft Foundry Agent Service?](../agents/overview.md).
 
 ## Foundry Tools SDKs
 

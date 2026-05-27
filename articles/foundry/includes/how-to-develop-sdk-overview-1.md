@@ -18,14 +18,14 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
 | **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface, including embeddings. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
 | **Anthropic SDK** | Anthropic Claude models deployed in Foundry, using the Anthropic Messages API. | `https://<resource-name>.services.ai.azure.com/anthropic` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
-| **Agent Framework** | Multi-agent orchestration in code. Cloud-agnostic. | Uses the project endpoint via the Foundry SDK. |
+| **Agent Framework** | Recommended SDK for code-based agents and multi-agent systems. Same code runs self-hosted or as a Foundry-managed Hosted agent. | Calls the Foundry Responses API at the project endpoint via `FoundryChatClient`. |
 
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
 - Use **OpenAI SDK** when maximum OpenAI compatibility is required, when generating embeddings, or using Foundry direct models via Chat Completions
 - Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
-- Use **Agent Framework** when building multi-agent systems in code (local orchestration)
+- Use **Agent Framework** when building code-based agents or multi-agent systems against the Foundry Responses API, either self-hosted or deployed as a Hosted agent
 
 > [!NOTE]
 > **Resource types:** A Foundry resource provides all endpoints previously listed. An Azure OpenAI resource provides only the `/openai/v1` endpoint.
