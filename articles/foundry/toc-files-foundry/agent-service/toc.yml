@@ -102,6 +102,8 @@ items:
       href: ../../agents/how-to/tools/fabric.md
     - name: Fabric IQ (preview)
       href: ../../agents/how-to/tools/fabric-iq.md
+    - name: Work IQ (preview)
+      href: ../../agents/how-to/tools/work-iq.md
     - name: Foundry IQ
       items:
       - name: What is Foundry IQ?
