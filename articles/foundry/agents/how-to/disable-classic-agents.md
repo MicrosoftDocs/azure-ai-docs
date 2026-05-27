@@ -7,6 +7,7 @@ ms.date: 05/27/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 #Customer Intent: As an admin, I want to disable creating classic agents and assistants on an Azure OpenAI account so that I can enforce migration to the new Foundry Agent Service.
 ---
