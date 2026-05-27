@@ -112,7 +112,7 @@ The .NET SDK is currently in preview. For more information, see the [quickstart]
 5. Under **Tools**, click on **Add**
 6. Select **Browser Automation** and click **Add tool**
 7. Enter the required fields
-   - **Connection name**: Unique name for you connection
+   - **Connection name**: Unique name for your connection
    - **Playwright Workspace**: Select the Playwright Workspace resource.
    - **Auth Type**: Select the authentication type for your connection.
 8. Select **Connect**.
