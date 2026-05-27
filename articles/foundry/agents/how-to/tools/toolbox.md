@@ -46,6 +46,7 @@ In this article, you learn how to:
 - Verify that tools load correctly.
 - Integrate a toolbox into your Hosted agent.
 - Manage toolbox versions and promote a version to default.
+- Apply a guardrail (RAI policy) to a toolbox version.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
 
@@ -63,6 +64,7 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| Guardrail (RAI policy) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Skill references](skills.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 
@@ -333,6 +335,44 @@ resources:
         server_label: github
         server_url: https://api.githubcopilot.com/mcp
         project_connection_id: github-mcp-conn
+```
+
+### Create a toolbox (azd)
+
+Use `azd ai toolbox create` to deploy a toolbox from a YAML file. The file lists the connections to include — each connection must already exist in the project:
+
+```yaml
+# my-toolbox.yaml
+description: <human-readable description>
+connections:
+  - name: <project-connection-name>   # must already exist in the project
+    # index: <search-index>           # required only for CognitiveSearch connections
+    # instance_name: <bing-config>    # required only for GroundingWithCustomSearch connections
+```
+
+**Example: MCP server with key-based auth**
+
+```bash
+# 1. Create the connection
+azd ai agent connection create my-gh-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp/ \
+  --auth-type custom-keys \
+  --custom-key "Authorization=Bearer $GITHUB_PAT"
+
+# 2. Create the toolbox
+azd ai toolbox create my-toolbox \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --from-file ./my-toolbox.yaml \
+  --no-prompt
+```
+
+```yaml
+# my-toolbox.yaml
+description: GitHub MCP toolbox
+connections:
+  - name: my-gh-conn
 ```
 
 :::zone-end
@@ -1044,14 +1084,14 @@ resources:
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
-> You can manage toolbox versions (list, get, promote, delete) through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
+> You can delete toolbox versions through the Python SDK, .NET SDK, JavaScript SDK, and REST API only. The azd CLI supports list, get, and update operations.
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it - you decide when to update `default_version`. This process lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
 | Object | Key fields | Description |
 |--------|-----------|-------------|
 | `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
-| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
+| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. `policies.rai_config.rai_policy_name` specifies the optional guardrail applied to this version. |
 
 ### Create a new version
 
@@ -1183,7 +1223,10 @@ Use the Python, .NET, JavaScript, or REST API tab to list toolbox versions.
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To list toolbox versions, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+```bash
+# The current default version is marked with *
+azd ai toolbox version list my-toolbox --project-endpoint $PROJECT_ENDPOINT
+```
 
 :::zone-end
 
@@ -1242,7 +1285,9 @@ Use the Python, .NET, JavaScript, or REST API tab to get a specific toolbox vers
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To get a specific toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+```bash
+azd ai toolbox version get my-toolbox <version_id> --project-endpoint $PROJECT_ENDPOINT
+```
 
 :::zone-end
 
@@ -1310,7 +1355,17 @@ Use the Python, .NET, JavaScript, or REST API tab to promote a toolbox version t
 
 :::zone pivot="azd"
 
-This operation isn't supported with azd. To promote a version to default, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+Toolbox versions are immutable. Use `update` to point the default to any existing version:
+
+```bash
+# Roll back or forward to a specific version
+azd ai toolbox update my-toolbox \
+  --default-version <version_id> \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --no-prompt
+```
+
+`--default-version` is the only field `update` accepts.
 
 :::zone-end
 
@@ -1712,6 +1767,58 @@ resources:
 > [!NOTE]
 > The `audience` field is required for `UserEntraToken` connections. Without it, `tools/list` returns zero tools.
 
+**Create a project connection (azd CLI):**
+
+> [!NOTE]
+> Export your project endpoint to a variable to reuse across commands:
+>
+> ```bash
+> PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+> ```
+
+```bash
+# No auth — public MCP server
+azd ai agent connection create my-mslearn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://learn.microsoft.com/api/mcp \
+  --auth-type none
+
+# Custom-keys header (for example, GitHub PAT)
+azd ai agent connection create my-gh-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp/ \
+  --auth-type custom-keys \
+  --custom-key "Authorization=Bearer $GITHUB_PAT"
+
+# User Entra token passthrough (for example, Microsoft Fabric)
+azd ai agent connection create my-fabric-uet \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target https://api.fabric.microsoft.com/v1/mcp/fabricaihub/integrations/m365 \
+  --auth-type user-entra-token \
+  --audience https://analysis.windows.net/powerbi/api
+
+# Agentic identity — agent's managed identity, no user token
+# Assign the agent identity the required RBAC role on the target resource before use.
+azd ai agent connection create my-language-mcp \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-tool \
+  --target "https://<resource>.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview" \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+`--custom-key` is singular and repeatable — one flag per header. The `"Header=Value"` format sends the header verbatim on every MCP request.
+
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `agentic-identity` | `--audience <entra-audience>` |
+
 :::zone-end
 
 > [!IMPORTANT]
@@ -1856,6 +1963,19 @@ resources:
           instance_name: your-bing-custom-instance
         project_connection_id: bing-custom-conn
 ```
+
+**Create a Bing Custom Search connection (azd CLI):**
+
+```bash
+azd ai agent connection create my-bing-custom \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind GroundingWithCustomSearch \
+  --target https://api.bing.microsoft.com/ \
+  --auth-type api-key \
+  --key "<bing-custom-search-key>"
+```
+
+`--kind GroundingWithCustomSearch` requires exact PascalCase.
 
 :::zone-end
 
@@ -2017,6 +2137,17 @@ resources:
       - type: azure_ai_search
         index_name: your-index-name
         project_connection_id: aisearch-conn
+```
+
+**Create an Azure AI Search connection (azd CLI):**
+
+```bash
+azd ai agent connection create my-search \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind cognitive-search \
+  --target "https://<your-search>.search.windows.net/" \
+  --auth-type api-key \
+  --key "<aisearch-admin-key>"
 ```
 
 :::zone-end
@@ -2556,6 +2687,48 @@ resources:
         project_connection_id: a2a-conn
 ```
 
+**Create a project connection (azd CLI):**
+
+```bash
+# No auth
+azd ai agent connection create my-a2a-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type none
+
+# Custom-keys header
+azd ai agent connection create my-a2a-auth-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type custom-keys \
+  --custom-key "Authorization=Bearer <token>"
+
+# User Entra token passthrough
+azd ai agent connection create my-a2a-entra-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type user-entra-token \
+  --audience "<entra-audience>"
+
+# Agentic identity
+azd ai agent connection create my-a2a-mi-conn \
+  --project-endpoint $PROJECT_ENDPOINT \
+  --kind remote-a2a \
+  --target https://your-remote-agent.azurecontainerapps.io \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
+
+| `--auth-type` | Additional flags |
+|---------------|------------------|
+| `none` | — |
+| `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
+| `user-entra-token` | `--audience <entra-audience>` |
+| `agentic-identity` | `--audience <entra-audience>` |
+
 :::zone-end
 
 ### [Tool Search](tool-search.md)
@@ -2607,6 +2780,113 @@ tools = [
 | `500` with non-streaming `tools/call` | Non-streaming mode (`stream=False`) isn't supported for toolbox MCP endpoints. | Always use `stream=True` when calling toolbox MCP tools. |
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |
 | Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
+
+## Configure guardrails
+
+Apply a named [guardrail policy](../../../guardrails/guardrails-overview.md) to a toolbox version to enforce responsible AI content filtering on tool inputs and outputs. The guardrail runs at the toolbox layer, independently of any model-level content filter.
+
+A guardrail is referenced by its policy name, which you configure in the Foundry portal under **Guardrails**. Set `policies.rai_config.rai_policy_name` to the name of the policy when creating a toolbox version.
+
+:::zone pivot="python"
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import WebSearchTool
+
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
+project = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
+
+toolbox_version = project.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    description="Toolbox with guardrail",
+    tools=[WebSearchTool()],
+    policies={
+        "rai_config": {
+            "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>"
+        }
+    },
+)
+print(f"Created version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+POST {endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
+
+{
+  "description": "Toolbox with guardrail",
+  "tools": [{ "type": "web_search" }],
+  "policies": {
+    "rai_config": {
+      "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>"
+    }
+  }
+}
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+#pragma warning disable AAIP001
+var toolboxVersion = toolboxesClient.CreateToolboxVersion(
+    toolboxName: "my-toolbox",
+    description: "Toolbox with guardrail",
+    tools: [new WebSearchTool()],
+    policies: new ToolboxPolicies
+    {
+        RaiConfig = new RaiConfig { RaiPolicyName = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>" }
+    }
+);
+Console.WriteLine($"Created version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const toolboxVersion = await project.beta.toolboxes.createVersion("my-toolbox", {
+  description: "Toolbox with guardrail",
+  tools: [{ type: "web_search" }],
+  policies: {
+    raiConfig: {
+      raiPolicyName: "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>",
+    },
+  },
+});
+console.log(`Created version: ${toolboxVersion.version}`);
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+name: my-toolbox
+description: Toolbox with guardrail
+policies:
+  rai_config:
+    rai_policy_name: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/raiPolicies/<policy-name>
+tools:
+  - type: web_search
+```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Guardrail configuration isn't yet available in the VS Code extension. Use the REST API, SDK, or `azd` to configure guardrails.
+
+:::zone-end
 
 ## Attach skills to a toolbox
 
@@ -2758,7 +3038,6 @@ asyncio.run(list_skills())
 Skills appear as MCP resources with URIs in the format `skill://{name}`.
 
 
-
 ## Virtual network support
 
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
@@ -2789,6 +3068,7 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
+- [Guardrails overview](../../../guardrails/guardrails-overview.md)
 - [Manage skills](skills.md)
 - [Deploy a Hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
