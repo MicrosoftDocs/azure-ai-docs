@@ -42,6 +42,10 @@ API version **2026-03-01** introduces the following capabilities for Document Tr
 
 * **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM supported model, for example, GPT-5.4, based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../../how-to/create-translator-resource.md).
 
+> [!TIP]
+> You can use the Text Translation [**Get supported languages**](../../text-translation/2026-06-06/get-languages.md) API with the **scope=models** parameter to confirm available models programmatically.<br>
+> **curl -X GET "<https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06&scope=models>"**
+
 * **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
 
 * **PDF translation with Azure Document Intelligence (batch only)**: Translate PDF files using Azure Document Intelligence to preserve layout and structure in the translated output.
