@@ -43,8 +43,9 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox (preview)
     href: ../../agents/how-to/tools/toolbox.md
-  - name: Tool search (preview)
-    href: ../../agents/how-to/tools/tool-search.md
+    items:
+    - name: Tool search (preview)
+      href: ../../agents/how-to/tools/tool-search.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
@@ -79,6 +80,8 @@ items:
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
       href: ../../mcp/build-your-own-mcp-server.md
+    - name: Use connectors as MCP servers
+      href: ../../agents/how-to/tools/connectors.md
   - name: Additional tools
     items:
     - name: Skills (preview)
@@ -97,6 +100,8 @@ items:
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
+    - name: Fabric IQ (preview)
+      href: ../../agents/how-to/tools/fabric-iq.md
     - name: Foundry IQ
       items:
       - name: What is Foundry IQ?
