@@ -1036,7 +1036,7 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
-## Trace evaluation
+## Trace evaluation (preview)
 
 Evaluate agent interactions that Application Insights already captured. Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic. You select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
 

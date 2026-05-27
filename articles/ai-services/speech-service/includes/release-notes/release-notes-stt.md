@@ -8,6 +8,12 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### May 2026 release
+
+#### LLM Speech API Generally Availability
+
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
 ### April 2026 release
 
 #### Post-stream refinement (public preview)
