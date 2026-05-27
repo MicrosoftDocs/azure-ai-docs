@@ -47,7 +47,7 @@ The `tool_search` function accepts the following parameters:
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `query` | string | Yes | Natural-language description of the capability or task you need a tool for. |
-| `top_k` | integer | No | Maximum number of tools to return. Defaults to a platform value when omitted. |
+| `limit` | integer | No | Maximum number of tools to return. Defaults to a platform value when omitted. |
 
 The model can call `tool_search` as many times as needed during a single turn. Each call returns only the tools that match the query, so the active context stays focused on what's relevant to the current step. Tools returned by `tool_search` remain callable for the rest of the turn without repeated searching.
 
@@ -357,7 +357,6 @@ Auto-pinning composes with explicit `pin` and `additional_search_text` configura
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
 | `type` | `"toolbox_search_preview"` | Yes | Activates tool search for the toolbox. |
-| `default_defer.enabled` | boolean | No | When `true` (default), all tools are hidden from the initial `tools/list` response and discoverable only through `tool_search`. |
 
 Include `{"type": "toolbox_search_preview"}` in your toolbox's tools list to enable tool search. All other configuration fields are optional.
 

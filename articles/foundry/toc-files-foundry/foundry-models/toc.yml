@@ -23,6 +23,9 @@ items:
     - name: Compare models
       displayName: Compare models using the model leaderboard (preview)
       href: ../../how-to/benchmark-model-in-catalog.md
+    - name: Benchmark evaluations
+      displayName: Benchmark evaluations in Microsoft Foundry Models
+      href: ../../observability/how-to/benchmark-evaluations.md
     - name: GPT-5 vs GPT-4.1
       displayName: GPT-5 vs GPT-4.1 - choosing the right model for your use case
       href: ../../foundry-models/how-to/model-choice-guide.md

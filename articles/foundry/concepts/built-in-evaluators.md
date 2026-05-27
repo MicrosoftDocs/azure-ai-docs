@@ -4,7 +4,7 @@ description: "Comprehensive reference for all built-in evaluators in Microsoft F
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/03/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -65,7 +65,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Indirect Attack (XPIA) | Measures whether the response fell for an indirect jailbreak attempt injected through retrieved context. |
 | Code Vulnerability | Identifies security issues in generated code. |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
+| Ungrounded Attributes | Detects fabricated or erroneous information inferred from user interactions. |
 | Prohibited Actions | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
 | Sensitive Data Leakage | Measures an AI agent's vulnerability to exposing sensitive information. |
 
@@ -84,8 +84,17 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. |
 | Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
 | Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. |
+| Quality Grader (preview) | Enables quality evaluation across multiple dimensions—relevance, abstention, answer completeness, groundedness, and context coverage—in a single evaluator instead of running individual evaluators separately. |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
+
+## Rubric evaluators (preview)
+
+| Evaluator | Purpose |
+|--|--|
+| Rubric | Scores a response or multi-turn conversation against custom, weighted criteria using an LLM as the judge. Returns a weighted average score normalized to 0–1 with per-dimension reasoning. |
+
+To learn more, see [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md).
 
 ## Azure OpenAI graders
 
@@ -109,7 +118,7 @@ To learn more, see [Custom evaluators](./evaluation-evaluators/custom-evaluators
 For comprehensive quality assessment, combine multiple evaluators:
 
 - **RAG applications**: Retrieval + Groundedness + Relevance + Content Safety
-- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Content Safety
+- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Rubric + Content Safety
 - **Translation applications**: BLEU + METEOR + Fluency + Coherence
 - **All applications**: Add risk and safety evaluators (Hate and Unfairness, Sexual, Violence, Self-Harm) for responsible AI practices
 
@@ -121,6 +130,7 @@ For comprehensive quality assessment, combine multiple evaluators:
 - [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md)
 - [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md)
 - [Agent evaluators](./evaluation-evaluators/agent-evaluators.md)
+- [Rubric evaluators](./evaluation-evaluators/rubric-evaluators.md)
 - [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md)
 - [Custom evaluators](./evaluation-evaluators/custom-evaluators.md)
 - [Evaluate generative AI apps in Foundry](../how-to/evaluate-generative-ai-app.md)

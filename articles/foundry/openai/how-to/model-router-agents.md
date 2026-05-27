@@ -8,7 +8,6 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.custom:
-  - build-2025
   - doc-kit-assisted
 ai-usage: ai-assisted
 ---
