@@ -58,7 +58,7 @@ Disable tracing by:
 
 After you disable tracing:
 
-- No new trace data is collected om agents in that project.
+- No new trace data is collected on agents in that project.
 - Previously collected data remains subject to retention policies of the Application Insights.
 
 > [!NOTE]
@@ -91,7 +91,7 @@ Tracing can capture personal data including:
 - Redact or minimize personal data before it is logged.
 - Apply access controls and retention policies to trace data.
 
-## Data protection controls
+### Data protection controls
 
 - Personal data redaction: Redact personal data, such as email addresses and phone numbers.
 - Restrict access to trace data by carefully managing which users have been granted the RBAC “Log Analytics Reader” role.
@@ -99,13 +99,13 @@ Tracing can capture personal data including:
 
 These controls help you manage risk and comply with privacy requirements.  
 
-Customer responsibilities 
+### Customer responsibilities
 
-When you enable tracing, you're responsible for: 
+When you enable tracing, you're responsible for:
 
 - Informing end users about data collection, including the types of data being collected, the purpose, who has visibility, their options, and other information needed for them to make reasonable choices (where applicable).
 - Ensuring compliance with privacy, legal, and regulatory requirements.
-- Configuring appropriate access controls and data retention policies. 
+- Configuring appropriate access controls and data retention policies.
 
 ## Summary
 
@@ -116,6 +116,7 @@ Foundry Tracing is a powerful observability feature that enables debugging, moni
 - Designed with customer control over data collection and handling.
 
 ## Related content
+
 - [Agent tracing overview](./trace-agent-concept.md)
 - [Set up tracing](../how-to/trace-agent-setup.md)
 - [Configure tracing for AI agent frameworks](../how-to/trace-agent-framework.md)
