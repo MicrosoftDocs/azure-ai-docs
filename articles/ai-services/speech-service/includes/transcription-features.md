@@ -19,7 +19,7 @@ This table shows transcription features that the fast transcription API supports
 | Diarization         | ✅                                | ✅                              | ❌                     |
 | Channel (stereo)    | ✅                                | ✅                              | ❌                     |
 | Profanity filtering | ✅                                | ✅                              | ✅                     |
-| Specify locale      | ✅                                | ❌<sup>1</sup>                  | ✅                     |
+| Specify locale      | ✅                                | ✅                              | ✅                     |
 | Custom prompting    | ❌                                | ✅                              | ❌                     |
 | Phrase list         | ✅                                | ❌<sup>1</sup>                  | ❌                     |
 | Segment-level timestamps         | ✅                                | ✅                 | ✅                     |
