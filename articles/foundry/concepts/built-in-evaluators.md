@@ -77,6 +77,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 |--|--|
 | Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. |
+| Customer Satisfaction (preview) | Measures holistic user satisfaction across a conversation using six dimensions: helpfulness, completeness, clarity, tone, resolution, and adaptability. |
 | Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. |
 | Task Navigation Efficiency | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. |
 | Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. |
@@ -112,6 +113,22 @@ To learn more, see [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-g
 In addition to built-in evaluators, you can create custom evaluators tailored to your specific evaluation criteria. Custom evaluators allow you to define unique scoring logic, validation rules, and quality metrics that align with your business requirements and application-specific needs.
 
 To learn more, see [Custom evaluators](./evaluation-evaluators/custom-evaluators.md).
+
+## Evaluation levels
+
+Each evaluator supports specific evaluation levels, indicated by the `supported_evaluation_levels` field in the evaluator catalog:
+
+| Level | Description |
+|-------|-------------|
+| `turn` | Evaluates individual agent responses (default) |
+| `conversation` | Evaluates entire multi-turn conversations |
+
+When creating an evaluation run, set `evaluation_level` to match your evaluators' supported levels. If omitted, the default is `turn`.
+
+**Conversation-level evaluators** score the full interaction rather than individual turns. Use them to measure outcomes like user satisfaction, task completion across multiple steps, or conversation-wide coherence.
+
+> [!IMPORTANT]
+> All evaluators in a run must support the specified `evaluation_level`. You can't mix evaluators with incompatible levels in the same evaluation run.
 
 ## Combining evaluators
 

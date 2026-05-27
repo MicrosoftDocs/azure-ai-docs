@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 04/01/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -31,6 +31,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Evaluator | Best practice | Use when | Purpose | Output |
 |--|--|--|--|--|
 | Task Completion (preview) | System evaluation | Assessing end-to-end task success in workflow automation, goal-oriented AI interactions, or any scenario where full task completion is critical | Measures if the agent completed the requested task with a usable deliverable that meets all user requirements | Binary: Pass/Fail |
+| Customer Satisfaction (preview) | System evaluation | Measuring overall user satisfaction across a conversation, detecting user frustration | Measures holistic user satisfaction across six dimensions: helpfulness, completeness, clarity, tone, resolution, and adaptability | 1-5 Likert scale |
 | Task Adherence (preview) | System evaluation | Ensuring agents follow system instructions, validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Binary: Pass/Fail |
 | Task Navigation Efficiency | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Binary: Pass/Fail |
 | Intent Resolution (preview) | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Binary: Pass/Fail based on threshold (1-5 scale) |
@@ -46,6 +47,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 System evaluation examines the quality of the final outcome of your agentic workflow. These evaluators are applicable to single agents and, in multi-agent systems, to the main orchestrator or the final agent responsible for task completion:
 
 - Task Completion - Did the agent fully complete the requested task?
+- Customer Satisfaction - How satisfied would a user be with the agent's performance?
 - Task Adherence - Did the agent follow the rules and constraints in its instructions?
 - Task Navigation Efficiency - Did the agent perform the expected steps efficiently?
 - Intent Resolution - Did the agent correctly identify and address user intentions?
@@ -123,7 +125,8 @@ Agent evaluators assess how well AI agents perform tasks, follow instructions, a
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Task Completion (preview) | `query`, `response` | `deployment_name` |
+| Task Completion (preview) | `query`, `response`; optional: `tool_definitions` | `deployment_name` |
+| Customer Satisfaction (preview) | `messages` | `model` |
 | Task Adherence (preview) | `query`, `response` | `deployment_name` |
 | Intent Resolution (preview) | `query`, `response` | `deployment_name` |
 | Tool Call Accuracy | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
