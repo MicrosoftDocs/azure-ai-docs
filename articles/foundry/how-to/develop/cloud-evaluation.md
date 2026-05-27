@@ -1845,7 +1845,7 @@ Find conversation IDs in:
 - **OpenTelemetry trace context** — The `conversation_id` might also be derived from the [traceparent header](https://www.w3.org/TR/trace-context/#traceparent-header) if your agent uses standard trace context propagation.
 
 > [!NOTE]
-Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
 
 #### Parameters for conversation ID lookup
 
@@ -1968,7 +1968,7 @@ Evaluate a sampled set of conversations from Application Insights by filtering o
 The agent you specify for filtering can be part of a multi-agent conversation. The filter matches any conversation where that agent participated.
 
 > [!NOTE]
-Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
+> Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
 
 #### Agent identity fields
 
