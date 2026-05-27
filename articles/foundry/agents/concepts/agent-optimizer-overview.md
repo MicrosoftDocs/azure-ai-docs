@@ -120,7 +120,7 @@ The agent optimizer uses two models during an optimization run. Both must be dep
 
 | Model | Config key | CLI flag | Role | Supported models |
 | ------- | ------------ | -------- | ------ | ------------------ |
-| **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | `gpt-4.1-mini` (default) |
+| **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
 | **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
 
 The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
@@ -128,12 +128,12 @@ The eval model runs once per task per candidate — it reads the agent's respons
 ```yaml
 # spec.yaml
 options:
-  eval_model: gpt-4.1-mini
+  eval_model: gpt-5.1
   optimization_model: gpt-5.1
 ```
 
 > [!IMPORTANT]
-> Both models are required. If `optimization_model` is not specified in your config or passed via `--optimize-model`, the optimization API returns an error.
+> Both models must be gpt-5 family. If `optimization_model` is not specified, it falls back to the eval model.
 
 ## Understand optimization results
 
@@ -207,7 +207,7 @@ A pass rate below 100% means some tasks produced invalid responses. For example,
 If all candidates (including baseline) score 0.00, the likely cause is a missing *eval model*. The eval model is the model that scores agent responses against criteria. It must be deployed in your Foundry project.
 
 ```bash
-azd ai agent optimize --eval-model gpt-4.1-mini
+azd ai agent optimize --eval-model gpt-5.1
 ```
 
 > [!IMPORTANT]

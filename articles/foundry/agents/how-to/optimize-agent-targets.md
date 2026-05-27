@@ -30,7 +30,7 @@ The agent optimizer supports three optimization targets: **instruction tuning** 
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - The `azure.ai.agents` CLI extension installed (see [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md))
-- An eval model deployed in your Foundry project (defaults to `gpt-4.1-mini`)
+- A gpt-5 family model deployed in your Foundry project (for example, `gpt-5.1`)
 - Your agent is [optimizer-ready](make-agent-optimizer-ready.md) (calls `load_config()`)
 
 ## Which agent gets optimized
@@ -84,7 +84,7 @@ evaluators:
   - task_adherence
 
 options:
-  eval_model: gpt-4.1-mini
+  eval_model: gpt-5.1
   optimization_model: gpt-5.1
   target_attributes:
     - instruction
@@ -140,10 +140,10 @@ Higher values explore more variations but take longer. The optimizer learns from
 
 ### Eval model
 
-The eval model scores agent responses against criteria. It must be deployed in your Foundry project.
+The eval model scores agent responses against criteria. It must be a gpt-5 family model deployed in your Foundry project.
 
 ```bash
-azd ai agent optimize --eval-model gpt-4.1-mini
+azd ai agent optimize --eval-model gpt-5.1
 ```
 
 > [!IMPORTANT]
@@ -213,7 +213,7 @@ evaluators:
   - task_adherence
 
 options:
-  eval_model: gpt-4.1-mini
+  eval_model: gpt-5.1
   optimization_model: gpt-5.1
   target_attributes:
     - skill
@@ -267,7 +267,7 @@ evaluators:
   - task_adherence
 
 options:
-  eval_model: gpt-4.1-mini
+  eval_model: gpt-5.1
   optimization_model: gpt-5.1
   target_attributes:
     - model
@@ -302,7 +302,7 @@ options:
   target_config:
     model:
       - gpt-4.1
-      - gpt-4.1-mini
+      - gpt-5
 ```
 
 This produces candidates that combine improved instructions with different model options, giving you the full picture of what works best.
