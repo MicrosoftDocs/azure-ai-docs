@@ -136,7 +136,7 @@ Choose where your evaluation data comes from:
 Generate test queries using AI. Select **Synthetic** and configure the number of rows and a prompt that describes the data to generate. You can also upload files to improve relevance.
 
 > [!NOTE]
-> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
+> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#supported-regions).
 
 ##### Existing dataset
 

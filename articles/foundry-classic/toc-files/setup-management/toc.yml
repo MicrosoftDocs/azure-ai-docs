@@ -101,17 +101,23 @@ items:
         displayName: pricing, budget, estimate
       - name: Priority processing
         href: ../../openai/concepts/priority-processing.md
-      - name: What is the Provisioned Throughput offering (PTU)?
-        href: ../../openai/concepts/provisioned-throughput.md?context=/azure/foundry-classic/context/context
+      - name: Create a provisioned throughput deployment
+        href: ../../openai/provisioned-quickstart.md
         displayName: PTU, provisioned, provisioned throughput units
-      - name: Understanding and calculating PTU costs
-        href: ../../openai/how-to/provisioned-throughput-onboarding.md?context=/azure/foundry-classic/context/context
+      - name: What is the Provisioned Throughput offering?
+        href: ../../openai/concepts/provisioned-throughput.md
         displayName: PTU, provisioned, provisioned throughput units
-      - name: Get started with Provisioned Deployments
-        href: ../../openai/how-to/provisioned-get-started.md?context=/azure/foundry-classic/context/context
+      - name: Determine PTU sizing for a workload
+        href: ../../openai/how-to/provisioned-throughput-sizing.md
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: PTU billing and cost management
+        href: ../../openai/concepts/provisioned-throughput-billing.md
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Operate provisioned deployments in production
+        href: ../../openai/how-to/provisioned-get-started.md
         displayName: PTU, provisioned, provisioned throughput units
       - name: Provisioned spillover
-        href: ../../openai/how-to/spillover-traffic-management.md?context=/azure/foundry-classic/context/context
+        href: ../../openai/how-to/spillover-traffic-management.md
       - name: Azure OpenAI PTU updates
         href: ../../openai/concepts/provisioned-migration.md    
 - name: Integrate Foundry with other apps

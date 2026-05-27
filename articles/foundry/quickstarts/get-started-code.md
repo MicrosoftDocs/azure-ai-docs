@@ -71,5 +71,3 @@ In this quickstart you'll get started using models and agents in Foundry.
 > [!div class="nextstepaction"]
 > [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
 
-
-
