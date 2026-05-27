@@ -38,7 +38,6 @@ POST {endpoint}/translator/document:translate?targetLanguage={targetLanguage}&ap
 |---|---|---|
 | `targetLanguage` | Yes | Target language code (for example, `fr`, `de`, `ja`). |
 | `sourceLanguage` | No | Source language code. If omitted, the service auto-detects the source language. |
-| `deploymentName` | No | LLM deployment name (for example, `gpt-5.1`, `gpt-5.2`, `gpt-5.2-chat`). Omit to use NMT. |
 | `category` | No | Custom Translator category ID. |
 | `allowFallback` | No | Boolean. Set to `true` to allow fallback to general translation if a custom system isn't available. Default: `true`. |
 | `api-version` | Yes | Version of the API. Current value: `2026-03-01`. |
@@ -61,15 +60,6 @@ curl -X POST "{endpoint}/translator/document:translate?targetLanguage=fr&api-ver
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -F "document=@{path/to/document.docx};type=application/vnd.openxmlformats-officedocument.wordprocessingml.document" \
   -o translated.docx
-```
-
-### LLM-based translation
-
-```bash
-curl -X POST "{endpoint}/translator/document:translate?targetLanguage=de&deploymentName=gpt-5.1&api-version=2026-03-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -F "document=@{path/to/document.pdf};type=application/pdf" \
-  -o translated.pdf
 ```
 
 ### Translation with glossary

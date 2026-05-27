@@ -18,10 +18,9 @@ ms.author: lajanuar
 
 Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
-Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
+Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages.
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
-
 
 ## June 2026
 
@@ -35,28 +34,24 @@ Available in Foundry under **Build** → **Models** → **AI Services** → **Az
 
 :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screenshot of the adaptive custom translation pane in Foundry." lightbox="media/adaptive-custom-translation.png":::
 
-
 ### Document translation (2026-03-01 GA) release
 
 Azure Translator Document Translation API version `2026-03-01` introduces expanded translation capabilities and model flexibility.
 
 **Key updates:**
 
-* **Model selection (NMT + LLMs)**  
-  * Choose between neural machine translation (NMT) and large language models (LLMs) for document translation.
-
-* **Image translation support**  
+* **Image translation support**
   * Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`).
 
-* **PDF translation improvements (batch)**  
+* **PDF translation improvements (batch)**
   * Translate PDF documents using Azure Document Intelligence to preserve layout and structure.
 
-* **Translate images within documents (batch)**  
+* **Translate images within documents (batch)**
   * Translate text embedded in images in Word (`.docx`) and PowerPoint (`.pptx`) files.
 
-* **Unified translation modes**  
-  * Supports both:  
-    * **Synchronous translation** for single documents (no storage required)  
+* **Unified translation modes**
+  * Supports both:
+    * **Synchronous translation** for single documents (no storage required)
     * **Asynchronous batch translation** for large-scale workloads using Blob Storage
 
 ## December 2025

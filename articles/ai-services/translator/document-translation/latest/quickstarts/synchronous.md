@@ -20,7 +20,7 @@ Synchronous translation lets you translate a single document and receive the out
 
 You need one of the following resources to get started:
 
-* An **Azure AI Translator resource**, or a Microsoft **Foundry resource** if you choose to translate using LLMs.
+* An **Azure AI Translator resource**, or a Microsoft **Foundry resource**.
 
 For more information, see [Prerequisites and setup](../prerequisites.md).
 

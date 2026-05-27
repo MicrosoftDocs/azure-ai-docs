@@ -17,7 +17,7 @@ Asynchronous batch translation lets you submit multiple documents or large files
 
 ## Prerequisites
 
-* An **Azure AI Translator resource**, or a Microsoft **Foundry resource** if you choose to translate using LLMs.
+* An **Azure AI Translator resource**, or a Microsoft **Foundry resource**.
 * An **Azure Blob Storage account** with a source container (input files) and a target container (output files).
 * **SAS tokens** or **Managed Identity** configured for both containers.
 
@@ -38,9 +38,9 @@ The API needs authorization to read from your source container and write to your
 
 Send a POST request to the `/batches` endpoint with a JSON body that specifies your source and target container URLs, the target language, and any additional options. Choose the option that matches your translation engine and requirements.
 
-### Option 1: NMT-based translation
+### NMT-based translation
 
-Use this option for standard neural machine translation without an LLM deployment.
+Use this option for standard neural machine translation.
 
 ```bash
 curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
@@ -63,33 +63,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
   }'
 ```
 
-### Option 2: LLM-based translation
-
-Use this option for LLM-based translation. Include the `deploymentName` field in the `targets` object to specify your deployed model.
-
-```bash
-curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "inputs": [
-      {
-        "source": {
-          "sourceUrl": "{source-container-SAS-URL} or {source-container-name-for-managed-identity}"
-        },
-        "targets": [
-          {
-            "targetUrl": "{target-container-SAS-URL} or {target-container-name-for-managed-identity}",
-            "language": "fr",
-            "deploymentName": "contoso-gpt-5.2"
-          }
-        ]
-      }
-    ]
-  }'
-```
-
-### Option 3: Translate images in Word and PowerPoint documents
+### Option 2: Translate images in Word and PowerPoint documents
 
 Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateWithinImage` to `true` in the `options` object.
 
@@ -114,6 +88,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
     "options": { "translateWithinImage": true }
   }'
 ```
+
 ## Step 4: Check status
 
 Because the translation runs asynchronously, the service immediately returns a `202 Accepted` response instead of the translated documents. To track progress, extract the job ID from the `operation-location` header in the response and poll that URL until the job completes.

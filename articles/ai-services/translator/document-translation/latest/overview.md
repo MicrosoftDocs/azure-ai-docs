@@ -28,7 +28,6 @@ Document translation (**2026-03-01** GA) is a cloud-based feature of Azure Trans
 * **Translation** across all [supported languages and dialects](../../language-support.md).
 * **Preservation** of the original document structure and data format.
 * **Neural machine translation (NMT) engine support** for standard translations (default).
-* **Large language model (LLM) support** for higher-quality, context-aware translations (optional).
 
 The Document Translation API supports two translation processes:
 
@@ -39,15 +38,6 @@ The Document Translation API supports two translation processes:
 ## What's new in version 2026-03-01
 
 API version **2026-03-01** introduces the following capabilities for Document Translation:
-
-* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM supported model, for example, GPT-5.4, based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../../how-to/create-translator-resource.md).
-
-    > [!TIP]
-    > Use the Text Translation [**Get supported languages**](../../text-translation/2026-06-06/get-languages.md) API with the `scope=models` parameter to confirm available LLM models programmatically:
-    >
-    > ```bash
-    > curl -X GET "https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06&scope=models"
-    > ```
 
 * **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
 
@@ -97,11 +87,8 @@ Document Translation supports different features for each translation method. Se
 
 ## Language support
 
-For the full list of languages supported for document translation features, including LLM-based translation, see [Language support](../../language-support.md).
+For the full list of languages supported for document translation features see [Language support](../../language-support.md).
 
-### LLM data processing
-
-When you deploy an LLM, the configuration you choose — global, data zone, or regional — determines where your data is processed. Your selections during resource setup define the geographical boundaries for model processing.
 
 ## Development options
 
@@ -173,11 +160,7 @@ If you encounter unexpected behavior, errors, or performance issues, the followi
 
 ## Pricing
 
-Pricing depends on whether you use NMT-based or LLM-based translation. The two models have different billing units.
-
 * Document translations using **NMT models** are billed by the number of characters or images in the source document. For more information, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
-
-* Document translations using **LLMs** are charged by the number of input and output tokens processed. For more information, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Related content
 

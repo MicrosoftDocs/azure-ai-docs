@@ -44,7 +44,6 @@ POST {endpoint}/translator/document/batches?api-version=2026-03-01
 | `inputs[].targets` | Yes | Array of translation targets. |
 | `inputs[].targets[].targetUrl` | Yes | SAS URL for the target Blob Storage container. Must be unique across all inputs in the request. |
 | `inputs[].targets[].language` | Yes | Target language code (for example, `fr`). |
-| `inputs[].targets[].deploymentName` | No | LLM deployment name for LLM-based translation (for example, `gpt-5.1`, `gpt-5.2`, `gpt-5.2-chat`). Omit to use NMT. |
 | `inputs[].targets[].glossaries` | No | Array of glossary objects. Each glossary requires `glossaryUrl` (SAS URL) and `format` (for example, `TSV`). |
 | `inputs[].storageType` | No | Storage source type. Supported values: `Folder` (default), `File`. |
 | `translateWithinImage` | No | Boolean. Set to `true` to translate text within images in `.docx` and `.pptx` files. |
@@ -67,30 +66,6 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
           {
             "targetUrl": "https://{storage}.blob.core.windows.net/target-fr?{sas}",
             "language": "fr"
-          }
-        ]
-      }
-    ]
-  }'
-```
-
-### LLM-based translation
-
-```bash
-curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "inputs": [
-      {
-        "source": {
-          "sourceUrl": "https://{storage}.blob.core.windows.net/source?{sas}"
-        },
-        "targets": [
-          {
-            "targetUrl": "https://{storage}.blob.core.windows.net/target-de?{sas}",
-            "language": "de",
-            "deploymentName": "gpt-5.1"
           }
         ]
       }
