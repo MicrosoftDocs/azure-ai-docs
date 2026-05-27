@@ -179,14 +179,14 @@ Deploying services (azd deploy)
 ## Step 3: Create a hosted agent project
 
 1. Open the Command Palette and select **Foundry Toolkit: Create new Hosted Agent**.
-1. Select the **Python** as the language
-1. For "Framework", select **Agent Framework**
-1. Select **Responses API** as the protocol type
+1. Select the **Python** as the language.
+1. For "Framework", select **Agent Framework**.
+1. Select **Responses API** as the protocol type.
 1. Select **Basic** as the sample code.
-1. Click "Next"
+1. Select the "Next" button.
 1. Choose a folder for the project files and enter a name for the agent.
 1. For "Environment Setup", choose **Set up with Microsoft Foundry**, the content should auto-populate with the project and model you created in step 1 and 2.
-1. Click "Create"
+1. Select the "Create" button.
 
 A new VS Code window opens with the project as the active workspace.
 
@@ -230,12 +230,12 @@ curl -sS -H "Content-Type: application/json" -X POST http://localhost:8088/respo
 ## Step 6: Deploy to Foundry Agent Service
 
 1. Open the Command Palette and select **Foundry Toolkit: Deploy Hosted Agent**. A deployment webview will open.
-1. For "Deployment Method", select **Code**
+1. For "Deployment Method", select **Code**.
 1. Select **Remote** as the package mode.
-1. The "Agent Name" should auto-populate
-1. Select "Next".
+1. The "Agent Name" should auto-populate.
+1. Select the "Next" button.
 1. This "Review and Deploy" page should all auto-populate.
-1. Click on "Deploy".
+1. Select the "Deploy" button.
 
 When deployment completes, the agent appears under **Hosted Agents (Preview)** in the Foundry Toolkit explorer.
 
