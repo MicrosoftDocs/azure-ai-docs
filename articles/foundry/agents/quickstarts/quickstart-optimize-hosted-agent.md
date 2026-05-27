@@ -46,7 +46,7 @@ Initialize a new project from the agent optimizer sample. Create a folder, then 
 
 ```bash
 mkdir my-agent && cd my-agent
-azd ai agent init -m https://aka.ms/agent-optimizer-foundry-quickstart
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml
 ```
 
 This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
@@ -56,7 +56,7 @@ This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`
 >
 > If you already have a Foundry project and model deployments, add `-p <project-resource-id>` to target existing resources:
 > ```bash
-> azd ai agent init -m https://aka.ms/agent-optimizer-foundry-quickstart -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
 > ```
 
 ## Authenticate
