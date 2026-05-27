@@ -53,15 +53,17 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
++ If you specify `embeddingColumns`, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource that hosts the embedding model.
+
 ::: zone pivot="csharp"
 
-+ The latest preview [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package: `dotnet add package Azure.Search.Documents --prerelease`
++ The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-+ The latest preview [azure-search-documents](https://pypi.org/project/azure-search-documents/) package: `pip install azure-search-documents --pre`
++ The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
 ::: zone-end
 
@@ -83,113 +85,7 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 ## Check for existing knowledge sources
 
-A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
-
-Run the following code to list knowledge sources by name and type.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-await foreach (var ks in indexClient.GetKnowledgeSourcesAsync())
-{
-    Console.WriteLine($"{ks.Name} ({ks.GetType().Name})");
-}
-```
-
-**Reference:** [SearchIndexClient.GetKnowledgeSourcesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-for ks in index_client.list_knowledge_sources():
-    print(f"{ks.name} ({ks.kind})")
-```
-
-**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-### List knowledge sources by name and type
-GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kind
-api-key: {{api-key}}
-```
-
-**Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list)
-
-::: zone-end
-
-You can also return a single knowledge source by name to review its JSON definition.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-var knowledgeSourceResponse = await indexClient.GetKnowledgeSourceAsync("indexedsqlks");
-var knowledgeSource = knowledgeSourceResponse.Value;
-
-var jsonOptions = new JsonSerializerOptions
-{
-    WriteIndented = true,
-    DefaultIgnoreCondition = JsonIgnoreCondition.Never
-};
-
-Console.WriteLine(JsonSerializer.Serialize(knowledgeSource, knowledgeSource.GetType(), jsonOptions));
-```
-
-**Reference:** [SearchIndexClient.GetKnowledgeSourceAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-import json
-
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-knowledge_source = index_client.get_knowledge_source("indexedsqlks")
-print(json.dumps(knowledge_source.as_dict(), indent=2))
-```
-
-**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-### Get a knowledge source definition
-GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
-api-key: {{api-key}}
-```
-
-**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
-
-::: zone-end
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for an indexed Azure SQL knowledge source.
 
@@ -230,7 +126,8 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
 }
 ```
 
-The generated resources appear at the end of the response under `createdResources`.
+> [!NOTE]
+> The generated resources appear at the end of the response under `createdResources`.
 
 ## Create a knowledge source
 

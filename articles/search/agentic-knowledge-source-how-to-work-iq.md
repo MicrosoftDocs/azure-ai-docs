@@ -42,9 +42,25 @@ Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ dir
 
 + Approved access to Work IQ retrieval through Azure AI Search. For more information, see [Request access to Work IQ retrieval](#request-access-to-work-iq-retrieval).
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
+::: zone pivot="csharp"
+
++ The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
+::: zone-end
+
+::: zone pivot="python"
+
++ The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
+
+::: zone-end
+
+::: zone pivot="rest"
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+::: zone-end
 
 ## Request access to Work IQ retrieval
 

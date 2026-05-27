@@ -3,7 +3,7 @@ title: Create a Blob Knowledge Source for Agentic Retrieval
 description: A blob knowledge source specifies a blob container that you want to read from. It also includes models and properties for creating an indexer, data source, skillset, and index used for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -47,11 +47,13 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 + A blob container with [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
++ If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
 ::: zone pivot="csharp"
 
-+ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
++ Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
@@ -61,9 +63,9 @@ When you create a blob knowledge source, you specify an external data source, mo
 
 ::: zone pivot="python"
 
-+ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
++ Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 

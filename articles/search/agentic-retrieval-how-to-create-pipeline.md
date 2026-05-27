@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 04/30/2026
+ms.date: 06/02/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -50,18 +50,16 @@ In this tutorial, you:
 
 + An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
++ Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
-+ The latest version of [Python](https://www.python.org/downloads/).
++ [Python 3.8](https://www.python.org/downloads/) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
 
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
 > [!IMPORTANT]
 > If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
-
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Understand the solution
 

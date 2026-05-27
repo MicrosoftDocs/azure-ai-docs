@@ -3,7 +3,8 @@ title: Enable Answer Synthesis
 description: Learn how to enable answer synthesis in a knowledge base or retrieve request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search (preview)
@@ -37,15 +38,11 @@ You can enable answer synthesis in two ways:
 
 + An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that specifies an LLM.
 
-+ Permissions to update the knowledge base. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permissions to update knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
 + The [2026-05-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
-
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ## Enable answer synthesis in a knowledge base
 
@@ -65,7 +62,7 @@ To enable answer synthesis in a knowledge base:
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
 ### Enable answer synthesis in a knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview  HTTP/1.1
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 
@@ -146,7 +143,7 @@ To enable answer synthesis in a retrieve request:
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
 ### Enable answer synthesis in a retrieve request
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview  HTTP/1.1
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 

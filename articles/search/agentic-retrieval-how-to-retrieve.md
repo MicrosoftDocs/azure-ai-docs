@@ -29,13 +29,13 @@ This article explains how to call both retrieval methods with optional permissio
 
 + An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-+ Permissions to query the knowledge base. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Index Data Reader** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permissions to query knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Index Data Reader** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + If the knowledge base specifies an LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
 ::: zone pivot="csharp"
 
-+ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
++ Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
@@ -45,9 +45,9 @@ This article explains how to call both retrieval methods with optional permissio
 
 ::: zone pivot="python"
 
-+ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
++ Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -62,8 +62,6 @@ This article explains how to call both retrieval methods with optional permissio
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
 ::: zone-end
-
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
 ## Call the retrieve action
 
@@ -381,7 +379,7 @@ For more information, see [Create an index for agentic retrieval](agentic-retrie
 ## Call the MCP endpoint
 
 > [!IMPORTANT]
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following Microsoft's recommended practices and industry best practices, and implementing approval mechanisms and monitoring cascading behaviors.
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 [MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
 

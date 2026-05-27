@@ -3,7 +3,7 @@ title: Migrate Agentic Retrieval Code
 description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/02/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
@@ -493,7 +493,7 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
 
 You now have a migrated `azureBlob` knowledge source that is backwards compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
 
-The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create an Azure Blob knowledge source](agentic-knowledge-source-how-to-blob.md).
+The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
 #### Replace knowledge agent with knowledge base
 
@@ -699,7 +699,7 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 To complete your migration, follow these cleanup steps:
 
-1. For Azure Blob knowledge sources only, update clients to use the new index. If you have code or script that runs an indexer or references a data source, index, or skillset, make sure you update the references to the new objects.
+1. For blob knowledge sources only, update clients to use the new index. If you have code or script that runs an indexer or references a data source, index, or skillset, make sure you update the references to the new objects.
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 

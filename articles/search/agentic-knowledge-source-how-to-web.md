@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 06/02/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -49,13 +49,11 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + An Azure AI Search service in any [public region that provides agentic retrieval](search-region-support.md). Web Knowledge Source isn't supported in private or sovereign clouds.
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
-+ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
++ Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
   + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
@@ -65,9 +63,9 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 ::: zone pivot="python"
 
-+ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
++ Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -358,7 +356,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-## Review retrieve output
+## Query a knowledge base
 
 When you query a knowledge base that includes Web Knowledge Source, the retrieve response `activity` array can contain two web-related records:
 
