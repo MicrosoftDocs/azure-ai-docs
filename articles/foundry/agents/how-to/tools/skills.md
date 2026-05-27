@@ -36,7 +36,6 @@ In this article, you learn how to:
 > - **File upload**: The endpoint and request format for uploading skill files will change.
 > - **Download**: The endpoint for downloading skill content will change.
 > - **Response schema**: The `Skill` response object will gain new versioning fields and lose existing ones. A new `SkillVersion` object will carry the skill content.
-> - **SDK methods**: Python SDK methods for creating and downloading skills will be renamed.
 
 > [!IMPORTANT]
 > If you use Skills with any third-party servers, agents, code, or with models outside the Foundry Models category sold by Azure ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and follow their own third-party license terms. You're responsible for any usage and associated costs.
