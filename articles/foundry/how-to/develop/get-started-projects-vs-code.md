@@ -30,7 +30,7 @@ In this article, learn how to install and use the Microsoft Foundry Toolkit for 
 After you install the extension, sign in to your Azure subscription and open a Foundry project to begin working with models, agents, and playgrounds.
 
 > [!NOTE]
-> For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **Foundry Toolkit**. The following screenshot shows some of the available commands.
+> For a full list of features available in the extension, use the command palette. Select <kbd>F1</kbd> to open the command palette and search **Foundry Toolkit**. The following screenshot shows some of the available commands.
 >     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="Screenshot of the VS Code command palette showing available Foundry Toolkit commands such as Open Model Catalog and Open Playground." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
 
 ### Sign in to your resources
