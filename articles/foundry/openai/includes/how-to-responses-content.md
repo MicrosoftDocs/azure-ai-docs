@@ -3963,6 +3963,8 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 
 ## Related content
 
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
 - [Azure OpenAI REST API reference](../latest.md)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)
