@@ -192,7 +192,7 @@ A GET on the agent version returns the literal `${{...}}` text—the resolved se
 - **Create the connection before you deploy the version.** If the connection or the referenced field is missing at sandbox start, the placeholder doesn't resolve and the variable is empty.
 - **Secrets are write-only.** GET on a connection returns `credentials: null`. Verify resolution by reading the env var from inside your running container, not by inspecting the connection.
 - **Record `CustomKeys` field names yourself.** The management API never echoes them back after creation. Keep them next to your agent source (for example, in IaC templates or alongside `agent.yaml`) so you can construct placeholders later without guessing.
-- **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses — you can't reference a pre-existing Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
+- **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses — you can't reference a preexisting Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 
 ## Package and test your agent locally
 
