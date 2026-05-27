@@ -36,6 +36,8 @@ items:
      href: ../../observability/how-to/evaluate-agent.md
    - name: Run evaluations from the SDK
      href: ../../how-to/develop/cloud-evaluation.md
+   - name: Generate a synthetic evaluation dataset
+     href:  ../../observability/how-to/evaluation-dataset-synthetic.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
      href: ../../how-to/evaluate-generative-ai-app.md
@@ -91,6 +93,8 @@ items:
      href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
+   - name: Convert agent traces into evaluation datasets 
+     href:  ../../observability/how-to/traces-to-dataset.md
    - name: Tracing and data handling
      href: ../../observability/concepts/trace-data.md
 # Troubleshooting
