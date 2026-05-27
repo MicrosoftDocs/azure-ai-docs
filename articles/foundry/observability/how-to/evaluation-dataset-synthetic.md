@@ -64,7 +64,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 1. Track the dataset generation job status in the **Data Generation** tab.
 1. When the job finishes, preview the generated rows on the **Data** tab.
 
-:::image type="content" source="../../media/observability/data_generation_synthetic_eval.png" alt-text="Screenshot of the Generate synthetic data dialog showing Dataset usage set to Evaluation, Task type set to Simple Q&A, Generator model, source inputs, Maximum number of samples, and Output file name.":::
+:::image type="content" source="../../media/observability/data-generation-synthetic-evaluation.png" alt-text="Screenshot of the Generate synthetic data dialog showing Dataset usage set to Evaluation, Task type set to Simple Q&A, Generator model, source inputs, Maximum number of samples, and Output file name.":::
 
 ## Generate a dataset from an agent definition (SDK)
 
