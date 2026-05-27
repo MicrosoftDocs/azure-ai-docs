@@ -7,7 +7,8 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -42,6 +43,7 @@ ms.date: 05/12/2026
 | gpt-5-pro                      | GlobalStandard    | 3,500       | 350,000     |
 | gpt-5.1                        | DataZoneStandard  | 6,700       | 670,000     |
 | gpt-5.1                        | GlobalStandard    | 20,000      | 2,000,000   |
+| gpt-5.1                        | Standard          | 6,700       | 670,000     |
 | gpt-5.1-chat                   | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-5.1-codex                  | DataZoneStandard  | 6,700       | 670,000     |
 | gpt-5.1-codex                  | GlobalStandard    | 2,000       | 2,000,000   |

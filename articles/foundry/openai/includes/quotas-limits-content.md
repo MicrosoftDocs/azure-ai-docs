@@ -151,7 +151,7 @@ print(json.dumps(response.json(), indent=2))
 
 [!INCLUDE [Quota](quota-tier/tier-6.md)]
 
-# [Free](#tab/tierfree)
+# [Tier 0](#tab/tier0)
 
 [!INCLUDE [Quota](quota-tier/free.md)]
 
