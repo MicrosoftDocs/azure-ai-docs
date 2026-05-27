@@ -54,7 +54,7 @@ ms.custom: include, classic-and-new
 
 ## Related content
 
-- [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/upgrade-azure-openai-chat-completions-responses)
-- [Migrate Chat Completions apps to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses)
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [Use the Azure OpenAI Responses API](../how-to/responses.md)
 - [Azure OpenAI v1 API](../api-version-lifecycle.md)

@@ -3701,8 +3701,8 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 
 ## Related content
 
-- [Upgrade your Azure OpenAI app from Chat Completions to the Responses API](/azure/developer/ai/upgrade-azure-openai-chat-completions-responses)
-- [Migrate Chat Completions apps to the Responses API](/azure/developer/ai/how-to/azure-openai-to-responses)
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
 - [Azure OpenAI REST API reference](../latest.md)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)
