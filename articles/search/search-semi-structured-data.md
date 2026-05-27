@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Index nested JSON blobs from Azure Storage using REST
@@ -134,7 +135,7 @@ For help with the REST client, see [Quickstart: Full-text search using REST](sea
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -162,7 +163,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DC43A5FDB8448F"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2025-09-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2026-04-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -200,7 +201,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -248,7 +249,7 @@ The indexer configuration includes the `jsonArray` parsing mode and a `documentR
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -277,7 +278,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -314,7 +315,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01"
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2026-04-01"
 }
 ```
 
@@ -322,7 +323,7 @@ Add a `search` parameter to search on a string, a `select` parameter to limit th
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -347,19 +348,19 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/ny-philharmonic-indexer/reset?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers/ny-philharmonic-indexer/reset?api-version=2026-04-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/ny-philharmonic-indexer/run?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers/ny-philharmonic-indexer/run?api-version=2026-04-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/ny-philharmonic-indexer/status?api-version=2025-09-01  HTTP/1.1
+GET {{baseUrl}}/indexers/ny-philharmonic-indexer/status?api-version=2026-04-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 

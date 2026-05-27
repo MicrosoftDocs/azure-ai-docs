@@ -21,6 +21,8 @@ ms.update-cycle: 365-days
 
 # Model monitoring for generative AI applications (preview)
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Monitoring models in production is an essential part of the AI lifecycle. Changes in data and consumer behavior can influence your generative AI application over time, resulting in outdated systems that negatively affect business outcomes and expose organizations to compliance, economic, and reputational risks. 
 
 > [!IMPORTANT]

@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Embedding tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 OpenAI's embedding models convert text into dense vector representations for various natural language processing tasks. For more information, see the [OpenAI Embeddings API](https://platform.openai.com/docs/api-reference/embeddings).
 
 ## Prerequisites

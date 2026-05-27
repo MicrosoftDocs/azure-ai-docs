@@ -2,7 +2,7 @@
 title: "Healthcare AI foundation models (classic)"
 description: "Explore healthcare AI foundation models in Microsoft Foundry for medical imaging, genomics, and clinical data analysis. Deploy multimodal AI models to build healthcare solutions. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 01/23/2026
 ms.reviewer: itarapov

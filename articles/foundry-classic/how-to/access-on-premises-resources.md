@@ -3,6 +3,7 @@ title: "How to access on-premises resources (classic)"
 description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources. (classic)"
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - hub-only
   - dev-focus

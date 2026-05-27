@@ -8,6 +8,7 @@ ms.reviewer: sehan
 ms.date: 04/02/2026
 ms.topic: reference
 ms.service: microsoft-foundry
+ms.subservice: foundry-mcp
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---

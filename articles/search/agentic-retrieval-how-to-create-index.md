@@ -3,12 +3,12 @@ title: Create an Index for Agentic Retrieval
 description: Create an index that has fields and configurations that work for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 05/05/2026
 ---
 
 # Create an index for agentic retrieval in Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 In Azure AI Search, agentic retrieval uses context and user questions to generate a range of subqueries that can execute against your content in a [knowledge source](agentic-knowledge-source-overview.md). A knowledge source can point to indexed content on Azure AI Search, or remote content that's retrieved using the APIs that are native to the provider. When indexes are used in agentic retrieval, they are either:
 
@@ -294,7 +294,7 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
 
 A scoring profile is more likely to add value to your solution if your index is based on structured data. Structured data is indexed into multiple discrete fields, which means your scoring profile can have criteria that target the content or characteristics of a specific field.
 
-If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. Because agentic retrieval is available in newer preview APIs, the scoring profile executes last. The actual order of semantically ranked results is determined by the [rankingOrder property](/rest/api/searchservice/indexes/create-or-update#rankingorder) in the index, which is either set to `boostedRerankerScore` (a scoring profile was applied) or `rerankerScore` (no scoring profile).
+If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. The actual order of semantically ranked results is determined by the [rankingOrder property](/rest/api/searchservice/indexes/create-or-update#rankingorder) in the index, which is either set to `boostedRerankerScore` (a scoring profile was applied) or `rerankerScore` (no scoring profile).
 
 You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example if a match was found in the "Category" field, the boosted score is multiplied by 5.
 

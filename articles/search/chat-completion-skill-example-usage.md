@@ -4,18 +4,19 @@ description: Use language models to caption your images and facilitate an image 
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 04/22/2026
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # Generate captions for images in another language
 
 In this article, learn how to generate captions using AI enrichment and a skillset. Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images.
 
-The Chat Completion skill (preview) can generate a description of each image in your data source, and the indexer pushes that description into a search index. To view the descriptions, run a query that includes them in the response.
+The GenAI Prompt skill can generate a description of each image in your data source, and the indexer pushes that description into a search index. To view the descriptions, run a query that includes them in the response.
 
 ## Prerequisites
 
@@ -25,7 +26,7 @@ To work with image content in a skillset, you need:
 + Files or blobs containing images.
 + Read access to the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
 + A [search indexer](search-how-to-create-indexers.md), configured for image actions.
-+ A skillset with the Chat Completion skill.
++ A skillset with the GenAI Prompt skill.
 + A search index with fields to receive generated text output, plus output field mappings in the indexer that establish the associations.
 
 Optionally, you can define projections to accept image-analyzed output into a [knowledge store](knowledge-store-concept-intro.md) for data mining scenarios.
@@ -127,7 +128,6 @@ As noted, images are extracted during document cracking and then normalized as a
   "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
   "context": "/document/normalized_images/*",
   "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
-  "timeout": "PT1M",
   "apiKey": "<YOUR-API-KEY here>",
   "inputs": [
     {
@@ -161,7 +161,6 @@ This example shows how to use structured outputs for language models. This capab
   "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
   "context": "/document/content",
   "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
-  "timeout": "PT1M",
   "apiKey": "<YOUR-API-KEY here>",
   "inputs": [
     {

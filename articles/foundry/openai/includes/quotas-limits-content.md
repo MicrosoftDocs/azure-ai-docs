@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/27/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -58,6 +58,73 @@ curl -X PATCH \
 
 Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. If the request is approved, the current tier will remain the same, but with more quota assigned.  
 
+### How do I check my subscription's quota tier?
+
+You can currently check you quota tier with the [control plane API](/rest/api/aifoundry/accountmanagement/quota-tiers/get?view=rest-aifoundry-accountmanagement-2025-10-01-preview&tabs=HTTP&preserve-view=true):
+
+# [Bash](#tab/bash)
+
+```bash
+curl -X GET \
+  "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
+  -H "Authorization: Bearer $(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)" \
+  -H "Content-Type: application/json"
+```
+
+
+# [Python](#tab/python)
+
+
+```python
+import requests
+import json
+from azure.identity import DefaultAzureCredential
+
+
+subscriptionId = "{YOUR-SUBSCRIPTION-ID}"
+api_version = "2025-10-01-preview" 
+base_url = "https://management.azure.com"
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://management.azure.com/.default')
+headers = {
+    'Authorization': 'Bearer ' + token.token,
+    'Content-Type': 'application/json'
+}
+
+
+list_url = (
+    f"{base_url}/subscriptions/{subscriptionId}"
+    f"/providers/Microsoft.CognitiveServices/quotaTiers"
+    f"?api-version={api_version}"
+)
+
+response = requests.get(list_url, headers=headers)
+print(json.dumps(response.json(), indent=2))
+
+```
+
+# [Output](#tab/output)
+
+```json
+{
+  "value": [
+    {
+      "properties": {
+        "currentTierName": "Tier 1",
+        "assignmentDate": "2025-10-18T05:09:05.6334222Z",
+        "tierUpgradePolicy": "OnceUpgradeIsAvailable"
+      },
+      "id": "/subscriptions/aaaaa-bbbbb-ccccc-dddd-eeeeeee/providers/Microsoft.CognitiveServices/quotaTiers/default",
+      "name": "default",
+      "type": "Microsoft.CognitiveServices/quotaTiers"
+    }
+  ]
+}
+```
+
+---
+
 ### Quota tier reference
 
 # [Tier 1](#tab/tier1)
@@ -84,11 +151,10 @@ Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can 
 
 [!INCLUDE [Quota](quota-tier/tier-6.md)]
 
-<!--
-# [Free](#tab/tierfree)
+# [Tier 0](#tab/tier0)
 
 [!INCLUDE [Quota](quota-tier/free.md)]
--->
+
 ---
 
 ## Quotas and limits reference
@@ -101,6 +167,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
+| Default GPT-image-2 quota limits | 9 requests per minute  |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 job requests<sup>1</sup> per minute| 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
@@ -116,6 +183,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum training job size `(tokens in training file) x (# of epochs)` | 2 billion. |
 | Maximum size of all files per upload (Azure OpenAI on your data) | 16 MB. |
 | Maximum number of inputs in array with `/embeddings` | 2,048. |
+| Maximum tokens per `/embeddings` request (sum across all inputs) | 300,000. |
 | Maximum number of `/chat/completions` messages | 2,048. |
 | Maximum number of `/chat/completions` functions | 128. |
 | Maximum number of `/chat/completions` tools | 128. |
@@ -137,13 +205,6 @@ The following section provides you with a quick guide to the default quotas and 
 
 > [!NOTE]
 > Quota limits are subject to change.
-
-## model-router rate limits
-
-| Model                              | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
-|:----------------------------------:|------------------|:-------------:|:-------------:|:---------------------------:|:----------------------------:|
-| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 [!INCLUDE [Quota](global-batch-limits.md)]
 
@@ -172,12 +233,7 @@ If you encounter 429 errors or notice increased latency variability, here’s wh
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
 - Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you're operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
-You may receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota.
-
-This can occur in the following scenarios:
-- Requests rejected due to **input or context length limits (HTTP 400)**. These requests are not billed and may not appear in token usage metrics, but they can still count toward rate limiting.
-- Requests evaluated based on **potential token usage** (for example, `max_tokens`), even if no tokens are ultimately generated.
-- **Distributed rate‑limiting behavior**, where enforcement may not be perfectly precise or immediately reflected in aggregated metrics.
+You might receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota. For an explanation of why this happens, see [Why you might see 429s even when token usage metrics are below quota](../how-to/quota.md#why-you-might-see-429s-even-when-token-usage-metrics-are-below-quota).
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -212,6 +268,8 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
 
+For detailed best practices, retry-with-backoff code samples, and a 429 troubleshooting guide, see [Manage Azure OpenAI in Microsoft Foundry Models quota](../how-to/quota.md#rate-limit-best-practices).
+
 ## Request quota increases
 
 [!INCLUDE [quota-increase- request](quota-increase-request.md)]
@@ -220,45 +278,10 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 You can view quota availability by region for your subscription in the [Foundry portal](https://ai.azure.com/resource/quota).
 
-To view quota capacity by region for a specific model or version, you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API returns the available capacity for that model across all regions and deployment types for your subscription.
+To check quota and capacity programmatically, see [Programmatically check quota and capacity](../how-to/quota.md#programmatically-check-quota-and-capacity) in the quota management guide. That section covers two complementary REST APIs: the **Usages API** for checking consumption against limits, and the **Model Capacities API** for checking available deployment capacity by model and region.
 
 > [!NOTE]
-> Currently, both the Foundry portal and the capacity API return quota/capacity information for models that are [retired](../concepts/model-retirements.md) and no longer available.
-
-See the [API reference](/rest/api/aiservices/accountmanagement/model-capacities/list).
-
-Before you run the example:
-
-- Install dependencies: `pip install azure-identity requests`
-- Sign in with an Azure identity that can read model capacities for the subscription.
-
-```python
-import requests
-import json
-from azure.identity import DefaultAzureCredential
-
-subscriptionId = "Replace with your subscription ID" #replace with your subscription ID
-model_name = "gpt-4o"     # Example value, replace with model name
-model_version = "2024-08-06"   # Example value, replace with model version
-
-token_credential = DefaultAzureCredential()
-token = token_credential.get_token('https://management.azure.com/.default')
-headers = {'Authorization': 'Bearer ' + token.token}
-
-url = f"https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities"
-params = {
-    "api-version": "2024-06-01-preview",
-    "modelFormat": "OpenAI",
-    "modelName": model_name,
-    "modelVersion": model_version
-}
-
-response = requests.get(url, params=params, headers=headers)
-model_capacity = response.json()
-
-print(json.dumps(model_capacity, indent=2))
-
-```
+> Currently, both the Foundry portal and the capacity APIs return quota and capacity information for models that are [retired](../concepts/model-retirements.md) and no longer available for new deployments.
 
 ## Related content
 

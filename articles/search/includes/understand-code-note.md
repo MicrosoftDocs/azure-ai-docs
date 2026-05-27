@@ -1,5 +1,5 @@
 ---
-title: Include file
+title: Include File
 description: Include file for the code snippet disclaimer in the Azure AI Search programmatic quickstarts.
 ms.service: azure-ai-search
 ms.topic: include

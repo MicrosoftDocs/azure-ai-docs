@@ -1,7 +1,7 @@
 ---
-title: Use the LLM-speech API - Speech service
+title: Use the LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
-description: Learn how to use Azure Speech in Foundry Tools for LLM-speech, where you can leverage the latest LLM-powered speech model for transcription and translation
+description: Learn how to use Azure Speech with the latest LLM-powered speech model for transcription and translation.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -12,15 +12,22 @@ zone_pivot_groups: llm-speech-quickstart
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# LLM speech for speech transcription and translation (preview)
+# LLM Speech for speech transcription and translation
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-LLM speech is powered by a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios including generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+LLM Speech is an API in Microsoft Foundry. A large language model (LLM) enhances a speech model, delivering improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios. For example, use LLM Speech to generate captions and subtitles from audio files, summarize meeting notes, assist call center agents, and transcribe voicemails.
 
 [!INCLUDE [transcription-features](includes/transcription-features.md)]
 
+## Supported languages
+
+The following input languages are supported for both transcribe and translate tasks: ``Arabic``, ``Chinese``, ``Czech``, ``Danish``, ``Dutch``, ``English``, ``Finnish``, ``French``, ``German``, ``Greek``, ``Hebrew``, ``Hindi``, ``Hungarian``, ``Indonesian``, ``Italian``, ``Japanese``, ``Korean``, ``Norwegian Bokmål``, ``Polish``, ``Portuguese``, ``Russian``, ``Spanish``, ``Swedish``, ``Thai``, ``Turkish``. 
+
+The service operates in multi-lingual mode by default, so you don't need to specify the input language locale. Optionally, to guide recognition toward a specific language locale, you can set the `locales` parameter using a supported locale code (for example, ``en-us``). For more information about the supported language locales, see [supported languages](language-support.md?tabs=stt).
+
+
 ::: zone pivot="ai-foundry"
+
 
 [!INCLUDE [Foundry portal](includes/common/llm-speech-ai-foundry.md)]
 
@@ -39,7 +46,6 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
-
 
 [!INCLUDE [C# SDK quickstart](includes/common/llm-speech-sdk-csharp.md)]
 
@@ -61,5 +67,5 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 ## Related content
 
-- [LLM speech REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
+- [LLM Speech REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
 - [Fast transcription](fast-transcription-create.md)

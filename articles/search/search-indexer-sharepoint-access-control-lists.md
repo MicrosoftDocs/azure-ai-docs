@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/26/2026
+ms.date: 04/23/2026
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
@@ -32,7 +32,7 @@ This article explains how to ingest an access control list (ACL) alongside other
 
 ## Limitations
 
-+ During public preview, ACL ingestion applies to initial indexing only. ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
++ During preview, ACL ingestion applies to initial indexing only. ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
   
 + The Azure portal doesn't support this feature.
 
@@ -171,7 +171,7 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 
 ## Synchronize permissions between indexed and source content
 
-During public preview when the configuration is completed, and ACLs are captured during the first indexer run and for new files only. To pick up later changes:
+During preview when the configuration is completed, and ACLs are captured during the first indexer run and for new files only. To pick up later changes:
 
 | Change  Scope | 	Recommended | Trigger | What refreshes | 
 |--------|-------------|---------|---------|
@@ -192,7 +192,7 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-versi
 
 ### Resync ACLs across the full data source
 
-You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) after initial ingestion.
+You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion. 
 
 ```
 POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-11-01-preview

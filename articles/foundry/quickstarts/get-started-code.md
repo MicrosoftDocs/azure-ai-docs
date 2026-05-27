@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 03/10/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: quickstart
 ms.custom:
   - classic-and-new
@@ -13,7 +14,7 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code14
+  - update-code15
   - build-aifnd
   - build-2025
   - peer-review-program

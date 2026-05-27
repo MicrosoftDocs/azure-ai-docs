@@ -2,6 +2,7 @@
 title: "Quickstart: Set up Microsoft Foundry resources"
 description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications."
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - build-2025
   - dev-focus
@@ -125,7 +126,9 @@ You need your project endpoint to connect from code. If you're administering thi
 
 ## For administrators - grant access
 
-If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
+If you're administering a team, assign the **Foundry User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
+
+[!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 # [Azure CLI](#tab/azurecli)
 
@@ -139,9 +142,9 @@ If you're administering a team, assign the **Azure AI User** role to team member
 
 ### Verify team member access
 
-Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears by selecting **Build** in the upper-right navigation, then **Models** in the left pane.
+[!INCLUDE [verify-team-access](../includes/verify-team-access.md)]
 
-If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
+To confirm the deployed model is available, ask the team member to select **Build** in the upper-right navigation, then **Models** in the left pane.
 
 ## Clean up resources
 

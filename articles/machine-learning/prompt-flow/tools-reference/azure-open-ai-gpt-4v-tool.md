@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # Azure OpenAI GPT-4 Turbo with Vision tool (preview)
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 Azure OpenAI GPT-4 Turbo with Vision tool enables you to leverage your AzureOpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
 
 > [!IMPORTANT]

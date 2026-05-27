@@ -5,9 +5,10 @@ description: "Manage AI model deployment in Microsoft Foundry portal with built-
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 02/24/2026
+ms.date: 05/12/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new

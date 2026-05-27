@@ -1,8 +1,9 @@
 ---
 title: "Create hosted agent workflows in Visual Studio Code"
-description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension."
+description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Foundry Toolkit for Visual Studio Code."
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
@@ -17,7 +18,7 @@ ms.custom: doc-kit-assisted
 ---
 
 # Create hosted agent workflows in Visual Studio Code (preview)
-Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
+Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
 Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.
 
@@ -26,41 +27,48 @@ This article covers creating a workflow project, running it locally, visualizing
 ## Prerequisites
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
-- The [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
-- The project's managed identity with the [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the hosted agent.
-- A [supported region](../concepts/hosted-agents.md#region-availability) for hosted agents.
+- The [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- A [supported region](../concepts/hosted-agents.md#region-availability) for Hosted agents.
 
 ::: zone pivot="python"
-- Python 3.12 or higher.
+- Python 3.13 or higher.
 ::: zone-end
 
 ::: zone pivot="csharp"
-- [.NET 9 SDK](https://dotnet.microsoft.com/download) or later.
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) or later.
 ::: zone-end
 
 ## Create a hosted agent workflow  
 
-You can use the Foundry for Visual Studio Code extension to create hosted agent workflows. A hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+You can use the Foundry Toolkit for Visual Studio Code to create Hosted agent workflows. A Hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Microsoft Foundry: Create a New Hosted Agent`.
+1. Run this command: `>Foundry Toolkit: Create a New Hosted Agent`.
 
-1. Choose a framework, either Microsoft Agent Framework or LangGraph.
+1. Select a programming language
 
-1. Choose a template, either the Single Agent Hotel Assistant or the Writer-Reviewer Agent Workflow (multi-agent).
+1. Choose a framework, either Copilot SDK, Microsoft Agent Framework, or Bring your own.
 
-1. Select a programming language.
+1. Choose a protocol, either Responses API or Invocations API.
 
-1. Choose a model, either one you've already deployed in your project, or browse the model catalog.
+1. Choose a template from the list.
 
-1. Select a folder where you want to save your new workflow.
+1. Select the "Next" button.
 
-The files for your hosted agent project are generated in your selected folder based on the framework, template and language you selected to get you started. You can remove or modify that code as needed.
+
+1. Select a folder where you want to save your new Hosted Agent.
+
+1. For Environment Setup, selecting "Skip for now" will skip Foundry project and model setup, which requires you to manually configure them in the code later. Selecting "Configure with Microsoft Foundry" will auto-populate your project and model information with the existing Foundry Project.
+
+The files for your Hosted agent project are generated in your selected folder based on the framework, template and language you selected to get you started. You can remove or modify that code as needed.
 
 ### Install dependencies
 
-Install the required dependencies for your hosted agent project. The dependencies vary based on the programming language that you selected when you created the project.
+Install the required dependencies for your Hosted agent project. The dependencies vary based on the programming language that you selected when you created the project.
 ::: zone pivot="python"
 
 1. Create virtual environment.
@@ -82,10 +90,10 @@ Install the required dependencies for your hosted agent project. The dependencie
    source .venv/bin/activate
    ```
 
-1. Install the following package:
+1. Install the required packages:
 
     ```bash
-    pip install azure-ai-agentserver-agentframework
+    pip install -r requirements.txt
     ```
 
 ::: zone-end
@@ -105,9 +113,9 @@ Install the required dependencies for your hosted agent project. The dependencie
 The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
 
 ```
-PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
 
-MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
 > [!IMPORTANT]
@@ -115,7 +123,7 @@ MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential). Configure your development environment to provide credentials via one of the supported sources, for example:
+The Hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -124,20 +132,24 @@ The hosted agent sample authenticates using [DefaultAzureCredential](/python/api
 
 Confirm authentication locally by running either the Azure CLI `az account show` or `az account get-access-token` commands before running the sample.
 
-You can run the hosted agent in interactive mode or container mode.
+You can run the Hosted agent in interactive mode or container mode.
 
 ### Run your hosted agent in the Agent Inspector
 
-To run your hosted agent locally in Visual Studio Code, select the **F5** key. This opens the Agent Inspector and executes your application.
+Press **F5** to start the local HTTP server with debugging enabled. The Foundry Toolkit Agent Inspector opens for interactive testing, and you can set breakpoints in your code.
 
-This will:
+To run the server without debugging:
 
-1. **Start the agent server:** The `agentdev` CLI wraps your agent as an HTTP server on port 8087, with debugpy attached on port 5679.
-1. **Discover agents:** The UI fetches available agents/workflows from `/agentdev/entities`.
-1. **Stream execution:** Chat inputs go to `/v1/responses`, which streams back events via SSE for real-time visualization.
-1. **Enable code navigation:** Double-click workflow nodes to open the corresponding source file in the editor.
-1. **Enable chatting with the local agent** and viewing responses, hitting breakpoints for debugging, and so on.
+```bash
+python main.py
+```
 
+The agent listens on `http://localhost:8088/`. Send a test prompt with curl (or any HTTP client):
+
+```bash
+curl -sS -H "Content-Type: application/json" -X POST http://localhost:8088/responses \
+    -d '{"input": "Write a haiku about deploying cloud applications.", "stream": false}'
+```
 ::: zone-end
 
 ::: zone pivot="csharp"
@@ -149,21 +161,21 @@ The sample workflow project creates an .env file with the necessary environment 
    #### [Windows (PowerShell)](#tab/windows-powershell)
 
    ```powershell
-   $env:AZURE_AI_PROJECT_ENDPOINT="https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>"
+   $env:FOUNDRY_PROJECT_ENDPOINT="https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>"
    $env:AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
    ```
 
    #### [Windows (command prompt)](#tab/windows-command-prompt)
 
    ```dos
-   set AZURE_AI_PROJECT_ENDPOINT=https://your-resource-name.openai.azure.com/
+   set FOUNDRY_PROJECT_ENDPOINT=https://your-resource-name.openai.azure.com/
    set AZURE_AI_MODEL_DEPLOYMENT_NAME=your-deployment-name
    ```
 
    #### [macOS/Linux (Bash)](#tab/macos-linux-bash)
 
    ```bash
-   export AZURE_AI_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
+   export FOUNDRY_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
    export AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
    ```
 
@@ -171,7 +183,7 @@ The sample workflow project creates an .env file with the necessary environment 
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
+The Hosted agent sample authenticates using [DefaultAzureCredential](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -180,11 +192,11 @@ The hosted agent sample authenticates using [DefaultAzureCredential](/dotnet/azu
 
 Confirm authentication locally by running either the Azure CLI `az account show` or `az account get-access-token` commands before running the sample.
 
-You can run the hosted agent in interactive mode or container mode.
+You can run the Hosted agent in interactive mode or container mode.
 
 ### Run your hosted agent in interactive mode
 
-Run the hosted agent directly for development and testing:
+Run the Hosted agent directly for development and testing:
 
 ```bash
 dotnet restore
@@ -199,8 +211,8 @@ dotnet run
 
 To run the agent in container mode:
 
-1. Open the Visual Studio Code Command Palette and execute the `Microsoft Foundry: Open Container Agent Playground Locally` command.
-2. Use the following command to initialize the containerized hosted agent.
+1. Open the Visual Studio Code Command Palette and execute the `Foundry Toolkit: Open Container Agent Playground Locally` command.
+2. Use the following command to initialize the containerized Hosted agent.
    ```bash
    dotnet restore
    dotnet build
@@ -211,7 +223,7 @@ To run the agent in container mode:
 
 ## Visualize hosted agent workflow execution
 
-The Foundry for Visual Studio Code extension provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
+The Foundry Toolkit for Visual Studio Code provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
 
 Add the following reference to your csproj file:
 
@@ -256,11 +268,11 @@ var s_tracerProvider = OpenTelemetry
 
 ### Monitor and visualize your hosted agent workflow
 
-To monitor and visualize your hosted agent workflow execution in real time:
+To monitor and visualize your Hosted agent workflow execution in real time:
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Microsoft Foundry: Open Visualizer for Hosted Agents`.
+1. Run this command: `>Foundry Toolkit: Open Visualizer for Hosted Agents`.
 
 A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
 
@@ -293,25 +305,34 @@ var otlpEndpoint =
 
 ## Deploy the hosted agent
 
-After testing your hosted agent locally, deploy it to your Foundry workspace so other team members and applications can use it.
+After testing your Hosted agent locally, deploy it to your Foundry workspace so other team members and applications can use it.
 
 >[!IMPORTANT]
-> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
+> Make sure you give the necessary permissions to deploy Hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
 
 ::: zone pivot="python"
 
-1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
-1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
-1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
-1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+1. Open the Command Palette and select **Foundry Toolkit: Deploy Hosted Agent**. A deployment webview will open.
+1. For "Deployment Method", select **Code** or **Container**.
+1. If deploying with "Code", for "Package Mode", select **Remote** or **Local**.
+1. If deploying with "Container", select either **Default ACR**, **Custom ACR**, or **Customer ACR Image**.
+1. The "Agent Name" should auto-populate.
+1. Select the "Next" button.
+1. This "Review and Deploy" page should all auto-populate.
+1. Select the "Deploy" button.
+1. Open the Visual Studio Code Command Palette and run the `Foundry Toolkit: Deploy Hosted Agent` command.
 ::: zone-end
 
 ::: zone pivot="csharp"
 
-1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
-1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
-1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
-1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+1. Open the Visual Studio Code Command Palette and run the `Foundry Toolkit: Deploy Hosted Agent` command.
+1. For "Deployment Method", select **Code** or **Container**.
+1. If deploying with "Code", for "Package Mode", select **Remote** or **Local**.
+1. If deploying with "Container", select either **Default ACR**, **Custom ACR**, or **Customer ACR Image**.
+1. The "Agent Name" should auto-populate.
+1. Select the "Next" button.
+1. This "Review and Deploy" page should all auto-populate.
+1. Select the "Deploy" button.
 
 ::: zone-end
 
@@ -319,4 +340,4 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 
 - [Hosted agent concepts](../concepts/hosted-agents.md)
 - [Build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents)
-- [Publish and share agents in Microsoft Foundry](./publish-agent.md)
+- [Agent applications in Microsoft Foundry](./agent-applications.md)

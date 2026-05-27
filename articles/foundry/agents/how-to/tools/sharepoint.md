@@ -7,8 +7,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
     - azure-ai-agents
     - dev-focus
@@ -45,7 +47,9 @@ The following table shows SDK and setup support.
 - Eligible license or pay-as-you-go model:
   - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- Developers and end users have at least `Foundry User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Developers and end users have at least `READ` access to the SharePoint site.
 - Ensure your SharePoint tenant and your Foundry project are in the same Microsoft Entra tenant. Cross-tenant token exchange isn't supported.
 - The required SDK package installed:

@@ -6,6 +6,7 @@ ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 11/18/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ai-usage: ai-assisted
 ---

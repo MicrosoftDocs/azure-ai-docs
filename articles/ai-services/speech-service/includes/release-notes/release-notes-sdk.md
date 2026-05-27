@@ -1,15 +1,49 @@
 ---
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 04/09/2026
+ms.date: 05/13/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
 ms.reviewer: pafarley
+ai-usage: ai-assisted
 ---
 
 > [!IMPORTANT]
+> Speech SDK 1.48.2 and newer releases include a critical fix for Certificate Revocation List (CRL) partitioning on Linux and Android. If you use either platform with CRL checking enabled, upgrade to 1.48.2 or newer before July 1, 2026. For details, see [CRL compatibility update](../../migrate-to-sdk-1-48-2.md).
+
+> [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.50: 2026-May release
+
+#### New features:
+  * Added support for dynamic voice configuration per target language during translation updates.
+  * Added support for source language autodetection in speech recognition.
+  * Updated Android OpenSSL to 3.0.20.
+  * Added support for configuring post-processing behavior via PostProcessingOption to improve final transcript accuracy. 
+
+#### Bug fixes:
+  * Fixed a TTS connection race condition.
+  * Fixed an Android crash when EventLoggerCallback is used.
+  * Fixed URL query parameters being lowercased after redirection.
+  * Fixed vulnerabilities in the JSON parser.
+
+#### Samples:
+  * No sample updates.
+
+### Speech SDK for JavaScript
+
+#### New features:
+   * Added support for configuring post-processing behavior via PostProcessingOption to improve final transcript accuracy. 
+
+#### Bug fixes:
+  * Fixed ineffective proxy configuration when SpeechConfig.setProxy(...) is used on recent Node.js versions.
+
+### Speech SDK 1.49.1: 2026-April release
+
+#### Bug fixes:
+  * Fixed a crash in embedded speech telemetry handling.
 
 ### Speech SDK 1.49: 2026-April release
 

@@ -4,7 +4,7 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/16/2026
+ms.date: 04/23/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -14,7 +14,7 @@ ms.custom:
 # Index data from SharePoint document libraries
 
 > [!IMPORTANT]
-> The SharePoint in Microsoft 365 indexer is in public preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
+> The SharePoint in Microsoft 365 indexer is in preview. It's offered "as-is" under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on a best-effort basis only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >
 > Before you proceed, review the [known limitations](#limitations-and-considerations).
 >
@@ -28,8 +28,8 @@ In Azure AI Search, an indexer extracts searchable data and metadata from a data
 + Indexes incrementally, picking up just the new and changed files and metadata. 
 + Detects deleted content automatically. Document deletion in the library is picked up on the next indexer run, and the corresponding search document is removed from the index.
 + Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), such as optical character recognition (OCR) or entity recognition.
-+ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in public preview during initial document sync. It also supports full data set incremental data sync.
-+ Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in public preview.
++ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in preview during initial document sync. It also supports full data set incremental data sync.
++ Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in preview.
   
 ## Prerequisites
 
@@ -67,7 +67,7 @@ Here are the limitations of this feature:
     
   +  No support for user-encrypted files and password-protected ZIP files. However, encrypted content is allowed if it's protected by [Microsoft Purview sensitivity labels](/purview/sensitivity-labels) and if the [configuration to preserve and honor those labels (preview)](search-indexer-sensitivity-labels.md) is enabled.
 
-  + Limited support for document-level access permissions. A basic level of ACL sync is currently in public preview. For details and setup, see the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md).
+  + Limited support for document-level access permissions. A basic level of ACL sync is currently in preview. For details and setup, see the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md).
 
 Here are some considerations when using this feature:
 
@@ -141,7 +141,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
       - If you need to enable content indexing and/or limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
         - `Sites.Selected`
 
-          Then grant the application full control only for those selected sites.
+          Then grant the application full control only for those selected sites. Review this [SharePoint blog post](https://techcommunity.microsoft.com/blog/spblog/develop-applications-that-use-sites-selected-permissions-for-spo-sites-/3790476) that explains this process.
 
      
           Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
@@ -199,24 +199,14 @@ These are the instructions to configure the application so Microsoft Entra trust
 1. Create (or select) a [user-assigned managed identity and assign to your search service](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity) or a [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity), depending on your scenario requirements.
    
 1. Capture the **object (principal) ID**. This will be used as part of the credentials configuration when creating the data source.
-    <!-- GIA TO ADD THIS SCREENSHOT OF UAMI OBJECT PRINCIPAL --> 
-    <!-- GIA TO ADD THIS SCREENSHOT OF SAMI OBJECT PRINCIPAL -->
    
 1. Select **Certificates & Secrets** from the menu on the left.
-      <!-- GIA TO ADD THIS SCREENSHOT -->
 
 1. Under **Federated credentials** select **+ Add a credential**.
 
-      <!-- GIA TO ADD THIS SCREENSHOT -->
-
 1. Under **Federated credential scenario** select **Managed Identity**. 
 
-    <!-- GIA TO ADD THIS SCREENSHOT OF SAMI OBJECT PRINCIPAL -->
-
-1. Select managed identity: Choose the created managed identity created as part of step 1.
-
-    <!-- GIA TO ADD THIS SCREENSHOT OF UAMI SELECTION --> 
-    <!-- GIA TO ADD THIS SCREENSHOT OF SAMI SELECTION -->
+1. Select managed identity: Choose the managed identity created in step 1.
 
 1. Add a name for your credential and select **Save**.
 
@@ -528,6 +518,8 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 | includeLibrariesInSite | Index content from all libraries under the specified site in the connection string. The value should be the URI of the site or subsite. <br><br>Example 1: <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/mysite" }``` <br><br>Example 2 (include a few subsites only): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite1;includeLibrariesInSite=https://mycompany.sharepoint.com/sites/TopSite/SubSite2" }``` |
 | includeLibrary | Index all content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br>Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/mysite/MyDocumentLibrary" }``` <br><br>Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
 | excludeLibrary | Don't index content from this library. The value is the fully qualified path to the library, which can be copied from your browser: <br><br> Example 1 (fully qualified path): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mysite.sharepoint.com/subsite1; excludeLibrary=https://mysite.sharepoint.com/subsite1/MyDocumentLibrary" }``` <br><br> Example 2 (URI copied from your browser): <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrariesInSite=https://mycompany.sharepoint.com/teams/mysite; excludeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx" }``` |
+| includeFolder | Index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. Multiple folders can be specified by repeating the parameter with semicolons. Folder filters are scoped to a single document library. Root-only paths aren't supported. If a folder referenced is renamed, the query must be updated. <br><br> Example 1 (single folder): <br>```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies" }```<br><br> Example 2 (multiple folders): <br> ```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Specs;includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Designs" }``` |
+| excludeFolder | Don’t index content from a specific folder and its subfolders. Value must be a full SharePoint folder URL. <br><br> Behavior: Applies recursively to all subfolders. If a file matches both include and exclude rules, exclude takes precedence and the file is skipped. Folder filters are scoped to a single document library. <br><br> Example 1 (exclude folder): <br>```"container": { "name": "useQuery", "query": "excludeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies/Archive" }```<br><br> Example 2 (combine include + exclude): <br>```"container": { "name": "useQuery", "query": "includeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies;excludeFolder=contoso.sharepoint.com/sites/hr/Shared Documents/Policies/Drafts" }```|
 | additionalColumns | Index columns from the document library. The value is a comma-separated list of column names you want to index. Use a double backslash to escape semicolons and commas in column names: <br><br> Example 1 (additionalColumns=MyCustomColumn,MyCustomColumn2):  <br><br>```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/mysite/MyDocumentLibrary;additionalColumns=MyCustomColumn,MyCustomColumn2" }``` <br><br> Example 2 (escape characters using double backslash): <br><br> ```"container" : { "name" : "useQuery", "query" : "includeLibrary=https://mycompany.sharepoint.com/teams/mysite/MyDocumentLibrary/Forms/AllItems.aspx;additionalColumns=MyCustomColumnWith\\,,MyCustomColumnWith\\;" }``` |
 
 ## Handling errors

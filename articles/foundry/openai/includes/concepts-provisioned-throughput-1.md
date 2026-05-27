@@ -6,220 +6,173 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/25/2026
 ms.custom: include
 ---
 
-## Prerequisites
+Provisioned throughput is a deployment type in Microsoft Foundry that provides dedicated model processing throughput for your deployment. Unlike standard deployments, where inference capacity is shared across customers and throughput can vary with demand, a provisioned deployment holds a fixed amount of processing capacity exclusively for your deployment's use, whether or not requests are being made.
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with a model deployed using a provisioned throughput deployment type.
-- Provisioned throughput quota allocated to your subscription in your target region.
-- [Azure CLI](/cli/azure/install-azure-cli) (if you plan to create deployments via the command line).
+This article introduces the core concepts behind provisioned throughput: what it is, when to use it, how capacity is measured and billed, and what to know about quota and capacity before you deploy.
+
+## Deployment categories compared
+
+Standard deployments, batch deployments, priority processing, and provisioned throughput are ways to deploy models in Microsoft Foundry. The right choice depends on your latency requirements, traffic patterns, and cost tolerance.
+
+| Deployment type | Billing | Latency Service Level Agreement (SLA) | Workload type and needs |
+|---|---|---|---|
+| **Standard** | Pay per token | None | Balanced workloads: development, testing, and production with variable or unpredictable traffic |
+| **Priority processing** | Pay per token (priority tier rate) | [Defined latency target per model](../concepts/priority-processing.md#latency-target) | Latency-sensitive production workloads needing consistent low latency without a long-term commitment |
+| **Provisioned** | Per [PTU](#provisioned-throughput-units) per hour (or using [Azure reservations](#azure-reservations)) | [Defined latency target per model](../how-to/provisioned-throughput-sizing.md#deployment-parameters-and-throughput-values-by-model) | Mission-critical, high-scale production workloads requiring guaranteed throughput and consistent latency |
+| **Batch** | Pay per token (discounted batch rate) | None | Bulk processing workloads without latency requirements. Results are returned asynchronously. |
 
 ## When to use provisioned throughput
 
-Consider provisioned throughput deployments when you have well-defined, predictable throughput and latency requirements—typically for production applications with known traffic patterns. Provisioned throughput is also useful for real-time or latency-sensitive applications.
+Provisioned throughput is the right choice when your application has:
 
-## Understand PTU allocation
+- **Predictable traffic patterns**: You have a reasonable estimate of requests per minute and token volumes.
+- **Latency-sensitive requirements**: Your users or downstream systems need consistent, low-latency responses.
+- **Production-scale volume**: High throughput use cases where per-token billing becomes expensive.
+- **Real-time or interactive scenarios**: Chat applications, copilots, or agents where variable response times degrade user experience.
 
-Provisioned throughput units (PTU) and deployment types are the building blocks of provisioned throughput. The following sections explain how they work.
+Standard deployments remain the better fit for development, testing, low-volume usage, or highly variable traffic that makes it difficult to size a deployment in advance.
 
-### Provisioned throughput units (PTU)
+## Provisioned throughput units
 
-Provisioned throughput units (PTU) are generic units of model processing capacity that you use to size provisioned deployments to achieve the required throughput for processing prompts and generating completions. Provisioned throughput units are granted to a subscription as quota and used to define costs. Each quota is specific to a region and defines the maximum number of PTU that can be assigned to deployments in that subscription and region.
+**Provisioned throughput units (PTUs)** are the unit of measure for provisioned throughput. A PTU represents a fixed amount of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves that amount of compute and holds it for your deployment.
 
-#### Cost management under shared PTU reservation
+Key characteristics of PTUs:
 
-Use the PTU capability to seamlessly manage costs for Foundry Models under a shared PTU reservation. But, the required PTU units for deployment and throughput performance are dynamically tailored to the chosen models. To learn more about PTU costs and model latency points, see [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md).
+- **Model-independent**: The same PTU quota can be used to deploy any [supported model](#supported-models). You don't buy PTUs for a specific model.
+- **Region-specific**: PTU quota is granted per subscription, per region, and per [deployment type](#provisioned-throughput-deployment-types). Quota in East US doesn't carry over to West Europe.
+- **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [Per-model throughput parameters](../how-to/provisioned-throughput-sizing.md#deployment-parameters-and-throughput-values-by-model).
+- **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [Deployment parameters and throughput values by model](../how-to/provisioned-throughput-sizing.md#deployment-parameters-and-throughput-values-by-model).
 
-Existing PTU reservations are automatically upgraded to empower customers with enhanced efficiency and cost savings as they deploy Foundry Models. For example, suppose you have an existing PTU reservation with 500 PTU purchased. You use 300 units for Azure OpenAI models, and you choose to also use PTU to deploy Azure DeepSeek, Azure Llama, or other models with PTU capability on Foundry Models.
+## Quota and capacity
 
-- If you use the remaining 200 PTU for DeepSeek-R1, the 200 PTU share the reservation discount automatically, and your total usage for the reservation is 500 PTU. 
+PTU quota and capacity are related but distinct concepts that both affect whether you can create a deployment. This section explains what each is, how to request additional quota, and how to check whether capacity is available in your region.
 
-- If you use 300 PTU for DeepSeek-R1, then 200 PTU share the reservation discount automatically while 100 PTU exceed the reservation and are charged with DeepSeek-R1's hourly rate.  
+### What is PTU quota?
 
-To learn about saving costs with PTU reservations, see [Save costs with Microsoft Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai).
+PTU quota is the maximum number of PTUs you can deploy per subscription, per region, and per deployment type. Quota is a policy limit enforced by Azure, and it has no associated cost. Quota is scoped at the offering level (Global Provisioned, Data Zone Provisioned, and Regional Provisioned are separate quota pools) and at the region level (for example, quota in East US doesn't apply to West Europe).
 
-### Deployment types
+A default amount of quota is assigned to eligible subscriptions in several regions.
 
-When you create a provisioned deployment in Foundry, the deployment type on the **Create Deployment** dialog can be set to the Global Provisioned Throughput, Data Zone Provisioned Throughput, or Regional Provisioned Throughput deployment type depending on the data processing needs for the given workload.
+### What is capacity?
 
-When you're creating a provisioned deployment in Foundry via CLI or API, the `sku-name` can be set to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` depending on the data processing need for the given workload.
-
-| **Deployment Type** | **sku-name in CLI** |
-|----------|----------|
-| Global Provisioned Throughput | GlobalProvisionedManaged    |
-| Data Zone Provisioned Throughput | DataZoneProvisionedManaged    |
-| Regional Provisioned Throughput | ProvisionedManaged    |
-
-To adapt the following Azure CLI example command to a different deployment type, update the `sku-name` parameter to match the deployment type you wish to deploy. 
-
-```azurecli
-az cognitiveservices account deployment create \
---name <myResourceName> \
---resource-group  <myResourceGroupName> \
---deployment-name MyDeployment \
---model-name gpt-4o \
---model-version 2024-08-06  \
---model-format OpenAI \
---sku-capacity 15 \
---sku-name GlobalProvisionedManaged
-```
-
-## Manage capacity and availability
-
-Capacity for provisioned throughput is subject to regional availability and real-time demand. The following sections describe how capacity works and how to find it.
-
-### Capacity transparency
-
-The models sold directly by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region—even if they have quota available in that region.
+Capacity is the actual amount of PTUs per model version that's available to be deployed. Capacity is allocated at deployment time and held for the deployment's lifetime.
 
 > [!IMPORTANT]
-> Quota limits the maximum number of PTUs that can be deployed in a subscription and region, but it doesn't guarantee capacity availability. Capacity is allocated at deployment time.
+> Having PTU quota doesn't guarantee that capacity is available. If capacity in the region is insufficient for the requested PTU count, the deployment fails. Always [verify capacity availability](#how-to-check-available-capacity) before planning a deployment or purchasing a reservation.
 
-Generally speaking:
+Because capacity is a finite, dynamically changing resource:
 
-- **Quota doesn't guarantee capacity.** Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region.
-- **Capacity is allocated at deployment time** and is held for as long as the deployment exists. If service capacity isn't available, the deployment fails.
-- **Use real-time information** on quota and capacity availability to choose an appropriate region for your scenario.
-- **Scaling down or deleting a deployment** releases capacity back to the region. There's no guarantee that the capacity is available if the deployment is scaled up or re-created later.
+- **Capacity availability changes throughout the day** based on customer demand across all regions and models.
+- **Deleting or scaling down a deployment releases its capacity** back to the region pool. There's no guarantee the same capacity is available if you re-create or scale the deployment up later.
 
-### Regional capacity guidance
+### How to get quota
 
-To find the capacity needed for their deployments, use the capacity API or the Foundry deployment experience to provide real-time information on capacity availability.
+A default amount of global, data zone, and regional provisioned quota is assigned to eligible subscriptions in several regions. You can request more quota or capacity by submitting the [quota request form](https://aka.ms/oai/stuquotarequest). The form is also available in the Foundry portal on the **Quota** page.
 
-In Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version, and number of PTU. If capacity is unavailable, the experience directs users to select an alternative region.
+Approval might take several days based on quota availability, and you receive an email notification when the request is approved.
 
-Details on the deployment experience can be found in the Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
+### How to check available capacity
 
-Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
+To check real-time capacity availability:
 
-If an acceptable region isn't available to support the desired model, version, and/or PTU, customers can also try the following steps:
+- Use the **Foundry portal deployment experience**, which tells you if capacity is available when you try to create a deployment and lists alternative regions with available capacity if your target region doesn't have enough.
+- Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically query the maximum deployable PTU count for a given model and region.
 
-- Attempt the deployment with a smaller number of PTUs.
-- Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand, and more capacity might become available later.
-- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+If your target region doesn't have available capacity:
 
-## Monitor utilization and performance
+- Submit the [quota request form](https://aka.ms/oai/stuquotarequest) to request more quota or capacity.
+- Try deploying with fewer PTUs.
+- Retry later, as capacity availability changes dynamically throughout the day.
 
-The following sections explain how to monitor utilization and handle capacity limits.
+For step-by-step guidance on creating provisioned deployments and handling capacity constraints, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
 
-### Monitor capacity
+## PTU sizing
 
-The [Provisioned-Managed Utilization V2 metric](../../../foundry-classic/openai/how-to/monitor-openai.md#azure-monitor-platform-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. All provisioned deployment types are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
+Before creating a provisioned deployment, estimate how many PTUs your workload requires. Three factors drive the calculation:
 
-### Utilization performance
+- **Request shape**: Your expected requests per minute (RPM), average prompt size (input tokens), and average response size (output tokens).
+- **Output-to-input ratio**: Output tokens require more processing capacity than input tokens. Each model has a ratio that expresses how many input tokens one output token is equivalent to for capacity purposes. For GPT-4.1 and later Azure OpenAI models, this ratio matches the model's global standard pricing ratio between output and input tokens. For more information on this ratio, see [Deployment parameters and throughput values by model](../how-to/provisioned-throughput-sizing.md#deployment-parameters-and-throughput-values-by-model).
+- **Cache rate**: The fraction of input tokens served from the prompt cache. Cached tokens don't consume PTU capacity, so a higher cache rate reduces the PTUs required.
 
-Provisioned deployments provide you with an allocated amount of model processing capacity to run a given model.
+The sizing calculation uses these factors to convert your expected token volumes into a single **normalized TPM** figure, then divides by the model's **Input TPM per PTU** value to arrive at the required PTU count.
 
-In all provisioned deployment types, when capacity is exceeded, the API returns a 429 HTTP Status Error. The fast response enables the user to make decisions on how to manage their traffic. Users can redirect requests to a separate deployment, to a standard deployment instance, or use a retry strategy to manage a given request. The service continues to return the 429 HTTP status code until the utilization drops below 100%.
+You can size manually, using the formulas and per-model values, or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry (classic) portal for a guided estimate.
 
-### Handle HTTP 429 responses
+For the complete sizing methodology, including formulas, worked examples, and the capacity calculator reference, see [Determine PTU sizing for a workload](../how-to/provisioned-throughput-sizing.md).
 
-The 429 response isn't an error, but instead it's part of the design for telling users that a given deployment is fully utilized at a point in time. By providing a fast-fail response, you have control over how to handle these situations in a way that best fits your application requirements.
+## Provisioned throughput deployment types
 
-The  `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. How you choose to handle this response depends on your application requirements. Here are some considerations:
--    Consider redirecting the traffic to other models, deployments, or experiences. This option is the lowest-latency solution because the action can be taken as soon as you receive the 429 signal. For ideas on how to effectively implement this pattern see this [community post](https://github.com/Azure/aoai-apim).
--    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Foundry client libraries include built-in capabilities for handling retries.
+Provisioned throughput is available as three deployment types. They all provide dedicated capacity and predictable latency once deployed. The difference is where your inference traffic is processed:
 
-### Utilization-based request evaluation
+| Deployment type | `sku-name` in CLI | Data routing | Best for |
+|---|---|---|---|
+| **Global Provisioned** | `GlobalProvisionedManaged` | Routed across Azure regions globally | Highest availability; when routing region isn't constrained |
+| **Data Zone Provisioned** | `DataZoneProvisionedManaged` | Stays within a geographic zone (US or EU) | Zone-level data residency with higher availability than regional |
+| **Regional Provisioned** | `ProvisionedManaged` | Stays in the deployment's specific Azure region | Strict single-region data residency requirements |
 
-In all provisioned deployment types, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This behavior is in contrast to standard deployments, which have a [custom rate limiting behavior](../../../foundry-classic/openai/how-to/quota.md) based on the estimated traffic load. For standard deployments, this custom rate limiting behavior can lead to HTTP 429 errors before defined quota values are exceeded if traffic isn't evenly distributed.
+For a full comparison of all Foundry deployment types, including standard, batch, and provisioned, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
-For provisioned deployments, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
+## Supported models
 
-1. Each customer has a set amount of capacity they can use on a deployment.
-1. When a request is made:
+For a full list of Foundry Models that support provisioned throughput, including which deployment types each model supports and regional availability, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=provisioned).
 
-    a.    When the current utilization is above 100%, the service returns a 429 code with the `retry-after-ms` header set to the time until utilization is below 100%.
-   
-    b.    Otherwise, the service estimates the incremental change to utilization required to serve the request by combining the prompt tokens, less any cached tokens, and the specified `max_tokens` in the call. A customer can receive up to a 100% discount on their prompt tokens depending on the size of their cached tokens. If the `max_tokens` parameter isn't specified, the service estimates a value. This estimation can lead to lower concurrency than expected when the number of actual generated tokens is small. For highest concurrency, ensure that the `max_tokens` value is as close as possible to the true generation size.
-   
-1. When a request finishes, we now know the actual compute cost for the call. To ensure an accurate accounting, we correct the utilization using the following logic:
+## Spillover
 
-   a.    If the actual > estimated, then the difference is added to the deployment's utilization.
-   
-   b.    If the actual < estimated, then the difference is subtracted.
-   
-1. The overall utilization is decremented at a continuous rate based on the number of PTU deployed. 
+Spillover is an optional configuration for managing traffic fluctuations on provisioned deployments by automatically routing overflow requests to a corresponding standard deployment in the same Foundry resource. When a provisioned deployment is fully utilized and returns non-200 responses (such as a `429` when PTUs are exhausted), spillover redirects those requests to the standard deployment, helping reduce disruptions during traffic bursts.
 
-> [!NOTE]
-> Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
+All Azure OpenAI in Foundry Models that support provisioned throughput also support spillover. Foundry Models from other providers (Azure DeepSeek, Meta Llama) don't currently support spillover.
 
-:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
+Spillover can be configured for all requests on a deployment or controlled on a per-request basis using the `x-ms-spillover-deployment` request header. For configuration steps, see [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md).
 
-#### Concurrent call limits
+## Hourly billing and Azure reservations
 
-The number of concurrent calls you can achieve on a deployment depends on each call's shape (prompt size, `max_tokens` parameter, and similar factors). The service continues to accept calls until the utilization reaches 100%. To determine the approximate number of concurrent calls, you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://ai.azure.com/resource/calculator). If the system generates less than the number of output tokens set for the `max_tokens` parameter, then the provisioned deployment will accept more requests.
+Provisioned deployments support two billing modes: *hourly billing* for flexible, short-term usage, and *Azure Reservations* for sustained production workloads at a discounted rate.
 
-## Provisioned throughput capability for models sold directly by Azure
+### Hourly billing
 
-This section lists Foundry Models that support the provisioned throughput capability. Use your PTU quota and PTU reservation across the models shown in the table.
+All provisioned deployment types are billed at an hourly rate ($/PTU/hr) based on the number of PTUs deployed, regardless of the number of tokens consumed. The meter starts when the deployment is created and stops when it's deleted.
 
-- The model version isn't included in this table. Check the supported version for each model when you choose the deployment option in the Foundry portal. 
+Hourly billing is practical for short-term scenarios like benchmarking a new model or temporarily scaling up for an event such as a hackathon. However, don't plan to scale provisioned deployments up and down with traffic to stay on hourly billing for these reasons:
 
-- Regional provisioned throughput deployment options vary by region.  
+- Capacity might not be available when you need to scale back up.
 
-- New models sold directly by Azure are onboarded with the Global provisioned throughput deployment option first. The Data zone provisioned option comes later.  
+- Continuous hourly billing at high utilization typically exceeds reservation pricing.
 
-- PTUs are managed regionally and by offer type. PTU quota and any reservations must be in the region and shape (Global, Data zone, Regional) you wish to use. 
+For complete guidance on hourly billing and scaling provisioned deployments, see [Hourly billing](../concepts/provisioned-throughput-billing.md#hourly-billing).
 
-- Spillover is an optional capability that manages traffic fluctuations on provisioned deployments. For more information on spillover, see [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md).
+### Azure reservations
 
-| Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
-|--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt 5.2          | ✅                 |                       |                      | ✅                 |
-|                    | Gpt 5.1          | ✅                 | ✅                     |                      | ✅                 |
-|                    | Gpt 5.1 codex    | ✅                 | ✅                     |                      | ✅                 |
-|                    | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 4.1          | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 4o           | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 4o mini      | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 3.5 Turbo    | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | o1               | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | o3               | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | o3 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | o4 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
-| **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
-|                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
-|                    | DeepSeek-R1-0528 | ✅                 |                       |                      |                   |
-| **Meta Llama**     | Llama-3.3-70B-Instruct | ✅                 |                       |                      |                   |
+Azure Reservations are a financial discount applied to the PTU billing meter (the hourly usage counter Azure charges against), not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Some key things to note about reservations include:
 
-### Region availability for provisioned throughput capability
+- Reservations are purchased per deployment type (Global, Data Zone, or Regional) and can be scoped to cover one or more subscriptions or resource groups.
 
-# [Global Provisioned Throughput](#tab/global-ptum)
+- Reservations and deployments are loosely coupled, meaning that you create deployments and reservations independently.
 
-#### Global provisioned throughput model availability
+- Reservations don't guarantee capacity. First create deployments to confirm that capacity is available, then purchase the reservation to lock in the discounted rate.
 
-[!INCLUDE [Provisioned Managed Global](model-matrix/provisioned-global.md)]
+For complete guidance on sizing, purchasing, and managing reservations, see [Azure Reservations for provisioned throughput](../concepts/provisioned-throughput-billing.md#azure-reservations-for-provisioned-throughput).
 
-# [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
+## How to track PTU costs and billing
 
-#### Data zone provisioned throughput model availability
+Use Microsoft Cost Management to track and analyze your PTU usage and reservation costs:
 
-[!INCLUDE [Global data zone provisioned managed](model-matrix/datazone-provisioned-managed.md)]
-
-# [Regional Provisioned Throughput](#tab/provisioned)
-
-#### Regional provisioned throughput deployment model availability
-
-[!INCLUDE [Provisioned](model-matrix/provisioned-models.md)]
-
----
-
-> [!NOTE]
-> The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
+| What you want to do | Article |
+|---|---|
+| See what percentage of your reserved PTUs are actively in use across your deployments | [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization) |
+| Review purchase history and any refund activity | [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds) |
+| Understand the amortized cost impact of your reservations for clearer per-deployment billing visibility | [View amortized benefit costs](/azure/cost-management-billing/reservations/view-amortized-costs) |
+| Distribute reservation costs across teams or projects for internal cost attribution | [Charge back Azure Reservation costs](/azure/cost-management-billing/reservations/charge-back-usage) |
+| Set up auto-renewal to prevent reservation expiry and maintain the discounted rate | [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew) |
 
 ## Related content
 
-- [Learn about the onboarding steps for provisioned deployments](../how-to/provisioned-throughput-onboarding.md)
-- [Provisioned Throughput Units (PTU) getting started guide](../how-to/provisioned-get-started.md)
-- [Understand deployment types](../../foundry-models/concepts/deployment-types.md)
+- [Get started with provisioned deployments](../how-to/provisioned-get-started.md)
+- [PTU costs and billing](../concepts/provisioned-throughput-billing.md)
 - [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)
-- [Monitor Azure OpenAI models](../../../foundry-classic/openai/how-to/monitor-openai.md)
-- [Manage quota for Azure OpenAI](../../../foundry-classic/openai/how-to/quota.md)
-- [Save costs with Microsoft Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai)
+- [Enable priority processing for Microsoft Foundry models](../concepts/priority-processing.md)
+- [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai)
+- [Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
