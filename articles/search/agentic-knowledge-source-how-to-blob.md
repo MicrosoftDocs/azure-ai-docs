@@ -97,7 +97,6 @@ The following JSON is an example response for a blob knowledge source.
     "folderPath": null,
     "isADLSGen2": false,
     "ingestionParameters": {
-      "disableImageVerbalization": false,
       "ingestionPermissionOptions": [],
       "contentExtractionMode": "standard",
       "identity": null,
@@ -114,7 +113,7 @@ The following JSON is an example response for a blob knowledge source.
       "chatCompletionModel": {
         "kind": "azureOpenAI",
         "azureOpenAIParameters": {
-          "resourceUri": "<REDACTED>",
+          "resourceUri": "<your-foundry-resource-endpoint>",
           "deploymentId": "gpt-5-mini",
           "apiKey": "<REDACTED>",
           "modelName": "gpt-5-mini",
@@ -124,7 +123,7 @@ The following JSON is an example response for a blob knowledge source.
       "ingestionSchedule": null,
       "assetStore": null,
       "aiServices": {
-        "uri": "<REDACTED>",
+        "uri": "<your-foundry-resource-endpoint>",
         "apiKey": "<REDACTED>"
       }
     },
