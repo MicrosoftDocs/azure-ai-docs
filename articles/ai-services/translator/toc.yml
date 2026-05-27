@@ -137,7 +137,7 @@ items:
 
 - name: Document translation (2026-03-01)
   items:
-  - name: Overview (2026-03-01)
+  - name: Overview
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/latest/overview.md
   - name: Prerequisites and setup
