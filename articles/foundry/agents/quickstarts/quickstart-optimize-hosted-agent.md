@@ -106,7 +106,7 @@ This step creates:
 
 - A Foundry account and project
 - An Azure Container Registry
-- Model deployments (gpt-5.1 for eval and optimization)
+- Model deployments (gpt-4.1-mini for eval, gpt-5.1 for optimization)
 
 ### Option B: Use an existing Foundry project
 
@@ -122,7 +122,7 @@ azd ai agent init --project-id "/subscriptions/<sub-id>/resourceGroups/<rg>/prov
 Set your model deployment name:
 
 ```bash
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-5.1"
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
 ```
 
 ## Deploy the agent
@@ -180,7 +180,7 @@ Results:
     azd ai agent optimize deploy --candidate cand_91a5861f5c0245c4b2acb9ccaa48d4aa
 ```
 
-The *eval model* scores each response. The *optimization model* generates improved candidates. Both must be gpt-5 family models deployed in your Foundry project.
+The *eval model* scores each response (any chat-completion model works). The *optimization model* generates improved candidates and must be from the [supported list](../concepts/agent-optimizer-overview.md#models) (gpt-5 family or DeepSeek).
 
 > [!WARNING]
 > If the eval model is not deployed, all scores are zero with no error message. Verify that your eval model exists before running optimization.
@@ -266,7 +266,7 @@ azd down --force --purge
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
-| All scores are zero | Eval model not deployed | Deploy a gpt-5 family model in your Foundry project, or use `--eval-model` to specify a deployed model |
+| All scores are zero | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify a deployed model |
 | `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
 | `azd provision` fails with quota error | Subscription lacks capacity | Try a different subscription or request a quota increase |
 

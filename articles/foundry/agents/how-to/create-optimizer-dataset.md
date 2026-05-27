@@ -62,7 +62,7 @@ For scripted workflows, pass the inputs directly:
 ```bash
 azd ai agent eval init \
   --gen-instruction "Customer support agent. Test refund handling, troubleshooting, and out-of-scope deflection." \
-  --eval-model gpt-5.1 \
+  --eval-model gpt-4.1-mini \
   --max-samples 50
 ```
 
@@ -146,7 +146,7 @@ evaluators:
   - task_adherence
 
 options:
-  eval_model: gpt-5.1
+  eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
   target_attributes:
     - instruction
