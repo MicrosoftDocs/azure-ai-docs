@@ -70,6 +70,7 @@ Use this map to pick the right namespace for your solution:
 | Capability | Namespace | Typical use |
 |---|---|---|
 | Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. [See detailed examples](langchain-agents.md). |
+| LangGraph hosting | `langchain_azure_ai.agents.hosting` | Host compiled LangGraph agents on Foundry Agent Service with Responses or Invocations protocols. [See detailed examples](langchain-hosted-agents.md). |
 | Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. [See detailed examples](langchain-middleware.md). |
 | Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. [See detailed examples](langchain-models.md). |
 | Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models).|
@@ -177,6 +178,7 @@ Start with these guides in this documentation set:
 - [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
 - [Use Foundry Content Safety middleware](langchain-middleware.md)
 - [Use Foundry Agent Service with LangGraph](langchain-agents.md)
+- [Host LangGraph agents with Foundry hosted agents](langchain-hosted-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 - [Use Foundry Observability to trace apps](langchain-traces.md)
 
