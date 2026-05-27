@@ -484,6 +484,57 @@ Then you can connect the avatar with the server SDP.
 
 Refer to this sample code [use avatar in Voice live API](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar) for more details.
 
+### Use a photo avatar
+
+A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (currently `vasa-1`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Talking heads](./text-to-speech-avatar/standard-avatars.md#talking-heads)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+
+Use the optional `scene` object to adjust the avatar's zoom, position, rotation, and movement amplitude. For the meaning and ranges of each scene field, see [Set avatar scene for photo avatar](./text-to-speech-avatar/real-time-synthesis-avatar.md#set-avatar-scene-for-photo-avatar).
+
+Here's an example `avatar` object for a standard photo avatar:
+
+```json
+{
+  "session": {
+    "avatar": {
+      "type": "photo-avatar",
+      "model": "vasa-1",
+      "character": "anika",
+      "video": {
+        "codec": "h264",
+        "resolution": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "scene": {
+        "zoom": 1.0,
+        "position_x": 0.0,
+        "position_y": 0.0,
+        "rotation_x": 0.0,
+        "rotation_y": 0.0,
+        "rotation_z": 0.0,
+        "amplitude": 0.6
+      }
+    }
+  }
+}
+```
+
+To use a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`:
+
+```json
+{
+  "session": {
+    "avatar": {
+      "type": "photo-avatar",
+      "model": "vasa-1",
+      "character": "your-custom-photo-avatar-name",
+      "customized": true
+    }
+  }
+}
+```
+
 
 > [!NOTE]
 > Azure text to speech avatar is currently supported in limited regions. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=ttsavatar).
