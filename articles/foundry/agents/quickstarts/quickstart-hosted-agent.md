@@ -534,6 +534,12 @@ Now that you've deployed your first hosted agent, learn how to:
 > [!div class="nextstepaction"]
 > [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
+Use the Microsoft Foundry Skill in coding agents to standardize deployment,
+evaluation, and troubleshooting workflows.
+
+> [!div class="nextstepaction"]
+> [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
+
 Customize your agent with additional capabilities:
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
 - [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic

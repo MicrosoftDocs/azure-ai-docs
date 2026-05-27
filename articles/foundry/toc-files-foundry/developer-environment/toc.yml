@@ -3,6 +3,8 @@ items:
 
 - name: Set up your developer environment
   href: ../../how-to/develop/install-cli-sdk.md
+- name: Use the Microsoft Foundry Skill in coding agents
+  href: ../../how-to/develop/use-microsoft-foundry-skill.md
 - name: Work in VS Code
   href: ../../how-to/develop/get-started-projects-vs-code.md
 - name: Configure Claude Code with Microsoft Foundry
