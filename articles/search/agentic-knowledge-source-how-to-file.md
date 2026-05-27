@@ -23,23 +23,29 @@ Use a *file knowledge source* (preview) to upload small and medium file sets dir
 
 A file knowledge source is useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base. Use [blob knowledge sources](agentic-knowledge-source-how-to-blob.md) instead when your content already lives in Azure Blob Storage or ADLS Gen2, when you need large-scale ingestion, or when you depend on storage-account capabilities.
 
+### Usage support
+
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
+|--|--|--|--|--|--|--|
+| ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 
 + A dedicated Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). File knowledge sources aren't supported on serverless search services. For more information about dedicated tiers, see [Choose a service tier](search-sku-tier.md). If you need paid usage beyond the monthly free allowance, set the `knowledgeRetrieval` service property to `standard` by using the [Search Management REST API](/rest/api/searchmanagement/services/create-or-update).
 
 + Files in a [supported format](#supported-formats-and-limits).
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
-+ The latest preview [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package: `dotnet add package Azure.Search.Documents --prerelease`
++ The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-+ The latest preview [azure-search-documents](https://pypi.org/project/azure-search-documents/) package: `pip install azure-search-documents --pre`
++ The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
 ::: zone-end
 
@@ -51,57 +57,7 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 ## Check for existing knowledge sources
 
-Before you create a new file knowledge source, list the knowledge sources that already exist on your search service. You can avoid name conflicts and reuse an existing source instead of creating a duplicate.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-await foreach (var ks in indexClient.GetKnowledgeSourcesAsync())
-{
-    Console.WriteLine($"{ks.Name} ({ks.GetType().Name})");
-}
-```
-
-**Reference:** [SearchIndexClient.GetKnowledgeSourcesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-for ks in index_client.list_knowledge_sources():
-    print(f"{ks.name} ({ks.kind})")
-```
-
-**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-### List knowledge sources by name and type
-GET {{search-url}}/knowledgesources?api-version=2026-05-01-preview&$select=name,kind
-api-key: {{api-key}}
-```
-
-You can also return a single knowledge source by name to review its JSON definition.
-
-```http
-### Get a knowledge source definition
-GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
-api-key: {{api-key}}
-```
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a file knowledge source.
 
@@ -126,8 +82,6 @@ The following JSON is an example response for a file knowledge source.
   }
 }
 ```
-
-::: zone-end
 
 ## Create a knowledge source
 
@@ -580,7 +534,7 @@ Prefer: return=representation
 
 ::: zone-end
 
-## Retrieve from the knowledge base
+## Query a knowledge base
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
