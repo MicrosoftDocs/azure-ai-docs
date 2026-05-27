@@ -19,8 +19,11 @@ ai-usage: ai-assisted
 Content Understanding offers sophisticated document analysis capabilities. Organizations can use these capabilities to convert unstructured content into actionable and organized data. Content Understanding can use [customizable analyzers](../concepts/prebuilt-analyzers.md) to expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
 > [!NOTE]
-> Azure Document Intelligence is available both as a standalone service and as a capability within Azure Content Understanding. Azure Content Understanding brings together comprehensive and complementary capabilities for different document needs. To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../choosing-right-ai-tool.md).
-
+>
+> * As part of Azure Content Understanding capabilities, Azure Document Intelligence provides high-accuracy and reliable deterministic extraction from structured documents.
+> * Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content.
+> * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
+> * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../choosing-right-ai-tool.md).
 
 ## Business use cases
 

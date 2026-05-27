@@ -53,7 +53,11 @@ Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](..
 | ✔️ [Document analysis models](#document-analysis-models) | ✔️ [Prebuilt models](#prebuilt-models) | ✔️ [Custom models](#custom-model-overview) |
 
 > [!NOTE]
-> Azure Document Intelligence is available both as a standalone service and as a capability within Azure Content Understanding. Azure Content Understanding brings together comprehensive and complementary capabilities for different document needs. Your existing Document Intelligence APIs, endpoints, and pricing remain unchanged. To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
+>
+> * As part of Azure Content Understanding capabilities, Azure Document Intelligence provides high-accuracy and reliable deterministic extraction from structured documents.
+> * Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content.
+> * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
+> * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
 
 ## Document analysis models
 
@@ -71,7 +75,7 @@ Document analysis (general extraction) models enable text extraction from forms 
    :::row-end:::
 
 :::moniker-end
- 
+
 :::moniker range="<=doc-intel-3.1.0"
 
  :::row:::
