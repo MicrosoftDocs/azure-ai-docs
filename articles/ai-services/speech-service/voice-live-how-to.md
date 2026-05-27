@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -416,6 +416,51 @@ And a `response.animation_viseme.done` message is sent when all viseme messages 
     "item_id": "<item_id>",
 }
 ```
+
+## azure-realtime model
+
+The `azure-realtime` model is a dedicated real-time model that uses a curated set of native voices designed for natural-sounding real-time speech output.
+
+> [!NOTE]
+> The `azure-realtime` model requires API version `2026-01-01-preview` or later.
+
+### Voice configuration
+
+Specify the voice as a structured object with `type` set to `azure-realtime-native` and `name` set to one of the supported voice names:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "voice": {
+      "type": "azure-realtime-native",
+      "name": "ava"
+    },
+    "modalities": ["text", "audio"],
+    "instructions": "You are a helpful assistant."
+  }
+}
+```
+
+### Supported voices
+
+The following `azure-realtime-native` voice names are supported:
+
+| Voice name | Description |
+|---|---|
+| `aarti` | Azure Speech native voice |
+| `andrew` | Azure Speech native voice |
+| `ava` | Azure Speech native voice (default) |
+| `denise` | Azure Speech native voice |
+| `elsa` | Azure Speech native voice |
+| `florian` | Azure Speech native voice |
+| `francisca` | Azure Speech native voice |
+| `meera` | Azure Speech native voice |
+| `ximena` | Azure Speech native voice |
+| `xiaoxiao` | Azure Speech native voice |
+| `yunxi` | Azure Speech native voice |
+
+If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
 
 ## Azure text to speech avatar
 

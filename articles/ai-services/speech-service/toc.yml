@@ -393,6 +393,8 @@ items:
           href: voice-live-api-reference-2026-04-10.md
         - name: '2025-10-01'
           href: voice-live-api-reference-2025-10-01.md
+        - name: '2026-06-01-preview'
+          href: voice-live-api-reference-2026-06-01-preview.md
         - name: '2026-01-01-preview'
           href: voice-live-api-reference-2026-01-01-preview.md          
       - name: Voice Live SDK
