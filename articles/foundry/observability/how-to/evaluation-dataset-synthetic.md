@@ -52,6 +52,31 @@ You can combine sources in a single job. A common pattern is to pair a reference
 - Foundry User role or higher on the project.
 - An Azure OpenAI model deployment that supports the Responses API. The `simple_qna` recipe uses this model to synthesize question-and-answer pairs. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
 
+## Supported regions for Synthetic data generation
+
+Synthetic data generation is supported in the following regions:
+
+- UAE North
+- West US 3
+- North Central US
+- East US
+- West Europe
+- South Central US
+- Switzerland North
+- Sweden Central
+- East US 2
+- West US
+- France Central
+- South Africa North
+- Australia East
+- Japan East
+- UK South
+- Norway East
+- Poland Central
+- South India
+- Germany West Central
+- Italy North
+
 ## Generate a dataset from the portal
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset**, and then select **Generate synthetic**.
@@ -219,6 +244,9 @@ For longer source material, upload a document as an Azure OpenAI file and refere
 
 The file must be in the `processed` state before the data generation service can use it, and it needs to contain at least 1 KB of content.
 
+Supported reference file extensions are:
+`.txt`, `.md`, `.csv`, `.json`, `.xml`, `.html`, `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.tiff`, `.tif`, `.svg`.
+
 ```python
 import io
 import time
@@ -305,6 +333,10 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 ```
 
 For more context, see [Manage data generation jobs](traces-to-dataset.md#manage-data-generation-jobs).
+
+## Limitations
+
+- If your Foundry project is connected to your own storage account, public network access must be enabled on that storage account for successful dataset creation.
 
 ## Best practices
 
