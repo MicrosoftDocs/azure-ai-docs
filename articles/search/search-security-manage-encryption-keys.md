@@ -542,9 +542,9 @@ api-key: {{admin-api-key}}
     }
   ],
   "encryptionKey": {
-    "keyVaultUri": "https://contoso-kv.vault.azure.net",
-    "keyVaultKeyName": "service-default-key",
-    "keyVaultKeyVersion": "11111111-2222-3333-4444-555555555555",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "isServiceLevelKey": true
   }
 }
@@ -573,15 +573,43 @@ Content-Type: application/json
     }
   ],
   "encryptionKey": {
-    "keyVaultUri": "https://contoso-kv.vault.azure.net",
-    "keyVaultKeyName": "regulated-workload-key",
-    "keyVaultKeyVersion": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
     "isServiceLevelKey": false
   }
 }
 ```
 
 With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
+
+To return an object to service-level CMK inheritance, update the object with isServiceLevelKey set to true and omit the object-level key details.
+
+```http
+PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+api-key: {{admin-api-key}}
+Content-Type: application/json
+```
+
+```json
+{
+  "name": "regulated-index",
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false,
+      "retrievable": true
+    }
+  ],
+  "encryptionKey": {
+    "isServiceLevelKey": true
+  }
+}
+```
+
+After this update, the search object inherits the service-level key again. When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance.
 
 ### [**Azure SDKs**](#tab/sdks)
 
