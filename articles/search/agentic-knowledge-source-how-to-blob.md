@@ -97,6 +97,7 @@ The following JSON is an example response for a blob knowledge source.
     "folderPath": null,
     "isADLSGen2": false,
     "ingestionParameters": {
+      "disableImageVerbalization": false,
       "ingestionPermissionOptions": [],
       "contentExtractionMode": "standard",
       "identity": null,
