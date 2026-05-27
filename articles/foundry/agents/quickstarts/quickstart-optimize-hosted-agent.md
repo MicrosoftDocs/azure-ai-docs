@@ -245,13 +245,25 @@ azd ai agent optimize --eval
 
 ## Deploy the winner
 
-The ★ indicates the best candidate. Deploy it with the command shown in the optimization output:
+The ★ indicates the best candidate. The recommended workflow is to apply the optimized config locally, then deploy:
+
+```bash
+# Apply the winning candidate to your local .agent_configs/baseline/
+azd ai agent optimize apply --candidate <candidate-id>
+
+# Deploy with the optimized config
+azd deploy
+```
+
+This downloads the optimized instructions, tool descriptions, and skills into your local `.agent_configs/baseline/` directory. Your source code is always the single source of truth — you can see the exact improvements with `git diff`.
+
+Alternatively, for quick testing you can deploy directly:
 
 ```bash
 azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
-This command creates a new agent version with the optimized instructions. The `agent_optimization` SDK's `load_config()` function picks up the new configuration automatically at startup.
+The `azure-ai-agentserver-optimization` package's `load_config()` function picks up the new configuration automatically at startup.
 
 Invoke your agent again to verify the improvement:
 

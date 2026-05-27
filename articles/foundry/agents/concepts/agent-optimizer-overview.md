@@ -96,12 +96,12 @@ options:
 
 When your agent starts, the `load_config()` function checks four sources in order:
 
-| Priority | Source | When it's used |
-| ---------- | -------- | ---------------- |
-| 1 | `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
-| 2 | `OPTIMIZATION_CANDIDATE_ID` environment variable, resolved through the API | During optimization evaluation |
-| 3 | Local directory (`.agent_configs/`) | After resolver persists config locally |
-| 4 | Your defaults in code | Normal operation (no optimization) |
+| Priority | Source | Environment variables | When it's used |
+| ---------- | -------- | ---------------------- | ---------------- |
+| 1 | Inline JSON | `OPTIMIZATION_CONFIG` | After deploying directly via API |
+| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID` + `OPTIMIZATION_RESOLVE_ENDPOINT` | During optimization evaluation |
+| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | After `azd ai agent optimize apply` writes config locally |
+| 4 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
 
 Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
 

@@ -178,25 +178,13 @@ The *skill target* discovers reusable capabilities your agent should have. It ge
    - **Name**: For example, `"step_by_step_reasoning"`
    - **Description**: What the skill does and when to use it
    - **Body**: Implementation details or procedure
-1. **Injection.** Discovered skills are appended to the agent's instructions through `ComposeInstructions()` (C#) or `compose_instructions()` (Python), which creates a skill catalog the model can reference.
-
-    # [Python](#tab/python)
+1. **Injection.** Discovered skills are appended to the agent's instructions through `compose_instructions()`, which creates a skill catalog the model can reference.
 
     ```python
     # compose_instructions() appends discovered skills to your prompt
     full_prompt = config.compose_instructions()
     # Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
     ```
-
-    # [C#](#tab/csharp)
-
-    ```csharp
-    // ComposeInstructions() appends discovered skills to your prompt
-    var fullPrompt = config.ComposeInstructions();
-    // Returns: "You are a helpful assistant.\n\n## Available Skills\n- **step_by_step_reasoning**: ..."
-    ```
-
-    ---
 
 1. **Evaluation.** The agent with skills is evaluated against the dataset.
 
@@ -232,41 +220,27 @@ azd ai agent optimize --config spec.yaml
 
 ### Skill file downloads
 
-For candidates that include skill files (implementation code), the config loader can download them through the resolver API. The skills are stored in a local directory.
-
-# [Python](#tab/python)
+For candidates that include skill files, the config loader can download them through the resolver API. Skills use the open [Agent Skills](https://agentskills.io) format and are stored in a local directory.
 
 ```python
-config = load_config(
-    default_instructions="You are a helpful assistant.",
-    default_skills_dir="./my_skills",
-)
+from azure.ai.agentserver.optimization import load_config, load_skills_from_dir
+from pathlib import Path
 
-if config.has_skills:
-    print(f"Skills loaded from: {config.skills_dir}")
+config = load_config()
+
+if config.skills:
+    print(f"Skills loaded from optimization config:")
     for skill in config.skills:
+        print(f"  - {skill.name}: {skill.description}")
+elif config.skills_dir:
+    # Load skills from local directory
+    skills = load_skills_from_dir(Path(config.skills_dir))
+    config.skills.extend(skills)
+    for skill in skills:
         print(f"  - {skill.name}: {skill.description}")
 ```
 
-# [C#](#tab/csharp)
-
-```csharp
-var config = OptimizationConfigLoader.LoadConfig(
-    defaultInstructions: "You are a helpful assistant.",
-    defaultSkillsDir: "./my_skills"
-);
-
-if (config.HasSkills)
-{
-    Console.WriteLine($"Skills dir: {config.SkillsDir}");
-    foreach (var skill in config.Skills)
-    {
-        Console.WriteLine($"  - {skill.Name}: {skill.Description}");
-    }
-}
-```
-
----
+Learn more about the Agent Skills format at [agentskills.io](https://agentskills.io).
 
 ## Optimize model selection
 
@@ -347,11 +321,26 @@ Key thresholds:
 
 ## Deploy the winner
 
+The recommended workflow is to apply the optimized config locally, then deploy:
+
+```bash
+# Apply the winning candidate to your local .agent_configs/baseline/
+azd ai agent optimize apply --candidate <candidate-id>
+
+# Deploy with the optimized config baked into source
+azd deploy
+```
+
+This keeps your source code as the single source of truth. You can see exactly what changed with `git diff` and commit the improved configuration to version control.
+
+Alternatively, you can deploy directly via the API (useful for quick A/B testing):
+
 ```bash
 azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
-This command sets `OPTIMIZATION_CONFIG` in the agent's environment. On next startup, `load_config()` returns the optimized instructions.
+> [!WARNING]
+> Direct deploy updates the agent service without changing your local files. Your local `.agent_configs/baseline/` will be out of sync with the deployed agent. Use the `apply` → `deploy` workflow for production.
 
 If all candidates score lower than the baseline, do not deploy any candidate. The baseline configuration remains active.
 
