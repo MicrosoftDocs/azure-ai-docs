@@ -202,7 +202,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 ## Limitations and availability
 
 - The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
-- The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-and-invocations).
+- The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-invocations-and-invocations-websocket).
 
 ## Related content
 
