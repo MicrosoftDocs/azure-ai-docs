@@ -339,15 +339,19 @@ In this quickstart, you:
 > [!div class="nextstepaction"]
 > [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
-Extend the agent with built-in tools and capabilities:
+Customize your agent with additional capabilities:
 
-* [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
-* [Connect Model Context Protocol (MCP) tools](../how-to/tools/model-context-protocol.md) to extend agent functionality.
-* [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic.
-* [To search your documents, add file search](../how-to/tools/file-search.md).
-* [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code.
+- [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
+- [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
+- [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
+- [Add file search](../how-to/tools/file-search.md) to search your documents
+- [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
+- See the [tool catalog](../concepts/tool-catalog.md) for the full list.
 
-See the [tool catalog](../concepts/tool-catalog.md) for the full list.
+Use the Microsoft Foundry Skill in your coding agent to standardize deployment,
+evaluation, and troubleshooting workflows.
+
+- [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
 
 ## Related content
 
