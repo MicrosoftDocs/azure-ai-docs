@@ -70,7 +70,6 @@ For tool configuration syntax and authentication options for each tool type, see
 | [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 | [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
 | [Work IQ tool](work-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
-| [Browser Automation tool](browser-automation.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
@@ -2645,104 +2644,6 @@ tools = [
 
 :::zone-end
 
-### [Browser Automation](browser-automation.md)
-
-:::zone pivot="rest-api"
-
-```json
-{
-  "description": "Perform actions using a real web browser",
-  "tools": [
-    {
-      "type": "browser_automation_preview",
-      "name": "<OPTIONAL_TOOL_NAME>",
-      "description": "<Optional description for the model>",
-      "browser_automation_preview": {
-        "connection": {
-          "project_connection_id": "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
-        }
-      }
-    }
-  ]
-}
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-from azure.ai.projects.models import (
-    BrowserAutomationPreviewTool,
-    BrowserAutomationToolParameters,
-    BrowserAutomationToolConnectionParameters,
-)
-
-tools = [
-    BrowserAutomationPreviewTool(
-        browser_automation_preview=BrowserAutomationToolParameters(
-            connection=BrowserAutomationToolConnectionParameters(
-                project_connection_id="<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>",
-            )
-        )
-    )
-]
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-ProjectsAgentTool tool = new BrowserAutomationPreviewTool(
-    new BrowserAutomationToolOptions(
-        new BrowserAutomationToolConnectionParameters("<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>")
-    )
-);
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const tools = [
-  {
-    type: "browser_automation_preview",
-    name: "<OPTIONAL_TOOL_NAME>",
-    description: "<Optional description for the model>",
-    browser_automation_preview: {
-      connection: {
-          project_connection_id: "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
-      }
-    }
-  },
-];
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-```yaml
-resources:
-  - kind: connection
-    name: browser-automation-conn
-    category: PlaywrightWorkspace
-    authType: ApiKey
-    target: wss://your-browser-endpoint.api.playwright.microsoft.com/playwrightworkspaces/browsers
-    credentials:
-      key: "{{ playwright_workspaces_access_token }}"
-  - kind: toolbox
-    name: browser-tools
-    description: Browser Automation toolbox
-    tools:
-      - type: browser_automation_preview
-        project_connection_id: browser-automation-conn
-```
-
-:::zone-end
-
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2774,7 +2675,6 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
-| [Browser Automation](browser-automation.md) | ❌ Not supported | Not yet available |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
