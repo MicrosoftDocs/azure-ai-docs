@@ -6,6 +6,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create an indexed Azure SQL knowledge source (preview)
@@ -52,7 +53,23 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
+::: zone pivot="csharp"
+
++ The latest preview [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package: `dotnet add package Azure.Search.Documents --prerelease`
+
+::: zone-end
+
+::: zone pivot="python"
+
++ The latest preview [azure-search-documents](https://pypi.org/project/azure-search-documents/) package: `pip install azure-search-documents --pre`
+
+::: zone-end
+
+::: zone pivot="rest"
+
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+::: zone-end
 
 ## Limitations and considerations
 
@@ -66,27 +83,7 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 ## Check for existing knowledge sources
 
-A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
-
-Run the following code to list knowledge sources by name and type.
-
-```http
-### List knowledge sources by name and type
-GET {{search-url}}/knowledgesources?api-version={{api-version}}&$select=name,kind
-api-key: {{api-key}}
-```
-
-**Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list)
-
-You can also return a single knowledge source by name to review its JSON definition.
-
-```http
-### Get a knowledge source definition
-GET {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
-api-key: {{api-key}}
-```
-
-**Reference:** [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get)
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for an indexed Azure SQL knowledge source.
 
@@ -127,11 +124,141 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
 }
 ```
 
-The generated resources appear at the end of the response under `createdResources`.
+> [!NOTE]
+> The generated resources appear at the end of the response under `createdResources`.
 
 ## Create a knowledge source
 
 Run the following code to create an indexed Azure SQL knowledge source.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var embeddingParams = new AzureOpenAIVectorizerParameters
+{
+    ResourceUri = new Uri(aoaiEndpoint),
+    DeploymentName = aoaiEmbeddingDeployment,
+    ModelName = aoaiEmbeddingModel,
+    ApiKey = aoaiKey
+};
+
+var ingestionParams = new KnowledgeSourceIngestionParameters
+{
+    ContentExtractionMode = "minimal",
+    EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
+    {
+        AzureOpenAIParameters = embeddingParams
+    }
+};
+
+var sqlParams = new IndexedSqlKnowledgeSourceParameters(
+    connectionString: sqlConnectionString,
+    tableOrView: "dbo.tbl_hotels")
+{
+    ContentColumns =
+    {
+        new ContentColumnMapping("hotelName", "HotelName", "Edm.String"),
+        new ContentColumnMapping("description", "Description", "Edm.String")
+    },
+    EmbeddingColumns =
+    {
+        new EmbeddingColumnMapping("descriptionVector", "Description")
+    },
+    IngestionParameters = ingestionParams
+};
+
+var knowledgeSource = new IndexedSqlKnowledgeSource(
+    name: "indexedsqlks",
+    indexedSqlParameters: sqlParams)
+{
+    Description = "Indexed Azure SQL knowledge source."
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
+```
+
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [IndexedSqlKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.indexedsqlknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    AzureOpenAIVectorizerParameters,
+    ContentColumnMapping,
+    EmbeddingColumnMapping,
+    IndexedSqlKnowledgeSource,
+    IndexedSqlKnowledgeSourceParameters,
+)
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeSourceAzureOpenAIVectorizer,
+    KnowledgeSourceIngestionParameters,
+)
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+embedding_params = AzureOpenAIVectorizerParameters(
+    resource_url="aoai_endpoint",
+    deployment_name="aoai_embedding_deployment",
+    model_name="aoai_embedding_model",
+    api_key="aoai_key",
+)
+
+ingestion_params = KnowledgeSourceIngestionParameters(
+    content_extraction_mode="minimal",
+    embedding_model=KnowledgeSourceAzureOpenAIVectorizer(
+        azure_open_ai_parameters=embedding_params
+    ),
+)
+
+knowledge_source = IndexedSqlKnowledgeSource(
+    name="indexedsqlks",
+    description="Indexed Azure SQL knowledge source.",
+    indexed_sql_parameters=IndexedSqlKnowledgeSourceParameters(
+        connection_string="Server=tcp:{server}.database.windows.net,1433;Database={db};...;",
+        table_or_view="dbo.tbl_hotels",
+        content_columns=[
+            ContentColumnMapping(
+                name="hotelName",
+                source_field="HotelName",
+                search_field_type="Edm.String",
+            ),
+            ContentColumnMapping(
+                name="description",
+                source_field="Description",
+                search_field_type="Edm.String",
+            ),
+        ],
+        embedding_columns=[
+            EmbeddingColumnMapping(
+                name="descriptionVector",
+                source_field="Description",
+            )
+        ],
+        ingestion_parameters=ingestion_params,
+    ),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source=knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="rest"
 
 ```http
 ### Create an indexed Azure SQL knowledge source
@@ -170,6 +297,8 @@ Content-Type: application/json
 ```
 
 **Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
 
 ### Source-specific properties
 
@@ -270,89 +399,7 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ## Delete a knowledge source
 
-Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. For knowledge sources that generate an index and indexer pipeline, all *generated objects* are also deleted. However, if you used an existing index to create a knowledge source, your index isn't deleted.
-
-If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
-
-To delete a knowledge source:
-
-1. Get a list of all knowledge bases on your search service.
-
-    ```http
-    ### Get knowledge bases
-    GET {{search-url}}/knowledgebases?api-version={{api-version}}&$select=name
-    api-key: {{api-key}}
-    ```
-
-   **Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
-
-   An example response might look like the following:
-
-   ```json
-    {
-        "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
-        "value": [
-        {
-            "name": "my-kb"
-        },
-        {
-            "name": "my-kb-2"
-        }
-        ]
-    }
-   ```
-
-1. Get an individual knowledge base definition to check for knowledge source references.
-
-    ```http
-    ### Get a knowledge base definition
-    GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
-    ```
-
-   **Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
-
-   An example response might look like the following:
-
-   ```json
-    {
-      "name": "my-kb",
-      "description": null,
-      "retrievalInstructions": null,
-      "answerInstructions": null,
-      "outputMode": null,
-      "knowledgeSources": [
-        {
-          "name": "my-blob-ks",
-        }
-      ],
-      "models": [],
-      "encryptionKey": null,
-      "retrievalReasoningEffort": {
-        "kind": "low"
-      }
-    }
-   ```
-
-1. Either delete the knowledge base or, if you have multiple knowledge sources, update the knowledge base to remove the source. This example shows deletion.
-
-    ```http
-    ### Delete a knowledge base
-    DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
-    ```
-
-   **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete)
-
-1. Delete the knowledge source.
-
-    ```http
-    ### Delete a knowledge source
-    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}
-    api-key: {{api-key}}
-    ```
-
-   **Reference:** [Knowledge Sources - Delete](/rest/api/searchservice/knowledge-sources/delete)
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 
