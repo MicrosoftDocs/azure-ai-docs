@@ -64,7 +64,7 @@ You can start an evaluation from several places in the Foundry portal:
 
 ### Step 1: Select evaluation target
 
-When you create an evaluation, you first choose the evaluation target. The target determines what the evaluation runs against:
+When you create an evaluation, first choose the evaluation target. The target determines what the evaluation runs against:
 
 | Target | Description |
 |--------|-------------|
@@ -100,32 +100,32 @@ Choose where your conversation data comes from:
 Generate synthetic conversations by running your agent against scenario descriptions from a dataset. Use this option to test your agent's behavior in controlled scenarios before deployment.
 
 1. Select **Simulated data**.
-2. Select **Generate** to open the simulation configuration dialog.
-3. **Select your file**: Choose a dataset containing scenario descriptions. Each row in your dataset describes a scenario that will be used to generate a simulated conversation.
+1. Select **Generate** to open the simulation configuration dialog.
+1. **Select your file**: Choose a dataset containing scenario descriptions. Each row in your dataset describes a scenario that you use to generate a simulated conversation.
 
    :::image type="content" source="../media/observability/simulation-dataset-preview.png" alt-text="Screenshot showing the dataset preview in the simulation dialog." lightbox="../media/observability/simulation-dataset-preview.png":::
 
-4. **Select model**: Choose the model that will simulate the user in the conversation:
+1. **Select model**: Choose the model that simulates the user in the conversation:
    - `gpt-4.1` (recommended for complex scenarios)
    - `gpt-4o`
    - `gpt-4o-mini`
    - `gpt-4.1-mini`
 
-5. **Configure simulation settings**:
+1. **Configure simulation settings**:
    - **Number of simulated conversations per scenario**: How many conversations to generate for each row in your dataset (1-5). Multiple conversations per scenario help identify variance in agent behavior.
    - **Number of turns per conversation**: Maximum turns allowed per conversation (1-50). The conversation ends when the task is complete or this limit is reached.
 
-6. Select **Confirm** to save your simulation configuration.
+1. Select **Confirm** to save your simulation configuration.
 
 ##### Existing conversations
 
-Evaluate real conversations that your agent has already had with users.
+Evaluate real conversations that your agent already had with users.
 
 1. Select **Existing conversations**.
-2. Configure filtering options:
+1. Configure filtering options:
    - **Number of conversations**: Maximum number of conversations to sample from the date range (1-100).
    - **Time range**: Filter conversations by time period. Use quick filters (Last Day, 7D, 1M, 3M) or select a custom date range.
-3. Browse and select specific conversations to include in the evaluation.
+1. Browse and select specific conversations to include in the evaluation.
 
 #### For individual turn evaluations
 
@@ -133,7 +133,7 @@ Choose where your evaluation data comes from:
 
 ##### Synthetic data
 
-Generate test queries using AI. Select **Synthetic** and configure the number of rows and a prompt that describes the data to generate. You can also upload files to improve relevance.
+Generate test queries by using AI. Select **Synthetic** and configure the number of rows and a prompt that describes the data to generate. You can also upload files to improve relevance.
 
 > [!NOTE]
 > Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#supported-regions).
@@ -242,16 +242,16 @@ You can preview images and play audio clips directly in the evaluation creation 
 Customize how your agent behaves during the evaluation:
 
 1. Review the list of agents involved in your evaluation.
-2. For each agent, select **Configure** to customize its behavior:
+1. For each agent, select **Configure** to customize its behavior:
    - **System prompt**: Modify the agent's instructions for the evaluation.
    - **User prompt**: Specify how each dataset item is sent to your agent during evaluation.
-3. Agent configurations are preserved for the evaluation run.
+1. The evaluation run preserves agent configurations.
 
 #### User prompt configuration
 
 The user prompt defines how test inputs are passed to your agent. By default, the portal uses `{{item.query}}` to pass the dataset query directly to your agent.
 
-In most cases, you can use the default. Only change this if your agent expects a different input format—for example, if your agent uses a hosted agent protocol or requires structured input with additional fields.
+In most cases, you can use the default. Only change this value if your agent expects a different input format. For example, if your agent uses a hosted agent protocol or requires structured input with additional fields.
 
 Common patterns:
 
@@ -267,7 +267,7 @@ Common patterns:
 ### Step 5: Configure field mapping
 
 > [!NOTE]
-> This step appears when using existing data (existing conversations, existing dataset, or existing traces).
+> This step appears when you use existing data (existing conversations, existing dataset, or existing traces).
 
 Map your data fields to the fields each evaluator expects. The required fields depend on your evaluation scope.
 
@@ -276,7 +276,7 @@ Map your data fields to the fields each evaluator expects. The required fields d
 | Field | Description | Required |
 |-------|-------------|----------|
 | **messages** | The conversation messages in chat format. | Yes |
-| **tool_definitions** | Tool/function definitions available to the agent. | Yes |
+| **tool_definitions** | Tool or function definitions available to the agent. | Yes |
 
 #### For individual turn evaluations (single-turn)
 
@@ -337,31 +337,31 @@ Identify potential content and security risks. Available for **Individual turns*
 | **Self-harm** | Detects self-harm related content. |
 | **Hate/Unfairness** | Detects hateful or biased content. |
 
-The portal pre-selects recommended evaluators based on your evaluation target and scope:
+The portal preselects recommended evaluators based on your evaluation target and scope:
 
 - **Full conversations**: Customer Satisfaction, Task Completion, Coherence, Groundedness
 - **Individual turns (existing data)**: All Agent evaluators plus Quality and Safety evaluators
 - **Individual turns (synthetic/traces)**: Relevance, Groundedness, Fluency, Coherence
 
 > [!TIP]
-> You can add or remove evaluators as needed. Select **Custom evaluators** to use evaluators you've defined in your project.
+> You can add or remove evaluators as needed. Select **Custom evaluators** to use evaluators you defined in your project.
 
 ### Step 7: Review and submit
 
-1. Provide a **name** for your evaluation.
-2. Review your configuration:
+1. Enter a **name** for your evaluation.
+1. Review your configuration:
    - Evaluation target and scope
    - Data source and dataset
    - Selected evaluators
    - Field mappings (if applicable)
-3. Select **Submit** to start the evaluation.
+1. Select **Submit** to start the evaluation.
 
 After you submit, the evaluation run starts. Evaluations typically complete within a few minutes, depending on dataset size and the number of conversations being simulated.
 
 To verify your evaluation started successfully:
 
 1. In the left pane, select **Evaluation**.
-2. Find your evaluation in the list. The **Status** column shows the current state:
+1. Find your evaluation in the list. The **Status** column shows the current state:
    - **In Progress**: The evaluation is running.
    - **Completed**: The evaluation finished successfully.
    - **Partial**: Some evaluators completed but others failed.

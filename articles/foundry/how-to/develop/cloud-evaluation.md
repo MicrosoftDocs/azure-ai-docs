@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to run evaluations in the cloud for predeployment testing on a test dataset.
 
-Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
+Use cloud evaluations for most scenarios - especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
 
 Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
 
@@ -32,8 +32,8 @@ Cloud evaluation results are stored in your Foundry project. You can review resu
 A cloud evaluation has three steps:
 
 1. **Define what to evaluate.** Describe your data shape (the `data_source_config`) and the evaluators (testing criteria) that score it.
-2. **Create the evaluation.** Submit the definition with `openai_client.evals.create()`.
-3. **Run it and read the results.** Start a run with `openai_client.evals.runs.create()`, poll until it completes, and read the scored results. See [Get results](#get-results) for the result schema.
+1. **Create the evaluation.** Submit the definition by using `openai_client.evals.create()`.
+1. **Run it and read the results.** Start a run by using `openai_client.evals.runs.create()`, poll until it completes, and read the scored results. See [Get results](#get-results) for the result schema.
 
 The rest of this section walks through the inputs to step 1: pick a scenario, then choose evaluators.
 
@@ -50,13 +50,13 @@ Use this path when you already have queries and responses collected in a file (o
 
 #### Data in Foundry or Application Insights
 
-Use this path when your agent is already running and you want to evaluate what actually happened. Instead of moving data out, you point Foundry at the data where it already lives — by Foundry response ID or by Application Insights trace or conversation ID.
+Use this path when your agent is already running and you want to evaluate what actually happened. Instead of moving data out, you point Foundry at the data where it already lives - by Foundry response ID or by Application Insights trace or conversation ID.
 
 | Scenario | When to use | Data source type |
 |----------|-------------|------------------|
 | **[Agent response evaluation](#agent-response-evaluation)** | Your agent runs in Foundry and you have response IDs to score. | `azure_ai_responses` |
-| **[Turn-level trace evaluation (preview)](#trace-evaluation)** | Your agent emits OpenTelemetry traces to Application Insights — including non-Foundry frameworks like LangChain or custom OpenTelemetry-instrumented agents. Each trace is scored independently. | `azure_ai_trace_data_source_preview` |
-| **[Conversation-level trace evaluation (preview)](#conversation-level-evaluation)** | Same trace sources, but score full conversations — by conversation ID or by agent filter with sampling. | `azure_ai_trace_data_source_preview` |
+| **[Turn-level trace evaluation (preview)](#trace-evaluation)** | Your agent emits OpenTelemetry traces to Application Insights - including non-Foundry frameworks like LangChain or custom OpenTelemetry-instrumented agents. Each trace is scored independently. | `azure_ai_trace_data_source_preview` |
+| **[Conversation-level trace evaluation (preview)](#multiturn-conversation-evaluation)** | Same trace sources, but score full conversations - by conversation ID or by agent filter with sampling. | `azure_ai_trace_data_source_preview` |
 
 #### Inputs without responses
 
@@ -70,16 +70,16 @@ Use this path when you have the inputs but no responses yet. Foundry generates r
 
 #### No data yet
 
-Use this path when you're building a new model or agent and haven't collected any inputs. Foundry generates the test data from scratch — choose synthetic queries for broad quality coverage or adversarial prompts for safety testing.
+Use this path when you're building a new model or agent and haven't collected any inputs. Foundry generates the test data from scratch - choose synthetic queries for broad quality coverage or adversarial prompts for safety testing.
 
 | Scenario | When to use | Data source / target |
 |----------|-------------|----------------------|
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | You want quality coverage beyond what you'd write by hand. Foundry generates test queries, sends them to the target, and scores responses. | `azure_ai_synthetic_data_gen_preview` → `azure_ai_model` or `azure_ai_agent` |
-| **[Red team evaluation](run-ai-red-teaming-cloud.md)** | You want automated adversarial testing — Foundry generates jailbreaks and harmful-content prompts and scores how the target responds. | `azure_ai_red_team` → `azure_ai_model` or `azure_ai_agent` |
+| **[Red team evaluation](run-ai-red-teaming-cloud.md)** | You want automated adversarial testing - Foundry generates jailbreaks and harmful-content prompts and scores how the target responds. | `azure_ai_red_team` → `azure_ai_model` or `azure_ai_agent` |
 
 ### Choose evaluators
 
-Each scenario binds evaluators to fields in your data through **column mappings**. The available fields depend on the data source — dataset scenarios expose your custom item fields, while target-generated scenarios also expose the model or agent response via a sample schema. The per-scenario subsections later in this article show the column mappings for each case.
+Each scenario binds evaluators to fields in your data through **column mappings**. The available fields depend on the data source. Dataset scenarios expose your custom item fields, while target-generated scenarios also expose the model or agent response via a sample schema. The per-scenario subsections later in this article show the column mappings for each case.
 
 For an overview of available evaluators and how to pick them, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
@@ -422,14 +422,14 @@ For a complete runnable example, see [sample_evaluations_builtin_with_dataset_id
 
 ## CSV dataset evaluation
 
-Evaluate pre-computed responses in a CSV file using the `csv` data source type. This scenario works the same way as [dataset evaluation](#dataset-evaluation) but accepts CSV files instead of JSONL. Use CSV when your data is already in spreadsheet or tabular format.
+Evaluate precomputed responses in a CSV file by using the `csv` data source type. This scenario works the same way as [dataset evaluation](#dataset-evaluation) but accepts CSV files instead of JSONL. Use CSV when your data is already in spreadsheet or tabular format.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
 
 ### Prepare a CSV file
 
-Create a CSV file with column headers matching the fields your evaluators need. Each row represents one test case:
+Create a CSV file with column headers that match the fields your evaluators need. Each row represents one test case.
 
 ```csv
 query,response,context,ground_truth
@@ -440,7 +440,7 @@ Explain neural networks.,Neural networks are computing systems inspired by biolo
 
 ### Upload and run
 
-Upload the CSV file as a dataset, then create an evaluation using the `csv` data source type. The schema definition and evaluator configuration are the same as for JSONL evaluations — the only difference is the `"type": "csv"` in the data source.
+Upload the CSV file as a dataset. Then, create an evaluation by using the `csv` data source type. The schema definition and evaluator configuration are the same as for JSONL evaluations. The only difference is the `"type": "csv"` in the data source.
 
 ```python
 # Upload the CSV file
@@ -520,7 +520,7 @@ To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Model target evaluation
 
-Send queries to a deployed model at runtime and evaluate the responses using the `azure_ai_target_completions` data source type with an `azure_ai_model` target. Your input data contains queries; the model generates responses which are then evaluated.
+Send queries to a deployed model at runtime. Evaluate the responses by using the `azure_ai_target_completions` data source type with an `azure_ai_model` target. Your input data contains queries. The model generates responses, which you then evaluate.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
@@ -669,11 +669,11 @@ curl --request POST \
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
 > [!TIP]
-> To add another evaluation run, you can use the same code.
+> To add another evaluation run, use the same code.
 
 ## Agent target evaluation
 
-Send queries to a Foundry agent at runtime and evaluate the responses using the `azure_ai_target_completions` data source type with an `azure_ai_agent` target. This scenario works for both [prompt agents](../../agents/overview.md) and [hosted agents](../../agents/concepts/hosted-agents.md).
+Send queries to a Foundry agent at runtime and evaluate the responses by using the `azure_ai_target_completions` data source type with an `azure_ai_agent` target. This scenario works for both [prompt agents](../../agents/overview.md) and [hosted agents](../../agents/concepts/hosted-agents.md).
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
@@ -1038,41 +1038,41 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 
 ## Trace evaluation
 
-Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
+Evaluate agent interactions that Application Insights already captured. Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic. You select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
 
 > [!IMPORTANT]
-> Trace evaluation is the recommended approach for evaluating **agents not built with the Microsoft Foundry Agent Service** — including LangChain and custom frameworks. As long as your agent emits [OpenTelemetry spans following the GenAI semantic conventions](#trace-data-requirements) to Application Insights, trace evaluation can assess its interactions using the same evaluators available for Foundry agents.
+> Trace evaluation is the recommended approach for evaluating **agents not built with the Microsoft Foundry Agent Service** - including LangChain and custom frameworks. As long as your agent emits [OpenTelemetry spans following the GenAI semantic conventions](#trace-data-requirements) to Application Insights, trace evaluation can assess its interactions by using the same evaluators available for Foundry agents.
 
 Trace evaluation supports two modes:
 
-- **By trace IDs** — Evaluate specific agent interactions by providing their `operation_Id` values from Application Insights.
-- **By agent filter** — Automatically discover and evaluate recent traces for a given agent, without manually collecting trace IDs.
+- **By trace IDs** - Evaluate specific agent interactions by providing their `operation_Id` values from Application Insights.
+- **By agent filter** - Automatically discover and evaluate recent traces for a given agent, without manually collecting trace IDs.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
 
 ### Intelligent sampling
  
-Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity — ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity - ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
 
 #### How intelligent sampling works
 
 The sampling algorithm uses a MinHash farthest-first diversity approach that runs in multiple stages:
 
-1. **Exact deduplication** — Removes duplicate traces from the pool.
-1. **Hard filters** — Removes broken sessions, truncated traces, and malformed tool calls that aren't suitable for evaluation.
-1. **Aggregation** — Combines trace-level signals into a unified representation.
-1. **MinHash farthest-first selection** — Computes locality-sensitive hashes (MinHash signatures) of user text to estimate similarity between traces, then iteratively selects the most dissimilar trace from the remaining pool. Each successive pick maximizes distance from all previously selected traces.
+1. **Exact deduplication** - Removes duplicate traces from the pool.
+1. **Hard filters** - Removes broken sessions, truncated traces, and malformed tool calls that aren't suitable for evaluation.
+1. **Aggregation** - Combines trace-level signals into a unified representation.
+1. **MinHash farthest-first selection** - Computes locality-sensitive hashes (MinHash signatures) of user text to estimate similarity between traces, then iteratively selects the most dissimilar trace from the remaining pool. Each successive pick maximizes distance from all previously selected traces.
 
-This approach produces significantly higher lexical diversity and broader vocabulary coverage compared to random sampling, which means the evaluated set better represents the full range of agent interactions — including rare, hard, and novel cases that random sampling tends to miss.
+This approach produces significantly higher lexical diversity and broader vocabulary coverage compared to random sampling, which means the evaluated set better represents the full range of agent interactions - including rare, hard, and novel cases that random sampling tends to miss.
 
 Intelligent sampling is particularly effective for:
 
-- **Evaluation and benchmarks** — Maximizes coverage of the input distribution so evaluation scores reflect real-world diversity.
-- **Rubric generation** — Produces more focused and actionable rubrics by exposing diverse conversation patterns.
-- **Finetuning dataset curation** — Selects traces that help models learn more efficiently.
+- **Evaluation and benchmarks** - Maximizes coverage of the input distribution so evaluation scores reflect real-world diversity.
+- **Rubric generation** - Produces more focused and actionable rubrics by exposing diverse conversation patterns.
+- **Finetuning dataset curation** - Selects traces that help models learn more efficiently.
 
-The algorithm runs entirely on local compute with no additional API calls, so it doesn't incur extra model inference costs beyond the evaluation itself.
+The algorithm runs entirely on local compute with no extra API calls, so it doesn't incur extra model inference costs beyond the evaluation itself.
 
 #### Intelligent sampling example
 
@@ -1125,7 +1125,7 @@ eval_run = client.evals.runs.create(
 
 ### Trace data requirements
 
-Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
+Trace evaluation requires your agent to emit spans that follow the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
 
 The following span attributes are used:
 
@@ -1135,12 +1135,12 @@ The following span attributes are used:
 | `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
 | `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
 | `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
-| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls` |
-| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
+| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls`. |
+| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas might be incomplete. |
 | `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
 
 > [!NOTE]
-> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they may not produce meaningful results.
+> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they might not produce meaningful results.
 
 For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
 
@@ -1168,7 +1168,7 @@ Set these environment variables:
 
 ### Option A: Evaluate by agent filter
 
-The simplest approach — let the service automatically discover and evaluate recent traces for a specific agent. No manual trace ID collection needed.
+The simplest approach is to let the service automatically discover and evaluate recent traces for a specific agent. No manual trace ID collection needed.
 
 ```python
 import os
@@ -1209,7 +1209,7 @@ The service filters `invoke_agent` spans by the `gen_ai.agent.id` attribute, sam
 
 ### Option B: Evaluate by trace IDs
 
-For more control, collect specific trace IDs from Application Insights and evaluate them. This is useful when you want to evaluate a curated set of interactions (for example, traces flagged by alerts or sampled for quality review).
+For more control, collect specific trace IDs from Application Insights and evaluate them. This method is useful when you want to evaluate a curated set of interactions, such as traces flagged by alerts or sampled for quality review.
 
 #### Collect trace IDs from Application Insights
 
@@ -1289,14 +1289,14 @@ print(f"Evaluation run started: {eval_run.id}")
 
 ### Set up evaluators and data mappings
 
-When evaluating traces, the service automatically extracts conversation data from the OpenTelemetry span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
+When you evaluate traces, the service automatically extracts conversation data from the OpenTelemetry span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
 
 | Variable | Source attribute | Description |
 |----------|----------------|-------------|
 | `{{item.query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
 | `{{item.response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
-| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. Only required for tool-related evaluators |
-| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. Only required for tool-related evaluators |
+| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. Only required for tool-related evaluators. |
+| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. Only required for tool-related evaluators. |
 
 ```python
 testing_criteria = [
@@ -1349,7 +1349,7 @@ For a complete runnable example, see [sample_evaluations_builtin_with_traces.py]
 
 ## Synthetic data evaluation (preview)
 
-Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
+Use the `azure_ai_synthetic_data_gen_preview` data source type to generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses. Use this scenario when you don't have a test dataset. The service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
@@ -1368,7 +1368,7 @@ Generate synthetic test queries, send them to a deployed model or Foundry agent,
 | `samples_count` | Yes | Maximum number of synthetic test queries to generate. |
 | `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). |
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
-| `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If not provided, the service generates a name automatically. |
+| `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If you don't provide a name, the service generates one automatically. |
 | `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
 
 ### Set up evaluators and data mappings
@@ -1440,7 +1440,7 @@ eval_run = openai_client.evals.runs.create(
 )
 ```
 
-You can optionally add a system prompt to shape the target model's behavior. When you use `input_messages` with synthetic data generation, include only `system` role messages — the service provides the generated queries as user messages automatically.
+You can optionally add a system prompt to shape the target model's behavior. When you use `input_messages` with synthetic data generation, include only `system` role messages - the service provides the generated queries as user messages automatically.
 
 ```python
 data_source = {
@@ -1566,7 +1566,7 @@ To poll for completion and interpret results, see [Get results](#get-results). T
 
 ## <a name="multiturn-conversation-evaluation"></a>Conversation-level evaluation
 
-Evaluate complete conversations to assess agent quality across entire user interactions—not just individual responses. Use conversation-level evaluation to identify quality issues like incomplete task resolution, user frustration, and tool-call regressions that turn-level evaluation misses.
+Evaluate complete conversations to assess agent quality across entire user interactions - not just individual responses. Use conversation-level evaluation to identify quality problems like incomplete task resolution, user frustration, and tool-call regressions that turn-level evaluation misses.
 
 For example, consider a support agent where the user grows frustrated over multiple turns:
 
@@ -1576,7 +1576,7 @@ For example, consider a support agent where the user grows frustrated over multi
 >
 > **Turn 3** — User: "Still nothing. Can you just reset it directly?" Agent: "I've sent another reset link."
 
-A turn-level evaluator scores only the last response—which is polite and takes action—so it scores well. A conversation-level evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
+A turn-level evaluator scores only the last response - which is polite and takes action - so it scores well. A conversation-level evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
 
 Conversation-level evaluation differs from turn-level evaluation in several ways:
 
@@ -1834,25 +1834,25 @@ To poll for completion and interpret results, see [Get results](#get-results).
 
 ### Evaluate conversations by ID from traces
 
-Evaluate specific conversations from Application Insights by providing their conversation IDs. Use this option to root-cause issues or verify fixes on specific interactions—for example, investigating a conversation flagged by an alert or verifying a fix for a known issue.
+Evaluate specific conversations from Application Insights by providing their conversation IDs. Use this option to root-cause problems or verify fixes on specific interactions. For example, you can investigate a conversation flagged by an alert or verify a fix for a known issue.
 
 #### Where to find conversation IDs
 
-You can find conversation IDs in:
+Find conversation IDs in:
 
 - **Application Insights trace logs UI** — Browse to interesting traces and locate the `conversation_id` field in the trace details.
 - **Your application's logging output** — If you set `conversation_id` explicitly when creating agent responses, retrieve it from your logs.
-- **OpenTelemetry trace context** — The `conversation_id` may also be derived from the [traceparent](https://www.w3.org/TR/trace-context/#traceparent-header) header if your agent uses standard trace context propagation.
+- **OpenTelemetry trace context** — The `conversation_id` might also be derived from the [traceparent header](https://www.w3.org/TR/trace-context/#traceparent-header) if your agent uses standard trace context propagation.
 
 > [!NOTE]
-> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
 
 #### Parameters for conversation ID lookup
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `conversation_ids` | Yes | Array of conversation IDs to evaluate. |
-| `lookback_hours` | No | Hours to search back from `end_time`. Defaults to 7 days (168 hours). |
+| `lookback_hours` | No | Hours to search back from `end_time`. Defaults to seven days (168 hours). |
 | `end_time` | No | End of the search window (ISO 8601 format). Defaults to the current time. |
 
 # [Python](#tab/python)
@@ -1958,17 +1958,17 @@ curl --request POST \
 ---
 
 > [!NOTE]
-> - There may be a delay between when traces are generated and when they become available for evaluation due to Application Insights data ingestion. If traces aren't found, wait a few minutes and retry.
+> - Application Insights data ingestion can cause a delay between when traces are generated and when they're available for evaluation. If the query doesn't find traces, wait a few minutes and retry.
 > - The maximum lookback is **7 days (168 hours)**. To access older traces, use `start_time` and `end_time` within your App Insights retention limits.
 
 ### Evaluate sampled conversations by agent filter
 
-Evaluate a sampled set of conversations from Application Insights by filtering on agent name. Use this option to assess overall agent quality across production traffic—for example, running regular quality assessments or monitoring for quality degradation in production.
+Evaluate a sampled set of conversations from Application Insights by filtering on agent name. Use this option to assess overall agent quality across production traffic. For example, run regular quality assessments or monitor for quality degradation in production.
 
 The agent you specify for filtering can be part of a multi-agent conversation. The filter matches any conversation where that agent participated.
 
 > [!NOTE]
-> Tool definitions are automatically retrieved from the traces or queried from the agent registry—you don't need to provide them in the request.
+Tool definitions are automatically retrieved from the traces or queried from the agent registry. You don't need to provide them in the request.
 
 #### Agent identity fields
 
@@ -1976,7 +1976,7 @@ Specify the agent to filter by using one of these formats:
 
 | Format | Example | Description |
 |--------|---------|-------------|
-| `agent_name` + `agent_version` | `"agent_name": "my-agent", "agent_version": "1"` | Two separate fields. If `agent_version` is omitted, uses the latest version. |
+| `agent_name` + `agent_version` | `"agent_name": "my-agent", "agent_version": "1"` | Two separate fields. If `agent_version` is omitted, use the latest version. |
 | `agent_id` | `"agent_id": "my-agent:1"` | Single string in `"name:version"` format. |
 
 #### Filter strategies
@@ -1984,7 +1984,7 @@ Specify the agent to filter by using one of these formats:
 | Strategy | Description |
 |----------|-------------|
 | `random_sampling` | (Default) Uniformly random sample up to `max_traces` conversations. |
-| `smart_filtering` | Service-managed heuristic that biases toward "interesting" traces—conversations with potential issues, edge cases, or anomalies. |
+| `smart_filtering` | Service-managed heuristic that biases toward "interesting" traces - conversations with potential problems, edge cases, or anomalies. |
 
 #### Parameters
 
@@ -1995,11 +1995,11 @@ Specify the agent to filter by using one of these formats:
 | `agent_id` | No | Alternative to `agent_name` + `agent_version`. Single string in format `"name:version"`. |
 | `start_time` | Yes | Start of the time window (Unix epoch seconds, UTC). |
 | `end_time` | Yes | End of the time window (Unix epoch seconds, UTC). Pad by +600 seconds to avoid ingestion delay. |
-| `max_traces` | No | Maximum conversations to sample. Defaults to 1000. |
+| `max_traces` | No | Maximum conversations to sample. Defaults to 1,000. |
 | `filter_strategy` | No | `"random_sampling"` (default) or `"smart_filtering"` (service-managed heuristic that biases toward interesting traces). |
 
 > [!IMPORTANT]
-> The time window (`end_time - start_time`) must be at least **15 minutes** (900 seconds). This is required because conversation-level queries apply a 5-minute inactivity buffer on each edge to avoid partial conversations.
+> The time window (`end_time - start_time`) must be at least **15 minutes** (900 seconds). This requirement exists because conversation-level queries apply a 5-minute inactivity buffer on each edge to avoid partial conversations.
 
 # [Python](#tab/python)
 
@@ -2120,13 +2120,13 @@ curl --request POST \
 ---
 
 > [!NOTE]
-> The App Insights query timespan is currently limited to a maximum of **7 days (168 hours)**. Traces older than 7 days aren't reachable without explicitly providing `start_time`/`end_time` within App Insights retention limits.
+> The App Insights query timespan is currently limited to a maximum of **7 days (168 hours)**. You can't access traces older than 7 days without explicitly providing `start_time` and `end_time` within App Insights retention limits.
 
 To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Conversation simulation
 
-Generate simulated conversations from scenario descriptions and evaluate them at the conversation level. Use this scenario to test your agent's behavior in controlled situations before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
+Generate simulated conversations from scenario descriptions and evaluate them at the conversation level. Use this scenario to test your agent's behavior in controlled situations before deployment. The service generates realistic conversations based on your scenario descriptions and then evaluates them.
 
 This approach is useful for:
 
@@ -2137,15 +2137,15 @@ This approach is useful for:
 
 ### How conversation simulation works
 
-1. You provide a dataset of scenario descriptions—each row describes a situation the simulated user will try to accomplish.
-2. The service uses a simulator model to play the role of the user, interacting with your agent based on the scenario.
-3. Each scenario generates one or more complete conversations.
-4. The generated conversations are evaluated using conversation-level evaluators.
-5. Both the conversations and evaluation results are stored in your project.
+1. You provide a dataset of scenario descriptions—each row describes a situation the simulated user tries to accomplish.
+1. The service uses a simulator model to play the role of the user, interacting with your agent based on the scenario.
+1. Each scenario generates one or more complete conversations.
+1. Conversation-level evaluators assess the generated conversations.
+1. Your project stores both the conversations and evaluation results.
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
+Create a JSONL file where each line describes a scenario for the simulated user. The schema requires `id`, `test_case_description`, and `desired_num_turns`. Include details about the user's goal, context, and any constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
 
 ```json
 
@@ -2165,7 +2165,7 @@ Create a JSONL file where each line describes a scenario for the simulated user.
 
 ### Define evaluators
 
-Select evaluators designed for conversation-level assessment. The simulated conversations are automatically mapped to the evaluators.
+Select evaluators designed for conversation-level assessment. The simulated conversations automatically map to the evaluators.
 
 # [Python](#tab/python)
 
@@ -2430,8 +2430,8 @@ print(f"Report URL: {run.report_url}")
 For a single data example, all evaluators output the following schema:  
 
 - **Label**: a binary "pass" or "fail" label, similar to a unit test's output. Use this result to facilitate comparisons across evaluators.
-- **Score**: a score from the natural scale of each evaluator. Some evaluators use a fine-grained rubric, scoring on a 5-point scale (quality evaluators) or a 7-point scale (content safety evaluators). Others, like textual similarity evaluators, use F1 scores, which are floats between 0 and 1. Any non-binary "score" is binarized to "pass" or "fail" in the "label" field based on the "threshold".
-- **Threshold**: any non-binary scores are binarized to "pass" or "fail" based on a default threshold, which the user can override in the SDK experience.
+- **Score**: a score from the natural scale of each evaluator. Some evaluators use a fine-grained rubric, scoring on a 5-point scale (quality evaluators) or a 7-point scale (content safety evaluators). Others, like textual similarity evaluators, use F1 scores, which are floats between 0 and 1. Any nonbinary "score" is binarized to "pass" or "fail" in the "label" field based on the "threshold".
+- **Threshold**: any nonbinary scores are binarized to "pass" or "fail" based on a default threshold, which the user can override in the SDK experience.
 - **Reason**: To improve intelligibility, all LLM-judge evaluators also output a reasoning field to explain why a certain score is given.
 - **Details**: (optional) For some evaluators, such as tool_call_accuracy, there might be a "details" field or flags that contain additional information to help users debug their applications.
 
@@ -2485,11 +2485,11 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 
 ### Job running for a long time
 
-Your evaluation job might remain in the **Running** state for an extended period. This typically occurs when the Azure OpenAI model deployment doesn't have enough capacity, causing the service to retry requests.
+Your evaluation job might remain in the **Running** state for an extended period. This condition typically occurs when the Azure OpenAI model deployment doesn't have enough capacity, causing the service to retry requests.
 
 **Resolution:**
 
-1. Cancel the current evaluation job using `openai_client.evals.runs.cancel(run_id, eval_id=eval_id)`.
+1. Cancel the current evaluation job by using `openai_client.evals.runs.cancel(run_id, eval_id=eval_id)`.
 1. Increase the model capacity in the Azure portal.
 1. Run the evaluation again.
 
@@ -2497,7 +2497,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 
 If you receive a `401 Unauthorized` or `403 Forbidden` error, verify that:
 
-- Your `DefaultAzureCredential` is configured correctly (run `az login` if using Azure CLI).
+- Your `DefaultAzureCredential` is configured correctly. If you're using Azure CLI, run `az login`.
 - Your account has the **Foundry User** role on the Foundry project.
 - The project endpoint URL is correct and includes both the account and project names.
 
@@ -2511,7 +2511,7 @@ If the evaluation fails with a schema or data mapping error:
 
 ### Rate limit errors
 
-Evaluation run creations are rate-limited at the tenant, subscription, and project levels. If you receive a `429 Too Many Requests` response:
+Tenant, subscription, and project levels rate-limit evaluation run creations. If you receive a `429 Too Many Requests` response:
 
 - Check the `retry-after` header in the response for the recommended wait time.
 - Review the response body for rate limit details.
