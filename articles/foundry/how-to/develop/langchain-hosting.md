@@ -1,12 +1,12 @@
 ---
-title: Host LangGraph agents with Foundry hosted agents
-description: Learn how to use langchain_azure_ai.agents.hosting to host LangGraph agents on Microsoft Foundry Agent Service with Responses and Invocations protocols.
+title: Host LangGraph agents as Foundry hosted agents
+description: Learn how to use langchain_azure_ai.agents.hosting to host LangGraph agents on Foundry hosted agent service with Responses and Invocations protocols.
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 05/27/2026
-ms.author: fasantia
-author: aochengwang
+ms.author: aochengwang
+author: a1exwang
 ms.reviewer: sgilley
 ms.custom:
   - dev-focus
@@ -14,10 +14,11 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to host a LangGraph agent on Foundry hosted agents service.
 ---
 
-# Host LangGraph agents with Foundry hosted agents
+# Host LangGraph agents as Foundry hosted agents
 
 Use the `langchain_azure_ai.agents.hosting` package to expose a compiled
-LangGraph graph through Microsoft Foundry Hosted agent protocols. The hosting
+LangGraph graph through the protocols for Microsoft Foundry
+[hosted agents](../../agents/overview.md#hosted-agents-preview). The hosting
 package lets you keep your LangChain and LangGraph agent logic in code while
 Foundry manages the hosted runtime, sessions, scale, identity, and protocol
 endpoints.
