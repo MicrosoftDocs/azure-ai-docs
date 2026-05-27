@@ -14,10 +14,9 @@ ai-usage: ai-assisted
 
 # Which model should I choose?
 
-Azure Document Intelligence in Foundry Tools supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
+Azure Document Intelligence in Foundry Tools supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Choosing the right model is essential to the success of your enterprise solution. This article explores the available Document Intelligence models—and how they complement Azure Content Understanding capabilities—to help you select the best approach for your projects.
 
-> [!NOTE]
-> Azure Document Intelligence is available both as a standalone service and as a capability within Azure Content Understanding. Azure Content Understanding brings together comprehensive and complementary capabilities for different document needs. Your existing Document Intelligence APIs, endpoints, and pricing remain unchanged. To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md).
+As part of Azure Content Understanding capabilities, Azure Document Intelligence provides high-accuracy and reliable deterministic extraction from structured documents. Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content. Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed. To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../../content-understanding/choosing-right-ai-tool.md).
 
 > [!VIDEO 364078d4-14bc-4b16-995a-526db31ea1ee]
 
@@ -28,7 +27,7 @@ The following decision charts highlight the features of each supported model to 
 
 ## Compare Document Intelligence and Content Understanding
 
-Azure Document Intelligence and Azure Content Understanding are complementary services within the Azure Content Understanding product family. Use the following table to determine which service best fits your scenario before selecting a specific Document Intelligence model.
+Use the following table to determine which service best fits your scenario before selecting a specific Document Intelligence model.
 
 | | Azure Document Intelligence | Azure Content Understanding |
 |---|---|---|
