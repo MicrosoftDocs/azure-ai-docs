@@ -35,21 +35,10 @@ extension.
 - A deployed chat model, such as `gpt-4.1` or `gpt-5-mini`.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
-- Choose one deployment option:
-  - **Azure Developer CLI**: Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd),
-    sign in (`azd auth login`), and install the AI agent extension
-    (`azd ext install azure.ai.agents`).
-  - **Foundry Toolkit Visual Studio Code extension**: Install
-    [Visual Studio Code](https://code.visualstudio.com/) and the
-    [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk).
-- Docker Desktop if you plan to package and deploy the agent as a Hosted agent.
-
-To deploy the container after local testing, you need **Foundry Project Manager** role
-on the project. For details, see [Deploy a Hosted agent](../../agents/how-to/deploy-hosted-agent.md).
 
 ## Install the package
 
-Install `langchain-azure-ai` with the hosting extra:
+Install `langchain-azure-ai` 1.2.4 or later with the hosting extra:
 
 ```bash
 pip install -U "langchain-azure-ai[hosting]>=1.2.4" azure-identity
@@ -61,11 +50,6 @@ servers:
 - `azure-ai-agentserver-responses` for the OpenAI-compatible `/responses`
   endpoint.
 - `azure-ai-agentserver-invocations` for the generic `/invocations` endpoint.
-
-> [!NOTE]
-> The hosting APIs require `langchain-azure-ai>=1.2.4` installed with the
-> `hosting` extra. If your environment uses an earlier package version,
-> upgrade before you run the examples.
 
 ## Choose a hosting protocol
 
@@ -362,16 +346,21 @@ state, override `build_input` instead of flattening the request to text.
 
 ## Deploy
 
+You can deploy with the Azure Developer CLI or the Foundry Toolkit Visual
+Studio Code extension. The Azure Developer CLI flow uses sample manifests and
+Docker; the extension flow provides a guided deployment experience in Visual
+Studio Code.
+
+Hosted agent deployment requires the **Foundry Project Manager** role on the
+project. For details, see [Deploy a Hosted agent](../../agents/how-to/deploy-hosted-agent.md#required-permissions).
+
 ### Deploy with Azure Developer CLI
 
 The `langchain-azure-ai` source repository includes Hosted agent samples that
 can be run and deployed with the Azure Developer CLI. The flow uses each
 sample's `agent.manifest.yaml`, `agent.yaml`, `Dockerfile`, and `main.py`.
 
-#### Prerequisites
-
-Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
-and the AI agent extension:
+Install the AI agent extension and sign in before you initialize a sample:
 
 ```bash
 azd ext install azure.ai.agents
