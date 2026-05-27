@@ -97,6 +97,7 @@ The following JSON is an example response for an indexed OneLake knowledge sourc
     "lakehouseId": "<REDACTED>",
     "targetPath": null,
     "ingestionParameters": {
+      "disableImageVerbalization": false,
       "ingestionPermissionOptions": [],
       "contentExtractionMode": "standard",
       "identity": null,
