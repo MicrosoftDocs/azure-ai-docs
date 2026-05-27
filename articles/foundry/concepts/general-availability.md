@@ -89,7 +89,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Agents — traces in agent builder | Preview |
 | Build | [Workflows](../agents/concepts/workflow.md) | Preview |
 | Build | [Models](foundry-models-overview.md) | GA |
-| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt and Hosted agents; Preview for workflow and external agents) |
+| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt agents; Preview for hosted, workflow and external agents) |
 | Build | Tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | [Fine-tuning](../openai/how-to/fine-tuning.md) | GA |
