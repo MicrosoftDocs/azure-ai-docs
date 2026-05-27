@@ -89,7 +89,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Agents — traces in agent builder | Preview |
 | Build | [Workflows](../agents/concepts/workflow.md) | Preview |
 | Build | [Models](foundry-models-overview.md) | GA |
-| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Preview |
+| Build | [Tracing](../observability/concepts/trace-agent-concept.md) (including Trace Replay) | Partial GA (GA for prompt and Hosted agents; Preview for workflow and external agents) |
 | Build | Tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | [Fine-tuning](../openai/how-to/fine-tuning.md) | GA |
@@ -97,7 +97,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | [Knowledge (Foundry IQ)](../agents/concepts/what-is-foundry-iq.md) | Partial GA (API-level GA; portal access remains Preview) |
 | Build | Data (core) | GA |
 | Build | Data — stored completions | Preview |
-| Build | [Evaluations](../how-to/evaluate-generative-ai-app.md) | GA |
+| Build | [Evaluations](../how-to/evaluate-generative-ai-app.md) | GA (some evaluators and features are Preview; check individual evaluator labels) |
 | Build | Memory | Preview |
 | Build | [Guardrails](../guardrails/guardrails-overview.md) — Models | GA |
 | Build | [Guardrails](../guardrails/guardrails-overview.md) — Agents | Preview |
