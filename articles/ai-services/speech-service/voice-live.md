@@ -9,8 +9,9 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 01/16/2026
+ms.date: 05/25/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
 ---
 
@@ -72,18 +73,29 @@ The Voice Live API supports the following models. For supported regions, see the
 
 | Model | Description |
 | ------------------------------ | ----------- |
+| `gpt-realtime-1.5` | GPT real-time 1.5 + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-realtime`      | GPT real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-realtime-mini` | GPT mini real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4.1` | GPT-4.1 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4.1-mini` | GPT-4.1 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-4.1-nano` | GPT-4.1 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.4` | GPT-5.4 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.3-chat` | GPT-5.3 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.2` | GPT-5.2 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.2-chat` | GPT-5.2 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.1` | GPT-5.1 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-5.1-chat` | GPT-5.1 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5` | GPT-5 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-mini` | GPT-5 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-nano` | GPT-5 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `gpt-5-chat` | GPT-5 chat + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
-| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `phi4-mm-realtime` (preview) | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
+| `phi4-mini` (preview) | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `azure-realtime` | Azure real-time + dedicated `azure-realtime-native` voices for audio. |
+
+> [!NOTE]
+> Models `gpt-5.5`, `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).
 
 ## Compare Voice Live API with other speech-to-speech solutions
 
