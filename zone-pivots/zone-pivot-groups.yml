@@ -1827,6 +1827,19 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+- id: how-to-voice-live-telemetry
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -2086,6 +2099,14 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
+- id: selection-foundry-tool-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?
