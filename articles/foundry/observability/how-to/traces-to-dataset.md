@@ -18,7 +18,7 @@ Production traces are the most representative source of how your agent behaves w
 
 Converting traces into a dataset closes the observability loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality. The same job can also produce fine-tuning data.
 
-Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers pre-launch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md).
+Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers pre-launch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md).
 
 ## Intelligent sampling
 
@@ -199,6 +199,6 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 
 ## Related content
 
-- [Generate a synthetic evaluation dataset](eval-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
+- [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
 - [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
