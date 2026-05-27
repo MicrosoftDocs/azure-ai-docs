@@ -29,32 +29,59 @@ Cloud evaluation results are stored in your Foundry project. You can review resu
 
 ## How cloud evaluation works
 
-To run a cloud evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
+A cloud evaluation has three steps:
 
-Cloud evaluation supports the following scenarios:
+1. **Define what to evaluate.** Describe your data shape (the `data_source_config`) and the evaluators (testing criteria) that score it.
+2. **Create the evaluation.** Submit the definition with `openai_client.evals.create()`.
+3. **Run it and read the results.** Start a run with `openai_client.evals.runs.create()`, poll until it completes, and read the scored results. See [Get results](#get-results) for the result schema.
 
-| Scenario | When to use | Data source type | Target |
-|----------|-------------|------------------|--------|
-| **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL or CSV file. | `jsonl` (with `messages` for [multi-turn (preview)](#multiturn-conversation-evaluation) or `query`/`response` for single-turn) or [`csv`](#csv-dataset-evaluation) (with `query`/`response`) | — |
-| **[Target completions evaluation](#model-target-evaluation)** | Provide queries, generate responses from a [model](#model-target-evaluation) or [Foundry agent](#agent-target-evaluation) at runtime, and evaluate them. Includes [conversation simulation (preview)](#conversation-simulation) for generating multi-turn conversations from scenario descriptions. | `azure_ai_target_completions` | `azure_ai_model` or `azure_ai_agent` |
-| **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
-| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). Use azure_ai_trace_data_source_preview to also evaluate conversational traces by conversation ID. | `azure_ai_traces_preview` (legacy) or `azure_ai_trace_data_source_preview` | — |
-| **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
-| **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
+The rest of this section walks through the inputs to step 1: pick a scenario, then choose evaluators.
 
-Most scenarios require input data. You can provide data in two ways:
+### Choose your starting point
 
-| Source type | Description |
-|-------------|-------------|
-| `file_id` | Reference an uploaded dataset by ID. |
-| `file_content` | Provide data inline in the request. |
+#### Existing dataset
 
-Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
+Use this path when you already have queries and responses collected in a file (or queries plus ground truth) and you just want Foundry to score them. JSONL supports both turn-level rows and conversation-level inputs; CSV is turn-level only.
 
-- **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses.
-- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation, `"traces"` for [trace evaluation](#trace-evaluation), `"synthetic_data_gen_preview"` for [synthetic data evaluation (preview)](#synthetic-data-evaluation-preview), `"conversation_simulation"` for [conversation simulation](#conversation-simulation), or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
+| Scenario | When to use | Data source type |
+|----------|-------------|------------------|
+| **[Turn-level dataset evaluation](#dataset-evaluation)** | Each row is one `query`/`response` pair, optionally with `context` or `ground_truth`. | `jsonl` or [`csv`](#csv-dataset-evaluation) |
+| **[Conversation-level dataset evaluation (preview)](#multiturn-conversation-evaluation)** | Each row is a conversation expressed as a `messages` array. | `jsonl` |
 
-Each scenario requires evaluators that define your testing criteria. For guidance on selecting evaluators, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
+#### Data in Foundry or Application Insights
+
+Use this path when your agent is already running and you want to evaluate what actually happened. Instead of moving data out, you point Foundry at the data where it already lives — by Foundry response ID or by Application Insights trace or conversation ID.
+
+| Scenario | When to use | Data source type |
+|----------|-------------|------------------|
+| **[Agent response evaluation](#agent-response-evaluation)** | Your agent runs in Foundry and you have response IDs to score. | `azure_ai_responses` |
+| **[Turn-level trace evaluation (preview)](#trace-evaluation)** | Your agent emits OpenTelemetry traces to Application Insights — including non-Foundry frameworks like LangChain or custom OpenTelemetry-instrumented agents. Each trace is scored independently. | `azure_ai_trace_data_source_preview` |
+| **[Conversation-level trace evaluation (preview)](#conversation-level-evaluation)** | Same trace sources, but score full conversations — by conversation ID or by agent filter with sampling. | `azure_ai_trace_data_source_preview` |
+
+#### Inputs without responses
+
+Use this path when you have the inputs but no responses yet. Foundry generates responses against a model or agent target at evaluation time, then scores them. Pick a row based on whether your input is **queries** (sent as individual turns) or **scenario descriptions** (used to drive a conversation-level interaction).
+
+| Scenario | When to use | Data source / target |
+|----------|-------------|----------------------|
+| **[Model Target completions](#model-target-evaluation)** | You have queries and want to evaluate responses from a model deployment. | `azure_ai_target_completions` → `azure_ai_model` |
+| **[Agent Target completions](#agent-target-evaluation)** | You have queries and want to evaluate responses from a Foundry agent. | `azure_ai_target_completions` → `azure_ai_agent` |
+| **[Conversation simulation (preview)](#conversation-simulation)** | You have scenario descriptions (no queries); Foundry simulates a user driving a conversation-level interaction with the agent. | `azure_ai_target_completions` → `azure_ai_agent` |
+
+#### No data yet
+
+Use this path when you're building a new model or agent and haven't collected any inputs. Foundry generates the test data from scratch — choose synthetic queries for broad quality coverage or adversarial prompts for safety testing.
+
+| Scenario | When to use | Data source / target |
+|----------|-------------|----------------------|
+| **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | You want quality coverage beyond what you'd write by hand. Foundry generates test queries, sends them to the target, and scores responses. | `azure_ai_synthetic_data_gen_preview` → `azure_ai_model` or `azure_ai_agent` |
+| **[Red team evaluation](run-ai-red-teaming-cloud.md)** | You want automated adversarial testing — Foundry generates jailbreaks and harmful-content prompts and scores how the target responds. | `azure_ai_red_team` → `azure_ai_model` or `azure_ai_agent` |
+
+### Choose evaluators
+
+Each scenario binds evaluators to fields in your data through **column mappings**. The available fields depend on the data source — dataset scenarios expose your custom item fields, while target-generated scenarios also expose the model or agent response via a sample schema. The per-scenario subsections later in this article show the column mappings for each case.
+
+For an overview of available evaluators and how to pick them, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 ## Prerequisites
 
@@ -107,7 +134,7 @@ project_client = AIProjectClient(
 )
 
 # Get the OpenAI client for evaluation API
-client = project_client.get_openai_client()
+openai_client = project_client.get_openai_client()
 ```
 
 ## <a name = "uploading-evaluation-data"></a> Prepare input data
@@ -254,6 +281,36 @@ curl --request POST \
       }
     },
     "testing_criteria": [
+      {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{item.response}}"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "initialization_parameters": {"model": "gpt-5-mini"},
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{item.response}}"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "f1",
+        "evaluator_name": "builtin.f1_score",
+        "data_mapping": {
+          "response": "{{item.response}}",
+          "ground_truth": "{{item.ground_truth}}"
+        }
+      }
+    ]
   }'
 ```
 
@@ -267,14 +324,14 @@ Create the evaluation, then start a run against your uploaded dataset. The run e
 
 ```python
 # Create the evaluation
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="dataset-evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
 
 # Create a run using the uploaded dataset
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="dataset-run",
     data_source=CreateEvalJSONLRunDataSourceParam(
@@ -439,14 +496,14 @@ testing_criteria = [
 ]
 
 # Create the evaluation
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="CSV evaluation with built-in evaluators",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
 
 # Create a run using the CSV data source type
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="csv-evaluation-run",
     data_source={
@@ -544,7 +601,7 @@ testing_criteria = [
 # [Python](#tab/python)
 
 ```python
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Model Target Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
@@ -560,7 +617,7 @@ data_source = {
     "target": target,
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="model-target-evaluation",
     data_source=data_source,
@@ -725,7 +782,7 @@ testing_criteria = [
 # [Python](#tab/python)
 
 ```python
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Agent Target Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
@@ -741,7 +798,7 @@ data_source = {
     "target": target,
 }
 
-agent_eval_run = client.evals.runs.create(
+agent_eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="agent-target-evaluation",
     data_source=data_source,
@@ -820,7 +877,7 @@ target = {
 # [Python](#tab/python)
 
 ```python
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Hosted Agent Invocations Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
@@ -836,7 +893,7 @@ data_source = {
     "target": target,
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="hosted-agent-invocations-evaluation",
     data_source=data_source,
@@ -889,7 +946,7 @@ Each call to the Responses API returns a response object with a unique `id` fiel
 
 ```python
 # Generate response IDs by calling a model through the Responses API
-response = client.responses.create(
+response = openai_client.responses.create(
     model=model_deployment_name,
     input="What is machine learning?",
 )
@@ -921,7 +978,7 @@ testing_criteria = [
     },
 ]
 
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Agent Response Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
@@ -942,7 +999,7 @@ data_source = {
     },
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="agent-response-evaluation",
     data_source=data_source,
@@ -1053,7 +1110,7 @@ data_source_config = {
     "scenario": "traces",
 }
 
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Agent Trace Evaluation (by agent)",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,  # See "Set up evaluators" below
@@ -1067,7 +1124,7 @@ data_source = {
     "lookback_hours": trace_lookback_hours,
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="agent-trace-eval-run",
     data_source=data_source,
@@ -1131,7 +1188,7 @@ data_source_config = {
     "scenario": "traces",
 }
 
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Agent Trace Evaluation (by trace IDs)",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,  # See "Set up evaluators" below
@@ -1144,7 +1201,7 @@ data_source = {
     "lookback_hours": trace_query_hours,
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="agent-trace-eval-run",
     metadata={
@@ -1283,7 +1340,7 @@ testing_criteria = [
 Generate synthetic queries and evaluate a model:
 
 ```python
-eval_object = client.evals.create(
+eval_object = openai_client.evals.create(
     name="Synthetic Data Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
@@ -1304,7 +1361,7 @@ data_source = {
     },
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-data-evaluation",
     data_source=data_source,
@@ -1361,7 +1418,7 @@ data_source = {
     },
 }
 
-eval_run = client.evals.runs.create(
+eval_run = openai_client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-agent-evaluation",
     data_source=data_source,
@@ -1435,9 +1492,9 @@ curl --request POST \
 
 To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
 
-## Multiturn conversation evaluation
+## <a name="multiturn-conversation-evaluation"></a>Conversation-level evaluation
 
-Evaluate complete multi-turn conversations to assess agent quality across entire user interactions—not just individual responses. Use multiturn evaluation to identify conversation-level quality issues like incomplete task resolution, user frustration, and tool-call regressions that single-turn evaluation misses.
+Evaluate complete conversations to assess agent quality across entire user interactions—not just individual responses. Use conversation-level evaluation to identify quality issues like incomplete task resolution, user frustration, and tool-call regressions that turn-level evaluation misses.
 
 For example, consider a support agent where the user grows frustrated over multiple turns:
 
@@ -1447,25 +1504,25 @@ For example, consider a support agent where the user grows frustrated over multi
 >
 > **Turn 3** — User: "Still nothing. Can you just reset it directly?" Agent: "I've sent another reset link."
 
-A single-turn evaluator scores only the last response—which is polite and takes action—so it scores well. A multiturn evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
+A turn-level evaluator scores only the last response—which is polite and takes action—so it scores well. A conversation-level evaluator grading **customer satisfaction** across the conversation flags that the agent repeated the same failing action three times without trying an alternative, leaving the user's problem unresolved.
 
-Multiturn evaluation differs from single-turn evaluation in several ways:
+Conversation-level evaluation differs from turn-level evaluation in several ways:
 
-| Aspect | Single-turn | Multiturn |
-|--------|------------|----------|
+| Aspect | Turn-level | Conversation-level |
+|--------|------------|--------------------|
 | **Scope** | Individual query-response pairs | Complete conversations with multiple exchanges |
 | **Metrics** | Per-response quality and safety | Conversation-level outcomes and user satisfaction |
 | **Data format** | JSONL with `query` and `response` fields | JSONL with `messages` array containing the full conversation |
 | **Use case** | Testing individual model responses | Testing end-to-end agent experiences |
 
-Multiturn evaluation supports four data source options:
+Conversation-level evaluation supports four data source options:
 
 | Option | When to use | Data source type |
 |--------|-------------|------------------|
 | [From dataset or inline](#prepare-conversation-data) | You have local conversation traces or test data | `jsonl` with `file_id` or `file_content` |
 | [By conversation ID](#evaluate-conversations-by-id-from-traces) | You want to evaluate specific conversations from App Insights | `azure_ai_trace_data_source_preview` with `trace_source` |
 | [By agent filter with sampling](#evaluate-sampled-conversations-by-agent-filter) | You want to assess overall agent quality across sampled production traffic | `azure_ai_trace_data_source_preview` with `trace_source` |
-| [Simulated conversations](#conversation-simulation) | You want to generate synthetic test conversations | `simulator` with target configuration |
+| [Simulated conversations](#conversation-simulation) | You want to generate synthetic test conversations | `azure_ai_target_completions` with `conversation_gen_preview` |
 
 ### Choose an evaluation level
 
@@ -1481,7 +1538,7 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 > **Evaluator compatibility**: Each evaluator supports specific evaluation levels. Check the evaluator's `supported_evaluation_levels` field in the [evaluator catalog](../evaluate-generative-ai-app.md).
 >
 > - **Turn-only evaluators** (for example, `fluency`, `relevance`) can't be used with `evaluation_level="conversation"`.
-> - Currently, all multiturn evaluators support both `"turn"` and `"conversation"` levels.
+> - Currently, all conversation-level evaluators support both `"turn"` and `"conversation"` levels.
 
 #### Common errors
 
@@ -1491,7 +1548,7 @@ The `evaluation_level` parameter on the run determines whether evaluators score 
 
 ### Prepare conversation data
 
-Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`. For a complete example, see [sample repo for multi-turn](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations):
+Create a JSONL file where each line contains a complete conversation in the `messages` field. Each message should include a `role` (user, assistant, or system) and `content`. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK:
 
 ```json
  {"messages": [{"role": "user", "content": "What's my account balance?"}, {"role": "assistant", "content": "Your current balance is $1,234.56."}, {"role": "user", "content": "Thanks!"}, {"role": "assistant", "content": "You're welcome! Is there anything else?"}]}
@@ -1514,7 +1571,7 @@ You can also include tool definitions and tool calls if your agent uses tools:
 
 ### Define the data schema and evaluators
 
-Specify the schema for your conversation data, "messages", and select evaluators designed for multi-turn conversations. Conversation-level evaluators assess the entire interaction rather than individual turns.
+Specify the schema for your conversation data, "messages", and select evaluators designed for conversation-level evaluation. Conversation-level evaluators assess the entire interaction rather than individual turns.
 
 # [Python](#tab/python)
 
@@ -1997,7 +2054,7 @@ To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Conversation simulation
 
-Generate simulated multi-turn conversations from scenario descriptions and evaluate them. Use this scenario to test your agent's behavior in controlled scenarios before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
+Generate simulated conversations from scenario descriptions and evaluate them at the conversation level. Use this scenario to test your agent's behavior in controlled situations before deployment—the service generates realistic conversations based on your scenario descriptions and then evaluates them.
 
 This approach is useful for:
 
@@ -2016,7 +2073,7 @@ This approach is useful for:
 
 ### Prepare scenario data
 
-Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints. For a complete example, see [sample repo for multi-turn](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations).
+Create a JSONL file where each line describes a scenario for the simulated user. Schema requires: id, test_case_description, and desired_num_turns. Include details about the user's goal, context, and any constraints. For a complete example, see the [conversation evaluation samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations) in the SDK.
 
 ```json
 
@@ -2275,10 +2332,10 @@ Evaluation runs are asynchronous. Poll the run status until it completes, then r
 
 ```python
 import time
-from print import print
+from pprint import pprint
 
 while True:
-    run = client.evals.runs.retrieve(
+    run = openai_client.evals.runs.retrieve(
         run_id=eval_run.id, eval_id=eval_object.id
     )
     if run.status in ("completed", "failed"):
@@ -2288,7 +2345,7 @@ while True:
 
 # Retrieve results
 output_items = list(
-    client.evals.runs.output_items.list(
+    openai_client.evals.runs.output_items.list(
         run_id=run.id, eval_id=eval_object.id
     )
 )
@@ -2360,7 +2417,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 
 **Resolution:**
 
-1. Cancel the current evaluation job using `client.evals.runs.cancel(run_id, eval_id=eval_id)`.
+1. Cancel the current evaluation job using `openai_client.evals.runs.cancel(run_id, eval_id=eval_id)`.
 1. Increase the model capacity in the Azure portal.
 1. Run the evaluation again.
 
