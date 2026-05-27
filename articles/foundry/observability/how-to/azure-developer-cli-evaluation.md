@@ -28,7 +28,7 @@ This article covers how to run the first agent evaluation with `azd ai agent eva
 - The `azd ai agent` extension installed (`azd extension install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. To learn more about the `azd` AI agent extension see, [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension)
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
-- **For hosted agents:** No pre existing Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
+- **For hosted agents:** No preexisting Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
 - **For prompt-based agents:** An existing Foundry project with the agent already deployed and available as an evaluation target.
 - A model deployment that supports chat completions in the same Foundry project.
 - Optional: a JSONL evaluation dataset with representative examples, if you do not want `eval init` to generate a smoke dataset.
