@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: checklist
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ---
 <!-- markdownlint-disable MD025 -->
 # Prerequisites and setup
@@ -22,14 +22,9 @@ The API supports two translation processes:
 
 ## Azure resources
 
-The resources you need depend on whether you use large language model (LLM)-based or neural machine translation (NMT)-based translation. Make sure you have the following before you start:
+Make sure you have the following before you start:
 
 * You need an active **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-
-* For **LLM-based translation**, you need the following:
-    * A Foundry resource. To create one, see [Azure resources for Translator in Foundry Tools](../../how-to/create-translator-resource.md).
-    * An LLM model deployed in your Foundry resource. Supported models: `GPT-5.1`, `GPT-5.2`, `GPT-5.2-chat`.
-    * The deployment name of your model, which you include as `deploymentName` in the request payload.
 
 * For **NMT-based translation**, you need an **Azure Translator resource** with a custom domain endpoint:
     * Create an [Azure Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.

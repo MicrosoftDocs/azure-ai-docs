@@ -7,16 +7,16 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Get supported glossary formats
+# Get supported glossary formats list
 
 Retrieve a list of glossary formats supported by the Document Translation service. Use this endpoint to discover which glossary file types and MIME types you can pass when applying custom terminology to a translation job.
 
-**HTTP method:** GET
-**API version:** 2026-03-01
+HTTP method: **GET**
+API version: **2026-03-01**
 
 ## Request
 

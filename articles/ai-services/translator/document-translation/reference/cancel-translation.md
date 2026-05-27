@@ -1,7 +1,7 @@
 ﻿---
-title: Cancel Translation
+title: "Cancel translation"
 titleSuffix: Foundry Tools
-description: Cancel an asynchronous batch translation job that is queued or in progress using the Document Translation REST API.
+description: Cancel a batch translation job that is queued or in progress using the Document Translation REST API.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,8 @@ ms.topic: reference
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
-<!-- markdownlint-disable MD025 -->
-# Cancel document translation
+
+# Cancel translation
 
 Cancel a batch translation job that is in a `NotStarted` or `Running` state. The service makes a best-effort attempt to stop processing. Documents that have already completed translation are retained in the target container and billed normally. Jobs in a terminal state (`Succeeded`, `Failed`, `Cancelled`) cannot be canceled.
 
@@ -58,6 +58,6 @@ curl -X DELETE "{endpoint}/translator/document/batches/{jobId}?api-version=2026-
 
 ## Related content
 
-* [End-to-end batch translation workflow](../end-to-end-batch-workflow.md)
-* [Get translation status](get-status-specific-translation.md)
-* [Start batch translation](translate-asynchronous.md)
+* [End-to-end batch translation workflow](../latest/end-to-end-batch-workflow.md)
+* [Get translation status](get-translation-status.md)
+* [Start batch translation](start-batch-translation.md)

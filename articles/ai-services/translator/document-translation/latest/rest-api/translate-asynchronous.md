@@ -7,16 +7,16 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Start batch translation
+# Start an asynchronous batch translation
 
 Submit one or more documents stored in Azure Blob Storage for asynchronous translation. The service returns an `operation-location` header containing the job ID, which you use to poll for status. Each target container in a batch must be unique; submitting documents to a target container that already has translated output causes a file conflict error. Use the `targetUrl` for a specific container, not a shared destination.
 
-**HTTP method:** POST
-**API version:** 2026-03-01
+HTTP method: **POST**
+API version: **2026-03-01**
 
 ## Request
 
@@ -44,7 +44,6 @@ POST {endpoint}/translator/document/batches?api-version=2026-03-01
 | `inputs[].targets` | Yes | Array of translation targets. |
 | `inputs[].targets[].targetUrl` | Yes | SAS URL for the target Blob Storage container. Must be unique across all inputs in the request. |
 | `inputs[].targets[].language` | Yes | Target language code (for example, `fr`). |
-| `inputs[].targets[].deploymentName` | No | LLM deployment name for LLM-based translation (for example, `gpt-5.1`, `gpt-5.2`, `gpt-5.2-chat`). Omit to use NMT. |
 | `inputs[].targets[].glossaries` | No | Array of glossary objects. Each glossary requires `glossaryUrl` (SAS URL) and `format` (for example, `TSV`). |
 | `inputs[].storageType` | No | Storage source type. Supported values: `Folder` (default), `File`. |
 | `translateWithinImage` | No | Boolean. Set to `true` to translate text within images in `.docx` and `.pptx` files. |
@@ -67,30 +66,6 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
           {
             "targetUrl": "https://{storage}.blob.core.windows.net/target-fr?{sas}",
             "language": "fr"
-          }
-        ]
-      }
-    ]
-  }'
-```
-
-### LLM-based translation
-
-```bash
-curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "inputs": [
-      {
-        "source": {
-          "sourceUrl": "https://{storage}.blob.core.windows.net/source?{sas}"
-        },
-        "targets": [
-          {
-            "targetUrl": "https://{storage}.blob.core.windows.net/target-de?{sas}",
-            "language": "de",
-            "deploymentName": "gpt-5.1"
           }
         ]
       }

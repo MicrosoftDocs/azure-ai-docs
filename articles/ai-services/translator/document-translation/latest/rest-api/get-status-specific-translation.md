@@ -7,16 +7,16 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Get translation status
+# Get translation job status
 
 Retrieve the overall status and document summary for a specific batch translation job. Poll this endpoint after submitting a batch request until the job reaches a terminal state: `Succeeded`, `Failed`, `Cancelled`, or `ValidationFailed`.
 
-**HTTP method:** GET
-**API version:** 2026-03-01
+HTTP method: **GET**
+API version: **2026-03-01**
 
 ## Request
 

@@ -7,13 +7,13 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/14/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Document Translation REST API guide
+# Document Translation REST API guide overview
 
-The Document Translation REST API (version 2026-03-01) supports two translation models and a set of discovery operations. Synchronous translation processes a single document without Blob Storage and returns the translated file directly. Asynchronous batch translation processes one or more documents stored in Azure Blob Storage and lets you poll for status. Both models use neural machine translation (NMT) by default; you can select a large language model (LLM) by passing a `deploymentName` in the request.
+The Document Translation REST API (version 2026-03-01) supports two translation models and a set of discovery operations. Synchronous translation processes a single document without Blob Storage and returns the translated file directly. Asynchronous batch translation processes one or more documents stored in Azure Blob Storage and lets you poll for status. Both models use neural machine translation (NMT) by default.
 
 All requests require a custom domain endpoint. The format is `https://{your-resource-name}.cognitiveservices.azure.com/`.
 
