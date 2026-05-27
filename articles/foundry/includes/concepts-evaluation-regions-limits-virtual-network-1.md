@@ -12,7 +12,7 @@ ms.custom: include
 
 This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
 
-## Region support
+## Regional availability
 
 ### Supported regions for Agent playground evaluations
 
