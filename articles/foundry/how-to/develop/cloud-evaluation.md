@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/01/2026
+ms.date: 06/02/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -995,36 +995,30 @@ Trace evaluation supports two modes:
 > [!TIP]
 > Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
 
-### Intelligent sampling (preview)
+### Intelligent sampling
+ 
+Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity — ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
 
-Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity—ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+#### How intelligent sampling works
 
-### Trace data requirements
+The sampling algorithm uses a MinHash farthest-first diversity approach that runs in multiple stages:
 
-Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
+1. **Exact deduplication** — Removes duplicate traces from the pool.
+1. **Hard filters** — Removes broken sessions, truncated traces, and malformed tool calls that aren't suitable for evaluation.
+1. **Aggregation** — Combines trace-level signals into a unified representation.
+1. **MinHash farthest-first selection** — Computes locality-sensitive hashes (MinHash signatures) of user text to estimate similarity between traces, then iteratively selects the most dissimilar trace from the remaining pool. Each successive pick maximizes distance from all previously selected traces.
 
-The following span attributes are used:
+This approach produces significantly higher lexical diversity and broader vocabulary coverage compared to random sampling, which means the evaluated set better represents the full range of agent interactions — including rare, hard, and novel cases that random sampling tends to miss.
 
-| Attribute | Required | Description |
-|-----------|----------|-------------|
-| `gen_ai.operation.name` | **Yes** | Must equal `"invoke_agent"`. The service ignores all other spans. |
-| `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
-| `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
-| `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
-| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls` |
-| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
-| `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
+Intelligent sampling is particularly effective for:
 
-> [!NOTE]
-> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they may not produce meaningful results.
+- **Evaluation and benchmarks** — Maximizes coverage of the input distribution so evaluation scores reflect real-world diversity.
+- **Rubric generation** — Produces more focused and actionable rubrics by exposing diverse conversation patterns.
+- **Finetuning dataset curation** — Selects traces that help models learn more efficiently.
 
-For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
+The algorithm runs entirely on local compute with no additional API calls, so it doesn't incur extra model inference costs beyond the evaluation itself.
 
-```bash
-pip install "azure-ai-agentserver-core[tracing]"
-```
-
-### Intelligent sampling example
+#### Intelligent sampling example
 
 ```python
 import argparse
@@ -1180,6 +1174,30 @@ if __name__ == "__main__":
     main()
 ```
 
+### Trace data requirements
+
+Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
+
+The following span attributes are used:
+
+| Attribute | Required | Description |
+|-----------|----------|-------------|
+| `gen_ai.operation.name` | **Yes** | Must equal `"invoke_agent"`. The service ignores all other spans. |
+| `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
+| `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
+| `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
+| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls` |
+| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
+| `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
+
+> [!NOTE]
+> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they may not produce meaningful results.
+
+For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
+
+```bash
+pip install "azure-ai-agentserver-core[tracing]"
+```
 
 ### Prerequisites for trace evaluation
 
