@@ -2,8 +2,8 @@
 title: "Use the Microsoft Foundry Skill in coding agents"
 description: "Install and use the Microsoft Foundry Skill with coding agents such as GitHub Copilot in Visual Studio Code, Copilot CLI, and Claude Code."
 keywords: microsoft foundry skill, azure skills plugin, coding agents, copilot, claude code, foundry mcp
-author: MuyangAmigo
-ms.author: MuyangAmigo
+author: junjieli
+ms.author: junjieli
 ms.reviewer:
 ms.date: 05/27/2026
 ms.service: microsoft-foundry
