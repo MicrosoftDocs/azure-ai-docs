@@ -59,7 +59,7 @@ You can create a dataset from traces directly in the portal without writing code
     - **Date range**: Choose the window to pull traces from, such as the last day or last 7 days.
     - **Maximum samples**: Set the cap on rows in the dataset. Use at least 15 samples.
 
-    :::image type="content" source="../../media/observability/data_generation_from_traces.png" alt-text="Screenshot of the Create dataset from traces dialog showing Dataset usage, Name, Agent, Date range, and Maximum samples.":::
+    :::image type="content" source="../../media/observability/data-generation-from-traces.png" alt-text="Screenshot of the Create dataset from traces dialog showing Dataset usage, Name, Agent, Date range, and Maximum samples.":::
 
 3. Select **Create** to submit the job. Dataset generation runs as a background job; track its status on the **Data Generation** tab.
 
