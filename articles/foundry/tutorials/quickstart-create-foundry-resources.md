@@ -53,6 +53,9 @@ Select your preferred method by using the following tabs:
 
 Create a Foundry project to organize your work. The project contains models, agents, and other resources your team uses.
 
+> [!TIP]
+> Create your project in the **West US 3** region if you want to try an [instant model (preview)](../concepts/instant-models.md).
+
 # [Azure CLI](#tab/azurecli)
 
 [!INCLUDE [create-project-cli](../includes/create-project-cli.md)]
@@ -77,7 +80,10 @@ Create a Foundry project to organize your work. The project contains models, age
 
 ## Deploy a model
 
-Deploy a model that you can use. This example uses **gpt-4.1-mini**, but you can choose any available model.
+Deploy a model that you can use. This example uses **gpt-5.1-mini**, but you can choose any available model.
+
+> [!TIP]
+> You can skip this step altogether if you want to try an [instant model (preview)](../concepts/instant-models.md).
 
 # [Azure CLI](#tab/azurecli)
 
@@ -85,8 +91,8 @@ Deploy a model that you can use. This example uses **gpt-4.1-mini**, but you can
 az cognitiveservices account deployment create \
     --name my-foundry-resource \
     --resource-group my-foundry-rg \
-    --deployment-name gpt-4.1-mini \
-    --model-name gpt-4.1-mini \
+    --deployment-name gpt-5.1-mini \
+    --model-name gpt-5.1-mini \
     --model-version "2025-04-14" \
     --model-format OpenAI \
     --sku-capacity 10 \
@@ -99,7 +105,7 @@ Verify the deployment succeeded:
 az cognitiveservices account deployment show \
     --name my-foundry-resource \
     --resource-group my-foundry-rg \
-    --deployment-name gpt-4.1-mini
+    --deployment-name gpt-5.1-mini
 ```
 
 When the deployment is ready, the output shows `"provisioningState": "Succeeded"`.
@@ -109,9 +115,9 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 # [Foundry portal](#tab/portal)
 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. Search for **gpt-4.1-mini**.
+1. Search for **gpt-5.1-mini**.
 1. Select **Deploy** > **Default settings** to add it to your project.
-1. Note the deployment name (for example, `gpt-4.1-mini`). Your team needs this name to use the model.
+1. Note the deployment name (for example, `gpt-5.1-mini`). Your team needs this name to use the model.
 
 ---
 

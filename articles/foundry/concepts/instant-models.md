@@ -60,9 +60,9 @@ Also replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 # [Foundry portal](#tab/portal)
 
-1. On the Home page of your project, select **Explore playgrounds**.
+1. On the Home page of your project, select **Test in playground**. (This might instead be labeled **Explore playgrounds**).
     
-    :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Explore playgrounds card with description to test models and get API key and endpoint.":::
+    <!-- :::image type="content" source="../media/instant-models/playground.png" alt-text="Screenshot of Test in playground card with description to test models and get API key and endpoint."::: -->
 
 1. Use the **Model** dropdown in the playground to switch among deployed and instant models.
 
@@ -98,14 +98,14 @@ To see all models that support instant access:
 |---|---|
 | Getting started, prototyping, or experimentation | Instant models |
 | Using the latest model immediately after release | Instant models |
-| Need reserved capacity or predictable throughput | Deployment |
-| Require provisioned throughput (PTU) | Deployment |
-| Need data residency in a specific region | Deployment |
-| Custom content filtering policies | Deployment |
-| [Guardrails](../guardrails/guardrails-overview.md) | Deployment |
-| Endpoint-specific configuration (for example, custom RAI, version locks per endpoint) | Deployment |
-| Fine-grained quota partitioning across teams | Deployment |
-| Fine-tuned models | Deployment |
+| Need reserved capacity or [predictable throughput](../foundry-models/concepts/deployment-types.md) | Deployment |
+| Require [provisioned throughput (PTU)](../openai/concepts/provisioned-throughput.md) | Deployment |
+| Need [data residency](../foundry-models/concepts/deployment-types.md) in a specific region | Deployment |
+| Custom [content filtering](../guardrails/guardrails-overview.md) policies per model | Deployment |
+| Custom [guardrails](../guardrails/guardrails-overview.md) per model | Deployment |
+| Endpoint-specific configuration (for example, version locks per endpoint) | Deployment |
+| Fine-grained [quota](../how-to/quota.md) partitioning across teams | Deployment |
+| [Fine-tuned models](../fine-tuning/fine-tune-cli.md) | Deployment |
 
 Instant models and deployments can coexist in the same project. You can start with instant models and create deployments later as your requirements evolve.
 
@@ -142,7 +142,7 @@ For more details on how global and regional quotas interact, see [Manage and inc
 | Disable instant models entirely | Administrators can turn off instant models at the subscription level through Azure Policy |
 
 > [!IMPORTANT]
-> [Guardrails](../guardrails/guardrails-overview.md) and custom Responsible AI (RAI) policies aren't supported for instant models during the preview. If you need guardrails or custom content filtering policies, use a deployment.
+> All instant models use default [guardrails](../guardrails/guardrails-overview.md) and content filters. However, you can't configure custom guardrails or Responsible AI (RAI) policies on a per-model basis for instant models. You can set a default RAI policy at the account level through the API, but that policy applies uniformly to all instant models. If you need different content filtering policies for individual models, use a deployment.
 
 ## Deployment name collisions
 

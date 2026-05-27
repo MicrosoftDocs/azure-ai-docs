@@ -177,7 +177,7 @@ You can get more detailed billing information by grouping costs by resource:
 
    :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
-## Chargeback with project-level cost attribution
+## Chargeback with project-level cost attribution (Preview)
 
 Microsoft Foundry supports chargeback at the project level, so FinOps teams and admins can allocate shared Foundry spend back to the business unit, team, or workload that incurred it. Project-level attribution is useful when multiple projects share the same Foundry resource and you need to split the bill accurately.
 
@@ -208,6 +208,7 @@ Every Foundry project is automatically tagged with a `project` tag on its underl
 
 ## Related content
 
+- [Instant models in Microsoft Foundry (preview)](instant-models.md)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
 - [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
