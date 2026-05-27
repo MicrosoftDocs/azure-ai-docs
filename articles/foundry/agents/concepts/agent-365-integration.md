@@ -80,6 +80,89 @@ When agent activity data flows from Foundry into Agent 365, it moves from the Az
 
 This lets you restrict data flows where compliance regulations may require it. For details, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
 
+## Granting A365 OpenTelemetry read/write permissions to an agent
+
+To allow a hosted agent's managed identity to export telemetry to the Agent365 Observability service, you need to assign the `Agent365.Observability.OtelWrite` app role to the agent's service principal.
+
+### Prerequisites
+
+- Azure CLI (`az`) logged in with sufficient permissions (Global Admin or Application Administrator)
+- The agent's managed identity (service principal) Object ID
+- The `Agent365Observability` service principal must exist in your tenant
+
+### Steps
+
+ 1. Identify the required IDs.
+
+| Value | Description | Example |
+|-------|-------------|---------|
+| `principalId` | Agent's managed identity (service principal) Object ID | `47bd3468-237c-4542-8e5a-ca37993e9605` |
+| `resourceId` | `Agent365Observability` service principal Object ID in your tenant | `9918adcd-eb42-4743-a98e-71027476fd7a` |
+| `appRoleId` | The `Agent365.Observability.OtelWrite` role ID | `8f71190c-00c8-461d-a63b-f74abde9ba52` |
+
+1. Find the Agent365Observability service principal in your tenant.
+
+```bash
+az rest --method GET \
+  --uri "https://graph.microsoft.com/v1.0/servicePrincipals?\$filter=displayName eq 'Agent365Observability'" \
+  --query "value[0].id" -o tsv
+```
+
+ 1. Assign the OtelWrite app role.
+
+```bash
+az rest --method POST \
+  --uri "https://graph.microsoft.com/v1.0/servicePrincipals/<AGENT_PRINCIPAL_ID>/appRoleAssignments" \
+  --body '{
+    "principalId": "<AGENT_PRINCIPAL_ID>",
+    "resourceId": "<AGENT365_OBSERVABILITY_SP_ID>",
+    "appRoleId": "8f71190c-00c8-461d-a63b-f74abde9ba52"
+  }'
+```
+
+**Example (echo-agent):**
+
+```bash
+az rest --method POST \
+  --uri "https://graph.microsoft.com/v1.0/servicePrincipals/47bd3468-237c-4542-8e5a-ca37993e9605/appRoleAssignments" \
+  --body '{
+    "principalId": "47bd3468-237c-4542-8e5a-ca37993e9605",
+    "resourceId": "9918adcd-eb42-4743-a98e-71027476fd7a",
+    "appRoleId": "8f71190c-00c8-461d-a63b-f74abde9ba52"
+  }'
+```
+
+1. Verify the assignment.
+
+```bash
+az rest --method GET \
+  --uri "https://graph.microsoft.com/v1.0/servicePrincipals/<AGENT_PRINCIPAL_ID>/appRoleAssignments" \
+  --query "value[?appRoleId=='8f71190c-00c8-461d-a63b-f74abde9ba52']"
+```
+
+### Token Acquisition
+
+Once the role is assigned, the agent can acquire a token for the A365 service using:
+
+```csharp
+var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
+{
+    ManagedIdentityClientId = "<AGENT_CLIENT_ID>"
+});
+var token = await credential.GetTokenAsync(
+    new TokenRequestContext(new[] { "api://9b975845-388f-4429-889e-eab1ef63949c/.default" }));
+```
+
+- **Audience/Scope**: `api://9b975845-388f-4429-889e-eab1ef63949c/.default`
+- **Token role claim**: Should contain `Agent365.Observability.OtelWrite`
+
+### A365 Export Endpoint
+
+Traces are sent to:
+```
+https://agent365.svc.cloud.microsoft/observabilityService/tenants/<TENANT_ID>/otlp/agents/<AGENT_PRINCIPAL_ID>/traces?api-version=1
+```
+
 ## Related content
 
 - [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md)
