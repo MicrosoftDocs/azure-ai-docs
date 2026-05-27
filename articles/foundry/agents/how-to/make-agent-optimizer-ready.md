@@ -31,14 +31,6 @@ Install the `azure-ai-agentserver-optimization` package:
 pip install azure-ai-agentserver-optimization
 ```
 
-This package is part of the `azure-ai-agentserver-*` family (alongside `azure-ai-agentserver-responses` and `azure-ai-agentserver-core`). It depends on `pyyaml`, `azure-core`, and `azure-identity`.
-
-Add it to your `requirements.txt`:
-
-```
-azure-ai-agentserver-optimization>=1.0.0b1
-```
-
 ## Set up the configuration directory
 
 Create the `.agent_configs/baseline/` directory at your project root. This directory defines your agent's baseline configuration — the starting point that the optimizer reads and improves upon.

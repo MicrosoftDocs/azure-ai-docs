@@ -34,59 +34,6 @@ Install the `azure.ai.agents` extension for the azd CLI:
 azd ext install azure.ai.agents
 ```
 
-If you're using the [agent optimizer template](https://github.com/microsoft/faos-pri-preview), the extension install scripts are included:
-
-# [Bash](#tab/bash)
-
-```bash
-./scripts/install-extension.sh
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-.\scripts\install-extension.ps1
-```
-
----
-
-> [!TIP]
-> **For Dev Containers**: Select the **Open in Dev Containers** badge in the repo README. The dev container auto-installs everything.
-
-### Option B: Build from source
-
-<details>
-<summary>Expand for build-from-source instructions (requires Go 1.21+)</summary>
-
-```bash
-# Clone the extension source
-git clone https://github.com/coreai-microsoft/azure-dev-optimize.git
-cd azure-dev-optimize/cli/azd/extensions/azure.ai.agents
-
-# Build the binary
-azd x build
-```
-
-Then install the extension and overlay the binary you built:
-
-# [Bash](#tab/bash)
-
-```bash
-azd ext install azure.ai.agents
-cp bin/azure-ai-agents-$(uname -s | tr A-Z a-z)-* ~/.azd/extensions/azure.ai.agents/
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-azd ext install azure.ai.agents
-Copy-Item bin\azure-ai-agents-windows-amd64.exe $env:USERPROFILE\.azd\extensions\azure.ai.agents\ -Force
-```
-
----
-
-</details>
-
 Verify the installation:
 
 ```bash
@@ -140,34 +87,24 @@ This step creates:
 
 - A Foundry account and project
 - An Azure Container Registry
-- A model deployment for gpt-4.1-mini
+- Model deployments (gpt-4.1-mini for eval, gpt-5.1 for optimization)
 
 ### Option B: Use an existing Foundry project
 
-If you already have a Foundry project with a model deployed, skip provisioning and configure your environment manually:
+If you already have a Foundry project with models deployed, use `agent init` to configure your environment:
 
 ```bash
-azd env new my-optimizer-env
-
-azd env set AZURE_SUBSCRIPTION_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-azd env set AZURE_TENANT_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-azd env set AZURE_AI_PROJECT_ENDPOINT "https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
-azd env set AZURE_CONTAINER_REGISTRY_ENDPOINT "<your-registry>.azurecr.io"
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+azd ai agent init --project-id "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
 ```
 
-Use the following table to find each value:
+> [!TIP]
+> Find your project resource ID in the Azure portal → your Foundry project → **Properties** → **Resource ID**.
 
-| Variable | Where to find it |
-| -------- | ---------------- |
-| `AZURE_SUBSCRIPTION_ID` | Azure portal → **Subscriptions** |
-| `AZURE_TENANT_ID` | Run `az account show --query tenantId -o tsv` |
-| `AZURE_AI_PROJECT_ENDPOINT` | Foundry portal → your project → **Overview** → **Project endpoint** |
-| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Azure portal → **Container Registry** → **Overview** → **Login server** |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Foundry portal → your project → **Models + endpoints** → **Deployments** |
+Set your model deployment name:
 
-> [!NOTE]
-> The project endpoint (not "project ID") is the value the CLI uses to identify your project. It appears on the project **Overview** page in the Foundry portal.
+```bash
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+```
 
 ## Deploy the agent
 
