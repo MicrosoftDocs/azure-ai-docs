@@ -45,6 +45,31 @@ In the trace-based dataset flow, the **Intelligent sampling** option appears in 
 - Foundry User role or higher on the project.
 - Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
 
+## Supported regions for traces to dataset generation
+
+Traces to dataset generation is supported in the following regions:
+
+- UAE North
+- West US 3
+- North Central US
+- East US
+- West Europe
+- South Central US
+- Switzerland North
+- Sweden Central
+- East US 2
+- West US
+- France Central
+- South Africa North
+- Australia East
+- Japan East
+- UK South
+- Norway East
+- Poland Central
+- South India
+- Germany West Central
+- Italy North
+
 ## Generate an evaluation dataset from traces (portal)
 
 You can create a dataset from traces directly in the portal without writing code. This method is the quickest way to turn recent production traffic into an evaluation dataset.
@@ -190,6 +215,11 @@ project_client.beta.datasets.cancel_generation_job(job_id="job_...")
 # Delete a job record (produced datasets are not deleted).
 project_client.beta.datasets.delete_generation_job(job_id="job_...")
 ```
+
+## Limitations
+
+- The Application Insights resource connected to your Foundry project must allow public network access so the service can query Application Insights data. If Application Insights is behind an Azure Monitor Private Link Scope, make sure public network query access is enabled.
+- If your Foundry project is connected to your own storage account, public network access must be enabled on that storage account for successful dataset creation.
 
 ## Best practices
 
