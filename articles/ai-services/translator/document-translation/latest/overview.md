@@ -40,7 +40,7 @@ The Document Translation API supports two translation processes:
 
 API version **2026-03-01** introduces the following capabilities for Document Translation:
 
-* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM (`GPT-5.1`, `GPT-5.2`, or `GPT-5.2-chat`) based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../../how-to/create-translator-resource.md).
+* **Large language model (LLM) selection (public preview)**: By default, Document Translation uses NMT models. With this version, you can optionally select an LLM supported model, for example, GPT-5.4, based on quality, cost, and other factors. LLM-based translation requires a Microsoft Foundry resource. For more information, see [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 * **Image translation**: Translate text within standalone image files (`.jpeg`, `.png`, `.bmp`, `.webp`), with translated content rendered back into the image.
 
