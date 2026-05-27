@@ -37,6 +37,8 @@ A file knowledge source is useful when you want a managed upload experience inst
 
 + Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
++ If the knowledge source specifies an Azure OpenAI model for embeddings, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
