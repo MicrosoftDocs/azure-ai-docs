@@ -118,22 +118,22 @@ Your agent always works with or without optimization. No feature flags or condit
 
 The agent optimizer uses two models during an optimization run. Both must be deployed in your Foundry project.
 
-| Model | Config key | Role | Supported models |
-| ------- | ------------ | ------ | ------------------ |
-| **Eval model** | `eval_model` | Scores agent responses against criteria in the dataset | `gpt-4.1-mini` (default) |
-| **Reflection model** | `reflection_model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
+| Model | Config key | CLI flag | Role | Supported models |
+| ------- | ------------ | -------- | ------ | ------------------ |
+| **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | `gpt-4.1-mini` (default) |
+| **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
 
-The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The reflection model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable reflection model typically produces better candidates.
+The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
 
 ```yaml
 # spec.yaml
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5.1
+  optimization_model: gpt-5.1
 ```
 
 > [!IMPORTANT]
-> Both models are required. If `reflection_model` is not specified in your config, the optimization API returns an error.
+> Both models are required. If `optimization_model` is not specified in your config or passed via `--optimize-model`, the optimization API returns an error.
 
 ## Understand optimization results
 
