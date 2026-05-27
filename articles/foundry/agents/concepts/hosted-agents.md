@@ -232,6 +232,7 @@ Hosted agents are currently available in the following regions:
 - North Central US
 - Sweden Central
 - Canada Central
+- Canada East
 - Southeast Asia
 - Poland Central
 - South Africa North
@@ -243,6 +244,7 @@ Hosted agents are currently available in the following regions:
 - Norway East
 - Japan East
 - France Central
+- Germany West Central
 - Switzerland North
 - Spain Central
 - Australia East
