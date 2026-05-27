@@ -14,27 +14,27 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to auto-select a representative set, so you get a high-value dataset without manual cleanup.
+Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to autoselect a representative set, so you get a high-value dataset without manual cleanup.
 
 Converting traces into a dataset closes the observability loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality. The same job can also produce fine-tuning data.
 
-Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers pre-launch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md).
+Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers prelaunch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md).
 
 ## Intelligent sampling
 
-When you select a time range of traces, the service doesn't just randomly sample from that window. A representative set is auto-selected using intelligent sampling, which curates a high-value set of traces from raw, noisy production data. You don't configure individual filter stages; the service handles selection for you. Intelligent sampling does the following:
+When you select a time range of traces, the service doesn't just randomly sample from that window. It autoselects a representative set by using intelligent sampling, which curates a high-value set of traces from raw, noisy production data. You don't configure individual filter stages; the service handles selection for you. Intelligent sampling does the following tasks:
 
 - **Filters out uninteresting traces** such as single-character messages and other low-intent traffic that add no evaluation signal.
-- **Selects a diverse, representative sample** using MinHash so the result covers the range of your agent's scenarios rather than over-indexing on frequent, near-identical prompts.
-- **Handles sensitive content** including personally identifiable information (PII).
+- **Selects a diverse, representative sample** by using MinHash so the result covers the range of your agent's scenarios rather than overindexing on frequent, near-identical prompts.
+- **Handles sensitive content** including personal data.
 
-This matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
+This process matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
 
 Intelligent sampling uses the same trace-selection algorithm across three experiences in Foundry:
 
-- **Creating a dataset from traces**—covered in this article.
-- **Creating a trace-based evaluation**—evaluate against existing traces with a representative sample from the selected time range.
-- **Generating a rubric evaluator from production traces**—the same sampling algorithm selects traces used as input.
+- **Creating a dataset from traces** - covered in this article.
+- **Creating a trace-based evaluation** - evaluate against existing traces with a representative sample from the selected time range.
+- **Generating a rubric evaluator from production traces** - the same sampling algorithm selects traces used as input.
 
 In the trace-based dataset flow, the **Intelligent sampling** option appears in the time-range UI and is on by default.
 
@@ -47,31 +47,31 @@ In the trace-based dataset flow, the **Intelligent sampling** option appears in 
 
 ## Generate an evaluation dataset from traces (portal)
 
-You can create a dataset from traces directly in the portal without writing code. This is the quickest way to turn recent production traffic into an evaluation dataset.
+You can create a dataset from traces directly in the portal without writing code. This method is the quickest way to turn recent production traffic into an evaluation dataset.
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset** > **From traces**.
 
-2. In the **Create dataset** dialog, confirm the subtitle **Curate a dataset from production traces for evaluation or fine-tuning.** Then configure the dataset:
+1. In the **Create dataset** dialog, confirm the subtitle **Curate a dataset from production traces for evaluation or fine-tuning.** Then configure the dataset:
 
     - **Dataset usage**: Set to **Evaluation**.
     - **Name**: Enter a dataset name.
     - **Agent**: Select the deployed agent whose traces you want to use.
-    - **Date range**: Choose the window to pull traces from, such as the last day or last 7 days.
+    - **Date range**: Choose the window to pull traces from, such as the last day or last seven days.
     - **Maximum samples**: Set the cap on rows in the dataset. Use at least 15 samples.
 
     :::image type="content" source="../../media/observability/data-generation-from-traces.png" alt-text="Screenshot of the Create dataset from traces dialog showing Dataset usage, Name, Agent, Date range, and Maximum samples.":::
 
-3. Select **Create** to submit the job. Dataset generation runs as a background job; track its status on the **Data Generation** tab.
+1. Select **Create** to submit the job. Dataset generation runs as a background job. You can track its status on the **Data Generation** tab.
 
-4. When the job finishes, go to the **Data** tab and select the dataset to preview the generated rows, including the description, query, and response for each. From there you can download or delete the dataset.
+1. When the job finishes, go to the **Data** tab and select the dataset to preview the generated rows, including the description, query, and response for each. From there you can download or delete the dataset.
 
-5. Use the dataset. Finished generation jobs link directly to the next step: evaluation jobs link to starting an evaluation run, and fine-tuning jobs link to starting a fine-tuning job.
+1. Use the dataset. Finished generation jobs link directly to the next step: evaluation jobs link to starting an evaluation run, and fine-tuning jobs link to starting a fine-tuning job.
 
 ## Generate an evaluation dataset from traces (SDK)
 
-Drive your deployed agent with realistic traffic, then use those conversations to build an evaluation dataset. The flow is: define a time window, point at your agent, set a cap on rows, and submit the job.
+Drive your deployed agent with realistic traffic, and then use those conversations to build an evaluation dataset. The flow is: define a time window, point at your agent, set a cap on rows, and submit the job.
 
-First, create an `AIProjectClient` using your project endpoint and `DefaultAzureCredential`. All data generation operations are available under `project_client.beta.datasets`.
+First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -161,11 +161,11 @@ if job.result is not None and job.result.generated_samples is not None:
 
 The job produces a versioned dataset registered in your project. The number of rows is capped by `max_samples` but might be lower if the window doesn't contain enough distinct, high-quality traces after intelligent sampling.
 
-Whether you created the dataset from the portal or the SDK, you can preview it on the **Data** tab to inspect the generated rows before evaluating, and download or delete it from there.
+Whether you created the dataset from the portal or the SDK, you can preview it on the **Data** tab to inspect the generated rows before evaluating. You can also download or delete it from there.
 
 ## Run an evaluation against the generated dataset
 
-Once the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
+After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
 For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md).
 
