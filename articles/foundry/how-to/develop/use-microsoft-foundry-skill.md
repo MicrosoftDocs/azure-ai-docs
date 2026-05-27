@@ -17,16 +17,10 @@ ai-usage: ai-assisted
 
 # Use the Microsoft Foundry Skill in coding agents
 
-The Microsoft Foundry Skill gives coding agents reusable guidance for Foundry
+The [Microsoft Foundry Skill](https://www.skills.sh/microsoft/azure-skills/microsoft-foundry) gives coding agents reusable guidance for Foundry
 agent workflows. Use it to help standardize deployment, evaluation, prompt
 optimization, dataset curation from traces, and troubleshooting tasks across
 agent-enabled development environments.
-
-The recommended setup is the
-[Azure Skills Plugin](https://github.com/microsoft/azure-skills). The plugin
-installs the Azure skills layer, Azure MCP Server configuration, and Foundry MCP
-Server configuration together, so your coding agent can combine workflow
-guidance with live Azure and Foundry tools.
 
 ## Prerequisites
 
@@ -55,7 +49,7 @@ guidance with live Azure and Foundry tools.
   project-scoped resources. For setup steps, see
   [Create a project](../create-projects.md).
 
-## What the skill helps with
+## What the Foundry Skill provides
 
 The `microsoft-foundry` skill is a meta skill for Foundry work. It helps a
 coding agent choose the right Foundry workflow, load the matching sub-skill,
@@ -81,76 +75,16 @@ The installed skill includes specialized sub-skills for those areas. You don't
 usually need to name the sub-skill directly. Ask for the outcome you want, and
 the coding agent uses the skill instructions to route the task.
 
-## How the skill works
 
-When a coding agent uses the Microsoft Foundry Skill, it follows a few common
-patterns:
 
-1. It starts with Foundry MCP discovery so it knows which Foundry tools and
-  parameters are available in your environment.
-1. It loads the sub-skill that matches your workflow, such as creation,
-  deployment, invocation, evaluation, tracing, troubleshooting, RBAC, quota, or
-  model deployment.
-1. It resolves project and agent context from your workspace before it proposes
-  changes or commands.
-1. It prefers structured Foundry and Azure MCP tools when they're available.
-1. It asks for missing values only when they can't be resolved from your prompt,
-  workspace files, or authenticated Azure context.
-
-The skill supports two common agent types:
-
-| Agent type | Use case |
-| --- | --- |
-| Prompt agent | An LLM-backed agent that uses a model deployment and prompt configuration. |
-| Hosted agent | A container-based agent that runs custom code in Foundry Agent Service. |
-
-For hosted agent workflows, the skill can also work with agents that use the
-`responses`, `invocations`, or `invocations_ws` protocols. Use
-`invocations_ws` for real-time or duplex WebSocket scenarios, such as voice
-agents or streaming interactions.
-
-## Workspace files the skill uses
-
-The skill looks for Foundry project and agent context in common workspace files.
-Keep these files current so your coding agent can make specific, repeatable
-recommendations.
-
-| File or folder | How the skill uses it |
-| --- | --- |
-| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, and environment bindings. |
-| `.azure/<environment>/.env` | Resolves authenticated `azd` environment values such as subscription, resource group, project endpoint, agent name, registry, and Application Insights connection string. |
-| `.foundry/agent-metadata.yaml` | Stores Foundry-specific overlay state such as evaluation suite references, dataset references, local cache paths, result summaries, and non-`azd` overrides. |
-| `.foundry/agent-metadata.<env>.yaml` | Stores environment-specific overlay state for a target such as production or CI. |
-| `agent.yaml` | Provides local agent configuration for create, deploy, invoke, and evaluation workflows. |
-| `eval.yaml` | Defines local evaluation intent, such as dataset file, evaluator names, pass threshold, sample count, trace lookback, and generation instructions. |
-
-For deployment and evaluation workflows, prefer `.foundry/agent-metadata.yaml`
-for nonsecret overlay state. Don't store secrets in `.foundry` files. If `azd`
-already provides a deployment value, such as a project endpoint or registry, let
-the coding agent use the `azd` value instead of duplicating it in metadata.
-
-## Install the Azure Skills Plugin
-
-Choose the installation path for your coding agent host.
+## Installation
 
 ### [VS Code](#tab/vscode)
 
-Install the
-[GitHub Copilot for Azure extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot).
-When the extension activates, it installs Azure skills. If Visual Studio Code
-shows a notification that offers to install Azure skills, select **Install**.
-
-To install skills manually, open the **Command Palette** and run one of these
-commands:
-
-- `@azure: Install Azure Skills Globally` installs skills in your home
-  directory, so they're available in all workspaces.
-- `@azure: Install Azure Skills Locally` installs skills in the current
-  workspace folder.
-- `@azure: Uninstall Azure Skills Globally` removes globally installed skills.
+The [Foundry Toolkit extension for VS Code](http://aka.ms/foundrytk) comes with the Foundry Skill. Please reference [!INCLUDE [get-started-projects-vs-code 1](../../includes/how-to-develop-get-started-projects-vs-code-1.md)]
 
 After installation, reload Visual Studio Code if prompted. Open Copilot Chat,
-switch to agent mode, and confirm that Azure skills are available. When
+switch to agent mode, and confirm that Foundry skills are available. When
 prompted, sign in with the Azure account that has access to your Foundry
 project.
 
@@ -158,8 +92,11 @@ For more information about MCP setup in Visual Studio Code, see
 [Get started with the Azure MCP Server](/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code)
 and [Get started with Foundry MCP Server](../../mcp/get-started.md).
 
-### [Copilot CLI](#tab/copilot-cli)
+### [Coding agents such as Copilot CLI and Claude Code](#tab/coding-agents)
 
+The [Azure Skills Plugin](https://github.com/microsoft/azure-skills) bundles a curated set of Azure skills—including the Foundry Skill, Azure MCP Server configuration, and Foundry MCP Server—into a single install. Together, they give coding agents an optimized experience for building with Foundry and other Azure services.
+
+#### [Copilot CLI](#tab/copilot-cli)
 Run the plugin commands inside Copilot CLI.
 
 1. Add the Azure Skills Plugin marketplace the first time you install from it:
@@ -186,7 +123,7 @@ Run the plugin commands inside Copilot CLI.
    /plugin update azure@azure-skills
    ```
 
-### [Claude Code](#tab/claude-code)
+#### [Claude Code](#tab/claude-code)
 
 Run the plugin commands inside Claude Code.
 
@@ -208,7 +145,7 @@ Run the plugin commands inside Claude Code.
 
 ---
 
-## Install only the Microsoft Foundry Skill
+#### [Install just the Foundry Skill](#tab/foundry-skill-alone)
 
 If your host already has MCP server configuration and you only need the skill
 content, install the `microsoft-foundry` skill directly:
@@ -278,6 +215,54 @@ for Foundry resource management, RBAC, quotas, model deployment, hosted agent
 deployment, evaluation, tracing, and troubleshooting. Install Foundry Toolkit
 for VS Code to make these extension-provided skills available in your VS Code
 agent experience.
+
+## How the skill works
+
+When a coding agent uses the Microsoft Foundry Skill, it follows a few common
+patterns:
+
+1. It starts with Foundry MCP discovery so it knows which Foundry tools and
+  parameters are available in your environment.
+1. It loads the sub-skill that matches your workflow, such as creation,
+  deployment, invocation, evaluation, tracing, troubleshooting, RBAC, quota, or
+  model deployment.
+1. It resolves project and agent context from your workspace before it proposes
+  changes or commands.
+1. It prefers structured Foundry and Azure MCP tools when they're available.
+1. It asks for missing values only when they can't be resolved from your prompt,
+  workspace files, or authenticated Azure context.
+
+The skill supports two common agent types:
+
+| Agent type | Use case |
+| --- | --- |
+| Prompt agent | An LLM-backed agent that uses a model deployment and prompt configuration. |
+| Hosted agent | A container-based agent that runs custom code in Foundry Agent Service. |
+
+For hosted agent workflows, the skill can also work with agents that use the
+`responses`, `invocations`, or `invocations_ws` protocols. Use
+`invocations_ws` for real-time or duplex WebSocket scenarios, such as voice
+agents or streaming interactions.
+
+## Workspace files the skill uses
+
+The skill looks for Foundry project and agent context in common workspace files.
+Keep these files current so your coding agent can make specific, repeatable
+recommendations.
+
+| File or folder | How the skill uses it |
+| --- | --- |
+| `azure.yaml` | Finds `azd` services, agent project folders, deployment host settings, and environment bindings. |
+| `.azure/<environment>/.env` | Resolves authenticated `azd` environment values such as subscription, resource group, project endpoint, agent name, registry, and Application Insights connection string. |
+| `.foundry/agent-metadata.yaml` | Stores Foundry-specific overlay state such as evaluation suite references, dataset references, local cache paths, result summaries, and non-`azd` overrides. |
+| `.foundry/agent-metadata.<env>.yaml` | Stores environment-specific overlay state for a target such as production or CI. |
+| `agent.yaml` | Provides local agent configuration for create, deploy, invoke, and evaluation workflows. |
+| `eval.yaml` | Defines local evaluation intent, such as dataset file, evaluator names, pass threshold, sample count, trace lookback, and generation instructions. |
+
+For deployment and evaluation workflows, prefer `.foundry/agent-metadata.yaml`
+for nonsecret overlay state. Don't store secrets in `.foundry` files. If `azd`
+already provides a deployment value, such as a project endpoint or registry, let
+the coding agent use the `azd` value instead of duplicating it in metadata.
 
 ## Troubleshooting
 
