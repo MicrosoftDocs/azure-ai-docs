@@ -34,7 +34,7 @@ The entire process runs in the cloud. Start it with `azd ai agent optimize` (req
 > [!TIP]
 > For the best results, generate a dataset tailored to your agent with `azd ai agent eval init` before running optimization. The optimizer auto-detects the generated `eval.yaml`. For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
 
-:::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them.":::
+<!-- :::image type="content" source="media/agent-optimizer-architecture.svg" alt-text="Diagram showing how the agent optimizer interacts with your hosted agent. The agent loads configuration at startup, and the agent optimizer evaluates, generates candidates, and ranks them."::: -->
 
 ## Optimization targets
 

@@ -20,7 +20,7 @@ The agent optimizer supports four optimization targets: **instruction tuning** (
 | Scenario | What the optimizer does |
 | ---------- | ----------------------- |
 | Improve overall response quality | Instruction tuning |
-| Reduce hallucination | Instruction tuning |
+| Reduce incorrect information | Instruction tuning |
 | Improve repeatable behaviors (escalation, debugging patterns) | Skill improvement |
 | Agent has structured procedures that need refinement | Skill improvement |
 | Find the best quality/cost model trade-off | Model selection |
@@ -388,7 +388,7 @@ If all candidates score lower than the baseline, don't deploy any candidate. The
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | All scores are 0.00 | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify one that exists |
-| `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
+| `optimize` returns 403 | Subscription not on allow list | Contact your Microsoft representative to request access |
 | `"agent.yaml does not declare any protocols"` | Invalid `agent.yaml` format | Use flat format: `kind: hosted` at top level with `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |
 | No candidate IDs in output | Job still running | Wait for completion or use `--watch` |

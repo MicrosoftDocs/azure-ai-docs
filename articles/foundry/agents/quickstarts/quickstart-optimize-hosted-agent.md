@@ -24,7 +24,7 @@ In this quickstart, you install the optimization CLI extension, deploy a hosted 
 | [azd CLI](https://aka.ms/azd) | Yes | Azure Developer CLI. Provisions, deploys, and manages your agent. |
 | [Azure CLI](/cli/azure/install-azure-cli) | Yes | Azure authentication (`az login`) |
 
-Your Azure subscription must be on the allowlist for the agent optimizer. Contact your Microsoft representative to request access.
+Your Azure subscription must be on the allow list for the agent optimizer. Contact your Microsoft representative to request access.
 
 ## Install the CLI extension
 
