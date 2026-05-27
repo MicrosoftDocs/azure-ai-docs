@@ -178,4 +178,5 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Instant models in Microsoft Foundry (preview)](concepts/instant-models.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [Use the Microsoft Foundry Skill in coding agents](how-to/develop/use-microsoft-foundry-skill.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

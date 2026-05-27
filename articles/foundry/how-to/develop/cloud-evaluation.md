@@ -55,7 +55,7 @@ Use this path when your agent is already running and you want to evaluate what a
 | Scenario | When to use | Data source type |
 |----------|-------------|------------------|
 | **[Agent response evaluation](#agent-response-evaluation)** | Your agent runs in Foundry and you have response IDs to score. | `azure_ai_responses` |
-| **[Turn-level trace evaluation (preview)](#trace-evaluation)** | Your agent emits OpenTelemetry traces to Application Insights - including non-Foundry frameworks like LangChain or custom OpenTelemetry-instrumented agents. Each trace is scored independently. | `azure_ai_trace_data_source_preview` |
+| **[Turn-level trace evaluation (preview)](#trace-evaluation-preview)** | Your agent emits OpenTelemetry traces to Application Insights - including non-Foundry frameworks like LangChain or custom OpenTelemetry-instrumented agents. Each trace is scored independently. | `azure_ai_trace_data_source_preview` |
 | **[Conversation-level trace evaluation (preview)](#multiturn-conversation-evaluation)** | Same trace sources, but score full conversations - by conversation ID or by agent filter with sampling. | `azure_ai_trace_data_source_preview` |
 
 #### Inputs without responses
@@ -1036,7 +1036,7 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
-## Trace evaluation
+## Trace evaluation (preview)
 
 Evaluate agent interactions that Application Insights already captured. Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic. You select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
 
