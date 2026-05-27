@@ -15,6 +15,8 @@ items:
     href: ../../agents/concepts/development-lifecycle.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
+  - name: Routines (preview)
+    href: ../../agents/concepts/routines.md
   - name: Hosted agents
     href: ../../agents/concepts/hosted-agents.md
   - name: Create a workflow
@@ -41,6 +43,8 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox (preview)
     href: ../../agents/how-to/tools/toolbox.md
+  - name: Tool search (preview)
+    href: ../../agents/how-to/tools/tool-search.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
@@ -53,9 +57,9 @@ items:
     href: ../../agents/how-to/tools/function-calling.md
   - name: Voice integration (preview)  
     items:
-    - name: Quickstart - Talk to a voice agent
+    - name: Quickstart - Talk to prompt agents with voice
       href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
-    - name: How to build a voice agent
+    - name: How to enable voice for prompt agents
       href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
   - name: Web search capabilities
     items:
@@ -69,6 +73,8 @@ items:
     items:
     - name: Connect to MCP server
       href: ../../agents/how-to/tools/model-context-protocol.md
+    - name: Managed MCP servers (preview)
+      href: ../../agents/how-to/tools/connectors.md
     - name: MCP authentication
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
@@ -142,12 +148,16 @@ items:
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
       href: ../../agents/how-to/manage-hosted-sessions.md
+    - name: Deploy a Hosted voice agent (preview)
+      href: ../../agents/how-to/build-voice-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
   - name: Enable incoming A2A (preview)
     href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
+  - name: Automate agents with routines (preview)
+    href: ../../agents/how-to/use-routines.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:

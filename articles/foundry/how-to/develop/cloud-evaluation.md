@@ -8,7 +8,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/01/2026
+ms.date: 06/02/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -997,6 +997,78 @@ Trace evaluation supports two modes:
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
+
+### Intelligent sampling
+ 
+Trace evaluation supports intelligent sampling, which selects a representative subset of traces for evaluation instead of evaluating every captured trace. Enable this feature by turning on the **Intelligent sampling** toggle in the Foundry portal when you configure a trace evaluation run. Intelligent sampling reduces evaluation cost while preserving trace diversity — ensuring that edge cases, error paths, and varied conversation patterns are included in the evaluated set.
+
+#### How intelligent sampling works
+
+The sampling algorithm uses a MinHash farthest-first diversity approach that runs in multiple stages:
+
+1. **Exact deduplication** — Removes duplicate traces from the pool.
+1. **Hard filters** — Removes broken sessions, truncated traces, and malformed tool calls that aren't suitable for evaluation.
+1. **Aggregation** — Combines trace-level signals into a unified representation.
+1. **MinHash farthest-first selection** — Computes locality-sensitive hashes (MinHash signatures) of user text to estimate similarity between traces, then iteratively selects the most dissimilar trace from the remaining pool. Each successive pick maximizes distance from all previously selected traces.
+
+This approach produces significantly higher lexical diversity and broader vocabulary coverage compared to random sampling, which means the evaluated set better represents the full range of agent interactions — including rare, hard, and novel cases that random sampling tends to miss.
+
+Intelligent sampling is particularly effective for:
+
+- **Evaluation and benchmarks** — Maximizes coverage of the input distribution so evaluation scores reflect real-world diversity.
+- **Rubric generation** — Produces more focused and actionable rubrics by exposing diverse conversation patterns.
+- **Finetuning dataset curation** — Selects traces that help models learn more efficiently.
+
+The algorithm runs entirely on local compute with no additional API calls, so it doesn't incur extra model inference costs beyond the evaluation itself.
+
+#### Intelligent sampling example
+
+```python
+# Eval group for trace-based evaluations
+data_source_config = {
+    "type": "azure_ai_source",
+    "scenario": "traces",
+}
+
+print("Creating trace-based evaluation group")
+eval_object = client.evals.create(
+    name="Trace Evaluation (Agent Smart Filter)",
+    data_source_config=data_source_config,  # type: ignore
+    testing_criteria=testing_criteria,
+)
+print(f"Evaluation created (id: {eval_object.id})")
+
+# Compute time window in unix seconds
+# Pad end_time by +600s (10 min) to avoid ingestion-delay edge exclusion
+now_unix = int(time.time())
+end_time = now_unix + 600
+start_time = now_unix - (args.lookback_hours * 3600)
+
+# Build trace_source based on mode
+trace_source: dict = {
+    "type": "agent_filter",
+    "start_time": start_time,
+    "end_time": end_time,
+    "max_traces": args.max_traces,
+    "filter_strategy": "smart_filtering"
+}
+
+# Add agent name/version or agent id
+trace_source["agent_name"] = agent_name
+trace_source["agent_version"] = agent_version
+## trace_source["agent_id"] = args.agent_id
+
+data_source = {
+    "type": "azure_ai_trace_data_source_preview",
+    "trace_source": trace_source,
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="trace-evaluation-agent-smart-filter-run",
+    data_source=data_source,  # type: ignore
+)
+```
 
 ### Trace data requirements
 
