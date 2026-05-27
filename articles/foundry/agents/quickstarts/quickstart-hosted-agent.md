@@ -38,7 +38,7 @@ Before you begin, you need:
 
 * An Azure subscription--[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The **Foundry Project Manager** role at project scope (or another role that grants both data-plane and role-assignment permissions). For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
-* [Python 3.10 or later](https://www.python.org/downloads/).
+* [Python 3.13 or later](https://www.python.org/downloads/).
 * [Git](https://git-scm.com/downloads).
 
 :::zone pivot="azd"
@@ -61,10 +61,7 @@ Before you begin, you need:
 :::zone pivot="vscode"
 
 * [Visual Studio Code](https://code.visualstudio.com/).
-* [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk), prerelease channel.
-* The Microsoft Foundry extension for Visual Studio Code, prerelease channel.
-
-To switch an extension to its prerelease channel, open the extension in VS Code, select the dropdown next to **Install**, and select **Switch to Pre-Release Version**.
+* [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk).
 
 :::zone-end
 
@@ -168,23 +165,28 @@ Deploying services (azd deploy)
 
 ## Step 1: Create a Foundry project
 
-1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create Project**.
+1. Open the Command Palette (**Ctrl+Shift+P**) and select **Foundry Toolkit: Create Project**.
 1. Select your Azure subscription.
 1. Create a new resource group or select an existing one.
 1. Enter a name for the Foundry project.
 
 ## Step 2: Deploy a model
 
-1. Open the Command Palette and select **Microsoft Foundry: Open Model Catalog**.
+1. Open the Command Palette and select **Foundry Toolkit: Open Model Catalog**.
 1. Search for `gpt-4.1` and select **Deploy**.
 1. On the model deployment page, select **Deploy to Microsoft Foundry**.
 
 ## Step 3: Create a hosted agent project
 
-1. Open the Command Palette and select **Microsoft Foundry: Create new Hosted Agent**.
-1. Select the framework, then Python as the language, then **Responses API**.
-1. Select **Basic agent** as the sample code.
+1. Open the Command Palette and select **Foundry Toolkit: Create new Hosted Agent**.
+1. Select the **Python** as the language
+1. For "Framework", select **Agent Framework**
+1. Select **Responses API** as the protocol type
+1. Select **Basic** as the sample code.
+1. Click "Next"
 1. Choose a folder for the project files and enter a name for the agent.
+1. For "Environment Setup", choose **Set up with Microsoft Foundry**, the content should auto-populate with the project and model you created in step 1 and 2.
+1. Click "Create"
 
 A new VS Code window opens with the project as the active workspace.
 
@@ -227,11 +229,15 @@ curl -sS -H "Content-Type: application/json" -X POST http://localhost:8088/respo
 
 ## Step 6: Deploy to Foundry Agent Service
 
-1. Open the Command Palette and select **Microsoft Foundry: Deploy Hosted Agent**.
-1. Select **Default ACR**.
-1. Choose the CPU and memory configuration for the container.
+1. Open the Command Palette and select **Foundry Toolkit: Deploy Hosted Agent**. A deployment webview will open.
+1. For "Deployment Method", select **Code**
+1. Select **Remote** as the package mode.
+1. The "Agent Name" should auto-populate
+1. Select "Next".
+1. This "Review and Deploy" page should all auto-populate.
+1. Click on "Deploy".
 
-When deployment completes, the agent appears under **Hosted Agents (Preview)** in the Microsoft Foundry Toolkit explorer.
+When deployment completes, the agent appears under **Hosted Agents (Preview)** in the Foundry Toolkit explorer.
 
 :::zone-end
 
@@ -267,7 +273,7 @@ When deployment completes, the agent appears under **Hosted Agents (Preview)** i
 
 :::zone pivot="vscode"
 
-1. In the Microsoft Foundry Toolkit explorer, expand **Hosted Agents (Preview)** and select your agent. The detail page shows the status under **Container Details**.
+1. In the Foundry Toolkit explorer, expand **Hosted Agents (Preview)** and select your agent. The detail page shows the status under **Deployment Details**.
 1. Select the **Playground** tab and send a test prompt such as `Write a haiku about deploying cloud applications.`.
 
 :::zone-end
