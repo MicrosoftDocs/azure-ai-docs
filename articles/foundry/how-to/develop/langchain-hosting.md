@@ -52,7 +52,7 @@ on the project. For details, see [Deploy a Hosted agent](../../agents/how-to/dep
 Install `langchain-azure-ai` with the hosting extra:
 
 ```bash
-pip install -U "langchain-azure-ai[hosting]" azure-identity
+pip install -U "langchain-azure-ai[hosting]>=1.2.4" azure-identity
 ```
 
 The `hosting` extra installs the Foundry protocol libraries used by the host
@@ -63,10 +63,9 @@ servers:
 - `azure-ai-agentserver-invocations` for the generic `/invocations` endpoint.
 
 > [!NOTE]
-> The hosting APIs require a `langchain-azure-ai` build that includes the
-> `hosting` extra. If the package version in your environment doesn't include
-> this extra yet, install from the source branch that contains
-> `langchain_azure_ai.agents.hosting`.
+> The hosting APIs require `langchain-azure-ai>=1.2.4` installed with the
+> `hosting` extra. If your environment uses an earlier package version,
+> upgrade before you run the examples.
 
 ## Choose a hosting protocol
 
