@@ -24,6 +24,8 @@ items:
      href: ../../concepts/evaluation-evaluators/agent-evaluators.md
    - name: Azure OpenAI evaluators
      href: ../../concepts/evaluation-evaluators/azure-openai-graders.md
+   - name: Rubric evaluators
+     href: ../../concepts/evaluation-evaluators/rubric-evaluators.md
    - name: Custom evaluators
      href: ../../concepts/evaluation-evaluators/custom-evaluators.md
 
