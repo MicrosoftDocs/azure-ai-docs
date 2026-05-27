@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Retrieve a list of all batch translation jobs submitted to your resource, along with status and summary information for each job. The response supports paging and filtering, which is useful for auditing job history or recovering a job ID.
 
-**HTTP method:** GET
-**API version:** 2026-03-01
+HTTP method: **GET**
+API version: **2026-03-01**
 
 ## Request
 

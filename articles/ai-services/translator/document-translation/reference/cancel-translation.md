@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Cancel a batch translation job that is in a `NotStarted` or `Running` state. The service makes a best-effort attempt to stop processing. Documents that have already completed translation are retained in the target container and billed normally. Jobs in a terminal state (`Succeeded`, `Failed`, `Cancelled`) cannot be canceled.
 
-**HTTP method:** DELETE
-**API version:** 2026-03-01
+HTTP method: **DELETE**
+API version: **2026-03-01**
 
 ## Request
 

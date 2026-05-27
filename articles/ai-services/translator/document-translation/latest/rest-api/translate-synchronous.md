@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Translate a single document and receive the translated output in the HTTP response. This operation doesn't require Azure Blob Storage, which makes it well-suited for interactive translation, lightweight integrations, and testing. The request uses multipart/form-data to pass the document and returns the translated file as binary data in the response body.
 
-**HTTP method:** POST
-**API version:** 2026-03-01
+HTTP method: **POST**
+API version: **2026-03-01**
 
 ## Request
 

@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Retrieve the translation status for every document in a batch translation job. The response includes per-document status, progress, output location, and character usage. This operation supports paging, sorting, and filtering, which is useful for large jobs.
 
-**HTTP method:** GET
-**API version:** 2026-03-01
+HTTP method: **GET**
+API version: **2026-03-01**
 
 ## Request
 

@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Submit one or more documents stored in Azure Blob Storage for asynchronous translation. The service returns an `operation-location` header containing the job ID, which you use to poll for status. Each target container in a batch must be unique; submitting documents to a target container that already has translated output causes a file conflict error. Use the `targetUrl` for a specific container, not a shared destination.
 
-**HTTP method:** POST
-**API version:** 2026-03-01
+HTTP method: **POST**
+API version: **2026-03-01**
 
 ## Request
 

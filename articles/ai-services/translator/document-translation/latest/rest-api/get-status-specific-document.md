@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 Retrieve status details for a single document within a batch translation job. The response includes translation status, progress, output URL, and character usage. This is the most targeted way to retrieve error details or the output URL for one document without paging through the full document list.
 
-**HTTP method:** GET
-**API version:** 2026-03-01
+HTTP method: **GET**
+API version: **2026-03-01**
 
 ## Request
 
