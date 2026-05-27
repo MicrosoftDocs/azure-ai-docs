@@ -23,7 +23,7 @@ Content Understanding offers sophisticated document analysis capabilities. Organ
 > * As part of Azure Content Understanding capabilities, Azure Document Intelligence provides high-accuracy and reliable deterministic extraction from structured documents.
 > * Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content.
 > * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
-> * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
+> * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../choosing-right-ai-tool.md).
 
 ## Business use cases
 
