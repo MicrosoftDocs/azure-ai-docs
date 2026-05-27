@@ -98,14 +98,14 @@ To see all models that support instant access:
 |---|---|
 | Getting started, prototyping, or experimentation | Instant models |
 | Using the latest model immediately after release | Instant models |
-| Need reserved capacity or predictable throughput | Deployment |
-| Require provisioned throughput (PTU) | Deployment |
-| Need data residency in a specific region | Deployment |
-| Custom content filtering policies per model | Deployment |
+| Need reserved capacity or [predictable throughput](../foundry-models/concepts/deployment-types.md) | Deployment |
+| Require [provisioned throughput (PTU)](../openai/concepts/provisioned-throughput.md) | Deployment |
+| Need [data residency](../foundry-models/concepts/deployment-types.md) in a specific region | Deployment |
+| Custom [content filtering](../guardrails/guardrails-overview.md) policies per model | Deployment |
 | Custom [guardrails](../guardrails/guardrails-overview.md) per model | Deployment |
 | Endpoint-specific configuration (for example, version locks per endpoint) | Deployment |
-| Fine-grained quota partitioning across teams | Deployment |
-| Fine-tuned models | Deployment |
+| Fine-grained [quota](../how-to/quota.md) partitioning across teams | Deployment |
+| [Fine-tuned models](../fine-tuning/fine-tune-cli.md) | Deployment |
 
 Instant models and deployments can coexist in the same project. You can start with instant models and create deployments later as your requirements evolve.
 
