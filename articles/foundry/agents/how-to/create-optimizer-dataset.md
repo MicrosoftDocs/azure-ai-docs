@@ -234,5 +234,5 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Optimize agent instructions and skills](optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

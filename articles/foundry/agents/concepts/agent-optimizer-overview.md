@@ -1,6 +1,6 @@
 ---
 title: "Agent optimizer in Foundry Agent Service overview (preview)"
-description: "Automatically improve hosted agents by evaluating behavior and generating better system instructions and skills using the agent optimizer in Foundry Agent Service."
+description: "Automatically improve hosted agents by evaluating behavior and generating better instructions, skills, tools, and model configurations using the agent optimizer in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -121,9 +121,9 @@ The agent optimizer uses two models during an optimization run. Both must be dep
 | Model | Config key | CLI flag | Role | Supported models |
 | ------- | ------------ | -------- | ------ | ------------------ |
 | **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | Any chat-completion model (for example, `gpt-4.1-mini`) |
-| **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4`, `gpt-5.5`, `DeepSeek-V4-Pro`, `DeepSeek-V-3.2` |
+| **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate configurations (instructions, skills, tools, model selection) | `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4`, `gpt-5.5`, `DeepSeek-V4-Pro`, `DeepSeek-V-3.2` |
 
-The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
+The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved candidates across the configured targets (instructions, skills, tools, and models). Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
 
 ```yaml
 # spec.yaml
@@ -224,4 +224,4 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 - [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)

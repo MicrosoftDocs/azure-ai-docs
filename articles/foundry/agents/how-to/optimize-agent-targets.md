@@ -1,6 +1,6 @@
 ---
-title: "Optimize agent instructions and skills in Foundry Agent Service (preview)"
-description: "Run instruction tuning or skill discovery using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
+title: "Optimize agent instructions, skills, tools, and models in Foundry Agent Service (preview)"
+description: "Run instruction tuning, skill discovery, tool optimization, or model selection using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,11 +11,11 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Optimize agent instructions and skills (preview)
+# Optimize agent instructions, skills, tools, and models (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The agent optimizer supports three optimization targets: **instruction tuning** (the default) rewrites your agent's system prompt, **skill discovery** generates reusable capabilities, and **model selection** evaluates across multiple model deployments. This guide covers all targets.
+The agent optimizer supports four optimization targets: **instruction tuning** (the default) rewrites your agent's system prompt, **skill discovery** generates reusable capabilities, **tool optimization** improves tool descriptions and parameters, and **model selection** evaluates across multiple model deployments. This guide covers all targets.
 
 | Scenario | Recommended target |
 | ---------- | ----------------------- |
@@ -151,7 +151,7 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 
 ### Optimization model (reflection)
 
-The optimization model (also called "reflection model") generates candidate instructions and skills. It analyzes baseline results and produces improved variants. It must be deployed in your Foundry project.
+The optimization model (also called "reflection model") generates candidate configurations — improved instructions, skills, and tool descriptions. It analyzes baseline results and produces improved variants. It must be deployed in your Foundry project.
 
 Supported models: `gpt-5`, `gpt-5.1`, `gpt-5.3`.
 

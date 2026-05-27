@@ -156,7 +156,7 @@ For more details on agent targeting, see [Which agent gets optimized](../how-to/
 The agent optimizer completes the following steps:
 
 1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
-1. Generates improved instruction candidates.
+1. Generates improved candidates (instructions, skills, tools, or model configurations depending on your target).
 1. Evaluates each candidate.
 1. Ranks the candidates by score.
 
@@ -275,6 +275,6 @@ azd down --force --purge
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 
