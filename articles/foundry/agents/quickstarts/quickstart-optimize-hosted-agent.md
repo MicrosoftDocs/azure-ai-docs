@@ -46,7 +46,7 @@ Initialize a new project from the agent optimizer sample. Create a folder, then 
 
 ```bash
 mkdir my-agent && cd my-agent
-azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml . --no-prompt
 ```
 
 This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
@@ -160,7 +160,7 @@ The agent optimizer completes the following steps:
 1. Evaluates each candidate.
 1. Ranks the candidates by score.
 
-This process takes 5 to 20 minutes. You see real-time progress:
+This process takes a few minutes. You see real-time progress:
 
 ```output
 Optimizing agent "faos-sample-agent"...
@@ -221,7 +221,7 @@ azd ai agent eval run
 
 ## Next steps: Use a custom dataset
 
-This quickstart uses the built-in dataset (3 tasks, 12 criteria). For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
+This quickstart uses the built-in dataset. For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
 
 ```bash
 azd ai agent eval init
@@ -265,9 +265,7 @@ azd down --force --purge
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
-| All scores are zero | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify a deployed model |
-| `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
+| All scores are zero | Agent or eval model not deployed | Deploy the agent or eval model in your Foundry project, or use `--eval-model` to specify a deployed model |
 | `azd provision` fails with quota error | Subscription lacks capacity | Try a different subscription or request a quota increase |
 
 ## Related content
