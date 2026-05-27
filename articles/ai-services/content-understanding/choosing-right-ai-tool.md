@@ -6,44 +6,40 @@ description: Learn about Azure Content Understanding in Foundry Tools, Azure Doc
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/08/2026
+ms.date: 06/02/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ai-usage: ai-assisted
 ---
-
-# Choose the right Foundry Tool for Document Processing
+<!-- markdownlint-disable MD025 -->
+# Choose the right Foundry Tool for document processing
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-As organizations increasingly use Generative AI to manage documents and unstructured data, it's essential to select the right tool for building robust, secure, and scalable document processing workflows. Azure Content Understanding in Foundry Tools is Microsoft's comprehensive content AI service that unifies multiple approaches to document and content processing. Content Understanding brings together [Azure Document Intelligence](../document-intelligence/overview.md) capabilities — including industry-leading, high-accuracy extraction from structured document types — with LLM-powered capabilities designed for complex, unstructured, and multimodal content, enabling both traditional and generative AI approaches to information extraction. Together, these approaches give you flexibility to handle everything from standardized forms to free-form documents, images, audio, and video.
+As organizations increasingly use Generative AI to manage documents and unstructured data, it's essential to select the right tool for building robust, secure, and scalable document processing workflows. Azure Content Understanding in Foundry Tools is Microsoft's comprehensive content AI service that unifies multiple approaches to document and content processing. Content Understanding brings together [Azure Document Intelligence](../document-intelligence/overview.md) capabilities—including industry-leading, high-accuracy extraction from structured document types—with LLM-powered capabilities designed for complex, unstructured, and multimodal content, enabling both traditional and generative AI approaches to information extraction. Together, these approaches give you flexibility to handle everything from standardized forms to free-form documents, images, audio, and video.
 
 This article helps you make two decisions:
 
 - **[Managed service or build your own?](#azure-content-understanding-vs-build-your-own)** Should you use Azure Content Understanding, or build a custom solution with Azure-hosted LLMs (Foundry models)?
 - **[Which tool within Content Understanding?](#choosing-the-right-tool-within-azure-content-understanding)** If you've chosen Content Understanding, should you use Azure Document Intelligence models or Content Understanding analyzers?
 
-
 ## Foundry Tools for Document Processing
 
 As a Foundry Tool, Azure Content Understanding brings together comprehensive and complementary capabilities for different document needs:
 
-
-- **Azure Content Understanding in Foundry Tools** are powered by generative AI and LLMs. They are good at handling unstructured documents, varying layouts, multimodal content, inferred fields, and complex reasoning scenarios, all without requiring labeled training data to get started.
-- **Azure Document Intelligence in Foundry Tools** provides specialized AI models purposely trained for document parsing and extraction tasks. They are ideal for structured documents with common templates where consistency, low latency, and proven accuracy are the priority.
+- **Azure Content Understanding in Foundry Tools** are powered by generative AI and LLMs. They're good at handling unstructured documents, varying layouts, multimodal content, inferred fields, and complex reasoning scenarios, all without requiring labeled training data to get started.
+- **Azure Document Intelligence in Foundry Tools** provides specialized AI models purposely trained for document parsing and extraction tasks. They're ideal for structured documents with common templates where consistency, low latency, and proven accuracy are the priority.
 
 - Separately, **Azure-hosted LLMs (Foundry models)** are available for teams that need complete control over their own models, prompts, and infrastructure.
 
 The goal of this article is to help you navigate these options based on your document type, accuracy requirements, and build effort constraints.
 
 > [!IMPORTANT]
-> If you're already running Document Intelligence in production, your APIs, endpoints, SDKs, and billing are completely unchanged. No migration is required. This article applies to new workloads and expansion into adjacent use cases where generative AI, multimodal processing, or zero-shot extraction can add value.
-
----
+> If you're already running Document Intelligence in production, your APIs, endpoints, SDKs, and billing are unchanged. No migration is required. This article applies to new workloads and expansion into adjacent use cases where generative AI, multimodal processing, or zero-shot extraction can add value.
 
 ## Azure Content Understanding vs. build your own
 
-This section discusses whether to use Azure's managed content processing services — Content Understanding and Document Intelligence — or to build a custom solution with Foundry models directly.
+This section discusses whether to use Azure's managed content processing services—Content Understanding and Document Intelligence—or to build a custom solution with Foundry models directly.
 
 | Feature | Azure Content Understanding or Document Intelligence | Build Your Own with Azure OpenAI |
 |---|---|---|
@@ -56,13 +52,13 @@ This section discusses whether to use Azure's managed content processing service
 | Ease of Use | Easy onboarding with CU zero-shot schema-based extraction, no labeling | Requires prompt tuning, orchestration, and engineering effort |
 | Latency | Low-Medium | Variable (depends on deployment) |
 | Scalability | Fully managed | Manual scaling required |
-| Post-processing | Built-in rules for formatting, consistency, various framework integration | Fully user-defined |
+| Post-processing | Built-in rules for formatting, consistency, various framework integrations | Fully user-defined |
 | Knowledge Base Integration | Yes | Complex to implement |
 | Security & Governance | Azure-compliant | Requires custom implementation |
 | Complex document structure | Layout with tables, sections, selection marks, figures, and more | Requires preprocessing |
 | Process large files | Yes | Requires chunking and other strategies to get optimal performance |
 
-**When to consider building your own:** If your scenario requires complete control over model selection, fine-grained prompt ownership, or integration with a proprietary AI infrastructure that Content Understanding cannot accommodate, building directly on Foundry models may be appropriate. Leverage Azure Content Understanding for built-in quality, reliability, confidence scoring, and model lifecycle management.
+**When to consider building your own:** If your scenario requires complete control over model selection, fine-grained prompt ownership, or integration with a proprietary AI infrastructure that Content Understanding can't accommodate, building directly on Foundry models may be appropriate. Apply Azure Content Understanding for built-in quality, reliability, confidence scoring, and model lifecycle management.
 
 ## Choosing the right tool within Azure Content Understanding
 
@@ -76,12 +72,13 @@ Choose the right tool between Content Understanding (CU) analyzers and Document 
 |---|---|---|
 | OCR or layout extraction only | **CU prebuilt-read or prebuilt-layout** | Lower cost and richer layout extractions |
 | Multimodal analysis or RAG-ready preprocessing | **CU prebuilt or custom analyzers** | Search ingestion, grounded summaries, multi-modal analyzers (image, audio, video) |
-| Standard structured forms with prebuilts (e.g., invoice, receipt, ID, tax, mortgage) | **DI prebuilt model** | High accuracy with common, structured document templates |
-| Mostly unstructured documents with prebuilts (e.g., contracts, legal agreements) | **CU prebuilt-contract analyzer** | Better suited for semi-structured/unstructured documents and needs for reasoning & inferred fields |
-| Custom extraction without labels, or for unstructured documents (e.g., policies, referral letters, doctor notes) | **CU custom analyzer (zero-shot or with knowledge source)** | Describe fields in plain language; iterate fast |
-| Custom extraction with labels for highly structured documents (e.g., claims, standard applications) | **DI custom model** | Neural model training with as few as 5 labeled samples |
-| On-prem or air-gapped deployment | **DI containers** | Only option today |
+| Standard structured forms with prebuilts (for example, invoice, receipt, ID, tax, mortgage) | **DI prebuilt model** | High accuracy with common, structured document templates |
+| Mostly unstructured documents with prebuilts (for example, contracts, legal agreements) | **CU prebuilt-contract analyzer** | Better suited for semi-structured/unstructured documents and needs for reasoning & inferred fields |
+| Custom extraction without labels, or for unstructured documents (for example, policies, referral letters, doctor notes) | **CU custom analyzer (zero-shot or with knowledge source)** | Describe fields in plain language; iterate fast |
+| Custom extraction with labels for highly structured documents (for example, claims, standard applications) | **DI custom model** | Neural model training with as few as 5 labeled samples |
+| on-premises or air-gapped deployment | **DI containers** | Only option today |
 
+Choose the right tool between Content Understanding (CU) analyzers and Document Intelligence (DI) models depending on your document needs. 
 
 ## Scenario walkthroughs
 
@@ -118,7 +115,7 @@ The following examples cover common document processing scenarios. For each, we 
 
 **Examples:**
 - Insurance claim forms across a few regional formats (US, UK, APAC)
-- Annual tax forms with minor layout updates each year
+- Annual tax form with minor layout updates each year
 - University admission applications for different degree programs
 - Employee expense reports with department-specific templates
 

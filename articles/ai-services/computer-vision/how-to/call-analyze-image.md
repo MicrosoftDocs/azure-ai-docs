@@ -32,7 +32,7 @@ In your main class, save a reference to the URL of the image you want to analyze
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/ComputerVision/ImageAnalysisQuickstart.cs?name=snippet_analyze_url)]
 
-To analyze a local image, see the [ComputerVisionClient](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclient) methods, such as `AnalyzeImageInStreamAsync`. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ImageAnalysisQuickstart.cs) for scenarios involving local images.
+To analyze a local image, see the [ComputerVisionClient](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library) methods, such as `AnalyzeImageInStreamAsync`. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ImageAnalysisQuickstart.cs) for scenarios involving local images.
 
 #### [Java](#tab/java)
 
@@ -85,7 +85,7 @@ A populated URL might look like this:
 
 #### [C#](#tab/csharp)
 
-Define your new method for image analysis. Add the following code, which specifies visual features you'd like to extract in your analysis. See the [VisualFeatureTypes](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.models.visualfeaturetypes) enum for a complete list.
+Define your new method for image analysis. Add the following code, which specifies visual features you'd like to extract in your analysis. See the [VisualFeatureTypes](/azure/ai-services/computer-vision/concept-tagging-images) enum for a complete list.
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/ComputerVision/ImageAnalysisQuickstart.cs?name=snippet_visualfeatures)]
 
@@ -134,7 +134,7 @@ A populated URL might look like this:
 
 #### [C#](#tab/csharp)
 
-Use the *language* parameter of the [AnalyzeImageAsync](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclientextensions.analyzeimageasync) call to specify a language.
+Use the *language* parameter of the [AnalyzeImageAsync](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) call to specify a language.
 
 |Language | Value |
 |---|---|
