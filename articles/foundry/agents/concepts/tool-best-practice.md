@@ -70,7 +70,7 @@ Region and model determine which tools are available to your agent.
 > [!NOTE]
 > In the tables below: **Yes** means fully supported, **No** means not supported, and **Limited** means partial support that varies by tool configuration. Check individual tool documentation for details.
 
-The following table shows tool availability by [region](../../openai/how-to/responses.md#region-availability).
+The following table shows tool availability by [region](../../openai/how-to/responses.md#supported-regions).
 
 > [!NOTE]
 > This region availability table only accounts for service availability. You need to make sure the model you want to use is also available in the same region.

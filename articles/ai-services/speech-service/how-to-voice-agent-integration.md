@@ -46,7 +46,7 @@ The Voice Live SDK introduces typed configuration classes that replace the raw q
 | `agent-id` query parameter | `agent_name` in `AgentConfig` / `AgentSessionConfig` |
 | `agent-project-name` query parameter | Project endpoint in client constructor |
 | `agent-access-token` query parameter | Handled automatically by SDK |
-| Manual `connect()` with query dict | Strongly-typed `AgentSessionConfig` passed to session options |
+| Manual `connect()` with query dict | Strongly typed `AgentSessionConfig` passed to session options |
 
 ### Minimum SDK versions
 
@@ -73,7 +73,7 @@ async with connect(
 ) as connection:
 ```
 
-**New (v2)** — strongly-typed `AgentSessionConfig`:
+**New (v2)** — strongly typed `AgentSessionConfig`:
 
 ```python
 from azure.ai.voicelive import AgentConfig, AgentSessionConfig

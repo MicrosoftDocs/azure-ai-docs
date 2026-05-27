@@ -8,6 +8,7 @@ ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/28/2026
+ms.custom: references_regions
 zone_pivot_groups: llm-speech-quickstart
 ai-usage: ai-assisted
 
