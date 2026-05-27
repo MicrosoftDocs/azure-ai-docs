@@ -32,9 +32,13 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 - [Playwright Workspaces](https://aka.ms/pww/docs) (a Generally Available service) as the infrastructure layer
 - Real-time debugging with Live View
 - Take control for human-in-the-loop scenarios
-- Support for private website browsing [Private preview](https://aka.ms/pww/private-website-enrolment-form)
+- Support for private website browsing (Private preview)
 - Built-in observability for reliability and optimization
 - Flexible orchestration layers
+
+> [!NOTE]
+> The private website feature in Playwright Workspaces is currently available in private preview.
+> Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
 
 ### Usage support
 
