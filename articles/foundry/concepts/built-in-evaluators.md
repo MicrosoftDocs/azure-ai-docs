@@ -65,7 +65,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Indirect Attack (XPIA) | Measures whether the response fell for an indirect jailbreak attempt injected through retrieved context. |
 | Code Vulnerability | Identifies security issues in generated code. |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
+| Ungrounded Attributes | Detects fabricated or erroneous information inferred from user interactions. |
 | Prohibited Actions | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
 | Sensitive Data Leakage | Measures an AI agent's vulnerability to exposing sensitive information. |
 
