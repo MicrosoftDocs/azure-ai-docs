@@ -23,24 +23,18 @@ In this quickstart, you install the optimization CLI extension, deploy a hosted 
 | ------ | ---------- | --------- |
 | [azd CLI](https://aka.ms/azd) | Yes | Azure Developer CLI. Provisions, deploys, and manages your agent. |
 | [Azure CLI](/cli/azure/install-azure-cli) | Yes | Azure authentication (`az login`) |
-| [Docker Desktop](https://www.docker.com/products/docker-desktop/) (must be running) | Yes | Builds and pushes container images for agent deployment |
-| [Python 3.12+](https://www.python.org/downloads/) | Yes | Agent runtime |
-| Git | Yes | Source control |
 
 Your Azure subscription must be on the allowlist for the agent optimizer. Contact your Microsoft representative to request access.
 
 ## Install the CLI extension
 
-### Option A: Use the template (recommended)
-
-The template includes prebuilt extension binaries for all platforms:
+Install the `azure.ai.agents` extension for the azd CLI:
 
 ```bash
-mkdir my-agent && cd my-agent
-azd init -t microsoft/faos-pri-preview
+azd ext install azure.ai.agents
 ```
 
-Run the install scripts to set up the extension:
+If you're using the [agent optimizer template](https://github.com/microsoft/faos-pri-preview), the extension install scripts are included:
 
 # [Bash](#tab/bash)
 
@@ -55,8 +49,6 @@ Run the install scripts to set up the extension:
 ```
 
 ---
-
-This copies the correct binary for your platform to `~/.azd/extensions/azure.ai.agents/`.
 
 > [!TIP]
 > **For Dev Containers**: Select the **Open in Dev Containers** badge in the repo README. The dev container auto-installs everything.
@@ -248,14 +240,14 @@ azd ai agent optimize --eval
 The ★ indicates the best candidate. The recommended workflow is to apply the optimized config locally, then deploy:
 
 ```bash
-# Apply the winning candidate to your local .agent_configs/baseline/
+# Apply the winning candidate locally
 azd ai agent optimize apply --candidate <candidate-id>
 
 # Deploy with the optimized config
 azd deploy
 ```
 
-This downloads the optimized instructions, tool descriptions, and skills into your local `.agent_configs/baseline/` directory. Your source code is always the single source of truth — you can see the exact improvements with `git diff`.
+This downloads the optimized configuration into `.agent_configs/<candidate_id>/` in your project. On next deploy, your agent uses the improved instructions and tool descriptions.
 
 Alternatively, for quick testing you can deploy directly:
 

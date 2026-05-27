@@ -330,14 +330,14 @@ Key thresholds:
 The recommended workflow is to apply the optimized config locally, then deploy:
 
 ```bash
-# Apply the winning candidate to your local .agent_configs/baseline/
+# Apply the winning candidate locally
 azd ai agent optimize apply --candidate <candidate-id>
 
-# Deploy with the optimized config baked into source
+# Deploy with the optimized config
 azd deploy
 ```
 
-This keeps your source code as the single source of truth. You can see exactly what changed with `git diff` and commit the improved configuration to version control.
+This downloads the optimized configuration into `.agent_configs/<candidate_id>/` in your project. On next deploy, your agent uses the improved instructions and tool descriptions.
 
 Alternatively, you can deploy directly via the API (useful for quick A/B testing):
 
@@ -346,7 +346,7 @@ azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
 > [!WARNING]
-> Direct deploy updates the agent service without changing your local files. Your local `.agent_configs/baseline/` will be out of sync with the deployed agent. Use the `apply` → `deploy` workflow for production.
+> Direct deploy updates the agent service without changing your local files. Use the `apply` → `deploy` workflow for production.
 
 If all candidates score lower than the baseline, do not deploy any candidate. The baseline configuration remains active.
 

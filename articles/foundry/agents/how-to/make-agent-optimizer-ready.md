@@ -41,7 +41,7 @@ azure-ai-agentserver-optimization>=1.0.0b1
 
 ## Set up the configuration directory
 
-Create the `.agent_configs/baseline/` directory at your project root. This directory defines your agent's baseline configuration that the optimizer reads at startup and improves over time.
+Create the `.agent_configs/baseline/` directory at your project root. This directory defines your agent's baseline configuration — the starting point that the optimizer reads and improves upon.
 
 ```
 my-agent/
@@ -50,12 +50,14 @@ my-agent/
 ├── azure.yaml
 ├── requirements.txt
 └── .agent_configs/
-    └── baseline/
-        ├── metadata.yaml
-        ├── instructions.md
-        ├── tools.json
-        └── skills/
-            └── (initially empty)
+    ├── baseline/              ← your starting config
+    │   ├── metadata.yaml
+    │   ├── instructions.md
+    │   ├── tools.json
+    │   └── skills/
+    │       └── (initially empty)
+    └── <candidate_id>/        ← created by 'azd ai agent optimize apply'
+        └── (same layout as baseline/)
 ```
 
 ### metadata.yaml
@@ -172,7 +174,7 @@ from azure.ai.agentserver.optimization import load_config
 config = load_config()
 ```
 
-The `load_config()` function reads `.agent_configs/baseline/` and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
+The `load_config()` function reads from `.agent_configs/` (either a candidate directory if `OPTIMIZATION_CANDIDATE_ID` is set, or `baseline/` otherwise) and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
 
 **Parameters:**
 
@@ -252,17 +254,17 @@ azd ai agent optimize
 # 2. Review results
 azd ai agent optimize status <job-id>
 
-# 3. Apply the winning candidate to your local .agent_configs/baseline/
+# 3. Apply the winning candidate locally
 azd ai agent optimize apply --candidate <candidate_id>
 
 # 4. Deploy with the optimized config
 azd deploy
 ```
 
-The `apply` command downloads the optimized `instructions.md`, `tools.json`, and `skills/` from the candidate and writes them into `.agent_configs/baseline/`. This keeps your source code as the single source of truth — you can see exactly what changed with `git diff` and commit the improved configuration to version control.
+The `apply` command downloads the optimized `instructions.md`, `tools.json`, and `skills/` from the candidate and writes them into `.agent_configs/<candidate_id>/` in your project. On next startup, `load_config()` detects the candidate and uses the optimized configuration.
 
 > [!WARNING]
-> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Your local `.agent_configs/baseline/` will be out of sync with the deployed agent. Use the `apply` → `deploy` workflow for production to maintain reproducibility and enable rollback via `git revert`.
+> If you use `azd ai agent optimize deploy --candidate <id>` instead of `apply`, the optimized config deploys directly via the API without updating your local files. Use the `apply` → `deploy` workflow for production to maintain reproducibility.
 
 ## Complete example
 
@@ -323,7 +325,7 @@ def get_flight_alternatives(
 
 
 def main():
-    # Load optimization config from .agent_configs/baseline/
+    # Load optimization config from .agent_configs/
     config = load_config()
 
     # Load skills from local directory if not provided by optimization
@@ -371,7 +373,7 @@ if __name__ == "__main__":
 
 1. **During optimization**: The optimizer sets `OPTIMIZATION_CANDIDATE_ID` and `OPTIMIZATION_RESOLVE_ENDPOINT`. The config loader calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions and tool descriptions during evaluation.
 
-1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into your local `.agent_configs/baseline/`. Then `azd deploy` deploys the agent with the improved instructions baked into source.
+1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into `.agent_configs/<candidate_id>/` in your project. Then `azd deploy` deploys the agent with the improved configuration.
 
 Your code never changes between these states. The config resolution is fully automatic.
 
