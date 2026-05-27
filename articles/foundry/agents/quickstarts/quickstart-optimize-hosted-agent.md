@@ -139,16 +139,30 @@ Test the deployment:
 azd ai agent invoke "What is 2+2?"
 ```
 
+## Generate custom dataset and evalutations
+
+For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
+
+```bash
+azd ai agent eval init --gen-instruction "You are a helpful customer support agent."
+```
+
+The command creates an `eval.yaml` with a dataset and evaluators tuned to your agent's domain.
+
+For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
+
 ## Run optimization
+
+Then run optimization with the generated configuration:
 
 ```bash
 azd ai agent optimize
 ```
 
-The CLI reads the `name` field from your `agent.yaml` file to determine which deployed agent to optimize. If you have multiple agents or want to target a different one, use the `--agent` flag:
+The CLI reads the `name` field from your `agent.yaml` file to determine which deployed agent to optimize. It'll also automatically detect and use the generated `eval.yaml` file to run optimization. If you have multiple agents or configurations or want to target a different one, use the `--agent` and `--config` flags:
 
 ```bash
-azd ai agent optimize --agent <your-agent-name>
+azd ai agent optimize --agent <your-agent-name> --config <your-config-file>.yaml
 ```
 
 For more details on agent targeting, see [Which agent gets optimized](../how-to/optimize-agent-targets.md#which-agent-gets-optimized).
@@ -163,22 +177,15 @@ The agent optimizer completes the following steps:
 This process takes a few minutes. You see real-time progress:
 
 ```output
-Optimizing agent "faos-sample-agent"...
-  Dataset: built-in (3 tasks, 12 criteria)
-  Job ID: opt_5978943447f7413fa268e9398642529a
-  ⠏ completed · strategy: instruction · iteration 1 · score: 0.95 · 5m45s
-
-Results:
-  Candidate              Score    Pass   Tokens
-  ──────────────────── ─────── ─────── ────────
-  baseline                0.83    100%      640
-  baseline_instr_v4       0.87    100%      471
-  baseline_instr_v1       0.86    100%      456
-  baseline_instr_v3 ★     0.91    100%      438
-
-  Deploy the best candidate:
-    azd ai agent optimize deploy --candidate cand_91a5861f5c0245c4b2acb9ccaa48d4aa
+Optimizing agent "customer-support-py"...
+  Config: C:\Dev\my-agent\eval.yaml
+  Baseline saved to .agent_configs\baseline\metadata.yaml
+  Job ID: opt_162bd0f09070432c9ca4a699a908abb0
+  Status: pending
+  Portal: <OPTIMIZATION-JOB-URL>
 ```
+
+Use the URL provided in the CLI to view and monitor your job in the Foundry portal. 
 
 The *eval model* scores each response (any chat-completion model works). The *optimization model* generates improved candidates and must be from the [supported list](../concepts/agent-optimizer-overview.md#models) (gpt-5 family or DeepSeek).
 
@@ -210,7 +217,7 @@ The `azure-ai-agentserver-optimization` package's `load_config()` function picks
 Invoke your agent again to verify the improvement:
 
 ```bash
-azd ai agent invoke "Write a Python function to check if a number is prime."
+azd ai agent invoke "What is your return policy?"
 ```
 
 You can also run evaluation separately to confirm the score improvement:
@@ -218,22 +225,6 @@ You can also run evaluation separately to confirm the score improvement:
 ```bash
 azd ai agent eval run
 ```
-
-## Next steps: Use a custom dataset
-
-This quickstart uses the built-in dataset. For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
-
-```bash
-azd ai agent eval init
-```
-
-The command creates an `eval.yaml` with a dataset and evaluators tuned to your agent's domain. Then run optimization with the generated config:
-
-```bash
-azd ai agent optimize --config eval.yaml
-```
-
-For details, see [Create an evaluation dataset](../how-to/create-optimizer-dataset.md).
 
 ## Monitor and manage
 
