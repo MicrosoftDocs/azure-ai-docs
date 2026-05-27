@@ -2156,5 +2156,3 @@ groups:
     title: Foundry portal
   - id: azure-cli
     title: Azure CLI
-  - id: programming-language-rest
-    title: REST API
