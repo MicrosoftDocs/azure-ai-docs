@@ -145,6 +145,8 @@ items:
     items:
     - name: Deploy a Hosted agent
       href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Deploy a Hosted agent from source code (preview)
+      href: ../../agents/how-to/deploy-hosted-agent-code.md
     - name: Manage Hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
