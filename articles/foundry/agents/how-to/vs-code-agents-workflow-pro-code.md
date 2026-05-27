@@ -27,18 +27,18 @@ This article covers creating a workflow project, running it locally, visualizing
 ## Prerequisites
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
-- The [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The [Foundry Toolkit Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
 - The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - A [supported region](../concepts/hosted-agents.md#region-availability) for Hosted agents.
 
 ::: zone pivot="python"
-- Python 3.12 or higher.
+- Python 3.13 or higher.
 ::: zone-end
 
 ::: zone pivot="csharp"
-- [.NET 9 SDK](https://dotnet.microsoft.com/download) or later.
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) or later.
 ::: zone-end
 
 ## Create a hosted agent workflow  
@@ -47,17 +47,22 @@ You can use the Foundry Toolkit for Visual Studio Code to create Hosted agent wo
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Microsoft Foundry: Create a New Hosted Agent`.
+1. Run this command: `>Foundry Toolkit: Create a New Hosted Agent`.
 
-1. Choose a framework, either Microsoft Agent Framework or LangGraph.
+1. Select a programming language
 
-1. Choose a template, either the Single Agent Hotel Assistant or the Writer-Reviewer Agent Workflow (multi-agent).
+1. Choose a framework, either Copilot SDK, Microsoft Agent Framework, or Bring your own.
 
-1. Select a programming language.
+1. Choose a protocol, either Responses API or Invocations API.
 
-1. Choose a model, either one you've already deployed in your project, or browse the model catalog.
+1. Choose a template from the list.
 
-1. Select a folder where you want to save your new workflow.
+1. Select the "Next" button.
+
+
+1. Select a folder where you want to save your new Hosted Agent.
+
+1. For Environment Setup, selecting "Skip for now" will skip Foundry project and model setup, which requires you to manually configure them in the code later. Selecting "Configure with Microsoft Foundry" will auto-populate your project and model information with the existing Foundry Project.
 
 The files for your Hosted agent project are generated in your selected folder based on the framework, template and language you selected to get you started. You can remove or modify that code as needed.
 
@@ -85,10 +90,10 @@ Install the required dependencies for your Hosted agent project. The dependencie
    source .venv/bin/activate
    ```
 
-1. Install the following package:
+1. Install the required packages:
 
     ```bash
-    pip install azure-ai-agentserver-agentframework
+    pip install -r requirements.txt
     ```
 
 ::: zone-end
@@ -108,9 +113,9 @@ Install the required dependencies for your Hosted agent project. The dependencie
 The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
 
 ```
-PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
 
-MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
 > [!IMPORTANT]
