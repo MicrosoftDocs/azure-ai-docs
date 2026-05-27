@@ -113,7 +113,7 @@ The following JSON is an example response for an indexed OneLake knowledge sourc
       "chatCompletionModel": {
         "kind": "azureOpenAI",
         "azureOpenAIParameters": {
-          "resourceUri": "<REDACTED>",
+          "resourceUri": "<your-foundry-resource-endpoint>",
           "deploymentId": "gpt-5-mini",
           "apiKey": "<REDACTED>",
           "modelName": "gpt-5-mini"
@@ -121,7 +121,7 @@ The following JSON is an example response for an indexed OneLake knowledge sourc
       },
       "ingestionSchedule": null,
       "aiServices": {
-        "uri": "<REDACTED>",
+        "uri": "<your-foundry-resource-endpoint>",
         "apiKey": "<REDACTED>"
       }
     },

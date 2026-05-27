@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
 zone_pivot_groups: search-csharp-python-rest
+ai-usage: ai-assisted
 ---
 
 # Create an indexed SharePoint knowledge source (preview)
