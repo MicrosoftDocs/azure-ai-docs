@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry docs: What's new for April 2026"
-description: "Discover documentation and product updates in Microsoft Foundry for April 2026."
+title: "Microsoft Foundry docs: What's new for May 2026"
+description: "Discover documentation and product updates in Microsoft Foundry for May 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -11,46 +11,45 @@ ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 ---
 
 # What's new in Microsoft Foundry?
-Welcome! This article highlights key article and product updates in Microsoft Foundry for April 2026.
-<br>
-
-## Product updates
-Microsoft Foundry now includes comprehensive **agent governance and observability** features, including: 
-- Discover and manage agents across your subscription using **Foundry Control Plane**. 
-- Monitor operational metrics and evaluation results on the **Agent Monitoring Dashboard**. 
-- **Hosted-agent tracing (Preview)** helps you debug performance by viewing session details, run steps, and tool calls. 
-<br>
-
-For details and other product updates, see [Microsoft Foundry DevBlog](https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-apr-2026/).
+Welcome! This article highlights key article and product updates in Microsoft Foundry for May 2026.
 <br>
 
 ## New articles
 
-- [GPT Realtime 2.0 (preview) overview](../foundry/openai/concepts/realtime-2.md)
-- [What is Microsoft Foundry Control Plane?](../foundry/control-plane/overview.md)
-- [Quickstart: Create a guardrail policy](../foundry/control-plane/quickstart-create-guardrail-policy.md)
-- [Register and manage custom agents in Microsoft Foundry Control Plane](../foundry/control-plane/register-custom-agent.md)
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](../foundry/agents/how-to/publish-copilot.md)
-- [Foundry agents in Microsoft Agent 365](../foundry/agents/how-to/agent-365.md)
-- [Agent network architecture and VNet guidance](../foundry/agents/concepts/agents-networking-deep-dive.md)
-- [Evaluate agents with built-in evaluators](../foundry/observability/how-to/evaluate-agent.md)
-<br>
-
+- Azure OpenAI
+  - [Quickstart: Create a provisioned throughput deployment](openai/provisioned-quickstart.md)
+  - [Determine provisioned throughput unit (PTU) sizing for a workload](openai/how-to/provisioned-throughput-sizing.md)
+  - [Auto and direct model routing with the Responses API](../foundry/openai/how-to/responses-model-routing.md)
+  - [Automate Azure OpenAI deployments with quota](../foundry/openai/how-to/automate-quota-deployments.md)
+  - [Get started with Azure OpenAI audio generation](../foundry/openai/audio-completions-quickstart.md)
+- Foundry Agent Service
+  - [Enable incoming A2A on a Foundry agent (preview)](../foundry/agents/how-to/enable-agent-to-agent-endpoint.md)
+- Foundry Models and platform
+  - [Instant models in Microsoft Foundry (preview)](../foundry/concepts/instant-models.md)
+  - [Region availability for Foundry Models sold directly by Azure](../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
 ## Updated articles
 
-- [Connect agents to enterprise AI gateways (preview)](../foundry/agents/how-to/ai-gateway.md)
-- [High availability and resiliency for Microsoft Foundry](../foundry/how-to/high-availability-resiliency.md)
-- [Hosted agent permissions reference](../foundry/agents/concepts/hosted-agent-permissions.md)
-- [Manage hosted agents](../foundry/agents/how-to/manage-hosted-agent.md)
-- [Model Router: how it works](../foundry/openai/concepts/model-router-how-it-works.md)
-- [Priority processing for model deployments](../foundry/openai/concepts/priority-processing.md)
-- [Run evaluations from the SDK](../foundry/how-to/develop/cloud-evaluation.md)
-- [Use Ask AI in the optimization dashboard](../foundry/observability/how-to/optimization-dashboard.md)
-- [Use Fireworks models on Microsoft Foundry (preview)](../foundry/how-to/fireworks/enable-fireworks-models.md)
+- Azure OpenAI
+  - [What is provisioned throughput for Foundry Models?](openai/concepts/provisioned-throughput.md)
+  - [Provisioned throughput billing and cost management](openai/concepts/provisioned-throughput-billing.md)
+  - [Operate provisioned deployments in production](openai/how-to/provisioned-get-started.md)
+  - [Manage traffic with spillover for provisioned deployments](openai/how-to/spillover-traffic-management.md)
+  - [Latency and performance optimization](../foundry/openai/how-to/latency.md)
+  - [Monitor Azure OpenAI reference](../foundry/openai/monitor-openai-reference.md)
+  - [Priority processing for model deployments](../foundry/openai/concepts/priority-processing.md)
+  - [Quota management and rate limits](../foundry/openai/how-to/quota.md)
+- Foundry Agent Service
+  - [Connect to an A2A agent endpoint from Foundry Agent Service](../foundry/agents/how-to/tools/agent-to-agent.md)
+  - [Deploy a hosted agent](../foundry/agents/how-to/deploy-hosted-agent.md)
+  - [Hosted agents in Foundry Agent Service (preview)](../foundry/agents/concepts/hosted-agents.md)
+  - [Tool support by model and region](../foundry/agents/concepts/tool-best-practice.md)
+- Foundry Models and platform
+  - [Customer-managed key encryption](../foundry/concepts/encryption-keys-portal.md)
+  - [Foundry Models sold directly by Azure](../foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
 
 

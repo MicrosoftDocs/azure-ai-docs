@@ -46,7 +46,7 @@ If you use `azd` or the VS Code extension, the tooling handles most RBAC assignm
 - **Foundry User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity—which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
+> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Foundry User** to that identity—which is why **Foundry Project Manager** is recommended over **Foundry User** alone.
 > * While `azd` and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
@@ -69,9 +69,18 @@ Hosted agents communicate with the Foundry gateway through protocol libraries. C
 | ---------- | --------------- | -------------- | ---------- | ---------- |
 | **Responses** | `azure-ai-agentserver-responses` | `Azure.AI.AgentServer.Responses` | `/responses` | Conversational chatbots, streaming, multi-turn with platform-managed history |
 | **Invocations** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations` | Webhook receivers, non-conversational processing, custom async workflows |
+| **Invocations (WebSocket)** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations_ws` | Bidirectional streaming: real-time voice agents, interactive media |
 
-A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
+The WebSocket protocol uses the identifier `invocations_ws` and ships in the same `azure-ai-agentserver-invocations` package as the HTTP `/invocations` route, so one container can serve both. Use it when you need persistent, full-duplex streaming—for example, sending microphone PCM to the agent and receiving synthesized audio back. For voice scenarios, see [Build a voice agent with hosted agents](build-voice-agent.md).
 
+> [!IMPORTANT]
+> The `invocations_ws` WebSocket protocol is in preview and is currently available only in **North Central US**.
+
+A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing the required libraries. Use the protocol libraries within your existing framework, whether that’s Microsoft Agent Framework, LangChain, or custom code.
+<!--
+> [!TIP]
+> If you already have a Hosted agent that uses the **Responses** or **Invocations** protocol and you want to add real-time voice interaction without rewriting it as a WebSocket agent, see [Use Voice Live with hosted agents](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md).
+-->
 ### Responses protocol library
 
 The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
@@ -307,12 +316,13 @@ agent = project.agents.create_version(
 print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
-To expose both protocols, pass both in `container_protocol_versions`:
+To expose multiple protocols, pass each in `container_protocol_versions`:
 
 ```python
 container_protocol_versions=[
     ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0")
+    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
 ],
 ```
 
@@ -324,7 +334,7 @@ Key parameters:
 | `image` | Full Azure Container Registry image URL with tag |
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
-| `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
+| `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, `invocations_ws`, or any combination) |
 
 ### Poll for version status
 
@@ -576,4 +586,5 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 - [What are Hosted agents?](../concepts/hosted-agents.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
+<!-- - [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md) -->
 - [Azure Container Registry documentation](/azure/container-registry/)

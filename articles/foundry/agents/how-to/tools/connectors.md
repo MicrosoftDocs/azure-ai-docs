@@ -48,12 +48,12 @@ The catalog includes connectors published by Microsoft, verified third-party pub
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
-| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy and GDPR policies apply end-to-end |
+| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy policies apply end-to-end |
 | **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
-| **Verified third-party** | Docusign, Databricks, Box | Same as Microsoft external; review the publisher's privacy policy and GDPR terms before connecting |
+| **Verified third-party** | Docusign, Databricks, Box | Same as Microsoft external; review the publisher's privacy policy and data-protection terms before connecting |
 | **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
 
-The Connector Namespace acts as a proxy to external services. While data is in transit through the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends the request to the external service, that company's policies govern data storage, retention, and geography.
+The Connector Namespace acts as a proxy to external services. While data is in transit through the namespace (Microsoft infrastructure), Microsoft privacy policies apply. Once the namespace sends the request to the external service, that company's policies govern data storage, retention, and geography.
 
 For details on connector validation and data protection, see [Vet with data protection in connectors](/connectors/protection).
 
@@ -75,7 +75,7 @@ For details on connector validation and data protection, see [Vet with data prot
 ## Add a managed MCP server
 
 > [!NOTE]
-> The configuration experience in this article applies to managed MCP servers that support **OAuth2** authentication. For managed MCP servers with other authentication types, see [Add connector actions as agent tools in Azure Logic Apps](/azure/logic-apps/add-agent-tools-connector-actions?wt.mc_id=AZ-MVP-5004796).
+> The configuration experience in this article applies to managed MCP servers that support **OAuth2** authentication. For managed MCP servers with other authentication types, see [Add connector actions as agent tools in Azure Logic Apps](/azure/logic-apps/add-agent-tools-connector-actions).
 
 :::zone pivot="foundry-portal"
 
