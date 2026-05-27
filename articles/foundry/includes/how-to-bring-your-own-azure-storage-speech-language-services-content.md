@@ -6,7 +6,7 @@ ms.author: jburchel
 ms.reviewer: andyaviles
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -91,11 +91,11 @@ Set the `userOwnedStorage` field during resource creation.
 ### Bicep template snippet
 
 ```bicep
-resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
+resource storage 'Microsoft.Storage/storageAccounts@2025-08-01' existing = {
   name: storageName
 }
 
-resource foundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
   name: foundryName
   location: location
   kind: 'AIServices'
@@ -118,7 +118,7 @@ resource foundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
 ```json
 {
   "type": "Microsoft.CognitiveServices/accounts",
-  "apiVersion": "2025-06-01",
+  "apiVersion": "2026-03-01",
   "name": "[parameters('foundryName')]",
   "location": "[parameters('location')]",
   "kind": "AIServices",

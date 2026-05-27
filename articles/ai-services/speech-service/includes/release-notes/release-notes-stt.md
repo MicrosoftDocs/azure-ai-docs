@@ -8,7 +8,17 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### May 2026 release
+
+#### LLM Speech API Generally Availability
+
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
 ### April 2026 release
+
+#### Post-stream refinement (public preview)
+
+Post-stream refinement is now available in public preview for real-time speech to text. When enabled, the service runs a second recognition pass in parallel with real-time streaming to improve final transcript accuracy. Intermediate results remain low-latency; only the final result for each segment is replaced with a more accurate version. Set the `SpeechServiceResponse_PostProcessingOption` property to `PostRefinement` to enable it. For more information, see [How to use post-processing](../../how-to-post-processing.md) and [How to recognize speech](../../how-to-recognize-speech.md).
 
 #### Improved pronunciation assessment model
 

@@ -3,7 +3,7 @@ title: Azure OpenAI latest preview inference API documentation
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Latest preview data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
-ms.date: 04/23/2025
+ms.date: 05/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -153,7 +153,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 |------|------|-------------|----------|---------|
 | dimensions | integer | The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. | No |  |
 | encoding_format | string | The format to return the embeddings in. Can be either `float` or `base64`. Defaults to `float`. | No |  |
-| input | string or array | Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8,192 tokens for `text-embedding-ada-002`), can't be an empty string, and any array must be 2,048 dimensions or less. | Yes |  |
+| input | string or array | Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8,192 tokens for `text-embedding-ada-002`), can't be an empty string, and any array must be 2,048 dimensions or less. In addition to the per-input token limit, all embedding models enforce a maximum of 300,000 tokens summed across all inputs in a single request. | Yes |  |
 | input_type | string | input type of embedding search to use | No |  |
 | user | string | A unique identifier representing your end-user, which can help monitoring and detecting abuse. | No |  |
 
@@ -1188,7 +1188,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALL-E or gpt-image-1 series model deployment
+Generates a batch of images from a text caption on a given image generation model deployment
 
 ### URI Parameters
 

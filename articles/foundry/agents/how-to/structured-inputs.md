@@ -7,8 +7,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-structured-inputs
 ai-usage: ai-assisted
@@ -17,7 +19,7 @@ ai-usage: ai-assisted
 
 # Customize agent behavior at runtime with structured inputs
 
-You can customize agent instructions at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
+You can customize how an agent's Foundry model processes requests at runtime using **structured inputs**. Structured inputs are placeholders defined in the agent using handlebar template syntax (`{{variableName}}`). At runtime, you provide actual values to dynamically customize agent instructions, tool resource configurations, and response parameters—without creating separate agent versions for each configuration.
 
 In this article, you learn how to:
 
@@ -62,6 +64,7 @@ The following table lists the agent definition properties that support handlebar
 | MCP | `server_label` | Label for the MCP server |
 | MCP | `server_url` | URL for the MCP server endpoint |
 | MCP | `headers` (values) | HTTP header values as key-value pairs |
+| Azure AI Search | `filter` | OData filter expression applied to a search index |
 
 ## Use structured inputs with agent instructions
 
@@ -1110,6 +1113,413 @@ This example combines a static vector store (`vs_base_kb`) with a dynamic one (`
 
 :::zone-end
 
+## Use structured inputs with Azure AI Search
+
+By using structured inputs, you can dynamically configure the [Azure AI Search](tools/ai-search.md) tool's index `filter` at runtime. Define a handlebar template inside the OData filter expression, and then supply the actual filter value when creating a response. This pattern lets a single agent definition serve users whose queries must be scoped to different subsets of an index without creating a separate agent version per filter value.
+
+:::zone pivot="python"
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    AISearchIndexResource,
+    AzureAISearchQueryType,
+    AzureAISearchTool,
+    AzureAISearchToolResource,
+    PromptAgentDefinition,
+    StructuredInputDefinition,
+)
+from azure.identity import DefaultAzureCredential
+
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
+project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
+openai = project.get_openai_client()
+
+# Create the AI Search tool with a handlebar template inside the filter expression
+tool = AzureAISearchTool(
+    azure_ai_search=AzureAISearchToolResource(
+        indexes=[
+            AISearchIndexResource(
+                project_connection_id=os.environ["AI_SEARCH_PROJECT_CONNECTION_ID"],
+                index_name=os.environ["AI_SEARCH_INDEX_NAME"],
+                query_type=AzureAISearchQueryType.SIMPLE,
+                filter="search.ismatchscoring('{{userFilter}}')",
+            ),
+        ]
+    )
+)
+
+# Create the agent with a structured input that supplies the filter value
+agent = project.agents.create_version(
+    agent_name="aisearch-agent-structured-input",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions=(
+            "You are a helpful assistant. You must always provide citations for "
+            "answers using the tool and render them as: "
+            "`\u3010message_idx:search_idx\u2020source\u3011`."
+        ),
+        tools=[tool],
+        structured_inputs={
+            "userFilter": StructuredInputDefinition(
+                description="The user's search filter",
+                required=True,
+                schema={"type": "string"},
+            ),
+        },
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+# Supply the actual filter value at runtime
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="What outdoor gear do you have?",
+    extra_body={
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {"userFilter": "boots"},
+    },
+)
+
+for event in stream_response:
+    if event.type == "response.completed":
+        print(f"Agent response: {event.response.output_text}")
+```
+
+### Expected output
+
+```console
+Agent created (id: <agent-id>, name: aisearch-agent-structured-input, version: 1)
+Agent response: Based on the index, the available outdoor boots include ...
+```
+
+The `{{userFilter}}` placeholder inside the `filter` expression is replaced with the runtime value `boots` before the search runs. You can supply different filter values for each request to scope results without creating a new agent version.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
+using Azure.Identity;
+using OpenAI.Responses;
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var searchConnectionName = "my-search-connection";
+var searchIndexName = "my-search-index";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Resolve the project connection ID from the connection name
+AIProjectConnection aiSearchConnection =
+    projectClient.Connections.GetConnection(connectionName: searchConnectionName);
+
+// Define the search index with a handlebar template inside the filter expression
+AzureAISearchToolIndex index = new()
+{
+    ProjectConnectionId = aiSearchConnection.Id,
+    IndexName = searchIndexName,
+    QueryType = AzureAISearchQueryType.Simple,
+    Filter = "search.ismatchscoring('{{userFilter}}')"
+};
+
+// Create the agent with a structured input that supplies the filter value
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+{
+    Instructions = "You are a helpful assistant. You must always provide citations for "
+        + "answers using the tool and render them as: "
+        + "`\u3010message_idx:search_idx\u2020source\u3011`.",
+    Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) },
+    StructuredInputs =
+    {
+        ["userFilter"] = new StructuredInputDefinition
+            { Description = "The user's search filter", IsRequired = true }
+    }
+};
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
+    agentName: "aisearch-agent-structured-input",
+    options: new(agentDefinition));
+
+// Supply the actual filter value at runtime
+AgentReference agentRef = new(name: agent.Name, version: agent.Version);
+ProjectResponsesClient responseClient =
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
+
+CreateResponseOptions responseOptions = new()
+{
+    Input = [ResponseItem.CreateUserMessageItem("What outdoor gear do you have?")]
+};
+responseOptions.Patch.Set(
+    "$.structured_inputs[\"userFilter\"]"u8,
+    BinaryData.FromObjectAsJson("boots"));
+
+ResponseResult response = responseClient.CreateResponse(responseOptions);
+Console.WriteLine(response.GetOutputText());
+
+// Clean up
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
+    agentName: agent.Name, agentVersion: agent.Version);
+```
+
+### Expected output
+
+```console
+Based on the index, the available outdoor boots include ...
+```
+
+The `Filter` property on `AzureAISearchToolIndex` accepts handlebar templates that resolve at runtime. Use `Patch.Set` on `CreateResponseOptions` to supply the filter value via the `$.structured_inputs` JSON path.
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const SEARCH_CONNECTION_NAME = "my-search-connection";
+const SEARCH_INDEX_NAME = "my-search-index";
+
+export async function main(): Promise<void> {
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Resolve the project connection ID from the connection name
+  const aiSearchConnection = await project.connections.get(SEARCH_CONNECTION_NAME);
+
+  // Create the agent with a handlebar template inside the filter expression
+  const agent = await project.agents.createVersion("aisearch-agent-structured-input", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions:
+      "You are a helpful assistant. You must always provide citations for " +
+      "answers using the tool and render them as: `[message_idx:search_idx†source]`.",
+    tools: [
+      {
+        type: "azure_ai_search",
+        azure_ai_search: {
+          indexes: [
+            {
+              project_connection_id: aiSearchConnection.id,
+              index_name: SEARCH_INDEX_NAME,
+              query_type: "simple",
+              filter: "search.ismatchscoring('{{userFilter}}')",
+            },
+          ],
+        },
+      },
+    ],
+    structured_inputs: {
+      userFilter: { description: "The user's search filter", required: true },
+    },
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Supply the actual filter value at runtime
+  const response = await openai.responses.create(
+    {
+      input: "What outdoor gear do you have?",
+      tool_choice: "required",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+        structured_inputs: { userFilter: "boots" },
+      },
+    },
+  );
+  console.log(response.output_text);
+
+  // Clean up
+  await project.agents.deleteVersion(agent.name, agent.version);
+}
+
+main().catch(console.error);
+```
+
+### Expected output
+
+```console
+Agent created (id: <agent-id>, name: aisearch-agent-structured-input, version: 1)
+Based on the index, the available outdoor boots include ...
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.AgentsServiceVersion;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AISearchIndexResource;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureAISearchQueryType;
+import com.azure.ai.agents.models.AzureAISearchTool;
+import com.azure.ai.agents.models.AzureAISearchToolResource;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.StructuredInputDefinition;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class AzureAISearchStructuredInputExample {
+    public static void main(String[] args) {
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String searchConnectionId = "your-search-connection-id";
+        String searchIndexName = "my-search-index";
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(projectEndpoint)
+            .serviceVersion(AgentsServiceVersion.getLatest());
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create the AI Search tool with a handlebar template inside the filter expression
+        AzureAISearchTool tool = new AzureAISearchTool(
+            new AzureAISearchToolResource(Arrays.asList(
+                new AISearchIndexResource()
+                    .setProjectConnectionId(searchConnectionId)
+                    .setIndexName(searchIndexName)
+                    .setQueryType(AzureAISearchQueryType.SIMPLE)
+                    .setFilter("search.ismatchscoring('{{userFilter}}')")
+            ))
+        );
+
+        Map<String, StructuredInputDefinition> inputDefs = new LinkedHashMap<>();
+        inputDefs.put("userFilter",
+            new StructuredInputDefinition()
+                .setDescription("The user's search filter")
+                .setRequired(true));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion(
+            "aisearch-agent-structured-input",
+            new PromptAgentDefinition("gpt-5-mini")
+                .setInstructions("You are a helpful assistant. Always provide citations.")
+                .setTools(Arrays.asList(tool))
+                .setStructuredInputs(inputDefs));
+
+        // Supply the actual filter value at runtime
+        Map<String, BinaryData> inputValues = new LinkedHashMap<>();
+        inputValues.put("userFilter", BinaryData.fromObject("boots"));
+
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions()
+                .setAgentReference(
+                    new AgentReference(agent.getName()).setVersion(agent.getVersion()))
+                .setStructuredInputs(inputValues),
+            ResponseCreateParams.builder()
+                .input("What outdoor gear do you have?"));
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+### Expected output
+
+```console
+Response: Based on the index, the available outdoor boots include ...
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+### Create an agent with a dynamic Azure AI Search filter
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "name": "aisearch-agent-structured-input",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "instructions": "You are a helpful assistant. Always provide citations.",
+      "tools": [
+        {
+          "type": "azure_ai_search",
+          "azure_ai_search": {
+            "indexes": [
+              {
+                "project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
+                "index_name": "$AI_SEARCH_INDEX_NAME",
+                "query_type": "simple",
+                "filter": "search.ismatchscoring('\''{{userFilter}}'\'')"
+              }
+            ]
+          }
+        }
+      ],
+      "structured_inputs": {
+        "userFilter": {
+          "description": "The user's search filter",
+          "required": true,
+          "schema": {"type": "string"}
+        }
+      }
+    }
+  }'
+```
+
+### Create a response with the filter value
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent_reference": {
+      "type": "agent_reference",
+      "name": "aisearch-agent-structured-input"
+    },
+    "input": [
+      {
+        "type": "message",
+        "role": "user",
+        "content": "What outdoor gear do you have?"
+      }
+    ],
+    "structured_inputs": {
+      "userFilter": "boots"
+    },
+    "tool_choice": "required"
+  }'
+```
+
+The `{{userFilter}}` template inside the `filter` expression is replaced with `boots` at runtime. The `'\''` sequence in the create-agent body is the standard Bash escape for a literal single quote inside a single-quoted string. If your shell handles quoting differently, supply the JSON body from a file instead.
+
+:::zone-end
+
 ## Use structured inputs with MCP servers
 
 By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
@@ -1467,7 +1877,7 @@ With these values, the resolved instructions become:
 The following table summarizes the supported Handlebars helpers:
 
 | Helper | Syntax | Description |
-|--------|--------|-------------|
+| ------ | ------ | ----------- |
 | Conditional | `{{#if value}}...{{else}}...{{/if}}` | Render content based on a truthy or falsy value |
 | Negation | `{{#unless value}}...{{/unless}}` | Render content when a value is falsy |
 | Loop | `{{#each array}}{{this}}{{/each}}` | Iterate over array items |

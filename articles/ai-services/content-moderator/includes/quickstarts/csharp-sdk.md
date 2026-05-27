@@ -20,7 +20,7 @@ Use the Content Moderator client library for .NET to:
 * Moderate text
 * Moderate images
 
-[Reference documentation](/dotnet/api/overview/azure/content-moderator) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/cognitiveservices/Vision.ContentModerator) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator/) | [Samples](../../samples-dotnet.md)
+[Reference documentation](/dotnet/api/overview/azure/content-moderator) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitiveservices) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator/) | [Samples](../../samples-dotnet.md)
 
 ## Prerequisites
 

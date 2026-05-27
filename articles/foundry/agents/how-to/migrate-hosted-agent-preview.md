@@ -13,12 +13,12 @@ ai-usage: ai-assisted
 
 # Migrate hosted agents to the refreshed public preview
 
-This article walks you through migrating hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
+This article walks you through migrating Hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
 
 > [!IMPORTANT]
 > The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically and will be supported only until May 22, 2026. 
 
-This guide applies to you if you deployed a hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
+This guide applies to you if you deployed a Hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
 
 ## What changed
 
@@ -28,7 +28,7 @@ The refreshed preview updates the existing platform with a session-based sandbox
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
-- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (`{project_endpoint}/agents/{name}/endpoint/protocols/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
+- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
 - **New protocols** — Invocations, Activity, and A2A protocols join the existing Responses protocol. A single agent can expose multiple protocols simultaneously.
 - **REST API for full lifecycle** — Complete REST coverage for agent, version, session, and file operations. See [SDK method changes](#sdk-method-changes).
 - **Capability host creation removed** — The platform handles infrastructure provisioning automatically. You no longer need to create an account-level capability host. See [Removed APIs](#removed-apis).
@@ -128,7 +128,6 @@ import os
 from agent_framework import Agent, tool
 from agent_framework.foundry import FoundryChatClient
 from agent_framework_foundry_hosting import ResponsesHostServer
-from azure.ai.agentserver.responses import InMemoryResponseProvider
 from azure.identity import DefaultAzureCredential
 from pydantic import Field
 from typing_extensions import Annotated
@@ -155,7 +154,7 @@ agent = Agent(
     default_options={"store": False},
 )
 
-server = ResponsesHostServer(agent, store=InMemoryResponseProvider())
+server = ResponsesHostServer(agent)
 server.run()
 ```
 
@@ -164,7 +163,7 @@ Key differences:
 - `AzureAIAgentClient` → `FoundryChatClient` (from `agent_framework.foundry`).
 - `ChatAgent` → `Agent` (from `agent_framework`).
 - `@ai_function` → `@tool(approval_mode="never_require")` with `Annotated` type hints for parameter descriptions.
-- `from_agent_framework(agent).run()` → `ResponsesHostServer(agent, store=InMemoryResponseProvider()).run()`.
+- `from_agent_framework(agent).run()` → `ResponsesHostServer(agent).run()`.
 - Add `default_options={"store": False}` because conversation history is managed by the hosting platform.
 
 For MCP tools, use `client.get_mcp_tool()` instead of defining tools in the `create_version` API:
@@ -180,10 +179,10 @@ mcp_tool = client.get_mcp_tool(
 agent = Agent(client=client, tools=[mcp_tool], ...)
 ```
 
-For samples, see the [Agent Framework hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework).
+For samples, see the [Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework).
 
 > [!NOTE]
-> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/AgentFramework) for complete examples.
+> For .NET (C#) Agent Framework migration, the pattern uses `AddFoundryResponses` and `MapFoundryResponses` ASP.NET extensions instead of `ResponsesHostServer`. See the [.NET Agent Framework Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework) for complete examples.
 
 ## Migrate LangGraph agents
 
@@ -209,29 +208,49 @@ if __name__ == "__main__":
 ```python
 import asyncio
 import os
-from collections.abc import AsyncIterable
-from typing import Any
 
+import httpx
 from azure.ai.agentserver.responses import (
     CreateResponse,
     ResponseContext,
-    ResponseEventStream,
     ResponsesAgentServerHost,
+    ResponsesServerOptions,
+    TextResponse,
 )
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from langchain_openai import AzureChatOpenAI
+from langchain_core.messages import AIMessage, HumanMessage
+from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
-llm = AzureChatOpenAI(
-    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-    azure_deployment=os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1"),
-    api_version="2024-10-21",
-    azure_ad_token_provider=get_bearer_token_provider(
-        DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-    ),
+
+FOUNDRY_PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+MODEL = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+
+_token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+
+# httpx auth hook that injects a fresh Microsoft Entra token on every request.
+class _AzureTokenAuth(httpx.Auth):
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {_token_provider()}"
+        yield request
+
+
+llm = ChatOpenAI(
+    base_url=f"{FOUNDRY_PROJECT_ENDPOINT}/openai/v1",
+    api_key="placeholder",  # overridden by _AzureTokenAuth
+    model=MODEL,
+    use_responses_api=True,
+    http_client=httpx.Client(auth=_AzureTokenAuth()),
 )
 tools = [my_tool_a, my_tool_b]
-app = ResponsesAgentServerHost()
+graph = create_react_agent(llm, tools=tools, prompt=SYSTEM_PROMPT)
+
+app = ResponsesAgentServerHost(
+    options=ResponsesServerOptions(default_fetch_history_count=20)
+)
 
 
 @app.response_handler
@@ -239,37 +258,37 @@ async def handle(
     request: CreateResponse,
     context: ResponseContext,
     cancellation_signal: asyncio.Event,
-) -> AsyncIterable[dict[str, Any]]:
-    user_input = await context.get_input_text()
-    graph = create_react_agent(llm, tools=tools, prompt=SYSTEM_PROMPT)
+):
+    async def run_graph():
+        try:
+            history = await context.get_history()
+        except Exception:
+            history = []
+        user_input = await context.get_input_text() or ""
 
-    result = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": user_input}]},
-    )
+        # Convert platform history to LangChain messages
+        lc_messages = []
+        for item in history:
+            if hasattr(item, "content"):
+                for c in item.content:
+                    if hasattr(c, "text") and c.text:
+                        if item.role == "user":
+                            lc_messages.append(HumanMessage(content=c.text))
+                        else:
+                            lc_messages.append(AIMessage(content=c.text))
+        lc_messages.append(HumanMessage(content=user_input))
 
-    # Extract the final AI message from the graph result
-    messages = result.get("messages", [])
-    answer = ""
-    for msg in reversed(messages):
-        if hasattr(msg, "content") and getattr(msg, "type", None) == "ai":
-            answer = msg.content
-            break
+        result = await graph.ainvoke({"messages": lc_messages})
+        raw = result["messages"][-1].content
+        if isinstance(raw, list):
+            yield "".join(
+                block.get("text", "") if isinstance(block, dict) else str(block)
+                for block in raw
+            )
+        else:
+            yield raw or ""
 
-    stream = ResponseEventStream(
-        response_id=context.response_id,
-        model=request.model or "gpt-4.1",
-    )
-    yield stream.emit_created()
-    yield stream.emit_in_progress()
-    message_item = stream.add_output_item_message()
-    yield message_item.emit_added()
-    text_content = message_item.add_text_content()
-    yield text_content.emit_added()
-    yield text_content.emit_delta(answer)
-    yield text_content.emit_text_done(answer)
-    yield text_content.emit_done()
-    yield message_item.emit_done()
-    yield stream.emit_completed()
+    return TextResponse(context, request, text=run_graph())
 
 
 if __name__ == "__main__":
@@ -279,9 +298,10 @@ if __name__ == "__main__":
 Key differences:
 
 - `azure-ai-agentserver-langgraph` → `azure-ai-agentserver-responses`. The LangGraph-specific adapter is removed.
-- `from_langgraph(graph).run()` → Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that invokes the graph and yields `ResponseEventStream` events.
-- You now control how input is extracted (`context.get_input_text()`) and how output is streamed. This gives full flexibility for multi-turn, tool-calling, and streaming patterns.
-- LangGraph agent logic (model, tools, graph creation) is unchanged.
+- `from_langgraph(graph).run()` → Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that returns a `TextResponse`.
+- Uses `ChatOpenAI` with `base_url=f"{FOUNDRY_PROJECT_ENDPOINT}/openai/v1"` instead of `AzureChatOpenAI`. This uses the project-scoped endpoint, which requires only project-level permissions.
+- Conversation history is fetched via `context.get_history()` and converted to LangChain message types for multi-turn support.
+- LangGraph agent logic (tools, graph creation) is unchanged. For fine-grained control over function calls, reasoning items, or multiple output types, use `ResponseEventStream` instead of `TextResponse`.
 
 ### MCP Toolbox integration
 
@@ -311,7 +331,7 @@ async def handle(request, context, cancellation_signal):
             result = await graph.ainvoke(
                 {"messages": [{"role": "user", "content": user_input}]},
             )
-            # ... extract answer and yield ResponseEventStream events
+            # ... extract answer and return TextResponse
 ```
 
 Add these packages to your `requirements.txt`:
@@ -321,7 +341,7 @@ langchain-mcp-adapters>=0.1.0
 mcp>=1.0.0
 ```
 
-For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langchain).
+For complete samples, see the [LangGraph Hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
 
 ## Migrate custom or BYO agents
 
@@ -378,7 +398,7 @@ app.run()
 
 The Invocations protocol also supports long-running operations with `@app.get_invocation_handler` and `@app.cancel_invocation_handler` for polling and cancellation.
 
-Choose your protocol based on your agent's interaction pattern. See [What are hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on which protocol to use.
+Choose your protocol based on your agent's interaction pattern. See [What are Hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on which protocol to use.
 
 ## Protocol version format change
 
@@ -431,8 +451,8 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")` |
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
 | Not available | `project.beta.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
-| Not available | `project.beta.agents.download_session_file(path=...)`, `.list_session_files(path=...)`, `.delete_session_file(path=...)` |
-| Not available | `project.beta.agents.patch_agent_object()` for endpoint routing and traffic splitting |
+| Not available | `project.beta.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
+| Not available | `project.beta.agents.patch_agent_details()` for endpoint routing and traffic splitting |
 | Not available | `metadata={"enableVnextExperience": "true"}` parameter on `client.agents.create_version()` |
 
 ## Agent invocation changes
@@ -481,9 +501,9 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 ```
 
 > [!IMPORTANT]
-> REST calls to hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
+> REST calls to Hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
 
-The endpoint URL format is `{project_endpoint}/agents/{name}/endpoint/protocols/{protocol}`. Active endpoints depend on which protocols you declare in your agent version definition.
+Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
 
 ## Version status changes
 
@@ -506,13 +526,15 @@ The identity model changed significantly:
 | **Unpublished agent runtime identity** | Project managed identity (shared) | Dedicated Entra agent identity (per agent) |
 | **When dedicated identity is created** | At publish time only | At deploy time (every agent) |
 | **Project managed identity role** | Runtime identity for all unpublished agents | Infrastructure only — used for container image pulls |
-| **Required deployment role** | Azure AI Owner (new project), AI Owner + Contributor (new resources), or Reader + Azure AI User (existing project) | **Azure AI User** at project scope |
+| **Required deployment role** | Foundry Owner (new project), AI Owner + Contributor (new resources), or Reader + Foundry User (existing project) | **Foundry Project Manager** at project scope |
 | **Post-publish RBAC reconfiguration** | Required — project MI permissions don't transfer to agent identity | Not required — agent has its own identity from the start |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Action required
 
 1. **Update RBAC assignments**: The project managed identity is no longer the runtime identity. Grant RBAC roles for any downstream Azure resources directly to the agent's Entra identity instead.
-2. **Simplify deployment roles**: You need only **Azure AI User** at project scope to create and deploy hosted agents.
+2. **Simplify deployment roles**: You need **Foundry Project Manager** at project scope to create and deploy Hosted agents.
 
 ## Azure Developer CLI changes
 
@@ -566,8 +588,8 @@ The following capabilities from the initial preview aren't yet available in the 
 Use this checklist to track your migration:
 
 - Update `azure-ai-projects` SDK to version 2.1.0 or later.
-- **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, etc.). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent, store=InMemoryResponseProvider()).run()`. Update `AzureAIAgentClient` → `FoundryChatClient`, `ChatAgent` → `Agent`, and `@ai_function` → `@tool`.
-- **LangGraph users**: Replace `azure-ai-agentserver-langgraph` with `azure-ai-agentserver-responses`. Replace `from_langgraph(graph).run()` with a `ResponsesAgentServerHost` handler that invokes the graph and yields `ResponseEventStream` events. Add `langchain-mcp-adapters` and `mcp` if using Foundry Toolbox.
+- **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, etc.). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent).run()`. Update `AzureAIAgentClient` → `FoundryChatClient`, `ChatAgent` → `Agent`, and `@ai_function` → `@tool`.
+- **LangGraph users**: Replace `azure-ai-agentserver-langgraph` with `azure-ai-agentserver-responses`. Replace `from_langgraph(graph).run()` with a `ResponsesAgentServerHost` handler that returns a `TextResponse`. Use `ChatOpenAI` with the project-scoped endpoint instead of `AzureChatOpenAI`. Add `langchain-mcp-adapters` and `mcp` if using Foundry Toolbox.
 - **Custom/BYO users**: Replace framework adapter packages with protocol libraries (`azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`). Rewrite agent entry points using `ResponsesAgentServerHost` or `InvocationAgentServerHost`.
 - Update protocol version strings from `"v1"` to `"1.0.0"` in code and `agent.yaml`.
 - Update `agent.yaml` if using `azd` (protocol version format, remove any `tools` definitions from agent definition).
@@ -583,10 +605,10 @@ Use this checklist to track your migration:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Deploy a hosted agent](deploy-hosted-agent.md)
+> [Deploy a Hosted agent](deploy-hosted-agent.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Manage hosted agents](manage-hosted-agent.md)
-- [Manage hosted agent sessions](manage-hosted-sessions.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Manage Hosted agents](manage-hosted-agent.md)
+- [Manage Hosted agent sessions](manage-hosted-sessions.md)

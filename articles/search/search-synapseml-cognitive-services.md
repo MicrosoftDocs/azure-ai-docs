@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
@@ -258,7 +259,7 @@ This particular example is searching for the word "door" (`"search": "door"`). I
 ```python
 import requests
 
-url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2025-09-01".format(search_service, search_index)
+url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2026-04-01".format(search_service, search_index)
 requests.post(url, json={"search": "door", "count": "true", "select": "Description, Translations"}, headers={"api-key": search_key}).json()
 ```
 

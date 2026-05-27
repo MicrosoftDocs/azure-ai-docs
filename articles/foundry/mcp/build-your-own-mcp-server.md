@@ -7,6 +7,7 @@ keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center,
 author: jonburchel
 ms.author: jburchel
 ms.service: microsoft-foundry
+ms.subservice: foundry-mcp
 ms.topic: how-to
 ms.date: 04/13/2026
 ai-usage: ai-assisted

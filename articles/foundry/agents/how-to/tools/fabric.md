@@ -1,8 +1,10 @@
 ---
 title: "Use the Microsoft Fabric data agent with Foundry agents"
 description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough."
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 manager: nitinme
 ms.date: 03/30/2026
 ms.service: microsoft-foundry
@@ -42,7 +44,9 @@ The following table shows SDK and setup support.
 > - To help your agent invoke the Fabric tool reliably, include clear tool guidance in your agent instructions (for example, "For customer and product sales data, use the Fabric tool"). You can also force tool use with `tool_choice`.
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
-- Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- Assign developers and end users at least the `Foundry User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
 - Give developers and end users at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
 
     | Data source | Minimum permission |

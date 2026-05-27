@@ -1,14 +1,23 @@
 items:
 - name: Explore Foundry Models
   href: ../../concepts/foundry-models-overview.md
-- name: Foundry Models sold directly by Azure 
+- name: Foundry Models sold by Azure 
   href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
 - name: Foundry Models from partners and community
   href: ../../foundry-models/concepts/models-from-partners.md
+- name: Region availability for Foundry Models sold by Azure
+  href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
 - name: Model versions
   href: ../../foundry-models/concepts/model-versions.md
-- name: Model lifecycle and retirement
-  href: ../../concepts/model-lifecycle-retirement.md
+- name: Foundry Models lifecycle and support policy
+  displayName: Foundry Models lifecycle and support policy
+  href: ../../openai/concepts/model-retirements.md
+- name: Foundry Models retirement schedule
+  href: ../../openai/concepts/model-retirement-schedule.md
+- name: Retired Foundry Models
+  href: ../../openai/concepts/retired-models.md
+- name: Managed compute models lifecycle
+  href: ../../concepts/model-retirement-managed-compute.md
 - name: Data, privacy, and security for Model Catalog
   href: ../../how-to/concept-data-privacy.md
 - name: Foundry Models quotas and limits
@@ -32,13 +41,15 @@ items:
     href: ../../foundry-models/whats-new-model-router.md
   - name: Get started with model router
     href: ../../openai/how-to/model-router.md
+  - name: How model router works
+    href: ../../../foundry/openai/concepts/model-router-how-it-works.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Microsoft Foundry portal
     href: ../../concepts/deployments-overview.md
   - name: Deployment types
     href: ../../foundry-models/concepts/deployment-types.md   
-  - name: Configure Models from Partners and Community
+  - name: Configure Models from partners and community
     href: ../../foundry-models/how-to/configure-marketplace.md
   - name: Deploy Foundry Models using the Foundry portal
     href: ../../foundry-models/how-to/deploy-foundry-models.md
@@ -98,6 +109,8 @@ items:
       href: ../../how-to/deploy-models-managed.md
     - name: Deploy models to managed compute pay-as-you-go
       href: ../../how-to/deploy-models-managed-pay-go.md
+    - name: Deploy models from Hugging Face hub
+      href: ../../how-to/deploy-models-managed-hugging-face.md
     - name: Healthcare AI models
       items:
       - name: Foundational AI models for healthcare
@@ -153,6 +166,8 @@ items:
           href: ../../openai/whisper-quickstart.md
         - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
+        - name: GPT Realtime 2.0 (preview)
+          href: ../../openai/concepts/realtime-2.md
         - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
         - name: Realtime API via SIP
@@ -161,6 +176,10 @@ items:
           href: ../../openai/how-to/realtime-audio-websockets.md
         - name: Realtime API migration from Preview to GA
           href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+        - name: GPT Realtime Translate overview
+          href: ../../openai/concepts/gpt-realtime-translate.md
+        - name: GPT Realtime Whisper overview
+          href: ../../openai/concepts/gpt-realtime-whisper.md
         - name: Text to speech (preview)
           href: ../../openai/text-to-speech-quickstart.md
 
@@ -264,10 +283,15 @@ items:
           href: ../../openai/concepts/system-message.md
         - name: Safety system message templates
           href: ../../openai/concepts/safety-system-message-templates.md
+      - name: Foundry Models lifecycle and support policy
+        displayName: Foundry Models lifecycle and support policy
+        href: ../../openai/concepts/model-retirements.md
       - name: Model versions
         href: ../../openai/concepts/model-versions.md
-      - name: Legacy models
-        href: ../../openai/concepts/legacy-models.md
+      - name: Model retirement schedule
+        href: ../../openai/concepts/model-retirement-schedule.md
+      - name: Retired Foundry Models
+        href: ../../openai/concepts/retired-models.md
   - name: How-to 
     items:
     - name: Assistants (preview)
@@ -331,6 +355,8 @@ items:
           href: ../../openai/how-to/switching-endpoints.yml
         - name: Manage quota
           href: ../../openai/how-to/quota.md
+        - name: Automate deployments with quota
+          href: ../../openai/how-to/automate-quota-deployments.md
         - name: Dynamic quota
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI

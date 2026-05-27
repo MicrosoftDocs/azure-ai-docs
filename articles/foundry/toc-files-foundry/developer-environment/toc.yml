@@ -9,6 +9,8 @@ items:
   href: ../../how-to/develop/get-started-projects-vs-code.md
 - name: Configure Claude Code with Microsoft Foundry
   href: ../../foundry-models/how-to/configure-claude-code.md
+- name: Configure Claude Desktop with Microsoft Foundry
+  href: ../../foundry-models/how-to/configure-claude-desktop.md
 
 # Getting Started with Development
 - name: Start with an AI template
@@ -35,7 +37,7 @@ items:
   items:
   - name: Use declarative agent workflows in the Visual Studio Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
-  - name: Use hosted agent workflows in the Visual Studio Code extension
+  - name: Use Hosted agent workflows in the Visual Studio Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
 
 # MCP Server

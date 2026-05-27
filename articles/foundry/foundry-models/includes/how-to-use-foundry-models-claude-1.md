@@ -6,8 +6,9 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/16/2026
+ms.date: 05/11/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Anthropic's Claude models bring advanced conversational AI capabilities to Microsoft Foundry, enabling you to build intelligent applications with state-of-the-art language understanding and generation. Claude models excel at complex reasoning, code generation, and multimodal tasks including image analysis.
@@ -36,7 +37,7 @@ To learn more about the individual models, see [Available Claude models](#availa
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). See [subscription type and region support](#subscription-type-and-region-support) for more details.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). See [subscription type and region support](#subscription-type-and-region-support) for more details.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** or **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
@@ -231,7 +232,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest",
+            "@anthropic-ai/foundry-sdk": "latest",
             "@azure/identity": "latest"
           }
         }
@@ -299,7 +300,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/sdk": "latest"
+            "@anthropic-ai/foundry-sdk": "latest"
           }
         }
         ```
@@ -512,6 +513,15 @@ Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, ag
  
 ### Claude Sonnet 4.5 (preview)
 
+> [!WARNING]
+> 1M context beta on Claude Sonnet 4.5 will be retired after April 30, 2026.
+>
+> Starting May 1, 2026:
+> - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 will return an error.
+> - Requests **200K tokens or fewer** will remain unaffected, even with the header present.
+>
+> To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 4.7** for higher-intelligence workloads.
+
 Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
 
 ### Claude Haiku 4.5 (preview)
@@ -544,7 +554,6 @@ Some of the **Core capabilities** that Foundry supports are:
     > The `effort` parameter supports effort levels: `low`, `medium`, and `high`. For Opus 4.7, Opus 4.6, and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
 - **PDF support:** Process and analyze text and visual content from PDF documents.
-- **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
 
 Some of the **Tools** that Foundry supports are:
 
@@ -623,7 +632,6 @@ Choose the appropriate Claude model based on your specific requirements:
 
 - **Token management**: Monitor and optimize token usage.
 - **Model selection**: Use the most cost-effective model for your use case.
-- **Caching**: Implement [explicit prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#continuing-a-multi-turn-conversation) where appropriate.
 - **Request batching**: Combine multiple requests when possible.
 
 ## Troubleshooting

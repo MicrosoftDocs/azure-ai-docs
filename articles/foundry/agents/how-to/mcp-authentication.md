@@ -65,8 +65,8 @@ Use the following guidance to choose a method:
 | Method | Description | User context persists |
 | --- | --- | --- |
 | Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity (preview) | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity (preview) | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
 | OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
 | Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
 
@@ -96,7 +96,7 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
-### Use agent identity authentication (preview)
+### Use agent identity authentication
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
 
@@ -121,7 +121,10 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+> - To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
+> - We highly recommend you adding `offline_access` as part of scopes to auto refresh the token once expired.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
 
@@ -144,7 +147,7 @@ When you set up **custom OAuth**, provide the following information:
 - Auth URL: required
 - Refresh URL: required (if you don't have a separate refresh URL, you can use the token URL instead)
 - Token URL: required
-- Scopes: optional
+- Scopes: optional (include `offline_access` to enable automatic token refresh)
 
 ### Flow using OAuth identity passthrough
 
@@ -225,7 +228,7 @@ The following steps use the Agent 365 MCP server as an example:
    - token URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
    - auth URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
    - refresh URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
-   - scopes: `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
+   - scopes: `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above},offline_access`
 
 1. After you complete the configuration, you receive a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri). Add it to your Microsoft Entra app.
 
@@ -278,12 +281,12 @@ After you configure authentication, verify the connection works correctly:
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | You don't get an `oauth_consent_request` when you expect one | The MCP tool isn't configured for OAuth identity passthrough, or the tool call didn't execute | Confirm the project connection is configured for OAuth identity passthrough, and make sure your prompt causes the agent to invoke the MCP tool. |
-| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Azure AI User** role (or higher) on the project. |
+| Consent completes but tool calls still fail | Missing access in the underlying service | Confirm the user has access to the underlying service and has the **Foundry User** role (or higher) on the project. |
 | Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
 | Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |
 | MCP server returns "unauthorized" despite valid credentials | The credential header name or format doesn't match what the MCP server expects | Check the MCP server's documentation for the exact header name (for example, `Authorization`, `X-API-Key`, or `Api-Key`) and value format (for example, `Bearer <token>` vs. just `<token>`). |
-| OAuth tokens expire and tool calls fail after some time | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. |
+| OAuth tokens expire and tool calls fail after some time. "Your session has expired. Please reauthenticate with the provided url." | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. Make sure you add `offline_access` to the scope when creating OAuth auth connection.|
 | Private MCP server is unreachable from agent | The MCP server isn't on the dedicated MCP subnet, subnet delegation is missing, or private DNS resolution fails | Verify the MCP server is deployed on the MCP subnet with `Microsoft.App/environments` delegation. Check private DNS zone configuration. Deploy using the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup) template. |
 
 ## Host a local MCP server

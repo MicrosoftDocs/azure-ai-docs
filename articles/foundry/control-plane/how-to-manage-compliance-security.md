@@ -1,12 +1,13 @@
 ---
-title: "Manage Compliance and Security in Microsoft Foundry"
+title: "Manage compliance and security in Microsoft Foundry"
 ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
 author: s-polly
 ms.author: scottpolly
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 05/15/2026
 ai-usage: ai-assisted
 ms.custom: dev-focus, doc-kit-assisted
 
@@ -37,7 +38,9 @@ Use the compliance workspace tabs to reach the right surface quickly.
   - **To view compliance status and guardrail policies**: No special permissions are required beyond project access.
   - **To create or edit guardrail policies**: You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
   - **To enable Defender for Cloud**: You need the Security Admin role or the Owner role for a subscription so that you can turn on Defender plans and agentless protections.
-  - **To configure Microsoft Purview integration**: You need the Azure AI Account Owner role.
+  - **To configure Microsoft Purview integration**: You need the Foundry Account Owner role.
+
+    [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
@@ -91,7 +94,7 @@ You can also review compliance status by asset rather than by guardrail policy:
 
 1. Review model deployments within the chosen subscription and project.
 
-1. Examine any assets marked as **Violation detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
+1. Examine any assets marked as **Violations detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
 
 1. On the information pane, review the governing guardrail policies and the specifics of any noncompliant guardrail policy.
 
@@ -133,7 +136,7 @@ After you create the guardrail policy, it's listed on the **Policies** tab. The 
 
 When you monitor your model deployments for compliance, review and compare the guardrail controls for your assets throughout a project or subscription. Even if the controls aren't directly linked to guardrail policy compliance, this process helps you spot gaps in guardrail policy assignments, like missing controls. You can also uncover potential risks that might go unnoticed, such as subscriptions that lack content filtering entirely.
 
-Here's how you can do this task:
+To review guardrails across your subscription:
 
 1. In the compliance workspace, select the **Guardrails** tab.
 
@@ -198,7 +201,7 @@ This feature requires a Microsoft Purview license in the tenant. To learn about 
 
 ### Enable Microsoft Purview in Foundry
 
-You must have the Azure AI Account Owner role to enable Microsoft Purview integration.
+You must have the Foundry Account Owner role to enable Microsoft Purview integration.
 
 To enable Microsoft Purview in Foundry:
 

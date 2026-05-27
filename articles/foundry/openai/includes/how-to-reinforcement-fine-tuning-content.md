@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/14/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by training them through a reward-based process, rather than relying only on labeled data. RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
@@ -19,30 +20,29 @@ Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by
 Reinforcement fine-tuning is supported for the following models:
 
 | Model | Version | RFT support | Status |
-|-------|---------|-------------|--------|
+| ----- | ------- | ----------- | ------ |
 | `o4-mini` | `2025-04-16` | Yes | GA |
-| `gpt-5` | `2025-08-07` | Yes | Private preview |
+| `gpt-5` | `2025-08-07` | Yes | GA<sup>*</sup> |
 
-> [!NOTE]
-> GPT-5 support for reinforcement fine-tuning is in private preview and might not be available in your subscription.
+<sup>*</sup> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
 
 ## Requirements
 
-Reinforcement fine-tuning (RFT) requires training and validation data formatted as JSONL and containing a `messages` array using the chat completions format.
+Reinforcement fine-tuning (RFT) requires training and validation data formatted as JSONL and containing a `messages` array that uses the chat completions format.
 
 However, RFT has more requirements:
 
 - **Data**
-  - The final "message" in the data must be assigned a `user` role.
-  - The data can contain extra fields and values for use by a grader.
-  - Both a training and a validation dataset must be provided.
+  - Assign the final "message" in the data a `user` role.
+  - Include extra fields and values for use by a grader.
+  - Provide both a training and a validation dataset.
 - **Graders** 
-  - A grader must be defined to score the quality of your fine-tuned model and guide learning.
-  - Only a single grader can be provided, but multiple graders can be combined using a multigrader.
+  - Define a grader to score the quality of your fine-tuned model and guide learning.
+  - Provide only a single grader, but you can combine multiple graders by using a multigrader.
 
 ## Example training data
 
-The following example shows how to present prompts to the model and include ground truth accessible to a grader.
+The following example shows how to present prompts to the model and include ground truth that a grader can access.
 
 ```json
 {
@@ -92,7 +92,7 @@ The following sections document individual graders and provide their JSON specif
 
 ### Text comparison graders
 
-Use text comparison graders when the use case requires the model output either a definitive label or if the output must resemble a known ground truth answer.
+Use text comparison graders when the use case requires the model output to be either a definitive label or if the output must resemble a known ground truth answer.
 
 #### String-check-grader 
 
@@ -111,7 +111,7 @@ String-check graders apply a given operation to the input and a reference to ret
 *Operations:*
 
 | Operation | Returns 1 when | Case-sensitive |
-|-----------|----------------|----------------|
+| --------- | -------------- | -------------- |
 | `eq` | Input matches reference | Yes |
 | `ne` | Input doesn't match reference | Yes |
 | `like` | Input contains reference | Yes |
@@ -143,12 +143,12 @@ Text-similarity graders compute a score based on a select algorithm for quantify
 
 ### Model graders
 
-Model graders take a prompt to a grader model instructing it how to evaluate and score a given response. This flexibility allows for prompt engineering complex graders that support explaining the reason for a given score.
+Model graders take a prompt to a grader model that instructs it how to evaluate and score a given response. This flexibility allows for prompt engineering complex graders that support explaining the reason for a given score.
 
-The following models can be used as model graders:
+Use the following models as model graders:
 
 | Model | Can be used as grader |
-|-------|-----------------------|
+| ----- | --------------------- |
 | `gpt-4o-2024-08-06` | Yes |
 | `o3-mini-2025-01-31` | Yes |
 
@@ -177,9 +177,9 @@ Model graders are flexible but nondeterministic. When you need deterministic sco
 
 ### Python grader
 
-The Python grader allows you to execute arbitrary Python code to produce a score. 
+The Python grader executes arbitrary Python code to produce a score. 
 
-The provided code must define a `grade` function expecting two positional arguments: `sample` and `item`. The function must return a numeric score.
+The provided code must define a `grade` function that takes two positional arguments: `sample` and `item`. The function must return a numeric score.
 
 ```json
 {
@@ -189,10 +189,10 @@ The provided code must define a `grade` function expecting two positional argume
 }
 ```
 
-The Python code executes in a constrained environment with the following limitations:
+The Python code runs in a constrained environment with the following limitations:
 
 | Resource | Limit |
-|----------|-------|
+| -------- | ----- |
 | Code size | 256 KB |
 | Network | No access |
 | Memory | 2 GB |
@@ -203,7 +203,7 @@ The Python code executes in a constrained environment with the following limitat
 > [!TIP]
 > Your code should handle any possible errors and always return a numeric value. If too many exceptions occur during the execution of the grader, the training job fails.
 
-Within the Python runtime, the following modules and versions are made available for use by the provided code:
+Within the Python runtime, the provided code can use the following modules and versions:
 
 - numpy==2.2.4
 - scipy==1.15.2
@@ -224,9 +224,9 @@ Within the Python runtime, the following modules and versions are made available
 
 ### Endpoint grader (preview)
 
-Endpoint graders call a remote endpoint via an HTTP API to score the model response. They're ideal for use cases requiring access to ground truth for accurate scoring or the ability to implement the grader in a language other than Python.
+Endpoint graders call a remote endpoint through an HTTP API to score the model response. They're perfect for use cases that require access to ground truth for accurate scoring or the ability to implement the grader in a language other than Python.
 
-> While in private preview, the API for endpoint graders remains unpublished.
+> While in private preview, the API for endpoint graders isn't published.
 
 ### Multigrader
 
@@ -246,7 +246,7 @@ When a multigrader computes the score, the `calculate_output` expression referen
 *Operators:*
 
 | Operator | Description |
-|----------|-------------|
+| -------- | ----------- |
 | `+` | Addition |
 | `-` | Subtraction |
 | `*` | Multiplication |
@@ -256,7 +256,7 @@ When a multigrader computes the score, the `calculate_output` expression referen
 *Functions:*
 
 | Function | Description |
-|----------|-------------|
+| -------- | ----------- |
 | `min` | Compute the minimum of a value |
 | `max` | Compute the maximum of a value |
 | `abs` | Compute the absolute value |
@@ -294,9 +294,9 @@ As an example, a multigrader defined with two graders, "similarity-score" and "l
 
 ## Response format (optional)
 
-The model can be made to produce structured outputs during training either to align to the intended use case of the model or to make grading the output easier.
+During training, you can configure the model to produce structured outputs. This structure can align with the intended use case of the model or make grading the output easier.
 
-The response format configuration follows the same specification as Chat Completions, either supporting text (the default) or JSON. When the model should output JSON, a JSON Schema must be provided.
+The response format configuration follows the same specification as Chat Completions, either supporting text (the default) or JSON. When the model should output JSON, you must provide a JSON Schema.
 
 To continue with the previous [example](#example-training-data), if the model must output the response in a structured format such as:
 
@@ -329,14 +329,14 @@ The following JSON schema describes the response format:
 
 ## Hyperparameter selection
 
-Reinforcement fine-tuning supports the same hyperparameters as Supervised fine-tuning. Additionally, the following hyperparameters control features specific to RFT:
+Reinforcement fine-tuning supports the same hyperparameters as supervised fine-tuning. Additionally, the following hyperparameters control features specific to RFT:
 
 | Hyperparameter name | Value | Default | Description |
-|----|----|----|----|
-|`eval_interval` | integer | `auto` | The number of training steps between evaluation runs. |
-|`eval_samples` | integer | `auto` | The number of samples to use during evaluation. |
-|`compute_multiplier` | number | `auto` | The multiplier on amount of compute use for exploring space during training. |
-|`reasoning_effort`| `low`, `medium`, `high` | `medium` | The reasoning effort used by the model during training. |
+| ------------------- | ----- | ------- | ----------- |
+| `eval_interval` | integer | `auto` | The number of training steps between evaluation runs. |
+| `eval_samples` | integer | `auto` | The number of samples to use during evaluation. |
+| `compute_multiplier` | number | `auto` | The multiplier on amount of compute use for exploring space during training. |
+| `reasoning_effort` | `low`, `medium`, `high` | `medium` | The reasoning effort used by the model during training. |
 
 > [!NOTE]
 > The training service automatically replaces hyperparameters set to `auto` with defaults based on heuristics on the provided training data.
@@ -347,20 +347,20 @@ Reinforcement fine-tuning provides both automatic evaluations of the model durin
 
 ### Training metrics
 
-When you monitor a running job or inspecting a completed job, the "reward" and "reasoning" metrics provide an indicator of training success.
+When you monitor a running job or inspect a completed job, the `reward` and `reasoning` metrics provide an indicator of training success.
 
 #### Reward
 
 Reward metrics track the resulting scores from the grader acting as the reward function.
 
 - `train_reward_mean`: the average reward across the batch of training data at a given step. Because each batch might be different across steps, the trend of this metric is more important than comparing values across steps.
-- `valid_reward_mean`: The average reward across the samples taken from the validation set at a given step.
+- `valid_reward_mean`: the average reward across the samples taken from the validation set at a given step.
 
 Reward metrics should generally increase over the course of the training job. If they diverge significantly, it's a sign the model might be *reward hacking* and the grader requires more engineering.
 
 #### Reasoning tokens
 
-Each training job tracks the number of reasoning tokens produced by the model. Reasoning token metrics captures how the model changes its behavior over the lifetime of the training job.
+Each training job tracks the number of reasoning tokens produced by the model. Reasoning token metrics capture how the model changes its behavior over the lifetime of the training job.
 
 - `train_reasoning_tokens_mean`: the average number of reasoning tokens produced across the batch of training data at a given step.
 - `valid_reasoning_tokens_mean`: the average number of reasoning tokens produced across the validation data at a given step.
@@ -369,9 +369,9 @@ The model might learn to use fewer reasoning tokens to achieve the same reward, 
 
 ### Automatic evaluations
 
-An evaluation is created automatically for each RFT job. At regular intervals defined by the `eval_interval` hyperparameter, the training system executes an evaluation run using the validation data. Scores for each run are available via the linked evaluation, discoverable from the Foundry user interface.
+The system automatically creates an evaluation for each RFT job. At regular intervals defined by the `eval_interval` hyperparameter, the training system executes an evaluation run by using the validation data. You can view scores for each run through the linked evaluation, which you can discover from the Foundry user interface.
 
-Inspecting these evaluations provides an extra data point for deciding on early-stopping. If the model exhibits learning during training, the results of each evaluation run should improve over the lifetime of the job.
+Inspecting these evaluations provides an extra data point for deciding on early stopping. If the model exhibits learning during training, the results of each evaluation run should improve over the lifetime of the job.
 
 ## Example projects and datasets
 

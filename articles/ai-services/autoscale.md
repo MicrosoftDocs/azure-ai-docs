@@ -7,7 +7,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 04/28/2026
 ---
 
 # Autoscale Foundry Tools limits
@@ -55,7 +55,6 @@ Autoscale feature is available in the paid subscription tier of the following se
 * [Metrics Advisor](metrics-advisor/overview.md)
 * [Personalizer](personalizer/what-is-personalizer.md)
 * [QnAMaker](qnamaker/overview/overview.md)
-* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)(only available get operations, list operations and model management operations)
 
 ### Can I test this feature using a free subscription?
 

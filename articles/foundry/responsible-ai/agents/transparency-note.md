@@ -1,6 +1,6 @@
 ---
-title: "Transparency Note for Azure Agent Service"
-description: "Transparency Note for Azure Agents Service"
+title: "Transparency Note for Foundry Agent Service"
+description: "Transparency Note for Foundry Agent Service"
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -14,6 +14,6 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Transparency Note for Azure Agent Service
+# Transparency Note for Foundry Agent Service
 
 [!INCLUDE [transparency-note content](../includes/agents-transparency-note-content.md)]

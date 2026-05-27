@@ -20,6 +20,9 @@ The Voice Live API provides a capable WebSocket interface compared to the [Azure
 
 Unless otherwise noted, the Voice Live API uses the [same events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context) as the Azure OpenAI Realtime API. This document provides a reference for the event message properties that are specific to the Voice Live API.
 
+> [!TIP] 
+> In most cases, use [Voice Live API with WebRTC](./voice-live-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming scenarios.
+
 ## Supported models and regions
 
 For a table of supported models and regions, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions).
@@ -50,7 +53,9 @@ The Voice Live API supports two authentication methods:
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
-- Assign the `Cognitive Services User` and `Azure AI User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- Assign the `Cognitive Services User` and `Foundry User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+  [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 - Generate a token using the Azure CLI or Azure SDKs. The token must be generated with the `https://ai.azure.com/.default` scope, or the legacy `https://cognitiveservices.azure.com/.default` scope.
 - Use the token in the `Authorization` header of the WebSocket connection request, with the format `Bearer <token>`.
 

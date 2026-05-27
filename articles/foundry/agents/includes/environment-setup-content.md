@@ -21,12 +21,14 @@ Creating your first agent is a two-step process:
 
 | Action                                                                 | Required Role                   |
 |------------------------------------------------------------------------|----------------------------------|
-| Create an account and project                                          | Azure AI Account Owner           |
+| Create an account and project                                          | Foundry Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
-| Create and edit agents                                                 | Azure AI User                    |
+| Create and edit agents                                                 | Foundry User                    |
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 > [!NOTE]
-> For hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
+> For Hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
 
 ## Set up your agent environment
 To get started, you need a Microsoft Foundry resource and a Foundry project.  
@@ -38,7 +40,7 @@ Projects are currently the unit of sharing and isolation in Foundry. See the [wh
 ### Prerequisites 
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
+* Ensure that the individual creating the account and project has the **Foundry Account Owner** role at the subscription scope
 * If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
@@ -57,7 +59,14 @@ Agent Service offers three environment configuration modes to suit different nee
 
 - **Standard Setup with Bring Your Own (BYO) Virtual Network**:  
 
-   Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment. 
+   Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment.
+
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.**
+>
+> BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
+>
+> All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
 
 ### Compare setup options
 

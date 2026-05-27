@@ -23,7 +23,7 @@ Model router is a trained language model that intelligently routes your prompts 
 > [!NOTE]
 > You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments are invoked by model router if they're selected for routing.
 
-To try model router quickly, follow [How to use model router](../how-to/model-router.md). After you deploy model router, send a request to the deployment. Model router selects an underlying model for each request based on your routing settings.
+To try model router quickly, follow [How to use model router](../how-to/model-router.md). After you deploy model router, send a request to the deployment. Model router selects an underlying model for each request based on your routing settings. For a deep dive into the routing pipeline, training, and decision logic, see [How model router works](model-router-how-it-works.md).
 
 [!INCLUDE [model-router 1](../includes/concepts-model-router-1.md)]
 

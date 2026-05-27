@@ -15,13 +15,13 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agents
 
-This article shows you how to manage hosted agents in Foundry Agent Service. After you [deploy a hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
+This article shows you how to manage Hosted agents in Foundry Agent Service. After you [deploy a Hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
 
 The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). There are no manual start or stop operations.
 
 ## Prerequisites
 
-- A [deployed hosted agent](deploy-hosted-agent.md).
+- A [deployed Hosted agent](deploy-hosted-agent.md).
 
 :::zone pivot="rest"
 
@@ -222,7 +222,7 @@ az rest --method POST \
     }'
 ```
 
-Replace `responses` with `invocations` if your agent uses the Invocations protocol, or include both to expose both protocols. For details on protocol selection, see [Deploy a hosted agent](deploy-hosted-agent.md#container-requirements).
+Replace `responses` with `invocations` if your agent uses the Invocations protocol, or include both to expose both protocols. For details on protocol selection, see [Deploy a Hosted agent](deploy-hosted-agent.md#container-requirements).
 
 :::zone-end
 
@@ -489,7 +489,7 @@ Endpoint routing is configured automatically during `azd deploy`. To customize t
 
 ## Retrieve the agent identity for role assignments
 
-Each hosted agent has an *instance identity* — a Microsoft Entra ID service principal that the agent uses at runtime to authenticate to downstream resources. To grant the agent access to services such as Azure Storage or Azure Cosmos DB, you need the identity's principal ID so you can create RBAC role assignments.
+Each Hosted agent has an *instance identity* — a Microsoft Entra ID service principal that the agent uses at runtime to authenticate to downstream resources. To grant the agent access to services such as Azure Storage or Azure Cosmos DB, you need the identity's principal ID so you can create RBAC role assignments.
 
 For more information on how agent identities work, see [Agent identity concepts](../concepts/agent-identity.md).
 
@@ -608,11 +608,11 @@ Use the Azure CLI directly to verify role assignments as shown in the REST tab.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Publish and share agents](publish-agent.md)
+> [Agent applications](agent-applications.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Deploy a hosted agent](deploy-hosted-agent.md)
+- [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Deploy a Hosted agent](deploy-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md)

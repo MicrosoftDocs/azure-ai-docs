@@ -1,372 +1,708 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
-ms.custom: include, classic-and-new
+ms.date: 05/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 ## Prerequisites
 
-- A deployed Azure OpenAI model
+- A deployed Azure OpenAI model.
 - An authentication method:
   - API key (for example, `AZURE_OPENAI_API_KEY`), or
   - Microsoft Entra ID (recommended).
+- Install the client library for your language:
+  - **Python**: `pip install openai azure-identity`
+  - **.NET**: `dotnet add package OpenAI` and `dotnet add package Azure.Identity`
+  - **JavaScript/TypeScript**: `npm install openai @azure/identity`
+  - **Java**: Add `com.openai:openai-java` and `com.azure:azure-identity` to your project.
+- For REST examples, set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
 
-## Install or upgrade the OpenAI package
+## Supported regions
 
-Install or upgrade the OpenAI Python package.
+Before you run the examples in this article, confirm that your resource region supports the Responses API. The v1 API is required to access the latest features — for details, see the [API version lifecycle](../api-version-lifecycle.md). The Responses API is currently available in the following regions:
 
-```cmd
-pip install --upgrade openai
-```
+- australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
+- eastus
+- eastus2
+- francecentral
+- germanywestcentral
+- italynorth
+- japaneast
+- koreacentral
+- northcentralus
+- norwayeast
+- polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
+- southindia
+- spaincentral
+- swedencentral
+- switzerlandnorth
+- uaenorth
+- uksouth
+- westus
+- westus3
+
+## Supported models
+
+The Responses API supports the following models:
+
+- `gpt-chat-latest` (Version: `2026-05-05`)
+- `gpt-5.5` (Version: `2026-04-24`)
+- `gpt-5.4-nano` (Version: `2026-03-17`)
+- `gpt-5.4-mini` (Version: `2026-03-17`)
+- `gpt-5.4-pro` (Version:`2026-03-05`)
+- `gpt-5.4` (Version:`2026-03-05`)
+- `gpt-5.3-chat` (Version: `2026-03-03`)
+- `gpt-5.3-codex` (Version: `2026-02-24`)
+- `gpt-5.2-codex` (Version: `2026-01-14`)
+- `gpt-5.2` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2026-02-10`)
+- `gpt-5.1-codex-max` (Version: `2025-12-04`)
+- `gpt-5.1` (Version: `2025-11-13`)
+- `gpt-5.1-chat` (Version: `2025-11-13`)
+- `gpt-5.1-codex` (Version: `2025-11-13`)
+- `gpt-5.1-codex-mini` (Version: `2025-11-13`)
+- `gpt-5-pro` (Version: `2025-10-06`)
+- `gpt-5-codex`  (Version: `2025-09-11`)
+- `gpt-5` (Version: `2025-08-07`)
+- `gpt-5-mini` (Version: `2025-08-07`)
+- `gpt-5-nano` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-10-03`)
+- `gpt-5-codex` (Version: `2025-09-15`)
+- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
+- `gpt-4o-mini` (Version: `2024-07-18`)
+- `computer-use-preview`
+- `gpt-4.1` (Version: `2025-04-14`)
+- `gpt-4.1-nano` (Version: `2025-04-14`)
+- `gpt-4.1-mini` (Version: `2025-04-14`)
+- `gpt-image-1` (Version: `2025-04-15`)
+- `gpt-image-1-mini` (Version: `2025-10-06`)
+- `gpt-image-1.5` (Version: `2025-12-16`)
+- `o1` (Version: `2024-12-17`)
+- `o3-mini` (Version: `2025-01-31`)
+- `o3` (Version: `2025-04-16`)
+- `o4-mini` (Version: `2025-04-16`)
+
+Not every model is available in every supported region. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability. For the full set of request and response parameters, see the [Responses API reference documentation](../reference-preview-latest.md).
+
+> [!NOTE]
+> Not currently supported:
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
+>
+> There's a known issue with the following:
+> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
+> - Performance issues when background mode is used with streaming. Microsoft is working to resolve this issue.
 
 ## Generate a text response
 
-# [Python (API Key)](#tab/python-key)
+Generate a simple text response using the Responses API. Replace `YOUR-RESOURCE-NAME` and `MODEL_NAME` with your deployment values.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+# API key authentication
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
-
-response = client.responses.create(   
-  model="gpt-4.1-nano", # Replace with your model deployment name 
-  input="This is a test.",
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="This is a test."
 )
+print(response.model_dump_json(indent=2))
 
-print(response.model_dump_json(indent=2)) 
-```
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
+# Microsoft Entra ID authentication (recommended)
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider(),
 )
-
 response = client.responses.create(
-    model="gpt-4.1-nano",
-    input= "This is a test" 
+    model="MODEL_NAME",
+    input="This is a test."
 )
-
-print(response.model_dump_json(indent=2)) 
+print(response.model_dump_json(indent=2))
 ```
 
-# [REST API](#tab/rest-api)
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("This is a test.") }
+};
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const response = await openai.responses.create({
+  model: "MODEL_NAME",
+  input: "This is a test."
+});
+console.log(response.output_text);
+
+// Microsoft Entra ID authentication (recommended)
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const responseEntra = await openaiEntra.responses.create({
+  model: "MODEL_NAME",
+  input: "This is a test."
+});
+console.log(responseEntra.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication (recommended)
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test.")
+    .build();
+Response response = openAIClient.responses().create(params);
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
 ### Microsoft Entra ID
-
-The REST examples use `AZURE_OPENAI_AUTH_TOKEN` for Microsoft Entra ID authentication. For details on required scopes and token acquisition options, see [Azure OpenAI REST API reference](../latest.md).
-
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-     "model": "gpt-4o",
-     "input": "This is a test"
+     "model": "MODEL_NAME",
+     "input": "This is a test."
     }'
 ```
-
 ### API Key
-
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
+     "model": "MODEL_NAME",
+     "input": "This is a test."
     }'
 ```
 
-# [Output](#tab/output)
+---
 
-**Output:**
+### Example response
 
 ```json
 {
   "id": "resp_67cb32528d6881909eb2859a55e18a85",
   "created_at": 1741369938.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cb3252cfac8190865744873aada798",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Great! How can I help you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
   "output_text": "Great! How can I help you today?",
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 20,
-    "output_tokens": 11,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "reasoning_effort": null
+  ...
 }
+```
+
+## Retrieve a response
+
+Retrieve a response by its ID from a previous Responses API call.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+# API key authentication
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+response = client.responses.retrieve("<response_id>")
+print(response.model_dump_json(indent=2))
+
+# Microsoft Entra ID authentication
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+response = client.responses.retrieve("<response_id>")
+print(response.model_dump_json(indent=2))
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+string responseId = "<response_id>";
+ResponseResult response = await openAIClient.GetResponseAsync(responseId);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const response = await openai.responses.retrieve("<response_id>");
+console.log(response.output_text);
+
+// Microsoft Entra ID authentication
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const responseEntra = await openaiEntra.responses.retrieve("<response_id>");
+console.log(responseEntra.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+Response response = openAIClient.responses().retrieve("<response_id>");
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+### Microsoft Entra ID
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+### API Key
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
 ---
 
-## Retrieve a response
+### Example response
 
-To retrieve a response from a previous call to the responses API.
+```json
+{
+  "id": "resp_67cb61fa3a448190bcf2c42d96f0d1a8",
+  "output_text": "Hello! How can I assist you today?",
+  ...
+}
+```
 
-# [Python (API Key)](#tab/python-key)
+## Delete a response
 
+By default, response data is retained for 30 days. Delete a stored response by ID.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+# API key authentication
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+response = client.responses.delete("<response_id>")
+print(response)
+
+# Microsoft Entra ID authentication
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+response = client.responses.delete("<response_id>")
+print(response)
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+string responseId = "<response_id>";
+var result = await openAIClient.DeleteResponseAsync(responseId);
+Console.WriteLine(result); // result.Deleted == true if successful
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
+
+// API key authentication
+const openai = new OpenAI({
+  baseURL: endpoint,
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+const result = await openai.responses.delete("<response_id>");
+console.log(result);
+
+// Microsoft Entra ID authentication
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+const openaiEntra = new OpenAI({
+  baseURL: endpoint,
+  apiKey: await tokenProvider(),
+});
+const resultEntra = await openaiEntra.responses.delete("<response_id>");
+console.log(resultEntra);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Microsoft Entra ID authentication
+OpenAIClient openAIClientEntra = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+            new DefaultAzureCredentialBuilder().build(),
+            "https://ai.azure.com/.default")))
+    .build();
+
+Response result = openAIClient.responses().delete("<response_id>");
+System.out.println(result);
+```
+
+# [REST](#tab/rest)
+### Microsoft Entra ID
+```bash
+curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+### API Key
+```bash
+curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+
+---
+
+## Chaining responses together
+
+Chain turns by passing the previous response ID to `previous_response_id`.
+
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
 client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-```
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://ai.azure.com/.default"
+first_response = client.responses.create(
+    model="MODEL_NAME",
+    input="Define catastrophic forgetting."
 )
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
+second_response = client.responses.create(
+    model="MODEL_NAME",
+    previous_response_id=first_response.id,
+    input="Explain it for a college freshman."
 )
 
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-
-print(response.model_dump_json(indent=2))
+print(second_response.output_text)
 ```
 
-# [REST API](#tab/rest-api)
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-### Microsoft Entra ID
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
 
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
-```
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
 
-### API Key
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
 
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" 
-```
-
-# [Output](#tab/output)
-
-```json
+CreateResponseOptions firstOptions = new()
 {
-  "id": "resp_67cb61fa3a448190bcf2c42d96f0d1a8",
-  "created_at": 1741382138.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cb61fa95588190baf22ffbdbbaaa9d",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Hello! How can I assist you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 20,
-    "output_tokens": 11,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "reasoning_effort": null
-}
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Define and explain the concept of catastrophic forgetting?") }
+};
+ResponseResult firstResponse = await openAIClient.CreateResponseAsync(firstOptions);
+Console.WriteLine(firstResponse.GetOutputText());
+
+CreateResponseOptions secondOptions = new()
+{
+    Model = "MODEL_NAME",
+    PreviousResponseId = firstResponse.Id,
+    InputItems = { ResponseItem.CreateUserMessageItem("Explain this at a level that could be understood by a college freshman") }
+};
+ResponseResult secondResponse = await openAIClient.CreateResponseAsync(secondOptions);
+Console.WriteLine(secondResponse.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const firstResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Define catastrophic forgetting."
+});
+
+const secondResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  previous_response_id: firstResponse.id,
+  input: "Explain it for a college freshman."
+});
+
+console.log(secondResponse.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response first = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Define and explain the concept of catastrophic forgetting?")
+        .build());
+
+Response second = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(first.id())
+        .input("Explain this at a level that could be understood by a college freshman.")
+        .build());
+
+second.output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(m -> m.content().stream())
+    .flatMap(c -> c.outputText().stream())
+    .forEach(t -> System.out.println(t.text()));
+```
+
+# [REST](#tab/rest)
+```bash
+# First turn
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Define catastrophic forgetting."
+  }'
+
+# Follow-up turn using previous_response_id from the first call
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "previous_response_id": "<response_id>",
+    "input": "Explain it for a college freshman."
+  }'
 ```
 
 ---
 
-## Delete response
-
-By default, response data is retained for 30 days. To delete a stored response, call `client.responses.delete("{response_id}")`.
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-
-print(response)
-```
-
-## Chaining responses together
-
-You can chain responses together by passing the `response.id` from the previous response to the `previous_response_id` parameter.
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.create(
-    model="gpt-4o",  # replace with your model deployment name
-    input="Define and explain the concept of catastrophic forgetting?"
-)
-
-second_response = client.responses.create(
-    model="gpt-4o",  # replace with your model deployment name
-    previous_response_id=response.id,
-    input=[{"role": "user", "content": "Explain this at a level that could be understood by a college freshman"}]
-)
-print(second_response.model_dump_json(indent=2)) 
-```
-
-Note from the output that even though we never shared the first input question with the `second_response` API call, by passing the `previous_response_id` the model has full context of previous question and response to answer the new question.
-
-**Output:**
-
-```json
-{
-  "id": "resp_67cbc9705fc08190bbe455c5ba3d6daf",
-  "created_at": 1741408624.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4o-2024-08-06",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_67cbc970fd0881908353a4298996b3f6",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Sure! Imagine you are studying for exams in different subjects like math, history, and biology. You spend a lot of time studying math first and get really good at it. But then, you switch to studying history. If you spend all your time and focus on history, you might forget some of the math concepts you learned earlier because your brain fills up with all the new history facts. \n\nIn the world of artificial intelligence (AI) and machine learning, a similar thing can happen with computers. We use special programs called neural networks to help computers learn things, sort of like how our brain works. But when a neural network learns a new task, it can forget what it learned before. This is what we call \"catastrophic forgetting.\"\n\nSo, if a neural network learned how to recognize cats in pictures, and then you teach it how to recognize dogs, it might get really good at recognizing dogs but suddenly become worse at recognizing cats. This happens because the process of learning new information can overwrite or mess with the old information in its \"memory.\"\n\nScientists and engineers are working on ways to help computers remember everything they learn, even as they keep learning new things, just like students have to remember math, history, and biology all at the same time for their exams. They use different techniques to make sure the neural network doesn’t forget the important stuff it learned before, even when it gets new information.",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": null,
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": null,
-  "temperature": 1.0,
-  "tool_choice": null,
-  "tools": [],
-  "top_p": 1.0,
-  "max_output_tokens": null,
-  "previous_response_id": "resp_67cbc96babbc8190b0f69aedc655f173",
-  "reasoning": null,
-  "status": "completed",
-  "text": null,
-  "truncation": null,
-  "usage": {
-    "input_tokens": 405,
-    "output_tokens": 285,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 690
-  },
-  "user": null,
-  "reasoning_effort": null
-}
-```
-
 ### Chaining responses manually
 
-Alternatively you can manually chain responses together using the method below:
+Alternatively, you can manually carry forward output items in the next request.
 
 ```python
 import os
@@ -389,26 +725,156 @@ inputs += response.output
 inputs.append({"role": "user", "type": "message", "content": "Explain this at a level that could be understood by a college freshman"}) 
                
 
-second_response = client.responses.create(  
-    model="gpt-4o",  
+second_response = client.responses.create(
+  model="MODEL_NAME",
     input=inputs
-)  
-      
-print(second_response.model_dump_json(indent=2))  
+)
+
+print(second_response.model_dump_json(indent=2))
 ```
 
 ## Compact a Response
-Compacting allows you to shrink the context window sent to the model while preserving the essential information for the model's understanding.
+
+Compaction reduces the input context while preserving essential state for later turns.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+compacted = client.responses.compact(
+  model="MODEL_NAME",
+  input=[
+    {"role": "user", "content": "Create a simple landing page for a dog cafe."},
+    {
+      "id": "msg_001",
+      "type": "message",
+      "status": "completed",
+      "role": "assistant",
+      "content": [{"type": "output_text", "text": "..."}],
+    },
+  ]
+)
+
+follow_up = client.responses.create(
+  model="MODEL_NAME",
+  input=[*compacted.output, {"role": "user", "content": "Add a booking form."}]
+)
+print(follow_up.output_text)
+```
+
+# [C#](#tab/csharp)
+> [!NOTE]
+> The .NET SDK doesn't yet provide a strongly typed surface for Response compaction. See the **REST** tab for the call shape, or invoke the protocol method directly with `BinaryContent` JSON.
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const compacted = await client.responses.compact({
+  model: "MODEL_NAME",
+  input: [
+    { role: "user", content: "Create a simple landing page for a dog cafe." },
+    {
+      id: "msg_001",
+      type: "message",
+      status: "completed",
+      role: "assistant",
+      content: [{ type: "output_text", text: "..." }],
+    },
+  ],
+});
+
+const followUp = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [...compacted.output, { role: "user", content: "Add a booking form." }],
+});
+console.log(followUp.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.CompactedResponse;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCompactParams;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response initial = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Create a simple landing page for a dog cafe.")
+        .build());
+
+CompactedResponse compacted = openAIClient.responses().compact(
+    ResponseCompactParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(initial.id())
+        .build());
+
+Response followUp = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(compacted.id())
+        .input("Add a booking form.")
+        .build());
+
+System.out.println(followUp.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {"role": "user", "content": "Create a simple landing page for a dog cafe."},
+      {
+      "id": "msg_001",
+      "type": "message",
+      "status": "completed",
+      "role": "assistant",
+      "content": [{"type": "output_text", "text": "..."}]
+      }
+    ]
+    }'
+```
+
+---
 
 ### Compact using items returned
+
 You can compact all items returned from previous requests like reasoning, message, function call, etc.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-        "model": "gpt-4.1",
+        "model": "MODEL_NAME",
         "input": [
           {
             "role"   : "user",
@@ -433,40 +899,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
 ```
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+# Use the compacted output as input for the next turn.
+next_response = client.responses.create(
+  model="MODEL_NAME",
+  input=[*compacted.output, {"role": "user", "content": "Add opening hours."}],
 )
-
-compacted_response = client.responses.compact(
-    model="gpt-4.1",
-    input=[
-    {
-        "role": "user",
-        "content": "Create a simple landing page for a dog petting cafe.",
-    },
-    # All items returned from previous requests are included here, like reasoning, message, function call, etc.
-    {
-        "id": "msg_001",
-        "type": "message",
-        "status": "completed",
-        "content": [
-        {
-            "type": "output_text",
-            "annotations": [],
-            "logprobs": [],
-            "text": "Below is a single file, ready-to-use landing page for a dog petting café:...",
-        },
-        ],
-        "role": "assistant",
-    },
-    ]
-)
-# Pass the compacted_response.output as input to the next request
-print(compacted_response)
+print(next_response.output_text)
 ```
 
 ### Compact using previous response ID
@@ -474,47 +912,34 @@ print(compacted_response)
 You can also compact using a previous response ID.
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-# Get back a full response
 initial_response = client.responses.create(
-        model="gpt-4.1",
-        input="What is the size of France?"
-    )
+  model="MODEL_NAME",
+  input="What is the size of France?"
+)
 
-print(f"Initial Response: {initial_response.output_text}")
-
-# Now compact the response
 compacted_response = client.responses.compact(
-    model="gpt-4.1",
-    previous_response_id=initial_response.id
+  model="MODEL_NAME",
+  previous_response_id=initial_response.id
 )
 
-# use the compacted response in a follow up
-followup_response = client.responses.create(
-    model="gpt-4.1",
-    input=[
-        *compacted_response.output,
-        {"role": "user", "content": "And what is the capital/major city"}
-    ]
+follow_up_response = client.responses.create(
+  model="MODEL_NAME",
+  input=[
+    *compacted_response.output,
+    {"role": "user", "content": "What is the capital?"}
+  ]
 )
-print(f"Follow-up Response: {followup_response.output_text}")
+print(follow_up_response.output_text)
 ```
 
 ### Server-side compaction
 
 You can also use server-side compaction directly in Responses (`POST /responses` or `client.responses.create`) by setting `context_management` with a `compact_threshold`.
 
-* When the output token count crosses the configured threshold, the Responses API automatically runs compaction.
-* In this mode, you do not need to call `/responses/compact` separately.
-* The response includes an encrypted compaction item.
-* Server-side compaction will work when you set store=false on your Responses create requests.
+- When the output token count crosses the configured threshold, the Responses API automatically runs compaction.
+- In this mode, you do not need to call `/responses/compact` separately.
+- The response includes an encrypted compaction item.
+- Server-side compaction will work when you set store=false on your Responses create requests.
 
 The compaction item carries forward the essential prior state and reasoning into the next turn using fewer tokens. It is opaque and not intended to be human-readable.
 
@@ -526,10 +951,10 @@ If you are using stateless input-array chaining, append output items as usual. I
 #### Flow
 
 1. Call `responses` as usual. Add `context_management` with `compact_threshold` to enable server-side compaction.
-2. If the output crosses the threshold, the service triggers compaction, emits a compaction item in the output stream, and prunes the context before continuing inference.
-3. Continue the conversation using one of these patterns:
+1. If the output crosses the threshold, the service triggers compaction, emits a compaction item in the output stream, and prunes the context before continuing inference.
+1. Continue the conversation using one of these patterns:
    1. Stateless input-array chaining: append output items, including compaction items, to the next input array.
-   2. `previous_response_id` chaining: pass only the new user message on each turn and carry the latest response ID forward.
+   1. `previous_response_id` chaining: pass only the new user message on each turn and carry the latest response ID forward.
 
 #### Example
 
@@ -544,7 +969,7 @@ conversation = [
 
 while keep_going:
   response = client.responses.create(
-    model="gpt-5.3-codex",
+    model="MODEL_NAME",
     input=conversation,
     store=False,
     context_management=[{"type": "compaction", "compact_threshold": 200000}],
@@ -561,104 +986,411 @@ while keep_going:
 
 ## Streaming
 
+Stream the response as it's generated by setting `stream=true`. The service emits incremental events you can consume to render output token-by-token.
+
+> [!NOTE]
+> During streaming, the Responses API might return an error event ( `500`, `429`, and similar errors) if the service encounters an error, such as token limits or parsing problems. Applications should detect this event and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
+
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.create(
-    input = "This is a test",
-    model = "o4-mini", # replace with model deployment name
-    stream = True
+stream = client.responses.create(
+    model="MODEL_NAME",
+    input="Summarize Azure OpenAI Responses API in one sentence.",
+    stream=True,
 )
 
-for event in response:
-    if event.type == 'response.output_text.delta':
-        print(event.delta, end='')
-
+for event in stream:
+    if event.type == "response.output_text.delta":
+        print(event.delta, end="")
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Summarize Azure OpenAI Responses API in one sentence.") },
+    StreamingEnabled = true
+};
+
+await foreach (StreamingResponseUpdate update in openAIClient.CreateResponseStreamingAsync(options))
+{
+    if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.Write(textDelta.Delta);
+    }
+    else if (update is StreamingResponseCompletedUpdate completed)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"[done] response id: {completed.Response.Id}");
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const stream = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Summarize Azure OpenAI Responses API in one sentence.",
+  stream: true,
+});
+
+for await (const event of stream) {
+  if (event.type === "response.output_text.delta") {
+    process.stdout.write(event.delta);
+  }
+}
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.http.StreamResponse;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseStreamEvent;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseCreateParams params = ResponseCreateParams.builder()
+    .model("MODEL_NAME")
+    .input("This is a test")
+    .build();
+
+try (StreamResponse<ResponseStreamEvent> stream = openAIClient.responses().createStreaming(params)) {
+    stream.stream()
+        .flatMap(event -> event.outputTextDelta().stream())
+        .forEach(delta -> System.out.print(delta.delta()));
+}
+```
+
+# [REST](#tab/rest)
+```bash
+curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Summarize Azure OpenAI Responses API in one sentence.",
+    "stream": true
+  }'
+```
+
+---
 
 ## Function calling
 
-The responses API supports function calling.
+The Responses API supports function calling.
 
+# [Python](#tab/python)
 ```python
 import os
+import json
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.create(  
-    model="gpt-4o",  # replace with your model deployment name  
-    tools=[  
-        {  
-            "type": "function",  
-            "name": "get_weather",  
-            "description": "Get the weather for a location",  
-            "parameters": {  
-                "type": "object",  
-                "properties": {  
-                    "location": {"type": "string"},  
-                },  
-                "required": ["location"],  
-            },  
-        }  
-    ],  
-    input=[{"role": "user", "content": "What's the weather in San Francisco?"}],  
-)  
+response = client.responses.create(
+    model="MODEL_NAME",
+    tools=[
+        {
+            "type": "function",
+            "name": "get_weather",
+            "description": "Get weather for a location",
+            "parameters": {
+                "type": "object",
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
+            },
+        }
+    ],
+    input="What is the weather in San Francisco?",
+)
 
-print(response.model_dump_json(indent=2))  
-  
-# To provide output to tools, add a response for each tool call to an array passed  
-# to the next response as `input`  
-input = []  
-for output in response.output:  
-    if output.type == "function_call":  
-        match output.name:  
-            case "get_weather":  
-                input.append(  
-                    {  
-                        "type": "function_call_output",  
-                        "call_id": output.call_id,  
-                        "output": '{"temperature": "70 degrees"}',  
-                    }  
-                )  
-            case _:  
-                raise ValueError(f"Unknown function call: {output.name}")  
-  
-second_response = client.responses.create(  
-    model="gpt-4o",  
-    previous_response_id=response.id,  
-    input=input  
-)  
+tool_outputs = []
+for item in response.output:
+    if item.type == "function_call" and item.name == "get_weather":
+        args = json.loads(item.arguments)
+        weather = {"location": args["location"], "temperature": "70 F"}
+        tool_outputs.append(
+            {
+                "type": "function_call_output",
+                "call_id": item.call_id,
+                "output": json.dumps(weather),
+            }
+        )
 
-print(second_response.model_dump_json(indent=2)) 
+final_response = client.responses.create(
+    model="MODEL_NAME",
+    previous_response_id=response.id,
+    input=tool_outputs,
+)
 
+print(final_response.output_text)
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.Text.Json;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+FunctionTool getWeatherTool = ResponseTool.CreateFunctionTool(
+    functionName: "get_weather",
+    functionParameters: BinaryData.FromBytes("""
+        {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string", "description": "The city, e.g. Boston, MA" }
+          },
+          "required": ["location"]
+        }
+        """u8.ToArray()),
+    strictModeEnabled: false,
+    functionDescription: "Get the current weather for a location.");
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What is the weather in San Francisco?") },
+    Tools = { getWeatherTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is FunctionCallResponseItem call && call.FunctionName == "get_weather")
+    {
+        using JsonDocument args = JsonDocument.Parse(call.FunctionArguments);
+        string location = args.RootElement.GetProperty("location").GetString();
+        string toolOutput = $"{{ \"location\": \"{location}\", \"temperature\": \"70 F\" }}";
+
+        CreateResponseOptions followUp = new()
+        {
+            Model = "MODEL_NAME",
+            PreviousResponseId = response.Id,
+            InputItems = { ResponseItem.CreateFunctionCallOutputItem(call.CallId, toolOutput) },
+            Tools = { getWeatherTool }
+        };
+
+        ResponseResult finalResponse = await openAIClient.CreateResponseAsync(followUp);
+        Console.WriteLine(finalResponse.GetOutputText());
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "function",
+      name: "get_weather",
+      description: "Get weather for a location",
+      parameters: {
+        type: "object",
+        properties: { location: { type: "string" } },
+        required: ["location"],
+      },
+    },
+  ],
+  input: "What is the weather in San Francisco?",
+});
+
+const toolOutputs = [];
+for (const item of response.output ?? []) {
+  if (item.type === "function_call" && item.name === "get_weather") {
+    const args = JSON.parse(item.arguments);
+    toolOutputs.push({
+      type: "function_call_output",
+      call_id: item.call_id,
+      output: JSON.stringify({ location: args.location, temperature: "70 F" }),
+    });
+  }
+}
+
+const finalResponse = await client.responses.create({
+  model: "MODEL_NAME",
+  previous_response_id: response.id,
+  input: toolOutputs,
+});
+
+console.log(finalResponse.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseFunctionToolCall;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.ArrayList;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+// Strongly-typed function parameter class.
+class GetWeather {
+    @JsonPropertyDescription("City and country, for example, Paris, France")
+    public String location;
+}
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is the weather like in Paris today?")
+        .addTool(GetWeather.class)
+        .build());
+
+List<ResponseInputItem> followUp = new ArrayList<>();
+response.output().forEach(item -> {
+    if (item.isFunctionCall()) {
+        ResponseFunctionToolCall call = item.asFunctionCall();
+        // Execute the tool with call.arguments() and capture the result.
+        String result = "{\"temperature\":\"22 C\",\"conditions\":\"Sunny\"}";
+        followUp.add(ResponseInputItem.ofFunctionCallOutput(
+            ResponseInputItem.FunctionCallOutput.builder()
+                .callId(call.callId())
+                .output(result)
+                .build()));
+    }
+});
+
+Response finalResponse = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId(response.id())
+        .inputOfResponse(followUp)
+        .addTool(GetWeather.class)
+        .build());
+
+System.out.println(finalResponse.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "function",
+        "name": "get_weather",
+        "description": "Get weather for a location",
+        "parameters": {
+          "type": "object",
+          "properties": {"location": {"type": "string"}},
+          "required": ["location"]
+        }
+      }
+    ],
+    "input": "What is the weather in San Francisco?"
+  }'
+```
+
+---
 
 ## Code Interpreter
 
 The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
 
-* Processing files with varied data formats and structures
-* Generating files that include data and visualizations (for example, graphs)
-* Iteratively writing and running code to solve problems—models can debug and retry code until successful
-* Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
-* This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
+- Processing files with varied data formats and structures
+- Generating files that include data and visualizations (for example, graphs)
+- Iteratively writing and running code to solve problems—models can debug and retry code until successful
+- Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
+- This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-        "model": "gpt-4.1",
+        "model": "MODEL_NAME",
         "tools": [
             { "type": "code_interpreter", "container": {"type": "auto"} }
         ],
@@ -667,31 +1399,134 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
     }'
 ```
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
-
-instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
 
 response = client.responses.create(
-    model="gpt-4.1",
-    tools=[
-        {
-            "type": "code_interpreter",
-            "container": {"type": "auto"}
-        }
-    ],
-    instructions=instructions,
-    input="I need to solve the equation 3x + 11 = 14. Can you help me?",
+    model="MODEL_NAME",
+    tools=[{"type": "code_interpreter", "container": {"type": "auto"}}],
+    instructions="You are a math tutor. Write and run Python code to solve math problems.",
+    input="Solve 3x + 11 = 14."
 )
 
-print(response.output)
+print(response.output_text)
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Containers;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CodeInterpreterToolContainer container = new(
+    CodeInterpreterToolContainerConfiguration.CreateAutomaticContainerConfiguration());
+CodeInterpreterTool codeInterpreterTool = new(container);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("Solve 3x + 11 = 14.")
+    },
+    Tools = { codeInterpreterTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [{ type: "code_interpreter", container: { type: "auto" } }],
+  instructions: "You are a math tutor. Write and run Python code to solve math problems.",
+  input: "Solve 3x + 11 = 14.",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool codeInterpreter = Tool.ofCodeInterpreter(
+    Tool.CodeInterpreter.builder()
+        .container(Tool.CodeInterpreter.Container.ofCodeInterpreterToolAuto(
+            Tool.CodeInterpreter.Container.CodeInterpreterToolAuto.builder().build()))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Solve 3x + 11 = 14.")
+        .addTool(codeInterpreter)
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [{"type": "code_interpreter", "container": {"type": "auto"}}],
+    "instructions": "You are a math tutor. Write and run Python code to solve math problems.",
+    "input": "Solve 3x + 11 = 14."
+  }'
+```
+
+---
 
 ### Containers
 
@@ -747,119 +1582,421 @@ Any files in the model input get automatically uploaded to the container. You do
 
 ## List input items
 
+Retrieve the input items that were sent to a response. This is useful for inspecting the full conversation context, including any items added by the model (for example, function calls or compaction items).
+
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
-
-print(response.model_dump_json(indent=2))
+items = client.responses.input_items.list("<response_id>")
+print(items.model_dump_json(indent=2))
 ```
 
-**Output:**
+# [C#](#tab/csharp)
+> [!NOTE]
+> The .NET SDK exposes this endpoint only as a protocol method. See the **REST** tab for the call shape, or invoke the protocol method directly.
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const items = await client.responses.inputItems.list("<response_id>");
+console.log(JSON.stringify(items, null, 2));
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.inputitems.ResponseInputItemListPage;
+import com.openai.models.responses.inputitems.ResponseInputItemListParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseInputItemListPage page = openAIClient.responses().inputItems().list(
+    ResponseInputItemListParams.builder()
+        .responseId("<response_id>")
+        .build());
+
+page.autoPager().stream().forEach(item -> System.out.println(item));
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/input_items \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+
+---
+
+### Example response
 
 ```json
 {
+  "object": "list",
   "data": [
     {
-      "id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-      "content": [
-        {
-          "text": "This is a test.",
-          "type": "input_text"
-        }
-      ],
+      "id": "msg_...",
+      "type": "message",
       "role": "user",
-      "status": "completed",
-      "type": "message"
+      "content": [{"type": "input_text", "text": "This is a test."}]
     }
-  ],
-  "has_more": false,
-  "object": "list",
-  "first_id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
-  "last_id": "msg_67d856fcfc1c8190ad3102fc01994c5f"
+  ]
 }
 ```
 
 ## Image input
-For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
 
-### Image url
+For vision-enabled models, supported image formats are PNG, JPEG, and WebP.
 
+### Image URL
+
+Reference an image hosted at a public URL. The model fetches the image and includes it as part of the input content.
+
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model="gpt-4o",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                { "type": "input_text", "text": "what is in this image?" },
-                {
-                    "type": "input_image",
-                    "image_url": "<image_URL>"
-                }
+                {"type": "input_text", "text": "What is in this image?"},
+                {"type": "input_image", "image_url": "<image_url>"}
             ]
         }
     ]
 )
 
-print(response)
-
+print(response.output_text)
 ```
 
-### Base64 encoded image
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("What is in this image?"),
+            ResponseContentPart.CreateInputImagePart(new Uri("<image_url>"))
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "What is in this image?" },
+        { type: "input_image", image_url: "<image_url>" }
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseInputImage image = ResponseInputImage.builder()
+    .detail(ResponseInputImage.Detail.AUTO)
+    .imageUrl("<image_url>")
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("What is in this image?")
+        .addContent(image)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_text", "text": "What is in this image?"},
+          {"type": "input_image", "image_url": "<image_url>"}
+        ]
+      }
+    ]
+  }'
+```
+
+---
+
+### Base64-encoded image
+
+Send an image inline by encoding its bytes as a base64 data URI. Use this pattern when the image isn't hosted at a public URL or when you want to avoid an extra network fetch.
+
+# [Python](#tab/python)
 ```python
 import base64
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-
-# Path to your image
-image_path = "path_to_your_image.jpg"
-
-# Getting the Base64 string
-base64_image = encode_image(image_path)
+with open("path_to_your_image.jpg", "rb") as image_file:
+    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
 
 response = client.responses.create(
-    model="gpt-4o",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                { "type": "input_text", "text": "what is in this image?" },
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image}"
-                }
+                {"type": "input_text", "text": "What is in this image?"},
+                {"type": "input_image", "image_url": f"data:image/jpeg;base64,{base64_image}"}
             ]
         }
     ]
 )
 
-print(response)
+print(response.output_text)
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
+BinaryData imageData = BinaryData.FromBytes(imageBytes);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("What is in this image?"),
+            ResponseContentPart.CreateInputImagePart(imageData, "image/jpeg")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { readFileSync } from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const base64Image = readFileSync("path_to_your_image.jpg").toString("base64");
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "What is in this image?" },
+        { type: "input_image", image_url: `data:image/jpeg;base64,${base64Image}` }
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+byte[] bytes = Files.readAllBytes(Paths.get("cat.jpg"));
+String dataUrl = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+
+ResponseInputImage image = ResponseInputImage.builder()
+    .detail(ResponseInputImage.Detail.AUTO)
+    .imageUrl(dataUrl)
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("What is in this image?")
+        .addContent(image)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_text", "text": "What is in this image?"},
+          {"type": "input_image", "image_url": "data:image/jpeg;base64,<BASE64_IMAGE>"}
+        ]
+      }
+    ]
+  }'
+```
+
+---
 
 ## File input
 
@@ -867,32 +2004,30 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
->
 > - In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
->
 > - Only models that support both text and image inputs can accept PDF files as input.
->
 > - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
 
 ### Convert PDF to Base64 and analyze
 
+Send a PDF inline by encoding its bytes as a base64 data URI. The model receives both the extracted text and a rendered image of each page.
+
+# [Python](#tab/python)
 ```python
 import base64
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
-    data = f.read()
-
-base64_string = base64.b64encode(data).decode("utf-8")
+with open("PDF-FILE-NAME.pdf", "rb") as f:
+    base64_string = base64.b64encode(f.read()).decode("utf-8")
 
 response = client.responses.create(
-    model="gpt-4o-mini", # model deployment name
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
@@ -902,10 +2037,7 @@ response = client.responses.create(
                     "filename": "PDF-FILE-NAME.pdf",
                     "file_data": f"data:application/pdf;base64,{base64_string}",
                 },
-                {
-                    "type": "input_text",
-                    "text": "Summarize this PDF",
-                },
+                {"type": "input_text", "text": "Summarize this PDF."},
             ],
         },
     ]
@@ -914,70 +2046,176 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] pdfBytes = await File.ReadAllBytesAsync("PDF-FILE-NAME.pdf");
+BinaryData pdfData = BinaryData.FromBytes(pdfBytes);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputFilePart(pdfData, "application/pdf", "PDF-FILE-NAME.pdf"),
+            ResponseContentPart.CreateInputTextPart("Summarize this PDF.")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import { readFileSync } from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const base64Pdf = readFileSync("PDF-FILE-NAME.pdf").toString("base64");
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "input_file",
+          filename: "PDF-FILE-NAME.pdf",
+          file_data: `data:application/pdf;base64,${base64Pdf}`,
+        },
+        { type: "input_text", text: "Summarize this PDF." },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputFile;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+byte[] pdfBytes = Files.readAllBytes(Paths.get("document.pdf"));
+String dataUrl = "data:application/pdf;base64," + Base64.getEncoder().encodeToString(pdfBytes);
+
+ResponseInputFile file = ResponseInputFile.builder()
+    .filename("document.pdf")
+    .fileData(dataUrl)
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("Summarize this PDF.")
+        .addContent(file)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_file", "filename": "PDF-FILE-NAME.pdf", "file_data": "data:application/pdf;base64,<BASE64_PDF>"},
+          {"type": "input_text", "text": "Summarize this PDF."}
+        ]
+      }
+    ]
+  }'
+```
+
+---
+
 ### Upload PDF and analyze
 
-Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
+Upload the PDF file with `purpose="assistants"`. A `purpose` of `user_data` isn't currently supported.
 
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
-# Upload a file with a purpose of "assistants"
 file = client.files.create(
-  file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
-  purpose="assistants"
-)
-
-print(file.model_dump_json(indent=2))
-file_id = file.id
-```
-
-**Output:**
-
-```
-{
-  "id": "assistant-KaVLJQTiWEvdz8yJQHHkqJ",
-  "bytes": 4691115,
-  "created_at": 1752174469,
-  "filename": "nucleus_sampling.pdf",
-  "object": "file",
-  "purpose": "assistants",
-  "status": "processed",
-  "expires_at": null,
-  "status_details": null
-}
-```
-
-You will then take the value of the `id` and pass that to a model for processing under `file_id`:
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+    file=open("nucleus_sampling.pdf", "rb"),
+    purpose="assistants"
 )
 
 response = client.responses.create(
-    model="gpt-4o-mini",
+    model="MODEL_NAME",
     input=[
         {
             "role": "user",
             "content": [
-                {
-                    "type": "input_file",
-                    "file_id":"assistant-KaVLJQTiWEvdz8yJQHHkqJ"
-                },
-                {
-                    "type": "input_text",
-                    "text": "Summarize this PDF",
-                },
+                {"type": "input_file", "file_id": file.id},
+                {"type": "input_text", "text": "Summarize this PDF."},
             ],
         },
     ]
@@ -986,34 +2224,167 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -F purpose="assistants" \
-  -F file="@your_file.pdf" \
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Files;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-        "model": "gpt-4.1",
-        "input": [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_file",
-                        "file_id": "assistant-123456789"
-                    },
-                    {
-                        "type": "input_text",
-                        "text": "ASK SOME QUESTION RELATED TO UPLOADED PDF"
-                    }
-                ]
-            }
-        ]
-    }'
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+OpenAIFileClient fileClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new OpenAIClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] pdfBytes = await File.ReadAllBytesAsync("nucleus_sampling.pdf");
+OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
+    BinaryData.FromBytes(pdfBytes),
+    "nucleus_sampling.pdf",
+    FileUploadPurpose.UserData);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputFilePart(uploadedFile.Id),
+            ResponseContentPart.CreateInputTextPart("Summarize this PDF.")
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
 ```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import fs from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const file = await client.files.create({
+  file: fs.createReadStream("nucleus_sampling.pdf"),
+  purpose: "assistants",
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_file", file_id: file.id },
+        { type: "input_text", text: "Summarize this PDF." },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.FileCreateParams;
+import com.openai.models.FileObject;
+import com.openai.models.FilePurpose;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputFile;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Paths;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+FileObject uploaded = openAIClient.files().create(
+    FileCreateParams.builder()
+        .file(Paths.get("document.pdf"))
+        .purpose(FilePurpose.USER_DATA)
+        .build());
+
+ResponseInputFile file = ResponseInputFile.builder()
+    .fileId(uploaded.id())
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("Summarize this PDF.")
+        .addContent(file)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+# Upload the PDF
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -F purpose="assistants" \
+  -F file="@your_file.pdf"
+
+# Use the returned file ID with Responses
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_file", "file_id": "<file_id>"},
+          {"type": "input_text", "text": "Summarize this PDF."}
+        ]
+      }
+    ]
+  }'
+```
+
+---
 
 ## Using remote MCP servers
 
@@ -1021,49 +2392,154 @@ You can extend the capabilities of your model by connecting it to tools hosted o
 
 [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
-The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
+The following example shows how to use a remote MCP server to query information about an Azure REST API repository. The model retrieves and reasons over repository content in real time.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-  "model": "gpt-4.1",
-  "tools": [
-    {
-      "type": "mcp",
-      "server_label": "github",
-      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-      "require_approval": "never"
-    }
-  ],
-  "input": "What is this repo in 100 words?"
-}'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
+
 response = client.responses.create(
-    model="gpt-4.1", # replace with your model deployment name 
+    model="MODEL_NAME",
     tools=[
         {
             "type": "mcp",
             "server_label": "github",
             "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
             "require_approval": "never"
-        },
+        }
     ],
-    input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?",
+    input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?"
 )
 
 print(response.output_text)
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What transport protocols are supported in the 2025-03-26 version of the MCP spec?") },
+    Tools =
+    {
+        new McpTool(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"))
+        {
+            ToolCallApprovalPolicy = GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+        }
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      require_approval: "never",
+    },
+  ],
+  input: "What is this repo in 100 words?",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool mcpTool = Tool.ofMcp(
+    Tool.Mcp.builder()
+        .serverLabel("github")
+        .serverUrl("https://contoso.com/Azure/azure-rest-api-specs")
+        .requireApproval(Tool.Mcp.RequireApproval.ofMcpToolApprovalSetting(
+            Tool.Mcp.RequireApproval.McpToolApprovalSetting.NEVER))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is this repo in 100 words?")
+        .addTool(mcpTool)
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "require_approval": "never"
+      }
+    ],
+    "input": "What is this repo in 100 words?"
+  }'
+```
+
+---
 
 The MCP tool works only in the Responses API, and is available across all newer models (gpt-4o, gpt-4.1, and our reasoning models). When you're using the MCP tool, you only pay for tokens used when importing tool definitions or making tool calls—there are no additional fees involved.
 
@@ -1087,108 +2563,32 @@ When an approval is required, the model returns a `mcp_approval_request` item in
 
 To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-  "model": "gpt-4.1",
-  "tools": [
-    {
-      "type": "mcp",
-      "server_label": "github",
-      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-      "require_approval": "never"
-    }
-  ],
-  "previous_response_id": "resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-  "input": [{
-    "type": "mcp_approval_response",
-    "approve": true,
-    "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-  }]
-}'
-```
-
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model="gpt-4.1", # replace with your model deployment name 
+    model="MODEL_NAME",
     tools=[
         {
             "type": "mcp",
             "server_label": "github",
             "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
             "require_approval": "never"
-        },
+        }
     ],
-    previous_response_id="resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
-    input=[{
-        "type": "mcp_approval_response",
-        "approve": True,
-        "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
-    }],
-)
-```
-
-### Authentication
-
-> [!IMPORTANT]
-> - The MCP client within the Responses API requires TLS 1.2 or greater.
-> - mutual TLS (mTLS) is currently not supported.
-> - [Azure service tags](/azure/virtual-network/service-tags-overview) are currently not supported for MCP client traffic.
-
-Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
-
-You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
-
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-        "model": "gpt-4.1",
-        "input": "What is this repo in 100 words?",
-        "tools": [
-            {
-                "type": "mcp",
-                "server_label": "github",
-                "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
-                "headers": {
-                    "Authorization": "Bearer $YOUR_API_KEY"
-                }
-            }
-        ]
-    }'
-```
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.create(
-    model="gpt-4.1",
-    input="What is this repo in 100 words?",
-    tools=[
+    previous_response_id="<previous_response_id>",
+    input=[
         {
-            "type": "mcp",
-            "server_label": "github",
-            "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
-            "headers": {
-                "Authorization": "Bearer $YOUR_API_KEY"
-            }
+            "type": "mcp_approval_response",
+            "approve": True,
+            "approval_request_id": "<approval_request_id>"
         }
     ]
 )
@@ -1196,66 +2596,434 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-## Background tasks
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that can take several minutes to complete, such as those handled by agents like Codex or Deep Research.
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
 
-By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`, the task is processed asynchronously, and you can poll for its status over time.
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
 
-To start a background task, set the background parameter to true in your request:
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-    "model": "o3",
-    "input": "Write me a very long story",
-    "background": true
-  }'
+McpTool mcpTool = new(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"));
+
+ResponseResult priorResponse = await openAIClient.GetResponseAsync("<previous_response_id>");
+
+foreach (ResponseItem item in priorResponse.OutputItems)
+{
+    if (item is McpToolCallApprovalRequestItem approvalRequest)
+    {
+        CreateResponseOptions followUp = new()
+        {
+            Model = "MODEL_NAME",
+            PreviousResponseId = priorResponse.Id,
+            InputItems = { new McpToolCallApprovalResponseItem(approvalRequest.Id, approved: true) },
+            Tools = { mcpTool }
+        };
+
+        ResponseResult finalResponse = await openAIClient.CreateResponseAsync(followUp);
+        Console.WriteLine(finalResponse.GetOutputText());
+    }
+}
 ```
 
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      require_approval: "never",
+    },
+  ],
+  previous_response_id: "<previous_response_id>",
+  input: [
+    {
+      type: "mcp_approval_response",
+      approve: true,
+      approval_request_id: "<approval_request_id>",
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .previousResponseId("<previous_response_id>")
+        .inputOfResponse(List.of(
+            ResponseInputItem.ofMcpApprovalResponse(
+                ResponseInputItem.McpApprovalResponse.builder()
+                    .approvalRequestId("<approval_request_id>")
+                    .approve(true)
+                    .build())))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "require_approval": "never"
+      }
+    ],
+    "previous_response_id": "<previous_response_id>",
+    "input": [
+      {
+        "type": "mcp_approval_response",
+        "approve": true,
+        "approval_request_id": "<approval_request_id>"
+      }
+    ]
+  }'
+```
+
+---
+
+### Authentication
+
+> [!IMPORTANT]
+> - The MCP client within the Responses API requires TLS 1.2 or greater.
+> - Mutual TLS (mTLS) is currently not supported.
+> - [Azure service tags](/azure/virtual-network/service-tags-overview) are currently not supported for MCP client traffic.
+
+Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
+
+You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
+
+# [Python](#tab/python)
 ```python
 import os
 from openai import OpenAI
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.responses.create(
-    model = "o3",
-    input = "Write me a very long story",
-    background = True
+    model="MODEL_NAME",
+    input="What is this repo in 100 words?",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "github",
+            "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+            "headers": {"Authorization": "Bearer $YOUR_MCP_TOKEN"}
+        }
+    ]
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("What is this repo in 100 words?") },
+    Tools =
+    {
+        new McpTool(serverLabel: "github", serverUri: new Uri("https://contoso.com/Azure/azure-rest-api-specs"))
+        {
+            AuthorizationToken = Environment.GetEnvironmentVariable("YOUR_MCP_TOKEN"),
+            ToolCallApprovalPolicy = GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+        }
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "What is this repo in 100 words?",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "github",
+      server_url: "https://contoso.com/Azure/azure-rest-api-specs",
+      headers: { Authorization: "Bearer $YOUR_MCP_TOKEN" },
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.JsonValue;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool mcpTool = Tool.ofMcp(
+    Tool.Mcp.builder()
+        .serverLabel("github")
+        .serverUrl("https://contoso.com/Azure/azure-rest-api-specs")
+        .headers(Tool.Mcp.Headers.builder()
+            .putAdditionalProperty("Authorization", JsonValue.from("Bearer $YOUR_MCP_TOKEN"))
+            .build())
+        .requireApproval(Tool.Mcp.RequireApproval.ofMcpToolApprovalSetting(
+            Tool.Mcp.RequireApproval.McpToolApprovalSetting.NEVER))
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("What is this repo in 100 words?")
+        .addTool(mcpTool)
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "What is this repo in 100 words?",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "github",
+        "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+        "headers": {"Authorization": "Bearer $YOUR_MCP_TOKEN"}
+      }
+    ]
+  }'
+```
+
+---
+
+## Background tasks
+
+Background mode lets you run long-running tasks asynchronously with reasoning models such as `o3` and `o1-pro`. It's useful for complex tasks that can take several minutes to complete (for example, Codex- or Deep Research-style agents). When a request is sent with `"background": true`, the task is processed asynchronously, and you poll for its status.
+
+### Start a background task
+
+Set `background=true` on the request to queue the task. The service returns immediately with a response ID and a `queued` status — use that ID to poll, stream, or cancel the task.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="Write me a very long story.",
+    background=True
 )
 
 print(response.status)
 ```
 
-Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Write me a very long story.") },
+    BackgroundModeEnabled = true
+};
+
+ResponseResult queued = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine($"Response id: {queued.Id}");
+Console.WriteLine($"Status: {queued.Status}");
 ```
 
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Write me a very long story.",
+  background: true,
+});
+
+console.log(response.status);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Write a 1000-word essay on the history of computing.")
+        .background(true)
+        .build());
+
+System.out.println(response.status());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Write me a very long story.",
+    "background": true
+  }'
+```
+
+---
+
+### Poll for completion
+
+Continue polling while the status is `queued` or `in_progress`. Once the response reaches a terminal state, it's available for retrieval.
+
+# [Python](#tab/python)
 ```python
 from time import sleep
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.create(
-    model = "o3",
-    input = "Write me a very long story",
-    background = True
-)
 
 while response.status in {"queued", "in_progress"}:
     print(f"Current status: {response.status}")
@@ -1265,58 +3033,170 @@ while response.status in {"queued", "in_progress"}:
 print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
-You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ResponseResult current = await openAIClient.GetResponseAsync("<response_id>");
+
+while (current.Status == ResponseStatus.Queued || current.Status == ResponseStatus.InProgress)
+{
+    Console.WriteLine($"Current status: {current.Status}");
+    await Task.Delay(TimeSpan.FromSeconds(2));
+    current = await openAIClient.GetResponseAsync(current.Id);
+}
+
+Console.WriteLine($"Final status: {current.Status}");
+if (current.Status == ResponseStatus.Completed)
+{
+    Console.WriteLine(current.GetOutputText());
+}
 ```
 
+# [JavaScript](#tab/javascript)
+```javascript
+let current = response;
+while (current.status === "queued" || current.status === "in_progress") {
+  console.log(`Current status: ${current.status}`);
+  await new Promise((r) => setTimeout(r, 2000));
+  current = await client.responses.retrieve(current.id);
+}
+console.log(`Final status: ${current.status}\nOutput:\n${current.output_text}`);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response current = openAIClient.responses().retrieve("<response_id>");
+while (current.status().filter(s ->
+        s.equals(Response.Status.QUEUED) || s.equals(Response.Status.IN_PROGRESS)).isPresent()) {
+    System.out.println("Current status: " + current.status());
+    Thread.sleep(2000);
+    current = openAIClient.responses().retrieve(current.id());
+}
+System.out.println("Final status: " + current.status());
+System.out.println("Output:\n" + current.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id> \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+
+---
+
+### Cancel a background task
+
+Cancel an in-progress background task with the `cancel` endpoint. Canceling is idempotent—subsequent calls return the final response object.
+
+# [Python](#tab/python)
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-response = client.responses.cancel("resp_1234567890")
-
+response = client.responses.cancel("<response_id>")
 print(response.status)
 ```
 
-### Stream a background response
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
 
-To stream a background response, set both `background` and `stream` to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
 
-```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-    "model": "o3",
-    "input": "Write me a very long story",
-    "background": true,
-    "stream": true
-  }'
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
 
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ResponseResult cancelled = await openAIClient.CancelResponseAsync("<response_id>");
+Console.WriteLine($"Status: {cancelled.Status}");
 ```
 
+# [JavaScript](#tab/javascript)
+```javascript
+const cancelled = await client.responses.cancel("<response_id>");
+console.log(cancelled.status);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response cancelled = openAIClient.responses().cancel("<response_id>");
+System.out.println(cancelled.status());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>/cancel \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+
+---
+
+To stream a background response, set both `background` and `stream` to `true`. This pattern lets you resume streaming if the connection drops. Track your position with the `sequence_number` from each event.
+
+# [Python](#tab/python)
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
-)
-
-# Fire off an async response but also start streaming immediately
 stream = client.responses.create(
-    model="o3",
-    input="Write me a very long story",
+    model="MODEL_NAME",
+    input="Write me a very long story.",
     background=True,
     stream=True,
 )
@@ -1327,57 +3207,308 @@ for event in stream:
     cursor = event["sequence_number"]
 ```
 
-> [!NOTE] 
-> Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions createOptions = new()
+{
+    Model = "MODEL_NAME",
+    InputItems = { ResponseItem.CreateUserMessageItem("Write me a very long story.") },
+    BackgroundModeEnabled = true,
+    StreamingEnabled = true
+};
+
+string queuedResponseId = null;
+int lastSequenceNumber = 0;
+
+await foreach (StreamingResponseUpdate update in openAIClient.CreateResponseStreamingAsync(createOptions))
+{
+    if (update is StreamingResponseQueuedUpdate queuedUpdate)
+    {
+        queuedResponseId = queuedUpdate.Response.Id;
+        lastSequenceNumber = queuedUpdate.SequenceNumber;
+        Console.WriteLine($"Queued response: {queuedResponseId}, sequence {lastSequenceNumber}");
+        break;
+    }
+}
+
+// Resume streaming from where we disconnected.
+GetResponseOptions resumeOptions = new(queuedResponseId)
+{
+    StartingAfter = lastSequenceNumber,
+    StreamingEnabled = true
+};
+
+await foreach (StreamingResponseUpdate update in openAIClient.GetResponseStreamingAsync(resumeOptions))
+{
+    Console.WriteLine(update.GetType().Name);
+    if (update is StreamingResponseCompletedUpdate completed)
+    {
+        Console.WriteLine($"[done] final id: {completed.Response.Id}");
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+const stream = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Write me a very long story.",
+  background: true,
+  stream: true,
+});
+
+let cursor = null;
+for await (const event of stream) {
+  console.log(event);
+  cursor = event.sequence_number;
+}
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.http.StreamResponse;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.ResponseRetrieveParams;
+import com.openai.models.responses.ResponseStreamEvent;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+long cursor = 0L;
+try (StreamResponse<ResponseStreamEvent> stream = openAIClient.responses().retrieveStreaming(
+        "<response_id>",
+        ResponseRetrieveParams.builder().startingAfter(cursor).build())) {
+    stream.stream().forEach(event -> System.out.println(event));
+}
+```
+
+# [REST](#tab/rest)
+```bash
+curl -N -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Write me a very long story.",
+    "background": true,
+    "stream": true
+  }'
+```
+
+---
+
+Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
 
 ### Limitations
 
-* Background mode requires `store=true`. Stateless requests are not supported.
-* You can only resume streaming if the original request included `stream=true`.
-* To cancel a synchronous response, terminate the connection directly.
+- Background mode requires `store=true`. Stateless requests are not supported.
+- You can only resume streaming if the original request included `stream=true`.
+- To cancel a synchronous response, terminate the connection directly.
 
 ### Resume streaming from a specific point
 
+If a streaming connection drops, you can resume from a known event by passing `stream=true` along with `starting_after=<sequence_number>` on a `GET` to the response. The service replays events emitted after that sequence number.
+
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42 \
+curl -N -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<response_id>?stream=true&starting_after=42" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+  -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
-## Encrypted Reasoning Items
+## Encrypted reasoning items
 
-When using the Responses API in stateless mode by setting `store` to false, you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
+When you use the Responses API in stateless mode (`store=false`), you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your requests.
 
-To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
+To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter. The response then contains an encrypted version of the reasoning trace, which you can pass to future requests.
 
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    reasoning={"effort": "medium"},
+    input="What is the weather like today?",
+    tools=[
+        # Replace with your function or tool definitions.
+    ],
+    include=["reasoning.encrypted_content"],
+    store=False,
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.Collections.Generic;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+List<ResponseItem> inputItems =
+[
+    ResponseItem.CreateUserMessageItem("<your_prompt>")
+];
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    StoredOutputEnabled = false,
+    IncludedProperties = { IncludedResponseProperty.ReasoningEncryptedContent }
+};
+foreach (ResponseItem item in inputItems)
+{
+    options.InputItems.Add(item);
+}
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+
+// To carry encrypted reasoning into a follow-up turn, append response.OutputItems to inputItems
+// and resend with StoredOutputEnabled = false. Don't use PreviousResponseId when not stored.
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  reasoning: { effort: "medium" },
+  input: "What is the weather like today?",
+  tools: [
+    // Replace with your function or tool definitions.
+  ],
+  include: ["reasoning.encrypted_content"],
+  store: false,
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Reasoning;
+import com.openai.models.responses.ReasoningEffort;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseIncludable;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Explain quantum entanglement.")
+        .reasoning(Reasoning.builder().effort(ReasoningEffort.MEDIUM).build())
+        .addInclude(ResponseIncludable.REASONING_ENCRYPTED_CONTENT)
+        .store(false)
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-    "model": "o4-mini",
+    "model": "MODEL_NAME",
     "reasoning": {"effort": "medium"},
-    "input": "What is the weather like today?",
-    "tools": [<YOUR_FUNCTION GOES HERE>],
-    "include": ["reasoning.encrypted_content"]
-  }'
+    "input": "What is the weather like today?",
+    "tools": [],
+    "include": ["reasoning.encrypted_content"],
+    "store": false
+  }'
 ```
 
-## Image generation (preview)
+---
 
-The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
+The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
 
-Compared to the standalone Image API, the Responses API offers several advantages:
+Compared to the standalone Image API, the Responses API offers two advantages:
 
-* **Streaming**: Display partial image outputs during generation to improve perceived latency.
-* **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
+- **Streaming**: Display partial image outputs during generation to improve perceived latency.
+- **Flexible inputs**: Accept image file IDs as inputs in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1`-series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, `gpt-5` and `gpt-5.1` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](../how-to/dall-e.md) directly outside of the Responses API.
+> The image generation tool in the Responses API is supported by `gpt-image-1`-series models, and you can call it from a set of compatible chat and reasoning models. For the current list of supported orchestration models, see the [Supported models](#supported-models) section later in this article.
+>
+> The image generation tool doesn't currently support streaming mode. To stream partial images, call the [image generation API](../how-to/dall-e.md) directly outside of the Responses API.
 
-Use the Responses API if you want to build conversational image experiences with GPT Image.
+Use the Responses API to build conversational image experiences with GPT Image models.
 
+# [Python](#tab/python)
 ```python
+import base64
+import os
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -1385,30 +3516,175 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+    default_headers={
+        "x-ms-oai-image-generation-deployment": os.getenv("IMAGE_MODEL_NAME"),
+        "api_version": "preview",
+    },
 )
 
 response = client.responses.create(
-    model="o3",
-    input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
+    model="MODEL_NAME",
+    input="Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
     tools=[{"type": "image_generation"}],
 )
 
-# Save the image to a file
 image_data = [
     output.result
     for output in response.output
     if output.type == "image_generation_call"
 ]
-    
+
 if image_data:
-    image_base64 = image_data[0]
     with open("otter.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
+        f.write(base64.b64decode(image_data[0]))
 ```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+ImageGenerationTool imageTool = ResponseTool.CreateImageGenerationTool(model: "gpt-image-1");
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("Generate an image of an otter swimming in a pond.")
+    },
+    Tools = { imageTool }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is ImageGenerationCallResponseItem imageCall && imageCall.ImageResultBytes is not null)
+    {
+        await File.WriteAllBytesAsync("otter.png", imageCall.ImageResultBytes.ToArray());
+        Console.WriteLine($"Saved image. Revised prompt: {imageCall.RevisedPrompt}");
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import fs from "fs";
+import OpenAI from "openai";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+  new DefaultAzureCredential(),
+  "https://ai.azure.com/.default"
+);
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: await tokenProvider(),
+  defaultHeaders: {
+    "x-ms-oai-image-generation-deployment": process.env.IMAGE_MODEL_NAME,
+    api_version: "preview",
+  },
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
+  tools: [{ type: "image_generation" }],
+});
+
+const imageBase64 = response.output
+  .filter((o) => o.type === "image_generation_call")
+  .map((o) => o.result)[0];
+
+if (imageBase64) {
+  fs.writeFileSync("otter.png", Buffer.from(imageBase64, "base64"));
+}
+```
+
+# [Java](#tab/java)
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.identity.AuthenticationUtil;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseOutputItem;
+import com.openai.models.responses.Tool;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+Tool imageGen = Tool.ofImageGeneration(Tool.ImageGeneration.builder().build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .input("Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
+        .addTool(imageGen)
+        .build());
+
+response.output().stream()
+    .filter(ResponseOutputItem::isImageGenerationCall)
+    .map(ResponseOutputItem::asImageGenerationCall)
+    .findFirst()
+    .flatMap(call -> call.result())
+    .ifPresent(b64 -> {
+        try {
+            Files.write(Paths.get("otter.png"), Base64.getDecoder().decode(b64));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    });
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H "x-ms-oai-image-generation-deployment: $IMAGE_MODEL_NAME" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
+    "tools": [{ "type": "image_generation" }]
+  }'
+```
+
+---
 
 ## Reasoning models
 
@@ -1416,97 +3692,7 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration)
-
-## Responses API
-
-### API support
-
-- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
-
-### Region Availability
-
-The responses API is currently available in the following regions:
-
-- australiaeast
-- brazilsouth
-- canadacentral
-- canadaeast  
-- eastus
-- eastus2
-- francecentral
-- germanywestcentral
-- italynorth
-- japaneast
-- koreacentral
-- northcentralus
-- norwayeast
-- polandcentral
-- southafricanorth
-- southcentralus
-- southeastasia
-- southindia
-- spaincentral
-- swedencentral
-- switzerlandnorth
-- uaenorth
-- uksouth
-- westus
-- westus3
-
-### Model support
-
-- `gpt-5.4-nano` (Version: `2026-03-17`)
-- `gpt-5.4-mini` (Version: `2026-03-17`)
-- `gpt-5.4-pro` (Version:`2026-03-05`)
-- `gpt-5.4` (Version:`2026-03-05`)
-- `gpt-5.3-chat` (Version: `2026-03-03`)
-- `gpt-5.3-codex` (Version: `2026-02-24`)
-- `gpt-5.2-codex` (Version: `2026-01-14`)
-- `gpt-5.2` (Version: `2025-12-11`)
-- `gpt-5.2-chat` (Version: `2025-12-11`)
-- `gpt-5.2-chat` (Version: `2026-02-10`)
-- `gpt-5.1-codex-max` (Version: `2025-12-04`)
-- `gpt-5.1` (Version: `2025-11-13`)
-- `gpt-5.1-chat` (Version: `2025-11-13`)
-- `gpt-5.1-codex` (Version: `2025-11-13`)
-- `gpt-5.1-codex-mini` (Version: `2025-11-13`)
-- `gpt-5-pro` (Version: `2025-10-06`)
-- `gpt-5-codex`  (Version: `2025-09-11`)
-- `gpt-5` (Version: `2025-08-07`)
-- `gpt-5-mini` (Version: `2025-08-07`)
-- `gpt-5-nano` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-10-03`)
-- `gpt-5-codex` (Version: `2025-09-15`)
-- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
-- `gpt-4o-mini` (Version: `2024-07-18`)
-- `computer-use-preview`
-- `gpt-4.1` (Version: `2025-04-14`)
-- `gpt-4.1-nano` (Version: `2025-04-14`)
-- `gpt-4.1-mini` (Version: `2025-04-14`)
-- `gpt-image-1` (Version: `2025-04-15`)
-- `gpt-image-1-mini` (Version: `2025-10-06`)
-- `gpt-image-1.5` (Version: `2025-12-16`)
-- `o1` (Version: `2024-12-17`)
-- `o3-mini` (Version: `2025-01-31`)
-- `o3` (Version: `2025-04-16`)
-- `o4-mini` (Version: `2025-04-16`)
-
-Not every model is available in the regions supported by the responses API. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability.
-
-> [!NOTE]
-> Not currently supported:
-> - Image generation using multi-turn editing and streaming.
-> - Images can't be uploaded as a file and then referenced as input.
->
-> There's a known issue with the following:
-> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
-
-### Reference documentation
-
-- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
+Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
 
 ## Troubleshooting
 
