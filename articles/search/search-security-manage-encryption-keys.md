@@ -512,7 +512,7 @@ Configuration of service-level CMK is supported in Azure SDK packages that targe
 
 ### Check whether a search object inherits service-level CMK
 
-To check whether a search object is using a customer-managed key configured at the service-level as a default or a unique customer-managed key configured at the object-level, you can use the `isServiceLevelKey` property.
+To check whether a search object is using a customer-managed key configured at the service-level as a default or a unique customer-managed key configured at the object-level, you can check the inherited encryption state using the `isServiceLevelKey` property.
 
 ### [**Azure portal**](#tab/portal)
 
