@@ -24,7 +24,8 @@ endpoints.
 
 In this article, you create a minimal LangGraph agent, expose it through either
 the Responses or Invocations protocol, test it through HTTP, and deploy it to
-Foundry with the Azure Developer CLI.
+Foundry with the Azure Developer CLI or the Foundry Toolkit Visual Studio Code
+extension.
 
 ## Prerequisites
 
@@ -33,10 +34,13 @@ Foundry with the Azure Developer CLI.
 - A deployed chat model, such as `gpt-4.1` or `gpt-5-mini`.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
-- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
-  signed in (`azd auth login`) with the AI agent extension installed
-  (`azd ext install azure.ai.agents`) if you plan to run or deploy the sample
-  with `azd`.
+- Choose one deployment option:
+  - **Azure Developer CLI**: Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd),
+    sign in (`azd auth login`), and install the AI agent extension
+    (`azd ext install azure.ai.agents`).
+  - **Foundry Toolkit Visual Studio Code extension**: Install
+    [Visual Studio Code](https://code.visualstudio.com/) and the
+    [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk).
 - Docker Desktop if you plan to package and deploy the agent as a Hosted agent.
 
 To deploy the container after local testing, you need **Foundry Project Manager** role
@@ -358,11 +362,13 @@ state, override `build_input` instead of flattening the request to text.
 
 ## Deploy
 
+### Deploy with Azure Developer CLI
+
 The `langchain-azure-ai` source repository includes Hosted agent samples that
 can be run and deployed with the Azure Developer CLI. The flow uses each
 sample's `agent.manifest.yaml`, `agent.yaml`, `Dockerfile`, and `main.py`.
 
-### Prerequisites
+#### Prerequisites
 
 Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 and the AI agent extension:
@@ -376,7 +382,7 @@ Docker must be running locally because `azd ai agent run` builds the container
 image declared in the sample's Dockerfile. For command details, see the
 [Azure Developer CLI reference](/azure/developer/azure-developer-cli/reference).
 
-### Initialize from a sample manifest
+#### Initialize from a sample manifest
 
 Create a new folder and initialize it from a sample manifest. Replace the
 manifest URL with the sample you want to use.
@@ -392,7 +398,7 @@ Follow the prompts from `azd ai agent init`. If you don't already have a
 Foundry project and model deployment, the initialization flow can guide you
 through creating them.
 
-### Run the container locally
+#### Run the container locally
 
 Run the agent host locally through `azd`:
 
@@ -423,7 +429,7 @@ You can also invoke the local agent through `azd`:
 azd ai agent invoke --local "Hello!"
 ```
 
-### Deploy to Foundry
+#### Deploy to Foundry
 
 If the initialized project uses a new Foundry project and model deployment,
 provision the Azure resources first:
@@ -455,6 +461,10 @@ the agent, including:
 For complete deployment concepts, permissions, and management details, see
 [Deploy a Hosted agent](../../agents/how-to/deploy-hosted-agent.md) and
 [Manage Hosted agent lifecycle](../../agents/how-to/manage-hosted-agent.md).
+
+### Deploy with Foundry Toolkit Visual Studio Code extension
+
+For extension-based deployment, see [Quickstart: Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md?pivots=vscode).
 
 ## Troubleshooting
 
