@@ -113,7 +113,7 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 | `prompt` | Yes | The message sent to the agent |
 | `criteria` | Yes | Array of evaluation *criteria* — rules that define what "good" looks like for the task |
 | `criteria[].name` | Yes | Short name for the criterion (for example, `"is_polite"`) |
-| `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`task_adherence`) scores each criterion independently as a binary value (0 or 1). |
+| `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`builtin.task_adherence`) scores each criterion independently as a binary value (0 or 1). |
 | `groundTruth` | No | Expected answer (used by some evaluators for reference) |
 
 ### Example: Customer support agent
@@ -136,27 +136,25 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 Reference your dataset in a YAML config file:
 
 ```yaml
-# spec.yaml
+# eval.yaml
 agent:
   name: my-agent
 
 dataset_file: ./my_eval_dataset.jsonl
 
 evaluators:
-  - task_adherence
+  - builtin.task_adherence
 
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5.1
-  target_attributes:
-    - instruction
+  optimization_model: gpt-5.1
   max_iterations: 10
 ```
 
 Then run:
 
 ```bash
-azd ai agent optimize --config spec.yaml
+azd ai agent optimize --config eval.yaml
 ```
 
 Before you run the command, validate the JSONL syntax:
@@ -216,7 +214,7 @@ Each criterion gets a binary score (0 or 1). The task score is the average of it
 
 ### Ground truth is optional
 
-The `groundTruth` field provides a reference answer for evaluators that support it. This field isn't required. The `task_adherence` evaluator works entirely from criteria instructions.
+The `groundTruth` field provides a reference answer for evaluators that support it. This field isn't required. The `builtin.task_adherence` evaluator works entirely from criteria instructions.
 
 ```jsonl
 {"name": "geography_fact", "prompt": "What is the largest city in France by population?", "groundTruth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
@@ -226,7 +224,7 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| `dataset_file not found` | Wrong path in `spec.yaml` | Use a path relative to the config file location |
+| `dataset_file not found` | Wrong path in `eval.yaml` | Use a path relative to the config file location |
 | `invalid JSON on line N` | Malformed JSONL | Validate that each line is valid JSON. Check for trailing commas. |
 | Scores are inconsistent between runs | Vague criteria | Make criteria specific and binary-testable |
 
@@ -234,5 +232,5 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Optimize agent instructions and skills](optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

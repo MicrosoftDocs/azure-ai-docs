@@ -1,6 +1,6 @@
 ---
 title: "Agent optimizer in Foundry Agent Service overview (preview)"
-description: "Automatically improve hosted agents by evaluating behavior and generating better system instructions and skills using the agent optimizer in Foundry Agent Service."
+description: "Automatically improve hosted agents by evaluating behavior and generating better instructions, skills, tools, and model configurations using the agent optimizer in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -38,70 +38,56 @@ The entire process runs in the cloud. Start it with `azd ai agent optimize` (req
 
 ## Optimization targets
 
-### Instruction tuning (default)
+The agent optimizer automatically determines which targets to improve based on your agent's baseline configuration and the `eval.yaml` settings. The following targets are supported.
 
-The *instruction target* rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
+### Instruction tuning
 
-**When to use:** Most agents. This is the default and works well for improving response quality, adherence to task requirements, and reducing hallucination.
+The optimizer rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
 
-```bash
-azd ai agent optimize --target instruction
-```
+**When it activates:** When your agent has an `instructions.md` file in the baseline config directory. This is the most common optimization target and works well for improving response quality, adherence to task requirements, and reducing hallucination.
 
-### Skill discovery
+### Skill improvement
 
-The *skill target* discovers reusable capabilities your agent should have. It generates *skill* definitions that include a name, description, and implementation body. The agent optimizer appends these definitions to the agent's instruction set.
+The optimizer improves reusable skills your agent uses. It refines existing *skill* definitions, including their descriptions and implementation bodies. The agent loads these skills via `load_config()` and appends them to the instruction set.
 
-**When to use:** Agents that need structured, repeatable behaviors. For example, a support agent that should always follow a specific escalation procedure, or a coding agent that should use particular debugging patterns.
+**When it activates:** When your agent has a `skills/` directory in the baseline config. Use skills for agents that need structured, repeatable behaviors — for example, a support agent that should always follow a specific escalation procedure, or a travel agent that should check budget policies consistently.
 
-```bash
-azd ai agent optimize --target skill
-```
+### Tool optimization
+
+The optimizer improves tool descriptions and parameters to help the model call tools more accurately. It refines the function-calling definitions in your `tools.json` file.
+
+**When it activates:** When your agent has a `tools.json` file in the baseline config. The optimizer analyzes which tool calls succeed or fail and generates clearer descriptions and parameter definitions.
 
 ### Model selection
 
-The *model target* evaluates your agent across multiple model deployments in the same run. Use it when you want to find the best quality/cost trade-off — for example, whether `gpt-4.1-mini` handles your workload at lower cost, or whether `gpt-4.1` gives a quality improvement that justifies the token cost.
+The optimizer evaluates your agent across multiple model deployments in the same run to find the best quality/cost trade-off — for example, whether `gpt-4.1-mini` handles your workload at lower cost, or whether `gpt-4.1` gives a quality improvement that justifies the token cost.
 
-**When to use:** You have multiple model deployments and want data-driven selection. The optimizer scores each model option against the same dataset and shows the trade-offs.
+**When it activates:** When you include `optimization_config.model` in your `eval.yaml` with a list of model deployments to evaluate. The optimizer scores each model option against the same dataset and shows the trade-offs.
 
-Configure the model target in your spec.yaml:
+Configure model candidates in your `eval.yaml`:
 
 ```yaml
-# spec.yaml
+# eval.yaml
 options:
-  target_attributes:
-    - model
-  target_config:
+  optimization_config:
     model:
       - gpt-4.1
       - gpt-4.1-mini
       - gpt-4o
 ```
 
-You can combine model selection with other targets:
-
-```yaml
-options:
-  target_attributes:
-    - instruction
-    - skill
-    - model
-  target_config:
-    model:
-      - gpt-4.1
-      - gpt-4.1-mini
-```
+You can combine model selection with instruction and skill optimization in the same run — the optimizer automatically determines which targets to improve based on your agent's baseline configuration and the available `optimization_config`.
 
 ## Config resolution
 
 When your agent starts, the `load_config()` function checks four sources in order:
 
-| Priority | Source | When it's used |
-| ---------- | -------- | ---------------- |
-| 1 | `OPTIMIZATION_CONFIG` environment variable (inline JSON) | After deploying a candidate |
-| 2 | `OPTIMIZATION_CANDIDATE_ID` environment variable, resolved through the API | During optimization evaluation |
-| 3 | Local directory (`.agent_configs/`) | After resolver persists config locally |
-| 4 | Your defaults in code | Normal operation (no optimization) |
+| Priority | Source | Environment variables | When it's used |
+| ---------- | -------- | ---------------------- | ---------------- |
+| 1 | Inline JSON | `OPTIMIZATION_CONFIG` | After deploying directly via API |
+| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID` + `OPTIMIZATION_RESOLVE_ENDPOINT` | During optimization evaluation |
+| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | After `azd ai agent optimize apply` writes config locally |
+| 4 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
 
 Your agent always works with or without optimization. No feature flags or conditional logic are required. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
 
@@ -118,22 +104,22 @@ Your agent always works with or without optimization. No feature flags or condit
 
 The agent optimizer uses two models during an optimization run. Both must be deployed in your Foundry project.
 
-| Model | Config key | Role | Supported models |
-| ------- | ------------ | ------ | ------------------ |
-| **Eval model** | `eval_model` | Scores agent responses against criteria in the dataset | `gpt-4.1-mini` (default) |
-| **Reflection model** | `reflection_model` | Generates candidate instructions and skills (the optimization reasoning) | `gpt-5`, `gpt-5.1`, `gpt-5.3` |
+| Model | Config key | CLI flag | Role | Supported models |
+| ------- | ------------ | -------- | ------ | ------------------ |
+| **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | Any chat-completion model (for example, `gpt-4.1-mini`) |
+| **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate configurations (instructions, skills, tools, model selection) | `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4`, `gpt-5.5`, `DeepSeek-V4-Pro`, `DeepSeek-V-3.2` |
 
-The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The reflection model analyzes baseline results and generates improved instructions or skills. Because it reasons over the full dataset, a more capable reflection model typically produces better candidates.
+The eval model runs once per task per candidate — it reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved candidates across the configured targets (instructions, skills, tools, and models). Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
 
 ```yaml
-# spec.yaml
+# eval.yaml
 options:
   eval_model: gpt-4.1-mini
-  reflection_model: gpt-5.1
+  optimization_model: gpt-5.1
 ```
 
 > [!IMPORTANT]
-> Both models are required. If `reflection_model` is not specified in your config, the optimization API returns an error.
+> The optimization model must be from the supported list above. If `optimization_model` is not specified, it falls back to the eval model — so in that case the eval model must also be a supported optimization model.
 
 ## Understand optimization results
 
@@ -224,4 +210,4 @@ azd ai agent optimize --eval-model gpt-4.1-mini
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 - [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)

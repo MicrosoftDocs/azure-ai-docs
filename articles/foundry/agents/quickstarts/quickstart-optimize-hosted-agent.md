@@ -23,83 +23,41 @@ In this quickstart, you install the optimization CLI extension, deploy a hosted 
 | ------ | ---------- | --------- |
 | [azd CLI](https://aka.ms/azd) | Yes | Azure Developer CLI. Provisions, deploys, and manages your agent. |
 | [Azure CLI](/cli/azure/install-azure-cli) | Yes | Azure authentication (`az login`) |
-| [Docker Desktop](https://www.docker.com/products/docker-desktop/) (must be running) | Yes | Builds and pushes container images for agent deployment |
-| [Python 3.12+](https://www.python.org/downloads/) | Yes | Agent runtime |
-| Git | Yes | Source control |
 
 Your Azure subscription must be on the allowlist for the agent optimizer. Contact your Microsoft representative to request access.
 
 ## Install the CLI extension
 
-### Option A: Use the template (recommended)
-
-The template includes prebuilt extension binaries for all platforms:
-
-```bash
-mkdir my-agent && cd my-agent
-azd init -t microsoft/faos-pri-preview
-```
-
-Run the install scripts to set up the extension:
-
-# [Bash](#tab/bash)
-
-```bash
-./scripts/install-extension.sh
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-.\scripts\install-extension.ps1
-```
-
----
-
-This copies the correct binary for your platform to `~/.azd/extensions/azure.ai.agents/`.
-
-> [!TIP]
-> **For Dev Containers**: Select the **Open in Dev Containers** badge in the repo README. The dev container auto-installs everything.
-
-### Option B: Build from source
-
-<details>
-<summary>Expand for build-from-source instructions (requires Go 1.21+)</summary>
-
-```bash
-# Clone the extension source
-git clone https://github.com/coreai-microsoft/azure-dev-optimize.git
-cd azure-dev-optimize/cli/azd/extensions/azure.ai.agents
-
-# Build the binary
-azd x build
-```
-
-Then install the extension and overlay the binary you built:
-
-# [Bash](#tab/bash)
+Install the `azure.ai.agents` extension for the azd CLI:
 
 ```bash
 azd ext install azure.ai.agents
-cp bin/azure-ai-agents-$(uname -s | tr A-Z a-z)-* ~/.azd/extensions/azure.ai.agents/
 ```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-azd ext install azure.ai.agents
-Copy-Item bin\azure-ai-agents-windows-amd64.exe $env:USERPROFILE\.azd\extensions\azure.ai.agents\ -Force
-```
-
----
-
-</details>
 
 Verify the installation:
 
 ```bash
 azd ai agent optimize --help
 ```
+
+## Create the project
+
+Initialize a new project from the agent optimizer sample. Create a folder, then use `azd ai agent init` with the sample manifest:
+
+```bash
+mkdir my-agent && cd my-agent
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml
+```
+
+This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
+
+> [!TIP]
+> If you already have an existing agent project, skip this step and see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
+>
+> If you already have a Foundry project and model deployments, add `-p <project-resource-id>` to target existing resources:
+> ```bash
+> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+> ```
 
 ## Authenticate
 
@@ -148,34 +106,24 @@ This step creates:
 
 - A Foundry account and project
 - An Azure Container Registry
-- A model deployment for gpt-4.1-mini
+- Model deployments (gpt-4.1-mini for eval, gpt-5.1 for optimization)
 
 ### Option B: Use an existing Foundry project
 
-If you already have a Foundry project with a model deployed, skip provisioning and configure your environment manually:
+If you already have a Foundry project with models deployed, use `agent init` to configure your environment:
 
 ```bash
-azd env new my-optimizer-env
-
-azd env set AZURE_SUBSCRIPTION_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-azd env set AZURE_TENANT_ID "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-azd env set AZURE_AI_PROJECT_ENDPOINT "https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
-azd env set AZURE_CONTAINER_REGISTRY_ENDPOINT "<your-registry>.azurecr.io"
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+azd ai agent init --project-id "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
 ```
 
-Use the following table to find each value:
+> [!TIP]
+> Find your project resource ID in the Azure portal → your Foundry project → **Properties** → **Resource ID**.
 
-| Variable | Where to find it |
-| -------- | ---------------- |
-| `AZURE_SUBSCRIPTION_ID` | Azure portal → **Subscriptions** |
-| `AZURE_TENANT_ID` | Run `az account show --query tenantId -o tsv` |
-| `AZURE_AI_PROJECT_ENDPOINT` | Foundry portal → your project → **Overview** → **Project endpoint** |
-| `AZURE_CONTAINER_REGISTRY_ENDPOINT` | Azure portal → **Container Registry** → **Overview** → **Login server** |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Foundry portal → your project → **Models + endpoints** → **Deployments** |
+Set your model deployment name:
 
-> [!NOTE]
-> The project endpoint (not "project ID") is the value the CLI uses to identify your project. It appears on the project **Overview** page in the Foundry portal.
+```bash
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4.1-mini"
+```
 
 ## Deploy the agent
 
@@ -208,7 +156,7 @@ For more details on agent targeting, see [Which agent gets optimized](../how-to/
 The agent optimizer completes the following steps:
 
 1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
-1. Generates improved instruction candidates.
+1. Generates improved candidates (instructions, skills, tools, or model configurations depending on your target).
 1. Evaluates each candidate.
 1. Ranks the candidates by score.
 
@@ -232,26 +180,32 @@ Results:
     azd ai agent optimize deploy --candidate cand_91a5861f5c0245c4b2acb9ccaa48d4aa
 ```
 
-The *eval model*, which defaults to `gpt-4.1-mini`, scores each response. This model must be deployed in your Foundry project.
+The *eval model* scores each response (any chat-completion model works). The *optimization model* generates improved candidates and must be from the [supported list](../concepts/agent-optimizer-overview.md#models) (gpt-5 family or DeepSeek).
 
 > [!WARNING]
 > If the eval model is not deployed, all scores are zero with no error message. Verify that your eval model exists before running optimization.
 
-To evaluate the baseline only, without running optimization:
-
-```bash
-azd ai agent optimize --eval
-```
-
 ## Deploy the winner
 
-The ★ indicates the best candidate. Deploy it with the command shown in the optimization output:
+The ★ indicates the best candidate. The recommended workflow is to apply the optimized config locally, then deploy:
+
+```bash
+# Apply the winning candidate locally
+azd ai agent optimize apply --candidate <candidate-id>
+
+# Deploy with the optimized config
+azd deploy
+```
+
+This downloads the optimized configuration into `.agent_configs/<candidate_id>/` in your project. On next deploy, your agent uses the improved instructions and tool descriptions.
+
+Alternatively, for quick testing you can deploy directly:
 
 ```bash
 azd ai agent optimize deploy --candidate <candidate-id>
 ```
 
-This command creates a new agent version with the optimized instructions. The `agent_optimization` SDK's `load_config()` function picks up the new configuration automatically at startup.
+The `azure-ai-agentserver-optimization` package's `load_config()` function picks up the new configuration automatically at startup.
 
 Invoke your agent again to verify the improvement:
 
@@ -259,10 +213,10 @@ Invoke your agent again to verify the improvement:
 azd ai agent invoke "Write a Python function to check if a number is prime."
 ```
 
-You can also re-run eval-only to confirm the score improvement:
+You can also run evaluation separately to confirm the score improvement:
 
 ```bash
-azd ai agent optimize --eval
+azd ai agent eval run
 ```
 
 ## Next steps: Use a custom dataset
@@ -312,7 +266,7 @@ azd down --force --purge
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
 | `optimize` returns 403 | Subscription not on allowlist | Contact your Microsoft representative to request access |
-| All scores are zero | Eval model not deployed | Deploy `gpt-4.1-mini` in your Foundry project, or use `--eval-model` to specify a deployed model |
+| All scores are zero | Eval model not deployed | Deploy the eval model in your Foundry project, or use `--eval-model` to specify a deployed model |
 | `azd deploy` fails with Docker error | Docker Desktop not running | Start Docker Desktop and retry |
 | `azd provision` fails with quota error | Subscription lacks capacity | Try a different subscription or request a quota increase |
 
@@ -321,6 +275,6 @@ azd down --force --purge
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
-- [Optimize agent instructions and skills](../how-to/optimize-agent-targets.md)
+- [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 
