@@ -11,7 +11,7 @@ ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Cancel translation
+# Cancel document translation
 
 Cancel a batch translation job that is in a `NotStarted` or `Running` state. The service makes a best-effort attempt to stop processing. Documents that have already completed translation are retained in the target container and billed normally. Jobs in a terminal state (`Succeeded`, `Failed`, `Cancelled`) cannot be canceled.
 

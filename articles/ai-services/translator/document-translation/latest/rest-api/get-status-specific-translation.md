@@ -11,7 +11,7 @@ ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Get translation status
+# Get translation job status
 
 Retrieve the overall status and document summary for a specific batch translation job. Poll this endpoint after submitting a batch request until the job reaches a terminal state: `Succeeded`, `Failed`, `Cancelled`, or `ValidationFailed`.
 

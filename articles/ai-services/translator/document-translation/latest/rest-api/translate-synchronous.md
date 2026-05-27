@@ -11,7 +11,7 @@ ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Synchronous document translation
+# Translate a single document
 
 Translate a single document and receive the translated output in the HTTP response. This operation doesn't require Azure Blob Storage, which makes it well-suited for interactive translation, lightweight integrations, and testing. The request uses multipart/form-data to pass the document and returns the translated file as binary data in the response body.
 

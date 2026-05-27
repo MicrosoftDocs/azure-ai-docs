@@ -67,8 +67,8 @@ Document Translation supports different features for each translation method. Se
 | --- | --- |
 | **Translate large files** | Translate whole documents asynchronously. |
 | **Translate numerous files** | Translate multiple files across all supported languages and dialects while preserving document structure and data format. |
-| **Translate image file formats** 🆕 | &bull; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator). |
-| [**Translate image text in Word documents (.docx) and PowerPoint files (.pptx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx). | This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` and `.pptx` file formats. |
+| **Translate image file formats** 🆕 | &bull; [Translate text within an image while maintaining the original design and layout](../latest/rest-api/translate-asynchronous.md).<br>&bull; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bull; **Pricing**: Calculated on a per-image basis. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator). |
+| [**Translate image text in Word documents (.docx) and PowerPoint files (.pptx)** 🆕](../how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx). | This feature is available with the [batch document translation](../how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` and `.pptx` file formats. |
 | **Preserve source file presentation** | Translate files while preserving the original layout and format. |
 | **Apply custom translation** | Translate documents using general and [custom translation](../../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models. |
 | **Apply custom glossaries** | Translate documents using custom glossaries. |
@@ -82,7 +82,7 @@ Document Translation supports different features for each translation method. Se
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
-|**Apply custom glossaries**|Translate documents using custom glossaries. For guidance, see [Use glossaries with Document translation](how-to-guides/create-use-glossaries.md).|
+|**Apply custom glossaries**|Translate documents using custom glossaries. For guidance, see [Use glossaries with Document translation](../how-to-guides/create-use-glossaries.md).|
 |**Single language translation**|Translate to and from one [supported language](../../language-support.md).|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
 
@@ -110,7 +110,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|The [client-library (SDKs)](../quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
 ### [**Synchronous**](#tab/sync)
 
@@ -119,9 +119,9 @@ Use synchronous document translation to translate a single file and return the t
 |Development option|Description|
 |---|---|
 |**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
-|**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
+|**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../../foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](rest-api/guide-overview.md#synchronous-operations).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](../quickstarts/client-library-sdks.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../../containers/translate-document-parameters.md).|
 
 ---

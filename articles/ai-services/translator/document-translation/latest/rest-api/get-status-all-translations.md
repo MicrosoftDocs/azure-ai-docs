@@ -11,7 +11,7 @@ ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Get status for all translation jobs
+# Get status for all document translation jobs
 
 Retrieve a list of all batch translation jobs submitted to your resource, along with status and summary information for each job. The response supports paging and filtering, which is useful for auditing job history or recovering a job ID.
 

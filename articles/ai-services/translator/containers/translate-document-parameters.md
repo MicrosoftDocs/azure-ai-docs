@@ -9,7 +9,7 @@ ms.topic: reference
 ms.date: 06/02/2026
 ms.author: lajanuar
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Azure Translator in Foundry Tools container: translate documents
 
 **Translate document with source language specified**.

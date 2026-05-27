@@ -11,7 +11,7 @@ ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
-# Get supported document formats
+# Get supported document formats list
 
 Retrieve a list of document formats supported by the Document Translation service. Use this endpoint to validate file types before submitting a translation job and to discover supported MIME types and format-specific versioning.
 
