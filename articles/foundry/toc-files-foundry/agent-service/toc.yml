@@ -178,6 +178,9 @@ items:
       href: ../../observability/how-to/trace-agent-framework.md
     - name: Review agent interactions with Trace Replay
       href: ../../observability/how-to/trace-agent-replay.md
+  - name: Run agent evaluations with the Azure Developer CLI
+    displayName: azd cli
+    href: ../../observability/how-to/azure-developer-cli-evaluation.md
   - name: Optimize agent prompts 
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
