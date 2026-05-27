@@ -42,17 +42,22 @@ azd ai agent optimize --help
 
 ## Create the project
 
-Initialize a new project from the agent optimizer template:
+Initialize a new project from the agent optimizer sample. Create a folder, then use `azd ai agent init` with the sample manifest:
 
 ```bash
 mkdir my-agent && cd my-agent
-azd init -t microsoft/faos-pri-preview
+azd ai agent init -m https://github.com/microsoft/faos-pri-preview/blob/main/samples/python/customer-support/agent.manifest.yaml
 ```
 
-This creates the project structure including `agent.yaml`, `.agent_configs/baseline/`, a sample dataset, and the infrastructure-as-code files for provisioning.
+This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
 
 > [!TIP]
 > If you already have an existing agent project, skip this step and see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
+>
+> If you already have a Foundry project and model deployments, add `-p <project-resource-id>` to target existing resources:
+> ```bash
+> azd ai agent init -m <manifest-url> -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+> ```
 
 ## Authenticate
 
