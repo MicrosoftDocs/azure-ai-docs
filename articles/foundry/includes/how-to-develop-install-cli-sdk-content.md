@@ -104,6 +104,9 @@ Git is required to clone Foundry SDK samples. If you don't have Git installed, [
 
 ## Related content
 
+> [!div class="nextstepaction"]
+> [Use the Microsoft Foundry Skill in coding agents](../how-to/develop/use-microsoft-foundry-skill.md)
+
 * [Get started with Foundry](../quickstarts/get-started-code.md)
 
 ::: zone pivot="programming-language-python"
