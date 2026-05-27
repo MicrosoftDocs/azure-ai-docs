@@ -25,11 +25,20 @@ This article explains how to configure and use the Browser Automation tool with 
 > [!WARNING]
 > The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages that the AI encounters can cause it to execute commands you or others don't intend. These actions can compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you acknowledge that you bear responsibility and liability for any use of it and of any resulting agents you create with it. This responsibility extends to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. Use the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
 
-For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+Browser Automation Tool (BAT) enables scalable, reliable browser-based automation within Foundry agents. BAT is available as an MCP tool powered by Playwright workspaces as its headless browser infrastructure layer. It integrates seamlessly with modern agentic workflows while providing enterprise-grade security, observability, and extensibility.
 
-In Microsoft Foundry, the Browser Automation tool enables your Foundry-model-powered agent to perform real-world browser tasks through natural language prompts. When you use it with Foundry Agent Service, it creates isolated browser sessions in your provisioned Playwright workspace.
+Browser Automation Tool (BAT) provides a comprehensive platform for browser automation through:
 
-By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-workspaces), you can automate browser-based workflows such as searching, navigating, filling forms, and booking.
+- [Playwright Workspaces](https://aka.ms/pww/docs) (a Generally Available service) as the infrastructure layer
+- Real-time debugging with Live View
+- Take control for human-in-the-loop scenarios
+- Support for private website browsing (Private preview)
+- Built-in observability for reliability and optimization
+- Flexible orchestration layers
+
+> [!NOTE]
+> The private website feature in Playwright Workspaces is currently available in private preview.
+> Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
 
 ### Usage support
 
@@ -53,7 +62,7 @@ An example flow is:
 1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-   The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
+   The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
 
 ## Prerequisites
 
@@ -62,7 +71,7 @@ Before you begin, make sure you have:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Contributor or Owner role on a resource group.
 - A Foundry project with a configured endpoint.
-- An AI model deployed in your project (for example, `gpt-4o`).
+- An AI model deployed in your project (for example, `gpt-5.4`).
 - A Playwright workspace resource.
 - A project connection set up for your Playwright workspace.
 
@@ -97,16 +106,19 @@ The .NET SDK is currently in preview. For more information, see the [quickstart]
 ### Step 2: Connect the Browser Automation tool in Foundry
 
 1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
-1. Select **Build** > **Tools**.
-1. Select **Connect a tool**.
-1. In the **Configured** tab, select **Browser Automation**, then select **Add tool**.
-1. Fill in the required fields:
-   - **Name**: A unique name for your connection.
-   - **Playwright workspace region endpoint**: Paste the `wss://` endpoint you copied.
-   - **Access token**: Paste the access token you generated.
-1. Select **Connect**.
+2. Select **Build** > **Tools**.
+3. Select **Create a toolbox**.
+4. Fill in the **Name** and **Description** for your toolbox.
+5. Under **Tools**, click on **Add**
+6. Select **Browser Automation** and click **Add tool**
+7. Enter the required fields
+   - **Connection name**: Unique name for your connection
+   - **Playwright Workspace**: Select the Playwright Workspace resource.
+   - **Auth Type**: Select the authentication type for your connection.
+8. Select **Connect**.
+9. Click on **Publish** to save the toolbox
 
-After the connection is created, you can view the **Project connection ID** on the tool's details page. Use this value as the browser automation connection ID in your code.
+After the toolbox is created, you can view the **Project connection ID** on the tool's details page. Use this value as the browser automation connection ID in your code.
 
 ## Code example
 
@@ -577,7 +589,7 @@ public class BrowserAutomationExample {
 
 ## Cost considerations
 
-This tool uses a Playwright workspace resource to run browser sessions. Review the Playwright workspace documentation for pricing and usage details.
+This tool uses a Playwright workspace resource to run browser sessions. Review the Playwright workspace documentation for pricing and usage details. For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## Troubleshooting
 
@@ -618,9 +630,9 @@ Browser automation can take longer than typical requests.
 
 ## Example scenarios
 
-- Booking and reservations: Automate form filling and schedule confirmation across booking portals.
+- Form filling: Handles diverse form types with validation, DOM, authentication, compliance, and supporting multi-turn reasoning.
 
-- Product discovery: Navigate ecommerce or review sites, search by criteria, and extract summaries.
+- Web scraping: Navigates authenticated sites to scrape, compare, and structure data across sources.
 
 ## Transparency note
 
