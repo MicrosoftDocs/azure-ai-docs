@@ -3,7 +3,7 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 05/04/2026
+ms.date: 05/28/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 You can expose your Foundry Agent Service agent as an Agent2Agent (A2A) endpoint so that other agents can discover and call it through the [A2A protocol](https://a2a-protocol.org/latest/). When incoming A2A is enabled, Foundry publishes an agent card for your agent and accepts inbound A2A requests from external callers.
 
 > [!NOTE]
-> Foundry Agent Service supports A2A protocol **version 0.3** only.
+> Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**. New integrations should target version 1.0. For details about how clients select a version, see [A2A protocol versions](#a2a-protocol-versions).
 
 ## Supported agent types
 
@@ -168,27 +168,51 @@ patched_agent = project_client.beta.agents.patch_agent_details(
 
 ---
 
+## A2A protocol versions
+
+Foundry serves both A2A protocol versions on the same base path (`…/endpoint/protocols/a2a`). Calling agents select a version in one of three ways:
+
+- **Agent card discovery (recommended)** — Fetch the version-specific agent card. Foundry publishes the v1.0 card at `…/agentCard/v1.0` and the v0.3 card at `…/agentCard/v0.3`. Each card declares its `protocolVersion`, and most A2A client SDKs use that field to negotiate the version automatically for subsequent requests.
+- **HTTP header** — Set `A2A-Version: 1.0` (or `A2A-Version: 0.3`) on the request.
+- **Query string** — Append `?a2a-version=1.0` (or `?a2a-version=0.3`) to the request URL.
+
+> [!IMPORTANT]
+> If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves A2A v0.3 by default, in accordance with the A2A specification. To use v1.0, set the header, set the query string, or have your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
+
+The following table summarizes the supported versions:
+
+| Version | Status | Recommended for |
+|---|---|---|
+| 1.0 | Supported | New integrations |
+| 0.3 | Supported | Existing integrations that already target v0.3 |
+
 ## Verify the agent card
 
-After you enable incoming A2A, your agent exposes two URLs that calling agents use:
+After you enable incoming A2A, your agent exposes the following URLs that calling agents use:
 
 - **A2A base path** — The root URL for A2A protocol interactions with your agent:
 
   `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a`
 
-- **Agent card URL** — The discovery endpoint where calling agents retrieve your agent's capabilities, skills, and metadata:
+- **Agent card URL (v1.0, recommended)** — The discovery endpoint that calling agents use to retrieve your agent's v1.0 card:
+
+  `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a/agentCard/v1.0`
+
+- **Agent card URL (v0.3)** — The discovery endpoint for the v0.3 card. Use this URL for clients that target A2A v0.3:
 
   `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a/agentCard/v0.3`
 
-> [!IMPORTANT]
-> Both URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Foundry User** role on the Foundry project.
+You author your agent card once (in the `agent_card` PATCH body shown earlier), and Foundry projects the same content into both the v1.0 and v0.3 card shapes.
 
-To confirm your agent card is configured correctly, fetch it directly:
+> [!IMPORTANT]
+> All A2A URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Foundry User** role on the Foundry project.
+
+To confirm your agent card is configured correctly, fetch the v1.0 card directly:
 
 #### [Bash](#tab/verify-bash)
 
 ```bash
-curl -X GET "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3" \
+curl -X GET "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v1.0" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -196,13 +220,13 @@ curl -X GET "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3"
 
 ```powershell
 Invoke-RestMethod -Method Get `
-  -Uri "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v0.3" `
+  -Uri "$BASE_URL/agents/$AGENT_NAME/endpoint/protocols/a2a/agentCard/v1.0" `
   -Headers @{ Authorization = "Bearer $TOKEN" }
 ```
 
 ---
 
-The response contains the agent card with the description and skills you configured. Verify that the fields match your intended capabilities.
+The response contains the agent card with the description and skills you configured. Verify that the fields match your intended capabilities, and confirm that the card's `protocolVersion` field matches the version path you requested.
 
 ## Configure authentication for incoming requests
 
@@ -222,19 +246,21 @@ To grant a calling identity access, assign the **Foundry User** role on the Foun
 
 ## Supported A2A transports
 
-Foundry Agent Service supports the following A2A transports for incoming requests:
+Transport support depends on the A2A protocol version:
 
-| Transport | Supported |
-|-----------|-----------|
-| **HTTP+JSON** | ✔️ |
-| **JSONRPC** | ✔️ |
-| **gRPC** | ❌ |
+| Transport | v0.3 | v1.0 |
+|-----------|------|------|
+| **HTTP+JSON** | ✔️ | ❌ |
+| **JSONRPC** | ✔️ | ✔️ |
+| **gRPC** | ❌ | ❌ |
+
+A2A v1.0 is JSONRPC-only on Foundry's incoming endpoint. Clients that require HTTP+JSON must either use v0.3 or switch to JSONRPC for v1.0.
 
 ## Connect to a Foundry A2A agent with the Python A2A SDK
 
-The following example shows how to use the open-source [Python A2A SDK](https://github.com/a2aproject/a2a-python) to connect to a Foundry agent that has incoming A2A enabled. The SDK automatically uses its 0.3 compatibility mode based on the protocol version in the agent card.
+The following example shows how to use the open-source [Python A2A SDK](https://github.com/a2aproject/a2a-python) to connect to a Foundry agent that has incoming A2A enabled. The SDK reads the `protocolVersion` field from the agent card and negotiates the matching protocol version for subsequent requests, so pointing the resolver at `agentCard/v1.0` causes the client to use A2A v1.0 end to end.
 
-Because the Foundry agent card requires authentication and uses a custom path (`agentCard/v0.3` instead of the default `.well-known/agent-card.json`), you configure the `httpx` client with a bearer token and pass the custom agent card path to the resolver.
+Because the Foundry agent card requires authentication and uses a custom path (`agentCard/v1.0` instead of the default `.well-known/agent-card.json`), you configure the `httpx` client with a bearer token and pass the custom agent card path to the resolver.
 
 Install the required packages:
 
@@ -260,8 +286,8 @@ A2A_BASE_URL = (
     "https://{account}.services.ai.azure.com/api/projects"
     "/{project}/agents/{agent}/endpoint/protocols/a2a"
 )
-# Agent card path, relative to the A2A base URL
-AGENT_CARD_PATH = "agentCard/v0.3"
+# Agent card path, relative to the A2A base URL.
+AGENT_CARD_PATH = "agentCard/v1.0"
 
 
 async def main():
@@ -314,7 +340,7 @@ You can call a Foundry A2A agent from another Foundry agent by using the A2A too
 
 ### Step 1: Create an A2A connection to the target agent
 
-The connection stores the target agent's A2A endpoint URL, authentication details, and the custom agent card path. Foundry agents serve their agent card at `agentCard/v0.3` (not the default `.well-known/agent-card.json`), so you must set the `AgentCardPath` in the connection metadata.
+The connection stores the target agent's A2A endpoint URL, authentication details, and the custom agent card path. Foundry agents serve their agent card at `agentCard/v1.0` (not the default `.well-known/agent-card.json`), so you must set the `AgentCardPath` in the connection metadata.
 
 > [!NOTE]
 > Setting a custom agent card path isn't supported in the Foundry portal. Use the REST API to create the connection.
@@ -350,7 +376,7 @@ curl --request PUT \
       "audience": "https://ai.azure.com",
       "Credentials": {},
       "metadata": {
-        "AgentCardPath": "/agentCard/v0.3"
+        "AgentCardPath": "/agentCard/v1.0"
       }
     }
   }'
@@ -383,7 +409,7 @@ $body = @{
         audience = "https://ai.azure.com"
         Credentials = @{}
         metadata = @{
-            AgentCardPath = "/agentCard/v0.3"
+            AgentCardPath = "/agentCard/v1.0"
         }
     }
 } | ConvertTo-Json -Depth 5
@@ -467,8 +493,10 @@ For additional language examples (C#, JavaScript, Java, REST), see [Connect to a
 
 ## Limitations
 
-- Only A2A protocol version 0.3 is supported.
+- A2A protocol versions 1.0 and 0.3 are supported. Other versions aren't supported.
+- For A2A v1.0, only the JSONRPC transport is supported. HTTP+JSON and gRPC aren't supported for v1.0. See [Supported A2A transports](#supported-a2a-transports).
 - Only **text** modality is supported. File data and other non-text modalities aren't supported.
+- Streaming responses (server-sent events) aren't supported.
 - Incoming A2A requires the responses protocol. Agents that don't use the responses protocol can't be exposed as A2A endpoints.
 - This feature is in preview and isn't recommended for production workloads.
 
@@ -477,3 +505,4 @@ For additional language examples (C#, JavaScript, Java, REST), see [Connect to a
 - [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md)
 - [Agent2Agent (A2A) authentication](../concepts/agent-to-agent-authentication.md)
 - [Build with agents, conversations, and responses](../concepts/runtime-components.md)
+- [A2A protocol specification](https://a2a-protocol.org/latest/)
