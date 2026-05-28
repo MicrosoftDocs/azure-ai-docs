@@ -1,12 +1,12 @@
 ---
 title: Anomaly Detector .NET client library quickstart
 titleSuffix: Azure AI services
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 <a href="/dotnet/api/overview/azure/ai.anomalydetector-readme" target="_blank">Library reference documentation</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector" target="_blank">Library source code</a> | <a href="https://www.nuget.org/packages/Azure.AI.AnomalyDetector/3.0.0-preview.5" target="_blank">Package (NuGet)</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector/Azure.AI.AnomalyDetector/samples" target="_blank">Find the sample code on GitHub</a>

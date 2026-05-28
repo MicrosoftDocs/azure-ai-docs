@@ -25,15 +25,16 @@ ms.custom:
 Document Intelligence service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 > [!IMPORTANT]
-> Preview API versions will be retired by 06/30/2026, and v3.0 `2022-08-31 (GA)` API will be retired by 03/30/2029. If you're still using a preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
-
+>
+> * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
+> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
+> * To avoid production disruption, migrate now to **Azure Document Intelligence 2024-11-30 v4.0**. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
 
 ## March 2026
 
 **Updated prebuilt tax form models**
 
 Prebuilt models for US tax forms have been updated supporting 2025 tax forms including quality improvement to address multi-copy extraction (e.g., multiple W-2s or 1099s in one document). You can now extract data from multi-form filings in a single request and get more comprehensive field coverage.
-
 
 ## June 2025
 

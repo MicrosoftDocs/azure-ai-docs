@@ -6,12 +6,13 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2024, build-2025, dev-focus
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ---
 

@@ -5,6 +5,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/10/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -55,7 +56,9 @@ To configure role-based access:
 1. On the resource that contains your project:
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
-    1. Assign **Azure AI User** to the managed identity of your project.
+    1. Assign **Foundry User** to the managed identity of your project.
+
+       [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Set up your environment
 

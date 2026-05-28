@@ -6,6 +6,16 @@
       "redirect_document_id": true
     },
     {
+      "source_path": "articles/foundry/agents/concepts/agent-catalog.md",
+      "redirect_url": "/azure/foundry/agents/quickstarts/prompt-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/quickstarts/quickstart-agent-catalog.md",
+      "redirect_url": "/azure/foundry/agents/quickstarts/prompt-agent",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
       "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
       "redirect_document_id": false
@@ -54,6 +64,16 @@
     {
       "source_path": "articles/ai-services/luis/developer-reference-resource.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/developer-reference-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/how-to/provisioned-throughput-onboarding.md",
+      "redirect_url": "/azure/foundry/openai/concepts/provisioned-throughput-billing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/provisioned-throughput-onboarding.md",
+      "redirect_url": "/azure/foundry-classic/openai/concepts/provisioned-throughput-billing",
       "redirect_document_id": false
     },
     {
@@ -1359,6 +1379,16 @@
     {
       "source_path": "articles/foundry/agents/how-to/publish-responses.md",
       "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-whisper.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-whisper",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/openai/gpt-realtime-translate.md",
+      "redirect_url": "/azure/foundry/openai/concepts/gpt-realtime-translate",
       "redirect_document_id": false
     }
   ]

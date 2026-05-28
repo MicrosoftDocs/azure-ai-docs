@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -33,11 +33,11 @@ Starting in August 2025, you can opt in to the next generation v1 Azure OpenAI A
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
 - Make chat completions calls with models from other providers like DeepSeek and Grok which support the v1 chat completions syntax.
 
-Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
+Access to new API calls that are still in preview is controlled by passing feature specific preview headers. This approach allows you to opt in to the features you want, without having to swap API versions. Alternatively, some features indicate preview status through their API path and don't require an additional header.
 
 Examples:
 
-- When `/openai/v1/evals` was previously in preview it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in preview.**
+- When `/openai/v1/evals` was previously in preview, it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in preview.**
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
 For the initial v1 Generally Available (GA) API launch, only a subset of the inference and authoring API capabilities are supported. All GA features are supported for use in production. Support for more capabilities is being added rapidly.
@@ -72,7 +72,7 @@ print(response.model_dump_json(indent=2))
 Key differences from the previous API:
 
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
-- `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
+- Pass the Azure OpenAI endpoint to `base_url` and append `/openai/v1` to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
 
 **API Key** with environment variables:
@@ -116,8 +116,8 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
+- Pass the Azure OpenAI endpoint to `base_url` and append `/openai/v1` to the endpoint address.
+- Set the `api_key` parameter to `token_provider` to enable automatic retrieval and refresh of an authentication token instead of using a static API key.
 
 # [C#](#tab/dotnet)
 
@@ -288,10 +288,10 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 For Azure OpenAI models we recommend using the [Responses API](../supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
 
-`base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
+`base_url` accepts both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
 > [!NOTE]
-> Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../../foundry-models/how-to/generate-responses.md).
+> Responses API also works with Foundry Models sold by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../../foundry-models/how-to/generate-responses.md).
 
 # [Python](#tab/python)
 
@@ -546,8 +546,8 @@ The following sections summarize changes between API versions.
 
 ### Changes between 2024-05-01-preview and 2024-07-01-preview API specification
 
-- [Batch API support added](../how-to/batch.md)
-- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17)
+- [Batch API support added](../how-to/batch.md).
+- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17).
 - `max_num_results` that the file search tool should output.
 
 ### Changes between 2024-04-01-preview and 2024-05-01-preview API specification
@@ -560,7 +560,7 @@ The following sections summarize changes between API versions.
 
 ### Changes between 2024-03-01-preview and 2024-04-01-preview API specification
 
-- **Breaking Change**: Enhancements parameters removed. This impacts the `gpt-4` **Version:** `vision-preview` model.
+- **Breaking Change**: Enhancements parameters removed. This change impacts the `gpt-4` **Version:** `vision-preview` model.
 - [timestamp_granularities](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5217) parameter added.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
@@ -571,8 +571,10 @@ The following sections summarize changes between API versions.
 
 ## Next steps
 
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [Supported programming languages for the v1 API](../supported-languages.md)
-- [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)

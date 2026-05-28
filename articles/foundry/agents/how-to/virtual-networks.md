@@ -18,4 +18,6 @@ ai-usage: ai-assisted
 
 # Set up private networking for Foundry Agent Service
 
+For background on the network architecture, subnet sizing, and IP allocation model behind these steps, see [Deep dive into Foundry Agent Service networking](../concepts/agents-networking-deep-dive.md).
+
 [!INCLUDE [virtual-networks content](../includes/how-to-virtual-networks-content.md)]

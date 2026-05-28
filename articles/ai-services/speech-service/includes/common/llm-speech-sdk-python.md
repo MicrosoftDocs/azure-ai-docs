@@ -4,10 +4,11 @@ author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/31/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
-[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples)
+[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/transcription/azure-ai-transcription/samples/README.md)
 
 ## Prerequisites
 
@@ -208,38 +209,9 @@ Detailed phrases:
 
 You can also use LLM Speech to translate audio into a target language. Set the `task` to `translate`, and specify the `target_language`.
 
-1. Create a file named `llm_speech_translate.py` with the following code:
+1. Use the code above, but specify the `task` as `translate` and add the `target_language` in the `EnhancedModeProperties`:
 
     ```python
-    import os
-    from dotenv import load_dotenv
-    from azure.core.credentials import AzureKeyCredential
-    from azure.ai.transcription import TranscriptionClient
-    
-    load_dotenv()
-    from azure.ai.transcription.models import (
-        TranscriptionContent,
-        TranscriptionOptions,
-        EnhancedModeProperties,
-    )
-    
-    # Get configuration from environment variables
-    endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
-    
-    # Optional: we recommend using role based access control (RBAC) for production scenarios
-    api_key = os.environ["AZURE_SPEECH_API_KEY"]
-    
-    if api_key:
-        credential = AzureKeyCredential(api_key)
-    else:
-        from azure.identity import DefaultAzureCredential
-        credential = DefaultAzureCredential()   
-    
-    # Create the transcription client
-    client = TranscriptionClient(endpoint=endpoint, credential=credential)
-    
-    # Path to your audio file (replace with your own file path)
-    audio_file_path = "<path-to-your-audio-file.wav>"
     
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
@@ -256,15 +228,6 @@ You can also use LLM Speech to translate audio into a target language. Set the `
     
         # Create transcription options with enhanced mode
         options = TranscriptionOptions(locales=["en-US"], enhanced_mode=enhanced_mode)
-        
-        # Create the request content
-        request_content = TranscriptionContent(definition=options, audio=audio_file)
-    
-        # Translate the audio
-        result = client.transcribe(request_content)
-    
-        # Print the translation result
-        print(f"Translation: {result.combined_phrases[0].text}")
     ```
 
     For more information, see the following references: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient) and [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties).
@@ -282,36 +245,6 @@ You can also use LLM Speech to translate audio into a target language. Set the `
 You can provide an optional prompt to guide the output style for transcription or translation tasks. Replace the `prompt` value in the `EnhancedModeProperties` object.
 
 ```python
-import os
-from dotenv import load_dotenv
-from azure.core.credentials import AzureKeyCredential
-from azure.ai.transcription import TranscriptionClient
-
-load_dotenv()
-from azure.ai.transcription.models import (
-TranscriptionContent,
-TranscriptionOptions,
-EnhancedModeProperties,
-)
-
-# Get configuration from environment variables
-endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
-
-# Optional: we recommend using role based access control (RBAC) for production scenarios
-api_key = os.environ["AZURE_SPEECH_API_KEY"]
-
-if api_key:
-credential = AzureKeyCredential(api_key)
-else:
-from azure.identity import DefaultAzureCredential
-credential = DefaultAzureCredential()   
-
-# Create the transcription client
-client = TranscriptionClient(endpoint=endpoint, credential=credential)
-
-# Path to your audio file (replace with your own file path)
-audio_file_path = "<path-to-your-audio-file.wav>"
-
 # Open and read the audio file
 with open(audio_file_path, "rb") as audio_file:
     # Create enhanced mode properties for LLM Speech transcription
@@ -323,25 +256,6 @@ with open(audio_file_path, "rb") as audio_file:
         ],  # Optional prompts to guide the enhanced mode, prompt="Create lexical transcription.")
     )
 
-    # Create transcription options with enhanced mode
-    options = TranscriptionOptions(enhanced_mode=enhanced_mode)
-
-    # Create the request content
-    request_content = TranscriptionContent(definition=options, audio=audio_file)
-
-    # Print request content for debugging
-    print("Request Content:", request_content, "\n")
-    
-    # Transcribe the audio
-    result = client.transcribe(request_content)
-
-    # Print the transcription result
-    print(f"Transcription: {result.combined_phrases[0].text}")
-
-    # Print detailed phrase information
-    if result.phrases:
-        print("\nDetailed phrases:")
-        for phrase in result.phrases:
 
 ```
 

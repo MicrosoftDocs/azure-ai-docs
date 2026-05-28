@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 04/15/2026
+ms.date: 04/30/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for [agentic retrieval](agentic-retrieval-overview.md). You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
 
@@ -82,9 +82,11 @@ To configure access for this solution:
 
     | Role | Assignee | Purpose |
     |------|----------|---------|
-    | Azure AI User | Your user account | Access model deployments and create agents |
-    | Azure AI Project Manager | Your user account | Create project connection and use MCP tool in agents |
+    | Foundry User | Your user account | Access model deployments and create agents |
+    | Foundry Project Manager | Your user account | Create project connection and use MCP tool in agents |
     | Cognitive Services User | Search service managed identity | Access knowledge base |
+
+[!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ## Set up your environment
 

@@ -6,8 +6,8 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.date: 04/14/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -15,6 +15,15 @@ ai-usage: ai-assisted
 # Publish agents to Microsoft 365 Copilot and Microsoft Teams
 
 After you build and test an agent, the next step is often sharing it with others in the surfaces where they already work. Publishing a Foundry agent to Microsoft 365 Copilot and Teams lets you and others interact with and discover your agent through the Microsoft 365 Copilot and Teams UI. What gets published is the agent's stable endpoint, so end users always interact with a consistent agent entity while you seamlessly roll out new agent versions that receive traffic through the endpoint. You publish to M365/Teams from the Foundry portal.
+
+> [!IMPORTANT]
+> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+>
+> Use of Azure AI Foundry Agent Service to host agents that operate with third-party servers or agents, is at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data.
+>
+> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
+>
+> It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
 
 > [!NOTE]
 > If you're migrating from a previous publishing model, see [Migrate from Agent Applications to the new agent model](./migrate-hosted-agent-preview.md).
@@ -24,7 +33,9 @@ After you build and test an agent, the next step is often sharing it with others
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
 - A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
-    - **Azure AI User** role on the Foundry project scope to create, manage, and publish agents.
+    - **Foundry User** role on the Foundry project scope to create, manage, and publish agents.
+
+      [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
     - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - An Azure subscription where Azure Bot Service resources can be created
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
@@ -161,6 +172,7 @@ To update metadata visible in Teams and M365 (display name, descriptions, URLs),
 |-------|-------|------------|
 | Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` is not null). Confirm the developer name is 32 characters or fewer. |
 | Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
+| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor** role on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
 | Organization scope agent doesn't appear | Admin approval pending | Confirm an admin approved in the [M365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). Check app policies. |
 | Agent works in Foundry but fails after publishing | Agent identity missing permissions | Assign RBAC roles to the agent's identity for any Azure resources it accesses. |
 | Publishing fails with identity error | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
