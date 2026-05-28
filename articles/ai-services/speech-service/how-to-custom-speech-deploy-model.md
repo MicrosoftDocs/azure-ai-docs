@@ -32,6 +32,16 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+1. After training completes, select the custom model to open its details page.
+1. Select the **Deployments** tab, and then select **Deploy** to open the **Deploy** pane.
+1. Enter a name for the deployment and optionally toggle **Content logging** on or off.
+1. Select **Deploy** to create the deployment.
+1. When the deployment is ready, it appears on the **Deployments** tab. Select the deployment to open it in the speech to text playground and test it.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
@@ -49,6 +59,7 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png":::
 
+---
 
 ::: zone-end
 

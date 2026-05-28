@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 01/23/2026
+ai-usage: ai-assisted
 ---
 
 # Integrated vector embedding in Azure AI Search
@@ -32,7 +33,7 @@ For integrated data chunking and vector conversions, you're taking a dependency 
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
-  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
+  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
   
   + An embedding skill, used to generate vector arrays, which can be any of the following:
 
@@ -80,7 +81,7 @@ If you're using a custom skill and an Azure hosting mechanism (such as an Azure 
 Data chunking (Text Split skill) is free and available on all Foundry Tools in all regions.
 
 > [!NOTE]
-> Some older search services created before January 1, 2019 are deployed on infrastructure that doesn't support vector workloads. If you try to add a vector field to a schema and get an error, it's a result of outdated services. In this situation, you must create a new search service to try out the vector feature.
+> Some older search services created before January 1, 2019 are deployed on infrastructure that doesn't support vector workloads. If you try to add a vector field to a schema and get an error, it's probably a result of outdated services. In this situation, you must create a new search service to try out the vector feature.
 
 ## What scenarios can integrated vectorization support?
 

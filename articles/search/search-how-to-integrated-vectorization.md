@@ -1,12 +1,20 @@
----
+﻿---
 title: Integrated Vectorization Using REST APIs
 description: Learn how to use the REST APIs to define an indexer pipeline that includes chunking and vectorization.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/16/2026
+ai-usage: ai-assisted
 ---
 
 # Set up integrated vectorization in Azure AI Search using REST
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, you learn how to use a skillset to chunk and vectorize content from a [supported data source](#supported-data-sources). The skillset calls the [Text Split skill](cognitive-search-skill-textsplit.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for chunking and an embedding skill that's attached to a [supported embedding model](#supported-embedding-models) for chunk vectorization. You also learn how to store the chunked and vectorized content in a [vector index](vector-search-how-to-create-index.md).
 
@@ -65,7 +73,7 @@ To configure role-based access for integrated vectorization:
 1. On your data source platform and embedding model provider, create role assignments that allow your search service to access data and models. See [Prepare your data](#prepare-your-data) and [Prepare your embedding model](#prepare-your-embedding-model).
 
 > [!NOTE]
-> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This lack of support requires that you use key-based authentication on connections between free search services and other Azure resources.
+> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This behavior requires that you use key-based authentication on connections between free search services and other Azure resources.
 >
 > For more secure connections, use the Basic tier or higher. You can then enable roles and configure a managed identity for authorized access.
 
@@ -250,10 +258,8 @@ Azure AI Search supports Azure Vision image retrieval through multimodal embeddi
 
    1. Copy the endpoint with the `https://[resource-name].services.ai.azure.com` format. You specify this URL later in [Set variables](#set-variables).
 
-   > [!NOTE]
-   > The multimodal embeddings are built into your Microsoft Foundry resource, so there's no model deployment step.
 
-<!--### [Foundry model catalog](#tab/prepare-model-catalog)
+### [Foundry model catalog](#tab/prepare-model-catalog)
 
 Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
@@ -287,7 +293,7 @@ For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how
 
    1. Select the model you deployed.
 
-   1. On the **Details** tab, copy the endpoint. You specify this URL later in [Set variables](#set-variables).-->
+   1. On the **Details** tab, copy the endpoint. You specify this URL later in [Set variables](#set-variables).
 
 ---
 
@@ -440,7 +446,7 @@ In this section, you create a [skillset](cognitive-search-working-with-skillsets
 
 Partitioning your content into chunks helps you meet the requirements of your embedding model and prevents data loss due to truncation. For more information about chunking, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
 
-For built-in data chunking, Azure AI Search offers the [Text Split skill](cognitive-search-skill-textsplit.md) and [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). The Text Split skill breaks text into sentences or pages of a particular length, while the Document Layout skill breaks content based on paragraph boundaries.
+For built-in data chunking, Azure AI Search offers the [Text Split skill](cognitive-search-skill-textsplit.md) and [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md). The Text Split skill breaks text into sentences or pages of a particular length, while the Azure Content Understanding skill performs semantic, layout-aware chunking that respects paragraph boundaries.
 
 <!--### [REST](#tab/built-in-skill-rest)-->
 
@@ -458,7 +464,7 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
      }
    ```
 
-1. In the `skills` array, call the Text Split skill or Document Layout skill. You can paste one of the following definitions.
+1. In the `skills` array, call the Text Split skill or Azure Content Understanding skill. You can paste one of the following definitions.
 
    ```HTTP
        "skills": [
@@ -485,11 +491,14 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
           ]
         },
         {
-          "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
-          "name": "my-document-layout-skill",
+          "@odata.type": "#Microsoft.Skills.Util.ContentUnderstandingSkill",
+          "name": "my-content-understanding-skill",
           "context": "/document",
-          "outputMode": "oneToMany",
-          "markdownHeaderDepth": "h3",
+          "chunkingProperties": {
+            "method": "semantic",
+            "unit": "tokens",
+            "maximumLength": 500
+          },
           "inputs": [
            {
              "name": "file_data",
@@ -498,7 +507,8 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
           ],
           "outputs": [
            {
-             "name": "markdown_document"
+             "name": "text_sections",
+             "targetName": "text_sections"
            }
           ]
         }
@@ -597,7 +607,7 @@ or [Azure Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure Op
         }
    ```
 
-The Azure Vision multimodal embeddings skill and AML skill (for indexer connections to the Foundry model catalog) are in preview. If you want to call these skills, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+The Azure Vision multimodal embeddings skill and AML skill (for indexer connections to the Foundry model catalog) are in preview. If you want to call these skills, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ### [Python](#tab/embedding-skill-python)
 
@@ -753,7 +763,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer is in preview. If you want to call this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in preview. If you want to call this vectorizer, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 1. Specify your vectorizer in `vectorSearch.profiles`.
 
@@ -784,7 +794,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you want to call these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you want to call these vectorizers, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 <!--### [Python](#tab/vectorizer-python)
 
@@ -857,7 +867,7 @@ In this section, you verify that your content was successfully indexed by [creat
    ```
 
    > [!NOTE]
-   > The Azure Vision vectorizer is in preview. If you previously called this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in preview. If you previously called this vectorizer, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
    For queries that invoke integrated vectorization, `kind` must be set to `text`, and `text` must specify a text string. This string is passed to the vectorizer assigned to the vector field. For more information, see [Query with integrated vectorization](vector-search-how-to-query.md#query-with-integrated-vectorization).
 
@@ -866,7 +876,7 @@ In this section, you verify that your content was successfully indexed by [creat
 <!--
 
    > [!NOTE]
-   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you previously called these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in preview. If you previously called these vectorizers, use a preview API, such as [`2026-05-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ### [Python](#tab/vector-queries-python)
 
