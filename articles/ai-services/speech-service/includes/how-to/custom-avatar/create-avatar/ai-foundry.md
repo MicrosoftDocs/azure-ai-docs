@@ -146,10 +146,21 @@ To deploy your avatar:
     > [!IMPORTANT]
     > When a model is deployed, you pay for continuous up time of the endpoint regardless of your interaction with that endpoint. Check the pricing note on how model deployment is charged. You can delete a deployment when the model isn't in use to reduce spending and conserve resources.
 
-After you deploy your custom avatar, it's available to use in the Microsoft Foundry portal or via API:
-- The avatar appears in the avatar list of [text to speech avatar on Microsoft Foundry portal](https://speech.microsoft.com/portal/talkingavatar).
-- The avatar appears in the avatar list of [live chat avatars via Microsoft Foundry portal](https://speech.microsoft.com/portal/livechat).
-- You can call the avatar from the SDK and SSML input by specifying the avatar model name. For more information, see the [avatar properties](../../../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#avatar-properties).
+After you deploy your custom avatar, you can use it in the following ways:
+
+- Create video content (Text to Speech Avatar) in Microsoft Foundry
+   - From the **Use your avatar** box on the fine-tuning job details page, select **Try Text to Speech Avatar**, or
+   - Select **Open in Playground** (top-right), then choose **Text to Speech Avatar**.
+- Start a live chat (Voice Live) in Microsoft Foundry
+   - From the **Use your avatar** box on the fine-tuning job details page, select **Try Voice Live**, or
+   - Select **Open in Playground** (top-right), then choose **Voice Live**.
+- Use the avatar through the API by specifying the avatar model name in the SDK or speech synthesis markup language (SSML) input. For more information, see the [avatar properties](../../../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#avatar-properties).
+
+### Use in Microsoft Foundry
+
+- If you open **Text to Speech Avatar** or **Voice Live** from the custom avatar fine-tuning job details page, your custom avatar should already be selected. Choose a voice, and then start using it.
+- If you open **Text to Speech Avatar** from the **Models** navigation, go to the **Avatar** section, select **More avatars**, and then select your custom avatar under the **Custom** tab.
+- If you open **Voice Live** from the **Models** navigation, turn on the **Avatar** toggle, select **More avatars**, and then select your custom avatar under the **Custom** tab.
  
 ### Remove a deployment 
 

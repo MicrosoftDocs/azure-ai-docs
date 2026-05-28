@@ -45,6 +45,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/text-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/text-pii-playground.md  
       - name: How-to guides
         items:
         - name: Detect and redact PII in text
@@ -74,6 +76,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/conversation-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/conversation-pii-playground.md  
       - name: How-to guides
         items:
         - name: Detect and redact PII in conversations
@@ -89,6 +93,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/document-based-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/document-based-pii-playground.md
       - name: How-to guides
         items:
         - name: Detect and redact PII in native documents

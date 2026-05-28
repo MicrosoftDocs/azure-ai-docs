@@ -39,4 +39,8 @@ Available routing modes:
 | Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
 | Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |
 
+## Govern model router deployments
+
+If your organization uses Azure Policy to control which models can be deployed, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. The policy applies to the model subset that a developer can include in a model router deployment, and it's enforced consistently across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
+
 [!INCLUDE [model-router 2](../includes/concepts-model-router-2.md)]

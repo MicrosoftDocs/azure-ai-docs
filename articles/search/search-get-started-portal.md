@@ -1,4 +1,4 @@
----
+﻿---
 title: "Quickstart: Full-Text Search in the Azure portal"
 description: Learn how to create, load, and query your first search index using an import wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
 author: mattwojo
@@ -196,7 +196,7 @@ Review the index definition options to understand what you can and can't edit du
 
 ## Query the index
 
-You now have a search index that can be queried using [**Search explorer**](search-explorer.md), which sends REST calls that conform to [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This tool supports [simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and [full Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for keyword search.
+You now have a search index that can be queried using [**Search explorer**](search-explorer.md), which sends REST calls that conform to [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true). This tool supports [simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and [full Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for keyword search.
 
 To query your search index:
 

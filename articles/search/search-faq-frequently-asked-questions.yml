@@ -51,7 +51,7 @@ sections:
         answer: |
           Services created before April 2024 in select regions can be [upgraded to higher-capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported.
 
-          To get more or less capacity, you can also [switch to a different pricing tier](search-capacity-planning.md#change-your-pricing-tier). Scaling is blocked if your current service configuration exceeds the [limits of the target tier](search-limits-quotas-capacity.md) or if your region has [capacity constraints on the target tier](search-region-support.md). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers.
+          To get more or less capacity, you can also [switch to a different pricing tier](search-capacity-planning.md). Scaling is blocked if your current service configuration exceeds the [limits of the target tier](search-limits-quotas-capacity.md) or if your region has [capacity constraints on the target tier](search-region-support.md). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers.
 
       - question: |
           Can I rename or move the service?

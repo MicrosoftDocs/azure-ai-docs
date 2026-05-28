@@ -1018,7 +1018,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/v3-1-migration-guide.md",
       "redirect_url": "/azure/ai-services/document-intelligence/versioning/migration-guide-overview",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/v3-error-guide.md",
