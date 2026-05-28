@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 # What is the agent optimizer? (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
 The agent optimizer in Foundry Agent Service automatically improves your hosted agents by evaluating their behavior and generating better configurations. These configurations primarily include improved system instructions and discovered skills.

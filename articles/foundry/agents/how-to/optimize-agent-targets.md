@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 # Optimize agent instructions, skills, tools, and models (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
 The agent optimizer supports four optimization targets: **instruction tuning** (rewrites your agent's system prompt), **skill improvement** (refines reusable capabilities), **tool optimization** (improves tool descriptions and parameters), and **model selection** (evaluates across multiple model deployments). The optimizer automatically determines which targets to improve based on your agent's baseline configuration.

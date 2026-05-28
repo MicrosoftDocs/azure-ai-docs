@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 # Make your agent optimizer-ready (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
 Adding support for the agent optimizer to your agent requires a few lines of code. No framework changes or conditional logic are needed. You install the optimization package, set up a configuration directory, and call `load_config()` at startup.

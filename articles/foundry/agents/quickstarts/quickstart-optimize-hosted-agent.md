@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 # Quickstart: Optimize a hosted agent (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
 In this quickstart, you install the optimization CLI extension, deploy a hosted agent, run the agent optimizer, and deploy the winning candidate.
