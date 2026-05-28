@@ -155,7 +155,7 @@ MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that s
 
 ### Prerequisites
 
-- An Azure account. Create one for free.
+- An Azure account. [Create](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) one for free.
 - Create a Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
 - For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
 
