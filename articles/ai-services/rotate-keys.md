@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Learn how to rotate API keys for better security, without interrupting service"
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: how-to

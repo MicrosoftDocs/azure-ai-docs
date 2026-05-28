@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This article describes how to disable local authentication in Foundry Tools for improved security."
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: pafarley
