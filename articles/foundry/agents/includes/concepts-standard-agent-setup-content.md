@@ -75,9 +75,6 @@ Standard setup enforces project-level data isolation by default. Two blob storag
 
 ## Provision resources step by step
 
-> [!NOTE]
-> The Foundry portal currently supports only basic agent setup. To configure standard agent setup, use the manual steps or the Bicep template described in this section.
-
 ### Manual provisioning
 
 Follow these steps to manually provision all resources needed for standard agent setup. Allow approximately 30-45 minutes for the full provisioning process.
