@@ -25,4 +25,4 @@ This table shows transcription features that the fast transcription API supports
 | Segment-level timestamps         | ✅                                | ✅                 | ✅                     |
 | Word-level timestamps         | ✅                                | ✅                 | ❌                     |
 
-<sup>1</sup>For LLM Speech, use prompting to guide the output style instead of using explicit locale or phrase lists.
+<sup>1</sup>For LLM Speech, use prompting to guide the output style instead of using explicit phrase list.
