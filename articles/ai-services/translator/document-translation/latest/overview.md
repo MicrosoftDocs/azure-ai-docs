@@ -1,7 +1,7 @@
 ---
-title: What is Azure Translator document translation?
+title: What is Azure Translator document translation 2026-03-01?
 titleSuffix: Foundry Tools
-description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
+description: Learn about Azure Translator document translation 2026-03-01 for batch and single-file translation while preserving document structure and formatting.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD025 -->
 
-# What is Azure Translator document translation?
+# What is Azure Translator document translation 2026-03-01?
 
 Document translation (**2026-03-01** GA) is a cloud-based feature of Azure Translator and part of the Foundry Tools family of REST APIs. It provides:
 
