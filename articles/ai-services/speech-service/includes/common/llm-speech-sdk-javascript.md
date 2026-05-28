@@ -4,11 +4,11 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 04/09/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/javascript/api/@azure/ai-speech-transcription) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-speech-transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/transcription/ai-speech-transcription/samples)
+[Reference documentation](/javascript/api/overview/azure/ai-speech-transcription-readme) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-speech-transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md)
 
 ## Prerequisites
 

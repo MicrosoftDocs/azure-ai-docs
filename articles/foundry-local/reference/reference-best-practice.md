@@ -58,7 +58,7 @@ Reference: [Foundry Local CLI Reference](./reference-cli.md)
 
 If you experience slow inference, consider the following strategies:
 
-- Stop any AI Toolkit for VS Code inference session before you run Foundry Local.
+- Stop any Foundry Toolkit for VS Code inference session before you run Foundry Local.
 - Use GPU acceleration when available.
 - Identify bottlenecks by monitoring memory usage during inference.
 - Try more quantized model variants (for example, INT8 instead of FP16).
