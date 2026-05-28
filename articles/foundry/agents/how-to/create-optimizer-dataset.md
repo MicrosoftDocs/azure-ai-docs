@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+
 The agent optimizer evaluates your agent against a *dataset* — a collection of tasks with evaluation criteria. You can generate a dataset automatically from the CLI or create one manually for full control.
 
 ## Prerequisites
