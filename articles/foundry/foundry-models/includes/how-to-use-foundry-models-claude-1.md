@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/11/2026
+ms.date: 05/26/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -25,13 +25,14 @@ Claude models in Foundry include:
 | Model family | Models |
 |--|--|
 | Claude Mythos | `claude-mythos-preview`<sup>1</sup> (gated research preview) |
-| Claude Opus | `claude-opus-4-7`<sup>2</sup> (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
+| Claude Opus | `claude-opus-4-8`<sup>2</sup> (preview), `claude-opus-4-7` (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
 | Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview)|
 | Claude Haiku | `claude-haiku-4-5` (preview)|
 
 <sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
-<sup>2</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) to migrate Messages API code from previous Claude versions to Claude Opus 4.7.
+<sup>2</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
+
 
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
@@ -73,14 +74,7 @@ The following examples show how to send requests to Claude Sonnet 4.6 using Micr
 - Microsoft Entra ID for keyless authentication or your deployment's API key for API authentication.
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
 
-> [!NOTE]
-> For Opus 4.6, and Sonnet 4.6, the `thinking` parameter supports types: `enabled`, `disabled`, and `adaptive`. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
->
-> For Mythos Preview, the `thinking` parameter supports *only* `adaptive` and `enabled`.
->
-> For Opus 4.7, the `thinking` parameter supports *only* `adaptive` and `disabled`.
->
-> The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.7, Opus 4.6, and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
+For advanced features and capabilities of the Claude models, see [Advanced features and capabilities of Claude models](#advanced-features-and-capabilities-of-claude-models).
 
 # [Python](#tab/python)
 
@@ -464,7 +458,7 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Available Claude models
 
-Foundry supports Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Mythos Preview, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
 
 - **Adaptive thinking**: An upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 - **Extended thinking**: Enhanced reasoning for complex tasks.
@@ -488,16 +482,20 @@ Claude Mythos Preview is a new class of intelligence built for ambitious project
 
 Claude Mythos Preview supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 
-### Claude Opus 4.7 (preview)
+### Claude Opus 4.8 (preview)
 
 > [!TIP]
-> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) to migrate Messages API code from previous Claude versions to Claude Opus 4.7.
+> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
 
-Claude Opus 4.7 is the most capable model in the Claude Opus family, advancing performance across coding, enterprise workflows, and long-running agentic tasks. With a 1M token context window and 128K max output, Opus 4.7 is ideal for agentic coding, enterprise knowledge work, long-running multi-tool workflows, high-resolution multimodal reasoning (up to 2576px / 3.75MP), financial analysis, and cybersecurity. Opus 4.7 supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
+Claude Opus 4.7 is the most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows. With a 1M token context window and 128K max output, Opus 4.8 sets a new bar for agentic workflows and is ideal for agentic codeing, enterprise workflows, financial analysis, cybersecurity, and computer use. Opus 4.8 also supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
+
+### Claude Opus 4.7 (preview)
+
+Claude Opus 4.7 is a highly capable model in the Claude Opus family, advancing performance across coding, enterprise workflows, and long-running agentic tasks. With a 1M token context window and 128K max output, Opus 4.7 is ideal for agentic coding, enterprise knowledge work, long-running multi-tool workflows, high-resolution multimodal reasoning (up to 2576px / 3.75MP), financial analysis, and cybersecurity. Opus 4.7 supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 
 ### Claude Opus 4.6 (preview)
 
-Claude Opus 4.6 is a highly capable model in the Claude Opus family for coding, enterprise agents, and professional work. With a 1M token context window and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.6 is a very capable model in the Claude Opus family for coding, enterprise agents, and professional work. With a 1M token context window and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
@@ -541,17 +539,19 @@ Some of the **Core capabilities** that Foundry supports are:
 - **Context editing:** Automatically manage conversation context with configurable strategies.
 - **Extended thinking:** Enhanced reasoning capabilities for complex tasks available with all Claude models.
 
-    > [!TIP]
-    > For Opus 4.6, and Sonnet 4.6, the `thinking` parameter supports types: `enabled`, `disabled`, and `adaptive`. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
-    >
-    > For Mythos Preview, the `thinking` parameter supports *only* `adaptive` and `enabled`.
-    >
-    > For Opus 4.7, the `thinking` parameter supports *only* `adaptive` and `disabled`.
+    > [!NOTE]
+    > The `thinking` parameter supports types:
+    > - `enabled`, `disabled`, and `adaptive`, for Opus 4.6 and Sonnet 4.6. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
+    > - *only* `adaptive` and `enabled` for Mythos Preview.
+    > - *only* `adaptive` and `disabled` for Opus 4.8 and Opus 4.7.
 
-- **Effort:** Ability to control the quality/cost tradeoff for responses.
+- **Effort:** Ability to control the quality/cost tradeoff for responses. Use this parameter with or without enabling thinking.
 
-    > [!TIP]
-    > The `effort` parameter supports effort levels: `low`, `medium`, and `high`. For Opus 4.7, Opus 4.6, and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
+    > [!NOTE]
+    > The `effort` parameter supports the effort levels:
+    > - `low`, `medium`, and `high`
+    > - *also* `max` for Opus 4.8, Opus 4.7, Opus 4.6, and Sonnet 4.6
+    > - *also* `xhigh` (does the same as `max`) for Opus 4.8 and Opus 4.7
 
 - **PDF support:** Process and analyze text and visual content from PDF documents.
 
@@ -577,7 +577,8 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-opus-4-7   | [Global Standard](../concepts/deployment-types.md#global-standard) |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-8   | [Global Standard](../concepts/deployment-types.md#global-standard) |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-7   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
@@ -602,7 +603,7 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 - Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.8](https://www.anthropic.com/claude-opus-4-8-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
  
 ## Best practices
 
@@ -613,8 +614,9 @@ Follow these best practices when working with Claude models in Foundry:
 Choose the appropriate Claude model based on your specific requirements:
 
 - **Claude Mythos Preview**: For defensive cybersecurity, autonomous coding, and long-running agents.
-- **Claude Opus 4.7**: Most capable model for coding, enterprise workflows, and long-running agentic tasks.
-- **Claude Opus 4.6**: Highly capable model for building agents, coding, and enterprise workflows.
+- **Claude Opus 4.8**: Most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows.
+- **Claude Opus 4.7**: Highly capable model for coding, enterprise workflows, and long-running agentic tasks.
+- **Claude Opus 4.6**: Very capable model for building agents, coding, and enterprise workflows.
 - **Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.
 - **Claude Opus 4.1**: Complex reasoning and enterprise applications.
 - **Claude Sonnet 4.6**: Frontier intelligence at scale for coding, agents, and most use cases.
