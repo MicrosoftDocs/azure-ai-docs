@@ -1,4 +1,4 @@
----
+﻿---
 title: 'Tutorial: Index ADLS Gen2 Permission Metadata'
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.reviewer: wli
@@ -6,9 +6,18 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 03/25/2026
+ai-usage: ai-assisted
 ---
 
-# Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
+# Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results (preview)
+
+<!-- preserve -->
+<!-- LEGAL/CELA NOTICE — DO NOT MODIFY. This wording is mandated by Microsoft Legal (CELA) and must remain verbatim in every Azure AI Search article that discusses ACLs or document-level permissions. The ONLY permitted change is updating the API version placeholder when the documented API version changes. Do not rewrite, paraphrase, shorten, or remove. -->
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
 
 This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer.
 
@@ -25,7 +34,7 @@ In this tutorial, you learn how to:
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
 
-Use a REST client to complete this tutorial and the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true). Currently, there's no support for ACL indexing in the Azure portal.
+Use a REST client to complete this tutorial and the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true). Currently, there's no support for ACL indexing in the Azure portal.
 
 ## Prerequisites
 
@@ -77,7 +86,7 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
-Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
+Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
 For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
 
@@ -187,7 +196,7 @@ Now that documents are loaded, you can issue queries against them by using [Docu
 The URI is extended to include a query input, which is specified by using the `/docs/search` operator. The query token is passed in the request header. For more information, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2026-05-01-preview
 Authorization: Bearer {{search-token}}
 x-ms-query-source-authorization: {{search-token}}
 Content-Type: application/json

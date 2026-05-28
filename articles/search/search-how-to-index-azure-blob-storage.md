@@ -14,6 +14,13 @@ ms.custom:
 
 # Index data from Azure Blob Storage
 
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 In this article, you learn how to configure an [indexer](search-indexer-overview.md) that imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
 
 This article uses the [Search Service REST APIs](/rest/api/searchservice) to demonstrate how to configure and run the indexer. However, you can also use:

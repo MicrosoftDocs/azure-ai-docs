@@ -1,4 +1,4 @@
----
+﻿---
 title: Azure DB for MySQL
 description: Learn how to set up a search indexer to index data stored in Azure Database for MySQL for full text search in Azure AI Search.
 ms.devlang: rest-api
@@ -13,10 +13,16 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Index data from Azure Database for MySQL Flexible Server
+# Index data from Azure Database for MySQL Flexible Server (preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
-> MySQL support is currently in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). We recommend the latest preview API. There is currently no portal support.
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Database for MySQL and makes it searchable in Azure AI Search. Inputs to the indexer are rows from a single table or view. Output is a search index with searchable content in individual fields.
 
@@ -48,7 +54,7 @@ As noted, there’s no portal support for indexer creation, but a MySQL indexer 
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. The data source is defined as an independent resource so that it can be used by multiple indexers.
 
-[Create or Update Data Source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) specifies the definition. Be sure to use a preview REST API when creating the data source.
+[Create or Update Data Source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) specifies the definition. Be sure to use a preview REST API when creating the data source.
 
 ```http
 {   
@@ -86,7 +92,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 ## Create an index
 
-[Create or Update Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) specifies the index schema:
+[Create or Update Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) specifies the index schema:
 
 ```http
 {
@@ -126,7 +132,7 @@ The following table maps the MySQL database to Azure AI Search equivalents. For 
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-[Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+[Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
 ```http
 {
@@ -155,10 +161,10 @@ Once the index and data source have been created, you're ready to create the ind
 
 ## Check indexer status
 
-Send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request to monitor indexer execution:
+Send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) request to monitor indexer execution:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-11-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
