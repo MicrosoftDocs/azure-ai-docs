@@ -25,6 +25,10 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 ## May 2026
 
+### MarkItDown integration
+
+Content Understanding is now integrated with [MarkItDown](https://github.com/microsoft/markitdown), Microsoft's open-source tool for converting documents and other file types to Markdown. Use the [Azure Content Understanding](https://github.com/microsoft/markitdown#azure-content-understanding) capability to convert images, audio, video, and documents into Markdown for use with language models and agent pipelines.
+
 ### Built-in RBAC roles for Content Understanding
 
 Added RBAC built-in roles for **Cognitive Service Content Understanding Owner**, **Contributor**, and **Reader** to allow granular access control. For more information, see [Managed identities](concepts/secure-communications.md#managed-identities).
