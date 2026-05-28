@@ -16,7 +16,8 @@ ai-usage: ai-assisted
 # What is MAI-Voice?
 
 > **Note**
-> This feature is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see Supplemental Terms of Use for Microsoft Azure Previews.
+> 
+> This feature is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 MAI-Voice is a family of neural text-to-speech models available through Azure Speech in Foundry Tools in public preview. Built on Microsoft's in-house speech foundation models, MAI-Voice models produce expressive, natural speech output with consistent voice persona quality. Similar to Azure Neural HD voices, MAI-Voice models understand input text holistically and automatically adapt tone, emotion, and speaking style. This enables more human-like and conversational speech without requiring extensive manual tuning.
 
