@@ -1,4 +1,4 @@
----
+﻿---
 title: "Use skills with Microsoft Foundry agents (preview)"
 description: "Manage skills in Microsoft Foundry using the Skills REST API. Author SKILL.md files, store them centrally, and use them in hosted agents."
 author: jonburchel
@@ -20,19 +20,29 @@ ai-usage: ai-assisted
 
 As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation. A support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, and a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, you need to update and redeploy every agent that uses it.
 
-Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and download into any Hosted agent project. Your agent code loads these skill files and injects their contents as additional instructions into conversation sessions, guiding the model's behavior. When you update a skill, download it again and redeploy the agent to pick up the change — no code changes required.
+Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and download into any Hosted agent project. Your agent code loads these skill files and injects their contents as extra instructions into conversation sessions, guiding the model's behavior. When you update a skill, download it again and redeploy the agent to pick up the change. No code changes are required.
 
 In this article, you learn how to:
 
 - Import, list, get, download, and delete skills by using the Skills REST API.
 - Bundle downloaded skills into a Hosted agent.
 
+> [!WARNING]
+> **Upcoming breaking changes to the Skills API**
+>
+> The Skills API is being updated with breaking changes. If you're using this API in preview today, plan to update your code before the new version releases. The changes affect these areas:
+>
+> - **Skill versioning**: Skills will be versioned. The create and import endpoints will change, and newly created versions won't be active by default — activation will be a separate step.
+> - **File upload**: The endpoint and request format for uploading skill files will change.
+> - **Download**: The endpoint for downloading skill content will change.
+> - **Response schema**: The `Skill` response object will gain new versioning fields and lose existing ones. A new `SkillVersion` object will carry the skill content.
+
 > [!IMPORTANT]
-> If you use Skills with any third-party servers, agents, code, or with models that don't belong to the category of Foundry Models sold by Azure (that is, "Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You're responsible for any usage and associated costs.
+> If you use Skills with any third-party servers, agents, code, or with models outside the Foundry Models category sold by Azure ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and follow their own third-party license terms. You're responsible for any usage and associated costs.
 >
-> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it's important to review their data practices. You must manage whether your data flows outside your organization's Azure compliance and geographic boundaries, understand any related implications, and confirm that appropriate permissions, boundaries, and approvals are in place.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Azure OpenAI transparency note](../../../responsible-ai/agents/transparency-note.md).
+> You're responsible for carefully reviewing and testing applications you build for your specific use cases. Implement your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems. Ensure your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../../responsible-ai/agents/transparency-note.md).
 
 ## Feature support
 
@@ -68,7 +78,7 @@ You're a friendly greeting assistant for Foundry Hosted Agents.
 ## Instructions
 
 - Include the user's name if they provided one.
-- Keep greetings concise — 1 to 2 sentences.
+- Keep greetings concise, 1 to 2 sentences.
 - Thank the user for trying out Foundry Hosted Agents and this sample skill.
 ```
 
@@ -584,10 +594,10 @@ Returns HTTP 200 on success:
 
 ## Use skills in a hosted agent
 
-After importing skills to Foundry through the REST API, download them into your agent project. The following walkthrough uses a [GitHub Copilot SDK sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot) that loads `SKILL.md` files from a local `skills/` directory and injects their contents as additional instructions into each session.
+After importing skills to Foundry through the REST API, download them into your agent project. The following walkthrough uses a [GitHub Copilot SDK sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/invocations/github-copilot) that loads `SKILL.md` files from a local `skills/` directory and injects their contents as extra instructions into each session.
 
 > [!NOTE]
-> This sample requires a GitHub fine-grained personal access token (PAT) with **Copilot Requests → Read-only** permission. Create one at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Classic tokens (`ghp_`) aren't supported — use a fine-grained PAT (`github_pat_`).
+> This sample requires a GitHub fine-grained personal access token (PAT) with **Copilot Requests �' Read-only** permission. Create one at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Classic tokens (`ghp_`) aren't supported. Use a fine-grained PAT (`github_pat_`).
 
 ### Step 1: Initialize the agent project
 
@@ -615,7 +625,7 @@ The scaffolded project includes `main.py`, configuration files, and a sample `jo
         └── SKILL.md         ← bundled sample skill
 ```
 
-In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as additional instructions when a session starts.
+In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as extra instructions when a session starts.
 
 ### Step 2: Add the greeting skill
 
@@ -660,7 +670,7 @@ azd ai agent invoke --local '{"input": "Hi, my name is Alex!"}'
 
 ### Step 4: Deploy and test remotely
 
-Provision Azure resources and deploy the agent:
+Create Azure resources and deploy the agent:
 
 ```bash
 azd provision

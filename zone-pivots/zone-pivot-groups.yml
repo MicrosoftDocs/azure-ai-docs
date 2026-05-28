@@ -2077,7 +2077,25 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
+- id: selection-fabric-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
 - id: selection-foundry-tool-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-work-iq
   title: Selections
   prompt: What would you like to see?
   pivots:
