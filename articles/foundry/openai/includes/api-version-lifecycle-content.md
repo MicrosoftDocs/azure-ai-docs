@@ -571,6 +571,8 @@ The following sections summarize changes between API versions.
 
 ## Next steps
 
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [Supported programming languages for the v1 API](../supported-languages.md)
 - [Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Working with Azure OpenAI models](../how-to/working-with-models.md)

@@ -17,6 +17,15 @@ groups:
     title: JavaScript SDK
   - id: azd
     title: Azure Developer CLI
+# Owner: aahi
+- id: foundry-connector-config
+  title: Interface
+  prompt: Choose a configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages
@@ -2094,6 +2103,32 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
+- id: selection-fabric-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-foundry-tool-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-work-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?

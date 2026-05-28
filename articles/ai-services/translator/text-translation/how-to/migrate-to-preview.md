@@ -41,7 +41,7 @@ The following list compares available Translator `2025-10-01-preview` methods wi
 |**targets**<br>&bullet; Array containing user-specified values for the translated text|&bullet; *The targets array isn't included with the Translator v3.0 schema.*|
 |**language**<br>&bullet; The language code for the translated (target) text *specified in the targets array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|**to**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
 
-For more information on **targets array** values, *see* [Translate text](../preview/translate-api.md).
+For more information on **targets array** values, *see* [Translate text](../2026-06-06/translate-api.md).
 
 ## API compatibility
 
@@ -49,9 +49,9 @@ The following table provides a detailed comparison of the updates introduced in 
 
 |API version: v3|API version: 2025-10-01-preview|
 |---|---|
-|[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
-|[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
-|[Languages](../reference/v3/languages.md)|[Languages](../preview/get-languages.md)|
+|[Translate text](../reference/v3/translate.md)|[Translate text](../2026-06-06/translate-api.md)|
+|[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../2026-06-06/transliterate-api.md)|
+|[Languages](../reference/v3/languages.md)|[Languages](../2026-06-06/get-languages.md)|
 |[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that's compatible with your programming language.|
 |[Detect](../reference/v3/detect.md)|Feature no longer supported.<br>Use the [Azure Language in Foundry Tools detection API](../../../language-service/language-detection/how-to/call-api.md).|
 |[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported.|
@@ -61,4 +61,4 @@ The following table provides a detailed comparison of the updates introduced in 
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [View 2025-10-01-preview Translate method](../preview/translate-api.md)
+> [View 2025-10-01-preview Translate method](../2026-06-06/translate-api.md)

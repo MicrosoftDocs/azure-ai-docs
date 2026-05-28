@@ -48,7 +48,7 @@ Routines support two categories of trigger.
 > [!IMPORTANT]
 > For code-first configuration (REST API, SDKs, or `azd`), only **GitHub** and **Teams** event sources are supported for event-based routines in preview. The Foundry portal surfaces a broader set of validated connectors as event sources. If you need a connector that isn't in the code-first scope, configure the routine in the portal or contact the Foundry team.
 
-Event-based routines are powered by the **Connector Namespace** — the same managed service that backs [managed MCP servers](tools/connectors.md) in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
+Event-based routines are powered by the **Connector Namespace** — the same managed service that backs managed MCP servers in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
 
 > [!NOTE]
 > Your connector credentials are stored and managed by the Connector Namespace, not in your routine definition. At runtime, the namespace retrieves and injects the right token or key when polling for events or receiving webhook calls. Your routine configuration never contains raw credentials.
@@ -60,18 +60,18 @@ Event-based routines are powered by the **Connector Namespace** — the same man
 
 ## Publisher tiers and data handling for event sources
 
-The same connector catalog and publisher tiers that apply to [managed MCP servers](tools/connectors.md#publisher-tiers-and-data-handling) also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](https://learn.microsoft.com/connectors/connector-reference/connector-reference-mcpserver-connectors).
+The same connector catalog and publisher tiers that apply to managed MCP servers also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](/connectors/connector-reference/connector-reference-mcpserver-connectors).
 
 | Publisher tier | Examples | Data responsibility |
 |---|---|---|
-| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy and GDPR policies apply end-to-end |
+| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy policies apply end-to-end |
 | **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
-| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and GDPR terms before connecting |
+| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and data-protection terms before connecting |
 | **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
 
-The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft's privacy and GDPR policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
+The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft privacy policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
 
-For details on connector validation and data protection, see [Vet with data protection in connectors](https://learn.microsoft.com/connectors/protection).
+For details on connector validation and data protection, see [Vet with data protection in connectors](/connectors/protection).
 
 ## Supported action types
 

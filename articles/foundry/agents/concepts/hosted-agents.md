@@ -45,9 +45,12 @@ The platform automatically manages the container lifecycle based on activity, pr
 
 Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedicated sandbox with a persistent filesystem (`$HOME` and `/files`), enabling scale-to-zero with stateful resume and predictable cold starts. Sessions are isolated from each other, and state is automatically restored when a session resumes after going idle.
 
-### Protocols: Responses and Invocations
+### Protocols: Responses, Invocations, and Invocations (WebSocket)
 
-Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration. Both protocols are available in [regions that support Hosted agents](#region-availability). 
+Hosted agent containers can expose one or more protocols. Each protocol is provided by a lightweight library that handles the HTTP or WebSocket server, health checks, and OpenTelemetry integration. The Responses and Invocations protocols are available in all [regions that support Hosted agents](#region-availability).
+
+> [!IMPORTANT]
+> The **Invocations (WebSocket)** protocol (`invocations_ws`) is in preview and is currently available only in **North Central US**.
 
 #### Which protocol should I use?
 
@@ -61,6 +64,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 | Non-conversational processing (classification, extraction, batch) | **Invocations** | The input is structured data, not a chat message. Arbitrary JSON in, arbitrary JSON out. |
 | Custom streaming protocol (AG-UI, etc.) | **Invocations** | AG-UI and other agent-UI protocols aren't OpenAI-compatible—you need raw SSE control. |
 | Protocol bridge (GitHub Copilot, proprietary systems) | **Invocations** | The caller has its own protocol that doesn't map to /responses. |
+| Real-time voice agent (microphone in, speech out) | **Invocations (WebSocket)** | Bidirectional streaming over a single persistent connection. Pair with Pipecat, LiveKit, or Voice Live in your container. See [Build a voice agent](../how-to/build-voice-agent.md). |
 
 > [!TIP]
 > **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a Hosted agent can support both protocols simultaneously.
@@ -78,7 +82,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 
 #### Additional protocols
 
-Hosted agents also support the **Activity** protocol for Teams and Microsoft 365 channel integration. When you use the Responses protocol for agent logic and publish to Microsoft 365 channels such as Teams, the platform automatically bridges Responses to the Activity protocol for channel delivery—no separate wiring is required. The **A2A** protocol supports agent-to-agent delegation. All four protocols—Responses, Invocations, Activity, and A2A—can be combined in a single agent.
+Hosted agents also support the **Activity** protocol for Teams and Microsoft 365 channel integration. When you use the Responses protocol for agent logic and publish to Microsoft 365 channels such as Teams, the platform automatically bridges Responses to the Activity protocol for channel delivery—no separate wiring is required. The **A2A** protocol supports agent-to-agent delegation. Supported protocols can be combined in a single agent.
 
 ### Agent identity and endpoint
 
@@ -86,8 +90,9 @@ Every Hosted agent deployed to a Foundry project gets its own **dedicated Micros
 
 The endpoint is available immediately after deployment—publishing isn't required for programmatic access:
 
-- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
+- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
+- **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/agents/endpoint/protocols/invocations_ws?project_name={project}&agent_name={name}
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
 Which endpoints are active depends on the protocols declared in the agent version definition (set in agent.yaml when using azd, or via container_protocol_versions when using the SDK).
@@ -103,7 +108,14 @@ When you deploy with azd, the required RBAC role (Foundry User at account scope)
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can also operate with on-behalf-of (OBO) user identity. The agent's Microsoft Entra ID can exchange a user token to call downstream services as the user, subject to tenant policies. For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
+When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can operate in two identity modes depending on how they are invoked:
+
+- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
+
+- **Autonomous or background scenarios**: If no user token is available, the agent authenticates using its own Microsoft Entra ID (agent identity), typically via managed identity, to access downstream services.
+
+In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
+For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
 ### Sessions and conversations
 
@@ -175,7 +187,26 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
+Hosted agent sandboxes support the following CPU and memory combinations:
+
+| CPU | Memory |
+| --- | --- |
+| 0.5 vCPU | 1 GiB |
+| 1 vCPU | 2 GiB |
+| 2 vCPU | 4 GiB |
+
+### Scaling and right-sizing
+
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+
+Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+
+To right-size, run a representative workload and inspect resource usage in the linked Application Insights resource:
+
+1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
+1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
+
+Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
 
 ### Private networking
 
@@ -206,6 +237,7 @@ Hosted agents are currently available in the following regions:
 - North Central US
 - Sweden Central
 - Canada Central
+- Canada East
 - Southeast Asia
 - Poland Central
 - South Africa North
@@ -217,6 +249,7 @@ Hosted agents are currently available in the following regions:
 - Norway East
 - Japan East
 - France Central
+- Germany West Central
 - Switzerland North
 - Spain Central
 - Australia East
