@@ -18,7 +18,7 @@ ms.topic: reference
 >
 > * Adaptive custom translation playground (GA in Foundry NextGen) enables no-code dataset lifecycle management.
 > * Adaptive custom translation API (v1.0 preview) enables developers to manage the adaptive dataset lifecycles.
-> * Segments with >250 characters (source or target) are rejected. If all segments are invalid, the document upload fails.
+> * Segments with > 250 characters (source or target) are rejected and the document upload fails. If all segments are invalid, the document upload fails. Make a [Get Import Job Status API](#get-import-job-status) request to find the offending segment(s) details.
 > * This API requires proper authentication and Foundry resource setup before use.
 > * Project and workspace both refer to a Foundry project.
 > * A general category is added to allow a language pair (for example, English–French, French-English) to be created once in both directions.

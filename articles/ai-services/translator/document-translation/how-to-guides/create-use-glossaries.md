@@ -6,7 +6,7 @@ ms.service: azure-ai-translator
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ---
 
 # Use glossaries with Document translation
