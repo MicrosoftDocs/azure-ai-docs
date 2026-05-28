@@ -1,6 +1,6 @@
 ---
-title: "Create hosted agent workflows in Visual Studio Code"
-description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Foundry Toolkit for Visual Studio Code."
+title: "Create hosted agent workflows in the Microsoft Foundry Toolkit for Visual Studio Code extension"
+description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry Toolkit for Visual Studio Code extension."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -17,8 +17,8 @@ zone_pivot_groups: ai-foundry-vsc-extension-languages
 ms.custom: doc-kit-assisted
 ---
 
-# Create hosted agent workflows in Visual Studio Code (preview)
-Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
+# Create hosted agent workflows in the Microsoft Foundry Toolkit for Visual Studio Code extension
+Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk). The toolkit supports agent creation from templates, local testing and debugging with the Agent Inspector for visualization and trace support, and direct deployment to Foundry Agent Service from VS Code. Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
 Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.
 
@@ -27,7 +27,7 @@ This article covers creating a workflow project, running it locally, visualizing
 ## Prerequisites
 
 - A Foundry project with a deployed model, or an Azure OpenAI resource.
-- The [Foundry Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
+- The [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) installed.
 - The project's managed identity with the [Foundry User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles assigned. Also assign the `acrPull` role to the managed identity of the Foundry project where you plan to deploy the Hosted agent.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -43,7 +43,7 @@ This article covers creating a workflow project, running it locally, visualizing
 
 ## Create a hosted agent workflow  
 
-You can use the Foundry Toolkit for Visual Studio Code to create Hosted agent workflows. A Hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+You can use the Microsoft Foundry Toolkit for Visual Studio Code extension to create Hosted agent workflows. A Hosted agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
@@ -223,7 +223,7 @@ To run the agent in container mode:
 
 ## Visualize hosted agent workflow execution
 
-The Foundry Toolkit for Visual Studio Code provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
+The Microsoft Foundry Toolkit for Visual Studio Code extension provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
 
 Add the following reference to your csproj file:
 
@@ -278,7 +278,7 @@ A new tab opens in VS Code to display the execution graph. The visualization upd
 
 #### Port conflicts
 
-For port conflicts, you can change the visualization port by setting it in the Foundry extension settings. To do that, follow these steps:
+For port conflicts, you can change the visualization port by setting it in the Microsoft Foundry Toolkit for Visual Studio Code extension settings. To do that, follow these steps:
 
 1. In the left sidebar of VS Code, select the gear icon to open the settings menu.
 1. Select `Extensions` > `Microsoft Foundry Configuration`.

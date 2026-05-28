@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit extension for Visual Studio Code."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit for Visual Studio Code extension."
 author: aahill
 ms.author: aahi
 ms.date: 05/23/2026
