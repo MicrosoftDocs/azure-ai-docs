@@ -487,7 +487,7 @@ Claude Mythos Preview supports **adaptive thinking**, an upgrade to extended thi
 > [!TIP]
 > Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
 
-Claude Opus 4.7 is the most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows. With a 1M token context window and 128K max output, Opus 4.8 sets a new bar for agentic workflows and is ideal for agentic codeing, enterprise workflows, financial analysis, cybersecurity, and computer use. Opus 4.8 also supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
+Claude Opus 4.8 is the most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows. With a 1M token context window and 128K max output, Opus 4.8 sets a new bar for agentic workflows and is ideal for agentic coding, enterprise workflows, financial analysis, cybersecurity, and computer use. Opus 4.8 also supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 
 ### Claude Opus 4.7 (preview)
 
