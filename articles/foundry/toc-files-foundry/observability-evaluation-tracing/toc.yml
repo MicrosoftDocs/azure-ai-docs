@@ -82,6 +82,8 @@ items:
      href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
+   - name: Register external agents for observability (preview)
+     href: ../../agents/how-to/register-external-agent.md
 
 # Troubleshooting
 - name: Troubleshoot evaluation and observability issues
