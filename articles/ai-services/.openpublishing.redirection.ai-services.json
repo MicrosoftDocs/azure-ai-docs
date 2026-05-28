@@ -3314,6 +3314,11 @@
       "source_path_from_root": "/articles/ai-services/translator/custom-translator/azure-ai-foundry/how-to/upload-data.md",
       "redirect_url": "/azure/ai-services/translator/custom-translator/how-to/create-manage-training-documents",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/versioning/v3-1-migration-guide.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/migration-guide-overview",
+      "redirect_document_id": false
     }
 
   ]
