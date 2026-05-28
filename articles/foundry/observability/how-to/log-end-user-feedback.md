@@ -1,18 +1,19 @@
 ---
 title: Log end user feedback
 description: Learn how to log end user feedback such as thumbs up/down or rating scales from your AI application using OpenTelemetry semantics in Microsoft Foundry.
-ms.service: microsoft-foundry
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: skohlmeier
-ms.date: 05/22/2026
+ms.reviewer: sonalimalik
+ms.date: 05/28/2026
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.service: azure-ai-foundry
+ms.custom: dev-focus
 ---
 
 # Log end user feedback (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Capture end user feedback—such as thumbs up/down reactions or numeric rating scales—from your AI application and route it to your observability backend using OpenTelemetry (OTel) semantics. Logging user feedback enables you to correlate subjective quality signals with trace data, measure user satisfaction over time, and drive continuous improvement of your agents and models.
 
@@ -32,10 +33,10 @@ Key capabilities:
 - A Foundry project with an [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected. See [Set up tracing](trace-agent-setup.md).
 - OpenTelemetry instrumentation configured in your application. See [Set up tracing in Microsoft Foundry](trace-agent-setup.md) for setup instructions.
 - Python 3.9 or later, or a supported language with OTel SDK support.
-- The `opentelemetry-api` and `opentelemetry-sdk` packages installed:
+- The `azure-ai-projects` and `azure-monitor-opentelemetry` packages installed:
 
   ```bash
-  pip install opentelemetry-api opentelemetry-sdk
+  pip install "azure-ai-projects>=2.0.0" azure-monitor-opentelemetry python-dotenv
   ```
 
 ## Evaluation types
@@ -54,39 +55,7 @@ Feedback can originate from two source types:
 
 ## Event attributes
 
-Each human evaluation is emitted as a `gen_ai.evaluation.result` event with the following top-level attributes:
-
-| Attribute | Requirement Level | Type | Description | Example |
-|-----------|-------------------|------|-------------|---------|
-| `microsoft.custom_event.name` | Required | `string` | Must be `"gen_ai.evaluation.result"`. Routes the event to the `customEvents` table in Application Insights. | `"gen_ai.evaluation.result"` |
-| `gen_ai.evaluation.name` | Required | `string` | The name of the evaluation metric. | `"task_completion"`, `"relevance"` |
-| `gen_ai.evaluation.score.value` | Required | `double` | The numeric score. | `1.0`, `4.0` |
-| `gen_ai.evaluation.score.label` | Required | `string` | Must be `"pass"` or `"fail"`. | `"pass"` |
-| `gen_ai.evaluation.explanation` | Optional | `string` | Free-form explanation for the score. | `"The agent provided accurate information."` |
-| `gen_ai.response.id` | Optional (recommended) | `string` | ID of the completion being evaluated. Helps correlate evaluation with the operation. | `"resp_64904952b208..."` |
-| `enduser.id` | Optional (recommended) | `string` | Authenticated user identifier. Maps to `user_AuthenticatedId` in Application Insights. | `"oid:e37ded2a-b026-..."` |
-| `enduser.pseudo.id` | Optional (recommended) | `string` | Pseudonymous user identifier. Maps to `user_Id` in Application Insights. | `"QdH5CAWJgqVT4rOr0qtumf"` |
-| `microsoft.human_evaluation.tags.<tag>` | Optional | `string` | Custom metadata key-value pairs. | `"basic_plan"` (for `microsoft.human_evaluation.tags.subscription_tier`) |
-| `microsoft.human_evaluation.id` | Optional (recommended) | `string` | Unique ID for the evaluation event itself. | `"69d937a7-32e2-412e-..."` |
-| `error.type` | Conditionally required (on error) | `string` | Error class if the operation failed. | `"timeout"`, `"500"` |
-| `internal_properties` | Required | `string` | JSON-encoded string with additional metadata. See [Internal properties](#internal-properties). | See examples below. |
-
-### Internal properties
-
-The `internal_properties` attribute is a JSON-encoded string containing metadata required by downstream Microsoft systems (Azure Monitor, Foundry). The following fields apply to human evaluations:
-
-| Attribute | Requirement Level | Type | Description | Example |
-|-----------|-------------------|------|-------------|---------|
-| `gen_ai.evaluation.type` | Required | `string` | Value type: `"boolean"`, `"ordinal"`, or `"continuous"`. | `"boolean"` |
-| `gen_ai.evaluation.min_value` | Required | `double` | Minimum possible score value. | `0.0` |
-| `gen_ai.evaluation.max_value` | Required | `double` | Maximum possible score value. | `1.0` |
-| `gen_ai.evaluation.threshold` | Required | `double` | Score at or above which the evaluation is a pass. | `1.0` |
-| `gen_ai.evaluation.desirable_direction` | Required | `string` | Direction of improvement: `"increase"` or `"decrease"`. | `"increase"` |
-| `microsoft.human_evaluation.source` | Required | `string` | Who performed the evaluation: `"builder"` or `"end_user"`. | `"end_user"` |
-| `microsoft.human_evaluation.kind` | Required | `string` | Evaluation kind: `"binary"` or `"likert_5"`. | `"binary"` |
-| `gen_ai.azure_ai_project.id` | Conditionally required (Foundry agents) | `string` | Azure resource ID for the Foundry project. | `"/subscriptions/.../projects/my-proj"` |
-| `gen_ai.response.id.type` | Conditionally required (when `gen_ai.response.id` is set) | `string` | Clarifies what the response ID represents. | `"responses"`, `"session"` |
-| `gen_ai.evaluation.azure_ai_scheduled` | Not required | `string` | Use `"one_off"` for human evaluations. | `"one_off"` |
+Each human evaluation is emitted as a `gen_ai.evaluation.result` event. For the full list of top-level attributes and `internal_properties` fields, see the [Human Evaluations Telemetry Collection Spec](https://github.com/aep-health-and-standards/Telemetry-Collection-Spec/blob/main/OpenTelemetry/events/genai_human_evaluations.md#event-attributes).
 
 ## Emit a binary evaluation (thumbs up/down)
 
@@ -101,11 +70,10 @@ Rules:
 - `internal_properties.gen_ai.evaluation.max_value`: `1.0`
 - `internal_properties.gen_ai.evaluation.threshold`: `1.0`
 - `internal_properties.gen_ai.evaluation.desirable_direction`: `"increase"`
-- `internal_properties.microsoft.human_evaluation.kind`: `"binary"`
 
 ### Example: End user gives thumbs up
 
-For a complete Python implementation of binary feedback logging, see the [Azure SDK for Python sample](https://github.com/Azure/azure-sdk-for-python/pull/46962/files).
+For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/4a7cb04695f6337f5e014d4908eacbc42e2bbb01/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
 ## Emit a Likert 5-point evaluation (rating scale)
 
@@ -120,17 +88,34 @@ Rules:
 - `internal_properties.gen_ai.evaluation.max_value`: `5.0`
 - `internal_properties.gen_ai.evaluation.threshold`: `3.0`
 - `internal_properties.gen_ai.evaluation.desirable_direction`: `"increase"`
-- `internal_properties.microsoft.human_evaluation.kind`: `"likert_5"`
 
-### Example: End user rates relevance
+### Example: Builder rates relevance in Foundry portal
 
-For a complete Python implementation of Likert 5-point feedback logging, see the [Azure SDK for Python sample](https://github.com/Azure/azure-sdk-for-python/pull/46962/files).
+For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/4a7cb04695f6337f5e014d4908eacbc42e2bbb01/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
 ## View feedback in Application Insights
 
-After feedback events are exported through your OTel pipeline, they appear in the `customEvents` table in Application Insights with `name == "gen_ai.evaluation.result"`. You can query and visualize this data using Log Analytics.
+After feedback events are exported through your OTel pipeline, you can query them in Application Insights using KQL:
 
-To learn how to view and query telemetry in Application Insights, see [View and analyze traces](trace-agent-setup.md#view-and-analyze-traces). For dashboard-based monitoring, see [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md).
+```kusto
+customEvents
+| where name == "gen_ai.evaluation.result"
+| extend
+    eval_name = tostring(customDimensions["gen_ai.evaluation.name"]),
+    score = todouble(customDimensions["gen_ai.evaluation.score.value"]),
+    label = tostring(customDimensions["gen_ai.evaluation.score.label"]),
+    eval_source = tostring(customDimensions["microsoft.gen_ai.human_evaluation.source"]),
+    internal = parse_json(tostring(customDimensions["internal_properties"]))
+| extend
+    eval_type = tostring(internal["gen_ai.evaluation.type"])
+| where eval_source in ("builder", "end_user")
+| summarize
+    total = count(),
+    pass_rate = round(countif(label == "pass") * 100.0 / count(), 1),
+    avg_score = round(avg(score), 2)
+  by eval_name, eval_type, bin(timestamp, 1h)
+| order by timestamp desc
+```
 
 ## Related content
 
