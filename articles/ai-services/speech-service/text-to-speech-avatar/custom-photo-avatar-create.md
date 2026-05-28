@@ -74,9 +74,27 @@ You can use your custom photo avatar in the following ways:
 
 
 ### Use in Microsoft Foundry
-- If you open **Voice Live** or **Text to Speech Avatar** from the custom photo avatar fine-tuning job details page, your custom photo avatar should already be selected. Choose a voice, and then start using it.
-- If you open **Voice Live** from the **Models** navigation, turn on the **Avatar** toggle, select **More avatars**, and then select your custom photo avatar under the **Custom** tab.
-- If you open **Text to Speech Avatar** from the **Models** navigation, go to the **Avatar** section, select **More avatars**, and then select your custom photo avatar under the **Custom** tab.
+
+
+To use custom photo avatar in **Voice Live** to create personalized voice agent:
+1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the New Foundry toggle is on. 
+2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
+3. Find the Voice Live model playground
+   1. Select **Discover** in the upper-right navigation.
+   1. Select **Models**.
+   1. Search "speech"
+   1. Click **Azure-Speech-Voice-Live** in the search result
+   1. Select **Open in Playground**
+
+To use custom photo avatar in **Text to speech avatar** to create talking head video:
+1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the new Foundry toggle is on. 
+2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
+3. Find the Text to speech avatar model playground
+   1. Select **Discover** in the upper-right navigation.
+   1. Select **Models**.
+   1. Search "speech"
+   1. Click **Azure-Speech-Text-to-speech-Avatar** in the search result
+   1. Select **Open in Playground**
    
 ### Use through API
   Sample code for text to speech avatar is available on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples). Search "photo" to quickly go to photo avatar part in sample code.
