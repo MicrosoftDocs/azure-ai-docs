@@ -5,7 +5,7 @@ ms.author: jburchel
 author: jonburchel 
 ms.reviewer: deeikele
 ms.date: 05/04/2026
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.custom:
   - classic-and-new
