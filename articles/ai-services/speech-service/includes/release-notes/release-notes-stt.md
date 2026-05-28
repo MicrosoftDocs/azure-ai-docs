@@ -3,12 +3,16 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 4/21/2026
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.custom: references_regions
 ---
 
 ### May 2026 release
+
+#### Custom speech fine-tuning in the Microsoft Foundry (new) portal
+
+The custom speech fine-tuning workflow is now documented for the Microsoft Foundry (new) portal. The wizard-driven experience walks you through project creation, data upload, data inspection, model training, evaluation, and endpoint deployment. For more information, see [Create a custom speech project](../../how-to-custom-speech-create-project.md).
 
 #### LLM Speech API Generally Availability
 

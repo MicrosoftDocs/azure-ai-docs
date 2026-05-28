@@ -1762,7 +1762,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>com.azure</groupId>
         <artifactId>azure-ai-voicelive</artifactId>
-        <version>1.0.0-beta.1</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.azure</groupId>
@@ -2436,4 +2436,4 @@ public final class FunctionCallingQuickstart {
 
 - Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

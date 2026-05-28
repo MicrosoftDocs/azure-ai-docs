@@ -21,6 +21,29 @@ To use your fine-tuned professional voice, you must specify the voice model name
 To create a professional voice endpoint:
 
 To deploy an endpoint, follow these steps:
+
+# [Foundry (new)](#tab/foundry-new)
+
+1. [!INCLUDE [foundry-sign-in](../../../../../../foundry/includes/foundry-sign-in.md)]
+1. From the upper-right menu, select **Build**.
+1. In the left pane, select **Fine-tune**.
+1. Select the **AI services** tab, and then select the name of the fine-tuned model you want to deploy.
+1. On the model details page, select **Deploy** in the upper right to open the **Deploy** pane.
+1. On the **Deploy** pane, fill in these settings:
+
+   - **Deployment name**: Enter a name for the deployment.
+   - **Endpoint type**: Select **High performance** or **Fast-resume** according to your scenario. If your resource is in a supported region, the default setting is **High performance**. Otherwise, the only available option is **Fast-resume**.
+     - **High performance**: Optimized for scenarios with real-time and high-volume synthesis requests, such as conversational AI or call-center bots. It takes around 5 minutes to deploy or resume an endpoint. For information about regions where the **High performance** endpoint type is supported, see the footnotes in the [regions](../../../../regions.md#regions) table.
+     - **Fast-resume**: Optimized for audio content creation scenarios with less frequent synthesis requests. Easy and quick to deploy or resume an endpoint in under a minute. The fast-resume endpoint type is supported in all [regions](../../../../regions.md#regions) where text to speech is available.
+   - Select the checkbox to accept the **Terms of use**.
+   - Select the checkbox to acknowledge the **Model hosting cost**.
+
+1. Select **Deploy** to create your endpoint.
+
+After your endpoint is deployed, it appears on the **Deployments** tab of the model details page. Select the deployment name to display endpoint details such as the endpoint key, endpoint URL, and sample code. When the status is **Succeeded**, the endpoint is ready for use.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
@@ -36,6 +59,8 @@ To deploy an endpoint, follow these steps:
 1. Select **Deploy** to create your endpoint.
 
 After your endpoint is deployed, the endpoint name appears as a link. Select the link to display information specific to your endpoint, such as the endpoint key, endpoint URL, and sample code. When the status of the deployment is **Succeeded**, the endpoint is ready for use.
+
+---
 
 ## Test your custom voice
 
@@ -81,6 +106,19 @@ This section describes how to suspend or resume a custom voice endpoint in the M
 ### Suspend endpoint
 
 To suspend and deactivate your endpoint:
+
+# [Foundry (new)](#tab/foundry-new)
+
+1. [!INCLUDE [foundry-sign-in](../../../../../../foundry/includes/foundry-sign-in.md)]
+1. From the upper-right menu, select **Build**.
+1. In the left pane, select **Fine-tune**.
+1. Select the **AI services** tab, and then select the name of the fine-tuned model.
+1. On the model details page, select the **Deployments** tab.
+1. Select the endpoint you want to suspend, and then select **Suspend**.
+1. In the dialog box that appears, select **Suspend**. After the endpoint is suspended, the status changes from **Succeeded** to **Suspended**.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
@@ -90,6 +128,8 @@ To suspend and deactivate your endpoint:
    :::image type="content" source="../../../../media/custom-voice/professional-voice/suspend-resume.png" alt-text="Screenshot of page to suspend or resume an endpoint." lightbox="../../../../media/custom-voice/professional-voice/suspend-resume.png":::
 
 1. In the dialog box that appears, select **Suspend**. After the endpoint is suspended, the status changes from **Succeeded** to **Suspended**. 
+
+---
 
 ### Resume endpoint
 

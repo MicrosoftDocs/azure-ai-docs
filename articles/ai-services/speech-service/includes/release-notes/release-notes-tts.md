@@ -3,11 +3,24 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2025
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### May 2026 release
+
+#### Custom voice fine-tuning in the Microsoft Foundry (new) portal
+
+Fine-tuning workflows for custom voice are now available via the Microsoft Foundry (new) portal. The playground experience walks you through model selection, voice talent registration, training data upload, model training, and endpoint deployment from the **Fine-tune a model** pane.
+
+- [Create a professional voice](../../professional-voice-create-project.md)
+- [Create a personal voice project](../../personal-voice-create-project.md)
+
+#### Custom avatar usage in Microsoft Foundry
+
+After you deploy a custom avatar, you can now try it directly from the fine-tuning job's **Use your avatar** box by selecting **Try Text to Speech Avatar** or **Try Voice Live**. You can also open the playgrounds from the **Models** navigation and select your custom avatar from the **Custom** tab. For more information, see [Create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
 
 ### March 2026 release
 

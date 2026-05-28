@@ -1,4 +1,4 @@
----
+﻿---
 title: Rewrite Queries with Semantic Ranker
 description: Learn how to rewrite queries with semantic ranker in Azure AI Search
 ms.service: azure-ai-search
@@ -42,12 +42,12 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 ## Make a search request with query rewrites
 
-In this REST API example, use [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+In this REST API example, use [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to formulate the request.
 
 1. Paste the following request into a web client as a template. 
 
     ```http
-    POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-11-01-preview
+    POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
     {
         "search": "newer hotel near the water with a great restaurant",
         "semanticConfiguration":"en-semantic-config",
@@ -198,7 +198,7 @@ Here's an example of a query that includes a vector query with query rewrites. M
 - The "text" value is the same as the "search" value. These values must be identical for query rewriting to work.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-11-01-preview
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
 {
     "search": "newer hotel near the water with a great restaurant",
     "vectorQueries": [

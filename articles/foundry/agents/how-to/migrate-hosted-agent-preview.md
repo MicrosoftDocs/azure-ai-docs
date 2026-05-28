@@ -398,7 +398,7 @@ app.run()
 
 The Invocations protocol also supports long-running operations with `@app.get_invocation_handler` and `@app.cancel_invocation_handler` for polling and cancellation.
 
-Choose your protocol based on your agent's interaction pattern. See [What are Hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-and-invocations) for guidance on which protocol to use.
+Choose your protocol based on your agent's interaction pattern. See [What are Hosted agents — Protocols](../concepts/hosted-agents.md#protocols-responses-invocations-and-invocations-websocket) for guidance on which protocol to use.
 
 ## Protocol version format change
 
