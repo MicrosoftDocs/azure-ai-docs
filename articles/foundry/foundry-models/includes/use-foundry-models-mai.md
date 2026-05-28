@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 05/27/2026
+ms.date: 05/28/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -26,7 +26,7 @@ MAI image models in Microsoft Foundry include:
 
 | Model name | Model version | Key Capabilities |
 | --- | --- | --- |
-| `MAI-Image-2.5-Flash` (Preview) | | Text-to-image generation, Image-to-image edits |
+| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation, Image-to-image edits |
 | `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation, Image-to-image edits |
 | `MAI-Image-2e` (Preview) | `2026-04-09`| Text-to-image generation |
 | `MAI-Image-2` (Preview) | `2026-02-20` | Text-to-image generation |
@@ -62,10 +62,10 @@ az cognitiveservices account deployment create \
 
 **Reference:** [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create)
 
-To list all available models and versions on your resource:
+To list all available deployments on your resource:
 
 ```bash
-az cognitiveservices account list-models \ 
+az cognitiveservices account deployment list \ 
   --resource-group <RESOURCE_GROUP> \ 
   --name <ACCOUNT_NAME> \ 
   -o table 
@@ -223,7 +223,7 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 The following examples show how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints). 
 
 > [!NOTE]
-> Thee `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits.
+> The `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits.
 
 # [Python](#tab/python)
 
