@@ -6,7 +6,7 @@ ms.subservice: foundry-model-inference
 ms.custom:
   - build-2026
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 05/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: gulsimoosimi
