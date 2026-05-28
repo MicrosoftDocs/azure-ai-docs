@@ -3,11 +3,24 @@ title: Migrate Agentic Retrieval Code
 description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/22/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ---
 
 # Migrate agentic retrieval code to the latest version
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an earlier REST API version, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all API versions that support agentic retrieval.
 
@@ -197,6 +210,29 @@ To complete your migration:
 1. Update code that processes retrieve responses. Responses return extractive grounding content with `activity` and `references`, not synthesized answers.
 
 1. Delete preview objects only after the new objects are fully validated and deployed.
+
+### [**2026-05-01-preview**](#tab/2026-05-01-preview)
+
+If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to 2026-05-01-preview. Requests, responses, and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
+
+1. Update the API version to `2026-05-01-preview` on REST requests. SDK clients use the package's default API version, so you don't need to pass an explicit `serviceVersion` argument. Instead, upgrade to the 2026-05-01-preview SDK package.
+
+1. If you use the Python or JavaScript SDK, update the retrieve client to `KnowledgeBaseRetrievalClient` and call `retrieve(...)` instead of the legacy `retrieveKnowledge(...)`. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
+
+1. Optionally adopt the new 2026-05-01-preview features, such as [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md), per-source and final-result document caps, persisted retrieve defaults, knowledge base CORS, and Purview sensitivity-label metadata in retrieve responses. None of these features are required to keep an existing solution working.
+
+#### Update code and clients for 2026-05-01-preview
+
+The 2026-05-01-preview language SDKs introduce code-shape changes across the supported languages.
+
+| Language | Migration updates |
+| --- | --- |
+| Python | Create the retrieve client as `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Construct reasoning effort instances such as `KnowledgeRetrievalLowReasoningEffort()` and pass the string `output_mode="answerSynthesis"` on the knowledge base or retrieve request. Pass `AzureOpenAIVectorizerParameters(resource_url=...)` (renamed from `resource_uri`), using the resource root endpoint rather than an `/openai/v1` endpoint. |
+| .NET | Create the retrieve client as `new KnowledgeBaseRetrievalClient(endpoint, knowledgeBaseName, credential)` and pass an `AzureKeyCredential` or token credential. To attach a key-based Azure OpenAI model to a knowledge base, set the model API key on `AzureOpenAIVectorizerParameters.ApiKey`. |
+| Java | Use `KnowledgeBaseRetrievalClientBuilder` to create the retrieve client and read results as `KnowledgeBaseRetrievalResult`. `KnowledgeBaseRetrievalOptions` now exposes `setMessages(...)` alongside `setIntents(...)`, plus `setRetrievalReasoningEffort`, `setOutputMode`, `setMaxOutputSize`, and `setMaxOutputDocuments`, so message-based retrieve and answer synthesis work without a semantic-intent workaround. `KnowledgeBase` adds `setOutputMode`, `setRetrievalReasoningEffort`, `setRetrievalInstructions`, `setAnswerInstructions`, and `setCorsOptions`. `SearchIndexKnowledgeSourceParams` adds `setAlwaysQuerySource`, `setFailOnError`, `setMaxOutputDocuments`, and `setEnableImageServing`. |
+| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve({ intents: [{ type: "semantic", search: query }] })`. The previous `retrieveKnowledge(...)` method is removed in favor of `retrieve(...)`. |
+
+After you update the client shapes, run the full flow that creates the index, uploads documents, creates a knowledge source, creates a knowledge base, issues a retrieve request, and cleans up resources to confirm the migration end to end.
 
 ### [**2025-11-01-preview**](#tab/2025-11-01-preview)
 
@@ -457,7 +493,7 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
 
 You now have a migrated `azureBlob` knowledge source that is backwards compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
 
-The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create an Azure Blob knowledge source](agentic-knowledge-source-how-to-blob.md).
+The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
 #### Replace knowledge agent with knowledge base
 
@@ -663,7 +699,7 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 To complete your migration, follow these cleanup steps:
 
-1. For Azure Blob knowledge sources only, update clients to use the new index. If you have code or script that runs an indexer or references a data source, index, or skillset, make sure you update the references to the new objects.
+1. For blob knowledge sources only, update clients to use the new index. If you have code or script that runs an indexer or references a data source, index, or skillset, make sure you update the references to the new objects.
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 
@@ -805,10 +841,55 @@ To complete your migration, follow these cleanup steps:
 
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
++ [2026-05-01-preview](#2026-05-01-preview-1)
 + [2026-04-01](#2026-04-01-1)
 + [2025-11-01-preview](#2025-11-01-preview-1)
 + [2025-08-01-preview](#2025-08-01-preview-1)
 + [2025-05-01-preview](#2025-05-01-preview)
+
+### 2026-05-01-preview
+
+2026-05-01-preview adds knowledge base, knowledge source, and retrieve features on top of [2025-11-01-preview](#2025-11-01-preview-1) without removing previously persisted properties. Existing knowledge bases and knowledge sources created on earlier preview versions continue to work; this version mostly exposes new functionality and reverts a few preview-only limits.
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for this version, select the 2026-05-01-preview API version filter at the top of the page.
+
+#### [**Breaking changes**](#tab/breaking)
+
+There are no breaking changes between 2025-11-01-preview and 2026-05-01-preview. Existing requests that target 2025-11-01-preview continue to work when you change the API version to 2026-05-01-preview.
+
+The language SDKs that ship 2026-05-01-preview support introduce code-shape changes that are breaking at the SDK layer. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
+
+#### [**Nonbreaking changes**](#tab/nonbreaking)
+
+These nonbreaking additions are available in 2026-05-01-preview:
+
++ Freshness-aware retrieval on indexed knowledge sources through a `freshnessPolicy` on `ingestionParameters`.
+
++ Knowledge base `corsOptions` for browser-origin access to the REST retrieve endpoint.
+
++ Knowledge base support for the GPT-5 model family (such as `gpt-5.4-mini`).
+
++ Per-source `knowledgeSourceParams.maxOutputDocuments` to cap candidate documents from each knowledge source.
+
++ Top-level `maxOutputDocuments` on the retrieve request to cap the final number of grounding documents.
+
++ Per-source `knowledgeSourceParams.failOnError` to require a knowledge source to succeed during retrieve.
+
++ Persisted retrieve defaults on search index knowledge sources (such as `searchIndexParameters.baseFilter`) and a runtime `filterAddOn` override.
+
++ Optional `semanticConfigurationName` on search index knowledge sources for supported retrieve flows.
+
++ Purview sensitivity-label metadata in retrieve responses: per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo`.
+
++ `modelName` on model-backed activity records when `includeActivity` is set on a retrieve request.
+
++ Service statistics counters `knowledgeBasesCount` and `knowledgeSourcesCount`.
+
++ Paging support (`$top`, `$skip`, `$count`) on knowledge base and knowledge source list operations and other preview list endpoints.
+
++ The per-knowledge-base limit on knowledge sources is the same for `minimal`, `low`, and `medium` retrieval reasoning efforts. Earlier preview API versions retain lower limits for `low` and `medium`.
+
+---
 
 ### 2026-04-01
 
