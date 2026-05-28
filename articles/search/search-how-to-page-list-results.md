@@ -57,8 +57,7 @@ Supported preview list operations accept paging parameters that control the page
 | `$skip` | Integer | `0` | No fixed maximum other than the number of objects in the list. | Number of items to skip before returning results. |
 | `$count` | Boolean | `false` | Not applicable | Returns the total item count when set to `true`. |
 
-If `$top` is omitted, the service returns up to 50 items by default. If a request asks for more than 1,000 items, the service returns at most 1,000 items in the page and includes continuation information when more items remain. Filtering and ordering parameters, such as `$filter` and `$orderby`, aren't
-part of this preview paging contract.
+If `$top` is omitted, the service returns up to 50 items by default. If a request asks for more than 1,000 items, the service returns at most 1,000 items in the page and includes continuation information when more items remain. Filtering and ordering parameters, such as `$filter` and `$orderby`, aren't part of this preview paging contract.
 
 For knowledge base and knowledge source list operations, the service orders resources by name before applying `$skip` and `$top`, so paging is stable across requests when the collection doesn't change.
 
@@ -114,8 +113,7 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-The response includes the first page of values. When you specify `$top`, request
-subsequent pages by increasing `$skip`.
+The response includes the first page of values. When you specify `$top`, request subsequent pages by increasing `$skip`.
 
 ```json
 {
