@@ -4,11 +4,11 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription/1.0.0-beta.1) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/transcription/Azure.AI.Speech.Transcription/samples)
+[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/transcription/Azure.AI.Speech.Transcription/samples/README.md)
 
 ## Prerequisites
 

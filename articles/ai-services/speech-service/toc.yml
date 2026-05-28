@@ -330,12 +330,15 @@ items:
           - name: 'C#'
             displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
             href: /dotnet/api/overview/azure/ai.speech.transcription-readme
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-transcription-readme            
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
-          - name: Python
-            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
-            href: /python/api/overview/azure/ai-transcription-readme
+          - name: JavaScript
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-speech-transcription-readme
 - name: Voice Live
   items:
     - name: Voice Live overview
@@ -593,12 +596,15 @@ items:
           - name: 'C#'
             displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
             href: /dotnet/api/overview/azure/ai.speech.transcription-readme
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-transcription-readme            
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
-          - name: Python
-            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
-            href: /python/api/overview/azure/ai-transcription-readme
+          - name: JavaScript
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-speech-transcription-readme
     - name: REST API reference
       items:
         - name: Speech to text REST API
