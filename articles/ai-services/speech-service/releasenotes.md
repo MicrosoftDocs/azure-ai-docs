@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: release-notes
-ms.date: 11/21/2025
+ms.date: 05/22/2026
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about new releases and features for Azure Speech in Foundry Tools.
 ---

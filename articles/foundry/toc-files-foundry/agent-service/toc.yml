@@ -58,7 +58,7 @@ items:
     href: ../../agents/how-to/tools/file-search.md
   - name: Function calling
     href: ../../agents/how-to/tools/function-calling.md
-  - name: Voice integration (preview)  
+  - name: Voice integration 
     items:
     - name: Quickstart - Talk to prompt agents with voice
       href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
