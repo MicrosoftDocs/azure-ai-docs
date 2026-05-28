@@ -15,6 +15,8 @@ groups:
     title: C# SDK
   - id: programming-language-javascript
     title: JavaScript SDK
+  - id: azd
+    title: Azure Developer CLI
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages

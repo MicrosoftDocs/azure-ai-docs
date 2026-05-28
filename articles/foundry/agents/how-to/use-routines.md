@@ -45,6 +45,9 @@ Routines support two categories of trigger.
 | `github_issue` | Fires when a GitHub issue is opened or closed in a connected repository. |
 | `custom` | Fires on a provider-specific event you define. |
 
+> [!IMPORTANT]
+> For code-first configuration (REST API, SDKs, or `azd`), only **GitHub** and **Teams** event sources are supported for event-based routines in preview. The Foundry portal surfaces a broader set of validated connectors as event sources. If you need a connector that isn't in the code-first scope, configure the routine in the portal or contact the Foundry team.
+
 Event-based routines are powered by the **Connector Namespace** — the same managed service that backs [managed MCP servers](tools/connectors.md) in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
 
 > [!NOTE]
@@ -693,6 +696,18 @@ After the connection is ready, use `connName` as `connection_id` and the trigger
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
+> [!NOTE]
+> Routines are available in a subset of regions in preview. Confirm that your Foundry project is provisioned in one of the supported regions before you create a routine:
+>
+> - East US
+> - East US 2
+> - West US
+> - West US 2
+> - West Central US
+> - North Central US
+> - Sweden Central
+> - Japan East
+
 :::zone pivot="programming-language-python"
 
 - Install the `azure-ai-projects` SDK (preview):
@@ -733,6 +748,27 @@ After the connection is ready, use `connName` as `connection_id` and the trigger
 
 - Install [curl](https://curl.se/) or any HTTP client.
 - Install the [Azure CLI](/cli/azure/install-azure-cli) to acquire access tokens.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+- Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd` 1.23.13 or later).
+- Install the routines extension (preview):
+
+  ```bash
+  azd extension install azure.ai.routines
+  ```
+
+- Sign in and set your project endpoint:
+
+  ```bash
+  azd auth login
+  export AZURE_AI_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+  ```
+
+> [!NOTE]
+> The `azd ai routine` extension is in preview. Today only the **timer** trigger paired with the **agent-response** action is validated end-to-end. For other trigger types or actions, use the REST API, Python, C#, or JavaScript SDK.
 
 :::zone-end
 
@@ -952,6 +988,12 @@ console.log(`Routine created: ${routine.name}, enabled=${routine.enabled}`);
 
 :::zone-end
 
+:::zone pivot="azd"
+
+Recurring `schedule` triggers aren't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a schedule routine, or use the [timer trigger](#timer-trigger) from `azd` for a one-shot run.
+
+:::zone-end
+
 #### Timer trigger
 
 A timer trigger fires once at a specific future date and time, or after a duration from now.
@@ -1066,6 +1108,44 @@ const routine = await client.routines.createOrUpdate("once-on-release-day", {
   },
 });
 ```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Create a one-shot timer routine inline:
+
+```bash
+azd ai routine create once-on-release-day \
+  --trigger timer \
+  --at 2026-09-01T09:00:00Z \
+  --action agent-response \
+  --agent-name <your-agent-name>
+```
+
+Or create from a YAML manifest:
+
+```yaml
+# routine.yaml
+name: once-on-release-day
+description: Runs the agent once on release day.
+enabled: true
+triggers:
+  release-day:
+    type: timer
+    time_zone: UTC
+    at: 2026-09-01T09:00:00Z
+action:
+  type: invoke_agent_responses_api
+  agent_name: <your-agent-name>
+```
+
+```bash
+azd ai routine create --file routine.yaml
+```
+
+> [!NOTE]
+> The agent referenced by `agent_name` must have a configured agent identity. Prompt-only agents are rejected by the service when bound to a routine action.
 
 :::zone-end
 
@@ -1220,6 +1300,12 @@ const routine = await client.routines.createOrUpdate("gh-issue-triage", {
 
 :::zone-end
 
+:::zone pivot="azd"
+
+The `github_issue` trigger isn't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a GitHub issue routine.
+
+:::zone-end
+
 #### Custom trigger
 
 A custom trigger fires on a provider-specific event. The `provider` field identifies the event source, and the `parameters` field passes provider-specific configuration.
@@ -1334,6 +1420,12 @@ const routine = await client.routines.createOrUpdate("custom-event-routine", {
 
 :::zone-end
 
+:::zone pivot="azd"
+
+The `custom` trigger isn't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a custom-event routine.
+
+:::zone-end
+
 ## Action fields
 
 Each routine specifies exactly one action. The two supported action types have different required and optional fields.
@@ -1433,6 +1525,18 @@ console.log(`Enabled: ${disabled.enabled}`);   // false
 // Enable
 const enabled = await client.routines.enable("daily-summary");
 console.log(`Enabled: ${enabled.enabled}`);    // true
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```bash
+# Disable
+azd ai routine disable once-on-release-day
+
+# Enable
+azd ai routine enable once-on-release-day
 ```
 
 :::zone-end
@@ -1593,6 +1697,19 @@ const result2 = await client.routines.dispatchAsync("my-invocations-routine", {
 
 :::zone-end
 
+:::zone pivot="azd"
+
+Queue a manual run for a Responses API routine:
+
+```bash
+azd ai routine dispatch once-on-release-day \
+  --input "Run the routine for testing."
+```
+
+The command prints the `dispatch_id` and `task_id`. Use the `dispatch_id` to find the run in the run history.
+
+:::zone-end
+
 ## View run history
 
 Run history records every time a routine fired and the outcome of each attempt.
@@ -1681,6 +1798,12 @@ for await (const run of client.routines.listRuns("daily-summary")) {
 
 :::zone-end
 
+:::zone pivot="azd"
+
+Listing run history through `azd ai routine` isn't supported in preview. Use the Foundry portal, REST API, or an SDK to retrieve runs.
+
+:::zone-end
+
 ## List and retrieve routines
 
 :::zone pivot="foundry-portal"
@@ -1751,6 +1874,18 @@ for await (const r of client.routines.list()) {
 const routine = await client.routines.get("daily-summary");
 console.log(routine);
 ```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Retrieve a single routine:
+
+```bash
+azd ai routine show once-on-release-day
+```
+
+Listing all routines through `azd ai routine` isn't supported in preview. Use the Foundry portal, REST API, or an SDK.
 
 :::zone-end
 
@@ -1865,6 +2000,18 @@ console.log(`Updated at: ${updated.updated_at}`);
 
 :::zone-end
 
+:::zone pivot="azd"
+
+Apply changes from a YAML manifest:
+
+```bash
+azd ai routine update once-on-release-day --file routine.yaml
+```
+
+The `--description` flag isn't supported for timer routines in preview; edit the manifest and reapply with `--file` instead.
+
+:::zone-end
+
 ## Delete a routine
 
 Deleting a routine removes it and stops all future trigger deliveries. Existing run records are preserved.
@@ -1911,6 +2058,14 @@ Console.WriteLine("Routine deleted.");
 ```javascript
 await client.routines.delete("daily-summary");
 console.log("Routine deleted.");
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```bash
+azd ai routine delete once-on-release-day
 ```
 
 :::zone-end
