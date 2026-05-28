@@ -44,7 +44,7 @@ To learn more about the individual models, see [Available MAI image models](#ava
 
 To deploy an MAI image model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
-Alternatively, you can deploy the model by using the Azure CLI. The following code shows deployment of `MAI-Image-2.5` To deploy a different model, replace the model name and version in the lines `--model-name MAI-Image-2.5` and `--model-version 2026-04-09` with the values for your desired model.
+Alternatively, you can deploy the model by using the Azure CLI. The following code shows deployment of `MAI-Image-2.5` To deploy a different model, replace the model name and version in the lines `--model-name MAI-Image-2.5` and `--model-version 2026-06-02` with the values for your desired model.
 
 Replace `<ACCOUNT_NAME>`, `<RESOURCE_GROUP>`, `<DEPLOYMENT_NAME>` with your values.
 
@@ -73,11 +73,11 @@ az cognitiveservices account list-models \
 
 **Reference:** [az cognitiveservices account deployment list](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-list)
 
-After deployment, use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model with text prompts.
+After deployment, use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model.
 
-## Generate images
+## Run text-to-image generation
 
-The following examples show how to generate an image from a text prompt using MAI image models with the MAI image generation API.
+The following examples show how to generate an image from a text prompt using MAI image models with the [MAI image generations API](#api-endpoints).
 
 # [Python](#tab/python)
 
@@ -161,7 +161,7 @@ To use Microsoft Entra ID instead of an API key, replace the `api-key` header wi
     pip install azure-identity
     ```
 
-1. **Update the request headers in the previous code:**
+1. **Update the request headers in the API key authentication code:**
 
     ```python
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -218,9 +218,12 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 
 ---
 
-## Run an image edit on models that support image-to-image-edits
+## Run an image-to-image edit
 
-The following examples show how to perform an image-to-image edit using an MAI image model with the MAI image edits API. The `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits.
+The following examples show how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints). 
+
+> [!NOTE]
+> Thee `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits.
 
 # [Python](#tab/python)
 
@@ -340,14 +343,14 @@ Foundry supports use of MAI-Image-2.5-Flash (Preview), MAI-Image-2.5 (Preview), 
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
 - **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 
-In addition, MAI-Image-2.5-Flash (Preview) and MAI-Image-2.5 (Preview) also excel in these use cases:
+MAI-Image-2.5-Flash (Preview) and MAI-Image-2.5 (Preview) further excel in these key use cases:
 
 - **Image-to-image editing:** Support precise, controllable edits to existing images, including object removal, replacement, attribute changes, inpainting, text updates, and artifact cleanup while preserving composition and layout.
 - **High-fidelity portraits:** Generate expressive, natural-looking portraits with accurate facial structure, lighting, and texture.
 - **Accurate text rendering:** Improved rendering of text within generated images, including labels, posters, packaging, and signage.
 - **Visual reasoning:** Reason across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md#microsot-models-sold-by-azure).
 
 ### MAI-Image-2.5-Flash (Preview) 
 
@@ -376,7 +379,7 @@ After you deploy an MAI image model, use the **MAI image generations API** to ge
     https://<resource-name>.services.ai.azure.com/mai/v1/images/generations
     ```
 
-- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts a text prompt and returns a PNG image. The API endpoint has the following form:
+- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts a JPEG or PNG image and returns a PNG image. The API endpoint has the following form:
 
     ```
     https://<resource-name>.services.ai.azure.com/mai/v1/images/edits
@@ -386,26 +389,22 @@ To authenticate, you need your **resource endpoint** and either a **Microsoft En
 
 #### Model capabilities
 
-Both models accept text input (32,000 tokens) and output one PNG image. Both `width` and `height` must be at least **768 pixels** each. The total pixel count (`width` × `height`) must not exceed **1,048,576** (equivalent to 1024×1024). Because the constraint is on total pixels rather than on each dimension individually, one dimension can exceed 1024 as long as the total stays within the limit. For example, a 768×1365 image has 1,048,320 total pixels, which is within the allowed maximum total pixels.
-
-The following table lists the request parameters:
+The following table lists the request parameters for the image APIs:
 
 | Parameter | API | Type | Description |
 | --------- | ---- | ---- | ----------- |
 | `model` | Both | string | The deployment name you assigned when you deployed the model. |
-| `prompt` | Both | string | The text prompt that describes the image to generate or edits to make. Maximum context length: 32,000 tokens. |
-| `image` | Image edits | string | The path to the image you want to edit. Must be in PNG format. |
-| `width` | Image generations | integer | (For image generation) Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `height` | Image generations | integer | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `prompt` | Both | string | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
+| `image` | Image edits | string | The path to the image you want to edit. Must be in JPEG or PNG format. |
+| `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
 
-
-
 ## API quotas and limits
 
-MAI image generation models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
+MAI image models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
 | Deployment Type | Tier | MAI-Image-2.5-Flash RPM | MAI-Image-2.5 RPM | MAI-Image-2e RPM | MAI-Image-2 RPM |
 | -- | -- | -- | -- | -- | -- |
