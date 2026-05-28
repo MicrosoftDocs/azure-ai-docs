@@ -52,7 +52,7 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
 
 >[!NOTE]
-> You may also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, we are introducing `gpt-chat-latest` as the product name for this release. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. We are also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
+> You might also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, the product name for this release is `gpt-chat-latest`. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. The team is also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
 
 
 ## GPT-5.5
