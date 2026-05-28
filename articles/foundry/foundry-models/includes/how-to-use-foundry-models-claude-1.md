@@ -25,13 +25,14 @@ Claude models in Foundry include:
 | Model family | Models |
 |--|--|
 | Claude Mythos | `claude-mythos-preview`<sup>1</sup> (gated research preview) |
-| Claude Opus | `claude-opus-4-8` (preview), `claude-opus-4-7`<sup>2</sup> (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
+| Claude Opus | `claude-opus-4-8`<sup>2</sup> (preview), `claude-opus-4-7` (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
 | Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview)|
 | Claude Haiku | `claude-haiku-4-5` (preview)|
 
 <sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
-<sup>2</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) to migrate Messages API code from previous Claude versions to Claude Opus 4.7.
+<sup>2</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
+
 
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
@@ -483,12 +484,12 @@ Claude Mythos Preview supports **adaptive thinking**, an upgrade to extended thi
 
 ### Claude Opus 4.8 (preview)
 
+> [!TIP]
+> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
+
 Claude Opus 4.7 is the most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows. With a 1M token context window and 128K max output, Opus 4.8 sets a new bar for agentic workflows and is ideal for agentic codeing, enterprise workflows, financial analysis, cybersecurity, and computer use. Opus 4.8 also supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 
 ### Claude Opus 4.7 (preview)
-
-> [!TIP]
-> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) to migrate Messages API code from previous Claude versions to Claude Opus 4.7.
 
 Claude Opus 4.7 is a highly capable model in the Claude Opus family, advancing performance across coding, enterprise workflows, and long-running agentic tasks. With a 1M token context window and 128K max output, Opus 4.7 is ideal for agentic coding, enterprise knowledge work, long-running multi-tool workflows, high-resolution multimodal reasoning (up to 2576px / 3.75MP), financial analysis, and cybersecurity. Opus 4.7 supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 
