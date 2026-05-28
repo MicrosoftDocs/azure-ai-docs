@@ -348,7 +348,7 @@ MAI-Image-2.5-Flash (Preview) and MAI-Image-2.5 (Preview) further excel in these
 - **Accurate text rendering:** Improved rendering of text within generated images, including labels, posters, packaging, and signage.
 - **Visual reasoning:** Reason across objects, scene structure, lighting, scale, and spatial positioning to produce consistent outputs, even from ambiguous prompts.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md#microsot-models-sold-by-azure).
+For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### MAI-Image-2.5-Flash (Preview) 
 
