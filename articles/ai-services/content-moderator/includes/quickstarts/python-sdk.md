@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: In this quickstart, learn how to get started with the Azure Content Moderator client library for Python. Build content filtering software into your app to comply with regulations or maintain the intended environment for your users.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-content-moderator
+ms.service: azure-content-moderator
 ms.topic: include
 ms.date: 06/12/2025
 ms.author: pafarley

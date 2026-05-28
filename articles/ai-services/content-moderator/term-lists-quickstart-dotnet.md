@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: How to moderate text with custom term lists using the Content Moderator SDK for C#.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-content-moderator
+ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: pafarley
