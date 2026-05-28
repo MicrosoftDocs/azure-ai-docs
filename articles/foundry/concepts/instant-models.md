@@ -79,15 +79,13 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 ## Supported models
 
-<!-- [TODO] Add specific model list before publish -->
-
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
 To see all models that support instant access:
 
 1. Open a project in **West US 3** in the new Foundry experience, 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. In the model catalog, select **Instant** under **Capabilities** to view the available instant models.
+1. In the model catalog, select **Instant** under **Development options** to view the available instant models.
 
 > [!NOTE]
 > During the preview, instant models are available in projects in **West US 3** only.
