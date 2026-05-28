@@ -15,6 +15,8 @@ items:
     href: ../../agents/concepts/development-lifecycle.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
+  - name: Routines (preview)
+    href: ../../agents/concepts/routines.md
   - name: Hosted agents
     href: ../../agents/concepts/hosted-agents.md
   - name: Create a workflow
@@ -58,9 +60,9 @@ items:
     href: ../../agents/how-to/tools/function-calling.md
   - name: Voice integration (preview)  
     items:
-    - name: Quickstart - Talk to a voice agent
+    - name: Quickstart - Talk to prompt agents with voice
       href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
-    - name: How to build a voice agent
+    - name: How to enable voice for prompt agents
       href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
   - name: Web search capabilities
     items:
@@ -74,10 +76,14 @@ items:
     items:
     - name: Connect to MCP server
       href: ../../agents/how-to/tools/model-context-protocol.md
+    - name: Managed MCP servers (preview)
+      href: ../../agents/how-to/tools/connectors.md
     - name: MCP authentication
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
       href: ../../mcp/build-your-own-mcp-server.md
+    - name: Use connectors as MCP servers
+      href: ../../agents/how-to/tools/connectors.md
   - name: Additional tools
     items:
     - name: Skills (preview)
@@ -151,12 +157,16 @@ items:
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
       href: ../../agents/how-to/manage-hosted-sessions.md
+    - name: Deploy a Hosted voice agent (preview)
+      href: ../../agents/how-to/build-voice-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
   - name: Enable incoming A2A (preview)
     href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
+  - name: Automate agents with routines (preview)
+    href: ../../agents/how-to/use-routines.md
 # Monitor and Evaluate
 - name: Monitor and evaluate
   items:
@@ -170,10 +180,28 @@ items:
       href: ../../observability/how-to/trace-agent-client-side.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
-  - name: Optimize agent prompts 
+    - name: Review agent interactions with Trace Replay
+      href: ../../observability/how-to/trace-agent-replay.md
+  - name: Agent optimizer (preview)
+    items:
+    - name: Agent optimizer overview
+      href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: "Quickstart: Optimize a hosted agent"
+      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+    - name: Make your agent optimizer-ready
+      href: ../../agents/how-to/make-agent-optimizer-ready.md
+    - name: Create a custom evaluation dataset
+      href: ../../agents/how-to/create-optimizer-dataset.md
+    - name: Optimize agent instructions and skills
+      href: ../../agents/how-to/optimize-agent-targets.md
+  - name: Run agent evaluations with the Azure Developer CLI
+    displayName: azd cli
+    href: ../../observability/how-to/azure-developer-cli-evaluation.md
+  - name: Optimize agent prompts
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+
   - name: Evaluate agent quality
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
