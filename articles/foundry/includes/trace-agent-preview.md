@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> Tracing is generally available for prompt agents only. Hosted, workflow and external agents are in preview.
+> Tracing is generally available for prompt agents only. Hosted, workflow, and external agents are in preview.
