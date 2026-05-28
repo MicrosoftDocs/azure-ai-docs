@@ -11,6 +11,7 @@ ms.date: 04/01/2026
 zone_pivot_groups: llm-speech-quickstart
 
 # Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
+ai-usage: ai-assisted
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
@@ -48,7 +49,7 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -87,9 +88,11 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 ::: zone-end
 
-## Language support
+### Use MAI-Transcribe-1 with Voice Live
 
-When you use the MAI-Transcribe-1 model, diarization and prompt features aren't supported.
+You can also use the MAI-Transcribe-1 model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
+
+## Language support
 
 Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don't specify a language, the service automatically detects it. The following languages are currently supported:
 
@@ -125,3 +128,4 @@ Optionally, specify a language code in `locales` to force recognition in a singl
 
 - For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
 - [MAI-Voice-1 in Azure Speech](mai-voices.md)
+- [How to customize Voice Live input and output](./voice-live-how-to-customize.md)

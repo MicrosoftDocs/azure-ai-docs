@@ -1,12 +1,12 @@
 ---
 title: Anomaly Detector JavaScript client library quickstart
 titleSuffix: Azure AI services
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ms.custom: devx-track-js
 ---
 

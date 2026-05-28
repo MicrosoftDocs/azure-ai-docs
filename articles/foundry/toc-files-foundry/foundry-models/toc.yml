@@ -5,11 +5,11 @@ items:
 
 - name: Explore Foundry Models
   items:
-  - name: Foundry Models sold directly by Azure
-    displayName: Foundry Models sold directly by Azure
+  - name: Foundry Models sold by Azure
+    displayName: Foundry Models sold by Azure
     href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
-  - name: Foundry Models sold directly by Azure (government)
-    displayName: Foundry Models sold directly by Azure (government)
+  - name: Foundry Models sold by Azure (government)
+    displayName: Foundry Models sold by Azure (government)
     href: ../../foundry-models/concepts/models-sold-directly-by-azure-gov.md
   - name: Foundry Models sold from partners and community
     displayName: Foundry Models from partners and community
@@ -67,7 +67,7 @@ items:
       href: ../../openai/concepts/retired-models.md
 
   - name: Data, privacy, and security for model catalog
-    displayName: Data, privacy, and security for Azure Direct Models
+    displayName: Data, privacy, and security for Models sold by Azure
     href: ../../responsible-ai/openai/data-privacy.md
   - name: Data, privacy, and security for model catalog (classic)
     displayName: Data, privacy, and security for partner models in the model catalog
@@ -84,6 +84,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Use model router with agents
+      displayName: Use model router with Foundry agents
+      href: ../../openai/how-to/model-router-agents.md
     - name: Auto and direct routing with Responses API
       displayName: Auto and direct model routing with the Responses API
       href: ../../openai/how-to/responses-model-routing.md
@@ -93,12 +96,18 @@ items:
 
 - name: Quota limits and region availability
   items:
+  - name: Region availability for Foundry Models sold by Azure
+    displayName: Region availability for Foundry Models sold by Azure
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md
   - name: Manage quotas for Foundry resources
     displayName: Manage and increase quotas for resources with Microsoft Foundry
     href: ../../how-to/quota.md
   - name: Manage Azure OpenAI deployment quotas
     displayName: Manage Azure OpenAI deployment quotas in Microsoft Foundry models
     href: ../../openai/how-to/quota.md
+  - name: Automate Azure OpenAI deployments with quota
+    displayName: Automate Azure OpenAI deployments with quota in Microsoft Foundry
+    href: ../../openai/how-to/automate-quota-deployments.md
   - name: Foundry Model quotas and limits
     displayName: Microsoft Foundry Models quotas and limits
     href: ../../foundry-models/quotas-limits.md
@@ -136,14 +145,20 @@ items:
     href: ../../openai/concepts/priority-processing.md
   - name: Provisioned throughput
     items:
-    - name: Provisioned throughput offering (PTU)
+    - name: "Quickstart: Create a provisioned throughput deployment"
+      displayName: Create a provisioned throughput deployment
+      href: ../../openai/provisioned-quickstart.md
+    - name: What is provisioned throughput?
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
-    - name: Understanding and calculating PTU costs
-      displayName: Provisioned throughput unit (PTU) costs and billing
-      href: ../../openai/how-to/provisioned-throughput-onboarding.md
-    - name: Get started with Provisioned Deployments
-      displayName: Get started with provisioned deployments in Microsoft Foundry
+    - name: Determine PTU sizing for a workload
+      displayName: Determine PTU sizing for a workload
+      href: ../../openai/how-to/provisioned-throughput-sizing.md
+    - name: PTU billing and cost management
+      displayName: Provisioned throughput billing and cost management
+      href: ../../openai/concepts/provisioned-throughput-billing.md
+    - name: Operate provisioned deployments in production
+      displayName: Operate provisioned deployments in production
       href: ../../openai/how-to/provisioned-get-started.md
     - name: Provisioned spillover
       displayName: Manage traffic with spillover for provisioned deployments
@@ -311,6 +326,9 @@ items:
   #   href:
   - name: Realtime API
     items:
+    - name: GPT Realtime 2.0 (preview)
+      displayName: GPT Realtime 2 concept overview (preview)
+      href: ../../openai/concepts/realtime-2.md
     - name: Realtime API for speech and audio
       displayName: Use the GPT Realtime API for speech and audio
       href: ../../openai/how-to/realtime-audio.md
@@ -326,6 +344,12 @@ items:
     - name: Realtime API migration from Preview to GA
       displayName: Migration from Preview to GA version of Realtime API
       href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+    - name: GPT Realtime Translate overview
+      displayName: GPT Realtime Translate real-time translation model
+      href: ../../openai/concepts/gpt-realtime-translate.md
+    - name: GPT Realtime Whisper overview
+      displayName: GPT Realtime Whisper streaming transcription model
+      href: ../../openai/concepts/gpt-realtime-whisper.md
 
 - name: Fine-tuning
   items:

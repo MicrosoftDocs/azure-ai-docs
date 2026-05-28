@@ -32,7 +32,7 @@ To create a synonym map, do so programmatically. the Azure portal doesn't suppor
 Use the [Create Synonym Map (REST API)](/rest/api/searchservice/synonym-maps/create) to create a synonym map.
 
 ```http
-POST /synonymmaps?api-version=2025-09-01
+POST /synonymmaps?api-version=2026-04-01
 {
     "name": "geo-synonyms",
     "format": "solr",
@@ -151,7 +151,7 @@ If the synonym map exists on the search service, it's used on the next query, wi
 Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to modify a field definition.
 
 ```http
-PUT /indexes?api-version=2025-09-01
+PUT /indexes?api-version=2026-04-01
 {
     "name":"hotels-sample",
     "fields":[

@@ -14,7 +14,7 @@ ms.custom:
 # Index data from Azure Cosmos DB for MongoDB for queries in Azure AI Search
 
 > [!IMPORTANT] 
-> MongoDB API support is currently in public preview under [supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Currently, there is no SDK support.
+> MongoDB API support is currently in preview under [supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Currently, there is no SDK support.
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from [Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/introduction) and makes it searchable in Azure AI Search.
 

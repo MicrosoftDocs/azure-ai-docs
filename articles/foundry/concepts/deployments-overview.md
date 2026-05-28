@@ -1,8 +1,8 @@
 ---
 title: "Deployment overview for Microsoft Foundry Models"
 description: "Learn about deployment options for Microsoft Foundry Models, including standard deployments in Foundry resources and managed compute for partner and community models."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 04/03/2026
 ms.author: mopeakande
@@ -39,7 +39,7 @@ Standard deployment in Foundry resources is **the preferred deployment option** 
 
 ### Which models use standard deployment?
 
-All Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) use standard deployment. Foundry Models sold directly by Azure include all Azure OpenAI models and selected models from top providers that are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. Select Models from partners and community that use standard deployment include Anthropic models, and specific models from partners like Mistral, Cohere, and Meta.
+All Foundry Models, including [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) use standard deployment. Foundry Models sold by Azure include all Azure OpenAI models and selected models from top providers that are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. Select Models from partners and community that use standard deployment include Anthropic models, and specific models from partners like Mistral, Cohere, and Meta.
 
 ### Capabilities
 
@@ -134,7 +134,7 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 - [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../foundry-models/how-to/deploy-foundry-models.md)
 - [Deploy models using Azure CLI and Bicep](../foundry-models/how-to/create-model-deployments.md)
-- [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md)
 - [Microsoft Foundry Models overview](foundry-models-overview.md)
 - [Plan and manage costs for Foundry Tools](manage-costs.md)

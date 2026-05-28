@@ -6,8 +6,8 @@ ms.author: deeikele
 ms.reviewer: jburchel
 ms.date: 03/19/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As an IT admin, I want to control whether Foundry agent data is sent to Agent 365 so that I can meet my organization's data governance and residency requirements.
 ---
@@ -57,7 +57,7 @@ Every Foundry project and every prompt agent contained within that resource
 inherits the same data-collection setting. There's no per-project or
 per-agent override.
 
-[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in hosted agents override logging disablement settings on the Foundry resource level.
+[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in Hosted agents override logging disablement settings on the Foundry resource level.
 
 ## Disable data collection on a Foundry resource
 

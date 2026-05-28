@@ -6,12 +6,11 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 02/26/2026
+ms.date: 04/22/2026
+ai-usage: ai-assisted
 ---
 
 # GenAI Prompt skill
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](../ai-foundry/what-is-foundry.md). Use this skill to create new information that can be indexed and stored as searchable content.
 
@@ -22,11 +21,10 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as images with visuals and text extracted from PDF files.
+The GenAI Prompt skill is generally available in the [2026-04-01 Search Service REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) and in Azure SDKs that target this version. This skill supports text, image, and multimodal content, such as images with visuals and text extracted from PDF files.
 
 > [!TIP]
-> It's common to use this skill combined with a data chunking skill. The [Multimodal tutorial](tutorial-multimodal.md) demonstrates image verbalization with two different data chunking strategies.
->
+> It's common to combine this skill with a data chunking skill. The [Multimodal tutorial](tutorial-multimodal.md) demonstrates image verbalization with two different data chunking strategies.
 
 ## Supported models
 
@@ -39,8 +37,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 - Billing is based on the pricing of the model you use.
 
 > [!NOTE]
-> The search service connects to your model over a public endpoint, so there are no region location requirements, but if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
->
+> The search service connects to your model over a public endpoint, so there are no region location requirements. However, if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
 
 ## Prerequisites
 
@@ -56,7 +53,9 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+  - On Foundry, assign [**Foundry User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+
+    [!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ## @odata.type  
 
@@ -67,7 +66,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 | Limit | Notes |
 |-------|-------|
 | `maxTokens` | Default is **1024** if omitted. Maximum value is model-dependent. |
-| Request time-out | 30 seconds (default). Override with the `timeout` property (`PT##S`). |
+| Request time-out | Fixed at 30 seconds. Consider this limit when you choose a model for bulk indexing, as reasoning models (such as o1 and o3) might exceed it. |
 | Images | Base 64–encoded images and image URLs are supported. Size limit is model-dependent. |
 
 ## Skill parameters
@@ -123,7 +122,6 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
   "name": "Summarizer",
   "description": "Summarizes document content.",
   "context": "/document",
-  "timeout": "PT30S",
   "inputs": [
     { "name": "text", "source": "/document/content" },
     { "name": "systemMessage", "source": "='You are a concise AI assistant.'" },

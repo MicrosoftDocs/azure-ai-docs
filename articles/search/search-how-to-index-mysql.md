@@ -16,7 +16,7 @@ ms.custom:
 # Index data from Azure Database for MySQL Flexible Server
 
 > [!IMPORTANT]
-> MySQL support is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). We recommend the latest preview API. There is currently no portal support.
+> MySQL support is currently in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). We recommend the latest preview API. There is currently no portal support.
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Database for MySQL and makes it searchable in Azure AI Search. Inputs to the indexer are rows from a single table or view. Output is a search index with searchable content in individual fields.
 

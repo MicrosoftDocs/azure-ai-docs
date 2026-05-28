@@ -44,7 +44,7 @@ Some properties are fixed for the lifetime of the search service. Before you cre
 
 Azure AI Search requires a free or Standard Azure subscription.
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
 
 > [!IMPORTANT]
 > To make room for other services, Microsoft might delete free services that are inactive for an extended period of time.
