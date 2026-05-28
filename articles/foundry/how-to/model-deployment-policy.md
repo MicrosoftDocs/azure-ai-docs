@@ -30,7 +30,7 @@ Microsoft Foundry provides two built-in Azure Policy definitions to help you gov
 Both policies are evaluated at **deployment time**. Models are not hidden from the catalog — instead, the **Deploy** action is disabled with a clear reason when a policy blocks the deployment. You can assign one or both policies depending on your governance needs.
 
 > [!NOTE]
-> These policies also govern the underlying models that [model router](../../openai/how-to/model-router-agents.md) selects from. Model router only routes requests to models that satisfy your assigned policies, so the same approval and eligibility rules apply whether you deploy a model directly or use model router to pick one per request.
+> These policies also govern the underlying models that [model router](../openai/how-to/model-router-agents.md) selects from. Model router only routes requests to models that satisfy your assigned policies, so the same approval and eligibility rules apply whether you deploy a model directly or use model router to pick one per request.
 
 ## How these policies work together
 
