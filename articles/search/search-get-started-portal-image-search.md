@@ -1,4 +1,4 @@
----
+﻿---
 title: "Quickstart: Multimodal Search in the Azure portal"
 description: Learn how to index and search for multimodal content in the Azure portal. Run a wizard to extract and embed both text and images, and then use Search Explorer to query your multimodal index.
 author: mattwojo
@@ -397,7 +397,7 @@ When the wizard completes the configuration, it creates the following objects:
 | Object | Description |
 |--|--|
 | Data source | Represents a connection to Azure Blob Storage. |
-| Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) so that you can use preview features. |
+| Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) so that you can use preview features. |
 | Skillset | Contains the following skills:<br><ul><li>The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.</li><li>The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.</li><li>The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.</li></ul> |
 | Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
 | Knowledge store | Stores extracted images as blobs in Azure Storage for downstream processing or multimodal scenarios. |
