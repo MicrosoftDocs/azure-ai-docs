@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Document Intelligence prebuilt / pretrained model language extraction and detection support.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ---
