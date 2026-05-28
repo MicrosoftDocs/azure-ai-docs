@@ -18,7 +18,7 @@ You can disable creating or updating classic agents and assistants on an Azure O
 
 ## Prerequisites
 
-* The [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) installed.
+* The [Azure CLI](/cli/azure/install-azure-cli) installed.
 * You're signed in to Azure with `az login`.
 * **Owner** or **Contributor** access on the target subscription or resource group.
 
@@ -93,4 +93,4 @@ Existing assistants, threads, and files remain in place, but they can't be modif
 
 ## Related content
 
-* [Migrate to the new Foundry Agent Service](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/migrate)
+* [Migrate to the new Foundry Agent Service](/azure/foundry/agents/how-to/migrate)
