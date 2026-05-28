@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 Azure Storage allows for role-based access on containers in blob storage, where roles like **Storage Blob Data Reader** or **Storage Blob Data Contributor** determine whether someone has access to content. Preview APIs in Azure AI Search now support ingestion of user permissions alongside document ingestion so that you can use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in Azure Storage, that user doesn't have access to the corresponding documents in Azure AI Search results, even if you personally have a **Search Index Data Reader** assignment *on the index*.
 
 + 2025-05-01-preview and later, RBAC scopes metadata can be ingested using the [Blob indexer](search-how-to-index-azure-data-lake-storage.md).
-+ 2025-11-01-preview provides equivalent support for [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) in Azure Storage.
++ 2025-11-01-preview and later provides equivalent support for [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) in Azure Storage.
 
 RBAC scope is set at the container level and flows to all blobs (documents) through permission inheritance. RBAC scope is captured during indexing as permission metadata. You can use the push APIs to upload and index content and permission metadata manually (see [Indexing Permissions using the push REST API](search-index-access-control-lists-and-rbac-push-api.md)), or you can use an indexer or knowledge source to automate data ingestion. This article focuses on indexing automation.
 
@@ -97,7 +97,7 @@ Key points about the configuration that make it work for this scenario:
 ```http
 # Create / Update Azure Blob Knowledge Source
 ###
-PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2026-05-01-preview
 api-key: {{key}}
 Content-Type: application/json
  
@@ -135,7 +135,7 @@ Content-Type: application/json
 }
 ```
 
-**Reference:** [Create or Update Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API)
+**Reference:** [Create or Update Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API)
 
 ## Configure indexer-based indexing
 

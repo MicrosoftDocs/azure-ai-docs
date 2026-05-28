@@ -3,16 +3,26 @@ title: Enable Answer Synthesis
 description: Learn how to enable answer synthesis in a knowledge base or retrieve request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search (preview)
 
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 By default, a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
 
-You can instead enable *answer synthesis*, which uses the LLM specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
+You can instead enable *answer synthesis* (preview), which uses the LLM specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
 You can enable answer synthesis in two ways:
 
@@ -28,11 +38,11 @@ You can enable answer synthesis in two ways:
 
 + An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that specifies an LLM.
 
-+ Permissions to update the knowledge base. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permissions to update knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 + For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
-+ The [2025-11-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
++ The [2026-05-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
 
 ## Enable answer synthesis in a knowledge base
 
@@ -40,7 +50,7 @@ This section explains how to enable answer synthesis in an existing knowledge ba
 
 To enable answer synthesis in a knowledge base:
 
-1. Use the 2025-11-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+1. Use the 2026-05-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to formulate the request.
 
 1. In the body of the request, set `outputMode` to `answerSynthesis`.
 
@@ -52,7 +62,7 @@ To enable answer synthesis in a knowledge base:
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
 ### Enable answer synthesis in a knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview  HTTP/1.1
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 
@@ -68,13 +78,62 @@ api-key: {{api-key}}
 > [!NOTE]
 > This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
+The equivalent SDK shape sets `output_mode` (Python) or `OutputMode` (C#) to `answerSynthesis` on the `KnowledgeBase` definition and passes the same `KnowledgeBase` instance to `create_or_update_knowledge_base` / `CreateOrUpdateKnowledgeBaseAsync`:
+
+```python
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    AzureOpenAIVectorizerParameters,
+    KnowledgeBase,
+    KnowledgeBaseAzureOpenAIModel,
+    KnowledgeSourceReference,
+)
+
+aoai_params = AzureOpenAIVectorizerParameters(
+    resource_url=aoai_endpoint,
+    deployment_name=aoai_gpt_deployment,
+    model_name=aoai_gpt_model,
+)
+
+knowledge_base = KnowledgeBase(
+    name=knowledge_base_name,
+    models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
+    knowledge_sources=[KnowledgeSourceReference(name=knowledge_source_name)],
+    output_mode="answerSynthesis",
+    answer_instructions="Use concise bulleted lists",
+)
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.create_or_update_knowledge_base(knowledge_base)
+```
+
+```csharp
+var aoaiParams = new AzureOpenAIVectorizerParameters
+{
+    ResourceUri = new Uri(aoaiEndpoint),
+    DeploymentName = aoaiGptDeployment,
+    ModelName = aoaiGptModel,
+};
+
+var knowledgeBase = new KnowledgeBase(
+    name: knowledgeBaseName,
+    knowledgeSources: new[] { new KnowledgeSourceReference(knowledgeSourceName) })
+{
+    Models = { new KnowledgeBaseAzureOpenAIModel(aoaiParams) },
+    OutputMode = "answerSynthesis",
+    AnswerInstructions = "Use concise bulleted lists",
+};
+
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+```
+
 ## Enable answer synthesis in a retrieve request
 
 For per-query control over the response format, you can enable answer synthesis at query time. This approach overrides the default output mode specified in the knowledge base.
 
 To enable answer synthesis in a retrieve request:
 
-1. Use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+1. Use the 2026-05-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to formulate the request.
 
 1. In the body of the request, set `outputMode` to `answerSynthesis`.
 
@@ -84,7 +143,7 @@ To enable answer synthesis in a retrieve request:
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
 ### Enable answer synthesis in a retrieve request
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview  HTTP/1.1
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 
@@ -107,9 +166,56 @@ api-key: {{api-key}}
 > [!NOTE]
 > This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
+The equivalent SDK shape constructs a `KnowledgeBaseRetrievalRequest` with `output_mode="answerSynthesis"` (Python) or `OutputMode = "answerSynthesis"` (C#):
+
+```python
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+)
+
+agent_client = KnowledgeBaseRetrievalClient(
+    endpoint=search_endpoint,
+    credential=credential,
+    knowledge_base_name=knowledge_base_name,
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What is healthcare?")],
+        )
+    ],
+    output_mode="answerSynthesis",
+)
+
+result = agent_client.retrieve(retrieval_request=request)
+```
+
+```csharp
+var client = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri(searchEndpoint),
+    knowledgeBaseName: knowledgeBaseName,
+    credential: credential);
+
+var request = new KnowledgeBaseRetrievalRequest();
+request.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[]
+        {
+            new KnowledgeBaseMessageTextContent("What is healthcare?")
+        }) { Role = "user" });
+request.OutputMode = "answerSynthesis";
+
+var result = await client.RetrieveAsync(request);
+```
+
 ## Get a synthesized answer
 
-When answer synthesis is enabled, [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) returns a natural-language answer based on the instructions you optionally specified in the knowledge base. Citations to your knowledge sources are formatted as `[ref_id:<number>]`.
+When answer synthesis is enabled, [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) returns a natural-language answer based on the instructions you optionally specified in the knowledge base. Citations to your knowledge sources are formatted as `[ref_id:<number>]`.
 
 For example, if your instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response might look like this:
 

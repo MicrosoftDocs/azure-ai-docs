@@ -1,4 +1,4 @@
----
+﻿---
 title: Create a Vector Query
 description: Learn how to create vector queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
@@ -131,9 +131,9 @@ api-key: {{admin-api-key}}
 }
 ```
 
-### [**2025-11-01-preview**](#tab/query-2025-11-01-preview)
+### [**2026-05-01-preview**](#tab/query-2026-05-01-preview)
 
-[**2025-11-01-preview**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2026-04-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
+[**2026-05-01-preview**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2026-04-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
 
 This preview supports:
 
@@ -143,7 +143,7 @@ This preview supports:
 In the following example, the vector is a representation of this string: `"what Azure services support full text search"`. The query targets the `contentVector` field and returns `k` results. The actual vector has 1,536 embeddings, which are trimmed in this example for readability.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-11-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -500,12 +500,12 @@ Vector weighting applies to vectors only. The text query in this example, `"hell
 
 Because nearest neighbor search always returns the requested `k` neighbors, it's possible to get multiple low-scoring matches as part of meeting the `k` number requirement on search results. To exclude low-scoring search results, you can add a `threshold` query parameter that filters out results based on a minimum score. Filtering occurs before [fusing results](hybrid-search-ranking.md) from different recall sets.
 
-This parameter is in preview. We recommend the latest preview version of [Documents - Search Post](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API).
+This parameter is in preview. We recommend the latest preview version of [Documents - Search Post](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API).
 
 In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results falls below `k`.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-05-01-preview 
     Content-Type: application/json 
     api-key: [admin key] 
 

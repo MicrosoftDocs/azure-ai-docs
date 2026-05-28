@@ -309,12 +309,12 @@ If you use `maxTextRecallSize`, you might also want to set `countAndFacetMode`. 
 
 With the default `countAllResults` mode, counts and facets can include text-side documents that aren't retrieved for RRF ranking because they fall outside the `maxTextRecallSize` window. Increasing `maxTextRecallSize` increases the number of BM25-ranked documents available for ranking, but doesn't increase the vector contribution beyond `k`. Use `countRetrievableResults` if you want count and facet calculations scoped to the documents retrieved for hybrid ranking.
 
-We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for setting these options.
+We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for setting these options.
 
 > [!TIP]
 > Another approach for hybrid query tuning is [vector weighting](vector-search-how-to-query.md#vector-weighting), used to increase the importance of vector queries in the request.
 
-1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to specify preview parameters.
+1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to specify preview parameters.
 
 1. Add a `hybridSearch` query parameter object to set the maximum number of documents recalled through the BM25-ranked results of a hybrid query. It has two properties:
 
@@ -333,7 +333,7 @@ The following REST examples show two use-cases for setting `maxTextRecallSize`.
 The first example reduces `maxTextRecallSize` to 100, limiting the text side of the hybrid query to just 100 documents. It also sets `countAndFacetMode` to include only retrievable documents in count and facet calculations.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-05-01-preview 
 
     { 
       "vectorQueries": [ 
@@ -355,7 +355,7 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
 The second example raises `maxTextRecallSize` to 5,000. It also uses top, skip, and next to pull results from large result sets. In this case, the request pulls in BM25-ranked results starting at position 1,500 through 2,000 as the text query contribution to the RRF composite result set.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2026-05-01-preview 
 
     { 
       "vectorQueries": [ 
@@ -425,7 +425,7 @@ api-key: {{admin-api-key}}
 
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
 
-Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
+Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
 This feature provides fine-grained control by ensuring that filters only influence the vector search results, leaving keyword-based search results unaffected. 
 
@@ -433,14 +433,14 @@ The targeted filter fully overrides the global filter, including any filters use
 
 To apply targeted vector filters:
 
-+ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
 
 + Modify a query request, adding a new `vectorQueries.filterOverride` parameter set to an [OData filter expression](search-query-odata-filter.md).
 
 Here's an example of hybrid query that adds a filter override. The global filter "Rating gt 3" is replaced at run time by the `filterOverride`.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-11-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-05-01-preview
 
 {
     "vectorQueries": [
