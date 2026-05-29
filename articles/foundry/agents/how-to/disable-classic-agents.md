@@ -93,4 +93,4 @@ Existing assistants, threads, and files remain in place, but they can't be modif
 
 ## Related content
 
-* [Migrate to the new Foundry Agent Service](/azure/foundry/agents/how-to/migrate)
+* [Migrate to the new Foundry Agent Service](./migrate.md)
