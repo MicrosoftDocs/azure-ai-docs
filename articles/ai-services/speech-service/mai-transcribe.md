@@ -37,33 +37,7 @@ The following models are supported:
 
 By default, the model operates in multi-lingual mode. The following languages are currently supported:
 
-| Language code | Language |
-| ----- | ----- |
-| `ar` | Arabic |
-| `zh` | Chinese |
-| `cs` | Czech |
-| `da` | Danish |
-| `nl` | Dutch |
-| `en` | English |
-| `fi` | Finnish |
-| `fr` | French |
-| `de` | German |
-| `hi` | Hindi |
-| `hu` | Hungarian |
-| `id` | Indonesian |
-| `it` | Italian |
-| `ja` | Japanese |
-| `ko` | Korean |
-| `nb` | Norwegian Bokmål |
-| `pl` | Polish |
-| `pt` | Portuguese |
-| `ro` | Romanian |
-| `ru` | Russian |
-| `es` | Spanish |
-| `sv` | Swedish |
-| `th` | Thai |
-| `tr` | Turkish |
-| `vi` | Vietnamese |
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 ## Use a MAI-Transcribe model
 
@@ -170,7 +144,6 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
 
-[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 ## Related content
 
