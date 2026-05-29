@@ -200,8 +200,8 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
       "width": 1024,
       "height": 1024
     }' \
-  | jq -r '.data[0].b64_json' \
-  | base64 --decode > output.png
+| jq -r '.data[0].b64_json' \
+| base64 --decode > output.png
 ```
 
 **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
@@ -220,10 +220,10 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 
 ## Run an image-to-image edit
 
-The following examples show how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints). 
+The following examples show how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints). Requests for image-to-image edits uses **multipart form data**.
 
 > [!NOTE]
-> The `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits.
+> The `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits using the Image edits API.
 
 # [Python](#tab/python)
 
@@ -258,28 +258,35 @@ The following examples show how to perform an image-to-image edit using an MAI i
     height = 1024
     
     url = f"{endpoint}/mai/v1/images/edits"
+
+    # Replace the file name and type.
+    reference_image = <path_to_your_image.png>
+    image_type = "image/png" # or "image/jpeg" based on format of your image. 
     
-    payload = {
+    files = [
+        ("image", (reference_image, open(reference_image, "rb"), image_type))
+    ]
+    
+    payload={
         "model": deployment_name,
-        "prompt": "A photorealistic concept art poster of a university at sunset, cinematic lighting",
-        "width": width,
-        "height": height
-        "input": <PATH_TO_IMAGE.png>
+        "prompt": "Turn this image into a clean futuristic product shot with studio lighting",
     }
     
     response = requests.post(
         url,
         headers={
-            "Content-Type": "application/json",
             "api-key": api_key,
         },
-        json=payload,
+        data=payload,
+        files=files
     )
+    
     response.raise_for_status()
     
     result = response.json()
     print(result)
-    
+
+
     image_data = [
         output
         for output in result.get("data", [])
@@ -306,27 +313,26 @@ To use Microsoft Entra ID instead of an API key, modify this code as described i
 
 #### Use API key authentication
 
-Export yourAPI key, then run the following cURL command:
+Export your endpoint and API key, then run the following cURL command:
 
 ```bash
 export AZURE_API_KEY="<your-api-key>"
+export DEPLOYMENT_NAME="<your-deployment-name>"
 ```
 
 ```sh
-# Save API response to file
-curl -s "https://<resource-name>.services.ai.azure.com/mai/v1/images/edits" \
-  -H "api-key: $AZURE_API_KEY" \
-  -F "prompt=Turn this image into a clean futuristic product shot with studio lighting" \
-  -F "model=<your-deployment-name>" \
-  -F "image=@/path/to/your/image.png" \
-  -o /tmp/response.json
+curl -X POST "https://.services.ai.azure.com/mai/v1/images/edits" \
+  -H "api-key: $AZURE_API_KEY"\
+  -F "prompt=Turn this image into a clean futuristic product shot with studio lighting"\
+  -F "model=$DEPLOYMENT_NAME"\
+  -F "image=@/path/to/your/image.png"\
 
 # Decode and save the output image
-jq -r '.data[0].b64_json' /tmp/response.json | base64 -d > /path/to/output.png
+| jq -r '.data[0].b64_json' \
+| base64 --decode > output.png
 ```
 
-
-**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
+**Expected output:** A JSON response containing the edited image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
 
 To use Microsoft Entra ID authentication instead of an API key, modify this code as described in the earlier section: [Use Microsoft Entra ID authentication](#use-microsoft-entra-id-authentication-1)
 
@@ -393,7 +399,7 @@ The following table lists the request parameters for the image APIs:
 | --------- | ---- | ---- | ----------- |
 | `model` | Both | string | The deployment name you assigned when you deployed the model. |
 | `prompt` | Both | string | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
-| `image` | Image edits | string | The path to the image you want to edit. The image is passed as Multipart Form Data. Must be in JPEG or PNG format. |
+| `image` | Image edits | string | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
 | `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 | `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 
