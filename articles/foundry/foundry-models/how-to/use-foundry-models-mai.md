@@ -4,7 +4,7 @@ description: "Deploy MAI image models in Microsoft Foundry, to generate high-qua
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 05/27/2026
+ms.date: 06/02/2026
 ms.custom:
   - doc-kit-assisted
   - classic-and-new

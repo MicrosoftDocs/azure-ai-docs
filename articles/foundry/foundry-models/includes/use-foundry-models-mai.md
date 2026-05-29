@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 05/28/2026
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -412,12 +412,13 @@ MAI image models have the following rate limits measured in Requests Per Minute 
 
 | Deployment Type | Tier | MAI-Image-2.5-Flash RPM | MAI-Image-2.5 RPM | MAI-Image-2e RPM | MAI-Image-2 RPM |
 | -- | -- | -- | -- | -- | -- |
-| Global Standard | 1 |  |  | 18 | 9 |
-| Global Standard | 2 |  |  | 30 | 15 |
-| Global Standard | 3 |  |  | 60 | 30 |
-| Global Standard | 4 |  |  | 90 | 45 |
-| Global Standard | 5 |  |  | 120 | 60 |
-| Global Standard | 6 |  |  | 180 | 90 |
+| Global Standard | 0 - Free | 0 | 0 |  |  |
+| Global Standard | 1 | 2 | 2 | 18 | 9 |
+| Global Standard | 2 | 4 | 4 | 30 | 15 |
+| Global Standard | 3 | 6 | 6 | 60 | 30 |
+| Global Standard | 4 | 8 | 8 | 90 | 45 |
+| Global Standard | 5 | 10 | 10 | 120 | 60 |
+| Global Standard | 6 | 12 | 12 | 180 | 90 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
