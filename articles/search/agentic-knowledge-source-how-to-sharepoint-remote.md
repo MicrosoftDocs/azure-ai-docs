@@ -21,11 +21,13 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) (preview) to query textual content directly from SharePoint in Microsoft 365. No search index or connection string is needed. Only textual content is queried, and usage is billed through Microsoft 365 and a Copilot license.
+A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) (preview) to query textual content directly from SharePoint in Microsoft 365. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+
+The Copilot Retrieval API searches textual content across your organization's SharePoint sites and libraries, with Microsoft 365 permissions automatically enforced. This makes remote SharePoint knowledge sources useful when your agent needs to retrieve content from SharePoint sites your users already have access to.
 
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
 
-Like any other knowledge source, you specify a remote SharePoint knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) and use the results as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+Unlike indexed knowledge sources, a remote SharePoint knowledge source queries textual content directly from SharePoint at retrieval time. No search index or connection string is needed. Only textual content is queried, and usage is billed through Microsoft 365 and a Copilot license.
 
 ### Usage support
 
@@ -35,7 +37,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). 
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). 
 
 + SharePoint in a Microsoft 365 tenant that's under the same Microsoft Entra ID tenant as Azure.
 
@@ -61,9 +63,9 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ::: zone-end
 
-## Limitations
+## Limitations and considerations
 
-The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) apply to remote SharePoint knowledge sources.
+The following limitations and considerations in the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) apply to remote SharePoint knowledge sources.
 
 + There's no support for Copilot connectors or OneDrive content. Content is retrieved from SharePoint sites only.
 
@@ -71,15 +73,15 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 + Query character limit of 1,500 characters.
 
-+ Hybrid queries are only supported for the following file extensions: .doc, .docx, .pptx, .pdf, .aspx, and .one.
++ Hybrid queries are only supported for the following file extensions: `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one`.
 
 + Multimodal retrieval (nontextual content, including tables, images, and charts) isn't supported.
 
 + Maximum of 25 results from a query.
 
-+ Results are returned by Copilot Retrieval API as unordered.
++ Results are returned by the Copilot Retrieval API as unordered.
 
-+ Invalid Keyword Query Language (KQL) filter expressions are ignored and the query continues to execute without the filter.
++ Invalid Keyword Query Language (KQL) filter expressions are ignored, and the query continues to execute without the filter.
 
 ## Check for existing knowledge sources
 
@@ -193,7 +195,7 @@ Content-Type: application/json
 
 ### Source-specific properties
 
-You can pass the following properties to create a remote SharePoint knowledge source.
+The following properties apply to remote SharePoint knowledge sources.
 
 ::: zone pivot="csharp"
 
@@ -255,11 +257,11 @@ Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-servi
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query SharePoint content. Remote SharePoint has source-specific behaviors for query-time filtering, query formulation, response fields, and permissions enforcement.
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query SharePoint content. Remote SharePoint has source-specific behaviors for query-time filtering, query formulation, response fields, and permissions enforcement.
 
 ### Apply a KQL filter at query time
 
@@ -427,5 +429,6 @@ For instructions on passing the token, see [Enforce permissions at query time](a
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)

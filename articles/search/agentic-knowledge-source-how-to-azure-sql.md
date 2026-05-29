@@ -20,7 +20,7 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-Use an *indexed Azure SQL knowledge source* (preview) to ingest rows from Azure SQL Database or Azure SQL Managed Instance into an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+An *indexed Azure SQL knowledge source* (preview) ingests rows from Azure SQL Database or Azure SQL Managed Instance into an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 Unlike file-based knowledge sources, such as Azure Blob Storage and OneLake, each SQL row is treated as one logical document. The index schema is customer driven through explicit column mappings rather than a fixed document schema.
 
@@ -41,7 +41,7 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
 + Completion of the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites), including:
 
@@ -82,6 +82,28 @@ The generated indexer conforms to the *Azure SQL indexer*, whose prerequisites, 
 + Image extraction and image verbalization aren't supported.
 + Real-time synchronization isn't supported. The generated indexer is schedule based.
 + Real-time SQL retrieval isn't supported. The knowledge source is indexed, not remote.
+
+## Prepare the generated indexer
+
+An indexed Azure SQL knowledge source automatically creates an indexer to drive ingestion. Review the following details before you create the knowledge source.
+
+### Change detection
+
+The generated indexer uses standard [Azure SQL indexer change detection](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows):
+
++ **Tables:** The service applies [SQL integrated change tracking](search-how-to-index-sql-database.md#sql-integrated-change-tracking-policy) automatically. Enable [SQL change tracking](/sql/relational-databases/track-changes/about-change-tracking-sql-server) on the source table before you create the knowledge source.
+
++ **Views:** The service applies [high-water-mark change detection](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). Specify the column to use in `highWaterMarkColumn`. A `rowversion` column is strongly recommended. To detect deletions in a view, include a soft-delete marker column in the view as described in [Soft delete column deletion detection policy](search-how-to-index-sql-database.md#soft-delete-column-deletion-detection-policy).
+
+### Authentication
+
+The generated indexer supports two authentication options:
+
++ **SQL authentication:** Provide a username and password in the connection string.
+
++ **Managed identity authentication:** Use a system-assigned or user-assigned managed identity that has Azure RBAC and database-level roles on the SQL resource.
+
+For connection string formats, role requirements, and setup steps, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites) and [Connect through a managed identity](search-how-to-managed-identities.md).
 
 ## Check for existing knowledge sources
 
@@ -125,9 +147,6 @@ The following JSON is an example response for an indexed Azure SQL knowledge sou
   }
 }
 ```
-
-> [!NOTE]
-> The generated resources appear at the end of the response under `createdResources`.
 
 ## Create a knowledge source
 
@@ -306,62 +325,62 @@ Content-Type: application/json
 
 The following properties apply to indexed Azure SQL knowledge sources.
 
-| Property | Description | Required |
-|--|--|--|
-| `name` | The name of the knowledge source. The name must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | Yes |
-| `kind` | The kind of knowledge source, which is `indexedSql` in this case. | Yes |
-| `description` | A description of the knowledge source. | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | No |
-| `indexedSqlParameters` | Parameters specific to indexed Azure SQL knowledge sources, which are described in the following section. | Yes |
+| Property | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source. The name must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | [TO VERIFY] | Yes |
+| `kind` | The kind of knowledge source, which is `indexedSql` in this case. | String | [TO VERIFY] | Yes |
+| `description` | A description of the knowledge source. | String | [TO VERIFY] | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | [TO VERIFY] | No |
+| `indexedSqlParameters` | Parameters specific to indexed Azure SQL knowledge sources, which are described in the following section. | Object | [TO VERIFY] | Yes |
 
 ### `indexedSqlParameters` properties
 
 The following properties are specific to the `indexedSqlParameters` object of an indexed Azure SQL knowledge source.
 
-| Property | Description | Required |
-|--|--|--|
-| `connectionString` | A SQL authentication or managed-identity connection string for Azure SQL Database or Azure SQL Managed Instance. For supported credential formats, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites). | Yes |
-| `tableOrView` | The fully qualified name of the SQL table or view to ingest, specified in the `schema.objectName` format. A knowledge source ingests from exactly one table or one view. | Yes |
-| `highWaterMarkColumn` | Required when `tableOrView` refers to a view. The name of the column used for high-water-mark change detection. We strongly recommend a `rowversion` column. For more information, see [High water mark change detection policy](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). | Conditional |
-| `contentColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are treated as searchable text content in the generated index. Each mapping must use `Edm.String` as the `searchFieldType`. | No |
-| `embeddingColumns` | An array of [embedding mappings](#embedding-mapping) that defines which SQL columns are used to generate vector fields. | No |
-| `ingestionParameters` | A subset of the standard knowledge source [ingestion parameters](#ingestionparameters-properties). | No |
+| Property | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `connectionString` | A SQL authentication or managed-identity connection string for Azure SQL Database or Azure SQL Managed Instance. For supported credential formats, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites). | String | [TO VERIFY] | Yes |
+| `tableOrView` | The fully qualified name of the SQL table or view to ingest, specified in the `schema.objectName` format. A knowledge source ingests from exactly one table or one view. | String | [TO VERIFY] | Yes |
+| `highWaterMarkColumn` | Required when `tableOrView` refers to a view. The name of the column used for high-water-mark change detection. We strongly recommend a `rowversion` column. For more information, see [High water mark change detection policy](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). | String | [TO VERIFY] | Conditional |
+| `contentColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are treated as searchable text content in the generated index. Each mapping must use `Edm.String` as the `searchFieldType`. | Array | [TO VERIFY] | No |
+| `embeddingColumns` | An array of [embedding mappings](#embedding-mapping) that defines which SQL columns are used to generate vector fields. | Array | [TO VERIFY] | No |
+| `ingestionParameters` | A subset of the standard knowledge source [ingestion parameters](#ingestionparameters-properties). | Object | [TO VERIFY] | No |
 
 ### Column mapping
 
 `contentColumns` uses the following column mapping shape.
 
-| Property | Description |
-|--|--|
-| `name` | The name of the field as it appears in the generated Azure AI Search index. |
-| `sourceField` | The SQL column whose value populates the target field. |
-| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. |
+| Property | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the field as it appears in the generated Azure AI Search index. | String | [TO VERIFY] | Yes |
+| `sourceField` | The SQL column whose value populates the target field. | String | [TO VERIFY] | Yes |
+| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. | String | [TO VERIFY] | Yes |
 
 ### Embedding mapping
 
 `embeddingColumns` uses the following embedding mapping shape.
 
-| Property | Description |
-|--|--|
-| `name` | The name of the target vector field that the service creates in the generated index. For example, it could be `descriptionVector`. |
-| `sourceField` | The SQL column whose text content is sent to the embedding model. |
+| Property | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the target vector field that the service creates in the generated index. For example, it could be `descriptionVector`. | String | [TO VERIFY] | Yes |
+| `sourceField` | The SQL column whose text content is sent to the embedding model. | String | [TO VERIFY] | Yes |
 
 ### `ingestionParameters` properties
 
 For indexed Azure SQL knowledge sources, the existing `ingestionParameters` schema is unchanged, but only the following properties apply.
 
-| Property | Description |
-|--|--|
-| `contentExtractionMode` | Must be `"minimal"`. Other modes aren't supported because Azure SQL ingestion is row based and doesn't extract content from binary documents. |
-| `embeddingModel` | An Azure OpenAI embedding model used to vectorize the columns listed in `embeddingColumns`. Required only when `embeddingColumns` is specified. |
-| `identity` | An optional user-assigned managed identity used to authenticate to Azure SQL and Azure OpenAI. |
-| `ingestionSchedule` | An optional schedule that controls how often the generated indexer runs. |
+| Property | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `contentExtractionMode` | Must be `"minimal"`. Other modes aren't supported because Azure SQL ingestion is row based and doesn't extract content from binary documents. | String | [TO VERIFY] | No |
+| `embeddingModel` | An Azure OpenAI embedding model used to vectorize the columns listed in `embeddingColumns`. Required only when `embeddingColumns` is specified. | Object | [TO VERIFY] | Conditional |
+| `identity` | An optional user-assigned managed identity used to authenticate to Azure SQL and Azure OpenAI. | Object | [TO VERIFY] | No |
+| `ingestionSchedule` | An optional schedule that controls how often the generated indexer runs. | Object | [TO VERIFY] | No |
 
 Image extraction and image verbalization aren't supported for indexed Azure SQL knowledge sources, so `chatCompletionModel`, `assetStore`, `aiServices`, and image-related settings have no effect.
 
 ### Defaulting and validation rules
 
-The following defaults apply when you create an indexed Azure SQL knowledge source:
+The following defaults apply when you create an indexed Azure SQL knowledge source.
 
 + If you omit `contentColumns`, the service automatically maps SQL columns that can be safely represented as text to `Edm.String` fields in the generated index, using a 1:1 mapping where `name` equals `sourceField`.
 
@@ -371,33 +390,21 @@ The following defaults apply when you create an indexed Azure SQL knowledge sour
 
 + The primary key of the source table or view is auto-discovered. Explicit overrides aren't supported, and the source must have a single-valued primary key.
 
-## Configure the generated indexer
+## Check ingestion status
 
-An indexed Azure SQL knowledge source automatically creates an indexer to drive ingestion. The following sections cover change detection and authentication options for the generated indexer.
+[!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]
 
-### Change detection
+## Review the generated objects
 
-The generated indexer uses standard [Azure SQL indexer change detection](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows):
-
-+ **Tables:** The service applies [SQL integrated change tracking](search-how-to-index-sql-database.md#sql-integrated-change-tracking-policy) automatically. Enable [SQL change tracking](/sql/relational-databases/track-changes/about-change-tracking-sql-server) on the source table before you create the knowledge source.
-
-+ **Views:** The service applies [high-water-mark change detection](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). Specify the column to use in `highWaterMarkColumn`. A `rowversion` column is strongly recommended. To detect deletions in a view, include a soft-delete marker column in the view as described in [Soft delete column deletion detection policy](search-how-to-index-sql-database.md#soft-delete-column-deletion-detection-policy).
-
-### Authentication
-
-The generated indexer supports two authentication options:
-
-+ **SQL authentication:** Provide a username and password in the connection string.
-
-+ **Managed identity authentication:** Use a system-assigned or user-assigned managed identity that has Azure RBAC and database-level roles on the SQL resource.
-
-For connection string formats, role requirements, and setup steps, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites) and [Connect through a managed identity](search-how-to-managed-identities.md).
+[!INCLUDE [Review the generated objects](includes/how-tos/knowledge-source-review-objects.md)]
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
+## Query a knowledge base
+
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 
@@ -405,6 +412,7 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ## Related content
 
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
