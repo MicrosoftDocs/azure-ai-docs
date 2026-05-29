@@ -1200,7 +1200,10 @@ The preview has the following known issues and limitations:
 - **Action types.** The only action is invoking one Foundry agent through the Responses API or Invocations API.
 - **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
 - **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If **Routines** isn't visible in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
-- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Requests that exceed this timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults), and the routine run is marked failed if all attempts time out.
+- **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
+- **Acknowledgement isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
+- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults), and the routine run is marked failed if all attempts time out.
+- **Successful delivery doesn't guarantee end-to-end completion.** A completed routine run means the downstream API returned success for the dispatch request. It doesn't guarantee that asynchronous work started by the agent has finished.
 
 ## Related content
 
