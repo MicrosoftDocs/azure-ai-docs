@@ -188,7 +188,7 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
   }'
 ```
 
-To use the Invocations API action instead, replace the `action` object with the following. `agent_endpoint_id` is required; `session_id` is optional.
+To use the Invocations API action instead, replace the `action` object with the following. `agent_name` is required; `session_id` is optional.
 
 ```bash
 # Using Invocations API action
@@ -208,7 +208,7 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
     },
     "action": {
       "type": "invoke_agent_invocations_api",
-      "agent_endpoint_id": "<your-agent-endpoint-id>"
+      "agent_name": "'"$AGENT_NAME"'"
     }
   }'
 ```
@@ -243,7 +243,7 @@ routine = client.routines.create_or_update(
     },
     action={
         "type": "invoke_agent_responses_api",
-        "agent_name": agent_name,  # required: agent_name or agent_endpoint_id
+        "agent_name": agent_name,  # required
         # "conversation_id": "...",  # optional
     },
 )
@@ -253,8 +253,8 @@ print(f"Routine created: {routine.name}, enabled={routine.enabled}")
 # To use the Invocations API action instead:
 # action={
 #     "type": "invoke_agent_invocations_api",
-#     "agent_endpoint_id": os.environ["AGENT_ENDPOINT_ID"],  # required
-#     # "session_id": "...",                                  # optional
+#     "agent_name": agent_name,  # required
+#     # "session_id": "...",      # optional
 # }
 ```
 
@@ -283,7 +283,7 @@ var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
         },
         action: new InvokeAgentResponsesApiRoutineAction
         {
-            AgentName = agentName,  // required: AgentName or AgentEndpointId
+            AgentName = agentName,  // required
             // ConversationId = "...",  // optional
         })
     {
@@ -294,7 +294,7 @@ var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
 Console.WriteLine($"Routine created: {routine.Value.Name}, enabled={routine.Value.Enabled}");
 
 // To use the Invocations API action instead:
-// action: new InvokeAgentInvocationsApiRoutineAction(agentEndpointId: "...")  // required
+// action: new InvokeAgentInvocationsApiRoutineAction(agentName: agentName)  // required
 // {
 //     SessionId = "..."  // optional
 // }
@@ -326,7 +326,7 @@ const routine = await client.routines.createOrUpdate("daily-summary", {
   },
   action: {
     type: "invoke_agent_responses_api",
-    agent_name: agentName,  // required: agent_name or agent_endpoint_id
+    agent_name: agentName,  // required
     // conversation_id: "...",  // optional
   },
 });
@@ -336,8 +336,8 @@ console.log(`Routine created: ${routine.name}, enabled=${routine.enabled}`);
 // To use the Invocations API action instead:
 // action: {
 //   type: "invoke_agent_invocations_api",
-//   agent_endpoint_id: process.env.AGENT_ENDPOINT_ID,  // required
-//   // session_id: "...",                               // optional
+//   agent_name: agentName,  // required
+//   // session_id: "...",    // optional
 // }
 ```
 
@@ -510,23 +510,22 @@ Each routine specifies exactly one action. The two supported action types have d
 
 ### Responses API action (`invoke_agent_responses_api`)
 
-Invokes the agent through the Responses API. Exactly one of `agent_name` or `agent_endpoint_id` must be provided.
+Invokes the agent through the Responses API.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"invoke_agent_responses_api"`. |
-| `agent_name` | string | Conditional | The project-scoped agent name. Provide either `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
-| `agent_endpoint_id` | string | Conditional | The endpoint-scoped agent identifier. Provide either `agent_name` or `agent_endpoint_id`. Maximum 256 characters. |
+| `agent_name` | string | Yes | The project-scoped agent name. Maximum 256 characters. |
 | `conversation_id` | string | No | An existing conversation to continue during the dispatch. Maximum 256 characters. |
 
 ### Invocations API action (`invoke_agent_invocations_api`)
 
-Invokes the agent through the Invocations API. Requires the endpoint-scoped agent identifier.
+Invokes the agent through the Invocations API.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"invoke_agent_invocations_api"`. |
-| `agent_endpoint_id` | string | Yes | The endpoint-scoped agent identifier. Maximum 256 characters. |
+| `agent_name` | string | Yes | The project-scoped agent name. Maximum 256 characters. |
 | `session_id` | string | No | An existing hosted-agent session to continue during the dispatch. Maximum 256 characters. |
 
 
