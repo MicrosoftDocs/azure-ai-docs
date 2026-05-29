@@ -111,6 +111,17 @@ pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
 
 ### Create the registration
 
+### Foundry portal
+
+You can create a registration in the [Foundry portal](https://ai.azure.com) by:
+1. Opening your project and selecting **build** > **agents** > **New agent**.
+1. Selecting **Link external agent**.
+1. In the window that appears, entering the agent name, description and the OpenTelemetry ID. 
+
+    :::image type="content" source="../media/register-external/foundry-button.png" alt-text="A screenshot showing the button to link an external agent" lightbox=source="../media/register-external/foundry-button.png":::
+
+### Python SDK 
+
 Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. You can find this value on the project's **Overview** page in the Foundry portal.
 
 ```python
@@ -152,6 +163,45 @@ Resolved otel_agent_id: travel-planner-agent-v1
 
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
 
+## Run an evaluation
+
+```python
+openai_client = project.get_openai_client()
+
+# Eval group: define what to measure.
+eval_group = openai_client.evals.create(
+    name="travel-planner-trace-eval",
+    data_source_config={"type": "azure_ai_source", "scenario": "traces"},
+    testing_criteria=[
+        {
+            "type": "azure_ai_evaluator",
+            "name": "intent_resolution",
+            "evaluator_name": "builtin.intent_resolution",
+            "data_mapping": {
+                "query": "{{item.query}}",
+                "response": "{{item.response}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+            "initialization_parameters": {"deployment_name": "gpt-5-mini"},
+        },
+    ],
+)
+
+# Eval run: score this agent's recent traces.
+run = openai_client.evals.runs.create(
+    eval_id=eval_group.id,
+    name="travel-planner-trace-run",
+    data_source={
+        "type": "azure_ai_traces",
+        "agent_id": otel_agent_id,
+        "lookback_hours": 24,
+    },
+)
+# Poll openai_client.evals.runs.retrieve(...) until run.status
+# is in {"completed", "failed", "canceled"}, then read run.result_counts
+# and run.per_testing_criteria_results.
+```
+
 ## Verify traces in the Foundry portal
 
 After the agent sends traffic and spans ingest into Application Insights (typically 2–5 minutes), verify that traces appear in the Foundry portal:
@@ -192,7 +242,7 @@ If `create_version()` fails, check the following items:
 
 ## Run a trace-based evaluation
 
-After traces flow into Application Insights, you can [run evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites) directly over those traces. No separate dataset construction is required. Foundry resolves traces by matching `(project, agent_id)` over a lookback window.
+After traces flow into Application Insights, you can run evaluations directly over those traces. No separate dataset construction is required. Foundry resolves traces by matching `(project, agent_id)` over a lookback window.
 
 > [!NOTE]
 > Trace-based evaluations use the OpenAI-compatible `evals` API (`project.get_openai_client().evals`). The native `project.evaluations` surface doesn't yet support trace-based evaluation.
@@ -225,6 +275,9 @@ for a in agents:
 ```python
 # Delete the registration. This does not affect the running agent.
 project.agents.delete(agent_name="travel-planner-agent-v1")
+
+#Use the following line to delete the registration for all versions of the agent
+# project_client.agents.delete("travel-planner-agent-v1", force=True)
 ```
 
 Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
@@ -238,3 +291,4 @@ Deleting the registration removes the agent from the Foundry portal and stops tr
 - [Register and manage custom agents (Control Plane)](../../control-plane/register-custom-agent.md)
 - [Built-in evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md)
 - [Azure Monitor OpenTelemetry overview](/azure/azure-monitor/app/opentelemetry-enable)
+- [run cloud evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites)
