@@ -5,7 +5,7 @@ description: Learn how to use the MAI-Transcribe model in Azure Speech LLM Speec
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/28/2026
 ms.custom: references_regions
