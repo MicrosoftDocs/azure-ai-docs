@@ -411,8 +411,8 @@ The following table lists the request parameters for the image APIs:
 MAI image models have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
 | Deployment Type | Tier | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) | MAI-Image-2e <br> (RPM) | MAI-Image-2 <br> (RPM) |
-|---|---|:---:|:---:|:---:|:---:|
-| Global Standard | 0 - Free | 0 | 0 | 0 | 0 |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 |
 | Global Standard | 1 | 2 | 2 | 18 | 9 |
 | Global Standard | 2 | 4 | 4 | 30 | 15 |
 | Global Standard | 3 | 6 | 6 | 60 | 30 |
