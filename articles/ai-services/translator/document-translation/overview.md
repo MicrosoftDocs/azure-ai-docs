@@ -152,7 +152,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
 |M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
 |Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
-|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook.|
+|Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook. Unicode-format .msg files only. ANSI-format .msg files are not supported.|
 |Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
 |Microsoft Word|`doc`, `docx`| A text document file.|
 |Rich text format|`rtf`|A text document containing formatting.|
