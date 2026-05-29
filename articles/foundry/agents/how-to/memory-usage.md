@@ -16,10 +16,10 @@ zone_pivot_groups: foundry-memory-store
 
 # Create and use memory in Foundry Agent Service (preview)
 
-<!-- TO-DO: Confirm the listed capabilities below match what we're releasing and documenting in the v2 preview. -->
+<!-- TO-DO: Confirm the three capabilities listed below reflect what we're releasing and documenting in the v2 preview. -->
 
 > [!IMPORTANT]
-> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all), the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > The latest preview offers new capabilities and enhancements, including:
 >
@@ -158,12 +158,6 @@ Create a dedicated memory store for each agent to establish clear boundaries for
 
 Use memory store options to control extraction behavior and retention defaults. In the latest preview, you can enable procedural memory and set a default TTL (seconds) for newly created memory entries.
 
-<!-- TO-DO: Confirm all updated snippets in this section for accuracy. 
-
-- For Python and REST, confirm `procedural_memory_enabled` and `default_ttl_seconds` are correct.
-- For C#, confirm `isProceduralMemoryEnabled` and `DefaultTtlSeconds` are correct.
-- For TypeScript, confirm `procedural_memory_enabled` and `default_ttl_seconds` are correct. -->
-
 :::zone pivot="python"
 
 ```python
@@ -239,9 +233,7 @@ MemoryStoreDefaultDefinition memoryStoreDefinition = new(
 );
 memoryStoreDefinition.Options = new(
     isUserProfileEnabled: true,
-    isChatSummaryEnabled: true,
-    isProceduralMemoryEnabled: true);
-memoryStoreDefinition.Options.DefaultTtlSeconds = 30 * 24 * 60 * 60;
+    isChatSummaryEnabled: true);
 memoryStoreDefinition.Options.UserProfileDetails =
     "Avoid irrelevant or sensitive data, such as age, "
     + "financials, precise location, and credentials";
@@ -250,7 +242,7 @@ memoryStoreDefinition.Options.UserProfileDetails =
 MemoryStore memoryStore = projectClient.MemoryStores.CreateMemoryStore(
     name: memoryStoreName,
     definition: memoryStoreDefinition,
-    description: "Memory store with procedural memory and 30-day default TTL"
+    description: "Memory store for customer support agent"
 );
 
 Console.WriteLine($"Created memory store: {memoryStore.Name}");
@@ -288,8 +280,6 @@ const project = new AIProjectClient(
 const memoryOptions: MemoryStoreDefaultOptions = {
   user_profile_enabled: true,
   chat_summary_enabled: true,
-  procedural_memory_enabled: true,
-  default_ttl_seconds: 30 * 24 * 60 * 60,
   user_profile_details:
     "Avoid irrelevant or sensitive data, such as age, " +
     "financials, precise location, and credentials",
@@ -306,7 +296,7 @@ const memoryStore = await project.beta.memoryStores.create(
   memoryStoreName,
   definition,
   {
-    description: "Memory store with procedural memory and 30-day default TTL",
+    description: "Memory store for customer support agent",
   },
 );
 
@@ -797,8 +787,6 @@ When a user explicitly asks the agent to remember or forget information, the mem
 > [!NOTE]
 > Direct memory commands don't override memory TTL. If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
 
-<!-- TO-DO: Confirm new Python snippet for accuracy and provide missing snippets. -->
-
 :::zone pivot="python"
 
 ```python
@@ -845,7 +833,7 @@ for item in forget_response.output:
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet for remember-and-forget behavior with the memory search tool.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -853,7 +841,7 @@ for item in forget_response.output:
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet for remember-and-forget behavior with the memory search tool.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -861,7 +849,7 @@ for item in forget_response.output:
 :::zone pivot="rest"
 
 ```bash
-# TO-DO: Please provide a REST snippet for remember-and-forget behavior with the memory search tool.
+# This code snippet is currently unavailable.
 ```
     
 :::zone-end
@@ -1232,8 +1220,6 @@ For more information about user profile and chat summary memories, see [Memory t
 
 Use item-level operations to directly create, inspect, update, and delete individual memory records. For scope-level or store-level deletion, see [Delete memories](#delete-memories).
 
-<!-- TO-DO: Confirm all new snippets in this section for accuracy and provide missing snippets. -->
-
 :::zone pivot="rest"
 
 > [!NOTE]
@@ -1264,7 +1250,7 @@ print(f"Kind: {created.kind}")
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet to create a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1272,7 +1258,7 @@ print(f"Kind: {created.kind}")
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet to create a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1313,7 +1299,7 @@ print(f"Kind: {item.kind}")
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet to get a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1321,7 +1307,7 @@ print(f"Kind: {item.kind}")
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet to get a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1359,7 +1345,7 @@ print(f"Total memories: {count}")
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet to list memory items in a memory store.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1367,7 +1353,7 @@ print(f"Total memories: {count}")
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet to list memory items in a memory store.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1401,7 +1387,7 @@ print(f"Updated: {updated.content}")
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet to update a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1409,7 +1395,7 @@ print(f"Updated: {updated.content}")
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet to update a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1444,7 +1430,7 @@ print("Memory item deleted successfully")
 :::zone pivot="csharp"
 
 ```csharp
-// TO-DO: Please provide a C# snippet to delete a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end
@@ -1452,7 +1438,7 @@ print("Memory item deleted successfully")
 :::zone pivot="typescript"
 
 ```typescript
-// TO-DO: Please provide a TypeScript snippet to delete a memory item.
+// This code snippet is currently unavailable.
 ```
 
 :::zone-end

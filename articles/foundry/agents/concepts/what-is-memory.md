@@ -14,10 +14,10 @@ ai-usage: ai-assisted
 
 # Memory in Microsoft Foundry Agent Service (preview)
 
-<!-- TO-DO: Confirm the listed capabilities below match what we're releasing and documenting in the v2 preview. -->
+<!-- TO-DO: Confirm the three capabilities listed below reflect what we're releasing and documenting in the v2 preview. -->
 
 > [!IMPORTANT]
-> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all), the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > The latest preview offers new capabilities and enhancements, including:
 >
@@ -61,7 +61,7 @@ Here's an example of how memory can improve and personalize interactions between
 > [!TIP]
 > Need help deciding when to use memory? Consider these guidelines:
 >
- > - Use memory to capture user-specific or agent context that is learned and persists through interactions over time.
+> - Use memory to capture user-specific or agent context that is learned and persists through interactions over time.
 > - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
 > - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
 
