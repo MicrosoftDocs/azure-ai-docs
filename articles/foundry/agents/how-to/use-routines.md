@@ -127,9 +127,6 @@ For required and optional fields of each action type, see [Action fields](#actio
   export AZURE_AI_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
   ```
 
-> [!NOTE]
-> The `azd ai routine` extension is in preview. Today only the **timer** trigger paired with the **agent-response** action is validated end-to-end. For other trigger types or actions, use the REST API, Python, C#, or JavaScript SDK.
-
 :::zone-end
 
 ## Create a routine
