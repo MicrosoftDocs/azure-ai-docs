@@ -1168,6 +1168,30 @@ azd ai routine delete once-on-release-day
 | `time_zone` | string | No | An IANA or Windows time zone identifier. Required when `at` is a local timestamp without a UTC offset. |
 
 
+## Dispatch behavior and retry policy
+
+When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgement doesn't mean the downstream agent call has finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
+
+### Downstream call outcomes
+
+The delivery worker waits for the downstream `invoke_agent_responses_api` or `invoke_agent_invocations_api` HTTP call to finish before marking the run.
+
+| Downstream HTTP result | Routine run behavior |
+|---|---|
+| 2xx | Run is marked completed and downstream dispatch identifiers are recorded. |
+| 408, 429, or 5xx | Treated as retryable while attempts remain. |
+| Other 4xx (for example, 400) | Treated as terminal and the run is marked failed. |
+| Request timeout or transient service-invocation failure | Treated as retryable while attempts remain. |
+
+If retries are exhausted, the run is marked failed with the last dispatch error.
+
+A successful run means the downstream API accepted the dispatch request. It doesn't guarantee that asynchronous work started by the agent has completed.
+
+### Retry and timeout defaults
+
+- The default delivery policy is 3 total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
+- The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
+
 ## Preview limitations
 
 - In v1 preview, each routine supports exactly one trigger entry in the `triggers` map.
