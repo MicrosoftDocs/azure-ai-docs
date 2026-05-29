@@ -6,6 +6,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
 ms.date: 11/21/2025
+ai-usage: ai-assisted
 ms.custom:
   - build-2024
   - ignite-2024
@@ -99,7 +100,7 @@ Content-Type: application/json
 api-key: {{apiKey}}
 ```
 
-Response includes metrics for `storageSize`, which doesn't distinguish between vector and nonvector indexes. The `vectorIndexSize` statistic shows usage and quota at the service level.  
+Response includes metrics for `storageSize`, which doesn't distinguish between vector and nonvector indexes. The `vectorIndexSize` statistic shows usage and quota at the service level.
 
 ```json
 {
@@ -112,6 +113,14 @@ Response includes metrics for `storageSize`, which doesn't distinguish between v
         "indexesCount": {
             "usage": 13,
             "quota": 15
+        },
+        "knowledgeBasesCount": {
+            "usage": 2,
+            "quota": 10
+        },
+        "knowledgeSourcesCount": {
+            "usage": 5,
+            "quota": 30
         },
         . . .
         "storageSize": {
