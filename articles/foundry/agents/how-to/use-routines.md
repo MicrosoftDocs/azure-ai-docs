@@ -1191,9 +1191,16 @@ A successful run means the downstream API accepted the dispatch request. It does
 - The default delivery policy is 3 total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
 - The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
 
-## Preview limitations
+## Known issues and limitations
 
-- In v1 preview, each routine supports exactly one trigger entry in the `triggers` map.
+The preview has the following known issues and limitations:
+
+- **One trigger and one action per routine.** Each routine supports exactly one entry in the `triggers` map and one action. To run multiple agents or multiple schedules, create separate routines.
+- **Trigger types.** Only `timer` (one-shot) and `schedule` (cron-based recurring) triggers are supported. Event-based triggers aren't available in preview.
+- **Action types.** The only action is invoking one Foundry agent through the Responses API or Invocations API.
+- **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
+- **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If **Routines** isn't visible in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
+- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Requests that exceed this timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults), and the routine run is marked failed if all attempts time out.
 
 ## Related content
 
