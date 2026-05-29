@@ -52,7 +52,7 @@ Before you register the agent in Foundry, configure it to export OpenTelemetry s
 ### Install the Microsoft OpenTelemetry package
 
 ```bash
-pip install microsoft-opentelemetry
+pip install "microsoft-opentelemetry[langchain]"
 ```
 
 ### Configure the exporter
@@ -60,7 +60,13 @@ pip install microsoft-opentelemetry
 Run this code once during agent startup, before any framework imports that should be instrumented:
 
 ```python
-from microsoft.opentelemetry import use_microsoft_opentelemetry  # type: ignore
+import os
+
+os.environ.setdefault("AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING", "true")
+os.environ.setdefault("OTEL_SEMCONV_STABILITY_OPT_IN", "gen_ai_latest_experimental")
+os.environ.setdefault("OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT", "SPAN_AND_EVENT")
+
+from microsoft.opentelemetry import use_microsoft_opentelemetry
 
 AGENT_NAME = os.environ.get("AGENT_NAME", "weather-agent")
 OTEL_AGENT_ID = os.environ.get("OTEL_AGENT_ID", f"{AGENT_NAME}-v1")
@@ -145,7 +151,7 @@ agent = project.agents.create_version(
     description="Travel planning agent hosted externally.",
     definition=ExternalAgentDefinition(
         # optional, defaults to agent_name
-        otel_agent_id="travel-planner-agent-v1",
+        otel_agent_id="travel-planner-agent",
     ),
 )
 
@@ -155,7 +161,7 @@ print(f"Resolved otel_agent_id: {agent.versions.latest.definition.otel_agent_id}
 
 ```output
 Registered external agent: travel-planner-agent
-Resolved otel_agent_id: travel-planner-agent-v1
+Resolved otel_agent_id: travel-planner-agent
 ```
 
 > [!NOTE]
@@ -249,11 +255,11 @@ After traces flow into Application Insights, you can run evaluations directly ov
 
 ### Resolve the agent's otel_agent_id
 
-to get the agent's ID for traces, use the following:
+To get the agent's ID for traces, use the following:
 
 ```python
 # Retrieve the registered agent and its resolved otel_agent_id.
-agent = project.agents.get(agent_name="travel-planner-agent-v1")
+agent = project.agents.get(agent_name="travel-planner-agent")
 otel_agent_id = agent.versions.latest.definition.otel_agent_id
 ```
 
@@ -264,20 +270,19 @@ Use the same SDK methods to list, retrieve, and delete external agents.
 ### List external agents
 
 ```python
-# List all agents and filter to external kind.
-agents = project.agents.list()
+agents = project.agents.list(kind="external")
 for a in agents:
-    print(f"{a.name} (kind={a.versions.latest.definition.kind})")
+    print(a.name)
 ```
 
 ### Delete an external agent
 
 ```python
 # Delete the registration. This does not affect the running agent.
-project.agents.delete(agent_name="travel-planner-agent-v1")
+project.agents.delete(agent_name="travel-planner-agent")
 
 #Use the following line to delete the registration for all versions of the agent
-# project_client.agents.delete("travel-planner-agent-v1", force=True)
+# project_client.agents.delete("travel-planner-agent", force=True)
 ```
 
 Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
