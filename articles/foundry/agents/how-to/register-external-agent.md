@@ -124,7 +124,7 @@ You can create a registration in the [Foundry portal](https://ai.azure.com) by:
 1. Selecting **Link external agent**.
 1. In the window that appears, entering the agent name, description and the OpenTelemetry ID. 
 
-    :::image type="content" source="../media/register-external/foundry-button.png" alt-text="A screenshot showing the button to link an external agent" lightbox=source="../media/register-external/foundry-button.png":::
+    :::image type="content" source="../media/register-external/foundry-button.png" alt-text="A screenshot showing the button to link an external agent" lightbox="../media/register-external/foundry-button.png":::
 
 ### Python SDK 
 
