@@ -118,9 +118,7 @@ The preview has the following limitations:
 
 - A routine has exactly one trigger and one action.
 - The only action type is invoking one Foundry agent.
-- Supported trigger types are timer, recurring, and event-based triggers.
-- Event-based trigger availability depends on supported connector events. GitHub issue events are the reference implementation for the preview.
-- Event payloads are passed to the agent as JSON input. The preview doesn't include a separate field-mapping or parameter-binding language.
+- Supported trigger types are timer and recurring triggers.
 
 ## Related content
 

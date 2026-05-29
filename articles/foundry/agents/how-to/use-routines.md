@@ -1,6 +1,6 @@
----
+﻿---
 title: "Automate agents with routines (preview)"
-description: "Create, manage, and monitor routines that automatically trigger agents on a schedule, timer, GitHub issue event, or custom event in Microsoft Foundry."
+description: "Create, manage, and monitor routines that automatically trigger agents on a schedule or at a specific time in Microsoft Foundry."
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -19,7 +19,7 @@ zone_pivot_groups: foundry-routines-config
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-A *routine* is a named automation rule that triggers an agent on a schedule, at a specific time, or in response to an event. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
+A *routine* is a named automation rule that triggers an agent on a schedule or at a specific time. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
 
 This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, and the Python, C#, and JavaScript SDKs.
 
@@ -29,49 +29,12 @@ This article shows you how to create, manage, and monitor routines by using the 
 
 ## Supported trigger types
 
-Routines support two categories of trigger.
-
-**Time-based triggers** fire on a recurring schedule or a one-shot timer:
+Routines support two time-based trigger types:
 
 | Trigger type | Description |
 |---|---|
 | `schedule` | Recurring trigger defined by a cron expression. Minimum interval is five minutes. |
 | `timer` | One-shot trigger that fires at a specific future date/time or after a duration. |
-
-**Event-based triggers** fire in response to an external event:
-
-| Trigger type | Description |
-|---|---|
-| `github_issue` | Fires when a GitHub issue is opened or closed in a connected repository. |
-| `custom` | Fires on a provider-specific event you define. |
-
-> [!IMPORTANT]
-> For code-first configuration (REST API, SDKs, or `azd`), only **GitHub** and **Teams** event sources are supported for event-based routines in preview. The Foundry portal surfaces a broader set of validated connectors as event sources. If you need a connector that isn't in the code-first scope, configure the routine in the portal or contact the Foundry team.
-
-Event-based routines are powered by the **Connector Namespace** — the same managed service that backs managed MCP servers in your Foundry account. Each Foundry account has a Connector Namespace; each project maps to an environment in that namespace. Only connectors that declare trigger support (those with `"triggers"` in their `x-ms-capabilities` field) can be used as event sources for routines. Connectors that expose only actions — such as most managed MCP servers — can't fire event-based routines.
-
-> [!NOTE]
-> Your connector credentials are stored and managed by the Connector Namespace, not in your routine definition. At runtime, the namespace retrieves and injects the right token or key when polling for events or receiving webhook calls. Your routine configuration never contains raw credentials.
-
-> [!IMPORTANT]
-> Non-Microsoft connectors available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool as an event source, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the connectors you use as event sources.
->
-> Some of your information and data might be passed to the Third-Party Tool (for example, during webhook subscription or event polling). Review all data shared with Third-Party Tools and stay aware of third-party practices for data retention and location. You're responsible for managing whether your data flows outside your organization's Azure compliance and geographic boundaries.
-
-## Publisher tiers and data handling for event sources
-
-The same connector catalog and publisher tiers that apply to managed MCP servers also apply when using a connector as a routine event source. Check the **By:** field on the connector's detail page before connecting, or review the full list at [List of all MCP servers](/connectors/connector-reference/connector-reference-mcpserver-connectors).
-
-| Publisher tier | Examples | Data responsibility |
-|---|---|---|
-| **Microsoft** (internal services) | SharePoint, Teams, Dynamics 365 | Data stays on Microsoft infrastructure; Microsoft privacy policies apply end-to-end |
-| **Microsoft** (external services) | GitHub | Data transits Microsoft infrastructure to the external service; Microsoft policies apply in transit, the external company's policies apply at the destination |
-| **Verified third-party** | Salesforce, Docusign | Same as Microsoft external; review the publisher's privacy policy and data-protection terms before connecting |
-| **Independent publisher** | Community-contributed connectors | Lower certification bar than first-party connectors; review the publisher's terms and data practices carefully |
-
-The Connector Namespace acts as a proxy between Foundry and the external event source. While data transits the namespace (Microsoft infrastructure), Microsoft privacy policies apply. Once the namespace sends a request to the external service — for example, to register a webhook or poll for new events — that company's policies govern data storage, retention, and geography.
-
-For details on connector validation and data protection, see [Vet with data protection in connectors](/connectors/protection).
 
 ## Supported action types
 
@@ -83,611 +46,6 @@ Each routine specifies exactly one action that runs when the routine fires. Two 
 | `invoke_agent_invocations_api` | Invokes the agent through the Invocations API. Requires the endpoint-scoped agent identifier. |
 
 For required and optional fields of each action type, see [Action fields](#action-fields).
-
-## Discover connectors with trigger support
-
-:::zone pivot="foundry-portal"
-
-The portal handles connector browsing and connection setup for you. Skip to [Create a routine](#create-a-routine).
-
-:::zone-end
-
-:::zone pivot="programming-language-rest,programming-language-python,programming-language-csharp,programming-language-javascript"
-
-Event-based routines need two things: a **trigger event source** (a connector operation that fires when an external event occurs) and a **project connection** (credentials Foundry uses to subscribe to or poll that event). The catalog API exposes each connector's full spec, including which operations are triggers and what auth the connector requires.
-
-The end-to-end discovery flow has five steps:
-
-1. Acquire tokens for the catalog API and Azure Resource Manager.
-1. Query the catalog to list connectors that declare trigger support.
-1. Inspect the connector spec to extract trigger `operationId` values.
-1. Read `x-ms-connection-parameters` to determine required auth.
-1. Create the project connection.
-
-After completing these steps, use the trigger's `operationId` as the `event_name` when you [create a custom trigger routine](#event-based-triggers), or verify it matches a built-in trigger type such as `github_issue`.
-
-:::zone-end
-
-:::zone pivot="programming-language-rest"
-
-> [!NOTE]
-> The connector catalog is always served from the `eastus` region regardless of your project's location.
-
-### Step 1: Acquire tokens
-
-```bash
-# Token for the Foundry Tools Catalog
-CATALOG_TOKEN=$(az account get-access-token \
-  --resource https://ai.azure.com \
-  --query accessToken -o tsv)
-
-# Token for Azure Resource Manager (connection management)
-ARM_TOKEN=$(az account get-access-token \
-  --resource https://management.azure.com \
-  --query accessToken -o tsv)
-```
-
-### Step 2: List connectors with trigger support
-
-**List all trigger-enabled connectors:**
-
-```bash
-RESPONSE=$(curl -sS -X POST \
-  "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools" \
-  -H "Authorization: Bearer $CATALOG_TOKEN" \
-  -H "Content-Type: application/json" \
-  -H "x-ms-user-agent: AzureMachineLearningWorkspacePortal/12.0" \
-  -d '{
-    "freeTextSearch": "*",
-    "filters": [
-      { "field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"] },
-      { "field": "type",              "operator": "eq", "values": ["tools"] },
-      { "field": "kind",              "operator": "eq", "values": ["Versioned"] },
-      { "field": "labels",            "operator": "eq", "values": ["latest"] }
-    ],
-    "includeTotalResultCount": true,
-    "pageSize": 100,
-    "skip": 0
-  }')
-
-# Print connectors that declare trigger support
-echo "$RESPONSE" | jq -r '
-  .value[]
-  | select(.properties["x-ms-capabilities"] | arrays | contains(["triggers"]))
-  | "\(.annotations.name)\t\(.properties.title)"
-'
-```
-
-**Fetch details of a specific connector:**
-
-```bash
-CONNECTOR_NAME="github"   # value from annotations.name in the list above
-
-RESPONSE=$(curl -sS -X POST \
-  "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools" \
-  -H "Authorization: Bearer $CATALOG_TOKEN" \
-  -H "Content-Type: application/json" \
-  -H "x-ms-user-agent: AzureMachineLearningWorkspacePortal/12.0" \
-  -d "{
-    \"freeTextSearch\": \"*\",
-    \"filters\": [
-      { \"field\": \"entityContainerId\", \"operator\": \"eq\", \"values\": [\"connectors-registry-prod-bl\"] },
-      { \"field\": \"type\",              \"operator\": \"eq\", \"values\": [\"tools\"] },
-      { \"field\": \"kind\",              \"operator\": \"eq\", \"values\": [\"Versioned\"] },
-      { \"field\": \"labels\",            \"operator\": \"eq\", \"values\": [\"latest\"] },
-      { \"field\": \"annotations/name\",  \"operator\": \"eq\", \"values\": [\"$CONNECTOR_NAME\"] }
-    ],
-    \"includeTotalResultCount\": true,
-    \"pageSize\": 1
-  }")
-
-# Extract entity ID and runtime URL for later steps
-ENTITY_ID=$(echo "$RESPONSE" | jq -r '.value[0].entityId')
-TARGET_URL=$(echo "$RESPONSE" | jq -r '.value[0].properties["x-ms-runtime-urls"][0]')
-
-echo "entityId:  $ENTITY_ID"
-echo "targetURL: $TARGET_URL"
-```
-
-### Step 3: Identify trigger operations
-
-Each connector's `x-ms-operations` array lists all available operations. Operations with a non-null `x-ms-trigger` field are event triggers. The `x-ms-trigger` value indicates the trigger mechanism:
-
-| `x-ms-trigger` value | Mechanism | Routine `type` to use |
-|---|---|---|
-| `"batch"` | Foundry polls the connector endpoint at a fixed interval | `github_issue` (built-in) or `custom` |
-| `"single"` | Connector registers a webhook; Foundry receives push notifications | `custom` |
-
-```bash
-# Print all trigger operations for the fetched connector
-echo "$RESPONSE" | jq -r '
-  .value[0].properties["x-ms-operations"][]
-  | select(."x-ms-trigger" != null)
-  | "\(.operationId)\t trigger=\(."x-ms-trigger")\t \(.operationName)"
-'
-```
-
-Sample output for the GitHub connector:
-
-```
-IssueOpened               trigger=batch    When a new issue is opened and assigned to me
-IssueClosed               trigger=batch    When an issue assigned to me is closed
-IssueAssigned             trigger=batch    When an issue is assigned to me
-WebhookPullRequestTrigger trigger=single   When a pull request is created or modified
-```
-
-The `operationId` is the value you pass as `event_name` in a `custom` trigger. The GitHub issue operations are also covered by the built-in `github_issue` trigger type, which handles polling automatically.
-
-### Step 4: Determine connection auth requirements
-
-```bash
-AUTH_TYPE=$(echo "$RESPONSE" | jq -r '
-  .value[0].properties["x-ms-connection-parameters"]
-  | if . == null then "None"
-    elif ([.[].type] | any(. == "oauthSetting")) then "OAuth2"
-    elif ([.[].type] | any(. == "securestring")) then "CustomKeys"
-    else "None" end
-')
-
-echo "authType: $AUTH_TYPE"
-```
-
-| Auth type | Connection creation |
-|---|---|
-| `OAuth2` | Create the connection stub via API; complete the OAuth consent flow in the Foundry portal. |
-| `CustomKeys` | Create the connection with credentials in a single API call. |
-| `None` | Create an unauthenticated connection stub; no credentials required. |
-
-### Step 5: Create the project connection
-
-```bash
-SUBSCRIPTION_ID="<your-subscription-id>"
-RESOURCE_GROUP="<your-resource-group>"
-ACCOUNT_NAME="<your-foundry-account>"
-PROJECT_NAME="<your-project>"
-CONNECTION_NAME="<name-for-this-connection>"
-
-CONNECTION_URL="https://management.azure.com/subscriptions/$SUBSCRIPTION_ID\
-/resourceGroups/$RESOURCE_GROUP\
-/providers/Microsoft.CognitiveServices/accounts/$ACCOUNT_NAME\
-/projects/$PROJECT_NAME\
-/connections/$CONNECTION_NAME?api-version=2025-04-01-preview"
-```
-
-**OAuth2:**
-
-```bash
-curl -sS -X PUT "$CONNECTION_URL" \
-  -H "Authorization: Bearer $ARM_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "properties": {
-      "authType": "OAuth2",
-      "category": "RemoteTool",
-      "connectorName": "'"$CONNECTOR_NAME"'",
-      "target": "'"$TARGET_URL"'",
-      "credentials": {},
-      "peRequirement": "NotRequired",
-      "metadata": {
-        "type": "gateway_connector",
-        "toolEntityId": "'"$ENTITY_ID"'",
-        "connectionproperties": "{\"connectorName\":\"'"$CONNECTOR_NAME"'\"}"
-      }
-    }
-  }'
-```
-
-A successful response returns HTTP 200 with `overallStatus: "Unauthenticated"`. Open the Foundry portal and complete the OAuth consent flow to bring the connection to `"Connected"` status.
-
-**CustomKeys (API key or PAT):**
-
-```bash
-curl -sS -X PUT "$CONNECTION_URL" \
-  -H "Authorization: Bearer $ARM_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "properties": {
-      "authType": "CustomKeys",
-      "category": "RemoteTool",
-      "connectorName": "'"$CONNECTOR_NAME"'",
-      "target": "'"$TARGET_URL"'",
-      "credentials": {
-        "keys": {
-          "Authorization": "Bearer '"$YOUR_TOKEN"'"
-        }
-      },
-      "peRequirement": "NotRequired",
-      "metadata": {
-        "type": "gateway_connector",
-        "toolEntityId": "'"$ENTITY_ID"'",
-        "connectionproperties": "{\"connectorName\":\"'"$CONNECTOR_NAME"'\"}"
-      }
-    }
-  }'
-```
-
-Verify the connection was created:
-
-```bash
-curl -sS "$CONNECTION_URL" -H "Authorization: Bearer $ARM_TOKEN" \
-  | jq '{name: .name, status: .properties.overallStatus, authType: .properties.authType}'
-```
-
-Use `CONNECTION_NAME` as the `connection_id` and the `operationId` from Step 3 as the `event_name` when you create the routine. See [Event-based triggers](#event-based-triggers).
-
-:::zone-end
-
-:::zone pivot="programming-language-python"
-
-```python
-import os
-import requests
-from azure.identity import DefaultAzureCredential
-
-credential = DefaultAzureCredential()
-
-# ── Step 1: acquire tokens ─────────────────────────────────────────────────
-
-catalog_token = credential.get_token("https://ai.azure.com/.default").token
-arm_token     = credential.get_token("https://management.azure.com/.default").token
-
-CATALOG_URL = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools"
-catalog_headers = {
-    "Authorization": f"Bearer {catalog_token}",
-    "Content-Type": "application/json",
-    "x-ms-user-agent": "AzureMachineLearningWorkspacePortal/12.0",
-}
-arm_headers = {
-    "Authorization": f"Bearer {arm_token}",
-    "Content-Type": "application/json",
-}
-
-# ── Step 2: find trigger-enabled connectors ────────────────────────────────
-
-def list_trigger_connectors() -> list[dict]:
-    resp = requests.post(
-        CATALOG_URL,
-        headers=catalog_headers,
-        json={
-            "freeTextSearch": "*",
-            "filters": [
-                {"field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"]},
-                {"field": "type",              "operator": "eq", "values": ["tools"]},
-                {"field": "kind",              "operator": "eq", "values": ["Versioned"]},
-                {"field": "labels",            "operator": "eq", "values": ["latest"]},
-            ],
-            "includeTotalResultCount": True,
-            "pageSize": 100,
-            "skip": 0,
-        },
-        timeout=30,
-    )
-    resp.raise_for_status()
-    return [
-        item for item in resp.json()["value"]
-        if "triggers" in (item["properties"].get("x-ms-capabilities") or [])
-    ]
-
-for item in list_trigger_connectors():
-    print(f"{item['annotations']['name']:30s}  {item['properties'].get('title', '')}")
-
-# ── Steps 3–4: fetch connector spec, read trigger ops and auth type ────────
-
-def get_connector(name: str) -> dict:
-    resp = requests.post(
-        CATALOG_URL,
-        headers=catalog_headers,
-        json={
-            "freeTextSearch": "*",
-            "filters": [
-                {"field": "entityContainerId", "operator": "eq", "values": ["connectors-registry-prod-bl"]},
-                {"field": "type",              "operator": "eq", "values": ["tools"]},
-                {"field": "kind",              "operator": "eq", "values": ["Versioned"]},
-                {"field": "labels",            "operator": "eq", "values": ["latest"]},
-                {"field": "annotations/name",  "operator": "eq", "values": [name]},
-            ],
-            "includeTotalResultCount": True,
-            "pageSize": 1,
-        },
-        timeout=30,
-    )
-    resp.raise_for_status()
-    return resp.json()["value"][0]
-
-connector = get_connector("github")
-entity_id  = connector["entityId"]
-target_url = connector["properties"]["x-ms-runtime-urls"][0]
-
-# Trigger operations
-trigger_ops = [
-    op for op in connector["properties"].get("x-ms-operations", [])
-    if op.get("x-ms-trigger") is not None
-]
-for op in trigger_ops:
-    print(f"  {op['operationId']:35s} trigger={op['x-ms-trigger']:8s} '{op['operationName']}'")
-
-# Auth type
-conn_params = connector["properties"].get("x-ms-connection-parameters") or {}
-if any(p.get("type") == "oauthSetting" for p in conn_params.values()):
-    auth_type = "OAuth2"
-elif any(p.get("type") == "securestring" for p in conn_params.values()):
-    auth_type = "CustomKeys"
-else:
-    auth_type = "None"
-print(f"auth_type: {auth_type}")
-
-# ── Step 5: create the project connection ──────────────────────────────────
-
-subscription = os.environ["AZURE_SUBSCRIPTION_ID"]
-rg           = os.environ["AZURE_RESOURCE_GROUP"]
-account      = os.environ["FOUNDRY_ACCOUNT_NAME"]
-project      = os.environ["FOUNDRY_PROJECT_NAME"]
-conn_name    = "my-connector-conn"
-
-conn_url = (
-    f"https://management.azure.com/subscriptions/{subscription}"
-    f"/resourceGroups/{rg}/providers/Microsoft.CognitiveServices"
-    f"/accounts/{account}/projects/{project}"
-    f"/connections/{conn_name}?api-version=2025-04-01-preview"
-)
-
-base_metadata = {
-    "type": "gateway_connector",
-    "toolEntityId": entity_id,
-    "connectionproperties": '{"connectorName":"github"}',
-}
-
-if auth_type == "OAuth2":
-    body = {
-        "properties": {
-            "authType": "OAuth2", "category": "RemoteTool",
-            "connectorName": "github", "target": target_url,
-            "credentials": {}, "peRequirement": "NotRequired",
-            "metadata": base_metadata,
-        }
-    }
-else:  # CustomKeys
-    pat = os.environ["CONNECTOR_PAT"]
-    body = {
-        "properties": {
-            "authType": "CustomKeys", "category": "RemoteTool",
-            "connectorName": "github", "target": target_url,
-            "credentials": {"keys": {"Authorization": f"Bearer {pat}"}},
-            "peRequirement": "NotRequired",
-            "metadata": base_metadata,
-        }
-    }
-
-resp = requests.put(conn_url, headers=arm_headers, json=body, timeout=30)
-resp.raise_for_status()
-print(f"Connection '{conn_name}' created. Status: {resp.json()['properties'].get('overallStatus')}")
-# For OAuth2: open the Foundry portal and complete the OAuth consent flow.
-```
-
-After the connection is ready, use `conn_name` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using Azure.Identity;
-
-var credential = new DefaultAzureCredential();
-var catalogToken = await credential.GetTokenAsync(
-    new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"]));
-var armToken = await credential.GetTokenAsync(
-    new Azure.Core.TokenRequestContext(["https://management.azure.com/.default"]));
-
-using var http = new HttpClient();
-const string CatalogUrl = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools";
-
-// ── Steps 2–4: fetch connector spec ───────────────────────────────────────
-
-var filterBody = JsonSerializer.Serialize(new
-{
-    freeTextSearch = "*",
-    filters = new object[]
-    {
-        new { field = "entityContainerId", @operator = "eq", values = new[] { "connectors-registry-prod-bl" } },
-        new { field = "type",              @operator = "eq", values = new[] { "tools" } },
-        new { field = "kind",              @operator = "eq", values = new[] { "Versioned" } },
-        new { field = "labels",            @operator = "eq", values = new[] { "latest" } },
-        new { field = "annotations/name",  @operator = "eq", values = new[] { "github" } },
-    },
-    includeTotalResultCount = true,
-    pageSize = 1,
-    skip = 0,
-});
-
-using var req = new HttpRequestMessage(HttpMethod.Post, CatalogUrl)
-{
-    Content = new StringContent(filterBody, Encoding.UTF8, "application/json"),
-};
-req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", catalogToken.Token);
-req.Headers.Add("x-ms-user-agent", "AzureMachineLearningWorkspacePortal/12.0");
-
-var resp = await http.SendAsync(req);
-resp.EnsureSuccessStatusCode();
-using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync());
-var item  = doc.RootElement.GetProperty("value")[0];
-var props = item.GetProperty("properties");
-
-string entityId  = item.GetProperty("entityId").GetString()!;
-string targetUrl = props.GetProperty("x-ms-runtime-urls")[0].GetString()!;
-
-// Trigger operations
-foreach (var op in props.GetProperty("x-ms-operations").EnumerateArray())
-{
-    if (op.TryGetProperty("x-ms-trigger", out var trig) && trig.ValueKind != JsonValueKind.Null)
-        Console.WriteLine($"  {op.GetProperty("operationId").GetString(),-35} " +
-                          $"trigger={trig.GetString(),-8} '{op.GetProperty("operationName").GetString()}'");
-}
-
-// Auth type
-string authType = "None";
-if (props.TryGetProperty("x-ms-connection-parameters", out var cp))
-{
-    foreach (var p in cp.EnumerateObject())
-    {
-        if (!p.Value.TryGetProperty("type", out var t)) continue;
-        if (t.GetString() == "oauthSetting") { authType = "OAuth2";      break; }
-        if (t.GetString() == "securestring") { authType = "CustomKeys";  break; }
-    }
-}
-Console.WriteLine($"authType: {authType}");
-
-// ── Step 5: create the project connection ──────────────────────────────────
-
-var sub     = Environment.GetEnvironmentVariable("AZURE_SUBSCRIPTION_ID");
-var rg      = Environment.GetEnvironmentVariable("AZURE_RESOURCE_GROUP");
-var account = Environment.GetEnvironmentVariable("FOUNDRY_ACCOUNT_NAME");
-var project = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_NAME");
-var pat     = Environment.GetEnvironmentVariable("CONNECTOR_PAT") ?? "";
-const string ConnName = "my-connector-conn";
-
-var connUrl = $"https://management.azure.com/subscriptions/{sub}"
-            + $"/resourceGroups/{rg}/providers/Microsoft.CognitiveServices"
-            + $"/accounts/{account}/projects/{project}"
-            + $"/connections/{ConnName}?api-version=2025-04-01-preview";
-
-var metadata = new { type = "gateway_connector", toolEntityId = entityId,
-                     connectionproperties = "{\"connectorName\":\"github\"}" };
-
-object connBody = authType == "OAuth2"
-    ? new { properties = new { authType = "OAuth2", category = "RemoteTool",
-              connectorName = "github", target = targetUrl, credentials = new { },
-              peRequirement = "NotRequired", metadata } }
-    : new { properties = new { authType = "CustomKeys", category = "RemoteTool",
-              connectorName = "github", target = targetUrl,
-              credentials = new { keys = new { Authorization = $"Bearer {pat}" } },
-              peRequirement = "NotRequired", metadata } };
-
-using var putReq = new HttpRequestMessage(HttpMethod.Put, connUrl)
-{
-    Content = new StringContent(JsonSerializer.Serialize(connBody), Encoding.UTF8, "application/json"),
-};
-putReq.Headers.Authorization = new AuthenticationHeaderValue("Bearer", armToken.Token);
-var putResp = await http.SendAsync(putReq);
-putResp.EnsureSuccessStatusCode();
-using var putDoc = JsonDocument.Parse(await putResp.Content.ReadAsStringAsync());
-Console.WriteLine($"Connection '{ConnName}' created. " +
-    $"Status: {putDoc.RootElement.GetProperty("properties").GetProperty("overallStatus").GetString()}");
-// For OAuth2: open the Foundry portal and complete the OAuth consent flow.
-```
-
-After the connection is ready, use `ConnName` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
-
-:::zone-end
-
-:::zone pivot="programming-language-javascript"
-
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-
-const credential = new DefaultAzureCredential();
-const [catalogToken, armToken] = await Promise.all([
-  credential.getToken("https://ai.azure.com/.default"),
-  credential.getToken("https://management.azure.com/.default"),
-]);
-
-const CATALOG_URL = "https://eastus.api.azureml.ms/asset-gallery/v1.0/tools";
-const catalogHeaders = {
-  Authorization: `Bearer ${catalogToken.token}`,
-  "Content-Type": "application/json",
-  "x-ms-user-agent": "AzureMachineLearningWorkspacePortal/12.0",
-};
-
-// ── Steps 2–4: fetch connector spec ────────────────────────────────────────
-
-const connResp = await fetch(CATALOG_URL, {
-  method: "POST",
-  headers: catalogHeaders,
-  body: JSON.stringify({
-    freeTextSearch: "*",
-    filters: [
-      { field: "entityContainerId", operator: "eq", values: ["connectors-registry-prod-bl"] },
-      { field: "type",              operator: "eq", values: ["tools"] },
-      { field: "kind",              operator: "eq", values: ["Versioned"] },
-      { field: "labels",            operator: "eq", values: ["latest"] },
-      { field: "annotations/name",  operator: "eq", values: ["github"] },
-    ],
-    includeTotalResultCount: true,
-    pageSize: 1,
-    skip: 0,
-  }),
-});
-const catalog = await connResp.json();
-const item = catalog.value[0];
-
-const entityId  = item.entityId;
-const targetUrl = item.properties["x-ms-runtime-urls"][0];
-
-// Trigger operations: x-ms-trigger is non-null
-const triggerOps = (item.properties["x-ms-operations"] ?? [])
-  .filter((op) => op["x-ms-trigger"] != null);
-for (const op of triggerOps) {
-  console.log(
-    `  ${op.operationId.padEnd(35)} trigger=${op["x-ms-trigger"].padEnd(8)} '${op.operationName}'`
-  );
-}
-
-// Auth type
-const connParams = item.properties["x-ms-connection-parameters"] ?? {};
-let authType = "None";
-for (const param of Object.values(connParams)) {
-  if (param.type === "oauthSetting") { authType = "OAuth2";     break; }
-  if (param.type === "securestring") { authType = "CustomKeys"; break; }
-}
-console.log(`authType: ${authType}`);
-
-// ── Step 5: create the project connection ──────────────────────────────────
-
-const { AZURE_SUBSCRIPTION_ID: sub, AZURE_RESOURCE_GROUP: rg,
-        FOUNDRY_ACCOUNT_NAME: account, FOUNDRY_PROJECT_NAME: project,
-        CONNECTOR_PAT: pat } = process.env;
-const connName = "my-connector-conn";
-
-const connUrl =
-  `https://management.azure.com/subscriptions/${sub}` +
-  `/resourceGroups/${rg}/providers/Microsoft.CognitiveServices` +
-  `/accounts/${account}/projects/${project}` +
-  `/connections/${connName}?api-version=2025-04-01-preview`;
-
-const metadata = {
-  type: "gateway_connector",
-  toolEntityId: entityId,
-  connectionproperties: JSON.stringify({ connectorName: "github" }),
-};
-
-const connBody =
-  authType === "OAuth2"
-    ? { properties: { authType: "OAuth2", category: "RemoteTool",
-          connectorName: "github", target: targetUrl,
-          credentials: {}, peRequirement: "NotRequired", metadata } }
-    : { properties: { authType: "CustomKeys", category: "RemoteTool",
-          connectorName: "github", target: targetUrl,
-          credentials: { keys: { Authorization: `Bearer ${pat}` } },
-          peRequirement: "NotRequired", metadata } };
-
-const putResp = await fetch(connUrl, {
-  method: "PUT",
-  headers: { Authorization: `Bearer ${armToken.token}`, "Content-Type": "application/json" },
-  body: JSON.stringify(connBody),
-});
-if (!putResp.ok) throw new Error(await putResp.text());
-const conn = await putResp.json();
-console.log(`Connection '${connName}' created. Status: ${conn.properties.overallStatus}`);
-// For OAuth2: open the Foundry portal and complete the OAuth consent flow.
-```
-
-After the connection is ready, use `connName` as `connection_id` and the trigger operation's `operationId` as `event_name` when you [create the routine](#event-based-triggers).
-
-:::zone-end
 
 ## Prerequisites
 
@@ -776,9 +134,7 @@ After the connection is ready, use `connName` as `connection_id` and the trigger
 
 A routine definition specifies a trigger (when to fire) and an action (which agent to run and through which API). Exactly one trigger entry is supported in preview.
 
-### Time-based triggers
-
-#### Schedule trigger
+### Schedule trigger
 
 A schedule trigger fires repeatedly on a cron expression. The service enforces a minimum interval of five minutes.
 
@@ -994,13 +350,13 @@ Recurring `schedule` triggers aren't supported through the `azd ai routine` exte
 
 :::zone-end
 
-#### Timer trigger
+### Timer trigger
 
 A timer trigger fires once at a specific future date and time, or after a duration from now.
 
 :::zone pivot="foundry-portal"
 
-1. Follow steps 1â€“4 for creating a routine, and enter a name such as `once-on-release-day`.
+1. Follow steps 1Ã¢â‚¬â€œ4 for creating a routine, and enter a name such as `once-on-release-day`.
 1. Under **Trigger**, select **Timer**.
 1. Enter the date and time in ISO 8601 format, for example `2026-09-01T09:00:00Z`, or a duration such as `PT2H` (two hours from now).
 1. Optionally select a **Time zone** if you supply a local timestamp without a UTC offset.
@@ -1149,283 +505,6 @@ azd ai routine create --file routine.yaml
 
 :::zone-end
 
-### Event-based triggers
-
-#### GitHub issue trigger
-
-A GitHub issue trigger fires when an issue is opened or closed in a connected repository. The `connection_id` value is the name of a project connection that stores GitHub credentials.
-
-**Before you begin:** Create a GitHub connection in your Foundry project. For full instructions on using the Foundry Tools Catalog to discover connectors and create project connections, see [Model Context Protocol (MCP)](tools/model-context-protocol.md).
-
-:::zone pivot="foundry-portal"
-
-1. Follow steps 1â€“4 for creating a routine, and enter a name such as `gh-issue-triage`.
-1. Under **Trigger**, select **GitHub issue**.
-1. Select the GitHub **Connection** you created in your project.
-1. Enter the **Owner** (GitHub organization or user), for example `contoso`.
-1. Enter the **Repository** name, for example `contoso-app`.
-1. Select the **Issue event**: **Opened** or **Closed**.
-1. Under **Action**, select the action type and enter the required agent identifier.
-1. Select **Create**.
-
-:::zone-end
-
-:::zone pivot="programming-language-rest"
-
-**Step 1: Create the GitHub project connection**
-
-Use the Foundry Tools Catalog to find the GitHub connector and create a project connection. The connection name you choose becomes your `CONNECTION_ID`. For full instructions, see [Model Context Protocol (MCP)](tools/model-context-protocol.md).
-
-**Step 2: Create the routine**
-
-```bash
-CONNECTION_ID=<your-github-connection-name>
-
-# Using Responses API action
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/gh-issue-triage" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
-  -d '{
-    "description": "Triages new GitHub issues with an agent.",
-    "enabled": true,
-    "triggers": {
-      "new-issue": {
-        "type": "github_issue",
-        "connection_id": "'"$CONNECTION_ID"'",
-        "owner": "contoso",
-        "repository": "contoso-app",
-        "issue_event": "opened"
-      }
-    },
-    "action": {
-      "type": "invoke_agent_responses_api",
-      "agent_name": "'"$AGENT_NAME"'"
-    }
-  }'
-```
-
-Set `"issue_event"` to `"closed"` to fire when issues are closed instead.
-
-To use the Invocations API action instead, replace the `action` object:
-
-```json
-"action": {
-  "type": "invoke_agent_invocations_api",
-  "agent_endpoint_id": "<your-agent-endpoint-id>"
-}
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-python"
-
-```python
-connection_id = os.environ["GITHUB_CONNECTION_NAME"]
-
-# Using Responses API action
-routine = client.routines.create_or_update(
-    routine_name="gh-issue-triage",
-    description="Triages new GitHub issues with an agent.",
-    enabled=True,
-    triggers={
-        "new-issue": {
-            "type": "github_issue",
-            "connection_id": connection_id,  # required; max 256 characters
-            "owner": "contoso",              # required; max 128 characters
-            "repository": "contoso-app",     # required; max 128 characters
-            "issue_event": "opened",         # required: "opened" or "closed"
-        }
-    },
-    action={
-        "type": "invoke_agent_responses_api",
-        "agent_name": agent_name,
-    },
-)
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-var connectionId = Environment.GetEnvironmentVariable("GITHUB_CONNECTION_NAME");
-
-var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
-    "gh-issue-triage",
-    new RoutineCreateOrUpdateRequest(
-        triggers: new Dictionary<string, RoutineTrigger>
-        {
-            ["new-issue"] = new GitHubIssueRoutineTrigger(
-                connectionId: connectionId,           // required; max 256 characters
-                owner: "contoso",                     // required; max 128 characters
-                repository: "contoso-app",            // required; max 128 characters
-                issueEvent: GitHubIssueEvent.Opened)  // required: Opened or Closed
-        },
-        action: new InvokeAgentResponsesApiRoutineAction
-        {
-            AgentName = agentName,
-        })
-    {
-        Description = "Triages new GitHub issues with an agent.",
-        Enabled = true,
-    });
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-javascript"
-
-```javascript
-const connectionId = process.env.GITHUB_CONNECTION_NAME;
-
-const routine = await client.routines.createOrUpdate("gh-issue-triage", {
-  description: "Triages new GitHub issues with an agent.",
-  enabled: true,
-  triggers: {
-    "new-issue": {
-      type: "github_issue",
-      connection_id: connectionId,  // required; max 256 characters
-      owner: "contoso",             // required; max 128 characters
-      repository: "contoso-app",    // required; max 128 characters
-      issue_event: "opened",        // required: "opened" or "closed"
-    },
-  },
-  action: {
-    type: "invoke_agent_responses_api",
-    agent_name: agentName,
-  },
-});
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-The `github_issue` trigger isn't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a GitHub issue routine.
-
-:::zone-end
-
-#### Custom trigger
-
-A custom trigger fires on a provider-specific event. The `provider` field identifies the event source, and the `parameters` field passes provider-specific configuration.
-
-:::zone pivot="foundry-portal"
-
-Custom triggers aren't configurable from the portal in v1 preview. Use the REST API or an SDK.
-
-:::zone-end
-
-:::zone pivot="programming-language-rest"
-
-```bash
-# Using Responses API action
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/custom-event-routine" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -H "Foundry-Features: Routines=V1Preview" \
-  -d '{
-    "description": "Fires on a custom provider event.",
-    "enabled": true,
-    "triggers": {
-      "my-event": {
-        "type": "custom",
-        "provider": "my-provider",
-        "event_name": "my-event-name",
-        "parameters": {
-          "key1": "value1"
-        }
-      }
-    },
-    "action": {
-      "type": "invoke_agent_responses_api",
-      "agent_name": "'"$AGENT_NAME"'"
-    }
-  }'
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-python"
-
-```python
-routine = client.routines.create_or_update(
-    routine_name="custom-event-routine",
-    description="Fires on a custom provider event.",
-    enabled=True,
-    triggers={
-        "my-event": {
-            "type": "custom",
-            "provider": "my-provider",        # required; max 128 characters
-            "event_name": "my-event-name",    # optional; max 128 characters
-            "parameters": {"key1": "value1"}, # required
-        }
-    },
-    action={
-        "type": "invoke_agent_responses_api",
-        "agent_name": agent_name,
-    },
-)
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
-    "custom-event-routine",
-    new RoutineCreateOrUpdateRequest(
-        triggers: new Dictionary<string, RoutineTrigger>
-        {
-            ["my-event"] = new CustomRoutineTrigger(
-                provider: "my-provider",                                       // required; max 128 characters
-                parameters: new Dictionary<string, object> { ["key1"] = "value1" })  // required
-            {
-                EventName = "my-event-name",  // optional; max 128 characters
-            }
-        },
-        action: new InvokeAgentResponsesApiRoutineAction
-        {
-            AgentName = agentName,
-        })
-    {
-        Description = "Fires on a custom provider event.",
-        Enabled = true,
-    });
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-javascript"
-
-```javascript
-const routine = await client.routines.createOrUpdate("custom-event-routine", {
-  description: "Fires on a custom provider event.",
-  enabled: true,
-  triggers: {
-    "my-event": {
-      type: "custom",
-      provider: "my-provider",        // required; max 128 characters
-      event_name: "my-event-name",    // optional; max 128 characters
-      parameters: { key1: "value1" }, // required
-    },
-  },
-  action: {
-    type: "invoke_agent_responses_api",
-    agent_name: agentName,
-  },
-});
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-The `custom` trigger isn't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a custom-event routine.
-
-:::zone-end
-
 ## Action fields
 
 Each routine specifies exactly one action. The two supported action types have different required and optional fields.
@@ -1565,7 +644,7 @@ Foundry queues the run and opens the run history view. The new run appears with 
 
 :::zone pivot="programming-language-rest"
 
-**Responses API routine â€” with optional input override:**
+**Responses API routine Ã¢â‚¬â€ with optional input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
@@ -1580,7 +659,7 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
   }'
 ```
 
-**Invocations API routine â€” with optional input override:**
+**Invocations API routine Ã¢â‚¬â€ with optional input override:**
 
 ```bash
 curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async" \
@@ -1767,7 +846,7 @@ for run in runs:
         f"started={run.started_at}  ended={run.ended_at}"
     )
     if run.phase == "failed":
-        print(f"  error: {run.error_type} â€” {run.error_message}")
+        print(f"  error: {run.error_type} Ã¢â‚¬â€ {run.error_message}")
 ```
 
 :::zone-end
@@ -1779,7 +858,7 @@ await foreach (var run in client.GetRoutinesClient().GetRunsAsync("daily-summary
 {
     Console.WriteLine($"{run.Id}  phase={run.Phase}  source={run.AttemptSource}");
     if (run.Phase == RoutineRunPhase.Failed)
-        Console.WriteLine($"  error: {run.ErrorType} â€” {run.ErrorMessage}");
+        Console.WriteLine($"  error: {run.ErrorType} Ã¢â‚¬â€ {run.ErrorMessage}");
 }
 ```
 
@@ -1791,7 +870,7 @@ await foreach (var run in client.GetRoutinesClient().GetRunsAsync("daily-summary
 for await (const run of client.routines.listRuns("daily-summary")) {
   console.log(`${run.id}  phase=${run.phase}  source=${run.attempt_source}`);
   if (run.phase === "failed") {
-    console.log(`  error: ${run.error_type} â€” ${run.error_message}`);
+    console.log(`  error: ${run.error_type} Ã¢â‚¬â€ ${run.error_message}`);
   }
 }
 ```
@@ -2088,30 +1167,10 @@ azd ai routine delete once-on-release-day
 | `at` | string | Yes | A future timer expression. Accepts an ISO 8601 timestamp with an explicit UTC offset, a local timestamp paired with `time_zone`, or a positive ISO 8601 duration from now. |
 | `time_zone` | string | No | An IANA or Windows time zone identifier. Required when `at` is a local timestamp without a UTC offset. |
 
-### GitHub issue trigger fields
-
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `type` | string | Yes | Must be `"github_issue"`. |
-| `connection_id` | string | Yes | The project connection name that resolves the GitHub credentials. Maximum 256 characters. |
-| `owner` | string | Yes | The GitHub owner or organization that scopes which issues can fire the trigger. Maximum 128 characters. |
-| `repository` | string | Yes | The GitHub repository name. Maximum 128 characters. |
-| `issue_event` | string | Yes | The event that fires the trigger: `"opened"` or `"closed"`. |
-
-### Custom trigger fields
-
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `type` | string | Yes | Must be `"custom"`. |
-| `provider` | string | Yes | The provider or source identifier for the custom trigger. Maximum 128 characters. |
-| `event_name` | string | No | An optional provider-specific event name. Maximum 128 characters. |
-| `parameters` | object | Yes | Provider-specific parameters passed to the trigger. |
 
 ## Preview limitations
 
 - In v1 preview, each routine supports exactly one trigger entry in the `triggers` map.
-- The `custom` trigger type requires a provider configured in your subscription.
-- GitHub issue triggers require a GitHub connection created in the project.
 
 ## Related content
 
