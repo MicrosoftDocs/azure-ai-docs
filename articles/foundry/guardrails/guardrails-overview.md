@@ -76,9 +76,9 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 | Severity level | Behavior |
 |---------------|----------|
 | **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-classic/foundry-models/how-to/configure-content-filters.md) |
-| **Low** | Flags content at low severity and above. Most restrictive. |
+| **Low** | Flags content at low severity and above. Least restrictive. |
 | **Medium** | Flags content at medium severity and above. |
-| **High** | Flags only the most severe content. Least restrictive. |
+| **High** | Flags only the most severe content. Most restrictive. |
 
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
 
