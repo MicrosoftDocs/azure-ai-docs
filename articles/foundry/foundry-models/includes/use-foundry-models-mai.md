@@ -19,15 +19,15 @@ In this article, you learn how to:
 
 - Deploy MAI image models in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
-- Generate images by using the MAI image generation API
-- Run an image edit
+- Generate images by using the MAI image generations API
+- Run an image edit by using the MAI image edits API
 
 MAI image models in Microsoft Foundry include:
 
 | Model name | Model version | Key Capabilities |
 | --- | --- | --- |
-| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation, Image-to-image edits |
-| `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation, Image-to-image edits |
+| `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
+| `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
 | `MAI-Image-2e` (Preview) | `2026-04-09`| Text-to-image generation |
 | `MAI-Image-2` (Preview) | `2026-02-20` | Text-to-image generation |
 
