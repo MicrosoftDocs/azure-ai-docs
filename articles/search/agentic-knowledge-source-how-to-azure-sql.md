@@ -327,11 +327,11 @@ The following properties apply to indexed Azure SQL knowledge sources.
 
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the knowledge source. The name must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | [TO VERIFY] | Yes |
-| `kind` | The kind of knowledge source, which is `indexedSql` in this case. | String | [TO VERIFY] | Yes |
-| `description` | A description of the knowledge source. | String | [TO VERIFY] | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | [TO VERIFY] | No |
-| `indexedSqlParameters` | Parameters specific to indexed Azure SQL knowledge sources, which are described in the following section. | Object | [TO VERIFY] | Yes |
+| `name` | The name of the knowledge source. The name must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `kind` | The kind of knowledge source, which is `indexedSql` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexedSqlParameters` | Parameters specific to indexed Azure SQL knowledge sources, which are described in the following section. | Object | | Yes |
 
 ### `indexedSqlParameters` properties
 
@@ -339,12 +339,12 @@ The following properties are specific to the `indexedSqlParameters` object of an
 
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `connectionString` | A SQL authentication or managed-identity connection string for Azure SQL Database or Azure SQL Managed Instance. For supported credential formats, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites). | String | [TO VERIFY] | Yes |
-| `tableOrView` | The fully qualified name of the SQL table or view to ingest, specified in the `schema.objectName` format. A knowledge source ingests from exactly one table or one view. | String | [TO VERIFY] | Yes |
-| `highWaterMarkColumn` | Required when `tableOrView` refers to a view. The name of the column used for high-water-mark change detection. We strongly recommend a `rowversion` column. For more information, see [High water mark change detection policy](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). | String | [TO VERIFY] | Conditional |
-| `contentColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are treated as searchable text content in the generated index. Each mapping must use `Edm.String` as the `searchFieldType`. | Array | [TO VERIFY] | No |
-| `embeddingColumns` | An array of [embedding mappings](#embedding-mapping) that defines which SQL columns are used to generate vector fields. | Array | [TO VERIFY] | No |
-| `ingestionParameters` | A subset of the standard knowledge source [ingestion parameters](#ingestionparameters-properties). | Object | [TO VERIFY] | No |
+| `connectionString` | A SQL authentication or managed-identity connection string for Azure SQL Database or Azure SQL Managed Instance. For supported credential formats, see the [Azure SQL indexer prerequisites](search-how-to-index-sql-database.md#prerequisites). | String | No | Yes |
+| `tableOrView` | The fully qualified name of the SQL table or view to ingest, specified in the `schema.objectName` format. A knowledge source ingests from exactly one table or one view. | String | No | Yes |
+| `highWaterMarkColumn` | Required when `tableOrView` refers to a view. The name of the column used for high-water-mark change detection. We strongly recommend a `rowversion` column. For more information, see [High water mark change detection policy](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy). | String | No | Conditional |
+| `contentColumns` | An array of [column mappings](#column-mapping) that defines which SQL columns are treated as searchable text content in the generated index. Each mapping must use `Edm.String` as the `searchFieldType`. | Array | No | No |
+| `embeddingColumns` | An array of [embedding mappings](#embedding-mapping) that defines which SQL columns are used to generate vector fields. | Array | No | No |
+| `ingestionParameters` | A subset of the standard knowledge source [ingestion parameters](#ingestionparameters-properties). | Object | | No |
 
 ### Column mapping
 
@@ -352,9 +352,9 @@ The following properties are specific to the `indexedSqlParameters` object of an
 
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the field as it appears in the generated Azure AI Search index. | String | [TO VERIFY] | Yes |
-| `sourceField` | The SQL column whose value populates the target field. | String | [TO VERIFY] | Yes |
-| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. | String | [TO VERIFY] | Yes |
+| `name` | The name of the field as it appears in the generated Azure AI Search index. | String | No | Yes |
+| `sourceField` | The SQL column whose value populates the target field. | String | No | Yes |
+| `searchFieldType` | The Azure AI Search field type for the generated field. For `contentColumns`, this must be `Edm.String`. | String | No | Yes |
 
 ### Embedding mapping
 
@@ -362,8 +362,8 @@ The following properties are specific to the `indexedSqlParameters` object of an
 
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the target vector field that the service creates in the generated index. For example, it could be `descriptionVector`. | String | [TO VERIFY] | Yes |
-| `sourceField` | The SQL column whose text content is sent to the embedding model. | String | [TO VERIFY] | Yes |
+| `name` | The name of the target vector field that the service creates in the generated index. For example, it could be `descriptionVector`. | String | No | Yes |
+| `sourceField` | The SQL column whose text content is sent to the embedding model. | String | No | Yes |
 
 ### `ingestionParameters` properties
 
@@ -371,10 +371,10 @@ For indexed Azure SQL knowledge sources, the existing `ingestionParameters` sche
 
 | Property | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `contentExtractionMode` | Must be `"minimal"`. Other modes aren't supported because Azure SQL ingestion is row based and doesn't extract content from binary documents. | String | [TO VERIFY] | No |
-| `embeddingModel` | An Azure OpenAI embedding model used to vectorize the columns listed in `embeddingColumns`. Required only when `embeddingColumns` is specified. | Object | [TO VERIFY] | Conditional |
-| `identity` | An optional user-assigned managed identity used to authenticate to Azure SQL and Azure OpenAI. | Object | [TO VERIFY] | No |
-| `ingestionSchedule` | An optional schedule that controls how often the generated indexer runs. | Object | [TO VERIFY] | No |
+| `contentExtractionMode` | Must be `"minimal"`. Other modes aren't supported because Azure SQL ingestion is row based and doesn't extract content from binary documents. | String | No | No |
+| `embeddingModel` | An Azure OpenAI embedding model used to vectorize the columns listed in `embeddingColumns`. Required only when `embeddingColumns` is specified. | Object | Only `apiKey` and `deploymentId` are editable | Conditional |
+| `identity` | An optional user-assigned managed identity used to authenticate to Azure SQL and Azure OpenAI. | Object | Yes | No |
+| `ingestionSchedule` | An optional schedule that controls how often the generated indexer runs. | Object | Yes | No |
 
 Image extraction and image verbalization aren't supported for indexed Azure SQL knowledge sources, so `chatCompletionModel`, `assetStore`, `aiServices`, and image-related settings have no effect.
 
