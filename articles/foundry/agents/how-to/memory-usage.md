@@ -786,7 +786,7 @@ When a user explicitly asks the agent to remember or forget information, the mem
 <!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that direct memory commands don't override TTL expiration. -->
 
 > [!NOTE]
-> Direct memory commands don't override [memory TTL](#configure-ttl-and-retention-policies). If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
+> Direct memory commands don't override memory TTL. If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
 
 :::zone pivot="python"
 
