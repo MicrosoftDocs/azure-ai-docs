@@ -44,7 +44,7 @@ The agent optimizer automatically determines which targets to improve based on y
 
 The optimizer rewrites and refines your agent's system prompt. It analyzes baseline performance and generates prompt variations that score higher.
 
-**When it activates:** Instruction tuning runs when your agent has an `instructions.md` file in the baseline config directory. This is the most common optimization target and works well for improving response quality, adherence to task requirements, and reducing hallucination.
+**When it activates:** Instruction tuning runs when your agent has an `instructions.md` file in the baseline config directory. This is the most common optimization target and works well for improving response quality, adherence to task requirements, and reducing inaccurate outputs.
 
 ### Skill improvement
 

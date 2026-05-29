@@ -1,6 +1,10 @@
 ---
+title: Agent Optimizer limited preview notice
+description: Reusable include that displays the Agent Optimizer limited preview sign-up notice.
 author: aahill
 ms.author: aahi
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: include
 ms.date: 05/28/2026
 ---

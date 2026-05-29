@@ -269,7 +269,7 @@ azd ai agent optimize
 The optimizer refines your `tools.json` definitions. Common improvements include:
 
 - Clearer function descriptions that help the model know when to call a tool
-- More specific parameter descriptions that reduce hallucinated arguments
+- More specific parameter descriptions that reduce inaccurate arguments
 - Added constraints (enums, required fields) that prevent invalid inputs
 
 Your tool implementation code stays the same. Only the definitions the model sees change.

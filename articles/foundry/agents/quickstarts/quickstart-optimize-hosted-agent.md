@@ -139,7 +139,7 @@ Test the deployment:
 azd ai agent invoke "What is 2+2?"
 ```
 
-## Generate custom dataset and evalutations
+## Generate custom dataset and evaluations
 
 For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
 
