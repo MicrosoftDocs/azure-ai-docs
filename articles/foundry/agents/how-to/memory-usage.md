@@ -16,8 +16,6 @@ zone_pivot_groups: foundry-memory-store
 
 # Create and use memory in Foundry Agent Service (preview)
 
-<!-- TO-DO: Confirm the three capabilities listed below reflect what we're releasing and documenting in the v2 preview. -->
-
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all), the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
@@ -26,6 +24,8 @@ zone_pivot_groups: foundry-memory-store
 > - Memory item operations to create, read, update, list, and delete individual memory records.
 > - Store-level default retention controls, including default TTL for newly created memory entries.
 > - Direct remember-and-forget memory command behavior.
+
+<!-- TO-DO: Confirm the three capabilities listed above reflect what we're releasing and documenting in the v2 preview. -->
 
 Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 

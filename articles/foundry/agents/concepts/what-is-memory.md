@@ -14,8 +14,6 @@ ai-usage: ai-assisted
 
 # Memory in Microsoft Foundry Agent Service (preview)
 
-<!-- TO-DO: Confirm the three capabilities listed below reflect what we're releasing and documenting in the v2 preview. -->
-
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all), the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
@@ -24,6 +22,8 @@ ai-usage: ai-assisted
 > - Memory item operations to create, read, update, list, and delete individual memory records.
 > - Store-level default retention controls, including default TTL for newly created memory entries.
 > - Direct remember-and-forget memory command behavior.
+
+<!-- TO-DO: Confirm the three capabilities listed above reflect what we're releasing and documenting in the v2 preview. -->
 
 Memory in Microsoft Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
@@ -71,9 +71,9 @@ Memory in Foundry Agent Service extracts and stores three types of long-term mem
 
 | Memory type | Description | Retrieval guidance | Configuration |
 |--|--|--|--|
-| User profile memory | Durable user preferences and personal context, such as language preference, product defaults, or accessibility needs. | Retrieve near the beginning of each conversation to establish stable personalization context. | Configure user profile extraction guidance in [memory store options](../how-to/memory-usage.md#customize-memory). |
-| Chat summary memory | Distilled summaries of prior conversation topics and threads. | Retrieve per turn using current conversation messages to surface relevant continuity context. | Enable chat summary memory in [memory store options](../how-to/memory-usage.md#create-a-memory-store). |
-| Procedural memory | Reusable how-to routines and operating patterns inferred from prior interactions. | Retrieve when the user asks for a recurring workflow or task the agent has handled before. | Enable procedural memory in [memory store options](../how-to/memory-usage.md#create-a-memory-store). |
+| User profile memory | Durable user preferences and personal context, such as language preference, product defaults, or accessibility needs. | Retrieve near the beginning of each conversation to establish stable personalization context. | Enabled by default. To configure and disable, see [Create a memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| Chat summary memory | Distilled summaries of prior conversation topics and threads. | Retrieve per turn using current conversation messages to surface relevant continuity context. | Enabled by default. To configure and disable, see [Create a memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| Procedural memory | Reusable how-to routines and operating patterns inferred from prior interactions. | Retrieve when the user asks for a recurring workflow or task the agent has handled before. | Enabled by default. To configure and disable, see [Create a memory store](../how-to/memory-usage.md#create-a-memory-store). |
 
 ## Memory management and retention
 
