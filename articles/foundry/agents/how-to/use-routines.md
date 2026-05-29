@@ -74,7 +74,7 @@ For required and optional fields of each action type, see [Action fields](#actio
   pip install "azure-ai-projects>=2.2.0"
   ```
 
-  Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers and the built-in `reminder` agent tool.
+  Version 2.2.0 introduces the duration shorthand (`"30m"`, `"2h"`) for timer triggers.
 
 - Install `azure-identity` for authentication:
 
@@ -396,8 +396,6 @@ The `at` field accepts:
 - An ISO 8601 timestamp with an explicit UTC offset, for example `"2026-06-01T09:00:00Z"`.
 - A local timestamp paired with `time_zone`, for example `"at": "2026-09-01T09:00:00", "time_zone": "America/Los_Angeles"`.
 - A positive duration from the current time, for example `"30m"` (30 minutes from now) or `"2h"` (two hours from now).
-
-The built-in [`reminder` agent tool](#reminder-tool) writes this field as `"{minutes}m"`.
 
 :::zone-end
 
@@ -1168,7 +1166,7 @@ azd ai routine delete once-on-release-day
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | string | Yes | Must be `"timer"`. |
-| `at` | string | Yes | A future timer expression. Accepts an ISO 8601 timestamp with an explicit UTC offset (for example, `"2026-06-01T09:00:00Z"`), a local timestamp paired with `time_zone`, or a positive duration from now (for example, `"30m"` or `"2h"`). The built-in [`reminder` agent tool](#reminder-tool) writes this field as `"{minutes}m"`. |
+| `at` | string | Yes | A future timer expression. Accepts an ISO 8601 timestamp with an explicit UTC offset (for example, `"2026-06-01T09:00:00Z"`), a local timestamp paired with `time_zone`, or a positive duration from now (for example, `"30m"` or `"2h"`). |
 | `time_zone` | string | No | An IANA or Windows time zone identifier. Required when `at` is a local timestamp without a UTC offset. |
 
 
@@ -1195,21 +1193,6 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 - The default delivery policy is 3 total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
 - The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
-
-## Reminder tool
-
-The `reminder` tool (`reminder_preview`) is a built-in agent tool that schedules the agent to re-invoke itself after a delay. When the model calls the tool, the service creates a one-shot timer routine that fires after the specified delay and re-invokes the agent on the same conversation thread. You don't need to pre-create a routine.
-
-| Aspect | Detail |
-|---|---|
-| Tool type | `reminder_preview` |
-| Tool argument | `minutes` (positive integer) |
-| Underlying trigger | One-shot timer with `at` set to `"{minutes}m"` |
-| Continuation | Re-invokes the agent on the same conversation thread |
-| SDK requirement | `azure-ai-projects` 2.2.0 or later |
-| Preview header | `Foundry-Features: Routines=V1Preview` |
-
-Because the reminder tool is a preview feature, attach it to your agent the same way you attach any other built-in tool, and include the `Foundry-Features: Routines=V1Preview` header on the runtime calls that create or invoke the agent.
 
 ## Preview limitations
 

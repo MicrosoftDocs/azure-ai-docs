@@ -57,17 +57,6 @@ When a routine is enabled, Foundry manages the trigger and dispatch path for you
 
 This flow uses the existing agent invocation path, so routines don't introduce a separate runtime for agent logic. The agent continues to use the same configuration, tools, and observability features that it uses when invoked from an application or playground.
 
-## Agents that schedule follow-up timers
-
-Some scenarios need the agent to decide when it should run again. For example, an agent might inspect a support issue, decide that it needs to check back after some time window, and schedule a one-time timer for that follow-up.
-
-<!-- TODO: Fill in this section when agent self-scheduling is finalized. Cover:
-- How an agent requests a new timer during a run.
-- Which routine or project permissions are required for self-scheduling.
-- How the follow-up timer input relates to the current agent response.
-- How routine run history and agent traces identify agent-scheduled timer runs.
--->
-
 ## Connections, identity, and governance
 
 Routines are scoped to a Foundry project. You manage routines with the same project governance model you use for agents, tools, and connections. For more information, see [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md).
