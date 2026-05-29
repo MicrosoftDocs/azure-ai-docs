@@ -7,12 +7,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-<<<<<<< patch-82
 ms.date: 05/28/2026
-=======
-ms.date: 04/28/2026
 ms.custom: references_regions
->>>>>>> release-build-2026-release
 zone_pivot_groups: llm-speech-quickstart
 ai-usage: ai-assisted
 
@@ -174,10 +170,7 @@ To start using transcription with enhanced mode, first follow the [LLM Speech qu
 
 You can also use the MAI-Transcribe model for input audio transcription in the [Voice Live API](./voice-live.md). Set the `model` field in the `input_audio_transcription` session configuration. For details, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md#mai-transcribe-1-model-preview).
 
-<<<<<<< patch-82
-=======
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
->>>>>>> release-build-2026-release
 
 ## Related content
 
