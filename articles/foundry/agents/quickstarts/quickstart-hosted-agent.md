@@ -40,14 +40,15 @@ Before you begin, you need:
 * The **Foundry Project Manager** role at project scope (or another role that grants both data-plane and role-assignment permissions). For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 * [Python 3.13 or later](https://www.python.org/downloads/).
 * [Git](https://git-scm.com/downloads).
+* (Optional) [GitHub Copilot for Azure plugin](https://github.com/microsoft/GitHub-Copilot-for-Azure) Recommended for coding agents and includes agent skills for creating, testing, and deploying hosted agents.
 
 :::zone pivot="azd"
 
-* [Azure Developer CLI (AZD) 1.25.0 or later](/azure/developer/azure-developer-cli/install-azd).
-* The `azd ai agent` extension, version 0.1.34-preview or later. Install and verify the extension after AZD is installed:
+* [Azure Developer CLI (AZD) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd).
+* The `azd ai foundry` extension. Install and verify the extension after AZD is installed:
 
     ```
-    azd ext install azure.ai.agents
+    azd ext install azure.ai.foundry
     ```
 
 * Sign in to Azure:
@@ -75,33 +76,56 @@ You need the **Foundry Project Manager** role at project scope to create and dep
 
 ## Step 1: Scaffold the sample project
 
-Initialize a new hosted agent project in an empty directory and choose the recommended options for each prompt:
+Initialize a new hosted agent project using the basic Agent Framework sample manifest:
 
 ```
-azd ai agent init
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/agent.manifest.yaml"
 ```
 
 The interactive flow prompts for:
 
-* **Language**--Select Python.
-* **Starter template**--Select **Basic agent (Responses, Agent Framework, Python)**
-* **Agent name**--Choose the default **agent-framework-agent-basic-responses**
-* **Deployment type**--Select **Container deploy**
-* **Runtime**--Select Python 3.13
-* **Entry point**--Chose the default **main.py**
-* **Dependency resolution**--Select **Remote build (dependencies installed on server during deployment)**
-* **Foundry Project**--Select **Create a new Foundry project**
-* **Azure Tenant**--Select your Azure direction for the subscription you want to use
-* **Azure subscription**--The subscription that hosts the Foundry resources
-* **Location**--A region for the resources
-* **Model deployment**--Select the default **Use 'gpt-4.1-mini' (from manifest)**
-* **Model version**--Select the default **2025-04-14 (default)**
-* **Model SKU**--A SKU available in your region and subscription and has quota available
-* **Deployment capacity**--Select the default **10**
-* **Deployment name**--Choose the default **gpt-4.1-mini**
-* **Container resources**--Select the default **0.5 cores, 1Gi memory**
+* **Agent name**: Customize the name or accept the default, **agent-framework-agent-basic-responses**
+* **Foundry Project**: Select **Create a new Foundry project**
+* **Tenant**: Select your Azure tenant
+* **Subscription**: Select your Azure subscription
+* **Location**: Select an Azure region
+* **Model**: Select the default, **gpt-4.1-mini**, or another model you can access.
+* **Model Version**: Select the default option.
+* **Model SKU**: Select an option with available quota that isn't Batch, usually **Standard** or **GlobalStandard**
+* **Deployment capacity**: Select the default, **10**
+* **Deployment name**: Select the default, **gpt-4.1-mini**
 
 When complete, you should see **AI agent definition added to your azd project successfully!**.
+
+### Non-interactive commands
+
+You can also use the `--no-prompt` flag to run `init` in a non-interactive environment, like a coding agent:
+
+```
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/agent.manifest.yaml" --no-prompt
+```
+
+Before continuing, set AZURE_SUBSCRIPTION_ID and AZURE_LOCATION:
+
+```
+azd env set AZURE_SUBSCRIPTION_ID <subscription-id>
+azd env set AZURE_LOCATION <region>
+```
+
+You can configure model deployments by editing the `config` section in `azure.yaml`: 
+
+```yaml
+deployments:
+    - name: <deployment-name>
+      model:
+        name: <model-name>
+        format: OpenAI
+        version: <model-version>
+      sku:
+        name: GlobalStandard
+        capacity: 1
+```        
+
 
 ## Step 2: Provision Azure resources
 
@@ -128,7 +152,7 @@ This step takes a few minutes and creates the following resources. To run provis
 1. Start the agent:
 
     ```
-    azd ai agent run
+    azd ai agent run --no-inspector
     ```
 
     This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are nonblocking. The agent starts and responds correctly despite them.
