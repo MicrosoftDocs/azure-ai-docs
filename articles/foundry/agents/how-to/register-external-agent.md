@@ -117,6 +117,8 @@ pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
 
 ### Create the registration
 
+### [Foundry portal](#tab/portal)
+
 ### Foundry portal
 
 You can create a registration in the [Foundry portal](https://ai.azure.com) by:
@@ -125,6 +127,8 @@ You can create a registration in the [Foundry portal](https://ai.azure.com) by:
 1. In the window that appears, entering the agent name, description and the OpenTelemetry ID. 
 
     :::image type="content" source="../media/register-external/foundry-button.png" alt-text="A screenshot showing the button to link an external agent" lightbox="../media/register-external/foundry-button.png":::
+
+### [Python SDK](#tab/python)
 
 ### Python SDK 
 
@@ -168,6 +172,8 @@ Resolved otel_agent_id: travel-planner-agent
 > The `otel_agent_id` parameter is optional and defaults to the agent `name`. Set it explicitly only when the running agent already emits a stable `gen_ai.agent.id` value that differs from the Foundry agent name.
 
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
+
+---
 
 ## Run an evaluation
 
