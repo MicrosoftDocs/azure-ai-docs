@@ -333,13 +333,6 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
 
 :::zone-end
 
-<!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that TTL applies only to newly created memory stores and that TTL expiration is not overridden by direct memory commands. -->
-
-> [!IMPORTANT]
-> TTL only applies to memory stores created after TTL support was introduced and doesn't affect existing memory stores. After TTL is configured, expiration takes effect regardless of [direct memory commands](#apply-direct-remember-and-forget-behavior). A remember command can't extend or override it.
->
-> A `default_ttl_seconds` value of `0` indicates no expiration. Choose a retention period that matches your compliance and user-data lifecycle requirements.
-
 > [!TIP]
 > - The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
 >
@@ -352,6 +345,14 @@ Customize what information the agent stores to keep memory efficient, relevant, 
 For example, set `user_profile_details` to prioritize "flight carrier preference and dietary restrictions" for a travel agent. This focused approach helps the memory system know which details to extract, summarize, and commit to long-term memory.
 
 You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials."
+
+### Configure TTL and retention policies
+
+<!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that TTL applies only to newly created memory stores and that TTL expiration is not overridden by direct memory commands. -->
+
+TTL only applies to memory stores created after TTL support was introduced and doesn't affect existing memory stores. After TTL is configured, expiration takes effect regardless of [direct memory commands](#apply-direct-remember-and-forget-behavior). A remember command can't extend or override it.
+
+A `default_ttl_seconds` value of `0` indicates no expiration. Choose a retention period that matches your compliance and user-data lifecycle requirements.
 
 ## Update a memory store
 
@@ -785,7 +786,7 @@ When a user explicitly asks the agent to remember or forget information, the mem
 <!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that direct memory commands don't override TTL expiration. -->
 
 > [!NOTE]
-> Direct memory commands don't override memory TTL. If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
+> Direct memory commands don't override [memory TTL](#configure-ttl-and-retention-policies). If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
 
 :::zone pivot="python"
 
