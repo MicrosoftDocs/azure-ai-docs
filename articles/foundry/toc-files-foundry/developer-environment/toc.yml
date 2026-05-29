@@ -26,7 +26,7 @@ items:
   - name: Use Foundry Agent Service
     href: ../../how-to/develop/langchain-agents.md
   - name: Host LangGraph agents as Foundry hosted agents
-    href: ../../how-to/develop/langchain-hosting.md
+    href: ../../how-to/develop/langchain-hosted-agents.md
   - name: Use Foundry Memory
     href: ../../how-to/develop/langchain-memory.md
   - name: Trace with Foundry Observability
