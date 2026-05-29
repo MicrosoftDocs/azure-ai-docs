@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Find the Azure Speech regions and region identifiers for the Speech SDK and REST APIs, including speech to text, text to speech, and translation.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 05/25/2026
 ms.author: pafarley
@@ -217,7 +217,7 @@ The regions in the following tables support most of the core features of Azure S
 | `centralindia` | ✅ | ✅ | |
 | `eastus` | ✅ | ✅ | ✅ |
 | `northeurope` | ✅ | ✅ | ✅ |
-| `southeastasia` | ✅ | ✅ | |
+| `southeastasia` | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | |
 
