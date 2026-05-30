@@ -143,11 +143,14 @@ A schedule trigger fires repeatedly on a cron expression. The service enforces a
 1. In the left navigation, select **Routines**.
 1. Select **+ New routine**.
 1. Enter a **Name** for the routine, for example `daily-summary`.
-1. Under **Trigger**, select **Schedule**.
-1. Enter a [cron expression](https://en.wikipedia.org/wiki/Cron#CRON_expression), for example `0 7 * * 1-5` (07:00 UTC on weekdays).
-1. Select a **Time zone** from the dropdown, for example **UTC**.
-1. Under **Action**, select the action type (**Responses API** or **Invocations API**) and enter the required agent identifier.
-1. Select **Create**.
+1. Select an **Agent** from the dropdown.
+1. Enter a **Prompt** for the agent to run on each invocation.
+1. Under **Trigger**, set **Type** to **Recurring schedule**, then choose a **Frequency** (**Daily** or **Weekly**) and a **Time**.
+1. Select **Create & start**.
+
+   :::image type="content" source="../media/routines/routine-recurring-schedule.png" alt-text="Screenshot of the New routine dialog with the Recurring schedule trigger type selected, showing Frequency set to Daily and Time set to 9:00 AM." lightbox="../media/routines/routine-recurring-schedule.png":::
+
+The portal interprets the **Time** in your browser's local time zone. To pin a routine to a specific time zone independently of the browser, create it through the REST API or an SDK and supply the `time_zone` field.
 
 > [!NOTE]
 > If **Routines** isn't visible in the navigation, the feature isn't enabled for your region or subscription. Contact your account team to request access.
@@ -355,12 +358,14 @@ A timer trigger fires once at a specific future date and time, or after a durati
 
 :::zone pivot="foundry-portal"
 
-1. Follow steps 1Ã¢â‚¬â€œ4 for creating a routine, and enter a name such as `once-on-release-day`.
-1. Under **Trigger**, select **Timer**.
-1. Enter the date and time in ISO 8601 format, for example `2026-09-01T09:00:00Z`, or a duration such as `PT2H` (two hours from now).
-1. Optionally select a **Time zone** if you supply a local timestamp without a UTC offset.
-1. Under **Action**, select the action type and enter the required agent identifier.
-1. Select **Create**.
+1. Follow steps 1 through 6 in the previous procedure to open the **New routine** dialog and fill in **Name**, **Agent**, and **Prompt**. Use a name such as `once-on-release-day`.
+1. Under **Trigger**, set **Type** to **One-time schedule**.
+1. Under **Run at**, pick the date and time when the routine should fire.
+1. Select **Create & start**.
+
+   :::image type="content" source="../media/routines/routine-one-time-schedule.png" alt-text="Screenshot of the New routine dialog with the One-time schedule trigger type selected, showing a date picker and a time picker under Run at.":::
+
+The **Run at** value is interpreted in your browser's local time zone. A one-time schedule fires exactly once, at the time you pick.
 
 :::zone-end
 
@@ -538,7 +543,14 @@ Routines start enabled if you set `"enabled": true` at creation. You can pause a
 1. In [Microsoft Foundry](https://ai.azure.com), open your project.
 1. Select **Routines** in the left navigation.
 1. Find the routine and select it.
-1. Toggle the **Enabled** switch to pause or resume the routine.
+1. Select **Pause** in the top right to pause the routine, or select **Resume** to re-enable a paused routine.
+
+   :::image type="content" source="../media/routines/routine-detail-actions.png" alt-text="Screenshot of a routine detail page showing the Pause button in the top right, the overflow menu with Test run, Edit, and Delete options, and the table of past runs below." lightbox="../media/routines/routine-detail-actions.png":::
+
+From the same page, you can also:
+
+- Select **Test run** (either the button on the right or the entry in the overflow menu) to fire the routine immediately with its current prompt and agent, without waiting for the next scheduled trigger.
+- Review past runs in the table below the routine details. Each row shows the response ID, when the run was triggered, its duration, and its state. Use the **Last day**, **7D**, **1M**, or **Custom** filters to scope the time range. Select a response ID to open the full run.
 
 :::zone-end
 
@@ -794,9 +806,9 @@ Run history records every time a routine fired and the outcome of each attempt.
 :::zone pivot="foundry-portal"
 
 1. Open the routine in [Microsoft Foundry](https://ai.azure.com).
-1. Select the **Run history** tab.
-1. Each row shows the trigger type, source (for example **schedule_delivery** or **manual_dispatch**), start time, end time, and phase (**completed** or **failed**).
-1. Select a run to see detailed diagnostics including any error messages.
+1. Past runs are listed in the table on the routine detail page. Each row shows the response ID, when the run was triggered, its duration, and its state (for example **Completed** or **Failed**).
+1. Use the **Last day**, **7D**, **1M**, or **Custom** range controls above the table to filter the time window.
+1. Select a response ID to open the full run, including the response and any error details.
 
 :::zone-end
 
