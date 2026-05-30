@@ -348,7 +348,31 @@ console.log(`Routine created: ${routine.name}, enabled=${routine.enabled}`);
 
 :::zone pivot="azd"
 
-Recurring `schedule` triggers aren't supported through the `azd ai routine` extension in preview. Use the REST API, Python, C#, or JavaScript SDK to create a schedule routine, or use the [timer trigger](#timer-trigger) from `azd` for a one-shot run.
+Inline `azd ai routine create --trigger schedule` isn't supported in preview. Create the routine from a YAML manifest instead:
+
+```yaml
+# routine.yaml
+name: daily-summary
+description: Runs a daily summary agent on weekday mornings.
+enabled: true
+triggers:
+  weekday-morning:
+    type: schedule
+    cron: "0 7 * * 1-5"
+    time_zone: UTC
+action:
+  type: invoke_agent_responses_api
+  agent_name: <your-agent-name>
+```
+
+```bash
+azd ai routine create --file routine.yaml
+```
+
+The minimum interval between fires is five minutes. Set `time_zone` to any IANA zone (for example `America/Los_Angeles`); omit it to interpret `cron` in UTC.
+
+> [!NOTE]
+> The agent referenced by `agent_name` must have a configured agent identity. Prompt-only agents are rejected by the service when bound to a routine action.
 
 :::zone-end
 
