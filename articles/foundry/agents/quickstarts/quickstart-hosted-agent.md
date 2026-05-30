@@ -45,10 +45,10 @@ Before you begin, you need:
 :::zone pivot="azd"
 
 * [Azure Developer CLI (AZD) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd).
-* The `azd ai foundry` extension. Install and verify the extension after AZD is installed:
+* The `azd microsoft.foundry` extension. Install and verify the extension after AZD is installed:
 
     ```
-    azd ext install azure.ai.foundry
+    azd ext install microsoft.foundry
     ```
 
 * Sign in to Azure:
