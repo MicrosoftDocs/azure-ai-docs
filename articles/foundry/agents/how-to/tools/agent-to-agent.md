@@ -316,6 +316,9 @@ Custom OAuth doesn't support the update operation. Create a new connection if yo
 
 If your OAuth app doesn't require a client secret, omit `ClientSecret`.
 
+> [!NOTE]
+> Provide each scope as a separate string in the `Scopes` array. If your tooling or UI expects scopes as a single string, separate them with a **single space**, not a comma — this follows the [OAuth 2.0 spec](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).
+
 ```bash
 curl --request PUT \
   --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
