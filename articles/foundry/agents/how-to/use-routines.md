@@ -230,7 +230,7 @@ agent_name = os.environ["AGENT_NAME"]
 client = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
 
 # Using Responses API action
-routine = client.routines.create_or_update(
+routine = client.beta.routines.create_or_update(
     routine_name="daily-summary",
     description="Runs a daily summary agent on weekday mornings.",
     enabled=True,
@@ -314,7 +314,7 @@ const agentName = process.env.AGENT_NAME;
 const client = new AIProjectClient(endpoint, new DefaultAzureCredential());
 
 // Using Responses API action
-const routine = await client.routines.createOrUpdate("daily-summary", {
+const routine = await client.beta.routines.createOrUpdate("daily-summary", {
   description: "Runs a daily summary agent on weekday mornings.",
   enabled: true,
   triggers: {
@@ -399,7 +399,7 @@ The `at` field accepts:
 :::zone pivot="programming-language-python"
 
 ```python
-routine = client.routines.create_or_update(
+routine = client.beta.routines.create_or_update(
     routine_name="once-on-release-day",
     description="Runs the agent once on release day.",
     enabled=True,
@@ -447,7 +447,7 @@ var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-const routine = await client.routines.createOrUpdate("once-on-release-day", {
+const routine = await client.beta.routines.createOrUpdate("once-on-release-day", {
   description: "Runs the agent once on release day.",
   enabled: true,
   triggers: {
@@ -568,11 +568,11 @@ Both operations return the updated routine object.
 
 ```python
 # Disable
-disabled_routine = client.routines.disable("daily-summary")
+disabled_routine = client.beta.routines.disable("daily-summary")
 print(f"Enabled: {disabled_routine.enabled}")   # False
 
 # Enable
-enabled_routine = client.routines.enable("daily-summary")
+enabled_routine = client.beta.routines.enable("daily-summary")
 print(f"Enabled: {enabled_routine.enabled}")    # True
 ```
 
@@ -596,11 +596,11 @@ Console.WriteLine($"Enabled: {enabled.Value.Enabled}");    // True
 
 ```javascript
 // Disable
-const disabled = await client.routines.disable("daily-summary");
+const disabled = await client.beta.routines.disable("daily-summary");
 console.log(`Enabled: ${disabled.enabled}`);   // false
 
 // Enable
-const enabled = await client.routines.enable("daily-summary");
+const enabled = await client.beta.routines.enable("daily-summary");
 console.log(`Enabled: ${enabled.enabled}`);    // true
 ```
 
@@ -700,7 +700,7 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
 
 ```python
 # Responses API routine
-result = client.routines.dispatch_async(
+result = client.beta.routines.dispatch(
     routine_name="daily-summary",
     payload={
         "type": "invoke_agent_responses_api",
@@ -711,7 +711,7 @@ print(f"dispatch_id: {result.dispatch_id}")
 print(f"task_id:     {result.task_id}")
 
 # Invocations API routine
-result2 = client.routines.dispatch_async(
+result2 = client.beta.routines.dispatch(
     routine_name="my-invocations-routine",
     payload={
         "type": "invoke_agent_invocations_api",
@@ -755,7 +755,7 @@ var result2 = await client.GetRoutinesClient().DispatchRoutineAsync(
 
 ```javascript
 // Responses API routine
-const result = await client.routines.dispatchAsync("daily-summary", {
+const result = await client.beta.routines.dispatch("daily-summary", {
   payload: {
     type: "invoke_agent_responses_api",
     input: "Run the daily summary for testing.",  // optional
@@ -764,7 +764,7 @@ const result = await client.routines.dispatchAsync("daily-summary", {
 console.log(`dispatch_id: ${result.dispatch_id}`);
 
 // Invocations API routine
-const result2 = await client.routines.dispatchAsync("my-invocations-routine", {
+const result2 = await client.beta.routines.dispatch("my-invocations-routine", {
   payload: {
     type: "invoke_agent_invocations_api",
     input: "Run the agent for testing.",  // optional
@@ -835,7 +835,7 @@ curl -sS "$PROJECT_ENDPOINT/routines/daily-summary/runs" \
 :::zone pivot="programming-language-python"
 
 ```python
-runs = client.routines.list_runs("daily-summary")
+runs = client.beta.routines.list_runs("daily-summary")
 
 for run in runs:
     print(
@@ -865,7 +865,7 @@ await foreach (var run in client.GetRoutinesClient().GetRunsAsync("daily-summary
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-for await (const run of client.routines.listRuns("daily-summary")) {
+for await (const run of client.beta.routines.listRuns("daily-summary")) {
   console.log(`${run.id}  phase=${run.phase}  source=${run.attempt_source}`);
   if (run.phase === "failed") {
     console.log(`  error: ${run.error_type} Ã¢â‚¬â€ ${run.error_message}`);
@@ -913,11 +913,11 @@ curl -sS "$PROJECT_ENDPOINT/routines/daily-summary" \
 
 ```python
 # List all routines
-for r in client.routines.list():
+for r in client.beta.routines.list():
     print(f"{r.name}  enabled={r.enabled}  triggers={list(r.triggers.keys())}")
 
 # Get a single routine
-routine = client.routines.get("daily-summary")
+routine = client.beta.routines.get("daily-summary")
 print(routine)
 ```
 
@@ -943,12 +943,12 @@ Console.WriteLine(routine.Value);
 
 ```javascript
 // List all routines
-for await (const r of client.routines.list()) {
+for await (const r of client.beta.routines.list()) {
   console.log(`${r.name}  enabled=${r.enabled}`);
 }
 
 // Get a single routine
-const routine = await client.routines.get("daily-summary");
+const routine = await client.beta.routines.get("daily-summary");
 console.log(routine);
 ```
 
@@ -1010,7 +1010,7 @@ curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
 :::zone pivot="programming-language-python"
 
 ```python
-updated = client.routines.create_or_update(
+updated = client.beta.routines.create_or_update(
     routine_name="daily-summary",
     description="Updated: runs at 08:00 UTC on weekdays.",
     enabled=True,
@@ -1057,7 +1057,7 @@ Console.WriteLine($"Updated at: {updated.Value.UpdatedAt}");
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-const updated = await client.routines.createOrUpdate("daily-summary", {
+const updated = await client.beta.routines.createOrUpdate("daily-summary", {
   description: "Updated: runs at 08:00 UTC on weekdays.",
   enabled: true,
   triggers: {
@@ -1115,7 +1115,7 @@ A successful response returns HTTP 204 No Content.
 :::zone pivot="programming-language-python"
 
 ```python
-client.routines.delete("daily-summary")
+client.beta.routines.delete("daily-summary")
 print("Routine deleted.")
 ```
 
@@ -1133,7 +1133,7 @@ Console.WriteLine("Routine deleted.");
 :::zone pivot="programming-language-javascript"
 
 ```javascript
-await client.routines.delete("daily-summary");
+await client.beta.routines.delete("daily-summary");
 console.log("Routine deleted.");
 ```
 
