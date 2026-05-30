@@ -644,11 +644,9 @@ The dispatch payload type must match the routine's action type. Use `invoke_agen
 :::zone pivot="foundry-portal"
 
 1. Open the routine in [Microsoft Foundry](https://ai.azure.com).
-1. Select **Run now**.
-1. Optionally enter a test **Input message**.
-1. Select **Dispatch**.
+1. Select **Test run** (either the button on the right or the entry in the overflow menu next to **Pause**).
 
-Foundry queues the run and opens the run history view. The new run appears with status **Queued** and progresses to **Dispatching** and then **Completed** or **Failed**.
+Foundry queues the run immediately with the routine's current agent and prompt. The new run appears in the past-runs table below the routine details and progresses from **Queued** to **Completed** or **Failed**.
 
 :::zone-end
 
