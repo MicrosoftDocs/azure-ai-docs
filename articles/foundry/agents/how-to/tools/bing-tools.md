@@ -122,7 +122,9 @@ If you already have a project connection ID for the Bing resource you want to us
 
 :::zone pivot="python"
 
-The following examples demonstrate how to create an agent with Grounding with Bing Search tools, and how to use the agent to respond to user queries.
+The following examples demonstrate how to create an agent with Grounding with Bing Search tools, and how to use the agent to respond to user queries. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 #### Grounding with Bing Search
 
@@ -226,6 +228,40 @@ URL Citation: https://www.weather.gov/seattle/
 Follow-up completed!
 Full response: Today's date is December 12, 2025, and the weather in Seattle is...
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+BING_CONNECTION_NAME = "my-bing-connection"
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a helpful assistant that can search the web with Bing.",
+    tools=[
+        FoundryChatClient.get_bing_grounding_tool(
+            connection_id=BING_CONNECTION_NAME,
+            market="en-US",
+            count=10,
+            freshness="Day",
+        )
+    ],
+)
+
+result = asyncio.run(agent.run("What is today's date and weather in Seattle?"))
+print(f"Agent: {result}")
+```
+
+For Bing Custom Search, use `FoundryChatClient.get_bing_custom_search_tool(connection_id=..., instance_name=..., market=..., count=...)` with the same agent pattern. For more, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
 
 ### Grounding with Bing Custom Search (preview)
 

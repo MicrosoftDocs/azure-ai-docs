@@ -119,7 +119,9 @@ Use the following code sample to create an agent and call the function. The .NET
 
 :::zone pivot="python"
 
-The following example shows how to use the GitHub MCP server as a tool for an agent.
+The following example shows how to use the GitHub MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import json
@@ -218,6 +220,68 @@ Created conversation (id: <conversation-id>)
 Response: Your GitHub username is "example-username".
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_mcp_tool()` to register a hosted MCP server with per-tool approval control. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+from typing import Any
+
+from agent_framework import Agent, Message
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    client = FoundryChatClient(credential=AzureCliCredential())
+
+    # Register a hosted MCP server. Use approval_mode="always_require" in production
+    # so the user approves each tool call; "never_require" skips approvals.
+    mcp_tool = client.get_mcp_tool(
+        name="Microsoft Learn MCP",
+        url="https://learn.microsoft.com/api/mcp",
+        approval_mode={"never_require_approval": ["microsoft_docs_search"]},
+    )
+
+    async with Agent(
+        client=client,
+        name="DocsAgent",
+        instructions="You are a helpful assistant that uses your MCP tool "
+        "to help with Microsoft documentation questions.",
+        tools=[mcp_tool],
+    ) as agent:
+        query = "What is Microsoft Agent Framework?"
+        result = await agent.run(query)
+
+        # Handle any approval prompts raised by the MCP tool.
+        while len(result.user_input_requests) > 0:
+            new_inputs: list[Any] = [query]
+            for user_input_needed in result.user_input_requests:
+                print(
+                    f"Approval requested for {user_input_needed.function_call.name} "
+                    f"with arguments: {user_input_needed.function_call.arguments}"
+                )
+                new_inputs.append(Message(role="assistant", contents=[user_input_needed]))
+                approve = input("Approve function call? (y/n): ").lower() == "y"
+                new_inputs.append(
+                    Message(
+                        role="user",
+                        contents=[user_input_needed.to_function_approval_response(approve)],
+                    )
+                )
+            result = await agent.run(new_inputs)
+
+        print(f"Agent: {result}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+For the full sample, including session-based approval flows and streaming, see [foundry_chat_client_with_hosted_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_hosted_mcp.py). For local (stdio) MCP servers, see [foundry_chat_client_with_local_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_local_mcp.py).
+
+---
 
 :::zone-end
 

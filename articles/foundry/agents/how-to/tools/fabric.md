@@ -103,6 +103,10 @@ The following table shows SDK and setup support.
 
 :::zone pivot="python"
 
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -168,6 +172,34 @@ print("Agent deleted")
 - A line that starts with `Response output:` followed by the response text.
 
 For more details, see the [full Python sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py).
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_fabric_tool()` to attach a Microsoft Fabric data agent connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+FABRIC_CONNECTION_NAME = "my-fabric-connection"
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a helpful assistant. Use Fabric to answer data questions.",
+    tools=[FoundryChatClient.get_fabric_tool(connection_id=FABRIC_CONNECTION_NAME)],
+)
+
+result = asyncio.run(agent.run("Tell me about sales records."))
+print(f"Agent: {result}")
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

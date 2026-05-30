@@ -56,7 +56,11 @@ The following samples demonstrate how to create an agent with Code Interpreter e
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK
 
-The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. It demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
+The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+This sample demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
 
 ```python
 import os
@@ -149,6 +153,32 @@ File downloaded successfully: transportation_operating_profit_bar_chart.png
 ```
 
 The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, generates a PNG bar chart showing operating profit by quarter, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_code_interpreter_tool()` to give the agent a sandboxed Python execution environment. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+# Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a helpful assistant that can write and execute Python code to solve problems.",
+    tools=[FoundryChatClient.get_code_interpreter_tool()],
+)
+
+result = asyncio.run(agent.run("Use code to calculate the factorial of 100."))
+print(f"Agent: {result}")
+```
+
+For the full sample (including file inputs and extracting the generated code), see [foundry_chat_client_with_code_interpreter.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_code_interpreter.py) and [foundry_chat_client_code_interpreter_files.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_code_interpreter_files.py).
+
+---
 
 :::zone-end
 

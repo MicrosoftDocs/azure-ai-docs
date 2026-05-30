@@ -96,6 +96,10 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
 
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -164,6 +168,34 @@ project.agents.delete_version(agent_name=agent.name, agent_version=agent.version
 ### Expected output
 
 The agent responds with information about the secondary agent's capabilities, demonstrating successful A2A communication. You see streaming delta text as the response is generated, followed by completion messages. The output includes the follow-up response ID, text deltas, and a final summary of what the secondary agent can do.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_a2a_tool()` to attach an A2A connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+A2A_CONNECTION_NAME = "my-a2a-connection"
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a helpful assistant.",
+    tools=[FoundryChatClient.get_a2a_tool(project_connection_id=A2A_CONNECTION_NAME)],
+)
+
+result = asyncio.run(agent.run("What can the secondary agent do?"))
+print(f"Agent: {result}")
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

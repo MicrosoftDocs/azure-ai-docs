@@ -79,7 +79,9 @@ If you need to create a SharePoint connection for your project, see [Add a new c
 
 :::zone pivot="python"
 
-The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
+The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -181,6 +183,33 @@ Follow-up response done!
 Follow-up completed!
 Full response: Based on the meeting notes from your SharePoint site, the last meeting covered the following topics: project timeline updates, budget review, and next quarter planning.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+SHAREPOINT_CONNECTION_NAME = "my-sharepoint-connection"
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a helpful agent. Use the SharePoint tool to answer questions.",
+    tools=[FoundryChatClient.get_sharepoint_tool(connection_id=SHAREPOINT_CONNECTION_NAME)],
+)
+
+result = asyncio.run(agent.run("Please summarize the last meeting notes stored in SharePoint."))
+print(f"Agent: {result}")
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
 
 :::zone-end
 

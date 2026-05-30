@@ -54,7 +54,9 @@ The following table shows SDK and setup support.
 :::zone pivot="python"
 ### General Web Search
 
-The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -136,6 +138,32 @@ Follow-up completed!
 Full response: Based on current data ...
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_web_search_tool()` to give the agent web search without any local implementation. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+# Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="You are a research assistant. Use web search to find current information.",
+    tools=[FoundryChatClient.get_web_search_tool()],
+)
+
+result = asyncio.run(agent.run("What are the latest updates to Microsoft Foundry?"))
+print(f"Agent: {result}")
+```
+
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries (for example, a `@tool`-decorated function) to the `tools` list. For more, see [Quickstart: Use the Foundry Responses API](../../quickstarts/responses-api.md).
+
+---
 
 ### Domain-Restricted Search with Bing Custom Search
 

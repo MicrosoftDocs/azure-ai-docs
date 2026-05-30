@@ -55,7 +55,9 @@ Before you start, install the latest SDK package. The .NET SDK is currently in p
 :::zone pivot="python"
 ## Create an agent with the image generation tool
 
-This sample creates an agent with the image generation tool, generates an image, and saves it to a file.
+This sample creates an agent with the image generation tool, generates an image, and saves it to a file. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import base64
@@ -108,6 +110,49 @@ if image_data and image_data[0]:
         f.write(base64.b64decode(image_data[0]))
     print(f"Image saved to: {file_path}")
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_image_generation_tool()` to attach the image generation tool. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import base64
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+IMAGE_MODEL = "gpt-image-1"
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions="Generate images based on user prompts.",
+    tools=[
+        FoundryChatClient.get_image_generation_tool(
+            model=IMAGE_MODEL,
+            quality="low",
+            size="1024x1024",
+        )
+    ],
+)
+
+result = asyncio.run(agent.run("Generate an image of the Microsoft logo."))
+
+# Extract and save the generated image from the raw response.
+for output in result.raw_representation.output:
+    if output.type == "image_generation_call":
+        file_path = os.path.abspath("microsoft.png")
+        with open(file_path, "wb") as f:
+            f.write(base64.b64decode(output.result))
+        print(f"Image saved to: {file_path}")
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

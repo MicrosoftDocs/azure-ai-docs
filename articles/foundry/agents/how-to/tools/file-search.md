@@ -64,7 +64,9 @@ The following examples show how to upload a file, create a vector store, configu
 :::zone pivot="python"
 ## Create an agent with the file search tool
 
-The following code sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. See the sections below for details.
+The following code sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from pathlib import Path
@@ -140,6 +142,62 @@ The following output comes from the preceding code sample:
 
 - Reference: [Azure SDK for Python sample: file search](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_file_search_in_stream.py)
 - Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework. It uploads a file, creates a vector store, and calls `get_file_search_tool()` to give the agent access to the indexed content. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import contextlib
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    client = FoundryChatClient(credential=AzureCliCredential())
+
+    # Upload a file and create a vector store.
+    file = await client.client.files.create(
+        file=("todays_weather.txt", b"The weather today is sunny with a high of 75F."),
+        purpose="assistants",
+    )
+    vector_store = await client.client.vector_stores.create(
+        name="knowledge_base",
+        expires_after={"anchor": "last_active_at", "days": 1},
+    )
+    await client.client.vector_stores.files.create_and_poll(
+        vector_store_id=vector_store.id, file_id=file.id
+    )
+
+    # Create the file search tool bound to the vector store.
+    file_search_tool = client.get_file_search_tool(vector_store_ids=[vector_store.id])
+
+    agent = Agent(
+        client=client,
+        instructions="You are a helpful assistant that can search through files to find information.",
+        tools=[file_search_tool],
+    )
+
+    result = await agent.run("What is the weather today? Do a file search to find the answer.")
+    print(f"Agent: {result}")
+
+    # Clean up the vector store and uploaded file.
+    with contextlib.suppress(Exception):
+        await client.client.vector_stores.delete(vector_store_id=vector_store.id)
+    with contextlib.suppress(Exception):
+        await client.client.files.delete(file_id=file.id)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+For the full sample, see [foundry_chat_client_with_file_search.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_file_search.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

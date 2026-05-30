@@ -75,7 +75,9 @@ You need the latest SDK package. The .NET SDK is currently in preview.
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
 
-The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task.
+The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -247,6 +249,45 @@ Follow-up response received (ID: ...)
 OpenAI news - Latest Updates
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+agent = Agent(
+    client=FoundryChatClient(credential=AzureCliCredential()),
+    instructions=(
+        "You are a computer automation assistant. Be direct and efficient. "
+        "When you reach the search results page, describe the actual result titles you can see."
+    ),
+    tools=[
+        FoundryChatClient.get_computer_use_tool(
+            environment="windows",
+            display_width=1026,
+            display_height=769,
+        )
+    ],
+)
+
+# Replace this with your screenshot capture + action handler loop.
+# See the upstream samples folder for a reference implementation.
+result = asyncio.run(agent.run(
+    "Help me search for 'OpenAI news'. Type the query and submit the search."
+))
+print(f"Agent: {result}")
+```
+
+For a full screenshot-loop implementation, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
