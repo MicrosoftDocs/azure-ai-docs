@@ -632,14 +632,7 @@ azd ai routine enable once-on-release-day
 
 ## Test a routine manually
 
-Use the `dispatch_async` operation to queue a one-off run without waiting for the trigger to fire. This lets you verify that the routine reaches your agent correctly.
-
-The dispatch payload type must match the routine's action type. Use `invoke_agent_responses_api` for Responses API routines and `invoke_agent_invocations_api` for Invocations API routines.
-
-| Payload field | Type | Required | Description |
-|---|---|---|---|
-| `type` | string | Yes | Must match the routine's action type: `"invoke_agent_responses_api"` or `"invoke_agent_invocations_api"`. |
-| `input` | string | No | Override input sent to the downstream target for testing. Maximum 32,768 characters. |
+Queue a one-off run without waiting for the trigger to fire. This lets you verify that the routine reaches your agent correctly.
 
 :::zone pivot="foundry-portal"
 
@@ -651,6 +644,13 @@ Foundry queues the run immediately with the routine's current agent and prompt. 
 :::zone-end
 
 :::zone pivot="programming-language-rest"
+
+Use the `dispatch_async` operation to queue the run. The dispatch payload type must match the routine's action type: use `invoke_agent_responses_api` for Responses API routines and `invoke_agent_invocations_api` for Invocations API routines.
+
+| Payload field | Type | Required | Description |
+|---|---|---|---|
+| `type` | string | Yes | Must match the routine's action type: `"invoke_agent_responses_api"` or `"invoke_agent_invocations_api"`. |
+| `input` | string | No | Override input sent to the downstream target for testing. Maximum 32,768 characters. |
 
 **Responses API routine Ã¢â‚¬â€ with optional input override:**
 
