@@ -21,7 +21,7 @@ zone_pivot_groups: foundry-routines-config
 
 A *routine* is a named automation rule that triggers an agent on a schedule or at a specific time. You define what fires the routine (the *trigger*) and what agent to invoke (the *action*). Foundry queues the invocation, runs the agent, and stores a run record you can inspect later.
 
-This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, and the Python, C#, and JavaScript SDKs.
+This article shows you how to create, manage, and monitor routines by using the Foundry portal, the REST API, and the Python and JavaScript SDKs.
 
 > [!NOTE]
 > Routines are in preview. Send the `Foundry-Features: Routines=V1Preview` header on every REST call. All routine operations are on the data plane under your project endpoint.
@@ -80,16 +80,6 @@ For required and optional fields of each action type, see [Action fields](#actio
 
   ```bash
   pip install azure-identity
-  ```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-- Install the `Azure.AI.Projects` NuGet package (preview):
-
-  ```bash
-  dotnet add package Azure.AI.Projects --prerelease
   ```
 
 :::zone-end
@@ -263,48 +253,6 @@ print(f"Routine created: {routine.name}, enabled={routine.enabled}")
 
 :::zone-end
 
-:::zone pivot="programming-language-csharp"
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var endpoint = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
-
-var client = new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential());
-
-// Using Responses API action
-var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
-    "daily-summary",
-    new RoutineCreateOrUpdateRequest(
-        triggers: new Dictionary<string, RoutineTrigger>
-        {
-            ["weekday-morning"] = new ScheduleRoutineTrigger(
-                cronExpression: "0 7 * * 1-5",  // required
-                timeZone: "UTC")                 // required
-        },
-        action: new InvokeAgentResponsesApiRoutineAction
-        {
-            AgentName = agentName,  // required
-            // ConversationId = "...",  // optional
-        })
-    {
-        Description = "Runs a daily summary agent on weekday mornings.",
-        Enabled = true,
-    });
-
-Console.WriteLine($"Routine created: {routine.Value.Name}, enabled={routine.Value.Enabled}");
-
-// To use the Invocations API action instead:
-// action: new InvokeAgentInvocationsApiRoutineAction(agentName: agentName)  // required
-// {
-//     SessionId = "..."  // optional
-// }
-```
-
-:::zone-end
-
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -444,31 +392,6 @@ routine = client.beta.routines.create_or_update(
         "agent_name": agent_name,
     },
 )
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-var routine = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
-    "once-on-release-day",
-    new RoutineCreateOrUpdateRequest(
-        triggers: new Dictionary<string, RoutineTrigger>
-        {
-            ["release-day"] = new TimerRoutineTrigger(at: "2026-09-01T09:00:00Z")  // required
-            {
-                // TimeZone = "UTC",  // optional; required when 'at' has no UTC offset
-            }
-        },
-        action: new InvokeAgentResponsesApiRoutineAction
-        {
-            AgentName = agentName,
-        })
-    {
-        Description = "Runs the agent once on release day.",
-        Enabled = true,
-    });
 ```
 
 :::zone-end
@@ -614,20 +537,6 @@ print(f"Enabled: {enabled_routine.enabled}")    # True
 
 :::zone-end
 
-:::zone pivot="programming-language-csharp"
-
-```csharp
-// Disable
-var disabled = await client.GetRoutinesClient().DisableRoutineAsync("daily-summary");
-Console.WriteLine($"Enabled: {disabled.Value.Enabled}");   // False
-
-// Enable
-var enabled = await client.GetRoutinesClient().EnableRoutineAsync("daily-summary");
-Console.WriteLine($"Enabled: {enabled.Value.Enabled}");    // True
-```
-
-:::zone-end
-
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -756,35 +665,6 @@ result2 = client.beta.routines.dispatch(
 
 :::zone-end
 
-:::zone pivot="programming-language-csharp"
-
-```csharp
-// Responses API routine
-var result = await client.GetRoutinesClient().DispatchRoutineAsync(
-    "daily-summary",
-    new DispatchRoutineRequest
-    {
-        Payload = new InvokeAgentResponsesApiDispatchPayload
-        {
-            Input = "Run the daily summary for testing.",  // optional
-        },
-    });
-Console.WriteLine($"dispatch_id: {result.Value.DispatchId}");
-
-// Invocations API routine
-var result2 = await client.GetRoutinesClient().DispatchRoutineAsync(
-    "my-invocations-routine",
-    new DispatchRoutineRequest
-    {
-        Payload = new InvokeAgentInvocationsApiDispatchPayload
-        {
-            Input = "Run the agent for testing.",  // optional
-        },
-    });
-```
-
-:::zone-end
-
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -883,19 +763,6 @@ for run in runs:
 
 :::zone-end
 
-:::zone pivot="programming-language-csharp"
-
-```csharp
-await foreach (var run in client.GetRoutinesClient().GetRunsAsync("daily-summary"))
-{
-    Console.WriteLine($"{run.Id}  phase={run.Phase}  source={run.AttemptSource}");
-    if (run.Phase == RoutineRunPhase.Failed)
-        Console.WriteLine($"  error: {run.ErrorType} Ã¢â‚¬â€ {run.ErrorMessage}");
-}
-```
-
-:::zone-end
-
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -953,22 +820,6 @@ for r in client.beta.routines.list():
 # Get a single routine
 routine = client.beta.routines.get("daily-summary")
 print(routine)
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-// List all routines
-await foreach (var r in client.GetRoutinesClient().GetRoutinesAsync())
-{
-    Console.WriteLine($"{r.Name}  enabled={r.Enabled}");
-}
-
-// Get a single routine
-var routine = await client.GetRoutinesClient().GetRoutineAsync("daily-summary");
-Console.WriteLine(routine.Value);
 ```
 
 :::zone-end
@@ -1065,29 +916,6 @@ print(f"Updated at: {updated.updated_at}")
 
 :::zone-end
 
-:::zone pivot="programming-language-csharp"
-
-```csharp
-var updated = await client.GetRoutinesClient().CreateOrUpdateRoutineAsync(
-    "daily-summary",
-    new RoutineCreateOrUpdateRequest(
-        triggers: new Dictionary<string, RoutineTrigger>
-        {
-            ["weekday-morning"] = new ScheduleRoutineTrigger("0 8 * * 1-5", "UTC"),
-        },
-        action: new InvokeAgentResponsesApiRoutineAction
-        {
-            AgentName = agentName,
-        })
-    {
-        Description = "Updated: runs at 08:00 UTC on weekdays.",
-        Enabled = true,
-    });
-Console.WriteLine($"Updated at: {updated.Value.UpdatedAt}");
-```
-
-:::zone-end
-
 :::zone pivot="programming-language-javascript"
 
 ```javascript
@@ -1151,15 +979,6 @@ A successful response returns HTTP 204 No Content.
 ```python
 client.beta.routines.delete("daily-summary")
 print("Routine deleted.")
-```
-
-:::zone-end
-
-:::zone pivot="programming-language-csharp"
-
-```csharp
-await client.GetRoutinesClient().DeleteRoutineAsync("daily-summary");
-Console.WriteLine("Routine deleted.");
 ```
 
 :::zone-end

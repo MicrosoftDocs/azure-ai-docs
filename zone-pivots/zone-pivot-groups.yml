@@ -11,8 +11,6 @@ groups:
     title: REST API
   - id: programming-language-python
     title: Python SDK
-  - id: programming-language-csharp
-    title: C# SDK
   - id: programming-language-javascript
     title: JavaScript SDK
   - id: azd
