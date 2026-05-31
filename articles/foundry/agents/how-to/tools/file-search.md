@@ -203,7 +203,11 @@ For the full sample, see [foundry_chat_client_with_file_search.py](https://githu
 :::zone pivot="csharp"
 ## File search sample with agent
 
-In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search.  The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
+In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -267,6 +271,78 @@ The following output comes from the preceding code sample:
 ```console
 The code for 'banana' is 673457. I couldn't find any documented code for 'orange' in the files I have access to.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedFileSearchTool` to attach a vector store to the agent. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Assistants;
+using OpenAI.Files;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = "You are a helpful assistant that can search through uploaded files to answer questions.";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+var projectOpenAIClient = aiProjectClient.GetProjectOpenAIClient();
+var filesClient = projectOpenAIClient.GetProjectFilesClient();
+var vectorStoresClient = projectOpenAIClient.GetProjectVectorStoresClient();
+
+// 1. Create and upload a small employee directory file.
+string searchFilePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + "_lookup.txt");
+File.WriteAllText(searchFilePath,
+    """
+    Employee Directory:
+    - Alice Johnson, 28 years old, Software Engineer, Engineering Department
+    - Bob Smith, 35 years old, Sales Manager, Sales Department
+    - Carol Williams, 42 years old, HR Director, Human Resources Department
+    - David Brown, 31 years old, Customer Support Lead, Support Department
+    """);
+
+OpenAIFile uploadedFile = filesClient.UploadFile(searchFilePath, FileUploadPurpose.Assistants);
+
+// 2. Create a vector store with the uploaded file.
+var vectorStoreResult = await vectorStoresClient.CreateVectorStoreAsync(
+    options: new() { FileIds = { uploadedFile.Id }, Name = "EmployeeDirectory_VectorStore" });
+string vectorStoreId = vectorStoreResult.Value.Id;
+
+// 3. Create an AIAgent with HostedFileSearchTool.
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: "FileSearchAgent",
+    tools: [new HostedFileSearchTool() { Inputs = [new HostedVectorStoreContent(vectorStoreId)] }]);
+
+AgentResponse response = await agent.RunAsync("Who is the youngest employee?");
+Console.WriteLine($"Response: {response}");
+
+// Print file citation annotations.
+foreach (AIAnnotation annotation in response.Messages
+    .SelectMany(m => m.Contents)
+    .SelectMany(c => c.Annotations ?? []))
+{
+    if (annotation.RawRepresentation is TextAnnotationUpdate citationAnnotation)
+    {
+        Console.WriteLine($"File Citation - File Id: {citationAnnotation.OutputFileId}");
+    }
+}
+
+// Cleanup.
+await vectorStoresClient.DeleteVectorStoreAsync(vectorStoreId);
+await filesClient.DeleteFileAsync(uploadedFile.Id);
+File.Delete(searchFilePath);
+```
+
+For the full sample, see [Agent_Step16_FileSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step16_FileSearch).
+
+---
 
 ## File search sample with agent in streaming scenarios
 

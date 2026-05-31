@@ -217,7 +217,9 @@ For more about Agent Framework Foundry tool factories, see the [Foundry provider
 
 The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
 
-To enable your Agent to access SharePoint, use `SharepointPreviewTool`.
+To enable your Agent to access SharePoint, use `SharepointPreviewTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 using System;
@@ -296,6 +298,60 @@ The Contoso whistleblower policy outlines procedures for reporting unethical beh
 ```
 
 The output includes the agent's response grounded in SharePoint content, with a citation link to the source document.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateSharepointTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `SHAREPOINT_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+
+string sharepointConnectionId = Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_ID")
+    ?? throw new InvalidOperationException("SHAREPOINT_PROJECT_CONNECTION_ID is not set.");
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = """
+    You are a helpful agent that can use SharePoint tools to assist users.
+    Use the available SharePoint tools to answer questions and perform tasks.
+    """;
+
+var sharepointOptions = new SharePointGroundingToolOptions();
+sharepointOptions.ProjectConnections.Add(new ToolProjectConnection(sharepointConnectionId));
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: AgentInstructions,
+    name: "SharePointAgent",
+    tools: [FoundryAITool.CreateSharepointTool(sharepointOptions)]);
+
+AgentResponse response = await agent.RunAsync("List the documents available in SharePoint");
+Console.WriteLine(response);
+
+foreach (var message in response.Messages)
+{
+    foreach (var content in message.Contents)
+    {
+        if (content.Annotations is not null)
+        {
+            foreach (var annotation in content.Annotations)
+            {
+                Console.WriteLine($"Annotation: {annotation}");
+            }
+        }
+    }
+}
+```
+
+For the full sample, see [Agent_Step19_SharePoint](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step19_SharePoint).
+
+---
 
 :::zone-end
 

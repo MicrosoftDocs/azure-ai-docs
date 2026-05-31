@@ -207,7 +207,11 @@ You can also pass tools per-call via `agent.run(query, tools=[...])` to give dif
 :::zone pivot="csharp"
 ## Use agents with functions example
 
-In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
+In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -403,6 +407,52 @@ Calling getCityNickname...
 Calling getCurrentWeatherAtLocation...
 Your favorite city, Seattle, WA, is also known as The Emerald City. The current weather there is 70f.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `AIFunctionFactory.Create(...)` to expose local C# methods as function tools. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using System.ComponentModel;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
+[Description("Get the weather for a given location.")]
+static string GetWeather([Description("The location to get the weather for.")] string location)
+    => $"The weather in {location} is cloudy with a high of 15°C.";
+
+// Define the function tool.
+AITool tool = AIFunctionFactory.Create(GetWeather);
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+// Create an AIAgent with function tools.
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: "You are a helpful assistant that can get weather information.",
+    name: "WeatherAssistant",
+    tools: [tool]);
+
+// Non-streaming invocation.
+Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?"));
+
+// Streaming invocation.
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is the weather like in Amsterdam?"))
+{
+    Console.Write(update);
+}
+```
+
+You can also pass tools per call via `agent.RunAsync(query, tools: [...])` to vary the tool set per invocation. For the full sample including approval workflows, see [Agent_Step03_UsingFunctionTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step03_UsingFunctionTools) and [Agent_Step04_UsingFunctionToolsWithApprovals](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step04_UsingFunctionToolsWithApprovals).
+
+---
+
 :::zone-end
 
 :::zone pivot="rest"

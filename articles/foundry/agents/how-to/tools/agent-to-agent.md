@@ -202,7 +202,9 @@ For more about Agent Framework Foundry tool factories, see the [Foundry provider
 
 ## Create an agent with the A2A tool
 
-This example creates an agent that can call a remote A2A endpoint. For the connection setup steps, see [Create an A2A connection](#create-an-a2a-connection).
+This example creates an agent that can call a remote A2A endpoint. For the connection setup steps, see [Create an A2A connection](#create-an-a2a-connection). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to compose two agents in-process by exposing one agent as a function tool of another.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 using System;
@@ -265,6 +267,47 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 ### Expected output
 
 The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+The Microsoft Agent Framework lets you compose agents directly in your process by exposing one `AIAgent` as an `AIFunction` of another. This sample creates a specialist `WeatherAgent` and a top-level `MainAgent` that calls it via `weatherAgent.AsAIFunction()`. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using System.ComponentModel;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
+[Description("Get the weather for a given location.")]
+static string GetWeather([Description("The location to get the weather for.")] string location)
+    => $"The weather in {location} is cloudy with a high of 15°C.";
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AITool weatherTool = AIFunctionFactory.Create(GetWeather);
+AIAgent weatherAgent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: "You answer questions about the weather.",
+    name: "WeatherAgent",
+    tools: [weatherTool]);
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: "You are a helpful assistant who responds in French.",
+    name: "MainAgent",
+    tools: [weatherAgent.AsAIFunction()]);
+
+AgentSession session = await agent.CreateSessionAsync();
+Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?", session));
+```
+
+For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step11_AsFunctionTool).
+
+---
+
 :::zone-end
 
 :::zone pivot="rest-api"

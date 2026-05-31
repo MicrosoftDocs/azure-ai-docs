@@ -333,6 +333,10 @@ print("Agent deleted")
 
 ### General Web Search
 
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
@@ -388,6 +392,54 @@ Response status: Completed
 The London Underground currently has service disruptions on ...
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedWebSearchTool` to give the agent web search without any local implementation. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Responses;
+
+const string AgentInstructions = "You are a helpful assistant that can search the web to find current information and answer questions accurately.";
+const string AgentName = "WebSearchAgent";
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+// Create an AIAgent with HostedWebSearchTool.
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: AgentName,
+    tools: [new HostedWebSearchTool()]);
+
+AgentResponse response = await agent.RunAsync("What's the weather today in Seattle?");
+
+Console.WriteLine($"Response: {response.Text}");
+
+// Print any annotations/citations returned by the web search tool.
+foreach (AIAnnotation annotation in response.Messages
+    .SelectMany(m => m.Contents)
+    .SelectMany(c => c.Annotations ?? []))
+{
+    if (annotation.RawRepresentation is UriCitationMessageAnnotation urlCitation)
+    {
+        Console.WriteLine($"Title: {urlCitation.Title}");
+        Console.WriteLine($"URL: {urlCitation.Uri}");
+    }
+}
+```
+
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries to the `tools` array. For more, see the [Agent Framework Foundry samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry).
+
+---
 
 ### Domain restricted web search
 To enable your Agent to use Web Search with Grounding with Bing Custom Search instance.

@@ -288,7 +288,11 @@ For the full sample, including session-based approval flows and streaming, see [
 :::zone pivot="csharp"
 ## Create an agent with MCP tool
 
-The following example shows how to use the GitHub MCP server as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
+The following example shows how to use a remote MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -376,6 +380,53 @@ Approval requested for api-specs...
 Response: The Azure REST API specifications repository contains the OpenAPI specifications for Azure services. It is
 organized by service and includes guidelines for contributing new specifications. The repository is intended for use by developers building tools and services that interact with Azure APIs.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using ModelContextProtocol.Client;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+// Connect to the Microsoft Learn MCP server via Streamable HTTP transport.
+Console.WriteLine("Connecting to MCP server at https://learn.microsoft.com/api/mcp ...");
+
+await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new()
+{
+    Endpoint = new Uri("https://learn.microsoft.com/api/mcp"),
+    Name = "Microsoft Learn MCP",
+}));
+
+// Retrieve the list of tools available on the MCP server.
+IList<McpClientTool> mcpTools = await mcpClient.ListToolsAsync();
+Console.WriteLine($"MCP tools available: {string.Join(", ", mcpTools.Select(t => t.Name))}");
+
+List<AITool> agentTools = [.. mcpTools.Cast<AITool>()];
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: "You are a helpful assistant that can answer Microsoft documentation questions. Use the Microsoft Learn MCP tool to search documentation.",
+    name: "DocsAgent",
+    tools: agentTools);
+
+const string Prompt = "How does one create an Azure storage account using the az CLI?";
+Console.WriteLine($"User: {Prompt}\n");
+Console.WriteLine($"Agent: {await agent.RunAsync(Prompt)}");
+```
+
+For local MCP transports and additional patterns, see [Agent_Step09_UsingMcpClientAsTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step09_UsingMcpClientAsTools) and [Agent_Step23_LocalMCP](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step23_LocalMCP).
+
+---
 
 ## Create an agent by using the MCP tool with project connection authentication
 

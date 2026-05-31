@@ -9,6 +9,7 @@ ms.subservice: foundry-agent-service
 ms.topic: quickstart
 ms.custom: build-2025
 ai-usage: ai-assisted
+zone_pivot_groups: responses-api-language
 # customer intent: As a developer, I want to call the Responses API on a Foundry project endpoint from my own code so that I can build self-hosted agents that use Foundry models and platform tools.
 ---
 
@@ -23,7 +24,7 @@ The Responses API is the single model and tools entry point for Foundry. You can
 - **Foundry project endpoint** (this quickstart, recommended) — full Foundry support. Exposes Foundry models from the catalog and platform tools (file search, code interpreter, memory, web search, MCP, SharePoint, WorkIQ, Fabric IQ, and more) through a single project-scoped API surface, reached at `{project_endpoint}/openai/v1/responses`.
 - **Azure OpenAI endpoint** — best latency and maximum compatibility with existing OpenAI clients. Use this when you only need OpenAI models and standard OpenAI tools and don't need Foundry-specific capabilities.
 
-The recommended path is the [Agent Framework](https://github.com/microsoft/agent-framework) `FoundryChatClient`, which handles authentication, tool wiring, and message orchestration for you. The OpenAI SDK also works against this endpoint and is covered as an alternative in [Use the OpenAI SDK directly](#use-the-openai-sdk-directly).
+The recommended path is the [Agent Framework](https://github.com/microsoft/agent-framework), which handles authentication, tool wiring, and message orchestration for you. In Python this is `FoundryChatClient`; in .NET it's `AIProjectClient.AsAIAgent(...)`. The OpenAI SDK also works against this endpoint and is covered as an alternative in [Use the OpenAI SDK directly](#use-the-openai-sdk-directly).
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -48,8 +49,19 @@ Calling the **project endpoint** — not a resource-level OpenAI endpoint — is
 ## Prerequisites
 
 * A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../tutorials/quickstart-create-foundry-resources.md).
-* Python 3.10 or later installed.
 * The [Azure CLI](/cli/azure/install-azure-cli) installed and signed in (`az login`).
+
+::: zone pivot="python"
+
+* Python 3.10 or later installed.
+
+::: zone-end
+
+::: zone pivot="csharp"
+
+* [.NET 8 SDK](https://dotnet.microsoft.com/download) or later installed.
+
+::: zone-end
 
 ## Set environment variables
 
@@ -64,13 +76,31 @@ FOUNDRY_MODEL=<your deployed model name>
 
 Install the Agent Framework package with the Foundry provider:
 
+::: zone pivot="python"
+
 ```bash
 pip install agent-framework[foundry] --pre
 ```
 
+::: zone-end
+
+::: zone pivot="csharp"
+
+```bash
+dotnet add package Microsoft.Agents.AI --prerelease
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.Identity
+```
+
+::: zone-end
+
 ## Create an agent
 
-Create an ephemeral agent using `FoundryChatClient` and the `Agent` class. The agent runs locally in your process and calls the Responses API for model inference and tool orchestration.
+Create an ephemeral agent that runs locally in your process and calls the Responses API for model inference and tool orchestration.
+
+::: zone pivot="python"
+
+Use `FoundryChatClient` and the `Agent` class.
 
 ```python
 import asyncio
@@ -99,9 +129,43 @@ if __name__ == "__main__":
 
 The output prints the agent's response. Because the agent is ephemeral, no definition is persisted to the service — it exists only for the lifetime of the Python process.
 
+::: zone-end
+
+::: zone pivot="csharp"
+
+Use `AIProjectClient.AsAIAgent(...)` from the Microsoft Agent Framework to wrap the Foundry project endpoint as an `AIAgent`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+
+string endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL is not set.");
+
+AIAgent agent =
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential())
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a helpful assistant.",
+        name: "Assistant");
+
+Console.WriteLine($"Agent: {await agent.RunAsync("What is the capital of France?")}");
+```
+
+The output prints the agent's response. Because the agent is ephemeral, no definition is persisted to the service — it exists only for the lifetime of the process.
+
+::: zone-end
+
 ## Add function tools
 
-Define local function tools using the `@tool` decorator and pass them to the agent. The agent automatically calls these tools when needed during a conversation.
+Define local function tools and pass them to the agent. The agent automatically calls these tools when needed during a conversation.
+
+::: zone pivot="python"
+
+Define local function tools using the `@tool` decorator.
 
 ```python
 import asyncio
@@ -142,9 +206,57 @@ if __name__ == "__main__":
 
 The agent uses the Responses API to determine when to call the `get_weather` function, executes it locally, and returns the result in natural language.
 
+::: zone-end
+
+::: zone pivot="csharp"
+
+Define a local method, decorate it with `[Description]` attributes, and wrap it with `AIFunctionFactory.Create(...)`.
+
+```csharp
+using System.ComponentModel;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
+[Description("Get the weather for a given location.")]
+static string GetWeather(
+    [Description("The location to get the weather for.")] string location)
+{
+    string[] conditions = ["sunny", "cloudy", "rainy", "stormy"];
+    Random rng = Random.Shared;
+    return $"The weather in {location} is {conditions[rng.Next(conditions.Length)]} with a high of {rng.Next(10, 31)}°C.";
+}
+
+AITool weatherTool = AIFunctionFactory.Create(GetWeather);
+
+string endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL is not set.");
+
+AIAgent agent =
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential())
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a helpful weather agent.",
+        name: "WeatherAssistant",
+        tools: [weatherTool]);
+
+Console.WriteLine($"Agent: {await agent.RunAsync("What's the weather like in Seattle?")}");
+```
+
+The agent uses the Responses API to determine when to call `GetWeather`, executes it locally, and returns the result in natural language.
+
+::: zone-end
+
 ## Use the web search tool
 
-The Responses API on the Foundry project endpoint provides built-in hosted tools like web search. Use `FoundryChatClient.get_web_search_tool()` to give your agent access to web search without any local implementation:
+The Responses API on the Foundry project endpoint provides built-in hosted tools like web search. Give your agent access to web search without any local implementation.
+
+::: zone pivot="python"
+
+Use `FoundryChatClient.get_web_search_tool()`:
 
 ```python
 import asyncio
@@ -191,9 +303,55 @@ agent = Agent(
 )
 ```
 
+::: zone-end
+
+::: zone pivot="csharp"
+
+Pass `new HostedWebSearchTool()` in the `tools` list:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
+string endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL is not set.");
+
+AIAgent agent =
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential())
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a research assistant. Use web search to find current information.",
+        name: "ResearchAssistant",
+        tools: [new HostedWebSearchTool()]);
+
+Console.WriteLine($"Agent: {await agent.RunAsync("What are the latest updates to Microsoft Foundry?")}");
+```
+
+The web search tool executes server-side through the Foundry project Responses API. You can combine it with local function tools to give your agent both web access and custom code capabilities:
+
+```csharp
+AIAgent agent =
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential())
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a helpful assistant with web and weather capabilities.",
+        name: "Assistant",
+        tools: [new HostedWebSearchTool(), weatherTool]);
+```
+
+::: zone-end
+
 ## Stream responses
 
-Use the `stream=True` parameter to receive responses as they generate:
+Receive responses as they generate instead of waiting for the full message.
+
+::: zone pivot="python"
+
+Use the `stream=True` parameter:
 
 ```python
 import asyncio
@@ -223,6 +381,39 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
+::: zone-end
+
+::: zone pivot="csharp"
+
+Call `RunStreamingAsync` and iterate the `AgentResponseUpdate` stream:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+
+string endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? throw new InvalidOperationException("FOUNDRY_MODEL is not set.");
+
+AIAgent agent =
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential())
+    .AsAIAgent(
+        model: deploymentName,
+        instructions: "You are a helpful assistant.",
+        name: "Assistant");
+
+Console.Write("Agent: ");
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("Tell me a fun fact."))
+{
+    Console.Write(update);
+}
+Console.WriteLine();
+```
+
+::: zone-end
+
 Streaming output appears incrementally in the console as the model generates each token.
 
 ## Observability and enterprise capabilities
@@ -237,12 +428,23 @@ The ephemeral pattern isn't a reduced-capability tier — you get the same Found
 
 ## Use the OpenAI SDK directly
 
-Because the Foundry project Responses API is OpenAI-compatible, you can also call it directly from the OpenAI SDK by pointing the client at the project endpoint (`{project_endpoint}/openai/v1/responses`). Use this path only if you already have OpenAI SDK code or need lower-level control over the request and response shapes. New code should prefer `FoundryChatClient`, which handles authentication, tool wiring, and orchestration for you.
+Because the Foundry project Responses API is OpenAI-compatible, you can also call it directly from the OpenAI SDK by pointing the client at the project endpoint (`{project_endpoint}/openai/v1/responses`). Use this path only if you already have OpenAI SDK code or need lower-level control over the request and response shapes. New code should prefer the Agent Framework, which handles authentication, tool wiring, and orchestration for you.
 
 For SDK samples, see:
 
+::: zone pivot="python"
+
 > [!div class="nextstepaction"]
 > [Foundry Responses samples (azure-ai-projects)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/responses)
+
+::: zone-end
+
+::: zone pivot="csharp"
+
+> [!div class="nextstepaction"]
+> [Azure.AI.OpenAI samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)
+
+::: zone-end
 
 ## Clean up resources
 
@@ -253,8 +455,19 @@ Because Agent Framework agents created here are ephemeral, no service-side clean
 **Go deeper on this pattern**
 
 - [Agent Framework on GitHub](https://github.com/microsoft/agent-framework)
-- [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry)
+
+::: zone pivot="python"
+
+- [Foundry provider samples (Python)](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry)
 - [Foundry project Responses API samples (OpenAI SDK)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/responses)
+
+::: zone-end
+
+::: zone pivot="csharp"
+
+- [Agents with Foundry samples (.NET)](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry)
+
+::: zone-end
 
 **Package the same agent code as a hosted agent**
 

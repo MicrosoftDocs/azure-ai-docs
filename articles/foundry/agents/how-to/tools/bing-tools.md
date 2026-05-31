@@ -385,7 +385,9 @@ Full response: Microsoft Foundry Agent Service enables you to build...
 
 The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
-To enable your Agent to use Bing search API, use `BingGroundingTool`.
+To enable your Agent to use Bing search API, use `BingGroundingTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 #### Grounding with Bing Search
 
@@ -469,6 +471,52 @@ This example creates an agent that uses the Grounding with Bing Search tool and 
 ```console
 Euler's identity is considered one of the most elegant equations in mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingCustomSearchTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID`, and `AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+
+string connectionId = Environment.GetEnvironmentVariable("AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID")
+    ?? throw new InvalidOperationException("AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID is not set.");
+string instanceName = Environment.GetEnvironmentVariable("AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME")
+    ?? throw new InvalidOperationException("AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME is not set.");
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = """
+    You are a helpful agent that can use Bing Custom Search tools to assist users.
+    Use the available Bing Custom Search tools to answer questions and perform tasks.
+    """;
+
+BingCustomSearchToolOptions bingCustomSearchToolParameters = new(
+    [new BingCustomSearchConfiguration(connectionId, instanceName)]);
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: AgentInstructions,
+    name: "BingCustomSearchAgent",
+    tools: [FoundryAITool.CreateBingCustomSearchTool(bingCustomSearchToolParameters)]);
+
+AgentResponse response = await agent.RunAsync("Search for the latest news about Microsoft AI");
+
+foreach (var message in response.Messages)
+{
+    Console.WriteLine(message.Text);
+}
+```
+
+For standard Bing grounding (non-custom), use `FoundryAITool.CreateBingGroundingTool(...)` with a Bing connection ID. For the full sample, see [Agent_Step18_BingCustomSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step18_BingCustomSearch).
+
+---
 
 ## Grounding with Bing in streaming scenarios
 

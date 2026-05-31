@@ -293,7 +293,11 @@ For a full screenshot-loop implementation, see the [Foundry provider samples](ht
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -478,6 +482,82 @@ Follow-up response received (ID: ...)
 OpenAI news - Latest Updates
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateComputerTool(...)` from `Microsoft.Agents.AI.Foundry` to give the agent the computer use tool. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. This sample omits the screenshot helpers — see the full sample for the action loop and asset utilities.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+using Microsoft.Extensions.AI;
+using OpenAI.Responses;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME") ?? "computer-use-preview";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+using IHostedFileClient fileClient = projectClient.GetProjectOpenAIClient().AsIHostedFileClient();
+
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    name: "ComputerAgent",
+    instructions: "You are a computer automation assistant.",
+    tools: [FoundryAITool.CreateComputerTool(ComputerToolEnvironment.Browser, 1026, 769)]);
+
+// Upload pre-captured screenshots that simulate browser state transitions.
+// (See the full sample for ComputerUseUtil implementation.)
+Dictionary<string, string> screenshots = await ComputerUseUtil.UploadScreenshotAssetsAsync(fileClient);
+
+ChatClientAgentRunOptions runOptions = new()
+{
+    ChatOptions = new ChatOptions
+    {
+        RawRepresentationFactory = (_) => new CreateResponseOptions { TruncationMode = ResponseTruncationMode.Auto },
+    }
+};
+
+ChatMessage message = new(ChatRole.User,
+[
+    new TextContent("Search for 'OpenAI news'. Type it and submit. Once you see results, the task is complete."),
+    new AIContent { RawRepresentation = ResponseContentPart.CreateInputImagePart(imageFileId: screenshots["browser_search"], imageDetailLevel: ResponseImageDetailLevel.High) }
+]);
+
+AgentSession session = await agent.CreateSessionAsync();
+AgentResponse response = await agent.RunAsync(message, session: session, options: runOptions);
+
+// Loop: parse computer call actions from response, simulate them, return new screenshots.
+for (int i = 0; i < 10; i++)
+{
+    ComputerCallResponseItem? computerCall = response.Messages
+        .SelectMany(m => m.Contents)
+        .Select(c => c.RawRepresentation as ComputerCallResponseItem)
+        .FirstOrDefault(item => item is not null);
+
+    if (computerCall is null) break;
+
+    (_, string fileId) = await ComputerUseUtil.GetScreenshotAsync(computerCall.Action, default, screenshots);
+
+    AIContent callOutput = new()
+    {
+        RawRepresentation = new ComputerCallOutputResponseItem(
+            computerCall.CallId,
+            output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageFileId: fileId))
+    };
+
+    response = await agent.RunAsync([new ChatMessage(ChatRole.User, [callOutput])], session: session, options: runOptions);
+}
+
+await ComputerUseUtil.EnsureDeleteScreenshotAssetsAsync(fileClient, screenshots);
+Console.WriteLine(response);
+```
+
+For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step15_ComputerUse).
+
+---
 
 :::zone-end
 
