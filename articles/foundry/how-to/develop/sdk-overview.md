@@ -25,11 +25,13 @@ zone_pivot_groups: foundry-sdk-overview-languages
 
 ## Foundry SDK
 
-The Foundry SDK connects to a single project endpoint that provides access to the most popular Foundry capabilities:
+The Foundry SDK is a thin-client SDK that gives you access to all of the Foundry project APIs through a single project endpoint:
 
 ```
 https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
 ```
+
+It's the foundation other Foundry-aware SDKs build on. For example, the Agent Framework `foundry` package takes a dependency on the Foundry SDK and uses it to access Foundry functionality — you don't need to wire up the project endpoint or OpenAI-compatible client yourself when you use `FoundryChatClient`.
 
 > [!NOTE]
 > If your organization uses a custom subdomain, replace `<resource-name>` with `<your-custom-subdomain>` in the endpoint URL.
@@ -122,7 +124,7 @@ dotnet add package Azure.Identity
 The SDK exposes two client types because Foundry and OpenAI have different API shapes:
 
 - **Project client** – Use for Foundry-native operations where OpenAI has no equivalent. Examples: listing connections, retrieving project properties, enabling tracing.
-- **OpenAI-compatible client** – Use for Foundry functionality that builds on OpenAI concepts. The Responses API, agents, evaluations, and fine-tuning all use OpenAI-style request/response patterns. This client also gives you access to Foundry direct models (non-Azure-OpenAI models hosted in Foundry). The project endpoint serves this traffic on the `/openai` route.
+- **OpenAI-compatible client** – Use for Foundry functionality that builds on OpenAI concepts. The Responses API, agents, evaluations, and fine-tuning all use OpenAI-style request/response patterns. This client targets the Responses API on your Foundry project endpoint, which gives you access to Foundry Models from the catalog (including non-Azure-OpenAI direct models) plus platform tools — standard OpenAI tools like file search, code interpreter, and web search, alongside Foundry-exclusive tools like memory, SharePoint, WorkIQ, Fabric IQ, and MCP servers. The project endpoint serves this traffic on the `/openai` route.
 
 Most apps use both clients. Use the project client for setup and configuration, then use the OpenAI-compatible client for running agents, evaluations, and calling models (including Foundry direct models).
 
@@ -236,7 +238,7 @@ Console.WriteLine(response.GetOutputText());
 
 ## OpenAI SDK
 
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API), including embeddings, chat completions, and image generation. It doesn't provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface, the best latency, and maximum compatibility with existing OpenAI clients. This endpoint exposes the Responses API on Azure OpenAI directly and provides access to Azure OpenAI models and Foundry direct models, including embeddings, chat completions, and image generation. It doesn't provide access to Foundry-specific features like agents, evaluations, or Foundry-exclusive platform tools — for those, use the Responses API on the Foundry project endpoint through the [Foundry SDK](#foundry-sdk).
 
 > [!TIP]
 > Use the OpenAI SDK endpoint for [generating embeddings](../../openai/how-to/embeddings.md). The project endpoint used by the Foundry SDK doesn't currently route embedding requests.

@@ -12,20 +12,22 @@ ms.custom: include
 
 A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
+The **Foundry SDK** is a thin-client SDK that exposes all of the Foundry project APIs through a single project endpoint. Higher-level SDKs build on it — for example, the Agent Framework `foundry` package depends on the Foundry SDK to access Foundry models, tools, and project configuration.
+
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
-| **Foundry SDK** | Foundry-specific capabilities with OpenAI-compatible interfaces. Includes access to Foundry direct models through the Responses API (not Chat Completions). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
-| **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface, including embeddings. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
-| **Anthropic SDK** | Anthropic Claude models deployed in Foundry, using the Anthropic Messages API. | `https://<resource-name>.services.ai.azure.com/anthropic` |
-| **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
-| **Agent Framework** | Recommended SDK for code-based agents and multi-agent systems. Same code runs self-hosted or as a Foundry-managed Hosted agent. | Calls the Foundry Responses API at the project endpoint via `FoundryChatClient`. |
+| **Foundry SDK** | Thin-client SDK over all Foundry project APIs. Access to Foundry Models and platform tools (file search, code interpreter, web search, memory, SharePoint, WorkIQ, Fabric IQ, MCP). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
+| **Agent Framework** | Code-based agents and multi-agent systems. The `foundry` package depends on the Foundry SDK for project access. Run in your own process or package as a container-based [Hosted agent (preview)](../agents/concepts/hosted-agents.md). | Responses API on the Foundry project endpoint, via `FoundryChatClient`. |
+| **OpenAI SDK** | Full OpenAI API surface, including embeddings. Best latency and maximum OpenAI compatibility. | `https://<resource-name>.openai.azure.com/openai/v1` |
+| **Anthropic SDK** | Anthropic Claude models deployed in Foundry. | `https://<resource-name>.services.ai.azure.com/anthropic` |
+| **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints. |
 
 **Choose your SDK**:
 - Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
-- Use **OpenAI SDK** when maximum OpenAI compatibility is required, when generating embeddings, or using Foundry direct models via Chat Completions
+- Use **Agent Framework** when building code-based agents or multi-agent systems against the Responses API on a Foundry project endpoint, either in your own process or deployed as a Hosted agent
+- Use **OpenAI SDK** when maximum OpenAI compatibility or lowest latency is required, when generating embeddings, or when using Foundry direct models via Chat Completions
 - Use **Anthropic SDK** when working with Anthropic Claude models deployed in Foundry
 - Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
-- Use **Agent Framework** when building code-based agents or multi-agent systems against the Foundry Responses API, either self-hosted or deployed as a Hosted agent
 
 > [!NOTE]
 > **Resource types:** A Foundry resource provides all endpoints previously listed. An Azure OpenAI resource provides only the `/openai/v1` endpoint.
