@@ -18,7 +18,9 @@ zone_pivot_groups: azure-ai-managed-compute-deployment
 
 # Deploy open-source models with managed compute (Preview)
 
-[!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
+> [!NOTE]
+> Managed compute in Foundry is currently in public preview and [registration is required](https://forms.cloud.microsoft/r/8Jnx1LALLA) to use it.
+> This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Managed compute deployment (preview) in Microsoft Foundry hosts open-source models on dedicated GPU capacity. Microsoft owns the GPU topology, runtime, container image, and security patching. You choose the model, deployment template, accelerator family, and scaling behavior that fit your workload.
 This article walks through the end-to-end workflow for deploying an open-source model onto managed compute in Microsoft Foundry. 
