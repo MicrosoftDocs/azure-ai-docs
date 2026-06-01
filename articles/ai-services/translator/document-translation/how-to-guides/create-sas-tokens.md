@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 12/05/2025
+ms.date: 06/02/2026
 ---
 
 # Shared access signature (SAS) tokens for storage containers

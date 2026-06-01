@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/23/2026
+ms.date: 06/02/2026
 ---
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD036 -->

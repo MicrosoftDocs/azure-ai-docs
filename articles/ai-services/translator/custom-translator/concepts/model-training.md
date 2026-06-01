@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to concept of a model and training, so that I can efficiently use training, tuning and testing datasets the helps me build a translation model.
