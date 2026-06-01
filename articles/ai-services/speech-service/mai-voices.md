@@ -17,9 +17,9 @@ ai-usage: ai-assisted
 
 > [!NOTE]
 > 
-> This feature is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This feature is currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-MAI-Voice is a family of neural text-to-speech models available through Azure Speech in Foundry Tools in public preview. Built on Microsoft's in-house speech foundation models, MAI-Voice models produce expressive, natural speech output with consistent voice persona quality. Similar to Azure Neural HD voices, MAI-Voice models understand input text holistically and automatically adapt tone, emotion, and speaking style. This enables more human-like and conversational speech without requiring extensive manual tuning.
+MAI-Voice is a family of neural text-to-speech models available through Azure Speech in Foundry Tools in public preview. Built on Microsoft's in-house speech foundation models, MAI-Voice models produce expressive, natural speech output with consistent voice persona quality. Similar to Azure Neural HD voices, MAI-Voice models understand input text holistically and automatically adapt tone, emotion, and speaking style. This adaptation enables more human-like and conversational speech without requiring extensive manual tuning.
 
 Speech offers the following MAI-Voice models:
 
@@ -38,15 +38,15 @@ MAI-Voice-1 is optimized for expressive, conversational, and long-form scenarios
 |---|---|
 | Human-like speech generation | MAI-Voice-1 generates highly natural and emotionally rich speech. The model interprets input text holistically and automatically adjusts emotion, pace, and rhythm without manual configuration. |
 | Conversational expressiveness | MAI-Voice-1 is optimized for conversational scenarios, producing engaging and context-aware speech suitable for assistants and interactive experiences. |
-| Emotion and style control | Developers can influence speaking style using SSML with `mstts:express-as`, enabling control over emotions such as joy, excitement, empathy, and more. |
+| Emotion and style control | Developers can influence speaking style by using SSML with `mstts:express-as`, enabling control over emotions such as joy, excitement, empathy, and more. |
 | Consistent voice persona | MAI-Voice-1 maintains a stable and consistent voice persona across long-form content while still allowing expressive variation. |
 | High fidelity audio | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
-| Real-time synthesis | MAI-Voice-1 supports real-time speech synthesis using the Speech SDK and APIs. |
+| Real-time synthesis | MAI-Voice-1 supports real-time speech synthesis by using the Speech SDK and APIs. |
 
 ### Prerequisites
 
-- An Azure account. Create one for free.
-- Create a Speech resource in a region that supports MAI-Voice-1 (region support).
+- An Azure account. [Create one for free](https://azure.microsoft.com/free/).
+- A Speech resource in a region that supports MAI-Voice-1 ([region support](https://learn.microsoft.com/azure/cognitive-services/speech-service/regions)).
 
 ### Use MAI-Voice-1
 
@@ -108,9 +108,9 @@ Steps to Access:
 To access personal voice (voice cloning) using MAI-Voice-1:
 
 1. Apply for gated access via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
-2. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
-3. Upload audio consent and prompt to create a personal voice.
-4. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
+1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
+1. Upload audio consent and prompt to create a personal voice.
+1. Synthesize given text using the created voice and MAI-Voice-1 model using the following SSML:
 
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
@@ -139,31 +139,31 @@ Usage: Available for third-party developers. Microsoft holds full licensing righ
 
 ## MAI-Voice-2
 
-MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that supports multilingual synthesis across 10+ languages. It extends the MAI-Voice family with multilingual coverage, voice prompting (gated), long-form generation, and multi-speaker generation.
+MAI-Voice-2 is a high-fidelity, expressive, prompted text-to-speech model that supports multilingual synthesis across more than 10 languages. It extends the MAI-Voice family with multilingual coverage, voice prompting (gated), long-form generation, and mult-speaker generation.
 
 ### Key features
 
 | Key features | Description |
 |---|---|
 | High-fidelity natural synthesis | Produces highly natural voice output with expressive control. |
-| Multilingual support | Supports synthesis across 10+ languages with locale-specific prebuilt voices. |
+| Multilingual support | Supports synthesis across more than 10 languages with locale-specific prebuilt voices. |
 | Expressive SSML control | Supports `mstts:express-as` with `style` and `styledegree` for fine-grained expressive control (for example, `happiness`). |
-| Voice prompting (gated) | Voice prompting is supported with short reference clips (10–120 seconds), subject to gated access approval and consent safeguards. |
+| Voice prompting (gated) | Supports voice prompting with short reference clips (10–120 seconds), subject to gated access approval and consent safeguards. |
 | Long-form generation | Optimized for long-form narration with stable persona quality across extended content. |
-| Multi-speaker generation | Supports multi-speaker scenarios within a single synthesis flow. |
+| Mult-speaker generation | Supports mult-speaker scenarios within a single synthesis flow. |
 | Out-of-scope note | The model prioritizes naturalness and expressivity over latency-critical scenarios. |
 
 ### Prerequisites
 
-- An Azure account. [Create](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) one for free.
+- An Azure account. [Create](https://azure.microsoft.com/pricing/purchase-options/azure-account) one for free.
 - Create a Speech resource in a [region](regions.md#regions) that supports MAI-Voice-2.
 - For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
 
 ### Use MAI-Voice-2
 
-MAI-Voice-2 is available through the Azure Speech REST API. Send an SSML POST request to the `cognitiveservices/v1` endpoint of your Speech resource, and place the desired MAI-Voice-2 voice in the `name` attribute of the `<voice>` element.
+You can access MAI-Voice-2 through the Azure Speech REST API. Send an SSML POST request to the `cognitiveservices/v1` endpoint of your Speech resource, and place the desired MAI-Voice-2 voice in the `name` attribute of the `<voice>` element.
 
-The following Python example sends an SSML request to the REST endpoint and writes the resulting 24kHz MP3 to disk. Authentication can be done with an API key (`Ocp-Apim-Subscription-Key`) or Entra ID (`Authorization: Bearer ...`).
+The following Python example sends an SSML request to the REST endpoint and writes the resulting 24 kHz MP3 to disk. You can authenticate by using an API key (`Ocp-Apim-Subscription-Key`) or Entra ID (`Authorization: Bearer ...`).
 
 ```python
 import os
@@ -217,13 +217,13 @@ ssml = """<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns
 synthesize_to_file(ssml, 'mai_voice2_en.mp3')
 ```
 
-On success, an `mai_voice2_en.mp3` file containing the synthesized speech is saved to the output directory.
+On success, the `mai_voice2_en.mp3` file containing the synthesized speech is saved to the output directory.
 
 ### SSML examples
 
 **Basic multilingual SSML**
 
-The following SSML synthesizes a greeting in Spanish (Mexico) using `es-MX-Valeria:MAI-Voice-2`.
+The following SSML synthesizes a greeting in Spanish (Mexico) by using `es-MX-Valeria:MAI-Voice-2`.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="es-MX">
@@ -235,7 +235,7 @@ The following SSML synthesizes a greeting in Spanish (Mexico) using `es-MX-Valer
 
 **Expressive control with `mstts:express-as`**
 
-MAI-Voice-2 supports expressive styles with `style` and `styledegree` attributes for fine-grained control:
+MAI-Voice-2 supports expressive styles by using `style` and `styledegree` attributes for fine-grained control:
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
@@ -249,14 +249,14 @@ MAI-Voice-2 supports expressive styles with `style` and `styledegree` attributes
 
 ### Voice prompting (gated access)
 
-Voice prompting (personal voice cloning) with MAI-Voice-2 is gated and requires Microsoft approval plus consent safeguards.
+Voice prompting (personal voice cloning) by using MAI-Voice-2 is gated and requires Microsoft approval plus consent safeguards.
 
 Steps to access:
 
-1. Apply for limited access approval via Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
-2. Upload consent audio and reference prompt (10–120 seconds).
-3. Use the Personal Voice APIs to create the voice profile.
-4. Synthesize with the approved voice profile and MAI-Voice-2 model.
+1. Apply for limited access approval through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
+1. Upload consent audio and reference prompt (10–120 seconds).
+1. Use the Personal Voice APIs to create the voice profile.
+1. Synthesize by using the approved voice profile and MAI-Voice-2 model.
 
 ### Prebuilt voices
 
@@ -270,7 +270,7 @@ MAI-Voice-2 provides locale-specific prebuilt voices across multiple languages.
 | de-DE-Klaus:MAI-Voice-2 | de-DE | German (Germany) | Male | General Conversation, Multilingual Narration |
 
 > [!NOTE]
-> The voices listed above are the currently published MAI-Voice-2 prebuilt voices. The model card indicates support across 10+ languages, and additional locales and voices will be added as they become generally available.
+> The voices listed in the preceding table are the currently published MAI-Voice-2 prebuilt voices. The model card indicates support across 10+ languages. Microsoft adds more locales and voices as they become generally available.
 
 Usage: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
 
