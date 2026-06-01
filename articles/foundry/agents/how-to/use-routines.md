@@ -11,6 +11,8 @@ ms.author: zhuoqunli
 ms.custom:
   - dev-focus
   - doc-kit-assisted
+  - references_regions
+  
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-routines-config
 ---
@@ -1021,7 +1023,7 @@ azd ai routine delete once-on-release-day
 
 ## Dispatch behavior and retry policy
 
-When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgement doesn't mean the downstream agent call has finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
+When a trigger fires or you call `:dispatch_async` manually, Foundry acknowledges that the run was enqueued. The acknowledgment doesn't mean the downstream agent call has finished. Use the run state, telemetry, or the returned `dispatch_id` to confirm completion.
 
 ### Downstream call outcomes
 
@@ -1053,7 +1055,7 @@ The preview has the following known issues and limitations:
 - **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
 - **Regional availability.** Routines are available only in the regions listed under [Prerequisites](#prerequisites). If **Routines** isn't visible in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
 - **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
-- **Acknowledgement isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
+- **Acknowledgment isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
 - **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults), and the routine run is marked failed if all attempts time out.
 - **Successful delivery doesn't guarantee end-to-end completion.** A completed routine run means the downstream API returned success for the dispatch request. It doesn't guarantee that asynchronous work started by the agent has finished.
 
