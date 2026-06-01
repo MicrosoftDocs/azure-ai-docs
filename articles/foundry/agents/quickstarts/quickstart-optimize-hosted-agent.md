@@ -46,17 +46,17 @@ Initialize a new project from the agent optimizer sample. Create a folder, then 
 
 ```bash
 mkdir my-agent && cd my-agent
-azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml . --no-prompt
+azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/agent.manifest.yaml .
 ```
 
-This downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
+The interactive flow prompts for your Azure subscription, region, and model deployment settings. It downloads the sample and generates `agent.yaml`, `.agent_configs/baseline/`, the evaluation dataset, and infrastructure-as-code files for provisioning.
 
 > [!TIP]
 > If you already have an existing agent project, skip this step and see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md) to add optimization support.
 >
 > If you already have a Foundry project and model deployments, add `-p <project-resource-id>` to target existing resources:
 > ```bash
-> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/customer-support-optimization/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
 > ```
 
 ## Authenticate
@@ -78,24 +78,6 @@ Choose one of the following options based on whether you need to create new Azur
 
 ### Option A: Create new resources
 
-Set your Azure subscription and location, then provision. Choose any [region where hosted agents are available](../concepts/hosted-agents.md#region-availability):
-
-# [Bash](#tab/bash)
-
-```bash
-azd env set AZURE_SUBSCRIPTION_ID $(az account show --query id -o tsv)
-azd env set AZURE_LOCATION <your-region>
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-azd env set AZURE_SUBSCRIPTION_ID (az account show --query id -o tsv)
-azd env set AZURE_LOCATION <your-region>
-```
-
----
-
 Provision the Azure resources. This step takes approximately two minutes:
 
 ```bash
@@ -106,7 +88,7 @@ This step creates:
 
 - A Foundry account and project
 - An Azure Container Registry
-- Model deployments (gpt-4.1-mini for eval, gpt-5.1 for optimization)
+- Model deployments (gpt-4.1-mini for eval, gpt-5.4 for optimization)
 
 ### Option B: Use an existing Foundry project
 
