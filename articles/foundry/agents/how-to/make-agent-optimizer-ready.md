@@ -365,6 +365,9 @@ if __name__ == "__main__":
 
 1. **During optimization**: The optimizer sets `OPTIMIZATION_CONFIG` with the candidate's configuration as inline JSON. Your agent uses the candidate's instructions and tool descriptions during evaluation.
 
+    > [!WARNING]
+    > During evaluation, the optimizer invokes your agent against every task in your dataset. If your agent calls external tools (APIs, databases, third-party services), those calls execute for real. Consider mocking tool implementations or pointing to test endpoints to avoid unintended side effects.
+
 1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into `.agent_configs/<candidate_id>/` in your project. Then `azd deploy` deploys the agent with the improved configuration.
 
 Your code never changes between these states. The config resolution is fully automatic.
