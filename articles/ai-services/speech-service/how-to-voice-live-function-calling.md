@@ -5,7 +5,7 @@ description: Learn how to use function calling in a voice session using the Voic
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 04/06/2026
+ms.date: 05/31/2026
 author: PatrickFarley
 reviewer: PatrickFarley
 ms.author: pafarley
