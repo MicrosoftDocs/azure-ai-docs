@@ -1,7 +1,7 @@
 ---
 title: Agentic Retrieval Overview
 description: Learn about agentic retrieval in Azure AI Search, a pipeline that uses LLMs to decompose complex queries into subqueries for better RAG and agent workflows.
-ms.date: 05/05/2026
+ms.date: 06/02/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -12,6 +12,19 @@ ms.custom:
 # Agentic retrieval in Azure AI Search
 
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+> 
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In Azure AI Search, *agentic retrieval* is a multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG) patterns and agent-to-agent workflows. 
 
@@ -27,7 +40,7 @@ Here's what it does:
 
 This high-performance pipeline helps you generate high-quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a [knowledge base object](/rest/api/searchservice/knowledge-bases) in the latest stable (2026-04-01) and preview (2025-11-01-preview) REST API versions, as well as the equivalent Azure SDK packages. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a [knowledge base object](/rest/api/searchservice/knowledge-bases) in the latest stable (2026-04-01) and preview (2026-05-01-preview) REST API versions, as well as the equivalent Azure SDK packages. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -54,8 +67,6 @@ Agentic retrieval adds latency to query processing, but it makes up for it by ad
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
-> [!NOTE]
-> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. You can minimize latency and costs by setting properties that limit LLM processing. You can also exclude LLM processing altogether for just text and hybrid search and your own query planning logic.
 
 ## Architecture and workflow
 
@@ -91,8 +102,6 @@ Your search index determines query execution and any optimizations that occur du
 
 Your application drives the pipeline by calling the knowledge base and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
-> [!NOTE]
-> Only gpt-4o, gpt-4.1, and gpt-5 series models are supported for query planning. You can use any model for final answer generation.
 
 ## Availability and pricing
 
@@ -182,6 +191,7 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
   + [Web](agentic-knowledge-source-how-to-web.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
++ [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md)
 + [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 
 ### [**Tutorials**](#tab/tutorials)
