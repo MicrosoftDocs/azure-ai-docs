@@ -112,7 +112,7 @@ For applications this endpoint is exposed at:
 You can configure inbound end-user authentication on the application. The following options are available:
 
 - **Default (RBAC)**: The caller must have the **Foundry User** role (or a custom role with the `/applications/invoke/action` permission) on the Agent Application resource. Choose this option if you want to invoke your agent application using the Responses API protocol. For more information about Foundry RBAC roles, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
-- **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
+- **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as an autopilot, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
 -->
@@ -381,7 +381,7 @@ After publishing, you invoke your agent through its endpoint using either the Re
 
 To use your Agent Application in Microsoft 365 Copilot and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
 
-To publish your agent as a digital worker, see [Publish an agent as a digital worker in Agent 365](./agent-365.md)
+To publish your agent as an autopilot, see [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
 ### Invoke using the Responses API protocol
 
