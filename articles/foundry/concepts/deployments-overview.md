@@ -4,7 +4,7 @@ description: "Learn about deployment options for Microsoft Foundry Models, inclu
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 06/01/2026
 ms.author: mopeakande
 author: msakande
 manager: nitinme
@@ -22,8 +22,8 @@ Microsoft Foundry Models is the hub for discovering and deploying a wide range o
 
 Foundry provides two deployment options:
 
-- **Standard deployment in Foundry resources** — For Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) (also known as Azure Direct Models, or ADM) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md). This option is the preferred and most capable deployment path.
-- **Managed compute deployment** — Available for all OSS models, inlcuding models from partner and community, and custom models.
+- **Standard deployment in Foundry resources** — For Foundry Models, including [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) (also known as Azure Direct Models, or ADM) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md). This option is the preferred and most capable deployment path.
+- **Managed compute deployment** — Available for all Open Source Software (OSS) models, including models from partner and community, and custom models.
 
 The Foundry portal automatically selects the appropriate deployment option based on the model you choose. 
 
@@ -64,7 +64,7 @@ To get started with deployment, see [Deploy Microsoft Foundry Models in the Foun
 
 ## Managed compute deployment
 
-Managed compute is a managed GPU platform-as-a-service (PaaS) that hosts open-source and custom-weight models on dedicated GPU capacity. You access managed compute deployments through the same Foundry project endpoint as other deployment types, with no virtual machines, clusters, or serving runtimes to own. Foundry sizes the deployment, provisions the accelerators, and keeps the runtime patched.
+Managed compute in Foundry (Preview) is a managed GPU platform-as-a-service (PaaS) that hosts open-source and custom-weight models on dedicated GPU capacity. You access managed compute deployments through the same Foundry project endpoint as other deployment types, with no virtual machines, clusters, or serving runtimes to own. Foundry sizes the deployment, provisions the accelerators, and keeps the runtime patched.
 
 > [!IMPORTANT]
 > Managed compute is used for all OSS models — including open-source, partner, industry, and custom models. Managed compute deployments are served on the **unified Foundry project endpoint**, using the same authentication, networking, and SDK surface.
@@ -85,26 +85,26 @@ Microsoft Foundry's catalog includes 10,000+ open-source and partner models, wit
 
 ### Capabilities
 
-Managed compute supports:
+Managed compute (Preview) supports:
 
 - **Unified Foundry endpoint and authentication** — Use the same project endpoint, API keys, Microsoft Entra ID, and private networking as pay-per-token and provisioned throughput deployments. Inference routes use `<endpoint>/managed-deployments/<deployment-name>/`. Chat-completions-compatible runtimes also work on the standard `/openai/v1/` route with the OpenAI SDK.
-- **Model-instance sizing** — Deployments are sized in model-centric terms. Foundry picks GPUs per instance based on model size, architecture, context length, and whether the workload is optimized for latency or throughput. You don't pick virtual machine SKUs.
+- **Model-instance sizing** — Deployments are sized in model-centric terms. You don't need to pick virtual machine SKUs, because Foundry chooses GPUs per instance based on model size, architecture, context length, and whether the workload is optimized for latency or throughput. 
 - **Optimized inference runtimes** — Microsoft-curated vLLM, SGLang, and NVIDIA NIM containers with continuous batching, speculative decoding, tensor parallelism, and LoRA hot-swap.
 - **Accelerator families** — A100 (80 GB), H100 (80 GB), H200 (141 GB), and MI300X.
 - **Bring-your-own-weights (BYOW)** — Deploy full weights and LoRA adapters in SafeTensors format. Foundry maps the base lineage to compatible GPU and runtime configurations.
-- **Auto-scaling and scale-to-zero** — Auto-scale from live traffic or scale manually. Configure an idle timeout so the deployment scales to zero when no traffic arrives; billing stops immediately.
+- **Auto-scaling and scale-to-zero** — Auto-scale from live traffic or scale manually. Configure an idle timeout so the deployment scales to zero when no traffic arrives, making billing stop immediately.
 - **Microsoft-managed runtimes** — Microsoft owns serving runtimes, base container images, and security patches. Updates are applied to live deployments automatically.
 - **Observability metrics** — Each deployment emits API call count by status code and response-time percentiles. Chat-completion models also emit input and output token counts, time-to-first-token (TTFT) percentiles, and total response-time percentiles, grouped by time.
-- **Content filtering** — Not in scope for public preview; planned for revisit before general availability.
+
 
 
 ### Billing and quota
 
-Managed compute billing is hourly per accelerator SKU, with throughput per GPU as the underlying billing unit. Auto-scale and scale-to-zero align cost with actual traffic — billing stops immediately when instances scale in.
+Managed compute billing is hourly per accelerator SKU, with throughput per GPU as the underlying billing unit. Auto-scale and scale-to-zero align cost with actual traffic so that billing stops immediately instances scale down.
 
 Quota is granted per accelerator SKU per region through the **Foundry quota process** and is **separate from Azure VM quota**. Azure virtual machines are an infrastructure-as-a-service (IaaS) offering with regional SKUs; managed compute is a PaaS offering that leads with Global and Data Zone processing. Existing Azure VM quota can't be applied to a managed compute deployment.
 
-Managed compute is global at launch, with Data Zone and additional regions planned. Per-hour rates, 1-year reserved capacity, and commitment discounts are **(under consideration)**. Final rates will be published at general availability. For estimates, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+Managed compute is currently available for global deployment. For rate estimates, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
 
 ### Get started
@@ -118,12 +118,12 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 
 | Capability | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
-| Which models can be deployed? | All Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) | Open-source and partner models from the catalog, NVIDIA NIM, industry models, and BYOW custom models |
+| Which models can be deployed? | All Foundry Models, including [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) | Open-source and partner models from the model catalog, NVIDIA NIM, industry models, and BYOW custom models |
 | Deployment resource | Foundry resource | Foundry project |
 | Requires AI Hub | No | No |
-| Data processing options | Regional, data zone, global | Global; Data Zone planned |
+| Data processing options | Regional, data zone, global | Global |
 | Private networking | Yes | Yes |
-| Content filtering | Built-in and customizable | Not in public preview; planned before GA |
+| Content filtering | Built-in and customizable | Not available in public preview |
 | Keyless authentication | Yes (Microsoft Entra ID) | Yes (Microsoft Entra ID) and key-based |
 | Billing | Token usage or [provisioned throughput units](../openai/concepts/provisioned-throughput.md) | Hourly per accelerator SKU |
 
@@ -138,4 +138,4 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 - [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md)
 - [Microsoft Foundry Models overview](foundry-models-overview.md)
-- [Plan and manage costs for Foundry Tools](manage-costs.md)
+- [Managed compute in Microsoft Foundry](managed-compute-overview.md)

@@ -136,15 +136,15 @@ items:
   - name: Instant models (preview)
     displayName: Instant models in Microsoft Foundry (preview)
     href: ../../concepts/instant-models.md
+  - name: Managed compute overview
+    displayName: Managed compute deployment for open-source AI models in Foundry
+    href: ../../concepts/managed-compute-overview.md
   - name: Deployment types
     displayName: Deployment types for Microsoft Foundry Models
     href: ../../foundry-models/concepts/deployment-types.md
   - name: Deployment types (government)
     displayName: Deployment types for Microsoft Foundry Models (government)
     href: ../../foundry-models/concepts/deployment-types-gov.md
-  - name: Managed compute deployment
-    displayName: Deploy open-source AI models with managed compute in Foundry
-    href: ../../how-to/deploy-models-managed.md
   - name: Batch processing
     displayName: Getting started with Azure OpenAI batch deployments
     href: ../../openai/how-to/batch.md
@@ -186,6 +186,9 @@ items:
   - name: Upgrade GitHub Models to Foundry Models
     displayName: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
+  - name: Deploy models with Managed Compute
+    displayName: Deploy open-source AI models with managed compute in Foundry
+    href: ../../how-to/deploy-models-managed.md
   - name: Explore the model playgrounds
     displayName: Microsoft Foundry Playgrounds
     href: ../../concepts/concept-playgrounds.md
