@@ -9,8 +9,9 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 02/05/2026
-ms.custom: languages
+ms.date: 04/28/2026
+ms.custom: languages, references_regions
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---
 
@@ -22,7 +23,7 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), by `azure speech to text` models, or by `mai-transcribe-1`.
 
 ### Azure speech to text supported languages
 
@@ -77,6 +78,27 @@ To configure a single or multiple languages not supported by the multimodal mode
         }
 }
 ```
+
+### MAI Transcribe-1 supported languages (preview)
+
+MAI Transcribe-1 (`mai-transcribe-1`) is an alternative transcription model that can be paired with any text-based chat model.
+
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
+
+To configure MAI Transcribe-1, set `model` to `mai-transcribe-1` in the `session.update` message. You can optionally specify a language code in `language` to force recognition in a single language.
+
+```json
+{
+    "session": {
+        "input_audio_transcription": {
+            "model": "mai-transcribe-1",
+            "language": "en"
+        }
+    }
+}
+```
+
+For more information, see [Audio input transcription](./voice-live-how-to.md#audio-input-transcription).
 
 ### gpt-realtime and gpt-realtime-mini supported languages
 
@@ -206,4 +228,4 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

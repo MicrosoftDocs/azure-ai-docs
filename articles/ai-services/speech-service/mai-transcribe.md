@@ -5,13 +5,14 @@ description: Learn how to use the MAI-Transcribe model in Azure Speech LLM Speec
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 05/28/2026
+ms.custom: references_regions
 zone_pivot_groups: llm-speech-quickstart
+ai-usage: ai-assisted
 
 # Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
-ai-usage: ai-assisted
 ---
 
 # MAI-Transcribe in Azure Speech (preview)
@@ -36,33 +37,7 @@ The following models are supported:
 
 By default, the model operates in multi-lingual mode. The following languages are currently supported:
 
-| Language code | Language |
-| ----- | ----- |
-| `ar` | Arabic |
-| `zh` | Chinese |
-| `cs` | Czech |
-| `da` | Danish |
-| `nl` | Dutch |
-| `en` | English |
-| `fi` | Finnish |
-| `fr` | French |
-| `de` | German |
-| `hi` | Hindi |
-| `hu` | Hungarian |
-| `id` | Indonesian |
-| `it` | Italian |
-| `ja` | Japanese |
-| `ko` | Korean |
-| `nb` | Norwegian Bokmål |
-| `pl` | Polish |
-| `pt` | Portuguese |
-| `ro` | Romanian |
-| `ru` | Russian |
-| `es` | Spanish |
-| `sv` | Swedish |
-| `th` | Thai |
-| `tr` | Turkish |
-| `vi` | Vietnamese |
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 ## Use a MAI-Transcribe model
 

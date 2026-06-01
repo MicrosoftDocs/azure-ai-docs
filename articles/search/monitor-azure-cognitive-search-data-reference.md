@@ -1,7 +1,7 @@
 ---
 title: Monitoring Data Reference
 description: This article contains important reference material you need when you monitor Azure AI Search.
-ms.date: 07/25/2025
+ms.date: 06/02/2026
 ms.update-cycle: 365-days
 ms.custom: horz-monitor
 ms.topic: concept-article
@@ -73,14 +73,35 @@ To confirm throttled queries, use **Throttled search queries** metric. You can e
 
 For **Throttled Search Queries Percentage**, minimum, maximum, average and total, all have the same value: the percentage of search queries that were throttled, from the total number of search queries during one minute.
 
+## Compute units usage
+
+This metric measures the compute, memory, and I/O resources consumed by your Azure AI Search service, expressed in milli Compute Units (mCUs). It serves as a proxy for the processing cost of different operation types. Usage can vary over time depending on the operations being executed.
+
+You can view this metric at two levels:
+
+- **Search service level**: Aggregated compute consumption across the entire service.
+- **Index level**: Consumption scoped to a specific index, useful for identifying which indexes are driving the most resource usage.
+
+| Aggregation type | Description |
+|-------------|-------------|
+| **Sum** | Total mCUs consumed during the selected time interval. Useful for understanding overall compute cost over time. |
+| **Average** | Average mCUs consumed during the selected time interval. |
+
+This metric supports the following filters:
+
+- **Index name**: Filters the metric to a specific index. If no filter is applied, the metric reflects total consumption across all indexes in the service.
+
+- **Operation name**: Filters the metric by the operation contributing to compute consumption. If no filter is applied, the metric reflects combined consumption across all operation types. For supported values, see [Monitoring Data Reference](monitor-azure-cognitive-search-data-reference.md#resource-log-tables).
+
 [!INCLUDE [horz-monitor-ref-metrics-dimensions-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions-intro.md)]
 
 Azure AI Search has dimensions associated with the following metrics that capture a count of documents or skills that were executed.
 
-| Metric name  |  Description | Dimensions  | Sample use cases |
-|---|---|---|---|
-| **Document processed count**  | Shows the number of indexer processed documents.  | Data source name, failed, index name, indexer name, skillset name  | Can be referenced as a rough measure of throughput (number of documents processed by indexer over time) <br> - Set up to alert on failed documents |
-|  **Skill execution invocation count** | Shows the number of skill invocations. | Data source name, failed, index name, indexer name, skill name, skill type, skillset name | Reference to ensure skills are invoked as expected by comparing relative invocation numbers between skills and number of skill invocations to the number of documents. <br> - Set up to alert on failed skill invocations |
+| Metric name | Description | Dimensions | Sample use cases |
+| --- | --- | --- | --- |
+| **Document processed count** | Shows the number of indexer processed documents. | Data source name, failed, index name, indexer name, skillset name | Can be referenced as a rough measure of throughput (number of documents processed by indexer over time) <br> - Set up to alert on failed documents |
+| **Skill execution invocation count** | Shows the number of skill invocations. | Data source name, failed, index name, indexer name, skill name, skill type, skillset name | Reference to ensure skills are invoked as expected by comparing relative invocation numbers between skills and number of skill invocations to the number of documents. <br> - Set up to alert on failed skill invocations |
+| Compute Units Usage | Shows the mCUs consumed by operations on the search service | Index name, Operation | Evaluate which operation consumed the most compute. <br> -Set up alerts when muck consumption exceeds expected thresholds for a given operation type |
 
 | Dimension name | Description |
 | -------------- | ----------- |

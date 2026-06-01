@@ -6,13 +6,38 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 03/17/2026
+ms.date: 05/19/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 # What's new in Azure Language in Foundry Tools?
 
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## June 2026
+
+* **Text PII detection generally available (`2026-05-01`)**. The GA API delivers quality improvements across common entity types. The following capabilities, previously in preview, are now generally available:
+
+  * **Anonymization**. The `syntheticReplacement` [redaction policy](personally-identifiable-information/how-to/redact-text-pii.md#redaction-policies) masks detected entities with synthetic replacement values.
+  * **Disable type-validation enforcement**. Bypass strict [entity type validation](personally-identifiable-information/how-to/redact-text-pii.md#disableentityvalidation) when operational efficiency takes priority.
+  * **Confidence threshold score**. Set a minimum [confidence score](personally-identifiable-information/how-to/redact-text-pii.md#confidencescorethreshold) to filter output by detection confidence.
+  * **Exclude values** from PII output and use **entity synonyms** for tailored detection.
+
+* **New Text PII preview entities (`2026-04-15-preview`)**. The preview API adds support for Password, PIN code, Zip code, and Airport code entity types. For a full list, see [entity categories](personally-identifiable-information/concepts/entity-categories.md).
+
+* **Conversation PII improvements (`2026-04-15-preview`)**. A new preview model delivers quality improvements and expanded entity recognition, optimized for spoken-language patterns—including interruptions, filler words, and speaker turns common in transcripts and call recordings.
+
+* **PII detection capabilities available in new Foundry playgrounds**. Text PII detection, conversation PII detection, and document PII detection (preview) are now available in [new Foundry](https://ai.azure.com/). For more information, see:
+
+  * [Text PII detection](personally-identifiable-information/text-pii-playground.md)
+  * [Conversation PII detection](personally-identifiable-information/conversation-pii-playground.md)
+  * [Document PII detection](personally-identifiable-information/document-based-pii-playground.md) (preview)
+
+* **Text Analytics for Health available in new Foundry**. The Text Analytics for Health playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Text Analytics for Health quickstart](text-analytics-for-health/quickstart.md).
+
+* **Language detection available in new Foundry**. The language detection playground is now available in [new Foundry](https://ai.azure.com/). For more information, see the [Language detection quickstart](language-detection/quickstart.md).
+
+* **Open in Visual Studio Code**. new Foundry playgrounds for language detection, text PII detection, conversation PII detection, and Text Analytics for Health now support **Open in VS Code**. Select the option in the playground to export your current configuration directly to a preconfigured code sample in Visual Studio Code.
 
 ## February 2026
 
@@ -155,7 +180,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 **New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing over-predictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/train-model.md?tabs=rest-api#request-body).
 
-**Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
+**Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
 
 **[.NET SDKs](/dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet&preserve-view=true) support**. The following `.NET SDK`s are now available, and support the latest REST API version **2025-15-05-preview**:
 
@@ -190,7 +215,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 * CQA incorporates the QnA Maker scoring algorithm for more accurate responses.
 * CQA enables exact match answering for precise query resolutions.
 
-**For more updates, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)**.
+**For more updates, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)**.
 
 ## April 2025
 
@@ -217,7 +242,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 ## February 2025
 
-* Document and text abstractive summarization is now powered by fine-tuned Phi-3.5-mini! Check out the [Announcing Blog](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/exciting-update-abstractive-summarization-in-azure-ai-language-now-powered-by-ph/4369025) for more information.
+* Document and text abstractive summarization is now powered by fine-tuned Phi-3.5-mini! Check out the [Announcing Blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/exciting-update-abstractive-summarization-in-azure-ai-language-now-powered-by-ph/4369025) for more information.
 * More skills are available in [Foundry](https://ai.azure.com/?cid=learnDocs): Extract key phrase, Extract named entities, Analyze sentiment, and Detect language. More skills are yet to come.
 
 ## January 2025
@@ -254,7 +279,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 ## September 2024
 
-* PII detection now has container support. See more details in the Azure Update post: [Announcing Text PII Redaction Container Release](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-text-pii-redaction-container-release/4264655).
+* PII detection now has container support. See more details in the Azure Update post: [Announcing Text PII Redaction Container Release](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-text-pii-redaction-container-release/4264655).
 * Custom sentiment analysis (preview) will be retired January 10, 2025. You can transition to other custom model training services, such as custom text classification in Azure Language. See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom sentiment analysis (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-sentiment-analysis-retirement).
 * Custom text analytics for health (preview) will be retired on January 10, 2025. Transition to other custom model training services, such as custom named entity recognition in Azure Language, by that date. See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom text analytics for health (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-text-analytics-for-health-retirement).
 

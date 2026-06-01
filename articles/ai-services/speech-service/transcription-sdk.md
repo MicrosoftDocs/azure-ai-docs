@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 01/13/2026
+ms.date: 05/27/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech Transcription SDK.
 ---
@@ -24,8 +24,10 @@ The Speech Transcription SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|-----------|------------------|
-| Java | [Java](/java/api/overview/azure/ai-speech-transcription-readme) | Android, Windows, Linux, macOS |
+| C# | [C#](/dotnet/api/overview/azure/ai.speech.transcription-readme) | Windows, Linux, macOS |
 | Python | [Python](/python/api/overview/azure/ai-transcription-readme) | Windows, Linux, macOS |
+| Java | [Java](/java/api/overview/azure/ai-speech-transcription-readme) | Android, Windows, Linux, macOS |
+| JavaScript/TypeScript | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-speech-transcription-readme) | Windows, Linux, macOS |
 
 ## Code samples
 
@@ -35,8 +37,10 @@ Speech Transcription SDK code samples are available in the documentation and Git
 
 | Programming language | Quickstart doc |
 |----------------------|--------------------|
-| Java | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-java)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-java) |
+| C# | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-csharp)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-csharp) 
 | Python | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-python)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-python) |
+| Java | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-java)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-java) |
+| JavaScript/TypeScript | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-javascript)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-javascript) |
 
 If a sample isn't available in your preferred programming language, you can select another programming language to get started and learn about the concepts, or see the reference and samples linked from the beginning of the article.
 
@@ -46,8 +50,10 @@ You can find samples for each programming language in the respective GitHub repo
 
 | Programming language | Samples Repository |
 |----------------------|--------------------|
+| C# | [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/transcription/Azure.AI.Speech.Transcription/samples/README.md) |
+| Python | [Python Samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/transcription/azure-ai-transcription/samples/README.md) |
 | Java | [Java Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
-| Python | [Python Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples) |
+| JavaScript/TypeScript | [JavaScript/TypeScript Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
 
 ## Help options
 

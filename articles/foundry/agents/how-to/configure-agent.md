@@ -22,7 +22,7 @@ Every agent in Microsoft Foundry has a stable endpoint from the moment it's crea
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
-- [Publish an agent as a digital worker in Agent 365](./agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
 > [!NOTE]
 > If you're migrating from the previous publishing model, see [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md).
@@ -72,7 +72,7 @@ An agent can expose multiple protocols simultaneously:
 
 | Protocol | Endpoint pattern |
 |----------|-----------------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/v1/responses` |
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/responses` |
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
 | **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
