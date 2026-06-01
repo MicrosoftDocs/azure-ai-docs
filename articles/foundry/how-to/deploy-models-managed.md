@@ -6,20 +6,33 @@ ms.subservice: foundry-model-inference
 ms.custom:
   - build-2026
 ms.topic: how-to
-ms.date: 05/31/2026
+ms.date: 06/01/2026
 ms.author: mabables
 author: ManojBableshwar
 ms.reviewer: mopeakande
 reviewer: msakande
 ai-usage: ai-assisted
+zone_pivot_groups: azure-ai-managed-compute-deployment
 #CustomerIntent: As a Microsoft Foundry developer, I want to deploy an open-source model onto managed compute, call it from my application code, use it in an agent, scale and monitor it, and request additional quota, so that I can run open-source models in production behind the same Foundry endpoint I already use.
 ---
 
-# Deploy open-source models with managed compute
+# Deploy open-source models with managed compute (Preview)
 
-This article walks through the end-to-end workflow for deploying an open-source model onto managed compute in Microsoft Foundry: choosing a model in the catalog, picking a deployment template, deploying through the Foundry portal or Azure CLI / SDK / REST, calling the deployment with the OpenAI SDK, wiring it into a Foundry Agent, scaling and monitoring the deployment, and requesting additional quota.
+[!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
-For background on the deployment type — model instances, deployment templates, runtimes, accelerator families, billing, and current limitations — see [Managed compute in Microsoft Foundry](../concepts/managed-compute-overview.md).
+Managed compute deployment (preview) in Microsoft Foundry hosts open-source models on dedicated GPU capacity. Microsoft owns the GPU topology, runtime, container image, and security patching. You choose the model, deployment template, accelerator family, and scaling behavior that fit your workload.
+This article walks through the end-to-end workflow for deploying an open-source model onto managed compute in Microsoft Foundry. 
+
+In this article, you learn how to:
+
+- Choose a model in the model catalog
+- Select a deployment template
+- Deploy the model using the Foundry portal or Python SDK
+- Perform inferencing using the OpenAI SDK
+- Scale and monitor the deployment
+- Request more quota
+
+For an overview of managed compute deployment in Foundry, including model instances, deployment templates, runtimes, accelerator families, billing, and current limitations, see [Managed compute in Microsoft Foundry (Preview)](../concepts/managed-compute-overview.md).
 
 ## Prerequisites
 
@@ -29,9 +42,9 @@ For background on the deployment type — model instances, deployment templates,
 - The following Azure role assignments on the Foundry account scope:
 
     - **Cognitive Services Contributor** (or **Foundry Owner** / **Foundry Account Owner**) — required to create, update, and delete managed compute deployments. See [Role-based access control for Microsoft Foundry — managed compute control-plane operations](../concepts/rbac-foundry.md#managed-compute-control-plane-operations).
-    - **Azure AI User** — required to call the deployment with Microsoft Entra ID from the Playground, the SDK, or REST.
+    - **Foundry User** — required to call the deployment with Microsoft Entra ID from the Playground, the SDK, or REST.
 
-- Approved **managed compute quota** for the accelerator family you plan to deploy on (A100, H100, or MI300X) in the target region. Managed compute quota is separate from Azure VM quota. See [Request additional quota](#step-9-request-additional-quota) at the end of this article.
+- Approved **managed compute quota** for the accelerator family you plan to deploy on (A100, H100, or MI300X) in the target region. Managed compute quota is separate from Azure VM quota. See [Request more quota](#request-more-quota) at the end of this article.
 - Local tools for the SDK and CLI examples:
 
     ```bash
@@ -42,67 +55,106 @@ For background on the deployment type — model instances, deployment templates,
 - Azure CLI **2.60 or later**.
 
 > [!IMPORTANT]
-> Managed compute is in **public preview**. APIs, SKU names, and supported regions may change before general availability. Built-in content filtering isn't part of the managed compute data path in public preview — call the [Azure AI Content Safety APIs](/azure/ai-services/content-safety/overview) directly from your application if you need request- or response-level filtering.
+> Managed compute in Foundry is in **public preview**. APIs, SKU names, and supported regions might change before general availability. Built-in content filtering isn't part of the managed compute data path in public preview. If you need request-level or response-level filtering, call the [Azure AI Content Safety APIs](/azure/ai-services/content-safety/overview) directly from your application.
 
-## Step 1: Choose a model in the catalog
+## Choose a model in the catalog
 
 Managed compute deploys models from the **Hugging Face Collection** in the Foundry model catalog, served from the `azure-huggingface` registry.
 
-1. Sign in to the [Foundry portal](https://ai.azure.com) and open your project.
-1. Select **Model catalog** in the left navigation.
-1. Filter the catalog by **Deployment options** — choose **Managed compute** — and narrow further by **Source** (for example, pick a model family like Qwen) or by modality or task. You can also search by model name.
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+1. Select your subscription and Foundry resource.
+1. Select **Build** in the upper-right navigation, then select **Models** in the left pane.
+1. Filter the catalog by **Collections**. Choose **Hugging Face**. You can also use any of the other filters to narrow down the model you want to deploy (for example, pick a model family like Qwen) or by modality or task. You can also search by model name.
 1. Select a model card (for example, `nvidia-nemotron-3-nano-30b-a3b-fp8`) to open its details.
 
-The model card shows the upstream license, the modality, supported tasks, and the deployment templates published for the model. If you plan to script the deployment with the SDK or REST instead of using the portal wizard, you'll need three values as input to the deploy call. Their sources differ — note where each one lives in the portal:
+The model card shows the upstream license, the modality, supported tasks, and the deployment templates published for the model. If you plan to  deploy via the Python SDK or REST instead of using the portal wizard, you'll need three values as input to the deployment call. You can find these values in the Foundry portal as follows:
 
-- **Model ID** — the fully qualified registry asset ID for the model. Available on the **model card** in the catalog (copy from the model details pane). Example:
+- **Model ID**: the fully qualified registry asset ID for the model. Available on the **model card** in the catalog (copy from the model details pane). Example:
 
-    ```text
+    ```
     azureml://registries/azure-huggingface/models/nvidia--nvidia-nemotron-3-nano-30b-a3b-fp8/versions/2
     ```
 
-- **Deployment template ID** — identifies the runtime, accelerator family and count, and context length for the model. Available in the **deployment wizard** that opens when you click **Use this model** on the model card — select a template and copy the fully qualified ID from the wizard. Example:
+- **Deployment template ID**: identifies the runtime, accelerator family and count, and context length for the model. Available in the **deployment wizard** that opens when you select **Deploy** on the model card. Select a template and copy the Deployment template ID from the wizard. Example:
 
-    ```text
+    ```
     azureml://registries/azure-huggingface/deploymenttemplates/nvidia--nvidia-nemotron-3-nano-30b-a3b-fp8--nvidia-h100/labels/latest
     ```
 
-- **Accelerator type** — for example `H100_80GB`, `A100_80GB`, or `MI_300_192GB`. Shown next to each template in the deployment wizard.
+    > [!NOTE]
+    > A model ID and a deployment template ID must be compatible; every template lists the model versions it supports. The portal wizard only shows compatible templates for the model you selected. If you deploy using code, verify that both references resolve to valid registry assets in the `azure-huggingface` registry.
+    
+    To learn more about deployment templates, see [Deployment template](../concepts/managed-compute-overview.md#deployment-template) in the Managed compute overview article.
 
-## Step 2: Pick a deployment template
+- **Accelerator type**: for example `H100_80GB`, `A100_80GB`, or `MI_300_192GB`. Shown next to each template in the deployment wizard.
 
-A **deployment template** is a named, versioned asset that pins the runtime, the accelerator family and count per instance, the supported context length, and the runtime-specific tuning Microsoft has validated for the model. Choosing a template is the only knob you turn for *how* the model runs.
+## Deploy the model
 
-Most catalog models ship with multiple templates side by side — different accelerator families, different context lengths, or different latency vs. throughput trade-offs. The portal wizard shows each available template with the runtime, accelerator family and count, and context length called out. The trade-offs (for example, a longer context length requiring two accelerators instead of one) are described inline in the template description.
+::: zone pivot="ai-foundry-portal"
 
-Pick the template that matches your workload — for example, the H100 single-accelerator template for the lowest cost at moderate context length, or a two-accelerator template if your prompts exceed the single-accelerator context limit.
+1. Select **Deploy** on the model card to open the deployment wizard.
+1. Specify a **Deployment name**. The deployment name is what your application passes in the `model` field at inference time — pick a stable, application-friendly name (for example, `nemotron-3-nano-30b`).
+1. The deployment type (**Global Managed Compute**) is pre-selected in the deployment wizard.
+1. Select the **Deployment template** that matches your workload. For example, the H100 single-accelerator template for the lowest cost at moderate context length, or a two-accelerator template if your prompts exceed the single-accelerator context limit.
+1. Select the **Accelerator type**, e.g., `H100_80GB`.
+1. Set **Model instances**  to `1` (or higher if you've measured your workload). **Model instances** sizes the managed compute and is the `capacity` value on the deployment SKU. Each instance consumes the accelerator count defined by the template; for example, a template that specifies one H100 per instance with capacity 2 uses two H100 accelerators in total.
 
-> [!NOTE]
-> A model ID and a deployment template ID must be compatible — every template lists the model versions it supports. The portal wizard only shows compatible templates for the model you selected. If you script the deploy, verify both references resolve to valid registry assets in the `azure-huggingface` registry.
+    > [!TIP]
+    > Start with `capacity: 1` for a first deployment, then scale out by increasing the capacity after you measure your workload. See [Manage and scale the deployment](#manage-and-scale-the-deployment) for how to increase capacity.
 
-## Step 3: Configure the instance count
+1. Select the checkbox to acknowledge the cost for the deployment.
+1. Select **Deploy**. Provisioning typically takes 10 to 15 minutes.
 
-A managed compute deployment is sized by the number of **model instances** (the `capacity` value on the deployment SKU). Each instance consumes the accelerator count defined by the template — for example, a template that specifies one H100 per instance with capacity 2 uses two H100 accelerators in total.
+## Verify the deployment
 
-Start with `capacity: 1` for a first deployment, then scale out by increasing the capacity after you measure your workload. See [Step 7: Manage and scale the deployment](#step-7-manage-and-scale-the-deployment).
+The deployment details page updates from `Creating` to `Succeeded` when the model is live behind the Foundry endpoint. You can see details about the deployment, including the provisioning state, deployment type, and other selections you made while creating the deployment.
 
-## Step 4: Deploy
+## Send a test request
 
-Pick the surface that matches your workflow.
+When the deployment is ready, test it interactively in the Foundry **Playground**.
 
-# [Azure portal](#tab/portal)
+1. Select the **Playground** tab to switch to it from the deployment **Details** page.
+1. Send a prompt to test the deployment.
 
-1. From the model details page, select **Deploy**.
-1. Select the **Managed compute** deployment type.
-1. Pick the **deployment template** from step 2.
-1. Choose the **Deployment scope** — `Global` for broadest capacity (the default), or `Data Zone` for residency.
-1. Enter a **Deployment name**. The deployment name is what your application passes in the `model` field at inference time — pick a stable, application-friendly name (for example, `nemotron-3-nano-30b`).
-1. Set **Instance count** to `1` (or higher if you've measured your workload).
-1. Select **Deploy**.
+## Monitor the deployment
 
-Provisioning typically takes 10 to 15 minutes. The deployment details page updates from `Creating` to `Succeeded` when the model is live behind the Foundry endpoint.
+Managed compute deployments emit metrics on the same Azure Monitor surface as other Foundry deployments. From the deployment details page in the Foundry portal, the **Monitor** tab shows:
 
-# [Python SDK](#tab/python)
+- Request count grouped by HTTP status code.
+- Response time percentiles (p50, p90, p99).
+- For chat-completions models: input and output token counts, time-to-first-token (TTFT) percentiles, and inter-token decode time percentiles.
+
+For deeper analysis or alerting, open the deployment in the [Azure portal](https://portal.azure.com/) and use **Metrics** under **Monitoring** to chart the same metrics, group by deployment, and configure alerts. Per-deployment billing tags are emitted automaticall. Filter Cost Management by the deployment tag to attribute spend to a specific managed compute deployment. For details, see [Plan and manage costs for Microsoft Foundry](../concepts/manage-costs.md).
+
+## Delete the deployment 
+
+Deleting a deployment releases its accelerator allocation and stops billing immediately. To delete a deployment:
+
+1. Go to the list of deployments in the Foundry portal.
+1. Select the radio button next to your deployment name.
+1. In the right pane, select **Delete**.
+
+## Request more quota
+
+Managed compute quota is granted per accelerator family per region through the Foundry quota process and is **separate from Azure VM quota**. Existing Azure VM quota can't be applied to a managed compute deployment.
+
+To request more quota:
+
+1. Select **Operate** in the upper-right navigation, then **Quota** in the left pane.
+1. Select the **Managed compute** tab. The table lists current allocations grouped by accelerator family and region.
+1. Select **Request quota** in the upper-right corner.
+1. In the request form, choose the accelerator family (A100, H100, or MI300X), the target region, and the requested quota. Submit the request.
+
+Allow up to 15 minutes for an approved quota change to propagate. Refresh the **Quota** page to verify the updated allocation. For more on quota concepts, see [Manage and increase quotas for resources](quota.md).
+
+::: zone-end
+
+::: zone pivot="python-sdk"
+
+Use the following Python script to deploy the model. Replace the placeholders with your own subscription ID, resource group, Foundry account name, and deployment name. 
+
+> [!TIP]
+> Start with `capacity: 1` for a first deployment, then scale out by increasing the capacity after you measure your workload. See [Manage and scale the deployment](#manage-and-scale-the-deployment) for how to increase capacity.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -139,16 +191,9 @@ print(f"State: {deployment.properties.provisioning_state}")
 print(f"ID:    {deployment.id}")
 ```
 
-Replace the placeholders with your own subscription ID, resource group, Foundry account name, and deployment name. To target a Data Zone scope, change the SKU name to `DataZoneManagedCompute`.
+## Verify the deployment
 
----
-
-> [!NOTE]
-> Azure CLI and REST examples for managed compute deployments are coming soon.
-
-## Step 5: Verify the deployment
-
-After the create operation returns, confirm the deployment is healthy before sending traffic.
+After the deployment is created, confirm that it is healthy before sending traffic.
 
 ```python
 d = client.managed_compute_deployments.get(
@@ -166,21 +211,21 @@ print(f"Capacity:     {d.sku.capacity}")
 
 Look for:
 
-- `provisioningState: Succeeded` — the deployment is live.
+- `provisioningState: Succeeded` means the deployment is live.
 - `acceleratorType` matches the value you requested.
 - `sku.capacity` matches the number of instances you requested.
 
 If `provisioningState` is `Failed`, see [Troubleshooting](#troubleshooting).
 
-## Step 6: Send a test request
+## Send a test request
 
 Managed compute deployments are reachable through the unified Foundry endpoint at:
 
-```text
+```
 https://<account>.services.ai.azure.com/openai/v1/
 ```
 
-The `model` field in the request body takes the **deployment name** you assigned in step 4 — not the model ID.
+The `model` field in the request body takes the **deployment name** you specified, not the model ID.
 
 # [OpenAI SDK (Microsoft Entra ID)](#tab/openai-entra)
 
@@ -212,7 +257,7 @@ print(resp.choices[0].message.content)
 
 Calling the deployment with Microsoft Entra ID requires the **Azure AI User** role on the Foundry account.
 
-# [OpenAI SDK (key)](#tab/openai-key)
+# [OpenAI SDK (API key)](#tab/openai-key)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -242,18 +287,11 @@ resp = client.chat.completions.create(
 print(resp.choices[0].message.content)
 ```
 
-# [REST (curl)](#tab/curl)
-
-> [!NOTE]
-> A REST (curl) example for sending a test request is coming soon. For now, use the OpenAI SDK tabs above.
-
 ---
 
-You can also test the deployment interactively in the Foundry **Playground**. From the deployment details page, select **Open in Playground** and send a prompt.
+## Manage and scale the deployment
 
-## Step 7: Manage and scale the deployment
-
-Managed compute deployments are model-centric — you scale by changing the number of model instances, not by sizing a node.
+Because managed compute deployments are model-centric, you scale deployments by changing the number of model instances, not by sizing a node.
 
 ### Change capacity
 
@@ -273,9 +311,22 @@ client.managed_compute_deployments.begin_create_or_update(
 
 ### Pick up runtime and model updates
 
-Setting `versionUpgradeOption` to `OnceNewDefaultVersionAvailable` on the deployment opts the deployment into picking up new default model and runtime versions when Microsoft publishes them. Runtime patches and CVE fixes are applied to live customer deployments automatically — you don't redeploy the model to pick them up.
+Setting `versionUpgradeOption` to `OnceNewDefaultVersionAvailable` on the deployment opts the deployment into picking up new default model and runtime versions when Microsoft publishes them. Runtime patches and CVE fixes are applied to live customer deployments automatically; you don't redeploy the model to pick them up.
 
-### Delete a deployment
+## Monitor the deployment
+
+Managed compute deployments emit metrics on the same Azure Monitor surface as other Foundry deployments. For deeper analysis or alerting, open the deployment in the [Azure portal](https://portal.azure.com/) and use **Metrics** under **Monitoring** to chart metrics such as:
+
+- Request count grouped by HTTP status code.
+- Response time percentiles (p50, p90, p99).
+- For chat-completions models: input and output token counts, time-to-first-token (TTFT) percentiles, and inter-token decode time percentiles.
+
+You can also group by deployment and configure alerts. Per-deployment billing tags are emitted automatically. Filter Cost Management by the deployment tag to attribute spend to a specific managed compute deployment. For details, see [Plan and manage costs for Microsoft Foundry](../concepts/manage-costs.md).
+
+
+## Delete the deployment
+
+Deleting a deployment releases its accelerator allocation and stops billing immediately. To delete a deployment:
 
 ```python
 client.managed_compute_deployments.begin_delete(
@@ -285,31 +336,8 @@ client.managed_compute_deployments.begin_delete(
 ).result()
 ```
 
-Deleting a deployment releases its accelerator allocation and stops billing immediately.
+::: zone-end
 
-## Step 8: Monitor the deployment
-
-Managed compute deployments emit metrics on the same Azure Monitor surface as other Foundry deployments. From the deployment details page in the Foundry portal, the **Monitor** tab shows:
-
-- Request count grouped by HTTP status code.
-- Response time percentiles (p50, p90, p99).
-- For chat-completions models: input and output token counts, time-to-first-token (TTFT) percentiles, and inter-token decode time percentiles.
-
-For deeper analysis or alerting, open the deployment in the Azure portal and use **Metrics** under **Monitoring** to chart the same metrics, group by deployment, and configure alerts. Per-deployment billing tags are emitted automatically — filter Cost Management by the deployment tag to attribute spend to a specific managed compute deployment. For details, see [Plan and manage costs for Microsoft Foundry](../concepts/manage-costs.md).
-
-## Step 9: Request additional quota
-
-Managed compute quota is granted per accelerator family per region through the Foundry quota process and is **separate from Azure VM quota**. Existing Azure VM quota can't be applied to a managed compute deployment.
-
-To request additional quota:
-
-1. Sign in to the [Foundry portal](https://ai.azure.com) and open your project.
-1. Select **Operate** in the upper-right navigation, then **Quota** in the left pane.
-1. Select the **Managed compute** tab. The table lists current allocations grouped by accelerator family and region.
-1. Select **Request quota** in the upper-right corner.
-1. In the request form, choose the accelerator family (A100, H100, or MI300X), the target region, and the requested quota. Submit the request.
-
-Allow up to 15 minutes for an approved quota change to propagate. Refresh the **Quota** page to verify the updated allocation. For more on quota concepts, see [Manage and increase quotas for resources](quota.md).
 
 ## Access control summary
 
@@ -317,7 +345,7 @@ Allow up to 15 minutes for an approved quota change to propagate. Refresh the **
 |---|---|
 | Create, update, or delete a managed compute deployment | Cognitive Services Contributor (or Foundry Owner / Foundry Account Owner) on the Foundry account |
 | Read a deployment or list deployments | Cognitive Services User, Foundry User, Foundry Project Manager, or any of the roles above |
-| Call the deployment with Microsoft Entra ID | Azure AI User on the Foundry account |
+| Call the deployment with Microsoft Entra ID | Foundry User on the Foundry account |
 | Call the deployment with an API key | The account key (no Azure role required for the call itself; key retrieval requires read access) |
 
 For the full Azure resource provider operation list, the role-to-permission matrix, and the comparison with standard deployments, see [Role-based access control for Microsoft Foundry — managed compute control-plane operations](../concepts/rbac-foundry.md#managed-compute-control-plane-operations).
@@ -326,11 +354,11 @@ For the full Azure resource provider operation list, the role-to-permission matr
 
 ### `provisioningState: Failed`
 
-Confirm that the requested accelerator family has approved quota in the target region, and that the chosen deployment template lists that accelerator family. A mismatched model and deployment template — for example, a template that was published for a different model version — is a common cause. Verify both references resolve to valid registry assets in the `azure-huggingface` registry.
+Confirm that the requested accelerator family has approved quota in the target region, and that the chosen deployment template lists that accelerator family. A mismatched model and deployment template, for example, a template that was published for a different model version, is a common cause. Verify both references resolve to valid registry assets in the `azure-huggingface` registry.
 
 ### "Quota exceeded" on create
 
-The Foundry account doesn't have enough managed compute quota in the region for the requested accelerator family. Request additional quota using [Step 9: Request additional quota](#step-9-request-additional-quota). Azure VM quota doesn't apply to managed compute.
+The Foundry account doesn't have enough managed compute quota in the region for the requested accelerator family. [Request more quota](#request-more-quota). Azure VM quota doesn't apply to managed compute.
 
 ### "Insufficient capacity" in the region
 
@@ -342,11 +370,11 @@ If a chat-completion request to `https://<account>.services.ai.azure.com/openai/
 
 - The deployment name in the request body matches the deployment you created.
 - The deployment's `provisioningState` is `Succeeded`.
-- The model's runtime exposes chat completions. Some runtimes (for example, TEI for embeddings) don't expose the chat completions route — use the route documented on the model card instead.
+- The model's runtime exposes chat completions. Some runtimes (for example, TEI for embeddings) don't expose the chat completions route; use the route documented on the model card instead.
 
 ### Deployment stuck in `Creating` for longer than 20 minutes
 
-Some larger models take longer than the typical 10–15 minutes to come up. If `provisioningState` is still `Creating` after 20 minutes, check the deployment details page in the Foundry portal for an operation status message, and confirm that the underlying region hasn't degraded. If the deployment stays in `Creating` past 30 minutes with no operation message, delete it and retry — provisioning is idempotent on the deployment name.
+Some larger models take longer than the typical 10–15 minutes to come up. If `provisioningState` is still `Creating` after 20 minutes, check the deployment details page in the Foundry portal for an operation status message, and confirm that the underlying region hasn't degraded. If the deployment stays in `Creating` past 30 minutes with no operation message, delete it and retry. Provisioning is idempotent on the deployment name.
 
 ## Related content
 
