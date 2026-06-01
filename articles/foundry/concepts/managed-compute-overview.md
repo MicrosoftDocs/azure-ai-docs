@@ -137,37 +137,39 @@ Key takeaways:
 
 Managed compute deployments use the same authentication patterns as the rest of the Foundry endpoint:
 
-- **Microsoft Entra ID (recommended).** Acquire a token for the `https://ai.azure.com/.default` scope and pass it as a bearer token in the `Authorization` header. To call a managed compute deployment with Entra ID, the calling identity needs the **Azure AI User** role on the Foundry account scope. The OpenAI SDK in token-based mode and `DefaultAzureCredential` work without any managed-compute-specific configuration.
-- **Account API key.** Pass the Foundry account key as `Authorization: Bearer <key>`. The OpenAI SDK sends the key in this form automatically when you set the `api_key` argument. Keys grant the same access on managed compute deployments as on pay-per-token and PTU deployments on the same account.
+- **Microsoft Entra ID (recommended).** Acquire a token for the `https://ai.azure.com/.default` scope and pass it as a bearer token in the `Authorization` header. To call a managed compute deployment with Entra ID, the calling identity needs the **Foundry User** role on the Foundry account scope. The OpenAI SDK in token-based mode and `DefaultAzureCredential` work without any managed-compute-specific configuration.
+- **Account API key.** Pass the Foundry account key as `Authorization: Bearer <key>`. The OpenAI SDK sends the key in this form automatically when you set the `api_key` argument. Keys grant the same access on managed compute deployments as they do on pay-per-token and PTU deployments on the same account.
 
 Both authentication options work on both endpoint routes. For end-to-end client code samples (OpenAI SDK with Entra ID, OpenAI SDK with API key, and REST), see [Deploy open-source models with managed compute](../how-to/deploy-models-managed.md#step-6-send-a-test-request).
 
 ## Scaling
 
-You scale a managed compute deployment by changing the number of model instances — set the `capacity` value on the deployment SKU and Foundry adjusts the GPU count accordingly. Total GPUs equal the number of model instances multiplied by the GPUs-per-instance defined by the deployment template you chose. Foundry doesn't ask you to size a node or pick a VM family.
+You scale a managed compute deployment by changing the number of model instances. When you set the `capacity` value on the deployment SKU, Foundry adjusts the GPU count accordingly. Total GPUs equal the number of model instances multiplied by the GPUs-per-instance defined by the deployment template you chose. Foundry doesn't ask you to size a node or pick a VM family.
 
 ## Billing, quota, and deployment scopes
 
-Managed compute is billed **hourly per accelerator**. Unlike VM-based infrastructure where you rent whole GPU servers and pay for every GPU on the box whether your model uses it or not, managed compute charges for model instances. Foundry right-sizes each model to the GPUs it actually needs — one, two, four, or eight — so you're not paying for idle accelerators sitting next to your workload. The cost of a deployment is:
+Managed compute is billed **hourly per accelerator**. Unlike VM-based infrastructure where you rent whole GPU servers and pay for every GPU on the box whether your model uses it or not, managed compute charges for model instances. Foundry right-sizes each model to the number of GPUs it actually needs (one, two, four, or eight) so you're not paying for idle accelerators sitting next to your workload. The cost of a deployment is:
 
 **Accelerators per model instance × model instances × hours running × hourly rate**
 
 Hourly rates vary by accelerator family (A100, H100, MI300X) and by deployment scope. For current pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
-### Deployment scopes
+### Deployment scope
 
-Managed compute supports two deployment scopes, set through the deployment SKU. **Global** is available at preview launch and gives you the broadest accelerator capacity at the lowest rate. **Data Zone** — for when traffic needs to stay within a defined data-residency boundary — is **coming soon**. Code, SDKs, and workflow are identical across scopes — only the SKU name changes.
+Managed compute (preview) currently supports **Global** deployment, set through the deployment SKU name `GlobalManagedCompute`. Global deployment gives you the broadest accelerator capacity at the lowest rate.
+
+<!-- **Data Zone** — for when traffic needs to stay within a defined data-residency boundary — is **coming soon**. Code, SDKs, and workflow are identical across scopes — only the SKU name changes.
 
 | Scope | SKU name | Availability | Use for |
 |---|---|---|---|
 | Global | `GlobalManagedCompute` | Available | Broadest accelerator capacity and best pricing. |
-| Data Zone | `DataZoneManagedCompute` | Coming soon | Regional residency and sovereignty requirements. |
+| Data Zone | `DataZoneManagedCompute` | Coming soon | Regional residency and sovereignty requirements. | -->
 
-For the current list of regions and accelerator families per region, see the Foundry [general availability matrix](general-availability.md).
+<!-- For the current list of regions and accelerator families per region, see the Foundry [general availability matrix](general-availability.md). -->
 
 ### Quota
 
-Managed compute quota is granted per accelerator family per region through the Foundry quota process. Managed compute quota is **separate from Azure VM quota** — Azure VM quota is an infrastructure-as-a-service allocation tied to specific regional VM SKUs, while managed compute is a managed PaaS offering. Existing Azure VM quota can't be applied to a managed compute deployment.
+Managed compute quota is granted per accelerator family per region through the Foundry quota process. Managed compute quota is **separate from Azure VM quota**. While Azure VM quota is an infrastructure-as-a-service allocation tied to specific regional VM SKUs, managed compute is a managed PaaS offering. Existing Azure VM quota can't be applied to a managed compute deployment.
 
 For details on viewing usage, attributing cost to a project, and requesting quota, see [Plan and manage costs for Microsoft Foundry](manage-costs.md) and [Manage and increase quotas](../how-to/quota.md).
 
@@ -181,15 +183,15 @@ At a glance:
 - **Cognitive Services User** and **Foundry User** grant read-only access to deployments.
 - **Foundry Project Manager** grants read access to deployments and to accelerator usage data, but not create or delete.
 
-Inference (data plane) on the unified Foundry endpoint follows the standard Foundry pattern — assign **Azure AI User** on the Foundry account scope to call deployments with Microsoft Entra ID.
+Inference (data plane) on the unified Foundry endpoint follows the standard Foundry pattern by assigning **Foundry User** on the Foundry account scope to call deployments with Microsoft Entra ID.
 
 ## Limitations
 
 Managed compute is in **public preview**. Note the following before deploying production workloads:
 
-- **Content filtering.** Built-in Azure AI Content Safety filters aren't part of the managed compute data path in public preview. If you need request- or response-level filtering, call the [Azure AI Content Safety APIs](/azure/ai-services/content-safety/overview) directly from your application.
-- **Region availability.** Managed compute launches with Global scope. Data Zone deployments and additional regions are rolling out — see the [general availability matrix](general-availability.md) for current coverage.
-- **Pricing.** Per-hour rates by accelerator family and region, reserved capacity, and commitment discounts are evolving during preview. For current rates, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+- **Content filtering**: Built-in Azure AI Content Safety filters aren't part of the managed compute data path in public preview. If you need request-level or response-level filtering, call the [Azure AI Content Safety APIs](/azure/ai-services/content-safety/overview) directly from your application.
+- **Region availability**: Managed compute launches with Global scope. Data Zone deployments and additional regions are rolling out — see the [general availability matrix](general-availability.md) for current coverage.
+- **Pricing**: Hourly rates by accelerator family and region, reserved capacity, and commitment discounts are evolving for managed compute deployment in preview. For current rates, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
 ## Related content
 
