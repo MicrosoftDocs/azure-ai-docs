@@ -24,6 +24,8 @@ Before you begin planning, confirm that you have:
   resource group organization.
 - Inputs on your organization's security requirements for networking,
   encryption, and data isolation.
+- An initial region plan based on model and feature availability. For details, see [feature availability across cloud regions](../reference/region-support.md).
+- Agreement on security requirements for networking, encryption, and data isolation in your organization.
 - An inventory of the Foundry features and APIs your teams plan to use.
 
 ## Define isolation boundaries
@@ -58,7 +60,7 @@ setup for security, model deployments and tool access.
 
 Most newer, agent-centric Foundry APIs support project-scope permissioning. Some traditional Foundry Tools APIs (former Azure AI Services), such as speech-to-text, still require parent resource-scope access. Plan boundaries and RBAC so all required capabilities are accessible at your intended access-management scope.
 
-| Capability area | Organize by project | Project-level RBAC isolation | Bring your own storage | Networking and encryption support | Planning implication |
+| Capability area | Organize by project | Project-level RBAC isolation | Bring your own storage | Networking / encryption support | Planning implication |
 |---|---|---|---|---|---|
 | Agent capabilities (agents, responses, evaluations, datasets, indexes, files, and playground assets) | Yes | Yes | Yes | Limited in basic set up (managed storage). For full coverage, use 'standard'. | Good fit for project-per-use-case segmentation in shared environments. |
 | Fine-tune training | No (default project only) | No | Partial (inputs only) | Yes |  If each team needs independent fine-tuning, use separate Foundry resources. Fine-tuned deployments are shared and consumeable across projects within a resource.
@@ -66,7 +68,7 @@ Most newer, agent-centric Foundry APIs support project-scope permissioning. Some
 | Content Understanding | Yes | No | Yes | Yes | If strict per-use-case access isolation is required, prefer separate Foundry resources. |
 | Speech | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
 | Language | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
-| Translator | No | No | No | ???? |  ??? |
+| Translator | No | No | No | Yes | Use seperate Foundry resource if isolation is a must. |
 
 > [!IMPORTANT]
 > Confirm your exact capability mix before rollout. If a required API only works
@@ -87,6 +89,8 @@ environment.
 > For production, treat isolation as the default. Use colocation as a deliberate
 > exception only when workload boundaries, data requirements, and risk acceptance
 > are aligned.
+
+:::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
 ## Plan your security baseline
 
@@ -127,6 +131,10 @@ For each workload, identify external dependencies and connection patterns:
 
 Use [Add connections in Foundry](../how-to/connections-add.md) to standardize
 connection setup.
+
+Connections can be created at both the parent Foundry resource-level and child project-level dependent on desired isolation scope. Connections configured at the parent level are availabile to all projects. 
+
+:::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
 ## Plan automation and operations
 
@@ -200,42 +208,4 @@ The IT organization at Contoso needs to support multiple teams while balancing t
 
 The diagram below shows how Contoso co-locates a shared pre-production Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to production. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full production-grade separation.
 
-```mermaid
-flowchart LR
-
-    %% Pre-Production
-    subgraph PreProd["Pre-Production (Co-located)"]
-        P1[SmartRetail Recommender]
-        P2[Contoso Support Copilot]
-        P3[Vision QA Inspector]
-        P4[LegalDoc Analyzer ❌]
-        P5[HR Sentiment Bot ❌]
-        P6[Marketing Content Gen ❌]
-    end
-
-    %% Dev/Test - Co-located
-    subgraph DevTestShared["Dev/Test Environment (Co-located)"]
-        D1[SmartRetail Recommender]
-        D2[Contoso Support Copilot]
-    end
-
-    %% Dev/Test - Isolated workload B
-    subgraph DevTestIso["Dev/Test Environment (Isolated)"]
-        D3[Vision QA Inspector ⚠️]
-    end
-
-    %% Production - Isolated Workload A
-    subgraph ProdA["Production Environment A (Isolated)"]
-        PR1[SmartRetail Recommender ✅]
-    end
-
-    %% Production - Isolated Workload B
-    subgraph ProdB["Production Environment B (Isolated)"]
-        PR2[Contoso Support Copilot ✅]
-    end
-
-    %% Promotion paths
-    P1 --> D1 --> PR1
-    P2 --> D2 --> PR2
-    P3 --> D3
-```
+:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into co-located or isolated dev-test environments, and then into isolated production environments for a smaller number of workloads.":::

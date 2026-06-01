@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Sample platform deployment progression</title>
+  <desc id="desc">Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into co-located or isolated dev-test environments, and then into isolated production environments for a smaller number of workloads.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .group { stroke-width: 2; rx: 18; ry: 18; }
+      .group-title { font: 700 22px 'Segoe UI', Arial, sans-serif; fill: #1f1f1f; }
+      .item { fill: #ffffff; stroke: #5c6bc0; stroke-width: 1.5; rx: 10; ry: 10; }
+      .item-text { font: 600 17px 'Segoe UI', Arial, sans-serif; fill: #1f1f1f; }
+      .item-subtle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #5f6368; }
+      .arrow { fill: none; stroke: #2b579a; stroke-width: 4; marker-end: url(#arrowhead); }
+      .legend { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #3c4043; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#2b579a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="720" />
+
+  <text x="40" y="48" class="group-title">Contoso staged Foundry rollout</text>
+  <text x="40" y="76" class="legend">Many ideas start in a shared pre-production environment. Fewer advance into dev-test, and only validated workloads reach isolated production.</text>
+
+  <rect class="group" x="30" y="110" width="360" height="560" fill="#eef5ff" stroke="#7aa7e0" />
+  <text x="50" y="145" class="group-title">Pre-production (co-located)</text>
+
+  <rect class="item" x="50" y="170" width="320" height="56" />
+  <text x="70" y="205" class="item-text">SmartRetail Recommender</text>
+
+  <rect class="item" x="50" y="240" width="320" height="56" />
+  <text x="70" y="275" class="item-text">Contoso Support Copilot</text>
+
+  <rect class="item" x="50" y="310" width="320" height="56" />
+  <text x="70" y="345" class="item-text">Vision QA Inspector</text>
+
+  <rect class="item" x="50" y="400" width="320" height="56" />
+  <text x="70" y="432" class="item-text">LegalDoc Analyzer</text>
+  <text x="70" y="450" class="item-subtle">Not promoted</text>
+
+  <rect class="item" x="50" y="470" width="320" height="56" />
+  <text x="70" y="502" class="item-text">HR Sentiment Bot</text>
+  <text x="70" y="520" class="item-subtle">Not promoted</text>
+
+  <rect class="item" x="50" y="540" width="320" height="56" />
+  <text x="70" y="572" class="item-text">Marketing Content Generator</text>
+  <text x="70" y="590" class="item-subtle">Not promoted</text>
+
+  <rect class="group" x="450" y="190" width="260" height="210" fill="#edf9ee" stroke="#7fb685" />
+  <text x="470" y="225" class="group-title">Dev-test</text>
+  <text x="470" y="250" class="legend">Co-located</text>
+
+  <rect class="item" x="470" y="275" width="220" height="50" />
+  <text x="490" y="307" class="item-text">SmartRetail Recommender</text>
+
+  <rect class="item" x="470" y="335" width="220" height="50" />
+  <text x="490" y="367" class="item-text">Contoso Support Copilot</text>
+
+  <rect class="group" x="450" y="455" width="260" height="150" fill="#fff4e5" stroke="#e3a33b" />
+  <text x="470" y="490" class="group-title">Dev-test</text>
+  <text x="470" y="515" class="legend">Isolated</text>
+
+  <rect class="item" x="470" y="540" width="220" height="50" />
+  <text x="490" y="572" class="item-text">Vision QA Inspector</text>
+
+  <rect class="group" x="820" y="220" width="200" height="135" fill="#f1ebff" stroke="#8a78d1" />
+  <text x="840" y="255" class="group-title">Production A</text>
+  <text x="840" y="280" class="legend">Isolated</text>
+  <rect class="item" x="840" y="295" width="160" height="45" />
+  <text x="858" y="324" class="item-text">SmartRetail</text>
+
+  <rect class="group" x="1040" y="220" width="200" height="135" fill="#f1ebff" stroke="#8a78d1" />
+  <text x="1060" y="255" class="group-title">Production B</text>
+  <text x="1060" y="280" class="legend">Isolated</text>
+  <rect class="item" x="1060" y="295" width="160" height="45" />
+  <text x="1078" y="324" class="item-text">Support Copilot</text>
+
+  <line class="arrow" x1="370" y1="198" x2="450" y2="300" />
+  <line class="arrow" x1="370" y1="268" x2="450" y2="360" />
+  <line class="arrow" x1="370" y1="338" x2="450" y2="565" />
+  <line class="arrow" x1="690" y1="300" x2="820" y2="318" />
+  <line class="arrow" x1="690" y1="360" x2="1040" y2="318" />
+
+  <text x="820" y="420" class="legend">Only the workloads that prove value and secure funding move to isolated production environments.</text>
+</svg>
