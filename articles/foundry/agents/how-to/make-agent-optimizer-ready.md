@@ -166,7 +166,7 @@ from azure.ai.agentserver.optimization import load_config
 config = load_config()
 ```
 
-The `load_config()` function reads from `.agent_configs/` (either a candidate directory if `OPTIMIZATION_CANDIDATE_ID` is set, or `baseline/` otherwise) and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
+The `load_config()` function reads from `.agent_configs/` and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ The `load_config()` function reads from `.agent_configs/` (either a candidate di
 | `skills` | `list[Skill]` | Discovered skills (empty if none) |
 | `skills_dir` | `str` | Path to skills directory |
 | `tool_definitions` | `list` | Tool definitions with optimized descriptions |
-| `source` | `str` | Where the config came from (`baseline`, `resolver`, `env`, etc.) |
+| `source` | `str` | Where the config came from (`baseline`, `env`, etc.) |
 
 ## Use the config values
 
@@ -363,7 +363,10 @@ if __name__ == "__main__":
 
 1. **Normal operation**: No optimization environment variables are set. The config loader reads `.agent_configs/baseline/` and returns your baseline config. The agent works with your original instructions.
 
-1. **During optimization**: The optimizer sets `OPTIMIZATION_CANDIDATE_ID` and `OPTIMIZATION_RESOLVE_ENDPOINT`. The config loader calls the resolver API to fetch the candidate's configuration. Your agent uses the candidate's instructions and tool descriptions during evaluation.
+1. **During optimization**: The optimizer sets `OPTIMIZATION_CONFIG` with the candidate's configuration as inline JSON. Your agent uses the candidate's instructions and tool descriptions during evaluation.
+
+    > [!WARNING]
+    > During evaluation, the optimizer invokes your agent against every task in your dataset. If your agent calls external tools (APIs, databases, third-party services), those calls execute for real. Consider mocking tool implementations or pointing to test endpoints to avoid unintended side effects.
 
 1. **After applying a winner**: You run `azd ai agent optimize apply --candidate <id>` to write the optimized config files into `.agent_configs/<candidate_id>/` in your project. Then `azd deploy` deploys the agent with the improved configuration.
 
@@ -376,9 +379,8 @@ The `load_config()` function resolves configuration using a priority chain (firs
 | Priority | Source | Environment variables | Description |
 |----------|--------|----------------------|-------------|
 | 1 | Inline JSON | `OPTIMIZATION_CONFIG` | Full config as a JSON string |
-| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID` + `OPTIMIZATION_RESOLVE_ENDPOINT` | Fetches config from the optimization service |
-| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
-| 4 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
+| 2 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
+| 3 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
 
 ## Verify
 
