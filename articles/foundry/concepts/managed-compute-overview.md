@@ -140,7 +140,7 @@ Managed compute deployments use the same authentication patterns as the rest of 
 - **Microsoft Entra ID (recommended).** Acquire a token for the `https://ai.azure.com/.default` scope and pass it as a bearer token in the `Authorization` header. To call a managed compute deployment with Entra ID, the calling identity needs the **Foundry User** role on the Foundry account scope. The OpenAI SDK in token-based mode and `DefaultAzureCredential` work without any managed-compute-specific configuration.
 - **Account API key.** Pass the Foundry account key as `Authorization: Bearer <key>`. The OpenAI SDK sends the key in this form automatically when you set the `api_key` argument. Keys grant the same access on managed compute deployments as they do on pay-per-token and PTU deployments on the same account.
 
-Both authentication options work on both endpoint routes. For end-to-end client code samples (OpenAI SDK with Entra ID, OpenAI SDK with API key, and REST), see [Deploy open-source models with managed compute](../how-to/deploy-models-managed.md#step-6-send-a-test-request).
+Both authentication options work on both endpoint routes. For end-to-end client code samples (OpenAI SDK with Entra ID or API key), see [Send a test request](../how-to/deploy-models-managed.md#send-a-test-request&pivots=python-sdk).
 
 ## Scaling
 

@@ -186,7 +186,7 @@ items:
   - name: Upgrade GitHub Models to Foundry Models
     displayName: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
-  - name: Deploy models with Managed Compute
+  - name: Deploy models with Managed Compute (preview)
     displayName: Deploy open-source AI models with managed compute in Foundry
     href: ../../how-to/deploy-models-managed.md
   - name: Explore the model playgrounds
