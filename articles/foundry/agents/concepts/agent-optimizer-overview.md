@@ -172,9 +172,9 @@ The ★ marks the candidate with the highest composite score. This is the recomm
 
 Each evaluator in your dataset produces a raw score for the agent's response. The optimizer processes these scores to produce the composite score shown in results:
 
-1. **Rescale**: Each evaluator's raw score is rescaled to 0–1.
-2. **Flip if needed**: If an evaluator is configured so that *lower is better*, the score is flipped so that all evaluators use "higher is better" semantics.
-3. **Average**: The rescaled scores across all evaluators and tasks are averaged to produce the composite score.
+- **Rescale**: Each evaluator's raw score is rescaled to 0–1.
+- **Flip if needed**: If an evaluator is configured so that *lower is better*, the score is flipped so that all evaluators use "higher is better" semantics.
+- **Average**: The rescaled scores across all evaluators and tasks are averaged to produce the composite score.
 
 **Composite score**: The average of all rescaled evaluator scores across all tasks.
 
