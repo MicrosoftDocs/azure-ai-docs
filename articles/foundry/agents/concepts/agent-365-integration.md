@@ -38,15 +38,15 @@ Foundry and Agent 365 connect in two ways:
 
 - **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
 
-- **Digital worker publishing** &mdash; Foundry Hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
+- **Autopilot publishing** &mdash; Foundry Hosted agents can be published as *autopilots* to Agent 365. An autopilot is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the autopilot appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
 
-For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md).
+For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md).
 
 ### Supported agent types
 
 Not all Foundry agent types support the full set of Agent 365 integration features. The following table summarizes current support:
 
-| Agent type | Registry sync | Digital worker publishing | Activity data collection |
+| Agent type | Registry sync | Autopilot publishing | Activity data collection |
 |---|---|---|---|
 | **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ✅ | ✅ |
 | **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using A365 SDK |
@@ -131,6 +131,6 @@ To allow a hosted agent's managed identity to export telemetry to the Agent365 O
 ## Related content
 
 - [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md)
-- [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md)
 - [Agent identity concepts in Microsoft Foundry](agent-identity.md)
 - [Agent 365 overview](/microsoft-agent-365/overview)
