@@ -316,10 +316,17 @@ The pattern is the same for every connection kind and auth type:
      #   custom_search_configuration:
      #     project_connection_id: <bing-connection-name>
      #     instance_name: <bing-instance-name>
+   # Optional: attach existing project skills as MCP resources.
+   skills:
+     - name: <skill-name>          # uses the skill's default version
+     - name: <other-skill>
+       version: "2"               # pin to a specific skill version (string)
    policies:
      rai_config:
        rai_policy_name: <policy-name>    # must already exist on the project
    ```
+
+   At least one of `connections`, `skills`, or `tools` must be non-empty. Skill references must point to skills that already exist in the same Foundry project; see [Use skills in Foundry](skills.md) to create them with `azd ai skill create`.
 
 4. Create the toolbox from that file:
 
@@ -987,9 +994,12 @@ resources:
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
-> You can delete toolbox versions through the Python SDK, .NET SDK, JavaScript SDK, and REST API only. The azd CLI supports list, get, and update operations.
+> You can delete toolbox versions through the Python SDK, .NET SDK, JavaScript SDK, and REST API only. The azd CLI supports list, get, and publish (default-version promotion) operations.
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it - you decide when to update `default_version`. This process lets you stage changes, test a new version independently, and promote it to production on your own schedule.
+
+> [!NOTE]
+> For the Azure Developer CLI, every mutating operation that targets the current default version &mdash; `azd ai toolbox connection add/remove` and `azd ai toolbox skill add/remove` &mdash; creates a **new** toolbox version that carries forward all previously attached connections and skills with the requested change applied. None of these commands automatically change `default_version`; run `azd ai toolbox publish <toolbox-name> <version>` when you're ready to make the new version active. To inspect a pending (non-default) version, use `azd ai toolbox show <name> --version <n>`.
 
 | Object | Key fields | Description |
 |--------|-----------|-------------|
@@ -1258,16 +1268,14 @@ Use the Python, .NET, JavaScript, or REST API tab to promote a toolbox version t
 
 :::zone pivot="azd"
 
-Toolbox versions are immutable. Use `update` to point the default to any existing version:
+Toolbox versions are immutable. Use `publish` to make any existing version the new default:
 
 ```bash
 # Roll back or forward to a specific version
-azd ai toolbox update <toolbox-name> \
-  --default-version <version_id> \
-   --no-prompt
+azd ai toolbox publish <toolbox-name> <version_id> --no-prompt
 ```
 
-`--default-version` is the only field `update` accepts.
+`publish` is the only path that changes `default_version` from the CLI; mutating verbs (`connection add/remove`, `skill add/remove`) always create a new version without promoting it.
 
 :::zone-end
 
@@ -3090,7 +3098,50 @@ console.log(`Created toolbox version: ${toolboxVersion.id}`);
 
 :::zone pivot="azd"
 
-Skill references aren't yet supported in the `azd ai toolbox create --from-file` YAML. Use the REST API or SDK to attach skills to a toolbox version.
+The Azure Developer CLI supports skill references in two places: declaratively as a top-level `skills:` block in the `azd ai toolbox create --from-file` YAML, and imperatively with the `azd ai toolbox skill add/list/remove` verbs. Each reference takes a `name` (required) and an optional `version` (string). Omit `version` to follow the skill's `default_version`; pin a version string to lock the toolbox to an immutable snapshot.
+
+**Declare skills when you create the toolbox**
+
+```yaml
+# my-toolbox.yaml
+description: Toolbox with skill references
+connections:
+  - name: my-gh-conn
+skills:
+  - name: greeting              # follows the skill's default version
+  - name: review-checklist
+    version: "2"               # pin to skill version 2
+```
+
+```bash
+azd ai toolbox create my-toolbox --from-file ./my-toolbox.yaml --no-prompt
+```
+
+**Add, list, and remove skills on an existing toolbox**
+
+```bash
+# Add a skill (follows default version)
+azd ai toolbox skill add my-toolbox greeting
+
+# Add a skill pinned to a specific version
+azd ai toolbox skill add my-toolbox review-checklist@2
+
+# Add multiple skills from a file (same shape as the create YAML's skills block)
+azd ai toolbox skill add my-toolbox --from-file ./skills.yaml
+
+# List skill references on the current default version
+azd ai toolbox skill list my-toolbox --output table
+
+# Remove a skill (--force skips the confirmation prompt; multiple names allowed)
+azd ai toolbox skill remove my-toolbox greeting --force
+```
+
+`skill list` shows only the default version. Pinned skills show their version; unpinned skills show `(default)`. To inspect skills on a pending version, run `azd ai toolbox show <toolbox> --version <n> --output json` and read the `skills` array.
+
+> [!IMPORTANT]
+> `skill add` and `skill remove` each create a new toolbox version that carries forward every previously attached connection and skill with the requested change applied. **They don't promote the new version to default**, so changes aren't visible to MCP clients until you run `azd ai toolbox publish <toolbox> <version>`. To change the pinned version of a skill that's already attached &mdash; for example, upgrade `greeting` from v1 to v2 &mdash; run three commands in order: `skill remove`, `publish` the new version, then `skill add <name>@<new-version>` (`skill add` blocks duplicates when checked against the current default version).
+
+Skill names must match `^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$` (lowercase letters, digits, and hyphens; max 64 characters; no leading or trailing hyphen). A trailing `@` in `<name>@<version>` (an empty version) is rejected.
 
 :::zone-end
 

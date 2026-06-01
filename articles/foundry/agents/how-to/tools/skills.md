@@ -96,7 +96,7 @@ After you create skill versions, attach them to a toolbox version so any MCP cli
 
 When an agent or MCP client connects to the toolbox endpoint, skills appear as [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources). Clients that support the MCP Resources protocol call `resources/list` once at startup to discover all attached skills, then `resources/read` to download the content. Any MCP client — GitHub Copilot, Claude Code, or your own agent harness — can consume skills this way without any Foundry SDK.
 
-For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article.
+For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article. The Azure Developer CLI exposes skill references both declaratively (a `skills:` block in `azd ai toolbox create --from-file`) and imperatively (`azd ai toolbox skill add`, `azd ai toolbox skill list`, `azd ai toolbox skill remove`); changes don't take effect for MCP clients until you promote the new version with `azd ai toolbox publish`.
 
 ## Manage skills with the REST API
 
