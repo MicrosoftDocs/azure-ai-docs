@@ -10,7 +10,7 @@ ms.date: 04/06/2026
 ai-usage: ai-assisted
 ---
 
-Learn how to use function calling in a Voice Live session using the VoiceLive SDK for Java. This article builds on the [Quickstart: Create a Voice Live real-time voice agent](../../../voice-live-quickstart.md) with function calling integration.
+Learn how to use function calling in a Voice Live session using the VoiceLive SDK for Java. This article builds on the [Quickstart: Get started with Voice Live for real-time voice agents](../../../voice-live-quickstart.md) by adding function calling so the assistant can invoke backend tools during a conversation.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)]
 
@@ -27,7 +27,7 @@ Learn how to use function calling in a Voice Live session using the VoiceLive SD
 
 ## Prepare the environment
 
-Complete the [Voice Live quickstart](../../../voice-live-quickstart.md) to set up your environment, configure authentication, and test your first Voice Live conversation.
+Before you continue, complete the [Quickstart: Get started with Voice Live for real-time voice agents](../../../voice-live-quickstart.md) to set up your Foundry resource, install the VoiceLive SDK for Java, configure authentication, and verify that you can run a basic Voice Live conversation end-to-end. The function calling sample in this article reuses the same resource, credentials, and environment variables.
 
 Add the following dependencies to your `pom.xml`:
 
@@ -58,7 +58,7 @@ Add the following dependencies to your `pom.xml`:
 
 ## Sample code
 
-The following sample shows function calling with the Voice Live API.
+The following sample extends the basic Voice Live conversation from the [Quickstart: Get started with Voice Live for real-time voice agents](../../../voice-live-quickstart.md) by registering two function tools (`get_current_time` and `get_current_weather`) and handling the function call events the service returns.
 
 ```java
 // -------------------------------------------------------------------------
