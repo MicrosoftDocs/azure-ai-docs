@@ -67,23 +67,23 @@
   <rect class="item" x="470" y="565" width="220" height="50" />
   <text x="490" y="597" class="item-text">Vision QA Inspector</text>
 
-  <rect class="group" x="820" y="220" width="200" height="135" fill="#f1ebff" stroke="#8a78d1" />
-  <text x="840" y="255" class="group-title">Production A</text>
-  <text x="840" y="280" class="legend">Isolated</text>
-  <rect class="item" x="840" y="295" width="160" height="45" />
-  <text x="858" y="324" class="item-text">SmartRetail</text>
+  <rect class="group" x="980" y="120" width="240" height="135" fill="#f1ebff" stroke="#8a78d1" />
+  <text x="1000" y="155" class="group-title">Production A</text>
+  <text x="1000" y="180" class="legend">Isolated</text>
+  <rect class="item" x="1000" y="195" width="200" height="45" />
+  <text x="1020" y="224" class="item-text">SmartRetail</text>
 
-  <rect class="group" x="1040" y="220" width="200" height="135" fill="#f1ebff" stroke="#8a78d1" />
-  <text x="1060" y="255" class="group-title">Production B</text>
-  <text x="1060" y="280" class="legend">Isolated</text>
-  <rect class="item" x="1060" y="295" width="160" height="45" />
-  <text x="1078" y="324" class="item-text">Support Copilot</text>
+  <rect class="group" x="980" y="320" width="240" height="135" fill="#f1ebff" stroke="#8a78d1" />
+  <text x="1000" y="355" class="group-title">Production B</text>
+  <text x="1000" y="380" class="legend">Isolated</text>
+  <rect class="item" x="1000" y="395" width="200" height="45" />
+  <text x="1020" y="424" class="item-text">Support Copilot</text>
 
   <line class="arrow" x1="370" y1="198" x2="450" y2="230" />
   <line class="arrow" x1="370" y1="268" x2="450" y2="410" />
   <line class="arrow" x1="370" y1="338" x2="450" y2="590" />
-  <line class="arrow" x1="690" y1="230" x2="820" y2="318" />
-  <line class="arrow" x1="690" y1="410" x2="1040" y2="318" />
+  <line class="arrow" x1="690" y1="230" x2="980" y2="218" />
+  <line class="arrow" x1="690" y1="410" x2="980" y2="418" />
 
-  <text x="820" y="420" class="legend">Only the workloads that prove value and secure funding move to isolated production environments.</text>
+  <text x="760" y="520" class="legend">Only the workloads that prove value and secure funding move to isolated production environments.</text>
 </svg>
