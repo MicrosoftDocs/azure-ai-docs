@@ -6,30 +6,48 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-| Language code | Language |
-| ----- | ----- |
-| `ar` | Arabic |
-| `zh` | Chinese |
-| `cs` | Czech |
-| `da` | Danish |
-| `nl` | Dutch |
-| `en` | English |
-| `fi` | Finnish |
-| `fr` | French |
-| `de` | German |
-| `hi` | Hindi |
-| `hu` | Hungarian |
-| `id` | Indonesian |
-| `it` | Italian |
-| `ja` | Japanese |
-| `ko` | Korean |
-| `nb` | Norwegian Bokmål |
-| `pl` | Polish |
-| `pt` | Portuguese |
-| `ro` | Romanian |
-| `ru` | Russian |
-| `es` | Spanish |
-| `sv` | Swedish |
-| `th` | Thai |
-| `tr` | Turkish |
-| `vi` | Vietnamese |
+
+| Language code | Language | MAI-Transcribe-1.5 support | MAI-transcribe-1 support |
+| ----- | ----- |----- | ----- |
+| `ar` | Arabic | ✅ | ✅ |
+| `as` | Assamese | ✅ |  |
+| `bg` | Bulgarian | ✅ |  |
+| `bn` | Bengali | ✅ |  |
+| `ca` | Catalan | ✅ |  |
+| `cs` | Czech | ✅ | ✅ |
+| `da` | Danish | ✅ | ✅ |
+| `de` | German | ✅ | ✅ |
+| `el` | Greek | ✅ |  |
+| `en` | English | ✅ | ✅ |
+| `es` | Spanish | ✅ | ✅ |
+| `et` | Estonian | ✅ |  |
+| `fi` | Finnish | ✅ | ✅ |
+| `fr` | French | ✅ | ✅ |
+| `gu` | Gujarati | ✅ |  |
+| `hi` | Hindi | ✅ | ✅ |
+| `hu` | Hungarian | ✅ | ✅ |
+| `id` | Indonesian | ✅ | ✅ |
+| `it` | Italian | ✅ | ✅ |
+| `ja` | Japanese | ✅ | ✅ |
+| `kn` | Kannada | ✅ |  |
+| `ko` | Korean | ✅ | ✅ |
+| `lt` | Lithuanian | ✅ |  |
+| `ml` | Malayalam | ✅ |  |
+| `mr` | Marathi | ✅ |  |
+| `nb` | Norwegian Bokmål | ✅ | ✅ |
+| `nl` | Dutch | ✅ | ✅ |
+| `or` | Odia | ✅ |  |
+| `pa` | Punjabi (Gurmukhi script) | ✅ |  |
+| `pl` | Polish | ✅ | ✅ |
+| `pt` | Portuguese | ✅ | ✅ |
+| `ro` | Romanian | ✅ | ✅ |
+| `ru` | Russian | ✅ | ✅ |
+| `sk` | Slovak | ✅ |  |
+| `sl` | Slovenian | ✅ |  |
+| `sv` | Swedish | ✅ | ✅ |
+| `ta` | Tamil | ✅ |  |
+| `te` | Telugu | ✅ |  |
+| `th` | Thai | ✅ | ✅ |
+| `tr` | Turkish | ✅ | ✅ |
+| `uk` | Ukrainian | ✅ |  |
+| `vi` | Vietnamese | ✅ | ✅ |
