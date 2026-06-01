@@ -291,7 +291,7 @@ For Azure OpenAI models we recommend using the [Responses API](../supported-lang
 `base_url` accepts both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
 > [!NOTE]
-> Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../../foundry-models/how-to/generate-responses.md).
+> Responses API also works with Foundry Models sold by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../../foundry-models/how-to/generate-responses.md).
 
 # [Python](#tab/python)
 
@@ -571,8 +571,10 @@ The following sections summarize changes between API versions.
 
 ## Next steps
 
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [Supported programming languages for the v1 API](../supported-languages.md)
-- [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)

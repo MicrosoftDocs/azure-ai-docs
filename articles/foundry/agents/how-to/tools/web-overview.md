@@ -70,7 +70,7 @@ The following use cases help you compare the available tools. Use case 1 covers 
 | **Grounding with Bing resource** | Managed by Microsoft | Managed by you — requires creating a Grounding with Bing Search resource first |
 | **Supported parameters**  | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#optional-parameters-for-general-web-search) | - `count`: the maximum of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Search parameters](./bing-tools.md#optional-parameters) |
 | **Data boundary** | Data flows outside Azure compliance boundary | Data flows outside Azure compliance boundary |
-| **Supported models** | Azure OpenAI models | Azure OpenAI models and Azure direct models (non-OpenAI models deployed directly on Azure) |
+| **Supported models** | Azure OpenAI models | Azure OpenAI models and Foundry Models sold by Azure (non-OpenAI models deployed directly on Azure) |
 
 ### Use case 2: Grounding from specific domains you defined
 
@@ -79,7 +79,7 @@ The following use cases help you compare the available tools. Use case 1 covers 
 | **Stage**                     | GA (requires a Bing Custom Search instance)  | Preview                                              |
 | **Restrict to custom domains**       | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance)  | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance) |
 | **Other parameters**          | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#domain-restricted-search-with-bing-custom-search) | - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Custom Search parameters](./bing-tools.md#optional-parameters) |
-| **Supported models**          | Azure OpenAI models                         | Azure OpenAI models and Azure direct models |
+| **Supported models**          | Azure OpenAI models                         | Azure OpenAI models and Models sold by Azure |
 
 ## Common questions
 

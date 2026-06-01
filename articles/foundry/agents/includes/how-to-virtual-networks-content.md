@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/26/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -125,6 +125,20 @@ After deployment finishes, verify that all resources are configured correctly:
 1. **Check public network access**: Open each resource (Foundry, Azure AI Search, Azure Storage, Azure Cosmos DB) and confirm **Public network access** is set to **Disabled**.
 1. **Validate private endpoint DNS resolution**: From a machine connected to the VNet, run `nslookup` against each endpoint listed in the [DNS zone configurations summary](#dns-zone-configurations-summary). Verify that each name resolves to a private IP address (10.x, 172.16-31.x, or 192.168.x).
 1. **Test agent connectivity**: Access your Foundry project from within the VNet (see [Access your secured agents](#access-your-secured-agents)) and confirm you can create and run an agent.
+1. **Configure Role assignments**: Run the following commands to assign the required roles. The first grants Managed Identity Operator on the user-assigned managed identity, and the second grants Network Contributor on the remote VNet for cross-tenant access. 
+
+```
+az role assignment create \
+   --assignee <your-principal-id> \
+   --role "Managed Identity Operator" \
+   --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<id>"
+```
+```
+ az role assignment create \
+   --assignee <service-principal-object-id-in-remote-tenant> \
+   --role "Network Contributor" \
+   --scope "/subscriptions/<remote-subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<vnet-name>"
+```
 
 ## Limitations 
 
@@ -137,6 +151,7 @@ After deployment finishes, verify that all resources are configured correctly:
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
+- **Code Interpreter file limitations**: In a private network (BYO) configuration, Code Interpreter only works in scenarios that don't involve file uploads or downloads. The tool can't retrieve files from the storage account in this setup. If you need to use files with Code Interpreter, you must use the SDK to create a container explicitly with the required files and then pass the `container_id` to Code Interpreter. This workaround is only available through the SDK; the Foundry portal UI doesn't support it.
 - **Grounding with Bing Search**: Only the following regions are supported: West Europe, Canada East, Switzerland North, Spain Central, UAE North, Korea Central, Poland Central, Southeast Asia, West US, West US 2, West US 3, East US, East US 2, Central US, South India, Japan East, UK South, France Central, Norway East, Australia East, Canada Central, Sweden Central, South Africa North, Italy North, Brazil South
 - **Delete network injection**: If you want to delete your Foundry resource and Standard Agent with secured network setup, delete your Foundry resource and virtual network last. Before deleting the virtual network, delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your Foundry resource.
 - **Hosted agent virtual network injection**: For Hosted agents, the virtual network configuration (network injection) must be included when you first create the Foundry account. Adding network injection to an existing Foundry account after creation isn't supported for Hosted agents. 

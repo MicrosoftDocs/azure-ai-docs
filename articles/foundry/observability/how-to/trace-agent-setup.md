@@ -1,6 +1,7 @@
 ---
 title: "Set Up Tracing for AI Agents in Microsoft Foundry"
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Azure Monitor Application Insights with OpenTelemetry."
 ai-usage: ai-assisted
 author: lgayhardt
@@ -85,9 +86,9 @@ After running your agent, you can begin to [view and analyze traces in Foundry p
 
 For detailed instructions and SDK-specific code examples, see [Tracing with azure-ai-projects (Python SDK)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [Telemetry samples for agents](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
 
-### Trace locally with Foundry Toolkit in VS Code
+### Trace locally with the Microsoft Foundry Toolkit for Visual Studio Code extension
 
-Foundry Toolkit lets you trace locally in VS Code using a local OTLP-compatible collector, which is ideal for development and debugging.
+The Microsoft Foundry Toolkit for Visual Studio Code extension lets you trace locally in VS Code using a local OTLP-compatible collector, which is ideal for development and debugging.
 
 The toolkit supports AI frameworks such as Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 

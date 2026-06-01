@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 04/29/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -178,4 +179,5 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Quickstart: Set up Foundry resources](./tutorials/quickstart-create-foundry-resources.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [Use the Microsoft Foundry Skill in coding agents](how-to/develop/use-microsoft-foundry-skill.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

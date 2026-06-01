@@ -3,20 +3,20 @@ title: Models from partners
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 04/17/2026
+ms.date: 05/26/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
-Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold directly by Azure* and *Foundry Models from partners and community*.
+Microsoft Foundry Models in the model catalog comprise two main categories, namely *Foundry Models sold by Azure* and *Foundry Models from partners and community*.
 This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, excluding deprecated and retired models.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 
 > [!IMPORTANT]
-> Models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
+> Models from partners and community that are not sold by Azure are Non-Microsoft Products under the Product Terms.
 
-For a list of Foundry Models sold directly by Azure, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
+For a list of Foundry Models sold by Azure, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 
 Foundry Models support several [deployment types](../../foundry-models/concepts/deployment-types.md) to a Foundry resource. Some models in the model catalog require a hub-based project hosted by a Foundry hub for deployment. Selecting those models in the catalog opens them up in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 
@@ -33,7 +33,7 @@ Foundry Models support several [deployment types](../../foundry-models/concepts/
 
 ## Country/region availability
 
-You can access models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md).
+You can access Models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md).
 
 
 ## Anthropic
@@ -53,6 +53,7 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
 | `claude-mythos-preview` <br> **Gated research preview** | Messages | - **Input:** text, image, and code <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br /> - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:** Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:** `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. |
+| `claude-opus-4-8` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
 | `claude-opus-4-7` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:**<br> `top_k`, `temperature`, and `thinking={"type":"enabled"}` are **not supported**.<br> `top_p` must be 0.99. When omitted, the default (0.99) is used. |
 | `claude-opus-4-6` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
 | `claude-opus-4-5` <br> **Preview** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|

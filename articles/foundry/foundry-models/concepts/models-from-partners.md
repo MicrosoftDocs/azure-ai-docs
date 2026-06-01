@@ -4,9 +4,9 @@ description: "Learn about Microsoft Foundry Models from partners and community, 
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 04/17/2026
+ms.date: 05/26/2026
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: partner-tools
 ms.custom:
   - classic-and-new

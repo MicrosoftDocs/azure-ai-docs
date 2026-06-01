@@ -4,12 +4,13 @@ title: "How to configure network isolation for Microsoft Foundry"
 description: "Learn how to configure a network isolation end-to-end for Microsoft Foundry. A private link is used to secure communication with the Microsoft Foundry."
 manager: mcleans
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 03/12/2026
+ms.date: 05/26/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -238,7 +239,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 |------|---------------|--------------|
 | MCP Tool (Private MCP) | ✅ Supported | Through your VNet subnet |
 | Azure AI Search | ✅ Supported | Through private endpoint |
-| Code Interpreter | ✅ Supported | Microsoft backbone network |
+| Code Interpreter | ⚠️ Partial | Microsoft backbone network. Works without files. File upload/download isn't supported; as a workaround, use the SDK to create a container with the required files and pass the `container_id` to Code Interpreter. This workaround isn't available in the Foundry portal UI. |
 | Function Calling | ✅ Supported | Microsoft backbone network |
 | Bing Grounding | ✅ Supported | Public endpoint |
 | Websearch | ✅ Supported | Public endpoint |

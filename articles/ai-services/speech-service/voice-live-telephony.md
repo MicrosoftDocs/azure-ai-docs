@@ -27,7 +27,7 @@ The Azure Voice Live API provides a single, unified interface that integrates sp
 
 The Azure Communication Services Call Automation APIs provide the telephony integration. You can use either an [ACS provided number](/azure/communication-services/quickstarts/telephony/get-trial-phone-number) or direct routing using Session Initiation Protocol (SIP) with your existing PSTN carrier or third-party PBX (see [Use direct routing to connect existing telephony service](/azure/communication-services/concepts/telephony/direct-routing-provisioning)). 
 
-Alternatively for telephony integration, Twilio Media Streams provide access to the raw audio from a Programmable Voice call by streaming it over WebSockets to a destination you specify. This enables use cases such as real-time transcriptions, sentiment analysis, voice authentication, and more. You can also stream raw audio into a Twilio Voice call from another application. Learn more about [Twilio Media Streams](https://www.twilio.com/docs/voice/media-streams).
+Alternatively, telephony integration is supported through third-party providers, including [**Twilio**](https://www.twilio.com/docs/voice/media-streams) and [**Infobip**](https://www.infobip.com/docs/voice-and-video/calls). 
 
 
 :::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::

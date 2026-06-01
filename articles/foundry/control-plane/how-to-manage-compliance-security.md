@@ -5,6 +5,7 @@ description: "Discover how to manage compliance and secure your Microsoft Foundr
 author: s-polly
 ms.author: scottpolly
 ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: how-to
 ms.date: 05/15/2026
 ai-usage: ai-assisted
