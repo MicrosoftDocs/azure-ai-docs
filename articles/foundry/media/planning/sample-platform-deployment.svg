@@ -36,29 +36,32 @@
 
   <rect class="item" x="50" y="400" width="320" height="56" />
   <text x="70" y="432" class="item-text">LegalDoc Analyzer</text>
-  <text x="70" y="450" class="item-subtle">Not promoted</text>
 
   <rect class="item" x="50" y="470" width="320" height="56" />
   <text x="70" y="502" class="item-text">HR Sentiment Bot</text>
-  <text x="70" y="520" class="item-subtle">Not promoted</text>
 
   <rect class="item" x="50" y="540" width="320" height="56" />
   <text x="70" y="572" class="item-text">Marketing Content Generator</text>
-  <text x="70" y="590" class="item-subtle">Not promoted</text>
 
   <rect class="group" x="450" y="120" width="260" height="150" fill="#edf9ee" stroke="#7fb685" />
   <text x="470" y="155" class="group-title">Dev-test A</text>
   <text x="470" y="180" class="legend">Isolated</text>
 
   <rect class="item" x="470" y="205" width="220" height="50" />
-  <text x="490" y="237" class="item-text">SmartRetail Recommender</text>
+  <text x="580" y="228" class="item-text" text-anchor="middle">
+    <tspan x="580">SmartRetail</tspan>
+    <tspan x="580" dy="16">Recommender</tspan>
+  </text>
 
   <rect class="group" x="450" y="300" width="260" height="150" fill="#edf9ee" stroke="#7fb685" />
   <text x="470" y="335" class="group-title">Dev-test B</text>
   <text x="470" y="360" class="legend">Isolated</text>
 
   <rect class="item" x="470" y="385" width="220" height="50" />
-  <text x="490" y="417" class="item-text">Contoso Support Copilot</text>
+  <text x="580" y="408" class="item-text" text-anchor="middle">
+    <tspan x="580">Contoso Support</tspan>
+    <tspan x="580" dy="16">Copilot</tspan>
+  </text>
 
   <rect class="group" x="450" y="480" width="260" height="150" fill="#fff4e5" stroke="#e3a33b" />
   <text x="470" y="515" class="group-title">Dev-test C</text>
@@ -71,13 +74,19 @@
   <text x="1000" y="155" class="group-title">Production A</text>
   <text x="1000" y="180" class="legend">Isolated</text>
   <rect class="item" x="1000" y="195" width="200" height="45" />
-  <text x="1020" y="224" class="item-text">SmartRetail</text>
+  <text x="1100" y="214" class="item-text" text-anchor="middle">
+    <tspan x="1100">SmartRetail</tspan>
+    <tspan x="1100" dy="16">Recommender</tspan>
+  </text>
 
   <rect class="group" x="980" y="320" width="240" height="135" fill="#f1ebff" stroke="#8a78d1" />
   <text x="1000" y="355" class="group-title">Production B</text>
   <text x="1000" y="380" class="legend">Isolated</text>
   <rect class="item" x="1000" y="395" width="200" height="45" />
-  <text x="1020" y="424" class="item-text">Support Copilot</text>
+  <text x="1100" y="414" class="item-text" text-anchor="middle">
+    <tspan x="1100">Contoso Support</tspan>
+    <tspan x="1100" dy="16">Copilot</tspan>
+  </text>
 
   <line class="arrow" x1="370" y1="198" x2="450" y2="230" />
   <line class="arrow" x1="370" y1="268" x2="450" y2="410" />
@@ -85,5 +94,4 @@
   <line class="arrow" x1="690" y1="230" x2="980" y2="218" />
   <line class="arrow" x1="690" y1="410" x2="980" y2="418" />
 
-  <text x="760" y="520" class="legend">Only the workloads that prove value and secure funding move to isolated production environments.</text>
 </svg>
