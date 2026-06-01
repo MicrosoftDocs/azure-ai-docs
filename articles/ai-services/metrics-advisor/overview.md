@@ -2,12 +2,12 @@
 title: What is the Azure AI Metrics Advisor service?
 titleSuffix: Azure AI services
 description: What is Metrics Advisor?
-author: mrbullwinkle
+author: alvinashcraft
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: overview
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # What is Azure AI Metrics Advisor? 
@@ -86,10 +86,10 @@ There are also further limitations. Refer to [FAQ](faq.yml#what-are-the-data-ret
 
 ## Use cases for Metrics Advisor
 
-* [Protect your organization's growth by using Azure AI Metrics Advisor](https://techcommunity.microsoft.com/t5/azure-ai/protect-your-organization-s-growth-by-using-azure-metrics/ba-p/2564682)
-* [Supply chain anomaly detection and root cause analysis with Azure Metric Advisor](https://techcommunity.microsoft.com/t5/azure-ai/supply-chain-anomaly-detection-and-root-cause-analysis-with/ba-p/2871920)
-* [Customer support: How Azure AI Metrics Advisor can help improve customer satisfaction](https://techcommunity.microsoft.com/t5/azure-ai-blog/customer-support-how-azure-metrics-advisor-can-help-improve/ba-p/3038907)
-* [Detecting methane leaks using Azure AI Metrics Advisor](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/detecting-methane-leaks-using-azure-metrics-advisor/ba-p/3254005)
+* [Protect your organization's growth by using Azure AI Metrics Advisor](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/protect-your-organization%E2%80%99s-growth-by-using-azure-metrics-advisor/2564682)
+* [Supply chain anomaly detection and root cause analysis with Azure Metric Advisor](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/supply-chain-anomaly-detection-and-root-cause-analysis-with-azure-metric-advisor/2871920)
+* [Customer support: How Azure AI Metrics Advisor can help improve customer satisfaction](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/customer-support-how-azure-metrics-advisor-can-help-improve-customer-satisfactio/3038907)
+* [Detecting methane leaks using Azure AI Metrics Advisor](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/detecting-methane-leaks-using-azure-metrics-advisor/3254005)
 * [AIOps with Azure AI Metrics Advisor - OpenDataScience.com](https://opendatascience.com/aiops-with-azure-metrics-advisor/)
 
 ## Next steps

@@ -1,8 +1,8 @@
 ---
 title: "How to use global batch processing with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to use global batch with Azure OpenAI (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 01/27/2026
 ms.service: microsoft-foundry

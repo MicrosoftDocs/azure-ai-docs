@@ -48,7 +48,7 @@ If you don't create capability hosts, Agent Service automatically uses Microsoft
 - Vector search (embeddings and retrieval)
 
 ### Bring-your-own resources
-When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks.md).
+When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For securing your agent service, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
 
 To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](../concepts/standard-agent-setup.md).
 
@@ -57,23 +57,28 @@ To learn more about standard agent setup, see [Built-in enterprise readiness wit
 
 #### Configuration hierarchy
 
-Capability hosts follow a hierarchy where more specific configurations override broader ones:
+Capability hosts operate at two distinct scopes:
 
 1. **Service defaults** (Microsoft-managed search and storage) - Used when no capability host is configured.
-2. **Account-level capability host** - Provides shared defaults for all projects under the account.
-3. **Project-level capability host** - Overrides account-level and service defaults for that specific project. 
+2. **Account-level capability host** - Enables Agent Service at the account level.
+3. **Project-level capability host** - Defines which BYO resources Agent Service uses for that specific project.
+
+> [!IMPORTANT]
+> The project-level capability host is what Agent Service reads to determine which storage, thread, and vector store resources to use for a project. There is no automatic inheritance of BYO resource configuration from the account capability host to the project. Even if the account capability host references connections, Agent Service will not use them for a project unless those connections are explicitly referenced in a project capability host.
 
 ## Understand capability host constraints
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
-- **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you get a 409 conflict.
+- **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you'll receive a 409 error.
 
 - **You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
 
+- **Account capability host prerequisite**: You can't create a project capability host unless an account-level capability host already exists.
+
 ## Create connections for capability hosts
 
-Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for the resources that store agent data:
+Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for resources that store agent data:
 
 - **Thread storage**: Azure Cosmos DB connection
 - **File storage**: Azure Storage connection
@@ -82,6 +87,38 @@ Capability hosts reference connection names that you create in your Foundry acco
 If you want to use model deployments from your own Azure OpenAI resource, also create an Azure OpenAI connection.
 
 To add connections in the Foundry portal, see [Add a new connection to your project](../../how-to/connections-add.md).
+
+### Required connection properties
+
+For Agent Service to correctly resolve and use your resources at runtime, each connection referenced by a capability host must have the following properties populated:
+
+| Property | Description |
+|----------|-------------|
+| `authType` | The authentication type for the connection (for example, `AAD`) |
+| `category` | The Azure resource type (for example, `AzureStorageAccount`, `AzureCosmosDb`, `CognitiveSearch`) |
+| `target` | The service endpoint URL for the resource (not the resource ID) |
+| `metadata.ResourceId` | The full Azure resource ID for the resource |
+
+> [!IMPORTANT]
+> The `metadata.ResourceId` field is required for Agent Service to correctly resolve your resources at runtime. This applies to both project-level and account-level connections referenced by a capability host.
+
+The following example shows a correctly configured Azure Storage connection:
+
+```json
+{
+  "properties": {
+    "authType": "AAD",
+    "category": "AzureStorageAccount",
+    "target": "https://{storageAccountName}.blob.core.windows.net/",
+    "metadata": {
+      "ResourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}"
+    }
+  }
+}
+```
+
+> [!NOTE]
+> While connection templates may include additional metadata fields, the functional requirements for correct resolution and runtime behavior are a valid `metadata.ResourceId` and the correctly populated `authType`, `category`, and `target` properties.
 
 ## Configure capability hosts
 
@@ -105,7 +142,7 @@ To use your own resources for agent data (standard agent setup), configure the p
 
 **Account capability host**
 
-Use an account capability host to enable Agent Service and (optionally) define defaults that projects can inherit.
+Use an account capability host to enable Agent Service at the account level.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{name}?api-version=2025-06-01
@@ -121,7 +158,8 @@ Reference: [Foundry account management REST API](/rest/api/aifoundry/accountmana
 
 **Project capability host**
 
-This configuration overrides service defaults and any account-level settings. All agents in this project will use your specified resources:
+The project capability host is what Agent Service reads to determine which BYO resources to use for a project. All agents in this project will use the resources referenced here:
+
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -138,9 +176,9 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update)
 
-### Optional: account-level defaults with project overrides
+### Optional: account-level connections with project capability hosts
 
-Set shared defaults at the account level that apply to all projects:
+You can also define connections at the account level. When a new project is created under that account, those connections are inherited by the project. However, the project capability host configuration is not inherited — you must still create a project capability host explicitly and reference the connections you want Agent Service to use for that project.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{name}?api-version=2025-06-01
@@ -154,8 +192,9 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
   }
 }
 ```
+
 > [!NOTE]
-> All Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
+> Connections defined at the account level are inherited by new projects. However, the project capability host configuration is not inherited. To use those connections with Agent Service, you must create a project capability host that explicitly references the project-level connections.
 
 ## Verify your configuration
 
@@ -308,7 +347,7 @@ Since updates aren't supported, follow this sequence for configuration changes:
 
 - **Development and testing**: Use Microsoft-managed resources. No capability host configuration needed.
 - **Production with compliance requirements**: Create capability hosts with your own Azure Cosmos DB, Storage, and AI Search.
-- **Shared resources across projects**: Configure account-level defaults, then override at the project level as needed.
+- **Shared resources across projects**: Configure account-level connections, then create a project capability host for each project that explicitly references those connections.
 
 ## Next steps
 

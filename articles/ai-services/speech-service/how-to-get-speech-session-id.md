@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
+ai-usage: ai-assisted
 ---
 
 # How to get speech to text session ID and transcription ID
@@ -74,7 +75,7 @@ Generate a GUID inside your code or using any standard tool. Use the GUID value 
 
 As a part of your REST request use `X-ConnectionId=<GUID>` expression. For our example, a sample request looks like this:
 ```http
-https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US&X-ConnectionId=9f4ffa5113a846eba289aa98b28e766f
+https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US&X-ConnectionId=9f4ffa5113a846eba289aa98b28e766f
 ```
 `9f4ffa5113a846eba289aa98b28e766f` is your Session ID.
 
@@ -99,12 +100,12 @@ The following is and example response body of a [Transcriptions - Submit](/rest/
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/transcriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions/537216f8-0620-4a10-ae2d-00bdb423b36f/files"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/transcriptions/537216f8-0620-4a10-ae2d-00bdb423b36f/files"
   },
   "properties": {
     "diarizationEnabled": false,

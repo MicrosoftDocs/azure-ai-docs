@@ -3,6 +3,7 @@ title: "Guardrails and controls overview in Microsoft Foundry"
 description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
 manager: nitinme
 ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: concept-article
 ms.date: 04/01/2026
 author: ssalgadodev
@@ -31,14 +32,16 @@ For more information about intervention points, see [Intervention points and con
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
 > [!IMPORTANT]
-> The guardrail system applies to all [Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
+> The guardrail system applies to all [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
-- Azure AI Account Owner role.
+- Foundry Account Owner role.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
   - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models

@@ -2,7 +2,7 @@
 title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models (classic)"
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-openai
+ms.subservice: foundry-models
 ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande
@@ -58,7 +58,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 ## Deploy the model
 
-1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
+1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 

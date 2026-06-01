@@ -23,7 +23,9 @@ If you see `DefaultAzureCredential failed to retrieve a token`:
    ```
 
 2. **Check RBAC role assignment**:
-   - Confirm you have at least the Azure AI User role on the Foundry project
+   - Confirm you have at least the Foundry User role on the Foundry project
+
+     [!INCLUDE [role-rename-note](./role-rename-note.md)]
    - See [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal)
 
 3. **For managed identity in production**:

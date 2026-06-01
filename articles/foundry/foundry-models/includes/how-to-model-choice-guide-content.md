@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/19/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -17,12 +17,12 @@ Another example is a coding assistant, where you want to vary the amount of thin
 
 In contrast, a customer service assistant that is answering customer questions live, retrieving information from a highly efficient search index, and providing human-like responses needs to be fast, friendly, and efficient. For these scenarios, OpenAI’s GPT-4.1 is a far better option.
 
-Choosing the right model for your use case can be a challenging endeavor, so we’ve created this simple guide to help you pick between the two latest flagship models from OpenAI – GPT-5 and GPT-4.1.
+Choosing the right model for your use case can be a challenging endeavor, so this simple guide can help you pick between the two latest flagship models from OpenAI – GPT-5 and GPT-4.1.
 
-Microsoft Foundry offers multiple variants of generative AI models to meet diverse customer needs. Two of the most widely used models—**GPT-5** and **GPT-4.1**—serve different purposes depending on your workload, latency sensitivity, and reasoning requirements.
+Microsoft Foundry offers multiple variants of generative AI models to meet diverse customer needs. Two of the most widely used models – **GPT-5** and **GPT-4.1** – serve different purposes depending on your workload, latency sensitivity, and reasoning requirements.
 
-- **GPT-5** is optimized for advanced enterprise use cases such as code generation and review, agentic tool calling, and business research. It excels in structured reasoning, multi-step logic, and planning tasks, making it ideal for Copilot-style applications that require deep understanding and orchestration. While it delivers significantly improved accuracy and contextual awareness, it may introduce higher latency due to its reasoning depth and model complexity.
-- **GPT-4.1** is optimized for high-speed, high-throughput enterprise applications such as real-time chat, customer support, and lightweight summarization. It delivers fast, concise responses with low latency, making it ideal for latency-sensitive workloads and high-volume deployments. While it does not offer the deep reasoning capabilities of GPT-5, GPT-4.1 excels in responsiveness, cost efficiency, and predictable performance across a wide range of general-purpose tasks.
+- **GPT-5** is optimized for advanced enterprise use cases such as code generation and review, agentic tool calling, and business research. It excels in structured reasoning, multi-step logic, and planning tasks, making it ideal for Copilot-style applications that require deep understanding and orchestration. While it delivers significantly improved accuracy and contextual awareness, it might introduce higher latency due to its reasoning depth and model complexity.
+- **GPT-4.1** is optimized for high-speed, high-throughput enterprise applications such as real-time chat, customer support, and lightweight summarization. It delivers fast, concise responses with low latency, making it ideal for latency-sensitive workloads and high-volume deployments. While it doesn't offer the deep reasoning capabilities of GPT-5, GPT-4.1 excels in responsiveness, cost efficiency, and predictable performance across a wide range of general-purpose tasks.
 
 This guide helps you understand the differences and choose the right model for your use case.
 
@@ -50,16 +50,16 @@ This guide helps you understand the differences and choose the right model for y
 
 **Notes:**
 
-- The pattern above applies to GPT-5, GPT-5-mini, and GPT-5-nano; absolute latency and cost scale down with _mini_ and _nano_ but the tradeoffs are the same.
-- **Parallel tool calls are not supported at Minimal reasoning_effort.** If you need parallel tool use, choose **Low/Medium/High**.
+- The pattern above applies to GPT-5, GPT-5-mini, and GPT-5-nano. Absolute latency and cost scale down with _mini_ and _nano_ but the tradeoffs are the same.
+- **Parallel tool calls aren't supported at Minimal reasoning_effort.** If you need parallel tool use, choose **Low**, **Medium**, or **High**.
 
 ## When to use GPT-5
 
 Choose GPT-5 if your application requires:
 
-- **Deep, multistep reasoning** for hard problems (planning, analysis, complex synthesis and summarization).
+- **Deep, multistep reasoning** for hard problems (planning, analysis, complex synthesis, and summarization).
 - **Reliability over raw speed**—GPT-5 delivers higher quality and fewer mistakes than prior generations in many tasks, particularly when reasoning is enabled.
-- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act, benefit from GPT-5’s planning ("preamble") and robust tool use.
+- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act. Benefit from GPT-5’s planning ("preamble") and robust tool use.
 - **Nuanced intent understanding and structured follow-ups**: use **structured outputs** for predictable formats and **verbosity** to control response length.
 
 _Example Use Cases:_
@@ -89,9 +89,9 @@ If you're unsure which model to choose, try [Model Router](https://ai.azure.com/
 
 ## Latency considerations
 
-Understanding the latency differences between GPT-5 and GPT-4.1 is key to selecting the right model for your needs. GPT-5 delivers powerful reasoning and deeper analysis, but this comes with slightly longer wait times before you see your first response, especially for shorter prompts. You may notice that interactions feel slower when accuracy and complex problem-solving are prioritized.
+Understanding the latency differences between GPT-5 and GPT-4.1 helps you select the right model for your needs. GPT-5 delivers powerful reasoning and deeper analysis, but this capability comes with slightly longer wait times before you see your first response, especially for shorter prompts. You might notice that interactions feel slower when accuracy and complex problem-solving are prioritized.
 
-In contrast, GPT-4.1 offers a snappier and more responsive experience, making it ideal for real-time chats, quick Q&A, and high-volume tasks where speed matters most. If your workflow requires instant feedback and low latency, GPT-4.1 is recommended. However, for tasks where advanced reasoning and accuracy are critical—even if responses take a bit longer—GPT-5 is the preferred choice. This trade-off ensures you get the right balance of speed and intelligence for your specific use case.
+In contrast, GPT-4.1 offers a snappier and more responsive experience. It's ideal for real-time chats, quick Q&A, and high-volume tasks where speed matters most. If your workflow requires instant feedback and low latency, use GPT-4.1. However, for tasks where advanced reasoning and accuracy are critical - even if responses take a bit longer - GPT-5 is the preferred choice. This trade-off ensures you get the right balance of speed and intelligence for your specific use case.
 
 | **Metric**                | **GPT-5**                                   | **GPT-4.1**                |
 |---------------------------|---------------------------------------------|----------------------------|
@@ -99,4 +99,4 @@ In contrast, GPT-4.1 offers a snappier and more responsive experience, making it
 | **TBT (Time Between Tokens)**  | Moderate to high                          | Low                        |
 | **User Perception**           | May feel slower, especially for short prompts | Feels snappy and responsive |
 
-If you wish to utilize the advanced features of GPT-5 while ensuring consistent latency, we recommend selecting the [Provisioned Throughput](/azure/ai-foundry/openai/concepts/provisioned-throughput?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=global-ptum) deployment type. This option provides specific latency service level agreements (SLAs) for latency and is well-suited to use cases where latency sensitivity is critical. [Get started with Provisioned Throughput.](/azure/ai-foundry/openai/how-to/provisioned-get-started?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext)
+To use the advanced features of GPT-5 while ensuring consistent latency, select the [Provisioned Throughput](/azure/ai-foundry/openai/concepts/provisioned-throughput?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=global-ptum) deployment type. This option provides specific latency service level agreements (SLAs) and is well-suited to use cases where latency sensitivity is critical. [Get started with Provisioned Throughput.](/azure/ai-foundry/openai/how-to/provisioned-get-started?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext)

@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 02/06/2026
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 05/13/2026
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ms.custom:
   - pilot-ai-workflow-jan-2026
