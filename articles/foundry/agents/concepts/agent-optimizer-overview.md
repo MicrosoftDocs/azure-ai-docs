@@ -137,12 +137,24 @@ After an optimization run completes, you see a results table:
 
 ```
 Results:
-  Candidate              Score    Pass Rate   Eval Job
-  ──────────────────── ─────── ─────────── ──────────────────────
-  baseline                0.73       100%    https://ai.azure.com/...
-  baseline_instr_v2       0.77       100%    https://ai.azure.com/...
-  baseline_instr_v3       0.85       100%    https://ai.azure.com/...
-  baseline_instr_v1 ★     0.92       100%    https://ai.azure.com/...
+  Candidate              Score    Pass  Eval
+  ──────────────────── ─────── ───────  ──────
+  baseline                0.76     83%  View
+  candidate_1             0.78     73%  View
+  candidate_2             0.79     78%  View
+  candidate_3             0.77     71%  View
+  candidate_4 ★           0.80     80%  View
+
+  Candidate IDs:
+      baseline             cand_abc123...
+      candidate_1          cand_def456...
+      candidate_2          cand_ghi789...
+      candidate_3          cand_jkl012...
+    ★ candidate_4          cand_mno345...
+
+  Apply the best candidate locally, then deploy:
+    azd ai agent optimize apply --candidate cand_mno345...
+    azd deploy
 ```
 
 ### Results table columns
@@ -151,8 +163,8 @@ Results:
 | -------- | ------------- |
 | **Candidate** | Name of the configuration. `baseline` is your current agent before optimization. |
 | **Score** | Composite score across all tasks and criteria, ranging from 0.0 to 1.0. |
-| **Pass Rate** | Percentage of evaluator scores that meet the pass threshold. |
-| **Eval Job** | Link to the evaluation job in the Azure AI Foundry portal. |
+| **Pass** | Percentage of evaluator scores that meet the pass threshold. |
+| **Eval** | Link to the evaluation job in the Azure AI Foundry portal. |
 
 The ★ marks the candidate with the highest composite score. This is the recommended candidate to deploy.
 
