@@ -215,42 +215,7 @@ otel_agent_id = agent.versions.latest.definition.otel_agent_id
 
 ### Create and run the evaluation
 
-```python
-openai_client = project.get_openai_client()
-
-# Eval group: define what to measure.
-eval_group = openai_client.evals.create(
-    name="travel-planner-trace-eval",
-    data_source_config={"type": "azure_ai_source", "scenario": "traces"},
-    testing_criteria=[
-        {
-            "type": "azure_ai_evaluator",
-            "name": "intent_resolution",
-            "evaluator_name": "builtin.intent_resolution",
-            "data_mapping": {
-                "query": "{{item.query}}",
-                "response": "{{item.response}}",
-                "tool_definitions": "{{item.tool_definitions}}",
-            },
-            "initialization_parameters": {"deployment_name": "gpt-5-mini"},
-        },
-    ],
-)
-
-# Eval run: score this agent's recent traces.
-run = openai_client.evals.runs.create(
-    eval_id=eval_group.id,
-    name="travel-planner-trace-run",
-    data_source={
-        "type": "azure_ai_traces",
-        "agent_id": otel_agent_id,
-        "lookback_hours": 24,
-    },
-)
-# Poll openai_client.evals.runs.retrieve(...) until run.status
-# is in {"completed", "failed", "canceled"}, then read run.result_counts
-# and run.per_testing_criteria_results.
-```
+Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
 
 ## Manage external agents
 
