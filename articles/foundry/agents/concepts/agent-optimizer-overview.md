@@ -80,14 +80,13 @@ You can combine model selection with instruction and skill optimization in the s
 
 ## Config resolution
 
-When your agent starts, the `load_config()` function checks four sources in order:
+When your agent starts, the `load_config()` function checks three sources in order:
 
 | Priority | Source | Environment variables | When it's used |
 | ---------- | -------- | ---------------------- | ---------------- |
 | 1 | Inline JSON | `OPTIMIZATION_CONFIG` | After deploying directly through the API |
-| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID` + `OPTIMIZATION_RESOLVE_ENDPOINT` | During optimization evaluation |
-| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | After `azd ai agent optimize apply` writes config locally |
-| 4 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
+| 2 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | After `azd ai agent optimize apply` writes config locally |
+| 3 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
 
 Your agent always works with or without optimization. You don't need feature flags or conditional logic. Call `load_config()` and use the values it returns. For implementation details, see [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md).
 
@@ -98,7 +97,7 @@ Your agent always works with or without optimization. You don't need feature fla
 | `instructions` | System prompt and instructions | instruction, skill |
 | `skills` | Discovered skill catalog | skill |
 | `model` | Model deployment name | model |
-| `temperature` | Sampling temperature | (future) |
+| `tools` | Tool definitions (descriptions, parameters) | tool |
 
 ## Models
 
