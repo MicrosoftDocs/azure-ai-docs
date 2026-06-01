@@ -40,7 +40,7 @@ While every situation is unique, for the common organization we recommend the fo
    product ownership, and environment tiers.
 1. Set a production policy that defaults to isolation, unless a documented
    exception allows colocation.
-1. Set a preproduction policy that defaults to colocation for faster
+1. Set a pre-production policy that defaults to colocation for faster
    experimentation, unless compliance or validation requires isolation.
 1. Assign ownership for each boundary, including security, cost, and incident
    response ownership.
@@ -51,7 +51,7 @@ Determine which Foundry features and APIs each workload requires before you
 finalize your topology.
 
 > [!NOTE]
-> Not all Foundry APIs support the full variety of authentication modes, storage encryption levels and project-level isolation. Some of the Foundry Tools APIs can require
+> Not all Foundry APIs support the full variety of authentication modes, storage encryption levels, and project-level isolation. Some of the Foundry Tools APIs can require
 > role assignments at the parent Foundry resource scope.
 
 For co-located use cases that share one Foundry resource, use Foundry projects as isolated workspaces for each use case. For example, teams experimenting with an
@@ -63,12 +63,12 @@ Most newer, agent-centric Foundry APIs support project-scope permissioning. Some
 | Capability area | Organize by project | Project-level RBAC isolation | Bring your own storage | Networking / encryption support | Planning implication |
 |---|---|---|---|---|---|
 | Agent capabilities (agents, responses, evaluations, datasets, indexes, files, and playground assets) | Yes | Yes | Yes | Limited in basic set up (managed storage). For full coverage, use 'standard'. | Good fit for project-per-use-case segmentation in shared environments. |
-| Fine-tune training | No (default project only) | No | Partial (inputs only) | Yes |  If each team needs independent fine-tuning, use separate Foundry resources. Fine-tuned deployments are shared and consumeable across projects within a resource.
-| OpenAI image, video, batch | No | No | Partial (only Batch) | Yes | Use an isolated workload setup, and if managed storage is required, validate RBAC constraints early.
+| Fine-tune training | No (default project only) | No | Partial (inputs only) | Yes |  If each team needs independent fine-tuning, use separate Foundry resources. Fine-tuned deployments are shared and consumable across projects within a resource. |
+| OpenAI image, video, batch | No | No | Partial (only Batch) | Yes | Use an isolated workload setup, and if managed storage is required, validate RBAC constraints early. |
 | Content Understanding | Yes | No | Yes | Yes | If strict per-use-case access isolation is required, prefer separate Foundry resources. |
 | Speech | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
 | Language | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
-| Translator | No | No | No | Yes | Use seperate Foundry resource if isolation is a must. |
+| Translator | No | No | No | Yes | Use separate Foundry resource if isolation is a must. |
 
 > [!IMPORTANT]
 > Confirm your exact capability mix before rollout. If a required API only works
@@ -132,7 +132,7 @@ For each workload, identify external dependencies and connection patterns:
 Use [Add connections in Foundry](../how-to/connections-add.md) to standardize
 connection setup.
 
-Connections can be created at both the parent Foundry resource-level and child project-level dependent on desired isolation scope. Connections configured at the parent level are availabile to all projects. 
+Connections can be created at both the parent Foundry resource-level and child project-level dependent on desired isolation scope. Connections configured at the parent level are available to all projects. 
 
 :::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
@@ -163,7 +163,7 @@ Enable self-serve only within clear constraints:
    tools. 
 1. Apply policy controls for model deployment and runtime behavior including which model providers, and which tool connections are allowed.
 1. Set cost controls and budget alerts for shared and isolated environments.
-1. Enforce trace logging into central observability across Microsoft Foundry, Microsoft Copilot Studio and Microsoft365.
+1. Enforce trace logging into central observability across Microsoft Foundry, Microsoft Copilot Studio and Microsoft 365.
 
 Use these references:
 
@@ -206,6 +206,6 @@ The IT organization at Contoso needs to support multiple teams while balancing t
 1. Rapid innovation, where developers can rigorously test the latest AI technologies using non-production data.
 1. Fully isolated dev, test, and production environments for proven use cases that receive funding for operationalization.
 
-The diagram below shows how Contoso co-locates a shared pre-production Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to production. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full production-grade separation.
+The diagram shows how Contoso co-locates a shared pre-production Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to production. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full production-grade separation.
 
 :::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into isolated dev-test environments, and then into isolated production environments for a smaller number of workloads.":::
