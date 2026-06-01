@@ -174,7 +174,7 @@ To stop using Fireworks models, delete the Fireworks model deployments from your
 
 ### How do I use the Responses API?
 
-The Responses API is supported via the Foundry Projects API and SDK. Make sure to point your client to your project's api endpoint or use the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk).
+The Responses API is supported via the Foundry Projects API and SDK. Make sure to point your client to your project's API endpoint or use the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk).
 
 ## Troubleshoot Fireworks on Foundry
 
