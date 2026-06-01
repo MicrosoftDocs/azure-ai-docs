@@ -95,7 +95,7 @@ The following definition shows a simple profile named "geo". This example boosts
 To use this scoring profile, your query is formulated to specify `scoringProfile` parameter in the request. If you're using the REST API, queries are specified through GET and POST requests. In the following example, "currentLocation" has a delimiter of a single dash (`-`). It's followed by longitude and latitude coordinates, where longitude is a negative value.
 
 ```http
-POST /indexes/hotels/docs&api-version=2025-09-01
+POST /indexes/hotels/docs/search?api-version=2026-04-01
 {
     "search": "inn",
     "scoringProfile": "geo",

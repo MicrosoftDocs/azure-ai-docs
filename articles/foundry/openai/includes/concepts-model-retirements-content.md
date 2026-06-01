@@ -15,7 +15,7 @@ Microsoft Foundry Models move through a predictable lifecycle—from preview to 
 
 ## How model lifecycle works
 
-Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies uniformly across Foundry Models [sold directly by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) and [from partners and community](/azure/foundry/foundry-models/concepts/models-from-partners), though notification timelines differ slightly by model origin.
+Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies uniformly across Foundry Models [sold by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) and [from partners and community](/azure/foundry/foundry-models/concepts/models-from-partners), though notification timelines differ slightly by model origin.
 
 ### Lifecycle stages
 
@@ -68,7 +68,7 @@ Several factors affect how the standard lifecycle applies to your deployments, i
 - Not all models or versions available in commercial clouds are available in government clouds.
 - Government clouds typically support only one version of a given model at a time, with a **30-day overlap** when a new version becomes available.
 
-For more information, see [Foundry Models sold directly by Azure (government)](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov), [Model versions](/azure/foundry/foundry-models/concepts/model-versions-gov), and [Deployment types](/azure/foundry/foundry-models/concepts/deployment-types-gov) in Azure Government.
+For more information, see [Foundry Models sold by Azure (government)](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov), [Model versions](/azure/foundry/foundry-models/concepts/model-versions-gov), and [Deployment types](/azure/foundry/foundry-models/concepts/deployment-types-gov) in Azure Government.
 
 ### Security-driven retirements
 
@@ -115,7 +115,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 For **Global Standard**, **Data Zone Standard**, and **Standard** deployment types, Microsoft manages automatic upgrades when a model version is retired:
 
 - Auto-upgrades are scheduled on a **rolling, region-by-region** basis.
-- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirements.md).
+- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 - Upgrades can occur even if the new model version isn't yet separately available in that region, or for that SKU—the upgrade process will make it available.
 
 > [!IMPORTANT]
@@ -157,7 +157,29 @@ Customers can check lifecycle and deprecation fields on any model using the [Mod
 GET https://management.azure.com/subscriptions/{sub}/providers/Microsoft.CognitiveServices/locations/{location}/models?api-version=2024-10-01
 ```
 
-Fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
+Key fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
+
+> [!IMPORTANT]
+> **The API uses different terminology than the docs and portal.** The table below maps the customer-facing stage names used in this document and the Foundry portal to the corresponding API field values.
+
+| Stage (docs and portal) | API status field (`lifecycleStatus`) | API date field (`deprecation.inference`) | What it means |
+|---|---|---|---|
+| **Preview** | `Preview` | Future date or not set | Experimental. May change or be removed. |
+| **Generally Available** | `GenerallyAvailable` | Future date (set at launch) | Production-ready. Fixed weights and API. |
+| **Deprecated** | `Deprecating` | Future date | Still serves inference. Blocked for new customers. |
+| **Retired** | `Deprecated` | Past date | Fully retired. Inference returns `410 Gone`. |
+
+For example, a model that the docs list as **"Deprecated"** (still works, blocked for new customers) appears in the API as `lifecycleStatus: "Deprecating"`—not `"Deprecated"`. The API value `"Deprecated"` means the model is **retired** and no longer serves inference.
+
+To determine a model's stage programmatically, check both fields together:
+
+```
+if lifecycleStatus == "Deprecated"         → Retired (410 Gone)
+if lifecycleStatus == "Deprecating"        → Deprecated (existing customers only)
+if deprecation.inference < today           → Retired (regardless of lifecycleStatus lag)
+if lifecycleStatus == "GenerallyAvailable" → GA
+if lifecycleStatus == "Preview"            → Preview
+```
 
 ## Fine-tuned models
 

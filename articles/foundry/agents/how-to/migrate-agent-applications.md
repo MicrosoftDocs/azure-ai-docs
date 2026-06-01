@@ -6,8 +6,8 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.date: 04/14/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -32,7 +32,7 @@ The new agent object model collapses **Agent Applications** and **Agent Deployme
 
 1. **Resource model**: Only Agent objects exist (data plane and control plane). They absorb the responsibilities previously owned by Agent Application and Deployment.
 1. **Agent object properties**: `id`, `name`, `versions`, `agent_endpoint` (stable endpoint), `protocols`, `authorization_schemes`, `version_selector`, `blueprint`, `instance_identity`, and `agent_card` (surfaces agent details and capabilities to consumers and A2A).
-1. **Identity**: All agents receive a unique Entra Agent Identity and Entra Agent Blueprint by default. Bring-your-own Entra Agent Blueprint is supported but not the default.
+1. **Identity**: Newly created agents receive a unique Entra Agent Blueprint and Entra Agent Identity by default. Bring-your-own Entra Agent Blueprint is supported but not the default.
 1. **Publishing**: Two equivalent gestures. First, select an agent version to expose via the stable endpoint. Second, publish the agent's stable endpoint to M365/Teams.
 
 :::image type="content" source="../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::
@@ -107,8 +107,8 @@ When migrating, update any code or integrations that reference the old endpoint 
 
 | Aspect | Legacy endpoint | New endpoint |
 |--------|----------------|--------------|
-| Responses | `https://{account}.../projects/{project}/applications/{app}/protocols/openai` | `https://{account}.../projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
-| Activity | `https://{account}.../projects/{project}/applications/{app}/protocols/activityprotocol` | `https://{account}.../projects/{project}/agents/{agent}/protocols/activityprotocol` |
+| Responses | `https://{account}.../projects/{project}/applications/{app}/protocols/openai` | `https://{account}.../projects/{project}/agents/{agent}/endpoint/protocols/openai/responses` |
+| Activity | `https://{account}.../projects/{project}/applications/{app}/protocols/activityprotocol` | `https://{account}.../projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 
 ## Publishing UX during the transition
 
@@ -143,7 +143,9 @@ During the transition, yes. The Agent Application and the new agent endpoint can
 
 **What happens to Azure role-based access control (RBAC) roles I assigned on Agent Application resources?**
 
-RBAC on Agent Application resources doesn't transfer to the agent object. You need to assign roles (such as **Foundry Agent Consumer**) on the agent resource for the new endpoint.
+Role assignments for the agent identities of Agent Application resources don't transfer to the agent object. You need to assign any required roles to the agent identity of the new agent endpoint. As you do, consider the principle of least-privilege, and remove any unnecessary permissions.
+
+Remember to also update any role assignments for clients which allow the clients to interact with your agent. In the legacy model, those assignments might be scoped to the Agent Application resource. In the new model, assign the appropriate role at the project scope.
 
 **My agent uses tools that authenticate with agent identity. What changes?**
 

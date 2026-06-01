@@ -863,13 +863,24 @@ groups:
       title: REST
 - id: models-sold-directly-by-azure
 # Owner: mopeakande
-  title: Azure direct models
-  prompt: Choose a collection from Foundry Models sold directly by Azure
+  title: Foundry Models sold by Azure
+  prompt: Choose a collection from Foundry Models sold by Azure
   pivots:
     - id: azure-openai
       title: Azure OpenAI models
     - id: azure-direct-others
       title: Other model collections
+- id: adm-region-availability
+# Owner: mopeakande
+  title: Region availability for Foundry Models sold by Azure
+  prompt: Choose a deployment category for your Foundry Model sold by Azure
+  pivots:
+    - id: standard
+      title: Standard deployment options
+    - id: provisioned
+      title: Provisioned deployment options
+    - id: batch
+      title: Batch deployment options
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
@@ -2066,6 +2077,32 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
+- id: selection-fabric-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-foundry-tool-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-work-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest-api
+    title: REST API
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?

@@ -8,6 +8,7 @@ ms.reviewer: meerakurup
 ms.date: 02/23/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - classic-and-new
   - dev-focus

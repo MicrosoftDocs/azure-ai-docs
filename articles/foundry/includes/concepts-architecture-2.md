@@ -45,8 +45,10 @@ Azure RBAC actions reflect this separation of concerns. Control plane actions, s
 
 Common starter assignments for least-privilege onboarding include:
 
-- **Azure AI User** for each developer user principal at the Foundry resource scope.
-- **Azure AI User** for each project managed identity at the Foundry resource scope.
+- **Foundry User** for each developer user principal at the Foundry resource scope.
+
+  [!INCLUDE [role-rename-note](./role-rename-note.md)]
+- **Foundry User** for each project managed identity at the Foundry resource scope.
 
 For role definitions and scope planning guidance, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 

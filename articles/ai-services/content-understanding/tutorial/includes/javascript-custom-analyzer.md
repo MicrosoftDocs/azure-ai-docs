@@ -148,7 +148,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
         embedding: "text-embedding-3-large", // Required when using field_schema and prebuilt-document base analyzer
     },
 };
@@ -266,7 +266,7 @@ const classifierAnalyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -331,7 +331,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -448,7 +448,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 
@@ -561,7 +561,7 @@ const analyzer = {
         },
     },
     models: {
-        completion: "gpt-4.1",
+        completion: "gpt-5.2",
     },
 };
 

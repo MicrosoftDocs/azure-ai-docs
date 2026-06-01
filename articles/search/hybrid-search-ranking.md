@@ -67,7 +67,7 @@ To get subscores:
 Here's an example of hybrid query that returns subscores in debug mode:
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-09-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-04-01
 
 {
     "vectorQueries": [

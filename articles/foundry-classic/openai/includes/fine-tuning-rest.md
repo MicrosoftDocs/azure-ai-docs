@@ -2,8 +2,8 @@
 title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 02/27/2025
 ms.service: microsoft-foundry
@@ -18,7 +18,9 @@ ms.custom:
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them.
+
+  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -118,7 +120,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
 
 ## Create a customized model
 
-After you upload your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP) by using the REST API.
+After you upload your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true) by using the REST API.
 
 This example includes passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you.
 
@@ -149,7 +151,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-
 }'
 ```
 
-You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP#finetuninghyperparameters) to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
+You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true#finetuninghyperparameters) to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
 The currently supported hyperparameters for supervised fine-tuning are:
 
@@ -253,7 +255,7 @@ After the model is copied from region A to region B, you can continually fine-tu
 ### Configure permissions
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give the Azure AI User role to your user-assigned managed identity on your destination resource or account.
+2. Give the Foundry User role to your user-assigned managed identity on your destination resource or account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
 ### Copy the model
@@ -372,7 +374,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. The suffix can contain up to 40 characters (`a` to `z`, `A` to `Z`, `0` to `9`, `-`, and `_`) that are added to your fine-tuned model's name.
 
-If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP) for an Azure OpenAI resource by using the REST API.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for an Azure OpenAI resource by using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -383,7 +385,7 @@ When you no longer need your customized model, you can delete the deployment and
 You can use either of these methods to delete the deployment for your customized model:
 
 - [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)
-- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 

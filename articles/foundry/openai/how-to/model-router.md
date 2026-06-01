@@ -18,9 +18,8 @@ ai-usage: ai-assisted
 
 # Use model router for Microsoft Foundry
 
-Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md). To understand the architecture and routing logic, see [How model router works](../concepts/model-router-how-it-works.md).
+Model router is a trained language model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md). To understand the architecture and routing logic, see [How model router works](../concepts/model-router-how-it-works.md).
 
-Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 [!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
@@ -28,13 +27,21 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
 
-To deploy programmatically without the portal, see [Deploy with the REST API](#deploy-with-the-rest-api).
+To deploy programmatically without the portal, use the REST API examples in the deployment sections that follow.
+
+By default, model router deploys with the **Balanced** routing mode and routes across the full supported model set. You only need to change the routing mode or select a model subset when you want custom routing behavior.
+
+:::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+
+### Default deployment
 
 Go to the Microsoft Foundry portal and navigate to the model catalog. Find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. 
 
-To enable more configuration options, choose **Custom settings**.
+[!INCLUDE [model-router-deploy-rest-default](../includes/how-to-model-router-deploy-rest-default.md)]
 
-:::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+### Optional: customize deployment settings
+
+To enable more configuration options, choose **Custom settings**.
 
 > [!NOTE]
 > Your deployment settings apply to all underlying chat models that model router uses.
@@ -42,7 +49,7 @@ To enable more configuration options, choose **Custom settings**.
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-### Select a routing mode
+#### Optional: change the routing mode
 
 [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
@@ -58,7 +65,7 @@ Use the **Routing mode** dropdown to select a routing profile. This sets the rou
 > [!NOTE]
 > Changes to the routing mode can take up to five minutes to take effect.
 
-### Select your model subset
+#### Optional: route to a model subset
 
 [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
@@ -73,15 +80,17 @@ New models introduced later are excluded by default until explicitly added.
 
 
 > [!IMPORTANT]
-> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude).
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](../../foundry-models/how-to/use-foundry-models-claude.md).
 
 
 > [!NOTE]
 > Changes to the model subset can take up to five minutes to take effect.
 
-### Deploy with the REST API
+#### Configure custom settings with the REST API
 
-[!INCLUDE [model-router-deploy-rest](../includes/how-to-model-router-deploy-rest.md)]
+Use the following example when you want to set both the routing mode and a model subset in the same deployment request.
+
+[!INCLUDE [model-router-deploy-rest-custom](../includes/how-to-model-router-deploy-rest-custom.md)]
 
 [!INCLUDE [model-router 1](../includes/how-to-model-router-1.md)]
 
@@ -95,7 +104,7 @@ In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to your model r
 > The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
 > [!IMPORTANT]
-> Starting with the `2025-11-18` version, the `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is now **supported** in model router. If the model router selects a reasoning model for your prompt, it will use your `reasoning_effort` input value with the underlying model.
+> Starting with the `2025-11-18` (latest) version, the `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is now **supported** in model router. If the model router selects a reasoning model for your prompt, it uses your `reasoning_effort` input value with the underlying model.
 
 ## Connect model router to a Foundry agent
 
@@ -103,6 +112,8 @@ In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to your model r
 
 
 If you've created an AI agent in Foundry, you can connect your model router deployment to be used as the agent's base model. Select it from the **model** dropdown menu in the agent playground. Your agent will have all the tools and instructions you've configured for it, but the underlying model that processes its responses will be selected by model router.
+
+For detailed guidance on routing patterns, supported tool types, cost implications, and code examples for agents, see [Use model router with Foundry agents](model-router-agents.md).
 
 > [!IMPORTANT]
 > If you use Agent service tools in your flows, only OpenAI models will be used for routing.
@@ -208,5 +219,44 @@ The following example response was generated using API version `2025-11-18`:
 }
 
 ```
+
+## Evaluate model router for your workload
+
+Before you commit production traffic to model router, benchmark it against your current baseline model on three dimensions: quality, cost, and latency. The Foundry Evaluations service doesn't integrate with model router directly, so use the purpose-built evaluation toolkit described here.
+
+### Quality
+
+Use an LLM-as-a-judge approach where a separate, capable model scores responses from both model router and your baseline:
+
+- Run pairwise comparisons with response order swapped to eliminate position bias.
+- Score each response independently on accuracy, completeness, clarity, and helpfulness (1–5 scale).
+- Use at least 100 prompts from your actual workload for statistically reliable results. Fewer than 30 prompts gives only directional signal.
+
+### Cost
+
+Compare per-request cost using token counts and per-model pricing:
+
+- Account for the router markup on input tokens plus the underlying model's input and output pricing.
+- Aggregate savings as a percentage: `1 − (router_cost / baseline_cost)`.
+- Check cost savings per category if your dataset includes prompt categories (for example, code generation vs. summarization).
+
+### Latency
+
+Measure wall-clock response time for both endpoints:
+
+- Compare percentiles (p50, p90, p95) rather than averages — percentiles reflect real user experience better than mean values that can be skewed by outliers.
+- Call endpoints sequentially per prompt so neither is disadvantaged by concurrent load.
+
+### Evaluation toolkit
+
+Use the [Model Router Auto Evaluation toolkit](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation) to run this benchmark with your own prompts. The toolkit supports:
+
+- A no-keys demo with mock data so you can explore the dashboard before configuring endpoints.
+- Live evaluation against your model router and baseline deployments.
+- JSONL, CSV, or SQL dataset input.
+- A self-contained HTML report with quality, cost, and latency charts.
+- Checkpoint and resume for large-scale runs (500+ prompts).
+
+For methodology details — including the cost formula, judge configuration, and sample-size guidance — see the toolkit's [methodology documentation](https://github.com/microsoft-foundry/Model-Router-Auto-Evaluation/blob/main/docs/methodology.md).
 
 [!INCLUDE [model-router 2](../includes/how-to-model-router-2.md)]

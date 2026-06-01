@@ -14,7 +14,7 @@ ms.update-cycle: 180-days
 # AML skill
 
 > [!IMPORTANT]
-> Support for indexer connections to the model catalog is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
+> Support for indexer connections to the model catalog is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
 
 Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Microsoft Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 

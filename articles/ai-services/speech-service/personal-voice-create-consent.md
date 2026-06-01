@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to add user consent to the personal voice project.
+ai-usage: ai-assisted
 ---
 
 # Add user consent to the personal voice project
@@ -52,11 +53,11 @@ To add consent to a personal voice project from a local audio file, use the `Con
 
 Make an HTTP POST request using the URI as shown in the following `Consents_Post` example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `JessicaConsentId` with a consent ID of your choice. The case sensitive ID will be used in the consent's URI and can't be changed later. 
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'description="Consent for Jessica voice"' -F 'projectId="ProjectId"' -F 'voiceTalentName="Jessica Smith"' -F 'companyName="Contoso"' -F 'audiodata=@"D:\PersonalVoiceTest\jessica-consent.wav"' -F 'locale="en-US"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'description="Consent for Jessica voice"' -F 'projectId="ProjectId"' -F 'voiceTalentName="Jessica Smith"' -F 'companyName="Contoso"' -F 'audiodata=@"D:\PersonalVoiceTest\jessica-consent.wav"' -F 'locale="en-US"' "https://YourResourceName.cognitiveservices.azure.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -78,7 +79,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the `Consents_Post` operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
 Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 ```
 
@@ -96,7 +97,7 @@ To add consent to a personal voice project from the URL of an audio file, use th
 
 Make an HTTP PUT request using the URI as shown in the following [Consents_Create](/rest/api/aiservices/speechapi/consents/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `JessicaConsentId` with a consent ID of your choice. The case sensitive ID will be used in the consent's URI and can't be changed later. 
 
 ```azurecli-interactive
@@ -107,7 +108,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "companyName": "Contoso",
   "audioUrl": "https://contoso.blob.core.windows.net/public/jessica-consent.wav?mySasToken",
   "locale": "en-US"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -129,7 +130,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
 Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 ```
 

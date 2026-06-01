@@ -1,11 +1,11 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -51,3 +51,10 @@ ms.custom: include, classic-and-new
 - If you get a `401` or `403` error, confirm you authenticated with the intended identity or key, and that it has access to the Azure OpenAI resource.
 - If you get a `404` error, confirm the endpoint uses the `...openai.azure.com/openai/v1/` path and that you used a valid model deployment name.
 - If requests fail unexpectedly, check for proxy and firewall restrictions, and retry with a smaller prompt to rule out payload-size issues.
+
+## Related content
+
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
+- [Use the Azure OpenAI Responses API](../how-to/responses.md)
+- [Azure OpenAI v1 API](../api-version-lifecycle.md)

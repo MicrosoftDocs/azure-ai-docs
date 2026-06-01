@@ -2,6 +2,7 @@
 title: Use LangChain with models in Microsoft Foundry
 description: Learn how to use OpenAI-compatible LangChain classes with chat and embedding models deployed in Microsoft Foundry, including prompt chains, async calls, and vector search.
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.author: fasantia
@@ -27,7 +28,9 @@ verification workflows.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
-- The **Azure AI User** role on the Foundry project.
+- The **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - A deployed chat model that supports OpenAI-compatible APIs, such as
   `gpt-4.1` or `Mistral-Large-3`.
 - A deployed embeddings model, such as `text-embedding-3-large`.
@@ -82,7 +85,7 @@ model = init_chat_model("azure_ai:gpt-4.1")
 > [!IMPORTANT]
 > Using `init_chat_model` requires `langchain>=1.2.13`. If you can't update your version, [configure clients directly](#configure-clients-directly).
 
-All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
 **What this snippet does:** Creates a chat model client by using the
 `init_chat_model` convenience method. The client routes to the specified model
@@ -393,7 +396,7 @@ embed_model = init_embeddings("azure_ai:text-embedding-3-small")
 **What this snippet does:** Creates an embeddings model client by using the
 `init_embeddings` convenience method.
 
-All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Foundry User**.
 
 Or create the embeddings client with `AzureAIOpenAIApiEmbeddingsModel`.
 

@@ -5,8 +5,8 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 04/22/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.custom:
   - classic-and-new
@@ -80,7 +80,7 @@ When you customize the model pool using model subsets, the router automatically 
 
 ## Routing modes in depth
 
-Model router exposes three routing modes that control the cost-quality tradeoff. For the mode descriptions and configuration steps, see the [model router overview](model-router.md#routing-mode) and the [how-to guide](../how-to/model-router.md#select-a-routing-mode).
+Model router exposes three routing modes that control the cost-quality tradeoff. For the mode descriptions and configuration steps, see the [model router overview](model-router.md#routing-mode) and the [how-to guide](../how-to/model-router.md#optional-change-the-routing-mode).
 
 - **Balanced (default):** Optimizes for the best combination of quality and cost. Most workloads should start here.
 - **Cost:** Aggressively favors cheaper models, accepting slightly lower quality on complex prompts.
