@@ -38,7 +38,7 @@ The entire process runs in the cloud. Start it with `azd ai agent optimize` (req
 
 ## Optimization targets
 
-The agent optimizer automatically determines which targets to improve based on your agent's baseline configuration and the `eval.yaml` settings.
+An optimization *target* is a specific aspect of your agent's configuration that the optimizer can improve. The agent optimizer automatically determines which targets to activate based on your agent's baseline configuration and the `eval.yaml` settings.
 
 ### Instruction tuning
 
@@ -48,21 +48,24 @@ The optimizer rewrites and refines your agent's system prompt. It analyzes basel
 
 ### Skill improvement
 
-The optimizer improves reusable skills your agent uses. It refines existing *skill* definitions, including their descriptions and implementation bodies. The agent loads these skills through `load_config()` and appends them to the instruction set.
+The optimizer improves reusable skills your agent uses. It refines existing skill *bodies* (the implementation content in each `SKILL.md` file) while keeping skill descriptions unchanged. The agent loads these skills through `load_config()` and appends them to the instruction set.
 
 **When it activates:** Skill improvement runs when your agent has a `skills/` directory in the baseline config. Use skills for agents that need structured, repeatable behaviors. For example, a support agent that follows a specific escalation procedure or a travel agent that checks budget policies.
 
 ### Tool optimization
 
-The optimizer improves tool descriptions and parameters to help the model call tools more accurately. It refines the function-calling definitions in your `tools.json` file.
+The optimizer improves tool descriptions and parameter descriptions to help the model call tools more accurately. It does not change parameter types, defaults, or required fields—only the natural-language descriptions are refined.
 
-**When it activates:** Tool optimization runs when your agent has a `tools.json` file in the baseline config. The optimizer analyzes which tool calls succeed or fail and generates clearer descriptions and parameter definitions.
+**When it activates:** Tool optimization runs when your agent has a `tools.json` file in the baseline config. The optimizer analyzes which tool calls succeed or fail and generates clearer descriptions and parameter descriptions.
 
 ### Model selection
 
 The optimizer evaluates your agent across multiple model deployments in a single run to find the best quality-to-cost trade-off. For example, it can determine whether `gpt-4.1-mini` handles your workload at lower cost or whether `gpt-4.1` provides a quality improvement that justifies the extra token cost.
 
 **When it activates:** Model selection runs when you include `optimization_config.model` in your `eval.yaml` with a list of model deployments to evaluate. The optimizer scores each model option against the same dataset and shows the trade-offs.
+
+> [!NOTE]
+> If the model list includes your agent's current model deployment, it is automatically removed from the candidates (the baseline already represents that model). If no models remain after this removal, you receive a validation error.
 
 Configure model candidates in your `eval.yaml`:
 
@@ -131,12 +134,12 @@ After an optimization run completes, you see a results table:
 
 ```
 Results:
-  Candidate              Score    Pass   Tokens
-  ──────────────────── ─────── ─────── ────────
-  baseline                0.73    100%      430
-  baseline_instr_v2       0.77    100%     1180
-  baseline_instr_v3       0.85    100%     1204
-  baseline_instr_v1 ★     0.92    100%     1063
+  Candidate              Score    Pass Rate   Eval Job
+  ──────────────────── ─────── ─────────── ──────────────────────
+  baseline                0.73       100%    https://ai.azure.com/...
+  baseline_instr_v2       0.77       100%    https://ai.azure.com/...
+  baseline_instr_v3       0.85       100%    https://ai.azure.com/...
+  baseline_instr_v1 ★     0.92       100%    https://ai.azure.com/...
 ```
 
 ### Results table columns
@@ -145,26 +148,20 @@ Results:
 | -------- | ------------- |
 | **Candidate** | Name of the configuration. `baseline` is your current agent before optimization. |
 | **Score** | Composite score across all tasks and criteria, ranging from 0.0 to 1.0. |
-| **Pass** | Percentage of tasks where the agent produced a valid response. |
-| **Tokens** | Average token count per response. |
+| **Pass Rate** | Percentage of evaluator scores that meet the pass threshold. |
+| **Eval Job** | Link to the evaluation job in the Azure AI Foundry portal. |
 
 The ★ marks the candidate with the highest composite score. This is the recommended candidate to deploy.
 
 ### How scores are computed
 
-The evaluator scores each criterion in the dataset independently as a binary value (0 or 1). The evaluator model reads the agent's response and the criterion's instruction, then determines whether the response satisfies that criterion.
+Each evaluator in your dataset produces a raw score for the agent's response. The optimizer processes these scores to produce the composite score shown in results:
 
-**Per-task score**: The average of a task's criteria scores:
+1. **Rescale**: Each evaluator's raw score is rescaled to 0–1.
+2. **Flip if needed**: If an evaluator is configured so that *lower is better*, the score is flipped so that all evaluators use "higher is better" semantics.
+3. **Average**: The rescaled scores across all evaluators and tasks are averaged to produce the composite score.
 
-```
-Task "refund_policy":
-  ✓ mentions_30_days      → 1
-  ✓ polite_tone           → 1
-  ✗ includes_email        → 0
-  Task score: 2/3 = 0.67
-```
-
-**Composite score**: The average across all task scores.
+**Composite score**: The average of all rescaled evaluator scores across all tasks.
 
 ### Interpret score improvements
 
@@ -185,7 +182,13 @@ Optimized instructions are often longer and more detailed, which can increase re
 
 ### Pass rate
 
-A pass rate below 100% means some tasks produced invalid responses. For example, the agent might have crashed, timed out, or returned an empty response. If a candidate has a lower pass rate than the baseline, it might have introduced instability.
+Pass rate is computed from each evaluator's pass threshold. For each evaluator score:
+
+- If the evaluator's raw score is **less than** its configured threshold, the result is a **fail**.
+- If the evaluator's raw score is **equal to or greater than** the threshold, the result is a **pass**.
+- For evaluators where lower is better, the logic is reversed (score *above* threshold is a fail).
+
+The pass rate percentage shown in results is the proportion of evaluator scores that passed across all tasks.
 
 ### All scores are zero
 
