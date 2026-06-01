@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
   <title id="title">Sample platform deployment progression</title>
-  <desc id="desc">Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into co-located or isolated dev-test environments, and then into isolated production environments for a smaller number of workloads.</desc>
+  <desc id="desc">Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into isolated dev-test environments, and then into isolated production environments for a smaller number of workloads.</desc>
   <defs>
     <style>
       .bg { fill: #ffffff; }
@@ -46,22 +46,26 @@
   <text x="70" y="572" class="item-text">Marketing Content Generator</text>
   <text x="70" y="590" class="item-subtle">Not promoted</text>
 
-  <rect class="group" x="450" y="190" width="260" height="210" fill="#edf9ee" stroke="#7fb685" />
-  <text x="470" y="225" class="group-title">Dev-test</text>
-  <text x="470" y="250" class="legend">Co-located</text>
+  <rect class="group" x="450" y="120" width="260" height="150" fill="#edf9ee" stroke="#7fb685" />
+  <text x="470" y="155" class="group-title">Dev-test A</text>
+  <text x="470" y="180" class="legend">Isolated</text>
 
-  <rect class="item" x="470" y="275" width="220" height="50" />
-  <text x="490" y="307" class="item-text">SmartRetail Recommender</text>
+  <rect class="item" x="470" y="205" width="220" height="50" />
+  <text x="490" y="237" class="item-text">SmartRetail Recommender</text>
 
-  <rect class="item" x="470" y="335" width="220" height="50" />
-  <text x="490" y="367" class="item-text">Contoso Support Copilot</text>
+  <rect class="group" x="450" y="300" width="260" height="150" fill="#edf9ee" stroke="#7fb685" />
+  <text x="470" y="335" class="group-title">Dev-test B</text>
+  <text x="470" y="360" class="legend">Isolated</text>
 
-  <rect class="group" x="450" y="455" width="260" height="150" fill="#fff4e5" stroke="#e3a33b" />
-  <text x="470" y="490" class="group-title">Dev-test</text>
-  <text x="470" y="515" class="legend">Isolated</text>
+  <rect class="item" x="470" y="385" width="220" height="50" />
+  <text x="490" y="417" class="item-text">Contoso Support Copilot</text>
 
-  <rect class="item" x="470" y="540" width="220" height="50" />
-  <text x="490" y="572" class="item-text">Vision QA Inspector</text>
+  <rect class="group" x="450" y="480" width="260" height="150" fill="#fff4e5" stroke="#e3a33b" />
+  <text x="470" y="515" class="group-title">Dev-test C</text>
+  <text x="470" y="540" class="legend">Isolated</text>
+
+  <rect class="item" x="470" y="565" width="220" height="50" />
+  <text x="490" y="597" class="item-text">Vision QA Inspector</text>
 
   <rect class="group" x="820" y="220" width="200" height="135" fill="#f1ebff" stroke="#8a78d1" />
   <text x="840" y="255" class="group-title">Production A</text>
@@ -75,11 +79,11 @@
   <rect class="item" x="1060" y="295" width="160" height="45" />
   <text x="1078" y="324" class="item-text">Support Copilot</text>
 
-  <line class="arrow" x1="370" y1="198" x2="450" y2="300" />
-  <line class="arrow" x1="370" y1="268" x2="450" y2="360" />
-  <line class="arrow" x1="370" y1="338" x2="450" y2="565" />
-  <line class="arrow" x1="690" y1="300" x2="820" y2="318" />
-  <line class="arrow" x1="690" y1="360" x2="1040" y2="318" />
+  <line class="arrow" x1="370" y1="198" x2="450" y2="230" />
+  <line class="arrow" x1="370" y1="268" x2="450" y2="410" />
+  <line class="arrow" x1="370" y1="338" x2="450" y2="590" />
+  <line class="arrow" x1="690" y1="230" x2="820" y2="318" />
+  <line class="arrow" x1="690" y1="410" x2="1040" y2="318" />
 
   <text x="820" y="420" class="legend">Only the workloads that prove value and secure funding move to isolated production environments.</text>
 </svg>
