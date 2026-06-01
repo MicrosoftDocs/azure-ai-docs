@@ -107,8 +107,7 @@ az rest --method get \
 
 > [!NOTE]
 > During the preview, instant models are available in projects in **West US 3** only.
-
-> [!NOTE]
+> 
 > Some instant models might appear in the list even if your subscription has no
 > quota for them. For more information, see
 > [Quotas and limits for Foundry Models](../foundry-models/quotas-limits.md).
