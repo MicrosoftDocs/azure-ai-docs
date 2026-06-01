@@ -91,7 +91,6 @@ Managed compute (Preview) supports:
 - **Model-instance sizing** — Deployments are sized in model-centric terms. You don't need to pick virtual machine SKUs, because Foundry chooses GPUs per instance based on model size, architecture, context length, and whether the workload is optimized for latency or throughput. 
 - **Optimized inference runtimes** — Microsoft-curated vLLM, SGLang, and NVIDIA NIM containers with continuous batching, speculative decoding, tensor parallelism, and LoRA hot-swap.
 - **Accelerator families** — A100 (80 GB), H100 (80 GB), H200 (141 GB), and MI300X.
-- **Bring-your-own-weights (BYOW)** — Deploy full weights and LoRA adapters in SafeTensors format. Foundry maps the base lineage to compatible GPU and runtime configurations.
 - **Auto-scaling and scale-to-zero** — Auto-scale from live traffic or scale manually. Configure an idle timeout so the deployment scales to zero when no traffic arrives, making billing stop immediately.
 - **Microsoft-managed runtimes** — Microsoft owns serving runtimes, base container images, and security patches. Updates are applied to live deployments automatically.
 - **Observability metrics** — Each deployment emits API call count by status code and response-time percentiles. Chat-completion models also emit input and output token counts, time-to-first-token (TTFT) percentiles, and total response-time percentiles, grouped by time.
@@ -118,7 +117,7 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 
 | Capability | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
-| Which models can be deployed? | All Foundry Models, including [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) | Open-source and partner models from the model catalog, NVIDIA NIM, industry models, and BYOW custom models |
+| Which models can be deployed? | All Foundry Models, including [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) | Open-source and partner models from the model catalog, NVIDIA NIM, and industry models |
 | Deployment resource | Foundry resource | Foundry project |
 | Requires AI Hub | No | No |
 | Data processing options | Regional, data zone, global | Global |
