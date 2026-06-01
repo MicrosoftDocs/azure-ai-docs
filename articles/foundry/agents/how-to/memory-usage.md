@@ -850,7 +850,33 @@ for item in forget_response.output:
 :::zone pivot="rest"
 
 ```bash
-# This code snippet is currently unavailable.
+# Reuse the {conversation-id} from the previous section
+# To scope memories to an end user, set x-memory-user-id in each request
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -H "x-memory-user-id: <user-id>" \
+  -d '{
+    "input": "Remember that my preferred seat is aisle.",
+    "conversation": "{conversation-id}",
+    "agent_reference": {
+      "type": "agent_reference",
+      "name": "MyAgent"
+    }
+  }'
+
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -H "x-memory-user-id: <user-id>" \
+  -d '{
+    "input": "Forget my preferred seat.",
+    "conversation": "{conversation-id}",
+    "agent_reference": {
+      "type": "agent_reference",
+      "name": "MyAgent"
+    }
+  }'
 ```
     
 :::zone-end
@@ -1226,7 +1252,7 @@ Use item-level operations to directly create, inspect, update, and delete indivi
 > [!NOTE]
 > The latest preview uses `/memories` as the item-level path segment. The previous preview used `/items`, with `:list` for listing. If you're on the previous API version, update your routes accordingly.
 
-::: zone-end
+:::zone-end
 
 ### Create a memory item
 
