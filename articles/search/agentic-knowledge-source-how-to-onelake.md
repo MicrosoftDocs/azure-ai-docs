@@ -137,9 +137,6 @@ The following JSON is an example response for an indexed OneLake knowledge sourc
 }
 ```
 
-> [!NOTE]
-> Sensitive information is redacted. The generated resources appear at the end of the response.
-
 ## Create a knowledge source
 
 Run the following code to create an indexed OneLake knowledge source.
@@ -556,7 +553,7 @@ To enforce document-level permissions, set `ingestionPermissionOptions` when you
 
 ### Surface document-embedded images
 
-To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source and enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
 ## Delete a knowledge source
 

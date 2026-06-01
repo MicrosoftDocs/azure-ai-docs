@@ -1,5 +1,5 @@
 ---
-title: Create File Knowledge Source for Agentic Retrieval
+title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -21,7 +21,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *file knowledge source* (preview) uploads small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base. File knowledge sources are useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container.
+File knowledge sources are useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container.
 
 If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need large-scale ingestion or storage account capabilities, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
 
@@ -237,7 +237,7 @@ Prefer: return=representation
 
 ### Source-specific properties
 
-You can pass the following properties to create a file knowledge source.
+The following properties apply to file knowledge sources.
 
 ::: zone pivot="csharp"
 
@@ -275,7 +275,7 @@ You can pass the following properties to create a file knowledge source.
 
 ### Ingestion parameters properties
 
-You can pass the following ingestion parameter properties to control how uploaded files are processed.
+The following ingestion parameter properties control how uploaded files are processed.
 
 ::: zone pivot="csharp"
 
@@ -306,9 +306,9 @@ You can pass the following ingestion parameter properties to control how uploade
 
 ## Upload files
 
-After the source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
+After the knowledge source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
-The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
+The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. If the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
 
 ::: zone pivot="csharp"
 
@@ -368,7 +368,9 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 ::: zone-end
 
 > [!NOTE]
-> Uploading a file doesn't replace an existing file even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, and the list of uploaded files can contain multiple entries that share a `fileName`. To replace content, delete the prior file by `fileId` before or after the new upload.
+> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+>
+> To replace content, delete the prior file by `fileId` before or after the new upload.
 
 ## List uploaded files
 

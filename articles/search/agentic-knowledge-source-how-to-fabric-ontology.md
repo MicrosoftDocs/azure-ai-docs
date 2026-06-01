@@ -21,7 +21,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *Fabric Ontology knowledge source* (preview) connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns. This makes Fabric Ontology knowledge sources useful when you want retrieval grounded in business concepts and relationships instead of raw schema details.
+Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns. This makes Fabric Ontology knowledge sources useful for retrieval grounded in business concepts and relationships instead of raw schema details.
 
 Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
 

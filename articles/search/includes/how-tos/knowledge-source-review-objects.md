@@ -6,9 +6,9 @@ ms.date: 05/29/2026
 
 When you create this knowledge source, Azure AI Search automatically generates a data source, skillset, indexer, and index. The creation response lists each object under `createdResources`.
 
-These objects are created according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names. Avoid editing these objects directly, as changes can introduce errors or incompatibilities that break the pipeline.
+These objects are generated according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names. Avoid editing these objects directly, as changes can introduce errors or incompatibilities that break the indexer pipeline.
 
-You can use the Azure portal to validate output creation. The workflow is:
+You can use the Azure portal to validate object creation. The workflow is:
 
 1. Check the indexer for success or failure messages. Connection or quota errors appear here.
 

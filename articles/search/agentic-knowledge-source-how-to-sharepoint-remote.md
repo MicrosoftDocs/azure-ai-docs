@@ -23,11 +23,9 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) (preview) to query textual content directly from SharePoint in Microsoft 365. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-The Copilot Retrieval API searches textual content across your organization's SharePoint sites and libraries, with Microsoft 365 permissions automatically enforced. This makes remote SharePoint knowledge sources useful when your agent needs to retrieve content from SharePoint sites your users already have access to.
-
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
 
-Unlike indexed knowledge sources, a remote SharePoint knowledge source queries textual content directly from SharePoint at retrieval time. No search index or connection string is needed. Only textual content is queried, and usage is billed through Microsoft 365 and a Copilot license.
+Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. No search index or connection string is needed, and usage is billed through Microsoft 365 and a Copilot license.
 
 ### Usage support
 

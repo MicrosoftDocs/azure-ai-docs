@@ -31,6 +31,8 @@ To delete a knowledge source:
 
    **Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
+   An example response might look like the following:
+
    ```json
     {
         "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",

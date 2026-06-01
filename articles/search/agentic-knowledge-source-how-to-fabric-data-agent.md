@@ -21,7 +21,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *Fabric Data Agent knowledge source* (preview) connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-The data agent acts as a virtual analyst, generating and running queries against your Microsoft Fabric data to return natural-language answers, tables, and charts. This makes Fabric Data Agent knowledge sources useful when your agent needs current answers instead of relying on preindexed content.
+The data agent acts as a virtual analyst, generating and running queries against your Microsoft Fabric data to return natural-language answers, tables, and charts. This makes Fabric Data Agent knowledge sources useful for high-churn data and analytical queries.
 
 Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to query the Fabric Data Agent on behalf of the end user.
 

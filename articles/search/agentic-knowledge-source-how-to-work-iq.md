@@ -21,9 +21,9 @@ zone_pivot_groups: search-csharp-python-rest
 
 A *Work IQ knowledge source* (preview) connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Work IQ surfaces organizational intelligence from your Microsoft 365 content, including documents, emails, meetings, and activity across Microsoft 365 apps. This makes Work IQ knowledge sources useful when your agent needs to answer questions grounded in current organizational knowledge.
+Work IQ surfaces organizational intelligence from your Microsoft 365 content, including documents, emails, meetings, and activity across Microsoft 365 apps.
 
-Unlike indexed knowledge sources, a Work IQ knowledge source queries live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
+Unlike indexed knowledge sources, Work IQ knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
 
 > [!WARNING]
 > In this preview, a Work IQ knowledge source might use Work IQ capabilities that perform actions, not just retrieve information. Use it with care, limit access to trusted applications and users, and review your scenario's permissions and governance controls before enabling it.
