@@ -3,17 +3,17 @@ title: Log end user feedback
 description: Learn how to log end user feedback such as thumbs up/down or rating scales from your AI application using OpenTelemetry semantics in Microsoft Foundry.
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: sonalimalik
-ms.date: 05/28/2026
+ms.reviewer: skohlmeier
+ms.date: 06/02/2026
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ---
 
 # Log end user feedback (preview)
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Capture end user feedback—such as thumbs up/down reactions or numeric rating scales—from your AI application and route it to your observability backend using OpenTelemetry (OTel) semantics. Logging user feedback enables you to correlate subjective quality signals with trace data, measure user satisfaction over time, and drive continuous improvement of your agents and models.
 
@@ -55,7 +55,7 @@ Feedback can originate from two source types:
 
 ## Event attributes
 
-Each human evaluation is emitted as a `gen_ai.evaluation.result` event. For the full list of top-level attributes and `internal_properties` fields, see the [Human Evaluations Telemetry Collection Spec](https://github.com/aep-health-and-standards/Telemetry-Collection-Spec/blob/main/OpenTelemetry/events/genai_human_evaluations.md#event-attributes).
+Each human evaluation is emitted as a `gen_ai.evaluation.result` event. The following sections describe the required attributes for each evaluation type. For a complete reference implementation, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
 ## Emit a binary evaluation (thumbs up/down)
 
@@ -73,7 +73,7 @@ Rules:
 
 ### Example: End user gives thumbs up
 
-For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/4a7cb04695f6337f5e014d4908eacbc42e2bbb01/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
+For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
 ## Emit a Likert 5-point evaluation (rating scale)
 
@@ -91,7 +91,7 @@ Rules:
 
 ### Example: Builder rates relevance in Foundry portal
 
-For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/4a7cb04695f6337f5e014d4908eacbc42e2bbb01/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
+For a runnable example, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
 ## View feedback in Application Insights
 
