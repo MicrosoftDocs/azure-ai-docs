@@ -113,7 +113,7 @@ if image_data and image_data[0]:
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_image_generation_tool()` to attach the image generation tool. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_image_generation_tool()` to attach the image generation tool. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
@@ -126,27 +126,44 @@ from azure.identity import AzureCliCredential
 
 IMAGE_MODEL = "gpt-image-1"
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="Generate images based on user prompts.",
-    tools=[
-        FoundryChatClient.get_image_generation_tool(
-            model=IMAGE_MODEL,
-            quality="low",
-            size="1024x1024",
-        )
-    ],
-)
 
-result = asyncio.run(agent.run("Generate an image of the Microsoft logo."))
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="Generate images based on user prompts.",
+        tools=[
+            FoundryChatClient.get_image_generation_tool(
+                model=IMAGE_MODEL,
+                quality="low",
+                size="1024x1024",
+            )
+        ],
+    )
 
-# Extract and save the generated image from the raw response.
-for output in result.raw_representation.output:
-    if output.type == "image_generation_call":
-        file_path = os.path.abspath("microsoft.png")
-        with open(file_path, "wb") as f:
-            f.write(base64.b64decode(output.result))
-        print(f"Image saved to: {file_path}")
+    result = await agent.run("Generate an image of the Microsoft logo.")
+
+    # Extract and save the generated image from the raw response.
+    for output in result.raw_representation.output:
+        if output.type == "image_generation_call":
+            file_path = os.path.abspath("microsoft.png")
+            with open(file_path, "wb") as f:
+                f.write(base64.b64decode(output.result))
+            print(f"Image saved to: {file_path}")
+
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The tool returns base64-encoded image bytes, which the sample saves to disk; the model's text reply is also printed:
+
+```console
+Image saved to: /path/to/microsoft.png
+Agent: Here is the generated Microsoft logo image.
 ```
 
 For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).

@@ -141,7 +141,7 @@ Agent deleted
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_web_search_tool()` to give the agent web search without any local implementation. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_web_search_tool()` to give the agent web search without any local implementation. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
@@ -150,15 +150,39 @@ from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 
-# Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a research assistant. Use web search to find current information.",
-    tools=[FoundryChatClient.get_web_search_tool()],
-)
 
-result = asyncio.run(agent.run("What are the latest updates to Microsoft Foundry?"))
-print(f"Agent: {result}")
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="You are a research assistant. Use web search to find current information.",
+        tools=[FoundryChatClient.get_web_search_tool()],
+    )
+
+    result = await agent.run("What are the latest updates to Microsoft Foundry?")
+    print(f"Agent: {result.text}")
+
+    # Print any URL citations returned by the web search tool.
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    title = getattr(annotation, "title", None) or ""
+                    print(f"URL Citation: [{title}]({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Agent: The latest updates to Microsoft Foundry include ...
+URL Citation: [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
 ```
 
 The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries (for example, a `@tool`-decorated function) to the `tools` list. For more, see [Quickstart: Use the Foundry Responses API](../../quickstarts/responses-api.md).
@@ -435,6 +459,16 @@ foreach (AIAnnotation annotation in response.Messages
         Console.WriteLine($"URL: {urlCitation.Uri}");
     }
 }
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Response: Today in Seattle it is mostly cloudy with a high near 55°F ...
+Title: National Weather Service – Seattle
+URL: https://www.weather.gov/sew/
 ```
 
 The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries to the `tools` array. For more, see the [Agent Framework Foundry samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry).

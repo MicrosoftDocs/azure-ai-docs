@@ -145,7 +145,7 @@ The following output comes from the preceding code sample:
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework. It uploads a file, creates a vector store, and calls `get_file_search_tool()` to give the agent access to the indexed content. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework. It uploads a file, creates a vector store, and calls `get_file_search_tool()` to give the agent access to the indexed content. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
@@ -192,6 +192,14 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+```
+
+### Expected output
+
+The agent searches the indexed file content from the vector store and returns a grounded response. Console output shows the final response text containing the answer derived from the uploaded file.
+
+```console
+Agent: The weather today is sunny with a high of 75F.
 ```
 
 For the full sample, see [foundry_chat_client_with_file_search.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_file_search.py).
@@ -338,6 +346,15 @@ foreach (AIAnnotation annotation in response.Messages
 await vectorStoresClient.DeleteVectorStoreAsync(vectorStoreId);
 await filesClient.DeleteFileAsync(uploadedFile.Id);
 File.Delete(searchFilePath);
+```
+
+### Expected output
+
+The agent uses `HostedFileSearchTool` to search the vector store containing the employee directory and answers the question with grounded content. Console output shows the final response text followed by file citation annotations from the response.
+
+```console
+Response: The youngest employee is Alice Johnson, who is 28 years old.
+File Citation - File Id: file-abc123
 ```
 
 For the full sample, see [Agent_Step16_FileSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step16_FileSearch).

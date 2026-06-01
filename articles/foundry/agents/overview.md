@@ -30,7 +30,7 @@ Foundry Agent Service is a managed platform for building, deploying, and scaling
 You choose how much of the platform you want:
 
 - **Prompt agents** — author a [prompt agent](#prompt-agents) in the Foundry portal or define it with SDKs and REST, and Foundry runs it for you. No application code to maintain, no compute to pay for, and no containers or packages to optimize, scale, or patch.
-- **Hosted agents** — write your agent code with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), or your own code, package it as a container, and let Foundry run it with a managed endpoint, scaling, identity, and observability.
+- **Hosted agents** — write your agent code with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), the [GitHub Copilot SDK](https://github.com/github/copilot-sdk), or your own code, package it as a container, and let Foundry run it with a managed endpoint, scaling, identity, and observability.
 
 Already have agent code running outside of Foundry? Call the [Responses API](quickstarts/responses-api.md) from your existing process to get Foundry models and platform tools without moving your code.
 
@@ -86,7 +86,7 @@ Two paths to get started:
 
 ### Hosted agents (preview)
 
-[Hosted agents](concepts/hosted-agents.md) are code-based agents you build with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), or your own code. Ship your agent as either a container image or a zip of your source code — Foundry builds the image for you when you bring a zip — and Foundry runs it with a managed endpoint, automatic scaling, a dedicated Microsoft Entra identity, session-level state persistence, and end-to-end observability.
+[Hosted agents](concepts/hosted-agents.md) are code-based agents you build with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), the [GitHub Copilot SDK](https://github.com/github/copilot-sdk), or your own code. Ship your agent as either a container image or a zip of your source code — Foundry builds the image for you when you bring a zip — and Foundry runs it with a managed endpoint, automatic scaling, a dedicated Microsoft Entra identity, session-level state persistence, and end-to-end observability.
 
 Under the hood, your agent code calls the **Responses API** on your Foundry project endpoint for model inference and tool orchestration, which gives you access to Foundry models from the catalog and a unified set of platform tools — standard OpenAI tools like file search, code interpreter, and web search, plus Foundry-exclusive tools like SharePoint, WorkIQ, and Fabric IQ.
 
@@ -101,7 +101,7 @@ If you'd rather keep running your agent code outside of Foundry — for example,
 
 | | Prompt agents | Hosted agents (preview) |
 | --- | --- | --- |
-| **Authoring surface** | Portal, SDK, or REST | Agent Framework, LangGraph, OpenAI Agents SDK, Anthropic Agent SDK, custom code |
+| **Authoring surface** | Portal, SDK, or REST | Agent Framework, LangGraph, OpenAI Agents SDK, Anthropic Agent SDK, GitHub Copilot SDK, custom code |
 | **Foundry models + platform tools** | Yes | Yes (via the Responses API on the Foundry project endpoint) |
 | **Skill support** | Yes | Yes |
 | **Runtime code to maintain** | None | Yes — your agent logic |

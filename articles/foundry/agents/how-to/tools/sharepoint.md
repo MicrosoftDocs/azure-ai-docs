@@ -186,25 +186,57 @@ Full response: Based on the meeting notes from your SharePoint site, the last me
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. It uses `AIProjectClient` to resolve the connection name to a connection ID, then iterates over message annotations to print URL citations. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
+import os
 
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import AzureCliCredential
 
 SHAREPOINT_CONNECTION_NAME = "my-sharepoint-connection"
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a helpful agent. Use the SharePoint tool to answer questions.",
-    tools=[FoundryChatClient.get_sharepoint_tool(connection_id=SHAREPOINT_CONNECTION_NAME)],
-)
 
-result = asyncio.run(agent.run("Please summarize the last meeting notes stored in SharePoint."))
-print(f"Agent: {result}")
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    sharepoint_connection_id = project.connections.get(SHAREPOINT_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful agent. Use the SharePoint tool to answer questions.",
+        tools=[FoundryChatClient.get_sharepoint_tool(connection_id=sharepoint_connection_id)],
+    )
+
+    result = await agent.run("Please summarize the last meeting notes stored in SharePoint.")
+    print(f"Agent: {result.text}")
+
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    title = getattr(annotation, "title", None) or ""
+                    print(f"URL Citation: [{title}]({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The response text is printed along with any URL citations that the SharePoint grounding tool returned:
+
+```console
+Agent: Based on the meeting notes from your SharePoint site ...
+URL Citation: [Meeting notes](https://contoso.sharepoint.com/sites/policies/Documents/meeting-notes.docx)
 ```
 
 For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
@@ -332,21 +364,27 @@ AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
     tools: [FoundryAITool.CreateSharepointTool(sharepointOptions)]);
 
 AgentResponse response = await agent.RunAsync("List the documents available in SharePoint");
-Console.WriteLine(response);
+Console.WriteLine($"Response: {response.Text}");
 
-foreach (var message in response.Messages)
+// Print any URL citations returned by the SharePoint grounding tool.
+foreach (AIAnnotation annotation in response.Messages
+    .SelectMany(m => m.Contents)
+    .SelectMany(c => c.Annotations ?? []))
 {
-    foreach (var content in message.Contents)
+    if (annotation.RawRepresentation is UriCitationMessageAnnotation urlCitation)
     {
-        if (content.Annotations is not null)
-        {
-            foreach (var annotation in content.Annotations)
-            {
-                Console.WriteLine($"Annotation: {annotation}");
-            }
-        }
+        Console.WriteLine($"URL Citation: [{urlCitation.Title}]({urlCitation.Uri})");
     }
 }
+```
+
+### Expected output
+
+The response text is printed along with any URL citations the SharePoint tool returned:
+
+```console
+Response: Based on the documents in SharePoint ...
+URL Citation: [Whistleblower Policy](https://contoso.sharepoint.com/sites/policies/Documents/whistleblower-policy.pdf)
 ```
 
 For the full sample, see [Agent_Step19_SharePoint](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step19_SharePoint).

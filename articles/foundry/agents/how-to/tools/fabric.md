@@ -175,25 +175,48 @@ For more details, see the [full Python sample for Fabric data agent](https://git
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_fabric_tool()` to attach a Microsoft Fabric data agent connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_fabric_tool()` to attach a Microsoft Fabric data agent connection. It uses `AIProjectClient` to resolve the connection name to a connection ID. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
+import os
 
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import AzureCliCredential
 
 FABRIC_CONNECTION_NAME = "my-fabric-connection"
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a helpful assistant. Use Fabric to answer data questions.",
-    tools=[FoundryChatClient.get_fabric_tool(connection_id=FABRIC_CONNECTION_NAME)],
-)
 
-result = asyncio.run(agent.run("Tell me about sales records."))
-print(f"Agent: {result}")
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    fabric_connection_id = project.connections.get(FABRIC_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant. Use Fabric to answer data questions.",
+        tools=[FoundryChatClient.get_fabric_tool(connection_id=fabric_connection_id)],
+    )
+
+    result = await agent.run("Tell me about sales records.")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Agent: Based on the sales records in the connected Fabric workspace ...
 ```
 
 For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
@@ -286,11 +309,15 @@ AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
     tools: [FoundryAITool.CreateMicrosoftFabricTool(fabricToolOptions)]);
 
 AgentResponse response = await agent.RunAsync("What data is available in the connected Fabric workspace?");
+Console.WriteLine($"Response: {response.Text}");
+```
 
-foreach (var message in response.Messages)
-{
-    Console.WriteLine(message.Text);
-}
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Response: The connected Fabric workspace contains the following datasets ...
 ```
 
 For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step20_MicrosoftFabric).

@@ -419,6 +419,14 @@ static OpenApiFunctionDefinition CreateOpenAPIFunctionDefinition()
 }
 ```
 
+### Expected output
+
+The agent calls the REST Countries API through the OpenAPI tool and lists the matching countries:
+
+```console
+Countries that use the Euro (EUR) as their currency include: Austria, Belgium, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain ...
+```
+
 For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step17_OpenAPITools).
 
 ---

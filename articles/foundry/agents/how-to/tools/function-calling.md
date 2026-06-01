@@ -165,7 +165,7 @@ Agent response: Your horoscope for Aquarius: Next Tuesday you will befriend a ba
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework with the `@tool` decorator. The framework handles tool discovery, the function-call request/response loop, and result formatting for you. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework with the `@tool` decorator. The framework handles tool discovery, the function-call request/response loop, and result formatting for you. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
@@ -177,6 +177,7 @@ from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 from pydantic import Field
 
+
 # Note: approval_mode="never_require" is used here for brevity.
 # Use "always_require" in production for human-in-the-loop approvals.
 @tool(approval_mode="never_require")
@@ -187,15 +188,29 @@ def get_weather(
     conditions = ["sunny", "cloudy", "rainy", "stormy"]
     return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}\u00b0C."
 
-# Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a helpful assistant that can provide weather information.",
-    tools=[get_weather],
-)
 
-result = asyncio.run(agent.run("What's the weather like in Seattle?"))
-print(f"Agent: {result}")
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="You are a helpful assistant that can provide weather information.",
+        tools=[get_weather],
+    )
+
+    result = await agent.run("What's the weather like in Seattle?")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent invokes `get_weather` automatically and returns the model's natural-language answer:
+
+```console
+Agent: The weather in Seattle is cloudy with a high of 22°C.
 ```
 
 You can also pass tools per-call via `agent.run(query, tools=[...])` to give different runs different tool sets. For the full sample including agent-level, run-level, and mixed patterns, see [foundry_chat_client_with_function_tools.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_function_tools.py).
@@ -447,6 +462,14 @@ await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is th
 {
     Console.Write(update);
 }
+```
+
+### Expected output
+
+The Agent Framework runs the local `GetWeather` function automatically and prints the model's natural-language reply:
+
+```console
+The weather in Amsterdam is cloudy with a high of 15°C.
 ```
 
 You can also pass tools per call via `agent.RunAsync(query, tools: [...])` to vary the tool set per invocation. For the full sample including approval workflows, see [Agent_Step03_UsingFunctionTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step03_UsingFunctionTools) and [Agent_Step04_UsingFunctionToolsWithApprovals](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step04_UsingFunctionToolsWithApprovals).

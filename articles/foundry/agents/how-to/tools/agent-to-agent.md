@@ -171,25 +171,48 @@ The agent responds with information about the secondary agent's capabilities, de
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_a2a_tool()` to attach an A2A connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_a2a_tool()` to attach an A2A connection. It uses `AIProjectClient` to resolve the connection name to a connection ID. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
+import os
 
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import AzureCliCredential
 
 A2A_CONNECTION_NAME = "my-a2a-connection"
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a helpful assistant.",
-    tools=[FoundryChatClient.get_a2a_tool(project_connection_id=A2A_CONNECTION_NAME)],
-)
 
-result = asyncio.run(agent.run("What can the secondary agent do?"))
-print(f"Agent: {result}")
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    a2a_connection_id = project.connections.get(A2A_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant.",
+        tools=[FoundryChatClient.get_a2a_tool(project_connection_id=a2a_connection_id)],
+    )
+
+    result = await agent.run("What can the secondary agent do?")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent calls the remote A2A endpoint and prints the consolidated reply:
+
+```console
+Agent: The secondary agent can help with ...
 ```
 
 For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
@@ -302,6 +325,14 @@ AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
 
 AgentSession session = await agent.CreateSessionAsync();
 Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?", session));
+```
+
+### Expected output
+
+The top-level agent delegates the weather question to the `WeatherAgent` sub-agent and prints the consolidated reply in French:
+
+```console
+Le temps à Amsterdam est nuageux avec une température maximale de 15 °C.
 ```
 
 For the full sample, see [Agent_Step11_AsFunctionTool](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step11_AsFunctionTool).

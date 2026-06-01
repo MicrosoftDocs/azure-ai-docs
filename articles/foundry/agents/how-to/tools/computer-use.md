@@ -252,7 +252,7 @@ Agent deleted
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
 
 ```python
 import asyncio
@@ -261,27 +261,41 @@ from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions=(
-        "You are a computer automation assistant. Be direct and efficient. "
-        "When you reach the search results page, describe the actual result titles you can see."
-    ),
-    tools=[
-        FoundryChatClient.get_computer_use_tool(
-            environment="windows",
-            display_width=1026,
-            display_height=769,
-        )
-    ],
-)
 
-# Replace this with your screenshot capture + action handler loop.
-# See the upstream samples folder for a reference implementation.
-result = asyncio.run(agent.run(
-    "Help me search for 'OpenAI news'. Type the query and submit the search."
-))
-print(f"Agent: {result}")
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions=(
+            "You are a computer automation assistant. Be direct and efficient. "
+            "When you reach the search results page, describe the actual result titles you can see."
+        ),
+        tools=[
+            FoundryChatClient.get_computer_use_tool(
+                environment="windows",
+                display_width=1026,
+                display_height=769,
+            )
+        ],
+    )
+
+    # Replace this with your screenshot capture + action handler loop.
+    # See the upstream samples folder for a reference implementation.
+    result = await agent.run(
+        "Help me search for 'OpenAI news'. Type the query and submit the search."
+    )
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent issues computer-use actions (clicks, keystrokes, screenshots) until the task completes, then describes the page it reached:
+
+```console
+Agent: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
 ```
 
 For a full screenshot-loop implementation, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
@@ -552,7 +566,15 @@ for (int i = 0; i < 10; i++)
 }
 
 await ComputerUseUtil.EnsureDeleteScreenshotAssetsAsync(fileClient, screenshots);
-Console.WriteLine(response);
+Console.WriteLine($"Response: {response.Text}");
+```
+
+### Expected output
+
+After the action loop completes, the final agent reply describes the page it reached:
+
+```console
+Response: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
 ```
 
 For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step15_ComputerUse).

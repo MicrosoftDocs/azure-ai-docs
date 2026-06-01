@@ -79,7 +79,7 @@ Install the Agent Framework package with the Foundry provider:
 ::: zone pivot="python"
 
 ```bash
-pip install agent-framework[foundry] --pre
+pip install agent-framework-foundry
 ```
 
 ::: zone-end

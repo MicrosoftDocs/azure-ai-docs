@@ -225,7 +225,7 @@ During streaming, you might also see deltas and tool-call details. Output varies
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_browser_automation_tool()` to attach a Playwright connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_browser_automation_tool()` to attach a Playwright connection. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL`, and `BROWSER_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
@@ -237,20 +237,34 @@ from azure.identity import AzureCliCredential
 
 BROWSER_CONNECTION_ID = os.environ["BROWSER_CONNECTION_ID"]
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions=(
-        "You help with browser automation tasks. Use the Browser Automation tool "
-        "to navigate and read information from websites."
-    ),
-    tools=[FoundryChatClient.get_browser_automation_tool(connection_id=BROWSER_CONNECTION_ID)],
-)
 
-result = asyncio.run(agent.run(
-    "Go to finance.yahoo.com, search for MSFT, click 'YTD' on the price chart, "
-    "and report the year-to-date percent change."
-))
-print(f"Agent: {result}")
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions=(
+            "You help with browser automation tasks. Use the Browser Automation tool "
+            "to navigate and read information from websites."
+        ),
+        tools=[FoundryChatClient.get_browser_automation_tool(connection_id=BROWSER_CONNECTION_ID)],
+    )
+
+    result = await agent.run(
+        "Go to finance.yahoo.com, search for MSFT, click 'YTD' on the price chart, "
+        "and report the year-to-date percent change."
+    )
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent navigates the live website through the Playwright connection and reports the YTD value it observes. Output varies based on website content:
+
+```console
+Agent: The year-to-date change for MSFT is approximately +18.4%.
 ```
 
 For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).

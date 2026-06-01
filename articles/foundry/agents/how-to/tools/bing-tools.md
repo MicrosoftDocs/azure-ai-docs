@@ -231,32 +231,68 @@ Full response: Today's date is December 12, 2025, and the weather in Seattle is.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework[foundry] --pre`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
+import os
 
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
 from azure.identity import AzureCliCredential
 
 BING_CONNECTION_NAME = "my-bing-connection"
 
-agent = Agent(
-    client=FoundryChatClient(credential=AzureCliCredential()),
-    instructions="You are a helpful assistant that can search the web with Bing.",
-    tools=[
-        FoundryChatClient.get_bing_grounding_tool(
-            connection_id=BING_CONNECTION_NAME,
-            market="en-US",
-            count=10,
-            freshness="Day",
-        )
-    ],
-)
 
-result = asyncio.run(agent.run("What is today's date and weather in Seattle?"))
-print(f"Agent: {result}")
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # Resolve the project connection ID from the connection name
+    # (same pattern as the Prompt Agents tab).
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    connection_id = project.connections.get(BING_CONNECTION_NAME).id
+
+    agent = Agent(
+        # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant that can search the web with Bing.",
+        tools=[
+            FoundryChatClient.get_bing_grounding_tool(
+                connection_id=connection_id,
+                market="en-US",
+                count=10,
+                freshness="Day",
+            )
+        ],
+    )
+
+    result = await agent.run("What is today's date and weather in Seattle?")
+    print(f"Agent: {result.text}")
+
+    # Print URL citation annotations from the response.
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    print(f"URL Citation: {url}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent uses Bing grounding to search the web for current date and Seattle weather, then prints the final response text followed by URL citations parsed from the response annotations.
+
+```console
+Agent: Today's date is December 12, 2025, and the weather in Seattle is...
+URL Citation: https://www.weather.gov/seattle/
 ```
 
 For Bing Custom Search, use `FoundryChatClient.get_bing_custom_search_tool(connection_id=..., instance_name=..., market=..., count=...)` with the same agent pattern. For more, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
@@ -474,7 +510,7 @@ Euler's identity is considered one of the most elegant equations in mathematics.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingCustomSearchTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID`, and `AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME` environment variables, and sign in with `az login`.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingGroundingTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.Projects;
@@ -482,39 +518,53 @@ using Azure.AI.Projects.Agents;
 using Azure.Identity;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Foundry;
+using Microsoft.Extensions.AI;
 
-string connectionId = Environment.GetEnvironmentVariable("AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID")
-    ?? throw new InvalidOperationException("AZURE_AI_CUSTOM_SEARCH_CONNECTION_ID is not set.");
-string instanceName = Environment.GetEnvironmentVariable("AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME")
-    ?? throw new InvalidOperationException("AZURE_AI_CUSTOM_SEARCH_INSTANCE_NAME is not set.");
 string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
 string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+string bingConnectionName = "my-bing-connection";
 
-const string AgentInstructions = """
-    You are a helpful agent that can use Bing Custom Search tools to assist users.
-    Use the available Bing Custom Search tools to answer questions and perform tasks.
-    """;
-
-BingCustomSearchToolOptions bingCustomSearchToolParameters = new(
-    [new BingCustomSearchConfiguration(connectionId, instanceName)]);
+const string AgentInstructions = "You are a helpful agent that can use Bing search to answer questions.";
 
 AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
 
+// Resolve the project connection ID from the connection name
+// (same pattern as the Prompt Agents tab).
+AIProjectConnection bingConnection = aiProjectClient.Connections.GetConnection(connectionName: bingConnectionName);
+
+BingGroundingSearchToolOptions bingGroundingOptions = new(
+    searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]);
+
 AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
     instructions: AgentInstructions,
-    name: "BingCustomSearchAgent",
-    tools: [FoundryAITool.CreateBingCustomSearchTool(bingCustomSearchToolParameters)]);
+    name: "BingGroundingAgent",
+    tools: [FoundryAITool.CreateBingGroundingTool(bingGroundingOptions)]);
 
-AgentResponse response = await agent.RunAsync("Search for the latest news about Microsoft AI");
+AgentResponse response = await agent.RunAsync("How does wikipedia explain Euler's Identity?");
 
-foreach (var message in response.Messages)
+Console.WriteLine($"Response: {response.Text}");
+
+// Print URL citation annotations from the response.
+foreach (AIAnnotation annotation in response.Messages.SelectMany(m => m.Contents).SelectMany(c => c.Annotations ?? []))
 {
-    Console.WriteLine(message.Text);
+    if (annotation.RawRepresentation is UriCitationMessageAnnotation uriAnnotation)
+    {
+        Console.WriteLine($"URL Citation: [{uriAnnotation.Title}]({uriAnnotation.Uri})");
+    }
 }
 ```
 
-For standard Bing grounding (non-custom), use `FoundryAITool.CreateBingGroundingTool(...)` with a Bing connection ID. For the full sample, see [Agent_Step18_BingCustomSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step18_BingCustomSearch).
+### Expected output
+
+The agent uses Bing grounding to search the web and answer the question, then prints the final response text followed by URL citations extracted from the response annotations.
+
+```console
+Response: Euler's identity is considered one of the most elegant equations in mathematics...
+URL Citation: [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
+```
+
+For Bing Custom Search, use `FoundryAITool.CreateBingCustomSearchTool(...)` with a `BingCustomSearchToolOptions` instance. For the full sample, see [Agent_Step18_BingCustomSearch](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step18_BingCustomSearch).
 
 ---
 
