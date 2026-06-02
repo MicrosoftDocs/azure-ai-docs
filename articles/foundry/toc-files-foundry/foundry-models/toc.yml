@@ -23,6 +23,9 @@ items:
     - name: Compare models
       displayName: Compare models using the model leaderboard (preview)
       href: ../../how-to/benchmark-model-in-catalog.md
+    - name: Benchmark evaluations
+      displayName: Benchmark evaluations in Microsoft Foundry Models
+      href: ../../observability/how-to/benchmark-evaluations.md
     - name: GPT-5 vs GPT-4.1
       displayName: GPT-5 vs GPT-4.1 - choosing the right model for your use case
       href: ../../foundry-models/how-to/model-choice-guide.md
@@ -84,6 +87,8 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Govern model router with Azure Policy
+      href: ../../how-to/model-router-policy.md
     - name: Use model router with agents
       displayName: Use model router with Foundry agents
       href: ../../openai/how-to/model-router-agents.md
@@ -128,6 +133,9 @@ items:
   - name: Deployment overview
     displayName: Deployment overview for Microsoft Foundry Models
     href: ../../concepts/deployments-overview.md
+  - name: Instant models (preview)
+    displayName: Instant models in Microsoft Foundry (preview)
+    href: ../../concepts/instant-models.md
   - name: Deployment types
     displayName: Deployment types for Microsoft Foundry Models
     href: ../../foundry-models/concepts/deployment-types.md
@@ -192,8 +200,8 @@ items:
   items:
   - name: Azure OpenAI supported programming languages
     href: ../../openai/supported-languages.md
-  - name: Microsoft AI (MAI) models
-    displayName: MAI-image-2 model in Foundry
+  - name: MAI image models
+    displayName: MAI image models in Foundry
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Claude models
     displayName: Claude in Foundry Models

@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 04/01/2026
+ms.date: 06/02/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -31,6 +31,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Evaluator | Best practice | Use when | Purpose | Output |
 |--|--|--|--|--|
 | Task Completion (preview) | System evaluation | Assessing end-to-end task success in workflow automation, goal-oriented AI interactions, or any scenario where full task completion is critical | Measures if the agent completed the requested task with a usable deliverable that meets all user requirements | Binary: Pass/Fail |
+| Customer Satisfaction (preview) | System evaluation | Measuring overall user satisfaction across a conversation, detecting user frustration | Measures holistic user satisfaction across six dimensions: helpfulness, completeness, clarity, tone, resolution, and adaptability | 1-5 Likert scale |
 | Task Adherence (preview) | System evaluation | Ensuring agents follow system instructions, validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Binary: Pass/Fail |
 | Task Navigation Efficiency | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Binary: Pass/Fail |
 | Intent Resolution (preview) | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Binary: Pass/Fail based on threshold (1-5 scale) |
@@ -39,12 +40,14 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Tool Input Accuracy | Process evaluation | Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Binary: Pass/Fail |
 | Tool Output Utilization | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Binary: Pass/Fail |
 | Tool Call Success | Process evaluation | Monitoring tool reliability, detecting API failures, timeout issues, or technical errors in tool execution | Measures if tool calls succeeded or resulted in technical errors or exceptions | Binary: Pass/Fail |
+| Quality Grader (preview) | Quality evaluation | Assesses overall response quality at the turn level, including relevance, abstention, answer completeness, and optionally groundedness and context coverage | Enables quality evaluation across multiple dimensions in a single evaluator instead of running individual evaluators separately | Binary: Pass/Fail |
 
 ## System evaluation
 
 System evaluation examines the quality of the final outcome of your agentic workflow. These evaluators are applicable to single agents and, in multi-agent systems, to the main orchestrator or the final agent responsible for task completion:
 
 - Task Completion - Did the agent fully complete the requested task?
+- Customer Satisfaction - How satisfied would a user be with the agent's performance?
 - Task Adherence - Did the agent follow the rules and constraints in its instructions?
 - Task Navigation Efficiency - Did the agent perform the expected steps efficiently?
 - Intent Resolution - Did the agent correctly identify and address user intentions?
@@ -76,6 +79,23 @@ Examples:
 - [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
+## Quality evaluation (preview)
+
+Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator is the same quality evaluator used in [Microsoft Copilot Studio agent evaluation](/microsoft-copilot-studio/analytics-agent-evaluation-overview#general-quality). It examines multiple dimensions of response quality:
+
+- **Relevance** - Is the response relevant to the user's query?
+- **Abstention** - Does the agent appropriately abstain when it cannot or should not answer?
+- **Answer completeness** - Does the response fully address the user's question?
+
+When context is provided, the Quality Grader additionally evaluates:
+
+- **Groundedness** - Is the response grounded in the provided context?
+- **Context coverage** - Does the response make use of the relevant information in the context?
+
+Examples:
+
+- [Quality grader sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_quality_grader.py)
+
 ## Model and tool support
 
 For AI-assisted evaluators, you can use Azure OpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM judge. For complex evaluation that requires refined reasoning, we recommend `gpt-5-mini` for its balance of performance, cost, and efficiency.
@@ -105,7 +125,8 @@ Agent evaluators assess how well AI agents perform tasks, follow instructions, a
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Task Completion (preview) | `query`, `response` | `deployment_name` |
+| Task Completion (preview) | `query`, `response`; optional: `tool_definitions` | `deployment_name` |
+| Customer Satisfaction (preview) | `messages` | `model` |
 | Task Adherence (preview) | `query`, `response` | `deployment_name` |
 | Intent Resolution (preview) | `query`, `response` | `deployment_name` |
 | Tool Call Accuracy | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |

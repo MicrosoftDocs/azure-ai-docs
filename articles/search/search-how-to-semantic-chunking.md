@@ -1,15 +1,26 @@
 ---
-title: Chunk and Vectorize by Document Layout
-description: Chunk textual content by headings and semantically coherent fragments, generate embeddings, and send the results to a searchable index.
+title: Chunk and Vectorize by Document Layout (Document Layout skill)
+description: Chunk textual content by headings and semantically coherent fragments using the Document Layout skill, generate embeddings, and send the results to a searchable index.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/16/2026
+ms.date: 06/02/2026
 ms.custom:
   - references_regions
   - ignite-2024
+ai-usage: ai-assisted
 ---
 
-# Chunk and vectorize by document layout or structure
+# Chunk and vectorize with the Document Layout skill
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
+> [!TIP]
+> This article is intended for existing pipelines that use the Document Layout skill. For new skillsets, use the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md). This skill provides newer functionality, such as semantic chunking, AI-generated image descriptions, and improved document-embedded table extraction in a single skill. To get started, see [Chunk and vectorize content with the Azure Content Understanding skill](search-how-to-semantic-chunking-content-understanding.md).
 
 Text data chunking strategies play a key role in optimizing RAG responses and performance. By using the **Document Layout** skill, you can chunk content based on document structure, capturing headings and chunking the content body based on semantic coherence, such as paragraphs and sentences. Chunks are processed independently. Because LLMs work with multiple chunks, when those chunks are of higher quality and semantically coherent, the overall relevance of the query is improved.
 
