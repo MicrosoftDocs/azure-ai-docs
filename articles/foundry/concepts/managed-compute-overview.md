@@ -1,6 +1,6 @@
 ---
 title: "Managed compute in Microsoft Foundry"
-description: "Learn how managed compute in Microsoft Foundry hosts open-source models on dedicated GPU capacity through the same endpoint, SDKs, identity, networking, observability, and billing as other Foundry deployment types."
+description: "Managed compute in Microsoft Foundry hosts open-source models on dedicated GPU capacity. Learn about deployment templates, accelerator families, scaling, billing, and access control."
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.custom:
@@ -33,7 +33,7 @@ Foundry offers three deployment types. Managed compute is the deployment type to
 
 | Deployment type | What it serves | Billing | Best for |
 |---|---|---|---|
-| Standard pay-per-token  | [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) | Per input and output token | Lowest-friction path to get started; bursty traffic on hosted models with no capacity planning. |
+| Standard pay-per-token | [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) | Per input and output token | Lowest-friction path to get started; bursty traffic on hosted models with no capacity planning. |
 |[Provisioned throughput](../openai/concepts/provisioned-throughput.md) | Foundry Models sold by Azure | Reserved throughput units | Predictable, sustained load on select Foundry Models sold by Azure with consistent latency. |
 | Managed compute | Open-source and community models from the Foundry catalog | Hourly per accelerator family | Hosting open-source models on dedicated GPUs with Foundry-managed runtimes, private networking, and the same SDKs as the other deployment types. |
 
@@ -102,12 +102,12 @@ You can use managed compute in Foundry to deploy models from the **Hugging Face 
 - **Pre-staged weights.** Model weights are pulled from Hugging Face once, validated, and stored in Microsoft-managed Azure storage in the regions where the model is served. Container images live in a Microsoft-managed registry. As a result, **managed compute deployments don't need outbound network access to Hugging Face Hub** — you can deploy into a fully private network with no egress.
 - **License metadata preserved.** Each catalog model card captures and surfaces the upstream license. License review against Microsoft's enterprise distribution policy happens during curation.
 
-### Model curation pipepline
+### Model curation pipeline
 
 Every model in the Hugging Face collection passes through a five-stage curation pipeline before it appears in the catalog:
 
-1. **Identify trending models**: Based on community signals, partner requests, and customer demand.
-2. **Screen for compliance and security**: License review, inspection for `trust_remote_code` and custom executable code.
+1. **Identify trending models**: Microsoft identifies trending models based on community signals, partner requests, and customer demand.
+2. **Screen for compliance and security**: Each model undergoes license review and inspection for `trust_remote_code` patterns and custom executable code.
 3. **Build, scan, and publish runtime container images**: Built by Microsoft, scanned for CVEs, signed, and published to a Microsoft-managed registry.
 4. **Upload weights to secure Azure storage**: Validated against the model card and stored in the regions where the model is served.
 5. **Validate and publish**: Every model, runtime, and accelerator combination is tested for API conformance and performance, then published to the catalog with a one-click deploy path.
@@ -142,7 +142,7 @@ Managed compute deployments use the same authentication patterns as the rest of 
 - **Microsoft Entra ID (recommended).** Acquire a token for the `https://ai.azure.com/.default` scope and pass it as a bearer token in the `Authorization` header. To call a managed compute deployment with Entra ID, the calling identity needs the **Foundry User** role on the Foundry account scope. The OpenAI SDK in token-based mode and `DefaultAzureCredential` work without any managed-compute-specific configuration.
 - **Account API key.** Pass the Foundry account key as `Authorization: Bearer <key>`. The OpenAI SDK sends the key in this form automatically when you set the `api_key` argument. Keys grant the same access on managed compute deployments as they do on pay-per-token and PTU deployments on the same account.
 
-Both authentication options work on both endpoint routes. For end-to-end client code samples (OpenAI SDK with Entra ID or API key), see [Send a test request](../how-to/deploy-models-managed.md#send-a-test-request&pivots=python-sdk).
+Both authentication options work on both endpoint routes. For end-to-end client code samples (OpenAI SDK with Entra ID or API key), see [Send a test request](../how-to/deploy-models-managed.md#send-a-test-request).
 
 ## Scaling
 
