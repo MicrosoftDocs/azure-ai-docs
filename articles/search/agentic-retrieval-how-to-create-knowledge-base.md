@@ -81,7 +81,7 @@ A knowledge base specifies:
 
 ### Supported models
 
-Use one of the following LLMs from Azure OpenAI in Foundry Models.  Regional availability is determined by Azure OpenAI for the deployment you select. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
+Use one of the following LLMs from Azure OpenAI in Foundry Models. Azure OpenAI determines regional availability for the deployment you select. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
 | Model | Supported API versions |
 |--|--|
@@ -835,5 +835,5 @@ api-key: {{search-api-key}}
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
++ [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md)

@@ -21,14 +21,14 @@ ms.custom: references_regions
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In agentic retrieval, you can specify the level of large language model (LLM) processing for query planning and answer formulation. Use the *retrieval reasoning effort* (preview) to set LLM processing levels that affect costs and latency. Extra LLM processing improves relevancy, but it also takes longer and uses billable LLM resources. You can set this property in a knowledge base or on a retrieve request.
+In agentic retrieval, you can specify the level of large language model (LLM) processing for query planning and answer formulation. Use the *retrieval reasoning effort* (preview) to set LLM processing levels that affect costs and latency. Extra LLM processing improves relevance, but it also takes longer and uses billable LLM resources. You can set this property in a knowledge base or on a retrieve request.
 
 Levels of reasoning effort include:
 
 | Level | Effort |
 |-------|--------|
 | `minimal` | No LLM processing. You provide the query.|
-| `low` | Runs a single pass of LLM-based query planning and knowledge source selection. This is the default. The LLM analyzes the query and breaks it into component parts as needed.|
+| `low` | Runs a single pass of LLM-based query planning and knowledge source selection. This level is the default. The LLM analyzes the query and breaks it into component parts as needed.|
 | `medium` | Adds deeper search and an enhanced retrieval stack to agentic retrieval to maximize completeness. |
 
 ## Prerequisites
@@ -59,9 +59,9 @@ This section describes:
 
 ### Iterative search for medium retrieval
 
-A medium retrieval reasoning effort provides iterative search if initial results aren't sufficiently relevant. An extra *semantic classifier model* is called to determine if a second iteration is necessary.
+A medium retrieval reasoning effort provides iterative search if initial results aren't sufficiently relevant. An extra *semantic classifier model* determines whether a second iteration is necessary.
 
-The semantic classifier performs the following:
+The semantic classifier:
 
 + Recognizes when there's enough context to answer the question.
 
@@ -128,5 +128,5 @@ To override the default on a query-by-query basis, set the property in the retri
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)

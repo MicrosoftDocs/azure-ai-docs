@@ -61,7 +61,7 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + In mixed knowledge bases, only supported knowledge source kinds (blob, indexed OneLake, and indexed SharePoint) return images. Other kinds can still contribute text grounding, but they don't return images.
 
-+ If Microsoft Purview sensitivity labels are enabled on the knowledge source, image serving isn't supported because images can't be exported to the asset store.
++ If you enable Microsoft Purview sensitivity labels on the knowledge source, image serving isn't supported because images can't be exported to the asset store.
 
 + The retrieve response returns image references in the asset store, not inline Base64 image bytes. Inline image bytes in the response payload aren't supported because they increase payload size and can degrade latency and overall performance.
 
@@ -183,7 +183,7 @@ The combination of `assetStore`, `disableImageVerbalization`, and `chatCompletio
 
 Wait for ingestion to complete before continuing:
 
-+ Check indexer status in the [Azure portal](https://portal.azure.com) or with [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API).
++ Check indexer status in the [Azure portal](https://portal.azure.com) or use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API).
 
 + Verify that indexed chunks have a populated `image_path` field. Empty `image_path` values usually mean the source documents don't contain extractable images, the asset store isn't configured, or the indexer hasn't finished.
 
@@ -191,11 +191,11 @@ Wait for ingestion to complete before continuing:
 
 ## Enable image serving on a knowledge base
 
-Set `enableImageServing` to `true` on the knowledge source reference inside the knowledge base definition. This becomes the default for every retrieve request that targets the knowledge source.
+Set `enableImageServing` to `true` on the knowledge source reference inside the knowledge base definition. This setting becomes the default for every retrieve request that targets the knowledge source.
 
-The knowledge base definition also specifies the LLM used for **answer synthesis at query time**. This is independent of any `chatCompletionModel` that you set on the knowledge source's `ingestionParameters`, which drives image verbalization during indexing.
+The knowledge base definition also specifies the LLM used for **answer synthesis at query time**. This setting is independent of any `chatCompletionModel` that you set on the knowledge source's `ingestionParameters`, which drives image verbalization during indexing.
 
-If your knowledge base references multiple knowledge sources, set `enableImageServing` only on supported file-based indexed kinds that have `assetStore` configured. Unsupported kinds (for example, search index, remote SharePoint, or web) still contribute text grounding but don't return images.
+If your knowledge base references multiple knowledge sources, set `enableImageServing` only on supported file-based indexed kinds that have `assetStore` configured. Unsupported kinds (such as search index, remote SharePoint, or web) still contribute text grounding but don't return images.
 
 ```http
 PUT https://{service-name}.search.windows.net/knowledgebases/my-kb?api-version=2026-05-01-preview
@@ -299,7 +299,7 @@ The following table summarizes the nine combinations.
 
 ## Inspect image serving statistics
 
-When image serving runs, the retrieve response includes an `imageServing` section per knowledge source inside the `activity` array. Use this section to verify whether images were sent to the model and to diagnose dropped images.
+When image serving runs, the retrieve response includes an `imageServing` section for each knowledge source inside the `activity` array. Use this section to verify whether images were sent to the model and to diagnose dropped images.
 
 ```json
 "activity": [
@@ -334,7 +334,7 @@ Portal support for enabling and managing image serving is planned for a future u
 
 ## Test image serving end to end
 
-To exercise the full setup against multiple agentic retrieval configurations (image serving enabled and disabled, different output modes, runtime overrides), see the [image serving testing samples](https://aka.ms/agentic-retrieval-image-serving-testing). The samples include an end-to-end walkthrough that creates the knowledge source, knowledge base, and retrieve requests so you can compare answers with and without image serving.
+To test the full setup against multiple agentic retrieval configurations (image serving enabled and disabled, different output modes, runtime overrides), see the [image serving testing samples](https://aka.ms/agentic-retrieval-image-serving-testing). The samples include an end-to-end walkthrough that creates the knowledge source, knowledge base, and retrieve requests so you can compare answers with and without image serving.
 
 A typical A/B comparison checklist:
 
@@ -361,7 +361,7 @@ Use the `imageServing` activity block from [Inspect image serving statistics](#i
 
 ## Related content
 
-+ [Query a knowledge base via APIs or MCP](agentic-retrieval-how-to-retrieve.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
 + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
 + [Knowledge sources for agentic retrieval](agentic-knowledge-source-overview.md)
 + [Knowledge store concepts](knowledge-store-concept-intro.md)

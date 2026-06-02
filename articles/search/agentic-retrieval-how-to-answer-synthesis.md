@@ -32,7 +32,7 @@ You can enable answer synthesis in two ways:
 > [!IMPORTANT]
 > + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 >
-> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Prerequisites
 
@@ -244,9 +244,8 @@ Depending on your knowledge base's configuration, the response might include oth
 
 ## Related content
 
-+ [Quickstart: Agentic retrieval in Azure AI Search (uses answer synthesis)](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Agentic-Retrieval/quickstart-agentic-retrieval.ipynb)
-+ [Azure AI Search Blob knowledge source Python sample (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md)
-+ [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md)
++ [Query a knowledge base](agentic-retrieval-how-to-query-knowledge-base.md)
++ [Quickstart: Agentic retrieval (uses answer synthesis)](search-get-started-agentic-retrieval.md)
++ [Python sample: Azure AI Search blob knowledge source (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)

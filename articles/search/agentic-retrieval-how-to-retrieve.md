@@ -774,7 +774,7 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 ## Review the response
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. Details about the partial response appear as errors in the activity array.
+Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
 
 The retrieve action returns three main components:
 
@@ -1002,7 +1002,7 @@ When you query a knowledge base that ingests [Microsoft Purview sensitivity labe
 | Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
 | Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
 
-The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
+Microsoft Graph computes the response-level label from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
 
 The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
 
@@ -1100,14 +1100,9 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
-In the `2026-05-01-preview` API, model-backed activity records can include
-`modelName` when `includeActivity` is enabled. Use this field to confirm which
-configured model handled query planning, answer synthesis, or web
-summarization during a retrieve request.
+In the `2026-05-01-preview` API, model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
 
-The field is additive and appears only on activity entries that represent
-model-backed work. Nonmodel activity records, such as search index retrieval
-steps, don't include `modelName`.
+The field is additive and appears only on activity entries that represent model-backed work. Nonmodel activity records, such as search index retrieval steps, don't include `modelName`.
 
 :::zone pivot="csharp"
 
@@ -1211,22 +1206,13 @@ The following response excerpt shows activity records with `modelName`:
 }
 ```
 
-For this preview, `modelName` appears on model activity records, including
-`modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The
-value is the public model name used for the activity, such as `gpt-5-mini`, not
-the deployment name. If an activity step isn't backed by a single
-customer-visible model, the field is omitted.
+For this preview, `modelName` appears on model activity records, including `modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The value is the public model name used for the activity, such as `gpt-5-mini`, not the deployment name. If an activity step isn't backed by a single customer-visible model, the field is omitted.
 
 ### Require a knowledge source to succeed
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
-`failOnError` to mark a specific knowledge source as required for the retrieve
-request. Use this setting when a partial answer would be misleading or
-noncompliant if that source is unavailable.
+In the `2026-05-01-preview` API, `knowledgeSourceParams` can include `failOnError` to mark a specific knowledge source as required for the retrieve request. Use this setting when a partial answer would be misleading or noncompliant if that source is unavailable.
 
-By default, retrieve favors availability and can return results from other
-sources when an optional source fails. `failOnError` changes that behavior for
-the source where it's set.
+By default, retrieve favors availability and can return results from other sources when an optional source fails. `failOnError` changes that behavior for the source where it's set.
 
 :::zone pivot="csharp"
 
@@ -1321,26 +1307,13 @@ Content-Type: application/json
 
 :::zone-end
 
-`failOnError` defaults to `false`. When a queried source has
-`failOnError: true` and the source query fails, the retrieve request fails
-instead of returning `206 Partial Content`. The expected error is `502 Bad
-Gateway`, with an error message that identifies the knowledge source that
-couldn't be queried. The setting is independent of `alwaysQuerySource`:
-`alwaysQuerySource` controls whether the source is attempted, while
-`failOnError` controls what happens if that attempt fails. If a source must
-always participate and must fail the request on error, set both properties to
-`true`.
+`failOnError` defaults to `false`. When a queried source has `failOnError: true` and the source query fails, the retrieve request fails instead of returning `206 Partial Content`. The expected error is `502 Bad Gateway`, with an error message that identifies the knowledge source that couldn't be queried. The setting is independent of `alwaysQuerySource`: `alwaysQuerySource` controls whether the source is attempted, while `failOnError` controls what happens if that attempt fails. If a source must always participate and must fail the request on error, set both properties to `true`.
 
 ### Tune candidate documents per knowledge source
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
-`maxOutputDocuments` to cap output documents per knowledge source before
-final result selection. Use this setting when you want one source to
-contribute a bounded number of documents to the retrieve pipeline.
+In the `2026-05-01-preview` API, `knowledgeSourceParams` can include `maxOutputDocuments` to cap output documents per knowledge source before final result selection. Use this setting when you want one source to contribute a bounded number of documents to the retrieve pipeline.
 
-This setting is per source. Use `50` for cross-region compatibility because
-some preview regions cap per-source output documents at 50. It doesn't control
-the final number of grounding documents returned to the caller.
+This setting is per source. Use `50` for cross-region compatibility because some preview regions cap per-source output documents at 50. It doesn't control the final number of grounding documents returned to the caller.
 
 :::zone pivot="csharp"
 
@@ -1422,18 +1395,13 @@ Content-Type: application/json
 
 :::zone-end
 
-The service can return fewer documents when fewer matches are available or when
-internal limits reduce the applied window.
+The service can return fewer documents when fewer matches are available or when internal limits reduce the applied window.
 
 ### Limit final grounding documents
 
-In the `2026-05-01-preview` API, top-level `maxOutputDocuments` caps how
-many grounding documents are returned in the final retrieve response. Use this
-setting when your application needs a predictable citation or reference count.
+In the `2026-05-01-preview` API, the top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this setting when your application needs a predictable citation or reference count.
 
-This count-based control complements `maxOutputSize`, which limits payload
-size. If both settings are present, both constraints apply to the final
-response.
+This count-based control complements `maxOutputSize`, which limits payload size. If both settings are present, both constraints apply to the final response.
 
 :::zone pivot="csharp"
 
@@ -1512,11 +1480,7 @@ Content-Type: application/json
 | Specified | Unspecified | Returns up to the specified number of grounding documents and doesn't apply a `maxOutputSize` limit. |
 | Specified | Specified | Returns up to `maxOutputDocuments` documents or however many documents fit under `maxOutputSize`, whichever limit applies first. |
 
-The service can return fewer documents than `maxOutputDocuments` if fewer
-results survive ranking, thresholding, or deduplication. Unlike per-source
-`knowledgeSourceParams.maxOutputDocuments`, the top-level final-result cap
-applies after the knowledge sources have contributed documents to the retrieve
-pipeline.
+The service can return fewer documents than `maxOutputDocuments` if fewer results survive ranking, thresholding, or deduplication. Unlike per-source `knowledgeSourceParams.maxOutputDocuments`, the top-level final-result cap applies after the knowledge sources contribute documents to the retrieve pipeline.
 
 ### Override default reasoning effort and set request limits
 
