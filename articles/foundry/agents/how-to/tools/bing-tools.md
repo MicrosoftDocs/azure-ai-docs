@@ -231,7 +231,7 @@ Full response: Today's date is December 12, 2025, and the weather in Seattle is.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_bing_grounding_tool()` to attach Bing grounding via a project connection. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio

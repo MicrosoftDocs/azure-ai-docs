@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Use the Responses API"
+title: "Quickstart: Build agents using the Responses API"
 description: "Call the Responses API on a Foundry project endpoint from your own code using the Agent Framework FoundryChatClient or the OpenAI SDK."
 author: aahill
 ms.author: aahi
@@ -13,7 +13,7 @@ zone_pivot_groups: responses-api-language
 # customer intent: As a developer, I want to call the Responses API on a Foundry project endpoint from my own code so that I can build self-hosted agents that use Foundry models and platform tools.
 ---
 
-# Quickstart: Use the Responses API
+# Quickstart: Build agents using the Responses API
 
 In this quickstart, you call the **Responses API** on a Foundry project endpoint from your own code to build an **ephemeral agent** — an agent whose definition (instructions, tools, model) lives in your application code instead of as a persisted resource in Foundry Agent Service. Each call constructs the agent in your process and invokes the Responses API for model inference and tool orchestration.
 
@@ -79,7 +79,7 @@ Install the Agent Framework package with the Foundry provider:
 ::: zone pivot="python"
 
 ```bash
-pip install agent-framework-foundry
+pip install agent-framework-foundry aiohttp
 ```
 
 ::: zone-end

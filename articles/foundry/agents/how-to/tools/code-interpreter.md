@@ -156,7 +156,7 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_code_interpreter_tool()` to give the agent a sandboxed Python execution environment. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_code_interpreter_tool()` to give the agent a sandboxed Python execution environment. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio

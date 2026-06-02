@@ -225,7 +225,7 @@ During streaming, you might also see deltas and tool-call details. Output varies
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_browser_automation_tool()` to attach a Playwright connection. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL`, and `BROWSER_CONNECTION_ID` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_browser_automation_tool()` to attach a Playwright connection. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL`, and `BROWSER_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio

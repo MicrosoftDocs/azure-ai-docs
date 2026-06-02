@@ -186,7 +186,7 @@ Full response: Based on the meeting notes from your SharePoint site, the last me
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. It uses `AIProjectClient` to resolve the connection name to a connection ID, then iterates over message annotations to print URL citations. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_sharepoint_tool()` to attach a SharePoint grounding connection. It uses `AIProjectClient` to resolve the connection name to a connection ID, then iterates over message annotations to print URL citations. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio

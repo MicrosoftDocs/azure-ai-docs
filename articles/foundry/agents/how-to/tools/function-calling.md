@@ -165,7 +165,7 @@ Agent response: Your horoscope for Aquarius: Next Tuesday you will befriend a ba
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework with the `@tool` decorator. The framework handles tool discovery, the function-call request/response loop, and result formatting for you. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework with the `@tool` decorator. The framework handles tool discovery, the function-call request/response loop, and result formatting for you. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio

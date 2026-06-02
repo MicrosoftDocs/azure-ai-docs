@@ -252,7 +252,7 @@ Agent deleted
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
 
 ```python
 import asyncio
