@@ -14,7 +14,7 @@ reviewer: mswellsi
 
 # Model-specific terms for Microsoft Foundry
 
-[Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md) are licensed to you as part of [your agreement](https://azure.microsoft.com/support/legal) governing use of Foundry, in addition to the supplemental terms here, as they may apply to specific models. Capitalized terms not defined herein shall have the meaning set forth in [your agreement](https://azure.microsoft.com/support/legal). IF YOU DO NOT AGREE TO THESE TERMS, DO NOT USE THE MODELS.
+[Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md) are licensed to you as part of [your agreement](https://azure.microsoft.com/support/legal) governing use of Foundry, in addition to the supplemental terms here, as they apply to specific models. Capitalized terms not defined herein shall have the meaning set forth in [your agreement](https://azure.microsoft.com/support/legal). IF YOU DO NOT AGREE TO THESE TERMS, DO NOT USE THE MODELS.
 
 ## Grok models
 
