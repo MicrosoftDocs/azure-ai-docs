@@ -1954,7 +1954,29 @@ The search results include chunk metadata in `result.structuredContent.documents
 
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
-To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
+To upload a file for Code Interpreter to use through a toolbox, upload the file at the **resource-level** Files endpoint (`POST {account_endpoint}/openai/v1/files`) with the `x-aml-project-id` header. Unlike the prompt agent flow, files uploaded through the project-scoped Files endpoint (`/api/projects/{name}/openai/v1/files`) receive an `owner_id` that the toolbox container can't verify, so `tools/call` fails with an ownership-verification error.
+
+1. Get the project GUID from Azure Resource Manager. Use `properties.amlWorkspace.internalId` (dashed UUID format), **not** `properties.internalId` (no dashes — the toolbox container rejects it):
+
+    ```bash
+    ARM_TOKEN=$(az account get-access-token --query accessToken -o tsv)
+    PROJECT_GUID=$(curl -s -H "Authorization: Bearer $ARM_TOKEN" \
+      "https://management.azure.com/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}?api-version=2025-06-01" \
+      | jq -r '.properties.amlWorkspace.internalId')
+    ```
+
+1. Upload the file at the account (resource) level with the `x-aml-project-id` header:
+
+    ```bash
+    TOKEN=$(az account get-access-token --resource https://ai.azure.com/.default --query accessToken -o tsv)
+    curl -X POST "https://{account}.services.ai.azure.com/openai/v1/files" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "x-aml-project-id: $PROJECT_GUID" \
+      -F "purpose=assistants" \
+      -F "file=@your-file.csv"
+    ```
+
+The returned file `id` is the value you supply as `<FILE_ID>` in the tool configuration. Files are mounted in the sandbox at `/mnt/data/{file-id}-{original-filename}`. See [Code Interpreter](code-interpreter.md) for additional upload examples and language-specific samples.
 
 > [!IMPORTANT]
 > When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
@@ -2069,10 +2091,10 @@ Use the file name returned from Step 1 to download the file via the [File API do
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
 
-To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
+To create a file and vector store for use with a toolbox, upload the file at the **resource-level** Files endpoint with the `x-aml-project-id` header (the same requirement as Code Interpreter — see the previous section for how to obtain the project GUID from `properties.amlWorkspace.internalId`):
 
-1. Upload your file: `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`.
-1. Create a vector store: `POST {project_endpoint}/openai/v1/vector_stores` with the returned file ID.
+1. Upload your file: `POST {account_endpoint}/openai/v1/files` with `purpose=assistants` and header `x-aml-project-id: {project-guid}`.
+1. Create a vector store: `POST {account_endpoint}/openai/v1/vector_stores` with the returned file ID and the same `x-aml-project-id` header.
 
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
