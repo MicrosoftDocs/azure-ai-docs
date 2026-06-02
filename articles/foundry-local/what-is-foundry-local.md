@@ -6,7 +6,7 @@ keywords: Foundry Local, on-device AI, local inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 03/27/2026
+ms.date: 06/02/2026
 ms.reviewer: samkemp
 ms.author: jburchel
 author: jonburchel
@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 Foundry Local is an **end-to-end local AI solution for shipping applications that run entirely on the user's device**. It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration — all in a lightweight package.
 
 User data never leaves the device, responses start immediately with zero network latency, and your app works offline. There are no per-token costs and no backend infrastructure to maintain.
+
+Foundry Local is one of two runtime options for running AI models locally. Foundry Local is designed for embedding AI directly into client applications on end-user devices—data stays on-device, it works offline, and no Azure subscription is required. If your scenario requires running AI inference at enterprise scale on on-premises infrastructure with Kubernetes-native operations and Azure Arc management, see [Foundry Local on Azure Local](/azure/azure-local/manage/foundry-local-overview), which deploys on Arc-enabled Kubernetes clusters on Azure Local.
 
 ## Features
 
