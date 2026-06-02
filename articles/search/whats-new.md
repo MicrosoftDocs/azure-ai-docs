@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 05/05/2026
+ms.date: 06/02/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -17,6 +17,41 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## June 2026
+
+> [!IMPORTANT]
+> The 2026-05-01-preview REST API is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+
+| Item | Description |
+|--|--|
+| [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the data plane operations described in this table. |
+| [Serverless pricing model](search-sku-tier.md) (preview) | Serverless is a new consumption-based pricing model that Azure AI Search offers alongside the existing Dedicated (provisioned) tiers. With Serverless, you only pay for the compute and indexed storage that you use, with scale-to-zero when idle and no minimum capacity charge. |
+| [File knowledge source](agentic-knowledge-source-how-to-file.md) (preview) | New indexed knowledge source for uploading files directly to a knowledge base without a separate indexer pipeline. |
+| [Azure SQL knowledge source](agentic-knowledge-source-how-to-azure-sql.md) (preview) | New indexed knowledge source backed by Azure SQL Database. |
+| [Fabric Data Agent knowledge source](agentic-knowledge-source-how-to-fabric-data-agent.md) (preview) | New remote knowledge source backed by a Microsoft Fabric Data Agent, enabling retrieval from Fabric-managed data in agentic workflows. |
+| [Fabric Ontology knowledge source](agentic-knowledge-source-how-to-fabric-ontology.md) (preview) | New remote knowledge source backed by a Microsoft Fabric Ontology, enabling structured knowledge retrieval from Fabric in agentic workflows. |
+| [MCP Server knowledge source](agentic-knowledge-source-how-to-mcp-server.md) (preview) | New remote knowledge source that connects to an external Model Context Protocol (MCP) server, allowing agentic retrieval to draw grounding data from any MCP-compatible tool or service. |
+| [Work IQ knowledge source](agentic-knowledge-source-how-to-work-iq.md) (preview) | New remote knowledge source backed by Work IQ, providing access to Microsoft 365 workplace data for agentic retrieval. |
+| [Retrieve defaults for search index knowledge sources](agentic-knowledge-source-how-to-search-index.md) (preview) | Search index knowledge sources now support persisted retrieve defaults, including a `baseFilter` applied to all retrievals and a runtime `filterAddOn` that composes with the base filter using AND logic. A precedence model governs service defaults, knowledge source defaults, and per-request overrides. |
+| [Image serving for indexed knowledge sources](agentic-knowledge-source-overview.md) (preview) | Retrieved documents from indexed knowledge sources can include image content alongside text in agentic retrieval responses. |
+| [Freshness-aware retrieval for indexed knowledge sources](agentic-retrieval-how-to-configure-freshness.md) (preview) | Configure a freshness policy on indexed knowledge sources to bias retrieval toward recently updated documents. Adjust freshness weighting to balance recency with relevance in agentic workflows. |
+| [Knowledge base GPT-5 and CORS support](agentic-retrieval-how-to-create-knowledge-base.md) (preview) | Knowledge bases now support GPT-5 family models, including `gpt-5.4-mini`, for query planning and response generation. Configure CORS via the new `corsOptions` property to enable direct browser-to-service retrieve calls. |
+| [Optional semantic configuration for agentic retrieval](semantic-how-to-configure.md) (preview) | Starting in the 2026-05-01-preview, a semantic configuration is optional in agentic retrieval flows. Classic semantic search still requires an explicit semantic configuration. |
+| [Retrieve action updates](agentic-retrieval-how-to-retrieve.md) (preview) | New parameters for the retrieve action:<p><ul><li>`knowledgeSourceParams.maxOutputDocuments` and `maxOutputDocuments` cap intermediate and final grounding documents returned.</li><li>`failOnError` marks each knowledge source as required or optional.</li><li>`modelName` appears in activity logs when `includeActivity` is `true`.</li></ul> |
+| [Knowledge base and knowledge source service statistics](vector-search-index-size.md) (preview) | [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now returns `knowledgeBasesCount` and `knowledgeSourcesCount` as additive preview counters. |
+| [Microsoft Purview sensitivity labels in retrieve responses](search-document-level-access-overview.md) (preview) | Knowledge base retrieve responses can include `sensitivityLabelInfo` per reference and a `responseSensitivityLabelInfo` top-level field, surfacing Microsoft Purview sensitivity label metadata alongside each retrieved document. |
+| [APIM support for Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md) (preview) | The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) now accept `azure-api.net` endpoints for routing through Azure API Management. |
+| [Network security perimeter and shared private link for Microsoft Foundry](search-security-network-security-perimeter.md) (preview) | Azure AI Search now supports network security perimeter and shared private link for connections to Microsoft Foundry resources, enabling secure private connectivity for skills, vectorizers, and knowledge bases. |
+| [SharePoint indexer updates](search-how-to-index-sharepoint-online.md) (preview) | The SharePoint indexer adds support for ASPX site pages and SharePoint lists (both with ACL support), per-run incremental ACL sync for items with unique permissions, and site group permissions using the `spg:` prefix with federated credential configuration. The new `metadata_spo_site_asset_item_id` field captures the SharePoint item ID. |
+| [List API paging](search-how-to-page-list-results.md) (preview) | New list operations that support cursor-based paging via `$top`, `$skip`, and a continuation token, allowing you to retrieve large result sets incrementally. |
+| [Azure Content Understanding skill updates](cognitive-search-skill-content-understanding.md) (preview) | The Azure Content Understanding skill now supports semantic chunking, AI-based image descriptions, and knowledge store image projection. |
 
 ## April 2026
 
