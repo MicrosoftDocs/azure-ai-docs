@@ -51,6 +51,8 @@ Before you register the agent in Foundry, configure it to export OpenTelemetry s
 
 ### Install the Microsoft OpenTelemetry package
 
+<!-- TODO(verify): Confirm with Hector whether the base microsoft-opentelemetry package auto-includes LangChain instrumentation or the langchain extra is required. If the distro brings it in automatically, simplify to: pip install microsoft-opentelemetry -->
+
 ```bash
 pip install "microsoft-opentelemetry[langchain]"
 ```
@@ -58,6 +60,8 @@ pip install "microsoft-opentelemetry[langchain]"
 ### Configure the exporter
 
 Run this code once during agent startup, before any framework imports that should be instrumented:
+
+<!-- TODO(verify): Confirm with engineering whether AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING, OTEL_SEMCONV_STABILITY_OPT_IN, and OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT are already defaults in the Microsoft distro. If so, remove the os.environ.setdefault lines and add a note that the distro configures them automatically. -->
 
 ```python
 import os
@@ -68,7 +72,10 @@ os.environ.setdefault("OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT", "SPA
 
 from microsoft.opentelemetry import use_microsoft_opentelemetry
 
+# Human-readable name for the agent
 AGENT_NAME = os.environ.get("AGENT_NAME", "weather-agent")
+# Unique ID emitted as gen_ai.agent.id on every span.
+# Foundry matches traces to registrations by this value.
 OTEL_AGENT_ID = os.environ.get("OTEL_AGENT_ID", f"{AGENT_NAME}-v1")
 
 use_microsoft_opentelemetry(
@@ -86,7 +93,7 @@ use_microsoft_opentelemetry(
 )
 ```
 
-Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable on the host where the agent runs. Use the connection string from the Application Insights resource linked to your Foundry project.
+Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable on the host where the agent runs. Use the connection string from the Application Insights resource linked to your Foundry project. To find the connection string, open the [Foundry portal](https://ai.azure.com), navigate to your project, and select **Management** > **Connected resources**. Select the Application Insights resource to view its connection string. Alternatively, open the Application Insights resource directly in the Azure portal and copy the connection string from the **Overview** page.
 
 After configuration, subsequent OpenTelemetry spans from your agent framework automatically flow to Application Insights. Each span must set the `gen_ai.agent.id` attribute to the value you choose as `otel_agent_id` during registration.
 
@@ -98,7 +105,7 @@ from opentelemetry import trace
 tracer = trace.get_tracer(__name__)
 
 with tracer.start_as_current_span("agent-run") as span:
-    span.set_attribute("gen_ai.agent.id", "travel-planner-agent")
+    span.set_attribute("gen_ai.agent.id", "travel-planner-agent-v1")
     # ... your agent logic ...
 ```
 
@@ -107,7 +114,7 @@ with tracer.start_as_current_span("agent-run") as span:
 
 ## Register the external agent in Foundry
 
-After the agent emits spans to Application Insights, register it in Foundry so those spans appear in the Foundry trace view scoped to the agent.
+After the agent emits spans to Application Insights, register it in Foundry so those spans appear in the Foundry trace view scoped to the agent. Registering creates a named record in Foundry that links incoming traces (matched by `gen_ai.agent.id`) to the Foundry agent experience. Without this registration, traces still flow into Application Insights but don't appear in the Foundry agent trace view, and you can't run trace-based evaluations scoped to the agent.
 
 ### Install the SDK
 
@@ -119,18 +126,15 @@ pip install azure-ai-projects>=2.2.0 azure-identity>=1.17.0
 
 ### [Foundry portal](#tab/portal)
 
-### Foundry portal
-
 You can create a registration in the [Foundry portal](https://ai.azure.com) by:
-1. Opening your project and selecting **build** > **agents** > **New agent**.
-1. Selecting **Link external agent**.
-1. In the window that appears, entering the agent name, description and the OpenTelemetry ID. 
 
-    :::image type="content" source="../media/register-external/foundry-button.png" alt-text="A screenshot showing the button to link an external agent" lightbox="../media/register-external/foundry-button.png":::
+1. Opening your project and selecting **Build** > **Agents** > **New agent**.
+1. Selecting **Link external agent**.
+1. In the window that appears, entering the agent name, description, and the OpenTelemetry ID.
+
+    :::image type="content" source="../media/register-external/foundry-button.png" alt-text="Screenshot showing the button to link an external agent." lightbox="../media/register-external/foundry-button.png":::
 
 ### [Python SDK](#tab/python)
-
-### Python SDK 
 
 Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. You can find this value on the project's **Overview** page in the Foundry portal.
 
@@ -154,8 +158,9 @@ agent = project.agents.create_version(
     agent_name="travel-planner-agent",
     description="Travel planning agent hosted externally.",
     definition=ExternalAgentDefinition(
-        # optional, defaults to agent_name
-        otel_agent_id="travel-planner-agent",
+        # Set explicitly when the running agent emits a gen_ai.agent.id
+        # value that differs from the Foundry agent name.
+        otel_agent_id="travel-planner-agent-v1",
     ),
 )
 
@@ -165,7 +170,7 @@ print(f"Resolved otel_agent_id: {agent.versions.latest.definition.otel_agent_id}
 
 ```output
 Registered external agent: travel-planner-agent
-Resolved otel_agent_id: travel-planner-agent
+Resolved otel_agent_id: travel-planner-agent-v1
 ```
 
 > [!NOTE]
@@ -174,45 +179,6 @@ Resolved otel_agent_id: travel-planner-agent
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
 
 ---
-
-## Run an evaluation
-
-```python
-openai_client = project.get_openai_client()
-
-# Eval group: define what to measure.
-eval_group = openai_client.evals.create(
-    name="travel-planner-trace-eval",
-    data_source_config={"type": "azure_ai_source", "scenario": "traces"},
-    testing_criteria=[
-        {
-            "type": "azure_ai_evaluator",
-            "name": "intent_resolution",
-            "evaluator_name": "builtin.intent_resolution",
-            "data_mapping": {
-                "query": "{{item.query}}",
-                "response": "{{item.response}}",
-                "tool_definitions": "{{item.tool_definitions}}",
-            },
-            "initialization_parameters": {"deployment_name": "gpt-5-mini"},
-        },
-    ],
-)
-
-# Eval run: score this agent's recent traces.
-run = openai_client.evals.runs.create(
-    eval_id=eval_group.id,
-    name="travel-planner-trace-run",
-    data_source={
-        "type": "azure_ai_traces",
-        "agent_id": otel_agent_id,
-        "lookback_hours": 24,
-    },
-)
-# Poll openai_client.evals.runs.retrieve(...) until run.status
-# is in {"completed", "failed", "canceled"}, then read run.result_counts
-# and run.per_testing_criteria_results.
-```
 
 ## Verify traces in the Foundry portal
 
@@ -229,6 +195,51 @@ After the agent sends traffic and spans ingest into Application Insights (typica
 1. Select the **Traces** tab to view spans attributed to this agent.
 
 Traces are matched by `gen_ai.agent.id = <otel_agent_id>` from the Application Insights resource connected to the project. You can view inputs, outputs, tool calls, and latency for each span.
+
+## Run a trace-based evaluation
+
+After traces flow into Application Insights, you can run evaluations directly over those traces. No separate dataset construction is required. Foundry resolves traces by matching `(project, agent_id)` over a lookback window.
+
+> [!NOTE]
+> Trace-based evaluations use the OpenAI-compatible `evals` API (`project.get_openai_client().evals`). The native `project.evaluations` surface doesn't yet support trace-based evaluation.
+
+### Resolve the agent's otel_agent_id
+
+To get the agent's ID for traces, use the following:
+
+```python
+# Retrieve the registered agent and its resolved otel_agent_id.
+agent = project.agents.get(agent_name="travel-planner-agent")
+otel_agent_id = agent.versions.latest.definition.otel_agent_id
+```
+
+### Create and run the evaluation
+
+Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. For the full walkthrough, including how to create an eval group, configure testing criteria, and interpret results, see [Trace evaluation (preview)](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+
+## Manage external agents
+
+Use the same SDK methods to list, retrieve, and delete external agents.
+
+### List external agents
+
+```python
+agents = project.agents.list(kind="external")
+for a in agents:
+    print(a.name)
+```
+
+### Delete an external agent
+
+```python
+# Delete the registration. This does not affect the running agent.
+# force=True removes all internal revisions of the agent atomically.
+project.agents.delete(agent_name="travel-planner-agent", force=True)
+```
+
+Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
+
+## Troubleshooting
 
 ### Troubleshoot missing traces
 
@@ -252,47 +263,6 @@ If `create_version()` fails, check the following items:
 > * The `agent_name` value uses only alphanumeric characters, hyphens, and underscores.
 > * No existing agent with the same name and a different kind already exists. Use `project.agents.get()` to check.
 
-## Run a trace-based evaluation
-
-After traces flow into Application Insights, you can run evaluations directly over those traces. No separate dataset construction is required. Foundry resolves traces by matching `(project, agent_id)` over a lookback window.
-
-> [!NOTE]
-> Trace-based evaluations use the OpenAI-compatible `evals` API (`project.get_openai_client().evals`). The native `project.evaluations` surface doesn't yet support trace-based evaluation.
-
-### Resolve the agent's otel_agent_id
-
-To get the agent's ID for traces, use the following:
-
-```python
-# Retrieve the registered agent and its resolved otel_agent_id.
-agent = project.agents.get(agent_name="travel-planner-agent")
-otel_agent_id = agent.versions.latest.definition.otel_agent_id
-```
-
-## Manage external agents
-
-Use the same SDK methods to list, retrieve, and delete external agents.
-
-### List external agents
-
-```python
-agents = project.agents.list(kind="external")
-for a in agents:
-    print(a.name)
-```
-
-### Delete an external agent
-
-```python
-# Delete the registration. This does not affect the running agent.
-project.agents.delete(agent_name="travel-planner-agent")
-
-#Use the following line to delete the registration for all versions of the agent
-# project_client.agents.delete("travel-planner-agent", force=True)
-```
-
-Deleting the registration removes the agent from the Foundry portal and stops traces from appearing in the Foundry agent trace view. The spans remain in Application Insights, and the running agent is not affected.
-
 ## Related content
 
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)
@@ -302,4 +272,4 @@ Deleting the registration removes the agent from the Foundry portal and stops tr
 - [Register and manage custom agents (Control Plane)](../../control-plane/register-custom-agent.md)
 - [Built-in evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md)
 - [Azure Monitor OpenTelemetry overview](/azure/azure-monitor/app/opentelemetry-enable)
-- [run cloud evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites)
+- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md#prerequisites)
