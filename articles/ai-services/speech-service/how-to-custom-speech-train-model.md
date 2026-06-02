@@ -36,6 +36,16 @@ You can use a custom model for a limited time after it was trained. You must per
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you submit the fine-tuning job from the **Fine-tune a model** wizard that you opened when you [started custom speech fine-tuning](./how-to-custom-speech-create-project.md).
+
+1. On the **Review** pane, review the settings and acknowledge the charges.
+1. Select **Submit** to start the fine-tuning job.
+1. Wait for training to complete. When training finishes, select the custom model to open its details page.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
@@ -52,6 +62,8 @@ You can use a custom model for a limited time after it was trained. You must per
 1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png":::
+
+---
 
 ::: zone-end
 

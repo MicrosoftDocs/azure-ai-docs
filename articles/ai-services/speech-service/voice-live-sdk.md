@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 01/26/2026
+ms.date: 04/28/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the Voice Live SDK.
@@ -33,8 +33,8 @@ The Voice Live SDK supports the following languages and platforms:
 |----------------------|-----------|------------------|
 | C# | [C#](/dotnet/api/overview/azure/ai.voicelive-readme) | Windows, Linux, macOS |
 | Python | [Python](/python/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS|
-| Java (preview) | [Java](/java/api/overview/azure/ai-voicelive-readme) | Android, Windows, Linux, macOS |
-| JavaScript/TypeScript (preview) | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS |
+| Java | [Java](/java/api/overview/azure/ai-voicelive-readme) | Android, Windows, Linux, macOS |
+| JavaScript/TypeScript | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS |
 
 ## Code samples
 

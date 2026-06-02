@@ -3,11 +3,24 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2025
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### May 2026 release
+
+#### Custom voice fine-tuning in the Microsoft Foundry (new) portal
+
+Fine-tuning workflows for custom voice are now available via the Microsoft Foundry (new) portal. The playground experience walks you through model selection, voice talent registration, training data upload, model training, and endpoint deployment from the **Fine-tune a model** pane.
+
+- [Create a professional voice](../../professional-voice-create-project.md)
+- [Create a personal voice project](../../personal-voice-create-project.md)
+
+#### Custom avatar usage in Microsoft Foundry
+
+After you deploy a custom avatar, you can now try it directly from the fine-tuning job's **Use your avatar** box by selecting **Try Text to Speech Avatar** or **Try Voice Live**. You can also open the playgrounds from the **Models** navigation and select your custom avatar from the **Custom** tab. For more information, see [Create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
 
 ### March 2026 release
 
@@ -1483,13 +1496,13 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 - [SSML silence tag](../../speech-synthesis-markup-structure.md#add-silence) support.
 - General TTS voice quality improvements: Improved word-level pronunciation accuracy in nb-NO. Reduced 53% pronunciation error.
 
-> Read more at [this tech blog](https://techcommunity.microsoft.com/t5/azure-ai/neural-text-to-speech-previews-five-new-languages-with/ba-p/1907604).
+> For more information, see [Neural Text-to-Speech previews five new languages with innovative models in the low-resource setting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/neural-text-to-speech-previews-five-new-languages-with-innovative-models-in-the-/1907604).
 
 ### October 2020 release
 
 #### New features
 - Jenny supports a new `newscast` style. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
-- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/t5/azure-ai/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio/ba-p/1847860)
+- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio-fidelity-and-faste/1847860)
 - **[Custom voice](https://speech.microsoft.com/customvoice) & [Audio Content Creation Studio](https://speech.microsoft.com/audiocontentcreation) localized to 17 locales**. Users can easily switch the UI to a local language for a more friendly experience.
 - **Audio Content Creation**: Added style degree control for XiaoxiaoNeural; Refined the customized break feature to include incremental breaks of 50ms.
 
@@ -1510,7 +1523,7 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 
 * **Containers: Neural text to speech Container released in public preview with 16 voices available in 14 languages.** Learn more on [how to deploy Speech Containers for Neural text to speech](../../speech-container-howto.md)
 
-Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/t5/azure-ai/ignite-neural-tts-updates-new-language-support-more-voices/ba-p/1698544)
+Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/ignite-2020-neural-tts-updates-new-language-support-more-voices-and-flexible-dep/1698544)
 
 ### August 2020 release
 

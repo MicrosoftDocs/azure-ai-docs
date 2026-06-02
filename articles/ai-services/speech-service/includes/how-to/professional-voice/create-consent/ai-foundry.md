@@ -25,6 +25,26 @@ You can find the verbal consent statement in multiple languages on [GitHub](http
 
 To add a voice talent profile and upload their consent statement, follow these steps:
 
+# [Foundry (new)](#tab/foundry-new)
+
+These steps continue from the **Fine-tune a model** wizard you opened in [Create a professional voice](../../../../professional-voice-create-project.md).
+
+1. On the **Register voice talent** pane of the wizard, select **Add voice talent** > **Upload data**.
+1. In the **Upload data** pane, upload the verbal consent statement that the voice talent recorded:
+
+   - Select the **Language** of the recorded statement.
+   - Enter the **Voice talent name**. The name must match the person who recorded the consent statement, in the same language used in the recording.
+   - Enter the **Company name**. The company name must match what was spoken in the recording, in the same language.
+   - Drag and drop the `.mp3` file into the upload area, or select **Browse for a file** to select it.
+   - Make sure the verbal statement was [recorded](../../../../record-custom-voice-samples.md) with the same settings, environment, and speaking style as your fine-tuning data.
+
+1. Select **Upload**.
+1. On the **Register voice talent** pane, select the voice talent you just added, and then select **Next**.
+
+After the voice talent status is *Succeeded*, you can [add fine-tuning data](../../../../professional-voice-create-training-set.md).
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
@@ -43,6 +63,8 @@ To add a voice talent profile and upload their consent statement, follow these s
 1. Review the voice talent and persona details, and select **Add voice talent**.
 
 After the voice talent status is *Succeeded*, you can [add fine-tuning data](../../../../professional-voice-create-training-set.md).
+
+---
 
 ## Next steps
 
