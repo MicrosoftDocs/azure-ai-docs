@@ -75,7 +75,7 @@ The agent creation script is a separate utility. Create a temporary console proj
 1. Add the required NuGet packages:
 
     ```shell
-    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Projects
     dotnet add package Azure.Identity
     ```
 
