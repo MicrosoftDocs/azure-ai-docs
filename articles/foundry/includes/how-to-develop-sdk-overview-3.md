@@ -12,11 +12,17 @@ ms.custom: include
 
 ## Agent Framework
 
-[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [code-based agents](../agents/overview.md#code-based-agents) on Microsoft Foundry, and it's cloud-provider-agnostic so the same code can run in your own process or be packaged as a Foundry-managed Hosted agent.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [code-based agents](../agents/overview.md#code-based-agents) on Microsoft Foundry.
 
-### How it connects to Foundry
+### Run your code as a Hosted agent
 
-Agent Framework calls the **Foundry Responses API** through the `FoundryChatClient` provider. The `FoundryChatClient` targets your project endpoint:
+The main story for code-based agents in Foundry is [Hosted agents (preview)](../agents/overview.md#hosted-agents-preview). Write your agent with Agent Framework, package it as a container image or zip of your source code, and let Foundry run it with a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability.
+
+Hosted agents are the recommended path when you want a Foundry-managed, network-addressable endpoint that other apps or agents can call. See [Deploy your first Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md).
+
+### Build agents in code outside Foundry with the Responses API
+
+If you're hosting your agent outside of Foundry — in your own process or infrastructure — you can also use Agent Framework to call the **Responses API in your project endpoint** directly. Agent Framework connects through the `FoundryChatClient` provider, which targets:
 
 ```
 {project_endpoint}/openai/v1/responses
@@ -28,16 +34,7 @@ Going through the project endpoint — instead of a resource-level OpenAI endpoi
 - Platform tools beyond the OpenAI tool set, including file search, code interpreter, memory, web search, MCP servers, SharePoint, WorkIQ, and Fabric IQ.
 - Project-scoped data, On-Behalf-Of (OBO) tool authentication, and the project's tracing, content filters, and identity configuration.
 
-### When to use it
-
-Use Agent Framework when you want your agent definition (instructions, tools, model) to live in your application code and ship in the same release cycle as the app, rather than as a portal-defined [prompt agent](../agents/quickstarts/prompt-agent.md) or a [workflow agent](../agents/concepts/workflow.md).
-
-The same Agent Framework code supports two hosting modes — they're additive, not alternatives:
-
-- **Self-hosted** — Run the agent in your own process or infrastructure. You manage the endpoint, scaling, and lifecycle; Foundry provides the models, platform tools, and API. Best for local iteration and integrating with existing code. See [Quickstart: Use the Foundry Responses API](../agents/quickstarts/responses-api.md).
-- **Hosted agent (preview)** — Package the same code as a container and deploy it to Foundry. You get a managed endpoint, automatic scaling on isolated Micro VMs, a dedicated Microsoft Entra agent identity, session-level state, and end-to-end observability. See [Deploy your first Hosted agent](../agents/quickstarts/quickstart-hosted-agent.md).
-
-Start self-hosted while you iterate, then graduate the same codebase to a Hosted agent when you need a managed, network-addressable endpoint that other apps or agents can call.
+This pattern is additive to Hosted agents, not an alternative — the same Agent Framework code can call the Responses API from your own process today and be packaged as a Hosted agent later when you want a Foundry-managed endpoint. See [Quickstart: Build agents using the Responses API](../agents/quickstarts/responses-api.md).
 
 For a full comparison of agent types and hosting choices, see [What is Microsoft Foundry Agent Service?](../agents/overview.md).
 
