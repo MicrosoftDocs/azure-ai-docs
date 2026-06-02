@@ -22,7 +22,7 @@ Every agent in Microsoft Foundry has a stable endpoint from the moment it's crea
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
-- [Publish an agent as a digital worker in Agent 365](./agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
 > [!NOTE]
 > If you're migrating from the previous publishing model, see [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md).

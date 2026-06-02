@@ -1,20 +1,22 @@
 ---
-title: Quota tier free
-description: Quota tier limits for free tier
+title: Quota tier 0
+description: Quota tier limits for tier 0
 manager: nitinme
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/18/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
-### Free Tier
+### Tier 0
 
-| Model Name       | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
-|:-----------------|:------------------|------------:|:------------|
-| gpt-4.1-mini     | Standard          |         200 | 200,000     |
-| gpt-image-1      | GlobalStandard    |           9 | -           |
-| gpt-image-1-mini | GlobalStandard    |          12 | -           |
+| Model Name             | Deployment Type   | Requests Per Minute (RPM) | Tokens Per Minute (TPM) |
+|:-----------------------|:------------------|--------------------------:|------------------------:|
+| gpt-4.1-mini           | GlobalStandard    |                       200 |                 200,000 |
+| gpt-5-mini             | GlobalStandard    |                       500 |                 500,000 |
+| o4-mini                | GlobalStandard    |                       100 |                 100,000 |
+| text-embedding-3-small | GlobalStandard    |                1000 / 10s |               1,000,000 |
 

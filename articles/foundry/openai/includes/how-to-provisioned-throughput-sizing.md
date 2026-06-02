@@ -169,16 +169,16 @@ This section lists other Foundry Models sold by Azure, not including the Azure O
 
 <sup>2</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
-### Fireworks on Microsoft Foundry models (Preview)
+### Fireworks on Microsoft Foundry models
 
-The following Fireworks on Microsoft Foundry models currently support provisioned throughput.
+The following Fireworks on Microsoft Foundry models support provisioned throughput.
 
-|Topic|**gpt-oss-120b**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**DeepSeek v3.1**|**DeepSeek v3.2**|**Qwen3 14B**|**MiniMax 2.5**|**GLM-5**|**GLM-4.7**|
-|---|---|---|---|---|---|---|---|---|---|---|---|
-|Global provisioned minimum deployment|80|500|500|800|800|800|1200|80|400|700|800|
-|Global provisioned scale increment|40|275|275|400|400|400|600|40|200|350|400|
-|Input TPM per PTU|13,500|1,250|700|530|2,000|1,050|1,500|4,800|3,000|3,500|3,000|
-|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
+|Topic|**DeepSeek v3.1**|**DeepSeek V4 Flash**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM-5.1**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.6**|**Llama 3.1 8B Instruct**|**Ministral 3 3B Instruct 2512**|**Qwen 3.5 9B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Global provisioned minimum deployment|200|100|400|200|200|200|400|200|200|200|40|40|40|40|450|200|
+|Global provisioned scale increment|100|50|200|100|100|100|200|100|100|100|20|20|20|20|225|100|
+|Input TPM per PTU|2,100|2,800|200|5,400|2,200|6,000|900|2,500|1,400|4,000|57,800|25,400|10,700|17,800|37,253|4,032|
+|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 

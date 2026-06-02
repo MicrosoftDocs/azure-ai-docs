@@ -23,7 +23,7 @@ Use the Custom Vision client library for Java to:
 
 [Reference documentation](/java/api/overview/azure/cognitiveservices/client/customvision) | 
 Library source code for [(training)](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) and [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices)| 
-Artifact (Maven) for [(training)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2/jar) and [(prediction)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2/jar) | 
+Artifact (Maven) for [(training)](https://central.sonatype.com/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2) and [(prediction)](https://central.sonatype.com/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2) | 
 [Samples](/samples/browse/?products=azure&terms=custom%20vision)
 
 ## Prerequisites

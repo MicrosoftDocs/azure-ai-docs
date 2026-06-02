@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 06/02/2026
 ms.custom: include
 ---
 
@@ -28,6 +28,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 | Model | Latency target value<sup>2</sup> | 
 | --- | --- |
+| gpt-5.5, 2026-04-24 | 99% > 100 Tokens Per Second |
 | gpt-5.4, 2026-03-05<sup>1</sup> | 99% > 50 Tokens Per Second |
 | gpt-5.2, 2025-12-11 | 99% > 50 Tokens Per Second |
 | gpt-5.1, 2025-11-13 | 99% > 50 Tokens Per Second |

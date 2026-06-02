@@ -45,9 +45,12 @@ The platform automatically manages the container lifecycle based on activity, pr
 
 Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedicated sandbox with a persistent filesystem (`$HOME` and `/files`), enabling scale-to-zero with stateful resume and predictable cold starts. Sessions are isolated from each other, and state is automatically restored when a session resumes after going idle.
 
-### Protocols: Responses and Invocations
+### Protocols: Responses, Invocations, and Invocations (WebSocket)
 
-Hosted agent containers expose one or both of two protocols. Each protocol is provided by a lightweight library that handles the HTTP server, health checks, and OpenTelemetry integration. Both protocols are available in [regions that support Hosted agents](#region-availability). 
+Hosted agent containers can expose one or more protocols. Each protocol is provided by a lightweight library that handles the HTTP or WebSocket server, health checks, and OpenTelemetry integration. The Responses and Invocations protocols are available in all [regions that support Hosted agents](#region-availability).
+
+> [!IMPORTANT]
+> The **Invocations (WebSocket)** protocol (`invocations_ws`) is in preview and is currently available only in **North Central US**.
 
 #### Which protocol should I use?
 
@@ -56,11 +59,12 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 | Conversational chatbot or assistant | **Responses** | The platform manages conversation history, streaming events, and session lifecycle—use any OpenAI-compatible SDK as the client. |
 | Multi-turn Q&A with RAG or tools | **Responses** | Built-in conversation ID threading and tool result handling. |
 | Background / async processing | **Responses** | background: true with platform-managed polling and cancellation—no custom code needed. |
-| Agent published to Teams or M365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the platform automatically bridges Responses to the Activity protocol for channel delivery. |
+| Agent published to Teams or Microsoft 365 | **Responses** + **Activity** | The Responses protocol powers the agent logic; the platform automatically bridges Responses to the Activity protocol for channel delivery. |
 | Webhook receiver (GitHub, Stripe, Jira, etc.) | **Invocations** | The external system sends its own payload format—you can't change it to match /responses. |
 | Non-conversational processing (classification, extraction, batch) | **Invocations** | The input is structured data, not a chat message. Arbitrary JSON in, arbitrary JSON out. |
 | Custom streaming protocol (AG-UI, etc.) | **Invocations** | AG-UI and other agent-UI protocols aren't OpenAI-compatible—you need raw SSE control. |
 | Protocol bridge (GitHub Copilot, proprietary systems) | **Invocations** | The caller has its own protocol that doesn't map to /responses. |
+| Real-time voice agent (microphone in, speech out) | **Invocations (WebSocket)** | Bidirectional streaming over a single persistent connection. Pair with Pipecat, LiveKit, or Voice Live in your container. See [Build a voice agent](../how-to/build-voice-agent.md). |
 
 > [!TIP]
 > **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a Hosted agent can support both protocols simultaneously.
@@ -78,7 +82,7 @@ Hosted agent containers expose one or both of two protocols. Each protocol is pr
 
 #### Additional protocols
 
-Hosted agents also support the **Activity** protocol for Teams and Microsoft 365 channel integration. When you use the Responses protocol for agent logic and publish to Microsoft 365 channels such as Teams, the platform automatically bridges Responses to the Activity protocol for channel delivery—no separate wiring is required. The **A2A** protocol supports agent-to-agent delegation. All four protocols—Responses, Invocations, Activity, and A2A—can be combined in a single agent.
+Hosted agents also support the **Activity** protocol for Teams and Microsoft 365 channel integration. When you use the Responses protocol for agent logic and publish to Microsoft 365 channels such as Teams, the platform automatically bridges Responses to the Activity protocol for channel delivery—no separate wiring is required. The **A2A** protocol supports agent-to-agent delegation. Supported protocols can be combined in a single agent.
 
 ### Agent identity and endpoint
 
@@ -88,6 +92,7 @@ The endpoint is available immediately after deployment—publishing isn't requir
 
 - **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
+- **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/agents/endpoint/protocols/invocations_ws?project_name={project}&agent_name={name}
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
 Which endpoints are active depends on the protocols declared in the agent version definition (set in agent.yaml when using azd, or via container_protocol_versions when using the SDK).
@@ -232,6 +237,7 @@ Hosted agents are currently available in the following regions:
 - North Central US
 - Sweden Central
 - Canada Central
+- Canada East
 - Southeast Asia
 - Poland Central
 - South Africa North
@@ -243,6 +249,7 @@ Hosted agents are currently available in the following regions:
 - Norway East
 - Japan East
 - France Central
+- Germany West Central
 - Switzerland North
 - Spain Central
 - Australia East
@@ -258,8 +265,9 @@ Hosted agents are currently available in the following regions:
 | Deploy using the Foundry SDK | [Deploy a Hosted agent by using the Foundry SDK](../../agents/how-to/deploy-hosted-agent.md) |
 | Update, delete, invoke, or stream logs | [Manage Hosted agents](../../agents/how-to/manage-hosted-agent.md) |
 | Set up tracing and monitoring | [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md) |
+| Optimize agent instructions automatically | [Agent optimizer overview](agent-optimizer-overview.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
-| Publish to Teams, M365, or custom apps | [Agent applications](../how-to/agent-applications.md) |
+| Publish to Teams, Microsoft 365, or custom apps | [Agent applications](../how-to/agent-applications.md) |
 | Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) · [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
 
 ## Related content

@@ -57,6 +57,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 |Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
 |Azure APIM|✅|APIM supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
 |Model Gateway|✅|Model Gateway supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
+|Copilot Studio Environment| |Bring your Copilot Studio agents into Foundry Control Plane to view. Connection creation is supported in the Admin page through the Foundry portal, connecting directly to your Copilot Studio Environment.|
 
 ### Azure Key Vault limitations
 

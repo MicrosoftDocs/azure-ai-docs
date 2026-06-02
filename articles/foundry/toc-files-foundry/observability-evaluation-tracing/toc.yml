@@ -24,6 +24,8 @@ items:
      href: ../../concepts/evaluation-evaluators/agent-evaluators.md
    - name: Azure OpenAI evaluators
      href: ../../concepts/evaluation-evaluators/azure-openai-graders.md
+   - name: Rubric evaluators
+     href: ../../concepts/evaluation-evaluators/rubric-evaluators.md
    - name: Custom evaluators
      href: ../../concepts/evaluation-evaluators/custom-evaluators.md
 
@@ -34,6 +36,8 @@ items:
      href: ../../observability/how-to/evaluate-agent.md
    - name: Run evaluations from the SDK
      href: ../../how-to/develop/cloud-evaluation.md
+   - name: Generate a synthetic evaluation dataset
+     href:  ../../observability/how-to/evaluation-dataset-synthetic.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
      href: ../../how-to/evaluate-generative-ai-app.md
@@ -42,6 +46,11 @@ items:
      displayName: accuracy,metrics
    - name: Analyze evaluation results
      href: ../../observability/how-to/cluster-analysis.md
+   - name: Run agent evaluations with the Azure Developer CLI
+     displayName: azd cli
+     href: ../../observability/how-to/azure-developer-cli-evaluation.md
+   - name: Benchmark evaluations
+     href: ../../observability/how-to/benchmark-evaluations.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md
 
@@ -78,11 +87,18 @@ items:
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
+   - name: Review agent interactions with Trace Replay
+     href: ../../observability/how-to/trace-agent-replay.md
    - name: Add client-side tracing
      href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
-
+   - name: Register external agents for observability (preview)
+     href: ../../agents/how-to/register-external-agent.md
+   - name: Convert agent traces into evaluation datasets 
+     href:  ../../observability/how-to/traces-to-dataset.md
+   - name: Tracing and data handling
+     href: ../../observability/concepts/trace-data.md
 # Troubleshooting
 - name: Troubleshoot evaluation and observability issues
   href: ../../observability/how-to/troubleshooting.md

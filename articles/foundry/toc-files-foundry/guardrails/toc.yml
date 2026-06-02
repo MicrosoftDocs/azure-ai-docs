@@ -40,6 +40,9 @@ items:
   href: ../../openai/concepts/safety-system-message-templates.md
 - name: Third party Guardrail integrations
   href: ../../guardrails/third-party-integrations.md
+- name: Guided Guardrail (preview)
+  href: ../../guardrails/guided-set-up.md
+
 
 
 
