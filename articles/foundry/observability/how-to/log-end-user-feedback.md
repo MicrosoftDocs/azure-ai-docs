@@ -15,7 +15,7 @@ ms.subservice: foundry-observability
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Capture end user feedback—such as thumbs up/down reactions or numeric rating scales—from your AI application and route it to your observability backend using OpenTelemetry (OTel) semantics. Logging user feedback enables you to correlate subjective quality signals with trace data, measure user satisfaction over time, and drive continuous improvement of your agents and models.
+Capture end user feedback, such as thumbs up or thumbs down reactions or numeric rating scales, from your AI application and route it to your observability backend by using OpenTelemetry (OTel) semantics. When you log user feedback, you can correlate subjective quality signals with trace data, measure user satisfaction over time, and drive continuous improvement of your agents and models.
 
 ## Overview
 
@@ -23,10 +23,10 @@ End user feedback logging uses OTel semantic conventions to emit structured feed
 
 Key capabilities:
 
-- **Thumbs up/down** — Record binary user approval signals tied to a specific agent response.
-- **Rating scale** — Capture numeric scores (for example, 1–5 stars) to quantify user satisfaction.
-- **Trace correlation** — Each feedback event links back to the originating trace and span, enabling drill-down from aggregate satisfaction metrics to individual interactions.
-- **Standard OTel transport** — Feedback events use the OpenTelemetry Events API, so they're exported through your existing OTel pipeline to Application Insights or any compatible backend.
+- **Thumbs up or thumbs down:** Record binary user approval signals that tie to a specific agent response.
+- **Rating scale:** Capture numeric scores, such as 1–5 stars, to quantify user satisfaction.
+- **Trace correlation:** Each feedback event links back to the originating trace and span, so you can drill down from aggregate satisfaction metrics to individual interactions.
+- **Standard OTel transport:** Feedback events use the OpenTelemetry Events API, so they're exported through your existing OTel pipeline to Application Insights or any compatible backend.
 
 ## Prerequisites
 
@@ -41,25 +41,25 @@ Key capabilities:
 
 ## Evaluation types
 
-Human feedback is captured as a `gen_ai.evaluation.result` OpenTelemetry event. Two evaluation types are supported:
+Capture human feedback as a `gen_ai.evaluation.result` OpenTelemetry event. The system supports two evaluation types:
 
 | Type | Description | UI rendering | Score range |
 |------|-------------|--------------|-------------|
 | **Binary** | A pass/fail evaluation. | Thumbs up or thumbs down | `0.0` (fail) or `1.0` (pass) |
 | **Likert 5-point** | An ordinal evaluation on a 5-point scale. | 5-star rating or Likert scale (Strongly Disagree → Strongly Agree) | `1.0` to `5.0` |
 
-Feedback can originate from two source types:
+Two source types can provide feedback:
 
-- **Builder** — A human evaluating with a Microsoft observability solution, such as in Foundry or Azure Monitor portal.
-- **End user** — A human evaluating through an application interface that a Microsoft observability solution is monitoring.
+- **Builder:** A human evaluating with a Microsoft observability solution, such as in Foundry or Azure Monitor portal.
+- **End user:** A human evaluating through an application interface that a Microsoft observability solution is monitoring.
 
 ## Event attributes
 
 Each human evaluation is emitted as a `gen_ai.evaluation.result` event. The following sections describe the required attributes for each evaluation type. For a complete reference implementation, see [sample_human_evaluations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_human_evaluations.py).
 
-## Emit a binary evaluation (thumbs up/down)
+## Emit a binary evaluation (thumbs up or down)
 
-Binary evaluations capture pass/fail feedback. The score must be `0.0` (fail) or `1.0` (pass).
+Binary evaluations capture pass or fail feedback. The score must be `0.0` (fail) or `1.0` (pass).
 
 Rules:
 
