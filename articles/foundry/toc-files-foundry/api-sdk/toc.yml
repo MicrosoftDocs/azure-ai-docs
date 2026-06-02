@@ -1,4 +1,8 @@
 items:
+# Foundry API Reference
+- name: Foundry API Reference
+  href: https://ai.azure.com/api-reference/
+
 # SDK Overview
 - name: Microsoft Foundry SDKs
   href: ../../how-to/develop/sdk-overview.md
@@ -9,16 +13,16 @@ items:
   href: ../../openai/how-to/responses-model-routing.md
 
 # Azure AI Projects SDK
-- name: Azure AI Projects
+- name: Foundry SDK Reference
   items:
+  - name: Python
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
   - name: C#
     href: /dotnet/api/overview/azure/ai.projects-readme
   - name: JavaScript
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-latest&preserve-view=true
-  - name: Python
-    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
-  - name: REST API
-    href: /rest/api/aifoundry/aiproject
+  - name: Java
+    href: /java/api/overview/azure/ai-projects-readme?view=azure-java-latest&preserve-view=true
 
 # Azure OpenAI SDK and APIs
 - name: Azure OpenAI
