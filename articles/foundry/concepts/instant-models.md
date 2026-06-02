@@ -22,6 +22,9 @@ Instant models let you call any supported model by name — no deployment requir
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 - A Foundry project in **West US 3** (the only supported region for instant models during preview). If you need to create a project, see [Create a project](../how-to/create-projects.md).
+- The **Foundry User** role on the project or account.
+
+[!INCLUDE [foundry-role-rename-note](../includes/role-rename-note.md)]
 
 ## Start using models instantly
 
@@ -79,18 +82,35 @@ Deployments aren't going away. They remain the right choice when you need reserv
 
 ## Supported models
 
-<!-- [TODO] Add specific model list before publish -->
-
 New models support instant access by default when they're released. Support for additional models is considered based on customer demand.
 
 To see all models that support instant access:
 
 1. Open a project in **West US 3** in the new Foundry experience, 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. In the model catalog, select **Instant** under **Capabilities** to view the available instant models.
+1. In the model catalog, select **Instant** under **Development options** to view the available instant models.
+
+You can also list instant models programmatically:
+
+```bash
+SUBSCRIPTION_ID="<your-subscription-id>"
+LOCATION="westus3"
+
+az rest --method get \
+  --url "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/providers/Microsoft.CognitiveServices/locations/$LOCATION/models?api-version=2025-06-01" \
+  --output json \
+| jq -r '(.value // .models // .)[]
+  | select((.model.capabilities.instant // "false" | tostring | ascii_downcase) == "true")
+  | .model.name' \
+| sort -u
+```
 
 > [!NOTE]
 > During the preview, instant models are available in projects in **West US 3** only.
+> 
+> Some instant models might appear in the list even if your subscription has no
+> quota for them. For more information, see
+> [Quotas and limits for Foundry Models](../foundry-models/quotas-limits.md).
 
 ## When to use instant models vs. deployments
 
@@ -118,8 +138,6 @@ By default, instant models route to the latest evergreen version of a model. To 
 | `model-name` | Routes to the latest version |
 | `model-name-2025-04-01` | Routes to that specific version |
 
-<!-- [TODO] Confirm version suffix format (hyphen vs. other delimiter) before publish -->
-
 Version pinning is opt-in. If your application requires stability, include the version suffix. Otherwise, you always get the latest version automatically.
 
 ## How quota is consumed
@@ -140,6 +158,56 @@ For more details on how global and regional quotas interact, see [Manage and inc
 | Block specific models or providers | Azure Policy definitions apply to instant models the same way they apply to deployments |
 | Pin to a model version | Append the version suffix to the model name (see [Model versions](#model-versions)) |
 | Disable instant models entirely | Administrators can turn off instant models at the subscription level through Azure Policy |
+
+To remove instant models from an account, configure the settings through Bicep
+or ARM REST.
+
+### [REST API](#tab/rest-api)
+
+Update your account with:
+
+```http
+PATCH https://management.azure.com/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account}?api-version=2026-01-15-preview
+Authorization: Bearer {arm_token}
+Content-Type: application/json
+```
+
+Use this request body to effectively shut off instant model access:
+
+```json
+{
+  "properties": {
+    "instant": {
+      "raiPolicyName": "Microsoft.DefaultV2",
+      "modelAllowList": []
+    }
+  }
+}
+```
+
+### [Bicep](#tab/bicep)
+
+Update your existing account resource with an `instant` block:
+
+```bicep
+resource account 'Microsoft.CognitiveServices/accounts@2026-01-15-preview' = {
+  name: accountName
+  location: location
+  kind: 'AIServices'
+  sku: {
+    name: 'S0'
+  }
+  // Keep your existing account properties and add instant settings.
+  properties: {
+    instant: {
+      raiPolicyName: 'Microsoft.DefaultV2'
+      modelAllowList: []
+    }
+  }
+}
+```
+
+---
 
 > [!IMPORTANT]
 > All instant models use default [guardrails](../guardrails/guardrails-overview.md) and content filters. However, you can't configure custom guardrails or Responsible AI (RAI) policies on a per-model basis for instant models. You can set a default RAI policy at the account level through the API, but that policy applies uniformly to all instant models. If you need different content filtering policies for individual models, use a deployment.
