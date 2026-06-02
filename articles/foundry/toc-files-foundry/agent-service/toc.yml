@@ -214,6 +214,8 @@ items:
     href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Migrate from Agent Applications to the new agent model
     href: ../../agents/how-to/migrate-agent-applications.md
+  - name: Disable creation of classic agents
+    href: ../../agents/how-to/disable-classic-agents.md
 # Reference
 - name: Reference
   items:
