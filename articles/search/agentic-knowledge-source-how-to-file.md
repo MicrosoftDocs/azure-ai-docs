@@ -231,7 +231,7 @@ Prefer: return=representation
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
