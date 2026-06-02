@@ -4,8 +4,8 @@ description: "Get started with audio generation using Azure OpenAI."
 manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
-ms.topic: how-to
-ms.date: 01/30/2026
+ms.topic: quickstart
+ms.date: 05/31/2026
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted

@@ -24,7 +24,7 @@ In this article, you learn how to:
 
 MAI image models in Microsoft Foundry include:
 
-| Model name | Model version | Key Capabilities |
+| Model name | Model version | Type |
 | --- | --- | --- |
 | `MAI-Image-2.5-Flash` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
 | `MAI-Image-2.5` (Preview) | `2026-06-02` | Text-to-image generation<br> Image-to-image edits |
@@ -77,7 +77,7 @@ After deployment, use the [Foundry playground](../../concepts/concept-playground
 
 ## Run text-to-image generation
 
-The following examples show how to generate an image from a text prompt using MAI image models with the [MAI image generations API](#api-endpoints).
+The following example shows how to generate an image from a text prompt using an MAI image model with the [MAI image generations API](#api-endpoints).
 
 # [Python](#tab/python)
 
@@ -220,10 +220,12 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 
 ## Run an image-to-image edit
 
-The following examples show how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints). Requests for image-to-image edits uses **multipart form data**.
+The following example shows how to perform an image-to-image edit using an MAI image model with the [MAI image edits API](#api-endpoints).
+
+`MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) support image-to-image edits using the Image edits API.
 
 > [!NOTE]
-> The `MAI-Image-2.5-Flash` (Preview) and `MAI-Image-2.5` (Preview) models support image-to-image edits using the Image edits API.
+> Requests for image-to-image edits use **multipart form data**.
 
 # [Python](#tab/python)
 
@@ -366,7 +368,7 @@ MAI-Image-2.5 (Preview) is a text-to-image generation and image-to-image editing
 
 ### MAI-Image-2e (Preview)
 
-MAI-Image-2e (Preview) delivers high-quality image generation – just like MAI-Image-2 — but up to 22% faster and four times more efficient than MAI-Image-2, making it the smartest choice for developers building at scale. MAI-Image-2e is best suited for high-volume, fast-turnaround scenarios — for example, product imagery at scale, marketing variations, branded assets, or any workflow where efficiency and cost per image are key.
+MAI-Image-2e (Preview) delivers high-quality image generation, just like MAI-Image-2, but up to 22% faster and four times more efficient than MAI-Image-2, making it a smart choice for developers building at scale. MAI-Image-2e is best suited for high-volume, fast-turnaround scenarios — for example, product imagery at scale, marketing variations, branded assets, or any workflow where efficiency and cost per image are key.
 
 ### MAI-Image-2 (Preview)
 
@@ -391,7 +393,7 @@ After you deploy an MAI image model, use the **MAI image generations API** to ge
 
 To authenticate, you need your **resource endpoint** and either a **Microsoft Entra ID token** or an **API key**. You can find these values in the **Keys and Endpoint** section of your resource in the Azure portal, or on the deployment details page in the [Foundry portal](https://ai.azure.com).
 
-#### Model capabilities
+#### Request parameters
 
 The following table lists the request parameters for the image APIs:
 
@@ -424,7 +426,7 @@ To request a quota increase, submit the [quota increase request form](https://ak
 
 ## Troubleshoot
 
-Use the following table to resolve common errors when working with MAI image generation models:
+Use the following table to resolve common errors when working with MAI image models:
 
 | Error | Cause | Fix |
 |-------|-------|-----|
@@ -435,7 +437,7 @@ Use the following table to resolve common errors when working with MAI image gen
 
 ## Responsible AI considerations
 
-When using MAI image generation models in Foundry, consider these responsible AI practices:
+When using MAI image models in Foundry, consider these responsible AI practices:
 
 - **Be aware of known limitations**: Despite technical mitigations such as data filtering and content classifiers applied at the system level, image generation models can produce harmful or unexpected content based on user requests. Common risk areas include violent or gory content, sexual content or nudity, depictions of public figures, and replication of trademarked or other protected material.
 - **Configure content safety**: Apply additional mitigations appropriate to your use case, because no generative model is immune to adversarial prompts.

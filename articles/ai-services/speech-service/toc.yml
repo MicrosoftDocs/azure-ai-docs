@@ -652,49 +652,49 @@ items:
     - name: Speech to text
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note.md
+        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security.md
+        href: ../../ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Text to speech
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Code of conduct
         href: /legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context
       - name: Limited access
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure for voice and avatar talent
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines.md?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines-avatar.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines-avatar.md?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns.md?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Voice Live
       items:
       - name: Transparency note
-        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md?context=/azure/ai-services/speech-service/context/context
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
         items:
         - name: Use cases for Pronunciation Assessment
-          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment.md
+          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
         - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md
+          href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md?context=/azure/ai-services/speech-service/context/context
     - name: Embedded speech
-      href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md
+      href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md?context=/azure/ai-services/speech-service/context/context
 - name: Resources
   items:
     - name: Known issues

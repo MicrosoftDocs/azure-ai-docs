@@ -19,7 +19,7 @@ Web search enables models to retrieve and ground responses with real-time inform
 > [!IMPORTANT]
 > - Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When you use Grounding with Bing Search and/or Grounding with Bing Custom Search, your data flows outside your compliance and geo boundary.
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. To learn more, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. To learn more, see [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
 > - [Learn more](#manage-web-search-tool) about how Azure admins can manage access to the use of Web search.
 
 ## Prerequisites
@@ -399,7 +399,7 @@ A successful response that uses web search typically contains two parts:
 ```
 
 - A `web_search_call` output item that records the action performed:
-  - `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing)).
+  - `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing)).
   - `open_page`: indicates the agent opened a page. Available with all reasoning models.
   - `find_in_page`: indicates the agent searched within an opened page. Available with all reasoning models.
 - A message output item containing:
@@ -856,7 +856,7 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 - Live internet access isn't supported. Azure OpenAI always treats the `external_web_access` parameter as `false`.
 - The domain allow list supports up to 100 URLs.
-- Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+- Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
 - The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
 - The `open_page` and `find_in_page` actions are available only with reasoning models.
 
