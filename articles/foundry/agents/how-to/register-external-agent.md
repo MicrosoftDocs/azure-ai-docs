@@ -30,7 +30,7 @@ The following diagram shows the data flow: your external agent emits OpenTelemet
 :::image type="content" source="../media/register-external/architecture.svg" alt-text="Diagram that shows the data flow for external agent observability. The external agent emits OpenTelemetry spans to Application Insights, which connects to the Foundry portal trace view. A separate registration call creates the agent record in the Foundry project." lightbox="../media/register-external/architecture.svg":::
 
 > [!IMPORTANT]
-> External agents are in public preview. Create and update requests require the `Foundry-Features: ExternalAgents=V1Preview` header. SDK callers enable this by constructing `AIProjectClient` with `allow_preview=True`.
+> External agents are in preview. Create and update requests require the `Foundry-Features: ExternalAgents=V1Preview` header. SDK callers enable this by constructing `AIProjectClient` with `allow_preview=True`.
 
 ## Prerequisites
 
