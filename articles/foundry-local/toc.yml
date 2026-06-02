@@ -66,4 +66,4 @@ items:
     - name: CLI (preview) best practice and troubleshooting
       href: reference/reference-best-practice.md
 - name: Foundry Local on Azure Local
-  href: /azure/azure-local/manage/foundry-local-overview
+  href: /azure/azure-sovereign-clouds/private/foundry-local/
