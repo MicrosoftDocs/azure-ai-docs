@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 04/30/2026
+ms.date: 05/26/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -30,29 +30,29 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | GA | 2026-10-01 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
-| gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
+| gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-06-01 | — |
 | gpt-4o-mini-tts | 2025-12-15 | GA | 2026-12-15 | — |
-| gpt-4o-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
+| gpt-4o-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
-| gpt-5-chat | 2025-08-07 | Preview | 2026-06-09 | gpt-5.3-chat |
-| gpt-5-chat | 2025-10-03 | Preview | 2026-06-09 | gpt-5.3-chat |
+| gpt-5-chat | 2025-08-07 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5-chat | 2025-10-03 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-pro | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
-| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-09 | gpt-5.3-chat |
+| gpt-5.1-chat | 2025-11-13 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.1-codex | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2026-12-05 | — |
 | gpt-5.1-codex-mini | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.2 | 2025-12-11 | GA | 2026-12-12 | — |
-| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-09 | gpt-5.3-chat |
-| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-09 | — |
+| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-01-14 | — |
-| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-09 | — |
+| gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.3-codex | 2026-02-24 | GA | 2027-02-25 | — |
 | gpt-5.4 | 2026-03-05 | GA | 2027-03-05 | — |
 | gpt-5.4-mini | 2026-03-17 | GA | 2027-03-18 | — |
@@ -63,21 +63,25 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
+| gpt-chat-latest | 2026-05-05 | Preview | 2026-11-05 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-05-15 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
 | gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
+| gpt-realtime-2 | 2026-05-06 | GA | 2027-05-06 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-07-15 | — |
+| o1-pro | 2025-03-19 | GA | 2026-09-18 | — |
 | o3 | 2025-04-16 | GA | 2026-10-16 | — |
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
-| sora-2 | 2025-10-06 | Preview | 2026-06-03 | — |
+| sora-2 | 2025-10-06 | Preview | 2026-06-23 | sora-2 (2025-12-08) |
+| sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 1 | GA | 2027-04-15 | — |
@@ -143,6 +147,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| model-router | 2025-05-19 | Preview | 2026-07-31 | — |
+| model-router | 2025-08-07 | Preview | 2026-07-31 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
 
 ### Mistral AI
@@ -150,7 +156,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Mistral-Large-3 | 1 | GA | — | — |
-| mistral-document-ai-2505 | 1 | GA | — | — |
+| mistral-document-ai-2505 | 1 | GA | 2026-05-31 | mistral-document-ai-2512 |
 | mistral-document-ai-2512 | 1 | GA | — | — |
 
 ### MoonshotAI
@@ -158,6 +164,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | Kimi-K2.5 | 1 | Preview | 2027-01-26 | — |
+| Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
 
 ### OpenAI-OSS
 
@@ -261,13 +268,6 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Mistral-large | 1 | GA | — | — |
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
-
-### MoonshotAI
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
-
 
 ## Related content
 

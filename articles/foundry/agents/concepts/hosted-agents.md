@@ -86,7 +86,7 @@ Every Hosted agent deployed to a Foundry project gets its own **dedicated Micros
 
 The endpoint is available immediately after deployment—publishing isn't required for programmatic access:
 
-- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
+- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 - **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
@@ -103,7 +103,14 @@ When you deploy with azd, the required RBAC role (Foundry User at account scope)
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can also operate with on-behalf-of (OBO) user identity. The agent's Microsoft Entra ID can exchange a user token to call downstream services as the user, subject to tenant policies. For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
+When integrated via Microsoft 365 channels (for example, Teams), Hosted agents can operate in two identity modes depending on how they are invoked:
+
+- **User-invoked scenarios (interactive)**: If a user token is present, the platform supports OAuth 2.0 On-Behalf-Of (OBO) flows. In this case, the agent can call downstream services on behalf of the user using the user’s delegated permissions, subject to Microsoft Entra ID tenant policies.
+
+- **Autonomous or background scenarios**: If no user token is available, the agent authenticates using its own Microsoft Entra ID (agent identity), typically via managed identity, to access downstream services.
+
+In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
+For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
 ### Sessions and conversations
 
@@ -175,7 +182,26 @@ Hosted agents support **Python** and **C#**. You can use any agent framework—t
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
+Hosted agent sandboxes support the following CPU and memory combinations:
+
+| CPU | Memory |
+| --- | --- |
+| 0.5 vCPU | 1 GiB |
+| 1 vCPU | 2 GiB |
+| 2 vCPU | 4 GiB |
+
+### Scaling and right-sizing
+
+Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand, runs it for the duration of the session (idle timeout 15 minutes, maximum lifetime 30 days), and tears it down when the session ends. There's no replica count to configure and no warm pool to size. Concurrent sandbox count is bounded by the active-session quota for the subscription and region (default 50, adjustable through Microsoft Support).
+
+Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
+
+To right-size, run a representative workload and inspect resource usage in the linked Application Insights resource:
+
+1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
+1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
+
+Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
 
 ### Private networking
 
@@ -206,6 +232,7 @@ Hosted agents are currently available in the following regions:
 - North Central US
 - Sweden Central
 - Canada Central
+- Canada East
 - Southeast Asia
 - Poland Central
 - South Africa North
@@ -217,6 +244,7 @@ Hosted agents are currently available in the following regions:
 - Norway East
 - Japan East
 - France Central
+- Germany West Central
 - Switzerland North
 - Spain Central
 - Australia East

@@ -3,10 +3,10 @@ title: Include file
 description: Include file
 author: sdgilley
 ms.reviewer: erichen
-ms.author: sgilley
+ms.author: rotabor
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/25/2026
 ms.custom: include
 ---
 
@@ -19,17 +19,17 @@ ms.custom: include
 
 ## Install the extension
 
-To use Foundry capabilities in VS Code, install the Foundry for Visual Studio Code extension. Install from the Visual Studio Code Marketplace or directly from within VS Code.
+To use Foundry capabilities in VS Code, install the Microsoft Foundry Toolkit for Visual Studio Code extension. Install from the Visual Studio Code Marketplace or directly from within VS Code.
 
 ### Install from the Visual Studio Code Marketplace
 
 Use the marketplace to install the extension without opening VS Code first.
 
-1. Open the [Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+1. Open the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) page.
 1. Select the **Install** button.
 1. Follow the prompts to install the extension in Visual Studio Code.
 1. After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
-1. The Foundry icon appears in the primary navigation bar on the left side of VS Code.
+1. The Foundry Toolkit icon appears in the primary navigation bar on the left side of VS Code.
 
 ### Install from within Visual Studio Code
 
@@ -41,8 +41,8 @@ Alternatively, search for the extension directly from the VS Code extensions vie
 
 1. Select the **Settings** icon from the top-right on the extensions pane.
 
-1. Search for and select **Foundry**.
+1. Search for and select **Foundry Toolkit for VS Code**.
 
 1. Select **Install**.
 
-1. After installation completes, a status message confirms the extension is installed. The Foundry icon appears in the left navigation bar.
+1. After installation completes, a status message confirms the extension is installed. The Foundry Toolkit icon appears in the left navigation bar.
