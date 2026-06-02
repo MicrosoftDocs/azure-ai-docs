@@ -20,8 +20,8 @@ ai-usage: ai-assisted
 > The latest preview offers new capabilities and enhancements, including:
 >
 > - Memory item operations to create, read, update, list, and delete individual memory records.
-> - Store-level default retention controls, including default TTL for newly created memory entries.
-> - Direct remember-and-forget memory command behavior.
+> - Store-level default retention controls, including default TTL for newly created memory stores.
+> - Direct remember-or-forget synchronized memory command behavior.
 
 <!-- TO-DO: Confirm the three capabilities listed above reflect what we're releasing and documenting in the v2 preview. -->
 

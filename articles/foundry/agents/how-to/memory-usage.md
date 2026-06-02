@@ -350,7 +350,9 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 <!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that TTL applies only to newly created memory stores and that TTL expiration is not overridden by direct memory commands. -->
 
-TTL only applies to memory stores created after TTL support was introduced and doesn't affect existing memory stores. After TTL is configured, expiration takes effect regardless of [direct memory commands](#apply-direct-remember-and-forget-behavior). A remember command can't extend or override it.
+TTL applies to all memories, whether from direct memory command, extraction + consolidation, or memory CRUD.  If memory is updated and consolidated, it will reset the last updated time.
+
+TTL feature only applies to memory stores created after TTL support was introduced and doesn't affect existing memory stores. 
 
 A `default_ttl_seconds` value of `0` indicates no expiration. Choose a retention period that matches your compliance and user-data lifecycle requirements.
 
