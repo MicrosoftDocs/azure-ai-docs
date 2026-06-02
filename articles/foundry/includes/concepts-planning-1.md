@@ -62,7 +62,7 @@ Most newer, agent-centric Foundry APIs support project-scope permissioning. Some
 
 | Capability area | Organize by project | Project-level RBAC isolation | Bring your own storage | Networking / encryption support | Planning implication |
 |---|---|---|---|---|---|
-| Agent capabilities (agents, responses, evaluations, datasets, indexes, files, and playground assets) | Yes | Yes | Yes | Limited in basic set up (managed storage). For full coverage, use 'standard'. | Good fit for project-per-use-case segmentation in shared environments. |
+| Agent capabilities (agents, responses, evaluations, datasets, indexes, files, and playground assets) | Yes | Yes | Yes | Limited in basic setup (managed storage). For full coverage, use 'standard'. | Good fit for project-per-use-case segmentation in shared environments. |
 | Fine-tune training | No (default project only) | No | Partial (inputs only) | Yes |  If each team needs independent fine-tuning, use separate Foundry resources. Fine-tuned deployments are shared and consumable across projects within a resource. |
 | OpenAI image, video, batch | No | No | Partial (only Batch) | Yes | Use an isolated workload setup, and if managed storage is required, validate RBAC constraints early. |
 | Content Understanding | Yes | No | Yes | Yes | If strict per-use-case access isolation is required, prefer separate Foundry resources. |
@@ -98,10 +98,10 @@ Use this reference table as a checklist for security design decisions.
 
 | Area | What to decide | Start with |
 |---|---|---|
-| Identity and access | Define admin, project manager, and project user personas. Map each persona to least-privilege roles and Entra ID groups. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
-| Networking | Choose the network model per environment. Use managed virtual network for a more secure, straightforward setup. Use bring-your-own virtual network (BYO VNET) for advanced network control and custom routing requirements. Validate private DNS and endpoint approval flow before production. | [Configure managed virtual network](../how-to/managed-virtual-network.md), [Configure private link for Foundry](../how-to/configure-private-link.md), and [Network-secured setup (BYO virtual network)](../agents/how-to/virtual-networks.md) |
+| Identity and access | Define admin, project manager, and project user personas. Map each persona to least-privilege roles and Microsoft Entra ID groups. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
+| Networking | Choose the network model per environment. Use managed virtual network for a more secure, straightforward setup. Use bring-your-own (BYO) virtual network for advanced network control and custom routing requirements. Validate private DNS and endpoint approval flow before production. | [Configure managed virtual network](../how-to/managed-virtual-network.md), [Configure private link for Foundry](../how-to/configure-private-link.md), and [Network-secured setup (BYO virtual network)](../agents/how-to/virtual-networks.md) |
 | Data protection and keys | Decide whether Microsoft-managed keys meet policy requirements or whether customer-managed keys are required. | [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md) |
-| Authentication model | Prefer Entra ID and RBAC for people and services. Use API keys only where role granularity isn't required. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
+| Authentication model | Prefer Microsoft Entra ID and RBAC for people and services. Use API keys only where role granularity isn't required. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
 
 ## Plan model, region, and capacity strategy
 
@@ -127,7 +127,7 @@ For each workload, identify external dependencies and connection patterns:
 - Internal APIs and line-of-business systems.
 - Non-Azure SaaS tools required by agents or orchestration flows.
 - Networking requirements, including private endpoints, DNS resolution,
-  egress controls, and whether managed network or BYO VNET is required.
+  egress controls, and whether managed network or BYO virtual network is required.
 
 Use [Add connections in Foundry](../how-to/connections-add.md) to standardize
 connection setup.
@@ -208,4 +208,4 @@ The IT organization at Contoso needs to support multiple teams while balancing t
 
 The diagram shows how Contoso co-locates a shared exploration Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. The sample backlog reflects common enterprise functions such as customer support, employee helpdesk, finance operations, procurement, and sales. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to prod. The sample also shows two related sales use cases that stay co-located through exploration and dev/test because they share the same CRM data, user personas, and connected systems. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full prod-grade separation where needed.
 
-:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared exploration Foundry environment into isolated or co-located dev/test environments, and then into isolated prod environments for a smaller number of workloads.":::
+:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared exploration Foundry environment into isolated or co-located dev/test environments, and then into isolated prod environments for a smaller number of workloads." lightbox="../media/planning/sample-platform-deployment.svg":::
