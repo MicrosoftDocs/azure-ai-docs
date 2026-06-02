@@ -138,7 +138,7 @@ Your deployment is billed at the hourly rate. If you plan to keep it running for
 If you plan to purchase a reservation after creating your deployment, verify that you have the **owner role** or **reservation purchaser role** on an Azure subscription. The role needed to purchase reservations differs from the role needed to create deployments. See [Provisioned Throughput reservations](https://aka.ms/oai/docs/ptum-reservations) for role requirements.
 
 > [!IMPORTANT]
-> Always create and confirm your deployment before purchasing a reservation. The reservation must match your deployment's type (Global, Data Zone, or Regional), region, and subscription scope. Committing to a reservation for capacity you haven't confirmed is available can result in a financial commitment you can't use.
+> Always create and confirm your deployment before purchasing a reservation. The reservation must match your deployment's type (Global, Data Zone, or Regional) and subscription scope. For Data Zone and Regional deployments, the reservation region must also match. For Global deployments, a single Global reservation can cover Global PTU deployments across multiple regions. Committing to a reservation for capacity you haven't confirmed is available can result in a financial commitment you can't use.
 
 For sizing guidance, purchase steps, and management, see [Azure Reservations for provisioned throughput](../concepts/provisioned-throughput-billing.md#azure-reservations-for-provisioned-throughput).
 
