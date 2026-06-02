@@ -63,6 +63,25 @@ For details on connector validation and data protection, see [Vet with data prot
 > [!NOTE]
 > Managed MCP servers are scoped to the Foundry project where they're created. Connector triggers aren't supported; only actions that your agent can invoke are available.
 
+## Supported regions
+
+Managed MCP servers powered by connector namespaces are available in the following Foundry project regions:
+
+- australiaeast
+- brazilsouth
+- canadacentral
+- eastus2
+- francecentral
+- germanywestcentral
+- japaneast
+- norwayeast
+- southafricanorth
+- southcentralus
+- spaincentral
+- swedencentral
+- switzerlandnorth
+- westus3
+
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
