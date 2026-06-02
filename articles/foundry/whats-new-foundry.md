@@ -36,6 +36,11 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
   - [Connect agents to Microsoft Fabric with Fabric IQ (preview)](agents/how-to/tools/fabric-iq.md)
   - [Connect agents to Microsoft 365 with Work IQ (preview)](agents/how-to/tools/work-iq.md)
   - [Enable tool search in a toolbox (preview)](agents/how-to/tools/tool-search.md)
+  - [What is the agent optimizer? (preview)](agents/concepts/agent-optimizer-overview.md)
+  - [Quickstart: Optimize a hosted agent (preview)](agents/quickstarts/quickstart-optimize-hosted-agent.md)
+  - [Make your agent optimizer-ready (preview)](agents/how-to/make-agent-optimizer-ready.md)
+  - [Create an evaluation dataset for the agent optimizer (preview)](agents/how-to/create-optimizer-dataset.md)
+  - [Optimize agent instructions, skills, tools, and models (preview)](agents/how-to/optimize-agent-targets.md)
 - Evaluations and observability
   - [Rubric evaluators (preview)](concepts/evaluation-evaluators/rubric-evaluators.md)
   - [Run agent evaluations with the azd CLI (preview)](observability/how-to/azure-developer-cli-evaluation.md)
@@ -47,6 +52,7 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
 - Guardrails
   - [Configure guided guardrail set-up for an agent (preview)](guardrails/guided-set-up.md)
 - Foundry Models and platform
+  - [Govern model router deployments with Azure Policy](how-to/model-router-policy.md)
   - [Instant models in Microsoft Foundry (preview)](concepts/instant-models.md)
   - [Region availability for Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure-region-availability.md)
 
@@ -61,6 +67,8 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
   - [Monitor Azure OpenAI reference](openai/monitor-openai-reference.md)
   - [Priority processing for model deployments](openai/concepts/priority-processing.md)
   - [Quota management and rate limits](openai/how-to/quota.md)
+  - [Model router for Microsoft Foundry concepts](openai/concepts/model-router.md)
+  - [How to use model router for Microsoft Foundry](openai/how-to/model-router.md)
 - Foundry Agent Service
   - [Connect to an A2A agent endpoint from Foundry Agent Service](agents/how-to/tools/agent-to-agent.md)
   - [Deploy a hosted agent](agents/how-to/deploy-hosted-agent.md)
@@ -69,6 +77,17 @@ Welcome! This article highlights key article and product updates in Microsoft Fo
   - [Use skills with Microsoft Foundry agents (preview)](agents/how-to/tools/skills.md)
   - [Automate browser tasks with Foundry agents](agents/how-to/tools/browser-automation.md)
   - [Curate intent-based toolbox in Foundry (preview)](agents/how-to/tools/toolbox.md)
+  - [What is Microsoft Foundry Agent Service?](agents/overview.md)
+  - [Agent development lifecycle](agents/concepts/development-lifecycle.md)
+  - [Quickstart: Deploy your first hosted agent](agents/quickstarts/quickstart-hosted-agent.md)
+- Evaluations and observability
+  - [Built-in Evaluators Reference](concepts/built-in-evaluators.md)
+  - [Agent Evaluators for Generative AI](concepts/evaluation-evaluators/agent-evaluators.md)
+  - [Custom Evaluators](concepts/evaluation-evaluators/custom-evaluators.md)
+  - [General Purpose Evaluators for Generative AI](concepts/evaluation-evaluators/general-purpose-evaluators.md)
+  - [Retrieval-Augmented Generation (RAG) Evaluators for Generative AI](concepts/evaluation-evaluators/rag-evaluators.md)
+  - [Cloud Evaluation with the Microsoft Foundry SDK](how-to/develop/cloud-evaluation.md)
+  - [Run evaluations from the Microsoft Foundry portal](how-to/evaluate-generative-ai-app.md)
 - Foundry Models and platform
   - [Customer-managed key encryption](concepts/encryption-keys-portal.md)
   - [Foundry Models sold directly by Azure](foundry-models/concepts/models-sold-directly-by-azure.md)

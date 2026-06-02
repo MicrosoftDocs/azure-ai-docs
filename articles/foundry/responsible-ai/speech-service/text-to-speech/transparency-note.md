@@ -154,7 +154,7 @@ For more information on custom neural voice, see [Overview of custom neural voic
 
 The personal voice feature allows Limited Access customers to create a voice model from a short human voice sample. The feature can create a voice model based on the prompt in as little as a few seconds. This feature is typically used to power personalized voice experiences for business customers’ applications. Personal voice models can create realistic-sounding voices that can speak in close to 100 languages.
 
-[Watermarks](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure Speech, and specifically, which voice was used. Eligible customers can use Azure Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
+[Watermarks](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-the-watermark-algorithm-for-synthetic-voice-identification/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure Speech, and specifically, which voice was used. Eligible customers can use Azure Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
 
 For more information on personal voice, see [personal voice](https://aka.ms/InstantVoiceDocs). 
 
