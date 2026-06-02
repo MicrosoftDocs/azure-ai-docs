@@ -19,12 +19,14 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *Work IQ knowledge source* (preview) connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search, providing intelligence from your organization's Microsoft 365 content as grounding data.
+A *Work IQ knowledge source* (preview) connects [Work IQ](/microsoft-365/copilot/extensibility/work-iq) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Unlike indexed knowledge sources, a Work IQ knowledge source queries Work IQ directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
+Work IQ surfaces organizational intelligence from your Microsoft 365 content, including documents, emails, meetings, and activity across Microsoft 365 apps.
+
+Unlike indexed knowledge sources, Work IQ knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to call Work IQ on the caller's behalf.
 
 > [!WARNING]
-> In this preview, a Work IQ knowledge source may use Work IQ capabilities that perform actions, not just retrieve information. Use it with care, limit access to trusted applications and users, and review your scenario's permissions and governance controls before enabling it.
+> In this preview, a Work IQ knowledge source might use Work IQ capabilities that perform actions, not just retrieve information. Use it with care, limit access to trusted applications and users, and review your scenario's permissions and governance controls before enabling it.
 
 ### Usage support
 
@@ -113,7 +115,7 @@ Work IQ inherits Microsoft 365's compliance certifications. For details, see [Da
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a Work IQ knowledge source.
 
@@ -211,11 +213,11 @@ The following properties apply to Work IQ knowledge sources.
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Work IQ content. This knowledge source has unique query-time permissions enforcement and response characteristics.
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query Work IQ content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
 > [!IMPORTANT]
 > Work IQ can take 40–60 seconds or more to respond. To avoid timeout errors, set `maxRuntimeInSeconds` on the retrieve request to `120` or higher.
@@ -289,7 +291,7 @@ The following example shows a retrieve response containing a Work IQ knowledge s
 
 ## Delete a knowledge source
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-delete.md)]
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 
