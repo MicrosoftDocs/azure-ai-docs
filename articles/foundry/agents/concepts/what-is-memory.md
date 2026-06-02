@@ -23,8 +23,6 @@ ai-usage: ai-assisted
 > - Store-level default retention controls, including default TTL for newly created memory stores.
 > - Direct remember-or-forget synchronized memory command behavior.
 
-<!-- TO-DO: Confirm the three capabilities listed above reflect what we're releasing and documenting in the v2 preview. -->
-
 Memory in Microsoft Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 This article provides an overview of agent memory, including its concepts, use cases, and limitations. For usage instructions, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
@@ -81,7 +79,7 @@ Memory in Foundry Agent Service supports fine-grained management and retention c
 
 - **[Item-level memory CRUD](../how-to/memory-usage.md#manage-memory-items):** Create, read, update, list, and delete individual memory items.
 - **[Store-level default retention](../how-to/memory-usage.md#create-a-memory-store):** Set a default TTL (seconds) for memory entries created in a store.
-- **[Direct memory commands](../how-to/memory-usage.md#apply-direct-remember-and-forget-behavior):** Apply immediate remember/forget behavior when users explicitly request memory changes.
+- **[Direct memory commands](../how-to/memory-usage.md#apply-direct-remember-or-forget-behavior):** Apply immediate remember-or-forget behavior when users explicitly request memory changes.
 
 With these controls, you can balance personalization quality with privacy, compliance, and data lifecycle requirements.
 

@@ -22,10 +22,8 @@ zone_pivot_groups: foundry-memory-store
 > The latest preview offers new capabilities and enhancements, including:
 >
 > - Memory item operations to create, read, update, list, and delete individual memory records.
-> - Store-level default retention controls, including default TTL for newly created memory entries.
-> - Direct remember-and-forget memory command behavior.
-
-<!-- TO-DO: Confirm the three capabilities listed above reflect what we're releasing and documenting in the v2 preview. -->
+> - Store-level default retention controls, including default TTL for newly created memory stores.
+> - Direct remember-or-forget synchronized memory command behavior.
 
 Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
@@ -348,11 +346,9 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 ### Configure TTL and retention policies
 
-<!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that TTL applies only to newly created memory stores and that TTL expiration is not overridden by direct memory commands. -->
+TTL applies to all memories, whether from direct memory commands, extraction and consolidation, or item-level CRUD operations. If a memory is updated and consolidated, the service resets its last-updated time.
 
-TTL applies to all memories, whether from direct memory command, extraction + consolidation, or memory CRUD.  If memory is updated and consolidated, it will reset the last updated time.
-
-TTL feature only applies to memory stores created after TTL support was introduced and doesn't affect existing memory stores. 
+TTL applies only to memory stores created after TTL support was introduced. It doesn't affect existing memory stores.
 
 A `default_ttl_seconds` value of `0` indicates no expiration. Choose a retention period that matches your compliance and user-data lifecycle requirements.
 
@@ -781,11 +777,9 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
 
 :::zone-end
 
-### Apply direct remember-and-forget behavior
+### Apply direct remember-or-forget behavior
 
 When a user explicitly asks the agent to remember or forget information, the memory search tool in the `tools` array applies the operation immediately and returns the result as memory command items in the response output. No additional tool configuration is required.
-
-<!-- TO-DO: Confirm accuracy of the following TTL note. CELA requires documenting that direct memory commands don't override TTL expiration. -->
 
 > [!NOTE]
 > Direct memory commands don't override memory TTL. If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
