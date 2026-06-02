@@ -185,6 +185,19 @@ Role-based access control is recommended over the Access Policy permission model
 
 Wait a few minutes for the role assignment to become operational.
 
+### Key Vault firewall and virtual network access for CMK
+
+Azure AI Search must be able to access the encryption key in your Azure Key Vault.
+
+If your key vault uses a firewall or virtual network restrictions, configure one of the following options:
+
+- Allow access from selected networks that include your search service.
+- Enable **Allow trusted Microsoft services to bypass this firewall**.
+
+When trusted services bypass is enabled, Azure AI Search can access the key as a trusted service by using managed identity, even when public network access is restricted.
+
+If the firewall blocks access and trusted services bypass isn't enabled, Azure AI Search can't retrieve the key and CMK-dependent operations fail.
+
 ## Step 4: Add encryption key information to Azure AI Search objects
 
 When you create an encrypted object, enter the key vault URI, key name, and key version. If you're using a Microsoft Entra ID application for authentication, also enter the application ID and secret.
@@ -778,6 +791,8 @@ For performance reasons, the search service caches the key for up to several hou
 + Use as many key vaults as you need. Managed keys can be in different key vaults. A search service can have multiple encrypted objects, each one encrypted with a different customer-managed encryption key, stored in different key vaults.
 
 + Use the same [Azure tenant](/entra/fundamentals/create-new-tenant) so that you can retrieve your managed key through role assignments and by connecting through a system or user-managed identity. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
+
++ If your Azure Key Vault is secured with a firewall, make sure to enable **Allow trusted Microsoft services to bypass this firewall** so that Azure AI Search can access the key.
 
 + [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for encryption with a CMK in Azure AI Search.
 
