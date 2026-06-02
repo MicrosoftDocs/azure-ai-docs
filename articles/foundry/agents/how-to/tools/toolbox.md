@@ -18,6 +18,10 @@ zone_pivot_groups: selection-foundry-toolbox
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
+> [!WARNING]
+> When you connect to non-Foundry tools, you might incur costs and data might be sent outside Foundry's compliance boundary and processed according to the applicable terms and data handling policies. See the tool's documentation to learn how to manage access to the tool.
+
+
 A single agent can depend on multiple tools - APIs, Model Context Protocol (MCP) servers, connectors, and flows - each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration becomes the bottleneck.
 
 :::image type="content" source="../../media/tools/toolbox/toolbox-before.png" alt-text="Diagram showing multiple agents each wiring their own tools with different authentication models and duplicated credentials." lightbox="../../media/tools/toolbox/toolbox-before.png":::
@@ -44,7 +48,7 @@ In this article, you learn how to:
 - Create a toolbox with one or more tools.
 - Get the toolbox MCP endpoint.
 - Verify that tools load correctly.
-- Integrate a toolbox into your Hosted agent.
+- Integrate a toolbox into your hosted agent.
 - Manage toolbox versions and promote a version to default.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
@@ -63,19 +67,21 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Work IQ tool](work-iq.md) | ✔️ | ✔️ | No | No | ✔️ | No |
+| [Browser Automation tool](browser-automation.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Grant the **Foundry User** role on the Foundry project to each identity that applies to your scenario:
-
-  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
   - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
-  - **Agent identity** (required if using a Hosted agent) — the agent's managed identity that calls tools at runtime.
+  - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
-- Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) (formerly AI Toolkit for VS Code) from the Visual Studio Code Marketplace. Toolbox support in Foundry Toolkit is currently in preview.
+- Install the [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) from the Visual Studio Code Marketplace.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -222,7 +228,7 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox from the **Tools** view.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to create and publish a toolbox from the **Tools** view.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -231,7 +237,7 @@ Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox from t
 
 Publishing a new toolbox creates its first version. That version becomes the default version automatically.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of the Microsoft Foundry Toolkit for Visual Studio Code extension showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
 
 :::zone-end
 
@@ -352,7 +358,7 @@ Two endpoint patterns exist depending on your role:
 
 :::zone pivot="vscode"
 
-In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer endpoint from the **Toolboxes** view.
+In the Microsoft Foundry Toolkit for Visual Studio Code extension, copy the toolbox consumer endpoint from the **Toolboxes** view.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -361,7 +367,7 @@ In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer endpoint fr
 
 The **Endpoint URL** value is the toolbox consumer endpoint. To construct a version-specific endpoint, use the developer pattern shown in the previous table.
 
-:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of the Microsoft Foundry Toolkit for Visual Studio Code extension showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
 
 :::zone-end
 
@@ -523,7 +529,7 @@ await client.close();
 
 :::zone pivot="vscode"
 
-Use the endpoint from Step 2 together with a scaffolded Hosted agent sample to validate toolbox loading in VS Code.
+Use the endpoint from Step 2 together with a scaffolded hosted agent sample to validate toolbox loading in VS Code.
 
 1. In **Foundry Toolkit**, under **My Resources** > **Your project name** > **Tools**, locate the toolbox you want to test.
 1. Select **Scaffold code template**.
@@ -557,7 +563,7 @@ For version-specific validation before you promote a new toolbox version, use th
 **Check - `tools/call`**:
 
 - No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
-  - `-32006` → OAuth consent required (extract URL from `error.message`).
+  - `-32007` → OAuth consent required (extract URL from `error.message`).
   - Other codes → server-side failure.
 - `result.content[]` contains entries with `"type": "text"` - this is the tool output.
 - For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
@@ -574,6 +580,8 @@ Tool-specific `tools/call` argument examples:
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
 | A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
+| Work IQ | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Step 4: Integrate the toolbox into your agent
@@ -581,6 +589,8 @@ Tool-specific `tools/call` argument examples:
 :::zone pivot="python"
 
 ### LangGraph
+
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 **`.env` file**:
 
@@ -601,7 +611,6 @@ toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
 tools = await toolbox.get_tools()
 ```
 
-See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
 
 > [!IMPORTANT]
 > Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
@@ -766,7 +775,7 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 :::zone pivot="vscode"
 
-Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to your toolbox.
+Use the Microsoft Foundry Toolkit for Visual Studio Code extension to scaffold a Hosted agent sample that's already wired to your toolbox.
 
 1. Select **Foundry Toolkit** in the Activity Bar.
 1. Under **My Resources**, expand **Your project name** > **Tools**.
@@ -774,9 +783,9 @@ Use Foundry Toolkit to scaffold a Hosted agent sample that's already wired to yo
 1. In the Command Palette, choose a project folder when prompted.
 1. Open the generated `README.md` and follow the setup, local run, and deployment steps for the scaffold.
 
-The generated project includes the Hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
+The generated project includes the hosted agent entry point, deployment files, and a `README.md` with the exact setup, run, and deployment steps. The scaffolded agent handles the `Foundry-Features: Toolboxes=V1Preview` header for you.
 
-If you want to integrate a toolbox into an existing Hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
+If you want to integrate a toolbox into an existing hosted agent project instead of generating a new sample, use the copied endpoint from Step 2 with the Python or .NET patterns in this section.
 
 :::zone-end
 
@@ -886,7 +895,7 @@ The toolbox returns a `_meta.tool_configuration` object into every tool entry re
 
 ### Read `require_approval` from `tools/list`
 
-Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox :
+Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox:
 
 ```json
 {
@@ -1019,7 +1028,7 @@ const tools = [
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, REST API, or azd tab to configure `require_approval` in your toolbox definition. The Foundry Toolkit workflow in this article focuses on creating and consuming the toolbox in Visual Studio Code.
+Use the Python, .NET, JavaScript, REST API, or azd tab to configure `require_approval` in your toolbox definition. The Microsoft Foundry Toolkit for Visual Studio Code extension workflow in this article focuses on creating and consuming the toolbox in Visual Studio Code.
 
 :::zone-end
 
@@ -1113,7 +1122,7 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone pivot="vscode"
 
-Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Foundry Toolkit workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
+Use the Python, .NET, JavaScript, or REST API tab to create a new toolbox version. The Microsoft Foundry Toolkit for Visual Studio Code extension workflow in this article focuses on creating a toolbox and scaffolding a Hosted agent that consumes it.
 
 :::zone-end
 
@@ -1713,12 +1722,12 @@ resources:
 :::zone-end
 
 > [!IMPORTANT]
-> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32007`) with a consent URL:
 >
 > ```json
 > {
 >   "error": {
->     "code": -32006,
+>     "code": -32007,
 >     "message": "User consent is required. Please visit: https://..."
 >   }
 > }
@@ -1825,34 +1834,6 @@ resources:
     description: Web search toolbox
     tools:
       - type: web_search
-```
-
-**With Grounding with Bing Custom Search:**
-
-```yaml
-parameters:
-  bing_api_key:
-    secret: true
-    description: Bing API key
-resources:
-  - kind: connection
-    name: bing-custom-conn
-    category: GroundingWithCustomSearch
-    authType: ApiKey
-    target: ""
-    credentials:
-      key: "{{ bing_api_key }}"
-    metadata:
-      ResourceId: /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Bing/accounts/<bing-account>
-      type: bing_custom_search
-  - kind: toolbox
-    name: bing-custom-tools
-    description: Bing Custom Search toolbox
-    tools:
-      - type: bing_custom_search
-        custom_search_configuration:
-          instance_name: your-bing-custom-instance
-        project_connection_id: bing-custom-conn
 ```
 
 :::zone-end
@@ -2039,7 +2020,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
 
 > [!IMPORTANT]
-> When Code Interpreter is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
+> When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
 
 :::zone pivot="rest-api"
 
@@ -2154,7 +2135,7 @@ To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When File Search is used through a toolbox in a Hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
@@ -2556,6 +2537,212 @@ resources:
 
 :::zone-end
 
+### [Fabric IQ](fabric-iq.md)
+
+Use this pattern to give the agent access to Microsoft Fabric data - ontologies, data agents, and Power BI semantic models - through Fabric IQ. Provide the project connection, MCP server URL, and server label for the target Fabric item.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Fabric IQ for enterprise Fabric data access",
+  "tools": [
+    {
+      "type": "fabric_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>",
+      "server_label": "<SERVER_LABEL>",
+      "server_url": "<SERVER_URL>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {
+        "type": "fabric_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+        "server_label": "<SERVER_LABEL>",
+        "server_url": "<SERVER_URL>",
+    }
+]
+```
+
+:::zone-end
+
+For `server_url` patterns by Fabric item type, see [Find your Fabric IQ server details](fabric-iq.md#find-your-fabric-iq-server-details).
+
+Annotation chunks are returned in `result.structuredContent.documents[]`. Each document includes `title` and `url` fields that you can use to generate citation details in your application.
+
+### [Tool Search](tool-search.md)
+
+Use this pattern to enable intent-based tool routing. When `toolbox_search_preview` is included in a toolbox, the platform selects the most relevant tools for each request instead of exposing all tools to the model at once. No additional configuration is required.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Toolbox with intent-based tool routing",
+  "tools": [
+    {
+      "type": "toolbox_search_preview"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {"type": "toolbox_search_preview"}
+]
+```
+
+:::zone-end
+
+> [!NOTE]
+> `toolbox_search_preview` is a configuration directive that activates tool search. It doesn't appear in `tools/list` responses and doesn't count toward the unnamed-tool-per-type limit.
+
+When tool search is enabled, Foundry injects two meta-tools alongside your toolbox tools: `tool_search` and `call_tool`. The `call_tool` meta-tool acts as a proxy that lets agent frameworks invoke any discovered tool by name through a single declared entry point. This avoids schema-validation errors that occur when a framework tries to call a tool that wasn't present in the initial `tools/list`. If your framework supports direct tool calls without schema pre-validation, you can also call a discovered tool directly after finding it with `tool_search`.
+
+### [Work IQ](work-iq.md)
+
+Use this pattern to give the agent access to the user's Microsoft 365 work context - email, meetings, files, and chats - through Work IQ. Provide a project connection to your Work IQ endpoint.
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Work IQ for Microsoft 365 data access",
+  "tools": [
+    {
+      "type": "work_iq_preview",
+      "project_connection_id": "<CONNECTION_NAME>"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+tools = [
+    {
+        "type": "work_iq_preview",
+        "project_connection_id": "<CONNECTION_NAME>",
+    }
+]
+```
+
+:::zone-end
+
+### [Browser Automation](browser-automation.md)
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Perform actions using a real web browser",
+  "tools": [
+    {
+      "type": "browser_automation_preview",
+      "name": "<OPTIONAL_TOOL_NAME>",
+      "description": "<Optional description for the model>",
+      "browser_automation_preview": {
+        "connection": {
+          "project_connection_id": "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
+        }
+      }
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import (
+    BrowserAutomationPreviewTool,
+    BrowserAutomationToolParameters,
+    BrowserAutomationToolConnectionParameters,
+)
+
+tools = [
+    BrowserAutomationPreviewTool(
+        browser_automation_preview=BrowserAutomationToolParameters(
+            connection=BrowserAutomationToolConnectionParameters(
+                project_connection_id="<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>",
+            )
+        )
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool tool = new BrowserAutomationPreviewTool(
+    new BrowserAutomationToolOptions(
+        new BrowserAutomationToolConnectionParameters("<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>")
+    )
+);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "browser_automation_preview",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+    browser_automation_preview: {
+      connection: {
+          project_connection_id: "<BROWSER_AUTOMATION_PROJECT_CONNECTION_ID>"
+      }
+    }
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: connection
+    name: browser-automation-conn
+    category: PlaywrightWorkspace
+    authType: ApiKey
+    target: wss://your-browser-endpoint.api.playwright.microsoft.com/playwrightworkspaces/browsers
+    credentials:
+      key: "{{ playwright_workspaces_access_token }}"
+  - kind: toolbox
+    name: browser-tools
+    description: Browser Automation toolbox
+    tools:
+      - type: browser_automation_preview
+        project_connection_id: browser-automation-conn
+```
+
+:::zone-end
+
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2565,7 +2752,7 @@ resources:
 | `tools/list` returns fewer tools than expected | The `allowed_tools` filter contains incorrect or misspelled tool names. Tool names are case-sensitive and must follow the [MCP specification for tool names](https://modelcontextprotocol.io/specification/2025-03-26/server/tools) (no whitespace or special characters). | Remove `allowed_tools` temporarily and call `tools/list` to get the full tool list. Use the exact names from the response to set values for `allowed_tools`. |
 | `tools/list` returns zero tools (other tool types) | Toolbox not fully provisioned or tool type unsupported in region. For built-in tools (Web Search, AI Search, Code Interpreter, File Search), tool manifests are constructed server-side and don't require auth — if they return empty, the toolbox version might not be provisioned yet. | Wait 10 seconds and retry. |
 | `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools. |
-| `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
+| `CONSENT_REQUIRED` (code `-32007`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
 | `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
 | Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`). |
 | `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Don't call `send_ping()`. If your framework calls it automatically (for example, Microsoft Agent Framework's `MCPStreamableHTTPTool._ensure_connected()`), disable the ping check or override the method with a no-op. |
@@ -2587,6 +2774,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
+| [Browser Automation](browser-automation.md) | ❌ Not supported | Not yet available |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
@@ -2604,6 +2792,6 @@ Before deploying a toolbox, verify that your target region supports the tool typ
 - [Add MCP server authentication](../mcp-authentication.md)
 - [Web search tool](web-search.md)
 - [Azure AI Search tool](ai-search.md)
-- [Deploy a Hosted agent](../deploy-hosted-agent.md)
+- [Deploy a hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)

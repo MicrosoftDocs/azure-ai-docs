@@ -59,7 +59,7 @@ Before you run the examples in this article, confirm that your resource region s
 
 The Responses API supports the following models:
 
-- `gpt-chat-latest` (Version: `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
@@ -1667,7 +1667,13 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/<res
 
 ## Image input
 
-For vision-enabled models, supported image formats are PNG, JPEG, and WebP.
+Vision-enabled models can interpret images alongside text. They can recognize objects, shapes, colors, and textures, and read text contained within an image, subject to the limitations listed later in this article.
+
+You can provide an image as input to a request in any of the following ways:
+
+- A fully qualified URL to an image file
+- A Base64-encoded data URI
+- A file ID created with the [Files API](../reference-preview-latest.md)
 
 ### Image URL
 
@@ -1998,13 +2004,269 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ---
 
+### File ID
+
+Upload an image with the Files API by using `purpose="vision"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+def create_file(file_path):
+    with open(file_path, "rb") as file_content:
+        result = client.files.create(
+            file=file_content,
+            purpose="vision",
+        )
+        return result.id
+
+file_id = create_file("path_to_your_image.jpg")
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "input_text", "text": "What is in this image?"},
+                {"type": "input_image", "file_id": file_id},
+            ],
+        }
+    ],
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using System.IO;
+using System.Threading.Tasks;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Files;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+OpenAIFileClient fileClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new OpenAIClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
+OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
+    BinaryData.FromBytes(imageBytes),
+    "path_to_your_image.jpg",
+    FileUploadPurpose.Vision);
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("What is in this image?"),
+            ResponseContentPart.CreateInputImagePart(uploadedFile.Id)
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import fs from "node:fs";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const file = await client.files.create({
+  file: fs.createReadStream("path_to_your_image.jpg"),
+  purpose: "vision",
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "What is in this image?" },
+        { type: "input_image", file_id: file.id },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.AzureApiKeyCredential;
+import com.openai.models.FileCreateParams;
+import com.openai.models.FileObject;
+import com.openai.models.FilePurpose;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Paths;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+FileObject uploaded = openAIClient.files().create(
+    FileCreateParams.builder()
+        .file(Paths.get("path_to_your_image.jpg"))
+        .purpose(FilePurpose.VISION)
+        .build());
+
+ResponseInputImage image = ResponseInputImage.builder()
+    .detail(ResponseInputImage.Detail.AUTO)
+    .fileId(uploaded.id())
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("What is in this image?")
+        .addContent(image)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+# Upload the image
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -F purpose="vision" \
+  -F file="@path_to_your_image.jpg"
+
+# Use the returned file ID with Responses
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "input_text", "text": "What is in this image?"},
+          {"type": "input_image", "file_id": "<file_id>"}
+        ]
+      }
+    ]
+  }'
+```
+
+---
+
+### Image input requirements
+
+The following table lists the supported file types for image inputs.
+
+| File type   | MIME type         |
+|-------------|-------------------|
+| PNG         | `image/png`       |
+| JPEG        | `image/jpeg`      |
+| WebP        | `image/webp`      |
+| Non-animated GIF | `image/gif`  |
+
+In a single request, you can include up to 100 images. Each individual image file must be under 50 MB, and the combined size of all images in the request must also be under 50 MB.
+
+Images must meet these additional requirements:
+
+- The image must be relevant to the prompt; the model isn't designed for unrelated visual content.
+- Images shouldn't contain harmful or sensitive content that violates content policies.
+- Image files can't be corrupted or unreadable. If the model can't process an image, the request fails.
+
+### Choose an image detail level
+
+Use the `detail` property on an `input_image` content part to control how the model processes the image. Lower detail uses fewer tokens and is faster, while higher detail uses more tokens but lets the model capture finer features.
+
+```json
+{
+  "type": "input_image",
+  "image_url": "<image_url>",
+  "detail": "high"
+}
+```
+
+The following table describes each detail level.
+
+| Detail level | Description |
+|--------------|-------------|
+| `low`        | The model uses a lower-resolution version of the image. This option uses the fewest tokens and produces the fastest response, but the model might miss fine details. |
+| `high`       | The model uses a higher-resolution version of the image. This option captures finer details but uses more tokens and takes longer to respond. |
+| `auto`       | The default. The model selects the appropriate detail level based on the image and the prompt. |
+
+### Image input limitations
+
+Vision-enabled models have the following limitations:
+
+- **Medical images**: The model isn't suitable for interpreting specialized medical images such as CT scans and shouldn't be used for medical advice.
+- **Non-English text**: The model might not perform optimally when handling images that contain text in non-Latin alphabets, such as Japanese or Korean.
+- **Small text**: Enlarge text within an image to improve readability, but avoid cropping out important details.
+- **Rotation**: The model might misinterpret rotated or upside-down text and images.
+- **Visual elements**: The model might struggle with graphs or text where colors or styles—such as solid, dashed, or dotted lines—vary.
+- **Spatial reasoning**: The model has difficulty with tasks that require precise spatial localization, such as identifying chess positions.
+- **Accuracy**: The model might generate incorrect descriptions or captions in some cases.
+- **Image shape**: The model has difficulty with panoramic and fisheye images.
+- **Metadata and resizing**: The model doesn't process original file names or metadata, and images are resized before analysis, which affects their original dimensions.
+- **Counting**: The model might give approximate counts for objects in images.
+- **CAPTCHAs**: For safety reasons, a system is in place to block the submission of CAPTCHAs.
+
 ## File input
 
 Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model’s context. This is useful when key information is conveyed through diagrams or non-textual content.
 
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
-> - In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
+> - In a single API request, you can include more than one file, but each file must be under 50 MB. The combined limit across all files in the request is 50 MB.
 > - Only models that support both text and image inputs can accept PDF files as input.
 > - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
 
@@ -3701,6 +3963,8 @@ Computer use with Playwright has moved to the [dedicated computer use model guid
 
 ## Related content
 
+- [The Azure OpenAI Starter Kit](https://aka.ms/openai/start)
+- [Azure OpenAI To Responses](https://aka.ms/azure-openai-to-responses)
 - [API version lifecycle](../api-version-lifecycle.md)
 - [Azure OpenAI REST API reference](../latest.md)
 - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)

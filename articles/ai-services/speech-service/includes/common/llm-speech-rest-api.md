@@ -53,7 +53,7 @@ The following example shows how to transcribe an audio file with a specified loc
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) guide.
 
-#### Use LLM Speech to transcribe an audio
+#### Use LLM Speech to transcribe an audio file
 
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
@@ -102,7 +102,6 @@ The following target languages are supported in `targetLanguage` by specifying t
 | `pt` | Portuguese |
 | `zh` | Chinese |
 
-
 #### Use prompt-tuning to alter performance
 
 You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
@@ -123,13 +122,13 @@ curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtote
 
 Here are some best practices for prompts:
 
-- Prompts have a maximum length of 4,096 characters.
+- Prompts have a maximum length of 20,000 characters.
 
 - Prompts should preferably be written in English.
 
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 
-- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
+- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 2,000 words or phrases.
 
 - Prompts that aren't related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
