@@ -20,7 +20,6 @@ You can run these models through the BFL service provider API and through the [i
 
 To work with FLUX models in Foundry, see [Deploy and use FLUX models in Microsoft Foundry](../how-to/use-foundry-models-flux.md).
 
-- [Registration is required for access to FLUX.2 [flex] (Preview)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
 | `FLUX.2-flex` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-flex` | - **Input:** text and image (32,000 tokens and up to 10 images<sup>i</sup>) <br /> - **Output:** One Image <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fine-grained control; multi-reference support for up to 10 images <br /> - **Additional parameters:** <br> `guidance`: Controls how closely the output follows the prompt. Minimum: 1.5, maximum: 10, default: 4.5. Higher = closer prompt adherence. <br> `steps`: Number of inference steps. Maximum: 50, default: 50.  Higher = more detail, slower. | - Global standard (all regions) |
