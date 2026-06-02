@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/02/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -32,7 +32,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
-| gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-06-01 | — |
+| gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-10-15 | — |
 | gpt-4o-mini-tts | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
@@ -64,7 +64,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-audio-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-audio-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-chat-latest | 2026-05-05 | Preview | 2026-11-05 | — |
-| gpt-image-1 | 2025-04-15 | Preview | 2026-05-15 | — |
+| gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
 | gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
@@ -80,7 +80,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
 | o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
-| sora-2 | 2025-10-06 | Preview | 2026-06-23 | sora-2 (2025-12-08) |
+| sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
