@@ -65,3 +65,5 @@ items:
       href: reference/reference-rest.md   
     - name: CLI (preview) best practice and troubleshooting
       href: reference/reference-best-practice.md
+- name: Foundry Local on Azure Local
+  href: /azure/azure-local/manage/foundry-local-overview
