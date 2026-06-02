@@ -10,12 +10,11 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: wellsi
 reviewer: mswellsi
-ai-usage: ai-assisted
 ---
 
 # Model-specific terms for Microsoft Foundry
 
-[Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md) are licensed to you as part of [your agreement](https://azure.microsoft.com/support/legal) governing use of Foundry, in addition to the supplemental terms here, as they may apply to specific models. Capitalized terms not defined herein shall have the meaning set forth in [your agreement](https://azure.microsoft.com/en-us/support/legal). IF YOU DO NOT AGREE TO THESE TERMS, DO NOT USE THE MODELS.
+[Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md) are licensed to you as part of [your agreement](https://azure.microsoft.com/support/legal) governing use of Foundry, in addition to the supplemental terms here, as they may apply to specific models. Capitalized terms not defined herein shall have the meaning set forth in [your agreement](https://azure.microsoft.com/support/legal). IF YOU DO NOT AGREE TO THESE TERMS, DO NOT USE THE MODELS.
 
 ## Grok models
 
@@ -29,7 +28,7 @@ Llama models are trained and developed by Meta Platforms Inc. Use of Llama 3 and
 
 - **Restrictions**. If Customer is an individual domiciled in, or a company with a principal place of business in, the European Union, Customer is not permitted to, and agrees not to, use Microsoft Foundry Models to access any multimodal Llama models that may be made available via Foundry Models sold by Azure. This restriction does not apply to end users of Customer's integrated product that incorporate any such multimodal models. 
 
-- **Indemnification**. Customer will indemnify and hold harmless Meta from and against any claim by any third party arising out of or related to Customer's use or distribution of the Llama models. 
+- **Indemnification**. Customer will indemnify and hold harmless Meta from and against any claim by any third party arising out of or related to Customer's use or distribution of the Llama models. 
 
 - **High Risk Use**. Customer agrees not to use, or to allow others to use, the Llama models to engage in, promote, incite, facilitate, or assist in the planning or development of activities that present a risk of death or bodily harm to individuals, including use of the Llama models related to military, warfare, nuclear industries or applications, espionage, or use for materials or activities that are subject to the International Traffic Arms Regulations (ITAR) maintained by the United States Department of State or to the U.S. Biological Weapons Anti-Terrorism Act of 1989 or to the Chemical Weapons Convention Implementation Act of 1997.  
 
@@ -53,7 +52,7 @@ Black Forest Labs models are trained and developed by Black Forest Labs Inc. Use
     
     - Attempt to gain unauthorized access to, interface with, damage, or disrupt the Black Forest Labs models, Derivatives, or the computer systems or networks connected to the Black Forest Labs models; 
     
-    - Circumvent, remove, alter, deactivate, degrade, or thwart any technological measure or content protections of the Black Forest Labs models or Derivatives;  
+    - Circumvent, remove, alter, deactivate, degrade, or thwart any technological measure or content protections of the Black Forest Labs models or Derivatives;  
     
     - Use any robot, spider, crawlers, scraper, or other automatic device, process, software or queries that intercepts, "mines," scrapes, extracts, or otherwise accesses the Black Forest Labs models to monitor, extract, copy or collect information or data from or through the Black Forest Labs models, or engage in any manual process to do the same;  
     
@@ -96,7 +95,7 @@ Mistral models are trained and developed by Mistral AI and its Affiliates ("Mist
     
 - **Disclaimer**. EXCEPT FOR THE EXPRESS WARRANTIES PROVIDED BY MISTRAL AI IN THE PRODUCT TERMS INCLUDING THESE ADDITIONAL TERMS, MISTRAL AI PROVIDES NO WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WARRANTIES OF MERCHANTIBILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE MISTRAL OUTPUTS WILL BE ACCURATE, RELIABLE, COMPLETE, OR SUITABLE FOR CUSTOMER'S SPECIFIC REQUIREMENTS. THESE DISCLAIMERS WILL APPLY EXCEPT TO THE EXTENT APPLICABLE LAW DOES NOT PERMIT THEM. 
 
-- **Indemnity**.  
+- **Indemnity**  
 
     - **By Mistral AI**. Mistral AI will indemnify, defend, and hold Customer harmless against any liabilities, damages and costs (including reasonable attorneys' fees) arising out of a third-party claim to the extent alleging that the Mistral AI Products infringe that third party's patent, copyright or trademark or makes unlawful use of its trade secret. Mistral AI will have no obligations under this clause to the extent the claim arises from: (i) the combination of the Mistral AI Products with software, hardware, or any other equipment not provided by or on behalf of Mistral AI or otherwise authorized or recommended in the applicable documentation; (ii) modification of the Mistral AI Products or Mistral Outputs by any party other than Mistral AI; (iii) Customer Data; or (iv) Customer's breach of the Product Terms including these additional terms.  
     
