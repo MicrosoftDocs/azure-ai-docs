@@ -30,7 +30,7 @@ The Azure Communication Services Call Automation APIs provide the telephony inte
 Alternatively, telephony integration is supported through third-party providers, including [**Twilio**](https://www.twilio.com/docs/voice/media-streams) and [**Infobip**](https://www.infobip.com/docs/voice-and-video/calls). 
 
 
-:::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup.":::
+:::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::
 
 
 ## Related content 
