@@ -34,4 +34,4 @@ items:
 - name: Foundry Models
   items:
   - name: Model-specific terms
-    href: ../../responsible-ai/foundry-models/model-specific-terms.md
+    href: ../../responsible-ai/models/model-specific-terms.md
