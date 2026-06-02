@@ -5,6 +5,7 @@ ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/31/2026
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -46,18 +47,18 @@ In your POST request to the `transcriptions` endpoint, use the multipart/form-da
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) guide.
 
-#### Use LLM Speech to transcribe an audio
+#### Use LLM Speech to transcribe an audio file
 
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -74,7 +75,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -101,13 +102,12 @@ The following target languages are supported in `targetLanguage` by specifying t
 | `pt` | Portuguese |
 | `zh` | Chinese |
 
-
 #### Use prompt-tuning to alter performance
 
 You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -122,13 +122,13 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Here are some best practices for prompts:
 
-- Prompts have a maximum length of 4,096 characters.
+- Prompts have a maximum length of 20,000 characters.
 
 - Prompts should preferably be written in English.
 
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 
-- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
+- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 2,000 words or phrases.
 
 - Prompts that aren't related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
@@ -137,7 +137,7 @@ Here are some best practices for prompts:
 You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features, such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \

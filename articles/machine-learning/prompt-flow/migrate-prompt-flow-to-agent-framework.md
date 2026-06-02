@@ -155,5 +155,4 @@ Start with the hands-on how-to guide, then set up tracing for your deployment. U
 - [What is Azure Machine Learning prompt flow?](overview-what-is-prompt-flow.md)
 - [Microsoft Agent Framework documentation](/agent-framework/)
 - [Microsoft Agent Framework GitHub repository](https://github.com/microsoft/agent-framework)
-- [PromptFlow-to-MAF migration samples](https://github.com/microsoft/agent-framework/tree/main)
 - [Azure AI Evaluation SDK](/python/api/overview/azure/ai-evaluation-readme)

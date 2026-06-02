@@ -68,7 +68,7 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 
 | Capability                    | Standard deployment in Foundry resources | Serverless API Endpoint | Managed compute |
 |-------------------------------|--------------------------------------------------|------------------------|-----------------|
-| Which models can be deployed? | [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) <br> [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md) | [Foundry Models with pay-as-you-go billing](../how-to/deploy-models-serverless-availability.md) | [Open and custom models](../how-to/deploy-models-managed.md) |
+| Which models can be deployed? | [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) <br> [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md) | [Foundry Models with pay-as-you-go billing](../how-to/deploy-models-serverless-availability.md) | [Open and custom models](../how-to/deploy-models-managed.md) |
 | Deployment resource           | Foundry resource                         | AI project (in AI hub resource) | AI project (in AI hub resource) |
 | Requires AI Hubs              | No                                               | Yes                   | Yes            |
 | Data processing options       | Regional <br /> Data-zone  <br /> Global         | Regional              | Regional       |

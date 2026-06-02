@@ -41,10 +41,15 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
   - name: Toolbox (preview)
     href: ../../agents/how-to/tools/toolbox.md
+    items:
+    - name: Tool search (preview)
+      href: ../../agents/how-to/tools/tool-search.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
     href: ../../agents/how-to/tools/ai-search.md
+  - name: Browser automation (preview)
+    href: ../../agents/how-to/tools/browser-automation.md
   - name: Code interpreter
     href: ../../agents/how-to/tools/code-interpreter.md
   - name: File search
@@ -83,14 +88,16 @@ items:
       href: ../../agents/concepts/agent-to-agent-authentication.md
     - name: Azure Functions
       href: ../../agents/how-to/tools/azure-functions.md
-    - name: Browser automation (preview)
-      href: ../../agents/how-to/tools/browser-automation.md
     - name: Computer Use (preview)
       href: ../../agents/how-to/tools/computer-use.md
     - name: Custom code interpreter (preview)
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
+    - name: Fabric IQ (preview)
+      href: ../../agents/how-to/tools/fabric-iq.md
+    - name: Work IQ (preview)
+      href: ../../agents/how-to/tools/work-iq.md
     - name: Foundry IQ
       items:
       - name: What is Foundry IQ?
@@ -138,6 +145,8 @@ items:
     items:
     - name: Deploy a Hosted agent
       href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Deploy a Hosted agent from source code (preview)
+      href: ../../agents/how-to/deploy-hosted-agent-code.md
     - name: Manage Hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions

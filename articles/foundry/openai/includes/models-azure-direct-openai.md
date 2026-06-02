@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 05/13/2026
+ms.date: 05/28/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
@@ -13,15 +13,15 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 
 Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud.
 
-- To see **region availability for Azure OpenAI in Microsoft Foundry models grouped by deployment category**, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). 
+- To see **region availability for Azure OpenAI in Microsoft Foundry models grouped by deployment category**, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md). 
 
 - For **Azure Government model availability**, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
 
 ### Model highlights
 
 | Models | Description |
-|--|--|
-| [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview**  |
+| -- | -- |
+| [GPT-chat-latest (preview)](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-chat-latest) | **NEW** `gpt-chat-latest` **Preview** |
 | [GPT-5.5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-55) | **NEW** `gpt-5.5` |
 | [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) |`gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
 | [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) |  `gpt-5.3-chat`, `gpt-5.3-codex`  |
@@ -42,21 +42,22 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-chat-latest
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
-|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
-|  --- |  :--- |:--- |:---|:---: |
-| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+| Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
+| --- | :--- | :--- | :--- | :---: |
+| `gpt-chat-latest` (2026-05-28)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
+| `gpt-chat-latest` (2026-05-05)<br>**Preview** | - [Reasoning](../how-to/reasoning.md)<br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 16,384 | August 2025 |
 
 >[!NOTE]
-> You may also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, we are introducing `gpt-chat-latest` as the product name for this release. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. We are also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
+> You might also see this model referred to by OpenAI as GPT-5.5 Instant or in the OpenAI API as `chat-latest`. In Microsoft Foundry, the product name for this release is `gpt-chat-latest`. The model continues to follow the existing [Preview lifecycle](../concepts/model-retirements.md) and standard notice periods. The team is also evaluating ways to simplify how customers access continuously updated models over time, but current behavior remains unchanged as that work continues.
 
 
 ## GPT-5.5
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -69,7 +70,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-5.4
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -82,7 +83,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-5.3
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -93,7 +94,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-5.2
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -116,7 +117,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-5.1
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -140,7 +141,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## GPT-5
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -166,7 +167,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 ## gpt-oss
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -193,7 +194,7 @@ az cognitiveservices account deployment create \
 
 ## GPT-4.1 series
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -232,7 +233,7 @@ Registration is required to access `computer-use-preview`. Access is granted bas
 
 To request access, go to [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess). When access is granted, you need to create a deployment for the model.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -244,7 +245,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 The Azure OpenAI o-series models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math, compared to previous iterations.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -271,14 +272,14 @@ To learn more about advanced o-series models, see [Getting started with reasonin
 
 GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously. This multimodal approach enhances accuracy and responsiveness in human-computer interactions. GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## GPT-4 and GPT-4 Turbo models
 
 These models can be used only with the Chat Completions API. 
 See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -303,7 +304,7 @@ For model availability across all regions, grouped by deployment category, see [
 - `text-embedding-3-small`
 - `text-embedding-ada-002`
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### Capabilities
 
@@ -334,7 +335,7 @@ These models can be used only with Embedding API requests.
 
 The image generation models generate images from text prompts that the user provides. Image generation models include `gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, and `gpt-image-2`.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 |  Model ID  | Max request (characters) |
 |  --- | :---: |
@@ -352,13 +353,13 @@ Video generation models include `sora` and `sora-2`.
 |  --- | :---: |
 | sora | 4,000 |
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## Audio models
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
 
-For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
+For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
 ### GPT-4o audio models
 
@@ -380,6 +381,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
+|`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 ### Audio API
 

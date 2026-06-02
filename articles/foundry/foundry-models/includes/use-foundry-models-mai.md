@@ -23,7 +23,7 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 and MAI-Image-2e are available for **global standard deployment** (West Central US, East US, West US, West Europe, Sweden Central, and South India).
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
@@ -58,7 +58,7 @@ Foundry supports use of MAI-Image-2 (Preview) and MAI-Image-2e (Preview). Each o
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
 - **Product, branding and commercial design:** Well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.
 
-For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### MAI-Image-2 (Preview)
 
