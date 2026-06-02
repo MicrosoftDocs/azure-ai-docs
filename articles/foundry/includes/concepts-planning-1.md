@@ -38,9 +38,9 @@ then apply those decisions to Foundry:
 While every situation is unique, for the common organization we recommend the following sequence:
 1. Define nonnegotiable sharing boundaries across business units, data domains,
    product ownership, and environment tiers.
-1. Set a production policy that defaults to isolation, unless a documented
+1. Set a prod policy that defaults to isolation, unless a documented
    exception allows colocation.
-1. Set a pre-production policy that defaults to colocation for faster
+1. Set an exploration policy that defaults to colocation for faster
    experimentation, unless compliance or validation requires isolation.
 1. Assign ownership for each boundary, including security, cost, and incident
    response ownership.
@@ -204,8 +204,8 @@ After onboarding your user groups, consider establishing or expanding governance
 
 The IT organization at Contoso needs to support multiple teams while balancing two priorities:
 1. Rapid innovation, where developers can rigorously test the latest AI technologies using non-production data.
-1. Fully isolated dev, test, and production environments for proven use cases that receive funding for operationalization.
+1. Fully isolated dev/test and prod environments for proven use cases that receive funding for operationalization.
 
-The diagram shows how Contoso co-locates a shared pre-production Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. The sample backlog reflects common enterprise functions such as customer support, employee helpdesk, finance operations, procurement, and sales. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to production. The sample also shows two related sales use cases that stay co-located through pre-production and dev/test because they share the same CRM data, user personas, and connected systems. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full production-grade separation where needed.
+The diagram shows how Contoso co-locates a shared exploration Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. The sample backlog reflects common enterprise functions such as customer support, employee helpdesk, finance operations, procurement, and sales. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to prod. The sample also shows two related sales use cases that stay co-located through exploration and dev/test because they share the same CRM data, user personas, and connected systems. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full prod-grade separation where needed.
 
-:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared pre-production Foundry environment into isolated or co-located dev-test environments, and then into isolated production environments for a smaller number of workloads.":::
+:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared exploration Foundry environment into isolated or co-located dev/test environments, and then into isolated prod environments for a smaller number of workloads.":::
