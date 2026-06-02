@@ -63,7 +63,7 @@ curl -X POST "{endpoint}/translator/document/batches?api-version=2026-03-01" \
   }'
 ```
 
-### Option 2: Translate images in Word and PowerPoint documents
+### Translate images in Word and PowerPoint documents
 
 Use this option to translate text embedded in images within Word (`.docx`) and PowerPoint (`.pptx`) files. Set `translateWithinImage` to `true` in the `options` object.
 

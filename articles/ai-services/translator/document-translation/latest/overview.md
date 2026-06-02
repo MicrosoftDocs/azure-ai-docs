@@ -127,7 +127,7 @@ Document translation supports a broad range of file formats for both translation
 To query supported formats at runtime:
 
 * **Document formats**: Use the [Get supported document formats](rest-api/get-supported-document-formats.md) API.
-* **Glossary formats**: Use the [Get supported glossary formats](rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
+* **Glossary formats**: Use the [Get supported glossary formats](rest-api/get-supported-glossary-formats.md) API.
 
 For a complete list of supported formats by method, see [Supported document formats](rest-api/guide-overview.md).
 
