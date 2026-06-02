@@ -118,7 +118,6 @@ print(response.choices[0].finish_reason)
 
 Replace `[test prompt]` with content that exceeds one of the configured severity thresholds. If safety policies are active and the content is filtered, the request returns an HTTP 400 error with a `content_filter` code, or the response's `finish_reason` is `content_filter` with details indicating which category was triggered.
 
-References: [`AzureOpenAI` client](/python/api/openai/openai.azureopenai), [`chat.completions.create`](/azure/ai-foundry/openai/reference#chat-completions), [content filter response schema](/azure/ai-foundry/openai/concepts/content-filter#annotations-preview).
 
 ## Next steps
 
