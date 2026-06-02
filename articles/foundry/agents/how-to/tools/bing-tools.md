@@ -510,7 +510,7 @@ Euler's identity is considered one of the most elegant equations in mathematics.
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingGroundingTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateBingGroundingTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.Projects;

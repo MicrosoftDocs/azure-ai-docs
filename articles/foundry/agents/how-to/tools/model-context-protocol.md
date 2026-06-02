@@ -391,7 +391,7 @@ organized by service and includes guidelines for contributing new specifications
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI.Foundry`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.Projects;

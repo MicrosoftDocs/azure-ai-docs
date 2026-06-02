@@ -309,7 +309,7 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedCodeInterpreterTool` to give the agent a sandboxed Python environment. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedCodeInterpreterTool` to give the agent a sandboxed Python environment. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using System.Text;

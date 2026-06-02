@@ -293,7 +293,7 @@ The console displays the agent's response text from the A2A endpoint. After comp
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-The Microsoft Agent Framework lets you compose agents directly in your process by exposing one `AIAgent` as an `AIFunction` of another. This sample creates a specialist `WeatherAgent` and a top-level `MainAgent` that calls it via `weatherAgent.AsAIFunction()`. Install the `Microsoft.Agents.AI` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+The Microsoft Agent Framework lets you compose agents directly in your process by exposing one `AIAgent` as an `AIFunction` of another. This sample creates a specialist `WeatherAgent` and a top-level `MainAgent` that calls it via `weatherAgent.AsAIFunction()`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using System.ComponentModel;

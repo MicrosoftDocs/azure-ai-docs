@@ -499,7 +499,7 @@ Agent deleted
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateComputerTool(...)` from `Microsoft.Agents.AI.Foundry` to give the agent the computer use tool. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. This sample omits the screenshot helpers — see the full sample for the action loop and asset utilities.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateComputerTool(...)` from `Microsoft.Agents.AI.Foundry` to give the agent the computer use tool. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. This sample omits the screenshot helpers — see the full sample for the action loop and asset utilities.
 
 ```csharp
 using Azure.AI.Projects;

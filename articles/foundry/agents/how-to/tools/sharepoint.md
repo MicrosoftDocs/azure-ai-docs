@@ -333,7 +333,7 @@ The output includes the agent's response grounded in SharePoint content, with a 
 
 ### [Hosted Agents](#tab/hosted-agents)
 
-This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateSharepointTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI`, `Microsoft.Agents.AI.Foundry`, and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `SHAREPOINT_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateSharepointTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `SHAREPOINT_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.Projects;

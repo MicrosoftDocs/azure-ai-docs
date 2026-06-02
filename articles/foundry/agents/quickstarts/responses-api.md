@@ -87,10 +87,12 @@ pip install agent-framework-foundry aiohttp
 ::: zone pivot="csharp"
 
 ```bash
-dotnet add package Microsoft.Agents.AI --prerelease
+dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 ```
+
+`Microsoft.Agents.AI.Foundry` provides the `AsAIAgent(...)` extension method on `AIProjectClient` and transitively brings in `Microsoft.Agents.AI`.
 
 ::: zone-end
 
