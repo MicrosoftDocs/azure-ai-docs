@@ -192,7 +192,7 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 
 ### Session storage
 
-Each session has a persistent `$HOME` volume. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image and `$HOME`.
+Each session has a persistent `$HOME` volume. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 
