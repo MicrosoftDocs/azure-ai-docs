@@ -170,7 +170,7 @@ const result = await client.transcribe(audioFile, {
 console.log("Transcription:", result.combinedPhrases[0]?.text ?? "No text");
 ```
 
-Reference: [PhraseListProperties](/javascript/api/%40azure/ai-speech-transcription/phraselistproperties)
+Reference: [PhraseListProperties](/javascript/api/%40azure/ai-speech-transcription)
 
 ### Enable multi-language detection
 

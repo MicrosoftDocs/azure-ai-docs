@@ -220,6 +220,10 @@ The following example response was generated using API version `2025-11-18`:
 
 ```
 
+## Govern model router deployments with Azure Policy
+
+If your organization restricts which models developers can deploy, model router honors the same built-in Foundry model deployment policy that governs standard model deployments. Policy is enforced at deploy time across the Foundry portal, REST API, Azure CLI, and ARM templates. For the IT admin assignment steps and the developer experience, see [Govern model router deployments with Azure Policy](../../how-to/model-router-policy.md).
+
 ## Evaluate model router for your workload
 
 Before you commit production traffic to model router, benchmark it against your current baseline model on three dimensions: quality, cost, and latency. The Foundry Evaluations service doesn't integrate with model router directly, so use the purpose-built evaluation toolkit described here.

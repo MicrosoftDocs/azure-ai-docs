@@ -5,7 +5,7 @@ description: How to make translation requests using custom models published with
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: how-to
 ---

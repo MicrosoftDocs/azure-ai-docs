@@ -35,8 +35,9 @@ The Voice Live API supports function calling in voice conversations. With functi
 [!INCLUDE [Java how-to](./includes/how-to/voice-live-function-calling/java.md)]
 ::: zone-end
 
+
 ## Related content
 
 - Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

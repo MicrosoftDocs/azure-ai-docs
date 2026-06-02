@@ -48,7 +48,7 @@ Use Microsoft Entra ID credentials for agent mode. Agent invocation doesn't supp
 
 ### API version pinning
 
-Use a consistent SDK version (`Azure.AI.VoiceLive` 1.1.0-beta.3) in your project file. Consistent versioning keeps behavior predictable across preview updates and avoids schema drift.
+Use a consistent SDK version (`Azure.AI.VoiceLive` 1.1.0) in your project file. Consistent versioning keeps behavior predictable and avoids schema drift.
 
 ### Conversation and trace alignment
 

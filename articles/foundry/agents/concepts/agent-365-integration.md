@@ -4,7 +4,7 @@ description: "Learn how Microsoft Foundry integrates with Microsoft Agent 365 to
 author: deeikele
 ms.author: deeikele
 ms.reviewer: jburchel
-ms.date: 03/19/2026
+ms.date: 06/02/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -38,15 +38,15 @@ Foundry and Agent 365 connect in two ways:
 
 - **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
 
-- **Digital worker publishing** &mdash; Foundry Hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
+- **Autopilot publishing** &mdash; Foundry Hosted agents can be published as *autopilots* to Agent 365. An autopilot is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the autopilot appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
 
-For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md).
+For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md).
 
 ### Supported agent types
 
 Not all Foundry agent types support the full set of Agent 365 integration features. The following table summarizes current support:
 
-| Agent type | Registry sync | Digital worker publishing | Activity data collection |
+| Agent type | Registry sync | Autopilot publishing | Activity data collection |
 |---|---|---|---|
 | **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ✅ | ✅ |
 | **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using A365 SDK |
@@ -80,9 +80,57 @@ When agent activity data flows from Foundry into Agent 365, it moves from the Az
 
 This lets you restrict data flows where compliance regulations may require it. For details, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
 
+## Granting A365 OpenTelemetry read/write permissions to an agent
+
+To allow a hosted agent's managed identity to export telemetry to the Agent365 Observability service, you need to assign the `Agent365.Observability.OtelWrite` app role to the agent's service principal.
+
+### Prerequisites
+
+- Azure CLI (`az`) logged in with sufficient permissions (Global Admin or Application Administrator)
+- The agent's managed identity (service principal) Object ID
+- The `Agent365Observability` service principal must exist in your tenant
+
+### Steps
+
+1. Identify the required IDs.
+
+    | Value | Description | Example |
+    |-------|-------------|---------|
+    | `principalId` | Agent's managed identity (service principal) Object ID | `47bd3468-237c-4542-8e5a-ca37993e9605` |
+    | `resourceId` | `Agent365Observability` service principal Object ID in your tenant | `9918adcd-eb42-4743-a98e-71027476fd7a` |
+    | `appRoleId` | The `Agent365.Observability.OtelWrite` role ID | `8f71190c-00c8-461d-a63b-f74abde9ba52` |
+
+1. Find the Agent365Observability service principal in your tenant.
+
+    ```bash
+    az rest --method GET \
+      --uri "https://graph.microsoft.com/v1.0/servicePrincipals?\$filter=displayName eq 'Agent365Observability'" \
+      --query "value[0].id" -o tsv
+    ```
+
+1. Assign the OtelWrite app role.
+
+    ```bash
+    az rest --method POST \
+      --uri "https://graph.microsoft.com/v1.0/servicePrincipals/<AGENT_PRINCIPAL_ID>/appRoleAssignments" \
+      --body '{
+        "principalId": "<AGENT_PRINCIPAL_ID>",
+        "resourceId": "<AGENT365_OBSERVABILITY_SP_ID>",
+        "appRoleId": "8f71190c-00c8-461d-a63b-f74abde9ba52"
+      }'
+    ```
+
+1. Verify the assignment.
+
+    ```bash
+    az rest --method GET \
+      --uri "https://graph.microsoft.com/v1.0/servicePrincipals/<AGENT_PRINCIPAL_ID>/appRoleAssignments" \
+      --query "value[?appRoleId=='8f71190c-00c8-461d-a63b-f74abde9ba52']"
+    ```
+
 ## Related content
 
 - [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md)
-- [Publish an agent as a digital worker in Agent 365](../how-to/agent-365.md)
+- [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md)
 - [Agent identity concepts in Microsoft Foundry](agent-identity.md)
 - [Agent 365 overview](/microsoft-agent-365/overview)

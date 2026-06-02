@@ -1,5 +1,29 @@
 ### YamlMime:ZonePivotGroups
 groups:
+- id: foundry-routines-config
+# Owner: zhuoqunli
+  title: Configuration method
+  prompt: Choose your configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python SDK
+  - id: programming-language-javascript
+    title: JavaScript SDK
+  - id: azd
+    title: Azure Developer CLI
+# Owner: aahi
+- id: foundry-connector-config
+  title: Interface
+  prompt: Choose a configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages
@@ -751,6 +775,15 @@ groups:
     title: Foundry portal
   - id: speech-studio
     title: Speech Studio
+  - id: rest-api
+    title: REST
+- id: foundry-portal-rest
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
   - id: rest-api
     title: REST
 - id: speech-studio-rest
@@ -1827,10 +1860,23 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-javascript
-    title: JavaScript
   - id: programming-language-java
     title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+- id: how-to-voice-live-telemetry
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
