@@ -5,11 +5,11 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/13/2026
 ms.custom: include, classic-and-new
 ---
 
-Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](../how-to/json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs are recommended for function calling, extracting structured data, and building complex multi-step workflows.
+Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This approach contrasts with the older [JSON mode](../how-to/json-mode.md) feature, which guaranteed valid JSON but couldn't ensure strict adherence to the supplied schema. Use structured outputs for function calling, extracting structured data, and building complex multi-step workflows.
 
 ::: zone pivot="programming-language-python"
 
@@ -45,11 +45,11 @@ Azure OpenAI structured outputs support the same subset of the [JSON Schema](htt
 - anyOf
 
 > [!NOTE]
-> Root objects cannot be the `anyOf` type.
+> Root objects can't be the `anyOf` type.
 
 ### All fields must be required
 
-All fields or function parameters must be included as required. In the example below `location`, and `unit` are both specified under `"required": ["location", "unit"]`.
+Include all fields or function parameters as required. In the following example, both `location` and `unit` appear under `"required": ["location", "unit"]`.
 
 ```json
 {
@@ -75,7 +75,7 @@ All fields or function parameters must be included as required. In the example b
 }
 ```
 
-If needed, it's possible to emulate an optional parameter by using a union type with `null`. In this example, this is achieved with the line `"type": ["string", "null"],`.
+If needed, you can emulate an optional parameter by using a union type with `null`. In this example, this approach is represented by the line `"type": ["string", "null"],`.
 
 ```json
 {
@@ -105,15 +105,15 @@ If needed, it's possible to emulate an optional parameter by using a union type 
 
 ### Nesting depth
 
-A schema may have up to 100 object properties total, with up to five levels of nesting
+A schema can have up to 100 object properties total, with up to five levels of nesting.
 
-### additionalProperties: false must always be set in objects
+### Always set `additionalProperties: false` in objects
 
-This property controls if an object can have other key value pairs that weren't defined in the JSON Schema. In order to use structured outputs, you must set this value to false.
+This property controls if an object can have other key value pairs that weren't defined in the JSON Schema. To use structured outputs, set this value to false.
 
 ### Key ordering
 
-Structured outputs are ordered the same as the provided schema. To change the output order, modify the order of the schema that you send as part of your inference request.
+Structured outputs follow the same order as the provided schema. To change the output order, modify the order of the schema that you send as part of your inference request.
 
 ### Unsupported type-specific keywords
 
@@ -233,7 +233,7 @@ Supported example:
 
 ### Recursive schemas are supported
 
-Example using # for root recursion:
+Example using `#` for root recursion:
 
 ```json
 {
@@ -327,7 +327,7 @@ Example of explicit recursion:
 }
 ```
 > [!NOTE]
-> Currently structured outputs aren't supported with:
+> Currently, structured outputs aren't supported with:
 > - [Bring your own data](../../../foundry-classic/openai/concepts/use-your-data.md) scenarios.
 > - [Assistants](../../../foundry-classic/openai/how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md).
 > - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
@@ -358,4 +358,4 @@ Example of explicit recursion:
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`. It's available in the latest preview APIs as well as the latest GA API: `v1`.
+API version `2024-08-01-preview` is the first version that supports structured outputs. The latest preview APIs and the latest GA API, `v1`, also support structured outputs.

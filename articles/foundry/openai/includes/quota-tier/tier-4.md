@@ -7,7 +7,8 @@ ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -42,6 +43,7 @@ ms.date: 05/12/2026
 | gpt-5-pro                      | GlobalStandard    | 11,500      | 1,150,000   |
 | gpt-5.1                        | DataZoneStandard  | 20,000      | 2,000,000   |
 | gpt-5.1                        | GlobalStandard    | 70,000      | 7,000,000   |
+| gpt-5.1                        | Standard          | 20,000      | 2,000,000   |
 | gpt-5.1-chat                   | GlobalStandard    | 40,000      | 4,000,000   |
 | gpt-5.1-codex                  | DataZoneStandard  | 20,000      | 2,000,000   |
 | gpt-5.1-codex                  | GlobalStandard    | 7,000       | 7,000,000   |
@@ -67,11 +69,11 @@ ms.date: 05/12/2026
 | gpt-image-1-mini               | GlobalStandard    | 84          | -           |
 | gpt-image-1.5                  | DataZoneStandard  | 15          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 45          | -           |
-| gpt-image-2                    | DataZoneStandard  | 15          | -           |
-| gpt-image-2                    | GlobalStandard    | 45          | -           |
+| gpt-image-2                    | DataZoneStandard  | 8          | -           |
+| gpt-image-2                    | GlobalStandard    | 24          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| model-router                   | DataZoneStandard  | 1,162       | 1,162,000   |
-| model-router                   | GlobalStandard    | 3,465       | 3,465,000   |
+| model-router                   | DataZoneStandard  | 2,000       | 2,000,000   |
+| model-router                   | GlobalStandard    | 7,000       | 7,000,000   |
 | o1                             | DataZoneStandard  | 700         | 4,200,000   |
 | o1                             | GlobalStandard    | 4,000       | 24,000,000  |
 | o3                             | DataZoneStandard  | 2,000       | 2,000,000   |

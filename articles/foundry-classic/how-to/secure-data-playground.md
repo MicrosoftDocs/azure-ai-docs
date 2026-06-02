@@ -2,6 +2,7 @@
 title: "Securely use playground chat (classic)"
 description: "Learn how to securely use the Microsoft Foundry portal playground chat on your own data. (classic)" 
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - hub-only
   - dev-focus

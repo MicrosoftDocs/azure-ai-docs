@@ -4,6 +4,7 @@ description: "Learn how to use built-in Azure policies to control what managed F
 ms.author: jburchel 
 author: jonburchel 
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to #Don't change
 ms.date: 02/02/2026
 ms.reviewer: aashishb

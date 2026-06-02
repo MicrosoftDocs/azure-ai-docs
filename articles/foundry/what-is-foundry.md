@@ -6,6 +6,7 @@ ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 04/29/2026
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -83,11 +84,13 @@ For help choosing between models, see the [GPT-5 vs GPT-4.1 model choice guide](
 ## What's new
 
 Foundry is evolving fast. Here are some of the latest additions:
-
-- [Prompt Optimizer (preview)](./observability/how-to/prompt-optimizer.md) — Automatically improve agent prompts based on evaluation results.
-- [Task Adherence guardrails (preview)](./guardrails/task-adherence.md) — Keep agentic workflows on track with built-in adherence controls.
-- [LangChain and LangGraph integration](./how-to/develop/langchain.md) — Build and trace agents with popular open-source frameworks.
-- [Fireworks model import (preview)](./how-to/fireworks/enable-fireworks-models.md) — Bring custom models into Foundry through Fireworks.
+- [Model routing with the Responses API](./openai/how-to/responses-model-routing.md) — Use a single API to route to any model automatically or by name.
+- [A2A agent endpoints (preview)](./agents/how-to/enable-agent-to-agent-endpoint.md) — Expose agents as Agent2Agent endpoints so other agents can discover and call them.
+- [Instant models (preview)](./concepts/instant-models.md) — Call any supported model by name without creating a deployment first.
+- [Voice agents (preview)](./agents/how-to/build-voice-agent.md) — Build voice-enabled agents with hosted agents.
+- [Routines (preview)](./agents/concepts/routines.md) — Automate multi-step agent workflows with reusable routines.
+- [Fabric IQ (preview)](./agents/how-to/tools/fabric-iq.md) — Connect agents to Microsoft Fabric data.
+- [Work IQ (preview)](./agents/how-to/tools/work-iq.md) — Connect agents to Microsoft 365 content.
 
 See [What's new in Microsoft Foundry](./whats-new-foundry.md) for the full list.
 
@@ -176,6 +179,8 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 
 - [Quickstart: Get started with Microsoft Foundry](./quickstarts/get-started-code.md)
 - [Quickstart: Set up Foundry resources](./tutorials/quickstart-create-foundry-resources.md)
+- [Instant models in Microsoft Foundry (preview)](concepts/instant-models.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [Use the Microsoft Foundry Skill in coding agents](how-to/develop/use-microsoft-foundry-skill.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

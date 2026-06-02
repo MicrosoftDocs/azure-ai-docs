@@ -6,12 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom:
   - language-service-pii
   - sfi-ropc-nochange
 ---
+<!-- markdownlint-disable MD025 -->
 # Recognized **PII** and **PHI** entities
 
 The Personally Identifiable Information (PII) and Protected Health Information (PHI) detection APIs are cloud-based solutions that use artificial intelligence (AI) and machine learning to help you create smart applications with advanced natural language processing. The **PII** and **PHI** APIs effectively detect and removes sensitive information from input data by categorizing personal details into specific, predefined entity types. This comprehensive approach not only safeguards sensitive data to ensure full compliance with privacy regulations, but also enables applications to process and utilize information with enhanced security, reliability, and efficiency.
@@ -19,40 +20,41 @@ The Personally Identifiable Information (PII) and Protected Health Information (
 > [!TIP]
 > Try PII detection in text or conversations using the [Microsoft Foundry](https://ai.azure.com/explore/language) language playground.
 
-### Language Support
+## Language Support
 
 The [PII language support page](../language-support.md) lists all languages available for the PII entities in this article. Any exceptions are noted for specific named entities.
 
-Supported API versions:
+## Supported API versions:
 
-* [**Stable 2025-11-01: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
-* [**Preview: 2025-11-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP). 
+* [Stable: **2026-05-01 (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
+* [Preview: **2026-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP).
+
+   > [!IMPORTANT]
+   > **Text PII API** (2026-05-15-preview) is licensed to you as part of your Azure subscription and is subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 The following entities are currently in preview:
 
-The following entities are currently in preview:
-
-  * [Airport](#type-airport-preview)
-  * [DateOfBirth](#type-date-of-birth-preview)
-  * [BankAccountNumber](#type-bank-account-number-preview)
-  * [CASocialIdentificationNumber](#type-canada-social-identification-number-preview)
-  * [CVV (Card Verification Value )](#type-card-verification-value-cvv-preview)
-  * [City](#type-city-preview)
-  * [PassportNumber](#type-passport-number-preview)
-  * [DriversLicenseNumber](#type-drivers-license-number-preview)
-  * [ExpirationDate](#type-expiration-date-preview)
-  * [Geopolitical Entity](#type-geopolitical-entity-gpe-preview)
-  * [KRDriversLicenseNumber](#type-south-korea-drivers-license-number-preview)
-  * [KRPassportNumber ](#type-south-korea-passport-number-preview)
-  * [KRSocialSecurityNumber ](#type-south-korea-social-security-number-preview)
-  * [LicensePlate](#type-license-plate-preview)
-  * [Location](#type-location-preview)
-  * [Password](#type-password-preview)
-  * [SortCode](#type-sort-code-preview)
-  * [State](#type-state-preview)
-  * [USMedicareBeneficiaryId](#type-united-states-medicare-beneficiary-identification-preview)
-  * [VIN (vehicle identification number)](#type-vin-preview)
-  * [ZipCode](#type-zipcode-preview)
+* [Airport](#type-airport-preview)
+* [DateOfBirth](#type-date-of-birth-preview)
+* [BankAccountNumber](#type-bank-account-number-preview)
+* [CASocialIdentificationNumber](#type-canada-social-identification-number-preview)
+* [CVV (Card Verification Value )](#type-card-verification-value-cvv-preview)
+* [City](#type-city-preview)
+* [PassportNumber](#type-passport-number-preview)
+* [DriversLicenseNumber](#type-drivers-license-number-preview)
+* [ExpirationDate](#type-expiration-date-preview)
+* [Geopolitical Entity](#type-geopolitical-entity-gpe-preview)
+* [KRDriversLicenseNumber](#type-south-korea-drivers-license-number-preview)
+* [KRPassportNumber ](#type-south-korea-passport-number-preview)
+* [KRSocialSecurityNumber ](#type-south-korea-social-security-number-preview)
+* [LicensePlate](#type-license-plate-preview)
+* [Location](#type-location-preview)
+* [Password](#type-password-preview)
+* [SortCode](#type-sort-code-preview)
+* [State](#type-state-preview)
+* [USMedicareBeneficiaryId](#type-united-states-medicare-beneficiary-identification-preview)
+* [VIN (vehicle identification number)](#type-vin-preview)
+* [ZipCode](#type-zipcode-preview)
 
 > [!NOTE]
 > Beginning with the GA API (released `2024-11-01`), the **Subtype** field is no longer supported. All entity classifications now use the **type** field.
@@ -188,7 +190,7 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 
 ## Financial
 
-Any financial information is connected to a particular individual that can, through identifying details, be traced back to that person. 
+Any financial information is connected to a particular individual that can, through identifying details, be traced back to that person.
 
 
 ### Type: American Bankers Association Routing Number
@@ -197,7 +199,7 @@ Any financial information is connected to a particular individual that can, thro
 |---|---|
 |To retrieve this entity type, specify **ABARoutingNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **PII** response payload.|[**ABARoutingNumber**]|
 
-### Type: Bank Account Number (preview) 
+### Type: Bank Account Number (preview)
 
 |Details|Tag|
 |---|---|
@@ -229,7 +231,7 @@ Any financial information is connected to a particular individual that can, thro
 
 ## Organization
 
-Any data that an organization collects, stores, or processes that can be used to identify a specific individual, either directly or indirectly. 
+Any data that an organization collects, stores, or processes that can be used to identify a specific individual, either directly or indirectly.
 
 ### Type: Organization
 
@@ -1200,7 +1202,6 @@ Any government-issued identification that can be used along or combined with oth
 |Details|Tag|
 |---|---|
 |To retrieve this entity type, specify **ZipCode** in the **piiCategories** request parameter. If detected, the entity appears in the **PII** response payload.|[**USUKPassportNumber**]|
-
 
 ## Related content
 

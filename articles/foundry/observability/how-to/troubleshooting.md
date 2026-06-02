@@ -4,7 +4,7 @@ description: Learn how to troubleshoot common issues with evaluations and observ
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: naposani
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: troubleshooting
 ms.date: 04/14/2026
 ai-usage: ai-assisted
@@ -186,7 +186,9 @@ This section covers common issues with the human evaluation feature for Foundry 
 
 **Cause:** The reviewer doesn't have the required role on the Foundry project.
 
-**Resolution:** Assign the **Azure AI User** role to the reviewer on the Foundry project. For instructions, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
+**Resolution:** Assign the **Foundry User** role to the reviewer on the Foundry project. For instructions, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ## Related content
 

@@ -7,11 +7,12 @@ reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 05/21/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
+ai-usage: ai-assisted
 ---
 
 # Text to speech REST API
@@ -30,11 +31,21 @@ The text to speech REST API supports neural text to speech voices in many locale
 > [!IMPORTANT]
 > Costs vary for standard voices and custom voices. For more information, see [text to speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
-Before you use the text to speech REST API, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
+## Prerequisites
+
+To use the text to speech REST API, you need:
+
+- An Azure account. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Speech resource in the [Azure portal](https://portal.azure.com).
+- The resource key and endpoint from your Speech resource's **Keys and Endpoint** page.
+
+## Authentication
+
+[!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
 ## Get a list of voices
 
-You can use the `tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint to get a full list of voices for a specific region or endpoint. Prefix the voices list endpoint with a region to get a list of voices for that region. For example, to get a list of voices for the `westus` region, use the `https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
+You can use your Speech resource endpoint to get a full list of voices. Use the `/tts/cognitiveservices/voices/list` path with your resource endpoint. For example, use the `https://YourResourceName.cognitiveservices.azure.com/tts/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
 
 > [!NOTE]
 > [Voices and styles in preview](language-support.md?tabs=tts) are only available in a subset of regions. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](./regions.md?tabs=tts).
@@ -57,16 +68,16 @@ A body isn't required for `GET` requests to this endpoint.
 This request requires only an authorization header:
 
 ```http
-GET /cognitiveservices/voices/list HTTP/1.1
+GET /tts/cognitiveservices/voices/list HTTP/1.1
 
-Host: westus.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 
 Here's an example curl command:
 
 ```curl
-curl --location --request GET 'https://YOUR_RESOURCE_REGION.tts.speech.microsoft.com/cognitiveservices/voices/list' \
+curl --location --request GET 'https://YourResourceName.cognitiveservices.azure.com/tts/cognitiveservices/voices/list' \
 --header 'Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY'
 ```
 
@@ -101,12 +112,9 @@ You should receive a response with a JSON body that includes all supported local
           "whispering",
           "hopeful"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
-        "ExtendedPropertyMap": {
-          "IsHighQuality48K": "True"
-        },
         "WordsPerMinute": "152"
     },
     // Redacted for brevity
@@ -133,7 +141,7 @@ You should receive a response with a JSON body that includes all supported local
           "pt-BR",
           "zh-CN"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "WordsPerMinute": "190"
@@ -147,7 +155,7 @@ You should receive a response with a JSON body that includes all supported local
         "Gender": "Female",
         "Locale": "ga-IE",
         "LocaleName": "Irish (Ireland)",
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "WordsPerMinute": "139"
@@ -175,7 +183,7 @@ You should receive a response with a JSON body that includes all supported local
           "assistant",
           "newscast"
         ],
-        "SampleRateHertz": "24000",
+        "SampleRateHertz": "48000",
         "VoiceType": "Neural",
         "Status": "GA",
         "RolePlayList": [
@@ -236,7 +244,7 @@ POST /cognitiveservices/v1 HTTP/1.1
 
 X-Microsoft-OutputFormat: riff-24khz-16bit-mono-pcm
 Content-Type: application/ssml+xml
-Host: westus.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Content-Length: <Length>
 Authorization: Bearer [Base64 access_token]
 User-Agent: <Your application name>
@@ -320,10 +328,6 @@ riff-48khz-16bit-mono-pcm
 > If you select 48kHz output format, the high-fidelity voice model with 48kHz will be invoked accordingly. The sample rates other than 24kHz and 48kHz can be obtained through upsampling or downsampling when synthesizing, for example, 44.1kHz is downsampled from 48kHz.
 >
 > If your selected voice and output format have different bit rates, the audio is resampled as necessary. You can decode the `ogg-24khz-16bit-mono-opus` format by using the [Opus codec](https://opus-codec.org/downloads/).
-
-## Authentication
-
-[!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
 ## Next steps
 

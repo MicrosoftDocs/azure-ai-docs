@@ -28,12 +28,13 @@ This article is for developers who want to build, test, and ship production-read
 
 Use this lifecycle as a practical checklist while you build and ship an agent.
 
-1. **Choose an agent type**: Start with a prompt-based agent, a workflow, or a hosted agent.
+1. **Choose an agent type**: Start with a prompt-based agent, a workflow, or a Hosted agent.
 1. **Create your agent and start testing**: Iterate in the playground or in code.
 1. **Add tools and data**: Attach tools for retrieval and actions, and validate the configuration before you save.
 1. **Save changes as versions**: Capture meaningful milestones and compare versions.
 1. **Debug with tracing**: Use tracing to confirm tool calls, latency, and end-to-end behavior. For details, see [Agent tracing overview](../../observability/concepts/trace-agent-concept.md).
 1. **Evaluate quality and safety**: Run repeatable evaluations to catch regressions before publishing. For conceptual guidance, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
+1. **Optimize hosted agents (preview)**: Automatically improve your hosted agent's instructions and discover skills using the [agent optimizer](agent-optimizer-overview.md).
 1. **Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see [Agent applications in Microsoft Foundry](../how-to/agent-applications.md).
 1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor agents](../../observability/how-to/how-to-monitor-agents-dashboard.md).
 
@@ -45,7 +46,7 @@ There are three types of agents:
 
 - **Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see [Build a workflow in Microsoft Foundry](./workflow.md).
 
-- **Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are hosted agents?](./hosted-agents.md)
+- **Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
 
 Create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
 
@@ -147,7 +148,7 @@ After you create an agent or workflow version that you're happy with, [publish i
 
 **Learn more about agent types:**
 
-- [What are hosted agents?](./hosted-agents.md)
+- [What are Hosted agents?](./hosted-agents.md)
 - [Agent runtime components](./runtime-components.md)
 
 **Configure and extend agents:**

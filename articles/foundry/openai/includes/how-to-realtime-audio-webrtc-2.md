@@ -433,7 +433,7 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 * response.output_audio_transcript.done
 
 > [!TIP]
-> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md#server-events).
+> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md).
 
 When the connection succeeds, you should see these console messages:
 - `✅ RTCPeerConnection created`

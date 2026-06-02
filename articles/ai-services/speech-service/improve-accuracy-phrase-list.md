@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 10/21/2025
 zone_pivot_groups: programming-languages-set-two-with-js-spx
 #Customer intent: As a developer using speech to text, I want to learn how to improve recognition accuracy with phrase list.
+ai-usage: ai-assisted
 ---
 
 # Improve recognition accuracy with phrase list
@@ -179,7 +180,7 @@ Allowed characters include locale-specific letters and digits, white space chara
 You can add a list of phrases in fast transcription via [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe)
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey' \
 --form 'audio=@"YourAudioFile"' \
 --form 'definition={
