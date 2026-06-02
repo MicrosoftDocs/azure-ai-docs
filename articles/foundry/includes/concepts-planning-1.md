@@ -107,10 +107,10 @@ Use this reference table as a checklist for security design decisions.
 
 For each workload, define:
 
-1. Model families and deployment types required by the use case.
-1. Data processing requirements (for example, global or regional constraints).
-1. Throughput and latency targets for interactive and batch scenarios.
-1. Quota and provisioned capacity requirements for steady-state and peak loads.
+* Model families and deployment types required by the use case.
+* Data processing requirements (for example, global or regional constraints).
+* Throughput and latency targets for interactive and batch scenarios.
+* Quota and provisioned capacity requirements for steady-state and peak loads.
 
 Use these references:
 
@@ -159,11 +159,11 @@ control.
 
 Enable self-serve only within clear constraints:
 
-1. Define which roles can create projects, deploy models, and connect external
+* Define which roles can create projects, deploy models, and connect external
    tools. 
-1. Apply policy controls for model deployment and runtime behavior including which model providers, and which tool connections are allowed.
-1. Set cost controls and budget alerts for shared and isolated environments.
-1. Enforce trace logging into central observability across Microsoft Foundry, Microsoft Copilot Studio and Microsoft 365.
+* Apply policy controls for model deployment and runtime behavior including which model providers, and which tool connections are allowed.
+* Set cost controls and budget alerts for shared and isolated environments.
+* Enforce trace logging into central observability across Microsoft Foundry, Microsoft Copilot Studio and Microsoft 365.
 
 Use these references:
 
@@ -203,8 +203,8 @@ After onboarding your user groups, consider establishing or expanding governance
 ## Sample platform deployment
 
 The IT organization at Contoso needs to support multiple teams while balancing two priorities:
-1. Rapid innovation, where developers can rigorously test the latest AI technologies using non-production data.
-1. Fully isolated dev/test and prod environments for proven use cases that receive funding for operationalization.
+* Rapid innovation, where developers can rigorously test the latest AI technologies using non-production data.
+* Fully isolated dev/test and prod environments for proven use cases that receive funding for operationalization.
 
 The diagram shows how Contoso co-locates a shared exploration Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. The sample backlog reflects common enterprise functions such as customer support, employee helpdesk, finance operations, procurement, and sales. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to prod. The sample also shows two related sales use cases that stay co-located through exploration and dev/test because they share the same CRM data, user personas, and connected systems. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full prod-grade separation where needed.
 
