@@ -137,6 +137,11 @@ Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**
 - With managed OAuth, Microsoft or the MCP server publisher manages the OAuth app.
 - With custom OAuth, you bring your own OAuth app registration.
 
+> [!IMPORTANT]
+> When using managed OAuth with Microsoft Entra, Agent Service restricts tokens scoped to a known Microsoft audience from being sent to custom or third-party MCP servers. If you attempt this, Agent Service returns the error: `Cannot pass Microsoft token to untrusted MCP endpoint.`
+>
+> Your custom MCP server must be registered with an audience that you control rather than a known Microsoft audience. Don't design your MCP server to rely on passthrough of its authentication token to a downstream Microsoft service. To meet this requirement, use custom OAuth with your own Microsoft Entra app registration.
+
 > [!NOTE]
 > If you use custom OAuth, you receive a redirect URL after configuration. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
 
