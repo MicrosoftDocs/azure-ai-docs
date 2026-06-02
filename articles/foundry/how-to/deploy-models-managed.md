@@ -126,7 +126,7 @@ Managed compute deployments emit metrics on the same Azure Monitor surface as ot
 - Response time percentiles (p50, p90, p99).
 - For chat-completions models: input and output token counts, time-to-first-token (TTFT) percentiles, and inter-token decode time percentiles.
 
-For deeper analysis or alerting, open the deployment in the [Azure portal](https://portal.azure.com/) and use **Metrics** under **Monitoring** to chart the same metrics, group by deployment, and configure alerts. Per-deployment billing tags are emitted automaticall. Filter Cost Management by the deployment tag to attribute spend to a specific managed compute deployment. For details, see [Plan and manage costs for Microsoft Foundry](../concepts/manage-costs.md).
+For deeper analysis or alerting, open the deployment in the [Azure portal](https://portal.azure.com/) and use **Metrics** under **Monitoring** to chart the same metrics, group by deployment, and configure alerts. Per-deployment billing tags are emitted automatically. Filter Cost Management by the deployment tag to attribute spend to a specific managed compute deployment. For details, see [Plan and manage costs for Microsoft Foundry](../concepts/manage-costs.md).
 
 ## Delete the deployment 
 
