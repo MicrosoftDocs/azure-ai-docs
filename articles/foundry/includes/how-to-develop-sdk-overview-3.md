@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Agent Framework
 
-[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [code-based agents](../agents/overview.md#code-based-agents) on Microsoft Foundry.
+[Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) is an open-source SDK (Python and .NET) for building agents and multi-agent systems in code. It's the recommended path for [Hosted agents (preview)](../agents/overview.md#hosted-agents-preview) on Microsoft Foundry.
 
 ### Run your code as a Hosted agent
 
