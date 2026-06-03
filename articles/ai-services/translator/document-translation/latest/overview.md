@@ -87,7 +87,7 @@ Document Translation supports different features for each translation method. Se
 
 ## Language support
 
-For the full list of languages supported for document translation features see [Language support](../../language-support.md).
+For the full list of languages supported for document translation features, see [Language support](../../language-support.md).
 
 
 ## Development options
@@ -104,7 +104,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|The [client-library (SDKs)](../quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+|**Client libraries (SDKs)**|The [client-library (`SDKs`)](../quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
 ### [**Synchronous**](#tab/sync)
 
@@ -112,10 +112,10 @@ Use synchronous document translation to translate a single file and return the t
 
 |Development option|Description|
 |---|---|
-|**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** is not selected, then select **Playgrounds** > **Translator**.|
+|**Foundry portal (classic)**|Try synchronous document translation in the Translator playground. In the classic portal, upload your own document and translate it end-to-end. To open the Translator playground, go to [Foundry portal](https://ai.azure.com/), ensure **New Foundry** isn't selected, then select **Playgrounds** > **Translator**.|
 |**Foundry portal (new)**|The new Foundry portal uses a sample document and translates only into a predefined set of languages. Doesn't support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../../foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications by using the [REST API](rest-api/guide-overview.md#synchronous-operations).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (SDKs)](../quickstarts/client-library-sdks.md).|
+|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the [client libraries (`SDKs`)](../quickstarts/client-library-sdks.md).|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Documents](../../containers/translate-document-parameters.md).|
 
 ---
@@ -127,17 +127,17 @@ Document translation supports a broad range of file formats for both translation
 To query supported formats at runtime:
 
 * **Document formats**: Use the [Get supported document formats](rest-api/get-supported-document-formats.md) API.
-* **Glossary formats**: Use the [Get supported glossary formats](rest-api/get-supported-glossary-formats.md) `[TO VERIFY]` API.
+* **Glossary formats**: Use the [Get supported glossary formats](rest-api/get-supported-glossary-formats.md) API.
 
 For a complete list of supported formats by method, see [Supported document formats](rest-api/guide-overview.md).
 
 ## Document translation request limits
 
-Document translation enforces limits on request size, document count, file size, and concurrent operations. Understanding these limits helps you design batch jobs and avoid throttling errors. For detailed information, see [Document translation request limits](../../service-limits.md#document-translation).
+Document translation enforces limits on request size, document count, file size, and concurrent operations. Familiarizing yourself with these limits helps you plan batch jobs effectively and prevent throttling errors. For detailed information, see [Document translation request limits](../../service-limits.md#document-translation).
 
 ## Document translation data residency
 
-Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the processing location is determined by the Azure region where your Translator resource was created. The following table maps resource regions to their corresponding request processing data centers:
+Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the Azure region where you created your Translator resource determines the processing location. The following table maps resource regions to their corresponding request processing data centers:
 
 ✔️ Feature: **Document translation**
 ✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
