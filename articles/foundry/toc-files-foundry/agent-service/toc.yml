@@ -84,8 +84,6 @@ items:
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
       href: ../../mcp/build-your-own-mcp-server.md
-    - name: Use connectors as MCP servers
-      href: ../../agents/how-to/tools/connectors.md
   - name: Additional tools
     items:
     - name: Agent2Agent (A2A) (preview)
