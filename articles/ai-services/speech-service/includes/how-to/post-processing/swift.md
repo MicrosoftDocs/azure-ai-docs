@@ -1,6 +1,6 @@
 ---
 author: emilyjiji
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 03/30/2026
 ms.author: emilyjiji
