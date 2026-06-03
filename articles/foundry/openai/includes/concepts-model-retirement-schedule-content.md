@@ -129,10 +129,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-R1 | 1 | GA | — | — |
-| DeepSeek-R1-0528 | 1 | GA | — | — |
-| DeepSeek-V3-0324 | 1 | GA | — | — |
-| DeepSeek-V3.1 | 1 | GA | — | — |
+| DeepSeek-R1 | 1 | Legacy | 2026-08-13 | — |
+| DeepSeek-R1-0528 | 1 | Legacy | 2026-07-13 | — |
+| DeepSeek-V3-0324 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash, DeepSeek-V4-Pro |
+| DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash, DeepSeek-V4-Pro |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
 
