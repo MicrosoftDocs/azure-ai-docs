@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/25/2026
+ms.date: 06/03/2026
 ms.custom: include
 ---
 
@@ -125,9 +125,8 @@ The tables in this section list the throughput and deployment parameters for eac
 > [!NOTE]
 > gpt-5.4, gpt-4.1, gpt-4.1-mini, and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
-| Topic | **gpt-5.5** | **gpt-5.4** | **gpt-5.4-mini** | **gpt-5.3-codex** | **gpt-5.2** | **gpt-5.2-codex** | **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** |
+| Topic | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Version | 2026-04-24 | 2026-03-05 | 2026-03-17 | 2026-02-24 | 2025-12-11 | 2026-01-14 | 2025-11-13 | 2025-11-13 | 2025-08-07 | 2025-08-07 | 2025-04-14 | 2025-04-14 | 2025-04-14 | 2025-04-16 | 2025-04-16 |
 | Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
 | Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
 | Regional provisioned minimum deployment | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
