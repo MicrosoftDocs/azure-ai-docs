@@ -13,8 +13,7 @@
           "**/obj/**",
           "**/*.graffle",
           "machine-learning/**",
-          "machine-learning/v1/**",
-          "ai-foundry/**"
+          "machine-learning/v1/**"
         ],
         "src": "articles",
         "dest": "."
@@ -77,36 +76,7 @@
           "**/obj/**"
         ]
       },
-      {
-        "group": "grp-foundry-classic",
-        "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "default/**",
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-default",
-        "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ],
-        "monikerRange": "foundry"
-      },
+      
       {
         "files": [
           "toc.yml"
@@ -206,42 +176,8 @@
           "**/_themes/**",
           "**/obj/**"
         ]
-      },
-      {
-        "group": "grp-foundry-classic",
-        "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "default/**",
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-default",
-        "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
       }
+      
     ],
     "groups": {
       "grp-document-intelligence": {
@@ -430,18 +366,14 @@
         ]
       },
       "manager": {
-        "articles/search/**/*.md": "nitinme",
-        "articles/ai-foundry/**/*.md": "mcleans ",
-        "articles/ai-foundry/openai/*.md": "nitinme ",
-        "articles/ai-foundry/agents/**/*.md": "nitinme ",
-        "articles/ai-foundry/foundry-models/**/*.md": "nitinme ",
-        "articles/ai-services/**/*.md": "nitinme",
+        "articles/search/**/*.md": "mcleans",
+        "articles/ai-services/**/*.md": "mcleans",
         "articles/machine-learning/**/*.md": "mcleans ",
         "articles/opendatasets/**/*.yml": "mcleans "
       },
       "ms.author": {
-        "articles/ai-studio/**/*.md": "sgilley",
-        "articles/ai-services/**/*.md": "nitinme",
+        "articles/foundry/**/*.md": "sgilley",
+        "articles/ai-services/**/*.md": "mcleans",
         "articles/ai-services/anomaly-detector/**/*.md": "mbullwin",
         "articles/ai-services/computer-vision/**/*.md": "pafarley",
         "articles/ai-services/content-moderator/**/*.md": "pafarley",
@@ -559,22 +491,15 @@
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/machine-learning/v1/**/*.md": "azureml-api-1",
-        "articles/ai-foundry/toc.yml": "foundry-classic",
-        "articles/ai-foundry/context/**/*.*": "foundry-classic",
-        "articles/ai-foundry/breadcrumb/**/*.*": "foundry-classic",
-        "articles/ai-foundry/**/*.*": "foundry-classic",
-        "articles/ai-foundry/default/**/*.*": "foundry"
+        "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
       "open_to_public_contributors": {
-        "articles/ai-foundry/responsible-ai/**.*": false
       },
       "recommendations": {
         "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
         "articles/ai-studio/**/*.md": "Microsoft Foundry",
-        "articles/ai-foundry/**/*.md": "Microsoft Foundry",
         "articles/ai-services/**/*.md": "Foundry Tools",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",
