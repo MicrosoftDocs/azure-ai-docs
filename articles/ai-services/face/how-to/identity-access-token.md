@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 #customer intent: As an ISV, I want to manage Face API usage for my clients so that they can use Face features without formal approval.
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to

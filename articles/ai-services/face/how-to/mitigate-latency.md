@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to mitigate network latency and improve service performance when using the Azure Face service to enhance user experience.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
