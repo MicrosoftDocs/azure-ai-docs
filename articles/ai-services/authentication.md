@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Learn how to authenticate a request to Foundry Tools via Microsoft Entra ID or API key."
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 10/02/2025
