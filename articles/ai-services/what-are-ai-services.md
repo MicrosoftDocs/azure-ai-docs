@@ -5,7 +5,7 @@ description: Foundry Tools are cloud-based artificial intelligence (AI) services
 author: nitinme
 manager: nitinme
 keywords: Foundry Tools, cognitive
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: overview
 ms.date: 10/02/2025
 ms.author: nitinme
