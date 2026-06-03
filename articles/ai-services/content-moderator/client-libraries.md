@@ -5,7 +5,7 @@ description: The Content Moderator API offers client libraries that make it easy
 author: PatrickFarley
 manager: nitinme
 zone_pivot_groups: programming-languages-set-conmod
-ms.service: azure-ai-content-moderator
+ms.service: azure-content-moderator
 ms.topic: quickstart
 ms.date: 06/12/2025
 ms.author: pafarley
