@@ -3,7 +3,7 @@
  description: include file
  #services: cognitive-services
  author: erindormier
- ms.service: azure-ai-services
+ ms.service: foundry-tools
  ms.topic: include
  ms.date: 03/11/2020
  ms.author: egeaney
