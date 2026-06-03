@@ -35,13 +35,10 @@ Phrase lists are simple and lightweight:
 - **Just-in-time**: A phrase list is provided just before starting the speech recognition, eliminating the need to train a custom model. 
 - **Lightweight**: You don't need a large data set. Provide a word or phrase to boost its recognition.
 
-Phrase list is available for many locales where real-time and fast transcription are supported. Support for additional locales might vary by model version.
-
 You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). It's supported with [Real-time transcription](./how-to-recognize-speech.md) and [Fast transcription API](./fast-transcription-create.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
 
 You can use phrase lists with both base (standard) endpoints and [custom speech](custom-speech-overview.md) endpoints. Phrase list is applied at runtime and doesn't require model training. There are some situations where training a custom model that includes phrases is likely the best option to improve accuracy. For example, in the following cases you would use custom speech instead:
 - If you need to use a large list of phrases. A phrase list shouldn't have more than 500 phrases.
-- If you need to improve recognition for languages that aren't currently supported for phrase list.
 
 ## Phrase list weight
 
