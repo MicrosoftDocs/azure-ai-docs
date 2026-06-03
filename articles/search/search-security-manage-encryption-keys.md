@@ -192,7 +192,7 @@ Azure AI Search must be able to access the encryption key in your Azure Key Vaul
 If your key vault uses a firewall or virtual network restrictions, configure one of the following options:
 
 - Allow access from selected networks that include your search service.
-- Enable **Allow trusted Microsoft services to bypass this firewall**.
+- Enable [**Allow trusted Microsoft services to bypass this firewall**](/azure/key-vault/general/network-security#key-vault-firewall-enabled-trusted-services-only).
 
 When trusted services bypass is enabled, Azure AI Search can access the key as a trusted service by using managed identity, even when public network access is restricted.
 
@@ -792,7 +792,7 @@ For performance reasons, the search service caches the key for up to several hou
 
 + Use the same [Azure tenant](/entra/fundamentals/create-new-tenant) so that you can retrieve your managed key through role assignments and by connecting through a system or user-managed identity. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
-+ If your Azure Key Vault is secured with a firewall, make sure to enable **Allow trusted Microsoft services to bypass this firewall** so that Azure AI Search can access the key.
++ If your Azure Key Vault is secured with a firewall, make sure to enable [**Allow trusted Microsoft services to bypass this firewall**](/azure/key-vault/general/network-security#key-vault-firewall-enabled-trusted-services-only) so that Azure AI Search can access the key.
 
 + [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for encryption with a CMK in Azure AI Search.
 
