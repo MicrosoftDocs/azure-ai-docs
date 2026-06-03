@@ -35,12 +35,15 @@ When you connect your Foundry agent to Fabric IQ by registering it as a server-s
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Fabric IQ | ✔️ | — | — | — | ✔️ | ✔️ | ✔️ |
+| Fabric IQ | ✔️ | ✔️ | ✔️ | — | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 > [!NOTE]
 > Virtual network (VNet) integration is not supported. Your Foundry project must not use a VNet-restricted endpoint.
+
+> [!IMPORTANT]
+> Fabric IQ isn't available in regions where Power BI is the only Fabric workload. Confirm your Fabric workspace is in a region that supports the full Fabric stack — see [Microsoft Fabric region availability](/fabric/admin/region-availability#power-bi).
 
 Before you begin, make sure you have:
 
@@ -49,6 +52,7 @@ Before you begin, make sure you have:
 - **Azure RBAC roles**:
   - **Foundry User** role on the Foundry project for the developer identity, the agent's runtime identity, and any user identity involved in OAuth flows.
   - **Foundry Project Manager** role on the Foundry project for creating a Foundry connection to the Fabric IQ endpoint.
+- **Foundry Toolkit**: Install [Visual Studio Code](https://code.visualstudio.com/) and [Foundry Toolkit for Visual Studio Code](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup).
 
 ## How it works
 
@@ -82,74 +86,104 @@ You can find the workspace and item GUIDs in the Microsoft Fabric portal: open y
 > [!TIP]
 > For **Power BI semantic models**, we highly recommend using the latest models such as `gpt-5.4` or `opus 4.7`. Semantic model queries involve complex measure and hierarchy reasoning that benefits significantly from the improved reasoning capability of newer models.
 
+> [!IMPORTANT]
+> For **Power BI semantic models**, we recommend restricting the tool surface with `allowed_tools` so the agent reasons over the schema and runs queries directly instead of pre-generating DAX. Set `allowed_tools` to:
+>
+> - `GetInstructions`
+> - `DiscoverArtifacts`
+> - `GetReportMetadata`
+> - `GetSemanticModelSchema`
+> - `ExecuteQuery`
+> - `ValueSearch`
+>
+> Omit `GenerateQuery`. This list lets the agent discover artifacts, inspect the semantic model schema, execute queries, and search for values, without an intermediate query-generation step.
+
 For **`server_label`**, use any short lowercase identifier with hyphens, for example `fabriciq-ontology`. This label appears in approval prompts when the model calls the tool.
 
 ### Add the Fabric IQ tool to your agent
 
+:::zone pivot="vscode"
+
+Use Foundry Toolkit for Visual Studio Code to add an existing Fabric IQ connection to a toolbox, then connect your agent to the published toolbox endpoint.
+
+> [!NOTE]
+> Adding a Fabric IQ (OneLake Catalog) connection from Foundry Toolkit isn't directly supported yet. Open this toolbox in the Foundry portal to create the connection, then return to Foundry Toolkit. The connection appears in the **Configured** list.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. Create a toolbox, or open an existing toolbox.
+1. Select **Add tools**.
+1. On the **Configured** tab, select **Fabric IQ (OneLake Catalog)**.
+1. Select **Add Tools**.
+1. Select **Publish** for a new toolbox, or **Save Changes** for an existing toolbox.
+
+:::image type="content" source="../../media/tools/fabric-iq/toolbox-vscode-fabric-iq.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Select a tool dialog with Fabric IQ OneLake Catalog in the Configured list." lightbox="../../media/tools/fabric-iq/toolbox-vscode-fabric-iq.png":::
+
+For the full toolbox creation workflow, see [Curate intent-based toolbox in Foundry](toolbox.md#step-1-create-a-toolbox-version).
+
+To add the Fabric IQ tool directly to an agent by using code or the REST API, select the Python, .NET, JavaScript, or REST API tab in this section.
+
+:::zone-end
+
 :::zone pivot="python"
+
+Install the package:
+
+```bash
+pip install "azure-ai-projects>=2.2.0" python-dotenv
+```
+
+Set the following environment variables:
+
+- `FOUNDRY_PROJECT_ENDPOINT` — your project endpoint, found in the Overview page of your Foundry project.
+- `FOUNDRY_MODEL_NAME` — the deployment name of the model the agent uses.
+- `FABRIC_IQ_PROJECT_CONNECTION_ID` — the fully qualified resource ID of the Fabric IQ project connection.
 
 ```python
 import os
+from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-MODEL_DEPLOYMENT = os.environ.get("FOUNDRY_MODEL_DEPLOYMENT_NAME", "gpt-4o-mini")
-FABRICIQ_CONNECTION_NAME = "fabriciq-conn"
-FABRICIQ_SERVER_LABEL = os.environ["FABRICIQ_SERVER_LABEL"]
-FABRICIQ_SERVER_URL = os.environ["FABRICIQ_SERVER_URL"]
-AGENT_NAME = "fabriciq-agent"
+from azure.ai.projects.models import PromptAgentDefinition, FabricIQPreviewTool
 
-project = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
-    credential=DefaultAzureCredential(),
-)
-openai = project.get_openai_client()
+load_dotenv()
 
-# Retrieve the Fabric IQ connection
-fabriciq_conn = project.connections.get(FABRICIQ_CONNECTION_NAME)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-# Create an agent with the Fabric IQ tool
-agent = project.agents.create_version(
-    agent_name=AGENT_NAME,
-    definition={
-        "model": MODEL_DEPLOYMENT,
-        "instructions": (
-            "You are a helpful assistant with access to your organization's "
-            "Microsoft Fabric data through Fabric IQ. "
-            "Use Fabric IQ to answer questions about business entities, "
-            "relationships, and data in the ontology—such as customers, orders, products, and pipelines."
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    tool_payload = FabricIQPreviewTool(
+        project_connection_id=os.environ["FABRIC_IQ_PROJECT_CONNECTION_ID"],
+        require_approval="never",
+    )
+
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["FOUNDRY_MODEL_NAME"],
+            instructions="Use the available Fabric IQ tools to answer questions and perform tasks.",
+            tools=[tool_payload],
         ),
-        "tools": [
-            {
-                "type": "fabric_iq_preview",
-                "project_connection_id": fabriciq_conn.name,
-                "server_label": FABRICIQ_SERVER_LABEL,
-                "server_url": FABRICIQ_SERVER_URL,
-            }
-        ],
-    },
-)
-print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-# Invoke the agent
-user_input = "Which customers placed orders above $10,000 last quarter?"
-stream_response = openai.responses.create(
-    stream=True,
-    input=user_input,
-    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-)
+    user_input = "Which customers placed orders above $10,000 last quarter?"
+    response = openai_client.responses.create(
+        input=user_input,
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    )
 
-for event in stream_response:
-    if event.type == "response.output_text.delta":
-        print(event.delta, end="", flush=True)
-    elif event.type == "response.completed":
-        print(f"\n\nCompleted. Full response: {event.response.output_text}")
+    print(f"Agent response: {response.output_text}")
 
-# Clean up
-project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    # Clean up the agent version so unused versions don't accumulate in the project.
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
-**Expected output**: The agent calls Fabric IQ with the user's query. Fabric IQ queries the ontology-grounded data using your business terms, synthesizes results from bound OneLake sources, and returns the answer as streamed text.
+**Expected output**: The agent calls Fabric IQ with the user's query. Fabric IQ queries the ontology-grounded data using your business terms, synthesizes results from bound OneLake sources, and returns the answer.
 
 :::zone-end
 
@@ -214,6 +248,100 @@ The response includes metadata about the agent execution and a `text` field in `
 
 > [!NOTE]
 > Use token scope `https://ai.azure.com/.default` when getting the bearer token.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME");
+var fabricIQConnectionName = Environment.GetEnvironmentVariable("FABRIC_IQ_PROJECT_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+string fabricIQConnectionId =
+    (await projectClient.Connections.GetConnectionAsync(fabricIQConnectionName)).Value.Id;
+
+FabricIQPreviewTool fabricIQTool = new(projectConnectionId: fabricIQConnectionId)
+{
+    RequireApproval = BinaryData.FromObjectAsJson("never"),
+};
+DeclarativeAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "Use the available Fabric IQ tools to answer questions and perform tasks.",
+    Tools = { fabricIQTool },
+};
+
+ProjectsAgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
+    agentName: "myFabricIQAgent",
+    options: new(agentDefinition));
+Console.WriteLine($"Agent created (name: {agentVersion.Name}, version: {agentVersion.Version})");
+
+ProjectResponsesClient responseClient =
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
+CreateResponseOptions responseOptions = new()
+{
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("Which customers placed orders above $10,000 last quarter?") },
+};
+ResponseResult response = await responseClient.CreateResponseAsync(responseOptions);
+Console.WriteLine(response.GetOutputText());
+
+// Clean up
+await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
+    agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AIProjectClient } = require("@azure/ai-projects");
+require("dotenv/config");
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
+const deploymentName = process.env["FOUNDRY_MODEL_NAME"];
+const fabricIqProjectConnectionId = process.env["FABRIC_IQ_PROJECT_CONNECTION_ID"];
+
+async function main() {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = project.getOpenAIClient();
+
+  const tool = {
+    type: "fabric_iq_preview",
+    project_connection_id: fabricIqProjectConnectionId,
+    require_approval: "never",
+  };
+
+  const agent = await project.agents.createVersion("MyAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "Use the available Fabric IQ tools to answer questions and perform tasks.",
+    tools: [tool],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  const userInput = process.env["FABRIC_IQ_USER_INPUT"] || "Summarize the available datasets";
+  const response = await openAIClient.responses.create(
+    { input: userInput },
+    { body: { agent_reference: { name: agent.name, type: "agent_reference" } } },
+  );
+  console.log(`Agent response: ${response.output_text}`);
+
+  // Clean up the agent version so unused versions don't accumulate in the project.
+  await project.agents.deleteVersion(agent.name, agent.version);
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
 
 :::zone-end
 

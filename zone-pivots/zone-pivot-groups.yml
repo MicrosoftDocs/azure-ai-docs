@@ -24,6 +24,8 @@ groups:
     title: Foundry portal
   - id: programming-language-rest
     title: REST API
+  - id: azd
+    title: Azure Developer CLI
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages
@@ -2150,6 +2152,12 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
   - id: rest-api
     title: REST API
 # Owner: aahi
@@ -2159,6 +2167,12 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
   - id: rest-api
     title: REST API
 # Owner: aahi
@@ -2168,6 +2182,12 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
   - id: rest-api
     title: REST API
 - id: selection-foundry-toolbox
@@ -2185,7 +2205,7 @@ groups:
   - id: vscode
     title: VS Code
   - id: azd
-    title: azd (deploy)
+    title: azd
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections
@@ -2199,6 +2219,8 @@ groups:
     title: .NET
   - id: javascript
     title: JavaScript
+  - id: azd
+    title: azd
 # Owner: aahi
 - id: foundry-portal-and-cli
   title: Usage methods
