@@ -5,7 +5,7 @@ description: Batch transcription is ideal if you want to transcribe a large quan
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 11/21/2025
 ms.devlang: csharp

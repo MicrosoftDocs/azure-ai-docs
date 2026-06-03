@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: In this quickstart, you'll learn how to create and join clients to a multi-device conversation by using the Speech SDK.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 01/30/2026
 ms.reviewer: ralphe

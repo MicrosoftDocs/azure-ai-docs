@@ -7,7 +7,7 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/10/2026
 zone_pivot_groups: fast-transcription-quickstart

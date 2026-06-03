@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about types of training and testing data for a custom speech project, along with how to use and manage that data.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 ms.author: pafarley

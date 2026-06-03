@@ -2,7 +2,7 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 2/20/2026
 ai-usage: ai-assisted

@@ -5,7 +5,7 @@ description: Discover the latest updates, features, and improvements in Azure Sp
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: release-notes
 ms.date: 05/22/2026
 ms.custom: references_regions

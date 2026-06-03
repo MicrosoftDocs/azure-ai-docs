@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: In this quickstart, you convert speech to text continuously from a file. The Speech service transcribes the speech and identifies one or more speakers.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
 ms.date: 01/30/2026

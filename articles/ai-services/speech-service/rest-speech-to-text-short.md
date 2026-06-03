@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use Speech to text REST API for short audio to convert speech to text.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: pafarley

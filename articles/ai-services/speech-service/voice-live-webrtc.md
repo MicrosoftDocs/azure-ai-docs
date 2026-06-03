@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/30/2026
 ms.custom: references_voice_live, references_regions

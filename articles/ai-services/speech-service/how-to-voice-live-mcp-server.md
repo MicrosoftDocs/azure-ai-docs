@@ -3,7 +3,7 @@ title: Add an MCP server to Voice Live
 titleSuffix: Foundry Tools
 description: Learn how to connect remote MCP servers to a Voice Live session for real-time tool calling with the VoiceLive SDK.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/28/2026
 author: PatrickFarley

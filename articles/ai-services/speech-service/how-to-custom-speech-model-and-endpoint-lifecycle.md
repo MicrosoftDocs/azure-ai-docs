@@ -5,7 +5,7 @@ description: Custom speech provides base models for training and lets you create
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: heikora

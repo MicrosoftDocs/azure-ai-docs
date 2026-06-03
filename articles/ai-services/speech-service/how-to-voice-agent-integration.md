@@ -3,7 +3,7 @@ title: How to build a voice agent
 titleSuffix: Foundry Tools
 description: Learn how to use Voice Live with Foundry Agent Service to build real-time voice agents.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/20/2026
 author: PatrickFarley

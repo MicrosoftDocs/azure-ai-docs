@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the content credentials feature, which lets you verify that the text to speech avatar capability generated the video.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 manager: nitinme

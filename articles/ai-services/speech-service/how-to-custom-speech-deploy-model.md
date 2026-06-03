@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to deploy custom speech models. 
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

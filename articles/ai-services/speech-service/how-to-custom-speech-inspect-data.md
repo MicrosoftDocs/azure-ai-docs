@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Custom speech lets you qualitatively inspect the recognition quality of a model. You can play back uploaded audio and determine if the provided recognition result is correct.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

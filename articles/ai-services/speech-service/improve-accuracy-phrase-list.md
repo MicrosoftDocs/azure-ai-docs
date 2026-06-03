@@ -4,7 +4,7 @@ description: Phrase lists can be used to customize speech recognition results ba
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 10/21/2025

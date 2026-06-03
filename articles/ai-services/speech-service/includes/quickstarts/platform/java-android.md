@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use this guide to install the Speech SDK for Java in Android Studio.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 02/02/2024
 ms.custom: devx-track-java

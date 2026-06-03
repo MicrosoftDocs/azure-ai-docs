@@ -3,7 +3,7 @@ title: Audio concepts in Azure Speech in Foundry Tools
 titleSuffix: Foundry Tools
 description: An overview of audio concepts in Azure Speech in Foundry Tools.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 11/21/2025
 ms.reviewer: jagoerge
