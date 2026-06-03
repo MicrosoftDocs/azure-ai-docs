@@ -115,6 +115,9 @@ For tool configuration syntax and authentication options for each tool type, see
 
 Create a toolbox version based on the tools you need.
 
+> [!TIP]
+> When you include the Fabric IQ tool against a **Power BI semantic model**, restrict the tool surface with `allowed_tools` so the agent reasons over the schema and runs queries directly instead of pre-generating DAX. The recommended list is `GetInstructions`, `DiscoverArtifacts`, `GetReportMetadata`, `GetSemanticModelSchema`, `ExecuteQuery`, and `ValueSearch` &mdash; omit `GenerateQuery`. For end-to-end Fabric IQ setup, including OAuth and the Power BI semantic model endpoint, see [Use the Fabric IQ tool](fabric-iq.md).
+
 :::zone pivot="python"
 
 ```python
@@ -147,12 +150,24 @@ toolbox_version = project.beta.toolboxes.create_version(
         ToolboxSearchPreviewTool(),
         {
             "type": "work_iq_preview",
+            "name": "workiq",
             "project_connection_id": os.environ["WORK_IQ_PROJECT_CONNECTION_ID"],
         },
         {
             "type": "fabric_iq_preview",
+            "server_label": "fabriciq",
             "project_connection_id": os.environ["FABRIC_IQ_PROJECT_CONNECTION_ID"],
             "require_approval": "never",
+            # For Power BI semantic models, restrict the tool surface so the agent reasons
+            # over the schema and runs queries directly instead of pre-generating DAX.
+            # "allowed_tools": [
+            #     "GetInstructions",
+            #     "DiscoverArtifacts",
+            #     "GetReportMetadata",
+            #     "GetSemanticModelSchema",
+            #     "ExecuteQuery",
+            #     "ValueSearch",
+            # ],
         },
     ],
 )
@@ -186,9 +201,10 @@ ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateM
 ));
 
 ToolboxSearchPreviewTool searchTool = new() { Name = "ToolBoxSearch" };
-WorkIQPreviewTool workIqTool = new(workIqConnectionId);
+WorkIQPreviewTool workIqTool = new(workIqConnectionId) { Name = "workiq" };
 FabricIQPreviewTool fabricIqTool = new(fabricIqConnectionId)
 {
+    ServerLabel = "fabriciq",
     RequireApproval = BinaryData.FromObjectAsJson("never"),
 };
 
@@ -228,10 +244,12 @@ Content-Type: application/json
     },
     {
       "type": "work_iq_preview",
+      "name": "workiq",
       "project_connection_id": "{workiq-connection-id}"
     },
     {
       "type": "fabric_iq_preview",
+      "server_label": "fabriciq",
       "project_connection_id": "{fabric-iq-connection-id}",
       "require_approval": "never"
     }
@@ -274,10 +292,12 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
     { type: "toolbox_search_preview" },
     {
       type: "work_iq_preview",
+      name: "workiq",
       project_connection_id: workIqProjectConnectionId,
     },
     {
       type: "fabric_iq_preview",
+      server_label: "fabriciq",
       project_connection_id: fabricIqProjectConnectionId,
       require_approval: "never",
     },
@@ -352,13 +372,25 @@ The pattern is the same for every connection kind and auth type:
        name: code
      # Tool search is connectionless.
      - type: toolbox_search_preview
-     # Work IQ requires a project_connection_id pointing at a Work IQ connection.
+     # Work IQ requires project_connection_id plus a unique name.
      - type: work_iq_preview
+       name: workiq
        project_connection_id: <work-iq-connection-name>
-     # Fabric IQ requires a project_connection_id pointing at a Fabric IQ connection.
+     # Fabric IQ requires project_connection_id plus server_label.
      - type: fabric_iq_preview
+       server_label: fabriciq
        project_connection_id: <fabric-iq-connection-name>
        require_approval: never
+       # For Power BI semantic models, restrict the tool surface with allowed_tools
+       # so the agent reasons over the schema and runs queries directly instead of
+       # pre-generating DAX. See fabric-iq.md for the full guidance.
+       # allowed_tools:
+       #   - GetInstructions
+       #   - DiscoverArtifacts
+       #   - GetReportMetadata
+       #   - GetSemanticModelSchema
+       #   - ExecuteQuery
+       #   - ValueSearch
      # For Azure AI Search, set the index in the tool entry:
      # - type: azure_ai_search
      #   name: search
