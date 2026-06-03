@@ -16,11 +16,6 @@ Microsoft Translator Pro is an advanced mobile application that enables real-tim
 
 Microsoft Translator Pro is a paid mobile application available on both the Azure public and US government cloud platforms. To utilize the application, enterprise users must authenticate their identities and configure translator resources within the Azure public or US Government cloud environment.
 
-  > [!IMPORTANT]
-  >
-  > To use Microsoft Translator Pro, you must complete and submit the [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm) online request for approval.
-  >
-
 ## Specifications and service limits
 
 * The Microsoft Translator Pro app can be accessed on iOS devices and requires iOS 15 or newer versions.
@@ -144,11 +139,8 @@ The app is currently available for Azure Translator resources created in the fol
 |United States|US Gov Virginia|
 |United States|US Gov Arizona|
 
-
 ## Next steps
 
-* Sign up and try Microsoft Translator Pro: [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm).
-
 * Learn more about Microsoft Translator Pro:
-   * [**Language support**](language-support.md)
-   * [**Frequently asked questions (FAQ)**](faq.yml)
+  * [**Language support**](language-support.md)
+  * [**Frequently asked questions (FAQ)**](faq.yml)

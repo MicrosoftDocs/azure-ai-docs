@@ -1,5 +1,5 @@
 ---
-title: Create File Knowledge Source for Agentic Retrieval
+title: Create a File Knowledge Source for Agentic Retrieval
 description: Learn how to create a file knowledge source in Azure AI Search, upload files directly, and use the processed content in a knowledge base.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -19,9 +19,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-Use a *file knowledge source* (preview) to upload small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+A *file knowledge source* (preview) uploads small and medium file sets directly to Azure AI Search for agentic retrieval. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-A file knowledge source is useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base. Use [blob knowledge sources](agentic-knowledge-source-how-to-blob.md) instead when your content already lives in Azure Blob Storage or ADLS Gen2, when you need large-scale ingestion, or when you depend on storage-account capabilities.
+File knowledge sources are useful when you want a managed upload experience instead of provisioning Azure Storage, configuring access, and creating an indexer pipeline over an external container. Azure AI Search processes uploaded files so their extracted content can be retrieved from a knowledge base.
+
+If your content already lives in Azure Blob Storage or ADLS Gen2, or if you need large-scale ingestion or storage account capabilities, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
 
 ### Usage support
 
@@ -56,6 +58,27 @@ A file knowledge source is useful when you want a managed upload experience inst
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
 ::: zone-end
+
+## Supported formats and limits
+
+The following file types are supported.
+
+| Category | Extensions |
+|--|--|
+| Text | `.txt`, `.md`, `.html`, `.json`, `.csv` |
+| Code | `.c`, `.cs`, `.cpp`, `.java`, `.py`, `.js`, `.ts`, `.php`, `.rb`, `.sh` |
+| Documents | `.pdf`, `.docx`, `.pptx`, `.doc` |
+
+The following limits apply to file knowledge sources.
+
+| Limit | Value |
+|--|--|
+| Maximum file size per upload | 50 MB |
+| Maximum files per file knowledge source | 100 |
+
+> [!NOTE]
+> Uploaded content is stored in the generated search index. For total storage limits by pricing tier, see [Service limits](search-limits-quotas-capacity.md#service-limits).
+
 
 ## Check for existing knowledge sources
 
@@ -208,13 +231,13 @@ Prefer: return=representation
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
 ### Source-specific properties
 
-You can pass the following properties to create a file knowledge source.
+The following properties apply to file knowledge sources.
 
 ::: zone pivot="csharp"
 
@@ -252,7 +275,7 @@ You can pass the following properties to create a file knowledge source.
 
 ### Ingestion parameters properties
 
-You can pass the following ingestion parameter properties to control how uploaded files are processed.
+The following ingestion parameter properties control how uploaded files are processed.
 
 ::: zone pivot="csharp"
 
@@ -283,9 +306,9 @@ You can pass the following ingestion parameter properties to control how uploade
 
 ## Upload files
 
-After the source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
+After the knowledge source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
-The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request; if the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
+The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. If the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
 
 ::: zone pivot="csharp"
 
@@ -345,7 +368,9 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 ::: zone-end
 
 > [!NOTE]
-> Uploading a file doesn't replace an existing file even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, and the list of uploaded files can contain multiple entries that share a `fileName`. To replace content, delete the prior file by `fileId` before or after the new upload.
+> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+>
+> To replace content, delete the prior file by `fileId` before or after the new upload.
 
 ## List uploaded files
 
@@ -449,296 +474,21 @@ api-key: {{api-key}}
 
 ::: zone-end
 
-## Create a knowledge base
+## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-using Azure.Search.Documents.Indexes.Models;
-using Azure.Search.Documents.KnowledgeBases.Models;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-var knowledgeBase = new KnowledgeBase(
-    name: "my-file-kb",
-    knowledgeSources: new[] { new KnowledgeSourceReference("my-file-ks") }
-)
-{
-    Description = "A knowledge base for uploaded product manuals.",
-    OutputMode = KnowledgeRetrievalOutputMode.ExtractiveData,
-    RetrievalReasoningEffort = new KnowledgeRetrievalMinimalReasoningEffort()
-};
-
-await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
-Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated successfully.");
-```
-
-**Reference:** [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    KnowledgeBase,
-    KnowledgeRetrievalOutputMode,
-    KnowledgeSourceReference,
-)
-from azure.search.documents.knowledgebases.models import KnowledgeRetrievalMinimalReasoningEffort
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-knowledge_base = KnowledgeBase(
-    name="my-file-kb",
-    description="A knowledge base for uploaded product manuals.",
-    knowledge_sources=[KnowledgeSourceReference(name="my-file-ks")],
-    output_mode=KnowledgeRetrievalOutputMode.EXTRACTIVE_DATA,
-    retrieval_reasoning_effort=KnowledgeRetrievalMinimalReasoningEffort(),
-)
-
-index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
-print(f"Knowledge base '{knowledge_base.name}' created or updated successfully.")
-```
-
-**Reference:** [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-PUT {{search-url}}/knowledgebases/my-file-kb?api-version=2026-05-01-preview
-api-key: {{api-key}}
-Content-Type: application/json
-Prefer: return=representation
-
-{
-  "name": "my-file-kb",
-  "description": "A knowledge base for uploaded product manuals.",
-  "outputMode": "extractiveData",
-  "retrievalReasoningEffort": {
-    "kind": "minimal"
-  },
-  "knowledgeSources": [
-    {
-      "name": "my-file-ks"
-    }
-  ]
-}
-```
-
-::: zone-end
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
-
-The simplest retrieve call sends an intent and lets the knowledge base apply its configured defaults for each attached knowledge source.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.KnowledgeBases;
-using Azure.Search.Documents.KnowledgeBases.Models;
-
-var kbClient = new KnowledgeBaseRetrievalClient(
-    new Uri(searchEndpoint),
-    "my-file-kb",
-    new AzureKeyCredential(apiKey));
-
-var request = new KnowledgeBaseRetrievalRequest
-{
-    IncludeActivity = true
-};
-request.Intents.Add(new KnowledgeRetrievalSemanticIntent(
-    "What does the installation guide say about network prerequisites?"));
-
-var result = await kbClient.RetrieveAsync(request);
-```
-
-**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
-from azure.search.documents.knowledgebases.models import (
-    KnowledgeBaseRetrievalRequest,
-    KnowledgeRetrievalSemanticIntent,
-)
-
-kb_client = KnowledgeBaseRetrievalClient(
-    endpoint="search_url",
-    knowledge_base_name="my-file-kb",
-    credential=AzureKeyCredential("api_key"),
-)
-
-request = KnowledgeBaseRetrievalRequest(
-    intents=[
-        KnowledgeRetrievalSemanticIntent(
-            search="What does the installation guide say about network prerequisites?"
-        )
-    ],
-    include_activity=True,
-)
-
-result = kb_client.retrieve(request)
-```
-
-**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-POST {{search-url}}/knowledgebases/my-file-kb/retrieve?api-version=2026-05-01-preview
-api-key: {{api-key}}
-Content-Type: application/json
-Accept: application/json
-
-{
-  "includeActivity": true,
-  "intents": [
-    {
-      "type": "semantic",
-      "search": "What does the installation guide say about network prerequisites?"
-    }
-  ],
-  "knowledgeSourceParams": [
-    {
-      "kind": "file",
-      "knowledgeSourceName": "my-file-ks",
-      "includeReferences": true,
-      "includeReferenceSourceData": true
-    }
-  ]
-}
-```
-
-::: zone-end
-
-## Supported formats and limits
-
-The following file types are supported in this preview.
-
-| Category | Extensions |
-|--|--|
-| Text | `.txt`, `.md`, `.html`, `.json`, `.csv` |
-| Code | `.c`, `.cs`, `.cpp`, `.java`, `.py`, `.js`, `.ts`, `.php`, `.rb`, `.sh` |
-| Documents | `.pdf`, `.docx`, `.pptx`, `.doc` |
-
-The file knowledge source preview has the following limits.
-
-| Limit | Value |
-|--|--|
-| Maximum file size per upload | 50 MB |
-| Maximum files per file knowledge source | 100 |
-
-> [!NOTE]
-> Uploaded content is stored in the generated search index. For total storage limits by SKU, see [Service limits](search-limits-quotas-capacity.md#service-limits).
-
-File knowledge sources are designed for direct upload scenarios, not large-scale scheduled crawling. If you need recurring ingestion from durable external storage, use a [blob knowledge source](agentic-knowledge-source-how-to-blob.md) instead.
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 
-Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-// List knowledge bases on the service.
-await foreach (var kb in indexClient.GetKnowledgeBasesAsync())
-{
-    Console.WriteLine(kb.Name);
-}
-
-// Delete the knowledge base that references the file knowledge source.
-await indexClient.DeleteKnowledgeBaseAsync("my-file-kb");
-
-// Delete the file knowledge source.
-await indexClient.DeleteKnowledgeSourceAsync("my-file-ks");
-```
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-# List knowledge bases on the service.
-for kb in index_client.list_knowledge_bases():
-    print(kb.name)
-
-# Delete the knowledge base that references the file knowledge source.
-index_client.delete_knowledge_base("my-file-kb")
-
-# Delete the file knowledge source.
-index_client.delete_knowledge_source("my-file-ks")
-```
-
-::: zone-end
-
-::: zone pivot="rest"
-
-To delete a knowledge source:
-
-1. Get a list of all knowledge bases on your search service.
-
-    ```http
-    ### Get knowledge bases
-    GET {{search-url}}/knowledgebases?api-version=2026-05-01-preview&$select=name
-    api-key: {{api-key}}
-    ```
-
-1. Get an individual knowledge base definition to check for knowledge source references.
-
-    ```http
-    ### Get a knowledge base definition
-    GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
-    api-key: {{api-key}}
-    ```
-
-1. Either delete the knowledge base or update the knowledge base by removing the knowledge source if you have multiple sources. This example shows deletion.
-
-    ```http
-    ### Delete a knowledge base
-    DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
-    api-key: {{api-key}}
-    ```
-
-1. Delete the knowledge source.
-
-    ```http
-    ### Delete a knowledge source
-    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version=2026-05-01-preview
-    api-key: {{api-key}}
-    ```
-
-::: zone-end
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)

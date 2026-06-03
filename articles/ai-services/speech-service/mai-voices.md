@@ -262,12 +262,54 @@ Steps to access:
 
 MAI-Voice-2 provides locale-specific prebuilt voices across multiple languages.
 
-| Voice ID | Locale | Language | Gender | Recommended use case |
+| Voice Name (ShortName) | Locale | Language | Gender | Supported Styles |
 |---|---|---|---|---|
-| en-US-Harper:MAI-Voice-2 | en-US | English (United States) | Female | General Conversation, Expressive Long-form |
-| es-MX-Valeria:MAI-Voice-2 | es-MX | Spanish (Mexico) | Female | General Conversation, Multilingual Narration |
-| fr-FR-Soleil:MAI-Voice-2 | fr-FR | French (France) | Female | General Conversation, Multilingual Narration |
-| de-DE-Klaus:MAI-Voice-2 | de-DE | German (Germany) | Male | General Conversation, Multilingual Narration |
+| de-DE-Klaus:MAI-Voice-2 | de-DE | German (Germany) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| de-DE-Mia:MAI-Voice-2 | de-DE | German (Germany) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| en-AU-Lisa:MAI-Voice-2 | en-AU | English (Australia) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| en-US-Ethan:MAI-Voice-2 | en-US | English (United States) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| en-US-Grant:MAI-Voice-2 | en-US | English (United States) | Male | — |
+| en-US-Harper:MAI-Voice-2 | en-US | English (United States) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, shouting, softvoice, whispering |
+| en-US-Iris:MAI-Voice-2 | en-US | English (United States) | Female | — |
+| en-US-Jasper:MAI-Voice-2 | en-US | English (United States) | Male | — |
+| en-US-Olivia:MAI-Voice-2 | en-US | English (United States) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| es-ES-Marta:MAI-Voice-2 | es-ES | Spanish (Spain) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| es-MX-Alejo:MAI-Voice-2 | es-MX | Spanish (Mexico) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| es-MX-Valeria:MAI-Voice-2 | es-MX | Spanish (Mexico) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| fr-FR-Marc:MAI-Voice-2 | fr-FR | French (France) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| fr-FR-Soleil:MAI-Voice-2 | fr-FR | French (France) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| hi-IN-Arjun:MAI-Voice-2 | hi-IN | Hindi (India) | Male | angry, confused, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, sad, surprised |
+| hi-IN-Dhruv:MAI-Voice-2 | hi-IN | Hindi (India) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| hi-IN-Kavya:MAI-Voice-2 | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| hi-IN-Priya:MAI-Voice-2 | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| hu-HU-Bence:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Male | — |
+| hu-HU-Levente:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Male | — |
+| hu-HU-Lilla:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Female | — |
+| hu-HU-Réka:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Female | — |
+| it-IT-Luca:MAI-Voice-2 | it-IT | Italian (Italy) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| it-IT-Rosa:MAI-Voice-2 | it-IT | Italian (Italy) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| ko-KR-Hana:MAI-Voice-2 | ko-KR | Korean (Korea) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
+| ko-KR-Junho:MAI-Voice-2 | ko-KR | Korean (Korea) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, relieved, sad, softvoice |
+| nl-NL-Fleur:MAI-Voice-2 | nl-NL | Dutch (Netherlands) | Female | — |
+| nl-NL-Sander:MAI-Voice-2 | nl-NL | Dutch (Netherlands) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| pt-BR-Caio:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| pt-BR-Luana:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| pt-BR-Pedro:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
+| pt-BR-Rafael:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
+| pt-PT-Rui:MAI-Voice-2 | pt-PT | Portuguese (Portugal) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
+| ro-RO-Andrei:MAI-Voice-2 | ro-RO | Romanian (Romania) | Male | — |
+| ro-RO-Elena:MAI-Voice-2 | ro-RO | Romanian (Romania) | Female | — |
+| ro-RO-Ioana:MAI-Voice-2 | ro-RO | Romanian (Romania) | Female | — |
+| ro-RO-Radu:MAI-Voice-2 | ro-RO | Romanian (Romania) | Male | — |
+| ru-RU-Lev:MAI-Voice-2 | ru-RU | Russian (Russia) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| ru-RU-Masha:MAI-Voice-2 | ru-RU | Russian (Russia) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| th-TH-Krit:MAI-Voice-2 | th-TH | Thai (Thailand) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| th-TH-Nattapong:MAI-Voice-2 | th-TH | Thai (Thailand) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| tr-TR-Aydin:MAI-Voice-2 | tr-TR | Turkish (Turkey) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| tr-TR-Elif:MAI-Voice-2 | tr-TR | Turkish (Turkey) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
+| zh-CN-Bo:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
+| zh-CN-Lan:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, disgusted, embarrassed, excited, fearful, happy, joyful, sad, surprised |
+| zh-CN-Mei:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
 
 > [!NOTE]
 > The voices listed in the preceding table are the currently published MAI-Voice-2 prebuilt voices. The model card indicates support across 10+ languages. Microsoft adds more locales and voices as they become generally available.
