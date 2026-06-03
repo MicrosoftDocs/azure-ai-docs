@@ -269,6 +269,20 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
 
+### NTT Data
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| tsuzumi-7b | 2 | Legacy | 2026-08-31 | tsuzumi2 |
+
+### StabilityAI
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-08-31 | — |
+| Stable-Image-Core | 1 | Deprecated | 2026-08-31 | — |
+| Stable-Image-Ultra | 1 | Deprecated | 2026-08-31 | — |
+
 ## Related content
 
 - [Retired Foundry Models](../concepts/retired-models.md)
