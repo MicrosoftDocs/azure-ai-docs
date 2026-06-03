@@ -100,7 +100,7 @@ Set the following environment variables:
 
 - `FOUNDRY_PROJECT_ENDPOINT` — your project endpoint, found in the Overview page of your Foundry project.
 - `FOUNDRY_MODEL_NAME` — the deployment name of the model the agent uses.
-- `WORK_IQ_PROJECT_CONNECTION_ID` — the fully-qualified resource ID of the Work IQ project connection.
+- `WORK_IQ_PROJECT_CONNECTION_ID` — the fully qualified resource ID of the Work IQ project connection.
 
 ```python
 import os
