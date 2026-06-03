@@ -52,31 +52,20 @@ You can create up to 100 semantic configurations in a single index.
 
 > [!IMPORTANT]
 > These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In the `2026-05-01-preview` API, supported agentic retrieval flows can use
-Azure AI Search ranking behavior without requiring an explicit semantic
-configuration on the underlying index. This preview behavior helps teams start
-with knowledge base retrieval without blocking on semantic configuration
-authoring.
+In the `2026-05-01-preview` API, supported agentic retrieval flows can use Azure AI Search ranking behavior without requiring an explicit semantic configuration on the underlying index. This preview behavior helps teams start with knowledge base retrieval without blocking on semantic configuration authoring.
 
-This change doesn't remove classic semantic ranking configuration. Continue to
-define a semantic configuration for classic semantic search queries, older API
-versions, and workloads that need explicit control over title, content, and
-keyword fields.
+This change doesn't remove classic semantic ranking configuration. Continue to define a semantic configuration for classic semantic search queries, older API versions, and workloads that need explicit control over title, content, and keyword fields.
 
-For search index knowledge sources, `semanticConfigurationName` remains a
-supported property. Set it when you want the knowledge source to use a specific
-semantic configuration. In supported `2026-05-01-preview` agentic retrieval
-flows, you can omit it when you want the service to use the preview behavior
-that doesn't require an explicit semantic configuration on the underlying
-index.
+For search index knowledge sources, `semanticConfigurationName` remains a supported property. Set it when you want the knowledge source to use a specific semantic configuration. In supported `2026-05-01-preview` agentic retrieval flows, you can omit it when you want the service to use the preview behavior that doesn't require an explicit semantic configuration on the underlying index.
 
-Semantic configuration is optional only for supported agentic retrieval
-knowledge base retrieve flows that use the `2026-05-01-preview` API. Classic
-semantic search queries and older API versions still require a semantic
-configuration when you use semantic ranking. If you create an index without a
-semantic configuration for the preview flow, don't assume that the same index
-can be used unchanged with GA or older preview semantic ranking APIs.
+Semantic configuration is optional only for supported agentic retrieval knowledge base retrieve flows that use the `2026-05-01-preview` API. Classic semantic search queries and older API versions still require a semantic configuration when you use semantic ranking. If you create an index without a semantic configuration for the preview flow, don't assume that the same index can be used unchanged with GA or older preview semantic ranking APIs.
 
 A semantic configuration has a name and the following properties:
 

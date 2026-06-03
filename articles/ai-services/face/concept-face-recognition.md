@@ -5,7 +5,7 @@ description: Learn the concept of Face recognition, its operations, and data str
 author: PatrickFarley
 manager: nitinme
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: concept-article

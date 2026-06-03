@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use Azure portal to check how many pages are analyzed and estimate the total price.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: luzhan

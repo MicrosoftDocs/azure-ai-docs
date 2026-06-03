@@ -56,7 +56,11 @@ The following samples demonstrate how to create an agent with Code Interpreter e
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK
 
-The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. It demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
+The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+This sample demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
 
 ```python
 import os
@@ -150,12 +154,56 @@ File downloaded successfully: transportation_operating_profit_bar_chart.png
 
 The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, generates a PNG bar chart showing operating profit by quarter, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_code_interpreter_tool()` to give the agent a sandboxed Python execution environment. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="You are a helpful assistant that can write and execute Python code to solve problems.",
+        tools=[FoundryChatClient.get_code_interpreter_tool()],
+    )
+
+    result = await agent.run("Use code to calculate the factorial of 100.")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent generates Python code, runs it in the sandboxed container, and returns the answer:
+
+```console
+Agent: 100! = 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
+```
+
+For the full sample (including file inputs and extracting the generated code), see [foundry_chat_client_with_code_interpreter.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_code_interpreter.py) and [foundry_chat_client_code_interpreter_files.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_code_interpreter_files.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Create a chart with Code Interpreter in C#
 
-The following C# sample shows how to create an agent with the Code Interpreter tool, upload a CSV file for analysis, and download the generated chart. For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample32_CodeInterpreterFileGeneration.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the Code Interpreter tool, upload a CSV file for analysis, and download the generated chart. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample32_CodeInterpreterFileGeneration.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -258,6 +306,79 @@ Chart downloaded: C:\Users\you\chart.png
 ```
 
 The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, and generates a PNG bar chart. The annotation parsing extracts the container ID and file ID from the response, which are used to download the chart to your local directory.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedCodeInterpreterTool` to give the agent a sandboxed Python environment. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using System.Text;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Assistants;
+
+const string AgentInstructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question.";
+const string AgentName = "CoderAgent";
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: AgentName,
+    tools: [new HostedCodeInterpreterTool() { Inputs = [] }]);
+
+AgentResponse response = await agent.RunAsync("I need to solve the equation sin(x) + x^2 = 42");
+
+// Print the code that the agent generated.
+CodeInterpreterToolCallContent? toolCallContent = response.Messages
+    .SelectMany(m => m.Contents)
+    .OfType<CodeInterpreterToolCallContent>()
+    .FirstOrDefault();
+if (toolCallContent?.Inputs is not null)
+{
+    DataContent? codeInput = toolCallContent.Inputs.OfType<DataContent>().FirstOrDefault();
+    if (codeInput?.HasTopLevelMediaType("text") ?? false)
+    {
+        Console.WriteLine($"Code Input: {Encoding.UTF8.GetString(codeInput.Data.ToArray())}");
+    }
+}
+
+// Print the code execution result.
+CodeInterpreterToolResultContent? toolResultContent = response.Messages
+    .SelectMany(m => m.Contents)
+    .OfType<CodeInterpreterToolResultContent>()
+    .FirstOrDefault();
+if (toolResultContent?.Outputs is not null &&
+    toolResultContent.Outputs.OfType<TextContent>().FirstOrDefault() is { } resultOutput)
+{
+    Console.WriteLine($"Code Tool Result: {resultOutput.Text}");
+}
+
+Console.WriteLine($"Agent: {response.Text}");
+```
+
+### Expected output
+
+The agent writes Python in the sandbox, runs it, and prints both the generated code and the final answer:
+
+```console
+Code Input: import math
+result = math.sin(0.5) + 0.5**2
+print(result)
+Code Tool Result: 0.7294255386042029
+Agent: One solution is x ≈ 0.5, since sin(0.5) + 0.5^2 ≈ 0.73 ...
+```
+
+To download container files generated by the agent, see [Agent_Step24_CodeInterpreterFileDownload](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step24_CodeInterpreterFileDownload).
+
+---
 
 :::zone-end
 

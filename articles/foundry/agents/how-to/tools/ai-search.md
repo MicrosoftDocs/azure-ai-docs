@@ -78,6 +78,10 @@ The following table shows SDK and setup support.
 
 :::zone pivot="python"
 
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -171,6 +175,75 @@ print("Agent deleted")
 ### Expected outcome
 
 The agent queries the search index and returns a response with inline citations. Console output shows the agent ID, streaming delta updates as the response generates, URL citations with start and end indices, and the final complete response text. The agent is then successfully deleted.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_azure_ai_search_tool()` to attach an indexed Azure AI Search resource. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
+from azure.identity import AzureCliCredential
+
+SEARCH_CONNECTION_NAME = "my-search-connection"
+SEARCH_INDEX_NAME = "my-search-index"
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+
+    # Resolve the project connection ID from the connection name
+    # (same pattern as the Prompt Agents tab).
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    connection_id = project.connections.get(SEARCH_CONNECTION_NAME).id
+
+    agent = Agent(
+        # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+        client=FoundryChatClient(credential=credential),
+        instructions=(
+            "You are a helpful assistant. Always cite sources from the search index "
+            "using `[message_idx:search_idx\u2020source]`."
+        ),
+        tools=[
+            FoundryChatClient.get_azure_ai_search_tool(
+                index_connection_id=connection_id,
+                index_name=SEARCH_INDEX_NAME,
+                query_type="simple",
+                top_k=5,
+            )
+        ],
+    )
+
+    result = await agent.run("Tell me about the mental health services available from Premera.")
+    print(f"Agent: {result.text}")
+
+    # Print URL citation annotations from the response.
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                title = getattr(annotation, "title", None)
+                if url:
+                    print(f"URL Citation: {title or ''} ({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected outcome
+
+The agent queries the specified Azure AI Search index and returns a response grounded in the indexed content. Console output shows the final response text followed by URL citations parsed from the response annotations. For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

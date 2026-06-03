@@ -2,7 +2,7 @@
 title: include file
 description: include file
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.custom: include file
 ms.date: 04/16/2020

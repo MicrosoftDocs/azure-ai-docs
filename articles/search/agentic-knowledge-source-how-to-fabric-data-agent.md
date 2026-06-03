@@ -19,7 +19,9 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *Fabric Data Agent knowledge source* (preview) connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. The data agent acts as a virtual analyst, generating and running queries against your live Microsoft Fabric data to return natural-language answers, tables, and charts as grounding data.
+A *Fabric Data Agent knowledge source* (preview) connects your [Microsoft Fabric Data Agent](/fabric/data-science/concept-data-agent) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+
+The data agent acts as a virtual analyst, generating and running queries against your Microsoft Fabric data to return natural-language answers, tables, and charts. This makes Fabric Data Agent knowledge sources useful for high-churn data and analytical queries.
 
 Unlike indexed knowledge sources, Fabric Data Agent knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to query the Fabric Data Agent on behalf of the end user.
 
@@ -74,7 +76,7 @@ Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspac
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a Fabric Data Agent knowledge source.
 
@@ -190,14 +192,14 @@ The following properties apply to Fabric Data Agent knowledge sources.
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!IMPORTANT]
 > Fabric Data Agent knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Data Agent content. This knowledge source has unique query-time permissions enforcement and response characteristics.
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query Fabric Data Agent content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
 ### Enforce permissions at query time
 
@@ -267,7 +269,7 @@ The following example shows a retrieve response containing a Fabric Data Agent k
 
 ## Delete a knowledge source
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-delete.md)]
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 

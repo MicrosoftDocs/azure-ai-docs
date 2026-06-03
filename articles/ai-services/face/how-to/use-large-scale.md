@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 #customer intent: As a developer, I want to scale up from existing PersonGroup and FaceList objects to LargePersonGroup and LargeFaceList objects so that I can handle more enrolled users.
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to

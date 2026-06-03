@@ -5,7 +5,7 @@ description: Learn about the process of Face enrollment to register users in a f
 author: PatrickFarley
 manager: nitinme
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: best-practice

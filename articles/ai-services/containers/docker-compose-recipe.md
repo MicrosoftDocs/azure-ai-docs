@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to deploy multiple Azure AI containers. This article shows you how to orchestrate multiple Docker container images by using Docker Compose.
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: aahi

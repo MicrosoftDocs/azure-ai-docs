@@ -5,7 +5,7 @@ description: The Face API offers client libraries that make it easy to detect, f
 author: PatrickFarley
 manager: nitinme
 zone_pivot_groups: programming-languages-set-face
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: quickstart

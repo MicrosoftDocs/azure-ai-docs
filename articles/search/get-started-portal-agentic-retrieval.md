@@ -235,7 +235,7 @@ To query the knowledge base:
 
    The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#activity-array).
 
-## Review the created objects
+## Review the generated objects
 
 Azure AI Search automatically generates a data source, skillset, index, and indexer for each blob knowledge source. These objects form an end-to-end pipeline for data ingestion, enrichment, chunking, and vectorization. You can review these objects to learn how your data is processed for agentic retrieval.
 
@@ -243,13 +243,13 @@ To review the auto-generated objects:
 
 1. From the left pane, select **Search management**.
 
+1. Check the indexer for success or failure messages. Connection or quota errors appear here.
+
 1. Check the data source to verify the connection to your blob storage container.
 
 1. Check the skillset to see how your content is chunked and vectorized using your embedding model.
 
-1. Check the index to see how your content is indexed and exposed for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search.
-
-1. Check the indexer for success or failure messages. Connection or quota errors appear here.
+1. Check the index to see how your content is indexed and exposed for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search. Use Search Explorer to run queries against the generated index.
 
 ## Clean up resources
 

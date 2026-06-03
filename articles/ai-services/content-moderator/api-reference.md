@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn about the content moderation APIs for Content Moderator.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-content-moderator
+ms.service: azure-content-moderator
 ms.topic: reference
 ms.date: 06/12/2025
 ms.author: pafarley
