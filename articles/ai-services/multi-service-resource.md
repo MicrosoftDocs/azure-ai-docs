@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.date: 05/13/2026
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: quickstart
 ms.custom:
   - devx-track-azurecli
