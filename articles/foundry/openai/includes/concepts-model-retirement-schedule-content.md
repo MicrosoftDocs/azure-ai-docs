@@ -98,14 +98,14 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Training retirement date | Deployment retirement date |
 |-------|---------|--------------------------|----------------------------|
-| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4o | 2024-08-06 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| o4-mini | 2025-04-16 | No earlier than 2027-04-16¹ | 2027-10-16 |
+| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4o | 2024-08-06 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16 |
 
-¹ For existing customers only. Otherwise, training retirement occurs at base model retirement.
+<sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
 ### Black Forest Labs
 
