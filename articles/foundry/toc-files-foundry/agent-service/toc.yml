@@ -48,6 +48,8 @@ items:
     items:
     - name: Tool search (preview)
       href: ../../agents/how-to/tools/tool-search.md
+  - name: Skills (preview)
+    href: ../../agents/how-to/tools/skills.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Azure AI Search
@@ -84,12 +86,8 @@ items:
       href: ../../agents/how-to/mcp-authentication.md
     - name: Build your own MCP server
       href: ../../mcp/build-your-own-mcp-server.md
-    - name: Use connectors as MCP servers
-      href: ../../agents/how-to/tools/connectors.md
   - name: Additional tools
     items:
-    - name: Skills (preview)
-      href: ../../agents/how-to/tools/skills.md
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
@@ -184,22 +182,10 @@ items:
       href: ../../observability/how-to/trace-agent-framework.md
     - name: Review agent interactions with Trace Replay
       href: ../../observability/how-to/trace-agent-replay.md
-  - name: Agent optimizer (preview)
-    items:
-    - name: Agent optimizer overview
-      href: ../../agents/concepts/agent-optimizer-overview.md
-    - name: "Quickstart: Optimize a hosted agent"
-      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
-    - name: Make your agent optimizer-ready
-      href: ../../agents/how-to/make-agent-optimizer-ready.md
-    - name: Create a custom evaluation dataset
-      href: ../../agents/how-to/create-optimizer-dataset.md
-    - name: Optimize agent instructions and skills
-      href: ../../agents/how-to/optimize-agent-targets.md
   - name: Run agent evaluations with the Azure Developer CLI
     displayName: azd cli
     href: ../../observability/how-to/azure-developer-cli-evaluation.md
-  - name: Optimize agent prompts
+  - name: Optimize agent prompts 
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
