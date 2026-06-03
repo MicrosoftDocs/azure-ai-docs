@@ -29,13 +29,6 @@ In this article, you learn how to:
 - Download skill content for use in a Hosted agent.
 - Attach skills to a toolbox.
 
-> [!IMPORTANT]
-> If you use Skills with any third-party servers, agents, code, or with models outside the Foundry Models category sold by Azure ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and follow their own third-party license terms. You're responsible for any usage and associated costs.
->
-> Review all data shared with and received from Third-Party Systems. Be aware of third-party practices for handling, sharing, retention, and location of data. Similarly, if you connect to or integrate with non-Foundry Microsoft services and features, it's important to review their data practices. You must manage whether your data flows outside your organization's Azure compliance and geographic boundaries, understand any related implications, and confirm that appropriate permissions, boundaries, and approvals are in place.
->
-> You're responsible for carefully reviewing and testing applications you build for your specific use cases. Implement your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems. Ensure your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](../../../responsible-ai/agents/transparency-note.md).
-
 ## Feature support
 
 | Feature | REST API | Python | .NET | JavaScript | Toolbox | Hosted agent |
