@@ -82,41 +82,32 @@ Publishing a new toolbox creates its first version. That version becomes the def
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MCPTool, ToolboxSearchPreviewTool
 
 client = AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
-# {"type": "toolbox_search_preview"} enables tool search — other tools are discovered on demand via tool_search.
-# tool_configs lets you pin critical tools so they're always visible, and add search keywords so the model
-# can find tools whose MCP descriptions don't match the vocabulary users naturally use.
+# ToolboxSearchPreviewTool() enables tool search — other tools in the toolbox are discovered on
+# demand through tool_search instead of being listed up front. Add as many MCP servers as you need;
+# tool search keeps the agent's initial tool surface small regardless of toolbox size.
+inner_mcp_tool = MCPTool(
+    server_label="github",
+    server_url="https://api.githubcopilot.com/mcp",
+    require_approval="never",
+    project_connection_id="github-mcp-conn",
+)
+
 toolbox_version = client.beta.toolboxes.create_version(
     name="my-toolbox",
     description="Large toolbox with tool search enabled",
-    tools=[
-        {"type": "toolbox_search_preview"},
-        {
-            "type": "work_iq_preview",
-            "project_connection_id": os.environ["WORK_IQ_PROJECT_CONNECTION_ID"],
-            "tool_configs": {
-                "calendar_events": {
-                    "pin": True,  # always visible — no tool_search round-trip needed
-                    "additional_search_text": "meetings appointments schedule calendar invites",
-                },
-            },
-        },
-        {
-            "type": "mcp",
-            "server_label": "github",
-            "server_url": "https://api.githubcopilot.com/mcp",
-            "require_approval": "never",
-            "project_connection_id": "github-mcp-conn",
-        },
-    ],
+    tools=[inner_mcp_tool, ToolboxSearchPreviewTool()],
 )
 print(f"Created toolbox `{toolbox_version.name}` (version {toolbox_version.version})")
 ```
+
+To pin critical tools or add search keywords for specific tools, use `tool_configs` on the individual tool entry. See [Fine-tune tool discovery](#fine-tune-tool-discovery).
 
 :::zone-end
 
@@ -199,26 +190,14 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"];
-const workIqProjectConnectionId = process.env["WORK_IQ_PROJECT_CONNECTION_ID"];
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 
-// { type: "toolbox_search_preview" } enables tool search — other tools are discovered on demand via tool_search.
-// tool_configs lets you pin critical tools so they're always visible, and add search keywords so the model
-// can find tools whose MCP descriptions don't match the vocabulary users naturally use.
-const toolboxVersion = await project.beta.toolboxes.createVersion("my-toolbox", {
-  description: "Large toolbox with tool search enabled",
-  tools: [
-    { type: "toolbox_search_preview" },
-    {
-      type: "work_iq_preview",
-      project_connection_id: workIqProjectConnectionId,
-      tool_configs: {
-        calendar_events: {
-          pin: true,
-          additional_search_text: "meetings appointments schedule calendar invites",
-        },
-      },
-    },
+// { type: "toolbox_search_preview" } enables tool search — other tools in the toolbox are
+// discovered on demand through tool_search instead of being listed up front. Add as many MCP
+// servers as you need; tool search keeps the agent's initial tool surface small regardless of size.
+const toolboxVersion = await project.beta.toolboxes.createVersion(
+  "my-toolbox",
+  [
     {
       type: "mcp",
       server_label: "github",
@@ -226,8 +205,10 @@ const toolboxVersion = await project.beta.toolboxes.createVersion("my-toolbox", 
       require_approval: "never",
       project_connection_id: "github-mcp-conn",
     },
+    { type: "toolbox_search_preview" },
   ],
-});
+  { description: "Large toolbox with tool search enabled" },
+);
 console.log(`Created toolbox \`${toolboxVersion.name}\` (version ${toolboxVersion.version})`);
 ```
 
@@ -326,6 +307,18 @@ In `result.tools`, `tool_search` should be present and all other toolbox tools s
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+Use any MCP-compatible .NET client. Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Use any MCP-compatible JavaScript client (for example, the `@modelcontextprotocol/sdk` package). Acquire a token with scope `https://ai.azure.com/.default`, include the `Foundry-Features: Toolboxes=V1Preview` header, and call `tools/list` against the version-specific MCP endpoint. See the **REST API** tab for the request shape.
+
+:::zone-end
+
 ## Fine-tune tool discovery
 
 Tool search works without additional configuration. For predictable usage patterns, you can tune how specific tools are surfaced and indexed.
@@ -378,6 +371,18 @@ tools=[
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+In the .NET SDK, attach `tool_configs` to the MCP tool entry when constructing the toolbox version. The configuration shape is identical to the JSON shown in the **REST API** tab.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+In JavaScript, include `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The configuration shape is identical to the JSON shown in the **REST API** tab.
+
+:::zone-end
+
 To pin every tool in an entry, use `"*"` as the key:
 
 :::zone pivot="python"
@@ -407,6 +412,18 @@ To pin every tool in an entry, use `"*"` as the key:
   }
 }
 ```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+Use the same `"*"` wildcard key inside `tool_configs` on the .NET MCP tool entry to pin every tool from an MCP server. See the **REST API** tab for the JSON shape.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Use the same `"*"` wildcard key inside `tool_configs` on the JavaScript MCP tool object to pin every tool from an MCP server. See the **REST API** tab for the JSON shape.
 
 :::zone-end
 
@@ -453,6 +470,18 @@ If a tool's MCP description doesn't match the vocabulary users naturally use, ad
   }
 }
 ```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+In the .NET SDK, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool entry. The shape matches the JSON shown in the **REST API** tab.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+In JavaScript, set `additional_search_text` (and optionally `pin`) inside `tool_configs` on the MCP tool object passed to `project.beta.toolboxes.createVersion`. The shape matches the JSON shown in the **REST API** tab.
 
 :::zone-end
 
