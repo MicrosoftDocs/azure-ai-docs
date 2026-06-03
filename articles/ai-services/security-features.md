@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the security considerations and features available for securely using Foundry Tools, ensuring your applications are protected.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: concept-article
 ms.date: 10/02/2025
 ms.author: pafarley

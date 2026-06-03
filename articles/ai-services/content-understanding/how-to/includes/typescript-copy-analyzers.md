@@ -3,7 +3,7 @@ title: "How-to: Copy custom analyzers using the Content Understanding TypeScript
 author: PatrickFarley
 manager: nitinme
 description: Learn to copy custom analyzers with Content Understanding using the TypeScript SDK.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 04/14/2026
 ms.author: lahlouchu

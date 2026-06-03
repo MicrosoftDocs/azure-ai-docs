@@ -5,7 +5,7 @@ ms.author: jburchel
 author: jonburchel 
 ms.reviewer: deeikele
 ms.date: 10/24/2025
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: concept-article
 ms.custom:
   - build-2025

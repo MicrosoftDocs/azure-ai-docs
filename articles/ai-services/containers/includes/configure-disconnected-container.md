@@ -1,7 +1,7 @@
 ---
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 01/24/2023
 ms.author: aahi

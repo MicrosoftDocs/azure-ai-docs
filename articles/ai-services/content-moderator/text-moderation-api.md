@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Use text moderation to detect potentially unwanted text, personal data, and custom lists of terms.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-content-moderator
+ms.service: azure-content-moderator
 ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: pafarley

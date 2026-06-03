@@ -5,9 +5,9 @@ description: "Guidance for how to deploy Language Understanding responsibly, bas
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
-ms.subservice: azure-ai-luis
+ms.subservice: language-understanding
 ms.date: 01/07/2021
 ---
 

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Get started with Foundry Tools by creating a Foundry resource in the Azure portal.
 manager: nitinme
 ms.date: 09/15/2025
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: quickstart
 ms.custom:
   - ignite-2023
