@@ -56,7 +56,7 @@ For tool configuration syntax and authentication options for each tool type, see
 
 ## Feature support
 
-| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | Azure Developer CLI | Foundry Toolkit |
+| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd | Foundry Toolkit |
 | ------- | ---------- | -------- | -------- | -------------- | ------------ | --------------- |
 | Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | ✔️ |
 | Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
@@ -68,11 +68,11 @@ For tool configuration syntax and authentication options for each tool type, see
 | [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 | [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
-| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | No | No | ✔️ | ✔️ |
+| [Fabric IQ tool](fabric-iq.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | Guardrail (RAI policy) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [Skill references](skills.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
-| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | No | No | ✔️ | ✔️ |
-| [Work IQ tool](work-iq.md) | ✔️ | ✔️ | No | No | ✔️ | ✔️ |
+| [Tool Search tool](tool-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Work IQ tool](work-iq.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [Browser Automation tool](browser-automation.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
@@ -118,9 +118,10 @@ Create a toolbox version based on the tools you need.
 :::zone pivot="python"
 
 ```python
+import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool, WebSearchTool
+from azure.ai.projects.models import MCPTool, ToolboxSearchPreviewTool, WebSearchTool
 
 # Create Foundry project client
 endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
@@ -129,10 +130,12 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-# Create toolbox version with web search and MCP tools
+# Create toolbox version with web search, MCP, tool search, Work IQ, and Fabric IQ tools.
+# Work IQ and Fabric IQ are dict-shaped here because they require a project_connection_id
+# pointing at the corresponding connection. See work-iq.md and fabric-iq.md for setup details.
 toolbox_version = project.beta.toolboxes.create_version(
     name="my-toolbox",
-    description="Toolbox with web search and an MCP server",
+    description="Toolbox with web search, MCP, tool search, Work IQ, and Fabric IQ",
     tools=[
         WebSearchTool(),
         MCPTool(
@@ -141,6 +144,16 @@ toolbox_version = project.beta.toolboxes.create_version(
             require_approval="never",
             project_connection_id="my-key-auth-connection",
         ),
+        ToolboxSearchPreviewTool(),
+        {
+            "type": "work_iq_preview",
+            "project_connection_id": os.environ["WORK_IQ_PROJECT_CONNECTION_ID"],
+        },
+        {
+            "type": "fabric_iq_preview",
+            "project_connection_id": os.environ["FABRIC_IQ_PROJECT_CONNECTION_ID"],
+            "require_approval": "never",
+        },
     ],
 )
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
@@ -156,6 +169,8 @@ using Azure.AI.Projects;
 
 // Create Foundry project client
 var projectEndpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
+var workIqConnectionId = Environment.GetEnvironmentVariable("WORK_IQ_PROJECT_CONNECTION_ID");
+var fabricIqConnectionId = Environment.GetEnvironmentVariable("FABRIC_IQ_PROJECT_CONNECTION_ID");
 AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
 AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
 
@@ -170,10 +185,17 @@ ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateM
     )
 ));
 
+ToolboxSearchPreviewTool searchTool = new() { Name = "ToolBoxSearch" };
+WorkIQPreviewTool workIqTool = new(workIqConnectionId);
+FabricIQPreviewTool fabricIqTool = new(fabricIqConnectionId)
+{
+    RequireApproval = BinaryData.FromObjectAsJson("never"),
+};
+
 ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     toolboxName: "my-toolbox",
-    tools: [webTool, mcpTool],
-    description: "Toolbox with web search and an MCP server"
+    tools: [webTool, mcpTool, searchTool, workIqTool, fabricIqTool],
+    description: "Toolbox with web search, MCP, tool search, Work IQ, and Fabric IQ"
 );
 Console.WriteLine($"Created toolbox: {toolboxVersion.Name}, version: {toolboxVersion.Version}");
 ```
@@ -188,7 +210,7 @@ Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-  "description": "Toolbox with web search and an MCP server",
+  "description": "Toolbox with web search, MCP, tool search, Work IQ, and Fabric IQ",
   "tools": [
     {
       "type": "web_search",
@@ -200,6 +222,18 @@ Content-Type: application/json
       "server_url": "https://your-mcp-server.example.com",
       "require_approval": "never",
       "project_connection_id": "my-key-auth-connection"
+    },
+    {
+      "type": "toolbox_search_preview"
+    },
+    {
+      "type": "work_iq_preview",
+      "project_connection_id": "{workiq-connection-id}"
+    },
+    {
+      "type": "fabric_iq_preview",
+      "project_connection_id": "{fabric-iq-connection-id}",
+      "require_approval": "never"
     }
   ]
 }
@@ -218,6 +252,8 @@ import { AIProjectClient } from "@azure/ai-projects";
 
 // Create Foundry project client
 const projectEndpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
+const workIqProjectConnectionId = process.env["WORK_IQ_PROJECT_CONNECTION_ID"];
+const fabricIqProjectConnectionId = process.env["FABRIC_IQ_PROJECT_CONNECTION_ID"];
 
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 
@@ -235,9 +271,19 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
       require_approval: "never",
       project_connection_id: "my-key-auth-connection",
     },
+    { type: "toolbox_search_preview" },
+    {
+      type: "work_iq_preview",
+      project_connection_id: workIqProjectConnectionId,
+    },
+    {
+      type: "fabric_iq_preview",
+      project_connection_id: fabricIqProjectConnectionId,
+      require_approval: "never",
+    },
   ],
   {
-    description: "Toolbox with web search and an MCP server",
+    description: "Toolbox with web search, MCP, tool search, Work IQ, and Fabric IQ",
   },
 );
 console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.version}`);
@@ -254,6 +300,7 @@ Use the Microsoft Foundry Toolkit for Visual Studio Code extension to create and
 1. Select the **+ Add Toolbox** icon.
 1. On the **Build a Custom Toolbox** tab, enter the toolbox name and description, and add the tools you want.
 1. To enable intent-based tool routing, select **Tool search**.
+1. To add Work IQ or Fabric IQ tools, select **+ Add tool** and choose the corresponding tool type. Provide the required project connection when prompted. For end-to-end setup details, see [Use the Work IQ tool](work-iq.md) and [Use the Fabric IQ tool](fabric-iq.md).
 1. Select **Publish**.
 
 Publishing a new toolbox creates its first version. That version becomes the default version automatically.
@@ -303,6 +350,15 @@ The pattern is the same for every connection kind and auth type:
      - type: code_interpreter
        container: { type: auto }
        name: code
+     # Tool search is connectionless.
+     - type: toolbox_search_preview
+     # Work IQ requires a project_connection_id pointing at a Work IQ connection.
+     - type: work_iq_preview
+       project_connection_id: <work-iq-connection-name>
+     # Fabric IQ requires a project_connection_id pointing at a Fabric IQ connection.
+     - type: fabric_iq_preview
+       project_connection_id: <fabric-iq-connection-name>
+       require_approval: never
      # For Azure AI Search, set the index in the tool entry:
      # - type: azure_ai_search
      #   name: search
@@ -326,7 +382,7 @@ The pattern is the same for every connection kind and auth type:
        rai_policy_name: <policy-name>    # must already exist on the project
    ```
 
-   At least one of `connections`, `skills`, or `tools` must be non-empty. Skill references must point to skills that already exist in the same Foundry project; see [Use skills in Foundry](skills.md) to create them with `azd ai skill create`.
+   At least one of `connections`, `skills`, or `tools` must be non-empty. Skill references must point to skills that already exist in the same Foundry project; see [Use skills in Foundry](skills.md) to create them with `azd ai skill create`. For end-to-end Tool Search, Work IQ, and Fabric IQ setup details, see [Use tool search](tool-search.md), [Use the Work IQ tool](work-iq.md), and [Use the Fabric IQ tool](fabric-iq.md).
 
 4. Create the toolbox from that file:
 
