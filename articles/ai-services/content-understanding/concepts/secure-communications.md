@@ -55,8 +55,13 @@ You can grant access to an Azure resource and assign an Azure role to a managed 
 
 To learn more about configuring managed identities for your Foundry resource, see [Azure security baseline for Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline#identity-management).
 
+You can use built-in RBAC roles for Content Understanding access control:
 
-
+| Role | Description |
+|------|-------------|
+| **Cognitive Services Content Understanding Reader** | Has access to read, list, and analyze operations for Azure AI Content Understanding. Can list and view analyzers, classifiers, and person directories, and run analysis and classification jobs, but can't create, update, or delete resources. |
+| **Cognitive Services Content Understanding Contributor** | Has access to read, create, update, analyze, and test operations for Azure AI Content Understanding. Can manage analyzers, classifiers, labeling projects, and person directories, but can't delete analyzers or classifiers, manage role assignments, or list account keys. |
+| **Cognitive Services Content Understanding Owner** | Has full access to all Azure AI Content Understanding operations including read, create, update, delete, analyze, and test. Can manage all analyzers, classifiers, labeling projects, and person directories. |
 
 ## Next steps
 
