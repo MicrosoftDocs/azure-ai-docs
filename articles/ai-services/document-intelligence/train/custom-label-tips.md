@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Label tips and tricks for Document Intelligence Studio
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: best-practice
 ms.date: 11/18/2025
 ms.author: vikurpad
