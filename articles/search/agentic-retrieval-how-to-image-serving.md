@@ -61,7 +61,7 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + In mixed knowledge bases, only supported knowledge source kinds (blob, indexed OneLake, and indexed SharePoint) return images. Other kinds can still contribute text grounding, but they don't return images.
 
-+ If you enable Microsoft Purview sensitivity labels on the knowledge source, image serving isn't supported because images can't be exported to the asset store.
++ If Microsoft Purview sensitivity labels are enabled on the knowledge source, image serving isn't supported because images can't be exported to the asset store.
 
 + The retrieve response returns image references in the asset store, not inline Base64 image bytes. Inline image bytes in the response payload aren't supported because they increase payload size and can degrade latency and overall performance.
 

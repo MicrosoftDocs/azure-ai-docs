@@ -1094,9 +1094,9 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
-In the `2026-05-01-preview` API, model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
+In the 2026-05-01-preview API version, model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
 
-The field is additive and appears only on activity entries that represent model-backed work. Nonmodel activity records, such as search index retrieval steps, don't include `modelName`.
+The field is additive and appears only on activity entries that represent model-backed work. Non-model activity records, such as search index retrieval steps, don't include `modelName`.
 
 :::zone pivot="csharp"
 
@@ -1204,7 +1204,7 @@ For this preview, `modelName` appears on model activity records, including `mode
 
 ### Require a knowledge source to succeed
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include `failOnError` to mark a specific knowledge source as required for the retrieve request. Use this setting when a partial answer would be misleading or noncompliant if that source is unavailable.
+In the 2026-05-01-preview API version, `knowledgeSourceParams` can include `failOnError` to mark a specific knowledge source as required for the retrieve request. Use this setting when a partial answer would be misleading or noncompliant if that source is unavailable.
 
 By default, retrieve favors availability and can return results from other sources when an optional source fails. `failOnError` changes that behavior for the source where it's set.
 
@@ -1305,9 +1305,9 @@ Content-Type: application/json
 
 ### Tune candidate documents per knowledge source
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include `maxOutputDocuments` to cap output documents per knowledge source before final result selection. Use this setting when you want one source to contribute a bounded number of documents to the retrieve pipeline.
+In the 2026-05-01-preview API version, `knowledgeSourceParams` can include `maxOutputDocuments` to cap output documents per knowledge source before final result selection. Use this setting when you want one source to contribute a bounded number of documents to the retrieve pipeline.
 
-This setting is per source. Use `50` for cross-region compatibility because some preview regions cap per-source output documents at 50. It doesn't control the final number of grounding documents returned to the caller.
+This setting is per source and doesn't control the final number of grounding documents returned to the caller. Use `50` for cross-region compatibility, as some preview regions cap per-source output documents at 50. 
 
 :::zone pivot="csharp"
 
@@ -1393,7 +1393,7 @@ The service can return fewer documents when fewer matches are available or when 
 
 ### Limit final grounding documents
 
-In the `2026-05-01-preview` API, the top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this setting when your application needs a predictable citation or reference count.
+In the 2026-05-01-preview API version, the top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this setting when your application needs a predictable citation or reference count.
 
 This count-based control complements `maxOutputSize`, which limits payload size. If both settings are present, both constraints apply to the final response.
 
