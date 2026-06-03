@@ -1,10 +1,10 @@
 ---
-title: Import custom models into Microsoft Foundry with Fireworks (preview)
+title: Import custom models into Microsoft Foundry with Fireworks
 description: Learn how to import, register, and deploy your own custom model weights in Microsoft Foundry using the Fireworks inference runtime.
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 06/01/2026
 author: ssalgadodev 
 ms.author: ssalgado
 ai-usage: ai-assisted
@@ -12,9 +12,7 @@ ms.custom: doc-kit-assisted, references_regions
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Import custom models with Fireworks (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Import custom models with Fireworks
 
 Import and deploy your own model weights on Foundry using the Fireworks inference runtime.
 
@@ -36,7 +34,6 @@ Before you begin, make sure your Azure environment is set up and that you have t
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* The **Fireworks on Foundry** preview feature enabled in your subscription. For setup steps, see [Use Fireworks models on Foundry](enable-fireworks-models.md#enable-fireworks-on-foundry).
 * The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
@@ -72,7 +69,7 @@ Your model directory must include the following files:
 | `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Tokenizer files required for the model. |
 
 > [!IMPORTANT]
-> Only **full-weight models** with original quantization are supported. LoRA adapters or custom quantized models aren't currently supported in this preview.
+> Only **full-weight models** with original quantization are supported. LoRA adapters or custom quantized models aren't currently supported.
 
 ## Import a custom model
 
@@ -212,7 +209,7 @@ If you encounter issues during import or deployment, use the following table to 
 | Import fails with missing files | Verify your model directory contains all [required model files](#required-model-files), including `config.json`, weight files, an index file, and tokenizer files. |
 | Architecture mismatch | Confirm the architecture you selected matches your model. See [supported architectures](#supported-architectures). |
 | Upload times out or stalls | Check your network connection and retry. For large models, use a stable high-bandwidth connection. |
-| Deployment fails | Confirm you have sufficient quota and that the [Fireworks preview feature](enable-fireworks-models.md#enable-fireworks-on-foundry) is enabled and registered in your subscription. |
+| Deployment fails | Confirm you have sufficient quota and that Fireworks on Foundry is available in your [supported region](enable-fireworks-models.md#region-availability). |
 | Quota exceeded | [Request more quota](https://aka.ms/fireworks-quota) or reallocate provisioned throughput units from existing deployments. |
 
 For more troubleshooting guidance, see [Troubleshoot Fireworks on Foundry](enable-fireworks-models.md#troubleshoot-fireworks-on-foundry).

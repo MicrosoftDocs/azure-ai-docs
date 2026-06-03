@@ -23,7 +23,9 @@ zone_pivot_groups: selection-browser-tool
 This article explains how to configure and use the Browser Automation tool with Foundry agents to automate web browsing workflows.
 
 > [!WARNING]
-> The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages that the AI encounters can cause it to execute commands you or others don't intend. These actions can compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you acknowledge that you bear responsibility and liability for any use of it and of any resulting agents you create with it. This responsibility extends to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. Use the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
+> The Browser Automation Tool comes with significant security risks. When you use the Browser Automation Tool, an AI spins up remote browsers sessions to perform actions and can use credentials you explicitly share with the agent, such as to email, financial accounts, social networks, and enterprise systems. The AI agent may make mistakes and may be fooled by malicious data it may encounter on the Internet.
+>
+> You're responsible for reviewing and testing your applications and implementing your own responsible AI mitigations. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and all outcomes. Use judgment in deciding which credentials you provide to your browser sessions. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
 Browser Automation Tool (BAT) enables scalable, reliable browser-based automation within Foundry agents. BAT is available as an MCP tool powered by Playwright workspaces as its headless browser infrastructure layer. It integrates seamlessly with modern agentic workflows while providing enterprise-grade security, observability, and extensibility.
 
@@ -131,7 +133,9 @@ After you run a sample, verify the tool was called by using tracing in Microsoft
 :::zone pivot="python"
 ## Use BrowserAutomationAgentTool with agents example
 
-The following Python example demonstrates how to create an AI agent with browser automation capabilities by using the `BrowserAutomationAgentTool` and synchronous Azure AI Projects client. The agent can navigate to websites, interact with web elements, and perform tasks such as searching for stock prices.
+The following Python example demonstrates how to create an AI agent with browser automation capabilities. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import json
@@ -232,6 +236,55 @@ Agent created (id: ..., name: ..., version: ...)
 ```
 
 During streaming, you might also see deltas and tool-call details. Output varies based on the website content and model behavior.
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_browser_automation_tool()` to attach a Playwright connection. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL`, and `BROWSER_CONNECTION_ID` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+BROWSER_CONNECTION_ID = os.environ["BROWSER_CONNECTION_ID"]
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions=(
+            "You help with browser automation tasks. Use the Browser Automation tool "
+            "to navigate and read information from websites."
+        ),
+        tools=[FoundryChatClient.get_browser_automation_tool(connection_id=BROWSER_CONNECTION_ID)],
+    )
+
+    result = await agent.run(
+        "Go to finance.yahoo.com, search for MSFT, click 'YTD' on the price chart, "
+        "and report the year-to-date percent change."
+    )
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent navigates the live website through the Playwright connection and reports the YTD value it observes. Output varies based on website content:
+
+```console
+Agent: The year-to-date change for MSFT is approximately +18.4%.
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"

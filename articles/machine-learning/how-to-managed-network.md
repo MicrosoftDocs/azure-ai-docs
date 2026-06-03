@@ -1132,6 +1132,10 @@ If you plan to use __HuggingFace models__ with Azure Machine Learning, add outbo
 * `production.cloudflare.docker.com`
 * `cdn.auth0.com`
 * `cdn-lfs.huggingface.co`
+* `xethub.hf.co`
+* `*.xethub.hf.co`
+* `huggingface.co`
+* `*.huggingface.co`
 
 ### Scenario: Enable access from selected IP Addresses
 

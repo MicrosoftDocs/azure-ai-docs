@@ -25,12 +25,7 @@ Azure Translator offers the following prebuilt solutions:
 
 * [**Translator v3 connector for documents**](../connector/document-translation-flow.md) and [**Translator v3 connector for text**](../solutions/connector/text-translator-flow.md). The Microsoft Translator v3 connectors create a link between your Translator instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
 
-
 ## Next steps
-
-* [Get started with Language studio](../document-translation/language-studio.md#get-started)
-
-* [Request Microsoft Translator Pro limited access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUME5BUDBVWUlaNDlUN0FRODRIQ082SjFVUCQlQCN0PWcu)
 
 * [Translate documents with Microsoft v3 Connector](../connector/document-translation-flow.md#translate-documents)
 

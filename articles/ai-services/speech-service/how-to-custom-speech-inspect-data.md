@@ -27,6 +27,12 @@ After you [upload training and testing datasets](how-to-custom-speech-upload-dat
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you don't create a separate quality test. Validation runs automatically against the dataset that you specified on the **Validation data** pane of the **Fine-tune a model** wizard. To inspect the results, see [Get test results](#get-test-results).
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 To test your fine-tuned custom speech model, follow these steps:
 
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -44,6 +50,8 @@ To test your fine-tuned custom speech model, follow these steps:
 
 1. Enter a name and description for the test. Then select **Next**.
 1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.
+
+---
 
 ::: zone-end
 
@@ -247,7 +255,15 @@ You should get the test results and [inspect](#compare-transcription-with-audio)
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+After training completes, select the custom model to open its details page, and then select the **Validations** tab. On the **Details** sub-tab, you can play back the audio and compare the recognized and the human-labeled transcriptions side by side.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 When the test status is **Succeeded**, you can view the results. Select the test to view the results.
+
+---
 
 ::: zone-end
 

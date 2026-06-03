@@ -9,7 +9,6 @@ ai-usage: ai-assisted
 
 # Create an index for agentic retrieval in Azure AI Search
 
-
 [!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
 This article explains the required index fields and configurations for agentic retrieval. None of these requirements are new. You can use an existing index that meets the criteria, even if it was created with an earlier API version.

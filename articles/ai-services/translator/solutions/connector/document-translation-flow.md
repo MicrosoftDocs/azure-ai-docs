@@ -465,4 +465,4 @@ That's it! You learned to automate document translation processes using the Micr
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Explore the Document translation reference guide](../../document-translation/reference/rest-api-guide.md)
+> [Explore the Document translation reference guide](../../document-translation/latest/rest-api/guide-overview.md)
