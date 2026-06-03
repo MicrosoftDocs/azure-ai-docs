@@ -5,9 +5,9 @@ description: "This document details issues for data, privacy, and security for L
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.subservice: azure-ai-luis
+ms.subservice: language-understanding
 ms.date: 02/08/2024
 ---
 # Data and privacy for Language Understanding
