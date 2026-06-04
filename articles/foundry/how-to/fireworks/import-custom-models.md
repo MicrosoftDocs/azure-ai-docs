@@ -26,7 +26,7 @@ LoRA adapters are lightweight fine-tuning artifacts that modify a base model wit
 <!-- -->
 
 > [!IMPORTANT]
-> Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Items marked (preview) in this article are currently in preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 The import workflow has five steps:
 
@@ -94,13 +94,13 @@ The import process starts in the Foundry portal, where you register your model, 
 
 1. Configure the following settings:
 
-  | Setting | Description |
-  | --- | --- |
-  | **Base model** | Select the Fireworks base model or architecture that matches your model files. For LoRA adapters, select the base model that the adapter targets. For draft models, select the model family that matches the target model you plan to pair with the draft model. |
-  | **Model details** | Enter the custom model name and version details. |
-  | **Weight type** | Select **Full weight model**, **LoRA adapter** (preview), or **Draft model** (preview). The portal uses this selection to generate the appropriate CLI command and flags. |
-  | **LoRA settings** | For LoRA adapters (preview), configure rank and alpha. Target modules and dropout are optional settings. |
-  | **Model path** | Enter the local path to the folder that contains your model files. |
+    | Setting | Description |
+    | --- | --- |
+    | **Base model** | Select the Fireworks base model or architecture that matches your model files. For LoRA adapters, select the base model that the adapter targets. For draft models, select the model family that matches the target model you plan to pair with the draft model. |
+    | **Model details** | Enter the custom model name and version details. |
+    | **Weight type** | Select **Full weight model**, **LoRA adapter** (preview), or **Draft model** (preview). The portal uses this selection to generate the appropriate CLI command and flags. |
+    | **LoRA settings** | For LoRA adapters (preview), configure rank and alpha. Target modules and dropout are optional settings. |
+    | **Model path** | Enter the local path to the folder that contains your model files. |
 
 1. The portal generates an `azd` command. Copy the command and paste it into a local terminal. Update the `--source` parameter to point to the directory that contains your model weight files.
 
