@@ -30,6 +30,11 @@ You can enable answer synthesis in two ways:
 + On the knowledge base (becomes the default for all queries)
 + On individual retrieval requests (overrides the default)
 
+> [!IMPORTANT]
+> + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+>
+> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+
 ## Prerequisites
 
 + An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that specifies an LLM.
@@ -38,29 +43,23 @@ You can enable answer synthesis in two ways:
 
 + For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
-::: zone pivot="csharp"
+:::zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="python"
+:::zone pivot="python"
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="rest"
+:::zone pivot="rest"
 
 + The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
-::: zone-end
-
-## Limitations and considerations
-
-+ The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
-
-+ Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+:::zone-end
 
 ## Enable answer synthesis in a knowledge base
 
@@ -96,7 +95,7 @@ await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
 
 :::zone pivot="python"
 
-Set `output_mode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `answer_instructions` to customize the answer output:. Our example instructs the knowledge base to `Use concise bulleted lists`.
+Set `output_mode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `answer_instructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
@@ -219,7 +218,7 @@ result = agent_client.retrieve(retrieval_request=request)
 
 :::zone pivot="rest"
 
-Set `outputMode` to `answerSynthesis` on a retrieve request.
+Set `outputMode` to `"answerSynthesis"` on a retrieve request.
 
 ```http
 ### Enable answer synthesis in a retrieve request

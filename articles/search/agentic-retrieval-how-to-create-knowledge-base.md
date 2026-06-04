@@ -87,19 +87,19 @@ Use one of the following LLMs from Azure OpenAI in Foundry Models. Azure OpenAI 
 
 | Model | Supported API versions |
 |--|--|
-| `gpt-4o` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-4o-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-4.1` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-4.1-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-4.1-nano` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-5` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-5-mini` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-5-nano` | `2025-11-01-preview`, `2026-05-01-preview` |
-| `gpt-5.1` | `2026-05-01-preview` |
-| `gpt-5.2` | `2026-05-01-preview` |
-| `gpt-5.4` | `2026-05-01-preview` |
-| `gpt-5.4-mini` | `2026-05-01-preview` |
-| `gpt-5.4-nano` | `2026-05-01-preview` |
+| `gpt-4o` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4o-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-nano` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5-nano` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5.1` | 2026-05-01-preview |
+| `gpt-5.2` | 2026-05-01-preview |
+| `gpt-5.4` | 2026-05-01-preview |
+| `gpt-5.4-mini` | 2026-05-01-preview |
+| `gpt-5.4-nano` | 2026-05-01-preview |
 
 ## Configure access
 
@@ -390,7 +390,7 @@ var knowledgeBase = new KnowledgeBase(
 {
     Description = "This knowledge base handles questions directed at two unrelated sample indexes.",
     RetrievalInstructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
-    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+    AnswerInstructions = "Provide a two-sentence, concise, and informative answer based on the retrieved documents.",
     OutputMode = KnowledgeRetrievalOutputMode.AnswerSynthesis,
     Models = { new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: aoaiParams) },
     RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort()
@@ -463,7 +463,7 @@ knowledge_base = KnowledgeBase(
     name = "my-kb",
     description = "This knowledge base handles questions directed at two unrelated sample indexes.",
     retrieval_instructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
-    answer_instructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+    answer_instructions = "Provide a two-sentence, concise, and informative answer based on the retrieved documents.",
     output_mode = "answerSynthesis",
     knowledge_sources = [
         KnowledgeSourceReference(name = "hotels-ks"),
@@ -601,6 +601,7 @@ Pass the following properties to create a knowledge base.
 | `OutputMode` | Valid values are `AnswerSynthesis` for an LLM-formulated answer or `ExtractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
 | `Models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request, and then provide them by using the [KnowledgeBaseAzureOpenAIModel class](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel?view=azure-dotnet-preview&preserve-view=true). You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
 | `RetrievalReasoningEffort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
+| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
 
 # [2026-04-01](#tab/2026-04-01)
 
