@@ -253,7 +253,7 @@ Document Intelligence returns extracted field values as strongly typed data. Eac
 
 * **Prebuilt models**: For prebuilt models such as **prebuilt-invoice** or **prebuilt-receipt**, field schemas are defined and maintained by Microsoft. Common fields are mapped to specific types—for example, **InvoiceDate** is returned as a **date** type and **SubTotal** as a **currency** type—so normalization happens automatically without any configuration.
 
-* **Custom models**: When you train a custom extraction model, you define the field schema in Document Intelligence Studio or via the API. For each labeled field, you explicitly assign a type (**string**, **number**, **integer**, or **date**). The model then uses that type definition to auto-normalize extracted values during inference.
+* **Custom models**: When you train a custom extraction model, you define the field schema. For each labeled field, you explicitly assign a type (**string**, **number**, **integer**, or **date**). The model then uses that type definition to auto-normalize extracted values during inference.
 
 For the full field schema reference, see [Document Intelligence schema](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga).
 
