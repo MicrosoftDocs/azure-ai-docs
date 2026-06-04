@@ -691,6 +691,8 @@ Use `--self-contained true` if you want to ship the .NET runtime in the zip. The
 | --- | --- |
 | Maximum zip size (multipart upload) | 250 MB |
 
+For the supported `cpu` and `memory` combinations, see [Sandbox sizes](../concepts/hosted-agents.md#sandbox-sizes).
+
 ## Troubleshooting
 
 | Symptom | Likely cause | Fix |
@@ -698,7 +700,7 @@ Use `--self-contained true` if you want to ship the .NET runtime in the zip. The
 | `401 Unauthorized` | Missing or wrong-scope token | Acquire a token with `--resource https://ai.azure.com`. |
 | `403 Forbidden` | Caller lacks Role Based Access Control on the project | Grant **Foundry User** (or higher) at project scope. |
 | `409 conflict` on Create (`Agent '<name>' already exists`) | Agent name already exists | Use Update (POST `/agents/{name}`), or pick a new name. |
-| `400 bad_request` (`CPU and Memory must be specified as a valid resource tier`) on Create or Update | `cpu`/`memory` aren't one of the supported tiers | Set `cpu` and `memory` to a valid pair from [Resource tiers](#resource-tiers). |
+| `400 bad_request` (`CPU and Memory must be specified as a valid resource tier`) on Create or Update | `cpu`/`memory` aren't one of the supported tiers | Set `cpu` and `memory` to a valid pair from [Sandbox sizes](../concepts/hosted-agents.md#sandbox-sizes). |
 | `400 bad_request` (`Agent version is still being provisioned`) on invoke | A new version is mid-deploy and the active version is being swapped in | Poll the version `status` until `active`, then retry. |
 | `424 session_not_ready` on invoke | Container started but `/readiness` didn't return HTTP 200 within the timeout | Stream logs with [`:logstream`](#stream-container-logs), fix the readiness probe or startup error, redeploy. |
 | `409 conflict` on DELETE agent (`Agent has active sessions`) | Open sessions block deletion | Wait for sessions to go idle, or append `&force=true` to cascade-delete sessions. |
