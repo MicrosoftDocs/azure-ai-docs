@@ -571,7 +571,7 @@ Authorization: Bearer <YOUR ACCESS TOKEN>
 
 ### Multi-filter example
 
-You can combine multiple filters to further refine results. For example, to search only published or internal documents created in 2025 or later, use the following filter.
+You can combine multiple filters to further refine results.
 
 :::zone pivot="csharp"
 
@@ -1086,7 +1086,7 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
-Model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
+Model-backed activity records include a `modelName` field when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
 
 :::zone pivot="csharp"
 
