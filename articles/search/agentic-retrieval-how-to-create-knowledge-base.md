@@ -28,7 +28,9 @@ You can create a knowledge base in a [Foundry IQ](/azure/ai-foundry/agents/conce
 A knowledge base specifies:
 
 + One or more knowledge sources that point to searchable content.
+
 + An optional LLM for query planning, answer synthesis, or web content summarization. Supported tasks vary by API version and knowledge source type.
+
 + Custom properties that control routing, source selection, and object encryption.
 
 ### Usage support
@@ -41,9 +43,9 @@ A knowledge base specifies:
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic tier or higher.
 
-+ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). Use the 2026-05-01-preview API version for preview knowledge source types or to use an LLM with non-web knowledge sources. Use the 2026-04-01 API version for generally available knowledge source types and minimal, extractive retrieval.
++ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). Use the 2026-05-01-preview API version to access preview knowledge sources or to use an LLM with non-web knowledge sources. Use the 2026-04-01 API version for generally available knowledge sources and minimal, extractive retrieval.
 
-+ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. An LLM is required if your knowledge base includes a web knowledge source. For other knowledge source types, an LLM is optional in the 2026-05-01-preview API version and unsupported in the 2026-04-01 API version.
++ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. An LLM is required if your knowledge base includes a web knowledge source. For other knowledge sources, an LLM is optional in the 2026-05-01-preview API version and unsupported in the 2026-04-01 API version.
 
 + Permissions to create knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
@@ -581,103 +583,6 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-### Configure CORS for browser-based retrieve calls (preview)
-
-> [!IMPORTANT]
-> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
-
-In the 2026-05-01-preview API version, a knowledge base can define `corsOptions` for browser-based applications that call the retrieve action directly from JavaScript. The CORS policy identifies which browser origins can send retrieve requests to the knowledge base.
-
-The following examples create a knowledge base that allows retrieve requests from one browser origin.
-
-::: zone pivot="csharp"
-
-```csharp
-using Azure;
-using Azure.Search.Documents.Indexes;
-using Azure.Search.Documents.Indexes.Models;
-
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
-
-var knowledgeBase = new KnowledgeBase(
-    name: "browser-chat-kb",
-    knowledgeSources: new[] { new KnowledgeSourceReference("product-docs-ks") }
-)
-{
-    Description = "A knowledge base that allows one browser app origin.",
-    CorsOptions = new CorsOptions(new[] { "https://myapp.example.com" })
-    {
-        MaxAgeInSeconds = 300
-    }
-};
-
-await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
-```
-
-**Reference:** [CorsOptions](/dotnet/api/azure.search.documents.indexes.models.corsoptions?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
-
-::: zone-end
-
-::: zone pivot="python"
-
-```python
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    CorsOptions,
-    KnowledgeBase,
-    KnowledgeSourceReference,
-)
-
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
-
-knowledge_base = KnowledgeBase(
-    name="browser-chat-kb",
-    description="A knowledge base that allows one browser app origin.",
-    knowledge_sources=[KnowledgeSourceReference(name="product-docs-ks")],
-    cors_options=CorsOptions(
-        allowed_origins=["https://myapp.example.com"],
-        max_age_in_seconds=300,
-    ),
-)
-
-index_client.create_or_update_knowledge_base(knowledge_base)
-```
-
-**Reference:** [CorsOptions](/python/api/azure-search-documents/azure.search.documents.indexes.models.corsoptions), [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
-
-::: zone-end
-
-::: zone pivot="rest"
-
-```http
-PUT {{search-url}}/knowledgebases/browser-chat-kb?api-version=2026-05-01-preview
-Content-Type: application/json
-api-key: {{search-api-key}}
-
-{
-  "name": "browser-chat-kb",
-  "description": "A knowledge base that allows one browser app origin.",
-  "knowledgeSources": [
-    {
-      "name": "product-docs-ks"
-    }
-  ],
-  "corsOptions": {
-    "allowedOrigins": [
-      "https://myapp.example.com"
-    ],
-    "maxAgeInSeconds": 300
-  }
-}
-```
-
-::: zone-end
-
-When `corsOptions` is present, `allowedOrigins` lists the origins that can call the knowledge base from a browser. `maxAgeInSeconds` is optional and controls how long the browser can cache the preflight response.
-
-If `corsOptions` is omitted, the knowledge base has no CORS policy, and browsers block cross-origin retrieve requests. Set `allowedOrigins` to an explicit list of browser origins for production applications. You can use `"*"` to allow all origins, but this setting isn't recommended for production. If `maxAgeInSeconds` is omitted, the preflight cache duration defaults to 300 seconds. CORS applies to knowledge base retrieve REST API calls from browsers.
-
 ### Knowledge base properties
 
 Pass the following properties to create a knowledge base.
@@ -770,6 +675,108 @@ Pass the following properties to create a knowledge base.
 ---
 
 ::: zone-end
+
+### Configure CORS for browser-based retrieve calls (preview)
+
+> [!IMPORTANT]
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+
+In the 2026-05-01-preview API version, a knowledge base can define `corsOptions` for browser-based applications that call the retrieve action directly from JavaScript. The CORS policy identifies which browser origins can send retrieve requests to the knowledge base.
+
+When you omit `corsOptions`, the knowledge base has no CORS policy, and browsers block cross-origin retrieve requests.
+
+The following example creates a knowledge base that allows retrieve requests from one browser origin.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var knowledgeBase = new KnowledgeBase(
+    name: "browser-chat-kb",
+    knowledgeSources: new[] { new KnowledgeSourceReference("product-docs-ks") }
+)
+{
+    Description = "A knowledge base that allows one browser app origin.",
+    CorsOptions = new CorsOptions(new[] { "https://myapp.example.com" })
+    {
+        MaxAgeInSeconds = 300
+    }
+};
+
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+```
+
+**Reference:** [CorsOptions](/dotnet/api/azure.search.documents.indexes.models.corsoptions?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    CorsOptions,
+    KnowledgeBase,
+    KnowledgeSourceReference,
+)
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+knowledge_base = KnowledgeBase(
+    name="browser-chat-kb",
+    description="A knowledge base that allows one browser app origin.",
+    knowledge_sources=[KnowledgeSourceReference(name="product-docs-ks")],
+    cors_options=CorsOptions(
+        allowed_origins=["https://myapp.example.com"],
+        max_age_in_seconds=300,
+    ),
+)
+
+index_client.create_or_update_knowledge_base(knowledge_base)
+```
+
+**Reference:** [CorsOptions](/python/api/azure-search-documents/azure.search.documents.indexes.models.corsoptions), [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+PUT {{search-url}}/knowledgebases/browser-chat-kb?api-version=2026-05-01-preview
+Content-Type: application/json
+api-key: {{search-api-key}}
+
+{
+  "name": "browser-chat-kb",
+  "description": "A knowledge base that allows one browser app origin.",
+  "knowledgeSources": [
+    {
+      "name": "product-docs-ks"
+    }
+  ],
+  "corsOptions": {
+    "allowedOrigins": [
+      "https://myapp.example.com"
+    ],
+    "maxAgeInSeconds": 300
+  }
+}
+```
+
+::: zone-end
+
+`corsOptions` accepts the following properties.
+
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `allowedOrigins` | Lists the origins that can call the knowledge base from a browser. For production applications, use an explicit list of origins. You can use `"*"` to allow all origins, but this setting isn't recommended for production. | Array | Yes |
+| `maxAgeInSeconds` | Controls how long browsers can cache the preflight response. When omitted, the preflight cache duration defaults to 300 seconds. | Integer | No |
 
 ## Query a knowledge base
 

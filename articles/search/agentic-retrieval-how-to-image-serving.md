@@ -363,5 +363,5 @@ Use the `imageServing` activity block from [Inspect image serving statistics](#i
 
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
 + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
-+ [Knowledge sources for agentic retrieval](agentic-knowledge-source-overview.md)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Knowledge store concepts](knowledge-store-concept-intro.md)

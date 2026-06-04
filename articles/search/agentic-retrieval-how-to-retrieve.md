@@ -1,6 +1,6 @@
 ---
 title: Query Knowledge Base via APIs or MCP
-description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
+description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
@@ -368,7 +368,7 @@ For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-k
 
 Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
-### Retrieval from a search index
+### Search index behavior
 
 For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
 
@@ -387,7 +387,8 @@ In Azure AI Search, each knowledge base is a standalone MCP server that exposes 
 
 ### MCP endpoint format
 
-Each knowledge base has an MCP endpoint at the following URL:
+Each knowledge base has an MCP endpoint at the following URL.
+
 ```
 https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
 ```
@@ -409,7 +410,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 >
 > + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
-## Filter at query time (search index)
+## Filter search index knowledge sources at query time
 
 When retrieving from a search index knowledge source, you can apply an [OData filter](search-query-odata-filter.md) at query time to narrow the results to specific documents or fields. The filter expression uses OData syntax and is passed via the `filterAddOn` parameter.
 
@@ -422,13 +423,6 @@ The `filterAddOn` parameter accepts OData filter expressions. Example patterns i
 - **Numeric ranges**: `price ge 100 and price le 5000`
 - **Text matching**: `substringof('climate', description)`, `indexof(title, 'urgent') ge 0`
 - **Logical operators**: `(category eq 'News' or category eq 'Analysis') and status eq 'published'`
-
-Example filter expressions:
-
-- `status eq 'published'`
-- `created ge 2025-01-01`
-- `city eq 'Redmond' and department eq 'Engineering'`
-- `(priority eq 'High' or priority eq 'Critical') and resolved eq false`
 
 :::zone pivot="csharp"
 
@@ -577,7 +571,7 @@ Authorization: Bearer <YOUR ACCESS TOKEN>
 
 ### Multi-filter example
 
-You can combine multiple filters to refine results further:
+You can combine multiple filters to refine results further. For example, to search only published or internal documents created in 2025 or later, use the following filter.
 
 :::zone pivot="csharp"
 
@@ -647,7 +641,6 @@ In the .NET SDK, pass the token as the `xMsQuerySourceAuthorization` parameter o
 
 ```csharp
 using Azure;
-using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
@@ -694,7 +687,8 @@ Console.WriteLine(text);
 In the Python SDK, pass the token as the `x_ms_query_source_authorization` parameter on `retrieve`:
 
 ```python
-from azure.core.credentials import AzureKeyCredential, get_bearer_token_provider
+from azure.identity import DefaultAzureCredential
+from azure.core.credentials import get_bearer_token_provider
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage, KnowledgeBaseMessageTextContent,
@@ -828,7 +822,7 @@ Key points:
 
 The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline and errors for any retrieval failures, such as inaccessible knowledge sources.
 
-The output includes the following components:
+The output includes the following components.
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
 
@@ -1080,7 +1074,7 @@ The field name and availability of label metadata depend on the knowledge source
 
 The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
-## Examples
+## Retrieve action examples (preview)
 
 The following examples illustrate different ways to call the retrieve action using the 2026-05-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
@@ -1094,7 +1088,7 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
-In the 2026-05-01-preview API version, model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
+Model-backed activity records can include `modelName` when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
 
 The field is additive and appears only on activity entries that represent model-backed work. Non-model activity records, such as search index retrieval steps, don't include `modelName`.
 
@@ -1168,7 +1162,9 @@ Content-Type: application/json
 
 :::zone-end
 
-The following response excerpt shows activity records with `modelName`:
+`modelName` appears on model activity records, including `modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The value is the public model name used for the activity, such as `gpt-5-mini`, not the deployment name.
+
+The following response excerpt shows activity records with `modelName`.
 
 ```json
 {
@@ -1200,13 +1196,13 @@ The following response excerpt shows activity records with `modelName`:
 }
 ```
 
-For this preview, `modelName` appears on model activity records, including `modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The value is the public model name used for the activity, such as `gpt-5-mini`, not the deployment name. If an activity step isn't backed by a single customer-visible model, the field is omitted.
-
 ### Require a knowledge source to succeed
 
-In the 2026-05-01-preview API version, `knowledgeSourceParams` can include `failOnError` to mark a specific knowledge source as required for the retrieve request. Use this setting when a partial answer would be misleading or noncompliant if that source is unavailable.
+`knowledgeSourceParams` can include `failOnError` to mark a specific knowledge source as required for the retrieve request. Use this setting when a partial answer would be misleading or noncompliant if that source is unavailable.
 
-By default, retrieve favors availability and can return results from other sources when an optional source fails. `failOnError` changes that behavior for the source where it's set.
+By default, retrieve favors availability and can return results from other sources when an optional source fails. Set `failOnError: true` to override this: if that source's query fails, the retrieve request fails with `502 Bad Gateway` instead of returning `206 Partial Content`. The error message identifies which knowledge source couldn't be queried.
+
+This setting is also independent of `alwaysQuerySource`: `alwaysQuerySource` controls whether the source is attempted, while `failOnError` controls what happens if that attempt fails. If a source must always participate and must fail the request on error, set both properties to `true`.
 
 :::zone pivot="csharp"
 
@@ -1301,13 +1297,11 @@ Content-Type: application/json
 
 :::zone-end
 
-`failOnError` defaults to `false`. When a queried source has `failOnError: true` and the source query fails, the retrieve request fails instead of returning `206 Partial Content`. The expected error is `502 Bad Gateway`, with an error message that identifies the knowledge source that couldn't be queried. The setting is independent of `alwaysQuerySource`: `alwaysQuerySource` controls whether the source is attempted, while `failOnError` controls what happens if that attempt fails. If a source must always participate and must fail the request on error, set both properties to `true`.
-
 ### Tune candidate documents per knowledge source
 
-In the 2026-05-01-preview API version, `knowledgeSourceParams` can include `maxOutputDocuments` to cap output documents per knowledge source before final result selection. Use this setting when you want one source to contribute a bounded number of documents to the retrieve pipeline.
+`knowledgeSourceParams` can include `maxOutputDocuments` to cap output documents per knowledge source before final result selection. Use this setting when you want one source to contribute a bounded number of documents to the retrieve pipeline.
 
-This setting is per source and doesn't control the final number of grounding documents returned to the caller. Use `50` for cross-region compatibility, as some preview regions cap per-source output documents at 50. 
+This setting is per source and doesn't control the final number of grounding documents returned to the caller. Use `50` for cross-region compatibility, as some preview regions cap per-source output documents at 50.
 
 :::zone pivot="csharp"
 
@@ -1393,9 +1387,7 @@ The service can return fewer documents when fewer matches are available or when 
 
 ### Limit final grounding documents
 
-In the 2026-05-01-preview API version, the top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this setting when your application needs a predictable citation or reference count.
-
-This count-based control complements `maxOutputSize`, which limits payload size. If both settings are present, both constraints apply to the final response.
+The top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this setting when your application needs a predictable citation or reference count.
 
 :::zone pivot="csharp"
 
@@ -1466,6 +1458,8 @@ Content-Type: application/json
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
+
+This count-based control complements `maxOutputSize`, which limits payload size. If both settings are present, both constraints apply to the final response. The following table describes how both settings interact.
 
 | `maxOutputDocuments` | `maxOutputSize` | Behavior |
 | --- | --- | --- |
@@ -1561,7 +1555,7 @@ Content-Type: application/json
 
 ### Set references for each knowledge source
 
-This example uses the default reasoning effort specified in the knowledge base. The focus of this example is specification of how much information to include in the response.
+This example uses the default reasoning effort specified in the knowledge base. It shows how to control how much information the response includes per source.
 
 :::zone pivot="csharp"
 

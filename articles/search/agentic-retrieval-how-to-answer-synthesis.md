@@ -60,7 +60,7 @@ You can enable answer synthesis in two ways:
 
 + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-+ Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing)
++ Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Enable answer synthesis in a knowledge base
 
@@ -134,10 +134,6 @@ index_client.create_or_update_knowledge_base(knowledge_base)
 Set `outputMode` to `"answerSynthesis"` on the knowledge base definition. Optionally, set `answerInstructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```http
-@search-url = <YOUR SEARCH SERVICE URL>
-@api-key = <YOUR API KEY>
-@knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
-
 ### Enable answer synthesis in a knowledge base
 PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
 Content-Type: application/json
@@ -155,9 +151,6 @@ api-key: {{api-key}}
 **Reference:** [Knowledge Base - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 :::zone-end
-
-> [!NOTE]
-> This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Enable answer synthesis in a retrieve request
 
@@ -229,10 +222,6 @@ result = agent_client.retrieve(retrieval_request=request)
 Set `outputMode` to `answerSynthesis` on a retrieve request.
 
 ```http
-@search-url = <YOUR SEARCH SERVICE URL>
-@api-key = <YOUR API KEY>
-@knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
-
 ### Enable answer synthesis in a retrieve request
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
 Content-Type: application/json
@@ -258,9 +247,6 @@ api-key: {{api-key}}
 
 :::zone-end
 
-> [!NOTE]
-> This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
-
 ## Get a synthesized answer
 
 When answer synthesis is enabled, the knowledge base returns a natural-language answer based on the instructions you optionally specified in the knowledge base. Citations to your knowledge sources are formatted as `[ref_id:<number>]`.
@@ -274,7 +260,7 @@ For example, if your instructions are `Use concise bulleted lists` and your quer
       "content": [
         {
           "type": "text",
-          "text": "- Healthcare encompasses various services provided to patients and the general population ... // TRIMMED FOR BREVITY"
+          "text": "- Healthcare encompasses various services provided to patients and the general population ..."
         }
       ]
     }
@@ -295,5 +281,5 @@ Depending on your knowledge base's configuration, the response might include oth
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
-+ [Quickstart: Agentic retrieval (uses answer synthesis)](search-get-started-agentic-retrieval.md)
-+ [Python sample: Azure AI Search blob knowledge source (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
++ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (uses answer synthesis)
++ [Python sample: Azure AI Search blob knowledge source](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb) (uses answer synthesis)
