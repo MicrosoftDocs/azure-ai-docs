@@ -128,7 +128,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: Sessions persist for up to 30 days. The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state.
+- **Session lifetime**: The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state. A session is permanently deleted after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -194,6 +194,10 @@ Hosted agent sandboxes support the following CPU and memory combinations:
 | 0.5 vCPU | 1 GiB |
 | 1 vCPU | 2 GiB |
 | 2 vCPU | 4 GiB |
+
+### Session storage
+
+Each session has a persistent `$HOME`. Its contents are preserved when compute is deprovisioned after 15 minutes of inactivity, and restored when the session resumes, so files written under `$HOME` survive idle periods. Files uploaded via the `/files` endpoint are written into `$HOME` and share the same storage. Each session is allocated a total disk budget of up to **20 GiB at 1 vCPU or larger**, scaling down proportionally for smaller CPU tiers. About **20% of that budget is reserved for system use** and isn't visible or available to your agent. The remainder is shared between your container image, `$HOME`, and any other writable locations in your container.
 
 ### Scaling and right-sizing
 

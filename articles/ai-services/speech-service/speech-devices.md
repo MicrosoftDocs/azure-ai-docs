@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Get started with the Speech devices. The Speech service works with a wide variety of devices and audio sources. 
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
 ms.author: pafarley

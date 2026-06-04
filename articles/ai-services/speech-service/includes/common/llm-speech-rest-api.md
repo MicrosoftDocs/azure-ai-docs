@@ -2,7 +2,7 @@
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 01/31/2026
 ai-usage: ai-assisted

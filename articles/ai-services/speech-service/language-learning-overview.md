@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about how Azure Speech in Foundry Tools can be used to learn languages.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.author: pafarley

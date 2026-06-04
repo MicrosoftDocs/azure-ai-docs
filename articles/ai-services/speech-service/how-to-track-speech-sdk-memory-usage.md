@@ -5,7 +5,7 @@ description: The Speech SDK supports numerous programming languages for speech t
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: rhurey

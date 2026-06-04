@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley

@@ -10,7 +10,7 @@ metadata:
   description: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
   author: PatrickFarley
   manager: nitinme
-  ms.service: azure-ai-speech
+  ms.service: azure-speech-foundry-tools
   ms.topic: hub-page
   ms.date: 02/25/2026
   ms.author: pafarley

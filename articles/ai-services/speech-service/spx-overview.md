@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the Speech CLI, a command-line tool for using Azure Speech in Foundry Tools without writing code. Run speech recognition, synthesis, and translation from the command line.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
 ms.author: pafarley

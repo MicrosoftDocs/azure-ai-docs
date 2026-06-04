@@ -5,7 +5,7 @@ description: Learn how to use Speech service with private endpoints provided by 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/23/2026
 ms.reviewer: pafarley

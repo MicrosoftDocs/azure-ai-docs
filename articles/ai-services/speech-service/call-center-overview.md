@@ -2,7 +2,7 @@
 title: Foundry Tools for Call Center Overview
 titleSuffix: Foundry Tools
 description: Foundry Tools for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 03/23/2026
 author: PatrickFarley

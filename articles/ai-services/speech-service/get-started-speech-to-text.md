@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: In this quickstart, learn how to use the Speech service for real-time speech to text conversion.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/25/2026
 ms.author: pafarley

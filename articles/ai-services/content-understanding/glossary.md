@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: glossary
 ms.custom:
   - build-2025

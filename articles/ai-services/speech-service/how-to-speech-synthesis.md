@@ -5,7 +5,7 @@ description: Learn how to convert text to speech, including object construction 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go

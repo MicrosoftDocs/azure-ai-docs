@@ -5,7 +5,7 @@ description: 'Learn about selecting audio input devices in the Speech SDK (C++, 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: chlandsi
