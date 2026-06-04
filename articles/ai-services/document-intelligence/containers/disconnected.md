@@ -2,7 +2,7 @@
 title: Use Document Intelligence containers in disconnected environments
 titleSuffix: Foundry Tools
 description: Learn how to run Cognitive Services Docker containers disconnected from the internet.
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 author: laujan
 manager: nitinme
 ms.topic: reference

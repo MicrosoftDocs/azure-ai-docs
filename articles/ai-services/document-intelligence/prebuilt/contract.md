@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Automate contract data extraction with Document Intelligence's contract models.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
