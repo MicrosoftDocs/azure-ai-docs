@@ -3,7 +3,7 @@ title: Create a SharePoint (Indexed) Knowledge Source
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 06/04/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -357,6 +357,14 @@ To surface document-embedded images (such as diagrams or scans) in answer synthe
 ## Delete a knowledge source
 
 [!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
+
+## Known errors
+
+If you get the following similar temporary error when creating a knowledge source with `contentExtractionMode` with `Standard` as a value:
+Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
+
+Refer to [this Content Understanding setup](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites) so you can define the default values, so you can proceed with the knowledge store creation, right after.
+
 
 ## Related content
 
