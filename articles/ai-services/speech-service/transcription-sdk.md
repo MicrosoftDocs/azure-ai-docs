@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: The Speech Transcription software development kit (SDK) exposes the LLM Speech and Fast Transcription capabilities of the Speech Service, making it easier to develop high quality transcription applications.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 05/27/2026
 ms.author: pafarley
@@ -54,7 +54,7 @@ You can find samples for each programming language in the respective GitHub repo
 | C# | [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/transcription/Azure.AI.Speech.Transcription/samples/README.md) |
 | Python | [Python Samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/transcription/azure-ai-transcription/samples/README.md) |
 | Java | [Java Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
-| JavaScript/TypeScript | [JavaScript/TypeScript Samples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/transcription/ai-speech-transcription/README.md) |
+| JavaScript/TypeScript | [JavaScript/TypeScript Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/transcription/ai-speech-transcription/samples-dev) |
 
 ## Help options
 
