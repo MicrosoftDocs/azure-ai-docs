@@ -36,8 +36,6 @@ If you need full control of the runtime image or you already have a working Dock
 - A [Microsoft Foundry project](../../how-to/create-projects.md) in a supported region.
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later, signed in to the tenant that owns the project.
 
-Select the tab for the language or interface you deploy with.
-
 # [Python](#tab/python)
 
 - `pip` from Python 3.13 or later, to package your source locally.
