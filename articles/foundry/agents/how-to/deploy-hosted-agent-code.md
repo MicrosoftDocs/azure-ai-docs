@@ -35,22 +35,34 @@ If you need full control of the runtime image or you already have a working Dock
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md) in a supported region.
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later, signed in to the tenant that owns the project.
-- For local Python packaging: `pip` from Python 3.13 or later.
-- For local .NET packaging: the .NET 10 SDK.
-- To deploy with the **Python SDK**: `azure-ai-projects` version 2.2.0 or later and `azure-identity`.
+
+Select the tab for the language or interface you deploy with.
+
+# [Python](#tab/python)
+
+- `pip` from Python 3.13 or later, to package your source locally.
+- The `azure-ai-projects` version 2.2.0 or later and `azure-identity` packages.
 
     ```bash
     pip install "azure-ai-projects>=2.2.0" azure-identity
     ```
 
-- To deploy with the **.NET SDK**: the `Azure.AI.Projects.Agents` and `Azure.Identity` packages.
+# [C#](#tab/csharp)
+
+- The .NET 10 SDK, to package your source locally.
+- The `Azure.AI.Projects.Agents` and `Azure.Identity` packages.
 
     ```dotnetcli
     dotnet add package Azure.AI.Projects.Agents
     dotnet add package Azure.Identity
     ```
 
-- To deploy with the **REST API**: a command-line HTTP client such as `curl` (the REST examples in this article use `curl`).
+# [REST API](#tab/rest)
+
+- A command-line HTTP client such as `curl` (the REST examples in this article use `curl`).
+- To package your source locally, install the toolchain for your agent's language: `pip` from Python 3.13 or later, or the .NET 10 SDK.
+
+---
 
 ### Supported runtimes
 
@@ -598,6 +610,10 @@ If you use `azd`, skip this section—`azd` builds the zip for you. Read it if y
 
 The zip must be **flat at the root**—no top-level wrapper folder.
 
+Select the tab for your agent's language.
+
+# [Python](#tab/python)
+
 ### Python layout (remote build mode)
 
 The service installs dependencies in the cloud from `requirements.txt`.
@@ -620,6 +636,35 @@ agent-code.zip
     ├── azure/identity/__init__.py
     └── requests/__init__.py
 ```
+
+### Build Linux dependencies locally (bundled, Python)
+
+Use the `manylinux2014_x86_64` platform tag so `pip` downloads Linux wheels even from Windows or macOS.
+
+**Bash**
+
+```bash
+pip install -r requirements.txt \
+    --target packages/ \
+    --platform manylinux2014_x86_64 \
+    --python-version 3.13 \
+    --implementation cp \
+    --only-binary=:all:
+
+zip -r agent-code.zip main.py requirements.txt packages/
+```
+
+**PowerShell / Windows cmd**
+
+```cmd
+pip install -r requirements.txt --target packages --platform manylinux2014_x86_64 --python-version 3.13 --implementation cp --only-binary=:all:
+
+tar -a -c -f agent-code.zip main.py requirements.txt packages
+```
+
+`--only-binary=:all:` forces wheels (no source builds). The `--python-version` must match the `runtime` value in the agent definition.
+
+# [C#](#tab/csharp)
 
 ### .NET layout (remote build mode)
 
@@ -645,41 +690,6 @@ agent-code.zip
 └── ... (publish output)
 ```
 
-> [!WARNING]
-> Common packaging mistakes that cause `session_creation_failed` or `ModuleNotFoundError`:
-> - Wrapping the source in a folder (`my-agent/main.py` instead of `main.py` at the root).
-> - Including raw `.whl` files in `packages/` instead of extracted modules.
-> - Bundling Windows binaries (`.pyd`, `.dll`) for a Linux runtime.
-
-### Build Linux dependencies locally (bundled, Python)
-
-Use the `manylinux2014_x86_64` platform tag so `pip` downloads Linux wheels even from Windows or macOS.
-
-# [Bash](#tab/bash)
-
-```bash
-pip install -r requirements.txt \
-    --target packages/ \
-    --platform manylinux2014_x86_64 \
-    --python-version 3.13 \
-    --implementation cp \
-    --only-binary=:all:
-
-zip -r agent-code.zip main.py requirements.txt packages/
-```
-
-# [PowerShell / Windows cmd](#tab/powershell)
-
-```cmd
-pip install -r requirements.txt --target packages --platform manylinux2014_x86_64 --python-version 3.13 --implementation cp --only-binary=:all:
-
-tar -a -c -f agent-code.zip main.py requirements.txt packages
-```
-
----
-
-`--only-binary=:all:` forces wheels (no source builds). The `--python-version` must match the `runtime` value in the agent definition.
-
 ### Build .NET output (bundled)
 
 ```bash
@@ -688,6 +698,14 @@ cd publish && zip -r ../agent-code.zip .
 ```
 
 Use `--self-contained true` if you want to ship the .NET runtime in the zip. The `runtime` you set in the agent definition must match the `TargetFramework`.
+
+---
+
+> [!WARNING]
+> Common packaging mistakes that cause `session_creation_failed` or `ModuleNotFoundError`:
+> - Wrapping the source in a folder (`my-agent/main.py` instead of `main.py` at the root).
+> - Including raw `.whl` files in `packages/` instead of extracted modules.
+> - Bundling Windows binaries (`.pyd`, `.dll`) for a Linux runtime.
 
 ### Limits
 
