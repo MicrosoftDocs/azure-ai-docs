@@ -1498,7 +1498,7 @@
     {
       "source_path_from_root": "/articles/ai-services/agents/how-to/tools/code-interpreter.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/tools/code-interpreter",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/agents/how-to/tools/fabric.md",
@@ -1613,7 +1613,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/azure-government.md",
       "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/chatgpt-quickstart.md",
@@ -1678,7 +1678,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-severity-levels.md",
       "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter.md",
@@ -1843,7 +1843,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/business-continuity-disaster-recovery.md",
       "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/chat-markup-language.md",
@@ -2113,7 +2113,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-blocklists.md",
       "redirect_url": "/azure/ai-foundry/openai/how-to/use-blocklists",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-web-app.md",
