@@ -133,7 +133,7 @@ The following limitations and quotas apply to memory in Foundry Agent Service. F
 
 - For low-level memory APIs, you must set `scope` explicitly in each request. Automatic scope resolution from the caller's identity is only supported when you use the memory search tool with `scope` set to `{{$userId}}`. For more information, see [Understand scope](../how-to/memory-usage.md#understand-scope).
 
-- Memory store feature is not supported in Virtual Network setup.
+ - Virtual network (VNet) integration isn't supported for memory stores.
 
 > [!NOTE]
 > In the latest preview, some memory store default options (such as enabling procedural memory and setting a default TTL) are configured at store creation time. Verify support for post-create updates in your API version.
