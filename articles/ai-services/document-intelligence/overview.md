@@ -16,7 +16,7 @@ monikerRange: '<=doc-intel-4.0.0'
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
-
+<!-- markdownlint-disable MD025 -->
 # What is Azure Document Intelligence in Foundry Tools?
 
  :::moniker range="doc-intel-4.0.0"
