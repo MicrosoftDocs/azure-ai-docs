@@ -187,6 +187,23 @@ container = openai.containers.create(
 print(container.id)
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+// Create a reusable container.
+const container = await openai.containers.create({
+  name: "analysis-container",
+  expires_after: { anchor: "last_active_at", minutes: 20 },
+});
+
+console.log(container.id);
+```
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> Create and reference containers through the REST API shown in the **REST** tab. Build the client as shown in the earlier Java example, then continue the workflow with the container ID that the REST call returns.
+
 # [REST](#tab/rest)
 
 ```bash
@@ -222,6 +239,30 @@ response = openai.responses.create(
 print(response.output_text)
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+// Reference the existing container in a shell request.
+const response = await openai.responses.create({
+  model: "gpt-5.5",
+  tools: [{
+    type: "shell",
+    environment: {
+      type: "container_reference",
+      container_id: container.id,
+    },
+  }],
+  input: "List files in the container and show disk usage.",
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> Reference an existing container through the REST API shown in the **REST** tab. Pass the container ID in the shell tool's `container_reference` environment.
+
 # [REST](#tab/rest)
 
 ```bash
@@ -244,9 +285,6 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 ```
 
 ---
-
-> [!NOTE]
-> The JavaScript SDK uses the same pattern: call `openai.containers.create(...)`, then pass `{ type: "container_reference", container_id }` in the shell environment.
 
 To continue work in the same container across turns, pass the same `container_id` and the `previous_response_id` from the prior response.
 
