@@ -178,7 +178,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     | FQDN | Protocol | Port | Notes |
     | ---- |:----:|:----:| ---- |
     | `<region>.tundra.azureml.ms` | UDP | 5831 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. |
-    | `graph.windows.net` | TCP | 443 | Communication with the Microsoft Graph API.|
+    | `graph.microsoft.com` | TCP | 443 | Communication with the Microsoft Graph API.|
     | `*.instances.azureml.ms` | TCP | 443/8787/18881 | Communication with Azure Machine Learning. |
     | `*.<region>.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
     | `*.<region>.service.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
@@ -362,7 +362,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     | FQDN | Protocol | Port | Notes |
     | ---- |:----:|:----:| ---- |
     | `<region>.tundra.azureml.ms` | UDP | 5831 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. |
-    | `graph.windows.net` | TCP | 443 | Communication with the Microsoft Graph API.|
+    | `graph.microsoft.com` | TCP | 443 | Communication with the Microsoft Graph API.|
     | `*.instances.azureml.ms` | TCP | 443/8787/18881 | Communication with Azure Machine Learning. |
     | `*.<region>.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
     | `*.<region>.service.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
