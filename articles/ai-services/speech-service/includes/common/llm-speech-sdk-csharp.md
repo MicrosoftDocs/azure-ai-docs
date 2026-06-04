@@ -42,7 +42,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Install the required packages:
 
     ```dotnetcli
-    dotnet add package Azure.AI.Speech.Transcription --prerelease
+    dotnet add package Azure.AI.Speech.Transcription
     dotnet add package Azure.Identity
     ```
 
@@ -106,13 +106,10 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 }
 
 // Print detailed phrase information
-foreach (var channel in response.Value.PhrasesByChannel)
+Console.WriteLine("\nDetailed phrases:");
+foreach (var phrase in response.Value.Phrases)
 {
-    Console.WriteLine("\nDetailed phrases:");
-    foreach (var phrase in channel.Phrases)
-    {
-        Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
-    }
+    Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
 }
 ```
 
