@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the text to speech feature of the Speech service.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026
 ms.author: pafarley

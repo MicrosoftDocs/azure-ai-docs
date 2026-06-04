@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to authenticate using Microsoft Entra authentication
 author: goergenj
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/13/2025
 ms.author: jagoerge

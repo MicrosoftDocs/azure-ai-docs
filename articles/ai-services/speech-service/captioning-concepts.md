@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of key concepts for captioning with speech to text.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: concept-article
 ms.date: 02/25/2026

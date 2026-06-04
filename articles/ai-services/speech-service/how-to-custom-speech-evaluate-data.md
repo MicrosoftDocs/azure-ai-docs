@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: In this article, you learn how to quantitatively measure and improve the quality of our speech to text model or your custom model.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 ms.author: pafarley

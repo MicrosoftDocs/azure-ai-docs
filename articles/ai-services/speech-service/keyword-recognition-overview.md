@@ -5,7 +5,7 @@ description: An overview of the features, capabilities, and restrictions for key
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
 ms.reviewer: jagoerge

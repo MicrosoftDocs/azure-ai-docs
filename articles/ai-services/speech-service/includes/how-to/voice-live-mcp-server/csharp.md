@@ -4,7 +4,7 @@ author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 03/30/2026
 ai-usage: ai-assisted

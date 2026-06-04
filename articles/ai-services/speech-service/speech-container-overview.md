@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Docker containers for the Speech service to perform speech recognition, transcription, generation, and more on-premises.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 ms.author: pafarley

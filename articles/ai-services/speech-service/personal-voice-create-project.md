@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to create a project for personal voice.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024
 ms.topic: how-to

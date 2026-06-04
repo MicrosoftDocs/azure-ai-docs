@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Details the text to speech helm chart configuration options.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 04/01/2020
 ms.author: pafarley

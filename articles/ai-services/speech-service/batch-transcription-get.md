@@ -5,7 +5,7 @@ description: With batch transcription, the Speech service transcribes the audio 
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 zone_pivot_groups: speech-cli-rest

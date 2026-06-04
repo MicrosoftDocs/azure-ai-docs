@@ -5,7 +5,7 @@ description: In this article, you learn about the Whisper model from OpenAI that
 author: PatrickFarley
 reviewer: patrickfarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.custom: dev-focus
 ms.date: 05/21/2026

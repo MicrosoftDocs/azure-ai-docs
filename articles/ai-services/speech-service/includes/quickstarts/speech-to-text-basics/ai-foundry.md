@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024
   - ignite-2024

@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 11/09/2025
 ms.topic: how-to
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
 ai-usage: ai-assisted
 ---

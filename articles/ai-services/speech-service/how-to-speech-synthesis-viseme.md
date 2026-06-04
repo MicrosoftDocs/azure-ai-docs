@@ -5,7 +5,7 @@ description: Learn about visemes that represent key poses in observed speech, su
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: yulili

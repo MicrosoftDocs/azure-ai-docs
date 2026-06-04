@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use custom voice lite to demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

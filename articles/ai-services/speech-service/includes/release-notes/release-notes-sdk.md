@@ -1,5 +1,5 @@
 ---
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 05/13/2026
 author: PatrickFarley

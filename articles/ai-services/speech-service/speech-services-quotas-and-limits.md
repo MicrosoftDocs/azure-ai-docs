@@ -5,7 +5,7 @@ description: This article provides a quick reference, a detailed description, an
 author: goergenj
 ms.author: jagoerge
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
 ms.date: 01/30/2026
 ms.reviewer: jagoerge

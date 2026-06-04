@@ -3,7 +3,7 @@ title: DSP-based audio processing with the Microsoft Audio Stack - Speech servic
 titleSuffix: Foundry Tools
 description: An overview of DSP-based audio processing features, capabilities, and restrictions using the Speech SDK.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/09/2026
 author: PatrickFarley
