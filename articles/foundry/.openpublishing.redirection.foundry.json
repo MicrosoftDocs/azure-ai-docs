@@ -583,7 +583,7 @@
     {
       "source_path_from_root": "/articles/ai-studio/how-to/develop/langchain.md",
       "redirect_url": "/azure/foundry/how-to/develop/langchain",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-studio/how-to/develop/llama-index.md",
@@ -1843,12 +1843,12 @@
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/disable-preview-features-with-rbac.md",
       "redirect_url": "/azure/foundry/how-to/disable-preview-features",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/foundry/concepts/disable-preview-features-with-rbac.md",
       "redirect_url": "/azure/foundry/how-to/disable-preview-features",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/encryption-keys-portal.md",
@@ -2104,6 +2104,26 @@
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/publish-agent.md",
       "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-foundry/agents/concepts/agent-memory.md",
+      "redirect_url": "/azure/ai-foundry/agents/concepts/what-is-memory",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-foundry/agents/how-to/how-to-monitor-agents-dashboard.md",
+      "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-foundry/articles/ai-studio/how-to/commitment-tier.md",
+      "redirect_url": "/azure/ai-services/commitment-tier.md",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-foundry/guardrails/severity-levels.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/publish-copilot.md",
