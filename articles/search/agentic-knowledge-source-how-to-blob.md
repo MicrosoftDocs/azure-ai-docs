@@ -593,4 +593,4 @@ Refer to [this Content Understanding setup](/azure/ai-services/content-understan
 + [What is a knowledge source?](agentic-knowledge-source-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
-+ [Blob knowledge source Python sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
++ [Python sample: Azure AI Search blob knowledge source](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
