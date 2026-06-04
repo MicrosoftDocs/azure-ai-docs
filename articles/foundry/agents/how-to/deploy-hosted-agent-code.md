@@ -3,7 +3,7 @@ title: "Deploy a hosted agent from source code (preview)"
 description: "Deploy your hosted agent directly from source code—without building a container—by using the Azure Developer CLI, Python SDK, .NET SDK, or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 05/26/2026
+ms.date: 06/04/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -97,9 +97,9 @@ Choose the path that fits your workflow. If you're not sure, start with the Azur
 | Path | Best for | Packaging |
 | --- | --- | --- |
 | [Azure Developer CLI or VS Code](#deploy-using-the-azure-developer-cli-or-vs-code) | **Most deployments**, including first deployments and the fastest inner loop. | Tooling builds and uploads the zip for you. |
-| [Python SDK](#deploy-using-the-python-sdk) | Programmatic deployment from Python apps or automation. | You build the zip; the SDK uploads it. |
-| [.NET SDK](#deploy-using-the-net-sdk) | Programmatic deployment from .NET apps or automation. | The SDK zips a folder for you. |
-| [REST API](#deploy-using-the-rest-api) | Custom tooling, language-agnostic automation, and CD systems. | You build the zip and send the multipart request. |
+| [Python SDK](#deploy-from-source-code) | Programmatic deployment from Python apps or automation. | You build the zip; the SDK uploads it. |
+| [.NET SDK](#deploy-from-source-code) | Programmatic deployment from .NET apps or automation. | The SDK zips a folder for you. |
+| [REST API](#deploy-from-source-code) | Custom tooling, language-agnostic automation, and CD systems. | You build the zip and send the multipart request. |
 
 ## Choose how dependencies are resolved
 
@@ -133,7 +133,11 @@ With `--no-prompt`, the deployment mode defaults to `container`, so pass `--depl
 
 Use the SDK or REST paths in the following sections when you need to deploy programmatically from your own application or integrate with existing tooling.
 
-## Deploy using the Python SDK
+## Deploy from source code
+
+Select your language or interface. Each tab walks through the same lifecycle: create the agent, poll until it reaches `active`, invoke it, and download the deployed code.
+
+# [Python](#tab/python)
 
 Use the Python SDK to deploy source-code agents from your own applications or automation. You build the zip yourself and pass its bytes and SHA-256 to the SDK, which uploads it and exposes the same create, poll, invoke, and download operations as the REST API. Code-deployment requires `azure-ai-projects` version 2.2.0 or later.
 
@@ -261,7 +265,7 @@ print(f"Downloaded {out_path} (matches upload: {sha.hexdigest() == code_zip_sha2
 
 For a complete runnable example, see the [Python hosted-agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
 
-## Deploy using the .NET SDK
+# [C#](#tab/csharp)
 
 Use the .NET SDK to deploy source-code agents from your own applications or automation. Unlike the Python and REST paths, the .NET SDK zips a source folder for you—you pass a folder path instead of building the zip yourself.
 
@@ -363,13 +367,13 @@ Console.WriteLine("Downloaded agent code to ./downloaded");
 
 For a complete runnable example, see the [.NET hosted-agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents).
 
-## Deploy using the REST API
+# [REST API](#tab/rest)
 
 Use the REST API for direct HTTP-based deployments or custom tooling. The sections walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
 
 ### Set up variables
 
-# [Bash](#tab/bash)
+**Bash**
 
 ```bash
 ENDPOINT="https://{account}.services.ai.azure.com/api/projects/{project}"
@@ -380,7 +384,7 @@ ZIP=./agent-code.zip
 SHA=$(sha256sum "$ZIP" | cut -d' ' -f1)
 ```
 
-# [PowerShell](#tab/powershell)
+**PowerShell**
 
 ```powershell
 $Endpoint    = "https://{account}.services.ai.azure.com/api/projects/{project}"
@@ -390,8 +394,6 @@ $Agent       = "my-code-agent"
 $Zip         = "./agent-code.zip"
 $Sha         = (Get-FileHash $Zip -Algorithm SHA256).Hash.ToLower()
 ```
-
----
 
 > [!NOTE]
 > The remaining REST examples use Bash-style `curl` commands. On Windows, run them in PowerShell with `curl.exe`, using backticks (`` ` ``) instead of backslashes for line continuation.
@@ -588,6 +590,8 @@ curl -N "$ENDPOINT/agents/$AGENT/sessions/<sessionId>:logstream?api-version=$API
 
 Logs are delivered as server-sent events. `{sessionId}` is the value of `x-agent-session-id` from the invoke response. Use this endpoint to debug runtime failures and `424 session_not_ready` responses. The log-streaming endpoint doesn't require the `Foundry-Features` preview header.
 
+---
+
 ## Package the zip manually
 
 If you use `azd`, skip this section—`azd` builds the zip for you. Read it if you use the REST API, if you switch to **bundled** dependency resolution, or if you need full control over the upload contents.
@@ -715,7 +719,7 @@ If you scaffolded the project from the [Quickstart](../quickstarts/quickstart-ho
 
 To delete an agent you deployed with the SDK or REST API, use the matching path below.
 
-### Python SDK cleanup
+# [Python](#tab/python)
 
 ```python
 # Delete one version
@@ -725,14 +729,14 @@ project.agents.delete_version(agent_name=AGENT_NAME, agent_version=created.versi
 project.agents.delete(agent_name=AGENT_NAME)
 ```
 
-### .NET SDK cleanup
+# [C#](#tab/csharp)
 
 ```csharp
 // Delete the agent and all its versions (force cascades to active sessions)
 agentsClient.DeleteAgent(agentName: "my-code-agent", force: true);
 ```
 
-### REST API cleanup
+# [REST API](#tab/rest)
 
 ```bash
 # Delete one version
@@ -747,6 +751,8 @@ curl -X DELETE "$ENDPOINT/agents/$AGENT?api-version=$API_VERSION" \
 curl -X DELETE "$ENDPOINT/agents/$AGENT?api-version=$API_VERSION&force=true" \
   -H "Authorization: Bearer $TOKEN"
 ```
+
+---
 
 > [!WARNING]
 > Deleting an agent removes all of its versions and terminates active sessions. This action can't be undone.
