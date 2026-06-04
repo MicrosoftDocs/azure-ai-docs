@@ -697,6 +697,8 @@ cd publish && zip -r ../agent-code.zip .
 
 Use `--self-contained true` if you want to ship the .NET runtime in the zip. The `runtime` you set in the agent definition must match the `TargetFramework`.
 
+# [REST API](#tab/rest)
+
 ---
 
 > [!WARNING]
