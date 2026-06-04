@@ -14,5 +14,5 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Use skills
+# Use skills with the Azure OpenAI Responses API
 [!INCLUDE [skills content](../includes/how-to-skills-content.md)]

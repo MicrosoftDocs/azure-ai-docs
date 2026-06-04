@@ -14,5 +14,5 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Use the shell tool
+# Use the shell tool with the Azure OpenAI Responses API
 [!INCLUDE [shells content](../includes/how-to-shells-content.md)]
