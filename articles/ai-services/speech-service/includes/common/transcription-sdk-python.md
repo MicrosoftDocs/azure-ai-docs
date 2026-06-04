@@ -8,7 +8,7 @@ ms.date: 01/13/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/python/api/overview/azure/ai-transcription-readme) | [Package (PyPi)](https://pypi.org/project/azure-ai-transcription/) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0/sdk/transcription/azure-ai-transcription/samples)
+[!INCLUDE [Reference links](transcription-sdk-reference-python.md)]
 
 ## Prerequisites
 

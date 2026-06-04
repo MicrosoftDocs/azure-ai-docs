@@ -8,7 +8,7 @@ ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/transcription/Azure.AI.Speech.Transcription/samples/README.md)
+[!INCLUDE [Reference links](transcription-sdk-reference-csharp.md)]
 
 ## Prerequisites
 
