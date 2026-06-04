@@ -255,7 +255,7 @@ Document Intelligence returns extracted field values as strongly typed data. Eac
 
 * **Custom models**: When you train a custom extraction model, you define the field schema. For each labeled field, you explicitly assign a type (**string**, **number**, **integer**, or **date**). The model then uses that type definition to auto-normalize extracted values during inference.
 
-For the full field schema reference, see [Document Intelligence schema](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga).
+For the full field schema reference, see [Document Intelligence supported schema](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga).
 
 ## Add-on capabilities
 
