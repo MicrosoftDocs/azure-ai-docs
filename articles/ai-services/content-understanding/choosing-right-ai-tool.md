@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 06/02/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ai-usage: ai-assisted
 ---
