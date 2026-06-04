@@ -77,7 +77,7 @@ In this article you learn how to secure the following training compute resources
 
 ### Azure Machine Learning compute cluster/instance
 
-* __Compute clusters__ can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-vnetregion-from-workspace).
+* __Compute clusters__ can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-virtual-network-or-region-from-workspace).
 
 * Compute cluster/instance deployment in virtual network isn't supported with Azure Lighthouse.
 
