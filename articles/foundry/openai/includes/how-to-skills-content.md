@@ -131,7 +131,7 @@ Reference: [Use the shell tool with the Responses API](../how-to/shells.md) | [O
 
 ## Use skills with local shell mode
 
-Skills also work with local shell mode. Instead of a `skill_reference`, supply skill files from local paths in the runtime you control.
+Skills also work with local shell mode. Instead of using a `skill_reference`, supply skill files from local paths in the runtime you control.
 
 # [Python](#tab/python)
 

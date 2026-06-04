@@ -10,12 +10,12 @@ ms.custom: include, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-The shell tool lets a model run commands in a full terminal environment as part of a **Responses API** call. Use it to run scripts, work with files, and execute programs. The shell tool supports two execution modes:
+The shell tool runs commands in a full terminal environment as part of a **Responses API** call. Use it to run scripts, work with files, and execute programs. The shell tool supports two execution modes:
 
 - **Hosted shell**: Azure OpenAI provisions and manages a sandboxed container for the request.
 - **Local shell**: You execute the model's `shell_call` actions in your own runtime and return the results.
 
-The shell tool is available through the Responses API only. It isn't available through the Chat Completions API.
+You can access the shell tool through the Responses API only. It's not available through the Chat Completions API.
 
 > [!IMPORTANT]
 > Running arbitrary shell commands can be dangerous. Always sandbox execution, apply allowlists or denylists where possible, and log tool activity for auditing.
@@ -339,7 +339,7 @@ If a `shell_call` includes `max_output_length`, include the same value on the `s
 
 ## Download artifacts
 
-Hosted shell can produce downloadable files. To retrieve artifacts, write them under `/mnt/data`, then download them with the same container and files APIs used by Code Interpreter.
+Hosted shell can produce downloadable files. To retrieve artifacts, write them under `/mnt/data`, then download them by using the same container and files APIs used by Code Interpreter.
 
 ## Data retention and container lifecycle
 
