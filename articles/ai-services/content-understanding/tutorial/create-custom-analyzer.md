@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: paulhsu
 manager: nitinme
 ms.date: 03/16/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025

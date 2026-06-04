@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to secure your container
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 12/17/2020
 ms.author: aahi

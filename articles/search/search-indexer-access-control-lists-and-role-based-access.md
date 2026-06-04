@@ -5,11 +5,21 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
-# Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
+# Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 Azure Data Lake Storage (ADLS) Gen2 supports per-user access to directories and files through [access control lists](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) (ACLs) and [role-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) (Azure RBAC). [Attribute-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) (Azure ABAC) isn't supported.
 
@@ -27,7 +37,7 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
 
-+ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
++ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview or later for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
 
 ## Limitations
 
@@ -147,7 +157,7 @@ Key points about the configuration that make it work for this scenario:
 ```http
 # Create / Update Azure Blob Knowledge Source
 ###
-PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2026-05-01-preview
 api-key: {{key}}
 Content-Type: application/json
  
@@ -323,7 +333,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resetdocs (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-11-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-05-01-preview 
    { 
      "documentKeys": [ 
        "1001", 
@@ -335,7 +345,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resync (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-11-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-05-01-preview 
    { 
      "options": [ 
        "permissions" 

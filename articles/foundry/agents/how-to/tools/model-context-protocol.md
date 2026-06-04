@@ -119,7 +119,9 @@ Use the following code sample to create an agent and call the function. The .NET
 
 :::zone pivot="python"
 
-The following example shows how to use the GitHub MCP server as a tool for an agent.
+The following example shows how to use the GitHub MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import json
@@ -219,12 +221,86 @@ Response: Your GitHub username is "example-username".
 Agent deleted
 ```
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_mcp_tool()` to register a hosted MCP server with per-tool approval control. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+from typing import Any
+
+from agent_framework import Agent, Message
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    client = FoundryChatClient(credential=AzureCliCredential())
+
+    # Register a hosted MCP server. Use approval_mode="always_require" in production
+    # so the user approves each tool call; "never_require" skips approvals.
+    mcp_tool = client.get_mcp_tool(
+        name="Microsoft Learn MCP",
+        url="https://learn.microsoft.com/api/mcp",
+        approval_mode={"never_require_approval": ["microsoft_docs_search"]},
+    )
+
+    async with Agent(
+        client=client,
+        name="DocsAgent",
+        instructions="You are a helpful assistant that uses your MCP tool "
+        "to help with Microsoft documentation questions.",
+        tools=[mcp_tool],
+    ) as agent:
+        query = "What is Microsoft Agent Framework?"
+        result = await agent.run(query)
+
+        # Handle any approval prompts raised by the MCP tool.
+        while len(result.user_input_requests) > 0:
+            new_inputs: list[Any] = [query]
+            for user_input_needed in result.user_input_requests:
+                print(
+                    f"Approval requested for {user_input_needed.function_call.name} "
+                    f"with arguments: {user_input_needed.function_call.arguments}"
+                )
+                new_inputs.append(Message(role="assistant", contents=[user_input_needed]))
+                approve = input("Approve function call? (y/n): ").lower() == "y"
+                new_inputs.append(
+                    Message(
+                        role="user",
+                        contents=[user_input_needed.to_function_approval_response(approve)],
+                    )
+                )
+            result = await agent.run(new_inputs)
+
+        print(f"Agent: {result}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent calls the Microsoft Learn MCP server and returns documentation-grounded text:
+
+```console
+Agent: Microsoft Agent Framework is an open-source framework for building, orchestrating, and deploying AI agents ...
+```
+
+For the full sample, including session-based approval flows and streaming, see [foundry_chat_client_with_hosted_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_hosted_mcp.py). For local (stdio) MCP servers, see [foundry_chat_client_with_local_mcp.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_local_mcp.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Create an agent with MCP tool
 
-The following example shows how to use the GitHub MCP server as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
+The following example shows how to use a remote MCP server as a tool for an agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -312,6 +388,63 @@ Approval requested for api-specs...
 Response: The Azure REST API specifications repository contains the OpenAPI specifications for Azure services. It is
 organized by service and includes guidelines for contributing new specifications. The repository is intended for use by developers building tools and services that interact with Azure APIs.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with an MCP client to expose remote MCP tools to the agent. Install the `Microsoft.Agents.AI.Foundry`, `Azure.AI.Projects`, and `ModelContextProtocol` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using ModelContextProtocol.Client;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+// Connect to the Microsoft Learn MCP server via Streamable HTTP transport.
+Console.WriteLine("Connecting to MCP server at https://learn.microsoft.com/api/mcp ...");
+
+await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new()
+{
+    Endpoint = new Uri("https://learn.microsoft.com/api/mcp"),
+    Name = "Microsoft Learn MCP",
+}));
+
+// Retrieve the list of tools available on the MCP server.
+IList<McpClientTool> mcpTools = await mcpClient.ListToolsAsync();
+Console.WriteLine($"MCP tools available: {string.Join(", ", mcpTools.Select(t => t.Name))}");
+
+List<AITool> agentTools = [.. mcpTools.Cast<AITool>()];
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: "You are a helpful assistant that can answer Microsoft documentation questions. Use the Microsoft Learn MCP tool to search documentation.",
+    name: "DocsAgent",
+    tools: agentTools);
+
+const string Prompt = "How does one create an Azure storage account using the az CLI?";
+Console.WriteLine($"User: {Prompt}\n");
+Console.WriteLine($"Agent: {await agent.RunAsync(Prompt)}");
+```
+
+### Expected output
+
+The agent queries the Microsoft Learn MCP server for documentation snippets and answers:
+
+```console
+User: How does one create an Azure storage account using the az CLI?
+
+Agent: To create an Azure storage account using the az CLI, run: `az storage account create --name <name> --resource-group <rg> --location <region> --sku Standard_LRS` ...
+```
+
+For local MCP transports and additional patterns, see [Agent_Step09_UsingMcpClientAsTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step09_UsingMcpClientAsTools) and [Agent_Step23_LocalMCP](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step23_LocalMCP).
+
+---
 
 ## Create an agent by using the MCP tool with project connection authentication
 

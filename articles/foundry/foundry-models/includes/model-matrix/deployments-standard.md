@@ -3,12 +3,13 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: nitinme
-ms.date: 05/11/2026
+ms.date: 06/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
+ai-usage: ai-assisted
 ---
 
 ## Global standard
@@ -56,12 +57,13 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-pro | 2026-03-05 | - | - | - | - | - | ✅ | - | ✅ | - | - |
-| gpt-5.5 | 2026-04-24 | - | - | - | - | - | ✅ | - | ✅ | - | - |
+| gpt-5.5 | 2026-04-24 | - | - | - | - | - | ✅ | ✅ | ✅ | - | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | ✅ | - | ✅ | - | - | - | - |
-| gpt-chat-latest | 2026-05-05 | - | - | - | - | - | ✅ | - | ✅ | - | - |
+| gpt-chat-latest | 2026-05-05 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
+| gpt-chat-latest | 2026-05-28 | - | - | - | - | - | ✅ | - | ✅ | - | ✅ |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | - | ✅ | - | - | - | ✅ |
@@ -83,8 +85,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | o3-pro | 2025-06-10 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | o4-mini | 2025-04-16 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | sora-2 | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | - |
-| text-embedding-3-large | 1 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-3-small | 1 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-ada-002 | 2 | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Europe](#tab/az-europe)
@@ -132,6 +134,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-12-15 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-chat-latest | 2026-05-05 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-chat-latest | 2026-05-28 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1 | 2025-04-15 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -153,8 +156,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | o3-pro | 2025-06-10 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | o4-mini | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
 | sora-2 | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
-| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
-| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
+| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ |
 
 
@@ -206,8 +209,8 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ |
 | o4-mini | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | - | ✅ |
-| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | - | ✅ |
+| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | - | ✅ |
 
 # [Middle East & Africa](#tab/az-mea)
@@ -280,7 +283,7 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-nano | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.5 | 2026-04-24 | - | - | ✅ | - | ✅ | - | - |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-05-19 | - | - | ✅ | - | - | - | - |
 | model-router | 2025-08-07 | - | - | ✅ | - | - | - | - |
@@ -296,32 +299,32 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 
 # [Europe](#tab/az-europe)
 
-| **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **polandcentral** | **spaincentral** | **swedencentral** | **westeurope** |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| gpt-4.1 | 2025-04-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-4.1-mini | 2025-04-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-4.1-nano | 2025-04-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-4o | 2024-05-13 | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ |
-| gpt-4o | 2024-08-06 | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ |
-| gpt-4o | 2024-11-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5 | 2025-08-07 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5-mini | 2025-08-07 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5-nano | 2025-08-07 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | ✅ | - |
-| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.5 | 2026-04-24 | - | - | - | ✅ | - | ✅ | - |
-| gpt-image-1.5 | 2025-12-16 | - | - | - | ✅ | - | ✅ | - |
-| model-router | 2025-05-19 | - | - | - | - | - | ✅ | - |
-| model-router | 2025-08-07 | - | - | - | - | - | ✅ | - |
-| model-router | 2025-11-18 | - | - | - | - | - | ✅ | - |
-| o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| o4-mini | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **westeurope** |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| gpt-4.1 | 2025-04-14 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4.1-mini | 2025-04-14 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4.1-nano | 2025-04-14 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4o | 2024-05-13 | ✅ | ✅ | - | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4o | 2024-08-06 | ✅ | ✅ | - | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4o | 2024-11-20 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-4o-mini | 2024-07-18 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5 | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5-mini | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5-nano | 2025-08-07 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5.1 | 2025-11-13 | ✅ | - | - | - | - | - | ✅ | - | - |
+| gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-image-1.5 | 2025-12-16 | - | - | - | - | ✅ | - | ✅ | - | - |
+| model-router | 2025-05-19 | - | - | - | - | - | - | ✅ | - | - |
+| model-router | 2025-08-07 | - | - | - | - | - | - | ✅ | - | - |
+| model-router | 2025-11-18 | - | - | - | - | - | - | ✅ | - | - |
+| o1 | 2024-12-17 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| o3 | 2025-04-16 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| o4-mini | 2025-04-16 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| text-embedding-3-large | 1 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| text-embedding-3-small | 1 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
+| text-embedding-ada-002 | 2 | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | - | ✅ |
 
 # [Asia Pacific](#tab/az-apac)
 

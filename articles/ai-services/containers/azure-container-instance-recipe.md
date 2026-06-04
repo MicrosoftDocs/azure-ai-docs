@@ -5,7 +5,7 @@ description: Learn how to deploy Azure AI containers on Azure Container Instance
 author: aahill
 manager: nitinme
 ms.custom: devx-track-azurecli
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: aahi

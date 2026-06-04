@@ -201,7 +201,7 @@ To access your Foundry resource that has public network access disabled and is b
 
 ## Set up walkthrough for outbound network isolation
 
-This section guides you through creating a new Foundry resource with outbound network isolation enabled. You can choose the best approach to secure outbound access for your Agent and evaluations client: virtual network injection through your own virtual network (BYO VNet) or managed virtual network (preview). For more information on managed networks, see the managed network documentation. This section describes network isolation with a custom (BYO) virtual network. 
+This section guides you through creating a new Foundry resource with outbound network isolation enabled. You can choose the best approach to secure outbound access for your Agent and evaluations client: virtual network injection through your own virtual network (BYO VNet) or managed virtual network. For more information on managed networks, see the managed network documentation. This section describes network isolation with a custom (BYO) virtual network. 
 
 ### Deep dive into network injection for Agent Service and evaluations
 

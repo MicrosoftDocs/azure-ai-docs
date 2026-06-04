@@ -5,11 +5,23 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a Web Knowledge Source resource
+
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 > [!IMPORTANT]
 > + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/privacy/privacystatement).
@@ -20,13 +32,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md).
 
-[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
-
-*Web Knowledge Source* enables retrieval of real-time web data from Microsoft Bing in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
+*Web Knowledge Source* enables retrieval of real-time web data from Microsoft Bing in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 Bing Custom Search is always the search provider for Web Knowledge Source. Although you can't specify alternative search providers or engines, you can include or exclude specific *domains*, such as https://learn.microsoft.com. When no domains are specified, Web Knowledge Source has unrestricted access to the entire public internet.
 
-Web Knowledge Source works best alongside other knowledge sources. Use Web Knowledge Source when your proprietary content doesn't provide complete, up-to-date answers or when you want to supplement results with information from a commercial search engine.
+Web Knowledge Source works best alongside other knowledge sources. Use it when your proprietary content doesn't provide complete, up-to-date answers or when you want to supplement results with information from a commercial search engine.
 
 ### Usage support
 
@@ -40,13 +50,13 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + An Azure AI Search service in any [public region that provides agentic retrieval](search-region-support.md). Web Knowledge Source isn't supported in private or sovereign clouds.
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
-+ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
++ Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -54,9 +64,9 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 ::: zone pivot="python"
 
-+ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
++ Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -66,7 +76,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -78,7 +88,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use Web Knowl
 
 + For the 2026-04-01 API version, the knowledge base must include a model reference to provide the LLM for web content summarization. Retrieval is always extractive (cited summaries). Answer synthesis and configurable reasoning effort aren't available in this version.
 
-+ For the 2025-11-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
++ For the 2026-05-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
 
 ## Check for existing knowledge sources
 
@@ -104,7 +114,7 @@ Run the following code to create a web knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create Web Knowledge Source
@@ -180,7 +190,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create Web Knowledge Source
@@ -242,11 +252,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 ### Create Web Knowledge Source
-PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{api-key}}
 
@@ -264,7 +274,7 @@ api-key: {{api-key}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -296,7 +306,7 @@ api-key: {{api-key}}
 
 ### Source-specific properties
 
-For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a web knowledge source.
+The following properties apply to web knowledge sources.
 
 ::: zone pivot="csharp"
 
@@ -343,11 +353,9 @@ For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the fo
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
-
-## Review retrieve output
+## Query a knowledge base
 
 When you query a knowledge base that includes Web Knowledge Source, the retrieve response `activity` array can contain two web-related records:
 
@@ -389,3 +397,6 @@ When you query a knowledge base that includes Web Knowledge Source, the retrieve
 
 + [Manage access to Web Knowledge Source in your Azure subscription](agentic-knowledge-source-how-to-web-manage.md)
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)

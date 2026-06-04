@@ -26,6 +26,9 @@ Voice Live provides multiple options to optimize performance and quality by usin
 
 ## Speech input customization
 
+> [!NOTE]
+> The speech input customization options in this section (phrase list and custom speech) are only available with the `azure-speech` transcription model. They aren't supported with `mai-transcribe-1`.
+
 ### Phrase list
 
 Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
@@ -164,8 +167,21 @@ The configuration for a custom avatar doesn't differ from the configuration of a
 > You pay separately for custom avatar training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=ttsavatar).
 
-> [!NOTE]
-> Custom photo avatar (PREVIEW) training isn't yet available as a self-service option and currently requires a manual offline process.
+#### Voice sync for custom avatar
+
+If you trained a custom video avatar together with [voice sync for avatar](./text-to-speech-avatar/voice-sync-for-avatar.md), you can use the voice as the synthesis voice. Set the `voice.type` to `avatar-voice-sync` and `voice.model` to the base model for the synced voice. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural`, and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). To learn more about custom avatars trained with voice sync, see [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md).
+
+```json
+{
+  "voice": {
+    "type": "avatar-voice-sync",
+    "model": "DragonHDOmniLatestNeural",
+    "temperature": 0.8  // optional, value range 0.0-1.0
+  }
+}
+```
+
+When `avatar-voice-sync` is used, the voice is tied to the custom avatar; the `name` property isn't required. Configure the custom avatar separately by using the `avatar` parameter, as shown in [Azure text to speech avatar](./voice-live-how-to.md#azure-text-to-speech-avatar).
 
 ## Related content
 

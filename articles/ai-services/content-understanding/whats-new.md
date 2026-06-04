@@ -21,10 +21,17 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
-> [!IMPORTANT]
-> Preview API versions `2025-05-01-preview` and `2024-12-01-preview` will be retired by July 15, 2026. If you're still using a preview API, update your code to target the latest API version `2025-11-01 (GA)`.
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## May 2026
+
+### MarkItDown integration
+
+Content Understanding is now integrated with [MarkItDown](https://github.com/microsoft/markitdown), Microsoft's open-source tool for converting documents and other file types to Markdown. Use the [Azure Content Understanding](https://github.com/microsoft/markitdown#azure-content-understanding) capability to convert images, audio, video, and documents into Markdown for use with language models and agent pipelines.
+
+### Built-in RBAC roles for Content Understanding
+
+Added RBAC built-in roles for **Cognitive Service Content Understanding Owner**, **Contributor**, and **Reader** to allow granular access control. For more information, see [Managed identities](concepts/secure-communications.md#managed-identities).
 
 ### Content Understanding Studio new GPT-5.2 support regions
 

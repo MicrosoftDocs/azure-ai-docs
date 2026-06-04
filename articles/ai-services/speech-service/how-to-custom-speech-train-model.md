@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 04/16/2026
+ms.date: 06/02/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
@@ -36,6 +36,16 @@ You can use a custom model for a limited time after it was trained. You must per
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you submit the fine-tuning job from the **Fine-tune a model** wizard that you opened when you [started custom speech fine-tuning](./how-to-custom-speech-create-project.md).
+
+1. On the **Review** pane, review the settings and acknowledge the charges.
+1. Select **Submit** to start the fine-tuning job.
+1. Wait for training to complete. When training finishes, select the custom model to open its details page.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
@@ -52,6 +62,8 @@ You can use a custom model for a limited time after it was trained. You must per
 1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png":::
+
+---
 
 ::: zone-end
 
@@ -264,7 +276,7 @@ Follow these instructions to copy a model to a project in another region:
 1. Select **Custom speech** > Your project name > **Train custom models**.
 1. Select **Copy to**.
 1. On the **Copy speech model** page, select a target region where you want to copy the model.
-    :::image type="content" source="./media/custom-speech/custom-speech-copy-to-zoom.png" alt-text="Screenshot of a phrase list applied in Speech Studio." lightbox="./media/custom-speech/custom-speech-copy-to-full.png":::
+    :::image type="content" source="./media/custom-speech/custom-speech-copy-to-zoom.png" alt-text="Screenshot of the Copy speech model page in Speech Studio." lightbox="./media/custom-speech/custom-speech-copy-to-full.png":::
 1. Select a Foundry resource for Speech in the target region, or create a new Speech resource.
 1. Select a project where you want to copy the model, or create a new project.
 1. Select **Copy**. 

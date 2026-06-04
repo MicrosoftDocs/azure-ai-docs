@@ -3,7 +3,7 @@ title: "Quickstart: Face identification with TypeScript"
 description: In this quickstart, get started using the Azure Face TypeScript SDK to detect and identify faces in images.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.topic: include
 ms.date: 07/23/2025

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to create an Azure container instance resource from the Azure CLI.
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 04/01/2020

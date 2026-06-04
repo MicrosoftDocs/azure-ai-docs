@@ -5,7 +5,7 @@ description: Learn how to set up your development environment and deploy a Face 
 author: PatrickFarley
 manager: nitinme
 #customer intent: As a developer, I want to build a React Native app to add users to a Face service so that I can obtain meaningful consent and high-quality face data.
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: tutorial

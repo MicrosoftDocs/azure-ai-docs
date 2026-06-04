@@ -3,7 +3,7 @@ title: Create a Foundry resource using Azure PowerShell
 titleSuffix: Foundry Tools
 description: Get started with Foundry Tools by using Azure PowerShell commands to create a Foundry resource.
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 keywords: Foundry Tools, cognitive intelligence, cognitive solutions, ai services
 ms.topic: include
 ms.date: 8/1/2024
