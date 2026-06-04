@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Migrate from Azure Content Understanding in Foundry Tools Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.date: 01/29/2026
 ai-usage: ai-assisted

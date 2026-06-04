@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 05/04/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
 ms.custom:
   - references_regions
