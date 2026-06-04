@@ -1,6 +1,6 @@
 ---
 title: Document Intelligence v4.0, v3.1, and v3.0 content
-description: include file
+description: Includes for content that applies to Document Intelligence v4.0, v3.1, and v3.0.
 author: laujan
 ms.author: lajanuar
 manager: nitinme

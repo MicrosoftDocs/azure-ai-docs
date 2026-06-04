@@ -131,7 +131,7 @@ With Document Intelligence, you can create two different client types. The first
 
 `FormTrainingClient` provides operations to:
 
-- Train custom models to analyze all fields and values found in your custom forms.  A `CustomFormModel` is returned that indicate the form types the model analyzes and the fields it extracts for each form type.
+- Train custom models to analyze all fields and values found in your custom forms. A `CustomFormModel` is returned that indicate the form types the model analyzes and the fields it extracts for each form type.
 - Train custom models to analyze specific fields and values you specify by labeling your custom forms. A `CustomFormModel` is returned that indicates the fields the model extracts and the estimated accuracy for each field.
 - Manage models created in your account.
 - Copy a custom model from one Document Intelligence resource to another.
@@ -392,7 +392,7 @@ The following code blocklists the current models in your account and prints thei
 
 The result looks like the following output.
 
-This response has been truncated for readability.
+This response was truncated for readability.
 
 ```console
 We have following models in the account:

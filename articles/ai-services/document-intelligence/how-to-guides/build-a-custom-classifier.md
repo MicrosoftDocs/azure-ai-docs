@@ -38,7 +38,7 @@ Once you put together the set of forms or documents for training, you need to up
 
 ## Create a classification project in the Document Intelligence Studio
 
-The Document Intelligence Studio provides and orchestrates all the API calls required to complete your dataset and train your model.
+The Document Intelligence Studio provides and orchestrates the API calls required to complete your dataset and train your model.
 
 1. Start by navigating to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). The first time you use the Studio, you need to [initialize your subscription, resource group, and resource](../studio-overview.md). Then, follow the [prerequisites for custom projects](../quickstarts/studio-custom-project.md#prerequisites-for-new-users) to configure the Studio to access your training dataset.
 
@@ -55,7 +55,7 @@ The Document Intelligence Studio provides and orchestrates all the API calls req
 1. Next select the storage account you used to upload your custom model training dataset. The **Folder path** should be empty if your training documents are in the root of the container. If your documents are in a subfolder, enter the relative path from the container root in the **Folder path** field. Once your storage account is configured, select continue.
 
    > [!IMPORTANT]
-   > You can either organize the training dataset by folders where the folder name is the label or class for documents or create a flat list of documents that you can assign a label to in the Studio.
+   > You can organize the training dataset by folders where the folder name is the label or class for documents. Alternatively, you can create a flat list of documents that you can assign a label to in the Studio.
 
     :::image type="content" source="../media/how-to/studio-select-storage.png" alt-text="Screenshot showing how to select the Document Intelligence resource.":::
 
@@ -73,9 +73,9 @@ You see the files you uploaded to storage in the file list, ready to be labeled.
 
 1. If the documents are organized in folders, the Studio prompts you to use the folder names as labels. This step simplifies your labeling down to a single select.
 
-1. To assign a label to a document, select on the `add label selection mark` to assign a label.
+1. To assign a label to a document, select the `add label selection mark` to assign a label.
 
-1. Control select to  multi-select documents to assign a label
+1. Use control-select to multi-select documents to assign to a label.
 
 You should now have all the documents in your dataset labeled. If you look at the storage account, you find  *.ocr.json* files that correspond to each document in your training dataset and a new **class-name.jsonl** file for each class labeled. This training dataset is submitted to train the model.
 
@@ -95,7 +95,7 @@ With your dataset labeled, you're now ready to train your model. Select the trai
 
 Once the model training is complete, you can test your model by selecting the model on the models list page.
 
-1. Select the model and select on the **Test** button.
+1. Select the model and choose the **Test** button.
 
 1. Add a new file by browsing for a file or dropping a file into the document selector.
 
