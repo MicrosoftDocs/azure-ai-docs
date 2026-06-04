@@ -367,12 +367,15 @@
       },
       "manager": {
         "articles/search/**/*.md": "mcleans",
+        "articles/foundry/**/*.md": "mcleans",
+        "articles/foundry-classic/**/*.md": "mcleans",
         "articles/ai-services/**/*.md": "mcleans",
         "articles/machine-learning/**/*.md": "mcleans ",
         "articles/opendatasets/**/*.yml": "mcleans "
       },
       "ms.author": {
         "articles/foundry/**/*.md": "sgilley",
+        "articles/foundry-classic/**/*.md": "sgilley",
         "articles/ai-services/**/*.md": "mcleans",
         "articles/ai-services/anomaly-detector/**/*.md": "mbullwin",
         "articles/ai-services/computer-vision/**/*.md": "pafarley",
