@@ -545,7 +545,7 @@
       "ms.service": {
         "articles/ai-studio/**/*.md": "microsoft-foundry",
         "articles/ai-services/**/*.md": "foundry-tools",
-        "articles/ai-services/speech-service/*.md": "azure-ai-speech",
+        "articles/ai-services/speech-service/*.md": "azure-speech-foundry-tools",
         "articles/ai-services/translator/**/*.md": "azure-ai-translator",
         "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
         "articles/ai-services/computer-vision/**/*.md": "azure-ai-vision",
