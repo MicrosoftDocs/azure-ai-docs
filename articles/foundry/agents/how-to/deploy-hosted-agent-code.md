@@ -699,6 +699,8 @@ Use `--self-contained true` if you want to ship the .NET runtime in the zip. The
 
 # [REST API](#tab/rest)
 
+See the Python or C# tabs. 
+
 ---
 
 > [!WARNING]
