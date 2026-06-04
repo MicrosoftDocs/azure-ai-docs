@@ -85,7 +85,6 @@ Azure containers provide the following set of Docker containers, each of which c
 | Service |  Container | Description | Availability |
 |--|--|--|--|
 | [Vision][cv-containers] | **Read OCR** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/about)) | The Read OCR container allows you to extract printed and handwritten text from images and documents with support for JPEG, PNG, BMP, PDF, and TIFF file formats. For more information, see the [Read API documentation](./computer-vision/overview-ocr.md). | Generally Available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
-| [Spatial Analysis][spa-containers] | **Spatial analysis** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/vision/spatial-analysis/about)) | Analyzes real-time streaming video to understand spatial relationships between people, their movement, and interactions with objects in physical environments. | Preview |
 
 Additionally, some containers are supported in the [Foundry Tools multi-service resource](multi-service-resource.md?pivots=azportal) offering. You can create one single Foundry Tools resource and use the same billing key across supported services for the following services:
 
