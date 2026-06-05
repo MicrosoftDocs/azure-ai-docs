@@ -4,7 +4,7 @@ description: "Learn how Microsoft Agent 365 provides governance, security, and l
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 05/04/2026
+ms.date: 06/05/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -64,12 +64,12 @@ The sample provisions Azure resources and publishes a Hosted agent end-to-end. S
 - Submits an autopilot request that requires admin approval in the Microsoft 365 admin center.
 
 ### Run the code sample
-Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/FoundryA365).
+Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent).
 
 At a high level, you typically:
 
 1. Clone the `foundry-samples` repository.
-1. Change to the `samples/csharp/FoundryA365` directory.
+1. Change to the `samples/csharp/foundry-autopilot-agent` directory.
 1. Run the Azure Developer CLI (`azd`) workflow described in the README (for example, sign in, create resources, and deploy).
 1. Wait for provisioning, container build, and deployment to complete. The first run can take longer.
 
