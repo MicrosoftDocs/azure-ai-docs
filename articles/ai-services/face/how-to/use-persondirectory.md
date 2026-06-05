@@ -3,7 +3,7 @@ title: "Example: Use the PersonDirectory data structure - Face"
 titleSuffix: Foundry Tools
 description: Learn how to use the PersonDirectory data structure to store face and person data at greater capacity and with other new features.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

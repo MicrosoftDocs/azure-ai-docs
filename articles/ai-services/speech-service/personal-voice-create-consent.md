@@ -3,7 +3,7 @@ title: Add user consent to the personal voice project - Speech service
 titleSuffix: Foundry Tools
 description: Learn about how to add user consent to the personal voice project.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024

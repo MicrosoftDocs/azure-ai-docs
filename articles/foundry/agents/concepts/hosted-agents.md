@@ -4,7 +4,7 @@ description: "Deploy and manage containerized agents on Foundry Agent Service (p
 author: aahill
 ms.author: aahi
 ms.date: 03/05/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

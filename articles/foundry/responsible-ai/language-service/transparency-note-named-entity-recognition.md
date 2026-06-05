@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Azure Language in Foundry Tools supports named entity recognition to identify and categorize information in your text. The Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 04/01/2026

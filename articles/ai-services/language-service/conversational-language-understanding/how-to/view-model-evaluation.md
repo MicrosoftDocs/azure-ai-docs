@@ -3,7 +3,7 @@ title: How to view conversational language understanding models details
 description: Use this article to learn about viewing the details for a conversational language understanding model.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 12/17/2025

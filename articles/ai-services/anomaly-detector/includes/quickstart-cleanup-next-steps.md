@@ -2,7 +2,7 @@
 title: Next steps for Anomaly Detector quickstarts
 titleSuffix: Azure AI services
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: include 
 ms.date: 01/18/2024

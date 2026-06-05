@@ -1,7 +1,7 @@
 ---
 title: Quota tier 6
 description: Quota tier limits for tier 6
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry

@@ -3,7 +3,7 @@ title: Version-based API mapping for entity types and tags
 titleSuffix: Foundry Tools
 description: Learn about the differences between NER API versions.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 12/05/2025

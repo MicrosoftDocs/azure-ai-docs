@@ -3,7 +3,7 @@ title: 'Tutorial: Integrate Power BI with key phrase extraction'
 titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
 ms.date: 11/18/2025

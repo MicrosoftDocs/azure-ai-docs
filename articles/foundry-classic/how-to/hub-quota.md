@@ -14,7 +14,7 @@ ms.date: 01/16/2026
 ms.reviewer: haakar
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 # Hub-focused copy of quota article. Project (fdp) version remains in quota.md
 ---

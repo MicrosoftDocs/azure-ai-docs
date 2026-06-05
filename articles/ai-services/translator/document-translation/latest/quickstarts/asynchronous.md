@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use the asynchronous batch translation process of the Document Translation API to translate multiple documents or large files in parallel using Azure Blob Storage for input and output.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
 ms.date: 06/02/2026

@@ -2,7 +2,7 @@
 title: Provisioned model availability
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: PTU-managed model availability by region.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

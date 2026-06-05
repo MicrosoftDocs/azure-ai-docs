@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Azure Content Understanding in Foundry Tools region and language support
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/19/2025
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: reference

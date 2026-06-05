@@ -3,7 +3,7 @@ title: Extract information in Excel using Power Automate
 titleSuffix: Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
 ms.date: 11/18/2025

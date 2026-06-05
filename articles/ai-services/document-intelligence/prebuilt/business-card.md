@@ -3,7 +3,7 @@ title: Business card data extraction - Document Intelligence
 titleSuffix: Foundry Tools
 description: OCR and machine learning based business card scanning in Document Intelligence extracts key data from business cards.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

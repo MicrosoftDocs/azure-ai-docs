@@ -3,7 +3,7 @@ title: "Migrate to the new Foundry Agent Service"
 description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.date: 04/10/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

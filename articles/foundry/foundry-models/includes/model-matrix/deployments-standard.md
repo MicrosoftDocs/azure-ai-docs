@@ -2,7 +2,7 @@
 title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
-manager: nitinme
+manager: mcleans
 ms.date: 06/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

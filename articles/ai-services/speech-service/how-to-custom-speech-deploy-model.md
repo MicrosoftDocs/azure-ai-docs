@@ -3,7 +3,7 @@ title: Deploy a custom speech model - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to deploy custom speech models. 
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025

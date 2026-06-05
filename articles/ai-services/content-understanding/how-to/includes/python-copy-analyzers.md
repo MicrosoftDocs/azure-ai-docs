@@ -1,7 +1,7 @@
 ---
 title: "How-to: Copy custom analyzers using the Content Understanding Python SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to copy custom analyzers with Content Understanding using the Python SDK.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include

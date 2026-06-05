@@ -3,7 +3,7 @@ title: Speech Synthesis Markup Language (SSML) overview - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use the Speech Synthesis Markup Language to control pronunciation and prosody in text to speech.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about data selection, preparation, and creating a schema for custom text classification projects.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

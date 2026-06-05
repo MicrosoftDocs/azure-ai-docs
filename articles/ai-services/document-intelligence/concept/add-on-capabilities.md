@@ -3,7 +3,7 @@ title: Add-on capabilities - Document Intelligence
 titleSuffix: Foundry Tools
 description: How to increase service limit capacity with add-on capabilities.
 author: jaep3347
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

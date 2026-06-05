@@ -3,7 +3,7 @@ title: Azure Container Instance recipe
 titleSuffix: Foundry Tools
 description: Learn how to deploy Azure AI containers on Azure Container Instance
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.custom: devx-track-azurecli
 ms.service: foundry-tools
 ms.topic: how-to

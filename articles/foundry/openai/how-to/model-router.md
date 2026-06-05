@@ -3,7 +3,7 @@ title: "How to use model router for Microsoft Foundry"
 description: "Learn how to use the model router in Azure OpenAI to select the best model for your task."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

@@ -3,7 +3,7 @@ title: Language and locale support for custom models - Document Intelligence
 titleSuffix: Foundry Tools
 description: Document Intelligence custom model language extraction and detection support
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

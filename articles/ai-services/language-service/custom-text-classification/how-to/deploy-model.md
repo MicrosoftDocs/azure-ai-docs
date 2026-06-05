@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 12/15/2025

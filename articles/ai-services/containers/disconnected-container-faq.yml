@@ -5,7 +5,7 @@ metadata:
   description: Get answers to frequently asked questions about running containers disconnected from the internet.
   #services: cognitive-services
   author: aahill
-  manager: nitinme
+  manager: mcleans
   ms.service: foundry-tools
   ms.custom:
     - ignite-2023

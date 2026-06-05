@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This guide demonstrates how to use face detection to extract attributes like age, emotion, or head pose from a given image.
 #customer intent: As a developer, I want to use face detection to extract attributes from images so that I can analyze and process facial data.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

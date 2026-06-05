@@ -3,7 +3,7 @@ title: Build multi-turn conversational language understanding (CLU) models with 
 titleSuffix: Foundry Tools
 description: This article shows you how to create a CLU model for multi-turn interactions using slot-filling
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/05/2025

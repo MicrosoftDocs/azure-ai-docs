@@ -3,7 +3,7 @@ title: Language support for key phrase analysis
 titleSuffix: Foundry Tools
 description: A list of natural languages supported by the entity linking API
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

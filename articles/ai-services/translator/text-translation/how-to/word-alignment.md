@@ -3,7 +3,7 @@ title: Word alignment - Azure Translator in Foundry Tools
 titleSuffix: Foundry Tools
 description: To receive alignment information, use the Azure Translator translate method and include the optional includeAlignment parameter.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: how-to
 ms.date: 06/02/2026

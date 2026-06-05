@@ -2,7 +2,7 @@
 title: Deprecation
 titleSuffix: Azure AI services
 author: nitinme
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025

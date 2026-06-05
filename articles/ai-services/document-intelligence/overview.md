@@ -3,7 +3,7 @@ title: What Is Azure Document Intelligence in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Azure Document Intelligence in Foundry Tools is a machine-learning based OCR and intelligent document processing service to automate extraction of key data from forms and documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
 ms.date: 06/04/2026

@@ -3,7 +3,7 @@ title: Custom document models - Document Intelligence
 titleSuffix: Foundry Tools
 description: Label and train customized models for your documents and compose multiple models into a single model identifier.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 09/24/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 recommendations: false

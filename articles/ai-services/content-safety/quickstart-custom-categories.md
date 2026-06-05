@@ -3,7 +3,7 @@ title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
 description: Use the custom categories API to create your own content categories and train the Content Safety model for your use case.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 09/02/2025

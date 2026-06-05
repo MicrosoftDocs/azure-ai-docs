@@ -3,7 +3,7 @@ title: "Get started: Document Intelligence client library for Python v2.1"
 titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library v2.1
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: includes
 ms.date: 11/18/2025

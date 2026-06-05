@@ -3,7 +3,7 @@ title: Configure translation in Immersive Reader
 titleSuffix: Azure AI services
 description: Learn how to configure the various Immersive Reader options for translation.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to

@@ -3,7 +3,7 @@ title: Provide anomaly feedback to the Metrics Advisor service
 titleSuffix: Azure AI services
 description: Learn how to send feedback on anomalies found by your Metrics Advisor instance, and tune the results. 
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025

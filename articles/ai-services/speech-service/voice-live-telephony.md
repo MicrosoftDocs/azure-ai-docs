@@ -2,7 +2,7 @@
 title: Call Center Voice Agent Accelerator 
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API with telephony systems.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

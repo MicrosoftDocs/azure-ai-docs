@@ -3,7 +3,7 @@ title: Read model OCR data extraction - Document Intelligence
 titleSuffix: Foundry Tools
 description: Extract print and handwritten text from scanned and digital documents with Document Intelligence's Read OCR model.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

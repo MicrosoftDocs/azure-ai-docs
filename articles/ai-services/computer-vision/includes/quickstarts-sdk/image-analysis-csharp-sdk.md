@@ -2,8 +2,8 @@
 title: "Quickstart: Image Analysis client library for .NET"
 description: In this quickstart, get started with the Image Analysis client library for .NET.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 09/26/2024
 ms.author: pafarley

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article provides a quick reference, a detailed description, and best practices for the quotas and limits in Azure Speech.
 author: goergenj
 ms.author: jagoerge
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
 ms.date: 01/30/2026

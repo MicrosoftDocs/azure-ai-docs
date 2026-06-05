@@ -9,7 +9,7 @@ ms.date: 4/09/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 #CustomerIntent: As a developer or data scientist, I want to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
 ---

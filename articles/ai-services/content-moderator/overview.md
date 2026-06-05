@@ -3,7 +3,7 @@ title: What is Azure Content Moderator?
 titleSuffix: Azure AI services
 description: Learn how to use Content Moderator to track, flag, assess, and filter inappropriate material in user-generated content.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: overview
 ms.date: 06/12/2025

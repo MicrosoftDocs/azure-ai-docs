@@ -3,7 +3,7 @@ title: Use Docker containers in disconnected environments
 titleSuffix: Foundry Tools
 description: Learn how to run Foundry Tools Docker containers disconnected from the internet.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.custom:
   - ignite-2023

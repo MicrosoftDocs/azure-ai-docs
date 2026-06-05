@@ -1,6 +1,6 @@
 ---
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 01/24/2023

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
