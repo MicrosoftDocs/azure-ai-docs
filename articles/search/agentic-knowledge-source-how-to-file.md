@@ -369,7 +369,12 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 <binary file content>
 ```
 
-**Reference:** [Knowledge Sources - Upload File](/rest/api/searchservice/knowledge-sources/upload-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true), even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+**Reference:** [Knowledge Sources - Upload File](/rest/api/searchservice/knowledge-sources/upload-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
+
+> [!NOTE]
+> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
 >
 > To replace content, delete the prior file by `fileId` before or after the new upload.
 
@@ -423,7 +428,7 @@ api-key: {{api-key}}
 
 ::: zone-end
 
-A response includes metadata for each uploaded file.The `errorMessage` value is `null` when the upload is processed without an error.
+A response includes metadata for each uploaded file. The `errorMessage` value is `null` when the upload is processed without an error.
 
 ```json
 {
@@ -486,6 +491,10 @@ api-key: {{api-key}}
 ```
 
 **Reference:** [Knowledge Sources - Delete File](/rest/api/searchservice/knowledge-sources/delete-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
+
+## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
