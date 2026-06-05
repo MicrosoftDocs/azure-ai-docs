@@ -3,7 +3,7 @@ title: Document Intelligence changelog, release history, and migration guide
 titleSuffix: Foundry Tools
 description: A version-based description of Document Intelligence feature and capability releases, changes, enhancements, migration guidance, and updates.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
 ms.date: 11/18/2025

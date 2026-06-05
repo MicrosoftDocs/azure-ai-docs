@@ -3,7 +3,7 @@ title: Configure your blob storage container for image retrieval
 titleSuffix: Foundry Tools
 description: Configure your Azure storage account to get started with the **Search photos image retrieval** experience in Vision Studio.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: how-to

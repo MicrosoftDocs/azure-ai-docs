@@ -3,7 +3,7 @@ title: Configure Speech containers
 titleSuffix: Foundry Tools
 description: Speech service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/30/2026

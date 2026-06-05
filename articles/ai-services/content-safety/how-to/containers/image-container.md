@@ -3,7 +3,7 @@ title: Analyze image container - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Install and run content safety analyze image containers with Docker to detect harmful content in image.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025

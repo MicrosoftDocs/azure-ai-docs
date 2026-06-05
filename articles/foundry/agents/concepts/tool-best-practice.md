@@ -7,7 +7,7 @@ ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.date: 03/09/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

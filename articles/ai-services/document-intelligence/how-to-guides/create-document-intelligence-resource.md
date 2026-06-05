@@ -3,7 +3,7 @@ title: Create a Document Intelligence Resource
 titleSuffix: Foundry Tools
 description: Create a Document Intelligence resource in the Azure portal.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025

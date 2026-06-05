@@ -2,7 +2,7 @@
 title: "Quickstart: Optical character recognition client library for Python"
 description: Get started with the Optical character recognition client library for Python with this quickstart.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023

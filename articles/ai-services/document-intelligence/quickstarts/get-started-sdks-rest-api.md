@@ -3,7 +3,7 @@ title: "Quickstart: Document Intelligence client libraries | REST API "
 titleSuffix: Foundry Tools
 description: Use a Document Intelligence SDK or the REST API to create a forms processing app that extracts key data and structure elements from your documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.custom:
   - devx-track-dotnet

@@ -1,6 +1,6 @@
 ---
 title: Other Foundry Models sold by Azure
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include

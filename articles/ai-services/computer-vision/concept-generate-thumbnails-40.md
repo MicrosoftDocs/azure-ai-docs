@@ -3,7 +3,7 @@ title: Smart-cropped thumbnails - Image Analysis 4.0
 titleSuffix: Foundry Tools
 description: Concepts related to generating thumbnails for images using the Image Analysis 4.0 API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

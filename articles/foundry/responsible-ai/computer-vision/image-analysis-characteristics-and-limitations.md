@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Characteristics, accuracy, and limitations when using Image Analysis service."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: concept-article
 ms.date: 10/15/2025

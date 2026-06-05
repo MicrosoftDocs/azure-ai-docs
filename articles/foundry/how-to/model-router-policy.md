@@ -5,7 +5,7 @@ description: "Use Azure Policy to control which models developers can select whe
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: sajagtap
-manager: nitinme
+manager: mcleans
 ms.date: 05/13/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

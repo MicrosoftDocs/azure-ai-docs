@@ -3,7 +3,7 @@ title: Brand detection - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about brand and logo detection, a specialized mode of object detection, using Azure Vision in Foundry Tools API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

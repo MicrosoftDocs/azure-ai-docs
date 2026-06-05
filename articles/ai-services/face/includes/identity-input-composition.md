@@ -2,7 +2,7 @@
 title: Face identity input technicals
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.custom:
   - ignite-2023

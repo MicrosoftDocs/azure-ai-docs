@@ -3,7 +3,7 @@ title: Create an Azure Kubernetes Service cluster resource
 titleSuffix: Foundry Tools
 description: Learn how to create an Azure Kubernetes Service (AKS) resource.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include 
 ms.date: 04/01/2020

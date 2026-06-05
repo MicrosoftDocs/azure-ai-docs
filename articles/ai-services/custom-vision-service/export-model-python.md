@@ -3,7 +3,7 @@ title: "Tutorial: Run TensorFlow model in Python - Custom Vision Service"
 titleSuffix: Foundry Tools
 description: Run a TensorFlow model in Python. This article only applies to models exported from image classification projects in the Custom Vision service.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to run a TensorFlow model in Python so that I can classify images locally.
 
 ms.service: azure-ai-custom-vision

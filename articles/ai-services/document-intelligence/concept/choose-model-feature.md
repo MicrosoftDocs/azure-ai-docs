@@ -3,7 +3,7 @@ title: Choose the best Document Intelligence model for your applications and wor
 titleSuffix: Foundry Tools
 description: Choose the best Document Intelligence model for your applications and workflows.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
 ms.date: 06/02/2026

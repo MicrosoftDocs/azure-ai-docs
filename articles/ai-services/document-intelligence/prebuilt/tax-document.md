@@ -3,7 +3,7 @@ title: Document Intelligence US tax documents data extraction
 titleSuffix: Foundry Tools
 description: Automate US tax document data extraction with Document Intelligence US tax document models.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025

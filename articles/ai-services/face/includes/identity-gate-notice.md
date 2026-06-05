@@ -2,7 +2,7 @@
 title: Face gate notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include 
 ms.date: 06/14/2022

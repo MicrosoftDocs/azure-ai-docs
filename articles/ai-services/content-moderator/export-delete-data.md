@@ -3,7 +3,7 @@ title: Export or delete user data - Content Moderator
 titleSuffix: Azure AI services
 description: You have full control over your data. Learn how to view, export or delete your data in Content Moderator.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025

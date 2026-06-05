@@ -2,7 +2,7 @@
 title: "Quickstart: Image Analysis 4.0 client SDK for .NET"
 description: In this quickstart, get started with the Image Analysis 4.0 client SDK for .NET.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 01/24/2023

@@ -2,7 +2,7 @@
 title: "Quickstart: Image Analysis client library for Node.js"
 description: Get started with the Image Analysis client library for Node.js with this quickstart
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/30/2024

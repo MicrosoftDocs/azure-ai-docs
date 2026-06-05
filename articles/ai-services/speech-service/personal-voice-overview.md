@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: With personal voice, you can get AI generated replication of your voice (or users of your application) in a few seconds.
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 10/21/2025

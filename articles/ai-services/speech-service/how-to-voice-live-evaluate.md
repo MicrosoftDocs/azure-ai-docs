@@ -2,7 +2,7 @@
 title: How to evaluate Voice Live agents
 titleSuffix: Foundry Tools
 description: Learn how to evaluate the quality of your Voice Live voice agents using the evaluation harness and Microsoft Foundry built-in evaluators.
-manager: nitinme
+manager: mcleans
 author: solarrezaei
 ms.author: solarrezaei
 ms.service: azure-ai-speech

@@ -3,7 +3,7 @@ title: Object detection using Image Analysis 4.0
 titleSuffix: Foundry Tools
 description: Learn concepts related to the object detection feature of the Image Analysis 4.0 API - usage and limits.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

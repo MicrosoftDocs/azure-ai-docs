@@ -5,7 +5,7 @@ description: "Learn about Azure Vision in Foundry Tools features that are in lim
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: concept-article
 ms.date: 10/15/2025

@@ -4,7 +4,7 @@ description: "Deploy your containerized agent code to Foundry Agent Service usin
 author: aahill
 ms.author: aahi
 ms.date: 04/14/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

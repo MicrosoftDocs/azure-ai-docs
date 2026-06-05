@@ -3,7 +3,7 @@ title: Configure Read containers - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: This article shows you how to configure both required and optional settings for Read optical character recognition (OCR) containers in Azure Vision in Foundry Tools.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 09/26/2025

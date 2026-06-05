@@ -3,7 +3,7 @@ title: How to use local inference with the Personalizer SDK
 description: Learn how to use local inference to improve latency.
 author: jcodella
 ms.author: jacodel
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: how-to
 ms.date: 01/19/2024

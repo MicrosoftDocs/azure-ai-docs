@@ -3,7 +3,7 @@ title: About the Speech SDK - Speech service
 titleSuffix: Foundry Tools
 description: The Speech software development kit (SDK) exposes many of the Speech service capabilities, making it easier to develop speech-enabled applications.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026

@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.date: 06/01/2026
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to understand the deployment options available for Microsoft Foundry Models so that I can choose the right deployment method for my models and use case.
 ---

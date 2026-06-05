@@ -3,7 +3,7 @@ title: Call Azure Vision v3.2 GA Read API
 titleSuffix: Foundry Tools
 description: Learn how to call Azure Vision v3.2 GA Read API and configure its behavior in detail.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: how-to

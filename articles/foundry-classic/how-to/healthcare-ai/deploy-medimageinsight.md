@@ -8,7 +8,7 @@ ms.date: 01/26/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.custom: dev-focus
 ai-usage: ai-assisted

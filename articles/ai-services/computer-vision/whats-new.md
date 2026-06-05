@@ -3,7 +3,7 @@ title: What's new in Azure Vision in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Stay up to date on recent releases and updates to Azure Vision in Foundry Tools.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.custom:
   - build-2023

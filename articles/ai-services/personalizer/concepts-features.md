@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Personalizer uses features, information about actions and context, to make better ranking suggestions. Features can be generic, or specific to an item.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024

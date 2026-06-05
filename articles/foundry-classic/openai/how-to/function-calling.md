@@ -10,7 +10,7 @@ ms.custom:
   - classic-and-new
 ms.topic: how-to
 ms.date: 02/10/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---

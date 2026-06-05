@@ -2,7 +2,7 @@
 title: Use the LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech with the latest LLM-powered speech model for transcription and translation.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

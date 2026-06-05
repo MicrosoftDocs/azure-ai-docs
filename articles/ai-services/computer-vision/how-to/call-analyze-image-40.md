@@ -2,7 +2,7 @@
 title: Call the Image Analysis 4.0 Analyze API
 titleSuffix: Foundry Tools
 description: Learn how to call the Image Analysis 4.0 API and configure its behavior.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision

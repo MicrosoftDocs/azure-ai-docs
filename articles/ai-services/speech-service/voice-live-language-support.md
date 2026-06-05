@@ -2,7 +2,7 @@
 title: Voice Live API language support
 titleSuffix: Foundry Tools
 description: Learn about the languages supported by Voice Live API and how to configure them.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley

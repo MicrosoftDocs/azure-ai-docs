@@ -2,7 +2,7 @@
 title: Global Batch model availability
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Global Batch models
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

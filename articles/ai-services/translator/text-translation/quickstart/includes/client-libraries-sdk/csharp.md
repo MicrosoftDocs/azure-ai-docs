@@ -2,7 +2,7 @@
 title: "Quickstart: Translator Text C# SDK"
 description: 'Text translation processing using the C# programming language'
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: include
 ms.date: 06/02/2026

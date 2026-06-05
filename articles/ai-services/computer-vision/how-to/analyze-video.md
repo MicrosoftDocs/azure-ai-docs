@@ -2,7 +2,7 @@
 title: Analyze videos in near real time - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to perform near real-time analysis on frames that are taken from a live video stream by using Azure Vision in Foundry Tools API.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision

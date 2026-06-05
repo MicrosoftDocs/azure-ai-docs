@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/23/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview

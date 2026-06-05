@@ -3,7 +3,7 @@ title: Install the Image Analysis SDK
 titleSuffix: Foundry Tools
 description: In this guide, you learn how to install the Image Analysis SDK for your preferred programming language.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: quickstart
 ms.date: 09/26/2025

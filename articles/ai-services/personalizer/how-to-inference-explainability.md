@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Personalizer can return feature scores in each Rank call to provide insight on what features are important to the model's decision.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: how-to
 ms.date: 01/19/2024

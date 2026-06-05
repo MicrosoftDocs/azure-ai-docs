@@ -1,7 +1,7 @@
 ---
 title: "Hosted agent permissions reference"
 description: "Reference for permissions required to create, deploy, and interact with hosted agents in Microsoft Foundry."
-manager: nitinme
+manager: mcleans
 author: mattchenderson
 ms.author: mahender
 ms.service: microsoft-foundry

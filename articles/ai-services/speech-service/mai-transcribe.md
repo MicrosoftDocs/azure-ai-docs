@@ -2,7 +2,7 @@
 title: MAI-Transcribe in LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
 description: Learn how to use the MAI-Transcribe model in Azure Speech LLM Speech API.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

@@ -3,7 +3,7 @@ title: Use Document intelligence with Azure Logic Apps
 titleSuffix: Foundry Tools
 description: A tutorial introducing how to use Document intelligence with Logic Apps.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: tutorial
 ms.date: 11/18/2025

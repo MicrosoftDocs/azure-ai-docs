@@ -6,7 +6,7 @@ ms.subservice: foundry-openai
 ms.topic: best-practice
 ms.date: 02/06/2026
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 recommendations: false

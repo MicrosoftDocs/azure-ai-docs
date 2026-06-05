@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Azure AI Content Safety."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 05/15/2023

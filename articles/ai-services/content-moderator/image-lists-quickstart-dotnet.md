@@ -3,7 +3,7 @@ title: "Check images against custom lists in C# - Content Moderator"
 titleSuffix: Azure AI services
 description: How to moderate images with custom image lists using the Content Moderator SDK for C#.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025

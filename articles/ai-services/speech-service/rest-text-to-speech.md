@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use the REST API to convert text into synthesized speech.
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/21/2026

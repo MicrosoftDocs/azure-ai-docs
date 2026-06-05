@@ -1,6 +1,6 @@
 ---
 title: Introduction for list of Foundry Models
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include

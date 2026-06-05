@@ -1,7 +1,7 @@
 ---
 title: "Safety evaluation for fine-tuning (preview) (classic)"
 description: "Learn how the safety evaluation works for Microsoft Foundry fine-tuning. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

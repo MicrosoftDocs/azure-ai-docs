@@ -1,7 +1,7 @@
 ---
 title: "Quotas and limits for Microsoft Foundry Agent Service"
 description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models."
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

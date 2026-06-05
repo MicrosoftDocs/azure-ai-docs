@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Characteristics, Accuracy, and limitations when using the face service. Learn how to benchmark and measure accuracy when using the face service."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: concept-article
 ms.date: 03/31/2026

@@ -3,7 +3,7 @@ title: "Custom Vision Image Analysis comparison table"
 titleSuffix: "Foundry Tools"
 services: cognitive-services
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: include

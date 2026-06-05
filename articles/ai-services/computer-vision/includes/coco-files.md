@@ -2,7 +2,7 @@
 title: "About COCO files"
 titleSuffix: "Foundry Tools"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: include

@@ -5,7 +5,7 @@ metadata:
   description: Get answers to frequently asked questions about the Azure Vision service in Foundry Tools.
   #services: cognitive-services
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
 
   ms.service: azure-ai-vision
   ms.topic: faq

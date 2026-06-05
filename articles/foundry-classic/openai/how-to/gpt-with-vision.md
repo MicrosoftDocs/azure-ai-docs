@@ -8,7 +8,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/29/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-gpt-v
 

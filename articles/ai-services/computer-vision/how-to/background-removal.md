@@ -2,7 +2,7 @@
 title: Remove the background in images
 titleSuffix: Foundry Tools
 description: Learn how to call the Segment API to isolate and remove the background from images.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision

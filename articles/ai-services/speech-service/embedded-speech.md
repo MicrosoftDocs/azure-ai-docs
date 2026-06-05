@@ -3,7 +3,7 @@ title: Embedded Speech - Speech service
 titleSuffix: Foundry Tools
 description: Embedded Speech is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java
 ms.topic: how-to

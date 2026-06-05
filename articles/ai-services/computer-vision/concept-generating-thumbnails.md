@@ -3,7 +3,7 @@ title: Smart-cropped thumbnails - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Concepts related to generating thumbnails for images using Azure Vision in Foundry Tools API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

@@ -1,7 +1,7 @@
 ---
 title: Container Public Preview Prerequisites
 author: aahill
-manager: nitinme
+manager: mcleans
 description: The common prerequisite for public preview containers 
 ms.service: foundry-tools
 ms.topic: include 

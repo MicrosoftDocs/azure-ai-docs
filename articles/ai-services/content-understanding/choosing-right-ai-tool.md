@@ -5,7 +5,7 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools, Azure Document Intelligence in Foundry Tools and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 06/02/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview

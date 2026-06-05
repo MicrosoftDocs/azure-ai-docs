@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Language Understanding (LUIS)."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.subservice: language-understanding

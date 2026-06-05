@@ -3,7 +3,7 @@ title: Confidence score - Custom question answering
 titleSuffix: Foundry Tools
 description: When a user query is matched against a knowledge base, Custom question answering returns relevant answers, along with a confidence score.
 #services: cognitive-services
-manager: nitinme
+manager: mcleans
 author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language

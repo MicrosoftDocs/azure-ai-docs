@@ -3,7 +3,7 @@ title: "Quickstart: Optical character recognition REST API"
 titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Optical character recognition REST API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023

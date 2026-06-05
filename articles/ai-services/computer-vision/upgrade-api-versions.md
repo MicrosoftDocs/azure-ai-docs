@@ -3,7 +3,7 @@ title: Upgrade to Read v3.0 of Azure Vision in Foundry Tools API
 titleSuffix: Foundry Tools
 description: Learn how to upgrade to Azure Vision in Foundry Tools v3.0 Read API from v2.0/v2.1.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: upgrade-and-migration-article

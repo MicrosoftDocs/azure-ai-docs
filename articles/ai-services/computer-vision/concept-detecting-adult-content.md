@@ -3,7 +3,7 @@ title: Detect Adult, racy, or gory content - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Concepts related to detecting adult content in images using Azure Vision in Foundry Tools API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

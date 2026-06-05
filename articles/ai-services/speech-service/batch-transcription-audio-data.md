@@ -2,7 +2,7 @@
 title: Locate audio files for batch transcription - Speech service
 titleSuffix: Foundry Tools
 description: Batch transcription is used to transcribe a large amount of audio in storage. You should provide multiple files per request or point to an Azure Blob Storage container with the audio files to transcribe.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools

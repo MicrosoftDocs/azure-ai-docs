@@ -3,7 +3,7 @@ title: Content Moderator encryption of data at rest
 titleSuffix: Azure AI services
 description: Content Moderator encryption of data at rest.
 author: erindormier
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025

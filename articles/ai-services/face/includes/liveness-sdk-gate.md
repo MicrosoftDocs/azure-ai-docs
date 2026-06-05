@@ -2,7 +2,7 @@
 title: Face liveness SDK gating notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.custom:
   - ignite-2023

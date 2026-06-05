@@ -3,7 +3,7 @@ title: How to deploy a model for conversational language understanding
 titleSuffix: Foundry Tools
 description: Use this article to learn how to deploy models for conversational language understanding.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

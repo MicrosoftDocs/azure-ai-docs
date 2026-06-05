@@ -3,7 +3,7 @@ title: Multimodal embeddings concepts - Image Analysis 4.0
 titleSuffix: Foundry Tools
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: concept-article
 ms.date: 09/16/2025

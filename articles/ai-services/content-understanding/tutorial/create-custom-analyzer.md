@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn to create a custom analyzer with Azure Content Understanding in Foundry Tools
 author: PatrickFarley 
 ms.author: paulhsu
-manager: nitinme
+manager: mcleans
 ms.date: 03/16/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview

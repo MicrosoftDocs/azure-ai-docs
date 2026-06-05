@@ -2,7 +2,7 @@
 title: Try Document translation in Language Studio
 description: "Document translation in Azure Language in Foundry Tools Studio."
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
 ms.date: 06/02/2026

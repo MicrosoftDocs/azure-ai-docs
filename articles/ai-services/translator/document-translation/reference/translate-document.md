@@ -2,7 +2,7 @@
 title: Synchronous Azure Translator translation REST API guide
 description: "Synchronous translation HTTP REST API guide"
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
 ms.date: 06/02/2026

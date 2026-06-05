@@ -3,7 +3,7 @@ title: "Routines in Foundry Agent Service (preview)"
 description: "Learn how routines in Foundry Agent Service invoke agents from project-native timers and recurring schedules with governed connections and run history."
 author: aahill
 ms.author: aahi
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article

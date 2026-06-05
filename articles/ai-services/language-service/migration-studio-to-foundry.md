@@ -3,7 +3,7 @@ title: Migrate from Azure Language Studio to Microsoft Foundry
 titleSuffix: Foundry Tools
 description: Learn how to migrate your Azure AI Language projects from Language Studio to Microsoft Foundry, including export, import, and validation steps.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
 ms.date: 04/03/2026

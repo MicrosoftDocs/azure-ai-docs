@@ -2,7 +2,7 @@
 title: "OCR (Read) editions"
 titleSuffix: "Foundry Tools"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023

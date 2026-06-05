@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: fasantia

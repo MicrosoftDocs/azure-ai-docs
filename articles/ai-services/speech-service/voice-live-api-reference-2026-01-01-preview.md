@@ -2,7 +2,7 @@
 title: Voice Live API Reference 2026-01-01-preview
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-01-01-preview
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: reference
 ms.date: 1/30/2026

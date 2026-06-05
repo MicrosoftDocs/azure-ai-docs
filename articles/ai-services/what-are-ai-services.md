@@ -3,7 +3,7 @@ title: What are Foundry Tools?
 titleSuffix: Foundry Tools
 description: Foundry Tools are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
 author: nitinme
-manager: nitinme
+manager: mcleans
 keywords: Foundry Tools, cognitive
 ms.service: foundry-tools
 ms.topic: overview

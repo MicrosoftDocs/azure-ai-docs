@@ -3,7 +3,7 @@ title: 'Quickstart: Anomaly detection using the Anomaly Detector client library 
 titleSuffix: Azure AI services
 description: The Anomaly Detector multivariate offers client libraries to detect abnormalities in your data series either as a batch or on streaming data.
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 zone_pivot_groups: anomaly-detector-quickstart-multivariate
 ms.service: azure-ai-anomaly-detector
 ms.topic: quickstart

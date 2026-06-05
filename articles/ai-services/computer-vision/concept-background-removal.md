@@ -3,7 +3,7 @@ title: Background removal - Image Analysis
 titleSuffix: Foundry Tools
 description: Learn about background removal, an operation of Image Analysis
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: concept-article

@@ -11,7 +11,7 @@ ms.custom:
   - template-concept, ignite-2024
   - classic-and-new
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 
 ai-usage: ai-assisted
 ---

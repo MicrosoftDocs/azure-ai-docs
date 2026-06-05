@@ -3,7 +3,7 @@ title: Document translation SDKs
 titleSuffix: Foundry Tools
 description: Document translation software development kits (SDKs) expose Document translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: how-to

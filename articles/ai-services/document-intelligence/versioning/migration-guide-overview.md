@@ -3,7 +3,7 @@ title: "Migrate to v4.0."
 titleSuffix: Foundry Tools
 description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025

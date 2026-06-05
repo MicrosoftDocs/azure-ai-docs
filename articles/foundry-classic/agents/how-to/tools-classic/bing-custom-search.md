@@ -3,7 +3,7 @@ title: "How to use Custom Bing Search with Foundry Agent Service (classic)"
 description: "Learn how to ground Azure AI Agents using Custom Bing Search results. (classic)"
 ai-usage: ai-assisted
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

@@ -3,7 +3,7 @@ title: What's new in Azure Face in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Stay up to date on recent releases and updates to Azure Face in Foundry Tools.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: whats-new
 ms.date: 03/26/2026

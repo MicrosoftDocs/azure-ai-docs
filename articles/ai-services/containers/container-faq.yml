@@ -5,7 +5,7 @@ metadata:
   description: Get answers to frequently asked questions.
   #services: cognitive-services
   author: aahill
-  manager: nitinme
+  manager: mcleans
   ms.service: foundry-tools
   ms.topic: faq
   ms.date: 08/15/2025

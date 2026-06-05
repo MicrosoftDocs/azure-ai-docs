@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to run Cognitive Services Docker containers disconnected from the internet.
 ms.service: azure-document-intelligence-foundry-tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.topic: reference
 ms.date: 11/18/2025
 ms.author: lajanuar

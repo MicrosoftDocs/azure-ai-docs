@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: This article will show you how to use offline evaluation to measure effectiveness of your app and analyze your learning loop.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: how-to
 ms.date: 01/19/2024

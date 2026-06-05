@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Try out the new features of the Content Understanding Studio, or access the prebuilt analyzers through the Foundry portal.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 02/12/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

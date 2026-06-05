@@ -2,7 +2,7 @@
 title: Background removal deprecation notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/10/2024

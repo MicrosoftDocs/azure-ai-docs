@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 9/12/2025

@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false

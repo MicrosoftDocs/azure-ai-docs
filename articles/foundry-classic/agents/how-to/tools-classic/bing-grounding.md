@@ -2,7 +2,7 @@
 title: "How to use Grounding with Bing Search in Foundry Agent Service (classic)"
 description: "Learn how to ground Azure AI Agents using Bing Search results. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

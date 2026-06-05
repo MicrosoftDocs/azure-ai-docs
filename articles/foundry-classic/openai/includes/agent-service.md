@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.custom:
 ms.topic: include, classic-and-new

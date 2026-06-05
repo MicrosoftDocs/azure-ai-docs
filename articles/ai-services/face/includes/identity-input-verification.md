@@ -2,7 +2,7 @@
 title: Face identity verification input recommendations
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-vision
 ms.custom:
 ms.topic: include

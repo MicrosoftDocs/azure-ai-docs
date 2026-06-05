@@ -2,7 +2,7 @@
 title: "Quickstart: Image Analysis REST API"
 titleSuffix: "Foundry Tools"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-vision
 ms.topic: include
