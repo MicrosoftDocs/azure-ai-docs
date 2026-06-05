@@ -331,7 +331,7 @@ KnowledgeSourceFile uploadedFile = (await indexClient.UploadKnowledgeSourceFileA
 Console.WriteLine($"Uploaded file ID: {uploadedFile.FileId}");
 ```
 
-**Reference:** [SearchIndexClient.UploadKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.UploadKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.uploadknowledgesourcefileasync?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -354,7 +354,7 @@ uploaded_file = index_client.upload_knowledge_source_file(
 print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
 
-**Reference:** [SearchIndexClient.upload_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.upload_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-upload-knowledge-source-file)
 
 ::: zone-end
 
@@ -397,7 +397,7 @@ await foreach (KnowledgeSourceFile file in indexClient.GetKnowledgeSourceFilesAs
 }
 ```
 
-**Reference:** [SearchIndexClient.GetKnowledgeSourceFilesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.GetKnowledgeSourceFilesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getknowledgesourcefilesasync?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -413,7 +413,7 @@ for file in index_client.list_knowledge_source_files("my-file-ks"):
     print(f"{file.file_name} ({file.file_size_bytes} bytes) error={file.error_message}")
 ```
 
-**Reference:** [SearchIndexClient.list_knowledge_source_files](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.list_knowledge_source_files](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-list-knowledge-source-files)
 
 ::: zone-end
 
@@ -464,7 +464,7 @@ var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCre
 await indexClient.DeleteKnowledgeSourceFileAsync("my-file-ks", "file-abc123");
 ```
 
-**Reference:** [SearchIndexClient.DeleteKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.DeleteKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.deleteknowledgesourcefileasync?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -479,7 +479,7 @@ index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCrede
 index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
 ```
 
-**Reference:** [SearchIndexClient.delete_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.delete_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-delete-knowledge-source-file)
 
 ::: zone-end
 
