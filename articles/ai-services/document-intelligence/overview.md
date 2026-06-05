@@ -65,30 +65,20 @@ Document analysis (general extraction) models enable text extraction from forms 
 
 :::moniker range="doc-intel-4.0.0"
 
- :::row:::
-    :::column:::
-    [Read](#read) | Extract printed and handwritten text.
-    :::column-end:::
-    :::column span="":::
-     [Layout](#layout) | Extract text, tables, and document structure.
-    :::column-end:::
-   :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Read](#read) | Extract printed and handwritten text. |
+| [Layout](#layout) | Extract text, tables, and document structure. |
 
 :::moniker-end
 
 :::moniker range="<=doc-intel-3.1.0"
 
- :::row:::
-    :::column:::
-    [Read](#read) | Extract printed </br>and handwritten text.
-    :::column-end:::
-    :::column span="":::
-     [Layout](#layout) | Extract text, tables, </br>and document structure.
-    :::column-end:::
-    :::column span="":::
-     [General document](#general-document-deprecated-in-2023-10-31-preview) | Extract text, structure, and </br>key-value pairs.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Read](#read) | Extract printed and handwritten text. |
+| [Layout](#layout) | Extract text, tables, and document structure. |
+| [General document](#general-document-deprecated-in-2023-10-31-preview) | Extract text, structure, and key-value pairs. |
 
 :::moniker-end
 
@@ -100,120 +90,58 @@ You can use prebuilt models to add intelligent document processing to your apps 
 
 ### Financial services and legal
 
- :::row:::
-    :::column span="":::
-     [Bank statement](#bank-statement) | Extract account information and details from bank statements.
-    :::column-end:::
-    :::column span="":::
-     [Check](#check) | Extract relevant information from checks.
-    :::column-end:::
-    :::column span="":::
-     [Contract](#contract-model) | Extract agreement and party details.
-    :::column-end:::
- :::row-end:::
- :::row:::
-     :::column span="":::
-     [Credit card](#credit-card-model) | Extract payment card information.
-     :::column-end:::
-     :::column span="":::
-     [Invoice](#invoice) | Extract customer and vendor details.
-    :::column-end:::
-    :::column span="":::
-     [Pay stub](#pay-stub) | Extract pay stub details.
-    :::column-end:::
-    :::column span="":::
-     [Receipt](#receipt) | Extract sales transaction details.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Bank statement](#bank-statement) | Extract account information and details from bank statements. |
+| [Check](#check) | Extract relevant information from checks. |
+| [Contract](#contract-model) | Extract agreement and party details. |
+| [Credit card](#credit-card-model) | Extract payment card information. |
+| [Invoice](#invoice) | Extract customer and vendor details. |
+| [Pay stub](#pay-stub) | Extract pay stub details. |
+| [Receipt](#receipt) | Extract sales transaction details. |
 
 ### US tax
 
- :::row:::
-    :::column span="":::
-     [Unified US tax](#unified-us-tax-forms) | Extract from any US tax forms supported.
-    :::column-end:::
-    :::column span="":::
-     [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1099](#us-tax-1099-and-variations-forms) | Extract 1099 variation details.
-    :::column-end:::
-    :::column span="":::
-     [US tax 1040](#us-tax-1040-and-variations-forms) |  Extract 1040 variation details.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Unified US tax](#unified-us-tax-forms) | Extract from any US tax forms supported. |
+| [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details. |
+| [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details. |
+| [US tax 1099](#us-tax-1099-and-variations-forms) | Extract 1099 variation details. |
+| [US tax 1040](#us-tax-1040-and-variations-forms) | Extract 1040 variation details. |
 
 ### US mortgage
 
- :::row:::
-    :::column span="":::
-     [US mortgage 1003](#us-mortgage-1003-form) | Extract loan application details.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1004](#us-mortgage-1004-form) | Extract information from appraisal.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1005](#us-mortgage-1005-form) | Extract information from validation of employment.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage 1008](#us-mortgage-1008-form) | Extract loan transmittal details.
-    :::column-end:::
-    :::column span="":::
-     [US mortgage disclosure](#us-mortgage-disclosure-form) | Extract final closing loan terms.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [US mortgage 1003](#us-mortgage-1003-form) | Extract loan application details. |
+| [US mortgage 1004](#us-mortgage-1004-form) | Extract information from appraisal. |
+| [US mortgage 1005](#us-mortgage-1005-form) | Extract information from validation of employment. |
+| [US mortgage 1008](#us-mortgage-1008-form) | Extract loan transmittal details. |
+| [US mortgage disclosure](#us-mortgage-disclosure-form) | Extract final closing loan terms. |
 
 ### Personal identification
 
- :::row:::
-    :::column span="":::
-     [Health insurance card](#health-insurance-card) | Extract insurance coverage details.
-    :::column-end:::
-     :::column span="":::
-     [Identity](#identity-id) | Extract verification details.
-    :::column-end:::
-        :::column span="":::
-     [Marriage certificate](#marriage-certificate-model) | Extract certified marriage information.
-    :::column-end:::
- :::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Health insurance card](#health-insurance-card) | Extract insurance coverage details. |
+| [Identity](#identity-id) | Extract verification details. |
+| [Marriage certificate](#marriage-certificate-model) | Extract certified marriage information. |
 
 :::moniker-end
 
 :::moniker range="<=doc-intel-3.1.0"
 
-:::row:::
-   :::column span="":::
-    [Invoice](#invoice) | Extract customer </br>and vendor details.
-   :::column-end:::
-   :::column span="":::
-    [Receipt](#receipt) | Extract sales </br>transaction details.
-   :::column-end:::
-   :::column span="":::
-    [Identity](#identity-id) | Extract identification </br>and verification details.
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-    [Health insurance card](#health-insurance-card) | Extract health insurance details.
-   :::column-end:::
-   :::column span="":::
-    [Business card](#business-card) | Extract business contact details.
-   :::column-end:::
-   :::column span="":::
-    [Contract](#contract-model) | Extract agreement</br> and party details.
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-    [US tax W-2](#us-tax-w-2-model) | Extract taxable </br>compensation details.
-   :::column-end:::
-   :::column span="":::
-    [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Invoice](#invoice) | Extract customer and vendor details. |
+| [Receipt](#receipt) | Extract sales transaction details. |
+| [Identity](#identity-id) | Extract identification and verification details. |
+| [Health insurance card](#health-insurance-card) | Extract health insurance details. |
+| [Business card](#business-card) | Extract business contact details. |
+| [Contract](#contract-model) | Extract agreement and party details. |
+| [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details. |
+| [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details. |
 
 :::moniker-end
 
@@ -225,27 +153,19 @@ Custom models are trained by using your labeled datasets to extract distinct dat
 
 ✔️ Document field extraction models are trained to extract labeled fields from documents.
 
-:::row:::
-   :::column span="":::
-    [Custom neural](#custom-neural) | Extract data from mixed-type documents.
-   :::column-end:::
-   :::column span="":::
-    [Custom template](#custom-template) | Extract data from static layouts.
-   :::column-end:::
-   :::column span="":::
-    [Custom composed](#custom-composed) | Extract data by using a collection of models.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Custom neural](#custom-neural) | Extract data from mixed-type documents. |
+| [Custom template](#custom-template) | Extract data from static layouts. |
+| [Custom composed](#custom-composed) | Extract data by using a collection of models. |
 
 ### Custom classification models
 
 ✔️ Custom classifiers identify document types before invoking an extraction model.
 
-:::row:::
-   :::column span="":::
-    [Custom classifier](#custom-classification-model) | Identify designated document types (classes) before invoking an extraction model.
-   :::column-end:::
-:::row-end:::
+| Model | Description |
+|-------|-------------|
+| [Custom classifier](#custom-classification-model) | Identify designated document types (classes) before invoking an extraction model. |
 
 ## Field type extraction
 

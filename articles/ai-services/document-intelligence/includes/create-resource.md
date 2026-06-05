@@ -19,4 +19,4 @@ Go to the Azure portal and <a href="https://portal.azure.com/#create/Microsoft.C
 
 ## Retrieve the key and endpoint
 
-When your Document Intelligence resource finishes deploying, find and select it from the **All resources** list in the portal. Your key and endpoint are located on the resource's **Key and Endpoint** page, under **Resource Management**. Save both of values to a temporary location before going forward.
+When your Document Intelligence resource finishes deploying, find and select it from the **All resources** list in the portal. Your key and endpoint are located on the resource's **Key and Endpoint** page, under **Resource Management**. Save both values to a temporary location before going forward.
