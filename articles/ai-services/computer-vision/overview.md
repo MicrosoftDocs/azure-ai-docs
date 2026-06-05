@@ -5,7 +5,7 @@ description: Azure Vision in Foundry Tools provides you with access to advanced 
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 09/26/2025
 ms.author: pafarley

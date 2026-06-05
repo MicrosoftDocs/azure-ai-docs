@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Extract text from in-the-wild and non-document images with a fast and synchronous Azure Vision in Foundry Tools Image Analysis 4.0 API.
 author: PatrickFarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ms.author: pafarley

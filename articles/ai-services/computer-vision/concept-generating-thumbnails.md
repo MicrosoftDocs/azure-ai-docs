@@ -5,7 +5,7 @@ description: Concepts related to generating thumbnails for images using Azure Vi
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ms.author: pafarley

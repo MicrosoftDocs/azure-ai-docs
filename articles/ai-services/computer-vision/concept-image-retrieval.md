@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley

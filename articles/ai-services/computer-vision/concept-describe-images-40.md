@@ -5,7 +5,7 @@ description: Concepts related to the image captioning feature of the Image Analy
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley

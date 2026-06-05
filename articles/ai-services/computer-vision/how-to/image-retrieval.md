@@ -5,7 +5,7 @@ description: Learn how to use the image retrieval API to vectorize images and se
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley

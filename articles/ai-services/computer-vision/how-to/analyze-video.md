@@ -5,7 +5,7 @@ description: Learn how to perform near real-time analysis on frames that are tak
 manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.devlang: csharp

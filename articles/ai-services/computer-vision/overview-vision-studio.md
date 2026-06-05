@@ -5,7 +5,7 @@ description: Learn how to set up and use Vision Studio to test features of Azure
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026
 ms.author: pafarley

@@ -5,7 +5,7 @@ description: Learn how to call the Image Analysis API and configure its behavior
 manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ---

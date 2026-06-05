@@ -5,7 +5,7 @@ description: Concepts related to the image type detection feature of Azure Visio
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ms.author: pafarley

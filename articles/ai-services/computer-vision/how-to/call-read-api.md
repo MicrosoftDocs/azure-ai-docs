@@ -5,7 +5,7 @@ description: Learn how to call Azure Vision v3.2 GA Read API and configure its b
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley

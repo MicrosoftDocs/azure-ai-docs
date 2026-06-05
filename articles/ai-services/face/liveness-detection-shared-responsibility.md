@@ -5,7 +5,7 @@ description: Azure and customers share responsibility for liveness detection sol
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.date: 01/30/2026
 ms.topic: concept-article
 ---

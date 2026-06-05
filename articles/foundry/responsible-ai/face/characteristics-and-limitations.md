@@ -5,7 +5,7 @@ description: "Characteristics, Accuracy, and limitations when using the face ser
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

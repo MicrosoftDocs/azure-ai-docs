@@ -5,7 +5,7 @@ description: Learn how to call the Segment API to isolate and remove the backgro
 manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 03/31/2026
 ai-usage: ai-assisted

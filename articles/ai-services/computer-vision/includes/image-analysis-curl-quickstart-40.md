@@ -5,7 +5,7 @@ description: In this quickstart, get started with the Image Analysis 4.0 REST AP
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 01/24/2023
 ms.author: pafarley

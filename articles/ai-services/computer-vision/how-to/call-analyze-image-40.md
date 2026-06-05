@@ -5,7 +5,7 @@ description: Learn how to call the Image Analysis 4.0 API and configure its beha
 manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2025
 ms.custom:  devx-track-python, devx-track-extended-java, devx-track-js

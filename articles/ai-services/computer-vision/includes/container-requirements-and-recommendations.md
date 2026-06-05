@@ -3,7 +3,7 @@ title: Container requirements and recommendations
 titleSuffix: Foundry Tools
 author: aahill
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 04/09/2021
 ms.author: aahi

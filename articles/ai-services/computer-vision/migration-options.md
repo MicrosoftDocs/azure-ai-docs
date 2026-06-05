@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/01/2025
 ms.topic: upgrade-and-migration-article
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.custom: ai-migration, vision
 ---
 

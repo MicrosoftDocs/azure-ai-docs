@@ -4,7 +4,7 @@ titleSuffix: "Foundry Tools"
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 02/06/2023
 ms.author: pafarley

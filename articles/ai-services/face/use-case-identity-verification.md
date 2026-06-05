@@ -5,7 +5,7 @@ description: Provide the best-in-class face verification experience in your busi
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: concept-article

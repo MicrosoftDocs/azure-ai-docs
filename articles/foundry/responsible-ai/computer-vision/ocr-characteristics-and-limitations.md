@@ -5,7 +5,7 @@ description: "Characteristics and limitations for optical character recognition 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 10/15/2025
 ---

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Stay up to date on recent releases and updates to Azure Vision in Foundry Tools.
 author: PatrickFarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.custom:
   - build-2023
   - ignite-2023

@@ -3,7 +3,7 @@ title: "Quickstart: Image Analysis client library for Node.js"
 description: Get started with the Image Analysis client library for Node.js with this quickstart
 author: PatrickFarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 09/30/2024
 ms.author: pafarley

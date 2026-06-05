@@ -5,7 +5,7 @@ description: "Guidance for how to deploy OCR responsibly, based on the knowledge
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: best-practice
 ms.date: 10/15/2025
 ---

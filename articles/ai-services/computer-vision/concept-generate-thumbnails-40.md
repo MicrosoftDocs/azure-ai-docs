@@ -5,7 +5,7 @@ description: Concepts related to generating thumbnails for images using the Imag
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

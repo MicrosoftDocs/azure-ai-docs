@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Read 3.2 OCR containers from Azure Vision in Foundry Tools to extract text from images and documents, on-premises.
 author: PatrickFarley
 manager: mcleans
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley

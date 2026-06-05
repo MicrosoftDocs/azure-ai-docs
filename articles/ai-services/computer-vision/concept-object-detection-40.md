@@ -5,7 +5,7 @@ description: Learn concepts related to the object detection feature of the Image
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 05/31/2025
 ms.author: pafarley

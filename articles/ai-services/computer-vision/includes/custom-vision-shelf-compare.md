@@ -5,7 +5,7 @@ services: cognitive-services
 author: PatrickFarley
 manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 12/04/2023
 ms.author: pafarley
