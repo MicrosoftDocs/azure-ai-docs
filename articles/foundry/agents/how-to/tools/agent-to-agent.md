@@ -28,10 +28,7 @@ You can extend the capabilities of your Microsoft Foundry agent by connecting to
 > [!TIP]
 > This article covers how to **call** a remote A2A endpoint from your Foundry agent. If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article.
 
-Connecting agents via the A2A tool versus a multi-agent workflow:
-
-- **Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
-- **Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
+When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
 
 ## Usage support
 
@@ -668,6 +665,5 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
 - [Register and manage custom agents](../../../control-plane/register-custom-agent.md)
-- [Build a workflow in Microsoft Foundry](../../concepts/workflow.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
 - [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)

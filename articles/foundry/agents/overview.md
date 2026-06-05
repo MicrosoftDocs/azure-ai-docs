@@ -19,7 +19,6 @@ keywords:
     - agent observability
     - hosted agents
     - prompt agents
-    - workflow agents
     - Microsoft Foundry
     - agent development lifecycle
 ---
@@ -35,7 +34,7 @@ Agent Service handles hosting, scaling, identity, observability, and enterprise 
 An agent is an AI application that uses a model from the Foundry model catalog to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
 
 * **Model**: A model from the Foundry model catalog that provides reasoning and language capabilities.
-* **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
+* **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based or hosted agent code.
 * **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
 :::image type="content" source="media/what-is-an-agent.png" alt-text="A diagram showing the components of an AI agent.":::
@@ -57,14 +56,12 @@ Ready to get started with agents? Choose your path based on how you want to buil
 
 - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
 - **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
-- **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
 
 ## Agent types
 
-Agent Service supports three types of agents, each designed for different needs:
+Agent Service supports two types of agents, each designed for different needs:
 
 * Prompt agents
-* Workflow agents (preview)
 * Hosted agents (preview)
 
 ### Prompt agents
@@ -72,12 +69,6 @@ Agent Service supports three types of agents, each designed for different needs:
 Prompt agents are defined entirely through configuration — instructions, model selection, and tools. Create them in the Foundry portal or through the API or SDKs, and Agent Service handles the orchestration and hosting automatically.
 
 **Best for**: Rapid prototyping, internal tools, and agents that don't need custom orchestration logic. Create a working agent in minutes using the portal.
-
-### Workflow agents (preview)
-
-[Workflow agents](concepts/workflow.md) orchestrate a sequence of actions or coordinate multiple agents using declarative definitions. Build workflows visually in the Foundry portal or define them in YAML through Visual Studio Code. Workflows support branching logic, human-in-the-loop steps, and sequential or group-chat patterns.
-
-**Best for**: Multi-step orchestration, agent-to-agent coordination, approval workflows, and scenarios that need repeatable automation without custom code.
 
 ### Hosted agents (preview)
 
@@ -90,12 +81,12 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 ### Compare agent types
 
-| | Prompt agents | Workflow agents | Hosted agents (preview) |
-| --- | --- | --- | --- |
-| **Code required** | No | No (YAML optional) | Yes |
-| **Hosting** | Fully managed | Fully managed | Container-based, managed |
-| **Orchestration** | Single agent | Multi-agent, branching | Custom logic |
-| **Best for** | Prototyping, simple tasks | Multi-step automation | Full control, custom frameworks |
+| | Prompt agents | Hosted agents (preview) |
+| --- | --- | --- |
+| **Code required** | No | Yes |
+| **Hosting** | Fully managed | Container-based, managed |
+| **Orchestration** | Single agent | Custom logic |
+| **Best for** | Prototyping, simple tasks | Full control, custom frameworks |
 
 ## Model support
 
@@ -141,7 +132,7 @@ For a detailed walkthrough, see [Agent development lifecycle](concepts/developme
 Agent Service provides enterprise-grade infrastructure for every agent you deploy:
 
 - **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials. Agent identities can authenticate to external MCP servers, including those hosted on Azure Functions, and OAuth On-Behalf-Of (OBO) passthrough is supported when configured.
-- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents and workflow agents. Hosted agents support bring-your-own Azure Virtual Network (BYO VNet), where each session runs in a VM-isolated sandbox connected to your VNet.
+- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents. Hosted agents support bring-your-own Azure Virtual Network (BYO VNet), where each session runs in a VM-isolated sandbox connected to your VNet.
 - **Role-based access control** — Fine-grained permissions through Microsoft Entra and Azure RBAC. Control who can create, invoke, and manage agents.
 - **Content safety** — Integrated content filters help mitigate prompt injection risks (including cross-prompt injection) and prevent unsafe outputs.
 
