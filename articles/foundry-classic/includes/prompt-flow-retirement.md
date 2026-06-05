@@ -21,6 +21,6 @@ ai-usage: ai-assisted
 > VS Code extensions, and related Prompt flow container images, will no longer be supported or available.
  > 
 > If your application depends on Prompt flow deployments or runtime images, plan to move those workloads to supported 
-> alternatives such as [Microsoft Agent Framework](/agent-framework/) before the retirement date. For migration guidance, see the Prompt flow [migration guide](../how-to/prompt-flow-migration-overview.md) and migration code samples.
+> alternatives such as [Microsoft Agent Framework](/agent-framework/) before the retirement date. For migration guidance, see the Prompt flow [migration guide](../how-to/prompt-flow-migration-overview.md) and migration [code samples](https://github.com/microsoft/promptflow/tree/main/migration-guide/PromptFlow-to-MAF).
 
 
