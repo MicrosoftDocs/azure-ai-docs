@@ -8,7 +8,7 @@ ms.date: 03/11/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription/1.0.0-beta.1) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/transcription/Azure.AI.Speech.Transcription/samples)
+[!INCLUDE [Reference links](transcription-sdk-reference-csharp.md)]
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Install the required packages:
 
     ```dotnetcli
-    dotnet add package Azure.AI.Speech.Transcription --prerelease
+    dotnet add package Azure.AI.Speech.Transcription
     dotnet add package Azure.Identity
     ```
 
@@ -80,7 +80,7 @@ using FileStream audioStream = File.OpenRead(audioFilePath);
 TranscriptionOptions options = new TranscriptionOptions(audioStream);
 ClientResult<TranscriptionResult> response = await client.TranscribeAsync(options);
 
-var channelPhrases = response.Value.PhrasesByChannel.First();
+var channelPhrases = response.Value.CombinedPhrases.First();
 Console.WriteLine(channelPhrases.Text);
 ```
 
@@ -97,9 +97,7 @@ The transcribed text from your audio file prints to the console.
 To access timestamps, confidence scores, and individual words, iterate over phrases:
 
 ```csharp
-var channelPhrases = response.Value.PhrasesByChannel.First();
-
-foreach (TranscribedPhrase phrase in channelPhrases.Phrases)
+foreach (TranscribedPhrase phrase in response.Value.Phrases)
 {
     Console.WriteLine($"\nPhrase: {phrase.Text}");
     Console.WriteLine($"  Offset: {phrase.Offset} | Duration: {phrase.Duration}");
@@ -132,8 +130,7 @@ TranscriptionOptions options = new TranscriptionOptions(audioStream)
 
 ClientResult<TranscriptionResult> response = await client.TranscribeAsync(options);
 
-var channelPhrases = response.Value.PhrasesByChannel.First();
-foreach (TranscribedPhrase phrase in channelPhrases.Phrases)
+foreach (TranscribedPhrase phrase in response.Value.Phrases)
 {
     Console.WriteLine($"Speaker {phrase.Speaker}: {phrase.Text}");
 }
