@@ -308,7 +308,7 @@ The following ingestion parameter properties control how uploaded files are proc
 
 After the knowledge source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
-The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. If the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
+The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. REST calls and the .NET SDK set this header directly, while the Python SDK accepts a `filename` parameter and builds the header automatically. If the header isn't set, the service assigns an auto-generated `fileName`.
 
 ::: zone pivot="csharp"
 
@@ -444,8 +444,6 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
   ]
 }
 ```
-
-**Reference:** [Knowledge Sources - List Files](/rest/api/searchservice/knowledge-sources/list-files?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
 
