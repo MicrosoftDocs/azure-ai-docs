@@ -93,7 +93,7 @@ For bundled mode, see [Package the zip manually](#package-the-zip-manually) for 
 
 ## Deploy using the REST API
 
-Use the REST API for direct HTTP-based deployments or custom tooling. The sections below walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
+Use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-based deployments or custom tooling. The sections below walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
 
 ### Set up variables
 
