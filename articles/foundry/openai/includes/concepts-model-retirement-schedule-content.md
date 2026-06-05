@@ -279,9 +279,9 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-08-31 | — |
-| Stable-Image-Core | 1 | Deprecated | 2026-08-31 | — |
-| Stable-Image-Ultra | 1 | Deprecated | 2026-08-31 | — |
+| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Image-Core | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Image-Ultra | 1 | Deprecated | 2026-07-31 | — |
 
 ## Related content
 
