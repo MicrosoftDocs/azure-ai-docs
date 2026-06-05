@@ -369,12 +369,7 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 <binary file content>
 ```
 
-**Reference:** [Knowledge Source Files - Upload](/rest/api/searchservice/knowledge-source-files/upload?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
-
-::: zone-end
-
-> [!NOTE]
-> Uploading a file doesn't replace an existing file, even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
+**Reference:** [Knowledge Sources - Upload File](/rest/api/searchservice/knowledge-sources/upload-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true), even if you reuse the same `fileName`. Each upload creates a new file with its own `fileId`, so the list of uploaded files can contain multiple entries that share a `fileName`.
 >
 > To replace content, delete the prior file by `fileId` before or after the new upload.
 
@@ -424,11 +419,11 @@ GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-prev
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Source Files - List](/rest/api/searchservice/knowledge-source-files/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - List Files](/rest/api/searchservice/knowledge-sources/list-files?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
-A response includes metadata for each uploaded file. The `errorMessage` value is `null` when the upload is processed without an error.
+A response includes metadata for each uploaded file.The `errorMessage` value is `null` when the upload is processed without an error.
 
 ```json
 {
@@ -445,7 +440,7 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
-**Reference:** [Knowledge Source Files - List](/rest/api/searchservice/knowledge-source-files/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - List Files](/rest/api/searchservice/knowledge-sources/list-files?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
 
@@ -490,11 +485,7 @@ DELETE {{search-url}}/knowledgesources/my-file-ks/files/file-abc123?api-version=
 api-key: {{api-key}}
 ```
 
-**Reference:** [Knowledge Source Files - Delete](/rest/api/searchservice/knowledge-source-files/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
-
-::: zone-end
-
-## Assign to a knowledge base
+**Reference:** [Knowledge Sources - Delete File](/rest/api/searchservice/knowledge-sources/delete-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
