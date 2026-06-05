@@ -331,6 +331,8 @@ KnowledgeSourceFile uploadedFile = (await indexClient.UploadKnowledgeSourceFileA
 Console.WriteLine($"Uploaded file ID: {uploadedFile.FileId}");
 ```
 
+**Reference:** [SearchIndexClient.UploadKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -352,6 +354,8 @@ uploaded_file = index_client.upload_knowledge_source_file(
 print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
 
+**Reference:** [SearchIndexClient.upload_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -364,6 +368,8 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 
 <binary file content>
 ```
+
+**Reference:** [Knowledge Source Files - Upload](/rest/api/searchservice/knowledge-source-files/upload?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -391,6 +397,8 @@ await foreach (KnowledgeSourceFile file in indexClient.GetKnowledgeSourceFilesAs
 }
 ```
 
+**Reference:** [SearchIndexClient.GetKnowledgeSourceFilesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -405,6 +413,8 @@ for file in index_client.list_knowledge_source_files("my-file-ks"):
     print(f"{file.file_name} ({file.file_size_bytes} bytes) error={file.error_message}")
 ```
 
+**Reference:** [SearchIndexClient.list_knowledge_source_files](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -413,6 +423,8 @@ for file in index_client.list_knowledge_source_files("my-file-ks"):
 GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
 api-key: {{api-key}}
 ```
+
+**Reference:** [Knowledge Source Files - List](/rest/api/searchservice/knowledge-source-files/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -433,6 +445,8 @@ A response includes metadata for each uploaded file. The `errorMessage` value is
 }
 ```
 
+**Reference:** [Knowledge Source Files - List](/rest/api/searchservice/knowledge-source-files/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
 Because uploads are synchronous, a file is ready for retrieval as soon as its upload call succeeds. If processing fails, the upload response and any subsequent list entry include a non-`null` `errorMessage`. Review the value for unsupported file types, extraction failures, model access issues, or quota limits.
 
 ## Delete uploaded files
@@ -450,6 +464,8 @@ var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCre
 await indexClient.DeleteKnowledgeSourceFileAsync("my-file-ks", "file-abc123");
 ```
 
+**Reference:** [SearchIndexClient.DeleteKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -463,6 +479,8 @@ index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCrede
 index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
 ```
 
+**Reference:** [SearchIndexClient.delete_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -471,6 +489,8 @@ index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
 DELETE {{search-url}}/knowledgesources/my-file-ks/files/file-abc123?api-version=2026-05-01-preview
 api-key: {{api-key}}
 ```
+
+**Reference:** [Knowledge Source Files - Delete](/rest/api/searchservice/knowledge-source-files/delete?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 

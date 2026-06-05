@@ -360,11 +360,13 @@ To surface document-embedded images (such as diagrams or scans) in answer synthe
 
 ## Known errors
 
-If you get the following similar temporary error when creating a knowledge source with `contentExtractionMode` with `Standard` as a value:
+When you create this knowledge source with `contentExtractionMode` set to `standard`, you might see the following error.
+
+```json
 Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
+```
 
-Refer to [this Content Understanding setup](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites) so you can define the default values, so you can proceed with the knowledge store creation, right after.
-
+To resolve the error, define default values as instructed in the [Content Understanding prerequisites](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites). Afterwards, you can proceed with creating the knowledge source.
 
 ## Related content
 
