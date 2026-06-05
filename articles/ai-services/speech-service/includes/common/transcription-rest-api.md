@@ -2,9 +2,10 @@
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 01/31/2026
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -54,14 +55,14 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 
 - Replace `YourSpeechResourceKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey' \
 --form 'audio=@"YourAudioFile"' \
@@ -308,14 +309,14 @@ The following example shows how to transcribe an audio file with language identi
 > The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription](?tabs=multilingual-transcription-on).
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey' \
 --form 'audio=@"YourAudioFile"' \
@@ -597,14 +598,14 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 The following example shows how to transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey' \
 --form 'audio=@"YourAudioFile"' \
@@ -1212,7 +1213,7 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 The following example shows how to transcribe an audio file with diarization enabled. Diarization distinguishes between different speakers in the conversation. The Speech service provides information about which speaker was speaking a particular part of the transcribed speech.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!NOTE]
@@ -1222,7 +1223,7 @@ The following example shows how to transcribe an audio file with diarization ena
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey' \
 --form 'audio=@"YourAudioFile"' \
@@ -1487,14 +1488,14 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 The following example shows how to transcribe an audio file that has one or two channels. Multi-channel transcriptions are useful for audio files with multiple channels, such as audio files with multiple speakers or audio files with background noise. By default, the fast transcription API merges all input channels into a single channel and then performs the transcription. If this isn't desirable, channels can be transcribed independently without merging.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey' \
 --form 'audio=@"YourAudioFile"' \

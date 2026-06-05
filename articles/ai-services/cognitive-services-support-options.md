@@ -3,7 +3,7 @@ title: Foundry Tools support and help options
 description: Learn how to obtain help and support for questions and problems when you create applications that integrate with Foundry Tools.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: concept-article
 ms.date: 10/02/2025
 ms.author: pafarley

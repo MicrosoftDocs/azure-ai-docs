@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to configure the Document Intelligence container to parse form and table data.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: lajanuar

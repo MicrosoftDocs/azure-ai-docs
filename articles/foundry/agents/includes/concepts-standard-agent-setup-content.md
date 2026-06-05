@@ -75,9 +75,6 @@ Standard setup enforces project-level data isolation by default. Two blob storag
 
 ## Provision resources step by step
 
-> [!NOTE]
-> The Foundry portal currently supports only basic agent setup. To configure standard agent setup, use the manual steps or the Bicep template described in this section.
-
 ### Manual provisioning
 
 Follow these steps to manually provision all resources needed for standard agent setup. Allow approximately 30-45 minutes for the full provisioning process.
@@ -134,7 +131,9 @@ The project managed identity includes both System-assigned Managed Identity (SMI
 
 #### Phase 6: Grant developer access
 
-11. Assign all developers who need to create or edit agents in the project the **Azure AI User** role on the project scope.
+11. Assign all developers who need to create or edit agents in the project the **Foundry User** role on the project scope.
+
+   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Use a Bicep template
 
@@ -234,7 +233,7 @@ After you complete provisioning, verify the setup is working correctly:
 | `CapabilityHostProvisioningFailed` or capability host status shows **Failed** | Insufficient Cosmos DB throughput | Ensure your Cosmos DB account has at least 3000 RU/s (1000 RU/s per container × 3 containers). For multiple projects, multiply by the number of projects. |
 | `403 Forbidden` when the agent reads or writes files | Missing storage role assignments | Verify the project managed identity has **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container and **Storage Blob Data Owner** on the `<workspaceId>-agents-blobstore` container. |
 | `SearchIndexNotFound` or `403` on search operations | Missing search roles | Confirm that the project managed identity has both **Search Index Data Contributor** and **Search Service Contributor** on your Azure AI Search resource. |
-| `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Azure AI User** role to the developer on the project scope. |
+| `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Foundry User** role to the developer on the project scope. |
 | Update request to capability host returns `400 BadRequest` | Update not supported | Capability hosts can't be updated after creation. Delete and recreate the project if configuration changes are needed. |
 
 ## Related content

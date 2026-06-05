@@ -3,7 +3,7 @@ title: "Get started: Document Intelligence client library for Java v2.1"
 description: Use the Document Intelligence SDK for Java to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar

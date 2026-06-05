@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 11/09/2025
 ms.topic: how-to
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
 ai-usage: ai-assisted
 ---
@@ -42,9 +42,11 @@ az cognitiveservices account identity assign --name ${foundry_resource} --resour
 # Get the system-assigned managed identity object ID
 identity_principal_id=$(az cognitiveservices account show --name ${foundry_resource} --resource-group ${resource_group} --subscription ${subscription_id} --query "identity.principalId" -o tsv)
 
-# Assign the Azure AI User role to the system identity of the foundry resource
-az role assignment create --assignee-object-id ${identity_principal_id} --role "Azure AI User" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
+# Assign the Foundry User role to the system identity of the foundry resource
+az role assignment create --assignee-object-id ${identity_principal_id} --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
 ```
+
+[!INCLUDE [role-rename-note-code](../../foundry/includes/role-rename-note-code.md)]
 
 ### Cross-resource authentication
 
@@ -73,11 +75,11 @@ identity_principal_id=$(az cognitiveservices account show \
     --subscription ${subscription_id_for_voice_live} \
     --query "identity.principalId" -o tsv)
 
-# Assign the Azure AI User role to the Voice Live resource's
+# Assign the Foundry User role to the Voice Live resource's
 # system identity on the model Foundry resource
 az role assignment create \
     --assignee-object-id ${identity_principal_id} \
-    --role "Azure AI User" \
+    --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
     --scope /subscriptions/${subscription_id_for_model}/resourceGroups/${resource_group_for_model}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource_for_model}
 ```
 
@@ -87,7 +89,7 @@ The Voice Live API supports three BYOM integration modes:
 
 | Mode                                | Description                                                                                           | Example Models                          |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                         | `gpt-realtime`, `gpt-realtime-mini`     |
+| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                        | `gpt-realtime`, `gpt-realtime-mini`     |
 | `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
 | `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
 
@@ -101,7 +103,7 @@ The Voice Live API supports three BYOM integration modes:
 Update the endpoint URL in your API call to include your BYOM configuration:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
@@ -109,13 +111,13 @@ Get the `<your-model-deployment>` value from the Foundry portal. It corresponds 
 For example, to use an Anthropic Claude model deployed in Azure Foundry:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
 ```
 
 To use a model deployment from a different Foundry resource, add the `foundry-resource-override` parameter:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>&foundry-resource-override=<foundry-resource>
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&profile=<your-byom-mode>&model=<your-model-deployment>&foundry-resource-override=<foundry-resource>
 ```
 
 The `<foundry-resource>` value is the resource name without the domain suffix. For example, if the Foundry resource endpoint is `https://my-foundry-resource.services.ai.azure.com`, then use `my-foundry-resource`.
@@ -722,4 +724,4 @@ See each tab in the [Integrate BYOM](#integrate-byom) section for implementation
 
 - Try the [Voice Live quickstart](./voice-live-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

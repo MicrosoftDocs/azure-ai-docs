@@ -5,12 +5,13 @@ description: Custom speech provides base models for training and lets you create
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: heikora
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to understand the lifecycle of custom speech models and endpoints so that I can plan for the expiration of my models.
+ai-usage: ai-assisted
 ---
 
 # Custom speech model lifecycle
@@ -87,7 +88,7 @@ To get the training and transcription expiration dates for a base model, use the
 Here's an example Speech CLI command to get the training and transcription expiration dates for a base model:
 
 ```azurecli-interactive
-spx csr model status --api-version v3.2 --model https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/aaaabbbb-0000-cccc-1111-dddd2222eeee
+spx csr model status --api-version v3.2 --model https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 > [!IMPORTANT]
@@ -99,10 +100,10 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "datasets": [],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/1aae1070-7972-47e9-a977-87e3b05c457d/manifest"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/1aae1070-7972-47e9-a977-87e3b05c457d/manifest"
   },
   "properties": {
     "deprecationDates": {
@@ -131,10 +132,10 @@ spx help csr model
 
 To get the training and transcription expiration dates for a base model, use the [Models_GetBaseModel](/rest/api/speechtotext/models/get-base-model) operation of the [Speech to text REST API](rest-speech-to-text.md). You can make a [Models_ListBaseModels](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
 
-Make an HTTP GET request using the model URI as shown in the following example. Replace `BaseModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the model URI as shown in the following example. Replace `BaseModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/BaseModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/BaseModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 In the response, take note of the date in the `adaptationDateTime` property. This date is the last date that you can use the base model for training. Also take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use the base model for transcription.
@@ -143,10 +144,10 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "datasets": [],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/1aae1070-7972-47e9-a977-87e3b05c457d/manifest"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/1aae1070-7972-47e9-a977-87e3b05c457d/manifest"
   },
   "properties": {
     "deprecationDates": {
@@ -208,12 +209,12 @@ Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) ins
 
 To get the transcription expiration date for your custom model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
-- Set the `url` property to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
+- Set the `url` property to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourResourceName` with your Speech resource name.
 
 Here's an example Speech CLI command to get the transcription expiration date for your custom model:
 
 ```azurecli-interactive
-spx csr model status --api-version v3.2 --model https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId
+spx csr model status --api-version v3.2 --model https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/YourModelId
 ```
 
 > [!IMPORTANT]
@@ -225,21 +226,21 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/ccccdddd-2222-eeee-3333-ffff4444aaaa",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/ccccdddd-2222-eeee-3333-ffff4444aaaa",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/datasets/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/datasets/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
     }
   ],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7/manifest",
-    "copyTo": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7:copyto"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7/manifest",
+    "copyTo": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7:copyto"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/projects/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/projects/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "properties": {
     "deprecationDates": {
@@ -268,10 +269,10 @@ spx help csr model
 
 To get the transcription expiration date for your custom model, use the [Models_GetCustomModel](/rest/api/speechtotext/models/get-custom-model) operation of the [Speech to text REST API](rest-speech-to-text.md). 
 
-Make an HTTP GET request using the model URI as shown in the following example. Replace `YourModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the model URI as shown in the following example. Replace `YourModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/YourModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 In the response, take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use your custom model for transcription. The `adaptationDateTime` property isn't applicable, since custom models aren't used to train other custom models.
@@ -280,21 +281,21 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/ccccdddd-2222-eeee-3333-ffff4444aaaa",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/ccccdddd-2222-eeee-3333-ffff4444aaaa",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/datasets/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/datasets/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
     }
   ],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7/manifest",
-    "copyTo": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7:copyto"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7/manifest",
+    "copyTo": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/86c4ebd7-d70d-4f67-9ccc-84609504ffc7:copyto"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/projects/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/projects/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "properties": {
     "deprecationDates": {

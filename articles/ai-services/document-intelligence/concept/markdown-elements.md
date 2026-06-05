@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Layout API response and how to use the response in your applications.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

@@ -2,13 +2,13 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription/1.0.0-beta.1) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/transcription/Azure.AI.Speech.Transcription/samples)
+[!INCLUDE [Reference links](transcription-sdk-reference-csharp.md)]
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Install the required packages:
 
     ```dotnetcli
-    dotnet add package Azure.AI.Speech.Transcription --prerelease
+    dotnet add package Azure.AI.Speech.Transcription
     dotnet add package Azure.Identity
     ```
 
@@ -106,13 +106,10 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 }
 
 // Print detailed phrase information
-foreach (var channel in response.Value.PhrasesByChannel)
+Console.WriteLine("\nDetailed phrases:");
+foreach (var phrase in response.Value.Phrases)
 {
-    Console.WriteLine("\nDetailed phrases:");
-    foreach (var phrase in channel.Phrases)
-    {
-        Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
-    }
+    Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
 }
 ```
 

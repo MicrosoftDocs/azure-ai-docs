@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how Azure Speech provides speech to text, text to speech, and speech translation so that you can add speech to your applications and devices.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026
 ms.author: pafarley

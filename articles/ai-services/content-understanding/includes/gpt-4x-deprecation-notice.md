@@ -3,7 +3,7 @@ title: GPT-4.1 model family deprecation notice
 description: GPT-4.1 model family deprecation notice
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 05/07/2026
 ms.custom: include

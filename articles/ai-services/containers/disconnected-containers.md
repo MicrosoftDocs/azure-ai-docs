@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to run Foundry Tools Docker containers disconnected from the internet.
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: reference

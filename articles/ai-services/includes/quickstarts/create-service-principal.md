@@ -2,7 +2,7 @@
 title: Create an Azure service principal
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 09/01/2020
 ms.author: pafarley

@@ -1,12 +1,13 @@
 ---
-title: "Create and Use Memory"
-description: "Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions."
+title: Create and Use Memory
+description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 06/02/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -16,7 +17,13 @@ zone_pivot_groups: foundry-memory-store
 # Create and use memory in Foundry Agent Service (preview)
 
 > [!IMPORTANT]
-> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all), the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The latest preview offers new capabilities and enhancements, including:
+>
+> - Memory item operations to create, read, update, list, and delete individual memory records.
+> - Store-level default retention controls, including default TTL for newly created memory stores.
+> - Direct remember-or-forget synchronized memory command behavior.
 
 Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
@@ -29,8 +36,9 @@ This article explains how to create, manage, and use memory stores. For conceptu
 | Capability | Python SDK | C# SDK | JavaScript SDK | REST API |
 |---|---|---|---|---|
 | Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ | ✔️ |
-| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ |
 | Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ | ✔️ |
+| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ |
+| Create, read, update, list, and delete memory items | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -55,7 +63,9 @@ To configure role-based access:
 1. On the resource that contains your project:
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
-    1. Assign **Azure AI User** to the managed identity of your project.
+    1. Assign **Foundry User** to the managed identity of your project.
+
+       [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ### Set up your environment
 
@@ -144,6 +154,8 @@ When you call [memory APIs](#use-memories-via-apis) directly, specify `scope` ex
 
 Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process your memory content.
 
+Use memory store options to control extraction behavior and retention defaults. In the latest preview, you can enable procedural memory and set a default TTL (seconds) for newly created memory entries.
+
 :::zone pivot="python"
 
 ```python
@@ -163,6 +175,8 @@ memory_store_name = "my_memory_store"
 options = MemoryStoreDefaultOptions(
     chat_summary_enabled=True,
     user_profile_enabled=True,
+    procedural_memory_enabled=True,
+    default_ttl_seconds=30 * 24 * 60 * 60,
     user_profile_details="Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
 )
 
@@ -179,7 +193,7 @@ definition = MemoryStoreDefaultDefinition(
 memory_store = project_client.beta.memory_stores.create(
     name=memory_store_name,
     definition=definition,
-    description="Memory store for customer support agent",
+    description="Memory store with procedural memory and 30-day default TTL",
 )
 
 print(f"Created memory store: {memory_store.name}")
@@ -299,7 +313,7 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
   -H "Content-Type: application/json" \
   -d '{
     "name": "my_memory_store",
-    "description": "Memory store for customer support agent",
+    "description": "Memory store with procedural memory and 30-day default TTL",
     "definition": {
       "kind": "default",
       "chat_model": "'"${MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME}"'",
@@ -307,6 +321,8 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
       "options": {
         "chat_summary_enabled": true,
         "user_profile_enabled": true,
+        "procedural_memory_enabled": true,
+        "default_ttl_seconds": 2592000,
         "user_profile_details": "Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
       }
     }
@@ -316,8 +332,9 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
 :::zone-end
 
 > [!TIP]
-> + The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
-> + The C# snippets in this article use synchronous methods. For asynchronous usage, see the [memory search tool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md) and [memory store](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) samples.
+> - The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
+>
+> - The C# snippets in this article use synchronous methods. For asynchronous usage, see the [memory search tool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md) and [memory store](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) samples.
 
 ### Customize memory
 
@@ -326,6 +343,14 @@ Customize what information the agent stores to keep memory efficient, relevant, 
 For example, set `user_profile_details` to prioritize "flight carrier preference and dietary restrictions" for a travel agent. This focused approach helps the memory system know which details to extract, summarize, and commit to long-term memory.
 
 You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials."
+
+### Configure TTL and retention policies
+
+TTL applies to all memories, whether from direct memory commands, extraction and consolidation, or item-level CRUD operations. If a memory is updated and consolidated, the service resets its last-updated time.
+
+TTL applies only to memory stores created after TTL support was introduced. It doesn't affect existing memory stores.
+
+A `default_ttl_seconds` value of `0` indicates no expiration. Choose a retention period that matches your compliance and user-data lifecycle requirements.
 
 ## Update a memory store
 
@@ -586,6 +611,9 @@ You can now create conversations and request agent responses. At the start of ea
 
 After each agent response, the service internally calls `update_memories`. However, actual writes to long‑term memory are debounced by the `update_delay` setting. The update is scheduled and only completes after the configured period of inactivity.
 
+> [!NOTE]
+> In the updated preview schema, the memory search tool output uses a `memories` collection instead of the legacy `results` field. If you process raw output payloads, update your parsers accordingly.
+
 :::zone pivot="python"
 
 ```python
@@ -747,6 +775,106 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
     }'
 ```
 
+:::zone-end
+
+### Apply direct remember-or-forget behavior
+
+When a user explicitly asks the agent to remember or forget information, the memory search tool in the `tools` array applies the operation immediately and returns the result as memory command items in the response output. No additional tool configuration is required.
+
+> [!NOTE]
+> Direct memory commands don't override memory TTL. If a memory store has TTL configured, memory items can still expire, even if they were added by a remember command.
+
+:::zone pivot="python"
+
+```python
+openai_client = project_client.get_openai_client()
+
+# Configure the memory search tool
+tools = [
+    {
+        "type": "memory_search_preview",
+        "memory_store_name": memory_store_name,
+        "scope": scope,
+    }
+]
+
+# Ask the agent to remember information
+remember_response = openai_client.responses.create(
+    model=os.environ["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"],
+    tools=tools,
+    input="Remember that my preferred seat is aisle.",
+)
+
+for item in remember_response.output:
+    if getattr(item, "type", None) == "memory_command_call":
+        print(item.type)       # memory_command_call
+        print(item.arguments)  # {"action": "remember", "content": "..."}
+        print(item.status)     # completed
+
+# Ask the agent to forget information
+forget_response = openai_client.responses.create(
+    model=os.environ["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"],
+    tools=tools,
+    input="Forget my preferred seat.",
+)
+
+for item in forget_response.output:
+    if getattr(item, "type", None) == "memory_command_call":
+        print(item.type)
+        print(item.arguments)  # {"action": "forget", "content": "..."}
+        print(item.status)
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+# Reuse the {conversation-id} from the previous section
+# To scope memories to an end user, set x-memory-user-id in each request
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -H "x-memory-user-id: <user-id>" \
+  -d '{
+    "input": "Remember that my preferred seat is aisle.",
+    "conversation": "{conversation-id}",
+    "agent_reference": {
+      "type": "agent_reference",
+      "name": "MyAgent"
+    }
+  }'
+
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -H "x-memory-user-id: <user-id>" \
+  -d '{
+    "input": "Forget my preferred seat.",
+    "conversation": "{conversation-id}",
+    "agent_reference": {
+      "type": "agent_reference",
+      "name": "MyAgent"
+    }
+  }'
+```
+    
 :::zone-end
 
 ## Use memories via APIs
@@ -1111,6 +1239,242 @@ Often, user profile memories can't be retrieved based on semantic similarity to 
 
 For more information about user profile and chat summary memories, see [Memory types](../concepts/what-is-memory.md#memory-types).
 
+## Manage memory items
+
+Use item-level operations to directly create, inspect, update, and delete individual memory records. For scope-level or store-level deletion, see [Delete memories](#delete-memories).
+
+:::zone pivot="rest"
+
+> [!NOTE]
+> The latest preview uses `/memories` as the item-level path segment. The previous preview used `/items`, with `:list` for listing. If you're on the previous API version, update your routes accordingly.
+
+:::zone-end
+
+### Create a memory item
+
+:::zone pivot="python"
+
+```python
+# Create a memory item directly
+created = project_client.beta.memory_stores.create_memory(
+    name=memory_store_name,
+    scope="defaultUser",
+    content="User prefers concise changelogs with impact-first summaries.",
+    kind="user_profile",
+)
+
+print(f"Memory ID: {created.memory_id}")
+print(f"Content: {created.content}")
+print(f"Kind: {created.kind}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope": "defaultUser",
+    "content": "User prefers concise changelogs with impact-first summaries.",
+    "kind": "user_profile"
+  }'
+```
+
+:::zone-end
+
+### Get a memory item
+
+:::zone pivot="python"
+
+```python
+# Retrieve a memory item by ID
+item = project_client.beta.memory_stores.get_memory(
+    name=memory_store_name,
+    memory_id="<memory-item-id>",
+)
+
+print(f"Memory ID: {item.memory_id}")
+print(f"Content: {item.content}")
+print(f"Kind: {item.kind}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+:::zone-end
+
+### List memory items
+
+:::zone pivot="python"
+
+```python
+# List all memory items in the store
+memories = project_client.beta.memory_stores.list_memories(
+    name=memory_store_name,
+    scope="defaultUser",
+)
+
+count = 0
+for item in memories:
+    count += 1
+    print(f"- {item.memory_id} [{item.kind}]: {item.content}")
+
+print(f"Total memories: {count}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories?scope=user_123&api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+:::zone-end
+
+### Update a memory item
+
+:::zone pivot="python"
+
+```python
+# Update a memory item by ID
+updated = project_client.beta.memory_stores.update_memory(
+    name=memory_store_name,
+    memory_id="<memory-item-id>",
+    content="User prefers detailed technical explanations with examples.",
+)
+
+print(f"Updated: {updated.content}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{"content": "User prefers detailed technical explanations with examples."}'
+```
+
+:::zone-end
+
+### Delete a memory item
+
+:::zone pivot="python"
+
+```python
+# Delete a memory item by ID
+project_client.beta.memory_stores.delete_memory(
+    name=memory_store_name,
+    memory_id="<memory-item-id>",
+)
+
+print("Memory item deleted successfully")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```bash
+curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+:::zone-end
+
 ## Delete memories
 
 > [!WARNING]
@@ -1235,6 +1599,10 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 - **Monitor memory usage:** Track token usage and memory operations to understand costs and optimize performance.
 
+- **Expose user-facing memory controls:** Provide item-level edit and delete actions to support trust and data rights workflows.
+
+- **Set explicit retention defaults:** Use TTL settings that match policy requirements. Document retention behavior in your product UX.
+
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
@@ -1243,6 +1611,8 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 | Memories don’t appear after a conversation. | Memory updates are debounced or still processing. | Increase the wait time or call the update API with `update_delay` set to `0` to trigger processing immediately. |
 | Memory search returns no results. | The `scope` value doesn’t match the scope used when memories were stored. | Use the same scope for update and search. If you map scope to users, use a stable user identifier. |
 | The agent response doesn’t use stored memory. | The agent isn’t configured with the memory search tool, or the memory store name is incorrect. | Confirm the agent definition includes the `memory_search_preview` tool and references the correct memory store name. |
+| Procedural memory or default TTL setting didn't take effect after an update. | In the latest preview, you can only set default options at memory store creation time. | Recreate the memory store with the desired defaults or check whether your API version supports post-create option updates. |
+| An explicit remember-or-forget request didn't return memory command items in the response. | Memory tooling isn't configured correctly, or the input wasn't recognized as a remember-or-forget command. | Confirm the memory tool configuration and test with direct remember-or-forget phrasing. |
 
 ## Related content
 

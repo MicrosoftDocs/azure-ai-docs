@@ -4,18 +4,26 @@ description: Phrase lists can be used to customize speech recognition results ba
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 06/02/2026
 zone_pivot_groups: programming-languages-set-two-with-js-spx
 #Customer intent: As a developer using speech to text, I want to learn how to improve recognition accuracy with phrase list.
+ai-usage: ai-assisted
 ---
 
 # Improve recognition accuracy with phrase list
 
 A phrase list is a list of words or phrases provided ahead of time to help improve their recognition. Adding a phrase to a phrase list increases its importance, thus making it more likely to be recognized.
-You can add phrase list in real-time transcription and fast transcription.
+
+> [!IMPORTANT]
+> Phrase list is a **runtime recognition feature** applied at the endpoint level. It works with:
+> - Real-time transcription (Speech SDK, Speech CLI, Speech Studio)
+> - Fast transcription API
+> - Voice Live API
+>
+> Phrase list works with both base and custom speech endpoints. It doesn't require model training and isn't available with batch transcription.
 
 Examples of phrases include:
 * Names
@@ -27,13 +35,10 @@ Phrase lists are simple and lightweight:
 - **Just-in-time**: A phrase list is provided just before starting the speech recognition, eliminating the need to train a custom model. 
 - **Lightweight**: You don't need a large data set. Provide a word or phrase to boost its recognition.
 
-For supported phrase list locales, see [Language and voice support for the Speech service](language-support.md?tabs=phraselist).
-
 You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). It's supported with [Real-time transcription](./how-to-recognize-speech.md) and [Fast transcription API](./fast-transcription-create.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
 
-You can use phrase lists with both standard and [custom speech](custom-speech-overview.md). There are some situations where training a custom model that includes phrases is likely the best option to improve accuracy. For example, in the following cases you would use custom speech: 
-- If you need to use a large list of phrases. A phrase list shouldn't have more than 500 phrases. 
-- If you need a phrase list for languages that aren't currently supported.
+You can use phrase lists with both base (standard) endpoints and [custom speech](custom-speech-overview.md) endpoints. Phrase list is applied at runtime and doesn't require model training. There are some situations where training a custom model that includes phrases is likely the best option to improve accuracy. For example, in the following cases you would use custom speech instead:
+- If you need to use a large list of phrases. A phrase list shouldn't have more than 500 phrases.
 
 ## Phrase list weight
 
@@ -179,7 +184,7 @@ Allowed characters include locale-specific letters and digits, white space chara
 You can add a list of phrases in fast transcription via [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe)
 
 ```azurecli-interactive
-curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey' \
 --form 'audio=@"YourAudioFile"' \
 --form 'definition={

@@ -4,7 +4,7 @@ metadata:
   description: Get answers to frequently asked questions about Document Intelligence.
   author: laujan
   manager: nitinme
-  ms.service: azure-ai-document-intelligence
+  ms.service: azure-document-intelligence-foundry-tools
   ms.custom: references_regions
   ms.topic: faq
   ms.date: 11/18/2025

@@ -4,11 +4,12 @@ titleSuffix: Foundry Tools
 description: This article provides information to help you solve issues you might encounter when you use the Speech SDK.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: troubleshooting
 ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to troubleshoot issues with the Speech SDK.
+ai-usage: ai-assisted
 ---
 
 # Troubleshoot Speech SDK issues
@@ -31,7 +32,7 @@ For baseline authentication troubleshooting tips, see [validate your resource ke
 You can verify that you have a valid resource key by running one of the following commands.
 
 > [!NOTE]
-> Replace `YOUR_RESOURCE_KEY` and `YOUR_REGION` with your own resource key and associated region.
+> Replace `YOUR_RESOURCE_KEY` with your Speech resource key and `YourResourceName` with your Speech resource name.
 
 # [PowerShell](#tab/powershell)
 
@@ -41,14 +42,14 @@ $FetchTokenHeader = @{
     'Content-Length'= '0'
     'Ocp-Apim-Subscription-Key' = 'YOUR_RESOURCE_KEY'
 }
-$OAuthToken = Invoke-RestMethod -Method POST -Uri https://YOUR_REGION.api.cognitive.microsoft.com/sts/v1.0/issueToken -Headers $FetchTokenHeader
+$OAuthToken = Invoke-RestMethod -Method POST -Uri https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken -Headers $FetchTokenHeader
 $OAuthToken
 ```
 
 # [cURL](#tab/curl)
 
 ```
-curl -v -X POST "https://YOUR_REGION.api.cognitive.microsoft.com/sts/v1.0/issueToken" -H "Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY" -H "Content-type: application/x-www-form-urlencoded" -H "Content-Length: 0"
+curl -v -X POST "https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken" -H "Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY" -H "Content-type: application/x-www-form-urlencoded" -H "Content-Length: 0"
 ```
 
 ---
@@ -64,13 +65,13 @@ If you're using an authorization token for authentication, you might see an auth
 If you use an authorization token for authentication, run one of the following commands to verify that the authorization token is still valid. Tokens are valid for 10 minutes.
 
 > [!NOTE]
-> Replace `YOUR_AUDIO_FILE` with the path to your prerecorded audio file. Replace `YOUR_ACCESS_TOKEN` with the authorization token returned in the preceding step. Replace `YOUR_REGION` with the correct region.
+> Replace `YOUR_AUDIO_FILE` with the path to your prerecorded audio file. Replace `YOUR_ACCESS_TOKEN` with the authorization token returned in the preceding step. Replace `YourResourceName` with your Speech resource name.
 
 # [PowerShell](#tab/powershell)
 
 ```powershell
 $SpeechServiceURI =
-'https://YOUR_REGION.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?language=en-US'
+'https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?language=en-US'
 
 # $OAuthToken is the authorization token returned by the token service.
 $RecoRequestHeader = @{
@@ -91,7 +92,7 @@ $RecoResponse
 # [cURL](#tab/curl)
 
 ```
-curl -v -X POST "https://YOUR_REGION.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?language=en-US" -H "Authorization: Bearer YOUR_ACCESS_TOKEN" -H "Transfer-Encoding: chunked" -H "Content-type: audio/wav; codec=audio/pcm; samplerate=16000" --data-binary @YOUR_AUDIO_FILE
+curl -v -X POST "https://YourResourceName.cognitiveservices.azure.com/stt/speech/recognition/interactive/cognitiveservices/v1?language=en-US" -H "Authorization: Bearer YOUR_ACCESS_TOKEN" -H "Transfer-Encoding: chunked" -H "Content-type: audio/wav; codec=audio/pcm; samplerate=16000" --data-binary @YOUR_AUDIO_FILE
 ```
 
 ---

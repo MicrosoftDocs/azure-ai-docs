@@ -3,14 +3,16 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 02/06/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ---
 ## Prerequisites
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project has the Azure AI Account Owner role at the subscription level assigned. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project has the Foundry Account Owner role at the subscription level assigned. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+
+  [!INCLUDE [role-rename-note](../../../../../foundry/includes/role-rename-note.md)]
 * **Foundry resource**. Create a [Foundry resource](../../../../multi-service-resource.md) or see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternatively, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project**. For more information, see [Create a Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
@@ -22,6 +24,7 @@ ai-usage: ai-assisted
 You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
+>
 > * Detect the language of input text
 > * Review confidence scores and ISO language codes
 > * Configure country/region hints for improved accuracy
@@ -70,19 +73,20 @@ After the operation completes, the **Details** section displays the following fi
 
 Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country/region hint** for better accuracy.
 
-### [Foundry (new)](#tab/foundry-new)
+### [New Foundry](#tab/new-foundry)
 
 > [!NOTE]
-> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools. For more information, see [What is Microsoft Foundry?](../../../../../ai-foundry/what-is-foundry.md). To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [new Foundry](https://ai.azure.com/) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools. For more information, see [What is Microsoft Foundry?](../../../../../ai-foundry/what-is-foundry.md). To confirm that you're using new Foundry, make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-You can use [Foundry (new)](https://ai.azure.com/) to:
+You can use [new Foundry](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
+>
 > * Detect the language of input text
 > * Review confidence scores and ISO language codes
 > * Configure country/region hints for improved accuracy
 
-## Navigate to the Foundry (new) playground
+## Navigate to the new Foundry playground
 
 The active project appears in the upper-left corner. To create a new project:
 
@@ -90,7 +94,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the new Foundry homepage":::
 
 There are two ways to access the Language Detection interface:
 
@@ -128,3 +132,19 @@ After you make your selections, choose the **Detect** button. Then review the te
   |**Detected script code**| The ISO 15924 script code for the detected script (writing system).|
 
 Verify that the detected language matches the language of your input text. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
+
+## Open in Visual Studio Code 🆕
+
+After validating your scenario in the playground, select **Open in VS Code** to carry your current configuration directly into a development environment—no manual setup required.
+
+1. Configure your scenario in the playground:
+   - Select your API version and model version.
+   - Enter and test your sample input.
+   - Adjust options such as API version, model version, and country/region hint.
+1. Select **Open in VS Code**.
+1. Visual Studio Code opens with a preconfigured code sample that reflects your playground configuration, including your API version, model, and language detection settings.
+
+> [!TIP]
+> Use the playground to compare outputs across API versions—for example, preview versus GA—before exporting your configuration to code.
+
+---

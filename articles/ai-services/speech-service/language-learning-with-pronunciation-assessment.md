@@ -3,7 +3,7 @@ title: Interactive language learning with pronunciation assessment
 description: Interactive language learning with pronunciation assessment gives you instant feedback on pronunciation, fluency, prosody, grammar, and vocabulary through interactive chats.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley
@@ -76,4 +76,4 @@ To get started with language learning through chatting, follow these steps:
 
 - Use [pronunciation assessment with the Speech SDK](how-to-pronunciation-assessment.md)
 - Try [pronunciation assessment in the studio](pronunciation-assessment-tool.md).
-- Read our [pronunciation assessment blog](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/speech-pronunciation-assessment-is-generally-available/ba-p/3740894) to learn more speech scenarios.
+- Read our [pronunciation assessment blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/speech-pronunciation-assessment-is-generally-available/3740894) to learn more speech scenarios.

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about speech to text benefits and capabilities, including real-time, fast, and batch transcription options for your applications.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026
 ms.author: pafarley

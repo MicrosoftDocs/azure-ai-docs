@@ -1,5 +1,31 @@
 ### YamlMime:ZonePivotGroups
 groups:
+- id: foundry-routines-config
+# Owner: zhuoqunli
+  title: Configuration method
+  prompt: Choose your configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python SDK
+  - id: programming-language-javascript
+    title: JavaScript SDK
+  - id: azd
+    title: Azure Developer CLI
+# Owner: aahi
+- id: foundry-connector-config
+  title: Interface
+  prompt: Choose a configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST API
+  - id: azd
+    title: Azure Developer CLI
 - id: programming-languages-portal-cli-ps
 # Owner: eur
   title: Programming languages
@@ -753,6 +779,15 @@ groups:
     title: Speech Studio
   - id: rest-api
     title: REST
+- id: foundry-portal-rest
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: rest-api
+    title: REST
 - id: speech-studio-rest
 # Owner: eur
   title: Programming languages
@@ -863,8 +898,8 @@ groups:
       title: REST
 - id: models-sold-directly-by-azure
 # Owner: mopeakande
-  title: Azure direct models
-  prompt: Choose a collection from Foundry Models sold directly by Azure
+  title: Foundry Models sold by Azure
+  prompt: Choose a collection from Foundry Models sold by Azure
   pivots:
     - id: azure-openai
       title: Azure OpenAI models
@@ -872,8 +907,8 @@ groups:
       title: Other model collections
 - id: adm-region-availability
 # Owner: mopeakande
-  title: Region availability for Azure direct models
-  prompt: Choose a deployment category for your Foundry Model
+  title: Region availability for Foundry Models sold by Azure
+  prompt: Choose a deployment category for your Foundry Model sold by Azure
   pivots:
     - id: standard
       title: Standard deployment options
@@ -1297,6 +1332,14 @@ groups:
     title: Java 
   - id: rest-api
     title: REST API
+- id: responses-api-language
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 - id: selection-code-interpreter-new
   title: Selections
   prompt: What would you like to see?
@@ -1818,6 +1861,32 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+- id: how-to-voice-live-function-calling
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+- id: how-to-voice-live-telemetry
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -2077,6 +2146,50 @@ groups:
   - id: rest
     title: REST
 # Owner: aahi
+- id: selection-fabric-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-foundry-tool-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
+  - id: rest-api
+    title: REST API
+# Owner: aahi
+- id: selection-work-iq
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
+  - id: javascript
+    title: JavaScript
+  - id: vscode
+    title: VS Code
+  - id: rest-api
+    title: REST API
 - id: selection-foundry-toolbox
   title: Selections
   prompt: What would you like to see?
@@ -2092,7 +2205,7 @@ groups:
   - id: vscode
     title: VS Code
   - id: azd
-    title: azd (deploy)
+    title: azd
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections
@@ -2106,6 +2219,8 @@ groups:
     title: .NET
   - id: javascript
     title: JavaScript
+  - id: azd
+    title: azd
 # Owner: aahi
 - id: foundry-portal-and-cli
   title: Usage methods

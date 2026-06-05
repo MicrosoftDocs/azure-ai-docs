@@ -3,7 +3,7 @@ title: "Microsoft Foundry Playgrounds"
 description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 02/10/2026
 ms.author: mopeakande
@@ -296,6 +296,7 @@ By using the images playground, you can explore and validate the following aspec
 
 ## Related content
 
+- [Instant models in Microsoft Foundry (preview)](instant-models.md)
 - [Understanding the agent development lifecycle](../agents/concepts/development-lifecycle.md)
 - [Deploy models in Microsoft Foundry](../../foundry-classic/how-to/deploy-models-managed.md)
 - [Azure AI Content Safety overview](/azure/ai-services/content-safety/overview)

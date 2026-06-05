@@ -5,7 +5,7 @@ description: This document helps developers migrate code from v3.0 to v3.1 of th
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/28/2025
 ms.reviewer: heikora

@@ -5,11 +5,12 @@ description: With batch transcription, the Speech service transcribes the audio 
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
+ai-usage: ai-assisted
 ---
 
 # Get batch transcription results
@@ -25,23 +26,23 @@ To get the status of the transcription job, call the [Transcriptions - Get](/res
 > [!IMPORTANT]
 > Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes for a transcription job to start processing and up to 24 hours to complete. Most of the time during the execution the transcription status is `Running`. The reason is because the job has the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/YourTranscriptionId?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d?api-version=2024-11-15",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d?api-version=2024-11-15",
   "displayName": "My Transcription",
   "locale": "en-US",
   "createdDateTime": "2025-05-24T13:36:57Z",
   "lastActionDateTime": "2025-05-24T13:37:13Z",
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files?api-version=2024-11-15"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files?api-version=2024-11-15"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
@@ -92,12 +93,12 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files"
   },
   "properties": {
     "diarizationEnabled": false,
@@ -135,10 +136,10 @@ spx help batch transcription
 
 The [Transcriptions - List Files](/rest/api/speechtotext/transcriptions/list-files) operation returns a list of result files for a transcription. A [transcription report](#transcription-report-file) file is provided for each submitted batch transcription job. In addition, one [transcription](#transcription-result-file) file (the end result) is provided for each successfully transcribed audio file.  
 
-Make an HTTP GET request using the "files" URI from the previous response body. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the "files" URI from the previous response body. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourResourceName` with your Speech resource name.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId/files?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/YourTranscriptionId/files?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
@@ -147,7 +148,7 @@ You should receive a response body in the following format:
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/ec226a24-d3c7-4ae4-b59e-49d5bdab492e?api-version=2024-11-15",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/ec226a24-d3c7-4ae4-b59e-49d5bdab492e?api-version=2024-11-15",
       "name": "contenturl_0.json",
       "kind": "Transcription",
       "links": {
@@ -159,7 +160,7 @@ You should receive a response body in the following format:
       "createdDateTime": "2025-05-24T13:37:12Z"
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/078cd816-7944-4619-a6a6-bc52fb000f8c?api-version=2024-11-15",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/078cd816-7944-4619-a6a6-bc52fb000f8c?api-version=2024-11-15",
       "name": "contenturl_1.json",
       "kind": "Transcription",
       "links": {
@@ -171,7 +172,7 @@ You should receive a response body in the following format:
       "createdDateTime": "2025-05-24T13:37:12Z"
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/5baff707-8d68-4c69-850e-48775c57c982?api-version=2024-11-15",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/5baff707-8d68-4c69-850e-48775c57c982?api-version=2024-11-15",
       "name": "report.json",
       "kind": "TranscriptionReport",
       "links": {
@@ -212,7 +213,7 @@ You should receive a response body in the following format:
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
       "name": "contenturl_0.json",
       "kind": "Transcription",
       "properties": {
@@ -224,7 +225,7 @@ You should receive a response body in the following format:
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/ffffaaaa-5555-bbbb-6666-cccc7777dddd",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/ffffaaaa-5555-bbbb-6666-cccc7777dddd",
       "name": "contenturl_1.json",
       "kind": "Transcription",
       "properties": {
@@ -236,7 +237,7 @@ You should receive a response body in the following format:
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
       "name": "report.json",
       "kind": "TranscriptionReport",
       "properties": {

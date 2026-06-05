@@ -4,12 +4,13 @@ titleSuffix: Foundry Tools
 description: Learn how to train custom speech models. Training a speech to text model can improve recognition accuracy for the Microsoft base model or a custom model.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 04/16/2026
+ms.date: 06/02/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
+ai-usage: ai-assisted
 ---
 
 # Train a custom speech model
@@ -35,6 +36,16 @@ You can use a custom model for a limited time after it was trained. You must per
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
+In the new Microsoft Foundry portal, you submit the fine-tuning job from the **Fine-tune a model** wizard that you opened when you [started custom speech fine-tuning](./how-to-custom-speech-create-project.md).
+
+1. On the **Review** pane, review the settings and acknowledge the charges.
+1. Select **Submit** to start the fine-tuning job.
+1. Wait for training to complete. When training finishes, select the custom model to open its details page.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
@@ -51,6 +62,8 @@ You can use a custom model for a limited time after it was trained. You must per
 1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png":::
+
+---
 
 ::: zone-end
 
@@ -102,22 +115,22 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/manifest",
-    "copy": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd:copy",
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/manifest",
+    "copy": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd:copy",
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "properties": {
     "deprecationDates": {
@@ -166,25 +179,25 @@ To create a model with datasets for training, use the [Models_Create](/rest/api/
 - Set the required `datasets` property to the URI of the datasets that you want used for training.
 - Set the required `locale` property. The model locale must match the locale of the project and base model. The locale can't be changed later.
 - Set the required `displayName` property. This property is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-- Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
+- Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
 
-Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourResourceName` with your Speech resource name, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "displayName": "My Model",
   "description": "My Model Description",
   "baseModel": null,
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "locale": "en-US"
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models"
 ```
 
 > [!NOTE]
@@ -194,22 +207,22 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+      "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/manifest",
-    "copy": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd:copy",
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/manifest",
+    "copy": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd:copy",
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "properties": {
     "deprecationDates": {
@@ -263,7 +276,7 @@ Follow these instructions to copy a model to a project in another region:
 1. Select **Custom speech** > Your project name > **Train custom models**.
 1. Select **Copy to**.
 1. On the **Copy speech model** page, select a target region where you want to copy the model.
-    :::image type="content" source="./media/custom-speech/custom-speech-copy-to-zoom.png" alt-text="Screenshot of a phrase list applied in Speech Studio." lightbox="./media/custom-speech/custom-speech-copy-to-full.png":::
+    :::image type="content" source="./media/custom-speech/custom-speech-copy-to-zoom.png" alt-text="Screenshot of the Copy speech model page in Speech Studio." lightbox="./media/custom-speech/custom-speech-copy-to-full.png":::
 1. Select a Foundry resource for Speech in the target region, or create a new Speech resource.
 1. Select a project where you want to copy the model, or create a new project.
 1. Select **Copy**. 
@@ -297,12 +310,12 @@ Copying a model to another Speech resource with the [Speech to text REST API](re
 
 Call the [Models_AuthorizeCopy](/rest/api/speechtotext/models/authorize-copy) operation on the **target** Speech resource. In the request body, set the `sourceResourceId` property to the Azure Resource ID of the **source** Speech resource where the model currently resides.
 
-Replace `YourTargetSpeechResourceKey` with the target resource key, and `YourTargetServiceRegion` with the target resource region.
+Replace `YourTargetSpeechResourceKey` with the target resource key, and `YourTargetResourceName` with the target resource name.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourTargetSpeechResourceKey" -H "Content-Type: application/json" -d '{
   "sourceResourceId": "/subscriptions/YourSourceSubscriptionId/resourceGroups/YourSourceResourceGroup/providers/Microsoft.CognitiveServices/accounts/YourSourceSpeechResourceName"
-}'  "https://YourTargetServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models:authorizecopy"
+}'  "https://YourTargetResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models:authorizecopy"
 ```
 
 You receive a `ModelCopyAuthorization` response in the following format:
@@ -311,7 +324,7 @@ You receive a `ModelCopyAuthorization` response in the following format:
 {
   "targetResourceRegion": "westus2",
   "targetResourceId": "/subscriptions/targetSubscriptionId/resourceGroups/targetResourceGroupName/providers/Microsoft.CognitiveServices/accounts/targetSpeechResourceName",
-  "targetResourceEndpoint": "https://westus2.api.cognitive.microsoft.com/speechtotext/v3.2/models",
+  "targetResourceEndpoint": "https://YourTargetResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models",
   "sourceResourceId": "/subscriptions/sourceSubscriptionId/resourceGroups/sourceResourceGroupName/providers/Microsoft.CognitiveServices/accounts/sourceSpeechResourceName",
   "expirationDateTime": "2025-01-07T11:34:12Z",
   "id": "d61573c6-788b-4eff-b3f5-38a1c7a9585b"
@@ -324,24 +337,24 @@ Save the entire response body. You pass it as the request body in the next step.
 
 Call the [Models_Copy](/rest/api/speechtotext/models/copy) operation on the **source** Speech resource. Pass the full `ModelCopyAuthorization` response from step 1 as the request body.
 
-Replace `YourModelId` with the model ID, `YourSourceSpeechResourceKey` with the source resource key, and `YourSourceServiceRegion` with the source resource region.
+Replace `YourModelId` with the model ID, `YourSourceSpeechResourceKey` with the source resource key, and `YourSourceResourceName` with the source resource name.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSourceSpeechResourceKey" -H "Content-Type: application/json" -d '{
   "targetResourceRegion": "westus2",
   "targetResourceId": "/subscriptions/targetSubscriptionId/resourceGroups/targetResourceGroupName/providers/Microsoft.CognitiveServices/accounts/targetSpeechResourceName",
-  "targetResourceEndpoint": "https://westus2.api.cognitive.microsoft.com/speechtotext/v3.2/models",
+  "targetResourceEndpoint": "https://YourTargetResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models",
   "sourceResourceId": "/subscriptions/sourceSubscriptionId/resourceGroups/sourceResourceGroupName/providers/Microsoft.CognitiveServices/accounts/sourceSpeechResourceName",
   "expirationDateTime": "2025-01-07T11:34:12Z",
   "id": "d61573c6-788b-4eff-b3f5-38a1c7a9585b"
-}'  "https://YourSourceServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models/YourModelId:copy"
+}'  "https://YourSourceResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/YourModelId:copy"
 ```
 
 You receive a `202 Accepted` response with an `Operation-Location` header that you can use to track the copy status. The response body contains the operation details:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/operations/models/copy/e30f6a27-82be-4cca-9258-0399c70489ff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/operations/models/copy/e30f6a27-82be-4cca-9258-0399c70489ff",
   "createdDateTime": "2025-01-07T11:34:12Z",
   "lastActionDateTime": "2025-01-07T11:34:12Z",
   "status": "NotStarted",
@@ -396,7 +409,7 @@ You should receive a response body in the following format:
 ```json
 {
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
 }
 ```
@@ -415,14 +428,14 @@ To connect a new model to a project of the Speech resource where the model was c
 
 - Set the required `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 
-Make an HTTP PATCH request using the URI as shown in the following example. Use the URI of the new model. You can get the new model ID from the `self` property of the [Models_Copy](/rest/api/speechtotext/models/copy) response body. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Use the URI of the new model. You can get the new model ID from the `self` property of the [Models_Copy](/rest/api/speechtotext/models/copy) response body. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourResourceName` with your Speech resource name, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models"
 ```
 
 You should receive a response body in the following format:
@@ -430,7 +443,7 @@ You should receive a response body in the following format:
 ```json
 {
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
 }
 ```

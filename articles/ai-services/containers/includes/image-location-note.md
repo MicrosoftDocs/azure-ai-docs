@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: note about the image location for containers on the Microsoft Container Registry
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 09/02/2020
 ms.author: aahi

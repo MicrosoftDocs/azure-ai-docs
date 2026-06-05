@@ -7,7 +7,7 @@ ms.custom:
   - subject-cost-optimization
   - mode-other
   - ignite-2023
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ---

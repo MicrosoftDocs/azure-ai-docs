@@ -2,7 +2,7 @@
 title: Create a Language resource
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 08/29/2022
 ms.author: pafarley

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - devx-track-extended-java
   - devx-track-go

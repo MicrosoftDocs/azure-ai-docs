@@ -2,7 +2,7 @@
 title: "MedImageParse: Medical Image Segmentation Models (classic)"
 description: "Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.custom: dev-focus
@@ -46,7 +46,7 @@ To learn more about these models, see [Learn more about the models](#learn-more-
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 

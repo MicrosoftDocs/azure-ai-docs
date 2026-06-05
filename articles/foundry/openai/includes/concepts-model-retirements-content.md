@@ -15,7 +15,7 @@ Microsoft Foundry Models move through a predictable lifecycle—from preview to 
 
 ## How model lifecycle works
 
-Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies uniformly across Foundry Models [sold directly by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) and [from partners and community](/azure/foundry/foundry-models/concepts/models-from-partners), though notification timelines differ slightly by model origin.
+Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. When a model is superseded, it moves through a predictable lifecycle that gives customers time to evaluate replacements and migrate. The lifecycle applies uniformly across Foundry Models [sold by Azure](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) and [from partners and community](/azure/foundry/foundry-models/concepts/models-from-partners), though notification timelines differ slightly by model origin.
 
 ### Lifecycle stages
 
@@ -68,7 +68,7 @@ Several factors affect how the standard lifecycle applies to your deployments, i
 - Not all models or versions available in commercial clouds are available in government clouds.
 - Government clouds typically support only one version of a given model at a time, with a **30-day overlap** when a new version becomes available.
 
-For more information, see [Foundry Models sold directly by Azure (government)](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov), [Model versions](/azure/foundry/foundry-models/concepts/model-versions-gov), and [Deployment types](/azure/foundry/foundry-models/concepts/deployment-types-gov) in Azure Government.
+For more information, see [Foundry Models sold by Azure (government)](/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov), [Model versions](/azure/foundry/foundry-models/concepts/model-versions-gov), and [Deployment types](/azure/foundry/foundry-models/concepts/deployment-types-gov) in Azure Government.
 
 ### Security-driven retirements
 
@@ -115,7 +115,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 For **Global Standard**, **Data Zone Standard**, and **Standard** deployment types, Microsoft manages automatic upgrades when a model version is retired:
 
 - Auto-upgrades are scheduled on a **rolling, region-by-region** basis.
-- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirements.md).
+- The upgrade schedule is published in advance in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 - Upgrades can occur even if the new model version isn't yet separately available in that region, or for that SKU—the upgrade process will make it available.
 
 > [!IMPORTANT]
@@ -216,7 +216,7 @@ At deployment retirement, inference and deployment return error responses.
 
 ## Related content
 
-- [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates for all current, deprecated, and retired models
+- [Model retirement schedule](../concepts/model-retirement-schedule.md) for specific dates for all current, deprecated, and retired models
 - [Models API reference](/rest/api/aiservices/accountmanagement/models) to programmatically query `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model
 - [Model versions in Microsoft Foundry Models](../../foundry-models/concepts/model-versions.md) for how version upgrades work
 - [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880)

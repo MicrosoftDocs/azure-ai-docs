@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for C++ on Linux by using the Speech SDK.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 02/02/2024

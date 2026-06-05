@@ -3,7 +3,7 @@ title: Use Bring your own storage (BYOS) Speech resource for Speech to text
 titleSuffix: Foundry Tools
 description: Learn how to use Bring your own storage (BYOS) Speech resource with Speech to text.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 author: PatrickFarley
@@ -75,7 +75,7 @@ Speech service uses `customspeech-artifacts` Blob container in the BYOS-associat
 For maximum security use the `sasValidityInSeconds` parameter with the value set to `0` in the requests, that return data file URLs, like [Get Transcription Files](/rest/api/speechtotext/transcriptions/list-files) request. Here's an example request URL:
 
 ```https
-https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/files?sasValidityInSeconds=0
+https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/transcriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/files?sasValidityInSeconds=0
 ```
 
 Such a request returns direct Storage Account URLs to data files (without SAS or other additions). For example:
@@ -107,7 +107,7 @@ If you use BYOS, then you find the logs in `customspeech-audiologs` Blob contain
 For maximum security use the `sasValidityInSeconds` parameter with the value set to `0` in the requests, that return data file URLs, like [Get Base Model Logs](/rest/api/speechtotext/endpoints/list-base-model-logs) request. Here's an example request URL:
 
 ```https
-https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/base/en-US/files/logs?sasValidityInSeconds=0
+https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/endpoints/base/en-US/files/logs?sasValidityInSeconds=0
 ```
 
 Such a request returns direct Storage Account URLs to data files (without SAS or other additions). For example:
@@ -148,7 +148,7 @@ The Blob container structure is provided for your information only and subject t
 For maximum security use the `sasValidityInSeconds` parameter with the value set to `0` in the requests, that return data file URLs, like [Get Dataset Files](/rest/api/speechtotext/datasets/list-files) request. Here's an example request URL:
 
 ```https
-https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff/files?sasValidityInSeconds=0
+https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff/files?sasValidityInSeconds=0
 ```
 
 Such a request returns direct Storage Account URLs to data files (without SAS or other additions). For example:

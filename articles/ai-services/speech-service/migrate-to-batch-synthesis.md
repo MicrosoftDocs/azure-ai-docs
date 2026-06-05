@@ -5,7 +5,7 @@ description: This document helps developers migrate code from Long Audio REST AP
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.reviewer: heikora
@@ -24,13 +24,13 @@ The [Batch synthesis API](batch-synthesis.md) provides asynchronous synthesis of
 
 ## Base path and version
 
-Update the endpoint from `https://YourSpeechRegion.customvoice.api.speech.microsoft.com` to `https://YourSpeechRegion.api.cognitive.microsoft.com` or you can use custom domain instead: `https://{customDomainName}.cognitiveservices.azure.com/`.
+Update the endpoint from `https://YourSpeechRegion.customvoice.api.speech.microsoft.com` to `https://YourResourceName.cognitiveservices.azure.com` or you can use custom domain instead: `https://{customDomainName}.cognitiveservices.azure.com/`.
 
 Update the base path in your code from `/texttospeech/v3.0/longaudiosynthesis` to `/texttospeech/batchsyntheses`.
 
 Update the version from base path to query string `/texttospeech/v3.0/longaudiosynthesis` to `?api-version=2024-04-01`.
 
-For example, to list synthesis jobs for your Speech resource in the `eastus` region, use `https://eastus.api.cognitive.microsoft.com/texttospeech/batchsyntheses?api-version=2024-04-01` instead of `https://eastus.customvoice.api.speech.microsoft.com/api/texttospeech/v3.0/longaudiosynthesis`.
+For example, to list synthesis jobs for your Speech resource in the `eastus` region, use `https://YourResourceName.cognitiveservices.azure.com/texttospeech/batchsyntheses?api-version=2024-04-01` instead of `https://eastus.customvoice.api.speech.microsoft.com/api/texttospeech/v3.0/longaudiosynthesis`.
 
 ## Regions and endpoints
 

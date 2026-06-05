@@ -2,7 +2,7 @@
 title: include file
 description: include file
 author: aahill
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 08/25/2022
 ms.author: aahi

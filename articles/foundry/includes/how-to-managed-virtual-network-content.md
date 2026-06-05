@@ -50,7 +50,9 @@ Before following the steps in this article, make sure you have the following pre
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
 * Azure CLI installed to version 2.86.0. Required to create outbound rules from the managed network. 
 * The `Microsoft.Network`, `Microsoft.KeyVault`, `Microsoft.CognitiveServices`, `Microsoft.Storage`, `Microsoft.Search`, and `Microsoft.ContainerService` resource providers registered for your Azure subscription. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
-* Permissions to deploy a managed network resource. `Azure AI Account Owner` on the Foundry resource scope is needed to create a Foundry account and project. `Owner` or `Role Based Access Administrator` is needed to assign RBAC to the required resources. `Azure AI User` on project scope is required to create and build Agents. 
+* Permissions to deploy a managed network resource. `Foundry Account Owner` on the Foundry resource scope is needed to create a Foundry account and project. `Owner` or `Role Based Access Administrator` is needed to assign RBAC to the required resources. `Foundry User` on project scope is required to create and build Agents. 
+
+  [!INCLUDE [role-rename-note](./role-rename-note.md)]
 * Sufficient quota for all resources in your target Azure region. If no parameters are passed in, this template creates a Foundry resource, Foundry project, Azure Cosmos DB for NoSQL, Azure AI Search, and Azure Storage account. 
 
 ## Limitations

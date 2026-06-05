@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about how to deploy your professional voice model as an endpoint. 
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

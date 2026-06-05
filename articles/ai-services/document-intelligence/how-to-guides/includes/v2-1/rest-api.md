@@ -3,7 +3,7 @@ title: "Use Azure Document Intelligence in Foundry Tools REST API v2.1"
 description: Use the Document Intelligence REST API v2.1 to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar

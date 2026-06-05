@@ -4,18 +4,42 @@ titleSuffix: Foundry Tools
 description: Learn how to create a project for personal voice.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 05/22/2026
 ms.author: pafarley
+zone_pivot_groups: foundry-portal-rest
 #Customer intent: As a developer, I want to learn how to create a project for personal voice.
+ai-usage: ai-assisted
 ---
 
 # Create a project for personal voice
 
-Personal voice projects contain the user consent statement and the personal voice ID. You can only create a personal voice project using the custom voice API. You can't create a personal voice project in the Speech Studio.
+Personal voice projects contain the user consent statement and the personal voice ID. You can create a personal voice project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) or by using the custom voice REST API.
+
+::: zone pivot="ai-foundry-portal"
+
+## Create a project
+
+To create a personal voice fine-tuning project in the Microsoft Foundry portal, follow these steps:
+
+1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](../../ai-foundry/how-to/create-projects.md).
+1. Select **Fine-tuning** from the left pane.
+1. Select the **AI Service** tab, and then select the **Fine-tune** button. The **Fine-tune a model** wizard opens.
+1. On the **Basic details** pane of the wizard:
+   - Select **Azure Speech - Text to Speech** as the model to fine-tune.
+   - Set **Type** to **Personal voice**.
+   - Enter a **Name** and **Description** for the fine-tuning task.
+   - Select the **Language** of the voice you want to create.
+1. Select **Next**.
+
+The wizard continues to the **Register voice talent** step, where you [add user consent](./personal-voice-create-consent.md).
+
+::: zone-end
+
+::: zone pivot="rest-api"
 
 ## Create a project
 
@@ -26,14 +50,14 @@ To create a personal voice project, use the [Projects_Create](/rest/api/aiservic
 
 Make an HTTP PUT request using the URI as shown in the following [Projects_Create](/rest/api/aiservices/speechapi/projects/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `ProjectId` with a project ID of your choice. The case sensitive ID must be unique within your Speech resource. The ID will be used in the project's URI and can't be changed later. 
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "description": "Project description",
   "kind": "PersonalVoice"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2026-01-01"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/projects/ProjectId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -48,6 +72,8 @@ You should receive a response body in the following format:
 ```
 
 You use the project `id` in subsequent API requests to [add user consent](./personal-voice-create-consent.md) and [get a speaker profile ID](./personal-voice-create-voice.md).
+
+::: zone-end
 
 ## Next steps
 

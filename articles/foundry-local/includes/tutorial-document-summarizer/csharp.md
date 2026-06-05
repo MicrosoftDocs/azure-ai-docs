@@ -3,11 +3,10 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/01/2026
 ---
 
-## Install packages
-
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 
 ## Samples repository
 
@@ -17,6 +16,8 @@ The complete sample code for this article is available in the [Foundry Local Git
 git clone https://github.com/microsoft/Foundry-Local.git
 cd Foundry-Local/samples/cs/tutorial-document-summarizer
 ```
+
+## Install packages
 
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]
 

@@ -4,7 +4,7 @@ description: Foundry Tools data loss prevention capabilities allow customers to 
 author: gclarkmt
 ms.author: gregc
 ms.date: 10/02/2025
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: how-to
 ms.custom:
   - template-concept

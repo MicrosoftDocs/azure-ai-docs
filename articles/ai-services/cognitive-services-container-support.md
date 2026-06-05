@@ -1,10 +1,10 @@
 ---
-title: Use Azure containers on-premises
+title: Use Foundry Tools containers on-premises
 titleSuffix: Foundry Tools
 description: Learn how to use Docker containers to use Foundry Tools on-premises.
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: overview
 ms.date: 02/05/2026
 ms.author: aahi
@@ -12,7 +12,7 @@ keywords: on-premises, Docker, container, Kubernetes
 #Customer intent: As a potential customer, I want to know more about how Foundry Tools provides and supports Docker containers for each service.
 ---
 
-# What are Azure containers?
+# What are Foundry Tools containers?
 
 Foundry Tools provide several [Docker containers](https://www.docker.com/what-container) that let you use the same APIs that are available in Azure, on-premises. Using these containers gives you the flexibility to bring Foundry Tools closer to your data for compliance, security or other operational reasons. Container support is currently available for a subset of Foundry Tools.
 
@@ -31,7 +31,7 @@ Containerization is an approach to software distribution in which an application
 
 ## Containers in Foundry Tools
 
-Azure containers provide the following set of Docker containers, each of which contains a subset of functionality from services in Foundry Tools. You can find instructions and image locations in the tables below.
+Foundry Tools containers provide the following set of Docker containers, each of which contains a subset of functionality from services in Foundry Tools. You can find instructions and image locations in the tables below.
 
 > [!NOTE]
 > See [Install and run Document Intelligence containers](document-intelligence/containers/install-run.md) for **Azure Document Intelligence** container instructions and image locations.
@@ -85,7 +85,6 @@ Azure containers provide the following set of Docker containers, each of which c
 | Service |  Container | Description | Availability |
 |--|--|--|--|
 | [Vision][cv-containers] | **Read OCR** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/about)) | The Read OCR container allows you to extract printed and handwritten text from images and documents with support for JPEG, PNG, BMP, PDF, and TIFF file formats. For more information, see the [Read API documentation](./computer-vision/overview-ocr.md). | Generally Available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
-| [Spatial Analysis][spa-containers] | **Spatial analysis** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/vision/spatial-analysis/about)) | Analyzes real-time streaming video to understand spatial relationships between people, their movement, and interactions with objects in physical environments. | Preview |
 
 Additionally, some containers are supported in the [Foundry Tools multi-service resource](multi-service-resource.md?pivots=azportal) offering. You can create one single Foundry Tools resource and use the same billing key across supported services for the following services:
 
@@ -95,7 +94,7 @@ Additionally, some containers are supported in the [Foundry Tools multi-service 
 
 ## Prerequisites
 
-You must satisfy the following prerequisites before using Azure containers:
+You must satisfy the following prerequisites before using Foundry Tools containers:
 
 **Docker Engine**: You must have Docker Engine installed locally. Docker provides packages that configure the Docker environment on [macOS](https://docs.docker.com/docker-for-mac/), [Linux](https://docs.docker.com/engine/installation/#supported-platforms), and [Windows](https://docs.docker.com/docker-for-windows/). On Windows, Docker must be configured to support Linux containers. Docker containers can also be deployed directly to [Azure Kubernetes Service](/azure/aks/) or [Azure Container Instances](/azure/container-instances/).
 

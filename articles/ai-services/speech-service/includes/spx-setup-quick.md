@@ -1,7 +1,7 @@
 ---
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/24/2023
 ms.author: pafarley

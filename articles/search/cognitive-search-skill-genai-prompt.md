@@ -12,6 +12,13 @@ ai-usage: ai-assisted
 
 # GenAI Prompt skill
 
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](../ai-foundry/what-is-foundry.md). Use this skill to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
@@ -28,7 +35,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
 ## Supported models
 
-- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
+- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, DeepSeek-R#, Llama-4-Maverick, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
@@ -53,7 +60,9 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+  - On Foundry, assign [**Foundry User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
+
+    [!INCLUDE [role-rename-note](../foundry/includes/role-rename-note.md)]
 
 ## @odata.type  
 
@@ -71,7 +80,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 Search Service 
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Public endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul> |
+| `uri` | string | Yes | Endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul><p>[Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are also supported, including API Management custom domains. For setup, including authentication, RBAC, and optional private connectivity, see [Use Azure API Management with Azure OpenAI skills and vectorizers](search-how-to-configure-azure-openai-api-management.md). |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |

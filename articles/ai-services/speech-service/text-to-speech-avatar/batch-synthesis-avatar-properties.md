@@ -3,7 +3,7 @@ title: Batch synthesis properties - Speech service
 titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties that are available for text to speech avatar.
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley
@@ -35,6 +35,15 @@ The following table describes the avatar properties.
 | avatarConfig.subtitleType                | Type of subtitle for the avatar video file could be `external_file`, `soft_embedded`, `hard_embedded`, or `none`.<br/><br/>`external_file`: Subtitles are generated as separate subtitle files (for example, SRT or VTT). They are not included in the video and must be loaded by the player separately.<br/><br/>`soft_embedded`: Subtitles are embedded as a subtitle track in the video file. They can be turned on or off, but are only visible in players that support subtitles.<br/><br/>`hard_embedded`: Subtitles are burned directly into the video frames and are always visible. They cannot be turned off or removed.<br/><br/>`none`: No subtitles are generated. The output video contains audio only, with no subtitle data included.<br/><br/>**Note:** Subtitle generation isn't supported when `useBuiltInVoice` is set to `true`. This property is ignored and no subtitles are generated.<br/><br/>This property is optional, and the default value is `soft_embedded`.|
 | avatarConfig.backgroundImage           | Add a background image using the `avatarConfig.backgroundImage` property. The value of the property should be a URL pointing to the desired image. This property is optional. |
 | avatarConfig.backgroundColor             | Background color of the avatar video, which is a string in #RRGGBBAA format. In this string: RR, GG, BB and AA mean the red, green, blue, and alpha channels, with hexadecimal value range 00~FF. Alpha channel controls the transparency, with value 00 for transparent, value FF for non-transparent, and value between 00 and FF for semi-transparent.<br/><br/>This property is optional, and the default value is #FFFFFFFF (white).|
+| avatarConfig.photoAvatarBaseModel        | The base model used to drive a photo avatar. Set this property to invoke a photo avatar; omit it for video avatars.<br/><br/>The currently supported value is `vasa-1`.<br/><br/>This property is required when you use a photo avatar (standard or custom). |
+| avatarConfig.scene                       | The scene configuration for a photo avatar, which lets you adjust zoom, position, rotation, and movement amplitude. This property is only available for photo avatars; video avatars don't support it.<br/><br/>This property is optional.|
+| avatarConfig.scene.zoom                  | The zoom level of the avatar, where 1.0 represents 100% zoom. The value must be greater than 0.<br/><br/>This property is optional, and the default value is `1.0`.|
+| avatarConfig.scene.positionX             | The horizontal position offset of the avatar, ranging from -1 to 1, where 0 is centered.<br/><br/>This property is optional, and the default value is `0`.|
+| avatarConfig.scene.positionY             | The vertical position offset of the avatar, ranging from -1 to 1, where 0 is centered.<br/><br/>This property is optional, and the default value is `0`.|
+| avatarConfig.scene.rotationX             | The rotation of the avatar around the X-axis, in radians. The value must be between -π and π.<br/><br/>This property is optional, and the default value is `0`.|
+| avatarConfig.scene.rotationY             | The rotation of the avatar around the Y-axis, in radians. The value must be between -π and π.<br/><br/>This property is optional, and the default value is `0`.|
+| avatarConfig.scene.rotationZ             | The rotation of the avatar around the Z-axis, in radians. The value must be between -π and π.<br/><br/>This property is optional, and the default value is `0`.|
+| avatarConfig.scene.amplitude             | The amplitude of the avatar movement, ranging from greater than 0 to 1, where values less than 1 reduce the movement amplitude and 1.0 means full amplitude.<br/><br/>This property is optional, and the default value is `1.0`.|
 | avatarConfig.useBuiltInVoice             | A boolean value indicating whether to use the voice sync for avatar as the synthesis voice. This property can only be used when using custom avatar trained with voice sync for avatar. When set to `true`, other voices specified in `synthesisConfig` or in SSML will be ignored.<br/><br/>**Note:** Gestures and subtitles aren't supported when this property is set to `true`. The `subtitleType` property is ignored and no subtitles are generated.<br/><br/>This property is optional, and the default value is `false`. |
 | outputs.result                           | The location of the batch synthesis result file, which is a video file containing the synthesized avatar.<br/><br/>This property is read-only.|
 | properties.DurationInMilliseconds        | The video output duration in milliseconds.<br/><br/>This property is read-only.  |
@@ -72,6 +81,84 @@ The following table describes the text to speech properties.
 | synthesisConfig.voice    | The voice that speaks the audio output.<br/><br/>For information about the available standard voices, see [language and voice support](../language-support.md?tabs=tts). To use a custom voice, you must specify a valid custom voice and deployment ID mapping in the customVoices property.<br/><br/>This property is required when inputKind is set to "PlainText".|
 | synthesisConfig.volume   | The volume of the audio output.<br/><br/>For information about the accepted values, see the [adjust prosody](../speech-synthesis-markup-voice.md#adjust-prosody) table in the Speech Synthesis Markup Language (SSML) documentation. Invalid values are ignored.<br/><br/>This optional property is only applicable when inputKind is set to "PlainText".|
 | inputKind                 | Indicates whether the inputs text property should be plain text or SSML. The possible case-insensitive values are "PlainText" and "SSML". When the inputKind is set to "PlainText", you must also set the synthesisConfig voice property.<br/><br/>This property is required.|
+
+## Use a photo avatar
+
+Photo avatar lets you generate a talking-head video from a single image. Batch synthesis supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To invoke a photo avatar, set the `avatarConfig.photoAvatarBaseModel` property in addition to `avatarConfig.talkingAvatarCharacter`.
+
+### Photo avatar base models
+
+Set `avatarConfig.photoAvatarBaseModel` to the base model that drives the photo avatar. The following base models are currently supported:
+
+| Base model | Description |
+|------------|-------------|
+| `vasa-1`   | The default photo avatar base model. |
+
+### Use a standard photo avatar
+
+For a standard photo avatar, set `avatarConfig.talkingAvatarCharacter` to one of the supported photo avatar characters (for example, `anika`) and set `avatarConfig.photoAvatarBaseModel` to the base model name. Don't set `avatarConfig.talkingAvatarStyle` or `avatarConfig.customized`.
+
+For the list of available standard photo avatar characters, see [Talking heads](standard-avatars.md#talking-heads).
+
+```json
+"avatarConfig": {
+    "talkingAvatarCharacter": "anika",
+    "photoAvatarBaseModel": "vasa-1",
+    "videoCodec": "h264",
+    "subtitleType": "external_file"
+}
+```
+
+### Use a custom photo avatar
+
+Custom photo avatar doesn't require a deployment step. After your custom photo avatar is created, reference it directly by its name in `avatarConfig.talkingAvatarCharacter`. For details on creating a custom photo avatar, see [How to create a custom photo avatar](custom-photo-avatar-create.md).
+
+Set `avatarConfig.talkingAvatarCharacter` to your custom photo avatar name and set `avatarConfig.photoAvatarBaseModel` to the base model name.
+
+```json
+"avatarConfig": {
+    "talkingAvatarCharacter": "your-custom-photo-avatar-name",
+    "photoAvatarBaseModel": "vasa-1"
+}
+```
+
+> [!NOTE]
+> Custom photo avatar is in preview and access is limited. See [How to create a custom photo avatar](custom-photo-avatar-create.md) for eligibility details.
+
+## Set avatar scene for photo avatar
+
+For photo avatars, you can configure the scene by adjusting zoom, position, rotation, and movement amplitude parameters. This lets you customize how the avatar appears in the output video.
+
+Set the scene configuration by using the `avatarConfig.scene` property with the following fields:
+
+- **zoom**: A value greater than 0, where 1.0 represents 100% zoom (default).
+- **positionX**: Horizontal position offset, ranging from -1 to 1, where 0 is centered.
+- **positionY**: Vertical position offset, ranging from -1 to 1, where 0 is centered.
+- **rotationX**: Rotation around the X-axis in radians, between -π and π.
+- **rotationY**: Rotation around the Y-axis in radians, between -π and π.
+- **rotationZ**: Rotation around the Z-axis in radians, between -π and π.
+- **amplitude**: Amplitude of the avatar movement, ranging from greater than 0 to 1, where values less than 1 reduce movement amplitude and 1.0 (default) means full amplitude.
+
+The following example shows a scene configuration in the batch synthesis request body:
+
+```json
+"avatarConfig": {
+    "talkingAvatarCharacter": "anika",
+    "customized": true,
+    "scene": {
+        "zoom": 0.85,
+        "positionX": 0.1,
+        "positionY": -0.05,
+        "rotationX": 0.1745,
+        "rotationY": 0,
+        "rotationZ": 0,
+        "amplitude": 0.8
+    }
+}
+```
+
+> [!NOTE]
+> The scene configuration is only available for photo avatars. Video avatars don't support this feature.
 
 ## Edit the background
 

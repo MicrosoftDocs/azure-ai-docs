@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to create an Azure Kubernetes Service (AKS) resource.
 author: aahill
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include 
 ms.date: 04/01/2020
 ms.author: aahi

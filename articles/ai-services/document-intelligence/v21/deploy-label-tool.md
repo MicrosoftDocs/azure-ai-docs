@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn the different ways you can deploy the Document Intelligence Sample Labeling tool to help with supervised learning.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 10/01/2025
 ms.author: lajanuar

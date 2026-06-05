@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: The pronunciation assessment tool in the Microsoft Foundry portal gives you feedback on the accuracy and fluency of your speech, no coding required.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024
 ms.topic: how-to

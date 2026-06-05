@@ -5,12 +5,13 @@ description: Learn how to use Sovereign Clouds
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 02/25/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
+ai-usage: ai-assisted
 ---
 
 # Speech service in sovereign clouds
@@ -59,6 +60,9 @@ Available to US government entities and their partners only. For more informatio
 ### Endpoint information
 
 This section contains Speech service endpoint information for the usage with [Speech SDK](speech-sdk.md), [Speech to text REST API](rest-speech-to-text.md), and [Text to speech REST API](rest-text-to-speech.md).
+
+> [!NOTE]
+> For most scenarios, use the custom domain endpoint format (`https://<resource-name>.cognitiveservices.azure.us`) instead of region-based endpoints. However, if your deployment requires region-based endpoints in Azure Government, the endpoint formats below apply. Azure Government endpoints use the `.microsoft.us` and `.azure.us` domain suffixes, which differ from standard public cloud endpoints.
 
 #### Speech service REST API
 
@@ -157,6 +161,9 @@ Available to organizations with a business presence in China. For more informati
 ### Endpoint information
 
 This section contains Speech service endpoint information for the usage with [Speech SDK](speech-sdk.md), [Speech to text REST API](rest-speech-to-text.md), and [Text to speech REST API](rest-text-to-speech.md).
+
+> [!NOTE]
+> For most scenarios, use the custom domain endpoint format (`https://<resource-name>.cognitiveservices.azure.cn`) instead of region-based endpoints. However, if your deployment requires region-based endpoints in Microsoft Azure operated by 21Vianet, the endpoint formats below apply. These endpoints use the `.azure.cn` domain suffix, which differs from standard public cloud endpoints.
 
 #### Speech service REST API
 

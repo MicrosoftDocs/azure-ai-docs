@@ -38,7 +38,9 @@ Publishing gives you capabilities that project-level development doesn't provide
 - **External sharing** — Grant access to teammates or customers without giving them access to your Foundry project.
 - **Stable endpoint** — The application URL stays the same even as you roll out new agent versions.
 - **Distinct agent identity** — The published agent gets its own Entra agent identity and Entra agent blueprint, separate from the project's shared identity and blueprint.
-- **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles like Azure AI User directly on the Agent Application resource to control who can invoke it.
+- **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles like Foundry User directly on the Agent Application resource to control who can invoke it.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
 - **Integration with Microsoft 365 Copilot and Teams** — Distribute your Agent Application to channels like Microsoft 365 Copilot and Teams.
 ### What changes when you publish?
@@ -52,8 +54,8 @@ Because the identity changes, **permissions don't transfer automatically**. When
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
-- [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- [Foundry Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
@@ -109,8 +111,8 @@ For applications this endpoint is exposed at:
 
 You can configure inbound end-user authentication on the application. The following options are available:
 
-- **Default (RBAC)**: The caller must have the **Azure AI User** role (or a custom role with the `/applications/invoke/action` permission) on the Agent Application resource. Choose this option if you want to invoke your agent application using the Responses API protocol. For more information about Foundry RBAC roles, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
-- **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
+- **Default (RBAC)**: The caller must have the **Foundry User** role (or a custom role with the `/applications/invoke/action` permission) on the Agent Application resource. Choose this option if you want to invoke your agent application using the Responses API protocol. For more information about Foundry RBAC roles, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
+- **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as an autopilot, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
 -->
@@ -131,7 +133,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 3. Configure authentication for your Agent Application:
 
       - By default, the authentication type is set to RBAC (Role-Based Access Control).
-      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
+      - Users calling the agent application using Responses protocol must be granted the **Foundry User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
    <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
     -->
@@ -204,7 +206,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 
 **Required fields**:
 
-- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for hosted agents.
+- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for Hosted agents.
 - `agents`: The agent name and version to deploy.
 - `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 
@@ -312,7 +314,7 @@ To run the following commands, you need the [Azure CLI](/cli/azure/install-azure
     -d '{"input":"Say hello"}'
   ```
 
-If you receive `403 Forbidden`, confirm the caller has the Azure AI User role on the Agent Application resource.
+If you receive `403 Forbidden`, confirm the caller has the Foundry User role on the Agent Application resource.
 
 ## Update a published Agent Application
 
@@ -363,7 +365,7 @@ To roll out an agent with a different name, you must:
 
 ## Grant users access to invoke a published agent
 
-After you publish an agent, callers need the **Azure AI User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/projects/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+After you publish an agent, callers need the **Foundry User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/projects/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
 
 > [!IMPORTANT]
 > Agent Application RBAC is managed through Azure Resource Manager, not through the Entra agent identity. The Entra agent identity that the published agent receives is for the agent's *own* outbound calls to tools and resources. To control who can *invoke* the published agent, assign Azure RBAC roles on the Agent Application ARM resource by using the Azure portal, Azure CLI, or REST API.
@@ -379,13 +381,13 @@ After publishing, you invoke your agent through its endpoint using either the Re
 
 To use your Agent Application in Microsoft 365 Copilot and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
 
-To publish your agent as a digital worker, see [Publish an agent as a digital worker in Agent 365](./agent-365.md)
+To publish your agent as an autopilot, see [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
 ### Invoke using the Responses API protocol
 
 To invoke your Agent Application using the Responses API protocol, you need:
 
-- [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope
+- [Foundry User role](../../concepts/rbac-foundry.md) on the Agent Application scope
 - The `openai` and `azure-identity` packages installed and authenticated as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
 
 #### Use OpenAI client with Agent Applications endpoint
@@ -410,7 +412,7 @@ response = openai.responses.create(
 ) 
 print(f"Response output: {response.output_text}")
 ```
-This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
+This approach authenticates using Azure credentials and requires the caller to have the Foundry User role on the Agent Application resource.
 
 ## Security and privacy considerations
 
@@ -433,8 +435,8 @@ Agents published as Agent Applications have the following limitations:
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| **Publish Agent** is disabled | Missing Azure AI Project Manager role on the Foundry resource scope | Assign the Azure AI Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
-| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. See [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent). |
+| **Publish Agent** is disabled | Missing Foundry Project Manager role on the Foundry resource scope | Assign the Foundry Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
+| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Foundry User role on the Agent Application resource to the caller. See [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent). |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
 | Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |

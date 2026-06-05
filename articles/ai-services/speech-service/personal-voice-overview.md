@@ -5,7 +5,7 @@ description: With personal voice, you can get AI generated replication of your v
 author: PatrickFarley
 reviewer: patrickfarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 10/21/2025
 ms.author: pafarley

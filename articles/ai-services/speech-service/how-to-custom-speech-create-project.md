@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about how to customize speech models with fine-tuning. 
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: pafarley
@@ -31,6 +31,19 @@ This article shows you how to use fine-tuning to create a custom speech model. F
 Custom speech fine-tuning includes models, training and testing datasets, and deployment endpoints. Each project is specific to a [locale](language-support.md?tabs=stt). For example, you might fine-tune for English in the United States.
 
 ::: zone pivot="ai-foundry-portal"
+
+# [Foundry (new)](#tab/foundry-new)
+
+1. [!INCLUDE [foundry-sign-in](../../foundry/includes/foundry-sign-in.md)]
+1. From the upper-right menu, select **Build**.
+1. In the left pane, select **Models**.
+1. On the **AI Services** tab, select **Azure Speech - Speech to text**.
+1. In the upper right of the speech to text playground, select **Fine-tune** to open the **Fine-tune a model** pane.
+1. On the **Basic details** pane, enter the name, language, and other details for the fine-tuning job. Then select **Next**.
+
+Keep the **Fine-tune a model** pane open and continue with [Upload training and testing datasets](./how-to-custom-speech-upload-data.md) to provide training and validation data.
+
+# [Foundry (classic)](#tab/foundry-classic)
 
 In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Foundry Tools models. For example, you can fine-tune a model for custom speech. Each custom model is specific to a [locale](language-support.md?tabs=stt). For example, you might fine-tune a model for English in the United States.
 
@@ -61,6 +74,8 @@ After fine-tuning, you can access your custom speech models and deployments from
 1. Select **AI Service fine-tuning**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned Foundry Tools models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
+
+---
 
 ::: zone-end
 

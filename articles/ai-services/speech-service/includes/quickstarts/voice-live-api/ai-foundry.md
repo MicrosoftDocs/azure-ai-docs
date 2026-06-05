@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 7/31/2025
 ms.custom: references_regions

@@ -5,7 +5,7 @@ description: Transcribe audio files from an Azure Storage container using the Po
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/31/2026
 ai-usage: ai-assisted

@@ -7,7 +7,7 @@ ms.author: paulhsu
 manager: nitinme
 ms.date: 03/31/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: tutorial
 ms.custom:
   - build-2025
