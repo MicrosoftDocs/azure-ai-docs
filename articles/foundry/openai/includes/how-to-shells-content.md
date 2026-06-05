@@ -18,7 +18,7 @@ The shell tool runs commands in a full terminal environment as part of a **Respo
 You can access the shell tool through the Responses API only. It's not available through the Chat Completions API.
 
 > [!IMPORTANT]
-> Running arbitrary shell commands can be dangerous. Always sandbox execution, apply allowlists or denylists where possible, and log tool activity for auditing.
+> Running arbitrary shell commands can be dangerous. Always sandbox execution, apply allow lists or block lists where possible, and log tool activity for auditing.
 
 > [!NOTE]
 > The shell tool requires an Azure OpenAI API version that supports it, and a model deployment that supports the Responses API. Confirm support for your target API version before you deploy to production.
