@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar

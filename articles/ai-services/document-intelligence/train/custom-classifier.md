@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the custom classification model to train a model to identify and split the documents you process within your application.
 author: vkurpad
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

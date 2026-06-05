@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about form and document processing, data extraction, and analysis by using Document Intelligence Studio.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: quickstart
 ms.date: 11/18/2025
 ms.author: lajanuar

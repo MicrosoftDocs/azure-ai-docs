@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Compose several custom models into a single model for easier data extraction from groups of distinct form types.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
