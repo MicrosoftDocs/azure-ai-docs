@@ -61,7 +61,7 @@ In this tutorial, you:
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 > [!IMPORTANT]
-> If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
+> If you disable public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
 
 ## Understand the solution
 
@@ -107,9 +107,9 @@ To configure access for this solution:
 
 1. Open the folder in Visual Studio Code.
 
-1. Select **View > Command Palette**, and then select **Python: Create Environment**. Follow the prompts to create a virtual environment.
+1. Select **View** > **Command Palette**, and then select **Python: Create Environment**. Follow the prompts to create a virtual environment.
 
-1. Select **Terminal > New Terminal**.
+1. Select **Terminal** > **New Terminal**.
 
 1. Install the required packages.
 
@@ -350,7 +350,7 @@ mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-versi
 
 ### Set up a project client
 
-Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project. Your project might not contain any agents yet, but if you've already completed this tutorial, the agent is listed here.
+Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project. Your project might not contain any agents yet, but if you already completed this tutorial, the agent is listed here.
 
 ```python
 from azure.ai.projects import AIProjectClient
@@ -576,9 +576,9 @@ print(f"Index '{index_name}' deleted successfully")
 
 ## Improve data quality
 
-By default, search results from knowledge bases are consolidated into a large, unified string that can be passed to agents for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
+By default, search results from knowledge bases are consolidated into a large, unified string that you can pass to agents for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
 
-+ [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which is used by the retrieval engine when queries include fields associated with that profile.
++ [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which the retrieval engine uses when queries include fields associated with that profile.
 
 + [Semantic configuration](semantic-how-to-configure.md) is required, but you determine which fields are prioritized and used for ranking.
 

@@ -1,6 +1,6 @@
 ---
 title: Query Knowledge Base via APIs or MCP
-description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
+description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
@@ -335,21 +335,21 @@ Pass the following parameters to call the retrieve action.
 |--|--|--|--|--|
 | `messages` | Contains the chat conversation history sent to the agentic retrieval pipeline. The LLM determines the query from the conversation history. The message format is similar to Azure OpenAI APIs. Supported only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium. | Object | Yes | No |
 | `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
-| `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
-| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. | Boolean | Yes | No |
-| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. For more information, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. | Integer | Yes | No |
+| `messages.content` | The message or prompt sent to the LLM. Must be text. | Array | Yes | No |
+| `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. For a usage example, see [Inspect model names in activity logs](#inspect-model-names-in-activity-logs). | Boolean | Yes | No |
+| `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. If `maxOutputSize` is also set, both constraints apply, and whichever limit is reached first wins. The service can return fewer documents than this parameter's value if fewer results survive ranking, thresholding, or deduplication. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
+| `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. If `maxOutputDocuments` is also set, both constraints apply, and whichever limit is reached first wins. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
 | `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
 | `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 | `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
 | `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
-| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. | Boolean | Yes | No |
-| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` if this knowledge source can't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`. For more information, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
-| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source setting at 50. Doesn't control the final number of grounding documents returned to the caller. For more information, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
-| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. | Boolean | Yes | No |
-| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. | Boolean | Yes | No |
+| `knowledgeSourceParams.alwaysQuerySource` | When `true`, the pipeline always queries this knowledge source instead of relying on the planner to decide. Useful when a source must always participate in the response. This parameter is independent of `failOnError`. To require a source to always run and fail the request if it errors, set both to `true`. | Boolean | Yes | No |
+| `knowledgeSourceParams.failOnError` | When `true`, the retrieve request fails with `502 Bad Gateway` and an error message that identifies the knowledge source that couldn't be queried, instead of returning a partial response from the remaining sources. Defaults to `false`, which means the pipeline favors availability and returns results from other sources when one fails. Independent of `alwaysQuerySource`, which controls whether the source is attempted at all; `failOnError` controls what happens when that attempt fails. For a usage example, see [Require a knowledge source to succeed](#require-a-knowledge-source-to-succeed). | Boolean | Yes | No |
+| `knowledgeSourceParams.maxOutputDocuments` | Caps the number of candidate documents this knowledge source contributes before the final result selection. Use `50` for cross-region compatibility because some preview regions cap this per-source parameter at 50. Doesn't control the final number of grounding documents returned to the caller. The service can return fewer documents when fewer matches are available or when internal limits apply. For a usage example, see [Tune candidate documents per knowledge source](#tune-candidate-documents-per-knowledge-source). | Integer | Yes | No |
+| `knowledgeSourceParams.includeReferences` | When `true`, the response includes a `references` array that identifies the documents that contributed to the answer for this source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
+| `knowledgeSourceParams.includeReferenceSourceData` | When `true`, references include the source data fields configured on the knowledge source. For a usage example, see [Set references for each knowledge source](#set-references-for-each-knowledge-source). | Boolean | Yes | No |
 | `knowledgeSourceParams.rerankerThreshold` | Minimum reranker score that a candidate document must have to be included in the result set for this source. | Number | Yes | No |
-| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. | String | Yes | No |
+| `knowledgeSourceParams.filterAddOn` | OData filter appended to the persisted `baseFilter` (if any) for search index knowledge sources, narrowing the source query at request time. For filter syntax and examples, see [Filter search index knowledge sources at query time](#filter-search-index-knowledge-sources-at-query-time). | String | Yes | No |
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -368,7 +368,7 @@ For [blob](agentic-knowledge-source-how-to-blob.md), [indexed OneLake](agentic-k
 
 Image serving runs only when `outputMode` is `answerSynthesis` and requires the 2026-05-01-preview REST API or an equivalent Azure SDK preview package. For setup steps, the precedence table, and how to inspect image serving statistics, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
 
-### Retrieval from a search index
+### Search index behavior
 
 For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
 
@@ -387,7 +387,8 @@ In Azure AI Search, each knowledge base is a standalone MCP server that exposes 
 
 ### MCP endpoint format
 
-Each knowledge base has an MCP endpoint at the following URL:
+Each knowledge base has an MCP endpoint at the following URL.
+
 ```
 https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
 ```
@@ -409,7 +410,7 @@ The MCP endpoint requires authentication via custom headers. You have two option
 >
 > + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
-## Filter at query time (search index)
+## Filter search index knowledge sources at query time
 
 When retrieving from a search index knowledge source, you can apply an [OData filter](search-query-odata-filter.md) at query time to narrow the results to specific documents or fields. The filter expression uses OData syntax and is passed via the `filterAddOn` parameter.
 
@@ -422,13 +423,6 @@ The `filterAddOn` parameter accepts OData filter expressions. Example patterns i
 - **Numeric ranges**: `price ge 100 and price le 5000`
 - **Text matching**: `substringof('climate', description)`, `indexof(title, 'urgent') ge 0`
 - **Logical operators**: `(category eq 'News' or category eq 'Analysis') and status eq 'published'`
-
-Example filter expressions:
-
-- `status eq 'published'`
-- `created ge 2025-01-01`
-- `city eq 'Redmond' and department eq 'Engineering'`
-- `(priority eq 'High' or priority eq 'Critical') and resolved eq false`
 
 :::zone pivot="csharp"
 
@@ -577,7 +571,7 @@ Authorization: Bearer <YOUR ACCESS TOKEN>
 
 ### Multi-filter example
 
-You can combine multiple filters to refine results further:
+You can combine multiple filters to further refine results.
 
 :::zone pivot="csharp"
 
@@ -647,7 +641,6 @@ In the .NET SDK, pass the token as the `xMsQuerySourceAuthorization` parameter o
 
 ```csharp
 using Azure;
-using Azure;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
@@ -694,7 +687,8 @@ Console.WriteLine(text);
 In the Python SDK, pass the token as the `x_ms_query_source_authorization` parameter on `retrieve`:
 
 ```python
-from azure.core.credentials import AzureKeyCredential, get_bearer_token_provider
+from azure.identity import DefaultAzureCredential
+from azure.core.credentials import get_bearer_token_provider
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseMessage, KnowledgeBaseMessageTextContent,
@@ -771,7 +765,7 @@ x-ms-query-source-authorization: {{userAccessToken}}
 
 ## Review the response
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. Details about the partial response appear as errors in the activity array.
+Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, the service returns a `206 Partial Content` status code. The response only includes results from sources that succeeded. The activity array contains details about the partial response as errors.
 
 The retrieve action returns three main components:
 
@@ -828,29 +822,27 @@ Key points:
 
 The activity array outputs the query plan, which provides operational transparency for tracking operations, billing implications, and resource invocations. It also includes subqueries sent to the retrieval pipeline and errors for any retrieval failures, such as inaccessible knowledge sources.
 
-The output includes the following components:
+The output includes the following components.
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Section | Description |
 |---------|-------------|
-| modelQueryPlanning | For knowledge bases that use an LLM for query planning, this section reports on the token counts used for input, and the token count for the subqueries. |
-| source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
-| agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
-| modelAnswerSynthesis | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer, and the token count of the answer output. |
-| imageServing | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
+| `modelQueryPlanning` | For knowledge bases that use an LLM for query planning, this section reports on the token counts used for input, and the token count for the subqueries. Includes a `modelName` field with the public model name (not the deployment name) of the model that ran the activity. |
+| Source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
+| `agenticReasoning` | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
+| `modelAnswerSynthesis` | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer, and the token count of the answer output. Includes a `modelName` field with the public model name (not the deployment name) of the model that ran the activity. |
+| `modelWebSummarization` | For knowledge bases that use web summarization, this section reports on token consumption for summarizing web results. Includes a `modelName` field with the public model name (not the deployment name) of the model that ran the activity. |
+| `imageServing` | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
 
 # [2026-04-01](#tab/2026-04-01)
 
 | Section | Description |
 |---------|-------------|
-| source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
-| agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval. |
+| Source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
+| `agenticReasoning` | This section reports on token consumption for agentic reasoning during retrieval. |
 
 ---
-
-> [!NOTE]
-> The `modelQueryPlanning` and `modelAnswerSynthesis` sections don't appear in the 2026-04-01 activity array because query planning and answer synthesis are preview-only features. For full activity output, use the 2026-05-01-preview.
 
 Here's an example of the activity array:
 
@@ -996,7 +988,7 @@ When you query a knowledge base that ingests [Microsoft Purview sensitivity labe
 | Per reference | `sensitivityLabelInfo` | The sensitivity label applied to each document returned in the `references` array. |
 | Response | `metadata.responseSensitivityLabelInfo` | An aggregate label that represents the highest-priority sensitivity label across all referenced documents in the response. Useful for client-side display banners and policy enforcement. |
 
-The response-level label is computed by Microsoft Graph from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
+Microsoft Graph computes the response-level label from the per-reference labels using the [Microsoft Purview label inheritance rules](/purview/sensitivity-labels). Typically, the most restrictive label wins.
 
 The following example shows a retrieve response with two referenced documents (one `Confidential`, one `Internal`) and the resulting response-level label.
 
@@ -1080,7 +1072,7 @@ The field name and availability of label metadata depend on the knowledge source
 
 The MCP endpoint exposed by each knowledge base surfaces the same sensitivity label fields as the REST API. When an MCP-compatible client invokes the `knowledge_base_retrieve` tool, the tool result contains the same per-reference `sensitivityLabelInfo` and response-level `metadata.responseSensitivityLabelInfo` documented earlier in this section. MCP clients enforce label-aware display and policy controls based on these fields.
 
-## Examples
+## Retrieve action examples (preview)
 
 The following examples illustrate different ways to call the retrieve action using the 2026-05-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
@@ -1094,14 +1086,7 @@ The following examples illustrate different ways to call the retrieve action usi
 
 ### Inspect model names in activity logs
 
-In the `2026-05-01-preview` API, model-backed activity records can include
-`modelName` when `includeActivity` is enabled. Use this field to confirm which
-configured model handled query planning, answer synthesis, or web
-summarization during a retrieve request.
-
-The field is additive and appears only on activity entries that represent
-model-backed work. Nonmodel activity records, such as search index retrieval
-steps, don't include `modelName`.
+Model-backed activity records include a `modelName` field when `includeActivity` is enabled. Use this field to confirm which configured model handled query planning, answer synthesis, or web summarization during a retrieve request.
 
 :::zone pivot="csharp"
 
@@ -1173,7 +1158,7 @@ Content-Type: application/json
 
 :::zone-end
 
-The following response excerpt shows activity records with `modelName`:
+The following response excerpt shows activity records with `modelName`.
 
 ```json
 {
@@ -1205,22 +1190,9 @@ The following response excerpt shows activity records with `modelName`:
 }
 ```
 
-For this preview, `modelName` appears on model activity records, including
-`modelQueryPlanning`, `modelAnswerSynthesis`, and `modelWebSummarization`. The
-value is the public model name used for the activity, such as `gpt-5-mini`, not
-the deployment name. If an activity step isn't backed by a single
-customer-visible model, the field is omitted.
-
 ### Require a knowledge source to succeed
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
-`failOnError` to mark a specific knowledge source as required for the retrieve
-request. Use this setting when a partial answer would be misleading or
-noncompliant if that source is unavailable.
-
-By default, retrieve favors availability and can return results from other
-sources when an optional source fails. `failOnError` changes that behavior for
-the source where it's set.
+Set `failOnError` in `knowledgeSourceParams` to mark a knowledge source as required. Use this parameter when a partial answer would be misleading or noncompliant if that source is unavailable.
 
 :::zone pivot="csharp"
 
@@ -1315,26 +1287,9 @@ Content-Type: application/json
 
 :::zone-end
 
-`failOnError` defaults to `false`. When a queried source has
-`failOnError: true` and the source query fails, the retrieve request fails
-instead of returning `206 Partial Content`. The expected error is `502 Bad
-Gateway`, with an error message that identifies the knowledge source that
-couldn't be queried. The setting is independent of `alwaysQuerySource`:
-`alwaysQuerySource` controls whether the source is attempted, while
-`failOnError` controls what happens if that attempt fails. If a source must
-always participate and must fail the request on error, set both properties to
-`true`.
-
 ### Tune candidate documents per knowledge source
 
-In the `2026-05-01-preview` API, `knowledgeSourceParams` can include
-`maxOutputDocuments` to cap output documents per knowledge source before
-final result selection. Use this setting when you want one source to
-contribute a bounded number of documents to the retrieve pipeline.
-
-This setting is per source. Use `50` for cross-region compatibility because
-some preview regions cap per-source output documents at 50. It doesn't control
-the final number of grounding documents returned to the caller.
+Set `maxOutputDocuments` in `knowledgeSourceParams` to cap how many candidate documents a specific knowledge source contributes before final result selection. Use this parameter when you want to bound one source's input to the pipeline without affecting others.
 
 :::zone pivot="csharp"
 
@@ -1416,18 +1371,10 @@ Content-Type: application/json
 
 :::zone-end
 
-The service can return fewer documents when fewer matches are available or when
-internal limits reduce the applied window.
 
 ### Limit final grounding documents
 
-In the `2026-05-01-preview` API, top-level `maxOutputDocuments` caps how
-many grounding documents are returned in the final retrieve response. Use this
-setting when your application needs a predictable citation or reference count.
-
-This count-based control complements `maxOutputSize`, which limits payload
-size. If both settings are present, both constraints apply to the final
-response.
+The top-level `maxOutputDocuments` parameter caps how many grounding documents are returned in the final retrieve response. Use this parameter when your application needs a predictable citation or reference count.
 
 :::zone pivot="csharp"
 
@@ -1499,6 +1446,8 @@ Content-Type: application/json
 
 :::zone-end
 
+The following table shows how `maxOutputDocuments` and `maxOutputSize` interact across all four combinations.
+
 | `maxOutputDocuments` | `maxOutputSize` | Behavior |
 | --- | --- | --- |
 | Unspecified | Unspecified | Uses the default `maxOutputSize` response limit behavior. |
@@ -1506,15 +1455,10 @@ Content-Type: application/json
 | Specified | Unspecified | Returns up to the specified number of grounding documents and doesn't apply a `maxOutputSize` limit. |
 | Specified | Specified | Returns up to `maxOutputDocuments` documents or however many documents fit under `maxOutputSize`, whichever limit applies first. |
 
-The service can return fewer documents than `maxOutputDocuments` if fewer
-results survive ranking, thresholding, or deduplication. Unlike per-source
-`knowledgeSourceParams.maxOutputDocuments`, the top-level final-result cap
-applies after the knowledge sources have contributed documents to the retrieve
-pipeline.
 
 ### Override default reasoning effort and set request limits
 
-This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be low or medium.
+This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so the retrieval reasoning effort must be `low` or `medium`. It also sets `maxRuntimeInSeconds` to cap total request latency and `maxOutputSize` to bound the response payload.
 
 :::zone pivot="csharp"
 
@@ -1597,7 +1541,7 @@ Content-Type: application/json
 
 ### Set references for each knowledge source
 
-This example uses the default reasoning effort specified in the knowledge base. The focus of this example is specification of how much information to include in the response.
+Use `includeReferences` and `includeReferenceSourceData` in `knowledgeSourceParams` to control which sources appear in the references array and how much source data each entry includes. This example uses the knowledge base's default reasoning effort.
 
 :::zone pivot="csharp"
 

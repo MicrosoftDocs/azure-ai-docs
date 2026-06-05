@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: OCR and machine learning based check extraction in Document Intelligence extracts key data from cheques.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

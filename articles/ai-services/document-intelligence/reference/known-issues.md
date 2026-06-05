@@ -4,7 +4,7 @@ titlesuffix: Foundry Tools
 description: Known and common issues with Azure Document Intelligence in Foundry Tools.
 ai-usage: ai-assisted
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
 ms.date: 04/09/2026
 ms.author: lajanuar

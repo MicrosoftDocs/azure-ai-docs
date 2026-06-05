@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: How to use the Document Intelligence sample tool to analyze documents, invoices, receipts etc. Label and create a custom model to extract text, tables, selection marks, structure, and key-value pairs from documents.
 author: laujan
 manager: nitinme
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 10/01/2025
 ms.author: lajanuar

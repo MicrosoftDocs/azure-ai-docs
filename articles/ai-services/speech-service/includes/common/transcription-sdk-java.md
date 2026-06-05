@@ -5,9 +5,10 @@ ms.author: jagoerge
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 01/31/2026
+ai-usage: ai-assisted
 ---
 
-[Reference documentation](/java/api/overview/azure/ai-speech-transcription-readme) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-speech-transcription) | [GitHub Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md)
+[!INCLUDE [Reference links](transcription-sdk-reference-java.md)]
 
 ## Prerequisites
 
@@ -51,7 +52,7 @@ ms.date: 01/31/2026
             <dependency>
                 <groupId>com.azure</groupId>
                 <artifactId>azure-ai-speech-transcription</artifactId>
-                <version>1.0.0-beta.2</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.azure</groupId>
@@ -271,7 +272,7 @@ Reference: [`TranscriptionOptions`](/java/api/com.azure.ai.speech.transcription.
 
 ### Speaker diarization
 
-Diarization detects and labels different speakers in a single audio channel. Use `TranscriptionDiarizationOptions` to enable it and set the maximum expected number of speakers (2–36). Each phrase in the result includes a `speaker` identifier.
+Diarization detects and labels different speakers in a single audio channel. Use `TranscriptionDiarizationOptions` to enable it and set the maximum expected number of speakers (2–35). Each phrase in the result includes a `speaker` identifier.
 
 ```java
 import com.azure.ai.speech.transcription.models.TranscriptionDiarizationOptions;
