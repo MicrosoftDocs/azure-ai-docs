@@ -21,11 +21,6 @@ The Azure Vision in Foundry Tools - Image Analysis API will be retired on Septem
 >   - Cloud APIs
 >   - Connected containers
 >   - Disconnected containers
->
-> - The following are NOT included in this retirement:
->   - Multimodal embeddings APIs (e.g., Cohere Embed, SigLIP)
->   - Azure OpenAI or Foundry multimodal models
->   - Other vision-related APIs not part of the Image Analysis endpoint
 
 
 ## Migration preparation checklist
