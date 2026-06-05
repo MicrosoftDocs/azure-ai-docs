@@ -13,6 +13,21 @@ ms.custom: ai-migration, vision
 
 The Azure Vision in Foundry Tools - Image Analysis API will be retired on September 25, 2028. After that date, calls to the service fail. Microsoft supports all existing Image Analysis customers until the retirement date. To ensure business continuity and minimize disruption, start planning your migration to alternative solutions that best meet your scenario requirements. This article provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
 
+
+> [!IMPORTANT]
+> The term "Image Analysis API" used in this article refers specifically to the Azure Computer Vision Image Analysis REST API (e.g., `/imageanalysis` endpoint) and supported versions (v3.2 and v4.0).
+>
+> - This retirement applies to all deployment types, including:
+>   - Cloud APIs
+>   - Connected containers
+>   - Disconnected containers
+>
+> - The following are NOT included in this retirement:
+>   - Multimodal embeddings APIs (e.g., Cohere Embed, SigLIP)
+>   - Azure OpenAI or Foundry multimodal models
+>   - Other vision-related APIs not part of the Image Analysis endpoint
+
+
 ## Migration preparation checklist
 
 1.	Assess current usage and dependencies on Image Analysis API.
