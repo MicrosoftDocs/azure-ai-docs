@@ -3,7 +3,7 @@ title: Use personal voice in your application
 titleSuffix: Foundry Tools
 description: Learn how to integrate personal voice in your application.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 02/25/2026

@@ -3,7 +3,7 @@ title: Build a Conversational Language Understanding Project Schema
 titleSuffix: Foundry Tools
 description: Use this article to start building a conversational language understanding project schema.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

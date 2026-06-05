@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Utilize the Foundry (classic) portal to create Content Understanding custom tasks
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

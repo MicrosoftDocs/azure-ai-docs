@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to create classification workflows to categorize and route your data using Content Understanding Studio or the REST API.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

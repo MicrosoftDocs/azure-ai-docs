@@ -4,7 +4,7 @@ description: "Connect Foundry Agent Service to a Foundry IQ knowledge base (Azur
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

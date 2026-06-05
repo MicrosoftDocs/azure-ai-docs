@@ -2,7 +2,7 @@
 title: "Face Python client library quickstart"
 description: Use the Face client library for Python to detect faces and identify faces (facial recognition search).
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.topic: include

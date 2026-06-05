@@ -3,7 +3,7 @@ title: How to label your data for Custom Named Entity Recognition (NER)
 titleSuffix: Foundry Tools
 description: Learn how to label your data for use with Custom Named Entity Recognition (NER).
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

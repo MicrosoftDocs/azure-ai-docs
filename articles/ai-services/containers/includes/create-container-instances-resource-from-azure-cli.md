@@ -3,7 +3,7 @@ title: Container support
 titleSuffix: Foundry Tools
 description: Learn how to create an Azure container instance resource from the Azure CLI.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.custom: devx-track-azurecli
 ms.topic: include

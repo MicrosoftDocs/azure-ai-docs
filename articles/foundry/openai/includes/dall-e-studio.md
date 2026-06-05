@@ -2,7 +2,7 @@
 title: 'Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models and Microsoft Foundry'
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI in the image generation playground in Microsoft Foundry.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom:

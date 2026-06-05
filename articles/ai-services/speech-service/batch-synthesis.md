@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to use the batch synthesis API for asynchronous synthesis of long-form text to speech.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 02/25/2026
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to

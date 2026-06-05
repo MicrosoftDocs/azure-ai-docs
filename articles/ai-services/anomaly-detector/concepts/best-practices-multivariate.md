@@ -3,7 +3,7 @@ title: Best practices for using the Multivariate Anomaly Detector API
 titleSuffix: Azure AI services
 description: Best practices for using the Anomaly Detector Multivariate API's to apply anomaly detection to your time series data.
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: best-practice
 ms.date: 06/12/2025

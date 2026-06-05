@@ -13,7 +13,7 @@ ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to explore the Microsoft Foundry model catalog so that I can find and evaluate AI models for my application.
 ---
 

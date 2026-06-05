@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for a Speech to text."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 03/31/2026

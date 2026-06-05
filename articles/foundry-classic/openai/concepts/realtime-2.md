@@ -3,7 +3,7 @@ title: "GPT Realtime 2.0 overview (preview, classic)"
 description: "Learn about GPT Realtime 2, a speech-to-speech model with built-in reasoning for low-latency interactive voice experiences. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

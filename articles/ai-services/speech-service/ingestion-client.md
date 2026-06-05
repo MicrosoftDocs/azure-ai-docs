@@ -3,7 +3,7 @@ title: Ingestion Client - Speech service
 titleSuffix: Foundry Tools
 description: Learn about a tool released on GitHub that enables customers to push audio files to Speech service easily and quickly 
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 03/23/2026

@@ -2,8 +2,8 @@
 title: Image Analysis deprecation notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 01/29/2026
 ms.author: pafarley

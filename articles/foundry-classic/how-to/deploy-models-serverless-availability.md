@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 11/24/2025
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: 

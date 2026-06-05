@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.date: 01/30/2026
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 #CustomerIntent: As a developer or AI practitioner, I want to understand the different deployment options available for Microsoft Foundry Models so that I can choose the most appropriate deployment method for my specific use case, requirements, and infrastructure needs.
 ---
 

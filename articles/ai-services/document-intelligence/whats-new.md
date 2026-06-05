@@ -3,7 +3,7 @@ title: What's new in Document Intelligence
 titleSuffix: Foundry Tools
 description: Learn the latest updates to the Azure Document Intelligence in Foundry Tools.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: whats-new
 ms.date: 11/18/2025

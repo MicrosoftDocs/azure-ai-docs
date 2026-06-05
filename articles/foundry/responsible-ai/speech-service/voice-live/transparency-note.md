@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This Transparency Note discusses Voice live and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 09/29/2025

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Customize an AI model to classify documents and other content using Foundry Tools.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026

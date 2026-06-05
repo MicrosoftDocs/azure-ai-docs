@@ -2,7 +2,7 @@
 title: Model-based echo cancellation audio processing - Speech service
 titleSuffix: Foundry Tools
 description: An overview of model-based echo cancellation (V2) audio processing with the Microsoft Audio Stack for improved acoustic echo suppression.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/09/2026

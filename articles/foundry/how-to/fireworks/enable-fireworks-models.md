@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
 author: ssalgadodev 
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 ms.date: 06/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

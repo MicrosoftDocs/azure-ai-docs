@@ -2,7 +2,7 @@
 title: How to use function calling in a Voice Live session
 titleSuffix: Foundry Tools
 description: Learn how to use function calling in a voice session using the Voice Live API.
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/31/2026

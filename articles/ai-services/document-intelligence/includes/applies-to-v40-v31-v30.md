@@ -3,7 +3,7 @@ title: Document Intelligence v4.0, v3.1, and v3.0 content
 description: Includes for content that applies to Document Intelligence v4.0, v3.1, and v3.0.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025

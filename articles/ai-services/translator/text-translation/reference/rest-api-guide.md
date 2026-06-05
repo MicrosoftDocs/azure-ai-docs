@@ -3,7 +3,7 @@ title: "Text translation REST API reference guide"
 titleSuffix: Foundry Tools
 description: View a list of with links to the Text translation REST APIs.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

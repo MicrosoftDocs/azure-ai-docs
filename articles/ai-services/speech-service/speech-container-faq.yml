@@ -4,7 +4,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Install and run containers for speech to text and text to speech.
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-speech-foundry-tools
   ms.topic: faq
   ms.date: 01/30/2026

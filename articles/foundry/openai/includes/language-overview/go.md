@@ -2,7 +2,7 @@
 title: Azure OpenAI Go support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Go support
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

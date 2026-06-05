@@ -1,7 +1,7 @@
 ---
 title: "Add managed MCP servers powered by connector namespaces (preview)"
 description: "Add managed MCP servers powered by connector namespaces to your Foundry agents. Browse, configure, and connect to over 1,000 SaaS and line-of-business services from the Foundry Tools Catalog."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

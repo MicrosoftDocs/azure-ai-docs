@@ -4,7 +4,7 @@ description: "Learn how to deploy a containerized AI agent to Foundry Agent Serv
 author: aahill
 ms.author: aahi
 ms.date: 05/23/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

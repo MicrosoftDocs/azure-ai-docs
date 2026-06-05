@@ -3,7 +3,7 @@ title: Abuse monitoring in Face liveness detection - Face
 titleSuffix: Foundry Tools
 description: Learn about abuse-monitoring methods in Azure Face service.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

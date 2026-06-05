@@ -2,7 +2,7 @@
 title: Models from partners
 author: msakande
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 ms.date: 05/26/2026
 ms.service: microsoft-foundry
 ms.topic: include

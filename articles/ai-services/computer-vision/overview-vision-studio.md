@@ -3,9 +3,9 @@ title: What is Vision Studio?
 titleSuffix: Foundry Tools
 description: Learn how to set up and use Vision Studio to test features of Azure Vision in Foundry Tools on the web.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026
 ms.author: pafarley

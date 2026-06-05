@@ -3,7 +3,7 @@ title: Conversational language understanding language support
 titleSuffix: Foundry Tools
 description: This article lists the natural languages Azure Language in Foundry Tools supports for conversational language understanding.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 12/05/2025

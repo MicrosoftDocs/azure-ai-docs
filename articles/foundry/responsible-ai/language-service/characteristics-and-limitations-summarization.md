@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "System characteristics and limitations for summarization"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 04/01/2026

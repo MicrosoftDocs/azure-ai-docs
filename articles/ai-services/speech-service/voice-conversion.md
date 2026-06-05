@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about voice conversion in Azure Speech in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026

@@ -8,7 +8,7 @@ ms.date: 01/30/2026
 ms.custom: 
   - classic-and-new
   - pilot-ai-workflow-jan-2026
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted

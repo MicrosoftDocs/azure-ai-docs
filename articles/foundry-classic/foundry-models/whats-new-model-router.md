@@ -3,7 +3,7 @@ title: "What's new in model router in Microsoft Foundry Models? (classic)"
 description: "Learn about the latest news and features updates for Azure model router. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 02/10/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference

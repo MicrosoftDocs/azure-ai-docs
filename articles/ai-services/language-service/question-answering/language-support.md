@@ -3,7 +3,7 @@ title: Language support - custom question answering
 titleSuffix: Foundry Tools
 description: A list of culture, natural languages supported by custom question answering for your project. Do not mix languages in the same project.
 #services: cognitive-services
-manager: nitinme
+manager: mcleans
 author: laujan
 ms.author: lajanuar
 recommendations: false

@@ -2,7 +2,7 @@
 title: "Severity level tables - multimodal"
 description: Content safety severity level definition tables, for multimodal content, eight-level
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 09/20/2024

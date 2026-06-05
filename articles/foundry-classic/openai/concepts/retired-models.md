@@ -8,7 +8,7 @@ ms.date: 04/23/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
-manager: nitinme
+manager: mcleans
 author: msakande
 ms.author: mopeakande
 ms.reviewer: josander

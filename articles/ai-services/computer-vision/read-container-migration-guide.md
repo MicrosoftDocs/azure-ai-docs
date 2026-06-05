@@ -3,8 +3,8 @@ title: Migrate to v3.x of the Read OCR container
 titleSuffix: Foundry Tools
 description: Learn how to migrate to the v3 Read OCR containers. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.author: pafarley

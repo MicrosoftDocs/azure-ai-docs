@@ -3,7 +3,7 @@ title: Supported regions for Azure Speech
 titleSuffix: Foundry Tools
 description: Find the Azure Speech regions and region identifiers for the Speech SDK and REST APIs, including speech to text, text to speech, and translation.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 05/25/2026

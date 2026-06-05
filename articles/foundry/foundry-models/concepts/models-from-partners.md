@@ -3,7 +3,7 @@ title: "Foundry Models from partners and community"
 description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, Azure Marketplace requirements, and troubleshooting."
 author: msakande
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 ms.date: 05/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models

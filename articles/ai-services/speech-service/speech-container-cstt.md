@@ -3,7 +3,7 @@ title: Custom speech to text containers - Speech service
 titleSuffix: Foundry Tools
 description: Install and run custom speech to text containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to

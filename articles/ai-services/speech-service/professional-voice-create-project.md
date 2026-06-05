@@ -3,7 +3,7 @@ title: Create a project for professional voice - Speech service
 titleSuffix: Foundry Tools
 description: Learn about how to create a project for professional voice. 
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/19/2025

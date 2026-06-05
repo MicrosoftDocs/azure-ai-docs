@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools

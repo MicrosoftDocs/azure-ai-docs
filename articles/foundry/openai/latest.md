@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI in Microsoft Foundry Models v1 REST API reference"
 description: "Learn how to use Azure OpenAI's v1 REST API." 
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

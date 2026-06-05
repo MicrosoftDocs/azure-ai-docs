@@ -3,7 +3,7 @@ title: What is Azure Translator document translation?
 titleSuffix: Foundry Tools
 description: Learn about Azure Translator document translation for batch and single-file translation while preserving document structure and formatting.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
 ms.date: 06/02/2026

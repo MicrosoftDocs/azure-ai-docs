@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about neural text to speech MAI voices that you can use with speech synthesis.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/27/2026

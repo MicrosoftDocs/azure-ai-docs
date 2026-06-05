@@ -11,7 +11,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/04/2026
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 zone_pivot_groups: openai-chat-completions

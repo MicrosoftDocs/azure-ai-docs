@@ -3,7 +3,7 @@ title: 'Quickstart: Speech SDK C++ (macOS) platform setup - Speech service'
 titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for C++ on macOS by using the Speech SDK.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 02/02/2024

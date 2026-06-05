@@ -1,7 +1,7 @@
 ---
 title: "What is Microsoft Foundry Agent Service?"
 description: "Learn about Microsoft Foundry Agent Service capabilities, agent types, tools, and runtime features for building AI agents."
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

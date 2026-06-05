@@ -3,7 +3,7 @@ title: Azure Document Intelligence in Foundry Tools release history
 titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Document Intelligence in Foundry Tools API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
 ms.date: 11/18/2025

@@ -3,7 +3,7 @@ title: Container support
 titleSuffix: Foundry Tools
 description: Learn how to create an Azure container instance resource.
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: foundry-tools
 ms.topic: include
 ms.date: 04/01/2020

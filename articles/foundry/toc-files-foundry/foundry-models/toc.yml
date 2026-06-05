@@ -244,6 +244,12 @@ items:
       - name: WebSocket mode
         displayName: Use the Azure OpenAI Responses API in WebSocket mode
         href: ../../openai/how-to/websockets.md
+      - name: Shell tool
+        displayName: Use the shell tool with the Azure OpenAI Responses API
+        href: ../../openai/how-to/shells.md
+      - name: Skills
+        displayName: Use skills with the Azure OpenAI Responses API
+        href: ../../openai/how-to/skills.md
     - name: Predicted outputs
       displayName: How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models
       href: ../../openai/how-to/predicted-outputs.md

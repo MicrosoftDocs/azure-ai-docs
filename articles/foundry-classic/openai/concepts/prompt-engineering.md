@@ -8,7 +8,7 @@ ms.date: 12/6/2025
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
 

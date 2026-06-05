@@ -3,7 +3,7 @@ title: What is the Azure Face service?
 titleSuffix: Foundry Tools
 description: The Azure Face service provides AI algorithms that you use to detect, recognize, and analyze human faces in images.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face

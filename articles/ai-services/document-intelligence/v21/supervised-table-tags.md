@@ -3,7 +3,7 @@ title: "Train your custom template model with the sample-labeling tool and table
 titleSuffix: Foundry Tools
 description: Learn how to effectively use supervised table tag labeling.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
 ms.date: 10/01/2025

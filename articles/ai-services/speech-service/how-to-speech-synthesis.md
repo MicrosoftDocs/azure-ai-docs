@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to convert text to speech, including object construction and design patterns, supported audio output formats, and custom configuration options.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026

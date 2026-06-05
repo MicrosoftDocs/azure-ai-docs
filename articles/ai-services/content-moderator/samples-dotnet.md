@@ -3,7 +3,7 @@ title: Code samples - Content Moderator, .NET
 titleSuffix: Azure AI services
 description: Learn how to use Content Moderator in your .NET applications through the SDK.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-content-moderator
 ms.topic: sample
 ms.date: 06/12/2025
