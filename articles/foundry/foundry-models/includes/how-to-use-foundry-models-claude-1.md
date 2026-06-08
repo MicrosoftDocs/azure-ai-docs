@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/08/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -24,10 +24,11 @@ Claude models in Foundry include:
 
 | Model family | Models |
 |--|--|
-| Claude Mythos | `claude-mythos-preview`<sup>1</sup> (gated research preview) |
-| Claude Opus | `claude-opus-4-8`<sup>2</sup> (preview), `claude-opus-4-7` (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
-| Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview)|
-| Claude Haiku | `claude-haiku-4-5` (preview)|
+| Claude Mythos | `claude-mythos-5`<sup>1</sup> (gated research preview), `claude-mythos-preview`<sup>1</sup> (gated research preview) |
+| Claude Fable | `claude-fable-5` (preview) |
+| Claude Opus | `claude-opus-4-8`<sup>2</sup> (preview), `claude-opus-4-7` (preview), `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview) |
+| Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview) |
+| Claude Haiku | `claude-haiku-4-5` (preview) |
 
 <sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
@@ -458,61 +459,15 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Available Claude models
 
-Foundry supports Claude Mythos Preview, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Mythos 5, Claude Fable 5, Claude Mythos Preview, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models share key capabilities:
 
 - **Adaptive thinking**: An upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 - **Extended thinking**: Enhanced reasoning for complex tasks.
 - **Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.
 - **Code generation**: Advanced code generation, analysis, and debugging.
 
-For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
-
-### Claude Mythos (gated research preview)
-
-> [!IMPORTANT]
-> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
->
-> Claude Mythos Preview supports **Microsoft Entra ID authentication only**.
-
-Claude Mythos Preview is a new class of intelligence built for ambitious projects, and the world's best model for cybersecurity, autonomous coding, and long-running agents. Only available as a gated research preview with access prioritized for defensive cybersecurity use cases. With a 1M token context window and 128K max output, Claude Mythos Preview is built for:
-
-- **Cybersecurity**: The world's best model for defensive security. It can find and suggest fixes for real vulnerabilities in production codebases, then help prove the fixes hold.
-- **Autonomous coding**: Handles the full engineering cycle more effectively than any prior model — investigating, implementing, and testing across large codebases from objective to shipped.
-- **Long-running agents**: Sets a new bar for long-horizon agentic work. It can sustain coherent execution over extended, multi-hour tasks, adapting as conditions change and driving work forward with fewer interventions.
-
-Claude Mythos Preview supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
-
-### Claude Opus 4.8 (preview)
-
-> [!TIP]
-> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
-
-Claude Opus 4.8 is the most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows. With a 1M token context window and 128K max output, Opus 4.8 sets a new bar for agentic workflows and is ideal for agentic coding, enterprise workflows, financial analysis, cybersecurity, and computer use. Opus 4.8 also supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
-
-### Claude Opus 4.7 (preview)
-
-Claude Opus 4.7 is a highly capable model in the Claude Opus family, advancing performance across coding, enterprise workflows, and long-running agentic tasks. With a 1M token context window and 128K max output, Opus 4.7 is ideal for agentic coding, enterprise knowledge work, long-running multi-tool workflows, high-resolution multimodal reasoning (up to 2576px / 3.75MP), financial analysis, and cybersecurity. Opus 4.7 supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
-
-### Claude Opus 4.6 (preview)
-
-Claude Opus 4.6 is a very capable model in the Claude Opus family for coding, enterprise agents, and professional work. With a 1M token context window and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
-
-### Claude Opus 4.5 (preview)
-
-Claude Opus 4.5 is an industry leader in coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use tasks.
-
-### Claude Opus 4.1 (preview)
-
-Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
-
-### Claude Sonnet 4.6 (preview)
-
-Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, agents, and enterprise workflows. With a 1M token context window and 128K max output, Sonnet 4.6 is ideal for coding, agents, office tasks, financial analysis, cybersecurity, and computer use.
- 
-### Claude Sonnet 4.5 (preview)
-
 > [!WARNING]
-> 1M context beta on Claude Sonnet 4.5 will be retired after April 30, 2026.
+> 1M context beta on **Claude Sonnet 4.5** will be retired after April 30, 2026.
 >
 > Starting May 1, 2026:
 > - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 will return an error.
@@ -520,11 +475,30 @@ Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, ag
 >
 > To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 4.7** for higher-intelligence workloads.
 
-Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
+### Comparison of available Claude models
 
-### Claude Haiku 4.5 (preview)
+Use the following table to compare models and pick one for your use case. For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
 
-Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled subagents.
+| Model | Context window / Max output | Key capabilities | Best for |
+|---|---|---|---|
+| `claude-mythos-5`<sup>1</sup> (gated research preview) | 1M / 128K | Adaptive thinking; image and text input <br> Claude Mythos 5 supports **Microsoft Entra ID authentication only**. | Biology and life sciences; Cybersecurity (access prioritized for defensive cybersecurity use cases) including vulnerability discovery (initial testers reported finding 20-30% more vulnerabilities in the same repositories compared to Mythos Preview), attack-surface auditing, red teaming, and threat intelligence; autonomous coding, and long-running agents. |
+| `claude-fable-5` (preview) | 1M / 128K | Adaptive thinking; 1M token context window for reasoning over entire codebases and multi-day project context; Longer independent work than any prior Claude model — planning across stages, tracking dependencies, and routing around blockers on tasks where previous models needed frequent check-ins;  self verification; sub-agent orchestration. Additional guardrails might result in refusal to process input tokens<sup>2</sup>. | Cybersecurity, autonomous coding, long-running agents, best for coding and agents, with deeper reasoning for enterprise workflows. |
+| `claude-mythos-preview`<sup>1</sup> (gated research preview) | 1M / 128K | Adaptive thinking; image and text input <br> Claude Mythos Preview supports **Microsoft Entra ID authentication only**. | Cybersecurity (access prioritized for defensive cybersecurity use cases), autonomous coding, and long-running agents. |
+| `claude-opus-4-8`<sup>3</sup> (preview) | 1M / 128K | Adaptive thinking (with new `xhigh` effort level); 1M token context window for reasoning over entire codebases and multi-day project context; high-resolution image input (up to 2576px / 3.75MP) | Long-running agents, coding, enterprise workflows, financial analysis, cybersecurity, and computer use. Most intelligent Opus model with deeper reasoning for enterprise workflows. |
+| `claude-opus-4-7` (preview) | 1M / 128K | Adaptive thinking; 1M token context window for reasoning over entire codebases; high-resolution image input (up to 2576px / 3.75MP) | Coding (agentic coding at scale, long-horizon projects, UI design), enterprise workflows (multi-day knowledge work, documents, spreadsheets, presentations), long-running agents, multimodal reasoning, financial analysis, and cybersecurity. |
+| `claude-opus-4-6` (preview) | 1M / 128K | Adaptive thinking; image and text input (strong vision); computer use (Anthropic's most accurate model for computer use); advanced tool use (tool search tool, programmatic tool calling, tool use examples) | Coding, enterprise agents, and professional work. |
+| `claude-opus-4-5` (preview) | 200K / 64K | Extended thinking; image and text input (strong vision); computer use (Anthropic's most accurate model for computer use); advanced tool use (tool search tool, programmatic tool calling, tool use examples) | Coding, agents, computer use, and enterprise workflows. |
+| `claude-opus-4-1` (preview) | 200K / 32K | Extended thinking; image and text input (state-of-the-art vision) | Coding. Sustained performance on long-running tasks that require focused effort and thousands of steps. |
+| `claude-sonnet-4-6` (preview) | 1M / 128K | Adaptive thinking; image and text input (strong vision); computer use (confident, consistent navigation with more human-like browsing); advanced tool use (tool search tool, programmatic tool calling, tool use examples) | Coding, agents, and enterprise workflows. Frontier intelligence at scale. |
+| `claude-sonnet-4-5` (preview) | 200K / 64K | Extended thinking; image and text input (strong vision); computer use (Anthropic's most accurate model for computer use) | Building real-world agents and handling complex, long-horizon tasks. Balanced speed and cost for high-volume use cases. |
+| `claude-haiku-4-5` (preview) | 200K / 64K | Extended thinking; image and text input | Coding and agent tasks. Speed and cost to power free products and scaled subagents. |
+
+<sup>1</sup> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
+
+<sup>2</sup> Claude Fable 5 applies additional input/output classifiers that may refuse requests whose content triggers dual-use safeguard policies. When a refusal occurs, the request returns a successful (200) response with a refusal indicator `stop_reason: "refusal"` instead of model-generated content. You're not billed for input tokens that are refused.
+
+<sup>3</sup> Follow the [Migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide#migrating-from-claude-opus-47) to migrate Messages API code from Claude Opus 4.7 to Claude Opus 4.8.
+
 
 ## Advanced features and capabilities of Claude models
 
@@ -544,6 +518,7 @@ Some of the **Core capabilities** that Foundry supports are:
     > - `enabled`, `disabled`, and `adaptive`, for Opus 4.6 and Sonnet 4.6. The `adaptive` type allows the model to decide whether to think, based on query complexity and effort level.
     > - *only* `adaptive` and `enabled` for Mythos Preview.
     > - *only* `adaptive` and `disabled` for Opus 4.8 and Opus 4.7.
+    > - *only* `adaptive` for Mythos 5 and Fable 5.
 
 - **Effort:** Ability to control the quality/cost tradeoff for responses. Use this parameter with or without enabling thinking.
 
@@ -551,7 +526,7 @@ Some of the **Core capabilities** that Foundry supports are:
     > The `effort` parameter supports the effort levels:
     > - `low`, `medium`, and `high`
     > - *also* `max` for Opus 4.8, Opus 4.7, Opus 4.6, and Sonnet 4.6
-    > - *also* `xhigh` (does the same as `max`) for Opus 4.8 and Opus 4.7
+    > - *also* `xhigh` (does the same as `max`) for Mythos 5, Fable 5, Opus 4.8 and Opus 4.7
 
 - **PDF support:** Process and analyze text and visual content from PDF documents.
 
@@ -577,7 +552,8 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-opus-4-8   | [Global Standard](../concepts/deployment-types.md#global-standard) |0        | 0    | 2,000      | 2,000,000  |
+| claude-fable-5    | [Global Standard](../concepts/deployment-types.md#global-standard) |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-8   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-7   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
@@ -603,25 +579,11 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 - Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.8](https://www.anthropic.com/claude-opus-4-8-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Fable 5](https://www.anthropic.com/claude-fable-5-system-card), [Claude Mythos 5](https://www.anthropic.com/claude-mythos-5-system-card), [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.8](https://www.anthropic.com/claude-opus-4-8-system-card), [Claude Opus 4.7](https://www.anthropic.com/claude-opus-4-7-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
  
 ## Best practices
 
 Follow these best practices when working with Claude models in Foundry:
-
-### Model selection
-
-Choose the appropriate Claude model based on your specific requirements:
-
-- **Claude Mythos Preview**: For defensive cybersecurity, autonomous coding, and long-running agents.
-- **Claude Opus 4.8**: Most intelligent Opus model and the best available model for coding and agents, with deeper reasoning for enterprise workflows.
-- **Claude Opus 4.7**: Highly capable model for coding, enterprise workflows, and long-running agentic tasks.
-- **Claude Opus 4.6**: Very capable model for building agents, coding, and enterprise workflows.
-- **Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.
-- **Claude Opus 4.1**: Complex reasoning and enterprise applications.
-- **Claude Sonnet 4.6**: Frontier intelligence at scale for coding, agents, and most use cases.
-- **Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.
-- **Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
 
 ### Prompt engineering
 
@@ -633,7 +595,7 @@ Choose the appropriate Claude model based on your specific requirements:
 ### Cost optimization
 
 - **Token management**: Monitor and optimize token usage.
-- **Model selection**: Use the most cost-effective model for your use case.
+- **Model selection**: Use the most cost-effective model for your use case. See [Available Claude models](#available-claude-models).
 - **Request batching**: Combine multiple requests when possible.
 
 ## Troubleshooting
