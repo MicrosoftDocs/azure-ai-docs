@@ -53,6 +53,10 @@ Send a prompt and get a response from a model in a few lines of code:
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
+
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
