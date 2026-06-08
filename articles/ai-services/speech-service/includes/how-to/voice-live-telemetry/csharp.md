@@ -28,44 +28,97 @@ ai-usage: ai-assisted
 
 ## Enable console tracing
 
-Add the following code to your application before constructing the `VoiceLiveClient`. The SDK emits spans automatically when an OpenTelemetry provider is registered for the `Azure.AI.VoiceLive` source.
+Register an OpenTelemetry tracer provider that listens to the `Azure.AI.VoiceLive` activity source before you construct the `VoiceLiveClient`. The SDK emits spans automatically when a provider is present.
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-console.cs" id="enable_console_tracing":::
+```csharp
+using Azure.AI.VoiceLive;
+using Azure.Identity;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
+
+// Register an OpenTelemetry provider before constructing the VoiceLive client.
+using TracerProvider tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Azure.AI.VoiceLive")
+    .AddConsoleExporter()
+    .Build();
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_VOICELIVE_ENDPOINT")!;
+VoiceLiveClient client = new(new Uri(endpoint), new DefaultAzureCredential());
+
+// All connect, send, and receive operations now produce spans on the console.
+VoiceLiveSession session = await client.StartSessionAsync("gpt-realtime");
+```
 
 All connect, send, and receive operations now produce spans printed to stdout.
 
-Reference: [TracerProviderBuilder](/dotnet/api/opentelemetry.tracerproviderbuilder) | [VoiceLiveClient](/dotnet/api/azure.ai.voicelive.voiceliveclient)
+Reference: [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/dotnet/) | [VoiceLiveClient](/dotnet/api/azure.ai.voicelive.voiceliveclient)
 
 > [!div class="nextstepaction"]
-> [Complete console tracing sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-console.cs)
+> [Complete console tracing sample](https://github.com/Azure/azure-sdk-for-net/tree/main/samples/voicelive/telemetry-tracing)
 
 ## Export traces to Azure Monitor
 
 To send traces to Application Insights instead of the console, replace the console exporter with the Azure Monitor exporter. Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable, then add the following code.
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-azure-monitor.cs" id="enable_azure_monitor_tracing":::
+```csharp
+using Azure.AI.VoiceLive;
+using Azure.Identity;
+using Azure.Monitor.OpenTelemetry.Exporter;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
+
+string connectionString = Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")!;
+
+using TracerProvider tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Azure.AI.VoiceLive")
+    .AddAzureMonitorTraceExporter(options => options.ConnectionString = connectionString)
+    .Build();
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_VOICELIVE_ENDPOINT")!;
+VoiceLiveClient client = new(new Uri(endpoint), new DefaultAzureCredential());
+VoiceLiveSession session = await client.StartSessionAsync("gpt-realtime");
+```
 
 View the results in the **Tracing** tab in your Foundry project page or in Application Insights.
 
-Reference: [AddAzureMonitorTraceExporter](/dotnet/api/azure.monitor.opentelemetry.exporter.azuremonitorexporterextensions.addazuremonitortraceexporter)
-
-> [!div class="nextstepaction"]
-> [Complete Azure Monitor tracing sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-azure-monitor.cs)
+Reference: [Azure Monitor OpenTelemetry exporter for .NET](/dotnet/api/overview/azure/monitor.opentelemetry.exporter-readme)
 
 ## Add custom span attributes
 
-To correlate Voice Live traces with your application context (session IDs, user IDs, or request identifiers), create a custom processor that derives from `BaseProcessor<Activity>`.
+To correlate Voice Live traces with your application context (session IDs, user IDs, or request identifiers), implement a processor that derives from `BaseProcessor<Activity>`.
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-custom-attributes.cs" id="custom_span_processor":::
+```csharp
+using System.Diagnostics;
+using OpenTelemetry;
+
+internal sealed class CustomAttributesProcessor : BaseProcessor<Activity>
+{
+    private readonly string _sessionId;
+    private readonly string _userId;
+
+    public CustomAttributesProcessor(string sessionId, string userId)
+    {
+        _sessionId = sessionId;
+        _userId = userId;
+    }
+
+    public override void OnStart(Activity activity)
+    {
+        activity.SetTag("app.session_id", _sessionId);
+        activity.SetTag("app.user_id", _userId);
+    }
+}
+```
 
 Register the custom processor with the tracer provider builder after adding the `Azure.AI.VoiceLive` source:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-custom-attributes.cs" id="add_custom_processor":::
-
-Reference: [BaseProcessor&lt;T&gt;](/dotnet/api/opentelemetry.baseprocessor-1) | [AddProcessor](/dotnet/api/opentelemetry.trace.tracerproviderbuilderextensions.addprocessor)
-
-> [!div class="nextstepaction"]
-> [Complete custom attributes sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-custom-attributes.cs)
+```csharp
+using TracerProvider tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Azure.AI.VoiceLive")
+    .AddProcessor(new CustomAttributesProcessor(sessionId: "sess-123", userId: "user-abc"))
+    .AddConsoleExporter()
+    .Build();
+```
 
 ## Enable content recording
 
@@ -81,6 +134,3 @@ export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
 ```
 
 When enabled, the SDK attaches event payloads as `gen_ai.event.content` attributes on the corresponding spans.
-
-> [!div class="nextstepaction"]
-> [Complete content recording sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/csharp/voice-live-quickstarts/TelemetryQuickstart/telemetry-content-recording.cs)
