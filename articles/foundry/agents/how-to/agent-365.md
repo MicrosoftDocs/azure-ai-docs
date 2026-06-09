@@ -64,7 +64,7 @@ The sample provisions Azure resources and publishes a Hosted agent end-to-end. S
 - Submits an autopilot request that requires admin approval in the Microsoft 365 admin center.
 
 ### Run the code sample
-Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent).
+Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent#readme).
 
 At a high level, you typically:
 
