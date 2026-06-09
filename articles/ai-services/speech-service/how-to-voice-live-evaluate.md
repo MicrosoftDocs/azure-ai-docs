@@ -82,38 +82,18 @@ Your dataset is a JSON Lines (JSONL) file where each line represents one evaluat
 
 To create a multi-turn conversation, group related turns by using the same `conversationID`. The harness processes all turns in a conversation sequentially within a single Voice Live session and maintains conversation context across turns. The `system_prompt` and `tool_definitions` fields apply once per conversation, based on the first turn.
 
-### Sample datasets included in the repository
+### Sample datasets
 
-The evaluation harness repository includes ready-to-use sample datasets in [`evaluation_harness/sample_evaluation_input/`](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/sample_evaluation_input). You can use these datasets to run your first evaluation without preparing your own data.
+The evaluation harness repository includes ready-to-use sample datasets so you can run your first evaluation without preparing your own data. The datasets vary along several dimensions:
 
-| Dataset folder | JSONL file | Description |
-|----------------|-----------|-------------|
-| `0_metadata_samples/` | `1_qa_sample_minimal_wavpath_only.jsonl` | Minimal dataset with only `WavPath` fields. Shows the simplest possible input. |
-| `0_metadata_samples/` | `2_qa_sample_question_for_wer.jsonl` | Adds `Question` fields for word error rate context. |
-| `0_metadata_samples/` | `3_qa_sample_with_groundtruth.jsonl` | Adds `Answer` (ground truth) fields for quality scoring. |
-| `0_metadata_samples/` | `4_qa_sample_full_single_turn.jsonl` | Full single-turn dataset with all fields populated, including `system_prompt` and `tool_definitions`. |
-| `Eiffel_Tower_Visit/` | `Eiffel_Tower_Visit.jsonl` | Multi-turn travel agent conversation (5 turns). Includes WAV audio files and a transcript TSV. |
-| `Eiffel_Tower_Visit_1/` | `Eiffel_Tower_Visit_1.jsonl` | Variant of the Eiffel Tower dataset with different audio splits (6 turns). |
-| `Eiffel_Tower_Visit_1_media_base64/` | `Eiffel_Tower_Visit_1_media_base64.jsonl` | Same conversation with audio embedded as inline base64 data instead of WAV file paths. |
-| `Eiffel_Tower_Visit_1_media_url/` | `Eiffel_Tower_Visit_1_media_url.jsonl` | Same conversation with audio referenced by URL instead of local file paths. |
-| `DataOceanDemoComplexSession1/` | `DataOceanDemoComplexSession1.jsonl` | Complex multi-turn session with longer agent responses. Includes response audio and transcripts in a `transcripts/` subfolder. |
-| `BingChat_7days_en/` | `BingChat_en_minimal_10.jsonl` | 10 single-turn questions sourced from Bing Chat English logs. Audio files are in the `en-us/` subfolder. |
-| `MultiConversationSample/` | `multiConversationSample.jsonl` | Combines multiple conversations (Eiffel Tower + DataOcean) in a single JSONL to demonstrate the multi-conversation workflow. |
-| `Tool_Call_Test_Sample/` | `Tool_Call_Test_Sample.jsonl` | Tests tool calling evaluation with both correct and incorrect tool call scenarios. Includes `tool_definitions` in each turn. |
+- **Complexity** — from minimal single-field inputs to fully populated multi-turn conversations with system prompts and tool definitions.
+- **Turn structure** — single-turn Q&A datasets and multi-turn conversational sessions with sequential context.
+- **Audio format** — local WAV file paths, base64-encoded inline audio, and URL-referenced audio to demonstrate each input method.
+- **Scenario type** — general knowledge Q&A, task-oriented conversations, and tool-calling workflows.
 
-The `0_metadata_samples/` datasets are useful for understanding how different metadata fields affect evaluation scoring. Start with `4_qa_sample_full_single_turn.jsonl` for the most complete example.
+The repository also includes pre-generated sample output so you can see the expected format before running your own evaluation. For the full list of datasets and their descriptions, see the [sample datasets folder](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/sample_evaluation_input) in the repository.
 
-The repository also includes pre-generated sample output in [`evaluation_harness/sample_outputs/`](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/sample_outputs) so you can see the expected output format before running your own evaluation.
-
-### Helper scripts for dataset preparation
-
-The [`helper_scripts/`](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/helper_scripts) directory includes tools for converting external data into evaluation-ready JSONL:
-
-| Script | Purpose |
-|--------|---------|
-| `hf_dataset_to_jsonl.py` | Downloads audio datasets from HuggingFace and converts them to evaluation-ready JSONL files. |
-| `huggingface_datasets.py` | Utility functions for HuggingFace dataset operations. |
-| `convert_bingchat_dataset.py` | Converts Bing Chat log exports into the evaluation JSONL format. |
+The repository includes [helper scripts](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/helper_scripts) for converting external data sources (such as HuggingFace datasets or Bing Chat logs) into evaluation-ready JSONL files.
 
 ## Configure the evaluation
 
@@ -158,14 +138,7 @@ Voice Live session parameters control how the harness processes audio and how th
 | `noise_reduction` | string | `azure_deep_noise_suppression` | The noise reduction type. Set to `none` to disable. |
 | `push_to_talk` | bool | `false` | When set to `true`, enables push-to-talk mode instead of VAD. |
 
-Pre-built sample configs are available in [`evaluation_harness/configs/`](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/configs):
-
-| Config file | Mode | Model | Description |
-|-------------|------|-------|-------------|
-| `sample_vad_realtime.json` | VAD | `gpt-realtime` | Recommended default. Lowest latency with semantic VAD. |
-| `sample_vad_cascaded.json` | VAD | `gpt-5` | Cascaded model with semantic VAD. Broader model selection. |
-| `sample_ptt_realtime.json` | PTT | `gpt-realtime` | Push-to-talk with realtime model. Experimental. |
-| `sample_ptt_cascaded.json` | PTT | `gpt-5` | Push-to-talk with cascaded model. Experimental. |
+Pre-built sample configs that match the recommended configurations are available in the [evaluation harness repository](https://github.com/microsoft-foundry/voicelive-evaluation/tree/main/evaluation_harness/configs).
 
 > [!NOTE]
 > The config file uses a simplified flat-key format for readability. For the full Voice Live API session parameters, see [How to use the Voice Live API](./voice-live-how-to.md).
