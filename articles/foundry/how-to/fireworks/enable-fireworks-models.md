@@ -28,7 +28,7 @@ All of these capabilities are available directly within your Foundry project, wi
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
+* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the feature.
 * To deploy models, you need the **Foundry Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -55,7 +55,7 @@ Global provisioned throughput deployments of base and custom models are availabl
 >
 > Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
-While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
+While in preview, **Fireworks requires an administrator to enable the service** within your Azure subscription.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
