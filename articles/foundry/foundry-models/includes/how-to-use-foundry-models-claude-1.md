@@ -49,6 +49,10 @@ To learn more about the individual models, see [Available Claude models](#availa
 
 [!INCLUDE [claude-usage-restriction](claude-usage-restriction.md)]
 
+## Use the Claude on Foundry starter kit
+
+To get started with Claude on Foundry quickly, use the [Claude on Foundry starter kit](https://github.com/Azure-Samples/claude#readme). The starter kit uses a single `azd up` command to provision a Foundry account, project, and your chosen Claude model deployments by using either Bicep or Terraform. It then wires the Anthropic SDK and the Claude Code CLI to call your deployment over Microsoft Entra ID, with no API keys to manage.
+
 ## Deploy Claude models
 
 Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). To deploy a Claude model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
