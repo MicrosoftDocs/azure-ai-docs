@@ -549,9 +549,9 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 # [Free Trial](#tab/free)
 
-# [Pay-Go](#tab/pay-go)
+# [Pay-as-yo-go](#tab/pay-go)
 
-#### Pay-Go
+#### Pay-as-you-go
 
 | Model        |   Deployment type       | RPM   | TPM   |
 |:------------------|:----------------|:--------------:|:--------------:|
