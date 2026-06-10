@@ -16,7 +16,7 @@ ms.custom: include
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [additional DNS zone configurations](#private-network-configuration) next to your existing Azure OpenAI DNS Zone before all Foundry capabilities can be used.
-* Resources with existing private endpoints cannot be upgraded from Azure OpenAI to Microsoft Foundry through the Foundry or Azure portal, delete the endpoints prior to upgrade and re-create them afterward, or manage the process using Azure Bicep or Terraform.
+* Resources with existing private endpoints can't be upgraded from Azure OpenAI to Foundry through the Foundry portal or the Azure portal. Delete the private endpoints before you upgrade, and recreate them afterward. Alternatively, manage the upgrade using Azure Bicep or Terraform.
 
 ## Support level post-upgrade
 
