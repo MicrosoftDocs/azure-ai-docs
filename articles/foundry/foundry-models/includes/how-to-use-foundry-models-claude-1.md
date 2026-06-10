@@ -545,22 +545,57 @@ For a full list of supported capabilities and tools, see [Claude's features over
 
 ## API quotas and limits
 
-> [!IMPORTANT]
-> If you use a Pay-as-you-go subscription, you need to [request quota](https://aka.ms/oai/stuquotarequest) before getting started with Claude models in Foundry. Enterprise and MCA-E subscriptions have quota limits available by default.
+Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM). The values are different depending on your subscription type.
 
-Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
+# [Free Trial](#tab/free)
 
-| Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
-|:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-fable-5    | [Global Standard](../concepts/deployment-types.md#global-standard) |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-8   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-7   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-sonnet-4-6 | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
-| claude-sonnet-4-5 | Global Standard  |0        | 0    | 4,000      | 2,000,000  |
-| claude-haiku-4-5  | Global Standard  |0        | 0    | 4,000      | 4,000,000  |
+# [Pay-Go](#tab/pay-go)
+
+#### Pay-Go
+
+| Model        |   Deployment type       | RPM   | TPM   |
+|:------------------|:----------------|:--------------:|:--------------:|
+| claude-fable-5    | [Global Standard](../concepts/deployment-types.md#global-standard) | 0  | 0       |
+| claude-opus-4-8   | Global Standard  | 40 | 40,000  |
+| claude-opus-4-7   | Global Standard  | 40 | 40,000  |
+| claude-opus-4-6   | Global Standard  | 40 | 40,000  |
+| claude-opus-4-5   | Global Standard  | 40 | 40,000  |
+| claude-opus-4-1   | Global Standard  | 40 | 40,000  |
+| claude-sonnet-4-6 | Global Standard  | 80 | 80,000  |
+| claude-sonnet-4-5 | Global Standard  | 80 | 80,000  |
+| claude-haiku-4-5  | Global Standard  | 80 | 80,000  |
+
+# [Enterprise and MCA-E](#tab/enterprise)
+
+#### Enterprise and MCA-E
+
+| Model        |   Deployment type       | RPM   | TPM   |
+|:------------------|:----------------|:-----------:|:-----------:|
+| claude-fable-5    | [Global Standard](../concepts/deployment-types.md#global-standard) | 2,000      | 2,000,000  |
+| claude-opus-4-8   | Global Standard  | 2,000      | 2,000,000  |
+| claude-opus-4-7   | Global Standard  | 2,000      | 2,000,000  |
+| claude-opus-4-6   | Global Standard  | 2,000      | 2,000,000  |
+| claude-opus-4-5   | Global Standard  | 2,000      | 2,000,000  |
+| claude-opus-4-1   | Global Standard  | 2,000      | 2,000,000  |
+| claude-sonnet-4-6 | Global Standard  | 4,000      | 4,000,000  |
+| claude-sonnet-4-5 | Global Standard  | 4,000      | 4,000,000  |
+| claude-haiku-4-5  | Global Standard  | 4,000      | 4,000,000  |
+
+#### Free Trial
+
+| Model        |   Deployment type       | RPM   | TPM   |
+|:------------------|:----------------|:--------------:|:--------------:|
+| claude-fable-5    | [Global Standard](../concepts/deployment-types.md#global-standard) | 0  | 0       |
+| claude-opus-4-8   | Global Standard  | 0  | 0       |
+| claude-opus-4-7   | Global Standard  | 0  | 0       |
+| claude-opus-4-6   | Global Standard  | 0  | 0       |
+| claude-opus-4-5   | Global Standard  | 0  | 0       |
+| claude-opus-4-1   | Global Standard  | 0  | 0       |
+| claude-sonnet-4-6 | Global Standard  | 0  | 0       |
+| claude-sonnet-4-5 | Global Standard  | 0  | 0       |
+| claude-haiku-4-5  | Global Standard  | 0  | 0       |
+
+---
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
