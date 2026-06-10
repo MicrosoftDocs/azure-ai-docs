@@ -545,6 +545,9 @@ For a full list of supported capabilities and tools, see [Claude's features over
 
 ## API quotas and limits
 
+> [!IMPORTANT]
+> If you use a Pay-as-you-go subscription, you need to [request quota](https://aka.ms/oai/stuquotarequest) before getting started with Claude models in Foundry. Enterprise and MCA-E subscriptions have quota limits available by default.
+
 Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
