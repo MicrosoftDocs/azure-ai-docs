@@ -25,7 +25,7 @@ In this tutorial, you'll learn how to:
 
 ## Prerequisites
 * An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* [Microsoft Power BI Desktop](https://powerbi.microsoft.com/get-started/), available for free.
+* [Microsoft Power BI Desktop](https://learn.microsoft.com/en-us/power-bi/fundamentals/desktop-getting-started), available for free.
 * An excel file (.xlsx) containing time series data points.
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAnomalyDetector"  title="Create an Anomaly Detector resource"  target="_blank">create an Anomaly Detector resource </a> in the Azure portal to get your key and endpoint.
     * You will need the key and endpoint from the resource you create to connect your application to the Anomaly Detector API. You'll do this later in the quickstart.
