@@ -547,8 +547,6 @@ For a full list of supported capabilities and tools, see [Claude's features over
 
 Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM). The values are different depending on your subscription type.
 
-# [Free Trial](#tab/free)
-
 # [Pay-as-yo-go](#tab/pay-go)
 
 #### Pay-as-you-go
@@ -580,6 +578,8 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 | claude-sonnet-4-6 | Global Standard  | 4,000      | 4,000,000  |
 | claude-sonnet-4-5 | Global Standard  | 4,000      | 4,000,000  |
 | claude-haiku-4-5  | Global Standard  | 4,000      | 4,000,000  |
+
+# [Free Trial](#tab/free)
 
 #### Free Trial
 
