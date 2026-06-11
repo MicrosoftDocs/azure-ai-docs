@@ -209,6 +209,20 @@ items:
   - name: FLUX models
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
+  - name: Healthcare AI models
+    items:
+    - name: AI models for healthcare
+      displayName: Premium healthcare AI models in Foundry
+      href: ../../how-to/healthcare-ai/healthcare-ai-models.md
+    - name: Deploy MedImageInsight premium model
+      displayName: Deploy MedImageInsight premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/deploy-medimageinsight-premium.md
+    - name: Deploy CXRReportGen premium model
+      displayName: Deploy CXRReportGen premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/deploy-cxrreportgen-premium.md
+    - name: Fine-tune a healthcare AI premium model
+      displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
+      href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
 
 - name: Develop with AI models
   items:
@@ -262,9 +276,6 @@ items:
     - name: Work with reasoning models in Foundry Models
       displayName: How to use reasoning models with Microsoft Foundry Models
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
-    - name: Work with Multimodal models
-      displayName: How to use image and audio in chat completions with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
     - name: Work with embeddings in Azure OpenAI

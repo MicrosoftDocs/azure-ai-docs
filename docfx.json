@@ -482,7 +482,7 @@
         "articles/ai-studio/**/*.md": "microsoft-foundry",
         "articles/ai-services/**/*.md": "foundry-tools",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
-        "articles/ai-services/computer-vision/**/*.md": "azure-ai-vision",
+        "articles/ai-services/computer-vision/**/*.md": "azure-vision-foundry-tools",
         "articles/ai-services/content-moderator/**/*.md": "azure-content-moderator",
         "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",

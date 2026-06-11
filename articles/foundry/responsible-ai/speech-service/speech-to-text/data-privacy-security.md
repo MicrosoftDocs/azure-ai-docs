@@ -65,7 +65,7 @@ With speech containers, customers deploy Speech services APIs to their own envir
 
 ### Security for customers' data in speech container
 
-The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Foundry Tools container security](/azure/cognitive-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security).
+The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Foundry Tools container security](/azure/cognitive-services/cognitive-services-container-support?context=/azure/foundry-classic/context/context#azure-cognitive-services-container-security).
 
 You are responsible for securing and maintaining the equipment and infrastructure required to operate speech containers located on your premises, such as your edge device and network.
 

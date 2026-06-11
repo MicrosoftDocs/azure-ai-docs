@@ -163,4 +163,4 @@ Open a browser on the host machine and go to **localhost** by using the specifie
 
 ## Next steps
 
-[Azure AI containers](../cognitive-services-container-support.md)
+[Azure AI containers](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)
