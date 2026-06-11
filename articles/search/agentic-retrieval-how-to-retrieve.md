@@ -67,6 +67,9 @@ This article explains how to call both retrieval methods with optional permissio
 
 You specify the retrieve action on a knowledge base. The request body includes the query input and an optional list of knowledge sources to target.
 
+> [!IMPORTANT]
+> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
+
 :::zone pivot="csharp"
 
 # [2026-05-01-preview](#tab/2026-05-01-preview)
@@ -321,9 +324,6 @@ Authorization: Bearer {{accessToken}}
 ---
 
 :::zone-end
-
-> [!IMPORTANT]
-> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
 ### Request parameters
 
