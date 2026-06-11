@@ -33,12 +33,12 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 ### Usage support
 
-| Capability | Python SDK | C# SDK | JavaScript SDK | REST API |
-|---|---|---|---|---|
-| Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ | ✔️ |
-| Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ | ✔️ |
-| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ |
-| Create, read, update, list, and delete memory items | ✔️ | ✔️ | ✔️ | ✔️ |
+| Capability | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API |
+| --- | --- | --- | --- | --- | --- |
+| Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Create, read, update, list, and delete memory items | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -102,7 +102,24 @@ npm install @azure/ai-projects@2 @azure/identity
 
 :::zone-end
 
-:::zone pivot="python,csharp,typescript"
+:::zone pivot="java"
+
+Install the required packages:
+
+```xml
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-ai-agents</artifactId>
+</dependency>
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-identity</artifactId>
+</dependency>
+```
+
+:::zone-end
+
+:::zone pivot="python,csharp,typescript,java"
 
 Set environment variables for your project endpoint and model deployment names:
 
@@ -307,6 +324,43 @@ console.log(
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
+import com.azure.ai.agents.models.MemoryStoreDefaultOptions;
+import com.azure.ai.agents.models.MemoryStoreDetails;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = System.getenv("FOUNDRY_PROJECT_ENDPOINT");
+String chatModel = System.getenv("MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME");
+String embeddingModel =
+  System.getenv("MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME");
+
+MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+  .credential(new DefaultAzureCredentialBuilder().build())
+  .endpoint(projectEndpoint)
+  .buildMemoryStoresClient();
+
+String memoryStoreName = "my_memory_store";
+
+MemoryStoreDefaultDefinition definition =
+  new MemoryStoreDefaultDefinition(chatModel, embeddingModel)
+    .setOptions(new MemoryStoreDefaultOptions(true, true));
+
+MemoryStoreDetails memoryStore = memoryStoresClient.createMemoryStore(
+  memoryStoreName,
+  definition,
+  "Memory store for customer support agent",
+  null);
+
+System.out.println("Created memory store: " + memoryStore.getName());
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -334,7 +388,7 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
 :::zone-end
 
 > [!TIP]
-> - The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
+> - The remaining Python, C#, TypeScript, and Java snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
 >
 > - The C# snippets in this article use synchronous methods. For asynchronous usage, see the [memory search tool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md) and [memory store](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) samples.
 
@@ -401,6 +455,21 @@ console.log(`Updated: ${updatedStore.description}`);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryStoreDetails;
+
+MemoryStoreDetails updatedStore = memoryStoresClient.updateMemoryStore(
+  memoryStoreName,
+  "Updated description",
+  null);
+
+System.out.println("Updated: " + updatedStore.getDescription());
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -454,6 +523,20 @@ const storeList = project.beta.memoryStores.list();
 console.log("Listing all memory stores...");
 for await (const store of storeList) {
   console.log(`  - Memory Store: ${store.name} (${store.id})`);
+}
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryStoreDetails;
+
+System.out.println("Listing all memory stores...");
+for (MemoryStoreDetails store : memoryStoresClient.listMemoryStores()) {
+    System.out.println(
+        "  - Memory Store: " + store.getName() + " (" + store.getId() + ")");
 }
 ```
 
@@ -576,6 +659,41 @@ console.log(
   `Created agent with memory search tool, agent ID: ${agent.id}, ` +
     `name: ${agent.name}, version: ${agent.version}`,
 );
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.MemorySearchPreviewTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String scope = "user_123";
+
+AgentsClient agentsClient = new AgentsClientBuilder()
+  .credential(new DefaultAzureCredentialBuilder().build())
+  .endpoint(projectEndpoint)
+  .buildAgentsClient();
+
+MemorySearchPreviewTool memoryTool = new MemorySearchPreviewTool(
+  memoryStoreName,
+  scope).setUpdateDelaySeconds(1);
+
+PromptAgentDefinition agentDefinition = new PromptAgentDefinition(chatModel)
+  .setInstructions("You are a helpful assistant that answers general questions")
+  .setTools(java.util.Collections.singletonList(memoryTool));
+
+AgentVersionDetails agent =
+  agentsClient.createAgentVersion("MyAgent", agentDefinition);
+
+System.out.println(
+  "Agent created (id: " + agent.getId() + ", name: " + agent.getName()
+    + ", version: " + agent.getVersion() + ")");
 ```
 
 :::zone-end
@@ -754,6 +872,45 @@ console.log(`Response output: ${newResponse.output_text}`);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+ResponsesClient responsesClient = new AgentsClientBuilder()
+  .credential(new DefaultAzureCredentialBuilder().build())
+  .endpoint(projectEndpoint)
+  .buildResponsesClient();
+
+AgentReference agentReference = new AgentReference(agent.getName())
+  .setVersion(agent.getVersion());
+
+Response response = responsesClient.createAzureResponse(
+  new AzureCreateResponseOptions().setAgentReference(agentReference),
+  ResponseCreateParams.builder()
+    .input("I prefer dark roast coffee"));
+
+System.out.println("Response output: " + response.output());
+
+System.out.println("Waiting for memories to be stored...");
+Thread.sleep(65_000);
+
+Response newResponse = responsesClient.createAzureResponse(
+  new AzureCreateResponseOptions().setAgentReference(agentReference),
+  ResponseCreateParams.builder()
+    .input("Please order my usual coffee"));
+
+System.out.println("Response output: " + newResponse.output());
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -884,6 +1041,29 @@ for (const item of forgetResponse.output) {
     console.log(outputItem["status"]);
   }
 }
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+Response rememberResponse = responsesClient.createAzureResponse(
+  new AzureCreateResponseOptions().setAgentReference(agentReference),
+  ResponseCreateParams.builder()
+    .input("Remember that my preferred seat is aisle."));
+
+System.out.println(rememberResponse.output());
+
+Response forgetResponse = responsesClient.createAzureResponse(
+  new AzureCreateResponseOptions().setAgentReference(agentReference),
+  ResponseCreateParams.builder()
+    .input("Forget my preferred seat."));
+
+System.out.println(forgetResponse.output());
 ```
 
 :::zone-end
@@ -1124,6 +1304,71 @@ for (const operation of newUpdateResult.memory_operations) {
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryStoreUpdateCompletedResult;
+import com.azure.ai.agents.models.MemoryStoreUpdateResponse;
+import com.azure.core.util.polling.SyncPoller;
+import com.openai.models.responses.EasyInputMessage;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.Arrays;
+
+ResponseInputItem userMessage = ResponseInputItem.ofEasyInputMessage(
+  EasyInputMessage.builder()
+    .role(EasyInputMessage.Role.USER)
+    .content("I prefer dark roast coffee and usually drink it in the morning")
+    .build());
+
+SyncPoller<MemoryStoreUpdateResponse, MemoryStoreUpdateCompletedResult> updatePoller =
+  memoryStoresClient.beginUpdateMemories(
+    memoryStoreName,
+    scope,
+    Arrays.asList(userMessage),
+    null,
+    0);
+
+updatePoller.waitForCompletion();
+MemoryStoreUpdateCompletedResult updateResult = updatePoller.getFinalResult();
+System.out.println(
+  "Updated with " + updateResult.getMemoryOperations().size()
+    + " memory operation(s)");
+for (var operation : updateResult.getMemoryOperations()) {
+  System.out.println(
+    "  - Operation: " + operation.getKind() + ", Memory ID: "
+      + operation.getMemoryItem().getMemoryId() + ", Content: "
+      + operation.getMemoryItem().getContent());
+}
+
+ResponseInputItem newMessage = ResponseInputItem.ofEasyInputMessage(
+  EasyInputMessage.builder()
+    .role(EasyInputMessage.Role.USER)
+    .content("I also like cappuccinos in the afternoon")
+    .build());
+
+// Pass null for previousUpdateId to start a fresh independent update.
+// To chain from the previous update, pass the update ID from the
+// intermediate poller response instead.
+SyncPoller<MemoryStoreUpdateResponse, MemoryStoreUpdateCompletedResult> newUpdatePoller =
+  memoryStoresClient.beginUpdateMemories(
+    memoryStoreName,
+    scope,
+    Arrays.asList(newMessage),
+    null,
+    0);
+
+newUpdatePoller.waitForCompletion();
+MemoryStoreUpdateCompletedResult newUpdateResult = newUpdatePoller.getFinalResult();
+for (var newOperation : newUpdateResult.getMemoryOperations()) {
+  System.out.println(
+    "  - Operation: " + newOperation.getKind() + ", Memory ID: "
+      + newOperation.getMemoryItem().getMemoryId() + ", Content: "
+      + newOperation.getMemoryItem().getContent());
+}
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1246,6 +1491,42 @@ for (const memory of searchResponse.memories) {
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemorySearchItem;
+import com.azure.ai.agents.models.MemorySearchOptions;
+import com.azure.ai.agents.models.MemoryStoreSearchResponse;
+import com.openai.models.responses.EasyInputMessage;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.Arrays;
+
+ResponseInputItem queryMessage = ResponseInputItem.ofEasyInputMessage(
+  EasyInputMessage.builder()
+    .role(EasyInputMessage.Role.USER)
+    .content("What are my coffee preferences?")
+    .build());
+
+MemorySearchOptions searchOptions = new MemorySearchOptions()
+  .setMaxMemories(5);
+
+MemoryStoreSearchResponse searchResponse = memoryStoresClient.searchMemories(
+  memoryStoreName,
+  scope,
+  Arrays.asList(queryMessage),
+  null,
+  searchOptions);
+
+System.out.println("Found " + searchResponse.getMemories().size() + " memories");
+for (MemorySearchItem item : searchResponse.getMemories()) {
+  System.out.println(
+    "  - Memory ID: " + item.getMemoryItem().getMemoryId() + ", Content: "
+      + item.getMemoryItem().getContent());
+}
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1338,6 +1619,25 @@ console.log(`Kind: ${created.kind}`);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryItem;
+import com.azure.ai.agents.models.MemoryItemKind;
+
+MemoryItem created = memoryStoresClient.createMemory(
+  memoryStoreName,
+  "defaultUser",
+  "User prefers concise changelogs with impact-first summaries.",
+  MemoryItemKind.USER_PROFILE);
+
+System.out.println("Memory ID: " + created.getMemoryId());
+System.out.println("Content: " + created.getContent());
+System.out.println("Kind: " + created.getKind());
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1391,6 +1691,22 @@ const item = await project.beta.memoryStores.getMemory(
 console.log(`Memory ID: ${item.memory_id}`);
 console.log(`Content: ${item.content}`);
 console.log(`Kind: ${item.kind}`);
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryItem;
+
+MemoryItem memItem = memoryStoresClient.getMemory(
+  memoryStoreName,
+  "<memory-item-id>");
+
+System.out.println("Memory ID: " + memItem.getMemoryId());
+System.out.println("Content: " + memItem.getContent());
+System.out.println("Kind: " + memItem.getKind());
 ```
 
 :::zone-end
@@ -1452,6 +1768,29 @@ console.log(`Total memories: ${count}`);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.ListMemoriesOptions;
+import com.azure.ai.agents.models.MemoryItem;
+
+ListMemoriesOptions options = new ListMemoriesOptions(
+  memoryStoreName,
+  "defaultUser");
+
+int count = 0;
+for (MemoryItem memoryEntry : memoryStoresClient.listMemories(options)) {
+  count++;
+  System.out.println(
+    "- " + memoryEntry.getMemoryId() + " [" + memoryEntry.getKind() + "]: "
+      + memoryEntry.getContent());
+}
+
+System.out.println("Total memories: " + count);
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1501,6 +1840,21 @@ console.log(`Updated: ${updated.content}`);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.models.MemoryItem;
+
+MemoryItem updated = memoryStoresClient.updateMemory(
+  memoryStoreName,
+  "<memory-item-id>",
+  "User prefers detailed technical explanations with examples.");
+
+System.out.println("Updated: " + updated.getContent());
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1546,6 +1900,16 @@ await project.beta.memoryStores.deleteMemory(
 );
 
 console.log("Memory item deleted successfully");
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+memoryStoresClient.deleteMemory(memoryStoreName, "<memory-item-id>");
+
+System.out.println("Memory item deleted successfully");
 ```
 
 :::zone-end
@@ -1609,6 +1973,16 @@ await project.beta.memoryStores.deleteScope(memoryStoreName, scope);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+memoryStoresClient.deleteScope(memoryStoreName, "user_123");
+
+System.out.println("Deleted memories for scope: user_123");
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1660,6 +2034,16 @@ await project.beta.memoryStores.delete(memoryStoreName);
 
 :::zone-end
 
+:::zone pivot="java"
+
+```java
+memoryStoresClient.deleteMemoryStore(memoryStoreName);
+
+System.out.println("Deleted memory store: " + memoryStoreName);
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -1690,7 +2074,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-|---|---|---|
+| --- | --- | --- |
 | Requests fail with an authentication or authorization error. | Your identity or the project managed identity doesn’t have the required roles. | Verify the roles in [Authorization and permissions](#authorization-and-permissions). For REST calls, generate a fresh access token and retry. |
 | Memories don’t appear after a conversation. | Memory updates are debounced or still processing. | Increase the wait time or call the update API with `update_delay` set to `0` to trigger processing immediately. |
 | Memory search returns no results. | The `scope` value doesn’t match the scope used when memories were stored. | Use the same scope for update and search. If you map scope to users, use a stable user identifier. |
@@ -1724,6 +2108,17 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 :::zone pivot="typescript"
 
 - [Azure AI Projects client library for JavaScript: Memory samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/memories)
+- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
+- [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
+- [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
+
+:::zone-end
+
+:::zone pivot="java"
+
+- [Azure AI Agents client library for Java: Memory samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/memory)
+- [Azure AI Agents client library for Java: Memory search agent sample](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/MemorySearchAgent.java)
 - [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
