@@ -15,12 +15,12 @@ The Azure Vision in Foundry Tools - Image Analysis API will be retired on Septem
 
 
 > [!IMPORTANT]
-> The term "Image Analysis API" used in this article refers specifically to the Azure Computer Vision Image Analysis REST API (e.g., `/imageanalysis` endpoint) and supported versions (v3.2 and v4.0).
+> The term "Image Analysis API" used in this article refers specifically to the Azure Computer Vision Image Analysis REST API (the `/imageanalysis` endpoint) and supported versions (v3.2 and v4.0).
 >
-> - This retirement applies to all deployment types, including:
->   - Cloud APIs
->   - Connected containers
->   - Disconnected containers
+> This retirement applies to all deployment types, including:
+> - Cloud APIs
+> - Connected containers
+> - Disconnected containers
 
 
 ## Migration preparation checklist
