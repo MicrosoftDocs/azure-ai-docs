@@ -7,7 +7,7 @@ ms.reviewer: liulewis
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 06/08/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -278,6 +278,8 @@ const project = new AIProjectClient(
 const memoryOptions: MemoryStoreDefaultOptions = {
   user_profile_enabled: true,
   chat_summary_enabled: true,
+  procedural_memory_enabled: true,
+  default_ttl_seconds: 30 * 24 * 60 * 60,
   user_profile_details:
     "Avoid irrelevant or sensitive data, such as age, " +
     "financials, precise location, and credentials",
@@ -294,7 +296,7 @@ const memoryStore = await project.beta.memoryStores.create(
   memoryStoreName,
   definition,
   {
-    description: "Memory store for customer support agent",
+    description: "Memory store with procedural memory and 30-day default TTL",
   },
 );
 
@@ -838,7 +840,50 @@ for item in forget_response.output:
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+const openaiClient = project.getOpenAIClient();
+
+// Configure the memory search tool
+const tools = [
+  {
+    type: "memory_search_preview",
+    memory_store_name: memoryStoreName,
+    scope: scope,
+  },
+];
+
+// Ask the agent to remember information
+const rememberResponse = await openaiClient.responses.create({
+  model: chatModelDeployment,
+  input: "Remember that my preferred seat is aisle.",
+  tools: tools as any,
+});
+
+for (const item of rememberResponse.output) {
+  const outputItem = item as Record<string, unknown>;
+  if (outputItem["type"] === "memory_command_call") {
+    console.log(outputItem["type"]);       // memory_command_call
+    console.log(outputItem["arguments"]);
+    // {"action": "remember", "content": "..."}
+    console.log(outputItem["status"]);     // completed
+  }
+}
+
+// Ask the agent to forget information
+const forgetResponse = await openaiClient.responses.create({
+  model: chatModelDeployment,
+  input: "Forget my preferred seat.",
+  tools: tools as any,
+});
+
+for (const item of forgetResponse.output) {
+  const outputItem = item as Record<string, unknown>;
+  if (outputItem["type"] === "memory_command_call") {
+    console.log(outputItem["type"]);
+    console.log(outputItem["arguments"]);
+    // {"action": "forget", "content": "..."}
+    console.log(outputItem["status"]);
+  }
+}
 ```
 
 :::zone-end
@@ -1278,7 +1323,17 @@ print(f"Kind: {created.kind}")
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+// Create a memory item directly
+const created = await project.beta.memoryStores.createMemory(
+  memoryStoreName,
+  "defaultUser",
+  "User prefers concise changelogs with impact-first summaries.",
+  "user_profile",
+);
+
+console.log(`Memory ID: ${created.memory_id}`);
+console.log(`Content: ${created.content}`);
+console.log(`Kind: ${created.kind}`);
 ```
 
 :::zone-end
@@ -1327,7 +1382,15 @@ print(f"Kind: {item.kind}")
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+// Retrieve a memory item by ID
+const item = await project.beta.memoryStores.getMemory(
+  memoryStoreName,
+  "<memory-item-id>",
+);
+
+console.log(`Memory ID: ${item.memory_id}`);
+console.log(`Content: ${item.content}`);
+console.log(`Kind: ${item.kind}`);
 ```
 
 :::zone-end
@@ -1373,7 +1436,18 @@ print(f"Total memories: {count}")
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+// List all memory items in the store
+const memoriesList = project.beta.memoryStores.listMemories(
+  memoryStoreName,
+  "defaultUser",
+);
+
+let count = 0;
+for await (const item of memoriesList) {
+  count += 1;
+  console.log(`- ${item.memory_id} [${item.kind}]: ${item.content}`);
+}
+console.log(`Total memories: ${count}`);
 ```
 
 :::zone-end
@@ -1415,7 +1489,14 @@ print(f"Updated: {updated.content}")
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+// Update a memory item by ID
+const updated = await project.beta.memoryStores.updateMemory(
+  memoryStoreName,
+  "<memory-item-id>",
+  "User prefers detailed technical explanations with examples.",
+);
+
+console.log(`Updated: ${updated.content}`);
 ```
 
 :::zone-end
@@ -1458,7 +1539,13 @@ print("Memory item deleted successfully")
 :::zone pivot="typescript"
 
 ```typescript
-// This code snippet is currently unavailable.
+// Delete a memory item by ID
+await project.beta.memoryStores.deleteMemory(
+  memoryStoreName,
+  "<memory-item-id>",
+);
+
+console.log("Memory item deleted successfully");
 ```
 
 :::zone-end
