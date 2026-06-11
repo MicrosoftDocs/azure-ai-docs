@@ -21,19 +21,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-By default, a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
+By default, a knowledge base in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
 
 You can instead enable *answer synthesis* (preview), which uses the LLM specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
-You can enable answer synthesis in two ways:
-
-+ On the knowledge base (becomes the default for all queries)
-+ On individual retrieval requests (overrides the default)
-
-> [!IMPORTANT]
-> + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
->
-> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+You can set this property in a knowledge base or a retrieve request. The knowledge base setting establishes the default for all queries, while the retrieve request setting overrides the default on a query-by-query basis.
 
 ## Prerequisites
 
@@ -61,9 +53,15 @@ You can enable answer synthesis in two ways:
 
 :::zone-end
 
+## Limitations and considerations
+
+- The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieve requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+
+- Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which are based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing](agentic-retrieval-overview.md#availability-and-pricing).
+
 ## Enable answer synthesis in a knowledge base
 
-This section explains how to enable answer synthesis in an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
+This section demonstrates how to enable answer synthesis in an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
 
 :::zone pivot="csharp"
 
@@ -277,8 +275,7 @@ Depending on your knowledge base's configuration, the response might include oth
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
-+ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (uses answer synthesis)
-+ [Python sample: Azure AI Search blob knowledge source](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb) (uses answer synthesis)
+- [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
+- [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
+- [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (uses answer synthesis)
+- [Python sample: Azure AI Search blob knowledge source](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb) (uses answer synthesis)
