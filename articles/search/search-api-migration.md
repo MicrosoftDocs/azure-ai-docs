@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 03/30/2026
+ms.date: 06/11/2026
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -324,13 +324,11 @@ Use the instructions in this section to migrate vector fields, configuration, an
    + For each vector query, rename `value` to `vector`.
    + Optionally, add `vectorFilterMode` if you're using [filter expressions](vector-search-filters.md). The default is  prefilter for indexes created after `2023-10-01`. Indexes created before that date only support postfilter, regardless of how you set the filter mode.
 
-*The `search` parameter is ignored in vector search.
-
     **Before (2023-07-01-preview)**:
 
     ```http
     {
-        "search": "",
+        "search": "*", //Required by the API but ignored for ranking in vector-only queries
         "vectors": [
           {
             "value": [
@@ -352,7 +350,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-      "search": "",
+      "search": "*", //Required by the API but ignored for ranking in vector-only queries
       "vectorQueries": [
         {
           "kind": "vector",
