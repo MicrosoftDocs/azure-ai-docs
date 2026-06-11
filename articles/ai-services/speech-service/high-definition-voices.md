@@ -151,7 +151,7 @@ Check out the full [Dragon HD Omni voice list](https://github.com/Azure-Samples/
 
 ### Dragon HD Flash voices
 
-HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`).
+HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinanorth3`).
 
 The following table lists all available HD Flash voices and supported styles.
 
