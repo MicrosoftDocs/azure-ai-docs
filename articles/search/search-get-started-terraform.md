@@ -2,7 +2,7 @@
 title: 'Quickstart: Deploy Using Terraform'
 description: 'In this article, you create an Azure AI Search service using Terraform.'
 ms.topic: quickstart
-ms.date: 05/29/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-terraform

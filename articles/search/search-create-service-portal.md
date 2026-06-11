@@ -6,7 +6,7 @@ ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 09/25/2025
+ms.date: 06/10/2026
 ms.custom:
   - references_regions
   - build-2024
@@ -16,6 +16,8 @@ ms.custom:
 # Create an Azure AI Search service in the Azure portal
 
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
+
+Most modern AI apps use Azure AI Search as part of a larger architecture (for example, with Microsoft Foundry agents, vectorization pipelines, or chat-based apps). This article focuses on creating the underlying search service.
 
 The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.
 
@@ -118,18 +120,19 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md) powered by Foundry Tools? For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection (preview) or key-based connection. Key-based connections require both services to be in the same region.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Microsoft Foundry are in the same region.
+   - Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Microsoft Foundry are in the same region.
 
-   + Check [Azure Vision in Foundry Tools regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through a Microsoft Foundry resource. However, they're generally available in fewer regions than the Microsoft Foundry resource itself.
+   - Check [Azure Vision in Foundry Tools regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through a Microsoft Foundry resource. However, they're generally available in fewer regions than the Microsoft Foundry resource itself.
 
 ## Choose a tier
 
 Azure AI Search is offered in multiple [pricing tiers](https://azure.microsoft.com/pricing/details/search/):
 
-+ Free
-+ Basic
-+ Standard
-+ Storage Optimized
+- Free
+- Basic
+- Standard
+- Storage Optimized
+- Serverless Developer
 
 Each tier has its own [capacity and limits](search-limits-quotas-capacity.md), and some features are tier dependent. For information about computing characteristics, feature availability, and region availability, see [Choose a service tier for Azure AI Search](search-sku-tier.md).
 

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ---
 
@@ -32,29 +32,29 @@ Azure AI Search can send operation logs and service metrics to an Azure Storage 
 
 1. Once logging is enabled, logs and metrics are generated as you use the search service. It can take up to an hour before logged events show up in Azure Storage. Look for a **insights-logs-operationlogs** container for operations and a **insights-metrics-pt1m** container for metrics. Check your storage account for these containers to make sure you have data to visualize.
 
-1. Find the Power BI app template in the [Power BI Apps marketplace](https://appsource.microsoft.com/en-us/product/power-bi/azurecognitivesearch.azurecognitivesearchlogsandmetrics?tab=Overview) and install it into a new workspace or an existing workspace. The template is called **Azure Cognitive Search: Analyze Logs and Metrics**.
+1. Find the Power BI app template in the [Power BI Apps marketplace](https://appsource.microsoft.com/en-us/product/power-bi/azurecognitivesearch.azurecognitivesearchlogsandmetrics?tab=Overview) and install it into a new workspace or an existing workspace. The template is listed as **Azure Cognitive Search: Analyze Logs and Metrics**.
 
 1. After installing the template, select it from your list of apps in Power BI.
 
-    :::image type="content" source="media/search-monitor-logs-powerbi/azure-search-app-tile.png" alt-text="Screenshot showing the Azure Cognitive Search app to select from the list of apps.":::
+    :::image type="content" source="media/search-monitor-logs-powerbi/azure-search-app-tile.png" alt-text="Screenshot showing the Power BI template app tile with the legacy Azure Cognitive Search name.":::
 
 1. Select **Connect your data**.
 
-    :::image type="content" source="media/search-monitor-logs-powerbi/get-started-with-your-new-app.png" alt-text="Screenshot showing how to connect to your data in the Azure Cognitive Search app.":::
+    :::image type="content" source="media/search-monitor-logs-powerbi/get-started-with-your-new-app.png" alt-text="Screenshot showing how to connect to your data in the Power BI template app.":::
 
 1. Provide the name of the storage account that contains your logs and metrics. By default, the app looks at the last 10 days of data, but this value can be changed with the **Days** parameter.
 
-    :::image type="content" source="media/search-monitor-logs-powerbi/connect-to-storage-account.png" alt-text="Screenshot showing how to input the storage account name and the number of days to query in the Connect to Azure Cognitive Search page.":::
+    :::image type="content" source="media/search-monitor-logs-powerbi/connect-to-storage-account.png" alt-text="Screenshot showing how to enter the storage account name and number of days in the Connect to your data page.":::
 
 1. Select **Key** as the authentication method and provide your storage account key. Select **None** or **Private** as the privacy level. Select **Sign In** to begin the loading process.
 
-    :::image type="content" source="media/search-monitor-logs-powerbi/connect-to-storage-account-step-two.png" alt-text="Screenshot showing how to input the authentication method, account key, and privacy level in the Connect to Azure Cognitive Search page.":::
+    :::image type="content" source="media/search-monitor-logs-powerbi/connect-to-storage-account-step-two.png" alt-text="Screenshot showing how to set authentication method, account key, and privacy level in the connection page.":::
 
 1. Wait for the data to refresh. This might take some time depending on how much data you have. You can see if the data is still being refreshed based on the below indicator.
 
     :::image type="content" source="media/search-monitor-logs-powerbi/workspace-view-refreshing.png" alt-text="Screenshot showing how to read the information on the data refresh page.":::
 
-1. Select **Azure Cognitive Search Report** to view the report.
+1. Select **Azure Cognitive Search Report** (legacy report name) to view the report.
 
     :::image type="content" source="media/search-monitor-logs-powerbi/workspace-view-select-report.png" alt-text="Screenshot showing how to select the report on the data refresh page.":::
 
@@ -70,7 +70,7 @@ If you would like to visualize data from a different storage account or change t
 
 1. Select **Settings** from the Dataset options.
 
-    :::image type="content" source="media/search-monitor-logs-powerbi/workspace-view-select-settings.png" alt-text="Screenshot showing how to select Settings from the Azure Cognitive Search Dataset options.":::
+    :::image type="content" source="media/search-monitor-logs-powerbi/workspace-view-select-settings.png" alt-text="Screenshot showing how to select Settings from the dataset options in the Power BI workspace.":::
 
 1. While in the Datasets tab, change the parameter values and select **Apply**. If there's an issue with the connection, update the data source credentials on the same page.
 
