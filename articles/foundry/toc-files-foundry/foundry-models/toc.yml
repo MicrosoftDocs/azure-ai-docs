@@ -276,9 +276,6 @@ items:
     - name: Work with reasoning models in Foundry Models
       displayName: How to use reasoning models with Microsoft Foundry Models
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
-    - name: Work with Multimodal models
-      displayName: How to use image and audio in chat completions with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
     - name: Work with embeddings in Azure OpenAI
