@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
 MedImageParse and MedImageParse 3D are healthcare AI models for medical image segmentation using simple text prompts. In this article, you learn how to deploy these prompt-based segmentation models as online endpoints for real-time inference and issue basic calls to the API. The steps you take are:
 
