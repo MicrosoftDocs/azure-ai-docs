@@ -1245,9 +1245,6 @@ Use item-level operations to directly create, inspect, update, and delete indivi
 
 :::zone pivot="rest"
 
-> [!NOTE]
-> The latest preview uses `/memories` as the item-level path segment. The previous preview used `/items`, with `:list` for listing. If you're on the previous API version, update your routes accordingly.
-
 :::zone-end
 
 ### Create a memory item
@@ -1289,7 +1286,7 @@ print(f"Kind: {created.kind}")
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/items?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1338,7 +1335,7 @@ print(f"Kind: {item.kind}")
 :::zone pivot="rest"
 
 ```bash
-curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/items/<memory-item-id>?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
@@ -1384,7 +1381,7 @@ print(f"Total memories: {count}")
 :::zone pivot="rest"
 
 ```bash
-curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories?scope=user_123&api-version=${API_VERSION}" \
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/items:list?scope=user_123&api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
@@ -1426,7 +1423,7 @@ print(f"Updated: {updated.content}")
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/items/<memory-item-id>?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{"content": "User prefers detailed technical explanations with examples."}'
@@ -1469,7 +1466,7 @@ print("Memory item deleted successfully")
 :::zone pivot="rest"
 
 ```bash
-curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/memories/<memory-item-id>?api-version=${API_VERSION}" \
+curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/items/<memory-item-id>?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
