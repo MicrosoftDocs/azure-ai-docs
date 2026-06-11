@@ -153,6 +153,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a Hosted agent from source code (preview)
       href: ../../agents/how-to/deploy-hosted-agent-code.md
+    - name: Add a content safety guardrail to a Hosted agent
+      href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage Hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
