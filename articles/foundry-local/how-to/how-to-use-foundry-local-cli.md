@@ -2,7 +2,7 @@
 title: Use the Foundry Local CLI (preview)
 titleSuffix: Foundry Local
 description: Learn how to use the Foundry Local command-line interface to browse models, run interactive chat sessions, and manage your local model cache.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
 ms.author: jburchel

@@ -1,15 +1,15 @@
 ---
 title: "MedImageParse: Medical Image Segmentation Models (classic)"
 description: "Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.custom: dev-focus
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 ai-usage: ai-assisted
 #Customer intent: As a Data Scientist I want to learn how to use the MedImageParse and MedImageParse 3D healthcare AI models to segment medical images.
@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
 MedImageParse and MedImageParse 3D are healthcare AI models for medical image segmentation using simple text prompts. In this article, you learn how to deploy these prompt-based segmentation models as online endpoints for real-time inference and issue basic calls to the API. The steps you take are:
 
@@ -46,7 +46,7 @@ To learn more about these models, see [Learn more about the models](#learn-more-
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 

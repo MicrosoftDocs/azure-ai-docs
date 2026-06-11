@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Custom tool package creation and usage
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 When developing flows, you can not only use the built-in tools provided by prompt flow, but also develop your own custom tool. In this document, we guide you through the process of developing your own tool package, offering detailed steps and advice on how to utilize the custom tool package.
 
 After successful installation, your custom "tool" can show up in the tool list:

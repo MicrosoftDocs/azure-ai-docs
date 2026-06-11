@@ -1,16 +1,16 @@
 ---
 title: "Work with chat completion models (classic)"
 description: "Learn about the options for how to use models with the chat completions API (classic)"
-author: mrbullwinkle #dereklegenzoff
-ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft #dereklegenzoff
+ms.author: aashcraft #delegenz
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python
   - classic-and-new
 ms.topic: how-to
 ms.date: 11/26/2025
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

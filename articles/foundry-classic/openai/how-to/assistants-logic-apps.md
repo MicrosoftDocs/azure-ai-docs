@@ -2,11 +2,11 @@
 title: Run Automated Workflows from Assistants
 description: Run workflows in Azure Logic Apps from assistants in Microsoft Foundry Agent Service (classic). Integrate and automate business tasks by using 1,400+ connectors for services and systems without custom code.
 services: cognitive-services, azure-logic-apps
-manager: nitinme
+manager: mcleans
 author: alvinashcraft
 ms.author: aashcraft
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/04/2026
 zone_pivot_groups: selection-logic-apps

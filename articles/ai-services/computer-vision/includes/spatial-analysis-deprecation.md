@@ -2,8 +2,8 @@
 title: Spatial Analysis deprecation notice
 titleSuffix: Foundry Tools
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 02/21/2025
 ms.author: pafarley

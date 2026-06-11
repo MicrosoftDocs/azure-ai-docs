@@ -2,12 +2,12 @@
 title: Diagnose an incident using Metrics Advisor
 titleSuffix: Azure AI services
 description: Learn how to diagnose an incident using Metrics Advisor, and get detailed views of anomalies in your data.
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Diagnose an incident using Metrics Advisor

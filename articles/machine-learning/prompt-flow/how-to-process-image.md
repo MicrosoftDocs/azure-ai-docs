@@ -16,6 +16,8 @@ ms.update-cycle: 365-days
 
 # Incorporate images into prompt flow (preview)
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Multimodal Large Language Models (LLMs), which can process and interpret diverse forms of data inputs, present a powerful tool that can elevate the capabilities of language-only systems to new heights. Among the various data types, images are important for many real-world applications. The incorporation of image data into AI systems provides an essential layer of visual understanding. 
 
 In this article, you'll learn:

@@ -3,8 +3,8 @@ title: What is Image Analysis?
 titleSuffix: Foundry Tools
 description: The Image Analysis service uses pretrained AI models to extract many different visual features from images.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.custom: build-2023, build-2023-dataai
 ms.topic: overview
 ms.date: 09/26/2025

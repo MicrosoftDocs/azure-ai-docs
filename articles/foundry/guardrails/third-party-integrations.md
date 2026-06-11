@@ -20,7 +20,9 @@ Before you set up the integration, ensure you have:
 
 - **Azure subscription**: You need the Owner role on the subscription.
 - **Key Vault**: Create at least one [Key Vault with the Key Vault Administrator role assigned to you](/azure/key-vault/).
-- **Foundry project**: Create a project with the Azure AI User and Azure AI Account Owner roles assigned to you.
+- **Foundry project**: Create a project with the Foundry User and Foundry Account Owner roles assigned to you.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 - **Managed Identity**: Create at least one [user-assigned Managed Identity](/entra/identity/managed-identities-azure-resources/overview) and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
 
 ### Enablement and data processing 

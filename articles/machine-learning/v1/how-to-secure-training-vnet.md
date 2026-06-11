@@ -9,8 +9,9 @@ ms.topic: how-to
 ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
-ms.date: 06/12/2025
+ms.date: 06/04/2026
 ms.custom: UpdateFrequency5, tracking-python, references_regions, build-2023
+ai-usage: ai-assisted
 ---
 
 # Secure an Azure Machine Learning training environment with virtual networks (SDKv1)
@@ -77,7 +78,7 @@ In this article you learn how to secure the following training compute resources
 
 ### Azure Machine Learning compute cluster/instance
 
-* __Compute clusters__ can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-vnetregion-from-workspace).
+* __Compute clusters__ can be created in a different region and VNet than your workspace. However, this functionality is only available using the SDK v2, CLI v2, or studio. For more information, see the [v2 version of secure training environments](../how-to-secure-training-vnet.md?view=azureml-api-2&preserve-view=true#compute-cluster-in-a-different-virtual-network-or-region-from-workspace).
 
 * Compute cluster/instance deployment in virtual network isn't supported with Azure Lighthouse.
 
@@ -125,7 +126,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     | FQDN | Protocol | Port | Notes |
     | ---- |:----:|:----:| ---- |
     | `<region>.tundra.azureml.ms` | UDP | 5831 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. |
-    | `graph.windows.net` | TCP | 443 | Communication with the Microsoft Graph API.|
+    | `graph.microsoft.com` | TCP | 443 | Communication with the Microsoft Graph API.|
     | `*.instances.azureml.ms` | TCP | 443/8787/18881 | Communication with Azure Machine Learning. |
     | `*.<region>.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
     | `*.<region>.service.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
@@ -197,7 +198,7 @@ The following configurations are in addition to those listed in the [Prerequisit
     | FQDN | Protocol | Port | Notes |
     | ---- |:----:|:----:| ---- |
     | `<region>.tundra.azureml.ms` | UDP | 5831 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. |
-    | `graph.windows.net` | TCP | 443 | Communication with the Microsoft Graph API.|
+    | `graph.microsoft.com` | TCP | 443 | Communication with the Microsoft Graph API.|
     | `*.instances.azureml.ms` | TCP | 443/8787/18881 | Communication with Azure Machine Learning. |
     | `*.<region>.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |
     | `*.<region>.service.batch.azure.com` | ANY | 443 | Replace `<region>` with the Azure region that contains your Azure Machine Learning workspace. Communication with Azure Batch. |

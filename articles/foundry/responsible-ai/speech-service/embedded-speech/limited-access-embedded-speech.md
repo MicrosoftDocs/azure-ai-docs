@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This article explains why embedded Speech is available as Limited Access feature and how to request access."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 03/31/2026

@@ -1,6 +1,6 @@
 ---
-title: Global standard availability for Azure Direct models
-manager: nitinme
+title: Global standard availability for Foundry Models sold by Azure
+manager: mcleans
 ms.topic: include
 ms.date: 03/04/2026
 ms.custom: references_regions

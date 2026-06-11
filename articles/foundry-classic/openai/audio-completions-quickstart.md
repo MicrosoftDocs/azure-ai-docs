@@ -1,9 +1,9 @@
 ---
 title: "Quickstart - Get started with Azure OpenAI audio generation (Classic)"
 description: "Get started with audio generation using Azure OpenAI. (Classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/30/2026
 author: PatrickFarley

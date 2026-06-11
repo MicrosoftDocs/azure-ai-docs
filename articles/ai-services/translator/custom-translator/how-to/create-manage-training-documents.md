@@ -3,9 +3,9 @@ title: Build and upload Custom Translator training documents
 titleSuffix: Foundry Tools
 description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Custom Translator.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: how-to
 ---

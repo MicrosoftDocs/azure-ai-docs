@@ -3,7 +3,7 @@ title: Conversational Language Understanding limits
 titleSuffix: Foundry Tools
 description: Learn about the data, region, and throughput limits for Conversational Language Understanding
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: limits-and-quotas
 ms.date: 11/18/2025

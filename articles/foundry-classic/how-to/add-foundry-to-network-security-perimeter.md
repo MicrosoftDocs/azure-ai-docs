@@ -6,7 +6,8 @@ ms.author: jburchel
 ms.reviewer: meerakurup
 ms.date: 02/23/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new

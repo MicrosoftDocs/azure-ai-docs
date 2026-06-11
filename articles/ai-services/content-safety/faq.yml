@@ -4,7 +4,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about Azure AI Content Safety.
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
 
   ms.service: azure-ai-content-safety
   ms.topic: faq

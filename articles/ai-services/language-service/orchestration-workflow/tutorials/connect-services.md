@@ -4,7 +4,7 @@ description: Learn how to connect different projects with orchestration workflow
 keywords: conversational language understanding, bot framework, bot, language understanding, nlu
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial

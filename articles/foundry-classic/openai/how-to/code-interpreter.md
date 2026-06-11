@@ -2,9 +2,9 @@
 title: "How to use Azure OpenAI Assistants Code Interpreter (classic)"
 description: "Learn how to use Assistants Code Interpreter (classic)"
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 04/10/2026
 author: aahill

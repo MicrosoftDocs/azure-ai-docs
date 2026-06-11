@@ -3,11 +3,10 @@ author: jonburchel
 ms.author: jburchel
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/01/2026
 ---
 
-## Install packages
-
+- [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
 
 ## Samples repository
 
@@ -17,6 +16,8 @@ The complete sample code for this article is available in the [Foundry Local Git
 git clone https://github.com/microsoft/Foundry-Local.git
 cd Foundry-Local/samples/rust/tutorial-document-summarizer
 ```
+
+## Install packages
 
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]
 

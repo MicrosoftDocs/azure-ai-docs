@@ -6,7 +6,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Compress vectors using scalar or binary quantization
@@ -93,7 +94,7 @@ Syntax for `vectorSearch.Compressions` varies between stable and preview REST AP
 Use the [Create Index](/rest/api/searchservice/indexes/create) or [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) REST API to configure compression settings.
 
 ```http
-POST https://[servicename].search.windows.net/indexes?api-version=2025-09-01
+POST https://[servicename].search.windows.net/indexes?api-version=2026-04-01
 
 {
   "name": "my-index",
@@ -240,7 +241,7 @@ Recall that the [vector compression definition](vector-search-how-to-quantizatio
 You can set the oversampling parameter even if the index doesn't explicitly have rescoring options or `defaultOversampling` definition. Providing `oversampling` at query time overrides the index settings for that query and executes the query with an effective `enableRescoring` as true.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2025-09-01
+POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2026-04-01
 
 {    
     "vectorQueries": [

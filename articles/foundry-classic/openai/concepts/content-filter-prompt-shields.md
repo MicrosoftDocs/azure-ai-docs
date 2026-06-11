@@ -3,9 +3,9 @@ title: "Prompt Shields in Microsoft Foundry (classic)"
 description: "Learn how Prompt Shields in Microsoft Foundry detect and block user prompt attacks and document attacks on your model deployments and agents. (classic)"
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 02/13/2026
 ai-usage: ai-assisted

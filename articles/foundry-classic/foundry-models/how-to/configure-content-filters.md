@@ -1,8 +1,8 @@
 ---
 title: "How to configure content filters for models in Microsoft Foundry (classic)"
 description: "Learn to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 12/08/2025
 author: ssalgadodev

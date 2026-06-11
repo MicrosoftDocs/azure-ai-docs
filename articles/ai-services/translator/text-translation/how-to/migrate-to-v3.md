@@ -3,10 +3,10 @@ title: Migrate to V3 - Azure Translator in Foundry Tools
 titleSuffix: Foundry Tools
 description: This article provides the steps to help you migrate from V2 to V3 of the Azure Translator.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 
@@ -97,7 +97,7 @@ Global
 
 > [!NOTE]
 >
-> The Microsoft Translator Hub will be retired on May 17, 2019. [View important migration information and dates](https://www.microsoft.com/translator/business/hub/).
+> The Microsoft Translator Hub was retired on May 17, 2019. [View migration information and dates](https://www.microsoft.com/translator/business/hub/).
 
 Azure Translator V3 uses neural machine translation by default. As such, it can't be used with the Microsoft Translator Hub. The Translator Hub only supports legacy statistical machine translation. Customization for neural translation is now available using the Custom Translator. [Learn more about customizing neural machine translation](../../custom-translator/overview.md)
 

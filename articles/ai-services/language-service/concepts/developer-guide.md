@@ -3,7 +3,7 @@ title: Use Azure Language SDK and REST API
 titleSuffix: Foundry Tools
 description: Learn about how to integrate Azure Language service SDK and REST API into your applications.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

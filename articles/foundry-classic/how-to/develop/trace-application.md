@@ -5,7 +5,8 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 11/18/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ai-usage: ai-assisted
 ---
@@ -292,13 +293,13 @@ Configure tracing as follows:
     }
     ```
 
-## Trace locally with AI Toolkit
+## Trace locally with Foundry Toolkit
 
-AI Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
+Foundry Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
 
 The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetry. You can see traces instantly in your development environment.
 
-For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
 ## Related content
 

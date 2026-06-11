@@ -3,7 +3,7 @@ title: Analytics on projects - custom question answering
 titleSuffix: Foundry Tools
 description: Custom question answering uses Azure diagnostic logging to store the telemetry data and chat logs
 #services: cognitive-services
-manager: nitinme
+manager: mcleans
 author: laujan
 ms.author: lajanuar
 displayName: chat history, history, chat logs, logs

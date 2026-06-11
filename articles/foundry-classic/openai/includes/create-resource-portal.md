@@ -2,9 +2,9 @@
 title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments in the Azure portal'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure portal to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 05/20/2024
 ---
@@ -106,7 +106,7 @@ To deploy a model, follow these steps:
 
 1. Select **Deployments** from **Shared resources** section in the left pane. (In case you upgraded to Foundry in the previous step, select **Models + endpoints** from **My assets** section in the left pane.)
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
-1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability).
+1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Region availability for Foundry Models sold by Azure](../../../foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 1. In the next window configure the following fields:
 
    | Field | Description |

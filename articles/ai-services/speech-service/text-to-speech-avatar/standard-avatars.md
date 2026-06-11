@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Supported standard avatars, avatar styles and gestures
 author: PatrickFarley
 reviewer: patrickfarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/5/2025
 ms.author: pafarley
@@ -14,19 +14,29 @@ ms.reviewer: pafarley
 
 # Supported standard text to speech avatar
 This article contains the full list of standard avatars with their preview images.
-- Standard video avatars
-- Standard photo avatars
+- Full body avatars
+- Talking heads
 
-## Standard video avatars
-Avatars created from video typically include distinct body parts and can display various styles based on different clothing or poses. Many avatars in this group also allow users to add gestures when processing a batch of videos.
+## Full body avatars
+These avatars are full-bodied. Many of them also allow users to add gestures when processing videos in batch.
+
+> [!IMPORTANT]
+> Some of our full-bodied avatars are created based on real human actors. These actors have licensing agreements with Microsoft, and access to the associated avatars is subject to the validity of these agreements.
+> 
+> Avatars in this category include Harry, Jeff, Lisa, Lori, Max, and Meg. **Please note that the Jeff avatar will be retired and become unavailable starting December 2026.**
+>
+> When an actor’s contract expires, the corresponding avatar will no longer be available. We will provide advance notice before any such changes. At that time, users may choose to switch to another standard avatar, create a custom avatar, or continue with a system-selected fallback avatar.
+
 
 | Characters | Styles          | Preview Image         |Gestures|
 |------------|----------------------------|-------------------|--------|
-| **Harry** | business | <img src="media/harry-business.png" width="300" height="450" alt="Image of the Harry Avatar (business style)."> | 123</br>calm-down</br>come-on</br>five-star-reviews</br>good</br>hello</br>introduce</br>invite</br>thanks</br>welcome</br> |
+| **Rowan** | N/A | <img src="media/rowan.png" width="300" height="450" alt="Image of the Rowan Avatar."> |  |
+| **Celine** |  N/A  | <img src="media/celine.png" width="300" height="450" alt="Image of the Celine Avatar."> | |
+| **Nia** |  N/A  | <img src="media/nia.png" width="300" height="450" alt="Image of the Nia Avatar."> ||
+| **Malik** |  N/A  | <img src="media/malik.png" width="300" height="450" alt="Image of the Malik Avatar."> | |
+| **Harry** |  N/A  | <img src="media/harry-business.png" width="300" height="450" alt="Image of the Harry Avatar (business style)."> | 123</br>calm-down</br>come-on</br>five-star-reviews</br>good</br>hello</br>introduce</br>invite</br>thanks</br>welcome</br> |
 | **Harry** | casual | <img src="media/harry-casual.png" width="300" height="450" alt="Image of the Harry Avatar (casual style)."> | 123</br>come-on</br>five-star-reviews</br>good</br>happy-new-year</br>hello</br>please</br>welcome</br> |
 | **Harry** | youthful | <img src="media/harry-youthful.png" width="300" height="450" alt="Image of the Harry Avatar (youthful style)."> | 123</br>come-on</br>down</br>five-star</br>good</br>hello</br>invite</br>show-right-up-down</br>welcome</br> |
-| **Jeff** | business | <img src="media/jeff-business.png" width="300" height="450" alt="Image of the Jeff Avatar (business style)."> | 123</br>come-on</br>five-star-reviews</br>hands-up</br>here</br>meddle</br>please2</br>show</br>silence</br>thanks</br> |
-| **Jeff** | formal | <img src="media/jeff-formal.png" width="300" height="450" alt="Image of the Jeff Avatar (formal style)."> | 123</br>come-on</br>five-star-reviews</br>lift</br>please</br>silence</br>thanks</br>very-good</br> |
 | **Lisa** | casual-sitting | <img src="media/lisa-casual-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (casual sitting style)."> | numeric1-left-1</br>numeric2-left-1</br>numeric3-left-1</br>thumbsup-left-1</br>show-front-1</br>show-front-2</br>show-front-3</br>show-front-4</br>show-front-5</br>think-twice-1</br>show-front-6</br>show-front-7</br>show-front-8</br>show-front-9</br> |
 | **Lisa** | graceful-sitting | <img src="media/lisa-graceful-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (graceful sitting style)."> | wave-left-1</br>wave-left-2</br>thumbsup-left</br>show-left-1</br>show-left-2</br>show-left-3</br>show-left-4</br>show-left-5</br>show-right-1</br>show-right-2</br>show-right-3</br>show-right-4</br>show-right-5</br> |
 | **Lisa** | graceful-standing | <img src="media/lisa-graceful-standing.png" width="250" height="600" alt="Image of the Lisa Avatar (graceful standing style)."> | |
@@ -44,7 +54,7 @@ Avatars created from video typically include distinct body parts and can display
 
 All styles except lisa-graceful-sitting, lisa-graceful-standing, lisa-technical-sitting, and lisa-technical-standing are supported via the real-time text to speech API. Gestures are only supported with the batch synthesis API and aren't supported via the real-time API.
 
-## Standard photo avatars
+## Talking heads
 | Characters | Preview Image |
 |------------|----------------------------|
 | **Adrian** | <img src="media/adrian.png" width="256" height="256" alt="Image of the Adrian Avatar."> |
@@ -77,5 +87,3 @@ All styles except lisa-graceful-sitting, lisa-graceful-standing, lisa-technical-
 | **Simone** | <img src="media/simone.png" width="256" height="256" alt="Image of the Simone Avatar."> |
 | **Zayd** | <img src="media/zayd-avatar.png" width="256" height="256" alt="Image of the Zayd Avatar."> |
 | **Zoe** | <img src="media/zoe.png" width="256" height="256" alt="Image of the Zoe Avatar."> |
-
-

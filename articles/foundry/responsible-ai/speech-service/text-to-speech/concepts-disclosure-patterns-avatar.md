@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Design patterns and best practices for avatar disclosure."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 03/31/2026

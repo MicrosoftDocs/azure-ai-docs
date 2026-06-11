@@ -3,7 +3,7 @@ title: Azure Language in Foundry Tools release history
 titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Language in Foundry Tools Service API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: reference
 ms.date: 01/14/2026

@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/06/2025
+ms.date: 04/24/2026
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -18,7 +18,7 @@ This article explains how to invoke the semantic ranker on queries. It assumes y
 
 ## Prerequisites
 
-+ [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md).
 
 + An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content.
 
@@ -110,7 +110,7 @@ The following examples in this section use the [hotels-sample index](search-get-
 If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample` if you have a different index name.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
       "search": "interesting hotel with restaurant on site and cozy lobby or shared area",
       "count": true,
@@ -153,7 +153,7 @@ By using `semanticQuery`, you can explicitly apply [simple text syntax](query-si
 Adjust your request to the following JSON to use `semanticQuery`.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
     "search": "Description:breakfast",
     "semanticQuery": "interesting hotel with restaurant on site and cozy lobby or shared area",

@@ -4,7 +4,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about the Custom Vision Service in Foundry Tools.
   author: PatrickFarley
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-ai-custom-vision
   ms.topic: faq
   ms.date: 01/22/2025

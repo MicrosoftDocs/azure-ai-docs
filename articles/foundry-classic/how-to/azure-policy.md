@@ -4,7 +4,8 @@ description: "Learn how to use Azure Policy with Microsoft Foundry to make sure 
 ms.author: jburchel 
 author: jonburchel 
 ms.date: 01/06/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom: hub-only, dev-focus
 ms.topic: how-to
 ms.reviewer: aashishb

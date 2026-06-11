@@ -1,12 +1,12 @@
 ---
 title: Anomaly Detector multivariate Java client library quickstart 
 titleSuffix: Azure AI services
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 Get started with the Anomaly Detector multivariate client library for Java. Follow these steps to install the package start using the algorithms provided by the service. The new multivariate anomaly detector APIs enable developers by easily integrating advanced AI for detecting anomalies from groups of metrics, without the need for machine learning knowledge or labeled data. Dependencies and inter-correlations between different signals are automatically counted as key factors. This helps you to proactively protect your complex systems from failures.
@@ -32,7 +32,7 @@ Use the Anomaly Detector multivariate client library for Java to:
 
 ### Create a new Gradle project
 
-This quickstart uses the Gradle dependency manager. You can find more client library information on the [Maven Central Repository](https://search.maven.org/artifact/com.azure/azure-ai-metricsadvisor).
+This quickstart uses the Gradle dependency manager. You can find more client library information on the [Maven Central Repository](https://central.sonatype.com/artifact/com.azure/azure-ai-metricsadvisor).
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. 
 

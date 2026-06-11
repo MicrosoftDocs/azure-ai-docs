@@ -2,7 +2,7 @@
 ms.reviewer: rotabor
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/05/2026
+ms.date: 04/24/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -20,8 +20,6 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
-
-- [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
 
 - [Python 3.8](https://www.python.org/downloads/) or later.
 

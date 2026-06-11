@@ -3,7 +3,7 @@ title: How to perform language detection
 titleSuffix: Foundry Tools
 description: This article shows you how to detect the language of written text using language detection.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -3,7 +3,7 @@ title: "Quickstart: Build an Immersive Reader app"
 titleSuffix: Azure AI services
 description: Learn how to build an Immersive Reader app using C#, Node.js, Java, Kotlin, and Swift to help improve reading comprehension.
 author: sharmas
-manager: nitinme
+manager: mcleans
 zone_pivot_groups: programming-languages-set-twenty
 ms.service: azure-ai-immersive-reader
 ms.topic: quickstart

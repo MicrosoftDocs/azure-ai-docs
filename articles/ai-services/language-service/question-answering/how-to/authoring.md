@@ -285,7 +285,7 @@ curl -X GET -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applicat
           },
           {
             "displayName": "source2",
-            "sourceUri": "https://download.microsoft.com/download/2/9/B/29B20383-302C-4517-A006-B0186F04BE28/surface-pro-4-user-guide-EN.pdf",
+            "sourceUri": "https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features",
             "sourceKind": "file",
             "contentStructureKind": "unstructured",
             "lastUpdatedDateTime": "2021-05-01T15:13:22Z"
@@ -601,7 +601,7 @@ curl -X PATCH -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applic
     "value": {
       "displayName": "source5",
       "sourceKind": "url",
-      "sourceUri": "https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf",
+      "sourceUri": "https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features",
       "sourceContentStructureKind": "semistructured"
     }
   }

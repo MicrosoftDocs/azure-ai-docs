@@ -4,7 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Foundry Tools. T
 ms.date: 10/02/2025
 author: nitinme
 ms.author: nitinme
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: concept-article
 ms.custom: subject-policy-reference
 ---

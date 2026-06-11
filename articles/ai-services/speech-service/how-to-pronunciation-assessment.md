@@ -3,8 +3,8 @@ title: Use pronunciation assessment
 titleSuffix: Foundry Tools
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom:
   - devx-track-extended-java
   - devx-track-go
@@ -745,7 +745,7 @@ You can get pronunciation assessment scores for:
 
 ## Supported features per locale
 
-The following table summarizes which features that locales support. For more specifies, see the following sections. If the locales you require aren't listed in the following table for the supported feature, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
+The following table summarizes which features that locales support. For more specifies, see the following sections.
 
 | Phoneme alphabet | IPA     | SAPI |
 |:-----------------|:--------|:-----|

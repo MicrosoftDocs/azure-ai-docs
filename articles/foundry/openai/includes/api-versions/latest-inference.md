@@ -2,11 +2,11 @@
 title: Azure OpenAI latest inference API documentation
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Latest data plane inference documentation generated from OpenAPI 3.0 spec
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 11/01/2024
+ms.date: 05/14/2026
 ---
 
 ## Completions
@@ -145,7 +145,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| input | string or array | Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8,192 tokens for `text-embedding-ada-002`), can't be an empty string, and any array must be 2,048 dimensions or less.| Yes |  |
+| input | string or array | Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8,192 tokens for `text-embedding-ada-002`), can't be an empty string, and any array must be 2,048 dimensions or less. In addition to the per-input token limit, all embedding models enforce a maximum of 300,000 tokens summed across all inputs in a single request.| Yes |  |
 | user | string | A unique identifier representing your end-user, which can help monitoring and detecting abuse. | No |  |
 | input_type | string | input type of embedding search to use | No |  |
 | encoding_format | string | The format to return the embeddings in. Can be either `float` or `base64`. Defaults to `float`. | No |  |

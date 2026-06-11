@@ -4,7 +4,7 @@ description: Learn how to train a bot to understand natural language.
 keywords: conversational language understanding, bot framework, bot, language understanding, nlu
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
 ms.date: 11/18/2025

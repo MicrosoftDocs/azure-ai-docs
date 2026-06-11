@@ -3,7 +3,7 @@ title: Service limits - Translator
 titleSuffix: Foundry Tools
 description: This article lists service limits for the Translator text and document translation. Charges are incurred based on character count, not request frequency with a limit of 50,000 characters per request. Character limits are subscription-based, with F0 limited to 2 million characters per hour.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: limits-and-quotas
 ms.date: 11/18/2025

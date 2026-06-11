@@ -1,7 +1,8 @@
 ---
 title: "Ask AI for help"
 description: "Learn how to ask AI for help, getting your questions answered and tasks supported."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: jeomhove

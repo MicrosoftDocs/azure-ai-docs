@@ -3,8 +3,8 @@ title: "Azure OpenAI speech to speech chat - Speech service"
 titleSuffix: Foundry Tools
 description: In this how-to guide, use Speech to converse with Azure OpenAI. Speech recognizes audio, sends it to Azure OpenAI, and synthesizes speech responses.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: build-2023, build-2023-dataai, devx-track-python
 ms.topic: how-to
 ms.date: 02/25/2026

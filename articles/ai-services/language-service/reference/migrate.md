@@ -3,7 +3,7 @@ title: "Migrate to Azure Language from Language Understanding (LUIS) or QnA Make
 titleSuffix: Foundry Tools
 description: Use this article to learn if you need to migrate your applications from Language Understanding (LUIS), QnA Maker, and Text Analytics.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 02/09/2026
@@ -16,8 +16,7 @@ On November 2, 2021, Azure Language in Foundry Tools was released into public pr
 
 > [!IMPORTANT]
 >
-> * You may experience intermittent interruptions when calling the Language Understanding (LUIS) service. Microsoft is in the final phase of retiring LUIS. These interruptions are temporary but expected during this retirement phase.
-> * Beginning March 31, 2026, LUIS runtime and authoring endpoints (including REST API calls) are fully retired, and all LUIS requests fail.
+> * As of March 31, 2026, LUIS runtime and authoring endpoints (including REST API calls) are fully retired, and all LUIS requests fail.
 > * To ensure uninterrupted operation, export all of your LUIS app data as soon as possible in order to:
 >   * Start using [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), or
 >   * Try out a [Microsoft Foundry](../conversational-language-understanding/quickstart.md).

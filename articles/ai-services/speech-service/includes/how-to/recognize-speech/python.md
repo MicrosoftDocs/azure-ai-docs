@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 10/17/2024
 ms.author: pafarley
@@ -201,3 +201,5 @@ Some of the limitations of semantic segmentation are as follows:
 - Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as dictation and captioning. It shouldn't be used in the single recognition mode or interactive scenarios. 
 - Semantic segmentation isn't available for all languages and locales. 
 - Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.
+
+[!INCLUDE [Post-stream refinement](post-stream-refinement.md)]

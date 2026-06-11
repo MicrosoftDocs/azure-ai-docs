@@ -8,6 +8,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+ai-usage: ai-assisted
 ---
 
 # Extract text and information from images by using AI enrichment
@@ -146,9 +147,9 @@ When `imageAction` is set to a value other than *none*, the new `normalized_imag
 ]
 ```
 
-> [!NOTE]
-> Bounding polygon data is represented as a string containing a double-nested, JSON-encoded array of polygons. Each polygon is an array of points, where each point has x and y coordinates. Coordinates are relative to the PDF page, with the origin (0, 0) at the top-left corner.
-> Currently, images extracted using `imageAction: generateNormalizedImages` will always produce a single polygon, but the double-nested structure is maintained for consistency with the Document Layout skill, which supports multiple polygons.
+Bounding polygon data is represented as a string containing a double-nested, JSON-encoded array of polygons. Each polygon is an array of points, where each point has x and y coordinates. Coordinates are relative to the PDF page, with the origin (0, 0) at the upper-left corner.
+
+Currently, images extracted using `imageAction: generateNormalizedImages` always produce a single polygon, but the double-nested structure is maintained for consistency with skills that support multiple polygons, such as the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md).
 
 ## Define skillsets for image processing
 

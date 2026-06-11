@@ -133,7 +133,7 @@ To define a vectorizer and vector profile in an existing index:
 
     ```http
     ### Get index definition
-    GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01 HTTP/1.1
+    GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
     Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
     ```
     
@@ -141,7 +141,7 @@ To define a vectorizer and vector profile in an existing index:
 
    ```http
    ### Update index definition
-   PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01 HTTP/1.1
+   PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
    Content-Type: application/json
    Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
 
@@ -249,7 +249,7 @@ Use [Documents - Search Post](/rest/api/searchservice/documents/search-post) (RE
 
 ```http
 ### Test a vectorizer with a vector query
-POST https://my-search-service.search.windows.net/indexes/vector-nasa-ebook-txt/docs/search?api-version=2025-09-01 HTTP/1.1
+POST https://my-search-service.search.windows.net/indexes/vector-nasa-ebook-txt/docs/search?api-version=2026-04-01 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-query-api-key>
 

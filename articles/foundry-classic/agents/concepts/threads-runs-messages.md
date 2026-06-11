@@ -1,11 +1,11 @@
 ---
 title: "Threads, Runs, and Messages in the Foundry Agent Service (classic)"
 description: "Learn about the components used in the Foundry Agent Service. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 01/06/2026
 ms.custom: azure-ai-agents, dev-focus

@@ -3,7 +3,7 @@ title: How to view orchestration workflow models details
 description: Learn how to view details for your model and evaluate its performance.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

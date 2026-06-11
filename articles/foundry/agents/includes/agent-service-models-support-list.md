@@ -1,15 +1,15 @@
 ---
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: include
 ms.date: 01/07/2026
 ai-usage: ai-assisted
 ---
 
-**Models sold directly by Azure:**
+**Foundry Models sold by Azure:**
 
 - **MAI-DS-R1**: Deterministic, precision-focused reasoning.
 - **grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.

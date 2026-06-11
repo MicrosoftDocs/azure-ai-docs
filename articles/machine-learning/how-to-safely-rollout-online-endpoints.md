@@ -10,7 +10,7 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 02/08/2026
 ms.topic: how-to
-ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code, dev-focus
+ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code1, dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to see how to use a blue-green deployment strategy in Azure Machine Learning so that I can roll out a new version of a machine learning model without causing disruption.
 ---

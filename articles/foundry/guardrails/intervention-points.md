@@ -3,7 +3,7 @@ title: "Intervention points concepts"
 description: "Learn about Agentic AI intervention points."
 services: ai-services
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 03/02/2026

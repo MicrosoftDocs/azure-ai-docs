@@ -10,7 +10,7 @@ author: lgayhardt
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 01/12/2026
-ms.custom: devx-track-python, sdkv2, cliv2, update-code2
+ms.custom: devx-track-python, sdkv2, cliv2, update-code3
 #customer intent: As a data scientist, I need to automate hyperparameter tuning to find the best performance and run experiments in parallel using Azure Machine Learning.
 ---
 

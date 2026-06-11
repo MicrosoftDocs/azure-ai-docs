@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This Transparency Note discusses Voice live and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 09/29/2025
@@ -91,7 +91,7 @@ To learn the best practices for improving speech input and output processing, go
 
 Each component of Voice Live API can be evaluated separately. Learn more about [Evaluation of speech to text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note#evaluation-of-speech-to-text), [Evaluation of text to speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note?tabs=prebuilt-voice#evaluation-of-text-to-speech), and [Evaluation of Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use).  
 
-If you choose to bring your own Foundry Agent to Voice Live, learn about the [evaluation of the Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#evaluating-and-integrating-azure-ai-agent-service-for-your-use).
+If you choose to bring your own Foundry Agent to Voice Live, learn about the [evaluation of the Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#evaluating-and-integrating-agent-service-for-your-use).
 
 ### Evaluating and integrating Voice Live API for your use 
 

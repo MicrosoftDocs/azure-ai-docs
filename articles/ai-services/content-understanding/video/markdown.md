@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn how Content Understanding represents audiovisual output as Markdown for audio and video inputs.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.custom:
   - build-2025

@@ -3,7 +3,7 @@ title: Deploy a user-managed glossary in Azure Translator container
 titleSuffix: Foundry Tools
 description: How to deploy a user-managed glossary in the Azure Translator container environment.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: how-to
 ms.date: 11/18/2025

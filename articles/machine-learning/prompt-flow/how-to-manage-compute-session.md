@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Manage prompt flow compute session in Azure Machine Learning Studio
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 A prompt flow compute session provides the computing resources required for the application to run, including a Docker image with all necessary dependency packages. This reliable, scalable environment lets prompt flow efficiently execute tasks and functions, ensuring a seamless user experience.
 
 ## Permissions and roles for compute session management

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: In this article you learn how the amount, quality, and variety of data can improve the quality of your model in the Custom Vision service.
 #customer intent: As a developer, I want to improve my Custom Vision model so that it performs better with real-world data.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to

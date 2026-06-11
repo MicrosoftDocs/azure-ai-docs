@@ -1,17 +1,17 @@
 ---
 title: "Safety system messages (classic)"
 description: "Learn how safety system messages (system prompts) guide Azure OpenAI model behavior, improve quality, and reduce risks in Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 01/20/2026
 ms.custom:
   - classic-and-new
   - ignite-2023
   - pilot-ai-workflow-jan-2026
-manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+manager: mcleans
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 

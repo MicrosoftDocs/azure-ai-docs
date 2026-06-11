@@ -1,12 +1,12 @@
 ---
 title: Data schema requirements
 titleSuffix: Azure AI services
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 Azure AI Metrics Advisor is a service for time series anomaly detection, diagnostics, and analysis. As an AI-powered service, it uses your data to train the model used. The service accepts tables of aggregated data with the following columns:

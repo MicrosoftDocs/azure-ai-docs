@@ -1,13 +1,13 @@
 ---
 title: include file for Voice Live proactive and pregenerated messages with python SDK how to
 description: Learn how to invoke a proactive greeting or generate pregenerated messages with the Voice Live API
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 11/09/2025
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ---
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]

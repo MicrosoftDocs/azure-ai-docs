@@ -6,8 +6,8 @@ ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ---
 
 # Foundry Agent Service monitoring data reference (classic)

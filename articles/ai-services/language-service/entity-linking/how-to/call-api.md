@@ -3,7 +3,7 @@ title: How to call the entity linking API
 titleSuffix: Foundry Tools
 description: Learn how to identify and link entities found in text with the entity linking API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

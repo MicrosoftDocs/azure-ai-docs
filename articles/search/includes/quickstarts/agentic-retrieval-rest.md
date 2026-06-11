@@ -6,7 +6,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Feature preview](../previews/preview-generic.md)]
+[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
 
 In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
@@ -326,7 +326,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ### Create a knowledge base
 
@@ -362,7 +362,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ### Run the retrieval pipeline
 
@@ -407,7 +407,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 The output should contain the following components:
 

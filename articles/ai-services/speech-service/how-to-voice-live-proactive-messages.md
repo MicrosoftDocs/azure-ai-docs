@@ -6,15 +6,13 @@ ms.author: jagoerge
 reviewer: patrickfarley
 ms-reviewer: pafarley
 ms.topic: how-to
-ms.service: azure-ai-speech
-ms.date: 01/28/2026
+ms.service: azure-speech-foundry-tools
+ms.date: 04/28/2026
 zone_pivot_groups: how-to-voice-live-proactive-messages
 ai-usage: ai-assisted
 ---
 
-# How to add proactive messages to a Voice Live real-time voice agent (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# How to add proactive messages to a Voice Live real-time voice agent
 
 Proactive engagement allows your Voice Live agent to **speak first**, before the user interacts with the system. This can make agents feel more natural, more helpful, and more responsive at the start of a conversation.  
 
@@ -41,62 +39,6 @@ Before starting, we recommend you have:
 - Completed the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
-
-::: zone pivot="programming-language-python"
-
-> [!IMPORTANT]
-> Proactive messaging with `pre_generated_assistant_message` requires `azure-ai-voicelive >= 1.2.0b2` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```bash
-> pip install azure-ai-voicelive --pre
-> ```
->
-> This SDK is currently in preview. Features and APIs may change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
-
-> [!IMPORTANT]
-> Proactive messaging with `PreGeneratedAssistantMessage` requires `Azure.AI.VoiceLive >= 1.1.0-beta.1` and API version `2026-01-01-preview`. Install the preview SDK with:
->
-> ```dotnetcli
-> dotnet add package Azure.AI.VoiceLive --prerelease
-> ```
->
-> This SDK is currently in preview. Features and APIs may change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-java"
-
-> [!IMPORTANT]
-> Proactive messaging with `setPreGeneratedAssistantMessage` requires `azure-ai-voicelive >= 1.0.0-beta.3` and API version `2026-01-01-preview`. Add the preview dependency to your `pom.xml`:
->
-> ```xml
-> <dependency>
->     <groupId>com.azure</groupId>
->     <artifactId>azure-ai-voicelive</artifactId>
->     <version>1.0.0-beta.3</version>
-> </dependency>
-> ```
->
-> This SDK is currently in preview. Features and APIs may change before general availability.
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-> [!IMPORTANT]
-> Proactive messaging with `preGeneratedAssistantMessage` requires `@azure/ai-voicelive >= 1.0.0-beta.2` and API version `2026-01-01-preview`. This SDK requires Node.js 20 or later. Install the preview SDK with:
->
-> ```bash
-> npm install @azure/ai-voicelive@1.0.0-beta.2
-> ```
->
-> This SDK is currently in preview. Features and APIs may change before general availability.
-
-::: zone-end
 
 ## How proactive messages integrate with the event loop
 
@@ -773,5 +715,5 @@ async function sendLlmGeneratedGreeting(session) {
 
 - Try the Voice Live **Playground in [Foundry portal](./voice-live-quickstart.md?pivots=ai-foundry-portal)** to experiment with proactive engagement
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- See the [Voice live API reference](./voice-live-api-reference-2026-01-01-preview.md)
+- See the [Voice live API reference](./voice-live-api-reference-2026-04-10.md)
 - Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

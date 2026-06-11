@@ -1,7 +1,8 @@
 ---
 title: "See Evaluation Results in Microsoft Foundry portal (classic)"
 description: "See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - ignite-2023

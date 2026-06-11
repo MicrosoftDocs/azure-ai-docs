@@ -3,8 +3,8 @@ title: Custom model lifecycle- Document Intelligence
 titleSuffix: Foundry Tools
 description: Document Intelligence custom model lifecycle and management guide.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

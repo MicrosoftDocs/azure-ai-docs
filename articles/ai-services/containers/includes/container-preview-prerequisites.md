@@ -1,9 +1,9 @@
 ---
 title: Container Public Preview Prerequisites
 author: aahill
-manager: nitinme
+manager: mcleans
 description: The common prerequisite for public preview containers 
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include 
 ms.date: 04/01/2020
 ms.author: aahi

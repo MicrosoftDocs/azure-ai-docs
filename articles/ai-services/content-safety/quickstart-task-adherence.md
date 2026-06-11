@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 08/05/2025
-manager: nitinme
+manager: mcleans
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ---
 

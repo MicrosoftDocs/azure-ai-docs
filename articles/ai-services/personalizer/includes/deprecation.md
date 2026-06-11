@@ -2,7 +2,7 @@
 title: Deprecation
 titleSuffix: Azure AI services
 author: nitinme
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: include
 ms.date: 01/19/2024

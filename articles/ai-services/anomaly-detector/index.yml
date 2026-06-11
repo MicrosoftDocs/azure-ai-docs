@@ -8,12 +8,12 @@ metadata:
   title: Anomaly Detector API - Tutorials, quickstarts, API reference
   titleSuffix: Foundry Tools
   description: Use the Azure AI Anomaly Detector univariate and multivariate APIs to monitor data over time and detect anomalies with machine learning. Get insight into your data, regardless of volume, industry, or scenario. 
-  author: mrbullwinkle
-  manager: nitinme
+  author: alvinashcraft
+  manager: mcleans
   ms.service: azure-ai-anomaly-detector
   ms.topic: landing-page
   ms.date: 03/17/2026
-  ms.author: mbullwin
+  ms.author: aashcraft
 
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
@@ -62,7 +62,7 @@ landingContent:
     - linkListType: overview
       links:
       - text: Introducing Multivariate Anomaly Detection
-        url: https://techcommunity.microsoft.com/t5/azure-ai-services-blog/introducing-multivariate-anomaly-detection/ba-p/2260679
+        url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-multivariate-anomaly-detection/2260679
     - linkListType: quickstart
       links:
         - text: Using C# (multivariate)
@@ -82,7 +82,7 @@ landingContent:
     - linkListType: overview
       links:
         - text: Introducing Azure AI Anomaly Detector API (univariate) 
-          url: https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Introducing-Azure-Anomaly-Detector-API/ba-p/490162
+          url: https://techcommunity.microsoft.com/blog/azuredevcommunityblog/introducing-azure-anomaly-detector-api/490162
     - linkListType: how-to-guide
       links:
         - text: Adjust anomaly detection modes and parameters for your data (univariate)

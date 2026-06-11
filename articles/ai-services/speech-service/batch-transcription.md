@@ -2,10 +2,10 @@
 title: Batch transcription overview - Speech service
 titleSuffix: Foundry Tools
 description: Batch transcription is ideal if you want to transcribe a large quantity of audio in storage, such as Azure blobs. Then you can asynchronously retrieve transcriptions.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 11/21/2025
 ms.devlang: csharp

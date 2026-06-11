@@ -3,9 +3,9 @@ title: "Quickstart: Build, deploy, and use a custom model - Custom Translator"
 titleSuffix: Foundry Tools
 description: A step-by-step guide to building a translation system using the Custom Translator portal v2.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: quickstart
 ---
@@ -32,7 +32,7 @@ For more information, *see* [how to create a Translator resource](../create-tran
 
 Once you complete the prerequisites, sign in to the [Custom Translator](https://portal.customtranslator.azure.ai/) portal to create workspaces, build projects, upload files, train models, and publish your custom solution.
 
-You can read an overview of translation and custom translation, learn some tips, and watch a getting started video in the [Azure AI technical blog](https://techcommunity.microsoft.com/t5/azure-ai/customize-a-translation-to-make-sense-in-a-specific-context/ba-p/2811956).
+You can read an overview of translation and custom translation, learn some tips, and watch a getting started video in the [Azure AI technical blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/customize-a-translation-to-make-sense-in-a-specific-context/2811956).
 
 ## Process summary
 

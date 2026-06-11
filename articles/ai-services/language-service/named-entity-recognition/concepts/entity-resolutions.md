@@ -3,7 +3,7 @@ title: Entity resolutions provided by Named Entity Recognition
 titleSuffix: Foundry Tools
 description: Learn about entity resolutions in the Named Entity Recognition feature.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

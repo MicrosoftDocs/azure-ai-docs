@@ -3,7 +3,7 @@ title: Deploy custom language projects to multiple regions in Azure Language in 
 titleSuffix: Foundry Tools
 description: Learn about how to deploy your custom language projects to multiple regions.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 12/05/2025

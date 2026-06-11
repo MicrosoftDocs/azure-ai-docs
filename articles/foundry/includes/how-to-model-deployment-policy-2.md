@@ -4,9 +4,9 @@ description: Include file
 author: jonburchel
 ms.reviewer: aashishb
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 05/22/2026
 ms.custom: include
 ---
 
@@ -63,3 +63,4 @@ After you assign the policy, verify that it works as expected:
 
 - [Azure Policy overview](/azure/governance/policy/overview)
 - [Model catalog overview](/azure/ai-foundry/how-to/model-catalog-overview)
+- [Govern model router with Azure Policy](../../foundry/how-to/model-router-policy.md)

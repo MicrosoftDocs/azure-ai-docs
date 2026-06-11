@@ -62,7 +62,7 @@ REST APIs are useful for initial proof-of-concept testing, where you can test in
 1. Formulate a POST call specifying the index name, the "docs/index" endpoint, and a request body that includes the `@search.action` parameter.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2026-04-01
     Content-Type: application/json   
     api-key: [admin key] 
     {
@@ -130,7 +130,7 @@ REST APIs are useful for initial proof-of-concept testing, where you can test in
 1. [Look up the documents](/rest/api/searchservice/documents/get) you just added as a validation step:
 
     ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2025-09-01
+    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2026-04-01
     ```
 
 **Reference:** [Documents - Index](/rest/api/searchservice/documents), [Documents - Get](/rest/api/searchservice/documents/get)
@@ -265,7 +265,7 @@ After loading documents, verify the data is indexed correctly.
 Use the [Get Document](/rest/api/searchservice/documents/get) API to retrieve a specific document by key:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/1111?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/1111?api-version=2026-04-01
 api-key: [admin-key]
 ```
 
@@ -297,7 +297,7 @@ You can prepare these documents yourself, but if content resides in a [supported
 
 Once data is indexed, the physical data structures of the index are locked in. For guidance on what can and can't be changed, see [Update and rebuild an index](search-howto-reindex.md).
 
-Indexing isn't a background process. A search service balances indexing and query workloads, but if [query latency is too high](search-performance-analysis.md#impact-of-indexing-on-queries), you can either [add capacity](search-capacity-planning.md#add-or-remove-partitions-and-replicas) or identify periods of low query activity for loading an index.
+Indexing isn't a background process. A search service balances indexing and query workloads, but if [query latency is too high](search-performance-analysis.md#impact-of-indexing-on-queries), you can either [add capacity](search-capacity-planning.md) or identify periods of low query activity for loading an index.
 
 For more information, see [Data import strategies](search-what-is-data-import.md).
 

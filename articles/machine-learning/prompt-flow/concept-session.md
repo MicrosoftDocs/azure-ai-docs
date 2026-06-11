@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Compute session in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 In Azure Machine Learning prompt flow, you use a compute session to run flows.
 
 ## Compute sessions

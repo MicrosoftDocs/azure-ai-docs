@@ -3,10 +3,10 @@ title: Azure Translator in Foundry Tools encryption of data at rest
 titleSuffix: Foundry Tools
 description: Microsoft lets you manage your Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Azure Translator in Foundry Tools, and how to enable and manage CMK. 
 author: erindormier
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: egeaney
 #Customer intent: As a user of the Translator service, I want to learn how encryption at rest works.
 ---

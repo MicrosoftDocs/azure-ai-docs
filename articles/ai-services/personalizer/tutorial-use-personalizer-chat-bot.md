@@ -3,7 +3,7 @@ title: Use Personalizer in chat bot - Personalizer
 description: Customize a C# .NET chat bot with a Personalizer loop to provide the correct content to a user based on actions (with features) and context features.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: tutorial
 ms.date: 01/19/2024

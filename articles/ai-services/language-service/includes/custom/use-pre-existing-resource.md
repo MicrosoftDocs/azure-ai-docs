@@ -2,7 +2,7 @@
 title: How to create custom projects
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 02/23/2026

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Voice live."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 09/29/2025
@@ -23,15 +23,7 @@ Voice Live API is a fully managed service designed to empower developers to secu
 Voice Live API stores and processes data to provide the service and to monitor for violations of the applicable [Product Terms](https://www.microsoft.com/licensing/terms/). See also [the Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by the Foundry Tools, including Voice Live API. Voice Live API is an Azure service;[ learn more about applicable Azure compliance offerings](/compliance/regulatory/offering-home). 
 
 > [!IMPORTANT]
-> Your prompts (inputs), completions (outputs), and your training data: 
->
-> - are NOT available to other customers. 
-> - are NOT available to OpenAI or other model providers. 
-> - are NOT used to improve OpenAI models or other model providers’ models. 
-> - are NOT used to train, retrain, or improve Azure OpenAI Service or Azure Speech in Foundry Tools foundation models. 
-> - are NOT used to improve any Microsoft or third-party products or services without your permission or instruction. 
->
-> With Voice Live API, your fine-tuned speech models are available exclusively for your use.
+> Voice Live supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 The language models provided with Voice Live API are operated by Microsoft as an Azure service. If you choose to bring your own agent created with [Agent Service](/azure/ai-foundry/agents/overview) or bring your deployed model in [Foundry Models](/azure/ai-foundry/concepts/foundry-models-overview) to Voice Live API, additional information on data, privacy, and security is available at [Data, privacy, and security for Agent Service](/azure/ai-foundry/responsible-ai/agents/data-privacy-security) and [Data, privacy, and security for use of models through the model catalog in Foundry](/azure/ai-foundry/how-to/concept-data-privacy).
 
@@ -61,7 +53,7 @@ To reduce the risk of harmful use of Voice Live API, the service includes [conte
 
 ## Data storage and retention  
 
-While Voice Live API itself does not store or retain customer data, the features (for example, custom voice, custom avatar, Foundry Agent) it interacts with may store customer data as the feature requires. Check data storage for [custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-neural-voice#data-storage-and-retention), [custom avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-avatar#data-storage-and-retention), [Foundry Agents](/azure/ai-foundry/responsible-ai/agents/data-privacy-security#data-storage-for-azure-ai-agent-service-features), and [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy?tabs=azure-portal#data-storage-for-azure-openai-service-features) if you are using these components. Learn more about [locations of processing for ‘global’ and ‘data zone’ deployments](/azure/ai-foundry/responsible-ai/openai/data-privacy?tabs=azure-portal#understanding-location-of-processing-for-global-and-data-zone-deployment-types).  
+While Voice Live API itself does not store or retain customer data, the features (for example, custom voice, custom avatar, Foundry Agent) it interacts with may store customer data as the feature requires. Check data storage for [custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-neural-voice#data-storage-and-retention), [custom avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-avatar#data-storage-and-retention), [Foundry Agents](/azure/ai-foundry/responsible-ai/agents/data-privacy-security#data-storage-for-agent-service-features), and [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy?tabs=azure-portal#data-storage-for-azure-openai-service-features) if you are using these components. Learn more about [locations of processing for ‘global’ and ‘data zone’ deployments](/azure/ai-foundry/responsible-ai/openai/data-privacy?tabs=azure-portal#understanding-location-of-processing-for-global-and-data-zone-deployment-types).  
 
 Users can opt into a logging feature per debugging assistance from Microsoft engineers, when there is a [support ticket](/azure/ai-services/cognitive-services-support-options?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext#create-an-azure-support-request) filed. With this logging feature, users’ speech data is secured and stored in Azure storage managed by Microsoft within the same resource region. Microsoft’s debugging engineers are authorized Microsoft employees who access the data via point wise queries using request IDs, Secure Access Workstations (SAWs), and Just-In-Time (JIT) request approval granted by team managers. These logs are automatically removed in 30 days after generated.  
 

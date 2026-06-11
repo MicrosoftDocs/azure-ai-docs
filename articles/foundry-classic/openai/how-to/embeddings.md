@@ -1,16 +1,16 @@
 ---
 title: "How to generate embeddings with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to generate embeddings with Azure OpenAI (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
 ms.topic: how-to
 ms.date: 02/10/2026
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

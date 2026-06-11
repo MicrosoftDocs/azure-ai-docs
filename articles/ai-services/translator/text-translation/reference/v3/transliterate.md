@@ -3,10 +3,10 @@ title: Translator Transliterate Method
 titleSuffix: Foundry Tools
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

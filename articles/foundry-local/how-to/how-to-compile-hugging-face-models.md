@@ -22,10 +22,9 @@ Foundry Local runs ONNX models on your device. Use [Olive](https://microsoft.git
 > [!IMPORTANT]
 > The Olive CLI and optimization settings change over time, and a single command line example might not work for every model, device, or execution provider.
 >
-> For the most reliable, up-to-date examples, start with the [Olive Recipes repository](https://github.com/microsoft/olive-recipes). It includes a dedicated recipe for [`meta-llama/Llama-3.2-1B-Instruct`](https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct).
+> For the most reliable, up-to-date examples, start with the [Olive Recipes repository](https://github.com/microsoft/olive-recipes). It provides a set of targeted recipes for various models, optimized for different hardware with different optimization settings.
 >
-> - For Olive CLI configs for this model, see the recipe folder: <https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct/olive>.
-> - For a Foundry Local-oriented artifact layout (for example, an `inference_model.json` you can reuse), see: <https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct/aitk>.
+> - For more Olive CLI configs for this model, see the recipe folder: <https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct/olive>.
 
 This guide shows how to:
 
@@ -39,18 +38,19 @@ This guide shows how to:
 - Python 3.10 or later (required for Olive compilation)
 - A Hugging Face account and token with access to `meta-llama/Llama-3.2-1B-Instruct`
 
-## Install Olive
+## Install Olive and dependencies 
 
 [Olive](https://github.com/microsoft/olive) optimizes models and converts them to the ONNX format.
 
-```bash
-pip install olive-ai[auto-opt]
+```
+pip install olive-ai
+pip install transformers onnxruntime-genai
 ```
 
 > [!TIP]
 > Install Olive in a virtual environment by using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
-Verify the installation: `olive auto-opt --help` prints usage information.
+Verify the installation: `olive --help` prints usage information.
 
 ## Sign in to Hugging Face
 
@@ -68,21 +68,20 @@ hf auth login
 
 ## Compile the model
 
-This section walks through a manual compilation. The Olive `auto-opt` command downloads, converts, quantizes, and optimizes the model.
+This section walks through a manual compilation. The Olive `optimize` command downloads, converts, quantizes, and optimizes the model.
 
 > [!NOTE]
 > This is a manual example that might require adjustments for different models or hardware targets.
 
-1. Run the Olive `auto-opt` command:
+1. Run the Olive `optimize` command:
 
     ```bash
-    olive auto-opt \
+    olive optimize \
         --model_name_or_path meta-llama/Llama-3.2-1B-Instruct \
         --trust_remote_code \
         --output_path models/llama \
         --device cpu \
         --provider CPUExecutionProvider \
-        --use_ort_genai \
         --precision int4 \
         --log_level 1
     ```
@@ -96,7 +95,6 @@ This section walks through a manual compilation. The Olive `auto-opt` command do
     | `device` | Target hardware: `cpu`, `gpu`, or `npu` |
     | `provider` | Execution provider (for example, `CPUExecutionProvider`, `CUDAExecutionProvider`) |
     | `precision` | Model precision: `fp16`, `fp32`, `int4`, or `int8` |
-    | `use_ort_genai` | Creates inference configuration files |
 
     > [!TIP]
     > If you have a local copy of the model, use a local path instead of the Hugging Face ID. For example, `--model_name_or_path models/llama-3.2-1B-Instruct`. Olive handles the conversion, optimization, and quantization automatically.
@@ -104,40 +102,17 @@ This section walks through a manual compilation. The Olive `auto-opt` command do
     > [!NOTE]
     > The compilation process takes about 60 seconds, plus download time.
 
-1. Rename the output directory. Olive creates a generic `model` directory — rename it for easier reuse:
-
-    ```bash
-    cd models/llama
-    mv model llama-3.2
-    ```
-
-1. Create the chat template file. Foundry Local requires a chat template JSON file named `inference_model.json` in the model directory. The `{Content}` placeholder is injected with the user prompt at runtime.
-
-    > [!NOTE]
-    > This example uses the Hugging Face `transformers` library (a dependency of Olive) to create the template. In a different environment, install it by running `pip install transformers`.
+1. Expose the model to Foundry Local by creating `inference_model.json` file in the model directory. 
 
     ```python
     # generate_inference_model.py
     import json
     import os
-    from transformers import AutoTokenizer
 
-    model_path = "models/llama/llama-3.2"
-
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    chat = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "{Content}"},
-    ]
-
-    template = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+    model_path = "models/llama"
 
     json_template = {
-      "Name": "llama-3.2:1",
-      "PromptTemplate": {
-        "assistant": "{Content}",
-        "prompt": template
-      }
+      "Name": "llama-3.2:1"  # set the model name as you like, the default version is 1
     }
 
     json_file = os.path.join(model_path, "inference_model.json")
@@ -152,7 +127,7 @@ This section walks through a manual compilation. The Olive `auto-opt` command do
     python generate_inference_model.py
     ```
 
-    Verify the file exists: `models/llama/llama-3.2/inference_model.json`.
+    Verify the file exists: `models/llama/inference_model.json`.
 
 ## Run the compiled model
 
@@ -184,7 +159,7 @@ var config = new Configuration
 {
     AppName = "run-compiled-model",
     LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
-    ModelCacheDir = "../models/llama"
+    ModelCacheDir = "../models"
 };
 
 using var loggerFactory = LoggerFactory.Create(builder =>
@@ -223,7 +198,7 @@ List<ChatMessage> messages = new()
 var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
 await foreach (var chunk in streamingResponse)
 {
-    Console.Write(chunk.Choices[0].Message.Content);
+    Console.Write(chunk.Choices[0].Delta.Content);
     Console.Out.Flush();
 }
 Console.WriteLine();
@@ -262,7 +237,7 @@ import { FoundryLocalManager } from 'foundry-local-sdk';
 const manager = FoundryLocalManager.create({
     appName: 'run-compiled-model',
     logLevel: 'info',
-    modelCacheDir: '../models/llama'
+    modelCacheDir: '../models'
 });
 
 // List cached models to find your compiled model
@@ -328,7 +303,7 @@ async def main():
     # Point model_cache_dir at the directory containing your compiled model
     config = Configuration(
         app_name="run-compiled-model",
-        model_cache_dir="../models/llama",
+        model_cache_dir="../models",
     )
     FoundryLocalManager.initialize(config)
     manager = FoundryLocalManager.instance
@@ -353,7 +328,7 @@ async def main():
     # Stream the response
     messages = [{"role": "user", "content": "What is the golden ratio?"}]
     for chunk in client.complete_streaming_chat(messages):
-        content = chunk.choices[0].message.content
+        content = chunk.choices[0].delta.content
         if content:
             print(content, end="", flush=True)
     print()
@@ -402,7 +377,7 @@ use tokio_stream::StreamExt;
 async fn main() -> anyhow::Result<()> {
     // Point model_cache_dir at the directory containing your compiled model
     let config = FoundryLocalConfig::new("run-compiled-model")
-        .with_model_cache_dir("../models/llama");
+        .with_model_cache_dir("../models");
     let manager = FoundryLocalManager::create(config)?;
 
     // List cached models to find your compiled model
@@ -432,7 +407,7 @@ async fn main() -> anyhow::Result<()> {
     let mut stream = client.complete_streaming_chat(&messages, None).await?;
     while let Some(chunk) = stream.next().await {
         let chunk = chunk?;
-        if let Some(content) = &chunk.choices[0].message.content {
+        if let Some(content) = &chunk.choices[0].delta.content {
             print!("{}", content);
             std::io::stdout().flush()?;
         }
@@ -456,7 +431,7 @@ cargo run
 
 ## Troubleshooting
 
-- If `olive auto-opt` fails with an authentication or access error, confirm your Hugging Face token and that the model access request is approved.
+- If `olive optimize` fails with an authentication or access error, confirm your Hugging Face token and that the model access request is approved.
 - If the `hf` command isn't found, install it by running `pip install -U huggingface_hub`.
 - If the compiled model isn't found in the cached models list, verify the `ModelCacheDir` path in your `Configuration` points to the parent directory that contains the model folder.
 - If you encounter .NET build errors referencing `net8.0`, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).

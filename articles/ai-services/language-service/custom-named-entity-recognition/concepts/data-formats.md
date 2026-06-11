@@ -3,7 +3,7 @@ title: Custom named entity recognition (NER) data formats
 titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by custom NER.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

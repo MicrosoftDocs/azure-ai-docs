@@ -1,166 +1,169 @@
 ---
-title: What is Azure Text translation in Foundry Tools?
-titleSuffix: Foundry Tools
-description: Integrate the Azure Translator in Foundry Tools Text translation API into your applications, websites, tools, and other solutions for multi-language user experiences.
+title: What is Azure text translation in Microsoft Foundry?
+titleSuffix: Microsoft Foundry
+description: Integrate the Azure Translator text translation API into your applications, websites, tools, and workflows for multilingual experiences.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 02/06/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# What is Azure Text translation in Foundry Tools?
+# What is Azure text translation in Microsoft Foundry?
 
-Azure Translator in [Foundry Tools](../../what-are-ai-services.md) is a cloud-based REST API feature of the Translator service. It uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
+Azure text translation is a cloud-based REST API for multilingual translation across more than 100 supported languages and dialects. You can integrate it into applications, services, and automation workflows to translate text in real time at production scale by using REST APIs or SDKs.
 
-Text translation documentation contains the following article types:
+The latest generally available release is `2026-06-06`. This version introduces a revised request and response schema, adds support for model selection between standard Neural Machine Translation (NMT) and supported Large Language Models (LLMs), and expands translation controls for scenarios that require adaptive output, tone, and gender-specific variations.
 
-* [**Quickstarts**](quickstart/rest-api.md). Getting-started instructions to guide you through making requests to the service.
-* [**How-to guides**](../how-to/create-translator-resource.md). Instructions for accessing and using the service in more specific or customized ways.
-* [**Reference articles**](reference/v3/reference.md). REST API documentation and programming language-based content.
+Translator is designed for high-volume multilingual workloads where consistency, scalability, and operational control matter. If you're currently on v3.0, plan migration and validation before rollout because `2026-06-06` includes breaking changes.
 
-## Text translation features
+## What's new in `2026-06-06` (GA)
 
-Use the following tabs to compare the latest preview version and the latest GA version.
+API version `2026-06-06` is generally available and includes breaking changes compared to v3.0.
 
-### [Latest preview version](#tab/preview)
+This release adds new translation controls and model options while updating request and response contracts. If you're migrating from v3.0, plan a full validation pass for payload shape, response parsing, and production quality checks before rollout.
 
-The latest preview release (`2025-10-01-preview`) lets you optionally select either the standard neural machine translation (NMT) or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires a Microsoft Foundry resource. For more information, see [configure Azure resources](../how-to/create-translator-resource.md).
+>[!IMPORTANT]
+>
+> * Azure Translator REST API `2026-06-06` introduces breaking changes.
+> * Thoroughly test your applications before migrating production workloads from v3.0.
+> * Validate code paths and internal workflows, and restrict production use to versions you have fully tested.
 
-For a quick overview of Microsoft Foundry, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md)
+Key updates in `2026-06-06` include:
 
-* [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
+* **Revised request and response JSON schema**. The request array uses `inputs`, and the response array uses `value`. For an end-to-end example, see [REST API guide](2026-06-06/rest-api-guide.md#rest-api-code-sample-translate).
+* **Model choice (NMT or LLM)**. You can select standard NMT or an LLM deployment (for example, GPT-5.1) based on quality, cost, and scenario requirements. Using LLM-based translation requires a Microsoft Foundry resource. For setup guidance, see [Create Translator resources](../how-to/create-translator-resource.md).
+* **Adaptive custom translation**. You can provide up to five reference translations or an adaptive dataset index ID to influence LLM output style and terminology. For more information, see [Adaptive custom translation](../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md).
+* **Tone and gender controls**. LLM-based translation supports tone variants (formal, informal, neutral) and gender-specific output controls.
 
-    ```bash
-        https://api.cognitive.microsofttranslator.com/languages?api-version=2025-10-01-preview
-    ```
+## Core operations
 
-* [**Translate**](preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request.
+The `2026-06-06` API includes the following primary operations:
 
-    For an end-to-end request example, see [REST API guide (preview)](preview/rest-api-guide.md).
+These operations cover the most common runtime needs for text localization pipelines: discovering supported languages, translating text at scale, and transliterating scripts for language pairs that require script conversion.
 
+* [**Languages**](2026-06-06/get-languages.md): Returns supported languages for translation operations. This request does not require authentication.
 
-* [**Transliterate**](preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
+  ```bash
+  https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06
+  ```
 
-### [Latest GA version](#tab/ga)
+* [**Translate**](2026-06-06/translate-api.md): Translates source text to one or more target languages in a single `POST` request.
+* [**Transliterate**](2026-06-06/transliterate-api.md): Converts script or character sets from one writing system to another.
 
-The latest GA release uses API version `3.0`.
+For a complete request walkthrough, see [REST API guide](2026-06-06/rest-api-guide.md).
 
-* [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
+## Development options
 
-    ```bash
-    https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
-    ```
+Use the following options to build and deploy multilingual text translation solutions in your applications and workflows:
 
-* [**Translate**](reference/v3/translate.md#translate-to-multiple-languages). Renders single source-language text to multiple target-language texts with a single request.
+Choose your integration path based on how much control and automation you need. Most production systems use direct REST API or SDK integration, while portal workflows can be useful for setup, testing, and operational troubleshooting.
 
-* [**Transliterate**](reference/v3/transliterate.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language.
-
-* [**Detect**](reference/v3/detect.md). Returns the source code language code and a boolean variable denoting whether the detected language is supported for text translation and transliteration.
-
-    > [!NOTE]
-    > You can **Translate, Transliterate, and Detect** text with [a single REST API call](reference/v3/translate.md#translate-a-single-input-with-language-autodetection).
-
-* [**Dictionary lookup**](reference/v3/dictionary-lookup.md). Returns equivalent words for the source term in the target language.
-* [**Dictionary example**](reference/v3/dictionary-examples.md). Returns grammatical structure and context examples for the source term and target term pair.
-
----
-
-## Text translation development options
-
-Add Text translation to your projects and applications using the following resources:
-
-|Development option|Description|
-|---|---|
-|**Foundry portal**|&bull; [**Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types.<br><br>&bull; [**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**.|
-|**REST API**|Integrate translation into your applications by using the [REST API (GA) version](reference/rest-api-guide.md) or [REST API (preview) version](preview/rest-api-guide.md).|
-|**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the available [client libraries (SDKs)](quickstart/client-library-sdk.md) in various programming languages.|
-|**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Text](../containers/translate-text-parameters.md).|
+| Development option | Description |
+| --- | --- |
+| **Microsoft Foundry portal** | Use [Microsoft Foundry](https://ai.azure.com/) to manage projects, models, and related AI resources. |
+| **REST API** | Integrate directly with [text translation REST APIs](2026-06-06/rest-api-guide.md). |
+| **Client libraries (SDKs)** | Build with supported SDKs using [client library quickstarts](quickstart/client-library-sdk.md). |
+| **Docker container** | Use the Translator container for supported disconnected or controlled scenarios. Start with [Container: translate text](../containers/translate-text-parameters.md). |
 
 ## Authentication
 
-Every text translation request requires authentication headers. The following methods are supported:
+All text translation requests require authentication headers. For production deployments, choose an approach that matches your security and operations model. Resource keys are simple to start with, while Microsoft Entra ID is typically preferred for enterprise environments that require centralized identity and keyless access.
 
 | Method | Description |
-|---|---|
-| **Resource key** | Pass the `Ocp-Apim-Subscription-Key` header with the key from your Translator resource. |
-| **Bearer token** | Exchange your resource key for a time-limited token from the token service and pass it in the `Authorization` header. |
-| **Microsoft Entra ID** | Use a managed identity or service principal to obtain an access token without managing keys. |
+| --- | --- |
+| **Resource key** | Pass `Ocp-Apim-Subscription-Key` from your Translator resource. |
+| **Bearer token** | Obtain a time-limited token and send it in the `Authorization` header. |
+| **Microsoft Entra ID** | Use managed identities or service principals for keyless authentication. |
 
-For details and examples, including required headers for global, regional, and custom endpoints, see [Authentication and authorization](reference/authentication.md).
+For required headers and endpoint-specific examples, see [Authentication and authorization](reference/authentication.md).
 
-## Service limits and pricing
+## Endpoints and data residency
 
-Text translation enforces service limits and quotas, such as per-request character limits.
+Requests are typically processed in the nearest available datacenter when you use the global endpoint. To constrain processing geography, use a regional endpoint.
 
-* For request limits and quotas, see [Service limits - Translator](../service-limits.md#text-translation).
-* For pricing, see [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/).
+Endpoint selection affects latency, geography, and regulatory posture. Use the global endpoint for broad availability and automatic routing, or use a regional endpoint when your architecture requires processing to remain within a specific geography.
+
+| Service endpoint | Request processing data center |
+| --- | --- |
+| **Global (recommended):**<br>**`api.cognitive.microsofttranslator.com`** | Closest available data center. |
+| **Americas:**<br>**`api-nam.cognitive.microsofttranslator.com`** | East US 2, West US 2 |
+| **Asia Pacific:**<br>**`api-apc.cognitive.microsofttranslator.com`** | Japan East, Southeast Asia |
+| **Europe (except Switzerland):**<br>**`api-eur.cognitive.microsofttranslator.com`** | France Central, West Europe |
+| **Switzerland:**<br>See [Switzerland service endpoints](#switzerland-service-endpoints). | Switzerland North, Switzerland West |
+
+### Switzerland service endpoints
+
+If your Translator resource is deployed in `Switzerland North` or `Switzerland West`, you can keep text translation processing in Switzerland by using the resource-specific custom endpoint.
+
+This configuration is useful for workloads with stricter geographic processing requirements. Ensure your Translator resource region and request endpoint remain aligned so requests are routed within Switzerland.
+
+Example request:
+
+```bash
+curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
+  -H "Ocp-Apim-Subscription-Key: ${TRANSLATOR_KEY}" \
+  -H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
+  -H "Content-Type: application/json" \
+  -d "[{\"Text\":\"Hello\"}]"
+```
+
+Custom Translator is not currently available in Switzerland.
+
+## LLM processing, limits, and pricing
+
+When you deploy an LLM, your deployment configuration (global, data zone, or regional) determines where LLM translation data is processed.
+
+For mixed NMT and LLM deployments, treat model routing, limits, and cost as part of your runtime design. Throughput and payload sizing differ between NMT and LLM paths, so baseline both latency and cost before scaling traffic.
+
+### Service limits
+
+| Operation | Maximum number of array elements | Maximum size of array element | LLM maximum number of array elements | LLM maximum size of array element |
+| --- | --- | --- | --- | --- |
+| Translate | 1,000 | 50,000 | 50 | 5,000 |
+
+For broader quotas and limits, see [Service limits - Translator](../service-limits.md#text-translation).
+
+### Pricing
+
+* NMT translation is billed by source-text characters. See [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/).
+* LLM translation is billed by processed input and output tokens. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+
+If you support multiple traffic tiers, define routing rules that reserve LLM use for scenarios that require adaptive behavior, tone control, or richer contextual handling, and keep high-volume baseline traffic on NMT where appropriate.
 
 ## Troubleshooting
 
-If requests fail, start with the HTTP status code and the service-specific error code.
+If a request fails, start with the HTTP status and the service error code.
+
+In production systems, the fastest way to isolate issues is to log request IDs, endpoint, region, API version, and key headers with each failed call. This context helps distinguish authentication, quota, payload, and feature-availability failures.
 
 | Symptom | Likely cause | Resolution |
-|---|---|---|
-| `401 Unauthorized` | Invalid or missing subscription key. | Verify the `Ocp-Apim-Subscription-Key` value matches your Translator resource key. |
-| `403 Forbidden` | Key valid but the resource doesn't have access to the requested operation. | Confirm the pricing tier supports the feature and that the resource region matches the endpoint. |
-| `429 Too Many Requests` | Request rate or character quota exceeded. | Reduce request frequency or review the quotas in [Service limits - Translator](../service-limits.md#text-translation). |
-| `400 Bad Request` | Malformed request body or unsupported language code. | Validate the JSON payload and check [supported languages](../language-support.md). |
+| --- | --- | --- |
+| `401 Unauthorized` | Missing or invalid subscription key. | Verify `Ocp-Apim-Subscription-Key` and resource association. |
+| `403 Forbidden` | Valid credentials but unsupported operation or configuration. | Confirm region, resource type, and feature availability. |
+| `429 Too Many Requests` | Rate or quota exceeded. | Reduce request rate and review [service limits](../service-limits.md#text-translation). |
+| `400 Bad Request` | Invalid payload or unsupported language value. | Validate request JSON and [supported languages](../language-support.md). |
 
-* For the full list of status codes and error messages, see [Response codes and messages](reference/status-response-codes.md).
+For detailed codes, see [Response codes and messages](reference/status-response-codes.md).
 
-## Data residency
+## Get started
 
-Text translation data residency depends on the Azure region where you create your Translator resource:
+Use this sequence to move from provisioning to your first validated translation workflow. Keep test payloads small at first, then scale request size and concurrency after you validate authentication, endpoint routing, and response handling.
 
-### Text translation data residency
-
-✔️ Feature: **Translator Text** </br>
-
-|Service endpoint|Request processing data center|
-|------------------|--------------------------|
-|**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
-|**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
-|**Asia Pacific:**</br>**`api-apc.cognitive.microsofttranslator.com`**|Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland):**</br>**`api-eur.cognitive.microsofttranslator.com`**|France Central &bull; West Europe|
-|**Switzerland:**</br> For more information, see [Switzerland service endpoints](#switzerland-service-endpoints).|Switzerland North &bull; Switzerland West|
-
-#### Switzerland service endpoints
-
-Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
-
-For example, if you create a Translator resource in the Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https://my-swiss-n.cognitiveservices.azure.com`. A sample request to translate is:
-
-```curl
-# Pass secret key and region using headers to a custom endpoint
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
--H "Ocp-Apim-Subscription-Key: ${TRANSLATOR_KEY}" \
--H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
--H "Content-Type: application/json" \
--d "[{\"Text\":\"Hello\"}]" -v
-```
-
-Custom Translator isn't currently available in Switzerland.
-
-## Get started with Text translation
-
-Follow these steps to start using Text translation:
-
-1. [**Create a Translator resource**](../how-to/create-translator-resource.md) in the Azure portal.
-
-1. [**Get your access keys and API endpoint**](../how-to/create-translator-resource.md#authentication-keys-and-endpoint-url). You need an endpoint URL and a read-only key for authentication.
-
-1. Explore the [**Text translation quickstart**](quickstart/rest-api.md) for use cases and code samples in the following programming languages:
-   * [**C#/.NET**](quickstart/rest-api.md?tabs=csharp)
-   * [**Go**](quickstart/rest-api.md?tabs=go)
-   * [**Java**](quickstart/rest-api.md?tabs=java)
-   * [**JavaScript/Node.js**](quickstart/rest-api.md?tabs=nodejs)
-   * [**Python**](quickstart/rest-api.md?tabs=python)
+1. [Create a Translator resource](../how-to/create-translator-resource.md).
+1. [Get access keys and endpoint URL](../how-to/create-translator-resource.md#authentication-keys-and-endpoint-url).
+1. Run the [text translation quickstart](quickstart/rest-api.md) in your preferred language:
+   * [C#/.NET](quickstart/rest-api.md?tabs=csharp)
+   * [Go](quickstart/rest-api.md?tabs=go)
+   * [Java](quickstart/rest-api.md?tabs=java)
+   * [JavaScript/Node.js](quickstart/rest-api.md?tabs=nodejs)
+   * [Python](quickstart/rest-api.md?tabs=python)
 
 ## Related content
 
-* [Text translation REST API reference](reference/v3/reference.md)
-* [Text translation quickstart](quickstart/rest-api.md)
+* [Translate API reference (`2026-06-06`)](2026-06-06/translate-api.md)
+* [Migration guide (`2026-06-06`)](how-to/migrate-to-2026-06-06.md)
+* [Adaptive custom translation](../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)

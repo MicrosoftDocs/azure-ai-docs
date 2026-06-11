@@ -3,8 +3,8 @@ title: Rotate keys in Foundry Tools
 titleSuffix: Foundry Tools
 description: "Learn how to rotate API keys for better security, without interrupting service"
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
 ms.topic: how-to

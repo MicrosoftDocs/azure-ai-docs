@@ -2,12 +2,12 @@
 title: Further analyze an incident and evaluate impact
 titleSuffix: Azure AI services
 description: Learn how to leverage analysis tools to further analyze an incident. 
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Further analyze an incident and evaluate impact

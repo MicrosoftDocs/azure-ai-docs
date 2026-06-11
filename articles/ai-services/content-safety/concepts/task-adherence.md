@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 08/13/2025
-manager: nitinme
+manager: mcleans
 ---
 
 # Agent Workflows: Task Adherence (preview) 

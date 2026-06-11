@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: seramasu
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -99,4 +99,4 @@ The following table summarizes which service tier processes your requests based 
 - [Spillover traffic management](../how-to/spillover-traffic-management.md)
 - [Deployment types](../../foundry-models/concepts/deployment-types.md)
 - [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md)
-- [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md)
+- [Understanding costs associated with PTU](../concepts/provisioned-throughput-billing.md)

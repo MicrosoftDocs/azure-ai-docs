@@ -1,0 +1,157 @@
+---
+title: Configure Freshness-Aware Retrieval
+description: Learn how to configure freshness-aware retrieval for indexed knowledge sources in Azure AI Search using a preview API.
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 06/02/2026
+ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
+---
+
+# Configure freshness-aware retrieval in Azure AI Search (preview)
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
+*Freshness-aware retrieval* (preview) lets an indexed knowledge source prefer newer content during agentic retrieval. The knowledge source can include a freshness policy so Azure AI Search biases ranking toward recent documents without requiring callers to send custom ranking logic on each retrieve request.
+
+Freshness is a ranking bias, not a hard filter. Older documents can still appear when they're strongly relevant to the query.
+
+## Prerequisites
+
++ An [indexed knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) that creates and maintains an Azure AI Search index, such as a blob knowledge source.
+
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that references the knowledge source.
+
++ Permissions to update knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
+::: zone pivot="csharp"
+
++ The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
+::: zone-end
+
+::: zone pivot="python"
+
++ The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
+
+::: zone-end
+
+::: zone pivot="rest"
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+::: zone-end
+
+## When to enable freshness-aware retrieval
+
+Enable freshness-aware retrieval when newer content is generally more useful or trustworthy than older content. Common examples include release notes, policy updates, runbooks, service advisories, and operational guidance.
+
+Don't use freshness as a replacement for filtering. If a query must only return content from a specific date range, use a filter in the retrieve request or knowledge source configuration instead.
+
+## Configure the freshness policy
+
+Add a freshness policy to the indexed knowledge source definition. The preview contract uses the policy to apply a recency-aware ranking signal while preserving the rest of the retrieval pipeline.
+
+The following example shows a blob knowledge source with a freshness policy:
+
+::: zone pivot="csharp"
+
+```csharp
+var knowledgeSource = new AzureBlobKnowledgeSource(
+    name: "news-articles-ks",
+    azureBlobParameters: new AzureBlobKnowledgeSourceParameters(connectionString: blobConnectionString, containerName: "news")
+    {
+        IngestionParameters = new IngestionParameters
+        {
+            FreshnessPolicy = new FreshnessPolicy
+            {
+                BoostingDuration = TimeSpan.FromDays(90)
+            }
+        }
+    }
+)
+{
+    Description = "A knowledge source for recent news articles."
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+```
+
+**Reference:** [AzureBlobKnowledgeSourceParameters](/dotnet/api/azure.search.documents.indexes.models.azureblobknowledgesourceparameters?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+knowledge_source = AzureBlobKnowledgeSource(
+    name="news-articles-ks",
+    description="A knowledge source for recent news articles.",
+    azure_blob_parameters=AzureBlobKnowledgeSourceParameters(
+        connection_string=blob_connection_string,
+        container_name="news",
+        ingestion_parameters=IngestionParameters(
+            freshness_policy=FreshnessPolicy(boosting_duration="P90D"),
+        ),
+    ),
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+```
+
+**Reference:** [AzureBlobKnowledgeSourceParameters](/python/api/azure-search-documents/azure.search.documents.indexes.models.azureblobknowledgesourceparameters)
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+PUT {{search-url}}/knowledgesources/news-articles-ks?api-version=2026-05-01-preview
+Content-Type: application/json
+api-key: {{search-api-key}}
+
+{
+  "name": "news-articles-ks",
+  "kind": "azureBlob",
+  "description": "A knowledge source for recent news articles.",
+  "azureBlobParameters": {
+    "connectionString": "{{blob-connection-string}}",
+    "containerName": "news",
+    "ingestionParameters": {
+      "freshnessPolicy": {
+        "boostingDuration": "P90D"
+      }
+    }
+  }
+}
+```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
+
+The freshness policy is part of the source ingestion parameters. The index schema is modified to support a generated freshness field that's compatible with Azure AI Search [scoring profile](index-add-scoring-profiles.md) freshness functions. The `boostingDuration` value uses the same ISO 8601 duration format as scoring profile freshness functions, such as `P90D` for 90 days. Freshness adds a recency signal to ranking, but query relevance, configured retrieval settings, semantic reranking, and other ranking signals still apply.
+
+You can change `boostingDuration` on an existing knowledge source by sending another create-or-update request with the new value. The scoring profile updates in place without requiring reingestion.
+
+You can't remove the freshness policy from an existing knowledge source. To disable freshness-aware retrieval, delete the knowledge source and create a new one without `freshnessPolicy`.
+
+## Validate ranking behavior
+
+The freshness field is generated at ingestion time, so the policy applies to content that's ingested after the policy is in place. After content is ingested, run retrieve requests that can return both recent and older content. A successful configuration surfaces newer relevant documents earlier without turning retrieval into a simple date sort.
+
+If ranking doesn't reflect freshness as expected, inspect the `last_modified` field in the underlying index. Missing, stale, or inconsistent date values reduce the quality of the freshness signal.
+
+## Related content
+
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
++ [Add scoring profiles to boost search scores](index-add-scoring-profiles.md)

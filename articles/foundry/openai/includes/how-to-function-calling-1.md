@@ -1,10 +1,10 @@
 ---
 title: Include file
 description: Include file
-author: mrbullwinkle #dereklegenzoff
+author: alvinashcraft #dereklegenzoff
 ms.reviewer: sgilley
-ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
+ms.author: aashcraft #delegenz
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include

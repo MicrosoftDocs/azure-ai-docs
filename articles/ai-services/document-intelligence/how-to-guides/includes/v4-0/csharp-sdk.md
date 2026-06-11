@@ -2,8 +2,8 @@
 title: "Use Document Intelligence SDK for C# / .NET (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for C# / .NET (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar

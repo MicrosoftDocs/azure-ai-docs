@@ -1,9 +1,9 @@
 ---
 title: "Audio events reference (classic)"
 description: "Learn how to use events with the Realtime API and Voice Live API. (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: reference
 ms.date: 01/29/2026
 author: PatrickFarley

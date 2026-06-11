@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Guidance for integration and responsible use of QnA Maker"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: best-practice
 ms.subservice: azure-ai-qna-maker

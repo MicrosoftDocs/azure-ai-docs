@@ -1,7 +1,7 @@
 ---
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/07/2025
 ---
@@ -59,7 +59,7 @@ To add an avatar talent profile and upload their consent statement in your proje
 1. Select **Set up avatar talent** > **Upload consent video**. 
 
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
-    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
+    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
     - Enter the avatar talent name and your company name in the same language as the recorded statement. 
         - The avatar talent name must be the name of the person who recorded the consent statement. 
@@ -120,7 +120,7 @@ Training duration varies depending on how much data you use. It normally takes 2
 Custom avatar training is currently only available in some regions. After your avatar model is trained in a supported region, you can copy it to an AI Services resource for Speech in another region as needed. For more information, see footnotes in the [regions table](../../../../regions.md).
 
 > [!NOTE]
-> You can only copy the voice sync for avatar model to the regions that support the voice sync for avatar feature, which are the same regions that support personal voice.
+> You can only copy the voice sync for avatar model to the regions that support the voice sync for avatar feature, which are the same regions that support personal voice. See the [Region support](/azure/ai-services/speech-service/regions?tabs=ttsavatar) page.
 
 To copy your custom avatar model to another project:
 1. On the **Train model** tab, select an avatar model that you want to copy, and then select **Copy to project**.
@@ -146,10 +146,21 @@ To deploy your avatar:
     > [!IMPORTANT]
     > When a model is deployed, you pay for continuous up time of the endpoint regardless of your interaction with that endpoint. Check the pricing note on how model deployment is charged. You can delete a deployment when the model isn't in use to reduce spending and conserve resources.
 
-After you deploy your custom avatar, it's available to use in the Microsoft Foundry portal or via API:
-- The avatar appears in the avatar list of [text to speech avatar on Microsoft Foundry portal](https://speech.microsoft.com/portal/talkingavatar).
-- The avatar appears in the avatar list of [live chat avatars via Microsoft Foundry portal](https://speech.microsoft.com/portal/livechat).
-- You can call the avatar from the SDK and SSML input by specifying the avatar model name. For more information, see the [avatar properties](../../../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#avatar-properties).
+After you deploy your custom avatar, you can use it in the following ways:
+
+- Create video content (Text to Speech Avatar) in Microsoft Foundry
+   - From the **Use your avatar** box on the fine-tuning job details page, select **Try Text to Speech Avatar**, or
+   - Select **Open in Playground** (top-right), then choose **Text to Speech Avatar**.
+- Start a live chat (Voice Live) in Microsoft Foundry
+   - From the **Use your avatar** box on the fine-tuning job details page, select **Try Voice Live**, or
+   - Select **Open in Playground** (top-right), then choose **Voice Live**.
+- Use the avatar through the API by specifying the avatar model name in the SDK or speech synthesis markup language (SSML) input. For more information, see the [avatar properties](../../../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#avatar-properties).
+
+### Use in Microsoft Foundry
+
+- If you open **Text to Speech Avatar** or **Voice Live** from the custom avatar fine-tuning job details page, your custom avatar should already be selected. Choose a voice, and then start using it.
+- If you open **Text to Speech Avatar** from the **Models** navigation, go to the **Avatar** section, select **More avatars**, and then select your custom avatar under the **Custom** tab.
+- If you open **Voice Live** from the **Models** navigation, turn on the **Avatar** toggle, select **More avatars**, and then select your custom avatar under the **Custom** tab.
  
 ### Remove a deployment 
 

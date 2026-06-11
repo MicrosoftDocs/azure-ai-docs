@@ -1,7 +1,8 @@
 ---
 title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK (classic)"
 description:  "Learn how to build a RAG-based chat app using the Microsoft Foundry SDK. This tutorial is part 2 of a 3-part tutorial series. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.topic: tutorial
 ms.date: 12/16/2025
 ms.reviewer: lebaro

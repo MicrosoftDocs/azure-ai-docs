@@ -3,7 +3,7 @@ title: Use Docker containers for Key Phrase Extraction on-premises
 titleSuffix: Foundry Tools
 description: Learn how to use Docker containers for Key Phrase Extraction on-premises.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Characteristics and limitations for Language Understanding"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.subservice: azure-ai-luis
+ms.subservice: language-understanding
 ms.date: 02/08/2024
 ---
 

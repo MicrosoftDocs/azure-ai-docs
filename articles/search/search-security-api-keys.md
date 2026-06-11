@@ -175,7 +175,7 @@ Here's an example of admin API key usage on a create index request:
 @adminApiKey=aaaabbbb-0000-cccc-1111-dddd2222eeee
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{adminApiKey}}
 
@@ -194,7 +194,7 @@ Here's an example of query API key usage on a Search Documents (GET) request:
 
 ```http
 ### Query an index
-GET /indexes/my-new-index/docs?search=*&api-version=2025-09-01&api-key={{queryApiKey}}
+GET /indexes/my-new-index/docs?search=*&api-version=2026-04-01&api-key={{queryApiKey}}
 ```
 
 > [!NOTE]  
@@ -248,7 +248,7 @@ $headers = @{
 Use a variable to contain the fully qualified query:
 
 ```powershell
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2026-04-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
 ```
 
 Send the request to the search service:

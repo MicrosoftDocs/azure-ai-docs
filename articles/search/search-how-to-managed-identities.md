@@ -3,7 +3,7 @@ title: Configure a Managed Identity
 description: Create a managed identity for your search service, and use Microsoft Entra authentication and role-based-access controls for connections to other cloud services.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/24/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -19,32 +19,32 @@ To use roles on an outbound connection, first configure your search service to u
 
 ## Prerequisites
 
-+ A search service at the [Basic tier or higher](search-sku-tier.md), any region.
++ An Azure AI Search service in any region on the [Basic tier or higher](search-sku-tier.md).
 
 + An Azure resource that accepts incoming requests from a Microsoft Entra security principal that has a valid role assignment.
 
-+ To create a managed identity, you must be an Owner or User Access Administrator roles. To assign roles, you must be an Owner, User Access Administrator, Role-based Access Control Administrator, or a member of a custom role with Microsoft.Authorization/roleAssignments/write permissions.
++ To create a managed identity, you must be an Owner or User Access Administrator. To assign roles, you must be an Owner, User Access Administrator, Role-based Access Control Administrator, or a member of a custom role with Microsoft.Authorization/roleAssignments/write permissions.
 
 ## Supported scenarios
 
-You can use managed identities for these scenarios.
+You can use managed identities for the following scenarios.
 
-| Scenario | System  | User-assigned |
+| Scenario | System assigned | User assigned |
 |----------|-------------------------|---------------------------------|
-| [Connect to indexer data sources](search-indexer-overview.md) <sup>1</sup>| Yes | Yes <sup>2</sup>  |
-| Connect to embedding and chat completion models in Azure OpenAI, Microsoft Foundry, and Azure Functions via skills/vectorizers <sup>3</sup> | Yes | Yes |
+| [Connect to indexer data sources](search-indexer-overview.md) <sup>1</sup>| Yes | Yes |
+| Connect to embedding and chat completion models in Azure OpenAI, Microsoft Foundry, and Azure Functions via skills/vectorizers <sup>2</sup> | Yes | Yes |
 | [Connect to Azure Key Vault for customer-managed keys](search-security-manage-encryption-keys.md) | Yes | Yes |
 | [Connect to Debug sessions (hosted in Azure Storage)](cognitive-search-debug-session.md)	<sup>1</sup> | Yes | No |
-| [Connect to an enrichment cache (hosted in Azure Storage)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>4</sup> | Yes | Yes <sup>2</sup>|
-| [Connect to a Knowledge Store (hosted in Azure Storage)](knowledge-store-create-rest.md) <sup>1</sup>| Yes | Yes <sup>2</sup>|
+| [Connect to an enrichment cache (hosted in Azure Storage)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>3</sup> | Yes | Yes <sup>4</sup>|
+| [Connect to a Knowledge Store (hosted in Azure Storage)](knowledge-store-create-rest.md) <sup>1</sup>| Yes | Yes |
 
 <sup>1</sup> For connectivity between search and storage, network security imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to Azure Storage, and that connection must be via the *trusted service exception* or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
 
-<sup>2</sup> User-assigned managed identities can be used in data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a  connection string. Be sure to switch to a preview API if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the `identity` in a data source connection.
+<sup>2</sup> Connections to Azure OpenAI,  Foundry, and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
 
-<sup>3</sup> Connections to Azure OpenAI,  Foundry, and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
+<sup>3</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](/azure/storage/common/shared-key-authorization-prevent).
 
-<sup>4</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](/azure/storage/common/shared-key-authorization-prevent).
+<sup>4</sup> User-assigned managed identity for enrichment cache connections requires a preview REST API (2025-11-01-preview or later) or preview SDK package. All other user-assigned managed identity scenarios in this table are supported in REST API version 2026-04-01 and later.
 
 ## Create a system managed identity
 
@@ -219,12 +219,12 @@ The following steps illustrate the role assignment workflow. This example is for
 
 ## Connection string examples
 
-Recall from the scenarios description that you can use managed identities in connection strings to other Azure resources. This section provides examples. You can use generally available REST API versions and Azure SDK packages for connections using a system-assigned managed identity.
+Recall from the scenarios description that you can use managed identities in connection strings to other Azure resources. This section provides examples. 
+
+System-assigned managed identity connections use generally available REST API versions. User-assigned managed identity connections use REST API version 2026-04-01 or later, except for enrichment cache connections, which still require a preview API version.
 
 > [!TIP]
 > You can create most of these objects in the Azure portal, specifying either a system or user-assigned managed identity, and then view the JSON definition to get the connection string.
-
-Here are some examples of connection strings for various scenarios.
 
 [**Blob data source (system managed identity):**](search-howto-managed-identities-storage.md)
 
@@ -240,9 +240,7 @@ A system managed identity is indicated when a connection string is the unique re
 
 [**Blob data source (user managed identity):**](search-howto-managed-identities-storage.md)
 
-User-assigned managed identities can also be used in indexer data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a data source connection string. Be sure to switch to a preview version if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the identity in a data source connection.
-
-A search service user identity is specified in the `identity `property.
+A user-assigned managed identity is supported through the `identity` property on [SearchIndexerDataSource](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true#searchindexerdatasource) with REST API version 2026-04-01 or later.
 
 ```json
 "credentials": {
@@ -255,13 +253,27 @@ A search service user identity is specified in the `identity `property.
   }
 ```
 
-[**Knowledge store:**](knowledge-store-create-rest.md)
+[**Knowledge store (system managed identity):**](knowledge-store-create-rest.md)
 
 A knowledge store definition includes a connection string to Azure Storage. The connection string is the unique resource ID of your storage account. Notice that the string doesn't include containers or tables in the path. These are defined in the embedded projection definition, not the connection string.
 
 ```json
 "knowledgeStore": {
-  "storageConnectionString": "ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/storage-account-name};"
+  "storageConnectionString": "ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name};"
+}
+```
+
+[**Knowledge store (user managed identity):**](knowledge-store-create-rest.md)
+
+A user-assigned managed identity is supported through the `identity` property on [SearchIndexerKnowledgeStore](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true#searchindexerknowledgestore) with REST API version 2026-04-01 or later.
+
+```json
+"knowledgeStore": {
+  "storageConnectionString": "ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name};",
+  "identity": {
+    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+    "userAssignedIdentity": "/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"
+  }
 }
 ```
 
@@ -286,7 +298,7 @@ A debug session runs in the Azure portal and takes a connection string when you 
 
 [**Custom skill:**](cognitive-search-custom-skill-interface.md)
 
-A [custom skill](cognitive-search-custom-skill-web-api.md) targets the endpoint of an Azure function or app hosting custom code. 
+A custom skill targets the endpoint of an Azure function or app hosting custom code. 
 
 + `uri` is the endpoint of the function or app. 
 

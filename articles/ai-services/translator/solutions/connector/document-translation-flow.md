@@ -3,7 +3,7 @@ title: "Use Microsoft Azure v3 connector to build a Document translation flow"
 titleSuffix: Foundry Tools
 description: Use Microsoft Azure Translator v3 connector and Power Automate to create a Document translation flow.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: tutorial
 ms.date: 12/05/2025
@@ -465,4 +465,4 @@ That's it! You learned to automate document translation processes using the Micr
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Explore the Document translation reference guide](../../document-translation/reference/rest-api-guide.md)
+> [Explore the Document translation reference guide](../../document-translation/latest/rest-api/guide-overview.md)

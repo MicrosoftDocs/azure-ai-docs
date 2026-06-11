@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This Transparency Note discusses Pronunciation Assessment and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley 
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 03/31/2026
@@ -52,7 +52,7 @@ Another set of parameters returned by Pronunciation Assessment are Offset and Du
 
 ## Example use cases
 
-Pronunciation Assessment can be used for [remote learning](https://techcommunity.microsoft.com/t5/azure-ai/improve-remote-learning-with-speech-enabled-apps-powered-by/ba-p/1612807), exam practice, or other scenarios that demand pronunciation feedback. The following examples are use cases that are deployed or that we've designed for customers using pronunciation Assessment:
+Pronunciation Assessment can be used for [remote learning](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/improve-remote-learning-with-speech-enabled-apps-powered-by-azure-cognitive-serv/1612807), exam practice, or other scenarios that demand pronunciation feedback. The following examples are use cases that are deployed or that we've designed for customers using pronunciation Assessment:
 - **Educational service provider**: Providers can build applications with the use of Pronunciation Assessment to help students practice language learning remotely with real-time feedback. This use case is typical when an application needs to support real-time feedback. We support [streaming upload](/azure/ai-services/speech-service/how-to-pronunciation-assessment#pronunciation-assessment-in-streaming-mode) on audio files for immediate feedback.
 - **Education in a game**:  App developers, for example, can build a language learning app by combining comprehensive lessons in games with state-of-the-art speech technology to help children learn English. The program can cover a wide range of English skills, such as speaking, reading, and listening, and also train children on grammar and vocabulary, with Pronunciation Assessment used to support children as they learn to speak English. These multiple learning formats ensure that children learn English with ease based on a fun learning style.
 - **Education in a communication app**: Microsoft Teams Reading Progress assists the teacher in evaluating a student's speaking assignment with autodetection assistance for omission, insertion, and mispronunciation. It also enables students to practice pronunciation more conveniently before they submit their homework. Microsoft Teams Speaker Progress as a Learning Accelerator cab can also help support students in developing presentation and public speaking skills.

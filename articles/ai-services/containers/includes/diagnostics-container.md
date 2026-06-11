@@ -2,7 +2,7 @@
 
 titleSuffix: Foundry Tools
 author: aahill
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 10/08/2021
 ms.author: aahi

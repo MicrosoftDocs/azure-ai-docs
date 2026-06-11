@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Guidance for how to deploy Custom Vision responsibly, based on the knowledge and understanding from the team that created this product."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-custom-vision
 ms.topic: best-practice
 ms.date: 07/07/2021

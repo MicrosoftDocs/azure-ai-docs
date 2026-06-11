@@ -6,7 +6,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Eliminate optional vector instances from storage
@@ -50,7 +51,7 @@ Considerations for setting `"stored": false`:
 For new vector fields in a search index, set `"stored": false` to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
-PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2025-09-01@search.rerankerBoostedScore 
+PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2026-04-01 
   Content-Type: application/json  
   api-key: [admin key]  
 
@@ -109,7 +110,7 @@ To set this property:
 1. Under `vectorSearch.compressions`, add `rescoringOptions` with `enableRescoring` set to true, `defaultOversampling` set to a positive integer, and `rescoreStorageMethod` set to `discardOriginals` for binary quantization and `preserveOriginals` for scalar quantization.
 
     ```http
-    PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2025-09-01
+    PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2026-04-01
     
     {
         "name": "demo-index",

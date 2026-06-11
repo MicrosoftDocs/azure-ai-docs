@@ -3,7 +3,7 @@ title: Send prediction requests to a conversational language understanding deplo
 titleSuffix: Foundry Tools
 description: Learn about sending prediction requests for conversational language understanding.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 12/17/2025

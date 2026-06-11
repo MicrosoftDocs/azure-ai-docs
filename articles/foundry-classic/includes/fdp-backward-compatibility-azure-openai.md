@@ -2,7 +2,7 @@
 title: Include file
 description: Include file
 author: lgayhardt
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 5/08/2025
 ms.author: lagayhar

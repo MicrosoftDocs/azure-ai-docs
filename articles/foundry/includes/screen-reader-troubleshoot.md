@@ -3,7 +3,7 @@ author: sdgilley
 ms.author: sgilley
 ms.date: 03/23/2026
 ms.topic: include
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ---
 
 - If focus seems trapped in a panel or dialog, use <kbd>Esc</kbd> to close the dialog, then continue with heading or landmark navigation.

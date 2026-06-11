@@ -3,7 +3,7 @@ title: How to deploy an orchestration workflow project
 titleSuffix: Foundry Tools
 description: Learn about deploying orchestration workflow projects.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

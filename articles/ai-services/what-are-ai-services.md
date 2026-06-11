@@ -3,9 +3,9 @@ title: What are Foundry Tools?
 titleSuffix: Foundry Tools
 description: Foundry Tools are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
 author: nitinme
-manager: nitinme
+manager: mcleans
 keywords: Foundry Tools, cognitive
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: overview
 ms.date: 10/02/2025
 ms.author: nitinme
@@ -95,7 +95,7 @@ Language Understanding and the Speech service offer continuous integration and c
 
 ### On-premises containers
 
-Many of the Foundry Tools can be deployed in containers for on-premises access and use. Using these containers gives you the flexibility to bring Foundry Tools closer to your data for compliance, security, or other operational reasons. For a complete list of Azure AI containers, see [On-premises containers for Foundry Tools](./cognitive-services-container-support.md).
+Many of the Foundry Tools can be deployed in containers for on-premises access and use. Using these containers gives you the flexibility to bring Foundry Tools closer to your data for compliance, security, or other operational reasons. For a complete list of Azure AI containers, see [On-premises containers for Foundry Tools](./cognitive-services-container-support.md?context=/azure/foundry-classic/context/context).
 
 ### Training models
 

@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 
 # Submit a batch run to evaluate a flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 A batch run executes a prompt flow with a large dataset and generates outputs for each data row. To evaluate how well your prompt flow performs with a large dataset, you can submit a batch run and use evaluation methods to generate performance scores and metrics.
 
 After the batch flow completes, the evaluation methods automatically execute to calculate the scores and metrics. You can use the evaluation metrics to assess the output of your flow against your performance criteria and goals.

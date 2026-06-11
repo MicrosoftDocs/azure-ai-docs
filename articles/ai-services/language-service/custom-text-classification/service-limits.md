@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the data and rate limits when using custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: limits-and-quotas

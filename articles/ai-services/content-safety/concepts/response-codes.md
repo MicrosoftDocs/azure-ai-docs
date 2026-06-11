@@ -3,7 +3,7 @@ title: "Content Safety error codes"
 titleSuffix: Azure AI services
 description: See the possible error codes and their corresponding suggestions for the Azure AI Content Safety APIs.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: error-reference

@@ -3,7 +3,7 @@ title: What is summarization?
 titleSuffix: Foundry Tools
 description: Learn about summarizing text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026

@@ -3,8 +3,8 @@ title: Best practices for labeling documents in the Document Intelligence Studio
 titleSuffix: Foundry Tools
 description: Label documents in the Studio to create a training dataset. Labeling guidelines aimed at training a model with high accuracy
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: best-practice
 ms.date: 11/18/2025
 ms.author: vikurpad

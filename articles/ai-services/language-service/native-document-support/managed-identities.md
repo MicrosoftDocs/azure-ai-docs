@@ -3,7 +3,7 @@ title: Managed identities for storage blobs
 description: Create managed identities for containers and blobs with Azure portal.
 ms.service: azure-ai-language
 ms.topic: how-to
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.date: 11/18/2025

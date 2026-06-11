@@ -3,7 +3,7 @@ title: Model Lifecycle for Azure Language service models
 titleSuffix: Foundry Tools
 description: This article describes the timelines for models and model versions used by Language service features.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 01/30/2026

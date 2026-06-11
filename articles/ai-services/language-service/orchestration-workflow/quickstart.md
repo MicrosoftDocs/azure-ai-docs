@@ -3,7 +3,7 @@ title: Quickstart - Orchestration workflow
 titleSuffix: Foundry Tools
 description: Quickly start creating an AI model to connect your Conversational Language Understanding, question answering applications.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 02/03/2026

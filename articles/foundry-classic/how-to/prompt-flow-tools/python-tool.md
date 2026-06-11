@@ -1,8 +1,8 @@
 ---
 title: "Python tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the Python tool for flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom: 
   - ignite-2023
   - devx-track-python
@@ -21,7 +21,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 The prompt flow Python tool provides customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
 

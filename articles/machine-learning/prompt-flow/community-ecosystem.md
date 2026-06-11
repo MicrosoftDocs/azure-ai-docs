@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Prompt flow ecosystem
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 The prompt flow ecosystem provides a comprehensive set of tutorials, tools, and resources for developers who want to leverage the power of prompt flow to experimentally tune their prompts and develop their LLM-based application in a pure local environment, without any dependencies on Azure resources binding. This article provides an overview of the key components within the ecosystem, which include:
  - **Prompt flow open source project** in GitHub.
  - **Prompt flow SDK and CLI** for seamless flow execution and integration with CI/CD pipeline.

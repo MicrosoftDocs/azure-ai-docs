@@ -3,7 +3,7 @@ title: Tag Utterances in Conversational Language Understanding
 titleSuffix: Foundry Tools
 description: This article shows you how to tag your utterances in conversational language understanding projects.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -6,7 +6,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Feature preview](../previews/preview-generic.md)]
+[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
 
 In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 

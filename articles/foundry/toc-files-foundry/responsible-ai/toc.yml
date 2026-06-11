@@ -29,3 +29,9 @@ items:
     href: ../../responsible-ai/agents/transparency-note.md
   - name: Data, privacy, and security for agents
     href: ../../responsible-ai/agents/data-privacy-security.md
+
+# Foundry Models Responsible AI
+- name: Foundry Models
+  items:
+  - name: Model-specific terms
+    href: ../../responsible-ai/models/model-specific-terms.md

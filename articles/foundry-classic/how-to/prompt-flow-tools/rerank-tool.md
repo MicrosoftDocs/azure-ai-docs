@@ -1,8 +1,8 @@
 ---
 title: "Rerank tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the Rerank tool for flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: jingyizhu
@@ -18,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 The prompt flow Rerank tool improves the search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with the [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 ## Prerequisites
 

@@ -3,7 +3,7 @@ title: "Custom categories in Azure AI Content Safety (preview)"
 titleSuffix: Azure AI services
 description: Learn about custom content categories and the different ways you can use Azure AI Content Safety to handle them on your platform.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom: build-2024
 ms.topic: concept-article

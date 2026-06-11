@@ -3,7 +3,7 @@ title: "Quickstart: Multi-turn conversational language understanding (CLU) model
 titleSuffix: Foundry Tools
 description: Create a multi-turn conversational language understanding (CLU) model with entity slot filling in Microsoft Foundry (classic).
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 02/06/2026
@@ -30,7 +30,9 @@ If you don't have an Azure subscription, [create a free account](https://azure.m
 
 * **Azure subscription** - If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* **Required permissions** - Ensure that the person establishing the account and project has the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Language role-based access control](../../concepts/role-based-access-control.md) and [Assign Azure roles](/azure/role-based-access-control/role-assignments-steps).
+* **Required permissions** - Ensure that the person establishing the account and project has the Foundry Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Language role-based access control](../../concepts/role-based-access-control.md) and [Assign Azure roles](/azure/role-based-access-control/role-assignments-steps).
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 
 * **Azure Language in Foundry Tools resource** - Create a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 

@@ -21,6 +21,9 @@ You can run indexers on demand or on a recurring data refresh schedule that runs
 
 A search service runs one indexer job per search unit. If you need concurrent processing, make sure you have [sufficient replicas](/azure/search/search-capacity-planning#add-or-reduce-replicas-and-partitions). Indexers don't run in the background, so you might detect more query throttling than usual if the service is under pressure.
 
+> [!NOTE]
+> Indexer execution on Standard 3 High Density (S3 HD) search services and Serverless search services follows a different model that includes a service-level daily runtime quota. For more information, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
+
 ## Indexer scenarios and use cases
 
 You can use an indexer as the sole means for data ingestion, or in combination with other techniques. The following table summarizes the main scenarios.

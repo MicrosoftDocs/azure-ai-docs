@@ -3,7 +3,7 @@ title: "Quickstart: Use Summarization"
 titleSuffix: Foundry Tools
 description: Use this quickstart to start using Summarization.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 11/18/2025

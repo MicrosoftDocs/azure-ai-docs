@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This article explains Content Understanding Responsible AI basics, use cases, terms, and provides guidelines for responsible usage."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-understanding
 ms.topic: concept-article
 ms.date: 07/29/2025

@@ -3,7 +3,7 @@ title: How to train and evaluate models in orchestration workflow
 description: Learn how to train a model for orchestration workflow projects.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

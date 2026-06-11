@@ -3,7 +3,7 @@ title: What's new in Azure AI Content Safety?
 titleSuffix: Azure AI services
 description: Stay up to date on recent releases and updates to Azure AI Content Safety.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: overview

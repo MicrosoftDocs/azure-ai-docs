@@ -1,7 +1,8 @@
 ---
-title: "Configure managed virtual network for Microsoft Foundry projects (preview)"
-ms.service: azure-ai-foundry
-ms.date: 02/25/2026
+title: "Configure managed virtual network for Microsoft Foundry"
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
+ms.date: 05/12/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel

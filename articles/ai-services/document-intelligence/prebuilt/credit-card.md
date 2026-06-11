@@ -3,8 +3,8 @@ title: Document Intelligence credit debit card model
 titleSuffix: Foundry Tools
 description: Use Document Intelligence credit/debit card model extract key fields from credit and debit cards.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

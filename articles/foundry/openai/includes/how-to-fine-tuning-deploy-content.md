@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: ssalgadodev
 ms.author: ssalgado
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -20,7 +20,9 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 ## [Portal](#tab/portal)
 
 > [!IMPORTANT]
-> To deploy models, you need to be assigned the `Azure AI Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+> To deploy models, you need to be assigned the `Foundry Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
 
@@ -403,7 +405,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 
 ## Clean up your deployment
 
-To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
+To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
 
 - Azure subscription ID
 - Azure resource group name
@@ -417,7 +419,7 @@ curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resour
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment).
 
 ## Next steps
 

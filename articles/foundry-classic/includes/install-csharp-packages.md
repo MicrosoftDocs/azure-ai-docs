@@ -5,7 +5,7 @@ author: pablolopes
 ms.author: pablolopes
 ms.reviewer: pablolopes
 ms.date: 04/30/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom:
   - include

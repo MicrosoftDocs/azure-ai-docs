@@ -3,10 +3,10 @@ title: Text translation customization
 titleSuffix: Foundry Tools
 description: Use the Microsoft Translator Hub to build your own machine translation system using your preferred terminology and style.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

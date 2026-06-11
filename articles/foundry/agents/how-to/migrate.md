@@ -3,10 +3,10 @@ title: "Migrate to the new Foundry Agent Service"
 description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
 author: aahill
 ms.author: aahi
-manager: nitinme
-ms.date: 03/30/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.date: 04/10/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
@@ -36,6 +36,8 @@ pip install "azure-ai-projects>=2.0.0"
 
 ```bash
 dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -143,7 +145,7 @@ The new agents provide the following benefits:
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and hosted agents (preview).
+- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and Hosted agents (preview).
 
 **Enterprise readiness**
 
@@ -167,7 +169,7 @@ The following table summarizes the main API changes between the previous and cur
 | -------- | ------- | ------ |
 | Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
-| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and hosted agents with stateful context by default for any Foundry model. |
+| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and Hosted agents with stateful context by default for any Foundry model. |
 
 ## Agent tool availability
 
@@ -1670,5 +1672,5 @@ After you migrate your code, confirm that everything works correctly:
 ## Related content
 
 - [Agent runtime components](../concepts/runtime-components.md)
-- [Quickstart: Create a hosted agent](../quickstarts/quickstart-hosted-agent.md)
-- [Deploy a hosted agent](deploy-hosted-agent.md)
+- [Quickstart: Create a Hosted agent](../quickstarts/quickstart-hosted-agent.md)
+- [Deploy a Hosted agent](deploy-hosted-agent.md)

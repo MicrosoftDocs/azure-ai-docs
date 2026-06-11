@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 08/07/2023
 ms.author: pafarley

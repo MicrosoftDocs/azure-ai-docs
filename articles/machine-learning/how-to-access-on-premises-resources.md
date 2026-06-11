@@ -23,9 +23,11 @@ To access on-premises or custom virtual network resources from the managed virtu
 
 ## Prerequisites
 
-- Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
-- Set up your Azure Machine Learning workspace's managed virtual network and select your isolation mode, either Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](how-to-managed-network.md).
-- Get the private HTTP(S) endpoint of the resource to access.
+- Read [How an application gateway works](/azure/application-gateway/how-application-gateway-works) to understand how Application Gateway secures the connection to your non-Azure resources.
+- Set up your Azure Machine Learning workspace's managed virtual network and select your isolation mode: **Allow Internet Outbound** or **Allow Only Approved Outbound**. For more information, see [Managed virtual network isolation](how-to-managed-network.md).
+- Get the private HTTP(S) endpoint of the resource you want to access.
+- If you deploy the Application Gateway into a different subscription than your Azure Machine Learning workspace, register the `Microsoft.MachineLearningServices` resource provider on that subscription. Without this registration, you get a "resource was not found" error when you save the outbound rule.
+- Ensure that RBAC permissions are configured correctly for the workspace's managed identity. The workspace needs the **Azure AI Enterprise Network Connection Approver** role (or equivalent permissions) to approve private endpoint connections on the target resources.
 
 ## Supported resources
 
@@ -44,7 +46,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Azure Machine Learning only supports IPv4 for Application Gateway.
     - With your Azure Virtual Network, select one dedicated subnet for your Application Gateway. No other resources can be deployed in this subnet.
 
-1. From the __Frontends__ tab, Application Gateway doesn’t support private Frontend IP address only so Public IP addresses need to be selected or a new one created. Private IP addresses for the resources that the gateway connects to can be added within the range of the subnet you selected on the Basics tab.
+1. From the __Frontends__ tab, Application Gateway doesn't support private Frontend IP address only so Public IP addresses need to be selected or a new one created. Private IP addresses for the resources that the gateway connects to can be added within the range of the subnet you selected on the Basics tab.
 
 1. From the __Backends__ tab, you can add your backend target to a backend pool. You can manage your backend targets by creating different backend pools. Request routing is based on the pools. You can add backend targets such as a Snowflake database. 
 
@@ -55,7 +57,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
         - If you want end-to-end TLS encryption, select HTTPS listener and upload your own certificate for Application Gateway to decrypt request received by listener. For more information, see [Enabling end to end TLS on Azure Application Gateway](/azure/application-gateway/ssl-overview#end-to-end-tls-encryption).
         - If you want a fully private backend target without any public network access, DO NOT setup a listener on the public frontend IP address and its associated routing rule. Application Gateway only forwards requests that listeners receive at the specific port. If you want to avoid adding public frontend IP listener by mistake, see [Network security rules](/azure/application-gateway/configuration-infrastructure#network-security-groups) to fully lock down public network access.
 
-    - In the __Backend targets__ section, if you want to use HTTPS and Backend server’s certificate is NOT issued by a well-known CA, you must upload the Root certificate (.CER) of the backend server. For more on configuring with a root certificate, see [Configure end-to-end TLS encryption using the portal](/azure/application-gateway/end-to-end-ssl-portal).
+    - In the __Backend targets__ section, if you want to use HTTPS and Backend server's certificate is NOT issued by a well-known CA, you must upload the Root certificate (.CER) of the backend server. For more on configuring with a root certificate, see [Configure end-to-end TLS encryption using the portal](/azure/application-gateway/end-to-end-ssl-portal).
 
 1. Once the Application Gateway resource is created, navigate to the new Application Gateway resource in the Azure portal. Under __Settings__, select, __Private link__ to enable a virtual network to privately access the Application Gateway through a private endpoint connection. The Private link configuration isn't created by default. 
 
@@ -67,7 +69,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 
 ## Configure private link
 
-1. Now that your Application Gateway’s front-end IP and backend pools are created, you can now configure the private endpoint from the managed virtual network to your Application Gateway. in the [Azure portal](https://portal.azure.com), navigate to your workspace's __Networking__ tab. Select __Workspace managed outbound access__, __+ Add user-defined outbound rules__. 
+1. Now that your Application Gateway's front-end IP and backend pools are created, you can now configure the private endpoint from the managed virtual network to your Application Gateway. in the [Azure portal](https://portal.azure.com), navigate to your workspace's __Networking__ tab. Select __Workspace managed outbound access__, __+ Add user-defined outbound rules__. 
 1. In the __Workspace Outbound rules__ form, select the following to create your private endpoint:
 
     - Rule name: Provide a name for your private endpoint to Application Gateway.
@@ -76,7 +78,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Resource Type: `Microsoft.Network/applicationGateways`
     - Resource name: The name of your Application Gateway resource
     - Sub resource: `appGwPrivateFrontendIpIPv4`.
-    - FQDNs: These FQDNs are the aliases that you want to use inside the Azure Machine Learning workspace. They're resolved to the managed private endpoint’s private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
+    - FQDNs: These FQDNs are the aliases that you want to use inside the Azure Machine Learning workspace. They're resolved to the managed private endpoint's private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
       - All Added FQDNs will have the same IP address for the targeted Application Gateway.
       - The IP address is within the managed VNET range, not the customer's VNET range.
 

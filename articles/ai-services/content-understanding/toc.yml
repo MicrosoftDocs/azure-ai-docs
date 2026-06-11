@@ -121,9 +121,15 @@ items:
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
+      - name: Create a Logic Apps workflow
+        displayName: logic apps, automation, workflow, invoice, connector
+        href: tutorial/logic-apps.md
       - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
+      - name: Bring your own cross-resource capacity
+        displayName: byo, cross-resource, deployment, azure openai, connection, authentication
+        href: how-to/bring-your-own-cross-resource-capacity.md
       - name: Build a face-data person directory (preview)
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
