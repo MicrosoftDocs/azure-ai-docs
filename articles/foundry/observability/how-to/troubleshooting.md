@@ -111,7 +111,7 @@ Check the output for the following values:
 | `publicNetworkAccess` | `Enabled` | Public network access must be enabled. |
 | `defaultAction` | `Allow` | The default network rule should allow access. |
 
-If `publicNetworkAccess` is set to `Disabled` or `defaultAction` is set to `Deny`, the evaluation service can't reach the storage account.
+If `publicNetworkAccess` is set to `Disabled` or `defaultAction` is set to `Deny`, the evaluation service can't reach the storage account. For virtual network based (network-isolated) agent setups, see [Set up private networking](../agents/how-to/virtual-networks.md).
 
 ### Enable public network access
 
