@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 author: ssalgadodev
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.

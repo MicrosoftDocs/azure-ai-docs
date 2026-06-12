@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Translate a single document synchronously using the Document Translation REST API. No Azure Blob Storage required.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

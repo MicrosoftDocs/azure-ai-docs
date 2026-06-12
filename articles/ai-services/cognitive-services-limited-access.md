@@ -3,8 +3,8 @@ title: Limited Access features for Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how Microsoft protects the rights and safety of individuals by using Limited Access features for Foundry Tools.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: concept-article
 ms.date: 02/13/2026
 ms.author: pafarley

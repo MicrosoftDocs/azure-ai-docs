@@ -3,7 +3,7 @@ title: "GPT Realtime Translate overview"
 description: "Learn about GPT Realtime Translate, a continuous real-time translation model for live multilingual audio workflows."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article

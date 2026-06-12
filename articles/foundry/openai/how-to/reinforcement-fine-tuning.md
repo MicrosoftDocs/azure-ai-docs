@@ -3,7 +3,7 @@ title: "Reinforcement fine-tuning"
 description: "Learn how to use reinforcement fine-tuning with reasoning models"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 05/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

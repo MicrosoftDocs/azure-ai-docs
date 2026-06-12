@@ -2,7 +2,7 @@
 title: Datazone standard model availability
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Global Batch models
-manager: nitinme
+manager: mcleans
 ms.date: 08/12/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

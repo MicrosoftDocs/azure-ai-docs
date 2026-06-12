@@ -3,7 +3,7 @@ title: Frequently Asked Questions for orchestration projects
 titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about orchestration projects
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: faq
 ms.date: 12/17/2025

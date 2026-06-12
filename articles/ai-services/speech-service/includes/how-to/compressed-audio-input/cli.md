@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 09/08/2020

@@ -3,8 +3,8 @@ title: Add voice talent consent to the professional voice project - Speech servi
 titleSuffix: Foundry Tools
 description: Learn about how to add voice talent consent to the professional voice project. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.author: pafarley

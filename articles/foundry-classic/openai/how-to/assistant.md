@@ -2,7 +2,7 @@
 title: "How to create Assistants with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to create helpful AI Assistants with tools like Code Interpreter. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: references_regions

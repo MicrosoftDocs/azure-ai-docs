@@ -3,7 +3,7 @@ title: Document-based PII overview
 titleSuffix: Foundry Tools
 description: Learn how document-based PII redaction in Azure Language detects and redacts sensitive data from native documents while preserving file structure.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 04/16/2026

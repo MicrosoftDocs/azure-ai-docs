@@ -2,12 +2,12 @@
 title: How to use the Voice Live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API for real-time voice agents.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/25/2026
 ai-usage: ai-assisted

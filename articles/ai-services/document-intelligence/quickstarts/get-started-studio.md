@@ -3,8 +3,8 @@ title: 'Quickstart: Document Intelligence Studio'
 titleSuffix: Foundry Tools
 description: Learn how to get started processing forms and documents by using Document Intelligence Studio.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: quickstart
 ms.date: 11/18/2025
 ms.author: lajanuar

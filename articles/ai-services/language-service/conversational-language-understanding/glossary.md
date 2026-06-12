@@ -3,7 +3,7 @@ title: Definitions used in conversational language understanding
 titleSuffix: Foundry Tools
 description: Learn about definitions used in conversational language understanding.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 11/18/2025

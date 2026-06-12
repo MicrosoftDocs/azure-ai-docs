@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Voice live."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 09/29/2025

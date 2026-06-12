@@ -1,6 +1,6 @@
 ---
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include

@@ -3,7 +3,7 @@ title: Auto and direct model routing with the Responses API
 description: "Use the Responses API as a single interface to call any model in Microsoft Foundry, from automatic selection with model router to deterministically named models."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 05/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

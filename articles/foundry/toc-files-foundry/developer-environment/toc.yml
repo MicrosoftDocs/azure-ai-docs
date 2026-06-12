@@ -53,7 +53,7 @@ items:
     href: ../../mcp/available-tools.md
 
 # Fireworks
-- name: Fireworks on Foundry (preview)
+- name: Fireworks on Foundry 
   items:
   - name: Use Fireworks models
     href: ../../how-to/fireworks/enable-fireworks-models.md

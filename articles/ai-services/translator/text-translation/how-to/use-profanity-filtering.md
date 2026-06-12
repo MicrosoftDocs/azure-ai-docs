@@ -3,7 +3,7 @@ title: Profanity filtering - Azure Translator in Foundry Tools
 titleSuffix: Foundry Tools
 description: Use Azure Translator profanity filtering to determine the level of profanity translated in your text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: concept-article
 ms.date: 06/02/2026

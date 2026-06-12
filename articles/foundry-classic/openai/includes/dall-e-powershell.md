@@ -2,7 +2,7 @@
 title: "Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models using PowerShell"
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 02/06/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

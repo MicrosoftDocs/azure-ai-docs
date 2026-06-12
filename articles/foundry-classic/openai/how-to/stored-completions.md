@@ -1,7 +1,7 @@
 ---
 title: "How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation (classic)"
 description: "Learn how to use stored completions & distillation with Azure OpenAI (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

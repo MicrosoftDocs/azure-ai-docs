@@ -2,7 +2,7 @@
 title: Model Retirement Table 
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Model retirement table for Azure OpenAI in Microsoft Foundry Models.
-manager: nitinme
+manager: mcleans
 ms.date: 12/16/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

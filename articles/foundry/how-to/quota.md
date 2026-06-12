@@ -15,7 +15,7 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.author: mopeakande
 author: msakande 
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 # Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
 ---

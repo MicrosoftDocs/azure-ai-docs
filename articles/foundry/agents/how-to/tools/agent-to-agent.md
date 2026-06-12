@@ -2,7 +2,7 @@
 title: "Connect to an A2A agent endpoint from Foundry Agent Service"
 description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint. Configure connections, authentication, and use SDK integration to call external A2A agents."
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -421,6 +421,9 @@ curl --request PUT \
 Custom OAuth doesn't support the update operation. Create a new connection if you want to update certain values.
 
 If your OAuth app doesn't require a client secret, omit `ClientSecret`.
+
+> [!NOTE]
+> Provide each scope as a separate string in the `Scopes` array. If your tooling or UI expects scopes as a single string, separate them with a **single space**, not a comma — this follows the [OAuth 2.0 spec](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).
 
 ```bash
 curl --request PUT \

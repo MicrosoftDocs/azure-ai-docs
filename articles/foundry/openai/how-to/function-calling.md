@@ -11,7 +11,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: how-to
 ms.date: 05/13/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ---
 

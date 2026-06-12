@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about definitions used in custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: glossary
 ms.date: 11/18/2025

@@ -6,9 +6,9 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 10/21/2025
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.custom:
   - references_regions

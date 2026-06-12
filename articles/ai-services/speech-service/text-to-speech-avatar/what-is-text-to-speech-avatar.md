@@ -2,8 +2,8 @@
 title: Text to speech avatar overview - Speech service
 titleSuffix: Foundry Tools
 description: Get an overview of the Text to speech avatar feature of speech service, which allows users to create synthetic videos featuring avatars speaking based on text input.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 05/21/2026
 ms.author: pafarley

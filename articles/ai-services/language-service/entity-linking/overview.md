@@ -3,7 +3,7 @@ title: What is entity linking in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
 description: An overview of entity linking in Foundry Tools, which helps you extract entities from text, and provides links to an online knowledge base.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026

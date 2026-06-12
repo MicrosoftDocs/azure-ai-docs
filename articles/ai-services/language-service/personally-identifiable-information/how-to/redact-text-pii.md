@@ -3,7 +3,7 @@ title: Identify and extract Personally Identifiable Information (PII) from text
 titleSuffix: Foundry Tools
 description: This article shows you how to identify, extract, and redact Personally Identifiable Information (PII) from text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 06/02/2026

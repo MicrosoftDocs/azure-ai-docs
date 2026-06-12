@@ -3,7 +3,7 @@ title: "What's new in Azure OpenAI in Microsoft Foundry Models? (classic)"
 description: "Learn about the latest news and features updates for Azure OpenAI. (classic)"
 author: alvinashcraft
 ms.author: aashcraft #
-manager: nitinme
+manager: mcleans
 ms.date: 12/30/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

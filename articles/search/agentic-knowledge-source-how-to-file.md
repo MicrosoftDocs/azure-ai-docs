@@ -308,7 +308,7 @@ The following ingestion parameter properties control how uploaded files are proc
 
 After the knowledge source exists, upload files directly to it. Each upload is a synchronous call: Azure AI Search extracts content from the uploaded file, chunks the content, creates embeddings when needed, and prepares the extracted content for retrieval before the call returns. You don't have to configure or run a separate ingestion pipeline.
 
-The request body contains the file content. The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. If the header isn't set, the service assigns an auto-generated `fileName`. SDKs can set the header through the upload method parameters shown in the following examples.
+The listed `fileName` is taken from the `Content-Disposition: attachment; filename="..."` header on the upload request. REST calls and the .NET SDK set this header directly, while the Python SDK accepts a `filename` parameter and builds the header automatically. If the header isn't set, the service assigns an auto-generated `fileName`.
 
 ::: zone pivot="csharp"
 
@@ -331,6 +331,8 @@ KnowledgeSourceFile uploadedFile = (await indexClient.UploadKnowledgeSourceFileA
 Console.WriteLine($"Uploaded file ID: {uploadedFile.FileId}");
 ```
 
+**Reference:** [SearchIndexClient.UploadKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.uploadknowledgesourcefileasync?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -352,6 +354,8 @@ uploaded_file = index_client.upload_knowledge_source_file(
 print(f"Uploaded file ID: {uploaded_file.file_id}")
 ```
 
+**Reference:** [SearchIndexClient.upload_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-upload-knowledge-source-file)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -364,6 +368,8 @@ Content-Disposition: attachment; filename="installation-guide.pdf"
 
 <binary file content>
 ```
+
+**Reference:** [Knowledge Sources - Upload File](/rest/api/searchservice/knowledge-sources/upload-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -391,6 +397,8 @@ await foreach (KnowledgeSourceFile file in indexClient.GetKnowledgeSourceFilesAs
 }
 ```
 
+**Reference:** [SearchIndexClient.GetKnowledgeSourceFilesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getknowledgesourcefilesasync?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -405,6 +413,8 @@ for file in index_client.list_knowledge_source_files("my-file-ks"):
     print(f"{file.file_name} ({file.file_size_bytes} bytes) error={file.error_message}")
 ```
 
+**Reference:** [SearchIndexClient.list_knowledge_source_files](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-list-knowledge-source-files)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -413,6 +423,8 @@ for file in index_client.list_knowledge_source_files("my-file-ks"):
 GET {{search-url}}/knowledgesources/my-file-ks/files?api-version=2026-05-01-preview
 api-key: {{api-key}}
 ```
+
+**Reference:** [Knowledge Sources - List Files](/rest/api/searchservice/knowledge-sources/list-files?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -450,6 +462,8 @@ var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCre
 await indexClient.DeleteKnowledgeSourceFileAsync("my-file-ks", "file-abc123");
 ```
 
+**Reference:** [SearchIndexClient.DeleteKnowledgeSourceFileAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.deleteknowledgesourcefileasync?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -463,6 +477,8 @@ index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCrede
 index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
 ```
 
+**Reference:** [SearchIndexClient.delete_knowledge_source_file](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-delete-knowledge-source-file)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -471,6 +487,8 @@ index_client.delete_knowledge_source_file("my-file-ks", "file-abc123")
 DELETE {{search-url}}/knowledgesources/my-file-ks/files/file-abc123?api-version=2026-05-01-preview
 api-key: {{api-key}}
 ```
+
+**Reference:** [Knowledge Sources - Delete File](/rest/api/searchservice/knowledge-sources/delete-file?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 ::: zone-end
 

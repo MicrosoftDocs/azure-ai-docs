@@ -2,8 +2,8 @@
 title: "Content Moderator Review tool deprecation"
 titleSuffix: Azure AI services
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-content-moderator
+manager: mcleans
+ms.service: azure-content-moderator
 ms.custom: build-2023
 ms.topic: include
 ms.date: 06/12/2025

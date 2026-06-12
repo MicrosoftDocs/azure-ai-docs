@@ -2,8 +2,8 @@
 title: "Quickstart: Voice Agent with Foundry Agent Service (new)"
 titleSuffix: Foundry Tools
 description: Learn how to create a real-time voice agent with Foundry Agent Service and Voice Live.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/24/2026
 author: PatrickFarley

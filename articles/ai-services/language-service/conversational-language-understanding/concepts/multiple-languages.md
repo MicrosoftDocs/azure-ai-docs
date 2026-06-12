@@ -3,7 +3,7 @@ title: Multilingual projects
 titleSuffix: Foundry Tools
 description: Learn about how to make use of multilingual projects in conversational language understanding.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

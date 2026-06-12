@@ -1,6 +1,6 @@
 ---
 title: Import custom models into Microsoft Foundry with Fireworks
-description: Learn how to import, register, and deploy your own custom model weights in Microsoft Foundry using the Fireworks inference runtime.
+description: Learn how to import, register, and deploy custom model weights, LoRA adapters, and speculative decoding draft models in Microsoft Foundry using the Fireworks inference runtime.
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -16,17 +16,25 @@ ms.custom: doc-kit-assisted, references_regions
 
 Import and deploy your own model weights on Foundry using the Fireworks inference runtime.
 
-In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own weights*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem.
+In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own weights*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. You can also import LoRA adapters (preview) and draft models for speculative decoding (preview) when your base model and deployment type support those features.
+
+LoRA adapters are lightweight fine-tuning artifacts that modify a base model without uploading a full copy of the model weights. Speculative decoding uses a smaller draft model to propose tokens that a target model verifies, which can reduce generation latency for supported workloads.
 
 > [!NOTE]
 > This custom model import guide uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Use Fireworks models on Foundry](enable-fireworks-models.md).
 
-The import workflow has four steps:
+<!-- -->
 
-1. [**Prepare**](#model-requirements) your model files in a supported architecture.
-1. [**Register**](#import-a-custom-model) the model in the Foundry portal.
-1. [**Upload**](#verify-model-registration) model weights using the Azure Developer CLI.
-1. [**Deploy**](#deploy-the-imported-model) the model to Fireworks inference infrastructure.
+> [!IMPORTANT]
+> Items marked (preview) in this article are currently in preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+The import workflow has five steps:
+
+1. [**Prepare**](#model-requirements) your model, adapter, or draft model files.
+1. [**Register**](#import-a-custom-model) the custom model asset in the Foundry portal.
+1. [**Upload**](#verify-model-registration) the files using the generated Azure Developer CLI command.
+1. [**Deploy**](#deploy-the-imported-model) the model, LoRA adapter (preview), or speculative decoding configuration (preview) to Fireworks inference infrastructure.
+1. [**Test**](#test-your-deployment) the deployment in Foundry.
 
 ## Prerequisites
 
@@ -35,7 +43,8 @@ Before you begin, make sure your Azure environment is set up and that you have t
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
-* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
+* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights. To verify your installation, run `azd version` and `azd ai models create --help`.
+* Azure Developer CLI authentication. Before running the generated upload command, sign in with `azd auth login`.
 
 ## Region availability
 
@@ -43,33 +52,33 @@ Support for deploying custom models is available in all global [Azure regions](/
 
 ## Model requirements
 
-Custom models must match a supported architecture and include specific files for Foundry to register and deploy them. Review both requirements before starting the import process.
+Custom models must match a supported Fireworks model and include the files required for the model type you import. Review the supported models, file requirements, and preview constraints before starting the import process.
 
 ### Supported architectures
 
 Custom models must be based on one of the following model architectures:
 
-| Model Architecture | Versions |
-| --- | --- |
-| **DeepSeek** | V3.1, V3.2 |
-| **Kimi** | K2, K2.5 |
-| **GLM** | 4.7, 4.8 |
-| **OpenAI** | gpt-oss-120b |
-| **Qwen** | qwen3-14b |
+|Model Architecture|Versions|
+|---|---|
+|DeepSeek|v3.1, V4 Pro|
+|Gemma|4 26B A4B IT, 4 31B IT|
+|GLM|4.7, 5.1|
+|Kimi|K2 Instruct 0905, K2 Thinking, K2.6|
+|Llama|3.1 8B Instruct|
+|Ministral|3 3B Instruct 2512|
+|Qwen|3.5 9B, 3.5 35B A3B, 3.5 112B A10B, 3.5 397B|
 
 ### Required model files
 
-Your model directory must include the following files:
+Your model directory must include the files required for the model weight type you're importing.
 
-| File | Description |
-| --- | --- |
-| `config.json` | Model configuration (architecture, hyperparameters). |
-| `*.safetensors` or `*.bin` | One or more model weight files. |
-| `*.index.json` | At least one weights index file that maps weight shards. |
-| `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Tokenizer files required for the model. |
-
-> [!IMPORTANT]
-> Only **full-weight models** with original quantization are supported. LoRA adapters or custom quantized models aren't currently supported.
+| File | Full-weight model | LoRA adapter (preview) | Draft model for speculative decoding (preview) |
+| --- | --- | --- | --- |
+| `config.json` | Required | Not required; inherited from the base model | Required |
+| `*.safetensors` or `*.bin` full weight files | Required | Not applicable | Required |
+| `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Required | Not required; inherited from the base model | Required |
+| `adapter_config.json` | Not applicable | Required | Not applicable |
+| `adapter_model.bin` or `adapter_model.safetensors` | Not applicable | Required | Not applicable |
 
 ## Import a custom model
 
@@ -79,18 +88,19 @@ The import process starts in the Foundry portal, where you register your model, 
 
 1. From the Foundry portal homepage, select **Build** in the upper-right navigation, then select **Models** in the left pane.
 
-1. Select the **Custom Models** tab.
+1. Select the **Models** tab.
 
-1. Select **Add a custom model**.
-
-    :::image type="content" source="../media/fireworks/add-custom-model.png" alt-text="Screenshot of the Add a custom model page.":::
+1. Select **Generate upload command** instead.
 
 1. Configure the following settings:
 
-   * **Model name**: Enter a descriptive name for your custom model.
-   * **Base model architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `GLM 4.7`).
-
-      :::image type="content" source="../media/fireworks/select-model-architecture.png" alt-text="Screenshot of the Select model architecture window.":::
+    | Setting | Description |
+    | --- | --- |
+    | **Base model** | Select the Fireworks base model or architecture that matches your model files. For LoRA adapters, select the base model that the adapter targets. For draft models, select the model family that matches the target model you plan to pair with the draft model. |
+    | **Model details** | Enter the custom model name and version details. |
+    | **Weight type** | Select **Full weight model**, **LoRA adapter** (preview), or **Draft model** (preview). The portal uses this selection to generate the appropriate CLI command and flags. |
+    | **LoRA settings** | For LoRA adapters (preview), configure rank and alpha. Target modules and dropout are optional settings. |
+    | **Model path** | Enter the local path to the folder that contains your model files. |
 
 1. The portal generates an `azd` command. Copy the command and paste it into a local terminal. Update the `--source` parameter to point to the directory that contains your model weight files.
 
@@ -113,7 +123,7 @@ After the upload finishes, confirm that Foundry successfully registered the mode
 
 With the model registered, you can deploy it to Fireworks' cloud for inference.
 
-1. From the **Custom Models** list, select your custom model.
+1. From the **Models** list, select your custom model.
 
 1. Select **Deploy**.
 
@@ -129,7 +139,14 @@ With the model registered, you can deploy it to Fireworks' cloud for inference.
 When the deployment completes, the status shows **Succeeded** in your deployment list.
 
 > [!NOTE]
-> You can only have one active model deployment of a custom model at a time in a given project.
+> You can only have one active deployment of the same imported custom model at a time in a given project.
+
+### Deploy with speculative decoding (preview)
+
+Speculative decoding pairs a target model with a same-family, architecture-compatible draft model to reduce token generation latency during decoding.
+It does not improve context processing latency in the prefill phase, so workloads with long inputs and short outputs may see limited benefit.
+
+To deploy a draft model, select the registered draft model, and then select **Deploy**. Configure the deployment name, select a **Target model** from **the same model family** as the draft model, set the draft token count, choose the deployment type, configure PTU capacity, review the pricing terms, and deploy.
 
 ### Deployment examples
 
@@ -210,6 +227,7 @@ If you encounter issues during import or deployment, use the following table to 
 | Architecture mismatch | Confirm the architecture you selected matches your model. See [supported architectures](#supported-architectures). |
 | Upload times out or stalls | Check your network connection and retry. For large models, use a stable high-bandwidth connection. |
 | Deployment fails | Confirm you have sufficient quota and that Fireworks on Foundry is available in your [supported region](enable-fireworks-models.md#region-availability). |
+| Speculative decoding draft model isn't available | Confirm that the draft model is registered in the same project and that the draft model and target model are in the same model family and architecture-compatible. |
 | Quota exceeded | [Request more quota](https://aka.ms/fireworks-quota) or reallocate provisioned throughput units from existing deployments. |
 
 For more troubleshooting guidance, see [Troubleshoot Fireworks on Foundry](enable-fireworks-models.md#troubleshoot-fireworks-on-foundry).

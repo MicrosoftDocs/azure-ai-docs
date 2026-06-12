@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: "Azure AI Search basics, use cases, and terms"
 author: haileytap
 ms.author: haileytapia
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 05/16/2025

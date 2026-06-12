@@ -3,7 +3,7 @@ title: Back up and recover your conversational language understanding models
 titleSuffix: Foundry Tools
 description: Learn how to save and recover your conversational language understanding models.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

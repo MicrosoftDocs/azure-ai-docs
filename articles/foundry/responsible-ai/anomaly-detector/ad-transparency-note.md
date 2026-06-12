@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Understanding the use cases of Anomaly Detector"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: concept-article
 ms.date: 02/21/2024

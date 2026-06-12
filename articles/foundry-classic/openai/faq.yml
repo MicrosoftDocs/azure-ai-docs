@@ -3,7 +3,7 @@ metadata:
   title: Azure OpenAI frequently asked questions
   description: Get answers to the most popular questions about Azure OpenAI
   #services: cognitive-services
-  manager: nitinme
+  manager: mcleans
   ms.service: microsoft-foundry
   ms.subservice: foundry-openai
   ms.topic: faq

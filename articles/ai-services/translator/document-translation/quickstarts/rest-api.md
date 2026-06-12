@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use the Document translation REST APIs for batch and single document translations.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
 ms.date: 06/02/2026

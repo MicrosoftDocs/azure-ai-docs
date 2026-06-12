@@ -3,7 +3,7 @@ title: View Custom Translator model details and test translation
 titleSuffix: Foundry Tools
 description: How to test your Custom Translator model BLEU score and evaluate translations
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

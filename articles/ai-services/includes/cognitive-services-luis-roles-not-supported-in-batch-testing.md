@@ -3,7 +3,7 @@ title: include file
 description: include file 
 services: cognitive-services
 author: aahill
-manager: nitinme
+manager: mcleans
 ms.service: cognitive-services
 ms.subservice: luis
 ms.topic: include

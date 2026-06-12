@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: An overview of Text analytics for health in Azure Language, which helps you extract medical information from unstructured text, like clinical documents.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026

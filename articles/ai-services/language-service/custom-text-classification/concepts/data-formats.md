@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by custom text classification.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 12/15/2025

@@ -3,7 +3,7 @@ title: "Serverless API inference examples for Foundry Models (classic)"
 description: "Inference examples for Foundry Models that support deployment to serverless APIs in Microsoft Foundry. (classic)"
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 12/09/2025

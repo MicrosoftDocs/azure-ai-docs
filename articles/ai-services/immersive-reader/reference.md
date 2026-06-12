@@ -3,7 +3,7 @@ title: Immersive Reader SDK JavaScript reference
 titleSuffix: Azure AI services
 description: Learn about the Immersive Reader JavaScript library that allows you to integrate Immersive Reader into your application.
 author: sharmas
-manager: nitinme
+manager: mcleans
 
 ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-js

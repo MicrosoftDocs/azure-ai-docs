@@ -1,11 +1,12 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 05/22/2026
 ms.author: pafarley
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 ### May 2026 release
@@ -17,6 +18,10 @@ The custom speech fine-tuning workflow is now documented for the Microsoft Found
 #### LLM Speech API Generally Availability
 
 LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+
+#### Speech Transcription SDK general availability
+
+The Speech Transcription SDK is now generally available (version 1.0.0) for C#, Python, Java, and JavaScript/TypeScript. The SDK provides a unified client for the Fast Transcription and LLM Speech capabilities of the Speech service. For more information, see [What is the Speech Transcription SDK?](../../transcription-sdk.md).
 
 ### April 2026 release
 

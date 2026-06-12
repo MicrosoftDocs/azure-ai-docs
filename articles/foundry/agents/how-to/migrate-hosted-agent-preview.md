@@ -4,7 +4,7 @@ description: "Migrate your hosted agents from the initial public preview to the 
 author: aahill
 ms.author: aahi
 ms.date: 04/15/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

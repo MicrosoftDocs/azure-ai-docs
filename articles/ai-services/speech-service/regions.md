@@ -3,7 +3,7 @@ title: Supported regions for Azure Speech
 titleSuffix: Foundry Tools
 description: Find the Azure Speech regions and region identifiers for the Speech SDK and REST APIs, including speech to text, text to speech, and translation.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 05/25/2026
@@ -150,7 +150,7 @@ The regions in the following tables support most of the core features of Azure S
 | `ukwest` | ✅ | ✅ | | | | | | | | | | |
 | `westcentralus` | ✅ | ✅ | | | | ✅ | | | | | | |
 | `westeurope` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
+| `westus` | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
 | `westus2` | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
 | `westus3` | ✅ | ✅ | | | | ✅ | ✅ | ✅ | | | | |
 
@@ -229,7 +229,7 @@ The regions in the following tables support most of the core features of Azure S
 | `brazilsouth` | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | ✅ |
 | `canadacentral` | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Standard | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - |
 | `canadaeast` | Global standard | Global standard | Global standard | - | - | - | Global standard | Standard | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | ✅ |
-| `centralindia` | Global standard | Global standard | Global standard | Global standard | Standard | Global standard | Global standard | Standard | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - |
+| `centralindia` | Global standard | Global standard | Standard | Global standard | Standard | Global standard | Global standard | Standard | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - |
 | `centralus` | Global standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | Data zone standard | - | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | - | - |
 | `eastus` | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | Global standard | - | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | - | ✅ |
 | `eastus2` | Global standard | Global standard | Global standard | Global standard | Standard | Data zone standard | Standard | Standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional | ✅ |

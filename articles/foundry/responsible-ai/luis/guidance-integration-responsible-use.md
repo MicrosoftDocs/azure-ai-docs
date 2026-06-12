@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Guidance for how to deploy Language Understanding responsibly, based on the knowledge and understanding from the team that created this product."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
-ms.service: azure-ai-language
+manager: mcleans
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
-ms.subservice: azure-ai-luis
+ms.subservice: language-understanding
 ms.date: 01/07/2021
 ---
 

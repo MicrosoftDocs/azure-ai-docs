@@ -4,7 +4,7 @@ description: "Deploy your containerized agent code to Foundry Agent Service usin
 author: aahill
 ms.author: aahi
 ms.date: 04/14/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -154,6 +154,9 @@ Don't redeclare platform-injected variables in `agent.yaml`—they're set automa
 
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
 
+> [!IMPORTANT]
+> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights (pricing)[https://azure.microsoft.com/en-us/pricing/details/monitor/] might apply. (Learn more)[https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data#disable-tracing].
+
 ### Reference project connections in environment variables
 
 Instead of hard-coding secrets (API keys, tokens, endpoints) into `agent.yaml` or your image, pull them from a Foundry project connection at sandbox start. Any value in `environment_variables` can be a placeholder expression that the platform resolves before your container starts.
@@ -233,6 +236,8 @@ Content-Type: application/json
 ## Deploy using the Azure Developer CLI or VS Code
 
 The Azure Developer CLI (`azd`) and VS Code extension automate the full deployment lifecycle. For a step-by-step walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md).
+
+To screen prompts and responses against a content safety policy, [add a content safety guardrail to your agent](add-hosted-agent-guardrails.md).
 
 ## Deploy using the Python SDK
 
@@ -338,6 +343,8 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, `invocations_ws`, or any combination) |
+
+To apply a content safety policy, pass a `rai_config` to the definition. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
 
@@ -451,6 +458,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 ```
 
 Creating an agent also creates version `1` and triggers provisioning.
+
+To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
 
@@ -587,6 +596,7 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 ## Related content
 
 - [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
 <!-- - [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md) -->

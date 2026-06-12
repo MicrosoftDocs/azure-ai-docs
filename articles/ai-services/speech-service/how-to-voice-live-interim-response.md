@@ -6,7 +6,7 @@ ms.author: jagoerge
 reviewer: patrickfarley
 ms-reviewer: pafarley
 ms.topic: how-to
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.date: 04/28/2026
 zone_pivot_groups: how-to-voice-live-interim-response
 ai-usage: ai-assisted

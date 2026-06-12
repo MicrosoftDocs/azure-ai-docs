@@ -2,12 +2,12 @@
 title: Voice Live API Overview
 titleSuffix: Foundry Tools
 description: Learn about the Voice Live API for real-time voice agents, key scenarios, and pricing so you can choose the right model and start building voice apps.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
 ms.date: 05/25/2026
 ms.custom: references_regions

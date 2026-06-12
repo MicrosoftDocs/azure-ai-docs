@@ -2,7 +2,7 @@
 title: "How to use Azure AI Search in Foundry Agent Service (classic)"
 description: "Learn how to ground Azure AI Agents with content indexed in Azure AI Search. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

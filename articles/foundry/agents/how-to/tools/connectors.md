@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Add managed MCP servers powered by connector namespaces (preview)"
 description: "Add managed MCP servers powered by connector namespaces to your Foundry agents. Browse, configure, and connect to over 1,000 SaaS and line-of-business services from the Foundry Tools Catalog."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -23,6 +23,9 @@ zone_pivot_groups: foundry-connector-config
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 The Foundry Tools Catalog provides over 1,000 connectors — pre-built integrations to SaaS, data, and line-of-business systems. When you add a connector to your agent, Foundry creates a **managed MCP server**: an MCP server that Foundry provisions and manages in your Foundry account's Connector Namespace. Your agent calls the managed MCP server's tools to perform actions during a conversation — for example, creating a GitHub issue, querying a database, or sending a message.
+
+> [!NOTE]
+> Only validated connectors surface the new managed-MCP-server experience in the Foundry portal **Add tool** catalog. Unvalidated connectors remain available through the previous connector experience. If you configure connectors through the code-first path (REST API, SDK, or `azd`), there's no gating — you can use any connector in the catalog. Reach out to the Foundry team if you run into issues with a specific connector.
 
 > [!IMPORTANT]
 > Non-Microsoft tools including third-party MCP servers available in the Foundry Tools Catalog ("Third-Party Tools") are Non-Microsoft Products under your agreement governing use of Azure. When you connect to a Third-Party Tool, you do so at your own risk. You're responsible for any terms and charges for Third-Party Tools. Microsoft has no responsibility to you or others in relation to your use of Third-Party Tools. Carefully review and track the Third-Party Tools you add to your MCP client.
@@ -60,6 +63,25 @@ For details on connector validation and data protection, see [Vet with data prot
 > [!NOTE]
 > Managed MCP servers are scoped to the Foundry project where they're created. Connector triggers aren't supported; only actions that your agent can invoke are available.
 
+## Supported regions
+
+Managed MCP servers powered by connector namespaces are available in the following Foundry project regions:
+
+- australiaeast
+- brazilsouth
+- canadacentral
+- eastus2
+- francecentral
+- germanywestcentral
+- japaneast
+- norwayeast
+- southafricanorth
+- southcentralus
+- spaincentral
+- swedencentral
+- switzerlandnorth
+- westus3
+
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
@@ -89,10 +111,7 @@ For details on connector validation and data protection, see [Vet with data prot
 ### Step 2: Configure the connection
 
 1. On the connector detail page, select **Configure**.
-1. Fill in the credentials the connector requires. Foundry generates the form from the connector's definition; fields vary by connector:
-   - **OAuth2** — Foundry displays an authorization link. Sign in with the account you want to use, then authorize the connection. About half of catalog connectors use this flow.
-   - **CustomKeys** — Foundry displays one or more input fields for secrets such as an API key, personal access token, or username and password. Enter the credentials issued by the service.
-   - **None** — Some connectors require no credentials. The form has no credential fields.
+1. Fill in the credentials the connector requires. Foundry generates the form from the connector's definition. For **OAuth2** connectors, Foundry displays an authorization link — sign in with the account you want to use, then authorize the connection.
 1. Select **Connect** to save the credentials and establish the connection.
 
 ### Step 3: Select connector actions
@@ -114,6 +133,9 @@ Foundry creates a managed MCP server and adds it to your agent. You can view and
 :::zone-end
 
 :::zone pivot="programming-language-rest"
+
+> [!TIP]
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same REST flows shown below so the agent can generate connector wiring code for you.
 
 ### Step 1: Acquire tokens
 
@@ -198,34 +220,23 @@ RESPONSE=$(curl -sS -X POST \
   }")
 ```
 
-After running either scenario, extract the variables you need for the next step:
-
-From the response, extract the following and set them as shell variables:
+After running either scenario, extract the variables you need for the next steps:
 
 ```bash
 # Replace .value[0] with the correct index if the search returns multiple results
 ENTITY_ID=$(echo "$RESPONSE" | jq -r '.value[0].entityId')
-TARGET_URL=$(echo "$RESPONSE" | jq -r '.value[0].properties["x-ms-runtime-urls"][0]')
+CONNECTOR_NAME=$(echo "$RESPONSE" | jq -r '.value[0].annotations.name')
 
-# Detect auth type: oauthSetting → OAuth2 | securestring → CustomKeys | absent → None
-AUTH_TYPE=$(echo "$RESPONSE" | jq -r '
-  .value[0].properties["x-ms-connection-parameters"]
-  | if . == null then "None"
-    elif [.[] | .type] | any(. == "oauthSetting") then "OAuth2"
-    elif [.[] | .type] | any(. == "securestring") then "CustomKeys"
-    else "None" end
-')
-
-echo "entityId:  $ENTITY_ID"
-echo "targetURL: $TARGET_URL"
-echo "authType:  $AUTH_TYPE"   # use this value in Step 3
+echo "entityId:       $ENTITY_ID"
+echo "connectorName:  $CONNECTOR_NAME"
 ```
 
-The `AUTH_TYPE` value tells you which connection body to use in Step 3.
+> [!NOTE]
+> Foundry currently supports `OAuth2` connectors for the managed MCP server flow. Inspect `properties["x-ms-connection-parameters"]` on the catalog row to confirm: the parameter set contains a field with `"type": "oauthSetting"` for an OAuth2 connector.
 
 ### Step 3: Create the project connection
 
-Set your remaining variables (`ENTITY_ID`, `TARGET_URL`, `CONNECTOR_NAME`, and `AUTH_TYPE` were set in Step 2):
+Set your remaining variables (`ENTITY_ID` and `CONNECTOR_NAME` were set in Step 2):
 
 ```bash
 SUBSCRIPTION_ID=<your-subscription-id>
@@ -241,9 +252,10 @@ CONNECTION_URL="https://management.azure.com/subscriptions/$SUBSCRIPTION_ID\
 /connections/$CONNECTION_NAME?api-version=2025-04-01-preview"
 ```
 
-**OAuth2:**
+Issue the create PUT. The required fields are `connectorName`, the `toolEntityId` from Step 2, and `metadata.connectionproperties` with the connector name as a stringified JSON object.
 
-Foundry manages the OAuth token exchange for the connector. The required fields are `connectorName`, the `toolEntityId` from Step 2, and `metadata.connectionproperties` with the connector name as a JSON string. `TARGET_URL` is the connector's runtime URL from Step 2.
+> [!IMPORTANT]
+> Set `target` to the literal string `"https://placeholder"` on this PUT. The platform rewrites it to the real managed MCP server URL when you register actions in [Step 6](#step-6-register-the-connector-actions). Do not attempt to compute or guess a target URL here.
 
 ```bash
 curl -sS -X PUT "$CONNECTION_URL" \
@@ -254,7 +266,7 @@ curl -sS -X PUT "$CONNECTION_URL" \
       "authType": "OAuth2",
       "category": "RemoteTool",
       "connectorName": "'"$CONNECTOR_NAME"'",
-      "target": "'"$TARGET_URL"'",
+      "target": "https://placeholder",
       "credentials": {},
       "peRequirement": "NotRequired",
       "metadata": {
@@ -266,42 +278,138 @@ curl -sS -X PUT "$CONNECTION_URL" \
   }'
 ```
 
-A successful response returns HTTP 200 with `overallStatus: "Unauthenticated"`. Foundry updates the `target` to its internal endpoint URL during the OAuth consent flow. Use `CONNECTION_NAME` to reference the connection in your agent — you don't need the target URL directly.
+A successful response returns HTTP 200 with `overallStatus: "Unauthenticated"`. The status remains `Unauthenticated` until both [Step 4](#step-4-get-an-oauth-consent-link) (OAuth consent) and [Step 6](#step-6-register-the-connector-actions) (register actions) complete.
 
-**CustomKeys (API key or personal access token):**
+### Step 4: Get an OAuth consent link
 
-Use this when the connector's `x-ms-connection-parameters` contains `securestring`-typed fields. The key name in `credentials.keys` must match the header or parameter name the connector's MCP server expects (for example, `Authorization` for a `Bearer <token>` header).
+Each end-user that calls the agent must complete a one-time OAuth consent. Call `listConsentLinks` to mint a per-user authorization URL.
 
 ```bash
+CALLER_OID=$(az ad signed-in-user show --query id -o tsv)
+CALLER_TID=$(az account show --query tenantId -o tsv)
+
+CONSENT_RESPONSE=$(curl -sS -X POST \
+  "$CONNECTION_URL&action=listConsentLinks" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "parameters": [{
+      "objectId":      "'"$CALLER_OID"'",
+      "parameterName": "token",
+      "redirectUrl":   "https://ai.azure.com/nextgen/authConsentPopup",
+      "tenantId":      "'"$CALLER_TID"'"
+    }]
+  }')
+
+CONSENT_URL=$(echo "$CONSENT_RESPONSE" | jq -r '.value[0].link')
+echo "Open this URL in a browser to authorize the connector:"
+echo "$CONSENT_URL"
+```
+
+Open the URL in a browser, sign in to the connector's service, and approve the consent prompt. The browser redirects to a blank Foundry page when consent succeeds — the gateway has stored the token.
+
+> [!NOTE]
+> The consent link is short-lived (about one hour). If a click returns a 500 error, re-run `listConsentLinks` to mint a fresh link. For service-principal callers, supply the principal's `objectId` and home `tenantId` instead of the signed-in user's.
+
+### Step 5: List the available operations
+
+Get the operation catalog for the connector from Logic Apps. The `eastus` region is shared with the asset gallery.
+
+```bash
+OPERATIONS_URL="https://management.azure.com/subscriptions/$SUBSCRIPTION_ID\
+/providers/Microsoft.Web/locations/eastus/managedApis/$CONNECTOR_NAME\
+/apiOperations?api-version=2016-06-01"
+
+curl -sS "$OPERATIONS_URL" -H "Authorization: Bearer $ARM_TOKEN" \
+  | jq -r '.value[] | select(.properties.isWebhook != true and .properties.isNotification != true)
+                    | "\(.name)\t\(.properties.summary)"'
+```
+
+Each row prints an operation name (the value you pass to `mcpserverConfigProperties.operations[].name` in the next step) and its human-readable summary. Skip webhook and notification operations — they're triggers, not agent-callable actions.
+
+To inspect the input schema for a specific operation, expand `inputsDefinition`:
+
+```bash
+OPERATION_NAME=<operation-name>   # for example, GetFileMetadata
+
+curl -sS "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID\
+/providers/Microsoft.Web/locations/eastus/managedApis/$CONNECTOR_NAME\
+/apiOperations/$OPERATION_NAME?api-version=2016-06-01&\$expand=properties/inputsDefinition" \
+  -H "Authorization: Bearer $ARM_TOKEN" \
+  | jq '.properties.inputsDefinition'
+```
+
+Use `properties` and `required` from `inputsDefinition` to build each operation's `agentParameters[].schema` in the next step. Map `inputsDefinition.properties[name].title` ? `x-ms-summary`, and copy `type` and `description` as-is.
+
+### Step 6: Register the connector actions
+
+Issue a second PUT against the same connection name. The body is identical to [Step 3](#step-3-create-the-project-connection) plus an additional `metadata.mcpserverConfigProperties` field — a stringified JSON object that lists the operations the agent can invoke and each operation's parameter schema.
+
+> [!TIP]
+> Register only the operations your agent actually needs. Limiting the action set reduces the risk of unintended operations and helps the model reason more effectively about available tools.
+
+```bash
+# Build mcpserverConfigProperties as a JSON string.
+# Replace the operations[] array with the ops you chose in Step 5.
+MCP_CONFIG=$(jq -c -n \
+  --arg conn "$CONNECTION_NAME" \
+  --arg name "$CONNECTOR_NAME" '
+  {
+    description: "",
+    state:       "Enabled",
+    connectors: [{
+      name:           $name,
+      connectionName: $conn,
+      displayName:    $name,
+      description:    "",
+      operations: [
+        {
+          name:        "GetFileMetadata",
+          displayName: "Get file metadata using id",
+          description: "",
+          userParameters:  [],
+          agentParameters: [{
+            name: "id",
+            schema: {
+              type:           "string",
+              description:    "The unique identifier of the file.",
+              "x-ms-summary": "File Id"
+            }
+          }]
+        }
+      ]
+    }]
+  }')
+
 curl -sS -X PUT "$CONNECTION_URL" \
   -H "Authorization: Bearer $ARM_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "properties": {
-      "authType": "CustomKeys",
+      "authType": "OAuth2",
       "category": "RemoteTool",
-      "target": "'"$TARGET_URL"'",
-      "credentials": {
-        "keys": {
-          "Authorization": "Bearer '"$YOUR_TOKEN"'"
-        }
-      },
-      "peRequirement": "NotRequired"
+      "connectorName": "'"$CONNECTOR_NAME"'",
+      "target": "https://placeholder",
+      "credentials": {},
+      "peRequirement": "NotRequired",
+      "metadata": {
+        "type": "gateway_connector",
+        "toolEntityId": "'"$ENTITY_ID"'",
+        "connectionproperties": "{\"connectorName\":\"'"$CONNECTOR_NAME"'\"}",
+        "mcpserverConfigProperties": '"$(jq -Rs . <<< "$MCP_CONFIG")"'
+      }
     }
   }'
 ```
 
-After a successful PUT, confirm the connection with:
+The response rewrites `target` to the real managed MCP server URL — for example, `https://app-XX.<region>.logic.azure.com/api/connectorGateways/<envId>/mcpServerConfigs/<connectionName>/mcp`. Once both this PUT and the Step 4 consent have completed, `overallStatus` flips to `Connected`.
 
-```bash
-curl -sS "$CONNECTION_URL" -H "Authorization: Bearer $ARM_TOKEN"
-```
+> [!NOTE]
+> The portal replaces `mcpserverConfigProperties` wholesale when the user re-edits the action list. To change the operations later, re-run this PUT with the full new operations array — not a partial diff.
 
-For CustomKeys, the response returns `"credentials": null` — the server scrubs secrets after write. For OAuth2, `overallStatus` starts as `Unauthenticated` until you complete the OAuth consent flow.
+### Step 7: Use the connection from your agent
 
-### Step 4: Add the connection to your agent
-
-Get the MCP server URL from the connection (the `target` field, which is updated to the active endpoint after OAuth consent):
+Get the managed MCP server URL from the connection. After [Step 6](#step-6-register-the-connector-actions), `target` is the real gateway URL (no longer `https://placeholder`).
 
 ```bash
 SERVER_URL=$(curl -sS "$CONNECTION_URL" \
@@ -359,8 +467,123 @@ print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.versi
 
 For full toolbox configuration and deployment, see [Create and use a Foundry Toolbox](toolbox.md).
 
+:::zone-end
+
+:::zone pivot="azd"
+
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `azure.ai.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
+
+> [!TIP]
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same `azd` flows shown below so the agent can generate connector wiring commands for you.
+
+### Step 1: Install prerequisites
+
+```pwsh
+azd auth login
+az login
+
+# Install the agents extension from the azd source
+azd extension install azure.ai.foundry
+
+$PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
+```
+
 > [!NOTE]
-> For OAuth2 connections, the first MCP call from your agent returns error code `-32006` with a `consent_url`. Open that URL in a browser and complete the OAuth flow. After consent, `overallStatus` transitions to `Connected` and subsequent calls succeed.
+> The `azure.ai.foundry` extension is in preview. It bundles the top-level `azd ai` experience across `agent`, `connection`, `inspector`, `project`, `routine`, `skill`, and `toolbox`. Use `azd` version 1.25.2 or later.
+
+### Step 2: Create the OAuth2 connection
+
+`azd ai connection create` registers the connector as a project connection with `authType=OAuth2` and the required gateway metadata. Pass the connector's catalog name with `--connector-name` (for example, `box`, `linkedinv2`, `outlook`, `github`).
+
+The connector name is the `annotations.name` value returned by the Foundry Tools Catalog API. Switch to the **REST API** pivot and follow [Step 2: Discover the connector](#step-2-discover-the-connector) to list every connector or look up a specific one.
+
+```pwsh
+azd ai connection create <connection-name> `
+  --connector-name <connector-name> `
+  -p $PE
+```
+
+For example, to create a connection to the Box connector:
+
+```pwsh
+azd ai connection create my-box-conn `
+  --connector-name box `
+  -p $PE
+```
+
+### Step 3: Complete OAuth consent
+
+The connection is created in an `Unauthenticated` state, and the consent URL is returned in the connection details at creation time. Inspect the connection to retrieve it:
+
+```pwsh
+azd ai connection show my-box-conn -p $PE
+```
+
+Open the returned consent URL in a browser and sign in once. After consent is recorded, subsequent MCP calls succeed and `overallStatus` transitions to `Connected`.
+
+### Step 4: Register the connector actions
+
+Use `--metadata mcpserverConfigProperties=<json>` to declare which connector operations the agent can call and which parameters the model controls.
+
+Values for `connectorName`, `operationName`, and each operation's parameter names come from the Foundry Tools Catalog API. Switch to the **REST API** pivot and use [Step 2: Discover the connector](#step-2-discover-the-connector) to retrieve a connector's full metadata — operations are listed under `properties.actions[]`, and each operation's parameters are listed under `parameters[]`.
+
+The example below registers a single `GetEmailsV2` operation on an Outlook connection:
+
+```pwsh
+$mcp = @{
+  connectors = @(@{
+    connectorName = "outlook"
+    operations = @(@{
+      operationName = "GetEmailsV2"
+      agentParameters = @(
+        @{ name = "folderPath";      required = $true  },
+        @{ name = "top";             required = $false },
+        @{ name = "fetchOnlyUnread"; required = $false }
+      )
+    })
+  })
+} | ConvertTo-Json -Depth 10 -Compress
+
+azd ai connection update my-outlook-conn `
+  --metadata "mcpserverConfigProperties=$mcp" `
+  -p $PE
+```
+
+> [!TIP]
+> Register only the operations your agent actually needs. Limiting the action set reduces the risk of unintended operations and helps the model reason more effectively about available tools.
+
+### Step 5: Use the connection from an agent
+
+After the connection is created and consent is recorded, reference it from your agent the same way as any other managed MCP server. The simplest path is to add the connection to a [Foundry Toolbox](toolbox.md) and attach the toolbox to your agent:
+
+```yaml
+# my-toolbox.yaml
+description: Toolbox with connector MCP servers
+connections:
+  - name: my-box-conn
+  - name: my-outlook-conn
+```
+
+```pwsh
+azd ai toolbox create my-toolbox `
+  --from-file .\my-toolbox.yaml `
+  -p $PE
+```
+
+For end-to-end agent scaffolding and deployment with `azd`, see [Create and use a Foundry Toolbox](toolbox.md).
+
+### Manage the connection
+
+```pwsh
+# List connections in the project
+azd ai connection list -p $PE
+
+# Show details for one connection
+azd ai connection show <connection-name> -p $PE
+
+# Delete a connection
+azd ai connection delete <connection-name> -p $PE --force
+```
 
 :::zone-end
 

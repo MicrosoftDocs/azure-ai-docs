@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the OpenAI Python SDK.
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 09/01/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
