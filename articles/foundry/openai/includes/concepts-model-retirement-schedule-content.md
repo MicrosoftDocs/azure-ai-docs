@@ -218,8 +218,8 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-V4-Flash | 2026-04-23 | GA | 2026-08-20 | — |
-| DeepSeek-V4-Pro | 2026-04-23 | GA | 2026-08-20 | — |
+| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
 
 ### Fireworks
 
