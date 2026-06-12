@@ -18,9 +18,9 @@ ai-usage: ai-assisted
 # Use skills in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation. A support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, and a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, you need to update and redeploy every agent that uses it.
+As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that must stay consistent across every conversation. A support agent follows a fixed escalation policy. A code-review agent applies the same checklist each time. A sales agent respects set messaging constraints. When you embed these guidelines in each agent's system prompt or code, you create duplication. If the policy changes, you update and redeploy every agent that uses it.
 
-Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the versioned Skills API, and then deliver to agents in two modes: **attach to a toolbox** so any MCP client can discover and load them alongside tools, or **download directly** into a Hosted or local agent project for direct injection into each session's context. Skills are versioned: every update creates a new immutable version while the parent skill tracks a `default_version`. When you update a skill, you create a new version, test it, then promote it to default without changing any agent code.
+Skills solve this problem by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file that you author once and store centrally in Foundry through the versioned Skills API. You then deliver it to agents in two modes. **Attach to a toolbox** so any MCP client discovers and loads skills alongside tools. Or **download directly** into a Hosted or local agent project to inject the content into each session's context. Skills are versioned: every update creates a new immutable version, and the parent skill tracks a `default_version`. To update a skill, you create a new version, test it, then promote it to default without changing any agent code.
 
 In this article, you learn how to:
 
@@ -33,12 +33,12 @@ In this article, you learn how to:
 
 | Feature | REST API | Python | .NET | JavaScript | Toolbox | Hosted agent |
 | ------- | -------- | ------ | ---- | ---------- | ------- | ------------ |
-| Create skill version (JSON inline content) | ?? | ?? | ?? | ?? | N/A | N/A |
-| Create skill version (ZIP file upload) | ?? | ?? | ?? | ?? | N/A | N/A |
-| List, get, and delete skills and versions | ?? | ?? | ?? | ?? | N/A | N/A |
-| Download skill content | ?? | ?? | ?? | ?? | N/A | N/A |
-| Update skill default version | ?? | ?? | ?? | ?? | N/A | N/A |
-| Attach skills to a toolbox | ?? | ?? | ?? | ?? | ?? | N/A |
+| Create skill version (JSON inline content) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Create skill version (ZIP file upload) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| List, get, and delete skills and versions | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Download skill content | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
 
 ## Prerequisites
 
@@ -89,7 +89,17 @@ After you create skill versions, attach them to a toolbox version so any MCP cli
 
 When an agent or MCP client connects to the toolbox endpoint, skills appear as [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources). Clients that support the MCP Resources protocol call `resources/list` once at startup to discover all attached skills, then `resources/read` to download the content. Any MCP client — GitHub Copilot, Claude Code, or your own agent harness — can consume skills this way without any Foundry SDK.
 
-For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article. The Azure Developer CLI exposes skill references both declaratively (a `skills:` block in `azd ai toolbox create --from-file`) and imperatively (`azd ai toolbox skill add`, `azd ai toolbox skill list`, `azd ai toolbox skill remove`); changes don't take effect for MCP clients until you promote the new version with `azd ai toolbox publish`.
+For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article. The Azure Developer CLI exposes skill references in two ways. Use a declarative `skills:` block in `azd ai toolbox create --from-file`, or use the imperative commands `azd ai toolbox skill add`, `azd ai toolbox skill list`, and `azd ai toolbox skill remove`. Changes don't take effect for MCP clients until you promote the new version with `azd ai toolbox publish`.
+
+### Consume toolbox skills in Microsoft Agent Framework
+
+After you attach skills to a toolbox, an agent can discover and load them from the toolbox MCP endpoint at runtime instead of bundling `SKILL.md` files locally. For a complete C# example, see the [Skills in Toolbox sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/foundry-toolbox-mcp-skills). The sample hosts an agent with the Microsoft Agent Framework Responses hosting layer and uses an `AgentSkillsProvider`, built with `AgentSkillsProviderBuilder.UseMcpSkills`, to apply the [Agent Skills](https://agentskills.io/) progressive-disclosure pattern:
+
+1. **Advertise**: The provider injects skill names and descriptions into the system prompt so the agent knows which skills are available.
+1. **Load**: When the agent decides a skill is relevant, it retrieves the full skill body from the toolbox.
+1. **Read resources**: If a skill includes supplementary content, such as reference documents or assets, the agent reads them on demand.
+
+The agent fetches the full skill body and resources from the toolbox only when it needs them, which reduces token usage. The sample consumes skills from an existing toolbox; it doesn't create or provision them.
 
 ## Manage skills with the REST API
 
@@ -242,7 +252,7 @@ $PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
 azd ai agent project set --endpoint $PE
 ```
 
-Endpoint resolution order: `-p` flag ? azd env `AZURE_AI_PROJECT_ENDPOINT` ? global config `extensions.ai-skills.project.context.endpoint` (falls back to `extensions.ai-agents.project.context.endpoint`) ? env var `FOUNDRY_PROJECT_ENDPOINT`.
+Endpoint resolution order: `-p` flag → azd env `AZURE_AI_PROJECT_ENDPOINT` → global config `extensions.ai-skills.project.context.endpoint` (falls back to `extensions.ai-agents.project.context.endpoint`) → env var `FOUNDRY_PROJECT_ENDPOINT`.
 
 **Create the first version** with inline metadata:
 
@@ -958,7 +968,7 @@ azd ai skill update greeting --set-default-version v2 -p $PE --no-prompt -o json
 :::zone-end
 ## Use skills in a hosted agent
 
-In **direct injection** mode, you download skills from the Foundry Skills API into your agent project directory. The agent reads the `SKILL.md` files at startup and injects their content as extra system instructions for each session. This mode works without a toolbox and is appropriate when you want to bundle specific skill versions directly with your agent code.
+In **direct injection** mode, you download skills from the Foundry Skills API into your agent project directory. The agent reads the `SKILL.md` files at startup and injects their content as extra system instructions for each session. This mode works without a toolbox. Use it when you want to bundle specific skill versions with your agent code.
 
 For the alternative mode — where skills and tools share a single discoverable endpoint that any MCP client can reach — see [Attach skills to a toolbox (preview)](#attach-skills-to-a-toolbox-preview).
 
@@ -984,13 +994,13 @@ azd env set GITHUB_TOKEN="github_pat_..."
 The scaffolded project includes `main.py`, configuration files, and a sample `joke` skill:
 
 ```
-+-- main.py                  ? agent code that loads skills via CopilotClient
-+-- agent.yaml
-+-- agent.manifest.yaml
-+-- requirements.txt
-+-- skills/
-    +-- joke/
-        +-- SKILL.md         ? bundled sample skill
+├── main.py                  ← agent code that loads skills via CopilotClient
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    └── joke/
+        └── SKILL.md         ← bundled sample skill
 ```
 
 In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as extra instructions when a session starts.
@@ -1008,15 +1018,15 @@ If you haven't stored the greeting skill in Foundry yet, copy the skill content 
 The project now includes both skills:
 
 ```
-+-- main.py
-+-- agent.yaml
-+-- agent.manifest.yaml
-+-- requirements.txt
-+-- skills/
-    +-- greeting/
-    —   +-- SKILL.md         ? your greeting skill
-    +-- joke/
-        +-- SKILL.md
+├── main.py
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    ├── greeting/
+    │   └── SKILL.md         ← your greeting skill
+    └── joke/
+        └── SKILL.md
 ```
 
 ### Step 3: Run and test locally
