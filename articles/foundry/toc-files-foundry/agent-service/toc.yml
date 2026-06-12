@@ -163,6 +163,8 @@ items:
       href: ../../agents/how-to/build-voice-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
+  - name: Publish to Microsoft 365 Copilot and Teams with a virtual network
+    href: ../../agents/how-to/publish-copilot-virtual-network.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
   - name: Enable incoming A2A (preview)
