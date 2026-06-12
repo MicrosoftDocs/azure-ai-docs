@@ -191,4 +191,4 @@ If you run the container with an output mount and logging enabled, the container
 
 ## Next steps
 
-[Azure AI containers overview](../cognitive-services-container-support.md)
+[Azure AI containers overview](../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)

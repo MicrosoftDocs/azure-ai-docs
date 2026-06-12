@@ -51,7 +51,7 @@ For more information, see [Foundry Tools pricing](https://azure.microsoft.com/pr
 2. In your Azure resource for one of the applicable features listed, select **Commitment tier pricing**.
 3. Select **Change** to view the available commitments for hosted API and container usage. Choose a commitment plan for one or more of the following offerings:
     * **Web**: web-based APIs, where you send data to Azure for processing.
-    * **Connected container**: Docker containers that enable you to [deploy Foundry Tools on premises](cognitive-services-container-support.md), and maintain an internet connection for billing and metering.
+    * **Connected container**: Docker containers that enable you to [deploy Foundry Tools on premises](cognitive-services-container-support.md?context=/azure/foundry-classic/context/context), and maintain an internet connection for billing and metering.
 
     :::image type="content" source="media/commitment-tier/commitment-tier-pricing.png" alt-text="A screenshot showing the commitment tier pricing page on the Azure portal." lightbox="media/commitment-tier/commitment-tier-pricing.png":::
 

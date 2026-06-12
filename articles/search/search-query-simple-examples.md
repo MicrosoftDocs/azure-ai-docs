@@ -1,20 +1,21 @@
 ---
 title: Examples of Simple Syntax
-description: Explore query examples that demonstrate the simple syntax for full text search, filter search, and geo search against an Azure AI Search index.
+description: Explore query examples that demonstrate the simple syntax for full-text search, filter search, and geo search against an Azure AI Search index.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 04/14/2025
-ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Examples of *simple* search queries in Azure AI Search
 
-In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes the default query parser for full text search. The parser is fast and handles common scenarios, including full text search, filtered and faceted search, and prefix search. This article uses examples to illustrate simple syntax usage in a [Search Documents (REST API)](/rest/api/searchservice/documents/search-post) request.
+In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes the default query parser for full-text search. The parser is fast and handles common scenarios, including full-text search, filtered and faceted search, and prefix search. This article uses examples to illustrate simple syntax usage in a [Search Documents (REST API)](/rest/api/searchservice/documents/search-post) request.
 
 > [!NOTE]
-> An alternative query syntax is [Lucene](query-lucene-syntax.md), which supports more complex query structures, such as fuzzy and wildcard search. For more information, see [Examples of full Lucene search syntax ](search-query-lucene-examples.md).
+> An alternative query syntax is [Lucene](query-lucene-syntax.md), which supports more complex query structures, such as fuzzy and wildcard search. For more information, see [Examples of full Lucene search syntax](search-query-lucene-examples.md).
 
 ## Hotels sample index
 
@@ -25,9 +26,9 @@ Example queries are articulated using the REST API and POST requests. You can pa
 Request headers must have the following values:
 
 | Key | Value |
-|-----|-------|
-| Content-Type | application/json|
-| api-key  | `<your-search-service-api-key>`, either query or admin key |
+| --- | --- |
+| Content-Type | application/json |
+| api-key | `<your-search-service-api-key>`, either query or admin key |
 
 URI parameters must include your search service endpoint with the index name, docs collections, search command, and API version, similar to the following example:
 
@@ -46,17 +47,17 @@ The request body should be formed as valid JSON:
 }
 ```
 
-+ `search` set to * is an unspecified query, equivalent to null or empty search. It's not especially useful, but it's the simplest search you can do, and it shows all retrievable fields in the index, with all values.
+- `search` set to * is an unspecified query, equivalent to null or empty search. It's not especially useful, but it's the simplest search you can do, and it shows all retrievable fields in the index, with all values.
 
-+ `queryType` set to *simple* is the default and can be omitted, but it's included to emphasize that the query examples in this article are expressed in the simple syntax.
+- `queryType` set to *simple* is the default and can be omitted, but it's included to emphasize that the query examples in this article are expressed in the simple syntax.
 
-+ `select` set to a comma-delimited list of fields is used for search result composition, including just those fields that are useful in the context of search results.
+- `select` set to a comma-delimited list of fields is used for search result composition, including just those fields that are useful in the context of search results.
 
-+ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
+- `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
 
-## Example 1: Full text search
+## Example 1: Full-text search
 
-Full text search can be any number of standalone terms or quote-enclosed phrases, with or without Boolean operators. 
+Full-text search can be any number of standalone terms or quote-enclosed phrases, with or without Boolean operators.
 
 ```http
 POST /indexes/hotel-samples-index/docs/search?api-version=2026-04-01
@@ -111,7 +112,7 @@ The response for the *pool spa +airport* query should look similar to the follow
 
 Notice the search score in the response. This is the relevance score of the match. By default, a search service returns the top 50 matches based on this score.
 
-Uniform scores of *1.0* occur when there's no rank, either because the search wasn't full text search, or because no criteria were provided. For example, in an empty search (search=`*`), rows come back in arbitrary order. When you include actual criteria, you'll see search scores evolve into meaningful values.
+Uniform scores of *1.0* occur when there's no rank, either because the search wasn't full-text search, or because no criteria were provided. For example, in an empty search (search=`*`), rows come back in arbitrary order. When you include actual criteria, you'll see search scores evolve into meaningful values.
 
 ## Example 2: Look up by ID
 
@@ -209,7 +210,7 @@ POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
   }
 ```
 
-The response for the preceding query matches on 27 hotels that offer free amenities. Notice that the search score is a uniform *1* throughout the results. This is because the search expression is null or empty, resulting in verbatim filter matches, but no full text search. Relevance scores are only returned on full text search. If you're using filters without `search`, make sure you have sufficient sortable fields so that you can control search rank.
+The response for the preceding query matches on 27 hotels that offer free amenities. The search score is a uniform *1* throughout the results. This is because the search expression is null or empty, resulting in verbatim filter matches, but no full-text search. Relevance scores are only returned on full-text search. If you're using filters without `search`, make sure you have sufficient sortable fields so that you can control search rank.
 
 ```json
   "@odata.count": 27,
@@ -348,7 +349,7 @@ The response for this query should look similar to the following example, trimme
         "StateProvince": "CA "
       }
     },
-. . . 
+. . .
 ```
 
 ## Example 6: Geospatial search
@@ -404,15 +405,15 @@ The response for this query returns all hotels within a 10-kilometer distance of
 
 ## Example 7: Booleans with searchMode
 
-Simple syntax supports Boolean operators in the form of characters (`+, -, |`) to support AND, OR, and NOT query logic. Boolean search behaves as you might expect, with a few noteworthy exceptions. 
+Simple syntax supports Boolean operators in the form of characters (`+, -, |`) to support AND, OR, and NOT query logic. Boolean search behaves as you might expect, with a few noteworthy exceptions.
 
-In a Boolean search, consider adding the `searchMode` parameter as a mechanism for influencing precision and recall. Valid values include `"searchMode": "any"` favoring recall (a document that satisfies any of the criteria is considered a match), and `"searchMode": "all"` favoring precision (all criteria must be matched in a document). 
+In a Boolean search, consider adding the `searchMode` parameter as a mechanism for influencing precision and recall. Valid values include `"searchMode": "any"` favoring recall (a document that satisfies any of the criteria is considered a match), and `"searchMode": "all"` favoring precision (all criteria must be matched in a document).
 
 In the context of a Boolean search, the default `"searchMode": "any"` can be confusing if you're stacking a query with multiple operators and getting broader instead of narrower results. This is particularly true with NOT, where results include all documents *not containing* a specific term or phrase.
 
-The following example provides an illustration. The query looks for matches on *restaurant* that exclude the phrase *air conditioning*. If you run the following query with searchMode (any), 43 documents are returned: those containing the term *restaurant*, plus all documents that *don't* have the phrase *air conditioning. 
+The following example provides an illustration. The query looks for matches on *restaurant* that exclude the phrase *air conditioning*. If you run the following query with searchMode (any), 43 documents are returned: those containing the term *restaurant*, plus all documents that *don't* have the phrase *air conditioning.
 
-Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
+There's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
 
 ```http
 POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
@@ -468,7 +469,7 @@ The response for this query would now look similar to the following example, tri
 
 ## Example 8: Paging results
 
-In previous examples, you learned about parameters that affect search results composition, including `select` that determines which fields are in a result, sort orders, and how to include a count of all matches. This example is a continuation of search result composition in the form of paging parameters that allow you to batch the number of results that appear in any given page. 
+In previous examples, you learned about parameters that affect search results composition, including `select` that determines which fields are in a result, sort orders, and how to include a count of all matches. This example is a continuation of search result composition in the form of paging parameters that allow you to batch the number of results that appear in any given page.
 
 By default, a search service returns the top 50 matches. To control the number of matches in each page, use `top` to define the size of the batch, and then use `skip` to pick up subsequent batches.
 
@@ -486,7 +487,7 @@ POST /indexes/hotels-sample/docs/search?api-version=2026-04-01
 }
 ```
 
-The query finds 21 matching documents, but because you specified `top`, the response returns just the top five matches, with ratings starting at 4.9, and ending at 4.7 with *Lakeside B & B*. 
+The query finds 21 matching documents, but because you specified `top`, the response returns just the top five matches, with ratings starting at 4.9, and ending at 4.7 with *Lakeside B & B*.
 
 To get the next five, skip the first batch:
 
@@ -540,14 +541,8 @@ The response for the second batch skips the first five matches, returning the ne
 
 ## Related content
 
-Now that you have some practice with the basic query syntax, try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
-
-+ [Quickstart: Full-text search](search-get-started-text.md)
-
-More syntax reference, query architecture, and examples can be found in the following links:
-
-+ [Examples of full Lucene search syntax](search-query-lucene-examples.md)
-+ [Full text search in Azure AI Search](search-lucene-query-architecture.md)
-+ [Simple query syntax in Azure AI Search](query-simple-syntax.md)
-+ [Lucene query syntax in Azure AI Search](query-lucene-syntax.md)
-+ [OData $filter syntax in Azure AI Search](search-query-odata-filter.md)
+- [Simple query syntax reference](query-simple-syntax.md)
+- [Lucene query syntax reference](query-lucene-syntax.md)
+- [OData $filter syntax reference](search-query-odata-filter.md)
+- [Quickstart: Full-text search](search-get-started-text.md)
+- [Examples of full Lucene search syntax (advanced queries)](search-query-lucene-examples.md)

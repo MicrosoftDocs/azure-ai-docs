@@ -2211,6 +2211,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/use-chat-multi-modal.md",
+      "redirect_url": "/azure/foundry/openai/how-to/chatgpt",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/sharepoint.md",
       "redirect_url": "/azure/foundry/agents/how-to/tools/sharepoint",
       "redirect_document_id": true

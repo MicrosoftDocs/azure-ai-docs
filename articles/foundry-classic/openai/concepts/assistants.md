@@ -48,7 +48,7 @@ For information on using assistants, see the following reference documentation.
 * [C#](/dotnet/api/overview/azure/ai.openai.assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
 * [Java](/java/api/overview/azure/ai-openai-assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
 * [JavaScript](../how-to/migration-javascript.md?tabs=javascript-new#assistants)
-* [Python](https://platform.openai.com/docs/api-reference/assistants)
+* [Python](https://developers.openai.com/api/reference/resources/beta/subresources/assistants)
 * [REST API](../reference-preview.md#list---assistants)
 
 ## Available models

@@ -1,7 +1,7 @@
 ---
 title: Document-Level Access Control
 description: Learn how Azure AI Search enforces document-level access control with security filters, ACLs, RBAC scopes, SharePoint permissions, and Purview sensitivity labels.
-ms.date: 06/02/2026
+ms.date: 06/10/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -122,19 +122,19 @@ The pattern includes the following components:
 
 - Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-query-time-enforcement) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- Starting in the 2026-05-01-preview REST API, ACL changes on items with unique permissions are detected and refreshed on each successful indexer run. This applies to:
-  - Items with unique permissions
-  - Items that inherit permissions from parent scopes (such as libraries or folders)
+- Starting in the 2026-05-01-preview REST API, SharePoint ACL synchronization follows this model:
+  - Changes on items with unique permissions are detected and refreshed on each successful indexer run.
+  - Changes inherited from parent scopes (site, library, list, or folder) require an explicit refresh, such as `/resync` with `options: ["permissions"]` or `/resetdocs`. For more information, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
 
 - At query time, Azure AI Search checks the Microsoft Entra principal in the query token against SharePoint ACL metadata stored in the index. It excludes any items the caller isn't authorized to access.
 
-During preview, the following principal types are supported in SharePoint ACLs:
+During the preview, the following principal types are supported in SharePoint ACLs:
 
 - Microsoft Entra user accounts
 - Microsoft Entra security groups
 - Microsoft 365 groups
 - Mail-enabled security groups
-- SharePoint site groups (preview, starting in the 2026-05-01-preview REST API). Requires extra index configuration. For details, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
+- SharePoint site groups (preview, starting in the 2026-05-01-preview REST API). Requires extra index configuration. For more information, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
 
 [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) that gate user access aren't evaluated, ingested, or honored at query time.
 
@@ -181,7 +181,7 @@ When you attach the user's token to a query request through the `x-ms-query-sour
 1. Compares those claims to the permission metadata stored alongside indexed documents (ACL entries, RBAC scopes, Purview label assignments, or SharePoint ACLs).
 1. Returns only documents whose synchronized permission metadata grants the caller access.
 
-Query-time enforcement evaluates the caller's Microsoft Entra claims against the permission metadata that's already stored in the index. Permission changes in the source system (Microsoft Entra group membership, ADLS Gen2 ACLs, Purview label assignments, or SharePoint ACLs) are only reflected in search results after that metadata is synchronized to the index through the source-specific mechanism, for example, a subsequent indexer run, a push-API update, or a Purview-driven refresh. For SharePoint, ACL changes on items with unique permissions are picked up incrementally on each successful indexer run starting in the 2026-05-01-preview REST API, while changes inherited from parent scopes (site, library, list, or folder) require an explicit refresh. For details, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
+Query-time enforcement evaluates the caller's Microsoft Entra claims against the permission metadata that's already stored in the index. Permission changes in the source system (Microsoft Entra group membership, ADLS Gen2 ACLs, Purview label assignments, or SharePoint ACLs) are only reflected in search results after that metadata is synchronized to the index through the source-specific mechanism, for example, a subsequent indexer run, a push-API update, or a Purview-driven refresh. For SharePoint, ACL changes on items with unique permissions are picked up incrementally on each successful indexer run starting in the 2026-05-01-preview REST API, while changes inherited from parent scopes (site, library, list, or folder) require an explicit refresh. For more information, see [Synchronize permissions between indexed and source content](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content).
 
 For end-to-end query implementation steps, see [Query-time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
 

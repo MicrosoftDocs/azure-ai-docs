@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models from partners and community, 
 author: msakande
 ms.author: mopeakande
 manager: mcleans
-ms.date: 05/26/2026
+ms.date: 06/08/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: partner-tools

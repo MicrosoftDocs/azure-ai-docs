@@ -1,11 +1,12 @@
 ---
 title: Add a Search Service to a Network Security Perimeter
 description: Learn how to add an Azure AI Search service to a network security perimeter for a secure connection.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
 ms.custom:
   - ignite-2024
-ms.topic: how-to
-ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Add a search service to a network security perimeter
@@ -14,37 +15,37 @@ A [network security perimeter](/azure/private-link/network-security-perimeter-co
 
 This article explains how to join an Azure AI Search service to a network security perimeter to control network access to your search service. By joining a network security perimeter, you can:
 
-* Log all access to your search service in context with other Azure resources in the same perimeter.
-* Block any data exfiltration from a search service to other services outside the perimeter.
-* Allow access to your search service by using the inbound and outbound access capabilities of the network security perimeter.
+- Log all access to your search service in context with other Azure resources in the same perimeter.
+- Block any data exfiltration from a search service to other services outside the perimeter.
+- Allow access to your search service by using the inbound and outbound access capabilities of the network security perimeter.
 
 You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to view and synchronize the configuration settings.
 
 ## Prerequisites
 
-* An existing network security perimeter. You can [create one to associate with your search service](/azure/private-link/create-network-security-perimeter-portal).
+- An existing network security perimeter. You can [create one to associate with your search service](/azure/private-link/create-network-security-perimeter-portal).
 
-* [Azure AI Search](search-create-service-portal.md), any billable tier, in any region.
+- [Azure AI Search](search-create-service-portal.md), any billable tier, in any region.
 
-* Azure role assignments: **Network Security Perimeter Contributor** on the perimeter (or its resource group or subscription) to create and manage the perimeter, profiles, access rules, and associations. **Search Service Contributor** (or **Contributor**) on the search service to associate it with a perimeter. For more information, see [What is a network security perimeter?](/azure/private-link/network-security-perimeter-concepts).
+- Azure role assignments: **Network Security Perimeter Contributor** on the perimeter (or its resource group or subscription) to create and manage the perimeter, profiles, access rules, and associations. **Search Service Contributor** (or **Contributor**) on the search service to associate it with a perimeter. For more information, see [What is a network security perimeter?](/azure/private-link/network-security-perimeter-concepts).
 
-* If you plan to use indexers, configure the search service with a [system- or user-assigned managed identity](search-how-to-managed-identities.md) and assign the identity an appropriate data-plane role on each data source.
+- If you plan to use indexers, configure the search service with a [system- or user-assigned managed identity](search-how-to-managed-identities.md) and assign the identity an appropriate data-plane role on each data source.
 
 ## Limitations
 
-* Supported indexer data sources are currently limited to [Azure Blob Storage](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-how-to-index-cosmosdb-sql.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
+- Supported indexer data sources are currently limited to [Azure Blob Storage](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 
-* Indexer connections to Azure PaaS for data retrieval are the primary intra-perimeter use case. For other traffic, [configure inbound and outbound rules](#add-an-inbound-access-rule). For outbound calls to Microsoft Foundry resources, see [Outbound access to Microsoft Foundry resources](#outbound-access-to-microsoft-foundry-resources). [Shared private link](search-indexer-howto-access-private.md) is an alternative for specific resource types.
+- Indexer connections to Azure PaaS for data retrieval are the primary intra-perimeter use case. For other traffic, [configure inbound and outbound rules](#add-an-inbound-access-rule). For outbound calls to Microsoft Foundry resources, see [Outbound access to Microsoft Foundry resources](#outbound-access-to-microsoft-foundry-resources). [Shared private link](search-indexer-howto-access-private.md) is an alternative for specific resource types.
 
 ## Outbound access to Microsoft Foundry resources
 
 A network security perimeter that includes both your search service and a [Microsoft Foundry resource](/azure/foundry/how-to/add-foundry-to-network-security-perimeter) provides a private channel for outbound calls between them. Because the perimeter operates at the resource and network layer, every search service feature that calls the Foundry resource uses the same allowed path, including:
 
-* All skills that call a Foundry resource, such as the [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI prompt skill](cognitive-search-skill-genai-prompt.md), [Content Understanding skill](cognitive-search-skill-content-understanding.md), and other [Foundry resource skills](cognitive-search-predefined-skills.md#foundry-resource) for AI enrichment and billing.
+- All skills that call a Foundry resource, such as the [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI prompt skill](cognitive-search-skill-genai-prompt.md), [Content Understanding skill](cognitive-search-skill-content-understanding.md), and other [Foundry resource skills](cognitive-search-predefined-skills.md#foundry-resource) for AI enrichment and billing.
 
-* The [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) at query time during [integrated vectorization](vector-search-integrated-vectorization.md).
+- The [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) at query time during [integrated vectorization](vector-search-integrated-vectorization.md).
 
-* [Agentic retrieval](agentic-retrieval-overview.md) calls from a knowledge agent to a Foundry model deployment.
+- [Agentic retrieval](agentic-retrieval-overview.md) calls from a knowledge agent to a Foundry model deployment.
 
 To enable the private channel:
 
@@ -106,7 +107,7 @@ To disassociate a search service from a perimeter:
 Network security perimeter supports two different access modes for associated resources:
 
 | Mode | Description |
-|--|--|
+| --- | --- |
 | Learning mode | This is the default access mode. In learning mode, network security perimeter logs all traffic to the search service that would be denied if the perimeter is in enforced mode. This access mode allows network administrators to understand the existing access patterns of the search service before implementing enforcement of access rules. |
 | Enforced mode | In enforced mode, network security perimeter logs and denies all traffic that isn't explicitly allowed by access rules. |
 
@@ -114,9 +115,9 @@ Network security perimeter supports two different access modes for associated re
 
 The `publicNetworkAccess` setting determines search service association with a network security perimeter.
 
-* In learning mode, the `publicNetworkAccess` setting controls public access to the resource.
+- In learning mode, the `publicNetworkAccess` setting controls public access to the resource.
 
-* In enforced mode, the network security perimeter rules override the `publicNetworkAccess` setting. For example, if a search service with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in enforced mode, access to the search service is still controlled by network security perimeter access rules.
+- In enforced mode, the network security perimeter rules override the `publicNetworkAccess` setting. For example, if a search service with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in enforced mode, access to the search service is still controlled by network security perimeter access rules.
 
 #### Change the network security perimeter access mode
 
@@ -169,7 +170,7 @@ The `NSPAccessLogs` table contains all the logs for every log category, such as 
 Here's an example of the `NspPublicInboundPerimeterRulesAllowed` log format:
 
 | Column name | Meaning | Example value |
-|--|--|--|
+| --- | --- | --- |
 | ResultDescription | Name of the network access operation. | POST /indexes/my-index/docs/search |
 | Profile | Which network security perimeter the search service was associated with. | defaultProfile |
 | ServiceResourceId | Resource ID of the search service. | `search-service-resource-id` |
@@ -215,9 +216,9 @@ Inbound access rules can allow the internet and resources outside the perimeter 
 
 Network security perimeter supports two types of inbound access rules:
 
-* IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 192.0.2.0/24, which represents the IPs that range from 192.0.2.0 to 192.0.2.255. This type of rule allows inbound requests from any IP address within the range.
+- IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 192.0.2.0/24, which represents the IPs that range from 192.0.2.0 to 192.0.2.255. This type of rule allows inbound requests from any IP address within the range.
 
-* Subscriptions. This type of rule allows inbound access authenticated by using any managed identity from the subscription. The rule controls the network path only; the caller still needs an Azure RBAC role assignment on the search service.
+- Subscriptions. This type of rule allows inbound access authenticated by using any managed identity from the subscription. The rule controls the network path only; the caller still needs an Azure RBAC role assignment on the search service.
 
 To add an inbound access rule in the Azure portal:
 
@@ -311,14 +312,14 @@ To test your connection through network security perimeter, you need access to a
 
 1. In the Azure portal, open your search service and view its indexes.
 
-   * **Expected success:** The index list loads and you can run a test query. The inbound IP rule is working.
+   - **Expected success:** The index list loads and you can run a test query. The inbound IP rule is working.
 
-   * **If you see a 403 or "Public network access is disabled" error:** Your client IP or the Azure portal isn't covered by an inbound rule. Check the [inbound access rules](#add-an-inbound-access-rule).
+   - **If you see a 403 or "Public network access is disabled" error:** Your client IP or the Azure portal isn't covered by an inbound rule. Check the [inbound access rules](#add-an-inbound-access-rule).
 
 ## Troubleshoot common issues
 
 | Symptom | Likely cause | Mitigation |
-|---------|--------------|------------|
+| --- | --- | --- |
 | Indexer fails after switching to enforced mode. | The search service identity lacks a data-plane role on the data source, or the data source isn't supported within the perimeter. | Confirm the search service uses a [managed identity](search-how-to-managed-identities.md) and has the required role on the data source. For unsupported data sources, add an [outbound access rule](#add-an-outbound-access-rule). |
 | Skill, vectorizer, or agentic retrieval calls to a Foundry resource are denied. | The Foundry resource is in a different perimeter, or the search service authenticates with API keys, so the channel isn't implicit. | Add both resources to the same perimeter and use managed identity, or add an outbound FQDN rule that targets the Foundry resource's hostname. For more information, see [Outbound access to Microsoft Foundry resources](#outbound-access-to-microsoft-foundry-resources). |
 | Diagnostic logs don't appear in Log Analytics or Storage. | Ingestion latency, or the storage account isn't in the same region as the perimeter. | Wait up to 10 minutes after generating traffic, then query the `NSPAccessLogs` table or check the matching `insights-logs-*` storage container. Verify the storage account region. |
@@ -342,13 +343,11 @@ az rest --method post \
   --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Search/searchServices/<search-service-name>/networkSecurityPerimeterConfigurations/<association-name>/reconcile?api-version=2025-05-01"
 ```
 
-Use the 2025-05-01 REST API version, which is the latest stable version of the Search Management REST APIs. For more information, see [Manage your Azure AI Search service using REST APIs](search-manage-rest.md).
+Use the latest stable version of the Search Management REST APIs. For more information, see [Manage your Azure AI Search service using REST APIs](search-manage-rest.md).
 
 ## Related content
 
-* [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
-* [Make outbound connections through a shared private link](search-indexer-howto-access-private.md)
-* [Connect to Azure AI Search using managed identities](search-how-to-managed-identities.md)
-* [Add Microsoft Foundry to a network security perimeter](/azure/foundry/how-to/add-foundry-to-network-security-perimeter)
-* [Manage your Azure AI Search service using REST APIs](search-manage-rest.md)
-* [Use Azure role-based access control in Azure AI Search](search-security-rbac.md)
+- [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
+- [Configure a search service to connect using a managed identity](search-how-to-managed-identities.md)
+- [Make outbound connections through a shared private link](search-indexer-howto-access-private.md)
+- [Add Microsoft Foundry to a network security perimeter](/azure/foundry/how-to/add-foundry-to-network-security-perimeter)

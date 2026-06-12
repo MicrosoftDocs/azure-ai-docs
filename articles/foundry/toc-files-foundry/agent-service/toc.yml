@@ -153,6 +153,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a Hosted agent from source code (preview)
       href: ../../agents/how-to/deploy-hosted-agent-code.md
+    - name: Add a content safety guardrail to a Hosted agent
+      href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage Hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
     - name: Manage Hosted agent sessions
@@ -161,6 +163,8 @@ items:
       href: ../../agents/how-to/build-voice-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
+  - name: Publish to Microsoft 365 Copilot and Teams with a virtual network
+    href: ../../agents/how-to/publish-copilot-virtual-network.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
   - name: Enable incoming A2A (preview)

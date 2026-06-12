@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
 MedImageInsight is a healthcare AI model that generates embeddings for medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. This article shows you how to deploy MedImageInsight as an online endpoint for real-time inference and send API requests to generate medical image embeddings. The steps you take are:
 

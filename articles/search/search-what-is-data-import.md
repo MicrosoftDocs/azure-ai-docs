@@ -1,11 +1,12 @@
 ---
 title: Data Import and Ingestion
 description: Learn about data import in Azure AI Search, including the push and pull models for loading content into a search index from external data sources.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 01/23/2026
+ai-usage: ai-assisted
 ---
 
 # Data import in Azure AI Search
@@ -21,34 +22,34 @@ Both approaches load documents from an external data source. Although you can cr
 
 ## Pushing data to an index
 
-Push model is an approach that uses APIs to upload documents into an existing search index. You can upload documents individually or in batches up to 1000 per batch, or 16 MB per batch, whichever limit comes first.
+The push model uses APIs to upload documents to an existing search index. You can upload documents one at a time or in batches, up to 1,000 documents or 16 MB per batch, whichever comes first.
 
 Key benefits include:
 
-+ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere.
+- No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere.
 
-+ No restrictions on frequency of execution. You can push changes to an index as often as you like. For applications having low latency requirements (for example, when the index needs to be in sync with product inventory fluctuations), the push model is your only option.
+- No restrictions on frequency of execution. You can push changes to an index as often as you like. For applications having low latency requirements (for example, when the index needs to be in sync with product inventory fluctuations), the push model is your only option.
 
-+ Connectivity and the secure retrieval of documents are fully under your control. In contrast, indexer connections are authenticated using the security features provided in Azure AI Search.
+- Connectivity and the secure retrieval of documents are fully under your control. In contrast, indexer connections are authenticated using the security features provided in Azure AI Search.
 
 ### How to push data to an Azure AI Search index
 
 Use the following APIs to load single or multiple documents into an index:
 
-+ [Index Documents (REST API)](/rest/api/searchservice/documents)
-+ [IndexDocumentsAsync (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync) or [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
-+ [IndexDocumentsBatch (Azure SDK for Python)](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch) or [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
-+ [IndexDocumentsBatch (Azure SDK for Java)](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) or [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedasyncsender)
-+ [IndexDocumentsBatch (Azure SDK for JavaScript](/javascript/api/@azure/search-documents/indexdocumentsbatch) or [SearchIndexingBufferedSender](/javascript/api/@azure/search-documents/searchindexingbufferedsender)
+- [Index Documents (REST API)](/rest/api/searchservice/documents)
+- [IndexDocumentsAsync (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync) or [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
+- [IndexDocumentsBatch (Azure SDK for Python)](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch) or [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
+- [IndexDocumentsBatch (Azure SDK for Java)](/java/api/com.azure.search.documents.models.indexdocumentsbatch) or [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
+- [IndexDocumentsBatch (Azure SDK for JavaScript)](/javascript/api/@azure/search-documents/indexdocumentsbatch) or [SearchIndexingBufferedSender](/javascript/api/@azure/search-documents/searchindexingbufferedsender)
 
 There's no support for pushing data via the Azure portal.
 
 For an introduction to the push APIs, see:
 
-+ [Quickstart: Full-text search](search-get-started-text.md)
-+ [C# Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md)
+- [Quickstart: Full-text search](search-get-started-text.md)
+- [C# Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md)
 
-<a name="indexing-actions"></a>
+<a id="indexing-actions"></a>
 
 ### Indexing actions: upload, merge, mergeOrUpload, delete
 
@@ -56,28 +57,29 @@ You can control the type of indexing action on a per-document basis, specifying 
 
 Whether you use the REST API or an Azure SDK, the following document operations are supported for data import:
 
-+ **Upload**, similar to an "upsert" where the document is inserted if it's new, and updated or replaced if it exists. If the document is missing values that the index requires, the document field's value is set to null.
+- **Upload**, similar to an "upsert" where the document is inserted if it's new, and updated or replaced if it exists. If the document is missing values that the index requires, the document field's value is set to null.
 
-+ **merge** updates a document that already exists, and fails a document that can't be found. Merge replaces existing values. For this reason, be sure to check for collection fields that contain multiple values, such as fields of type `Collection(Edm.String)`. For example, if a `tags` field starts with a value of `["budget"]` and you execute a merge with `["economy", "pool"]`, the final value of the `tags` field is `["economy", "pool"]`. It won't be `["budget", "economy", "pool"]`.
+- **merge** updates a document that already exists, and fails a document that can't be found. Merge replaces existing values. For this reason, be sure to check for collection fields that contain multiple values, such as fields of type `Collection(Edm.String)`. For example, if a `tags` field starts with a value of `["budget"]` and you execute a merge with `["economy", "pool"]`, the final value of the `tags` field is `["economy", "pool"]`. It won't be `["budget", "economy", "pool"]`.
 
-+ **mergeOrUpload** behaves like **merge** if the document exists, and **upload** if the document is new.
+- **mergeOrUpload** behaves like **merge** if the document exists, and **upload** if the document is new.
 
-+ **delete** removes the entire document from the index. If you want to remove an individual field, use **merge** instead, setting the field in question to null.
+- **delete** removes the entire document from the index. If you want to remove an individual field, use **merge** instead, setting the field in question to null.
+
 
 ## Pulling data into an index
 
-The pull model uses *indexers* anx *Logic Apps workflows* connecting to a supported data source, automatically uploading the data into your index. 
+The pull model uses *indexers* and *Logic Apps workflows* connecting to a supported data source, automatically uploading the data into your index.
 
 Indexers from Microsoft are available for these platforms:
 
-+ [Azure Blob storage](search-how-to-index-azure-blob-storage.md)
-+ [Azure Table storage](search-how-to-index-azure-tables.md)
-+ [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
-+ [Azure Files (preview)](search-file-storage-integration.md)
-+ [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md)
-+ [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
-+ [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
-+ [SharePoint in Microsoft 365 (preview)](search-how-to-index-sharepoint-online.md)
+- [Azure Blob Storage](search-how-to-index-azure-blob-storage.md)
+- [Azure Table Storage](search-how-to-index-azure-tables.md)
+- [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
+- [Azure Files (preview)](search-file-storage-integration.md)
+- [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md)
+- [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
+- [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
+- [SharePoint in Microsoft 365 (preview)](search-how-to-index-sharepoint-online.md)
 
 If you configure an [indexed knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) for agentic retrieval, Azure AI Search creates an indexer pipeline and loads an index using properties in the knowledge source.
 
@@ -89,12 +91,12 @@ With these automated approaches, you connect your index to a data source (usuall
 
 Use the following tools and APIs for indexer-based indexing:
 
-+ Azure portal: [**Import data** wizard](search-import-data-portal.md)
-+ REST APIs: [Create Indexer (REST)](/rest/api/searchservice/indexers/create), [Create Data Source (REST)](/rest/api/searchservice/data-sources/create), [Create Index (REST)](/rest/api/searchservice/indexes/create)
-+ Azure SDK for .NET: [SearchIndexer](/dotnet/api/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex),
-+ Azure SDK for Python: [SearchIndexer](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex),
-+ Azure SDK for Java: [SearchIndexer](/java/api/com.azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/java/api/com.azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/java/api/com.azure.search.documents.indexes.models.searchindex),
-+ Azure SDK for JavaScript: [SearchIndexer](/javascript/api/@azure/search-documents/searchindexer), [SearchIndexerDataSourceConnection](/javascript/api/@azure/search-documents/searchindexerdatasourceconnection), [SearchIndex](/javascript/api/@azure/search-documents/searchindex),
+- Azure portal: [**Import data** wizard](search-import-data-portal.md)
+- REST APIs: [Create Indexer (REST)](/rest/api/searchservice/indexers/create), [Create Data Source (REST)](/rest/api/searchservice/data-sources/create), [Create Index (REST)](/rest/api/searchservice/indexes/create)
+- Azure SDK for .NET: [SearchIndexer](/dotnet/api/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex),
+- Azure SDK for Python: [SearchIndexer](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex),
+- Azure SDK for Java: [SearchIndexer](/java/api/com.azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/java/api/com.azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/java/api/com.azure.search.documents.indexes.models.searchindex),
+- Azure SDK for JavaScript: [SearchIndexer](/javascript/api/@azure/search-documents/searchindexer), [SearchIndexerDataSourceConnection](/javascript/api/@azure/search-documents/searchindexerdatasourceconnection), [SearchIndex](/javascript/api/@azure/search-documents/searchindex),
 
 Indexer functionality is exposed in the Azure portal, the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
@@ -119,7 +121,7 @@ Here's an example query that you can run in Search Explorer in JSON view. The "H
 
 If you're using REST, this [Look up query](search-query-simple-examples.md#example-2-look-up-by-id) achieves the same purpose.
 
-## See also
+## Related content
 
-+ [Indexer overview](search-indexer-overview.md)
-+ [Portal quickstart: create, load, query an index](search-get-started-portal.md)
+- [Indexers in Azure AI Search](search-indexer-overview.md)
+- [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)

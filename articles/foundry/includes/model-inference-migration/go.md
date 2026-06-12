@@ -6,8 +6,9 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 06/04/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Setup
@@ -109,6 +110,7 @@ Azure AI Inference SDK for Go uses Azure SDK patterns for chat completions.
 
 ---
 
+
 ### Streaming
 
 # [OpenAI SDK](#tab/openai)
@@ -145,6 +147,107 @@ if err := stream.Err(); err != nil {
 Azure AI Inference SDK for Go supports streaming through Azure SDK patterns.
 
 ---
+
+## Responses
+
+The Responses API is OpenAI's stateful interface that returns a structured `output` array containing message, tool call, and reasoning items.
+
+# [OpenAI SDK](#tab/openai)
+
+```go
+import (
+    "context"
+    "fmt"
+
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/responses"
+)
+
+resp, err := client.Responses.New(context.TODO(), responses.ResponseNewParams{
+    Model: "DeepSeek-V3.1", // Required: your deployment name
+    Input: responses.ResponseNewParamsInputUnion{
+        OfString: openai.String("How many languages are in the world?"),
+    },
+    MaxOutputTokens: openai.Int(2000),
+})
+if err != nil {
+    panic(err.Error())
+}
+
+fmt.Println(resp.OutputText())
+```
+
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK doesn't expose the Responses API. To call it, use the OpenAI SDK.
+
+---
+
+### Reasoning
+
+> [!NOTE]
+> This information on reasoning content doesn't apply to Azure OpenAI models. Azure OpenAI reasoning models use the [reasoning summaries feature](../../openai/how-to/reasoning.md#reasoning-summary).
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The Responses API surfaces this as a structured `reasoning` output item whose `summary[].text` contains the model's thinking, alongside the final answer.
+
+# [OpenAI SDK](#tab/openai)
+
+```go
+import (
+    "context"
+    "fmt"
+    "strings"
+
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/responses"
+)
+
+resp, err := client.Responses.New(context.TODO(), responses.ResponseNewParams{
+    Model: "DeepSeek-R1-0528", // Required: your deployment name
+    Input: responses.ResponseNewParamsInputUnion{
+        OfString: openai.String("How many languages are in the world?"),
+    },
+    MaxOutputTokens: openai.Int(2000),
+})
+if err != nil {
+    panic(err.Error())
+}
+
+// Walk resp.Output for items of type "reasoning" and join summary[].text.
+var parts []string
+for _, item := range resp.Output {
+    if item.Type != "reasoning" {
+        continue
+    }
+    for _, s := range item.Summary {
+        if s.Text != "" {
+            parts = append(parts, s.Text)
+        }
+    }
+}
+reasoningSummary := strings.TrimSpace(strings.Join(parts, "\n"))
+
+fmt.Println("Thinking:", reasoningSummary)
+fmt.Println("Answer:  ", resp.OutputText())
+```
+
+**Output is as follows:**
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
+Answer:   There are approximately 7,000 languages spoken around the world today.
+```
+
+[!INCLUDE [reasoning-tokens-known-issue](reasoning-tokens-known-issue.md)]
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK for Go doesn't expose the Responses API. To get reasoning content, call the chat completions API instead. The reasoning is included in the message content wrapped in `<think>` and `</think>` tags, which you can extract with a regex match.
+
+---
+
+When you make multi-turn conversations, avoid sending the reasoning content in the chat history because reasoning tends to generate long explanations.
 
 ## Embeddings
 

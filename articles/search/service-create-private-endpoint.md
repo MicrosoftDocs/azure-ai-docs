@@ -1,12 +1,12 @@
 ---
 title: Create a Private Endpoint for a Secure Connection
 description: Set up a private endpoint in a virtual network for a secure client connection to an Azure AI Search service.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
 ms.custom:
   - ignite-2023
   - dev-focus
-ms.topic: how-to
-ms.date: 01/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -16,10 +16,10 @@ This article explains how to configure a private connection to Azure AI Search s
 
 ## Prerequisites
 
-+ [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Private endpoints aren't supported on the Free tier.
-+ **Contributor** or **Owner** role on the resource group where you create resources.
-+ A [common region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) with availability for Azure AI Search, a virtual network, and a virtual machine. All three resources must reside in the same region.
-+ Familiarity with [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) concepts (optional but recommended).
+- [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Private endpoints aren't supported on the Free tier.
+- **Contributor** or **Owner** role on the resource group where you create resources.
+- A [common region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) with availability for Azure AI Search, a virtual network, and a virtual machine. All three resources must reside in the same region.
+- Familiarity with [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) concepts (optional but recommended).
 
 ## Overview
 
@@ -30,7 +30,7 @@ This article walks you through these steps:
 1. [Create an Azure virtual machine](#create-a-virtual-machine) in the same virtual network
 1. [Test the connection](#connect-to-the-vm) from the virtual machine
 
-Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/). 
+Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
 
 You can create a private endpoint using the Azure portal (described in this article), [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or [Azure CLI](/cli/azure/search).
 
@@ -40,9 +40,9 @@ You can create a private endpoint using the Azure portal (described in this arti
 
 Private endpoints for your search service allow you to:
 
-+ Block all connections on the public endpoint for your search service.
-+ Increase security for the virtual network, by letting you block exfiltration of data from the virtual network.
-+ Securely connect to your search service from on-premises networks that connect to the virtual network using [VPN](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoutes](/azure/expressroute/expressroute-locations) with private-peering.
+- Block all connections on the public endpoint for your search service.
+- Increase security for the virtual network, by letting you block exfiltration of data from the virtual network.
+- Securely connect to your search service from on-premises networks that connect to the virtual network using [VPN](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoutes](/azure/expressroute/expressroute-locations) with private-peering.
 
 ## Create the virtual network
 
@@ -52,12 +52,12 @@ In this section, you create a virtual network and subnet to host the VM that wil
 
 1. In **Create virtual network**, enter or select the following values:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Subscription | Select your subscription |
-    | Resource group | Select **Create new**, enter a name, such as *myResourceGroup*, then select **OK** |
-    | Name | Enter a name, such as *MyVirtualNetwork* |
-    | Region | Select a region |
+   | Setting | Value |
+   | ------- | ----- |
+   | Subscription | Select your subscription |
+   | Resource group | Select **Create new**, enter a name, such as *myResourceGroup*, then select **OK** |
+   | Name | Enter a name, such as *MyVirtualNetwork* |
+   | Region | Select a region |
 
 1. Accept the defaults for the rest of the settings. Select **Review + create** and then **Create**.
 
@@ -69,45 +69,45 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 1. In **Create a search service - Basics**, enter or select the following values:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | **PROJECT DETAILS** | |
-    | Subscription | Select your subscription |
-    | Resource group | Use the resource group that you created in the previous step|
-    | **INSTANCE DETAILS** |  |
-    | URL | Enter a unique name |
-    | Location | Select your region. [Choose a region](search-region-support.md) that provides Azure AI Search. |
-    | Pricing tier | Select **Change Pricing Tier** and choose your desired service tier. Private endpoints aren't supported on the  **Free** tier. You must select **Basic** or higher. |
-  
+   | Setting | Value |
+   | ------- | ----- |
+   | **PROJECT DETAILS** | |
+   | Subscription | Select your subscription |
+   | Resource group | Use the resource group that you created in the previous step|
+   | **INSTANCE DETAILS** |  |
+   | URL | Enter a unique name |
+   | Location | Select your region. [Choose a region](search-region-support.md) that provides Azure AI Search. |
+   | Pricing tier | Select **Change Pricing Tier** and choose your desired service tier. Private endpoints aren't supported on the  **Free** tier. You must select **Basic** or higher. |
+
 1. Select **Next: Scale**.
 
 1. Accept the defaults and select **Next: Networking**.
 
 1. In **Create a search service - Networking**, select **Private** for **Endpoint connectivity (data)**.
 
-1. Select **+ Add** under **Private endpoint**. 
+1. Select **+ Add** under **Private endpoint**.
 
 1. In **Create private endpoint**, enter or select values that associate your search service with the virtual network you created:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Subscription | Select your subscription |
-    | Resource group | Use the resource group that you created in the previous step |
-    | Location | Select a region. Choose the same region used by the virtual network.|
-    | Name | Enter a name, such as *myPrivateEndpoint*  |
-    | Target subresource | Accept the default **searchService** |
-    | **NETWORKING** |  |
-    | Virtual network  | Select the virtual network you created in the previous step |
-    | Subnet | Select the default |
-    | **PRIVATE DNS INTEGRATION** |  |
-    | Integrate with private DNS zone  | Select **Yes**. |
-    | Private DNS zone  | Accept the default **(New) privatelink.search.windows.net** |
+   | Setting | Value |
+   | ------- | ----- |
+   | Subscription | Select your subscription |
+   | Resource group | Use the resource group that you created in the previous step |
+   | Location | Select a region. Choose the same region used by the virtual network.|
+   | Name | Enter a name, such as *myPrivateEndpoint*  |
+   | Target subresource | Accept the default **searchService** |
+   | **NETWORKING** |  |
+   | Virtual network  | Select the virtual network you created in the previous step |
+   | Subnet | Select the default |
+   | **PRIVATE DNS INTEGRATION** |  |
+   | Integrate with private DNS zone  | Select **Yes**. |
+   | Private DNS zone  | Accept the default **(New) privatelink.search.windows.net** |
 
 1. Select **Add**.
 
-1. Select **Review + create**. You're taken to the **Review + create** page where Azure validates your configuration. 
+1. Select **Review + create**. You're taken to the **Review + create** page where Azure validates your configuration.
 
-1. When you see the **Validation passed** message, select **Create**. 
+1. When you see the **Validation passed** message, select **Create**.
 
 1. Once provisioning of your new service is complete, browse to the resource that you created.
 
@@ -123,26 +123,26 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 1. In **Create a virtual machine - Basics**, enter or select the following values:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | **PROJECT DETAILS** | |
-    | Subscription | Select your subscription |
-    | Resource group | Use the resource group that you created in the previous section |
-    | **INSTANCE DETAILS** |  |
-    | Virtual machine name | Enter a name, such as *my-vm* |
-    | Region | Select your region |
-    | Availability options | You can choose **No infrastructure redundancy required**, or select another option if you need the functionality |
-    | Security type | Accept the default **Trusted launch virtual machines** |
-    | Image | Select **Windows Server 2025 Datacenter: Azure Edition - x64 Gen2** |
-    | VM architecture | Accept the default **x64** |
-    | Size | Accept the default **Standard D2S v3** |
-    | **ADMINISTRATOR ACCOUNT** |  |
-    | Username | Enter the user name of the administrator. Use an account that's valid for your Azure subscription. Sign in to the Azure portal from the VM so that you can manage your search service. |
-    | Password | Enter the account password. The password must be at least 12 characters long and meet the [defined complexity requirements](/azure/virtual-machines/windows/faq?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm-).|
-    | Confirm Password | Reenter password |
-    | **INBOUND PORT RULES** |  |
-    | Public inbound ports | Accept the default **Allow selected ports** |
-    | Select inbound ports | Accept the default **RDP (3389)** |
+   | Setting | Value |
+   | ------- | ----- |
+   | **PROJECT DETAILS** | |
+   | Subscription | Select your subscription |
+   | Resource group | Use the resource group that you created in the previous section |
+   | **INSTANCE DETAILS** |  |
+   | Virtual machine name | Enter a name, such as *my-vm* |
+   | Region | Select your region |
+   | Availability options | You can choose **No infrastructure redundancy required**, or select another option if you need the functionality |
+   | Security type | Accept the default **Trusted launch virtual machines** |
+   | Image | Select **Windows Server 2025 Datacenter: Azure Edition - x64 Gen2** |
+   | VM architecture | Accept the default **x64** |
+   | Size | Accept the default **Standard D2S v3** |
+   | **ADMINISTRATOR ACCOUNT** |  |
+   | Username | Enter the user name of the administrator. Use an account that's valid for your Azure subscription. Sign in to the Azure portal from the VM so that you can manage your search service. |
+   | Password | Enter the account password. The password must be at least 12 characters long and meet the [defined complexity requirements](/azure/virtual-machines/windows/faq?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm-).|
+   | Confirm Password | Reenter password |
+   | **INBOUND PORT RULES** |  |
+   | Public inbound ports | Accept the default **Allow selected ports** |
+   | Select inbound ports | Accept the default **RDP (3389)** |
 
 1. Select **Next: Disks**.
 
@@ -150,16 +150,16 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 1. In **Create a virtual machine - Networking**, provide the following values:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Virtual network | Select the virtual network you created in a previous step |
-    | Subnet | Accept the default **10.1.0.0/24** |
-    | Public IP | Accept the default |
-    | NIC network security group | Accept the default **Basic** |
-    | Public inbound ports | Select the default **Allow selected ports** |
-    | Select inbound ports | Select **HTTP 80**, **HTTPS (443)**, and **RDP (3389)** |
+   | Setting | Value |
+   | ------- | ----- |
+   | Virtual network | Select the virtual network you created in a previous step |
+   | Subnet | Accept the default **10.1.0.0/24** |
+   | Public IP | Accept the default |
+   | NIC network security group | Accept the default **Basic** |
+   | Public inbound ports | Select the default **Allow selected ports** |
+   | Select inbound ports | Select **HTTP 80**, **HTTPS (443)**, and **RDP (3389)** |
 
-   > [!NOTE]
+   > [!NOTE]  
    > IPv4 addresses can be expressed in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) format. Remember to avoid the IP range reserved for private networking, as described in [RFC 1918](https://tools.ietf.org/html/rfc1918):
    >
    > + `10.0.0.0 - 10.255.255.255  (10/8 prefix)`
@@ -168,7 +168,7 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 1. Select **Review + create** for a validation check.
 
-1. When you see the **Validation passed** message, select **Create**. 
+1. When you see the **Validation passed** message, select **Create**.
 
 ## Connect to the VM
 
@@ -182,18 +182,18 @@ Download and then connect to the virtual machine as follows:
 
 1. Open the downloaded *.rdp* file.
 
-    1. If prompted, select **Connect**.
+   1. If prompted, select **Connect**.
 
-    1. Enter the username and password you specified when creating the VM.
+   1. Enter the username and password you specified when creating the VM.
 
-        > [!NOTE]
-        > You might need to select **More choices** > **Use a different account**, to specify the credentials you entered when you created the VM.
+      > [!NOTE]
+      > You might need to select **More choices** > **Use a different account**, to specify the credentials you entered when you created the VM.
 
 1. Select **OK**.
 
 1. You might receive a certificate warning during the sign-in process. If you receive a certificate warning, select **Yes** or **Continue**.
 
-1. Once the VM desktop appears, minimize it to go back to your local desktop.  
+1. Once the VM desktop appears, minimize it to go back to your local desktop.
 
 ## Test connections
 
@@ -205,26 +205,26 @@ When the search service endpoint is private, some portal features are disabled. 
 
 1. Enter `nslookup [search service name].search.windows.net`.
 
-    You'll receive a message similar to this:
+   You'll receive a message similar to this:
 
-    ```powershell
-    Server:  UnKnown
-    Address:  168.63.129.16
-    Non-authoritative answer:
-    Name:    [search service name].privatelink.search.windows.net
-    Address:  10.0.0.5
-    Aliases:  [search service name].search.windows.net
-    ```
+   ```powershell
+   Server:  UnKnown
+   Address:  168.63.129.16
+   Non-authoritative answer:
+   Name:    [search service name].privatelink.search.windows.net
+   Address:  10.0.0.5
+   Aliases:  [search service name].search.windows.net
+   ```
 
-    The `privatelink` in the Name field and the private IP address (10.x.x.x) in the Address field confirm that the private endpoint is configured correctly.
+   The `privatelink` in the Name field and the private IP address (10.x.x.x) in the Address field confirm that the private endpoint is configured correctly.
 
 1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-text.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
 
-    **Reference:** [Create Index (REST API)](/rest/api/searchservice/indexes/create)
+   **Reference:** [Create Index (REST API)](/rest/api/searchservice/indexes/create)
 
 1. Completing the quickstart from the VM is your confirmation that the service is fully operational.
 
-1. Close the remote desktop connection to *myVM*. 
+1. Close the remote desktop connection to *myVM*.
 
 1. To verify that your service isn't accessible on a public endpoint, open a REST client on your local workstation and attempt the first several tasks in the quickstart. If you receive an error that the remote server doesn't exist, you successfully configured a private endpoint for your search service.
 
@@ -232,7 +232,7 @@ When the search service endpoint is private, some portal features are disabled. 
 
 ## Use the Azure portal to access a private search service
 
-When the search service endpoint is private, some portal features are disabled. You can view and manage service level information, but index, indexer, and skillset information are hidden for security reasons. 
+When the search service endpoint is private, some portal features are disabled. You can view and manage service level information, but index, indexer, and skillset information are hidden for security reasons.
 
 To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. The Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
 
@@ -258,4 +258,7 @@ You can delete individual resources or the resource group to delete everything y
 
 ## Next step
 
-In this article, you created a VM on a virtual network and a search service with a private endpoint. You connected to the VM from the internet and securely communicated to the search service using Private Link. To learn more about private endpoints, see [What is a private endpoint?](/azure/private-link/private-endpoint-overview)
+In this article, you created a VM on a virtual network and a search service with a private endpoint. You connected to the VM from the internet and securely communicated to the search service using Private Link. To learn more about private endpoints:
+
+> [!div class="nextstepaction"]
+> [What is a private endpoint?](/azure/private-link/private-endpoint-overview)

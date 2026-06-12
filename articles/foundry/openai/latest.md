@@ -4060,7 +4060,7 @@ POST {endpoint}/openai/v1/threads/runs
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
@@ -4543,7 +4543,7 @@ POST {endpoint}/openai/v1/threads/{thread_id}/runs
 |------|------|-------------|----------|---------|
 | additional_instructions | string or null | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | No |  |
 | additional_messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) or null | Adds additional messages to the thread before creating the run. | No |  |
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Overrides the [instructions](https://platform.openai.com/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
@@ -8299,7 +8299,7 @@ gpt-4o-mini
 |------|------|-------------|----------|---------|
 | additional_instructions | string or null | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | No |  |
 | additional_messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) or null | Adds additional messages to the thread before creating the run. | No |  |
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Overrides the [instructions](https://platform.openai.com/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
@@ -8319,7 +8319,7 @@ gpt-4o-mini
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
@@ -12371,7 +12371,7 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for execution of this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for execution of this run. | Yes |  |
 | cancelled_at | string or null | The Unix timestamp (in seconds) for when the run was cancelled. | Yes |  |
 | completed_at | string or null | The Unix timestamp (in seconds) for when the run was completed. | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run was created. | Yes |  |
@@ -12379,12 +12379,12 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 | failed_at | string or null | The Unix timestamp (in seconds) for when the run failed. | Yes |  |
 | id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
 | incomplete_details | [OpenAI.RunObjectIncompleteDetails](#openairunobjectincompletedetails) or null | Details on why the run is incomplete. Will be `null` if the run is not incomplete. | Yes |  |
-| instructions | string | The instructions that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes |  |
+| instructions | string | The instructions that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes |  |
 | last_error | [OpenAI.RunObjectLastError](#openairunobjectlasterror) or null | The last error associated with this run. Will be `null` if there are no errors. | Yes |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens specified to have been used over the course of the run. | Yes |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens specified to have been used over the course of the run. | Yes |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | Yes |  |
-| model | string | The model that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes |  |
+| model | string | The model that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes |  |
 | object | enum | The object type, which is always `thread.run`.<br>Possible values: `thread.run` | Yes |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | Yes |  |
 | required_action | [OpenAI.RunObjectRequiredAction](#openairunobjectrequiredaction) or null | Details on the action required to continue the run. Will be `null` if no action is required. | Yes |  |
@@ -12394,7 +12394,7 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 | temperature | number or null | The sampling temperature used for this run. If not set, defaults to 1. | No |  |
 | thread_id | string | The ID of the [thread](https://platform.openai.com/docs/api-reference/threads) that was executed on as a part of this run. | Yes |  |
 | tool_choice | [OpenAI.AssistantsApiToolChoiceOption](#openaiassistantsapitoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tools and instead generates a message.<br>`auto` is the default value and means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools before responding to the user.<br>Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool. | Yes |  |
-| tools | array of [OpenAI.AssistantTool](#openaiassistanttool) | The list of tools that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes | [] |
+| tools | array of [OpenAI.AssistantTool](#openaiassistanttool) | The list of tools that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes | [] |
 | top_p | number or null | The nucleus sampling value used for this run. If not set, defaults to 1. | No |  |
 | truncation_strategy | [OpenAI.TruncationObject](#openaitruncationobject) | Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run. | Yes |  |
 | usage | [OpenAI.RunCompletionUsage](#openairuncompletionusage) or null |  | Yes |  |
@@ -12602,7 +12602,7 @@ Represents a step in execution of a run.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) associated with the run step. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) associated with the run step. | Yes |  |
 | cancelled_at | string or null |  | Yes |  |
 | completed_at | string or null |  | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run step was created. | Yes |  |
