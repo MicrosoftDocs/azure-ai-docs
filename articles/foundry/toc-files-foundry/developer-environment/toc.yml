@@ -3,10 +3,14 @@ items:
 
 - name: Set up your developer environment
   href: ../../how-to/develop/install-cli-sdk.md
+- name: Use the Microsoft Foundry Skill in coding agents
+  href: ../../how-to/develop/use-microsoft-foundry-skill.md
 - name: Work in VS Code
   href: ../../how-to/develop/get-started-projects-vs-code.md
 - name: Configure Claude Code with Microsoft Foundry
   href: ../../foundry-models/how-to/configure-claude-code.md
+- name: Configure Claude Desktop with Microsoft Foundry
+  href: ../../foundry-models/how-to/configure-claude-desktop.md
 
 # Getting Started with Development
 - name: Start with an AI template
@@ -19,8 +23,12 @@ items:
     href: ../../how-to/develop/langchain.md
   - name: Use Foundry Models
     href: ../../how-to/develop/langchain-models.md
+  - name: Use Foundry Content Moderation
+    href: ../../how-to/develop/langchain-middleware.md
   - name: Use Foundry Agent Service
     href: ../../how-to/develop/langchain-agents.md
+  - name: Host LangGraph agents as Foundry hosted agents
+    href: ../../how-to/develop/langchain-hosted-agents.md
   - name: Use Foundry Memory
     href: ../../how-to/develop/langchain-memory.md
   - name: Trace with Foundry Observability
@@ -31,7 +39,7 @@ items:
   items:
   - name: Use declarative agent workflows in the Visual Studio Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
-  - name: Use hosted agent workflows in the Visual Studio Code extension
+  - name: Use Hosted agent workflows in the Visual Studio Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
 
 # MCP Server
@@ -43,3 +51,11 @@ items:
     href: ../../mcp/security-best-practices.md
   - name: Available tools and sample prompts
     href: ../../mcp/available-tools.md
+
+# Fireworks
+- name: Fireworks on Foundry 
+  items:
+  - name: Use Fireworks models
+    href: ../../how-to/fireworks/enable-fireworks-models.md
+  - name: Import custom models with Fireworks 
+    href: ../../how-to/fireworks/import-custom-models.md

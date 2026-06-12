@@ -1,38 +1,44 @@
 ---
-title: Azure Content Understanding skill
-titleSuffix: Azure AI Search
+title: Azure Content Understanding Skill
 description: Learn how to analyze and chunk a document in an enrichment pipeline in Azure AI Search.
-author: ruix
-ms.author: ruix
-ms.reviewer: haileytapia
+ms.reviewer: ruix
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2025
+  - build-2026
 ms.topic: reference
-ms.date: 02/11/2026
+ms.date: 06/02/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Azure Content Understanding skill
 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 The **Azure Content Understanding** skill uses [document analyzers](/azure/ai-services/content-understanding/document/overview) from [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/overview) to analyze unstructured documents and other content types, generating organized, searchable outputs that can be integrated into automation workloads. This skill extracts both text and images, including location metadata that preserves each image's position within the document. Image proximity to related content is especially useful for [multimodal search](multimodal-search-overview.md), [agentic retrieval](agentic-retrieval-overview.md), and [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG).
+
+The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 You can use the Azure Content Understanding skill for both content extraction and chunking. There's no need to use the Text Split skill in your skillset. This skill implements the same interface as the Document Layout skill, which uses the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) when `outputFormat` is set to `text`. However, the Azure Content Understanding skill offers several advantages over the Document Layout skill:
 
 + Tables and figures are output in Markdown format, making them easier for large language models (LLMs) to understand. In contrast, the Document Layout skill outputs tables and figures as plain text, which can result in information loss.
 
-+ For tables that span multiple pages, the Document Layout skill extracts tables page by page. The Azure Content Understanding skill can recognize and extract cross-page tables as a single unit.
++ For tables that span multiple pages, the Azure Content Understanding skill can recognize and extract cross-page tables as a single unit.
 
-+ The Document Layout skill restricts chunks to a single page, but semantic units, such as cross-page tables, shouldn't be limited by page boundaries. The Azure Content Understanding skill allows chunks to span multiple pages.
++ The Azure Content Understanding skill allows chunks to span multiple pages via semantic units.
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
-The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
-Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
-
-> [!TIP]
-> You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the [multimodal tutorial](tutorial-multimodal.md), replace the Document Layout skill with the Azure Content Understanding skill.
+The Azure Content Understanding skill is generally available in the [`2026-04-01` REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true). Starting with the [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true), the skill optionally generates AI-based descriptions for document-embedded images, charts, and diagrams. To enable descriptions, you must deploy an Azure OpenAI chat completion model in the Foundry resource attached to the skillset. This API version also adds *semantic* chunking, a layout-aware option that respects paragraph boundaries and measures chunk length in tokens. Both capabilities require opt-in. When the new parameters are omitted, the skill behaves the same as in the stable `2026-04-01` API version.
 
 ## Limitations
 
@@ -91,13 +97,17 @@ Parameters are case sensitive.
 | Parameter name | Allowed values | Description |
 |--------------------|----------------|-------------|
 | `extractionOptions` |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For example, if `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata that provides page location and visual information related to where the content was extracted.  |
+| `modelName` | String, such as `"gpt-4.1"`. | Optional. Available starting with the `2026-05-01-preview` REST API. The name of the Azure OpenAI chat completion model used to generate descriptions of embedded images, charts, and diagrams. Image description is independent of `extractionOptions` and can be enabled without extracting images. Must be specified together with `modelDeployment`. For a list of supported models, see [Supported generative models](/azure/ai-services/content-understanding/service-limits#supported-generative-models). |
+| `modelDeployment` | String. | Optional. Available starting with the `2026-05-01-preview` REST API. The deployment name of the Azure OpenAI model in the Foundry resource that's attached to the skillset. Must be specified together with `modelName`. |
 | `chunkingProperties` | See the following table. | Options that encapsulate how to chunk text content. |
 
 | `chunkingProperties` parameters | Allowed values | Description |
 |--------------------|-------------|-------------|
-| `unit`    | `Characters` is the only allowed value. The chunk length is measured in characters rather than words or tokens. | Controls the cardinality of the chunk unit. |
-| `maximumLength` | An integer between 300 and 50000. | The maximum chunk length in characters as measured by `String.Length`. |
-| `overlapLength` | Integer. The value must be less than half of the `maximumLength`. | The length of overlap provided between two text chunks. |
+| `method` | `fixedSize` (default) or `semantic`. Available starting with the `2026-05-01-preview` REST API. | The chunking strategy. `fixedSize` uses character-based windowed chunking. `semantic` uses layout-aware chunking that respects paragraph boundaries and intelligently handles large tables that span chunk boundaries. |
+| `unit` | `characters` (with `fixedSize`) or `tokens` (with `semantic`, available starting with the `2026-05-01-preview` REST API). | Controls the cardinality of the chunk unit. Only the `fixedSize` + `characters` and `semantic` + `tokens` combinations are supported. If `unit` is omitted, it's inferred from `method`. |
+| `maximumLength` | When `unit` is `characters`, an integer between 300 and 50,000. When `unit` is `tokens`, an integer between 100 and 8,000. Default is 500. | The maximum chunk length, measured in the configured `unit`. |
+| `overlapLength` | Integer. The value must be less than half of `maximumLength`. | The length of overlap between two text chunks. Applies only when `method` is `fixedSize`. Must be omitted or set to `0` when `method` is `semantic`. |
+
 
 ## Skill inputs
 
@@ -134,14 +144,32 @@ The file reference object can be generated in one of following ways:
 
 | Output name | Description |
 |---------------|-------------------------------|
-| `text_sections` | A collection of text chunk objects. Each chunk can span multiple pages (factoring in any more chunking configured). The text chunk object includes `locationMetadata` if applicable.|
+| `text_sections` | A collection of text chunk objects. Each chunk can span multiple pages (factoring in any more chunking configured). The text chunk object includes `locationMetadata` if applicable, and an `imagePath` list when the chunk overlaps with figure spans in the document. |
 | `normalized_images` | Only applies if `extractionOptions` includes `images`. A collection of images that were extracted from the document, including `locationMetadata` if applicable. |
 
-## Example
+Each element in `text_sections` has the following fields:
 
-This example demonstrates how to output text content in fixed-sized chunks and extract images along with location metadata from the document.
+| Field | Type | Description |
+|---|---|---|
+| `id` | String | Unique identifier for the chunk. |
+| `content` | String | Markdown content for the chunk. When `method` is `semantic`, the content includes AI-generated descriptions of figures and tables inlined as Markdown. |
+| `locationMetadata` | Object | Page range and positional data (`pageNumberFrom`, `pageNumberTo`, `ordinalPosition`, `source`). Present when `extractionOptions` includes `locationMetadata`. |
+| `imagePath` | String | Semicolon-separated list of paths to images that are contained in the chunk. Present when the chunk overlaps with figure spans in the document. |
 
-### Sample definition that includes image and metadata extraction
+Each element in `normalized_images` has the following fields:
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | String | Unique identifier for the image. |
+| `data` | String | Base64-encoded image data. |
+| `imagePath` | String | Path reference to the image within the document, such as `"figures/0"`. |
+| `locationMetadata` | Object | Page range and positional data. Present when `extractionOptions` includes `locationMetadata`. |
+
+## Examples
+
+The first example uses fixed-size chunking and demonstrates how to output text content in fixed-sized chunks and extract images along with location metadata from the document. The second example, available starting with the `2026-05-01-preview` REST API, uses semantic chunking with AI-generated image descriptions.
+
+### Example 1: Fixed-size chunking with image and metadata extraction
 
 ```json
 {
@@ -236,9 +264,65 @@ This example demonstrates how to output text content in fixed-sized chunks and e
 
 `imagePath` represents the relative path of a stored image. If the knowledge store file projection is configured in the skillset, this path matches the relative path of the image stored in the knowledge store.
 
+### Example 2: Semantic chunking with image description
+
+This example, available starting with the `2026-05-01-preview` REST API, uses semantic chunking and produces AI-generated descriptions of embedded images, charts, and diagrams. The Foundry resource attached to the skillset must have the chat completion model identified by `modelName` and the deployed `modelDeployment`.
+
+```json
+{
+  "skills": [
+    {
+      "description": "Extract and chunk document content with image descriptions",
+      "@odata.type": "#Microsoft.Skills.Util.ContentUnderstandingSkill",
+      "context": "/document",
+      "modelName": "gpt-4.1",
+      "modelDeployment": "myGpt41Deployment",
+      "extractionOptions": ["images", "locationMetadata"],
+      "chunkingProperties": {
+        "method": "semantic",
+        "unit": "tokens",
+        "maximumLength": 500
+      },
+      "inputs": [
+        {
+          "name": "file_data",
+          "source": "/document/file_data"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text_sections",
+          "targetName": "text_sections"
+        },
+        {
+          "name": "normalized_images",
+          "targetName": "normalized_images"
+        }
+      ]
+    }
+  ]
+}
+```
+
+With semantic chunking, each chunk in `text_sections` contains Markdown content that includes AI-generated descriptions of any figures and tables it covers. When a chunk overlaps with one or more figure spans, the chunk object also includes an `imagePath` field that lists the corresponding image paths:
+
+```json
+{
+  "id": "1_d4545398-8df1-409f-acbb-f605d851ae85",
+  "content": "# Architecture overview\n\nThe following diagram summarizes the ingestion pipeline...\n\n<figure>The diagram shows three stages: Inputs, Analyzers, and Output. Inputs include documents, images, video, and audio. Analyzers perform preprocessing, enrichments, and reasoning. Output is structured Markdown or JSON consumed by search, agents, copilots, and apps.</figure>",
+  "locationMetadata": {
+    "pageNumberFrom": 1,
+    "pageNumberTo": 1,
+    "ordinalPosition": 0,
+    "source": "D(1,0.6348,0.3598,7.2258,0.3805,7.223,1.2662,0.632,1.2455)"
+  },
+  "imagePath": "aHR0cHM6Ly9henNyb2xsaW5nLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tdWx0aW1vZGFsaXR5L0NVLnBkZg2/normalized_images_0.jpg"
+}
+```
+
 ## Related content
 
-+ [What is Azure Content Understanding (preview)?](/azure/ai-services/content-understanding/overview)
++ [What is Azure Content Understanding in Foundry Tools?](/azure/ai-services/content-understanding/overview)
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [Create a skillset](cognitive-search-defining-skillset.md)
-+ [Indexers - Create (REST API)](/rest/api/searchservice/indexers/create)
++ [Indexers - Create](/rest/api/searchservice/indexers/create) (REST API)

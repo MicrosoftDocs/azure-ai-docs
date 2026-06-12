@@ -1,8 +1,8 @@
 ---
 title: "Deploy a Flow as a Managed Online Endpoint for Real-Time Inference (classic)"
 description: "Learn how to deploy a flow as a managed online endpoint for real-time inference with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -14,14 +14,13 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Deploy a flow for real-time inference (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 After you build a prompt flow and test it, you can deploy it as an online endpoint. Deployments are hosted in an endpoint. They can receive data from clients and send responses in real time.
 

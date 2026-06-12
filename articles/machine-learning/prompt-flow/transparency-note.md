@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # Transparency Note for auto-generate prompt variants in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 ## What is a Transparency Note?
 
 An AI system includes not only technology but also the people who use it, the people it affects, and the environment in which it's deployed. Creating a system that's fit for its intended purpose requires an understanding of how the technology works, what its capabilities and limitations are, and how to achieve the best performance.

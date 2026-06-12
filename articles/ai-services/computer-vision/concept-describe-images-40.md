@@ -3,9 +3,9 @@ title: Image captions - Image Analysis 4.0
 titleSuffix: Foundry Tools
 description: Concepts related to the image captioning feature of the Image Analysis 4.0 API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley

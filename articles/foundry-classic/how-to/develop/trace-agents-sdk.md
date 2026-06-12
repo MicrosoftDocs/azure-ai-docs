@@ -5,8 +5,9 @@ ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 01/30/2026
-ms.service: azure-ai-foundry
+ms.date: 03/18/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.custom: references_regions
 ---
@@ -189,13 +190,13 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
-### Alternative: AI Toolkit for VS Code
+### Alternative: Foundry Toolkit for VS Code
 
-AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it ideal for development and debugging. 
+Foundry Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it ideal for development and debugging. 
 
 The toolkit supports AI frameworks like Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 
-For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
 ## Trace custom functions
 
@@ -333,7 +334,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -513,7 +514,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -631,6 +632,12 @@ llm = AzureChatOpenAI(
 Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Observability.
 
 ### Enable tracing for agents built on OpenAI Agents SDK
+
+Install the required packages:
+
+```bash
+pip install opentelemetry-sdk opentelemetry-instrumentation-openai-agents azure-monitor-opentelemetry-exporter
+```
 
 Use this snippet to configure OpenTelemetry tracing for the OpenAI Agents SDK and instrument the framework. It exports to Azure Monitor if `APPLICATION_INSIGHTS_CONNECTION_STRING` is set; otherwise, it falls back to the console.
 

@@ -2,38 +2,24 @@
 title: "How to use JSON mode with Azure OpenAI in Microsoft Foundry Models"
 description: "Learn how to improve your chat completions with Azure OpenAI JSON mode"
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 05/13/2026
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Learn how to use JSON mode
-JSON mode allows you to set the model's response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
 
-JSON mode guarantees valid JSON output, but it doesn't guarantee the output matches a specific schema. If you need schema guarantees, use Structured Outputs.
-
-> [!NOTE]
-> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
-
->[!NOTE]
-> Currently Structured outputs are not supported on [bring your own data](../../../foundry-classic/openai/concepts/use-your-data.md) scenario.
-
-## JSON mode support
-
-JSON mode is only currently supported with the following models:
-
-### API support
-
-Support for JSON mode was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
+[!INCLUDE [json-mode 1](../includes/how-to-json-mode-1.md)]
 
 ## Example
 
@@ -42,7 +28,7 @@ Before you run the examples:
 - Replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name.
 - Replace `YOUR-MODEL_DEPLOYMENT_NAME` with the name of your model deployment.
 
-The examples below show JSON mode using the Python and .NET SDKs, and PowerShell for direct REST interaction.
+The following examples show how to use JSON mode with the Python and .NET SDKs, and PowerShell for direct REST interaction.
 
 # [Python](#tab/python)
 
@@ -197,14 +183,14 @@ year team                  player           player_height
 
 ---
 
-Two requirements must both be met to use JSON mode successfully:
+To use JSON mode successfully, ensure both of the following requirements are met:
 
 - Set the response format to `json_object` in your request. In Python, pass `response_format={ "type": "json_object" }`; in .NET, use `ChatResponseFormat.CreateJsonObjectFormat()`; in PowerShell, set `response_format = @{type = 'json_object'}`.
 - Include the word "JSON" somewhere in the messages conversation (typically the system message).
 
-Including guidance to the model that it should produce JSON as part of the messages conversation is **required**. We recommend adding this instruction as part of the system message. According to OpenAI, failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
+**Include guidance to the model that it should produce JSON as part of the messages conversation.** Add this instruction as part of the system message. According to OpenAI, failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
 
-Failure to include "JSON" within the messages returns:
+If you don't include "JSON" within the messages, the response is:
 
 ### Output
 
@@ -212,14 +198,4 @@ Failure to include "JSON" within the messages returns:
 BadRequestError: Error code: 400 - {'error': {'message': "'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.", 'type': 'invalid_request_error', 'param': 'messages', 'code': None}}
 ```
 
-## Other considerations
-
-You should check `finish_reason` for the value `length` before parsing the response. The model might generate partial JSON. This means that output from the model was larger than the available max_tokens that were set as part of the request, or the conversation itself exceeded the token limit.
-
-JSON mode produces JSON that is valid and parses without error. However, there's no guarantee for
-output to match a specific schema, even if requested in the prompt.
-
-## Troubleshooting
-
-- If `finish_reason` is `length`, increase `max_tokens` (or reduce prompt length) and retry. Don't parse partial JSON.
-- If you need schema guarantees, switch to [Structured Outputs](./structured-outputs.md).
+[!INCLUDE [json-mode 2](../includes/how-to-json-mode-2.md)]

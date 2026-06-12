@@ -1,6 +1,5 @@
 ---
-title: Configure a suggester for autocomplete and suggestions
-titleSuffix: Azure AI Search
+title: Configure a Suggester for Autocomplete and Suggestions
 description: Enable typeahead query actions in Azure AI Search by creating suggesters and formulating requests that invoke autocomplete or autosuggested query terms.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -158,7 +157,7 @@ In a search application, client code should use a library like [jQuery UI Autoco
 API usage is illustrated in the following call to the Autocomplete REST API. There are two takeaways from this example. First, as with all queries, the operation is against the documents collection of an index and the query includes a `search` parameter, which in this case provides the partial query. Second, you must add `suggesterName` to the request. If a suggester isn't defined in the index, calls to autocomplete or suggestions fail.
 
 ```http
-POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2025-09-01
+POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2026-04-01
 {
   "search": "minecraf",
   "suggesterName": "sg"

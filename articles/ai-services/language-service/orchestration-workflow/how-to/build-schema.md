@@ -3,7 +3,7 @@ title: How to build an orchestration project schema
 description: Learn how to define intents for your orchestration workflow project.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

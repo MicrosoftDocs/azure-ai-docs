@@ -1,12 +1,11 @@
 ---
-author: diberry
-ms.author: haileytapia
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - dev-focus
 ms.topic: include
-ms.date: 03/04/2026
+ms.date: 04/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -21,13 +20,11 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md).
 
 + An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
 + [Node.js 20 LTS](https://nodejs.org/en/download/) or later.
-
-+ [Visual Studio Code](https://code.visualstudio.com/download).
 
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -53,11 +50,10 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-javascript-samples/quickstart-semantic-ranking-js
-    code .
     ```
 
 1. In `sample.env`, replace the placeholder value for `AZURE_SEARCH_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).

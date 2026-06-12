@@ -3,10 +3,10 @@ title: Translator Languages Method
 titleSuffix: Foundry Tools
 description: The Languages method gets the set of languages currently supported by other operations of the Translator.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

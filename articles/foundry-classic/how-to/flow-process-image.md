@@ -1,8 +1,8 @@
 ---
 title: "Process images in prompt flow (classic)"
 description: "Learn how to use images in prompt flow. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - build-2024
   - hub-only
@@ -12,14 +12,13 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Process images in prompt flow (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 Multimodal Large Language Models (LLMs) can process and interpret diverse forms of data inputs. These models elevate the capabilities of language-only systems. Among the various data types, images are important for many real-world applications. Incorporating image data into AI systems provides an essential layer of visual understanding. 
 

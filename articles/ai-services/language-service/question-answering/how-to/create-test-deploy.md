@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
+ms.date: 04/20/2026
 ms.custom: language-service-question-answering, mode-other
 ---
 # Create, test, and deploy: CQA knowledge base
@@ -24,7 +24,9 @@ This guide walks you through the essential steps needed to create, test, and dep
 Before you get started, you need the following resources and permissions:
 
 * **An active Azure subscription**. If you don't have one, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 *   A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 *   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
 * A Foundry project created in the Foundry. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
@@ -81,12 +83,12 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 1. In the **Add URLs** window, add the following values:
 
    * **URL name**: **Surface Book User Guide**
-   * **URL**: **https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf** 
+   * **URL**: **<https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features>**
    * **Classify file structure**: Leave the default setting (**Auto-detect**)
 
      :::image type="content" source="../media/agents/add-urls.png" alt-text="Screenshot of the select url source selection and add button in the Foundry.":::
 
-1. Finally, select the **Add URLs** button. 
+1. Finally, select the **Add URLs** button.
 
     The extraction process requires a short amount of time to analyze the document and detect questions and answers. During this step, the service evaluates whether the content is structured or unstructured.<br>
 

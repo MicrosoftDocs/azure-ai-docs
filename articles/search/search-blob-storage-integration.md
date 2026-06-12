@@ -1,6 +1,5 @@
 ---
-title: Search over Azure Blob Storage content
-titleSuffix: Azure AI Search
+title: Search Over Azure Blob Storage Content
 description: Learn how to extract text from Azure blobs and making the content full-text searchable in an Azure AI Search index.
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -12,6 +11,13 @@ ms.custom:
 ---
 
 # Search over Azure Blob Storage content
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 Searching across the variety of content types stored in Azure Blob Storage can be a difficult problem to solve, but [Azure AI Search](search-what-is-azure-search.md) provides deep integration at the content layer, extracting and inferring textual information, which can then be queried in a search index.
 
@@ -70,7 +76,7 @@ Textual content of a document is extracted into a string field named "content". 
 
 An *indexer* is a data-source-aware subservice in Azure AI Search, equipped with internal logic for sampling data, reading and retrieving data and metadata, and serializing data from native formats into JSON documents for subsequent import. 
 
-Blobs in Azure Storage are indexed using the [blob indexer](search-how-to-index-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, an [import wizard](search-import-data-portal.md) in the Azure portal, a REST API, or the .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
+Blobs in Azure Storage are indexed using the [blob indexer](search-how-to-index-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, [**Import data** wizard](search-import-data-portal.md) in the Azure portal, REST API, or .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
 
 An indexer ["cracks a document"](search-indexer-overview.md#document-cracking), opening a blob to inspect content. After connecting to the data source, it's the first step in the pipeline. For blob data, this is where PDF, Office docs, and other content types are detected. Document cracking with text extraction is no charge. If your blobs contain image content, images are ignored unless you [add AI enrichment](cognitive-search-concept-intro.md). Standard indexing applies only to text content.
 
@@ -95,7 +101,7 @@ You can control which blobs are indexed, and which are skipped, by the blob's fi
 Include specific file extensions by setting `"indexedFileNameExtensions"` to a comma-separated list of file extensions (with a leading dot). Exclude specific file extensions by setting `"excludedFileNameExtensions"` to the extensions that should be skipped. If the same extension is in both lists, it's excluded from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2025-09-01
+PUT /indexers/[indexer name]?api-version=2026-04-01
 {
     "parameters" : { 
         "configuration" : { 

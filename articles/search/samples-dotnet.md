@@ -1,16 +1,13 @@
 ---
 title: .NET Samples
-titleSuffix: Azure AI Search
 description: Find Azure AI Search demo C# code samples that use the .NET client libraries.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
-ms.topic: concept-article
-ms.date: 01/13/2026
+ai-usage: ai-assisted
 ---
 
 # C# samples for Azure AI Search
@@ -18,11 +15,11 @@ ms.date: 01/13/2026
 Learn about C# code samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Azure AI Search client library](/dotnet/api/overview/azure/search) for the [Azure SDK for .NET](/dotnet/azure/), which you can explore through the following links.
 
 | Target | Link |
-|--|--|
+| --- | --- |
 | Package download | [nuget.org/packages/Azure.Search.Documents/](https://www.nuget.org/packages/Azure.Search.Documents/) |
-| API reference | [Azure.Search.Documents](/dotnet/api/azure.search.documents)  |
+| API reference | [Azure.Search.Documents](/dotnet/api/azure.search.documents) |
 | API test cases | [github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/tests](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/tests) |
-| Source code | [github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/src](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/src)  |
+| Source code | [github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/src](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/search/Azure.Search.Documents/src) |
 | Change log | [github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) |
 
 ## SDK samples
@@ -30,7 +27,7 @@ Learn about C# code samples that demonstrate the functionality and workflow of a
 Code samples from the Azure SDK development team demonstrate API usage. You can find these samples in [Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/) on GitHub.
 
 | Sample | Description |
-|--|--|
+| --- | --- |
 | [Hello world (synchronous)](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample01a_HelloWorld.md) | Create a client, authenticate, and handle errors using synchronous methods. |
 | [Hello world (asynchronous)](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample01b_HelloWorldAsync.md) | Create a client, authenticate, and handle errors using asynchronous methods. |
 | [Service-level operations](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample02_Service.md) | Get service statistics and create multiple search objects, including an index, indexer, data source, skillset, and synonym map. Finally, you query the index. |
@@ -46,7 +43,7 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 Code samples from the Azure AI Search team demonstrate features and workflows. The following samples are referenced in tutorials, quickstarts, and how-to articles that explain the code in detail. You can find these samples in [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [Azure-Samples/search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started/) on GitHub.
 
 | Sample | Article | Description |
-|--|--|--|
+| --- | --- | --- |
 | [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
 | [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query an index using sample data. |
 | [quickstart-semantic-ranking](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-semantic-ranking/) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
@@ -64,7 +61,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 A demo repo provides proof-of-concept source code for examples or scenarios shown in demonstrations. Unlike accelerators, demo solutions aren't designed for adaptation.
 
 | Sample | Description |
-|--|--|
+| --- | --- |
 | [covid19search](https://github.com/liamca/covid19search) | Source code repo for the Azure AI Search-based Covid-19 search app. |
 | [AzureSearch_JFK_Files](https://github.com/Microsoft/AzureSearch_JFK_Files) | Source code repo for the Azure AI Search-based JFK files solution. |
 
@@ -73,7 +70,7 @@ A demo repo provides proof-of-concept source code for examples or scenarios show
 The following samples are also published by the Azure AI Search team but aren't referenced in documentation. Associated README files provide usage instructions.
 
 | Sample | Description |
-|--|--|
+| --- | --- |
 | [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts) | Single-shot RAG using the classic search engine as grounding data from Azure AI Search, with a chat completion model from Azure OpenAI. |
 | [check-storage-usage](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/check-storage-usage/README.md) | Check search service storage on a schedule using an Azure function. |
 | [export-data](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/export-data) | Partition and export a large index using a C# console app. |

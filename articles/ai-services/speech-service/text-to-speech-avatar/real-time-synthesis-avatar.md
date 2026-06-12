@@ -2,10 +2,11 @@
 title: Real-time synthesis for text to speech avatar - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use text to speech avatar with real-time synthesis.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 author: PatrickFarley
 ---
@@ -14,7 +15,7 @@ author: PatrickFarley
 
 This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
 
-Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
+Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more.
 
 ## Prerequisites
 
@@ -30,7 +31,20 @@ You need:
 
 ## Set up environment
 
-To use real-time avatar synthesis, install the Speech SDK for JavaScript for your webpage. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript&tabs=windows%2Cubuntu%2Cdotnetcli%2Cdotnet%2Cjre%2Cmaven%2Cbrowser%2Cmac%2Cpypi#install-the-speech-sdk-for-javascript).
+To use real-time avatar synthesis, install the Speech SDK for your preferred platform and programming language. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform).
+
+### Network requirement
+
+Real-time avatar uses WebRTC to stream video from the server to the client. Ensure your network allows WebRTC traffic. If you have a firewall, add rules to allow outbound traffic to the TURN (relay) server used by WebRTC. If you're using the default Communication Service TURN server, allow traffic to `relay.communication.microsoft.com` on UDP port 3478 and TCP port 443. Below are the firewall rules you need to add to outbound traffic:
+
+| Rule | Source IP | Source Port | Destination FQDN | Destination IP | Destination Port | Protocol |
+|------|-----------|-------------|-------------------|----------------|------------------|----------|
+| Allow access to TURN relay server for WebRTC connection over UDP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
+| Allow access to TURN relay server for WebRTC connection over TCP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
+
+For more information about WebRTC protocol security, see [WebRTC security](https://webrtc-security.github.io).
+
+### Supported platforms and browsers
 
 Real-time avatar works on these platforms and browsers:
 
@@ -46,7 +60,7 @@ Real-time avatar works on these platforms and browsers:
 
 ## Select text to speech language and voice
 
-Speech service supports many [languages and voices](../language-support.md?tabs=tts). See the full list or try them in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+Speech service supports many [languages and voices](../language-support.md?tabs=tts). 
 
 To match your input text and use a specific voice, set the `SpeechSynthesisLanguage` or `SpeechSynthesisVoiceName` properties in the `SpeechConfig` object:
 
@@ -54,7 +68,7 @@ To match your input text and use a specific voice, set the `SpeechSynthesisLangu
 const speechConfig = SpeechSDK.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
 // Set either the `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`.
 speechConfig.speechSynthesisLanguage = "en-US";
-speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";   
+speechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";   
 ```
 
 All neural voices are multilingual and fluent in their own language and English. For example, if you select **es-ES-ElviraNeural** and enter English text, the avatar speaks English with a Spanish accent.
@@ -97,9 +111,9 @@ First, create a WebRTC peer connection object. WebRTC is peer-to-peer and relies
 Sample request to fetch ICE info:
 
 ```HTTP
-GET /cognitiveservices/avatar/relay/token/v1 HTTP/1.1
+GET /tts/cognitiveservices/avatar/relay/token/v1 HTTP/1.1
 
-Host: westus2.tts.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 

@@ -1,9 +1,6 @@
 ---
-title: Manage concurrent writes
-titleSuffix: Azure AI Search
+title: Manage Concurrent Writes
 description: Use optimistic concurrency to avoid mid-air collisions on updates or deletes to Azure AI Search indexes, indexers, data sources.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/08/2025

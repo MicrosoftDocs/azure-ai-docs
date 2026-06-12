@@ -1,11 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [REST API Spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/stable/2024-10-21/inference.json) |
@@ -16,7 +18,7 @@ ms.date: 1/21/2025
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
 - Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
@@ -97,7 +99,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     api_version = '2025-01-01-preview'
     url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
@@ -216,7 +218,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     # Read and encode audio file  
     with open('dog.wav', 'rb') as wav_reader: 
@@ -359,7 +361,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     api_version = '2025-01-01-preview'
     url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"

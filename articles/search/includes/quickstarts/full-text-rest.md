@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026

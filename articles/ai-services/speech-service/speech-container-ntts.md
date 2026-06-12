@@ -3,8 +3,8 @@ title: Neural text to speech containers - Speech service
 titleSuffix: Foundry Tools
 description: Install and run neural text to speech containers with Docker to perform speech synthesis and more on-premises.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 02/25/2026

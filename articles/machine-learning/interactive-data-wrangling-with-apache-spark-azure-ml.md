@@ -8,8 +8,9 @@ ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 01/30/2026
-ms.custom: template-how-to
+ms.date: 03/11/2026
+ms.custom: template-how-to, dev-focus
+ai-usage: ai-assisted
 #customer intent: As a data scientist, I want to learn how to set up and configure Spark serverless compute sessions in Azure Machine Learning studio so I can easily access and wrangle data from various sources.
 ---
 
@@ -30,8 +31,8 @@ This article explains how to attach and configure a serverless Spark compute. Th
 
 For more information, see:
 - [Create an Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-- [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal)
-- [Attach a Synapse Spark pool in the Azure Machine Learning workspace](how-to-manage-synapse-spark-pool.md)
+- [Create a service principal](/entra/identity-platform/howto-create-service-principal-portal)
+- [Attach a Synapse Spark pool in the Azure Machine Learning workspace](how-to-manage-synapse-spark-pool.md).
 
 ## Use serverless Spark compute in notebook sessions
 
@@ -41,7 +42,7 @@ To use any of the following data access and wrangling sources and methods, attac
 
 ### Configure a serverless Spark session
 
-Once you attach the serverless Spark compute, you can optionally configure the Spark session by setting or changing several values. To configure the Spark session:
+After you attach the serverless Spark compute, you can configure the Spark session by setting or changing several values. To configure the Spark session:
 
 1. Select **Configure session** at upper left on the file or notebook page.
 1. On the **Configure session** screen, change any of the following settings:
@@ -52,38 +53,38 @@ Once you attach the serverless Spark compute, you can optionally configure the S
      - Select a different **Executor size** if available from the dropdown menu.
 
    - In the **Settings** pane:
-     - Change the **Apache Spark version** to a different version than 3.4 if available.
+     - Change the **Apache Spark version** to a different version than 3.5 if available.
+
+       > [!IMPORTANT]
+       > Azure Synapse Runtime for Apache Spark 3.4 reaches end of support on March 31, 2026. Migrate to Apache Spark 3.5 for continued support. For more information, see [Azure Synapse runtimes](/azure/synapse-analytics/spark/apache-spark-version-support).
+
      - Change the **Session timeout** value in minutes to a higher number to help prevent session timeouts.
      - Under **Configuration settings**, add **Property** name/value settings to configure the session as needed.
-       >[!TIP]
+       > [!TIP]
        >If you use session-level Conda packages, adding the `spark.hadoop.aml.enable_cache` configuration property with value `true` can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages). A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
 
    - In the **Python packages** pane:
      - To use a Conda file to configure your session, select **Upload conda file**. Next to **Select conda file**, select **Browse**, and then browse to and open the appropriate Conda YAML file on your machine to upload it.
      - To use a custom environment, select **Custom environment** and select a custom environment under **Environment type**. For more information, see [Manage software environments](how-to-manage-environments-in-studio.md).
-1. To apply all configurations, select **Apply**.
+1. Select **Apply** to apply all configurations.
 
 The session configuration changes persist and are available to other notebook sessions that use the attached serverless Spark compute.
 
 ## Import and wrangle data from Azure Data Lake Storage
 
-To access and wrangle data stored in Azure Data Lake Storage storage accounts, you use a `abfss://` protocol URI with either *user identity passthrough* or *service principal-based* access. User identity passthrough requires no added configuration.
+To access and wrangle data stored in Azure Data Lake Storage accounts, use an `abfss://` protocol URI with either *user identity passthrough* or *service principal-based* access. User identity passthrough requires no added configuration.
 
 To use either method, the user identity or service principal must have **Contributor** and **Storage Blob Data Contributor** [role assignments](apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage account.
 
-For user identity passthrough, run the following data wrangling code sample to use a data URI in format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
+For user identity passthrough, run the following data wrangling code sample to use a data URI in the format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas`. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
 
 ```python
 import pyspark.pandas as pd
-from pyspark.ml.feature import Imputer
 
 df = pd.read_csv(
     "abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/data/titanic.csv",
     index_col="PassengerId",
 )
-imputer = Imputer(inputCols=["Age"], outputCol="Age").setStrategy(
-    "mean"
-)  # Replace missing values in Age column with the mean value
 df.fillna(
     value={"Cabin": "None"}, inplace=True
 )  # Fill Cabin column with value "None" if missing
@@ -98,7 +99,7 @@ df.to_csv(
 
 To use a service principal to access and wrangle data from Azure Data Lake Storage, first set up the service principal as follows:
 
-1. [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal) and [assign it the necessary Storage Blob Data Contributor and Key Vault Secrets User roles](/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application).
+1. [Create a service principal](/entra/identity-platform/howto-create-service-principal-portal) and [assign it the necessary Storage Blob Data Contributor and Key Vault Secrets User roles](/entra/identity-platform/howto-create-service-principal-portal#assign-a-role-to-the-application).
 1. Obtain the service principal tenant ID, client ID, and client secret values from the app registration and [create Azure Key Vault secrets](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault) for the values.
 1. Set the service principal tenant ID, client ID, and client secret by adding the following property name/value pairs in the session configuration. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<TENANT_ID>` with the service principal tenant ID.
 
@@ -108,7 +109,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
    |`fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|`https://login.microsoftonline.com/<TENANT_ID>/oauth2/token`|
    |`fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Client secret value|
 
-1. Run the following code. The `get_secret()` call in the code depends on the Key Vault name and the names of the Key Vault secrets created for the service principal tenant ID, client ID and client secret.
+1. Run the following code. The `get_secret()` call in the code depends on the Key Vault name and the names of the Key Vault secrets created for the service principal tenant ID, client ID, and client secret.
 
    ```python
    from pyspark.sql import SparkSession
@@ -147,15 +148,11 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
 
    ```python
    import pyspark.pandas as pd
-   from pyspark.ml.feature import Imputer
    
    df = pd.read_csv(
        "abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/data/titanic.csv",
        index_col="PassengerId",
    )
-   imputer = Imputer(inputCols=["Age"], outputCol="Age").setStrategy(
-       "mean"
-   )  # Replace missing values in Age column with the mean value
    df.fillna(
        value={"Cabin": "None"}, inplace=True
    )  # Fill Cabin column with value "None" if missing
@@ -203,15 +200,11 @@ You can access Azure Blob storage data with either the *storage account access k
 
    ```python
    import pyspark.pandas as pd
-   from pyspark.ml.feature import Imputer
    
    df = pd.read_csv(
        "wasbs://<BLOB_CONTAINER_NAME>@<STORAGE_ACCOUNT_NAME>.blob.core.windows.net/data/titanic.csv",
        index_col="PassengerId",
    )
-   imputer = Imputer(inputCols=["Age"], outputCol="Age").setStrategy(
-       "mean"
-   )  # Replace missing values in Age column with the mean value
    df.fillna(
        value={"Cabin": "None"}, inplace=True
    )  # Fill Cabin column with value "None" if missing
@@ -226,19 +219,15 @@ You can access Azure Blob storage data with either the *storage account access k
 
 To access data from an [Azure Machine Learning datastore](how-to-datastore.md), you define a path to data on the datastore with the [URI format](how-to-create-data-assets.md?tabs=cli#create-data-assets) `azureml://datastores/<DATASTORE_NAME>/paths/<PATH_TO_DATA>`.
 
-Run the following code sample to read and wrangle *titanic.csv* data from an Azure Machine Learning datastore using `azureml://` datastore URI, `pyspark.pandas`, and `pyspark.ml.feature.Imputer`.
+Run the following code sample to read and wrangle *titanic.csv* data from an Azure Machine Learning datastore using `azureml://` datastore URI and `pyspark.pandas`.
 
 ```python
 import pyspark.pandas as pd
-from pyspark.ml.feature import Imputer
 
 df = pd.read_csv(
     "azureml://datastores/<DATASTORE_NAME>/paths/data/titanic.csv",
     index_col="PassengerId",
 )
-imputer = Imputer(inputCols=["Age"], outputCol="Age").setStrategy(
-    "mean"
-)  # Replace missing values in Age column with the mean value
 df.fillna(
     value={"Cabin": "None"}, inplace=True
 )  # Fill Cabin column with value "None" if missing
@@ -273,15 +262,11 @@ The following code snippet accesses and wrangles data from the *titanic.csv* fil
 ```python
 import os
 import pyspark.pandas as pd
-from pyspark.ml.feature import Imputer
 
 abspath = os.path.abspath(".")
 file = "file://" + abspath + "/Users/<USER>/data/titanic.csv"
 print(file)
 df = pd.read_csv(file, index_col="PassengerId")
-imputer = Imputer(
-    inputCols=["Age"],
-    outputCol="Age").setStrategy("mean") # Replace missing values in Age column with the mean value
 df.fillna(value={"Cabin" : "None"}, inplace=True) # Fill Cabin column with value "None" if missing
 df.dropna(inplace=True) # Drop the rows which still have any missing value
 output_path = "file://" + abspath + "/Users/<USER>/data/wrangled"

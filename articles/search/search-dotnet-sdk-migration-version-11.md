@@ -1,6 +1,5 @@
 ---
-title: Upgrade to .NET SDK version 11
-titleSuffix: Azure AI Search
+title: Upgrade to .NET SDK Version 11
 description: Migrate your search application code from older SDK versions to the Azure AI Search .NET SDK version 11.
 ms.service: azure-ai-search
 ms.devlang: csharp

@@ -1,9 +1,6 @@
 ---
-title: Return a semantic answer
-titleSuffix: Azure AI Search
+title: Return a Semantic Answer
 description: Describes the composition of a semantic answer and how to obtain answers from a result set.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -58,9 +55,9 @@ To return a semantic answer, the query must have the semantic `"queryType"`, `"q
 
 + A query string must not be null and should be formulated as question.
 
-+ `"queryType"` must be set to "semantic.
++ `"queryType"` must be set to "semantic".
 
-+ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true#querylanguage).
++ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true#querylanguage).
 
 + A `"semanticConfiguration"` determines which string fields provide tokens to the extraction model. The same fields that produce captions also produce answers. See [Create a semantic configuration](semantic-how-to-configure.md) for details.
 

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Transparency note for question answering."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 09/29/2021
+ms.date: 04/01/2026
 ---
 
 # Transparency note and use cases for question answering

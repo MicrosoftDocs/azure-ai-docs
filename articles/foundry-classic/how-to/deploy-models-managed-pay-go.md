@@ -1,28 +1,28 @@
 ---
 title: "Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic)" 
-description: "Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+description: "Learn how to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing. (classic)"
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.custom:
 ms.topic: how-to
-ms.date: 1/20/2026
+ms.date: 4/09/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
-#CustomerIntent: As a developer or data scientist, I want to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
+#CustomerIntent: As a developer or data scientist, I want to deploy protected AI Models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
 ---
 
 # Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic) 
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—models sold directly by Azure, and [models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
+Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—Foundry Models sold by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The Models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected Models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - If you don't have one, [create a hub project for Foundry](hub-create-projects.md). You can deploy to managed compute using a hub project. A Foundry project won't work for this purpose.
 
@@ -123,6 +123,7 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
+| [bosonai-higgs-audio-v3-stt](https://ai.azure.com/explore/models/bosonai-higgs-audio-v3-stt/version/2/registry/azureml-bosonai-p/?cid=learnDocs) | Automatic speech recognition |
 | [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
 
 ### Cohere
@@ -135,11 +136,23 @@ The following sections list the supported models for managed compute deployment 
 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
 | [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
 
+### Domyn
+
+| Model | Task |
+|--|--|
+| [Domyn-Large](https://ai.azure.com/explore/models/Domyn-Large/version/1/registry/azureml-domyn/?cid=learnDocs) | Chat completion |
+
 ### Inception Labs
 
 | Model | Task |
 |--|--|
 | [Mercury](https://ai.azure.com/explore/models/Mercury/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion, Text generation, Summarization |
+
+### NTT Data Corporation
+
+| Model | Task |
+|--|--|
+| [tsuzumi2](https://ai.azure.com/explore/models/tsuzumi2/version/2/registry/azureml-nttdatacorp-p/?cid=learnDocs) | Chat completion |
 
 ### NVIDIA
 
@@ -153,6 +166,8 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
+| [NVIDIA-Nemotron-3-Super-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Super-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
+| [Openfold3_1_2_0-NIM-microservice](https://ai.azure.com/explore/models/Openfold3_1_2_0-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Biomolecular complex structure prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
 | [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
 | [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
@@ -172,6 +187,8 @@ Some special things to note about NIMs are:
 | [Evo2-40b-NIM-microservice](https://ai.azure.com/explore/models/Evo2-40b-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Genomics |
 | [Boltz2-NIM-microservice](https://ai.azure.com/explore/models/Boltz2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Structure-Prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Summarization |
+| [NVIDIA-Nemotron-3-Content-Safety-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Content-Safety-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Text classification, Image classification|
+| [Nemotron-Content-Safety-Reasoning-4B-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-Content-Safety-Reasoning-4B-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Text classification |
 
 #### Consume NVIDIA NIM deployments
 
@@ -199,7 +216,7 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 
 #### Security scanning
 
-NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. To learn more about security scanning, see the [security page](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
+NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Foundry. 
 
@@ -210,11 +227,35 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 | [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 | [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 
+### PriorLabs
+
+| Model | Task |
+|--|--|
+| [TabPFN-2.5](https://ai.azure.com/explore/models/TabPFN-2.5/version/2/registry/azureml-priorlabs-p/?cid=learnDocs) | Regression, Classification, Forecasting |
+
+### RezolveAI
+
+| Model | Task |
+|--|--|
+| [brainpowa-general-conversational-m-v1](https://ai.azure.com/explore/models/brainpowa-general-conversational-m-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+| [brainpowa-general-conversational-l-v1](https://ai.azure.com/explore/models/brainpowa-general-conversational-l-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+| [brainpowa-general-toolcalling-m-v1](https://ai.azure.com/explore/models/brainpowa-general-toolcalling-m-v1/version/1/registry/azureml-rezolveai-p/?cid=learnDocs) | Chat completion |
+
+### Theai-Inc
+
+| Model | Task |
+|--|--|
+| [inworld-tts-1-5-max](https://ai.azure.com/explore/models/inworld-tts-1-5-max/version/1/registry/azureml-inworld-p/?cid=learnDocs) | Text to speech |
+| [inworld-tts-1-5-mini](https://ai.azure.com/explore/models/inworld-tts-1-5-mini/version/1/registry/azureml-inworld-p/?cid=learnDocs) | Text to speech |
+
 ### Voyage AI
 
 | Model | Task |
 |--|--|
 | [voyage-3.5-embedding-model](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-lite-embedding](https://ai.azure.com/explore/models/voyage-4-lite-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-embedding](https://ai.azure.com/explore/models/voyage-4-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-4-large-embedding](https://ai.azure.com/explore/models/voyage-4-large-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 
 ## Related content
 

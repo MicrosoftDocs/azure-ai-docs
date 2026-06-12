@@ -2,20 +2,22 @@
 title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.date: 02/06/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
+ms.date: 05/01/2026
 ms.author: lagayhar
 author: lgayhardt
-ms.reviewer: changliu2
+ms.reviewer: dlozier
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
+ms.custom: doc-kit-assisted
 ---
 
 # Evaluate your AI agents
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
+In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
@@ -27,9 +29,12 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md).
+- Python 3.8 or later.
+- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
@@ -69,10 +74,10 @@ Evaluators are functions that assess your agent's responses. Some evaluators use
 
 For more built-in evaluators, see:
 
-- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution
-- [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
-- [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
-- [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
+- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) — Evaluate how effectively agents handle tasks, tools, and user intent.
+- [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) — Measure the overall quality of generated responses.
+- [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) — Compare generated text against reference answers using NLP metrics.
+- [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) — Identify potential content and security risks in generated output.
 
 To build your own evaluators, see [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
@@ -105,7 +110,7 @@ First, configure your evaluators. Each evaluator needs a data mapping that tells
 - `{{sample.output_items}}` references the full agent response, including tool calls.
 - `{{sample.output_text}}` references just the response message text.
 
-AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment in `initialization_parameters`. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
+AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment name in `initialization_parameters`. The value must match a GPT deployment name in your project — this is the judge model used to score responses. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
 
 ```python
 testing_criteria = [
@@ -125,7 +130,7 @@ testing_criteria = [
         "evaluator_name": "builtin.coherence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
         "initialization_parameters": {"deployment_name": model_deployment},
     },
@@ -135,7 +140,7 @@ testing_criteria = [
         "evaluator_name": "builtin.violence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
     },
 ]
@@ -189,6 +194,12 @@ eval_run = client.evals.runs.create(
 
 print(f"Evaluation run started: {eval_run.id}")
 ```
+
+> [!TIP]
+> This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
+
+> [!TIP]
+> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview) in the cloud evaluation guide.
 
 ## Interpret results
 
@@ -264,7 +275,6 @@ Each evaluation run returns output items per row in your test dataset, providing
             ... // agent response messages with tool calls
         ]
     },
-    
     "results": [
         {
             "type": "azure_ai_evaluator",
@@ -305,3 +315,5 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
+- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview)
+- [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

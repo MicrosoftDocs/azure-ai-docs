@@ -1,13 +1,99 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 10/21/2025
+ms.date: 05/22/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### May 2026 release
+
+#### Custom voice fine-tuning in the Microsoft Foundry (new) portal
+
+Fine-tuning workflows for custom voice are now available via the Microsoft Foundry (new) portal. The playground experience walks you through model selection, voice talent registration, training data upload, model training, and endpoint deployment from the **Fine-tune a model** pane.
+
+- [Create a professional voice](../../professional-voice-create-project.md)
+- [Create a personal voice project](../../personal-voice-create-project.md)
+
+#### Custom avatar usage in Microsoft Foundry
+
+After you deploy a custom avatar, you can now try it directly from the fine-tuning job's **Use your avatar** box by selecting **Try Text to Speech Avatar** or **Try Voice Live**. You can also open the playgrounds from the **Models** navigation and select your custom avatar from the **Custom** tab. For more information, see [Create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
+
+### March 2026 release
+
+#### Public preview of MAI-Voice-1
+
+MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house speech foundation models. It produces expressive, natural speech with consistent voice persona quality and supports emotion and style control via SSML `mstts:express-as`. MAI-Voice-1 is available in the East US region. For more information, see [MAI-Voice-1 in Azure Speech](../../mai-voices.md).
+
+| Voice ID | Gender | Recommended use case |
+|--------|--------|----------|
+| `en-us-Jasper:MAI-Voice-1` | Male | General Conversation, Sales, Emotional styles |
+| `en-us-June:MAI-Voice-1` | Female | General Conversation, Customer Service, Professional, Emotional styles |
+| `en-us-Grant:MAI-Voice-1` | Male | General Conversation, Professional, Emotional styles |
+| `en-us-Iris:MAI-Voice-1` | Female | General Conversation, Narration, Emotional styles |
+| `en-us-Reed:MAI-Voice-1` | Male | General Conversation |
+| `en-us-Joy:MAI-Voice-1` | Female | General Conversation |
+
+#### Neural HD 2.5 update to Latest in Production
+
+Neural HD 2.5 is promoted to **Latest in Production**, delivering improvements in natural prosody, expressiveness, and output consistency—particularly for long‑form and complex content. This update expands support for expressive speaking styles and paralinguistic elements, enabling more human‑like and emotionally rich speech across narration, conversational AI, and virtual assistant scenarios.
+
+Key enhancements include:
+- Improved expressive range and stability across domains
+- Styles and paralinguistic tags supported via **SSML and plain text input**
+- Enhanced tagging and metadata to simplify voice evaluation and selection
+
+> [!NOTE]
+> Styles and paralinguistic features are available on all `HDLatestNeural` voices, except for voices with primary locale as `en‑IN`.
+
+#### Neural HD Omni quality and expressiveness update
+Neural HD Omni voices receive a quality upgrade with added support for expressive styles and paralinguistic tags across the Omni voice set. This enhancement improves emotional control and conversational naturalness while preserving each voice’s unique character, making it well suited for customer service, accessibility, and creative scenarios.
+
+> [!NOTE]
+> Styles and paralinguistic features are available on all `HDOmniLatestNeural` voices.
+
+#### Neural HD Flash – low‑latency HD voices
+Neural HD Flash introduces a low‑latency variant of Neural HD, optimized for responsiveness‑critical scenarios such as voice assistants and call center automation. HD Flash balances fast synthesis with clear pronunciation and natural prosody, allowing developers to choose between expressiveness and latency based on application needs.
+
+#### Neural HD regional availability expansion
+Starting in March 2026, Neural HD voices expand beyond their original regions and are now available in:
+- West US 2  
+- East US 2  
+- Central India  
+- Canada Central  
+- France Central  
+- Sweden Central  
+
+#### Neural HD Multi‑Talker voices expansion
+Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
+Several new models: `en‑MultiTalker‑1:DragonHDLatestNeural`, `fr-Multitalker:DragonHDLatestNeural`, `zh-Multitalker:DragonHDLatestNeural` introduce an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+
+Speakers in `en‑MultiTalker‑1:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Ada, Ava, Emma, Jane                   |
+| Male      | Andrew, Brian, Davis, Steffan           |
+
+Speakers in `fr-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Vivienne                   |
+| Male      | Remy          |
+
+Speakers in `zh-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Xiaoxiao                  |
+| Male      | Yunxiao         |
+
+#### Neural HD pricing update
+Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/pricing/details/speech/).
 
 ### December 2025 release
 #### Public preview of new voice type Dragon HD Omni
@@ -999,11 +1085,11 @@ For more information, see the [language and voice list](../../language-support.m
 
 | Language | Locale  | Gender | Voice name| Style support|
 |---|---|---|---|---|
-| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaomengNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles)  |
-| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaoyiNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles)  |
-| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaozhenNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles)  |
-| Chinese (Mandarin, Simplified) | `zh-CN` | Male | `zh-CN-YunxiaNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles)  |
-| Chinese (Mandarin, Simplified) | `zh-CN` | Male | `zh-CN-YunzeNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles)  |
+| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaomengNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles)  |
+| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaoyiNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles)  |
+| Chinese (Mandarin, Simplified) | `zh-CN` | Female | `zh-CN-XiaozhenNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles)  |
+| Chinese (Mandarin, Simplified) | `zh-CN` | Male | `zh-CN-YunxiaNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles)  |
+| Chinese (Mandarin, Simplified) | `zh-CN` | Male | `zh-CN-YunzeNeural` <sup>New</sup> | General, multiple styles available [using SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles)  |
 | English (United States) | `en-US` | Male | `en-US-RogerNeural` <sup>New</sup> | General|
 
 *  Supported styles and roles for the added neural voices.
@@ -1410,13 +1496,13 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 - [SSML silence tag](../../speech-synthesis-markup-structure.md#add-silence) support.
 - General TTS voice quality improvements: Improved word-level pronunciation accuracy in nb-NO. Reduced 53% pronunciation error.
 
-> Read more at [this tech blog](https://techcommunity.microsoft.com/t5/azure-ai/neural-text-to-speech-previews-five-new-languages-with/ba-p/1907604).
+> For more information, see [Neural Text-to-Speech previews five new languages with innovative models in the low-resource setting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/neural-text-to-speech-previews-five-new-languages-with-innovative-models-in-the-/1907604).
 
 ### October 2020 release
 
 #### New features
-- Jenny supports a new `newscast` style. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
-- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/t5/azure-ai/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio/ba-p/1847860)
+- Jenny supports a new `newscast` style. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
+- **Neural voices upgraded to HiFiNet vocoder, with higher audio fidelity and faster synthesis speed**. This benefits customers whose scenario relies on hi-fi audio or long interactions, including video translation, audio books, or online education materials. [Read more about the story and hear the voice samples on our tech community blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio-fidelity-and-faste/1847860)
 - **[Custom voice](https://speech.microsoft.com/customvoice) & [Audio Content Creation Studio](https://speech.microsoft.com/audiocontentcreation) localized to 17 locales**. Users can easily switch the UI to a local language for a more friendly experience.
 - **Audio Content Creation**: Added style degree control for XiaoxiaoNeural; Refined the customized break feature to include incremental breaks of 50ms.
 
@@ -1433,11 +1519,11 @@ Visit the [Audio Content Creation tool](https://speech.microsoft.com/audioconten
 * **Neural text to speech**
     * **Extended to support 18 new languages/locales.** They are Bulgarian, Czech, German (Austria),  German (Switzerland), Greek, English (Ireland), French (Switzerland), Hebrew, Croatian, Hungarian, Indonesian, Malay, Romanian, Slovak, Slovenian, Tamil, Telugu and Vietnamese.
     * **Released 14 new voices to enrich the variety in the existing languages.** See [full language and voice list](../../language-support.md?tabs=tts).
-    * **New speaking styles for `en-US` and `zh-CN` voices.** Jenny, the new voice in English (US), supports chatbot, customer service, and assistant styles. 10 new speaking styles are available with our zh-CN voice, XiaoXiao. In addition, the XiaoXiao neural voice supports `StyleDegree` tuning. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
+    * **New speaking styles for `en-US` and `zh-CN` voices.** Jenny, the new voice in English (US), supports chatbot, customer service, and assistant styles. 10 new speaking styles are available with our zh-CN voice, XiaoXiao. In addition, the XiaoXiao neural voice supports `StyleDegree` tuning. See [how to use the speaking styles in SSML](../../speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
 
 * **Containers: Neural text to speech Container released in public preview with 16 voices available in 14 languages.** Learn more on [how to deploy Speech Containers for Neural text to speech](../../speech-container-howto.md)
 
-Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/t5/azure-ai/ignite-neural-tts-updates-new-language-support-more-voices/ba-p/1698544)
+Read the [full announcement of the TTS updates for Ignite 2020](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/ignite-2020-neural-tts-updates-new-language-support-more-voices-and-flexible-dep/1698544)
 
 ### August 2020 release
 

@@ -1,9 +1,7 @@
 ---
 title: 'C# Tutorial: Use the Push API to Optimize Indexing'
-titleSuffix: Azure AI Search
 description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
@@ -58,7 +56,7 @@ This tutorial requires an Azure AI Search service, which you can [create in the 
 
 This tutorial uses key-based authentication. Copy an admin API key to paste into the `appsettings.json` file.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
 

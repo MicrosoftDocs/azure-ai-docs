@@ -3,8 +3,8 @@ title: Multimodal embeddings concepts - Image Analysis 4.0
 titleSuffix: Foundry Tools
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley
@@ -52,7 +52,7 @@ The following are the main steps of the image retrieval process using Multimodal
 
 1. Vectorize Images and Text: the Multimodal embeddings APIs, **VectorizeImage** and **VectorizeText**, can be used to extract feature vectors out of an image or text respectively. The APIs return a single feature vector representing the entire input.
    > [!NOTE]
-   > Multimodal embedding doesn't do any biometric processing of human faces. For face detection and identification, see the [Azure Face service](./overview-identity.md).
+   > Multimodal embedding doesn't do any biometric processing of human faces. For face detection and identification, see the [Azure Face service](../face/overview-identity.md).
 1. Measure similarity: Vector search systems typically use distance metrics, such as cosine distance or Euclidean distance, to compare vectors and rank them by similarity. 
 1. Retrieve Images: Use the top _N_ vectors similar to the search query and retrieve images corresponding to those vectors from your photo library to  provide as the final result.
 

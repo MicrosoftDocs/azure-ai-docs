@@ -5,8 +5,8 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
 reviewer: ychang-msft
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 12/03/2025
 ai-usage: ai-assisted
@@ -56,7 +56,7 @@ Vision models can take both text and images at the same time as part of the inpu
 | Identification of Individuals and Inference of Sensitive Attributes | Prompts                | N/A                 |
 | User prompt injection attack (Jailbreak)                            | Prompts                | N/A                 |
 
-### Azure OpenAI: DALL-E 3 and DALL-E 2
+### Azure OpenAI: Image generation models
 
 | Risk Category                                     | Prompt/Completion      | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|

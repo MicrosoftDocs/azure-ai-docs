@@ -1,12 +1,11 @@
 ---
-title: Define index projections
-titleSuffix: Azure AI Search
+title: Define Index Projections
 description: Index projections specify how parent-child content is mapped to fields in a search index when you use integrated vectorization for data chunking.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ---
 
@@ -157,9 +156,11 @@ Index projections are defined inside a skillset definition and are primarily def
 
 Index projections are generally available. We recommend the most recent stable API:
 
-- [Create Skillset (api-version=2025-09-01)](/rest/api/searchservice/skillsets/create)
+- [Create Skillset (api-version=2026-04-01)](/rest/api/searchservice/skillsets/create)
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
+
+When the parent document carries permission metadata used for document-level access, such as `metadata_user_ids`, `metadata_group_ids`, or `metadata_sharepoint_site_url`, include those fields in `mappings` so that every chunk inherits them. For more information, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ```json
 "indexProjections": {
@@ -299,7 +300,7 @@ If a parent document is completely deleted from the datasource, the correspondin
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [**Import data (new)** wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [**Import data** wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 

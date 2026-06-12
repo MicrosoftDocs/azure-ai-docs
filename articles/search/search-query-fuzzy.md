@@ -1,39 +1,37 @@
 ---
-title: Fuzzy search
-titleSuffix: Azure AI Search
+title: Fuzzy Search
 description: Implement a fuzzy search query for a "did you mean" search experience. Fuzzy search autocorrects a misspelled term or typo on the query.
-manager: nitinme
-
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 04/14/2025
-ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 # Fuzzy search to correct misspellings and typos
 
-Azure AI Search supports fuzzy search, a type of query that compensates for typos and misspelled terms in the input string. Fuzzy search scans for terms having a similar composition. Expanding search to cover near-matches has the effect of autocorrecting a typo when the discrepancy is just a few misplaced characters. 
+Azure AI Search supports fuzzy search, a type of query that compensates for typos and misspelled terms in the input string. Fuzzy search scans for terms having a similar composition. Expanding search to cover near-matches has the effect of autocorrecting a typo when the discrepancy is just a few misplaced characters.
 
 ## What is fuzzy search?
 
-It's a query expansion exercise that produces a match on terms having a similar composition. When a fuzzy search is specified, the search engine builds a graph (based on [deterministic finite automaton theory](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)) of similarly composed terms, for all whole terms in the query. For example, if your query includes three terms `"university of washington"`, a graph is created for every term  in the query `search=university~ of~ washington~` (there's no stop-word removal in fuzzy search, so `"of"` gets a graph).
+It's a query expansion exercise that produces a match on terms having a similar composition. When a fuzzy search is specified, the search engine builds a graph (based on [deterministic finite automaton theory](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)) of similarly composed terms, for all whole terms in the query. For example, if your query includes three terms `"university of washington"`, a graph is created for every term in the query `search=university~ of~ washington~` (there's no stop-word removal in fuzzy search, so `"of"` gets a graph).
 
-The graph consists of up to 50 expansions, or permutations, of each term, capturing both correct and incorrect variants in the process. The engine then returns the topmost relevant matches in the response. 
+The graph consists of up to 50 expansions, or permutations, of each term, capturing both correct and incorrect variants in the process. The engine then returns the topmost relevant matches in the response.
 
 For a term like "university", the graph might have `"unversty, universty, university, universe, inverse"`. Any documents that match on those in the graph are included in results. In contrast with other queries that analyze the text to handle different forms of the same word ("mice" and "mouse"), the comparisons in a fuzzy query are taken at face value without any linguistic analysis on the text. "Universe" and "inverse", which are semantically different, match because the syntactic discrepancies are small.
 
-A match succeeds if the discrepancies are limited to two or fewer edits, where an edit is an inserted, deleted, substituted, or transposed character. The string correction algorithm that specifies the differential is the [Damerau-Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) metric. It's described as the "minimum number of operations (insertions, deletions, substitutions, or transpositions of two adjacent characters) required to change one word into the other". 
+A match succeeds if the discrepancies are limited to two or fewer edits, where an edit is an inserted, deleted, substituted, or transposed character. The string correction algorithm that specifies the differential is the [Damerau-Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) metric. It's described as the "minimum number of operations (insertions, deletions, substitutions, or transpositions of two adjacent characters) required to change one word into the other".
 
 In Azure AI Search:
 
-+ Fuzzy query applies to whole terms. Phrases aren't supported directly but you can specify a fuzzy match on each term of a multi-part phrase through AND constructions. For example, `search=dr~ AND cleanin~`.  This query expression finds matches on "dry cleaning".
+- Fuzzy query applies to whole terms. Phrases aren't supported directly but you can specify a fuzzy match on each term of a multi-part phrase through AND constructions. For example, `search=dr~ AND cleanin~`.  This query expression finds matches on "dry cleaning".
 
-+ The default distance of an edit is 2. A value of `~0` signifies no expansion (only the exact term is considered as a match), but you could specify `~1` for one degree of difference, or one edit. 
+- The default distance of an edit is 2. A value of `~0` signifies no expansion (only the exact term is considered as a match), but you could specify `~1` for one degree of difference, or one edit.
 
-+ A fuzzy query can expand a term up to 50 permutations. This limit isn't configurable, but you can effectively reduce the number of expansions by decreasing the edit distance to 1.
+- A fuzzy query can expand a term up to 50 permutations. This limit isn't configurable, but you can effectively reduce the number of expansions by decreasing the edit distance to 1.
 
-+ Responses consist of documents containing a relevant match (up to 50).
+- Responses consist of documents containing a relevant match (up to 50).
 
 During query processing, fuzzy queries don't undergo [lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis). The query input is added directly to the query tree and expanded to create a graph of terms. The only transformation performed is lower casing.
 
@@ -59,14 +57,14 @@ Fuzzy queries are constructed using the full Lucene query syntax, invoking the [
 Here's an example of a query request that invokes fuzzy search. It includes four terms, two of which are misspelled:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
     "search": "seatle~ waterfront~ view~ hotle~",
     "queryType": "full",
     "searchMode": "any",
     "searchFields": "HotelName, Description",
-    "select": "HotelName, Description, Address/City,",
-    "count": "true"
+    "select": "HotelName, Description, Address/City",
+    "count": true
 }
 ```
 
@@ -82,10 +80,10 @@ Optionally, you can improve query performance by scoping the request to specific
 
 For simple testing, we recommend [Search explorer](search-explorer.md) or a [REST client](search-get-started-text.md) for iterating over a query expression. Both tools are interactive, which means you can quickly step through multiple variants of a term and evaluate the responses that come back.
 
-When results are ambiguous, [hit highlighting](search-pagination-page-layout.md#hit-highlighting) can help you identify the match in the response. 
+When results are ambiguous, [hit highlighting](search-pagination-page-layout.md#hit-highlighting) can help you identify the match in the response.
 
 > [!NOTE]
-> The use of hit highlighting to identify fuzzy matches has limitations and only works for basic fuzzy search. If your index has scoring profiles, or if you layer the query with more syntax, hit highlighting might fail to identify the match. 
+> The use of hit highlighting to identify fuzzy matches has limitations and only works for basic fuzzy search. If your index has scoring profiles, or if you layer the query with more syntax, hit highlighting might fail to identify the match.
 
 ### Example 1: fuzzy search with the exact term
 
@@ -129,7 +127,7 @@ Trying one more request, further modify the search term by taking out one last c
 search=scal~&highlight=Description
 ```
 
-Notice that the same response is returned, but now instead of matching on "special", the fuzzy match is on "SQL".
+The same response is returned, but now instead of matching on "special", the fuzzy match is on "SQL".
 
 ```output
 "@search.score": 0.4232868,
@@ -142,9 +140,9 @@ Notice that the same response is returned, but now instead of matching on "speci
 
 The point of this expanded example is to illustrate the clarity that hit highlighting can bring to ambiguous results. In all cases, the same document is returned. Had you relied on document IDs to verify a match, you might miss the shift from "special" to "SQL".
 
-## See also
+## Related content
 
-+ [How full text search works in Azure AI Search (query parsing architecture)](search-lucene-query-architecture.md)
-+ [Search explorer](search-explorer.md)
-+ [How to query in .NET](./search-get-started-text.md)
-+ [How to query in REST](./search-get-started-powershell.md)
+- [Full-text search in Azure AI Search](search-lucene-query-architecture.md)
+- [Quickstart: Use Search explorer to run queries in the Azure portal](search-explorer.md)
+- [Quickstart: Full-text search](search-get-started-text.md)
+- [How to query in REST](./search-get-started-powershell.md)

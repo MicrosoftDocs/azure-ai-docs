@@ -1,19 +1,27 @@
----  
-title: Indexing ACLs using the push REST API
-titleSuffix: Azure AI Search  
-description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.  
-ms.service: azure-ai-search  
-ms.topic: how-to 
-ms.date: 02/27/2026 
-author: admayber
-ms.author: admayber  
----  
+---
+title: Indexing ACLs Using the Push REST API
+description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.
+ms.reviewer: admayber
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 02/27/2026
+ai-usage: ai-assisted
+---
 
-# Indexing document Access Control Lists (ACLs) using the push REST APIs
+# Indexing document access control lists (ACLs) using the push REST APIs (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
+Indexing documents, along with their associated [access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [role-based access control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
 
 Key features include:
 
@@ -27,7 +35,7 @@ This article explains how to use the push REST API to index document-level permi
 
 - Content with ACL metadata from [Microsoft Entra ID](/entra/fundamentals/whatis) or another POSIX-style ACL system.
 
-- The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
+- The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
 
 - An index schema with `permissionFilterOption` enabled, plus `permissionFilter` field attributes that store document permissions.
 
@@ -72,7 +80,7 @@ Here's a basic example schema that includes all `permissionFilter` types:
 Once you have an index with permission-filter fields, you can populate those values using the push indexing API, just like any other document fields. Here's an example using the specified index schema, where each document specifies the indexing action, key field (`DocumentId`), and permission fields. Documents should also include content, but that field is omitted in this example for brevity.
 
 ```https
-POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-11-01-preview
+POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2026-05-01-preview
 {
   "value": [
     {

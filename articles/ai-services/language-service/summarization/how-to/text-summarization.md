@@ -3,7 +3,7 @@ title: Summarize text with the extractive summarization API
 titleSuffix: Foundry Tools
 description: This article shows you how to summarize text with the extractive summarization API.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 12/15/2025

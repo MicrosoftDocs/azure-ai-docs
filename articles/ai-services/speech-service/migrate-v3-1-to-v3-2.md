@@ -3,14 +3,15 @@ title: Migrate from v3.1 to v3.2 REST API - Speech service
 titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.1 to v3.2 of the Speech to text REST API.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/28/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 #Customer intent: As a developer, I want to migrate code from v3.1 to v3.2 of the Speech to text REST API.
+ai-usage: ai-assisted
 ---
 
 # Migrate code from v3.1 to v3.2 of the REST API
@@ -20,13 +21,13 @@ The Speech to text REST API is used for [fast transcription](./fast-transcriptio
 > [!IMPORTANT]
 > Speech to text REST API version `2025-10-15` is the latest version that's generally available. 
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
-> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on March 31st, 2026. 
+> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` were retired on March 31, 2026. 
 > 
 > For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), [v3.2 to 2024-11-15](migrate-2024-11-15.md) and [2024-11-15 to 2025-10-15](migrate-2025-10-15.md) migration guides.
 
 ## Base path
 
-You must update the base path in your code from `/speechtotext/v3.1` to `/speechtotext/v3.2`. For example, to get base models in the `eastus` region, use `https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base` instead of `https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base`.
+You must update the base path in your code from `/speechtotext/v3.1` to `/speechtotext/v3.2`. For example, to get base models in the `eastus` region, use `https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base` instead of `https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base`.
 
 For more information, see [Operation IDs](#operation-ids) later in this guide.
 
@@ -294,7 +295,7 @@ Added a new `copy` property.
 
 ## Operation IDs
 
-You must update the base path in your code from `/speechtotext/v3.1` to `/speechtotext/v3.2`. For example, to get base models in the `eastus` region, use `https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base` instead of `https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base`.
+You must update the base path in your code from `/speechtotext/v3.1` to `/speechtotext/v3.2`. For example, to get base models in the `eastus` region, use `https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base` instead of `https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.1/models/base`.
 
 
 ## Next steps

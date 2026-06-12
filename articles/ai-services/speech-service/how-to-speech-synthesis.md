@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to convert text to speech, including object construction and design patterns, supported audio output formats, and custom configuration options.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go
@@ -15,8 +15,24 @@ zone_pivot_groups: programming-languages-speech-services
 
 # How to synthesize speech from text
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/how-to/speech-synthesis/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/speech-synthesis/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/speech-synthesis/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/how-to/speech-synthesis/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/speech-synthesis/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -27,32 +43,16 @@ zone_pivot_groups: programming-languages-speech-services
 [!INCLUDE [Go include](includes/how-to/speech-synthesis/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/how-to/speech-synthesis/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/how-to/speech-synthesis/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/how-to/speech-synthesis/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/how-to/speech-synthesis/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/how-to/speech-synthesis/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/how-to/speech-synthesis/rest.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](includes/how-to/speech-synthesis/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/how-to/speech-synthesis/swift.md)]
 ::: zone-end
 
 ## Next steps

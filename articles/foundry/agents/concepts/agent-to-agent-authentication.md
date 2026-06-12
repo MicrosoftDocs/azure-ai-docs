@@ -2,14 +2,14 @@
 title: "Agent2Agent (A2A) authentication"
 description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/05/2026
 author: aahill
 ms.author: aahi
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -30,7 +30,9 @@ In general, there are two authentication scenarios:
 Before you choose an authentication method, you need:
 
 - Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../how-to/create-projects.md).
-- The **Azure AI User** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+- The **Foundry User** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - The A2A endpoint URL you want to connect to. Contact the endpoint publisher to confirm which authentication methods the endpoint supports.
 - Credentials for your selected authentication method:
   - **Key-based**: An API key, personal access token (PAT), or other secret token from the endpoint publisher.
@@ -125,7 +127,7 @@ When the agent invokes the A2A endpoint, Agent Service uses the project's manage
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry User** role on the project.
 
 OAuth identity passthrough enables your agent to act on behalf of individual users. Use this method when actions should be scoped to each user's permissions, such as accessing their personal files, repositories, or other protected resources.
 
@@ -228,7 +230,7 @@ Use the following table to diagnose and resolve common authentication issues:
 | Key-based authentication fails with 400 Bad Request | Incorrect header name or value format | Check the endpoint documentation for the expected header format. Common formats include `Authorization: Bearer <token>` and `x-api-key: <key>`. |
 | Microsoft Entra ID authentication fails with 403 Forbidden | The identity doesn't have the required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service. Role assignment changes can take up to 10 minutes to propagate. |
 | Microsoft Entra ID authentication fails with 401 Unauthorized | The underlying service doesn't accept Microsoft Entra ID tokens, or the audience is incorrect | Confirm the underlying service supports Microsoft Entra ID authentication. Check that the A2A endpoint is configured to accept tokens for the correct audience. |
-| Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Azure AI User** role on the Foundry project. |
+| Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Foundry User** role on the Foundry project. |
 | No consent link appears for OAuth | OAuth identity passthrough isn't configured, or the agent didn't invoke the A2A tool | Verify the project connection is configured for OAuth identity passthrough. Trigger an action that invokes the A2A tool. |
 | Consent link appears but sign-in fails | Custom OAuth configuration is incorrect | For custom OAuth, verify the authorization URL, client ID, and redirect URL are correct. Confirm the redirect URL is added to your OAuth app registration. |
 | Refresh token expired | User hasn't interacted with the agent for an extended period | The user needs to go through the consent flow again. This is expected behavior for security. |

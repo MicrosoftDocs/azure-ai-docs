@@ -1,6 +1,5 @@
 ---
-title: Monitor indexer status and results
-titleSuffix: Azure AI Search
+title: Monitor Indexer Status and Results
 description: Monitor the status, progress, and results of Azure AI Search indexers in the Azure portal, using the REST API, or the Azure SDKs.
 ms.service: azure-ai-search
 author: mattwojo
@@ -9,7 +8,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 08/08/2025
+ms.date: 03/17/2026
 ms.update-cycle: 365-days
 ---
 
@@ -30,7 +29,9 @@ You can see the current status of all of your indexers in your search service po
 | **Failed** | The number of errors exceeded **Max failed items** and indexing stops. |
 | **Reset** | The indexer's internal change tracking state was reset. The indexer runs in full, refreshing all documents, and not just those with newer timestamps. |
 
-You can select on an indexer in the list to see more details about the indexer's current and recent runs.
+You can select an indexer in the list to see more details about the indexer's current and recent runs. 
+
+To see detailed logs for a specific run, select the run’s **Status** value (for example, **Failed**), and then select "Download as CSV".
 
    ![Indexer summary and execution history](media/search-monitor-indexers/indexer-summary.png "Indexer summary and execution history")
 
@@ -68,7 +69,7 @@ You can also configure the graph to see the number of skill invocations over the
 You can retrieve the status and execution history of an indexer using the [Get Indexer Status command](/rest/api/searchservice/indexers/get-status):
 
 ```http
-GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2025-09-01
+GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2026-04-01
 api-key: [Search service admin key]
 ```
 

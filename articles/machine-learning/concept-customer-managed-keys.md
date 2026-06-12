@@ -9,15 +9,20 @@ ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 01/28/2025
-ms.custom: engagement-fy23, build-2024
+ms.date: 06/05/2026
+ai-usage: ai-assisted
+ms.custom: dev-focus
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 # Customer-managed keys for Azure Machine Learning
 
+:::moniker range="azureml-api-1"
+[!INCLUDE [sdk-v1-deprecation](includes/sdk-v1-deprecation.md)]
+:::moniker-end
+
 Azure Machine Learning is built on top of multiple Azure services. Although the stored data is encrypted through encryption keys that Microsoft provides, you can enhance security by also providing your own (customer-managed) keys. The keys that you provide are stored in Azure Key Vault. Your data can be stored on a set of other resources that you manage in your Azure subscription, or [service-side on Microsoft managed resources](#service-side-encryption-of-metadata).
 
-In addition to customer-managed keys (CMK), Azure Machine Learning provides an [high business impact configuration](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) for highly sensitive data workloads. Enabling this configuration reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
+In addition to customer-managed keys (CMK), Azure Machine Learning provides a [high business impact configuration](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) for highly sensitive data workloads. Enabling this configuration reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 
 ## Prerequisites
 
@@ -31,6 +36,8 @@ The key vault must enable soft delete and purge protection. The managed identity
 * Get
 
 For example, the managed identity for Azure Cosmos DB would need to have those permissions to the key vault.
+
+If your key vault uses the Azure role-based access control (RBAC) permission model instead of access policies, assign the **Key Vault Crypto Service Encryption User** role to the managed identity rather than the individual permissions listed earlier.
 
 ## Limitations
 
@@ -106,15 +113,15 @@ Azure Machine Learning uses compute resources to train and deploy machine learni
 :::moniker range="azureml-api-1"
 | Compute | Encryption |
 | ----- | ----- |
-| Azure Container Instances | Data is encrypted with a Microsoft-managed key or a customer-managed key. </br>For more information, see [Encrypt deployment data](/azure/container-instances/container-instances-encrypt-data). |
-| Azure Kubernetes Service | Data is encrypted with a Microsoft-managed key or a customer-managed key. </br>For more information, see [Bring your own keys with Azure disks in Azure Kubernetes Service](/azure/aks/azure-disk-customer-managed-keys). |
+| Azure Container Instances | Data is encrypted with a Microsoft-managed key or a customer-managed key. <br/>For more information, see [Encrypt deployment data](/azure/container-instances/container-instances-encrypt-data). |
+| Azure Kubernetes Service | Data is encrypted with a Microsoft-managed key or a customer-managed key. <br/>For more information, see [Bring your own keys with Azure disks in Azure Kubernetes Service](/azure/aks/azure-disk-customer-managed-keys). |
 | Azure Machine Learning compute instance | The local scratch disk is encrypted if you enable the `hbi_workspace` flag for the workspace. |
 | Azure Machine Learning compute cluster | The OS disk is encrypted in Azure Storage with Microsoft-managed keys. The temporary disk is encrypted if you enable the `hbi_workspace` flag for the workspace. |
 :::moniker-end
 :::moniker range="azureml-api-2"
 | Compute | Encryption |
 | ----- | ----- |
-| Azure Kubernetes Service | Data is encrypted with a Microsoft-managed key or a customer-managed key. </br>For more information, see [Bring your own keys with Azure disks in Azure Kubernetes Service](/azure/aks/azure-disk-customer-managed-keys). |
+| Azure Kubernetes Service | Data is encrypted with a Microsoft-managed key or a customer-managed key. <br/>For more information, see [Bring your own keys with Azure disks in Azure Kubernetes Service](/azure/aks/azure-disk-customer-managed-keys). |
 | Azure Machine Learning compute instance | The local scratch disk is encrypted if you enable the `hbi_workspace` flag for the workspace. |
 | Azure Machine Learning compute cluster | The OS disk is encrypted in Azure Storage with Microsoft-managed keys. The temporary disk is encrypted if you enable the `hbi_workspace` flag for the workspace. |
 :::moniker-end
@@ -135,7 +142,7 @@ The OS disk for a compute instance is encrypted with Microsoft-managed keys in A
 
 In standard workspace configurations, Azure Machine Learning collects diagnostic information for performance monitoring and improvement, as well as the troubleshooting of your compute clusters. For example, when two jobs are run on the same compute cluster using the same docker image, then the same image will be reusable between jobs without having to be rebuild or pulled twice reducing job start times.
 
-When handling highly sensitive data workloads, you may opt-out from the above behavior by setting the `hbi` flag on your workspace. This flag enables the following behaviors:
+When handling highly sensitive data workloads, you may opt-out from the above behavior by setting the `hbi_workspace` flag on your workspace. This flag enables the following behaviors:
 * It reduces the amount of data that Microsoft collects for diagnostic purposes from your compute clusters and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 * Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster. This behavior is only enforced if you didn't create any previous clusters in that subscription. Otherwise, you are required to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
 * Cleans up your local scratch disk between jobs. For example, this cleans up cached docker images and may affect job startup speed.

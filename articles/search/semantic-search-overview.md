@@ -1,20 +1,20 @@
 ---
-title: Semantic ranking
-titleSuffix: Azure AI Search
-description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
+title: Semantic Ranking Overview
+description: Learn how semantic ranking in Azure AI Search uses deep learning language models to rerank results, improve relevance, and enhance search quality for your users.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 01/15/2026
+ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
 # Semantic ranking in Azure AI Search
 
 In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. Semantic ranker is also built into [agentic retrieval](agentic-retrieval-overview.md). This article is a high-level introduction to help you understand the behaviors and benefits of semantic ranker.
 
-Semantic ranker is a premium feature that's billed by usage, but you can use it for free subject to [service limits](/azure/search/search-limits-quotas-capacity#index-limits) for the free tier. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started-with-semantic-ranker).
+Semantic ranker is a premium feature that's billed by usage, but you can use it for free subject to [service limits](/azure/search/search-limits-quotas-capacity#index-limits) for the free tier. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started).
 
 ## What is semantic ranking?
 
@@ -130,33 +130,24 @@ If you enable support for [synonym maps associated to a field](search-synonyms.m
 
 ## Availability and pricing
 
-Semantic ranker is available [in selected regions](search-region-support.md). Use it as a standalone feature and as a built-in component of [agentic retrieval](agentic-retrieval-overview.md).
+Semantic ranker is available in [select regions](search-region-support.md). It can be used as a standalone feature or as a built-in component of [agentic retrieval](agentic-retrieval-overview.md). Each feature is billed independently.
 
-You can disable semantic ranker for your search service, use it on a limited basis for free, or use it more expansively with pay-as-you-go billing:
-
-| Plan | Description |
-|------|-------------|
-| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic reasoning tokens per month. Higher tiers can also use the free plan. |
-| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you pay for each additional 1,000 requests. After the first 50 million agentic reasoning tokens per month, you pay a nominal fee for each one million agentic reasoning tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
-
-The [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/) shows you the billing rate for different currencies and intervals.
+Semantic ranker offers a free plan (default) with a monthly free request allowance and a standard plan for pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
 
 Charges for semantic ranker occur when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
 
-## How to get started with semantic ranker
+## How to get started
 
 1. [Check regional availability](search-region-support.md).
 
-1. [Sign in to Azure portal](https://portal.azure.com).
-
-1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md). The free plan is the default.
+1. (Optional) [Switch to the standard billing plan](semantic-how-to-enable-disable.md) for usage beyond the free monthly quota.
 
 1. [Configure semantic ranker in a search index](semantic-how-to-configure.md).
 
 1. [Set up queries to return semantic captions and highlights](semantic-how-to-query-request.md).
 
-1. [Optionally, return semantic answers](semantic-answers.md).
+1. (Optional) [Return semantic answers](semantic-answers.md).
 
-## See also
+## Related content
 
-* [Blog: Outperforming vector search with hybrid retrieval and ranking capabilities](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)
+* [Blog: Outperforming vector search with hybrid retrieval and ranking capabilities](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167)

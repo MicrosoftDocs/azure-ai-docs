@@ -1,21 +1,20 @@
 ---
 title: Hybrid Search Scoring (RRF)
-titleSuffix: Azure AI Search
 description: Learn about the Reciprocal Rank Fusion (RRF) algorithm used to unify search scores from parallel queries in Azure AI Search.
-author: yahnoosh
-ms.author: jlembicz
+ms.reviewer: jlembicz
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 01/21/2026
+ai-usage: ai-assisted
 ---
 
 # Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)
 
-Reciprocal Rank Fusion (RRF) is an algorithm that evaluates the search scores from multiple, previously ranked results to produce a unified result set. In Azure AI Search, RRF is used when two or more queries execute in parallel. Namely, for [hybrid queries](hybrid-search-overview.md) and for [multiple vector queries](vector-search-overview.md). Each individual query produces a ranked result set, and RRF merges and homogenizes the rankings into a single result set for the query response. 
+Reciprocal Rank Fusion (RRF) is an algorithm that evaluates search scores from multiple previously ranked results to produce a single, unified result set. In Azure AI Search, RRF is used when two or more queries execute in parallel, such as [hybrid queries](hybrid-search-overview.md) and [multiple vector queries](vector-search-overview.md). Each individual query produces a ranked result set, and RRF merges and homogenizes those rankings into a single result set for the query response.
 
-RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings and give higher importance to items that are ranked higher in multiple lists. This approach can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.
+RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings and give higher importance to items that are ranked higher in multiple lists. This approach can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.
 
 ## How RRF ranking works
 
@@ -25,11 +24,11 @@ Here's a simple explanation of the RRF process:
 
 1. Get ranked search results from multiple queries running in parallel.
 
-1. Assign reciprocal rank scores for results in each of the ranked lists. RRF generates a new `@search.score` for each match in each result set. For each document in the search results, the engine assigns a reciprocal rank score based on its position in the list. The score is calculated as `1/(rank + k)`, where `rank` is the position of the document in the list and `k` is a constant. Experiments show the algorithm performs best when you set `k` to a small value, such as 60. **Note that this `k` value is a constant in the RRF algorithm and entirely separate from the `k` that controls the number of nearest neighbors.**
+1. Assign reciprocal rank scores for results in each of the ranked lists. RRF generates a new `@search.score` for each match in each result set. For each document in the search results, the engine assigns a reciprocal rank score based on its position in the list. The score is calculated as `1/(rank + k)`, where `rank` is the position of the document in the list and `k` is a constant. Experiments show the algorithm performs best when you set `k` to a small value, such as 60. **This `k` value is a constant in the RRF algorithm and entirely separate from the `k` that controls the number of nearest neighbors.**
 
-1. Combine scores. For each document, the engine sums the reciprocal rank scores obtained from each search system, producing a combined score for each document. 
+1. Combine scores. For each document, the engine sums the reciprocal rank scores obtained from each search system, producing a combined score for each document.
 
-1. The engine ranks documents based on combined scores and sorts them. The resulting list is the fused ranking. 
+1. The engine ranks documents based on combined scores and sorts them. The resulting list is the fused ranking.
 
 Only fields marked as `searchable` in the index, or `searchFields` in the query, are used for scoring. Only fields marked as `retrievable`, or fields specified in `select` in the query, are returned in search results, along with their search score.
 
@@ -37,20 +36,20 @@ Only fields marked as `searchable` in the index, or `searchFields` in the query,
 
 RRF is used anytime there's more than one query execution. The following examples illustrate query patterns where parallel query execution occurs:
 
-+ A full-text query, plus one vector query (simple hybrid scenario), equals two query executions.
-+ A full-text query, plus one vector query targeting two vector fields, equals three query executions.
-+ A full-text query, plus two vector queries targeting five vector fields, equals 11 query executions.
+- A full-text query, plus one vector query (simple hybrid scenario), equals two query executions.
+- A full-text query, plus one vector query targeting two vector fields, equals three query executions.
+- A full-text query, plus two vector queries targeting five vector fields, equals 11 query executions.
 
 ## Scores in hybrid search results
 
 Whenever results are ranked, the `@search.score` property contains the value used to order the results. Scores are generated by ranking algorithms that vary for each method. Each algorithm has its own range and magnitude.
 
-The following chart identifies the scoring property returned on each match, algorithm, and range of scores for each relevance ranking algorithm. For more information and a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
+The following table identifies the scoring property returned on each match, algorithm, and range of scores for each relevance ranking algorithm. For more information and a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
 
 | Search method | Parameter | Scoring algorithm | Range |
-|---------------|-----------|-------------------|-------|
+| --- | --- | --- | --- |
 | full-text search | `@search.score` | BM25 algorithm | No upper limit. |
-| vector search | `@search.score` | HNSW algorithm, using the similarity metric specified in the HNSW configuration. | 0.333 - 1.00 (Cosine), 0 to 1 for Euclidean and DotProduct. | 
+| vector search | `@search.score` | HNSW algorithm, using the similarity metric specified in the HNSW configuration. | 0.333 - 1.00 (Cosine), 0 to 1 for Euclidean and DotProduct. |
 | hybrid search | `@search.score` | RRF algorithm | Upper limit is bounded by the number of queries being fused, with each query contributing a maximum of approximately `1/k` to the RRF score (this is the `k` parameter in the RRF algorithm, not the vector query). For example, merging three queries produces higher RRF scores than if only two search results are merged. |
 | semantic ranking | `@search.rerankerScore` | Semantic ranking | 0.00 - 4.00 |
 
@@ -62,14 +61,14 @@ You can deconstruct a search score to view its subscores. For vector queries, th
 
 To get subscores:
 
-+ Use the [Search Documents REST API](/rest/api/searchservice/documents/search-post#request-body) or an Azure SDK package that provides the feature.
+- Use the [Search Documents REST API](/rest/api/searchservice/documents/search-post#request-body) or an Azure SDK package that provides the feature.
 
-+ Modify a query request, adding a new `debug` parameter set to either `vector`, `semantic` if using semantic ranker, or `all`.
+- Modify a query request, adding a new `debug` parameter set to either `vector`, `semantic` if using semantic ranker, or `all`.
 
 Here's an example of hybrid query that returns subscores in debug mode:
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-09-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-04-01
 
 {
     "vectorQueries": [
@@ -77,7 +76,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
             "vector": [
                 -0.009154141,
                 0.018708462,
-                . . . 
+                . . .
                 -0.02178128,
                 -0.00086512347
             ],
@@ -90,7 +89,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
             "vector": [
                 -0.009154141,
                 0.018708462,
-                . . . 
+                . . .
                 -0.02178128,
                 -0.00086512347
             ],
@@ -119,7 +118,7 @@ Recall that when computing RRF for a certain document, the search engine looks a
 | vector results two | position 5 | 0.81514114 | 2.0 | 1.63028228 |
 | BM25 results | position 10  | 0.8577363 | NA | 0.8577363 |
 
-The document's position in each result set corresponds to an initial score, which is added up to create the final RRF score for that document. 
+The document's position in each result set corresponds to an initial score, which is added up to create the final RRF score for that document.
 
 If you add vector weighting, the initial scores are subject to a weighting multiplier that increases or decreases the score. The default is 1.0, which means no weighting and the initial score is used as-is in RRF scoring. However, if you add a weight of 0.5, the score is reduced and that result becomes less important in the combined ranking. Conversely, if you add a weight of 2.0, the score becomes a larger factor in the overall RRF score.
 
@@ -127,7 +126,7 @@ In this example, the `@search.score` (weighted) values go to the RRF ranking mod
 
 ## Number of ranked results in a hybrid query response
 
-By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full-text search, and the most similar `k` matches for vector search. In a hybrid query, `top` determines the number of results in the response. Based on defaults, the top 50 highest ranked matches of the unified result set are returned. 
+By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full-text search, and the most similar `k` matches for vector search. In a hybrid query, `top` determines the number of results in the response. Based on defaults, the top 50 highest ranked matches of the unified result set are returned.
 
 Often, the search engine finds more results than `top` and `k`. To return more results, use the paging parameters `top`, `skip`, and `next`. Paging is how you determine the number of results on each logical page and navigate through the full payload. You can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to larger values (the default is 1,000) to return more results from the text side of hybrid query.
 
@@ -137,5 +136,5 @@ For more information, see [How to work with search results](search-pagination-pa
 
 ## Related content
 
-+ [Hybrid search](hybrid-search-overview.md)
-+ [Vector search](vector-search-overview.md)
+- [Hybrid search using vectors and full text in Azure AI Search](hybrid-search-overview.md)
+- [Vector search in Azure AI Search](vector-search-overview.md)

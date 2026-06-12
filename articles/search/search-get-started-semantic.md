@@ -1,6 +1,5 @@
 ---
 title: 'Quickstart: Semantic Ranking'
-titleSuffix: Azure AI Search
 description: Learn how to change an existing index to use semantic ranker, which helps rescore search results and promote the most semantically relevant matches.
 author: mattwojo
 ms.author: mattwoj
@@ -10,7 +9,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/04/2026
+ms.date: 03/25/2026
 zone_pivot_groups: search-sdks-rest
 ---
 

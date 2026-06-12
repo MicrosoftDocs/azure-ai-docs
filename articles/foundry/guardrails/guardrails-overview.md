@@ -1,14 +1,16 @@
 ---
 title: "Guardrails and controls overview in Microsoft Foundry"
 description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
-manager: nitinme
-ms.service: azure-ai-foundry
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-content-safety
 ms.topic: concept-article
-ms.date: 02/13/2026
+ms.date: 04/01/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
-ms.custom: azure-ai-guardrails
+ai-usage: ai-assisted
+ms.custom: azure-ai-guardrails, doc-kit-assisted
 # customer intent: As a developer, I want to understand how guardrails work in Microsoft Foundry so that I can implement appropriate safety measures for my models and agents.
 ---
 
@@ -30,14 +32,16 @@ For more information about intervention points, see [Intervention points and con
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
 > [!IMPORTANT]
-> The guardrail system applies to all [Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
+> The guardrail system applies to all [Foundry Models sold by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
-- Azure AI Account Owner role.
+- Foundry Account Owner role.
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
   - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models
@@ -51,18 +55,19 @@ Some risks in Preview aren't yet supported for agents. When controls involving t
 The following table summarizes which risks are applicable to models and agents:
 
 | Risk | Applicable to Models | Applicable to Agents (Preview) |
-|------|---------------------|---------------------|
-| Hate | ✅ | ✅ |
-| Sexual | ✅ | ✅ |
-| Self-harm | ✅ | ✅ |
-| Violence | ✅ | ✅ |
-| User prompt attacks | ✅ | ✅ |
-| Indirect attacks | ✅ | ✅ |
-| Spotlighting (Preview) | ✅ | ❌ |
-| Protected material for code | ✅ | ✅ |
-| Protected material for text | ✅ | ✅ |
-| Groundedness (Preview) | ✅ | ❌ |
-| Personally identifiable information (Preview) | ✅ | ✅ |
+|------|---------------------|-------------------------------|
+| [Hate](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
+| [Sexual](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
+| [Self-harm](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
+| [Violence](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
+| [User prompt attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
+| [Indirect attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
+| [Spotlighting (Preview)](/azure/foundry/openai/concepts/content-filter-prompt-shields#spotlighting-preview) | ✅ | ❌ |
+| [Protected material for code](/azure/ai-services/content-safety/quickstart-protected-material-code?pivots=programming-language-foundry-portal) | ✅ | ✅ |
+| [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
+| [Groundedness (Preview)](/azure/foundry/openai/concepts/content-filter-groundedness) | ✅ | ❌ |
+| [Personally identifiable information (Preview)](/azure/foundry/openai/concepts/content-filter-personal-information) | ✅ | ✅ |
+| [Task Adherence (Preview)](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 
 ### Severity levels
 
@@ -71,11 +76,13 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 | Severity level | Behavior |
 |---------------|----------|
 | **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-classic/foundry-models/how-to/configure-content-filters.md) |
-| **Low** | Flags content at low severity and above. Most restrictive. |
+| **Low** | Flags content at low severity and above. Least restrictive. |
 | **Medium** | Flags content at medium severity and above. |
-| **High** | Flags only the most severe content. Least restrictive. |
+| **High** | Flags only the most severe content. Most restrictive. |
 
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
+
+For Azure Direct Models, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
 
 ### Intervention point applicability
 

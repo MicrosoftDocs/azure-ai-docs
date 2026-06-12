@@ -6,7 +6,7 @@ summary: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft
 metadata:
   title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
   description: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
-  ms.service: azure-ai-document-intelligence
+  ms.service: azure-document-intelligence-foundry-tools
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
@@ -70,9 +70,9 @@ landingContent:
      linkLists:
          - linkListType: concept
            links:
-             - text: 🆕 Retrieval-Augmented Generation (RAG)
+             - text:  Retrieval-Augmented Generation (RAG)
                url:  concept/retrieval-augmented-generation.md
-             - text: 🆕 Batch document analysis
+             - text:  Batch document analysis
                url:  concept-batch-analysis.md
              - text: Accuracy and confidence scores
                url: concept/accuracy-confidence.md

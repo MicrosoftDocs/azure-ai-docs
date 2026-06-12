@@ -1,8 +1,6 @@
 ---
 title: Include File
 description: Include file for getting the endpoint of an Azure AI Search service.
-author: haileytap 
-ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -12,7 +10,7 @@ Each Azure AI Search service has an *endpoint*, which is a unique URL that ident
 
 To get the endpoint:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 

@@ -1,13 +1,13 @@
 ---
 title: "Azure OpenAI in Microsoft Foundry Models v1 REST API reference (classic)"
 description: "Learn how to use Azure OpenAI's v1 REST API. (classic)" 
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle 
-ms.author: mbullwin
+author: alvinashcraft 
+ms.author: aashcraft
 recommendations: false
 ms.custom:
 - classic-and-new
@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI in Microsoft Foundry Models v1 REST API reference (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/latest.md)
 
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
@@ -46,7 +46,7 @@ Pass an auth token with the `authorization` header.
 
 **Scopes:**
 
-- `https://cognitiveservices.azure.com/.default`
+- `https://ai.azure.com/.default`
 
 ## Batch
 
@@ -4005,7 +4005,7 @@ POST {endpoint}/openai/v1/threads
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) | A list of [messages](https://platform.openai.com/docs/api-reference/messages) to start the thread with. | No |  |
+| messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) | A list of [messages](https://developers.openai.com/api/reference/resources/beta/subresources/threads/subresources/messages) to start the thread with. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
 | tool_resources | [OpenAI.CreateThreadRequestToolResources](#openaicreatethreadrequesttoolresources) or null |  | No |  |
 
@@ -4061,12 +4061,12 @@ POST {endpoint}/openai/v1/threads/runs
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
-| model | string | The ID of the [Model](https://platform.openai.com/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
+| model | string | The ID of the [Model](https://developers.openai.com/api/reference/resources/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | No |  |
 | response_format | [OpenAI.AssistantsApiResponseFormatOption](#openaiassistantsapiresponseformatoption) | Specifies the format that the model must output. Compatible with [GPT-4o](https://platform.openai.com/docs/models#gpt-4o), [GPT-4 Turbo](https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.<br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which ensure the model will match your supplied JSON schema. Learn more in the <br>Setting to `{ "type": "json_object" }` enables JSON mode, which ensures the message the model generates is valid JSON.<br>*Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. | No |  |
 | stream | boolean or null | If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. | No |  |
@@ -4544,12 +4544,12 @@ POST {endpoint}/openai/v1/threads/{thread_id}/runs
 |------|------|-------------|----------|---------|
 | additional_instructions | string or null | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | No |  |
 | additional_messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) or null | Adds additional messages to the thread before creating the run. | No |  |
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Overrides the [instructions](https://platform.openai.com/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
-| model | string | The ID of the [Model](https://platform.openai.com/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
+| model | string | The ID of the [Model](https://developers.openai.com/api/reference/resources/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | No |  |
 | reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for<br>reasoning models.<br>Currently supported values are `none`, `minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response.<br>- `gpt-5.1` defaults to `none`, which does not perform reasoning. The supported reasoning values for `gpt-5.1` are `none`, `low`, `medium`, and `high`. Tool calls are supported for all reasoning values in gpt-5.1.<br>- All models before `gpt-5.1` default to `medium` reasoning effort, and do not support `none`.<br>- The `gpt-5-pro` model defaults to (and only supports) `high` reasoning effort.<br>- `xhigh` is supported for all models after `gpt-5.1-codex-max`. | No |  |
 | response_format | [OpenAI.AssistantsApiResponseFormatOption](#openaiassistantsapiresponseformatoption) | Specifies the format that the model must output. Compatible with [GPT-4o](https://platform.openai.com/docs/models#gpt-4o), [GPT-4 Turbo](https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.<br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which ensure the model will match your supplied JSON schema. Learn more in the <br>Setting to `{ "type": "json_object" }` enables JSON mode, which ensures the message the model generates is valid JSON.<br>*Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. | No |  |
@@ -8300,12 +8300,12 @@ gpt-4o-mini
 |------|------|-------------|----------|---------|
 | additional_instructions | string or null | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | No |  |
 | additional_messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) or null | Adds additional messages to the thread before creating the run. | No |  |
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Overrides the [instructions](https://platform.openai.com/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
-| model | string | The ID of the [Model](https://platform.openai.com/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
+| model | string | The ID of the [Model](https://developers.openai.com/api/reference/resources/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | No |  |
 | reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for<br>reasoning models.<br>Currently supported values are `none`, `minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response.<br>- `gpt-5.1` defaults to `none`, which does not perform reasoning. The supported reasoning values for `gpt-5.1` are `none`, `low`, `medium`, and `high`. Tool calls are supported for all reasoning values in gpt-5.1.<br>- All models before `gpt-5.1` default to `medium` reasoning effort, and do not support `none`.<br>- The `gpt-5-pro` model defaults to (and only supports) `high` reasoning effort.<br>- `xhigh` is supported for all models after `gpt-5.1-codex-max`. | No |  |
 | response_format | [OpenAI.AssistantsApiResponseFormatOption](#openaiassistantsapiresponseformatoption) | Specifies the format that the model must output. Compatible with [GPT-4o](https://platform.openai.com/docs/models#gpt-4o), [GPT-4 Turbo](https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.<br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which ensure the model will match your supplied JSON schema. Learn more in the <br>Setting to `{ "type": "json_object" }` enables JSON mode, which ensures the message the model generates is valid JSON.<br>*Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. | No |  |
@@ -8320,12 +8320,12 @@ gpt-4o-mini
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) to use to execute this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) to use to execute this run. | Yes |  |
 | instructions | string or null | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. | No |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
-| model | string | The ID of the [Model](https://platform.openai.com/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
+| model | string | The ID of the [Model](https://developers.openai.com/api/reference/resources/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. | No |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | No |  |
 | response_format | [OpenAI.AssistantsApiResponseFormatOption](#openaiassistantsapiresponseformatoption) | Specifies the format that the model must output. Compatible with [GPT-4o](https://platform.openai.com/docs/models#gpt-4o), [GPT-4 Turbo](https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.<br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which ensure the model will match your supplied JSON schema. Learn more in the <br>Setting to `{ "type": "json_object" }` enables JSON mode, which ensures the message the model generates is valid JSON.<br>*Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. | No |  |
 | stream | boolean or null | If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. | No |  |
@@ -8363,7 +8363,7 @@ request, an empty thread will be created.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) | A list of [messages](https://platform.openai.com/docs/api-reference/messages) to start the thread with. | No |  |
+| messages | array of [OpenAI.CreateMessageRequest](#openaicreatemessagerequest) | A list of [messages](https://developers.openai.com/api/reference/resources/beta/subresources/threads/subresources/messages) to start the thread with. | No |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | No |  |
 | tool_resources | [OpenAI.CreateThreadRequestToolResources](#openaicreatethreadrequesttoolresources) or null |  | No |  |
 
@@ -12371,7 +12371,7 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for execution of this run. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for execution of this run. | Yes |  |
 | cancelled_at | string or null | The Unix timestamp (in seconds) for when the run was cancelled. | Yes |  |
 | completed_at | string or null | The Unix timestamp (in seconds) for when the run was completed. | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run was created. | Yes |  |
@@ -12379,12 +12379,12 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 | failed_at | string or null | The Unix timestamp (in seconds) for when the run failed. | Yes |  |
 | id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
 | incomplete_details | [OpenAI.RunObjectIncompleteDetails](#openairunobjectincompletedetails) or null | Details on why the run is incomplete. Will be `null` if the run is not incomplete. | Yes |  |
-| instructions | string | The instructions that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes |  |
+| instructions | string | The instructions that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes |  |
 | last_error | [OpenAI.RunObjectLastError](#openairunobjectlasterror) or null | The last error associated with this run. Will be `null` if there are no errors. | Yes |  |
 | max_completion_tokens | integer or null | The maximum number of completion tokens specified to have been used over the course of the run. | Yes |  |
 | max_prompt_tokens | integer or null | The maximum number of prompt tokens specified to have been used over the course of the run. | Yes |  |
 | metadata | [OpenAI.Metadata](#openaimetadata) or null |  | Yes |  |
-| model | string | The model that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes |  |
+| model | string | The model that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes |  |
 | object | enum | The object type, which is always `thread.run`.<br>Possible values: `thread.run` | Yes |  |
 | parallel_tool_calls | [OpenAI.ParallelToolCalls](#openaiparalleltoolcalls) | Whether to enable [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | Yes |  |
 | required_action | [OpenAI.RunObjectRequiredAction](#openairunobjectrequiredaction) or null | Details on the action required to continue the run. Will be `null` if no action is required. | Yes |  |
@@ -12394,7 +12394,7 @@ Represents an execution run on a [thread](https://platform.openai.com/docs/api-r
 | temperature | number or null | The sampling temperature used for this run. If not set, defaults to 1. | No |  |
 | thread_id | string | The ID of the [thread](https://platform.openai.com/docs/api-reference/threads) that was executed on as a part of this run. | Yes |  |
 | tool_choice | [OpenAI.AssistantsApiToolChoiceOption](#openaiassistantsapitoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tools and instead generates a message.<br>`auto` is the default value and means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools before responding to the user.<br>Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool. | Yes |  |
-| tools | array of [OpenAI.AssistantTool](#openaiassistanttool) | The list of tools that the [assistant](https://platform.openai.com/docs/api-reference/assistants) used for this run. | Yes | [] |
+| tools | array of [OpenAI.AssistantTool](#openaiassistanttool) | The list of tools that the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) used for this run. | Yes | [] |
 | top_p | number or null | The nucleus sampling value used for this run. If not set, defaults to 1. | No |  |
 | truncation_strategy | [OpenAI.TruncationObject](#openaitruncationobject) | Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run. | Yes |  |
 | usage | [OpenAI.RunCompletionUsage](#openairuncompletionusage) or null |  | Yes |  |
@@ -12602,7 +12602,7 @@ Represents a step in execution of a run.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| assistant_id | string | The ID of the [assistant](https://platform.openai.com/docs/api-reference/assistants) associated with the run step. | Yes |  |
+| assistant_id | string | The ID of the [assistant](https://developers.openai.com/api/reference/resources/beta/subresources/assistants) associated with the run step. | Yes |  |
 | cancelled_at | string or null |  | Yes |  |
 | completed_at | string or null |  | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run step was created. | Yes |  |
@@ -12854,7 +12854,7 @@ Learn more about [Structured Outputs](https://platform.openai.com/docs/guides/st
 
 ### OpenAI.ThreadObject
 
-Represents a thread that contains [messages](https://platform.openai.com/docs/api-reference/messages).
+Represents a thread that contains [messages](https://developers.openai.com/api/reference/resources/beta/subresources/threads/subresources/messages).
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

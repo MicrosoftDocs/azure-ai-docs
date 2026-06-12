@@ -3,8 +3,8 @@ title: Health insurance card processing - Document Intelligence
 titleSuffix: Foundry Tools
 description: Data extraction and analysis extraction using the health insurance card model
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

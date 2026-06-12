@@ -1,10 +1,10 @@
 ---
 title: "Generate synthetic data with Microsoft Foundry (Preview)"
 description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview)."
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
-ms.custom: ignite-2025
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
+ms.custom: ignite-2025, doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/11/2026
 author: ssalgadodev
@@ -39,7 +39,9 @@ This article covers:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Foundry project. For more information, see [create a project with Foundry](../how-to/create-projects.md)
-- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../concepts/rbac-foundry.md)
+- A minimum role assignment of `Foundry User` or optionally `Foundry Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../concepts/rbac-foundry.md)
+
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 - Use one of the **supported regions** for synthetic data generation: `eastus2`, `eastus`, `westus`, `northcentralus`, `southcentralus`, `swedencentral`, `germanywestcentral`, `francecentral`, `uksouth`, `uaenorth`, `japaneast`, `australiaeast`
 
@@ -88,7 +90,7 @@ In this preview, only one reference file is supported. If you have multiple docu
 1. Review generated data by selecting the completed job. A preview panel opens on the right side of the screen showing sample outputs and cost metrics.
 
 > [!IMPORTANT]
-> If you don't have an available generator model, ask your admin to deploy one, or you need to be assigned the `Azure AI Owner` role to deploy models.
+> If you don't have an available generator model, ask your admin to deploy one, or you need to be assigned the `Foundry Owner` role to deploy models.
 
 ### Use your generated synthetic data for fine-tuning
 

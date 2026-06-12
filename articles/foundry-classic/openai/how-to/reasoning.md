@@ -1,13 +1,13 @@
 ---
 title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini (classic)"
 description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 03/06/2026
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 03/17/2026
+author: alvinashcraft
+ms.author: aashcraft
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI reasoning models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/reasoning.md)
 
 Azure OpenAI reasoning models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
@@ -57,7 +57,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -87,14 +87,14 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra ID:**
 
-If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../../../foundry-classic/openai/how-to/managed-identity.md).
 
 ```python
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -256,7 +256,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 ## Reasoning effort
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. GPT-5 reasoning models support a new `reasoning_effort` setting of `minimal`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ### Developer messages
 
@@ -277,7 +277,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -308,14 +308,14 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra ID:**
 
-If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../../../foundry-classic/openai/how-to/managed-identity.md).
 
 ```python
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-  DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+  DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -390,7 +390,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "Here’s a practical, beginner‑friendly checklist to guide you through writing your first Python API, from idea to production.\n\n1) Clarify goals and constraints\n- Who will use it (internal team, public), what problems it solves, expected traffic, latency requirements.\n- Resources you’ll expose (users, orders, etc.) and core operations.\n- Non‑functional needs: security, compliance, uptime, scalability.\n\n2) Choose your API style\n- REST (most common for CRUD and simple integrations).\n- GraphQL (flexible queries, more complex to secure/monitor).\n- gRPC (high‑performance, strongly typed, good for service‑to‑service).\n- For a first API, REST + JSON is usually best.\n\n3) Design the contract first\n- Draft an OpenAPI/Swagger spec: endpoints, request/response schemas, status codes, error model.\n- Decide naming conventions, pagination, filtering, sorting.\n- Define consistent time/date format (ISO‑8601, UTC), ID format, and field casing.\n- Plan versioning strategy (e.g., /v1) and deprecation policy.\n\n4) Plan security and auth\n- Pick auth: API keys for simple internal use; OAuth2/JWT for user auth; mTLS for service‑to‑service.\n- CORS policy for browsers; HTTPS everywhere; security headers.\n- Validate all inputs; avoid leaking stack traces; define rate limits and quotas.\n\n5) Pick your Python stack\n- Frameworks: FastAPI (great typing, validation, auto docs), Flask (minimal), Django REST Framework (batteries included).\n- ASGI/WSGI server: Uvicorn or Gunicorn.\n- Data layer: PostgreSQL + SQLAlchemy/Django ORM; migrations with Alembic/Django migrations.\n- Caching: Redis (optional).\n- Background jobs: Celery/RQ (if needed).\n\n6) Set up the project\n- Create a virtual environment; choose dependency management (pip, Poetry).\n- Establish project structure (app, api, models, services, tests).\n- Add linting/formatting/type checks: black, isort, flake8, mypy; pre‑commit hooks.\n- Configuration via environment variables; secrets via a manager (not in code).\n\n7) Implement core functionality\n- Build endpoints that match your spec; keep business logic in a service layer, not in route handlers.\n- Schema validation (Pydantic with FastAPI, Marshmallow for Flask).\n- Consistent responses and errors; use clear status codes (201 create, 204 no content, 400/404/409/422, 500).\n- Pagination and filtering; idempotency for certain POST operations; ETags/conditional requests if useful.\n\n8) Error handling and an error model\n- Define a standard error body (code, message, details, correlation_id).\n- Log errors with context; don’t expose internal details to clients.\n\n9) Testing strategy\n- Unit tests for services/validators.\n- Integration tests for endpoints (pytest + httpx/requests) with a test database.\n- Contract tests to assert the API matches the OpenAPI spec.\n- Mock external services; measure coverage and focus on critical paths.\n\n10) Documentation and developer experience\n- Auto‑generated docs (FastAPI provides Swagger/ReDoc).\n- Write examples for each endpoint; onboarding and usage notes.\n- Keep a changelog and release notes.\n\n11) Observability and reliability\n- Structured logging (JSON), include request IDs/correlation IDs.\n- Metrics (requests, latency, error rates), health/readiness endpoints.\n- Tracing (OpenTelemetry) if you have multiple services.\n- Error reporting (Sentry or similar).\n\n12) Deployment and operations\n- Containerize with Docker; follow 12‑factor app principles.\n- CI/CD pipeline: run tests, build image, deploy, run migrations.\n- Choose hosting (Render, Fly.io, Railway, Heroku, AWS/GCP/Azure).\n- Configure scaling, connection pools, and timeouts; use a reverse proxy if needed.\n\n13) Performance and data concerns\n- Index your database; avoid N+1 queries; use connection pooling.\n- Load test key endpoints; profile hotspots.\n- Caching strategies where appropriate; consider async I/O for high‑concurrency workloads.\n\n14) Versioning and lifecycle management\n- Keep backward compatibility for minor changes; add fields rather than changing semantics.\n- Communicate deprecations; sunset old versions with a timeline.\n\n15) Governance, compliance, and safety\n- Handle PII correctly; data retention and audit logs if required.\n- Least‑privilege DB access; rotate secrets; review third‑party dependencies.\n\nBeginner‑friendly defaults\n- FastAPI + Pydantic + Uvicorn\n- PostgreSQL + SQLAlchemy + Alembic\n- pytest + httpx + coverage\n- black, isort, flake8, mypy, pre‑commit\n- Docker + simple CI (GitHub Actions) + a managed host\n\nCommon pitfalls to avoid\n- Inconsistent status codes or error formats.\n- Weak input validation and missing authentication.\n- Business logic inside route handlers (hard to test/maintain).\n- No migrations or tests; no logging/metrics.\n- Ignoring pagination and timezones; returning unbounded lists.\n\nIf you share whether it’s public vs internal, expected traffic, and preferred framework, I can tailor this to a concrete starter plan and recommended tools.",
+        "content": "Here's a practical, beginner‑friendly checklist to guide you through writing your first Python API, from idea to production.\n\n1) Clarify goals and constraints\n- Who will use it (internal team, public), what problems it solves, expected traffic, latency requirements.\n- Resources you'll expose (users, orders, etc.) and core operations.\n- Non‑functional needs: security, compliance, uptime, scalability.\n\n2) Choose your API style\n- REST (most common for CRUD and simple integrations).\n- GraphQL (flexible queries, more complex to secure/monitor).\n- gRPC (high‑performance, strongly typed, good for service‑to‑service).\n- For a first API, REST + JSON is usually best.\n\n3) Design the contract first\n- Draft an OpenAPI/Swagger spec: endpoints, request/response schemas, status codes, error model.\n- Decide naming conventions, pagination, filtering, sorting.\n- Define consistent time/date format (ISO‑8601, UTC), ID format, and field casing.\n- Plan versioning strategy (e.g., /v1) and deprecation policy.\n\n4) Plan security and auth\n- Pick auth: API keys for simple internal use; OAuth2/JWT for user auth; mTLS for service‑to‑service.\n- CORS policy for browsers; HTTPS everywhere; security headers.\n- Validate all inputs; avoid leaking stack traces; define rate limits and quotas.\n\n5) Pick your Python stack\n- Frameworks: FastAPI (great typing, validation, auto docs), Flask (minimal), Django REST Framework (batteries included).\n- ASGI/WSGI server: Uvicorn or Gunicorn.\n- Data layer: PostgreSQL + SQLAlchemy/Django ORM; migrations with Alembic/Django migrations.\n- Caching: Redis (optional).\n- Background jobs: Celery/RQ (if needed).\n\n6) Set up the project\n- Create a virtual environment; choose dependency management (pip, Poetry).\n- Establish project structure (app, api, models, services, tests).\n- Add linting/formatting/type checks: black, isort, flake8, mypy; pre‑commit hooks.\n- Configuration via environment variables; secrets via a manager (not in code).\n\n7) Implement core functionality\n- Build endpoints that match your spec; keep business logic in a service layer, not in route handlers.\n- Schema validation (Pydantic with FastAPI, Marshmallow for Flask).\n- Consistent responses and errors; use clear status codes (201 create, 204 no content, 400/404/409/422, 500).\n- Pagination and filtering; idempotency for certain POST operations; ETags/conditional requests if useful.\n\n8) Error handling and an error model\n- Define a standard error body (code, message, details, correlation_id).\n- Log errors with context; don't expose internal details to clients.\n\n9) Testing strategy\n- Unit tests for services/validators.\n- Integration tests for endpoints (pytest + httpx/requests) with a test database.\n- Contract tests to assert the API matches the OpenAPI spec.\n- Mock external services; measure coverage and focus on critical paths.\n\n10) Documentation and developer experience\n- Auto‑generated docs (FastAPI provides Swagger/ReDoc).\n- Write examples for each endpoint; onboarding and usage notes.\n- Keep a changelog and release notes.\n\n11) Observability and reliability\n- Structured logging (JSON), include request IDs/correlation IDs.\n- Metrics (requests, latency, error rates), health/readiness endpoints.\n- Tracing (OpenTelemetry) if you have multiple services.\n- Error reporting (Sentry or similar).\n\n12) Deployment and operations\n- Containerize with Docker; follow 12‑factor app principles.\n- CI/CD pipeline: run tests, build image, deploy, run migrations.\n- Choose hosting (Render, Fly.io, Railway, Heroku, AWS/GCP/Azure).\n- Configure scaling, connection pools, and timeouts; use a reverse proxy if needed.\n\n13) Performance and data concerns\n- Index your database; avoid N+1 queries; use connection pooling.\n- Load test key endpoints; profile hotspots.\n- Caching strategies where appropriate; consider async I/O for high‑concurrency workloads.\n\n14) Versioning and lifecycle management\n- Keep backward compatibility for minor changes; add fields rather than changing semantics.\n- Communicate deprecations; sunset old versions with a timeline.\n\n15) Governance, compliance, and safety\n- Handle PII correctly; data retention and audit logs if required.\n- Least‑privilege DB access; rotate secrets; review third‑party dependencies.\n\nBeginner‑friendly defaults\n- FastAPI + Pydantic + Uvicorn\n- PostgreSQL + SQLAlchemy + Alembic\n- pytest + httpx + coverage\n- black, isort, flake8, mypy, pre‑commit\n- Docker + simple CI (GitHub Actions) + a managed host\n\nCommon pitfalls to avoid\n- Inconsistent status codes or error formats.\n- Weak input validation and missing authentication.\n- Business logic inside route handlers (hard to test/maintain).\n- No migrations or tests; no logging/metrics.\n- Ignoring pagination and timezones; returning unbounded lists.\n\nIf you share whether it's public vs internal, expected traffic, and preferred framework, I can tailor this to a concrete starter plan and recommended tools.",
         "refusal": null,
         "role": "assistant",
         "annotations": [],
@@ -497,7 +497,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",
@@ -555,7 +555,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -643,7 +643,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
       "content": [
         {
           "annotations": [],
-          "text": "Neural text degeneration refers to the ways language models produce low-quality, repetitive, or vacuous text, especially when generating long outputs. It’s “curious” because models trained to imitate fluent text can still spiral into unnatural patterns. Key aspects:\n\n- Repetition and loops: The model repeats phrases or sentences (“I’m sorry, but...”), often due to high-confidence tokens reinforcing themselves.\n- Loss of specificity: Vague, generic, agreeable text that avoids concrete details.\n- Drift and contradiction: The output gradually departs from context or contradicts itself over long spans.\n- Exposure bias: During training, models see gold-standard prefixes; at inference, they must condition on their own imperfect outputs, compounding errors.\n- Likelihood vs. quality mismatch: Maximizing token-level likelihood doesn’t align with human preferences for diversity, coherence, or factuality.\n- Token over-optimization: Frequent, safe tokens get overused; certain phrases become attractors.\n- Entropy collapse: With greedy or low-temperature decoding, the distribution narrows too much, causing repetitive, low-entropy text.\n- Length and beam search issues: Larger beams or long generations can favor bland, repetitive sequences (the “likelihood trap”).\n\nCommon mitigations:\n\n- Decoding strategies:\n  - Top-k, nucleus (top-p), or temperature sampling to keep sufficient entropy.\n  - Typical sampling and locally typical sampling to avoid dull but high-probability tokens.\n  - Repetition penalties, presence/frequency penalties, no-repeat n-grams.\n  - Contrastive decoding (and variants like DoLa) to filter generic continuations.\n  - Min/max length, stop sequences, and beam search with diversity/penalties.\n\n- Training and alignment:\n  - RLHF/DPO to better match human preferences for non-repetitive, helpful text.\n  - Supervised fine-tuning on high-quality, diverse data; instruction tuning.\n  - Debiasing objectives (unlikelihood training) to penalize repetition and banned patterns.\n  - Mixture-of-denoisers or latent planning to improve long-range coherence.\n\n- Architectural and planning aids:\n  - Retrieval-augmented generation to ground outputs.\n  - Tool use and structured prompting to constrain drift.\n  - Memory and planning modules, hierarchical decoding, or sentence-level control.\n\n- Prompting tips:\n  - Ask for concise answers, set token limits, and specify structure.\n  - Provide concrete constraints or content to reduce generic filler.\n  - Use “say nothing if uncertain” style instructions to avoid vacuity.\n\nRepresentative papers/terms to search:\n- Holtzman et al., “The Curious Case of Neural Text Degeneration” (2020): nucleus sampling.\n- Welleck et al., “Neural Text Degeneration with Unlikelihood Training.”\n- Li et al., “A Contrastive Framework for Decoding.”\n- Su et al., “DoLa: Decoding by Contrasting Layers.”\n- Meister et al., “Typical Decoding.”\n- Ouyang et al., “Training language models to follow instructions with human feedback.”\n\nIn short, degeneration arises from a mismatch between next-token likelihood and human preferences plus decoding choices; careful decoding, training objectives, and grounding help prevent it.",
+          "text": "Neural text degeneration refers to the ways language models produce low-quality, repetitive, or vacuous text, especially when generating long outputs. It's "curious" because models trained to imitate fluent text can still spiral into unnatural patterns. Key aspects:\n\n- Repetition and loops: The model repeats phrases or sentences ("I'm sorry, but..."), often due to high-confidence tokens reinforcing themselves.\n- Loss of specificity: Vague, generic, agreeable text that avoids concrete details.\n- Drift and contradiction: The output gradually departs from context or contradicts itself over long spans.\n- Exposure bias: During training, models see gold-standard prefixes; at inference, they must condition on their own imperfect outputs, compounding errors.\n- Likelihood vs. quality mismatch: Maximizing token-level likelihood doesn't align with human preferences for diversity, coherence, or factuality.\n- Token over-optimization: Frequent, safe tokens get overused; certain phrases become attractors.\n- Entropy collapse: With greedy or low-temperature decoding, the distribution narrows too much, causing repetitive, low-entropy text.\n- Length and beam search issues: Larger beams or long generations can favor bland, repetitive sequences (the "likelihood trap").\n\nCommon mitigations:\n\n- Decoding strategies:\n  - Top-k, nucleus (top-p), or temperature sampling to keep sufficient entropy.\n  - Typical sampling and locally typical sampling to avoid dull but high-probability tokens.\n  - Repetition penalties, presence/frequency penalties, no-repeat n-grams.\n  - Contrastive decoding (and variants like DoLa) to filter generic continuations.\n  - Min/max length, stop sequences, and beam search with diversity/penalties.\n\n- Training and alignment:\n  - RLHF/DPO to better match human preferences for non-repetitive, helpful text.\n  - Supervised fine-tuning on high-quality, diverse data; instruction tuning.\n  - Debiasing objectives (unlikelihood training) to penalize repetition and banned patterns.\n  - Mixture-of-denoisers or latent planning to improve long-range coherence.\n\n- Architectural and planning aids:\n  - Retrieval-augmented generation to ground outputs.\n  - Tool use and structured prompting to constrain drift.\n  - Memory and planning modules, hierarchical decoding, or sentence-level control.\n\n- Prompting tips:\n  - Ask for concise answers, set token limits, and specify structure.\n  - Provide concrete constraints or content to reduce generic filler.\n  - Use "say nothing if uncertain" style instructions to avoid vacuity.\n\nRepresentative papers/terms to search:\n- Holtzman et al., "The Curious Case of Neural Text Degeneration" (2020): nucleus sampling.\n- Welleck et al., "Neural Text Degeneration with Unlikelihood Training."\n- Li et al., "A Contrastive Framework for Decoding."\n- Su et al., "DoLa: Decoding by Contrasting Layers."\n- Meister et al., "Typical Decoding."\n- Ouyang et al., "Training language models to follow instructions with human feedback."\n\nIn short, degeneration arises from a mismatch between next-token likelihood and human preferences plus decoding choices; careful decoding, training objectives, and grounding help prevent it.",
           "type": "output_text",
           "logprobs": null
         }
@@ -733,7 +733,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -816,7 +816,7 @@ print(response.model_dump_json(indent=2))
       "content": [
         {
           "annotations": [],
-          "text": "“strawberry” has 3 r’s, so the radius is 3.\nArea = πr² = π × 3² = 9π ≈ 28.27 square units.",
+          "text": ""strawberry" has 3 r's, so the radius is 3.\nArea = πr<sup>2</sup> = π × 3<sup>2</sup> = 9π ≈ 28.27 square units.",
           "type": "output_text",
           "logprobs": null
         }
@@ -919,47 +919,50 @@ print(response.model_dump_json(indent=2))
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5.4-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
-| `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
-| `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
-| `gpt-5.2-codex`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
-| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | No access request needed.  |
-| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | No access request needed. | 
-| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.   |
-| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.    |
-| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.     |
-| `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed.    |
-| `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed. |
-| `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)     |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.  |
-| `codex-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)     | No access request needed.    |
-| `o4-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
-| `o3` |  [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
-| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
-|`o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
+| `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central | No access request needed. |
+| `gpt-5.4-nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  | No access request needed. |
+| `gpt-5.4-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
+| `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
+| `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
+| `gpt-5.2-codex`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+| `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | Access is no longer restricted for this model.  |
+| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  Access is no longer restricted for this model.   |
+| `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed.  |
+| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model. |
+| `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | No access request needed. | 
+| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model.  |
+| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Access is no longer restricted for this model.    |
+| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)   | Access is no longer restricted for this model.      |
+| `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  No access request needed.    |
+| `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  |  No access request needed. |
+| `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)     |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.  |
+| `codex-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)     | No access request needed.    |
+| `o4-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
+| `o3` |  [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
+| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.   |
+|`o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).  | Access is no longer restricted for this model.  |
 
 ## API & feature support
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-| **Feature**  | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:---:|:---:|---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| **[Structured Outputs](./structured-outputs.md)** | |  ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)**| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br><br> 1,050,000 Context Window (Coming Soon!)  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br><br> 1,050,000 Context Window (Coming Soon!)  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
-| **[Image input](./gpt-with-vision.md)** | ✅  | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
-| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Streaming | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5.4-nano**, **2026-03-17** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:----:|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
+| **[Developer Messages](#developer-messages)** | ✅| ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| **[Structured Outputs](./structured-outputs.md)** |✅ |✅ |  ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)**| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000 <br><br>Input:<br>922,000<br>Output:<br>128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
+| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Streaming | ✅ | ✅ | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
@@ -973,14 +976,14 @@ print(response.model_dump_json(indent=2))
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is now supported with GPT-5 series reasoning models.<sup>*</sup> <br> `none` is only supported for `gpt-5.1` <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` is not supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
 |`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
-<sup>*</sup> `gpt-5-codex` does not support `reasoning_effort` minimal.
+<sup>*</sup> `gpt-5-codex` also does not support `reasoning_effort` `minimal`.
 
 For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 

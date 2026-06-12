@@ -1,14 +1,14 @@
 ---
 title: "How to migrate to OpenAI JavaScript v4.x (classic)"
 description: "Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI. (classic)"
-author: mrbullwinkle 
-ms.author: mbullwin 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+author: alvinashcraft 
+ms.author: aashcraft 
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 11/26/2025
-manager: nitinme
+manager: mcleans
 ---
 
 # Migrating to the OpenAI JavaScript API library 4.x (classic)
@@ -38,7 +38,7 @@ In order to authenticate the `AzureOpenAI` client, however, we need to use the `
 ```typescript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 const credential = new DefaultAzureCredential();
-const scope = "https://cognitiveservices.azure.com/.default";
+const scope = "https://ai.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 ```
 

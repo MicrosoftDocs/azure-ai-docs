@@ -1,14 +1,13 @@
 ---
-title: Data sources gallery
-titleSuffix: Azure AI Search
+title: Data Sources Gallery
 description: Lists data source connectors for importing into an Azure AI Search index.
-
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 10/21/2025
+ai-usage: ai-assisted
 ---
 
 # Data sources gallery
@@ -18,7 +17,7 @@ Find a data connector from Microsoft or a partner that works with [an indexer](s
 > [!NOTE]
 > The connectors mentioned in this article represent one method for indexing data in Azure AI Search. You also have the option of developing your own connector using the [Push REST API or An Azure SDK](search-what-is-data-import.md#pushing-data-to-an-index).
 
-<a name="ga"></a>
+<a id="ga"></a>
 
 ## Generally available data sources by Azure AI Search
 
@@ -48,7 +47,7 @@ Extract blob metadata and content, serialized into JSON documents, and imported 
 
 By [Azure AI Search](search-what-is-azure-search.md)
 
-Extract rows from an Azure Table, serialized into JSON documents, and imported into a search index as search documents. 
+Extract rows from an Azure Table, serialized into JSON documents, and imported into a search index as search documents.
 
 [More details](search-how-to-index-azure-tables.md)
 
@@ -74,9 +73,9 @@ Connect to Azure Storage through Azure Data Lake Storage Gen2 to extract content
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
@@ -130,17 +129,17 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
 ---
 
-## Logic app connectors
+## Logic App connectors
 
-Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) and the following supported data sources. Note that the Logic Apps artifacts mentioned below, they have a pre-built workflow, however, you can use [any connectors listed under Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors) that pull data from sources and create your own indexing pipeline workflow that pushes data to [Azure AI Search via a Logic App connector](/azure/logic-apps/connectors/azure-ai#azure-ai-search).
+Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) and the following supported data sources. The following Logic Apps artifacts have a pre-built workflow. However, you can use [any connector listed under Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors) that pulls data from sources and create your own indexing pipeline workflow that pushes data to [Azure AI Search via a Logic App connector](/azure/logic-apps/connectors/azure-ai#azure-ai-search).
 
 :::row:::
 :::column span="":::
@@ -188,9 +187,9 @@ OneDrive for Business is a cloud storage, file hosting service that allows users
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
@@ -244,15 +243,15 @@ Connect to Azure Service Bus to send and receive messages. You can perform actio
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
 ---
 
-<a name="preview"></a>
+<a id="preview"></a>
 
 ## Preview data sources by Azure AI Search
 
@@ -308,9 +307,9 @@ Connect to Azure Cosmos DB for MongoDB to extract items from a container, serial
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
@@ -354,22 +353,22 @@ Connect to MySQL database on Azure to extract rows in a table, serialized into J
 :::row:::
 :::column span="":::
 
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
+:::column-end:::
+:::column span="":::
+:::column-end:::
 
 :::row-end:::
 
 ---
 
-<a name="partners"></a>
+<a id="partners"></a>
 
 ## Data sources from our partners
 
 The following Microsoft partners offer custom third-party data connectors. Each partner implements and supports these connectors, which aren't part of Azure AI Search built-in indexers. Before you use a custom connector, review the partner's licensing and usage instructions.
 
-+ [BA Insight](https://www.bainsight.com)
+- [BA Insight](https://www.bainsight.com)
 
-+ [RheinInsights](https://www.rheininsights.com/)
+- [RheinInsights](https://www.rheininsights.com/)
 
-+ [ServiceNow](https://www.servicenow.com)
+- [ServiceNow](https://www.servicenow.com)

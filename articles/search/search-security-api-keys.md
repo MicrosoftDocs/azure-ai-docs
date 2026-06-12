@@ -1,9 +1,6 @@
 ---
-title: Connect Using API keys
-titleSuffix: Azure AI Search
-description: Learn how to use an admin or query API key for inbound access to an Azure AI Search service endpoint.
-manager: nitinme
-
+title: Connect Using API Keys
+description: Learn how to manage and use admin and query API keys for authenticating requests to an Azure AI Search service endpoint.
 ms.service: azure-ai-search
 ai-usage: ai-assisted
 ms.custom:
@@ -50,7 +47,7 @@ You can view and manage API keys using the [Azure portal](https://portal.azure.c
 
 ### [**Portal**](#tab/portal-find)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys** to view admin and query keys.
 
@@ -178,7 +175,7 @@ Here's an example of admin API key usage on a create index request:
 @adminApiKey=aaaabbbb-0000-cccc-1111-dddd2222eeee
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{adminApiKey}}
 
@@ -197,7 +194,7 @@ Here's an example of query API key usage on a Search Documents (GET) request:
 
 ```http
 ### Query an index
-GET /indexes/my-new-index/docs?search=*&api-version=2025-09-01&api-key={{queryApiKey}}
+GET /indexes/my-new-index/docs?search=*&api-version=2026-04-01&api-key={{queryApiKey}}
 ```
 
 > [!NOTE]  
@@ -251,7 +248,7 @@ $headers = @{
 Use a variable to contain the fully qualified query:
 
 ```powershell
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2026-04-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
 ```
 
 Send the request to the search service:
@@ -272,7 +269,7 @@ Restricting access and operations in client apps is essential to safeguarding th
 
 ### [**Portal**](#tab/portal-query)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys** to view API keys.
 
@@ -306,7 +303,7 @@ A script example showing query key usage can be found at [Create or delete query
 
 Two admin keys are created for each service so that you can rotate a primary key while using the secondary key for business continuity.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys**.
 
@@ -326,7 +323,7 @@ After you create new keys via portal or management layer, access is restored to 
 
 ## Migrate from keys to roles
 
-If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles-used-in-search):
+If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles):
 
 + An admin key corresponds to the **Search Service Contributor** and **Search Index Data Contributor** roles.
 + A query key corresponds to the **Search Index Data Reader** role.
@@ -337,7 +334,7 @@ Use role assignments to restrict access to API keys.
 
 It's not possible to use [customer-managed key encryption](search-security-manage-encryption-keys.md) to encrypt API keys. Only sensitive data within the search service itself (for example, index content or connection strings in data source object definitions) can be CMK-encrypted.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
 

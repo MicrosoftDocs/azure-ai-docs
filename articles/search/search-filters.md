@@ -1,17 +1,17 @@
 ---
-title: Text query filters
-titleSuffix: Azure AI Search
-description: Apply filter criteria to include or exclude content before text query execution in Azure AI Search.
+title: Text Query Filters
+description: Filter by user security identity, language, geo-location, or numeric values to reduce search results on queries in a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 03/11/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+ai-usage: ai-assisted
 ---
 
-# Filters in keyword search
+# Filters for keyword search in Azure AI Search
 
 A *filter* provides value-based criteria for including or excluding content before query execution for keyword search, or before or after query execution for vector search. Filters are applied to nonvector fields, but can be used in vector search if documents include nonvector fields. For example, for indexes organized around chunked content, you might have parent-level fields or metadata fields that can be filtered.
 
@@ -27,7 +27,7 @@ Common scenarios include:
 
 + Slice search results based on content in the index. Given a schema with hotel location, categories, and amenities, you might create a filter to explicitly match on criteria (in Seattle, on the water, with a view). 
 
-+ Implement a search experience comes with a filter dependency:
++ Implement a search experience that comes with a filter dependency:
 
   + [Faceted navigation](search-faceted-navigation.md) uses a filter to pass back the facet category selected by the user.
   + [Geospatial search](search-query-odata-geo-spatial-functions.md) uses a filter to pass coordinates of the current location in "find near me" apps and functions that match within an area or by distance.
@@ -49,12 +49,12 @@ Filters are OData expressions, articulated in the [filter syntax](search-query-o
 
 You can specify one filter for each **search** operation, but the filter itself can include multiple fields, multiple criteria, and if you use an **`ismatch`** function, multiple full-text search expressions. In a multi-part filter expression, you can specify predicates in any order (subject to the rules of operator precedence). There's no appreciable gain in performance if you try to rearrange predicates in a particular sequence.
 
-One of the limits on a filter expression is the maximum size limit of the request. The entire request, inclusive of the filter, can be a maximum of 16 MB for POST, or 8 KB for GET. There's also a limit on the number of clauses in your filter expression. A good rule of thumb is that if you have hundreds of clauses, you are at risk of running into the limit. We recommend designing your application in such a way that it doesn't generate filters of unbounded size.
+One of the limits on a filter expression is the maximum size limit of the request. The entire request, inclusive of the filter, can be a maximum of 16 MB for POST, or 8 KB for GET. There's also a limit on the number of clauses in your filter expression. A good rule of thumb is that if you have hundreds of clauses, you risk hitting the limit. We recommend designing your application in such a way that it doesn't generate filters of unbounded size.
 
 The following examples represent prototypical filter definitions in several APIs.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2026-04-01
 {
     "search": "*",
     "filter": "Rooms/any(room: room/BaseRate lt 150.0)",

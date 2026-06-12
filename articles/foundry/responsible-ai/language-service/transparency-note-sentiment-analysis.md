@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "The Sentiment Analysis feature of Azure Language in Foundry Tools evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 08/12/2022
+ms.date: 04/01/2026
 ---
 
 # Transparency note for Sentiment Analysis

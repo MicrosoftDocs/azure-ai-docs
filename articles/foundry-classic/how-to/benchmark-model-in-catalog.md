@@ -1,7 +1,8 @@
 ---
 title: "Compare models using the model leaderboard (classic)"
 description: "Compare model benchmarks across quality, safety, cost, and throughput using the model leaderboard and side-by-side comparison features in Foundry portal. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - ai-learning-hub
@@ -17,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Compare models using the model leaderboard (preview) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/benchmark-model-in-catalog.md)
 
 This article shows you how to streamline model selection in the Foundry [model catalog](../concepts/foundry-models-overview.md) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application.
 
@@ -33,7 +34,7 @@ Analyze and compare models using:
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - A [Foundry project](create-projects.md).
 

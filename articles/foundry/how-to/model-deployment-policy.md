@@ -5,29 +5,25 @@ description: "Manage AI model deployment in Microsoft Foundry portal with built-
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 02/24/2026
+ms.date: 05/29/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Built-in policy for model deployment in Microsoft Foundry portal
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Microsoft Foundry portal. You can use
-these policies to control what models your developers can deploy in the Foundry portal.
 
-## Prerequisites
+[!INCLUDE [model-deployment-policy 1](../includes/how-to-model-deployment-policy-1.md)]
 
-- An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your
-  Azure account lets you access the Foundry portal.
+## Assign the policy
 
-- Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
-
-- Familiarity with Azure Policy. To learn more, see [What is Azure Policy?](/azure/governance/policy/overview).
-
-## Assign the policy 
+> [!NOTE]
+> This policy was previously named *Cognitive Services Deployments should only use approved Registry Models*. The policy definition ID is unchanged, so existing assignments continue to work without any action.
 
 # [Azure CLI](#tab/cli)
 
@@ -44,7 +40,7 @@ Use Azure CLI to find the built-in policy definition and assign it at a scope.
 
     ```azurecli
     az policy definition list \
-       --query "[?displayName=='Cognitive Services Deployments should only use approved Registry Models'].{name:name, id:id}" \
+       --query "[?displayName=='Foundry model deployments should only use approved models'].{name:name, id:id}" \
        --output table
     ```
 
@@ -77,8 +73,8 @@ Use Azure CLI to find the built-in policy definition and assign it at a scope.
 
     ```azurecli
     az policy assignment create \
-       --name "allow-only-approved-registry-models" \
-       --display-name "Allow only approved registry models" \
+       --name "allow-only-approved-models" \
+       --display-name "Allow only approved models" \
        --scope "/subscriptions/<subscription-id>" \
        --policy "<policy-definition-id>" \
        --params @params.json
@@ -96,12 +92,12 @@ Reference:
 1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also
    search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Authoring** > **Definitions**. Then search for `Cognitive Services Deployments should only use approved Registry Models`.
+1. From the left side of the Azure Policy Dashboard, select **Authoring** > **Definitions**. Then search for `Foundry model deployments should only use approved models`.
 
 1. Select **Assign** to assign the policy:
 
    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-   - **Policy definition**: This section already has a value of `Cognitive Services Deployments should only use approved Registry Models`.
+   - **Policy definition**: This section already has a value of `Foundry model deployments should only use approved models`.
    - **Assignment name**: Enter a unique name for the assignment.
 
    You can keep the default values for the rest of the fields or customize them as needed for your organization.
@@ -113,7 +109,7 @@ Reference:
    - **Effect**: Set to [**Deny**](/azure/governance/policy/concepts/effect-deny).
 
      > [!NOTE]
-     > By using the [**audit**](/azure/governance/policy/concepts/effect-audit) option, you can configure the policy to log information to your own compliance dashboard.
+     > By using the [**audit**](/azure/governance/policy/concepts/effect-audit) option, you can configure the policy to log information to your own compliance dashboard before enforcing the policy.
 
    - **Allowed Models Publishers**: Enter a list of publisher names in quotes, separated by commas. Here's an example that shows where to find a publisher name:
 
@@ -138,56 +134,4 @@ Reference:
 
 ---
 
-## Monitor compliance
-
-To monitor compliance with the policy, follow these steps:
-
-1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
-
-1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment.
-
-## Update the policy assignment
-
-To update an existing policy assignment with new models, follow these steps:
-
-1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
-1. From the left side of the Azure Policy Dashboard, select **Assignments** and find the existing policy assignment. Select the ellipsis (...) next to the assignment and select **Edit assignment**.
-1. From the **Parameters** tab, update **Allowed Asset Ids** and **Allowed Models Publishers** with the new approved model IDs and publisher names.
-1. From the **Review + Save** tab, select **Save** to update the policy assignment.
-
-## Best practices
-
-- **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.
-- **Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.
-- **Tags**: Use tags to categorize and manage your policies. For example, tag policies by environment (dev, test, prod) or by department.
-- **Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.
-- **Regular reviews**: Periodically review policy assignments to ensure they align with your organization's requirements.
-- **Testing**: Test policies in a nonproduction environment before applying them to production resources.
-- **Communication**: Make sure developers are aware of the policies in place and understand the implications for their work.
-
-## Verify policy effectiveness
-
-After you assign the policy, verify that it works as expected:
-
-1. Wait at least 15 minutes for the policy assignment to take effect. New assignments don't apply instantly.
-
-1. Attempt to deploy a model that isn't on the allowed list. If the policy uses the **Deny** effect, the deployment fails with a policy violation error.
-
-1. Confirm that deploying an approved model still succeeds.
-
-1. Check the **Compliance** dashboard in Azure Policy to verify that the policy evaluates resources correctly. Noncompliant resources appear within one compliance evaluation cycle (typically up to 24 hours).
-
-## Troubleshoot policy assignment failures
-
-| Symptom | Cause | Resolution |
-|---|---|---|
-| Policy assignment fails with a permissions error | Your account lacks the **Owner** or **Resource Policy Contributor** role at the target scope. | Assign the required role and retry. See [Prerequisites](#prerequisites). |
-| Policy doesn't block noncompliant deployments | The policy assignment hasn't propagated yet, or the effect is set to **Audit** instead of **Deny**. | Wait at least 15 minutes, then retry. Verify that the **Effect** parameter is set to **Deny**. |
-| Approved model is blocked unexpectedly | The model asset ID or publisher name in the policy parameters doesn't match the model exactly. | Compare the parameter values against the model card in the [model catalog](https://ai.azure.com/explore/models). Asset IDs and publisher names are case-sensitive. |
-| Compliance dashboard shows no data | Compliance evaluation hasn't completed yet. Azure Policy evaluates new assignments within 24 hours. | Wait for the next evaluation cycle or trigger an [on-demand evaluation scan](/azure/governance/policy/how-to/get-compliance-data#on-demand-evaluation-scan). |
-| Parameter name mismatch error during assignment | The JSON parameter keys don't match the policy definition. | Run `az policy definition show --name "<definition-id>"` to retrieve the exact parameter names from the definition. Use `allowedPublishers` and `allowedAssetIds`. |
-
-## Related content
-
-- [Azure Policy overview](/azure/governance/policy/overview)
-- [Model catalog overview](/azure/ai-foundry/how-to/model-catalog-overview)
+[!INCLUDE [model-deployment-policy 2](../includes/how-to-model-deployment-policy-2.md)]

@@ -3,8 +3,8 @@ title: Language and Voice Support for Azure Speech
 titleSuffix: Foundry Tools
 description: Learn about language and voice support in Azure Speech for speech to text, text to speech, speech translation, and more. Learn which features support each locale.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley
@@ -36,68 +36,36 @@ Choose a feature:
 
 The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
 
-[!INCLUDE [Language support include](includes/language-support/stt.md)]
-
+**In this section**
+- [Speech to text locales](#speech-to-text-locales)
+- [Custom speech](#custom-speech)
+- [Custom speech display support](#custom-speech-display-support)
+- [LLM speech translation](#llm-speech-translation)
+- [MAI Transcribe-1 supported languages](#mai-transcribe-1-supported-languages)
 
 > [!TIP]
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+
+### Speech to text locales
+
+[!INCLUDE [Language support include](includes/language-support/stt.md)]
+
+### MAI Transcribe-1 supported languages
+
+The following table summarizes the languages supported by [MAI Transcribe-1](mai-transcribe.md) for speech recognition.
+
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 # [Text to speech](#tab/tts)
 
-The table in this section summarizes the locales and voices that text to speech supports. For details, see the table footnotes.
+Learn about the different types and features of Azure Speech voices, or skip to the complete [Text to speech voices](#text-to-speech-voices) table.
 
-More remarks for text-to-speech locales are included in the [Voice styles and roles](#voice-styles-and-roles), [Standard voices](#standard-voices), [Professional voice](#professional-voice), and [Personal voice](#personal-voice) sections in this article.
+## Types of voices
 
-> [!TIP]
-> To determine the right voice for your business needs, check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
->
-> To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+The table in this section represents the locales and voices that text to speech supports. For details, see the following section notes. More remarks for text-to-speech locales are included in the [Voice styles and roles](#voice-styles-and-roles), [Standard voices](#standard-voices), [Professional voice](#professional-voice), and [Personal voice](#personal-voice) sections in this article.
 
 
-[!INCLUDE [Language support include](includes/language-support/tts.md)]
-
-
-## Multilingual voices
-
-Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or `DragonHDOmniLatestNeural` support multiple languages. These voices enable expressive speech synthesis across languages, which helps reduce language barriers and support inclusive global communication.
-
-`DragonHDLatestNeural` and `DragonHDOmniLatestNeural` are neural high‑definition (HD) voices that are based on large language models (LLMs). They can understand the semantic content of the input text, automatically detect emotional cues, and adjust speaking style and tone in real time to better match the sentiment. HD voices maintain a consistent voice persona with their non‑HD (neural) counterparts while providing enhanced capabilities through improved contextual understanding.
-
-`MultilingualNeural` voices represent an earlier generation of multilingual technology. They offer high naturalness but don't have the same level of contextual awareness as HD voices.
-
-The following table lists all supported speaking languages for each multilingual voice. If a voice doesn't support the language of the input text, Azure Speech doesn't return synthesized audio. The table is sorted in descending order by the number of supported languages.
-
-The locale prefix indicates the voice's primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
-
-[!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
-
-## Multi-talker voices
-
-Multi-talker voices enable natural, dynamic conversations with multiple distinct speakers. This innovation enhances the realism of synthesized dialogues by preserving contextual flow, emotional consistency, and natural speech patterns.
-
-Use this capability to generate engaging, podcast-style speech or conversational exchanges with seamless transitions between speakers. Unlike single-talker models, which synthesize each turn in isolation, multi-talker voices maintain coherence across dialogue. This coherence helps ensure a more authentic and immersive listening experience.
-
-[!INCLUDE [Language support include](includes/language-support/multi-talker.md)]
-
-For more information about how to use multi-talker voices via Speech Synthesis Markup Language (SSML), see [Multi-talker voice example](speech-synthesis-markup-voice.md#multi-talker-voice-example).
-
-## Voice styles and roles
-
-In some cases, you can adjust the speaking style to express emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support adjustment of style degree. You can optimize the voice for scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
-
-To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
-
-Use the following table to determine supported styles and roles for each voice.
-
-[!INCLUDE [Language support include](includes/language-support/voice-styles-and-roles.md)]
-
-## Visemes
-
-This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
-
-[!INCLUDE [Language support include](includes/language-support/viseme.md)]
-
-## Standard voices
+### Standard voices
 
 Each standard voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
@@ -105,6 +73,51 @@ Each standard voice supports a specific language and dialect, identified by loca
 > Pricing varies for standard voice and custom voice. For more information, see the [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/speech/) page.
 
 Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can get other sample rates through upsampling or downsampling when synthesizing.
+
+### Multilingual voices
+
+Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or `DragonHDOmniLatestNeural` support multiple languages. These voices enable expressive speech synthesis across languages, which helps reduce language barriers and support inclusive global communication.
+
+`DragonHDLatestNeural` and `DragonHDOmniLatestNeural` are neural high‑definition (HD) voices that are based on large language models (LLMs). They can understand the semantic content of the input text, automatically detect emotional cues, and adjust speaking style and tone in real time to better match the sentiment. HD voices maintain a consistent voice persona with their non‑HD (neural) counterparts while providing enhanced capabilities through improved contextual understanding.
+
+`MultilingualNeural` voices represent an earlier generation of multilingual technology. They offer high naturalness but don't have the same level of contextual awareness as HD voices.
+
+The locale prefix indicates the voice's primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
+
+
+
+> [!TIP]
+> To determine the right voice for your business needs, check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+>
+> To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+
+
+
+### Multi-talker voices
+
+Multi-talker voices enable natural, dynamic conversations with multiple distinct speakers. This innovation enhances the realism of synthesized dialogues by preserving contextual flow, emotional consistency, and natural speech patterns.
+
+Use this capability to generate engaging, podcast-style speech or conversational exchanges with seamless transitions between speakers. Unlike single-talker models, which synthesize each turn in isolation, multi-talker voices maintain coherence across dialogue. This coherence helps ensure a more authentic and immersive listening experience.
+
+For more information about how to use multi-talker voices via Speech Synthesis Markup Language (SSML), see [Multi-talker voice example](speech-synthesis-markup-voice.md#multi-talker-voice-example).
+
+## Voice styles and roles
+
+In some cases, you can adjust the speaking style to express emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support adjustment of style degree. You can optimize the voice for scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
+
+To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
+
+## Voice conversion
+
+[Voice conversion](voice-conversion.md) is a feature for transforming the voice characteristics of audio to a target voice speaker. The following table summarizes the supported locales for voice conversion. Each language is available in all [voice conversion regions](regions.md#regions).
+
+## Text to speech voices
+
+[!INCLUDE [Language support include](includes/language-support/tts.md)]
+
+
+# [Custom TTS](#tab/custom-tts)
+
 
 ## Professional voice
 
@@ -131,11 +144,14 @@ The following table distinguishes locales that function as both cross-lingual so
 [!INCLUDE [Language support include](includes/language-support/personal-voice.md)]
 
 
-## Voice conversion
+# [Avatar](#tab/avatar)
 
-[Voice conversion](voice-conversion.md) is a feature for transforming the voice characteristics of audio to a target voice speaker. The following table summarizes the supported locales for voice conversion. Each language is available in all [voice conversion regions](regions.md#regions).
+## Visemes
 
-[!INCLUDE [Language support include](includes/language-support/voice-conversion.md)]
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+
+[!INCLUDE [Language support include](includes/language-support/viseme.md)]
+
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)
 
@@ -148,6 +164,10 @@ If you're interested in languages not listed in the following table, fill out [t
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
 # [Speech translation](#tab/speech-translation)
+
+**In this section**
+- [Real-time speech translation](#real-time-speech-translation)
+- [Video translation](#video-translation)
 
 > [!TIP]
 > To build and run samples on Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).

@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Deploy using Terraform'
+title: 'Quickstart: Deploy Using Terraform'
 description: 'In this article, you create an Azure AI Search service using Terraform.'
 ms.topic: quickstart
 ms.date: 05/29/2025
@@ -10,7 +10,7 @@ ms.custom:
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
-content_well_notification: 
+content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ---

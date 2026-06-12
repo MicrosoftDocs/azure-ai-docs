@@ -1,18 +1,22 @@
 ---
-title: "Manage Grounding With Bing Access"
-description: "Learn how to manage Grounding with Bing in Microsoft Foundry and Azure."
+title: Manage Grounding With Bing Access
+description: Learn how to manage Grounding with Bing in Microsoft Foundry and Azure.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: overview
-ms.date: 02/17/2026
+ms.date: 05/13/2026
+ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Manage Grounding with Bing in Microsoft Foundry and Azure
+
 Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
 
-Grounding is available across features in Foundry Agent Service and Azure AI Search. You might need to disable access to these features to meet compliance, privacy, or data governance requirements.
+Grounding is available across features in Foundry Agent Service and Azure AI Search. To meet compliance, privacy, or data governance requirements, you might need to disable access to these features.
 
 As an admin, you can manage access to Grounding with Bing in the following ways:
 
@@ -26,7 +30,7 @@ You can disable Grounding with Bing Search, Grounding with Bing Custom Search, o
 
 ## Disable web search tool
 
-You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Bing Web Search](../how-to/tools/web-search.md#disable-bing-web-search).
+You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Web Search](./tools/web-search.md#disable-web-search).
 
 ## Disable web knowledge
 
@@ -38,5 +42,5 @@ You can disable Web Knowledge Source access for all search services in a subscri
 ## Related content
 
 + [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
-+ [Web search tool (preview)](../how-to/tools/web-search.md)
++ [Web search tool](./tools/web-search.md)
 + [Create a Web Knowledge Source resource](../../../search/agentic-knowledge-source-how-to-web.md)

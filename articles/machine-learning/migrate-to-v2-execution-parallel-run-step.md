@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: alainli
 ms.custom: migration
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -20,14 +20,15 @@ In SDK v2, "Parallel run step" is consolidated into job concept as `parallel job
 
 - Flexible interface, which allows user to define multiple custom inputs and outputs for your parallel job. You can connect them with other steps to consume or manage their content in your entry script 
 - Simplify input schema, which replaces `Dataset` as input by using v2 `data asset` concept. You can easily use your local files or blob directory URI as the inputs to parallel job.
-- More powerful features are under developed in v2 parallel job only. For example, resume the failed/canceled parallel job to continue process the failed or unprocessed mini-batches by reusing the successful result to save duplicate effort.
+- More advanced capabilities available only in v2 parallel job. For example, resume a failed or canceled parallel job to continue processing failed or unprocessed mini-batches by reusing successful results, saving duplicate effort.
 
 To upgrade your current sdk v1 parallel run step to v2, you'll need to 
 
 - Use `parallel_run_function` to create parallel job by replacing `ParallelRunConfig` and `ParallelRunStep` in v1.
 - Upgrade your v1 pipeline to v2. Then invoke your v2 parallel job as a step in your v2 pipeline. See [how to upgrade pipeline from v1 to v2](migrate-to-v2-execution-pipeline.md) for the details about pipeline upgrade.
 
-> Note: User __entry script__ is compatible between v1 parallel run step and v2 parallel job. So you can keep using the same entry_script.py when you upgrade your parallel run job.
+> [!NOTE]
+> The **entry script** is compatible between v1 parallel run step and v2 parallel job. You can keep using the same `entry_script.py` when you upgrade your parallel run job.
 
 This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the following examples, we'll build a parallel job to predict input data in a pipelines job. You'll see how to build a parallel job, and how to use it in a pipeline job for both SDK v1 and SDK v2.
 
@@ -70,6 +71,11 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
 * SDK v2
 
     ```python
+    # import required libraries
+    from azure.ai.ml import Input, Output
+    from azure.ai.ml.constants import AssetTypes, InputOutputModes
+    from azure.ai.ml.parallel import parallel_run_function, RunFunction
+
     # parallel job to process file data
     file_batch_inference = parallel_run_function(
         name="file_batch_score",
@@ -91,7 +97,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
             code="./src",
             entry_script="file_batch_inference.py",
             program_arguments="--job_output_path ${{outputs.job_output_path}}",
-            environment="azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:1",
+            environment="azureml:AzureML-sklearn-1.5-ubuntu22.04-py310-cpu@latest",
         ),
     )
     ```
@@ -180,7 +186,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
 |-------|-------|-------------|
 |ParallelRunConfig.environment|parallel_run_function.task.environment|Environment that training job will run in. |
 |ParallelRunConfig.entry_script|parallel_run_function.task.entry_script |User script that will be run in parallel on multiple nodes. |
-|ParallelRunConfig.error_threshold| parallel_run_function.error_threshold |The number of failed mini batches that could be ignored in this parallel job. If the count of failed mini-batch is higher than this threshold, the parallel job will be marked as failed.<br><br>"-1" is the default number, which means to ignore all failed mini-batch during parallel job.|
+|ParallelRunConfig.error_threshold| parallel_run_function.error_threshold |The number of item-level failures (record failures for tabular data, file failures for file data) to ignore across the entire job input. If this count is exceeded, the job is marked as failed. `-1` means ignore all item failures. For mini-batch–level failure tolerance, use `mini_batch_error_threshold`.|
 |ParallelRunConfig.output_action|parallel_run_function.append_row_to |Aggregate all returns from each run of mini-batch and output it into this file. May reference to one of the outputs of parallel job by using the expression ${{outputs.<output_name>}}|
 |ParallelRunConfig.node_count|parallel_run_function.instance_count |Optional number of instances or nodes used by the compute target. Defaults to 1.|
 |ParallelRunConfig.process_count_per_node|parallel_run_function.max_concurrency_per_instance |The max parallelism that each compute instance has. |
@@ -193,7 +199,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
 |ParallelRunConfig.append_row_file_name |parallel_run_function.append_row_to | Combined with `append_row_to` setting.|
 |ParallelRunConfig.allowed_failed_count|parallel_run_function.mini_batch_error_threshold |The number of failed mini batches that could be ignored in this parallel job. If the count of failed mini-batch is higher than this threshold, the parallel job will be marked as failed.<br><br>"-1" is the default number, which means to ignore all failed mini-batch during parallel job.|
 |ParallelRunConfig.allowed_failed_percent|parallel_run_function.task.program_arguments set <br>`--allowed_failed_percent`|Similar to "allowed_failed_count" but this setting uses the percent of failed mini-batches instead of the mini-batch failure count.<br><br>The range of this setting is [0, 100]. "100" is the default number, which means to ignore all failed mini-batch during parallel job.|
-|ParallelRunConfig.partition_keys| _Under development._ | |
+|ParallelRunConfig.partition_keys|parallel_run_function.partition_keys|Keys used to partition the dataset into mini-batches. Data with the same key is placed in the same mini-batch. If both `partition_keys` and `mini_batch_size` are specified, partition keys take effect.|
 |ParallelRunConfig.environment_variables|parallel_run_function.environment_variables |A dictionary of environment variables names and values. These environment variables are set on the process where user script is being executed.|
 |ParallelRunStep.name|parallel_run_function.name |Name of the parallel job or component created.|
 |ParallelRunStep.inputs|parallel_run_function.inputs|A dict of inputs used by this parallel.|

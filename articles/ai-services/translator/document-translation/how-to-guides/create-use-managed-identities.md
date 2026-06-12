@@ -3,11 +3,11 @@ title: Create and use managed identities
 titleSuffix: Foundry Tools
 description: Understand how to create and use managed identities in the Azure portal.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 

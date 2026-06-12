@@ -1,6 +1,5 @@
 ---
-title: Skills reference
-titleSuffix: Azure AI Search
+title: Skills Reference
 description: Data extraction, natural language, and image processing skills add semantics and structure to raw content in an Azure AI Search enrichment pipeline. Data chunking and vectorization skills support vector search scenarios.
 ms.service: azure-ai-search
 ms.custom:

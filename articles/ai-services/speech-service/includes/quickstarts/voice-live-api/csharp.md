@@ -1,13 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 10/30/2025
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ---
 
 In this article, you learn how to use Voice Live with Microsoft Foundry models using the VoiceLive SDK for C#.
@@ -91,7 +91,7 @@ Follow these steps to create a console application and install the Speech SDK.
    </ItemGroup>
    ``` 
 
-1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
+1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. 
 
     ```csharp
     // Copyright (c) Microsoft Corporation. All rights reserved.

@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 07/01/2021
+ms.date: 05/21/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 Each request requires an authorization header. This table illustrates which headers are supported for each feature:
@@ -30,21 +31,24 @@ To get an access token, you need to make a request to the `issueToken` endpoint 
 The `issueToken` endpoint has this format:
 
 ```http
-https://<REGION_IDENTIFIER>.api.cognitive.microsoft.com/sts/v1.0/issueToken
+https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken
 ```
 
-Replace `<REGION_IDENTIFIER>` with the identifier that matches the [region](../regions.md) of your Speech resource.
+Replace `YourResourceName` with the name of your Speech resource.
+
+> [!NOTE]
+> This endpoint requires your resource to have a [custom subdomain](../../cognitive-services-custom-subdomains.md) configured. For resources without a custom domain, use the regional endpoint instead: `https://<region>.api.cognitive.microsoft.com/sts/v1.0/issueToken`. Replace `<region>` with your resource's Azure region (for example, `eastus`).
 
 Use the following samples to create your access token request.
 
 #### HTTP sample
 
-This example is a simple HTTP request to get a token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. If your Speech resource isn't in the West US region, replace the `Host` header with your region's host name.
+This example is a simple HTTP request to get a token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Replace `YourResourceName` with the name of your Speech resource.
 
 ```http
 POST /sts/v1.0/issueToken HTTP/1.1
 Ocp-Apim-Subscription-Key: YourSpeechResourceKey
-Host: eastus.api.cognitive.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Content-type: application/x-www-form-urlencoded
 Content-Length: 0
 ```
@@ -53,7 +57,7 @@ The body of the response contains the access token in JSON Web Token (JWT) forma
 
 #### PowerShell sample
 
-This example is a simple PowerShell script to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource. This example is currently set to West US.
+This example is a simple PowerShell script to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Replace `YourResourceName` with the name of your Speech resource.
 
 ```powershell
 $FetchTokenHeader = @{
@@ -62,8 +66,9 @@ $FetchTokenHeader = @{
   'Ocp-Apim-Subscription-Key' = 'YourSpeechResourceKey'
 }
 
-$OAuthToken = Invoke-RestMethod -Method POST -Uri https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken
- -Headers $FetchTokenHeader
+$OAuthToken = Invoke-RestMethod -Method POST `
+    -Uri https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken `
+    -Headers $FetchTokenHeader
 
 # show the token received
 $OAuthToken
@@ -72,11 +77,11 @@ $OAuthToken
 
 #### cURL sample
 
-cURL is a command-line tool available in Linux (and in the Windows Subsystem for Linux). This cURL command illustrates how to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource. This example is currently set to West US.
+cURL is a command-line tool available in Linux (and in the Windows Subsystem for Linux). This cURL command illustrates how to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Replace `YourResourceName` with the name of your Speech resource.
 
 ```console
 curl -v -X POST \
- "https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken" \
+ "https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken" \
  -H "Content-type: application/x-www-form-urlencoded" \
  -H "Content-Length: 0" \
  -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey"
@@ -84,13 +89,13 @@ curl -v -X POST \
 
 #### C# sample
 
-This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. If your Speech resource isn't in the West US region, change the value of `FetchTokenUri` to match the region for your Speech resource.
+This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. Replace `YourResourceName` with the name of your Speech resource.
 
 ```csharp
 public class Authentication
 {
     public static readonly string FetchTokenUri =
-        "https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken";
+        "https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken";
     private string subscriptionKey;
     private string token;
 
@@ -131,7 +136,7 @@ subscription_key = 'REPLACE_WITH_YOUR_KEY'
 
 
 def get_token(subscription_key):
-    fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken'
+    fetch_token_url = 'https://YourResourceName.cognitiveservices.azure.com/sts/v1.0/issueToken'
     headers = {
         'Ocp-Apim-Subscription-Key': subscription_key
     }
@@ -144,12 +149,15 @@ def get_token(subscription_key):
 
 The access token should be sent to the service as the `Authorization: Bearer <TOKEN>` header. Each access token is valid for 10 minutes. You can get a new token at any time, but to minimize network traffic and latency, we recommend using the same token for nine minutes.
 
+> [!IMPORTANT]
+> Bearer tokens are scoped to the endpoint that issued them. A token obtained from `YourResourceName.cognitiveservices.azure.com` works only for requests to that same host. A token from `<region>.api.cognitive.microsoft.com` works only against regional Speech endpoints. If you receive a 401 error when using a Bearer token, use `Ocp-Apim-Subscription-Key` with your resource key instead, which works with all endpoint formats.
+
 Here's a sample HTTP request to the Speech to text REST API for short audio:
 
 ```http
 POST /cognitiveservices/v1 HTTP/1.1
 Authorization: Bearer YOUR_ACCESS_TOKEN
-Host: westus.stt.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Content-type: application/ssml+xml
 Content-Length: 199
 Connection: Keep-Alive
@@ -181,7 +189,7 @@ Here's a sample HTTP request to the Speech to text REST API for short audio:
 ```http
 POST /cognitiveservices/v1 HTTP/1.1
 Authorization: Bearer YOUR_ACCESS_TOKEN
-Host: westus.stt.speech.microsoft.com
+Host: YourResourceName.cognitiveservices.azure.com
 Content-type: application/ssml+xml
 Content-Length: 199
 Connection: Keep-Alive

@@ -10,6 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 09/10/2025
+ai-usage: ai-assisted
 ms.custom:
   - mlops
   - devx-track-python #add more custom tags
@@ -76,10 +77,14 @@ In the next cell, enter your Subscription ID, Resource Group name, and Workspace
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 # authenticate
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 
 # Get a handle to the workspace
 ml_client = MLClient(

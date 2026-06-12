@@ -9,8 +9,9 @@ ms.topic: how-to
 ms.reviewer: shshubhe
 author: s-polly
 ms.author: scottpolly
-ms.date: 03/31/2025
-ms.custom: devx-track-azurecli, moe-wsvnet, update-code6
+ms.date: 03/11/2026
+ms.custom: devx-track-azurecli, moe-wsvnet, update-code6, dev-focus
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to see how to use private endpoints to provide network isolation so that I can improve the security of my Azure Machine Learning managed online endpoints.
 ---
 
@@ -22,7 +23,7 @@ This article shows you how to use network isolation to improve the security of a
 
 To help secure inbound communication, you can create a managed online endpoint that uses the private endpoint of an Azure Machine Learning workspace. To allow only approved outbound communication for deployments, you can configure the workspace with a managed virtual network. This article shows you how to take these steps to improve endpoint security. It also shows you how to create a deployment that uses the private endpoints of the workspace's managed virtual network for outbound communication.
 
-If you prefer to use the legacy method for network isolation, see the following deployment file examples in the [azureml-examples](https://github.com/Azure/azureml-examples) GitHub repository:
+To use the legacy method for network isolation, see the following deployment file examples in the [azureml-examples](https://github.com/Azure/azureml-examples) GitHub repository:
 
 - For a deployment that uses a generic model: [deploy-moe-vnet-legacy.sh](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-moe-vnet-legacy.sh)
 - For a deployment that uses an MLflow model: [deploy-moe-vnet-mlflow-legacy.sh](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-moe-vnet-mlflow-legacy.sh)
@@ -33,18 +34,14 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 * The [Azure CLI](/cli/azure/install-azure-cli) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 
-  >[!TIP]
-  > The Azure Machine Learning managed virtual network feature was introduced on May 23, 2023. If you have an older version of the `ml` extension, you might need to update it for the examples in this article to work. To update the extension, use the following Azure CLI command:
-  >
-  > ```azurecli
-  > az extension update -n ml
-  > ```
+  > [!TIP]
+  > Make sure you have the latest version of the `ml` extension installed. To update, run `az extension update -n ml`.
 
-* A Bash shell or a compatible shell, for example, a shell on a Linux system or [Windows Subsystem for Linux](/windows/wsl/about). The Azure CLI examples in this article assume that you use this type of shell.
+* A Bash shell or a compatible shell, such as a shell on a Linux system or [Windows Subsystem for Linux](/windows/wsl/about). The Azure CLI examples in this article assume that you use this type of shell.
 
 * An Azure resource group in which you or the service principal that you use have Contributor access. For instructions for creating a resource group, see [Set up](how-to-configure-cli.md?#set-up).
 
-* A [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with appropriate permissions, if you want to use a managed identity to create and manage online endpoints and online deployments. For detailed information about required permissions, see [Set up authentication between Azure Machine Learning and other services](./how-to-identity-based-service-authentication.md#workspace). For example, you need to grant your managed identity specific Azure role-based access control (Azure RBAC) permissions for Azure Key Vault.
+* A [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with appropriate permissions, if you want to use a managed identity to create and manage online endpoints and online deployments. For detailed information about required permissions, see [Set up authentication between Azure Machine Learning and other services](./how-to-identity-based-service-authentication.md#workspace). For example, you need to grant your managed identity specific Azure role-based access control (Azure RBAC) permissions for Azure Key Vault.
 
 ### Migrate from the legacy network isolation method to a workspace managed virtual network
 
@@ -84,31 +81,34 @@ If you don't need to avoid downtime during migration, you can take a more straig
 
 1. Provision the managed virtual network. For instructions and more information, see [Manually provision a managed VNet](how-to-managed-network.md#manually-provision-a-managed-vnet).
 
+   > [!TIP]
+   > You can combine workspace creation and network provisioning into a single step by adding `--provision-network-now` to the `az ml workspace create` command.
+
    > [!IMPORTANT]
    > When you set up a managed virtual network for a workspace for the first time, the network isn't provisioned. You can't create online deployments until you provision the managed network.
 
-1. Configure the container registry that's associated with the workspace to use a premium pricing plan. This setting is needed to provide access to the registry via a private endpoint. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
+1. Configure the container registry that's associated with the workspace to use a premium pricing plan. This setting is needed to provide access to the registry through a private endpoint. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
 
-1. Configure your workspace to use a compute cluster or compute instance to build images. You can use the `image_build_compute` property for this purpose. For more information and instructions, see [Configure image builds](how-to-managed-network.md#configure-image-builds).
+1. Configure your workspace to use a compute cluster or compute instance to build images. Use the `image_build_compute` property for this purpose. For more information and instructions, see [Configure image builds](how-to-managed-network.md#configure-image-builds).
 
-1. Configure default values for the Azure CLI so that you can avoid passing in the values for your workspace and resource group multiple times.
+1. Configure default values for the Azure CLI so that you don't need to pass in the values for your workspace and resource group multiple times.
 
    ```azurecli
    az configure --defaults workspace=$WORKSPACE_NAME group=$RESOURCEGROUP_NAME
    ```
 
-1. Clone the examples repository to get the example files for the endpoint and deployment, and then go to the repository's cli directory.
+1. Clone the examples repository to get the example files for the endpoint and deployment, and then go to the repository's `cli` directory.
 
    ```azurecli
    git clone --depth 1 https://github.com/Azure/azureml-examples
    cd azureml-examples/cli
    ```
 
-The commands in this article are in the deploy-managed-online-endpoint-workspacevnet.sh file in the cli directory. The YAML configuration files are in the endpoints/online/managed/sample/ subdirectory.
+The commands in this article are in the `deploy-managed-online-endpoint-workspacevnet.sh` file in the `cli` directory. The YAML configuration files are in the `endpoints/online/managed/sample/` subdirectory.
 
 ## Create a secured managed online endpoint
 
-To create a secured managed online endpoint, you create the endpoint in your workspace. Then you set the endpoint's `public_network_access` value to `disabled` to control inbound communication.
+To create a secured managed online endpoint, create the endpoint in your workspace. Then set the endpoint's `public_network_access` value to `disabled` to control inbound communication.
 
 This setting forces the online endpoint to use the workspace's private endpoint for inbound communication. The only way to invoke the online endpoint is by using a private endpoint that can access the workspace in your virtual network. For more information, see [Secure inbound scoring requests](concept-secure-online-endpoint.md#secure-inbound-scoring-requests) and [Configure a private endpoint for an Azure Machine Learning workspace](how-to-configure-private-link.md).
 
@@ -121,11 +121,11 @@ Because the workspace is configured to have a managed virtual network, any endpo
 1. Create an endpoint with `public_network_access` set to `disabled` to block inbound traffic:
 
    > [!NOTE]
-   > The referenced script uses YAML configuration files from the cloned repository. Ensure you're in the correct directory (cli) after cloning the repository, or provide the full path to your YAML files. In Azure Cloud Shell, verify the files are accessible in your cloud storage before running the commands.
+   > The referenced script uses YAML configuration files from the cloned repository. Ensure you're in the correct directory (`cli`) after cloning the repository, or provide the full path to your YAML files. In Azure Cloud Shell, verify the files are accessible in your cloud storage before running the commands.
 
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="create_endpoint_inbound_blocked" :::
 
-   Alternatively, if you want to allow the endpoint to receive scoring requests from the internet, uncomment the following code and run it instead:
+   To allow the endpoint to receive scoring requests from the internet, uncomment the following code and run it instead:
 
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="create_endpoint_inbound_allowed" :::
 

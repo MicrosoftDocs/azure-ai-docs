@@ -1,9 +1,7 @@
 ---
 title: 'Tutorial: Create a Custom Analyzer'
-titleSuffix: Azure AI Search
 description: Learn how to build a custom analyzer to improve the quality of search results in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -42,7 +40,7 @@ Source code for this tutorial is in the [custom-analyzer.rest](https://github.co
 
 The REST calls in this tutorial require a search service endpoint and an admin API key. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
 
@@ -67,7 +65,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -103,7 +101,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -157,7 +155,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
     ```http  
     ### Search for a phone number
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -199,7 +197,7 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 
    ```http  
    ### Search for a phone number
-   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2026-04-01  HTTP/1.1
    Content-Type: application/json
    api-key: {{apiKey}}
 
@@ -266,7 +264,7 @@ Call the Analyze API using the following request:
 
 ```http
 ### Test analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -451,7 +449,7 @@ All of the tokens in the output column exist in the index. If your query include
 
    ```http
    ### Delete the index
-   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
+   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2026-04-01 HTTP/1.1
    api-key: {{apiKey}}
     ```
 
@@ -459,7 +457,7 @@ All of the tokens in the output column exist in the index. If your query include
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
     
@@ -529,7 +527,7 @@ After you recreate the index, test the analyzer using the following request:
 
 ```http
 ### Test custom analyzer
-POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}} 
 

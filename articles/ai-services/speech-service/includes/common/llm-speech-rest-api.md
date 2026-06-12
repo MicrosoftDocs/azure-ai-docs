@@ -1,27 +1,22 @@
 ---
-manager: nitinme
+manager: mcleans
 author: goergenj
 ms.author: jagoerge
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 01/31/2026
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
 
-- An Azure Speech in Foundry Tools resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see [Speech service regions](../../regions.md?tabs=llmspeech).
+- An Azure Speech in Foundry Tools resource in one of the regions where the LLM Speech API is available. For the current list of supported regions, see [Speech service regions](../../regions.md?tabs=llmspeech).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+- An audio file less than five hours long and less than 500 MB in size. The audio file must be in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, or SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
   
+## Use the LLM Speech API
 
-## Use the LLM speech API
-
-
-### Supported languages
-
-The following languages are currently supported for both `transcribe` and `translate` tasks:
-
- - `English`, `Chinese`, `German`, `French`, `Italian`, `Japanese`, `Spanish`, `Portuguese`, and `Korean`.
+The next several sections provide details about how to use this API.
 
 
 ### Upload audio
@@ -30,37 +25,40 @@ You can provide audio data in the following ways:
 
 - Pass inline audio data.
 
-```
-  --form 'audio=@"YourAudioFile"'
-```
+  ```
+    --form 'audio=@"YourAudioFile"'
+  ```
 
-- Upload audio file from a public `audioUrl`.
+- Upload an audio file from a public `audioUrl`.
 
-```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
-```
+  ```
+    --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
+  ```
 
-In the sections below, inline audio upload is used as an example.
+> [!TIP]
+> For long audio files, we recommend that you upload from a public URL.
 
+In this article, we use inline audio upload as an example.
 
-### Call the LLM speech API
-Make a multipart/form-data POST request to the `transcriptions` endpoint with the audio file and the request body properties. 
+### Call the LLM Speech API
+
+In your POST request to the `transcriptions` endpoint, use the multipart/form-data content type with the audio file and the request body properties.
 
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
-- Replace `YourServiceRegion` with your Speech resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
-> For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
+> For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) guide.
 
-#### Use LLM speech to transcribe an audio
+#### Use LLM Speech to transcribe an audio file
 
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -72,12 +70,12 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-#### Use LLM speech to translate an audio file
+#### Use LLM Speech to translate an audio file
 
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -90,12 +88,26 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
+The following target languages are supported in `targetLanguage` by specifying the corresponding language code:
+
+| Language code | Language |
+| ----- | ----- |
+| `de` | German |
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `it` | Italian |
+| `ko` | Korean |
+| `ja` | Japanese |
+| `pt` | Portuguese |
+| `zh` | Chinese |
+
 #### Use prompt-tuning to alter performance
 
-You can provide an optional text to guide the output style for `transcribe` or `translate` task.
+You can provide an optional text to guide the output style for the `transcribe` or `translate` task.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -108,21 +120,24 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-
 Here are some best practices for prompts:
-- Prompts are subject to a maximum length of 4,096 characters.
-- Prompts should preferably be written in English.
-- Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
-- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
-- Prompts that aren’t related to speech tasks (e.g., `Tell me a story.`) are typically disregarded.
 
+- Prompts have a maximum length of 20,000 characters.
+
+- Prompts should preferably be written in English.
+
+- Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
+
+- Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit to fewer than 2,000 words or phrases.
+
+- Prompts that aren't related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
 #### More configuration options
 
-You can combine additional configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
+You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features, such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
-curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+curl --location 'https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
@@ -140,7 +155,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options). 
+Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM Speech. You can omit these options from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options).
 
 
 #### Sample response
@@ -238,7 +253,10 @@ In the JSON response, the `combinedPhrases` property contains the full transcrib
 }
 ```
 
-The response format is consistent with other existing speech-to-text outputs, such as fast transcription and batch transcription. Key differences include: 
-- Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
-- Diarization is not supported for `translate` task, only the `speaker1` label is returned.
-- `confidence` is not available and always `0`.
+The response format is consistent with other existing speech-to-text outputs, such as fast transcription and batch transcription. Be aware of the following differences:
+
+- Word-level `durationMilliseconds` and `offsetMilliseconds` aren't supported for the `translate` task.
+
+- Diarization isn't supported for the `translate` task. Only the `speaker1` label is returned.
+
+- `confidence` isn't available and is always `0`.

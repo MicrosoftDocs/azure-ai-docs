@@ -3,10 +3,10 @@ title: Frequently asked questions - Azure Translator Document translation
 titleSuffix: Foundry Tools
 description: Get answers to Azure Translator in Foundry Tools Document translation frequently asked questions.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: faq
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ---
 
@@ -30,7 +30,7 @@ If the language of the content in the source document is known, we recommend tha
 
 * Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style, or an optimally suited alternative, is applied to the target language to maintain formatting that most closely resembles the original source text.
 
-#### Does the document translation feature support translating text within images? 🆕
+#### Does the document translation feature support translating text within images? 
 
 Yes. Our asynchronous (batch) document translation feature supports [translating images](reference/start-batch-translation.md#translate-image-files).
 

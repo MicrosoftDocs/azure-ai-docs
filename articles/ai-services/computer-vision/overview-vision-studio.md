@@ -3,9 +3,9 @@ title: What is Vision Studio?
 titleSuffix: Foundry Tools
 description: Learn how to set up and use Vision Studio to test features of Azure Vision in Foundry Tools on the web.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 01/30/2026
 ms.author: pafarley
@@ -42,7 +42,7 @@ To use Vision Studio, you need an Azure subscription and a resource for Foundry 
 1. From here, you can select any of the different features offered by Vision Studio. Some of them are outlined in the service quickstarts:
    * [Optical character recognition (OCR) quickstart](quickstarts-sdk/client-library.md?pivots=vision-studio)
    * Image Analysis [4.0 quickstart](quickstarts-sdk/image-analysis-client-library-40.md?pivots=vision-studio) and [3.2 quickstart](quickstarts-sdk/image-analysis-client-library.md?pivots=vision-studio)
-   * [Face quickstart](quickstarts-sdk/identity-client-library.md?pivots=vision-studio)
+    * [Face quickstart](../face/quickstarts-sdk/identity-client-library.md?pivots=vision-studio)
 
 
 ## Clean up resources

@@ -1,95 +1,437 @@
 ---
-title: "Evaluate Generative AI Models and Apps with Microsoft Foundry"
-description: "Evaluate your generative AI models and applications by using Microsoft Foundry."
+title: Run evaluations from the Microsoft Foundry portal
+description: Learn how to evaluate the performance and safety of your generative AI models and agents using the Foundry portal.
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
 ms.topic: how-to
-ms.date: 12/23/2025
+ms.date: 06/02/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to evaluate my generative AI models and applications using Microsoft Foundry so I can assess their performance and safety with comprehensive metrics.
 ---
 
-# Evaluate generative AI models and applications by using Microsoft Foundry
-To thoroughly assess the performance of your generative AI models and applications on a substantial dataset, initiate an evaluation process. During this evaluation, the model or application is tested with the given dataset, and its performance is measured using mathematical metrics and AI-assisted metrics. This evaluation run provides comprehensive insights into the application's capabilities and limitations.
+# Run evaluations from the Microsoft Foundry portal
 
-Use the evaluation functionality in the Microsoft Foundry portal, a platform that offers tools and features for assessing the performance and safety of generative AI models. In the Foundry portal, log, view, and analyze detailed evaluation metrics.
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article explains how to create an evaluation run against a model, agent, or test dataset using built-in evaluation metrics from the Foundry UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Use the **custom evaluation** feature to conduct a batch run without evaluation.
+Test your generative AI models and agents by running evaluations that measure performance, quality, and safety. Use evaluations before deployment to validate behavior, or after deployment to monitor production quality. Evaluations run your model or agent against test data and score the outputs using built-in or custom evaluators.
+
+This article shows you how to create and run evaluations in the Foundry portal.
 
 ## Prerequisites
 
-- A test dataset in one of these formats: A model, agent, or test dataset in one of these formats: CSV or JSON Lines (JSONL).
-- An Azure OpenAI connection. A deployment of one of these models: a GPT-3.5 model, a GPT-4 model, or a Davinci model. Required only when you run AI-assisted quality evaluations.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- A Microsoft Foundry project. [Create a project](create-projects.md) if you don't have one.
+- One of the following, depending on your evaluation target:
+  - **Agent evaluation**: An agent in your project.
+  - **Model evaluation**: A deployed model or access to instant models.
+  - **Dataset evaluation**: A test dataset in CSV or JSONL format containing preexisting model or agent outputs.
+- An Azure OpenAI connection with a deployed GPT model (for example, `gpt-4.1-mini`). Required for AI-assisted quality evaluations.
+- **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
-## Create an evaluation with built-in evaluation metrics
+  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
-### From the evaluate page
+## Choose an evaluation approach
 
-From the left pane, select **Evaluation** > **Create**.
+Select an evaluation approach based on what you want to test:
 
-### From the model or agent playground page
+| Target | Scope | Data source | Best for |
+|--------|-------|-------------|----------|
+| **Agent** | Full conversations | Simulated data | Testing end-to-end agent behavior with synthetic scenarios before deployment. |
+| **Agent** | Full conversations | Existing conversations | Evaluating real user interactions to monitor production quality. |
+| **Agent** | Individual turns | Existing dataset | Debugging specific agent responses, testing tool usage, fine-grained analysis. |
+| **Agent** | Individual turns | Synthetic data | Testing single-turn Q&A or RAG scenarios with generated queries. |
+| **Agent** | Individual turns | Existing traces | Evaluating historical agent traces from your project. |
+| **Model** | Individual turns | Synthetic data | Testing model completions with generated prompts. |
+| **Model** | Individual turns | Existing dataset | Benchmarking model performance against a curated test set. |
+| **Dataset** | Individual turns | (Dataset is target) | Evaluating preexisting outputs without re-running the model or agent. |
 
-From the playground page for models or agent playground page, select **Evaluation** > **Create** or select **Metrics** > **Run full evaluation**.
+> [!TIP]
+> Start with **Agent > Full conversations > Simulated data** to test your agent's behavior in controlled scenarios. Use **Existing conversations** once your agent is in production to monitor real-world performance.
 
-#### Evaluation target
+## Create an evaluation
 
-When you start an evaluation from the **Evaluate** page, you first need to choose the evaluation target. By specifying the appropriate evaluation target, we can tailor the evaluation to the specific nature of your application, ensuring accurate and relevant metrics. We support three types of evaluation targets:
+You can start an evaluation from several places in the Foundry portal:
 
-- **Model**: This choice evaluates the output generated by your selected model and user-defined prompt.
-- **Agent**: This choice evaluates the output generated by your selected agent and user-defined prompt
-- **Dataset**: Your model or agent-generated outputs are already in a test dataset.
+- **Evaluation page**: From the left pane, select **Evaluation** > **Create**.
+- **Models page**: Go to your model, select the **Evaluation** tab, then select **Create**.
+- **Agents page**: Go to your agent, select the **Evaluation** tab, then select **Create**.
+- **Agent playground**: Go to your agent, select the **Playground** tab, then select **Metrics** > **Run full evaluation**.
 
-#### Select or Create a Dataset
+### Step 1: Select evaluation target
 
-If you choose to evaluate a model or agent, you need a dataset to act as inputs to these targets so that responses can be assessed by evaluators. In the dataset step, you can choose to select or upload a dataset of your own, or you can synthetically generate a dataset.  
+When you create an evaluation, first choose the evaluation target. The target determines what the evaluation runs against:
 
-- **Add new dataset**: Upload files from your local storage. Only CSV and JSONL file formats are supported. A preview of your test data displays on the right pane.
-- **Synthetic Dataset Generation**: Synthetic datasets are useful in situations where you either lack data or lack access to data to test the model or agent you’ve built. With synthetic data generation, you choose the resource to generate the data, the number of rows you would like to generate, and must enter a prompt describing the type of data you would like to generate. Additionally, you can upload files to improve the relevance of your dataset to the desired task of your agent or model.  
+| Target | Description |
+|--------|-------------|
+| **Agent** | Evaluates the output generated by your selected agent and user-defined input. Works for both [prompt agents](../agents/overview.md) and [hosted agents](../agents/concepts/hosted-agents.md). |
+| **Model** | Evaluates the output generated by your selected model and user-defined prompt. |
+| **Dataset** | Evaluates preexisting model or agent outputs from a test dataset. |
+| **Traces** | Evaluates agent interactions already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Select the agent and time range, and the portal retrieves the matching traces for evaluation. For the SDK equivalent, see [Trace evaluation](./develop/cloud-evaluation.md#trace-evaluation-preview). |
+
+> [!TIP]
+> **Instant models**: Instant models are deployment-less models that you can use immediately without creating a deployment. When creating an evaluation, you can select an instant model as either the evaluation target or the judge model directly from the model picker.
+
+### Step 2: Select evaluation scope
 
 > [!NOTE]
-> Synthetic data generation isn't available in all regions. It is available in regions supporting Response API. For an up to date list of supporting regions, see [Azure OpenAI Responses API region availability](../openai/how-to/responses.md#region-availability).
+> This step appears for **Agent** and **Dataset** targets only. **Model** evaluations always use individual turns.
 
-#### Configure testing criteria
+Choose how you want to evaluate your agent's performance:
 
-We support three types of metrics curated by Microsoft to facilitate a comprehensive evaluation of your application:  
+| Scope | Description | Best for |
+|-------|-------------|----------|
+| **Full conversations (preview)** | Evaluates complete multi-turn conversations from start to finish. Measures overall conversation quality, task completion, and user satisfaction. | Testing end-to-end agent experiences, customer satisfaction, and conversation flow. |
+| **Individual turns** | Evaluates individual agent responses within conversations. Measures per-turn metrics like tool selection accuracy and response quality. | Debugging specific agent behaviors, testing tool usage, and fine-grained analysis. |
 
-- **AI quality (AI assisted)**: These metrics evaluate the overall quality and coherence of the generated content. You need a model deployment as judge to run these metrics.
-- **AI quality (NLP)**: These natural language processing (NLP) metrics are mathematical-based, and they also evaluate the overall quality of the generated content. They often require ground truth data, but they don't require a model deployment as judge.
-- **Risk and safety metrics**: These metrics focus on identifying potential content risks and ensuring the safety of the generated content.
+### Step 3: Select data source
 
-You can also create custom metrics and select them as evaluators during the testing criteria step.
+The data source options depend on your evaluation target and scope.
 
-As you add your testing criteria, different metrics are going to be used as part of the evaluation. You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on metric definitions and how they're calculated, see [Built in evaluators](../concepts/built-in-evaluators.md).
+#### For conversation evaluations (agent > full conversations) (preview)
 
-| AI quality (AI assisted) | AI quality (NLP) | Risk and safety metrics |
-|--|--|--|
-| Groundedness, Relevance, Coherence, Fluency, GPT similarity | F1 score, ROUGE score, BLEU score, GLEU score, METEOR score| Self-harm-related content, Hateful and unfair content, Violent content, Sexual content, Protected material, Indirect attack  |
+Choose where your conversation data comes from:
 
-When you run AI-assisted quality evaluation, you must specify a GPT model for the calculation/grading process.
+##### Simulated data
 
-AI Quality (NLP) metrics are mathematically based measurements that assess your application's performance. They often require ground truth data for calculation. ROUGE is a family of metrics. You can select the ROUGE type to calculate the scores. Various types of ROUGE metrics offer ways to evaluate the quality of text generation. ROUGE-N measures the overlap of n-grams between the candidate and reference texts.  
+Generate synthetic conversations by running your agent against scenario descriptions from a dataset. Use this option to test your agent's behavior in controlled scenarios before deployment.
 
-For risk and safety metrics, you don't need to provide a deployment. The Foundry portal provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
+1. Select **Simulated data**.
+1. Select **Generate** to open the simulation configuration dialog.
+1. **Select your file**: Choose a dataset containing scenario descriptions. Each row in your dataset describes a scenario that you use to generate a simulated conversation.
 
-#### Data mapping
+   :::image type="content" source="../media/observability/simulation-dataset-preview.png" alt-text="Screenshot showing the dataset preview in the simulation dialog." lightbox="../media/observability/simulation-dataset-preview.png":::
 
-Data mapping for evaluation: Different evaluation metrics demand distinct types of data inputs for accurate calculations.  
+1. **Select model**: Choose the model that simulates the user in the conversation:
+   - `gpt-4.1` (recommended for complex scenarios)
+   - `gpt-4o`
+   - `gpt-4o-mini`
+   - `gpt-4.1-mini`
 
-Based on the dataset you’ve generated or uploaded, we'll automatically map those dataset fields to the fields present in the evaluators. However, you should always double check the field mapping to make sure it's accurate. You can reassign fields if needed.
+1. **Configure simulation settings**:
+   - **Number of simulated conversations per scenario**: How many conversations to generate for each row in your dataset (1-5). Multiple conversations per scenario help identify variance in agent behavior.
+   - **Number of turns per conversation**: Maximum turns allowed per conversation (1-50). The conversation ends when the task is complete or this limit is reached.
 
-#### Review and submit
+1. Select **Confirm** to save your simulation configuration.
 
-After you complete all the necessary configurations, you can provide a name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
+##### Existing conversations
+
+Evaluate real conversations that your agent already had with users.
+
+1. Select **Existing conversations**.
+1. Configure filtering options:
+   - **Number of conversations**: Maximum number of conversations to sample from the date range (1-100).
+   - **Time range**: Filter conversations by time period. Use quick filters (Last Day, 7D, 1M, 3M) or select a custom date range.
+1. Browse and select specific conversations to include in the evaluation.
+
+#### For individual turn evaluations
+
+Choose where your evaluation data comes from:
+
+##### Synthetic data
+
+Generate test queries by using AI. Select **Synthetic** and configure the number of rows and a prompt that describes the data to generate. You can also upload files to improve relevance.
+
+> [!NOTE]
+> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#supported-regions).
+
+##### Existing dataset
+
+Use a prepared dataset in CSV or JSONL format. Select **Existing dataset** and choose a file from your project's data assets. Only CSV and JSONL file formats are supported.
+
+##### Existing traces (agent only)
+
+Evaluate historical agent traces from your project. Select **Existing traces** and filter by date range to select traces.
+
+#### Multimodal content (preview)
+
+All evaluation targets support image and audio content. Each content type uses a specific JSONL schema:
+
+**Image content:**
+
+- `image_url`: The image as a data URI (for example, `data:image/png;base64,...`) or a publicly accessible URL.
+- `caption`: A text description of the image content.
+
+```jsonl
+{"image_url": "data:image/png;base64,iVBOR...", "caption": "A red to blue color gradient"}
+```
+
+**Audio content:**
+
+- `audio_data`: The audio as a data URI with base64-encoded WAV data (for example, `data:audio/wav;base64,...`).
+- `expected`: A text description of the expected audio content.
+
+> [!NOTE]
+> Only WAV audio format is currently supported.
+
+```jsonl
+{"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
+```
+
+Datasets can also use the chat message conversation format, where audio and image data are embedded within a single chat message column as data URIs or publicly accessible URLs.
+
+The following example shows a conversation dataset column with embedded image and audio content:
+
+```json
+[
+  {
+    "role": "system",
+    "content": "..."
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "What are in these images?"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "https://example.com/path/image.png"
+        }
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,iVBORw0KGgo..."
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "..."
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Tell me the tones for the voices?"
+      },
+      {
+        "type": "input_audio",
+        "input_audio": {
+          "data": "https://example.com/path/voice.wav",
+          "format": "wav"
+        }
+      },
+      {
+        "type": "input_audio",
+        "input_audio": {
+          "data": "data:audio/wav;base64,UklGRigAAA...",
+          "format": "wav"
+        }
+      }
+    ]
+  }
+]
+```
+
+You can preview images and play audio clips directly in the evaluation creation flow and in the evaluation results view.
+
+### Step 4: Configure agents
+
+> [!NOTE]
+> This step appears for **Agent** evaluations only.
+
+Customize how your agent behaves during the evaluation:
+
+1. Review the list of agents involved in your evaluation.
+1. For each agent, select **Configure** to customize its behavior:
+   - **System prompt**: Modify the agent's instructions for the evaluation.
+   - **User prompt**: Specify how each dataset item is sent to your agent during evaluation.
+1. The evaluation run preserves agent configurations.
+
+#### User prompt configuration
+
+The user prompt defines how test inputs are passed to your agent. By default, the portal uses `{{item.query}}` to pass the dataset query directly to your agent.
+
+In most cases, you can use the default. Only change this value if your agent expects a different input format. For example, if your agent uses a hosted agent protocol or requires structured input with additional fields.
+
+Common patterns:
+
+| Format | When to use |
+|--------|-------------|
+| `{{item.query}}` | Default. Passes the query field from your dataset directly. |
+| `{{item.messages}}` | For agents expecting conversation history as input. |
+| Custom JSON | For hosted agents or APIs that require structured request bodies. |
+
+> [!TIP]
+> Use custom prompts to test edge cases or specific scenarios that might not occur naturally in your dataset.
+
+### Step 5: Configure field mapping
+
+> [!NOTE]
+> This step appears when you use existing data (existing conversations, existing dataset, or existing traces).
+
+Map your data fields to the fields each evaluator expects. The required fields depend on your evaluation scope.
+
+#### For conversation evaluations (multi-turn)
+
+| Field | Description | Required |
+|-------|-------------|----------|
+| **messages** | The conversation messages in chat format. | Yes |
+| **tool_definitions** | Tool or function definitions available to the agent. | Yes |
+
+#### For individual turn evaluations (single-turn)
+
+| Field | Description | Required |
+|-------|-------------|----------|
+| **query** | The user query or prompt. | Yes |
+| **response** | The model or agent response. | Yes |
+| **context** | Retrieved context for RAG scenarios. | No |
+| **ground_truth** | Expected correct answer for comparison. | No |
+| **tool_calls** | Tool calls made by the agent. | No |
+| **tool_definitions** | Available tool definitions. | No |
+
+The portal automatically attempts to map your dataset fields. If a field shows as **Unassigned**, select the dropdown to manually assign a column from your dataset.
+
+> [!NOTE]
+> Required fields are marked with an asterisk (*). Evaluators fail if required fields are left unassigned.
+
+### Step 6: Select testing criteria
+
+Select the evaluators to use for your evaluation. Microsoft Foundry provides three categories of built-in evaluators. The available evaluators depend on your evaluation scope.
+
+#### Agent evaluators
+
+Evaluate how effectively agents handle tasks, tools, and user intent. Available for **Individual turns** scope only.
+
+| Evaluator | Description |
+|-----------|-------------|
+| **Intent Resolution** | Measures whether the agent correctly identified and addressed the user's intent. |
+| **Task Adherence** | Measures how well the agent followed instructions and constraints. |
+| **Tool Call Success** | Evaluates whether tool calls executed successfully. |
+| **Tool Selection** | Measures whether the agent selected appropriate tools for the task. |
+| **Tool Output Utilization** | Evaluates how effectively the agent used tool outputs in responses. |
+| **Tool Input Accuracy** | Measures whether the agent provided correct inputs to tools. |
+| **Tool Call Accuracy** | Overall accuracy of tool usage. |
+
+#### Quality evaluators
+
+Measure the overall quality of generated responses. Most quality evaluators are available for all evaluation scopes. Evaluators marked with ★ support both conversation-level and turn-level analysis.
+
+| Evaluator | Description | Conversation support |
+|-----------|-------------|:--------------------:|
+| **Customer Satisfaction** | Predicts user satisfaction with the agent interaction. | ★ |
+| **Task Completion** | Evaluates whether the agent successfully completed the requested task. | ★ |
+| **Coherence** | Measures logical flow and consistency of responses. | ★ |
+| **Groundedness** | Measures whether responses are grounded in provided context. | ★ |
+| **Response Completeness** | Evaluates whether responses fully address user queries. | — |
+| **Fluency** | Evaluates natural language quality. | — |
+| **Relevance** | Evaluates how relevant responses are to the query. | — |
+
+#### Safety evaluators
+
+Identify potential content and security risks. Available for **Individual turns** scope only.
+
+| Evaluator | Description |
+|-----------|-------------|
+| **Violence** | Detects violent content in responses. |
+| **Sexual** | Detects sexual content. |
+| **Self-harm** | Detects self-harm related content. |
+| **Hate/Unfairness** | Detects hateful or biased content. |
+
+The portal preselects recommended evaluators based on your evaluation target and scope:
+
+- **Full conversations**: Customer Satisfaction, Task Completion, Coherence, Groundedness
+- **Individual turns (existing data)**: All Agent evaluators plus Quality and Safety evaluators
+- **Individual turns (synthetic/traces)**: Relevance, Groundedness, Fluency, Coherence
+
+> [!TIP]
+> You can add or remove evaluators as needed. Select **Custom evaluators** to use evaluators you defined in your project.
+
+### Step 7: Review and submit
+
+1. Enter a **name** for your evaluation.
+1. Review your configuration:
+   - Evaluation target and scope
+   - Data source and dataset
+   - Selected evaluators
+   - Field mappings (if applicable)
+1. Select **Submit** to start the evaluation.
+
+After you submit, the evaluation run starts. Evaluations typically complete within a few minutes, depending on dataset size and the number of conversations being simulated.
+
+To verify your evaluation started successfully:
+
+1. In the left pane, select **Evaluation**.
+1. Find your evaluation in the list. The **Status** column shows the current state:
+   - **In Progress**: The evaluation is running.
+   - **Completed**: The evaluation finished successfully.
+   - **Partial**: Some evaluators completed but others failed.
+   - **Failed**: The evaluation encountered an error.
+
+To view detailed results, select the evaluation name or see [View the evaluation results](evaluate-results.md).
+
+> [!TIP]
+> For programmatic evaluation workflows, use the Azure AI Evaluation SDK. See [How to run batch evaluation with the SDK](develop/cloud-evaluation.md).
+
+## Troubleshooting
+
+### Evaluation times out or runs slowly
+
+- Reduce the number of conversations or dataset rows.
+- For simulations, decrease the maximum turns per conversation.
+- Check that your judge model has sufficient quota.
+
+### Field mapping errors
+
+- Verify your dataset contains the required columns for your evaluation scope.
+- For conversation evaluations, ensure the **messages** column contains properly formatted chat messages.
+- Check that column names in your dataset match the expected field names.
+
+### Model quota exceeded
+
+- The judge model used for AI-assisted evaluations counts against your Azure OpenAI quota.
+- Use a smaller dataset or wait for quota to refresh.
+- Consider using `gpt-4.1-mini` instead of `gpt-4.1` for cost-effective evaluations.
+
+## Best practices
+
+### For simulation-based evaluations
+
+- **Start small**: Begin with 1 conversation per scenario and 5-10 turns to validate your setup before scaling up.
+- **Diverse scenarios**: Include a variety of scenario descriptions to test different agent capabilities.
+- **Iterate on prompts**: If agents behave unexpectedly, use the **Configure agents** step to adjust prompts.
+
+### For existing conversation evaluations
+
+- **Representative sample**: Select conversations that represent typical user interactions.
+- **Include edge cases**: Don't just evaluate successful conversations—include challenging scenarios.
+- **Regular evaluation**: Schedule recurring evaluations to track agent performance over time.
+
+### For model evaluations
+
+- **Benchmark datasets**: Use standardized datasets to compare model performance across versions.
+- **Test both deployed and instant models**: Compare your fine-tuned deployments against base models.
+
+### For dataset evaluations
+
+- **Pre-compute outputs**: Generate outputs offline and evaluate in bulk for cost efficiency.
+- **Version your datasets**: Track which dataset version produced which evaluation results.
+
+### General tips
+
+- **Compare evaluators**: Run the same data through multiple evaluators to get a comprehensive view.
+- **Track trends**: Use evaluation history to identify performance improvements or regressions.
+- **Act on results**: Use evaluation insights to refine agent prompts, tool definitions, and configurations.
 
 ## Related content
 
-Learn more about evaluating your generative AI applications:
+Learn more about evaluating your generative AI models and agents:
 
-- [View the evaluation results](./evaluate-results.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../foundry-classic/openai/how-to/evaluations.md)
+- [View the evaluation results](evaluate-results.md)
+- [Built-in evaluators reference](../concepts/built-in-evaluators.md)
+- [Agent evaluators](../concepts/evaluation-evaluators/agent-evaluators.md)
+- [Quality evaluators](../concepts/evaluation-evaluators/general-purpose-evaluators.md)
+- [Safety evaluators](../concepts/evaluation-evaluators/risk-safety-evaluators.md)
+- [Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators.md)
+- [How to run batch evaluation with the SDK](develop/cloud-evaluation.md)
 - [Transparency note for Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md)

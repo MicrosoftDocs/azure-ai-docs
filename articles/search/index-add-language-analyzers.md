@@ -1,6 +1,5 @@
 ---
-title: Add language analyzers to string fields
-titleSuffix: Azure AI Search
+title: Add Language Analyzers to String Fields
 description: Configure multi-lingual lexical analysis for non-English text queries and indexes in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:

@@ -3,8 +3,8 @@ title: "Get speech recognition results - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to get speech recognition results.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley
@@ -16,8 +16,20 @@ keywords: speech to text, speech to text software
 
 # Get speech recognition results
 
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/recognize-speech-results/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/recognize-speech-results/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/how-to/recognize-speech-results/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/recognize-speech-results/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -28,28 +40,16 @@ keywords: speech to text, speech to text software
 [!INCLUDE [Go include](includes/how-to/recognize-speech-results/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/how-to/recognize-speech-results/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/how-to/recognize-speech-results/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/how-to/recognize-speech-results/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/how-to/recognize-speech-results/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/how-to/recognize-speech-results/python.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](./includes/how-to/recognize-speech-results/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/how-to/recognize-speech-results/swift.md)]
 ::: zone-end
 
 ## Next steps

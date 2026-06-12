@@ -1,13 +1,14 @@
 ---
 title: Quota tier 5
 description: Quota tier limits for tier 5
-manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+author: alvinashcraft
+ms.author: aashcraft
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 02/18/2026
+ms.date: 05/27/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -42,6 +43,7 @@ ms.date: 02/18/2026
 | gpt-5-pro                      | GlobalStandard    | 16,000      | 1,600,000   |
 | gpt-5.1                        | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-5.1                        | GlobalStandard    | 100,000     | 10,000,000  |
+| gpt-5.1                        | Standard          | 30,000      | 3,000,000   |
 | gpt-5.1-chat                   | GlobalStandard    | 50,000      | 5,000,000   |
 | gpt-5.1-codex                  | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-5.1-codex                  | GlobalStandard    | 10,000      | 10,000,000  |
@@ -56,12 +58,22 @@ ms.date: 02/18/2026
 | gpt-5.4                        | DataZoneStandard  | 3,000       | 3,000,000   |
 | gpt-5.4                        | GlobalStandard    | 100,000     | 10,000,000  |
 | gpt-5.4-pro                    | GlobalStandard    | 1,600       | 1,600,000   |
+| gpt-5.4-mini                   | GlobalStandard    | 10,000      | 10,000,000  |
+| gpt-5.4-nano                   | DataZoneStandard  | 50,000      | 50,000,000  |
+| gpt-5.4-nano                   | GlobalStandard    | 150,000     | 150,000,000 |
+| gpt-5.5                        | DataZoneStandard  | 3,000       | 3,000,000   |
+| gpt-5.5                        | GlobalStandard    | 10,000      | 10,000,000  |
+| gpt-chat-latest                | GlobalStandard    | 50,000      | 5,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 60          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 120         | -           |
+| gpt-image-1.5                  | DataZoneStandard  | 20          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 60          | -           |
+| gpt-image-2                    | DataZoneStandard  | 10          | -           |
+| gpt-image-2                    | GlobalStandard    | 30          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| model-router                   | DataZoneStandard  | 300         | 300,000     |
+| model-router                   | DataZoneStandard  | 3,000       | 3,000,000   |
+| model-router                   | GlobalStandard    | 10,000      | 10,000,000  |
 | o1                             | DataZoneStandard  | 1,000       | 6,000,000   |
 | o1                             | GlobalStandard    | 5,000       | 30,000,000  |
 | o3                             | DataZoneStandard  | 3,000       | 3,000,000   |

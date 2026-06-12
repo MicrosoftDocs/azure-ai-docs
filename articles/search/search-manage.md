@@ -1,12 +1,11 @@
 ---
 title: Service Configuration in the Azure portal
-titleSuffix: Azure AI Search
 description: Manage your new Azure AI Search service in the Azure portal. This article provides a day-one checklist for configuring RBAC, managed identities, network security, and more.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 04/24/2026
 ms.update-cycle: 365-days
 ms.custom: sfi-image-nochange
 ---
@@ -41,7 +40,7 @@ To configure role-based access:
 
 1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend using both API keys and roles.
 
-1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac.md#assign-roles).
+1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac.md#assign-built-in-roles).
 
    Role assignments can take several minutes to take effect. Until then, portal pages used for data plane operations display the following message:
 
@@ -67,7 +66,7 @@ Before you move on to network security, consider testing all points of connectio
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
-+ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
++ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the **Import data** wizard won't run.
 
 To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
@@ -75,9 +74,9 @@ To learn about inbound and outbound calls in Azure AI Search, see [Understand ne
 
 By default, a search service is created with one replica and one partition. You can [add capacity](search-capacity-planning.md) by adding replicas and partitions, but we recommend waiting until volumes require it. Many customers run production workloads on the minimum configuration.
 
-Semantic ranker can increase the cost of running your service if you opt into the standard plan. If you don't want to use this feature, you can [disable semantic ranker](semantic-how-to-enable-disable.md) at the service level.
+Semantic ranker and agentic retrieval are premium features that default to the free plan. If you need paid usage beyond the free allowance, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md) and [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
+To learn about other features that affect billing, see [Plan and manage costs of an Azure AI Search service](search-sku-manage-costs.md).
 
 ## Enable diagnostic logging
 
@@ -87,12 +86,6 @@ Internally, Microsoft collects telemetry data about your service and the platfor
 
 To learn more about data location and privacy, see [Data residency](search-security-built-in.md#data-residency).
 
-## Enable semantic ranker
-
-Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer search services.
-
-To enable semantic ranker in the portal, select **Settings** > **Premium features** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
-
 ## Provide connection information to developers
 
 To connect to Azure AI Search, developers need:
@@ -100,7 +93,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [**Import data** wizard](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a Contributor or higher to run the wizard.
 
 ## Related content
 

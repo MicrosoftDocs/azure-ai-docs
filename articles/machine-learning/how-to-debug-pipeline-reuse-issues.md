@@ -9,25 +9,26 @@ ms.topic: how-to
 ms.reviewer: None
 author: lgayhardt
 ms.author: lagayhar
-ms.date: 4/28/2023
-ms.custom: sfi-image-nochange
+ms.date: 03/30/2026
+ms.custom: sfi-image-nochange, dev-focus
+ai-usage: ai-assisted
 ---
 
-# How to debug pipeline reuse issues in Azure Machine Learning?
+# Debug pipeline reuse issues in Azure Machine Learning
 
-In this article, we explain:
+This article explains how to debug pipeline reuse problems in Azure Machine Learning. It covers:
 
-- What is reuse in Azure Machine Learning pipeline
-- How does reuse works
-- Step by step guidance to debug reuse issues
+- What reuse means in Azure Machine Learning pipelines
+- How reuse works
+- Step-by-step guidance to debug reuse problems
 
-## What is reuse in Azure Machine Learning pipeline?
+## What is reuse in an Azure Machine Learning pipeline?
 
-Building models with Azure Machine Learning pipeline is an iterative process. As a data scientist, you can start with a basic pipeline and then experiment with different machine learning algorithms or do hyperparamter tuning to improve your model. During this process, you'll submit many pipeline jobs that may only have small changes compared to the previous job. With the reuse feature, the pipeline can automatically use the output from a previous job if it meets certain criteria, without running the component again. This can save you time and money while developing your pipeline.
+Building models with Azure Machine Learning pipeline is an iterative process. As a data scientist, you can start with a basic pipeline and then experiment with different machine learning algorithms or do hyperparameter tuning to improve your model. During this process, you submit many pipeline jobs that might have only small changes compared to the previous job. By using the reuse feature, the pipeline can automatically use the output from a previous job if it meets certain criteria, without running the component again. This feature saves you time and money while developing your pipeline.
 
 :::image type="content" source="./media/how-to-debug-pipeline-reuse/reuse-demo.png" alt-text="A diagram showing two pipeline jobs and which components are being reused between them.":::
 
-In the diagram, the data scientist first submits `job_1`, then adds `Component_D` to the pipeline and submits `job_2`. When executing pipeline `job_2`, the pipeline service detects the output for `Component_A`, `Component_B` and `Component_C`, which remain unchanged. So it doesn't run the first three components again. Instead it reuses the output from `job_1` and only runs `Component_D` in `job_2`.  
+In the diagram, the data scientist first submits `job_1`, then adds `Component_D` to the pipeline and submits `job_2`. When executing pipeline `job_2`, the pipeline service detects the output for `Component_A`, `Component_B`, and `Component_C`, which remain unchanged. So it doesn't run the first three components again. Instead, it reuses the output from `job_1` and only runs `Component_D` in `job_2`.  
  
 ## How does reuse work?
 
@@ -72,7 +73,7 @@ Right click on a component and select **View definition**.
 
 If you have two jobs, you expected the second job to reuse the first job, but it didn't. You can compare the component snapshot in the two jobs. If the snapshot ID changes, it means there's some component code content change, which leads to a rerun.
 
-1. Double click a component to open it's right panel
+1. Double-click a component to open its right panel
 1. Open **Raw JSON** under Overview tab
 1. Search for snapshot ID in the raw JSON
 
@@ -95,7 +96,7 @@ The environment can also be compared in the graph comparison feature. We'll cove
 
 ### Step 5: Use graph comparison to check if there's any other change to the inputs, parameters, output settings, run settings
 
-You can compare the input data, parameters, output settings, run settings of the two pipeline jobs or components using compare feature. To learn more, see  [how to enable and use the graph compare feature](./how-to-use-pipeline-ui.md#compare-different-pipelines-to-debug-failure-or-other-unexpected-issues-preview)
+You can compare the input data, parameters, output settings, run settings of the two pipeline jobs or components using compare feature. To learn more, see  [how to enable and use the graph compare feature](./how-to-debug-pipeline-failure.md#compare-pipeline-jobs-preview)
 
 To identify any changes in pipeline topology, pipeline input/output, or pipeline settings between two pipelines, select **Compare graph** after adding two pipeline jobs to the compare list.
 
@@ -107,4 +108,10 @@ Furthermore, you can compare two components to observe if there have been any ch
 
 ### Step 6: Contact Microsoft for support
 
-If you follow all above steps, and you still can't find the root cause of unexpected rerun, you can [file a support case ticket](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview) to Microsoft to get help.
+If you follow all above steps, and you still can't find the root cause of unexpected rerun, you can [file a support case ticket](https://portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview) to Microsoft to get help.
+
+## Related content
+
+- [Debug pipeline failures in Azure Machine Learning](./how-to-debug-pipeline-failure.md) — Use pipeline comparison to identify topology, settings, and component differences between pipeline jobs.
+- [What are Azure Machine Learning pipelines?](./concept-ml-pipelines.md) — Learn how pipelines work, including caching, reuse, and reproducibility.
+- [Manage Azure Machine Learning environments](./concept-environments.md) — Understand how environment definitions affect component reuse and when environment changes trigger reruns.

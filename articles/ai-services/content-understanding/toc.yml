@@ -39,7 +39,7 @@ items:
     - name: Content Understanding Studio Quickstart
       displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract
       href: quickstart/content-understanding-studio.md
-    - name: Try Content Understanding REST API
+    - name: Try Content Understanding REST API and SDKs
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
     - name: Create CU Task in Foundry (classic) (Preview)
@@ -121,6 +121,9 @@ items:
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
+      - name: Create a Logic Apps workflow
+        displayName: logic apps, automation, workflow, invoice, connector
+        href: tutorial/logic-apps.md
       - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
@@ -145,3 +148,15 @@ items:
       - name: REST API
         displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
         href: /rest/api/contentunderstanding/operation-groups
+      - name: Python SDK
+        displayName: python, SDK, client library, pypi
+        href: /python/api/overview/azure/ai-contentunderstanding-readme?
+      - name: .NET SDK
+        displayName: dotnet, csharp, SDK, client library, nuget
+        href: /dotnet/api/overview/azure/ai.contentunderstanding-readme?
+      - name: Java SDK
+        displayName: java, SDK, client library, maven
+        href: https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding
+      - name: JavaScript SDK
+        displayName: javascript, typescript, SDK, client library, npm
+        href: https://www.npmjs.com/package/@azure/ai-content-understanding

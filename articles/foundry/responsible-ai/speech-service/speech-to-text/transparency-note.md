@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: "This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 06/30/2021
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Use cases for Speech to text

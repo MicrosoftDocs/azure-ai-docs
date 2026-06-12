@@ -1,16 +1,16 @@
 ---
-title: Use Azure.Search.Documents in .NET
-titleSuffix: Azure AI Search
+title: "Use Azure.Search.Documents in .NET"
 description: Learn how to create and manage search objects in a .NET application using C# and the Azure.Search.Documents client library.
-ms.devlang: csharp
+ms.date: 06/08/2026
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/14/2025
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+ms.devlang: "csharp"
+ai-usage: ai-assisted
 ---
 
 # How to use Azure.Search.Documents in a .NET application
@@ -19,31 +19,31 @@ This article explains how to create and manage search objects using C# and the [
 
 You can use this library for data plane operations, including:
 
-+ Create and manage search indexes, data sources, indexers, skillsets, and synonym maps
-+ Load and manage search documents in an index
-+ Execute queries, all without having to deal with the details of HTTP and JSON
-+ Invoke and manage AI enrichment (skillsets) and outputs
+- Create and manage search indexes, data sources, indexers, skillsets, and synonym maps
+- Load and manage search documents in an index
+- Execute queries, all without having to deal with the details of HTTP and JSON
+- Invoke and manage AI enrichment (skillsets) and outputs
 
 The library is distributed as a single [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents/) that includes all APIs used for programmatic access to a search service.
 
 The client library defines classes like `SearchIndex`, `SearchField`, and `SearchDocument`, as well as operations like `SearchIndexClient.CreateIndex` and `SearchClient.Search` on the `SearchIndexClient` and `SearchClient` classes. These classes are organized into the following namespaces:
 
-+ [`Azure.Search.Documents`](/dotnet/api/azure.search.documents)
-+ [`Azure.Search.Documents.Indexes`](/dotnet/api/azure.search.documents.indexes)
-+ [`Azure.Search.Documents.Indexes.Models`](/dotnet/api/azure.search.documents.indexes.models)
-+ [`Azure.Search.Documents.Models`](/dotnet/api/azure.search.documents.models)
+- [`Azure.Search.Documents`](/dotnet/api/azure.search.documents)
+- [`Azure.Search.Documents.Indexes`](/dotnet/api/azure.search.documents.indexes)
+- [`Azure.Search.Documents.Indexes.Models`](/dotnet/api/azure.search.documents.indexes.models)
+- [`Azure.Search.Documents.Models`](/dotnet/api/azure.search.documents.models)
 
 The **Azure.Search.Documents** client library doesn't provide [service management operations](/rest/api/searchmanagement/), such as creating and scaling search services and managing API keys. If you need to manage your search resources from a .NET application, use the [Azure.ResourceManager.Search](/dotnet/api/overview/azure/resourcemanager.search-readme) library in the Azure SDK for .NET.
 
 ## SDK requirements
 
-+ Visual Studio 2019 or later.
+- Visual Studio 2019 or later.
 
-+ [Azure AI Search](search-create-service-portal.md)
+- [Azure AI Search](search-create-service-portal.md)
 
-+ Download the [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) using **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution** in Visual Studio. Search for the package name `Azure.Search.Documents`.
+- Download the [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) using **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution** in Visual Studio. Search for the package name `Azure.Search.Documents`.
 
-The Azure SDK for .NET conforms to [.NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support). 
+The Azure SDK for .NET conforms to [.NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
 
 ## Example application
 
@@ -91,7 +91,7 @@ Next is a partial screenshot of the output, assuming you run this application wi
 
 ### Client types
 
-The client library uses three client types for various operations: [`SearchIndexClient`](/dotnet/api/azure.search.documents.indexes.searchindexclient) to create, update, or delete indexes, [`SearchClient`](/dotnet/api/azure.search.documents.searchclient) to load or query an index, and [`SearchIndexerClient`](/dotnet/api/azure.search.documents.indexes.searchindexerclient) to work with indexers and skillsets. This article focuses on the first two. 
+The client library uses three client types for various operations: [`SearchIndexClient`](/dotnet/api/azure.search.documents.indexes.searchindexclient) to create, update, or delete indexes, [`SearchClient`](/dotnet/api/azure.search.documents.searchclient) to load or query an index, and [`SearchIndexerClient`](/dotnet/api/azure.search.documents.indexes.searchindexerclient) to work with indexers and skillsets. This article focuses on the first two.
 
 At a minimum, all of the clients require the service name or endpoint, and an API key. It's common to provide this information in a configuration file, similar to what you find in the *appsettings.json* file of the [DotNetHowTo sample application](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo). To read from the configuration file, add `using Microsoft.Extensions.Configuration;` to your program.
 
@@ -108,7 +108,7 @@ private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot conf
 }
 ```
 
-The next statement creates the search client used to load documents or run queries. `SearchClient` requires an index. You need an admin API key to load documents, but you can use a query API key to run queries. 
+The next statement creates the search client used to load documents or run queries. `SearchClient` requires an index. You need an admin API key to load documents, but you can use a query API key to run queries.
 
 ```csharp
 string indexName = configuration["SearchIndexName"];
@@ -125,7 +125,6 @@ private static SearchClient CreateSearchClientForQueries(string indexName, IConf
 
 > [!NOTE]
 > If you provide an invalid key for the import operation (for example, a query key where an admin key was required), the `SearchClient` throws a `CloudException` with the error message *Forbidden* the first time you call an operation method on it. If this happens to you, double-check the API key.
->
 
 ### Delete the index
 
@@ -158,13 +157,12 @@ private static void DeleteIndexIfExists(string indexName, SearchIndexClient inde
 
 > [!NOTE]
 > The example code in this article uses the synchronous methods for simplicity, but you should use the asynchronous methods in your own applications to keep them scalable and responsive. For example, in the previous method, you could use [`DeleteIndexAsync`](/dotnet/api/azure.search.documents.indexes.searchindexclient.deleteindexasync) instead of [`DeleteIndex`](/dotnet/api/azure.search.documents.indexes.searchindexclient.deleteindex).
->
 
 ## Create an index
 
-You can use [`SearchIndexClient`](/dotnet/api/azure.search.documents.indexes.searchindexclient) to create an index. 
+You can use [`SearchIndexClient`](/dotnet/api/azure.search.documents.indexes.searchindexclient) to create an index.
 
-The following method creates a new [`SearchIndex`](/dotnet/api/azure.search.documents.indexes.models.searchindex) object with a list of [`SearchField`](/dotnet/api/azure.search.documents.indexes.models.searchfield) objects that define the schema of the new index. Each field has a name, data type, and several attributes that define its search behavior. 
+The following method creates a new [`SearchIndex`](/dotnet/api/azure.search.documents.indexes.models.searchindex) object with a list of [`SearchField`](/dotnet/api/azure.search.documents.indexes.models.searchfield) objects that define the schema of the new index. Each field has a name, data type, and several attributes that define its search behavior.
 
 Fields can be defined from a model class using [`FieldBuilder`](/dotnet/api/azure.search.documents.indexes.fieldbuilder). The `FieldBuilder` class uses reflection to create a list of `SearchField` objects for the index by examining the public properties and attributes of the given `Hotel` model class. We'll take a closer look at the `Hotel` class later on.
 
@@ -184,7 +182,6 @@ Besides fields, you could also add scoring profiles, suggesters, or CORS options
 
 > [!NOTE]
 > You can always create the list of `Field` objects directly instead of using `FieldBuilder` if needed. For example, you might not want to use a model class or you might need to use an existing model class that you don't want to modify by adding attributes.
->
 
 ### Call CreateIndex in Main()
 
@@ -236,11 +233,11 @@ An alternative approach is to add fields to an index directly. The following exa
 
 ### Field definitions
 
-Your data model in .NET and its corresponding index schema should support the search experience you'd like to give to your end user. Each top level object in .NET, such as a search document in a search index, corresponds to a search result you would present in your user interface. For example, in a hotel search application, your end users might want to search by hotel name, features of the hotel, or the characteristics of a particular room. 
+Your data model in .NET and its corresponding index schema should support the search experience you'd like to give to your end user. Each top level object in .NET, such as a search document in a search index, corresponds to a search result you would present in your user interface. For example, in a hotel search application, your end users might want to search by hotel name, features of the hotel, or the characteristics of a particular room.
 
-Within each class, a field is defined with a data type and attributes that determine how it's used. The name of each public property in each class maps to a field with the same name in the index definition. 
+Within each class, a field is defined with a data type and attributes that determine how it's used. The name of each public property in each class maps to a field with the same name in the index definition.
 
-Take a look at the following snippet that pulls several field definitions from the Hotel class. Notice that `Address` and `Rooms` are C# types with their own class definitions (refer to the sample code if you want to view them). Both are complex types. For more information, see [How to model complex types](search-howto-complex-data-types.md).
+Take a look at the following snippet that pulls several field definitions from the Hotel class. `Address` and `Rooms` are C# types with their own class definitions (refer to the sample code if you want to view them). Both are complex types. For more information, see [How to model complex types](search-howto-complex-data-types.md).
 
 ```csharp
 public partial class Hotel
@@ -273,7 +270,7 @@ When defining fields, you can use the base [`SearchField`](/dotnet/api/azure.sea
 Exactly one field in your index must serve as the document key (`IsKey = true`). It must be a string, and it must uniquely identify each document. It's also required to have `IsHidden = true`, which means it can't be visible in search results.
 
 | Field type | Description and usage |
-|------------|-----------------------|
+| --- | --- |
 | [`SearchField`](/dotnet/api/azure.search.documents.indexes.models.searchfield) | Base class, with most properties set to null, except `Name` which is required, and `AnalyzerName` which defaults to standard Lucene. |
 | [`SimpleField`](/dotnet/api/azure.search.documents.indexes.models.simplefield) | Helper model. Can be any data type, is always non-searchable (it's ignored for full text search queries), and is retrievable (it's not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as `IsKey = true` for a document ID. For more information, see [SimpleFieldAttribute.cs](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/search/Azure.Search.Documents/src/Indexes/SimpleFieldAttribute.cs) in source code. |
 | [`SearchableField`](/dotnet/api/azure.search.documents.indexes.models.searchablefield) | Helper model. Must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties. For more information, see the [SearchableFieldAttribute.cs](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/search/Azure.Search.Documents/src/Indexes/SearchableFieldAttribute.cs) in source code. |
@@ -286,7 +283,7 @@ Notice how each field is decorated with attributes such as `IsFilterable`, `IsSo
 
 #### Field type mapping
 
-The .NET types of the properties map to their equivalent field types in the index definition. For example, the `Category` string property maps to the `category` field, which is of type `Edm.String`. There are similar type mappings between `bool?`, `Edm.Boolean`, `DateTimeOffset?`, and `Edm.DateTimeOffset` and so on. 
+The .NET types of the properties map to their equivalent field types in the index definition. For example, the `Category` string property maps to the `category` field, which is of type `Edm.String`. There are similar type mappings between `bool?`, `Edm.Boolean`, `DateTimeOffset?`, and `Edm.DateTimeOffset` and so on.
 
 Did you happen to notice the `SmokingAllowed` property?
 
@@ -419,7 +416,6 @@ The second part creates an [`IndexDocumentsBatch`](/dotnet/api/azure.search.docu
 
 > [!NOTE]
 > In this example, you're just uploading documents. If you wanted to merge changes into existing documents or delete documents, you could create batches by calling `IndexDocumentsAction.Merge`, `IndexDocumentsAction.MergeOrUpload`, or `IndexDocumentsAction.Delete` instead. You can also mix different operations in a single batch by calling `IndexBatch.New`, which takes a collection of `IndexDocumentsAction` objects, each of which tells Azure AI Search to perform a particular operation on a document. You can create each `IndexDocumentsAction` with its own operation by calling the corresponding method such as `IndexDocumentsAction.Merge`, `IndexAction.Upload`, and so on.
-> 
 
 The third part of this method is a catch block that handles an important error case for indexing. If your search service fails to index some of the documents in the batch, a `RequestFailedException` is thrown. An exception can happen if you're indexing documents while your service is under heavy load. **We strongly recommend explicitly handling this case in your code.** You can delay and then retry indexing the documents that failed, or you can log and continue like the sample does, or you can do something else depending on your application's data consistency requirements. An alternative is to use [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1) for intelligent batching, automatic flushing, and retries for failed indexing actions. For more context, see the [SearchIndexingBufferedSender example](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample05_IndexingDocuments.md#searchindexingbufferedsender).
 
@@ -453,7 +449,7 @@ private static SearchClient CreateSearchClientForQueries(string indexName, IConf
 }
 ```
 
-Second, define a method that sends a query request. 
+Second, define a method that sends a query request.
 
 Each time the method executes a query, it creates a new [`SearchOptions`](/dotnet/api/azure.search.documents.searchoptions) object. This object is used to specify additional options for the query such as sorting, filtering, paging, and faceting. In this method, we're setting the `Filter`, `Select`, and `OrderBy` property for different queries. For more information about the search query expression syntax, [Simple query syntax](/rest/api/searchservice/Simple-query-syntax-in-Azure-Search).
 
@@ -585,9 +581,9 @@ options.Select.Add("Description");
 results = searchClient.Search<Hotel>("*", options);
 ```
 
-This query uses an OData `$filter` expression, `Rooms/any(r: r/BaseRate lt 100)`, to filter the documents in the index. It uses the [any operator](./search-query-odata-collection-operators.md) to apply the 'BaseRate lt 100' to every item in the Rooms collection. For more information, see [OData filter syntax](./query-odata-filter-orderby-syntax.md).
+This query uses an OData `$filter` expression, `Rooms/any(r: r/BaseRate lt 100)`, to filter the documents in the index. It uses the [any operator](search-query-odata-collection-operators.md) to apply the 'BaseRate lt 100' to every item in the Rooms collection. For more information, see [OData filter syntax](query-odata-filter-orderby-syntax.md).
 
-In the third query, find the top two hotels that have been most recently renovated, and show the hotel name and last renovation date. Here's the code: 
+In the third query, find the top two hotels that have been most recently renovated, and show the hotel name and last renovation date. Here's the code:
 
 ```csharp
 options =
@@ -627,10 +623,8 @@ This section concludes this introduction to the .NET SDK, but don't stop here. T
 
 ## Related content
 
-+ Browse the API reference documentation for [Azure.Search.Documents](/dotnet/api/azure.search.documents) and [REST API](/rest/api/searchservice/)
-
-+ Browse other code samples based on Azure.Search.Documents in [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started)
-
-+ Review [naming conventions](/rest/api/searchservice/Naming-rules) to learn the rules for naming various objects
-
-+ Review [supported data types](/rest/api/searchservice/Supported-data-types)
+- [Azure.Search.Documents namespace (API reference)](/dotnet/api/azure.search.documents)
+- [azure-search-dotnet-samples (GitHub repository)](https://github.com/Azure-Samples/azure-search-dotnet-samples)
+- [search-dotnet-getting-started (GitHub repository)](https://github.com/Azure-Samples/search-dotnet-getting-started)
+- [Azure AI Search REST API reference](/rest/api/searchservice/)
+- [Supported data types (REST API)](/rest/api/searchservice/Supported-data-types)

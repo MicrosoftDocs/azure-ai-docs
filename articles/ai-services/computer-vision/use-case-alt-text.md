@@ -3,17 +3,19 @@ title: "Overview: Generate alt text of images with Image Analysis"
 titleSuffix: Foundry Tools
 description: Grow your customer base by making your products and services more accessible. Generate a description of an image in human-readable language, using complete sentences. 
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
-ms.date: 03/02/2026
+ms.date: 03/31/2026
 ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
 
 # Overview: Generate image alt text with Image Analysis
+
+[!INCLUDE [image-analysis-deprecation](includes/image-analysis-deprecation.md)]
 
 ## What is alt text?
 

@@ -3,8 +3,8 @@ title: Custom subdomains
 titleSuffix: Foundry Tools
 description: Learn how to add custom subdomain names for Foundry Tools resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.custom: devx-track-azurecli
 ms.topic: concept-article
 ms.date: 10/02/2025

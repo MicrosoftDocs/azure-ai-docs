@@ -3,7 +3,7 @@ title: Evaluate a Custom Named Entity Recognition (NER) model
 titleSuffix: Foundry Tools
 description: Learn how to evaluate and score your Custom Named Entity Recognition (NER) model
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

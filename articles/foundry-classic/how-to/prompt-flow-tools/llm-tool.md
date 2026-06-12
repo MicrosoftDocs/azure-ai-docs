@@ -1,8 +1,8 @@
 ---
 title: "LLM tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the large language model (LLM) tool for flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -13,14 +13,13 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # LLM tool for flows in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 To use large language models (LLMs) for natural language processing, use the prompt flow LLM tool.
 

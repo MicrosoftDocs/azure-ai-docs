@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -24,8 +21,6 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - [TypeScript](https://www.typescriptlang.org/download/) to compile TypeScript to JavaScript.
 
-- [Visual Studio Code](https://code.visualstudio.com/download).
-
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
 - The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
@@ -46,11 +41,10 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-javascript-samples/quickstart-keyword-search
-    code .
     ```
 
 1. In `sample.env`, replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).

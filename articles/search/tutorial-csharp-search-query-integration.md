@@ -1,17 +1,17 @@
 ---
-title: "Explore code (.NET tutorial)"
-titleSuffix: Azure AI Search
+title: Explore Code (.NET Tutorial)
 description: Understand the .NET SDK Search integration queries used in the Search-enabled website with this cheat sheet.
-author: diberry
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 09/23/2025
+ms.date: 04/27/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
 ms.devlang: csharp
+ai-usage: ai-assisted
 ---
 
 # Step 4 - Explore the .NET search code

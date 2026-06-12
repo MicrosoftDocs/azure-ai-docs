@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools audio solutions
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -108,7 +108,7 @@ The following prebuilt analyzers are available:
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-callCenter",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-05-06T22:53:28Z",
     "stringEncoding": "utf8",
     "warnings": [],
@@ -227,7 +227,7 @@ The following prebuilt analyzers are available:
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-audioSearch",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-05-06T23:00:12Z",
     "stringEncoding": "utf8",
     "warnings": [],

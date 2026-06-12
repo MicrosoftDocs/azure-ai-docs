@@ -1,8 +1,8 @@
 ---
 title: "Troubleshoot Guidance for Prompt Flow (classic)"
 description: "This article addresses frequently asked questions about prompt flow usage. Learn how to deal with compute session related issues. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
@@ -11,12 +11,13 @@ ms.author: lagayhar
 ms.reviewer: none
 ms.date: 10/16/2025
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Troubleshoot guidance for prompt flow (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 This article addresses frequently asked questions about prompt flow usage.
 

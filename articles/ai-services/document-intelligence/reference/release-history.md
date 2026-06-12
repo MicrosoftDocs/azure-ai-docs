@@ -3,8 +3,8 @@ title: Azure Document Intelligence in Foundry Tools release history
 titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Document Intelligence in Foundry Tools API.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
 ms.date: 11/18/2025
 ms.author: lajanuar
@@ -30,7 +30,6 @@ Azure Document Intelligence is an innovative a cloud-based service that utilizes
 The Document Intelligence version 3.1 API is now generally available (GA)! The API version corresponds to ```2023-07-31```.
 The v3.1 API introduces new and updated capabilities:
 
-* Document Intelligence APIs are now more modular and with support for optional features. You can now customize the output to specifically include the features you need. Learn more about the [optional parameters](../versioning/v3-1-migration-guide.md).
 * Document classification API for splitting a single file into individual documents. [Learn more](../train/custom-classifier.md) about document classification.
 * [Prebuilt contract model](../prebuilt/contract.md).
 * [Prebuilt US tax form 1098 model](../prebuilt/tax-document.md).
@@ -41,7 +40,7 @@ The v3.1 API introduces new and updated capabilities:
 * Support for [high resolution documents](../concept/add-on-capabilities.md).
 * Custom neural models now require a single labeled sample to train.
 * Custom neural models language expansion. Train a neural model for documents in 30 languages. See [language support](../language-support/custom.md) for the complete list of supported languages.
-* 🆕 [Prebuilt health insurance card model](../prebuilt/health-insurance-card.md).
+*  [Prebuilt health insurance card model](../prebuilt/health-insurance-card.md).
 * [Prebuilt invoice model locale expansion](../prebuilt/invoice.md#supported-languages-and-locales).
 * [Prebuilt receipt model language and locale expansion](../prebuilt/receipt.md#supported-languages-and-locales) with more than 100 languages supported.
 * [Prebuilt ID model](../prebuilt/id-document.md#supported-document-types) now supports European IDs.
@@ -98,9 +97,9 @@ The v3.1 API introduces new and updated capabilities:
 
 **Introducing refreshed documentation for Build 2023**
 
-* [🆕 Document Intelligence Overview](../overview.md?view=doc-intel-3.0.0&preserve-view=true) enhanced navigation, structured access points, and enriched images.
+* [ Document Intelligence Overview](../overview.md?view=doc-intel-3.0.0&preserve-view=true) enhanced navigation, structured access points, and enriched images.
 
-* [🆕 Choose a Document Intelligence model](../concept/choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
+* [ Choose a Document Intelligence model](../concept/choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
 
 ## April 2023
 

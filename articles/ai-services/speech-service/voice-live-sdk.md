@@ -3,10 +3,10 @@ title: About the Voice Live SDK - Speech service
 titleSuffix: Foundry Tools
 description: The Voice Live software development kit (SDK) exposes Azure Voice Live capabilities, making it easier to build low-latency speech-to-speech voice agents.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 01/26/2026
+ms.date: 04/28/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the Voice Live SDK.
@@ -31,10 +31,10 @@ The Voice Live SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|-----------|------------------|
-| C# | [C#](/dotnet/api/overview/azure/ai.voicelive-readme?view=foundry) | Windows, Linux, macOS |
-| Python | [Python](/python/api/overview/azure/ai-voicelive-readme?view=foundry) | Windows, Linux, macOS|
-| Java (preview) | [Java](/java/api/overview/azure/ai-voicelive-readme?view=foundry) | Android, Windows, Linux, macOS |
-| JavaScript/TypeScript (preview) | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme?view=foundry) | Windows, Linux, macOS |
+| C# | [C#](/dotnet/api/overview/azure/ai.voicelive-readme) | Windows, Linux, macOS |
+| Python | [Python](/python/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS|
+| Java | [Java](/java/api/overview/azure/ai-voicelive-readme) | Android, Windows, Linux, macOS |
+| JavaScript/TypeScript | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS |
 
 ## Code samples
 
@@ -70,5 +70,5 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 ## Next steps
 
-- [Voice Live overview](/azure/ai-services/speech-service/voice-live?view=foundry)
+- [Voice Live overview](/azure/ai-services/speech-service/voice-live)
 - [Try the Voice Live API quickstart](./voice-live-quickstart.md)

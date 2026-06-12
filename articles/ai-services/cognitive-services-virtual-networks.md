@@ -3,8 +3,8 @@ title: Configure Virtual Networks for Foundry Tools
 titleSuffix: Foundry Tools
 description: Configure layered network security for your Foundry Tools resources.
 author: aahill
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 02/17/2026
 ms.author: aahi
@@ -181,6 +181,9 @@ Enable a *service endpoint* for Foundry Tools within the virtual network. The se
 The identities of the subnet and the virtual network are also transmitted with each request. Administrators can then configure network rules for the Foundry Tools resource to allow requests from specific subnets in a virtual network. Clients granted access by these network rules must continue to meet the authorization requirements of the Foundry Tools resource to access the data.
 
 Each Foundry Tools resource supports up to 100 virtual network rules, which can be combined with IP network rules. For more information, see [Grant access from an internet IP range](#grant-access-from-an-internet-ip-range) later in this article.
+
+> [!NOTE]
+> When configuring IP network rules for your Cognitive Services endpoint, only the IP addresses included in the allowed list can successfully access the endpoint. Requests from IP addresses not listed will be blocked. This ensures that the endpoint is only accessible from authorized networks, reducing exposure to unauthorized or unlisted IPs.
 
 ### Set required permissions
 

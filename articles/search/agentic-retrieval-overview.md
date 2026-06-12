@@ -1,8 +1,7 @@
 ---
-title: Agentic Retrieval
-titleSuffix: Azure AI Search
-description: Learn about agentic retrieval concepts, architecture, and use cases.
-ms.date: 02/02/2026
+title: Agentic Retrieval Overview
+description: Learn about agentic retrieval in Azure AI Search, a pipeline that uses LLMs to decompose complex queries into subqueries for better RAG and agent workflows.
+ms.date: 06/02/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -12,9 +11,18 @@ ms.custom:
 
 # Agentic retrieval in Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
 
-What is agentic retrieval? In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) patterns and agent-to-agent workflows. 
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
+In Azure AI Search, *agentic retrieval* is a multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG) patterns and agent-to-agent workflows. 
 
 Here's what it does:
 
@@ -26,9 +34,9 @@ Here's what it does:
 
 + The response is modular yet comprehensive in how it also includes a query plan and source documents. You can choose to use just the search results as grounding data, or invoke the LLM to formulate an answer.
 
-This high-performance pipeline helps you generate high quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
+This high-performance pipeline helps you generate high-quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a [knowledge base object](/rest/api/searchservice/knowledge-bases) in the latest stable (2026-04-01) and preview (2026-05-01-preview) REST API versions, as well as the equivalent Azure SDK packages. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -42,7 +50,7 @@ The *retrieval* component is the ability to run subqueries simultaneously, merge
 
 Query expansion and parallel execution, plus the retrieval response, are the key capabilities of agentic retrieval that make it the best choice for generative AI (RAG) applications.
 
-:::image type="content" source="media/agentic-retrieval/agentric-retrieval-example.png" alt-text="Diagram of a complex query with implied context and an intentional typo." lightbox="media/agentic-retrieval/agentric-retrieval-example.png" :::
+:::image type="content" source="media/agentic-retrieval/agentric-retrieval-example.png" alt-text="Diagram of a complex query showing how agentic retrieval handles implied context and an intentional typo." lightbox="media/agentic-retrieval/agentric-retrieval-example.png" :::
 
 Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
 
@@ -55,8 +63,6 @@ Agentic retrieval adds latency to query processing, but it makes up for it by ad
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
-> [!NOTE]
-> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. You can minimize latency and costs by setting properties that limit LLM processing. You can also exclude LLM processing altogether for just text and hybrid search and your own query planning logic.
 
 ## Architecture and workflow
 
@@ -86,89 +92,37 @@ Your search index determines query execution and any optimizations that occur du
 | **Knowledge base** | Azure AI Search | Orchestrates the pipeline, connecting to your LLM and managing query parameters |
 | **Knowledge source** | Azure AI Search | Wraps the search index with properties pertaining to knowledge base usage |
 | **Search index** | Azure AI Search | Stores your searchable content (text and vectors) with semantic configuration |
-| **Semantic ranker** | Azure AI Search | Required component that reranks results for relevance (L2 reranking) |
+| **Semantic ranker** | Azure AI Search | Used internally by the agentic retrieval pipeline to rerank results for relevance (L2 reranking) |
 
 ### Integration requirements
 
 Your application drives the pipeline by calling the knowledge base and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
-> [!NOTE]
-> Only gpt-4o, gpt-4.1, and gpt-5 series models are supported for query planning. You can use any model for final answer generation.
-
-## How to get started
-
-To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
-
-### [**Quickstarts**](#tab/quickstarts)
-
-+ [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-+ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
-
-### [**How-to guides**](#tab/how-to-guides)
-
-+ Create a knowledge source:
-  + [Blob](agentic-knowledge-source-how-to-blob.md)
-  + [OneLake](agentic-knowledge-source-how-to-onelake.md)
-  + [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)
-  + [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)
-  + [Search index](agentic-knowledge-source-how-to-search-index.md)
-  + [Web](agentic-knowledge-source-how-to-web.md)
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
-+ [Use a knowledge base to retrieve data](agentic-retrieval-how-to-retrieve.md)
-
-### [**Tutorials**](#tab/tutorials)
-
-+ [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
-
-### [**Code samples**](#tab/sample-code)
-
-+ [Quickstart-Agentic-Retrieval: Python](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval)
-+ [Quickstart-Agentic-Retrieval: .NET](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-agentic-retrieval)
-+ [Quickstart-Agentic-Retrieval: REST](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval)
-+ [End-to-end with Azure AI Search and Foundry Agent Service](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example)
-
-### [**REST API references**](#tab/rest-api-references)
-
-+ [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-+ [Knowledge Bases](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-+ [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-
-### [**Demos**](#tab/demos)
-
-+ [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
-
----
 
 ## Availability and pricing
 
-Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by pricing tier and retrieval reasoning effort.
+Agentic retrieval is available in [select regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by pricing tier and retrieval reasoning effort.
 
-It has a dependency on premium features. If you disable semantic ranker for your search service, you effectively disable agentic retrieval.
+### Billing
 
-| Plan | Description |
-|------|-------------|
-| Free | A free tier search service provides 50 million free agentic reasoning tokens per month. On higher tiers, you can choose between the free plan (default) and the standard plan. |
-| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the free quota is used up, you are charged an additional fee for each additional one million agentic reasoning tokens. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
+Agentic retrieval incurs charges from two services:
 
-Token-based billing for LLM-based query planning and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) (optional) is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge base is the one [charged for token usage](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
++ **Azure AI Search** bills for retrieval tokens consumed during subquery execution and semantic ranking. The free plan (default) provides a monthly token allowance. The standard plan enables pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-Token-based billing for agentic retrieval is the number of tokens returned by each subquery.
++ **Azure OpenAI** bills for input and output tokens used in LLM-based query planning and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md). Pricing is always pay-as-you-go and based on the model you assign to the knowledge base. Charges appear on your Azure OpenAI bill. For rates, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
 
-| Aspect | Classic single-query pipeline | Agentic retrieval multi-query pipeline |
-|--------|------------------------|----------------------------|
-| Unit | Query based (1,000 queries) per unit of currency| Token based (1 million tokens per unit of currency) |
-| Cost per unit | Uniform cost per query | Uniform cost per token |
+The following table compares billing between the classic single-query pipeline and the agentic retrieval multi-query pipeline. In the classic pipeline, the billable component is [semantic ranker](semantic-search-overview.md).
+
+| Aspect | Classic pipeline | Agentic retrieval |
+|--|--|--|
+| Unit | Query based | Token based |
+| Cost per unit | Uniform cost per query | Variable cost per token (depends on reasoning effort) |
 | Cost estimation | Estimate query count | Estimate token usage |
-| Free tier| 1,000 free queries | 50 million free tokens |
+| Free allowance | Monthly free query allowance | Monthly free token allowance |
 
 ### Example: Estimate costs
 
-Agentic retrieval has two billing models: billing from Azure OpenAI (query planning and, if enabled, answer synthesis) and billing from Azure AI Search for agentic retrieval.
-
-This pricing example omits answer synthesis, but helps illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
-
-#### Estimated billing costs for query planning
+This example helps illustrate the cost estimation process for query planning and query execution, but not answer synthesis. Your costs could be lower. For current rates, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search) and [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
 
 To estimate the query plan costs as pay-as-you-go in Azure OpenAI, let's assume gpt-4o-mini:
 
@@ -212,27 +166,54 @@ Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI
 
 + Organize content so the most relevant information can be found with fewer sources and documents (For example, curated summaries or tables).
 
-<!-- 
-•Query Pipeline Recap: The query pipeline includes stages: Query Preprocessing (Query Rewriting, Vectorization, Text analysis), Ranking (Vector Search, Keyword Search, Fusion, Semantic Ranking), and Synthesis (Results for LLM, Extractive Answers, Contextualized Captions).
 
-•RAG Query Challenges: RAG queries fail due to difficulties in retrieving relevant results, exact match searches, chatbot clarifications, and filter conditions. Examples and reasons for failures are discussed.
+## How to get started
 
-Agentic Retrieval Engine: The Agentic Retrieval Engine uses an AOAI model for query planning, producing sub-queries, and merging results. It supports explainability and debugging, and includes all existing search functionalities.
+To create an agentic retrieval solution, you can use the Azure portal, REST APIs, or an Azure SDK package that provides the functionality.
 
-•Query Planning: Query planning involves processing conversation history with an AOAI Model (gpt-4o-mini) to classify queries into categories like 'Xbox sign-in troubleshooting' and 'Xbox PIN rejection troubleshooting'.
+### [**Quickstarts**](#tab/quickstarts)
 
-•Query Activity: Query activity involves planning and executing queries using the AOAI Model, producing sub-queries, and processing them through a pipeline for ranking and extracting references.
++ [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
++ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
-•Extracted Response for LLM: The process of extracting responses for troubleshooting guides involves a query pipeline, reference extraction, and merging results. A table lists extracted documents with reference IDs.
+### [**How-to guides**](#tab/how-to-guides)
 
-Extracted Response Example: Troubleshooting steps for Xbox sign-in issues include verifying email/password, checking internet, and updating software. For PIN issues, check sequence and reset if needed. Sources are cited.
++ Create a knowledge source:
+  + [Blob](agentic-knowledge-source-how-to-blob.md)
+  + [OneLake](agentic-knowledge-source-how-to-onelake.md)
+  + [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)
+  + [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)
+  + [Search index](agentic-knowledge-source-how-to-search-index.md)
+  + [Web](agentic-knowledge-source-how-to-web.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
++ [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md)
++ [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 
-•Agentic Retrieval vs Query Pipeline: Comparison of Agentic Retrieval and Query Pipeline: Agentic Retrieval supports multi-turn input, plans subqueries, and provides document references and activity logs, while Query Pipeline uses a single query and lists results.
+### [**Tutorials**](#tab/tutorials)
 
-•Cost Comparison: Cost comparison between Query Pipeline and Agentic Retrieval Engine: Query Pipeline has a uniform cost per query with a free tier of 1,000 queries, while Agentic Retrieval Engine has a uniform cost per token with a free tier of 50 million tokens.
++ [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
 
-Token Usage: Token usage in query planning and ranking involves AOAI input tokens generating subqueries, and ranking input tokens used in a query pipeline for document retrieval and semantic ranking.
+### [**Code samples**](#tab/sample-code)
 
-•Roadmap: Potential features include Multiple Index Search, Iterative Search, Filtered Search, Query Planning Customization, Federation, Answer Generation, and Authority Checking.
++ [Quickstart-Agentic-Retrieval: Python](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval)
++ [Quickstart-Agentic-Retrieval: .NET](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-agentic-retrieval)
++ [Quickstart-Agentic-Retrieval: REST](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval)
++ [End-to-end with Azure AI Search and Foundry Agent Service](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example)
 
-•Features under each model: Comparison of features under traditional search model: BYOM Query planning and Reranking are listed, with a section for answers left blank -->
+### [**REST API references**](#tab/rest-api-references)
+
++ [Knowledge Sources](/rest/api/searchservice/knowledge-sources)
++ [Knowledge Bases](/rest/api/searchservice/knowledge-bases)
++ [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve)
+
+### [**Demos**](#tab/demos)
+
++ [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
+
+---
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md)

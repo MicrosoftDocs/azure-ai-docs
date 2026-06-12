@@ -1,7 +1,6 @@
 ---
-title: Query types
-titleSuffix: Azure AI Search
-description: Learn about the types of queries supported in Azure AI Search, including vector and hybrid queries, free text, filter, autocomplete and suggestions, geospatial search, system queries, and document lookup.
+title: Query Types
+description: Learn about query types in Azure AI Search, including full-text, vector, hybrid, filter, autocomplete, and geospatial queries for building search experiences.
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 05/29/2025
@@ -57,7 +56,7 @@ Geospatial search uses kilometers for distance. Coordinates are specified in thi
 Here's an example of a filter for geospatial search. This filter finds other `Location` fields in the search index that have coordinates within a 300-kilometer radius of the geography point (in this example, Washington D.C.). It returns address information in the result, and includes an optional `facets` clause for self-navigation based on location.
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2026-04-01
 {
     "count": true,
     "search": "*",

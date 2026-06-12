@@ -1,14 +1,14 @@
 ---
-manager: nitinme
+manager: mcleans
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.date: 02/11/2026
 ms.topic: include
 ---
 
-## Permissions required to subscribe to Models from Partners and Community
+## Permissions required to subscribe to Models from partners and community
 
 [Foundry Models from partners and community](../../concepts/models-from-partners.md) available for deployment (for example, Cohere models) require Azure Marketplace. Model providers define the license terms and set the price for use of their models using Azure Marketplace.
 

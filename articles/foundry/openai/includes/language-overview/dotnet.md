@@ -2,9 +2,9 @@
 title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI C# support
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 08/31/2025
 ai-usage: ai-assisted
@@ -26,13 +26,13 @@ dotnet add package OpenAI
 
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
-A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet ). To use the library:
+A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
 
 ```dotnetcli
 dotnet add package Azure.Identity
 ```
 
-Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet):
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true):
 
 ```csharp
 using Azure.Identity;
@@ -44,7 +44,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "gpt-4.1-nano",
@@ -101,7 +101,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -166,7 +166,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",
@@ -203,7 +203,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 #pragma warning disable OPENAI001
 
@@ -251,7 +251,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",

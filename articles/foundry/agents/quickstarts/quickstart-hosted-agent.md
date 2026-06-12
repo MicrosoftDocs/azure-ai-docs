@@ -1,353 +1,298 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the VS Code Foundry extension or Azure Developer CLI."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit for Visual Studio Code extension."
 author: aahill
 ms.author: aahi
-ms.date: 01/26/2026
-ms.manager: nitinme
+ms.date: 05/23/2026
+ms.manager: mcleans
 ms.topic: quickstart
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
-ms.custom: mode-other
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
+ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
+zone_pivot_groups: hosted-agent-deploy-method
 ---
 
-# Quickstart: Deploy your first hosted agent using Azure Developer CLI
-In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground.
+# Quickstart: Deploy your first hosted agent
 
-**In this quickstart, you:**
-
-> [!div class="checklist"]
-> * Set up an agent sample project with Foundry tools
-> * Test the agent locally
-> * Deploy to Foundry Agent Service
-> * Interact with your agent in the playground
-> * Clean up resources
+> [!NOTE]
+> Hosted agents are currently in preview.
 
 ## Prerequisites
 
 Before you begin, you need:
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
-* A [Microsoft Foundry project](../../tutorials/quickstart-create-foundry-resources.md) with:
-  * An Azure OpenAI model deployment (for example `gpt-5`)
-    * This example uses `gpt-5`, you may need to use another model (such as `gpt-4.1`) depending on your [quotas and limits](../concepts/limits-quotas-regions.md#quotas-and-limits-for-models).
-  * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
-* An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
-* (Optional) [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
-* [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
-* [Python 3.10 or later](https://www.python.org/downloads/)
+* An Azure subscription--[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* If you have existing Foundry Project, you need `Foundry Project Manager` at project scope. If you need to create a new Foundry Project, you need `Owner` role at resource group scope. For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+* [Python 3.13 or later](https://www.python.org/downloads/).
 
-> [!NOTE]
-> Hosted agents are currently in preview.
+:::zone pivot="azd"
 
-## Step 1: Set up the sample project
+* [Azure Developer CLI (AZD) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd).
+* The `azd microsoft.foundry` extension. Install and verify the extension after AZD is installed:
 
-Initialize a new project with the Foundry starter template and configure it with the agent-with-foundry-tools sample.
-
-1. Initialize the starter template:
-
-    ```bash
-    azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
+    ```
+    azd ext install microsoft.foundry
     ```
 
-    This interactive command prompts you for an environment name (for example, `my-hosted-agent`). The environment name determines your resource group name (`rg-my-hosted-agent`).
+:::zone-end
 
-    > [!NOTE]
-    > If a resource group with the same name already exists, `azd provision` uses the existing group. To avoid conflicts, choose a unique environment name or delete the existing resource group first.
+:::zone pivot="vscode"
 
-1. Initialize the agent sample:
+* [Visual Studio Code](https://code.visualstudio.com/).
+* [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk).
 
-    ```bash
-    azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agent-with-foundry-tools/agent.yaml
-    ```
+:::zone-end
 
-    This interactive command prompts you for the following configuration values:
+:::zone pivot="azd"
 
-    - **Azure subscription** - select the Azure subscription where you want the Foundry resources to be created.
-    - **Location** - select a region for the resources
-    - **Model SKU** - select the SKU available for your region and subscription
-    - **Deployment name** - enter a name for the model deployment
-    - **Container memory** - enter a value for the memory allocation of the container or accept the defaults
-    - **Container CPU** - enter a value for the CPU allocation of the container or accept the defaults
-    - **Minimum replicas** - enter a value for the minimum replicas of the container
-    - **Max replicas** - enter a value for the maximum replicas of the container
+## Step 1: Initialize sample agent
 
-    > [!IMPORTANT]
-    > If you aren't using an MCP server, comment out or remove the following lines in the `agent.yaml` file:
-    >
-    > ```yaml
-    > - name: AZURE_AI_PROJECT_TOOL_CONNECTION_ID
-    >   value: <CONNECTION_ID_PLACEHOLDER>
-    > ```
+Initialize a new hosted agent using the basic [Agent Framework sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic) in an empty directory:
 
-1. Provision the required Azure resources:
-
-    > [!NOTE]
-    > You need **Contributor** access on your Azure subscription for resource provisioning.
-
-    ```bash
-    azd provision
-    ```
-
-    This command takes about 5 minutes and creates the following resources:
-
-    | Resource | Purpose | Cost |
-    | -------- | ------- | ---- |
-    | Resource group | Organizes all related resources in the same area | No cost |
-    | Model deployment | Model used by the agent | See [Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/) |
-    | Foundry project | Hosts your agent and provides AI capabilities | Consumption-based; see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/) |
-    | Azure Container Registry | Stores your agent container images | Basic tier; see [ACR pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
-    | Log Analytics Workspace | Manage all log data in one place | No direct cost. See [Log Analytics cost](/azure/azure-monitor/logs/log-analytics-workspace-overview) |
-    | Application Insights | Monitors agent performance and logs | Pay-as-you-go; see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) |
-    | Managed identity | Authenticates your agent to Azure services | No cost |
-
-    > [!TIP]
-    > Run `azd down` when you finish this quickstart to delete resources and stop incurring charges.
-
-## Step 2: Test the agent locally
-
-Before deploying, verify the agent works locally.
-
-1. Create and activate a Python virtual environment:
-
-    **Bash:**
-
-    ```bash
-    python -m venv .venv
-    source .venv/bin/activate
-    ```
-
-    **PowerShell:**
-
-    ```powershell
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    ```
-
-1. Install dependencies:
-
-    ```bash
-    pip install -r ./src/af-agent-with-foundry-tools/requirements.txt
-    ```
-
-1. Copy the required environment variables used in the agent code to a local .env file:
-
-    **Bash:**
-
-    ```bash
-    azd env get-values > .env
-    ```
-
-    **PowerShell:**
-
-    ```powershell
-    azd env get-values > .env
-    ```
-
-1. Add the `AZURE_OPENAI_CHAT_DEPLOYMENT_NAME` variable to your `.env` file with the name of the model deployment:
-
-    `AZURE_OPENAI_CHAT_DEPLOYMENT_NAME="gpt-5"`
-
-1. Run the agent locally:
-
-    ```bash
-    python ./src/af-agent-with-foundry-tools/main.py
-    ```
-
-    If the agent fails to start, check these common issues:
-
-    | Error | Solution |
-    | ----- | -------- |
-    | `AuthenticationError` or `DefaultAzureCredential` failure | Run `azd auth login` again to refresh your session. |
-    | `ResourceNotFound` | Verify your endpoint URLs match the values in the Foundry portal. |
-    | `DeploymentNotFound` | Check the deployment name in **Build** > **Deployments**. |
-    | `Connection refused` | Ensure no other process is using port 8088. |
-
-1. Test with a REST client. The agent runs on `localhost:8088`:
-
-    **Bash:**
-
-    ```bash
-    curl -X POST http://localhost:8088/responses \
-        -H "Content-Type: application/json" \
-        -d '{"input": "What is Microsoft Foundry?"}'
-    ```
-
-    **PowerShell:**
-
-    ```powershell
-    Invoke-RestMethod -Method Post `
-        -Uri "http://localhost:8088/responses" `
-        -ContentType "application/json" `
-        -Body '{"input":"What is Microsoft Foundry?"}'
-    ```
-
-    You should see a response with web search results about Microsoft Foundry.
-
-1. Stop the local server with **Ctrl+C**.
-
-## Step 3: Deploy to Foundry Agent Service
-
-The `azd up` command combines three steps into one: provisioning infrastructure, packaging your application, and deploying it to Azure. This is equivalent to running `azd provision`, `azd package`, and `azd deploy` separately.
-
-Before you begin, verify that Docker Desktop is running:
-
-```bash
-docker info
+```
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/01-basic/agent.manifest.yaml" --deploy-mode code
 ```
 
-If this command fails, start Docker Desktop and wait for it to initialize before continuing.
+The interactive flow prompts for:
 
-Deploy your agent:
+* **Agent name**: Customize the name or accept the *default*, **agent-framework-agent-basic-responses**
+* **Foundry Project**: Select **Create a new Foundry project** or **Use an existing Foundry project**
+* **Tenant**: Select your Azure tenant
+* **Subscription**: Select your Azure subscription
+* **Location**: Select an Azure region
+* **Model**: Select the *default*, **gpt-4.1-mini**, or another model you can access.
+* **Model Version**: Select the *default* option.
+* **Model SKU**: Select an option with available quota that isn't Batch, usually **Standard** or **GlobalStandard**
+* **Deployment capacity**: Select the *default*, **10**
+* **Deployment name**: Select the *default*, **gpt-4.1-mini**
 
-```bash
-azd up
+When complete, you should see **AI agent definition added to your azd project successfully!**. Change directory into newly created agent folder.
+
+```
+cd agent-framework-agent-basic-responses
 ```
 
-The first deployment will take longer because Docker needs to build the image.
+## Step 2: Provision Azure resources
 
-> [!WARNING]
-> Your hosted agent incurs charges while deployed. After you finish testing, complete [Step 5: Clean up resources](#step-5-clean-up-resources) to delete resources and stop charges.
+Provision the resources defined in `azure.yaml`:
 
-When finished, you will see a link to the Agent Playground and the endpoint for the agent which can be used to invoke the agent programmatically.
+```
+azd provision
+```
 
-```bash
+## Step 3: Test the agent locally
+
+1. Start the agent:
+
+    ```
+    azd ai agent run --no-inspector
+    ```
+
+    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are nonblocking. The agent starts and responds correctly despite them.
+
+1. In a separate terminal, send a test prompt:
+
+    ```
+    azd ai agent invoke --protocol responses --local "Write a haiku about deploying cloud applications."
+    ```
+
+    You should see a haiku response from the agent.
+
+## Step 4: Deploy to Foundry Agent Service
+
+Build and deploy the agent container:
+
+```
+azd deploy
+```
+
+When the command finishes, the output shows links to the agent playground and the agent endpoint:
+
+```output
 Deploying services (azd deploy)
-                                                                                                                                                                     
-  (✓) Done: Deploying service af-agent-with-foundry-tools
-  - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
-  - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
+
+  Done: Deploying service basic-agent
+  - Agent playground (portal): https://ai.azure.com/.../build/agents/basic-agent/build?version=1
+  - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/basic-agent/versions/1
 ```
 
-## Step 4: Verify and test your agent
+## Step 5: Invoke your agent
 
-After deployment completes, verify your agent is running.
+1. Send the same prompt to the deployed agent:
 
-### Test in the Foundry playground
+    ```
+    azd ai agent invoke "Write a haiku about deploying cloud applications."
+    ```
 
-Use the link provided in the output from the `azd up` command, or navigate to the agent in the portal:
+    You should see a haiku response within a few seconds.
 
-1. Open the [Foundry portal](https://ai.azure.com) and sign in with your Azure account.
+1. (Optional) Stream container logs while you interact with the agent:
 
-1. Select your project from the **Recent projects** list, or select **All projects** to find it.
+    ```
+    azd ai agent monitor --follow
+    ```
 
-1. In the left navigation, select **Build** to expand the menu, then select **Agents**.
+:::zone-end
 
-1. In the agents list, find your deployed agent (it matches the agent name from your deployment).
+:::zone pivot="vscode"
 
-1. Select the agent name to open its details page, then select **Open in playground** in the top toolbar.
+## Step 1: Create a Foundry project
 
-1. In the chat interface, type a test message like "What is Microsoft Foundry?" and press **Enter**.
+1. Open the Command Palette (**Ctrl+Shift+P**) and select **Foundry Toolkit: Create Project**.
+1. Select your Azure subscription.
+1. Create a new resource group or select an existing one.
+1. Enter a name for the Foundry project.
 
-1. Verify that the agent responds with information from web search results. The response might take a few seconds as the agent queries external sources.
+## Step 2: Deploy a model
 
-  > [!TIP]
-  > If the playground doesn't load or the agent doesn't respond, verify the agent status is `Started` using the CLI command below.
-  
-### Find your resource names
+1. Open the Command Palette and select **Foundry Toolkit: Open Model Catalog**.
+1. Search for `gpt-4.1` and select **Deploy**.
+1. On the model deployment page, select **Deploy to Microsoft Foundry**.
 
-To use the Azure CLI verification command, you need the following values:
+## Step 3: Create a hosted agent project
 
-| Value | How to find it |
-| ----- | -------------- |
-| Account name | In the [Foundry portal](https://ai.azure.com), open your project and select **Overview**. The account name is the first part of your project endpoint URL (before `.services.ai.azure.com`). Alternatively, in the [Azure portal](https://portal.azure.com), go to your resource group and find the **Foundry** resource—its name is the account name. |
-| Project name | In the [Foundry portal](https://ai.azure.com), open your project and copy the name from the **Overview** page. |
-| Agent name | In the [Foundry portal](https://ai.azure.com), go to **Build** > **Agents**. The agent name appears in the list. |
+1. Open the Command Palette and select **Foundry Toolkit: Create new Hosted Agent**.
+1. Select the **Python** as the language.
+1. For "Framework", select **Agent Framework**.
+1. Select **Responses API** as the protocol type.
+1. Select **Basic** as the sample code.
+1. Select the "Next" button.
+1. Choose a folder for the project files and enter a name for the agent.
+1. For "Environment Setup", choose **Set up with Microsoft Foundry**, the content should auto-populate with the project and model you created in step 1 and 2.
+1. Select the "Create" button.
 
-You can also find these values in your azd output. After `azd up` completes, it displays the deployed resource names.
+A new VS Code window opens with the project as the active workspace.
 
-### Check agent status
+## Step 4: Install dependencies
 
-Run the following command with your values:
+Create a virtual environment and install the requirements.
+
+For macOS or Linux:
 
 ```bash
-az cognitiveservices agent show \
-    --account-name <your-account-name> \
-    --project-name <your-project-name> \
-    --name <your-agent-name>
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Look for `status: Started` in the output.
+For Windows (PowerShell):
 
-**If the status isn't "Started":**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
-| Status | Meaning | Action |
-| ------ | ------- | ------ |
-| `Provisioning` | Agent is still starting | Wait 2-3 minutes and check again. |
-| `Failed` | Deployment error occurred | Run `azd deploy` to retry, or check logs in the Foundry portal. |
-| `Stopped` | Agent was manually stopped | Run `az cognitiveservices agent start` to restart. |
-| `Unhealthy` | Container is crashing | Check **View deployment logs** in the Foundry portal for errors. |
+## Step 5: Test the agent locally
 
-## Step 5: Clean up resources
+Press **F5** to start the local HTTP server with debugging enabled. The Foundry Toolkit Agent Inspector opens for interactive testing, and you can set breakpoints in your code.
 
-To avoid charges, delete the resources when you're finished.
+To run the server without debugging:
+
+```bash
+python main.py
+```
+
+The agent listens on `http://localhost:8088/`. Send a test prompt with curl (or any HTTP client):
+
+```bash
+curl -sS -H "Content-Type: application/json" -X POST http://localhost:8088/responses \
+    -d '{"input": "Write a haiku about deploying cloud applications.", "stream": false}'
+```
+
+## Step 6: Deploy to Foundry Agent Service
+
+1. Open the Command Palette and select **Foundry Toolkit: Deploy Hosted Agent**. A deployment webview will open.
+1. For "Deployment Method", select **Code**.
+1. Select **Remote** as the package mode.
+1. The "Agent Name" should auto-populate.
+1. Select the "Next" button.
+1. This "Review and Deploy" page should all auto-populate.
+1. Select the "Deploy" button.
+
+When deployment completes, the agent appears under **Hosted Agents (Preview)** in the Foundry Toolkit explorer.
+
+## Step 7: Invoke your agent
+
+1. In the Foundry Toolkit explorer, expand **Hosted Agents (Preview)** and select your agent. The detail page shows the status under **Deployment Details**.
+1. Select the **Playground** tab and send a test prompt such as `Write a haiku about deploying cloud applications.`.
+
+:::zone-end
+
+## Clean up resources
+
+Delete the resources when you're finished so you stop incurring charges.
+
+:::zone pivot="azd"
 
 > [!WARNING]
-> This command permanently deletes all Azure resources created in this quickstart, including the Foundry project, Container Registry, Application Insights, and your hosted agent. This action can't be undone.
+> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
 
-To preview what will be deleted before confirming:
-
-```bash
-azd down --preview
 ```
-
-When you're ready to delete, run:
-
-```bash
 azd down
 ```
 
-The cleanup process takes approximately 2-5 minutes.
+`azd` lists the resources it deletes and prompts for confirmation. Cleanup takes about 2-5 minutes.
 
-To verify resources were deleted, open the [Azure portal](https://portal.azure.com), go to your resource group (for example, `rg-my-hosted-agent`), and confirm the resources no longer appear. If the resource group is empty, you can delete it as well.
+:::zone-end
+
+:::zone pivot="vscode"
+
+1. Open the [Azure portal](https://portal.azure.com) and navigate to the resource group that contains your agent.
+1. Select **Delete resource group**, type the resource group name to confirm, and select **Delete**.
+
+> [!WARNING]
+> Deleting the resource group permanently removes everything in it, including the Foundry project, Container Registry, Application Insights, and the hosted agent.
+
+:::zone-end
 
 ## Troubleshooting
 
-If you encounter issues, try these solutions for common problems:
-
 | Issue | Solution |
 | ----- | -------- |
-| `azd init` fails | Run `azd version` to verify version 1.23.0+. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). |
-| Docker build errors | Ensure Docker Desktop is running. Run `docker info` to verify. |
-| `SubscriptionNotRegistered` error | Register providers: `az provider register --namespace Microsoft.CognitiveServices` |
-| `AuthorizationFailed` during provisioning | Request **Contributor** role on your subscription or resource group. |
-| Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
-| `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
-| Model not found in catalog | Fork the sample agent.yaml and change the model deployment to one available in your subscription like `gpt-4.1`. Then remove the `AZURE_LOCATION` value in the `.azure/<environment name>/.env` file. Re-run the `azd ai agent init` command with your forked `agent.yaml` file. |
+| `SubscriptionNotRegistered` | Register the provider: `az provider register --namespace Microsoft.CognitiveServices`. |
+| `AuthorizationFailed` during provisioning | Request the **Contributor** role on the subscription or resource group. |
+| `AuthenticationError` or `DefaultAzureCredential` failure | To refresh credentials, run `azd auth logout` and then `azd auth login`. |
+| `ResourceNotFound` or `DeploymentNotFound` | Verify the endpoint URL and model deployment name in the Foundry portal under **Build** > **Deployments**. |
+| `Connection refused` on local run | Ensure no other process is using port 8088. |
+| `azd ai agent init` fails | Run `azd version` to verify 1.25.0 or later. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Run `azd ext list` and upgrade the agent extension with `azd ext upgrade azure.ai.agents` to get 0.1.34-preview or later. |
+| Microsoft Foundry Toolkit extension not found | Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) from the Marketplace and switch to the prerelease channel. |
+| Local run fails on Windows ARM64 with build errors for `aiohttp`, `grpcio`, `cryptography`, or `httptools` | Prebuilt arm64 wheels aren't published for these packages, and source builds require Microsoft C++ Build Tools. As a workaround, skip Step 3 and validate the agent remotely with `azd deploy` followed by `azd ai agent invoke`. |
+
+For the full permission and role-assignment matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 ## What you learned
 
 In this quickstart, you:
 
-- Set up a hosted agent sample with Foundry tools (web search and MCP)
-- Tested the agent locally using the hosting adapter
-- Deployed to Foundry Agent Service using `azd up`
-- Verified your agent in the Foundry playground
-
-## Deploy your first hosted agent using VS Code 
-
-Use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to deploy your agent code to Foundry from the IDE which just a few clicks. See the [VS Code extension documentation](../how-to/vs-code-agents-workflow-pro-code.md?tabs=windows-powershell&pivots=python) for more information.
+* Scaffolded a hosted agent project from the Basic agent sample.
+* Tested the agent locally.
+* Deployed the agent to Foundry Agent Service.
+* Sent test prompts from both the CLI (or VS Code) and the Foundry playground.
 
 ## Next steps
-
-Now that you've deployed your first hosted agent, learn how to:
 
 > [!div class="nextstepaction"]
 > [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
 Customize your agent with additional capabilities:
+
+- [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
 - [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
 - [Add file search](../how-to/tools/file-search.md) to search your documents
 - [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
+- See the [tool catalog](../concepts/tool-catalog.md) for the full list.
 
-You can see a full list of available tools in the [tool catalog](../concepts/tool-catalog.md) article.
+Use the Microsoft Foundry Skill in your coding agent to standardize deployment,
+evaluation, and troubleshooting workflows.
+
+- [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
 
 ## Related content
 
-- [What are hosted agents?](../concepts/hosted-agents.md)
-- [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
-- [Agent development lifecycle](../concepts/development-lifecycle.md)
-- [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+* [What are hosted agents?](../concepts/hosted-agents.md)
+* [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+* [Agent development lifecycle](../concepts/development-lifecycle.md)
+* [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)

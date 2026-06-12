@@ -1,10 +1,8 @@
 ---
-manager: nitinme
-author: rotabor
-ms.author: haileytapia
+ms.reviewer: rotabor
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/05/2026
+ms.date: 04/24/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -15,15 +13,13 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Vector-Search) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
-
-- [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
 
 - [Python 3.8](https://www.python.org/downloads/) or later.
 

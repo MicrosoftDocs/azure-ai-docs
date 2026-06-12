@@ -2,15 +2,15 @@
 title: Voice Live API Reference 2025-10-01
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options. Version 2025-10-01.
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: reference
 ms.date: 1/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice Live `2025-10-01` API Reference 
+# Voice Live `2025-10-01` API Reference
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
@@ -24,7 +24,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 - **Intelligent Turn Detection**: Multiple VAD options including Azure semantic VAD and server-side detection
 - **Audio Enhancement**: Built-in noise reduction and echo cancellation
 - **Function Calling**: Tool integration for enhanced conversational capabilities
-- **Flexible Session Management**: Configurable modalities, instructions, and response parameters
+- **Flexible Session Management**: Configurable output modalities, instructions, and response parameters
 
 ## Client Events
 
@@ -32,7 +32,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 | Event | Description |
 |-------|-------------|
-| [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
+| [session.update](#sessionupdate) | Update the session configuration including voice, output modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
 | [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
 | [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
@@ -46,7 +46,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 ### session.update
 
-Update the session's configuration. This event can be sent at any time to modify settings such as voice, modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
+Update the session's configuration. This event can be sent at any time to modify settings such as voice, output modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
 
 #### Event Structure
 
@@ -66,7 +66,7 @@ Update the session's configuration. This event can be sent at any time to modify
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 420,
+      "prefix_padding_ms": 300,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -566,7 +566,7 @@ Sent when a new session is successfully established. This is the first event rec
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 420,
+      "prefix_padding_ms": 300,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -1772,7 +1772,7 @@ This event is also returned when a response is interrupted, incomplete, or cance
 
 ### mcp_list_tools.in_progress
 
-The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from a mcp server.
+The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from an mcp server.
 
 #### Event structure
 
@@ -1792,7 +1792,7 @@ The server `mcp_list_tools.in_progress` event is returned when the service start
 
 ### mcp_list_tools.completed
 
-The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from a mcp server.
+The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from an mcp server.
 
 #### Event structure
 
@@ -1812,7 +1812,7 @@ The server `mcp_list_tools.completed` event is returned when the service complet
 
 ### mcp_list_tools.failed
 
-The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from a mcp server.
+The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from an mcp server.
 
 #### Event structure
 
@@ -2086,8 +2086,8 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech` |
-| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection, (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech`, `mai-transcribe-1` (preview) |
+| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
@@ -2158,7 +2158,7 @@ Azure standard voice configuration.
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. for example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Preferred locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. for example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example, set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
@@ -2177,7 +2177,7 @@ Azure custom voice configuration (preferred for custom voices).
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Preferred locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
@@ -2205,7 +2205,7 @@ Azure personal voice configuration.
 | type | string | Must be `"azure-personal"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
+| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural`, `MAI-Voice-1` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
@@ -2229,7 +2229,7 @@ Base VAD-based turn detection.
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
 | threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 400) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
@@ -2256,7 +2256,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -2274,7 +2274,7 @@ Azure semantic VAD (default variant).
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -2392,7 +2392,7 @@ Session configuration object used in `session.update` events.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Optional. Model name to use |
-| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio modalities. To enable only text, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
+| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported output modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio output modalities. To enable only text output, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
 | animation | [RealtimeAnimation](#realtimeanimation) | Optional. Animation configuration |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice configuration |
 | instructions | string | Optional. System instructions for the model. The instructions could guide the output audio if OpenAI voices are used but may not apply to Azure voices. |
@@ -2413,11 +2413,11 @@ Session configuration object used in `session.update` events.
 
 #### RealtimeModality
 
-Supported session modalities.
+Supported session output modalities.
 
 **Allowed Values:**
-* `text` - Text input/output
-* `audio` - Audio input/output
+* `text` - Text output
+* `audio` - Audio output
 * `animation` - Animation output
 * `avatar` - Avatar video output
 
@@ -2442,7 +2442,7 @@ Constrains effort on reasoning for reasoning models. Check model documentation f
 
 ### Tool Configuration
 
-We support two types of tools: function calling and MCP tools which allow you connect to a mcp server.
+We support two types of tools: function calling and MCP tools which allow you connect to an mcp server.
 
 #### RealtimeTool
 
@@ -2653,7 +2653,7 @@ Response object representing a model inference response.
 | usage | [RealtimeUsage](#realtimeusage) | Optional. Token usage statistics |
 | conversation_id | string | Optional. Associated conversation ID |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice used for response |
-| modalities | string[] | Optional. Modalities used |
+| modalities | string[] | Optional. Output modalities used |
 | output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Audio format used |
 | temperature | number | Optional. Temperature used |
 | max_response_output_tokens | integer or "inf" | Optional. Max tokens used |
@@ -2665,7 +2665,7 @@ Response status values.
 **Allowed Values:**
 * `in_progress` - Response is being generated
 * `completed` - Response completed successfully
-* `cancelled` - Response was cancelled
+* `canceled` - Response was canceled
 * `incomplete` - Response incomplete (interrupted)
 * `failed` - Response failed with error
 
@@ -2825,7 +2825,7 @@ The definition of a function tool as used by the realtime endpoint.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the response.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's responses.|
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
@@ -2847,7 +2847,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | object | string | The session object.<br><br>Allowed values: `realtime.session` |
 | id | string | The unique ID of the session. |
 | model | string | The model used for the session. |
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the session.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | input_audio_sampling_rate | integer | The sampling rate for the input audio. |

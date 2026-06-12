@@ -1,6 +1,5 @@
 ---
-title: Create a knowledge store using REST
-titleSuffix: Azure AI Search
+title: Create a Knowledge Store Using REST
 description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from a skillset.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -43,7 +42,7 @@ The skillset in this example uses Foundry Tools for enrichments. Because the wor
 
 1. Select **Upload** at the top of the page to load the **HotelReviews_data.csv** file you downloaded from the previous step.
 
-   :::image type="content" source="media/knowledge-store-create-portal/blob-container-storage-explorer.png" alt-text="Screenshot of Storage Browser with uploaded file and left nav pane" border="true":::
+   :::image type="content" source="media/knowledge-store-create-rest/blob-container-storage-explorer.png" alt-text="Screenshot of Storage Browser with uploaded file and left nav pane" border="true":::
 
 1. On the left, select **Access Keys**, select **Show Keys**, and then copy the connection string for either key1 or key2. A full access connection string has the following format:
 
@@ -60,9 +59,11 @@ The skillset in this example uses Foundry Tools for enrichments. Because the wor
 
 In this example, REST calls require the search service endpoint and use an API key on every request. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. On the **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+
+1. On **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
@@ -89,7 +90,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -121,7 +122,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a data source
-    POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/datasources?api-version=2026-04-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -152,7 +153,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create a skillset
-    POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/skillsets?api-version=2026-04-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -319,7 +320,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create indexer
-    POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
+    POST {{baseUrl}}/indexers?api-version=2026-04-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -367,7 +368,7 @@ After you send each request, the search service should respond with a 201 succes
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
-GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2025-09-01  HTTP/1.1
+GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 ```
@@ -376,7 +377,7 @@ After several minutes, you can query the index to inspect the content. Even if y
 
 ```http
 ### Query the index (indexer status must be "success" before querying the index)
-POST {{baseUrl}}/indexes/hotel-reviews-kstore-idx/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotel-reviews-kstore-idx/docs/search?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -393,7 +394,7 @@ In the Azure portal, switch to your Azure Storage account and use **Storage Brow
 
 Each table is generated with the IDs necessary for cross-linking the tables in queries. When you open a table, scroll past these fields to view the content fields added by the pipeline.
 
-   :::image type="content" source="media/knowledge-store-create-portal/azure-table-hotel-reviews.png" alt-text="Screenshot of the knowledge store tables in Storage Browser" border="true":::
+   :::image type="content" source="media/knowledge-store-create-rest/azure-table-hotel-reviews.png" alt-text="Screenshot of the knowledge store tables in Storage Browser" border="true":::
 
 In this walkthrough, the knowledge store is composed of various tables that show different ways of shaping and structuring data. Tables one through three use output from a Shaper skill to determine columns and rows. Tables four through six are created from inline shaping instructions embedded within the projection itself. You can use either approach to achieve the same outcome.
 

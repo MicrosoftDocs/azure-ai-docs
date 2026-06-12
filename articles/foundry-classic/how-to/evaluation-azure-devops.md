@@ -1,7 +1,8 @@
 ---
 title: "How to run an evaluation in Azure DevOps (classic)"
 description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. (classic)" 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: how-to
 ms.date: 01/16/2026
 ms.reviewer: hanch
@@ -15,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to run an evaluation in Azure DevOps (preview) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/evaluation-azure-devops.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
@@ -36,7 +37,7 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 1. Create a new YAML file in your repository.
      You can use the sample YAML provided in the README or copy from the [GitHub repo](https://github.com/microsoft/ai-agent-evals?tab=readme-ov-file).
 2.  Configure the following inputs:
-    - Set up [Azure CLI](/azure/devops/pipelines/tasks/reference/azure-cli-v2) with [service connection](/azure/devops/pipelines/library/service-endpoints?view=azure-devops) and Azure Login.
+    - Set up [Azure CLI](/azure/devops/pipelines/tasks/reference/azure-cli-v2) with [service connection](/azure/devops/pipelines/library/service-endpoints?view=azure-devops&preserve-view=true ) and Azure Login.
     - Foundry project connection string
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.

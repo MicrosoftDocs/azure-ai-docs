@@ -8,8 +8,9 @@ author: s-polly
 ms.service: azure-machine-learning
 ms.reviewer: jturuk
 ms.subservice: mlops
+ms.collection: ce-skilling-fresh-tier2, ce-skilling-ai-copilot
 ms.date: 01/29/2026
-ms.topic: concept-article
+ms.topic: how-to
 ms.custom:
   - cli-v2
   - sdk-v2

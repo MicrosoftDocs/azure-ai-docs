@@ -4,14 +4,14 @@ description: include file
 author: PatrickFarley
 ms.reviewer: pafarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 12/30/2025
 ms.custom: include
 
 ---
 
-[!INCLUDE [version-banner](./version-banner.md)]
+[!INCLUDE [classic-banner](./classic-banner.md)]
 
 ## Create a blocklist
 

@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about the available options in Foundry and Content Understanding Studio.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - ignite-2024-understanding-release
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Compare Content Understanding in Foundry and Content Understanding Studio
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Overview
 

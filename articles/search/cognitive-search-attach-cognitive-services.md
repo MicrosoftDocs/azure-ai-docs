@@ -1,10 +1,9 @@
 ---
 title: Attach Resource to Skillset for Billing
-titleSuffix: Azure AI Search
 description: Learn how to attach a Microsoft Foundry resource to an AI enrichment pipeline for billing purposes in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 04/24/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -26,7 +25,7 @@ A Foundry resource provides access to multiple services within Foundry Tools. Wh
 
 Skillset processing is billed to the underlying service of each skill. Azure AI Search consolidates charges for Foundry Tools into a single Foundry resource. For example, if you use the [Image Analysis](cognitive-search-skill-image-analysis.md) and [Language Detection](cognitive-search-skill-language-detection.md) skills, charges for Azure Vision and Azure Language appear on the same bill for your Foundry resource. All other resources are billed independently.
 
-To attach a Foundry resource, provide connection information in the skillset. You can use a key-based approach or keyless approach, which is currently in preview.
+To attach a Foundry resource, provide connection information in the skillset. You can use a key-based or keyless approach.
 
 ## Prerequisites
 
@@ -37,13 +36,11 @@ To attach a Foundry resource, provide connection information in the skillset. Yo
   :::image type="content" source="media/cognitive-search-attach-cognitive-services/ai-services-kind.png" alt-text="Screenshot of the API kind property in the Azure portal." border="true" lightbox="media/cognitive-search-attach-cognitive-services/ai-services-kind.png":::
 
 > [!NOTE]
-> + If your Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+> + If your Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits). Alternatively, place the search service and the Foundry resource in the same [network security perimeter](search-security-network-security-perimeter.md#outbound-access-to-microsoft-foundry-resources) to keep outbound calls to the Foundry resource on a private channel.
 >
-> + The 2025-11-01-preview introduces support for the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for new skillsets, we recommend that you use `AIServices` and Foundry resources.
+> + Starting with the 2025-11-01-preview, skillsets support the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for new skillsets, we recommend that you use `AIServices` and Foundry resources.
 
 ## Bill through a keyless connection
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 You can use a managed identity and permissions to attach a Foundry resource. The advantage of this approach is that billing is keyless and doesn't have region requirements.
 
@@ -55,7 +52,7 @@ To bill through a keyless connection:
 
 1. On your Foundry resource, [assign the **Cognitive Services User** role](/azure/role-based-access-control/role-assignments-portal) to the managed identity of your search service.
 
-1. Configure a skillset to use the managed identity. You can use the Azure portal, the latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax.
+1. Configure a skillset to use the managed identity. You can use the Azure portal, the latest stable version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true), or an Azure SDK package that provides the syntax.
 
     + `@odata.type` is always `#Microsoft.Azure.Search.AIServicesByIdentity`.
 
@@ -63,59 +60,59 @@ To bill through a keyless connection:
 
     + Other properties are specific to the type of managed identity, as shown in the following REST API examples.
 
-        ### [System-assigned managed identity](#tab/system-assigned)
+    ### [System-assigned managed identity](#tab/system-assigned)
 
-        Here's a sample skillset configuration for a system-assigned managed identity. In this scenario, you must set `identity` to `null`.
+    Here's a sample skillset configuration for a system-assigned managed identity. In this scenario, you must set `identity` to `null`.
 
-        ```http
-        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-11-01-preview
-        api-key: [admin-key]
-        Content-Type: application/json
-    
-        {
-          "name": "my-skillset",
-          "skills": [
-            // Skills definition goes here
-          ],
-          "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-            "description": "A sample configuration for a system-assigned managed identity.",
+    ```http
+    POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
+    api-key: [admin-key]
+    Content-Type: application/json
+
+    {
+      "name": "my-skillset",
+      "skills": [
+        // Skills definition goes here
+      ],
+      "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
+        "description": "A sample configuration for a system-assigned managed identity.",
+        "subdomainUrl": "https://[resource-name].services.ai.azure.com",
+        "identity": null
+      }
+    }
+    ```
+
+    ### [User-assigned managed identity](#tab/user-assigned)
+
+    Here's a sample skillset configuration for a user-assigned managed identity. In this scenario, you must set `identity` to the resource ID of the user-assigned managed identity. To find an existing user-assigned managed identity, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
+
+    You must also set the `identity.@odata.type` and `identity.userAssignedIdentity` properties.
+
+    ```http
+    POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
+    api-key: [admin-key]
+    Content-Type: application/json
+
+    { 
+        "name": "my-skillset", 
+        "skills":  
+        [ 
+          // Skills definition goes here
+        ], 
+        "cognitiveServices": { 
+            "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity", 
+            "description": "A sample configuration for a user-assigned managed identity.", 
             "subdomainUrl": "https://[resource-name].services.ai.azure.com",
-            "identity": null
-          }
-        }
-        ```
+            "identity": {   
+                "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",   
+                "userAssignedIdentity": "/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}" 
+            }
+        } 
+    }
+    ```
 
-        ### [User-assigned managed identity](#tab/user-assigned)
-
-        Here's a sample skillset configuration for a user-assigned managed identity. In this scenario, you must set `identity` to the resource ID of the user-assigned managed identity. To find an existing user-assigned managed identity, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
-
-        You must also set the `identity.@odata.type` and `identity.userAssignedIdentity` properties.
-
-        ```http
-        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-11-01-preview
-        api-key: [admin-key]
-        Content-Type: application/json
-    
-        { 
-            "name": "my-skillset", 
-            "skills":  
-            [ 
-              // Skills definition goes here
-            ], 
-            "cognitiveServices": { 
-                "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity", 
-                "description": "A sample configuration for a user-assigned managed identity.", 
-                "subdomainUrl": "https://[resource-name].services.ai.azure.com",
-                "identity": {   
-                    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",   
-                    "userAssignedIdentity": ""/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"" 
-                }
-            } 
-        }
-        ```
-
-        ---
+    ---
 
 ## Bill through a resource key
 
@@ -142,7 +139,7 @@ If you don't specify the `cognitiveServices` property, your search service attem
 
 1. Add the key to a skillset definition.
 
-   + If you're using an [import wizard](search-import-data-portal.md), select the Foundry resource. The wizard adds the resource key to your skillset definition.
+   + If you're using the [**Import data** wizard](search-import-data-portal.md), select the Foundry resource. The wizard adds the resource key to your skillset definition.
 
    + For a new or existing skillset, provide the key in skillset definition.
 
@@ -156,7 +153,7 @@ If you don't specify the `cognitiveServices` property, your search service attem
 Use [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update), specifying the `cognitiveServices` section in the body of the request.
 
 ```http
-PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01
+PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
 api-key: [admin-key]
 Content-Type: application/json
 {
@@ -212,7 +209,7 @@ Without the key, the skillset reverts to the default allocation of 20 free trans
 
 ### [**Azure portal**](#tab/portal-remove)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management > Skillsets**, select a skillset from the list.
 
@@ -237,7 +234,7 @@ Without the key, the skillset reverts to the default allocation of 20 free trans
 1. Send the request.
 
     ```http
-    PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01
+    PUT https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2026-04-01
     api-key: [admin-key]
     Content-Type: application/json
 

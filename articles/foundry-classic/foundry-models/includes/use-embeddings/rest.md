@@ -4,8 +4,8 @@ titleSuffix: Microsoft Foundry
 description: Learn how to generate embeddings with Microsoft Foundry Models
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 05/29/2025
 ms.author: mopeakande
@@ -36,7 +36,7 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview

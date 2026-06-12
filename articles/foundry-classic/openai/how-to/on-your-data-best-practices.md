@@ -1,12 +1,12 @@
 ---
 title: "Best practices for using Azure OpenAI On Your Data (classic)"
 description: "Learn about the best practices for using Azure OpenAI On Your Data, along with how to fix common problems. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: best-practice
 ms.date: 02/06/2026
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 recommendations: false

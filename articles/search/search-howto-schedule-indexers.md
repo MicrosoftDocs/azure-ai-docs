@@ -1,6 +1,5 @@
 ---
-title: Schedule indexer execution
-titleSuffix: Azure AI Search
+title: Schedule Indexer Execution
 description: Learn how to schedule Azure AI Search indexers to index content at specific intervals, or at specific dates and times.
 ms.service: azure-ai-search
 ms.custom:
@@ -53,7 +52,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.
@@ -68,7 +67,7 @@ Switch to the **Indexer Definition (JSON)** tab at the top of the index to view 
 1. Set the schedule property in the body of the request:
 
     ```http
-    PUT /indexers/<indexer-name>?api-version=2025-09-01
+    PUT /indexers/<indexer-name>?api-version=2026-04-01
     {
         "dataSourceName" : "myazuresqldatasource",
         "targetIndexName" : "my-target-index-name",
@@ -107,7 +106,7 @@ await indexerClient.CreateOrUpdateIndexerAsync(indexer);
 
 You can run multiple indexers simultaneously, but each indexer is single instance. You can't run two copies of the same indexer concurrently. 
 
-For text-based indexing, the scheduler can kick off as many indexer jobs as the search service supports, which is determined by the number of [search units](search-capacity-planning.md#concepts-search-units-replicas-partitions). For example, if the service has three replicas and four partitions, you can have 12 indexer jobs in active execution, whether initiated on demand or on a schedule.
+For text-based indexing, the scheduler can kick off as many indexer jobs as the search service supports, which is determined by the number of [search units](search-capacity-planning.md). For example, if the service has three replicas and four partitions, you can have 12 indexer jobs in active execution, whether initiated on demand or on a schedule.
 
 For skills-based indexing, indexers run in a specific [execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). For this reason, the number of service units has no bearing on the number of skills-based indexer jobs you can run. Multiple skills-based indexers can run in parallel, but doing so depends on content processor availability within the execution environment.
 

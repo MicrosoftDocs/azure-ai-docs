@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: This article provides a quick reference, a detailed description, and best practices for the quotas and limits in Azure Speech.
 author: goergenj
 ms.author: jagoerge
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
 ms.date: 01/30/2026
 ms.reviewer: jagoerge
@@ -45,8 +45,8 @@ The following table summarizes the quotas and limits for large language model (L
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled)|
 | Maximum requests per minute | Not applicable | 600 |
 
 ### Speech-to-text quotas and limits per resource
@@ -69,8 +69,8 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled) |
 | Maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription

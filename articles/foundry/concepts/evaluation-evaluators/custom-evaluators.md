@@ -3,9 +3,10 @@ title: "Custom Evaluators"
 description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches."
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: mithigpe
-ms.date: 03/06/2026
-ms.service: azure-ai-foundry
+ms.reviewer: dlozier
+ms.date: 06/02/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.topic: reference
 ms.custom:
   - classic-and-new
@@ -16,6 +17,7 @@ ai-usage: ai-assisted
 ---
 
 # Custom evaluators (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
@@ -31,7 +33,7 @@ You can create two types of custom evaluators:
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
 | **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
-After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
+After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
 ## Code-based evaluators
 
@@ -41,7 +43,7 @@ A code-based evaluator is a Python function named `grade` that receives two dict
 - **Model or agent target evaluation**: To fetch generated response text, use `item.get("sample", {}).get("output_text")`.
 
 > [!NOTE]
-> In a future update, generated response fields will move to the `sample` parameter directly. For now, access them through `item.get("sample")`.
+> Currently, generated response text from a model or agent target is accessed through `item.get("sample", {}).get("output_text")`. This access pattern is subject to change in a future API update.
 
 The following example scores responses based on length, preferring responses between 50 and 500 characters:
 
@@ -64,6 +66,9 @@ def grade(sample: dict, item: dict) -> float:
         return 0.5
     return 1.0
 ```
+
+> [!NOTE]
+> If the `grade()` function raises an exception or times out, the service records that item's result as `0.0` and marks it as an error in the evaluation report. Design your function defensively — use `try/except` for risky operations and return a fallback score rather than letting exceptions propagate.
 
 ### Supported packages and limits
 
@@ -95,7 +100,7 @@ The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are pre
 
 ### Runtime parameters
 
-`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator.
+`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator. Even though code-based evaluators don't call an LLM, the service API schema requires `deployment_name` for evaluation-run orchestration. You can pass any valid model deployment name from your project.
 
 ## Prompt-based evaluators
 
@@ -181,6 +186,8 @@ client = project_client.get_openai_client()
 ### Create a code-based evaluator
 
 Pass the `grade()` function as a string in the `code_text` field. Define the `data_schema` to declare the input fields your function expects, and the `metrics` to describe the score your function returns. Code-based evaluators use the `continuous` metric type with a range of 0.0 to 1.0.
+
+First, define the evaluator version schema:
 
 ```python
 code_evaluator = project_client.beta.evaluators.create_version(
@@ -412,7 +419,7 @@ project_client.beta.evaluators.delete_version(
 client.evals.delete(eval_id=eval_object.id)
 ```
 
-For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
+For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
 
@@ -443,9 +450,58 @@ After you create a custom evaluator, use it in an evaluation run from the portal
 1. Supply the required initialization parameters. For prompt-based evaluators, provide the **model deployment** and **threshold**. For code-based evaluators, provide the **pass threshold**.
 1. Complete the wizard and start the evaluation run.
 
-For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation-with-built-in-evaluation-metrics).
+For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation).
+
+## Conversation-level custom evaluators
+
+Custom evaluators can score entire conversations instead of individual turns. To enable conversation-level evaluation:
+
+1. Set `evaluation_level="conversation"` on the evaluation run
+2. Design your `grade()` function to expect `item["messages"]` as a conversation array
+
+When running at the conversation level, the `item` dict receives the full conversation messages array instead of a single query/response pair. This enables you to build custom metrics that assess the entire user interaction.
+
+### Example: Session-level compliance check
+
+This example checks whether the agent disclosed a required disclaimer at any point during the conversation:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Check if agent disclosed required disclaimer during conversation."""
+    messages = item.get("messages", [])
+    
+    for msg in messages:
+        if msg.get("role") == "assistant":
+            content = msg.get("content", "")
+            if isinstance(content, str) and "not financial advice" in content.lower():
+                return 1.0
+    
+    return 0.0  # Disclaimer never provided
+```
+
+### Example: Conversation length scorer
+
+This example scores conversations based on whether they resolved within a target number of turns:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Score based on conversation length (prefer shorter resolutions)."""
+    messages = item.get("messages", [])
+    
+    # Count user turns (excludes system messages)
+    user_turns = sum(1 for msg in messages if msg.get("role") == "user")
+    
+    if user_turns <= 2:
+        return 1.0  # Resolved quickly
+    elif user_turns <= 4:
+        return 0.7  # Reasonable length
+    elif user_turns <= 6:
+        return 0.4  # Getting long
+    else:
+        return 0.2  # Too many turns
+```
 
 ## Related content
 
-- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)

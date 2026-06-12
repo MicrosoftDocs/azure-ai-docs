@@ -3,10 +3,11 @@ title: include file
 description: include file
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 You need a training dataset to create a professional voice. A training dataset includes audio and script files. The audio files are recordings of the voice talent reading the script files. The script files are the text of the audio files. 
@@ -24,7 +25,7 @@ To create a training set, use the [TrainingSets_Create](/rest/api/aiservices/spe
 
 Make an HTTP PUT request using the URI as shown in the following [TrainingSets_Create](/rest/api/aiservices/speechapi/training-sets/create) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `JessicaTrainingSetId` with a training set ID of your choice. The case sensitive ID will be used in the training set's URI and can't be changed later. 
 
 ```azurecli-interactive
@@ -33,7 +34,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "projectId": "ProjectId",
   "locale": "en-US",
   "voiceKind": "Female"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId?api-version=2024-02-01-preview"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/trainingsets/JessicaTrainingSetId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -60,7 +61,8 @@ https://contoso.blob.core.windows.net/voicecontainer/jessica300/*.txt.
 
 Construct the request body according to the following instructions:
 
-- Set the required `kind` property to `AudioAndScript`. The kind determines the type of training set. 
+- Set the required `kind` property to `AudioAndScript`, `LongAudio`, or `AudioOnly`. The kind determines the type of training set.
+- Optionally, set the `processAs` property to specify the processing method. Supported values are `Segmented` (default) and `Contextual`. `Contextual` is an enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations. The `Contextual` mode is only available when `kind` is set to `LongAudio` or `AudioOnly`. If not specified, the default `Segmented` mode is used. For more information, see [training data types](../../../../how-to-custom-voice-training-data.md).
 - Set the required `audios` property. Within the `audios` property, set the following properties:
   - Set the required `containerUrl` property to the URL of the Azure Blob Storage container that contains the audio files. Use [shared access signatures (SAS) for a container](/azure/storage/blobs/sas-service-create-dotnet-container#create-a-service-sas-for-a-container) with both read and list permissions.
   - Set the required `extensions` property to the extensions of the audio files. 
@@ -72,7 +74,7 @@ Construct the request body according to the following instructions:
 
 Make an HTTP POST request using the URI as shown in the following [TrainingSets_UploadData](/rest/api/aiservices/speechapi/training-sets/upload-data) example. 
 - Replace `YourResourceKey` with your Speech resource key.
-- Replace `YourResourceRegion` with your Speech resource region.
+- Replace `YourResourceName` with your Speech resource name.
 - Replace `JessicaTrainingSetId` if you specified a different training set ID in the previous step.
 
 ```azurecli-interactive
@@ -92,13 +94,36 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type
       ".txt"
     ]
   }
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId:upload?api-version=2024-02-01-preview"
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/trainingsets/JessicaTrainingSetId:upload?api-version=2026-01-01"
+```
+
+The following example uploads long audio data with contextual processing:
+
+```azurecli-interactive
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
+  "kind": "LongAudio",
+  "processAs": "Contextual",
+  "audios": {
+    "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",
+    "prefix": "jessica-long/",
+    "extensions": [
+      ".wav"
+    ]
+  },
+  "scripts": {
+    "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",
+    "prefix": "jessica-long/",
+    "extensions": [
+      ".txt"
+    ]
+  }
+} '  "https://YourResourceName.cognitiveservices.azure.com/customvoice/trainingsets/JessicaTrainingSetId:upload?api-version=2026-01-01"
 ```
 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [TrainingSets_UploadData](/rest/api/aiservices/speechapi/training-sets/upload-data) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 

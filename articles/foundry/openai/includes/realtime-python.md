@@ -1,9 +1,9 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 3/20/2025
 ---
@@ -103,7 +103,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         """
     
         credential = DefaultAzureCredential()
-        token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+        token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
         token = token_provider()
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
@@ -396,3 +396,257 @@ Enter a message: q
 Stopping the conversation.
 Conversation ended.
 ```
+
+## Send audio, receive audio response
+
+The Realtime API's primary use case is "speech in, speech out" voice conversations. This section shows how to send audio input from a file and receive audio output.
+
+To run this sample, you need an audio file in **PCM16 format at 24kHz mono**. You can convert an existing audio file using FFmpeg:
+
+```shell
+ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
+```
+
+## [Microsoft Entra ID](#tab/keyless)
+
+1. Create the `audio-in-audio-out.py` file with the following code:
+
+    ```python
+    import os
+    import base64
+    import asyncio
+    from openai import AsyncOpenAI
+    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+    
+    
+    async def main() -> None:
+        """
+        Send audio from a file to the Realtime API and receive an audio response.
+        The input file should be in PCM16 format at 24kHz mono.
+        """
+    
+        credential = DefaultAzureCredential()
+        token_provider = get_bearer_token_provider(
+            credential, "https://ai.azure.com/.default"
+        )
+        token = token_provider()
+    
+        endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
+        deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+        base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
+    
+        # Path to your input audio file (PCM16, 24kHz, mono)
+        input_audio_file = "input.pcm"
+        output_audio_file = "output.pcm"
+    
+        client = AsyncOpenAI(websocket_base_url=base_url, api_key=token)
+    
+        async with client.realtime.connect(model=deployment_name) as connection:
+            # Configure the session for audio input and output
+            await connection.session.update(
+                session={
+                    "type": "realtime",
+                    "instructions": "You are a helpful assistant. Respond conversationally.",
+                    "output_modalities": ["audio"],
+                    "audio": {
+                        "input": {
+                            "transcription": {"model": "whisper-1"},
+                            "format": {
+                                "type": "audio/pcm",
+                                "rate": 24000,
+                            },
+                            "turn_detection": {
+                                "type": "server_vad",
+                                "threshold": 0.5,
+                                "prefix_padding_ms": 300,
+                                "silence_duration_ms": 500,
+                                "create_response": True,
+                                "interrupt_response": False,
+                            },
+                        },
+                        "output": {
+                            "voice": "alloy",
+                            "format": {
+                                "type": "audio/pcm",
+                                "rate": 24000,
+                            },
+                        },
+                    },
+                }
+            )
+    
+            # Read and send audio file in chunks
+            print(f"Reading audio from {input_audio_file}...")
+            with open(input_audio_file, "rb") as f:
+                audio_data = f.read()
+    
+            # Send audio in chunks (the Realtime API expects base64-encoded audio)
+            chunk_size = 4800  # 100ms of audio at 24kHz, 16-bit
+            audio_data += b"\x00" * chunk_size * 10  # 1 second of silence
+            
+            for i in range(0, len(audio_data), chunk_size):
+                chunk = audio_data[i : i + chunk_size]
+                await connection.input_audio_buffer.append(audio=base64.b64encode(chunk).decode())
+                # Small delay to simulate real-time streaming
+                await asyncio.sleep(0.1)
+    
+            print("Audio sent. Waiting for response...")
+    
+            # Collect audio response
+            output_audio = bytearray()
+            transcript = ""
+    
+            async for event in connection:
+                if event.type == "response.output_audio.delta":
+                    audio_chunk = base64.b64decode(event.delta)
+                    output_audio.extend(audio_chunk)
+                elif event.type == "response.output_audio_transcript.delta":
+                    transcript += event.delta
+                    print(event.delta, end="", flush=True)
+                elif event.type == "conversation.item.input_audio_transcription.completed":
+                    print(f"\n[User said]: {event.transcript}")
+                elif event.type == "error":
+                    raise RuntimeError(f"Realtime API error: {event.error.message}")
+                elif event.type == "response.done":
+                    break
+    
+            # Save output audio
+            if output_audio:
+                with open(output_audio_file, "wb") as f:
+                    f.write(output_audio)
+                print(f"\n\nSaved {len(output_audio)} bytes of audio to {output_audio_file}")
+                print("Play with: ffplay -nodisp -autoexit -hide_banner -f s16le -sample_rate 24000 -ch_layout mono output.pcm")
+    
+        credential.close()
+    
+    
+    asyncio.run(main())
+    ```
+
+1. Sign in to Azure:
+
+    ```shell
+    az login
+    ```
+
+1. Run the Python file:
+
+    ```shell
+    python audio-in-audio-out.py
+    ```
+
+## [API key](#tab/api-key)
+
+1. Create the `audio-in-audio-out.py` file with the following code:
+
+    ```python
+    import os
+    import base64
+    import asyncio
+    from openai import AsyncOpenAI
+
+    async def main() -> None:
+        """
+        Send audio from a file to the Realtime API and receive an audio response.
+        The input file should be in PCM16 format at 24kHz mono.
+        """
+
+        endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
+        deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+        token = os.environ["AZURE_OPENAI_API_KEY"]
+        base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
+
+        # Path to your input audio file (PCM16, 24kHz, mono)
+        input_audio_file = "input.pcm"
+        output_audio_file = "output.pcm"
+    
+        client = AsyncOpenAI(websocket_base_url=base_url, api_key=token)
+    
+        async with client.realtime.connect(model=deployment_name) as connection:
+            # Configure the session for audio input and output
+            await connection.session.update(
+                session={
+                    "type": "realtime",
+                    "instructions": "You are a helpful assistant. Respond conversationally.",
+                    "output_modalities": ["audio"],
+                    "audio": {
+                        "input": {
+                            "transcription": {"model": "whisper-1"},
+                            "format": {
+                                "type": "audio/pcm",
+                                "rate": 24000,
+                            },
+                            "turn_detection": {
+                                "type": "server_vad",
+                                "threshold": 0.5,
+                                "prefix_padding_ms": 300,
+                                "silence_duration_ms": 500,
+                                "create_response": True,
+                                "interrupt_response": False,
+                            },
+                        },
+                        "output": {
+                            "voice": "alloy",
+                            "format": {
+                                "type": "audio/pcm",
+                                "rate": 24000,
+                            },
+                        },
+                    },
+                }
+            )
+    
+            # Read and send audio file in chunks
+            print(f"Reading audio from {input_audio_file}...")
+            with open(input_audio_file, "rb") as f:
+                audio_data = f.read()
+    
+            # Send audio in chunks (the Realtime API expects base64-encoded audio)
+            chunk_size = 4800  # 100ms of audio at 24kHz, 16-bit
+            audio_data += b"\x00" * chunk_size * 10  # 1 second of silence
+
+            for i in range(0, len(audio_data), chunk_size):
+                chunk = audio_data[i : i + chunk_size]
+                await connection.input_audio_buffer.append(audio=base64.b64encode(chunk).decode())
+                # Small delay to simulate real-time streaming
+                await asyncio.sleep(0.1)
+    
+            print("Audio sent. Waiting for response...")
+    
+            # Collect audio response
+            output_audio = bytearray()
+            transcript = ""
+    
+            async for event in connection:
+                if event.type == "response.output_audio.delta":
+                    audio_chunk = base64.b64decode(event.delta)
+                    output_audio.extend(audio_chunk)
+                elif event.type == "response.output_audio_transcript.delta":
+                    transcript += event.delta
+                    print(event.delta, end="", flush=True)
+                elif event.type == "conversation.item.input_audio_transcription.completed":
+                    print(f"\n[User said]: {event.transcript}")
+                elif event.type == "error":
+                    raise RuntimeError(f"Realtime API error: {event.error.message}")
+                elif event.type == "response.done":
+                    break
+    
+            # Save output audio
+            if output_audio:
+                with open(output_audio_file, "wb") as f:
+                    f.write(output_audio)
+                print(f"\n\nSaved {len(output_audio)} bytes of audio to {output_audio_file}")
+                print("Play with: ffplay -nodisp -autoexit -hide_banner -f s16le -sample_rate 24000 -ch_layout mono output.pcm")
+    
+    asyncio.run(main())
+    ```
+
+1. Run the Python file:
+
+    ```shell
+    python audio-in-audio-out.py
+    ```
+
+---
+
+The script transcribes your audio input, generates a response, and saves the audio output to `output.pcm`. You can play the output audio with FFplay or convert it to another format with FFmpeg.

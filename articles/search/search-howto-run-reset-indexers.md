@@ -1,14 +1,14 @@
----
-title: Run or reset indexers
-titleSuffix: Azure AI Search
+﻿---
+title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 04/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Run or reset indexers, skills, or documents
@@ -27,9 +27,12 @@ Indexers are one of the few subsystems that make overt outbound calls to other A
 
 In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
 
+> [!NOTE]
+> Indexers operate with service-level permissions rather than user permissions. An indexer can write to any index on the search service, even if you assigned roles to restrict access to specific indexes. For more information, see [Per-index scope and indexer operations](search-security-rbac.md#per-index-scope-and-indexer-operations).
+
 ## Indexer execution
 
-A search service runs one indexer job per [search unit](search-capacity-planning.md#concepts-search-units-replicas-partitions). Every search service starts with one search unit, but each new partition or replica increases the search units of your service. You can check the search unit count in the Azure portal's Essential section of the **Overview** page. If you need concurrent processing, make sure your search units include sufficient replicas. Indexers don't run in the background, so you might experience more query throttling than usual if the service is under pressure.
+A search service runs one indexer job per [search unit](search-capacity-planning.md). Every search service starts with one search unit, but each new partition or replica increases the search units of your service. You can check the search unit count in the Azure portal's Essential section of the **Overview** page. If you need concurrent processing, make sure your search units include sufficient replicas. Indexers don't run in the background, so you might experience more query throttling than usual if the service is under pressure.
 
 The following screenshot shows the number of search units, which determines how many indexers can run at once.
 
@@ -57,12 +60,12 @@ Indexer limits vary for each environment:
 
 | Workload | Maximum duration | Maximum jobs | Execution environment |
 |----------|------------------|---------------------|-----------------------------|
-| Private execution | 24 hours | One indexer job per [search unit](search-capacity-planning.md#concepts-search-units-replicas-partitions) <sup>1</sup>.  | Indexing doesn't run in the background. Instead, the search service balances all indexing jobs against ongoing queries and object management actions (such as creating or updating indexes). When running indexers, you should expect to see [some query latency](search-performance-analysis.md#impact-of-indexing-on-queries) if indexing volumes are large. |
+| Private execution | 24 hours | One indexer job per [search unit](search-capacity-planning.md) <sup>1</sup>.  | Indexing doesn't run in the background. Instead, the search service balances all indexing jobs against ongoing queries and object management actions (such as creating or updating indexes). When running indexers, you should expect to see [some query latency](search-performance-analysis.md#impact-of-indexing-on-queries) if indexing volumes are large. |
 | Multitenant| 2 hours <sup>2</sup> | Indeterminate <sup>3</sup> | Because the content processing cluster is multitenant, content processors are added to meet demand. If you experience a delay in on-demand or scheduled execution, it's probably because the system is either adding processors or waiting for one to become available.|
 
 <sup>1</sup> Search units can be [flexible combinations](search-capacity-planning.md#partition-and-replica-combinations) of partitions and replicas, but indexer jobs aren't tied to one or the other. In other words, if you have 12 units, you can have 12 indexer jobs running concurrently in private execution, no matter how the search units are deployed.
 
-<sup>2</sup> If more than two hours are needed to process all of the data, [enable change detection](search-howto-create-indexers.md#change-detection-and-internal-state) and [schedule the indexer](search-howto-schedule-indexers.md) to run at 5-minute intervals to resume indexing quickly if it stops due to a time out. See [Indexing a large data set](search-howto-large-index.md) for more strategies.
+<sup>2</sup> If more than two hours are needed to process all of the data, [enable change detection](search-howto-create-indexers.md#change-detection-and-internal-state) and [schedule the indexer](search-howto-schedule-indexers.md) to run at 5-minute intervals to resume indexing quickly if it stops due to a timeout. See [Indexing a large data set](search-howto-large-index.md) for more strategies.
 
 <sup>3</sup> "Indeterminate" means that the limit isn't quantified by the number of jobs. Some workloads, such as skillset processing, can run in parallel, which could result in many jobs even though only one indexer is involved. Although the environment doesn't impose constraints, [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service still apply.
 
@@ -118,7 +121,7 @@ Once you reset an indexer, you can't undo the action.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the **Overview** page, select the **Indexers** tab.
 1. Select an indexer.
 1. Select the **Reset** command, and then select **Yes** to confirm the action.
@@ -184,10 +187,10 @@ The Reset Skills request selectively processes one or more skills on the next in
 
 For indexers that have caching enabled, you can explicitly request processing for skill updates that the indexer cannot detect. For example, if you make external changes, such as revisions to a custom skill, you can use this API to rerun the skill. Outputs, such as a knowledge store or search index, are refreshed using reusable data from the cache and new content per the updated skill.
 
-We recommend the [latest preview API](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+We recommend the [latest preview API](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
 ```http
-POST /skillsets/[skillset name]/resetskills?api-version=2025-11-01-preview
+POST /skillsets/[skillset name]/resetskills?api-version=2026-05-01-preview
 {
     "skillNames" : [
         "#1",
@@ -207,7 +210,7 @@ Remember to follow up with [Run Indexer](/rest/api/searchservice/indexers/run) t
 
 ## How to reset docs (preview)
 
-The [Indexers - Reset Docs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2025-11-01-preview&preserve-view=true) accepts a list of document keys so that you can refresh specific documents. If specified, the reset parameters become the sole determinant of what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, only that document is processed.
+The [Indexers - Reset Docs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) accepts a list of document keys so that you can refresh specific documents. If specified, the reset parameters become the sole determinant of what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, only that document is processed.
 
 On a per-document basis, all fields in the search document are refreshed with values and metadata from the data source. You can't pick and choose which fields to refresh. 
 
@@ -217,12 +220,12 @@ If the document is enriched through a skillset and has cached data, the  skillse
 
 When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. We recommend the latest preview API.
 
-1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
+1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
 
-1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
+1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
 
     ```http
-    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-11-01-preview
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-05-01-preview
     {
         "documentKeys" : [
             "1001",
@@ -252,7 +255,7 @@ When you're testing this API for the first time, the following APIs can help you
 Calling Reset Documents API multiple times with different keys appends the new keys to the list of document keys reset. Calling the API with the **`overwrite`** parameter set to true will overwrite the current list with the new one:
 
 ```http
-POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-11-01-preview
+POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-05-01-preview
 {
     "documentKeys" : [
         "200",
@@ -266,23 +269,23 @@ POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs
 
 ## How to resync indexers (preview)
 
-[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is a preview REST API that performs a partial reindex of all documents.
-An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index will be removed if delete tracking is enabled.
+[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) is a preview REST API that performs a partial reindex of all documents.
+An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index is removed if delete tracking is enabled.
 
-If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
+If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
 
-In contrast, for certain data sources like ADLS Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+In contrast, for certain data sources like ADLS Gen2, altering the access control lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob isn't re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
 
 While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
 
-Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer will inspect only relevant portion of data in the source and avoid any unnecessary processing that is unrelated to the specified data.  It will also query the existing documents in the target index and only update the documents that show discrepancies between the data source and the target index. After the resync run, the indexer will be synchronized and revert to regular indexer run mode for subsequent runs.
+Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer inspects only the relevant portion of data in the source and avoids any unnecessary processing that is unrelated to the specified data. It also queries the existing documents in the target index and only updates the documents that show discrepancies between the data source and the target index. After the resync run, the indexer is synchronized and reverts to regular indexer run mode for subsequent runs.
 
 ### How to resync and run indexers
 
-1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
+1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
 
     ```http
-    POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2025-11-01-preview
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2026-05-01-preview
     {
         "options" : [
             "permissions"
@@ -299,7 +302,7 @@ Resync Indexers offers an efficient and convenient alternative. Users simply pla
 
 To check reset status and to see which document keys are queued up for processing, following these steps.
 
-1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with a preview API. 
+1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API. 
 
    The preview API will return the **`currentState`** section, found at the end of the response.
 
@@ -333,7 +336,7 @@ To check reset status and to see which document keys are queued up for processin
 
 Applies to search services at the Standard 3 High Density (S3 HD) pricing tier.
 
-To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics#servicestatistics?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) now return more information in the response.
+To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics#servicestatistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now return more information in the response.
 
 ### Track cumulative runtime quota
 
@@ -342,7 +345,7 @@ Track a search service's cumulative indexer runtime usage and determine how much
 Send a GET request to the search service resource provider. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
 
 ```http
-GET {{search-endpoint}}/servicestats?api-version=2025-11-01-preview 
+GET {{search-endpoint}}/servicestats?api-version=2026-05-01-preview 
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 ```
@@ -354,7 +357,7 @@ Responses include `indexersRuntime` properties, showing start and end times, sec
 Return the same information for a single indexer.
 
 ```http
-GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version=2025-11-01-preview 
+GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version=2026-05-01-preview 
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 ```

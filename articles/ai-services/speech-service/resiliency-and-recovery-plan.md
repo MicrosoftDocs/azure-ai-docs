@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to prepare for service outages with custom speech and custom voice.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 #Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.

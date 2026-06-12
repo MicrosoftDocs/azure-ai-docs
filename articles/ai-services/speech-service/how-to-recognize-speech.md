@@ -3,8 +3,8 @@ title: "How to recognize speech - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to convert speech to text, including object construction, supported audio input formats, and configuration options for speech recognition.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/30/2026
 ms.author: pafarley
@@ -17,8 +17,24 @@ keywords: speech to text, speech to text software
 
 # How to recognize speech
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/how-to/recognize-speech/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/recognize-speech/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/recognize-speech/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/how-to/recognize-speech/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/recognize-speech/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -29,32 +45,16 @@ keywords: speech to text, speech to text software
 [!INCLUDE [Go include](includes/how-to/recognize-speech/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/how-to/recognize-speech/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/how-to/recognize-speech/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/how-to/recognize-speech/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/how-to/recognize-speech/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/how-to/recognize-speech/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/how-to/recognize-speech/rest.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](includes/how-to/recognize-speech/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/how-to/recognize-speech/swift.md)]
 ::: zone-end
 
 ## Related content
@@ -62,3 +62,4 @@ keywords: speech to text, speech to text software
 * [Try the speech to text quickstart](get-started-speech-to-text.md)
 * [Improve recognition accuracy with custom speech](custom-speech-overview.md)
 * [Use batch transcription](batch-transcription.md)
+* [Use post-processing](how-to-post-processing.md)

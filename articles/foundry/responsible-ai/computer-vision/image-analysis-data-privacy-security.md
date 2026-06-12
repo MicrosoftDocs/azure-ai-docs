@@ -5,8 +5,8 @@ description: "This document details issues for data, privacy, and security for I
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 10/15/2025
 ---

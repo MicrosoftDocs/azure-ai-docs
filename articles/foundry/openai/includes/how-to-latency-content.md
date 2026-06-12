@@ -1,0 +1,222 @@
+---
+title: include file
+description: include file
+author: alvinashcraft
+ms.author: aashcraft
+ms.service: microsoft-foundry
+ms.topic: include
+ms.date: 05/14/2026
+ms.custom: include, classic-and-new
+---
+
+This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
+
+## Understanding throughput vs latency
+
+There are two key concepts to think about when sizing an application: (1) System level throughput measured in tokens per minute (TPM) and (2) Per-call response times (also known as latency). 
+
+### System level throughput
+
+This metric shows the overall capacity of your deployment - how many requests per minute and total tokens that it can process.
+
+For a standard deployment, the quota assigned to your deployment partially determines the amount of throughput you can achieve. However, quota only determines the admission logic for calls to the deployment and doesn't directly enforce throughput. Due to per-call latency variations, you might not be able to achieve throughput as high as your quota. 
+
+In a provisioned deployment, you allocate a set amount of model processing capacity to your endpoint. The amount of throughput that you can achieve on the endpoint depends on the workload shape, including input token amount, output amount, call rate, and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
+
+For all deployment types, understanding system level throughput is a key component of optimizing performance. Consider system level throughput for a given model, version, and workload combination as the throughput varies across these factors. 
+
+#### Estimating system level throughput 
+
+##### Estimating TPM with Azure Monitor metrics
+
+One approach to estimating system level throughput for a given workload is using historical token usage data. For Azure OpenAI workloads, all historical usage data can be accessed and visualized with the native monitoring capabilities offered within Azure OpenAI. Two metrics are needed to estimate system level throughput for Azure OpenAI workloads: (1) **Processed Prompt Tokens** and (2) **Generated Completion Tokens**. 
+
+When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Completion Tokens** (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. This approach does not account for benefits from prompt caching, so it will be a conservative system throughput estimate. These metrics can be analyzed using minimum, average, and maximum aggregation over 1-minute windows across a multi-week time horizon. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. The following screenshot shows an example of the **Processed Prompt Tokens** metric visualized in Azure Monitor, which is available directly through the Azure portal. 
+
+![Screenshot of Azure Monitor graph showcasing the Processed Prompt Tokens metric split by model and version.](../how-to/media/latency/processed-prompt-token-graph.png)
+
+##### Estimating TPM from request data
+
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Microsoft Foundry Models chat completions request.
+
+```json
+{
+  "body": {
+    "id": "chatcmpl-7R1nGnsXO8n4oi9UPz2f3UHdgAYMn",
+    "created": 1686676106,
+    "choices": [],
+    "usage": {
+      "completion_tokens": 557,
+      "prompt_tokens": 33,
+      "total_tokens": 590
+    }
+  }
+}
+```
+Assuming all requests for a given workload are uniform, multiply the prompt tokens and completion tokens from the API response data by the estimated RPM to identify the input and output TPM for the given workload. 
+
+##### How to use system level throughput estimates
+
+After you estimate system level throughput for a given workload, use these estimates to size Standard and Provisioned deployments. For Standard deployments, combine the input and output TPM values to estimate the total TPM to assign to a given deployment. For Provisioned deployments, use the request token usage data or input and output TPM values to estimate the number of PTUs required to support a given workload by using the deployment capacity calculator experience. 
+
+Here are a few examples for the GPT-4o mini model:
+
+| Prompt  Size (tokens) | Generation size (tokens) | Requests per minute | Input TPM | Output TPM | Total TPM | PTUs required |
+| --------------------- | ------------------------ | ------------------- | --------- | ---------- | --------- | ------------- |
+| 800	| 150 | 30 | 24,000 | 4,500 | 28,500 | 15 |
+| 5,000 | 50 | 1,000 | 5,000,000 | 50,000 | 5,050,000 | 140 |
+| 1,000 | 300 | 500 | 500,000 | 150,000 | 650,000 | 30 |
+
+The number of PTUs scales roughly linearly with call rate when the workload distribution remains constant.
+
+### Latency: The per-call response times 
+
+The high level definition of latency in this context is the amount of time it takes to get a response back from the model. For completion and chat completion requests, latency is largely dependent on model type, the number of tokens in the prompt and the number of tokens generated. In general, each prompt token adds little time compared to each incremental token generated.
+
+The relationship `TTLT = TTFT + (TBT × Tokens Generated)` lets you separate expected token-driven latency from real regressions. See [Understanding Azure OpenAI latency](#understanding-azure-openai-latency) for the full breakdown.
+
+Estimating your expected per-call latency can be challenging with these models. Latency of a completion request can vary based on four primary factors: (1) the model, (2) the number of tokens in the prompt, (3) the number of tokens generated, and (4) the overall load on the deployment and system. Factors one and three often contribute most to the total time. The next section goes into more detail on the anatomy of a large language model inference call.
+
+## Understanding Azure OpenAI latency
+
+Azure OpenAI request latency follows a predictable formula. Knowing this formula helps you tell expected, token-driven response times from real performance regressions.
+
+### The latency formula
+
+The total time to generate a response is:
+
+> **TTLT = TTFT + (TBT × Tokens Generated)**
+
+Where:
+
+- **TTFT** (Time to First Token) is the time from prompt submission until the first token returns, in milliseconds.
+- **TBT** (Time Between Tokens) is the average time between consecutive generated tokens, in milliseconds.
+- **Tokens Generated** is the total output token count for the response.
+- **TTLT** (Time to Last Token) is the total end-to-end response time.
+
+Because TTLT scales with the number of generated tokens, an increase in TTLT is often fully explained by an increase in output tokens – not by a system performance issue. Always check token counts before you conclude that there's a latency regression.
+
+### Key latency metrics
+
+Use these Azure Monitor metrics to investigate latency, regardless of whether you stream responses:
+
+| Display name | REST API name | What it measures | When to use |
+| --- | --- | --- | --- |
+| Time to Last Byte | `AzureOpenAITTLTInMS` | Total time from prompt submission to the last token, measured by the API gateway. Maps to **TTLT**. | Non-streaming requests, or anytime you need overall response time. |
+| Time to Response | `AzureOpenAITimeToResponse` | Time from prompt submission to the first response chunk. Maps to **TTFT**. | Streaming requests, or anytime you need first-token responsiveness. |
+| Time Between Tokens | `AzureOpenAINormalizedTBTInMS` | Average milliseconds between consecutive generated tokens. Maps to **TBT**. Sometimes called the *average token generation rate*. | Streaming requests, or to diagnose generation throughput. |
+| Normalized Time to First Byte | `AzureOpenAINormalizedTTFTInMS` | First-byte latency divided by prompt token count. | Comparing first-token efficiency across different prompt sizes. Don't use this metric for absolute latency diagnosis. |
+| Generated Completion Tokens | `GeneratedTokens` | Output token count per request. | Always pair with a latency metric — output tokens are the primary driver of TTLT. |
+| Processed Prompt Tokens | `ProcessedPromptTokens` | Input token count per request. | Larger prompts increase TTFT and overall processing time. |
+
+> [!NOTE]
+> The latency formula uses **TTFT**, but Azure Monitor offers two TTFT-related metrics. For diagnosing absolute latency that customers experience, use **Time to Response** (`AzureOpenAITimeToResponse`). Use **Normalized Time to First Byte** (`AzureOpenAINormalizedTTFTInMS`) only when you need to compare first-token efficiency across prompts of different sizes.
+
+Always pair a latency metric with a token count metric. A 5-second TTLT that generates 2,000 tokens is very different from a 5-second TTLT that generates 50 tokens. Latency without token context isn't actionable.
+
+For the complete metrics catalog, including dimensions and aggregation guidance, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md).
+
+## Evaluate your latency in 10 minutes
+
+Use the path that matches your workload to assess whether deployment latency is behaving as expected. Both paths use Azure Monitor metrics from the [Key latency metrics](#key-latency-metrics) table.
+
+### Non-streaming workloads
+
+1. In the Azure portal, open your Azure OpenAI resource, and then select **Monitoring** > **Metrics**.
+1. Add **Time to Last Byte** (`AzureOpenAITTLTInMS`) and split by `ModelDeploymentName` to isolate per-deployment behavior.
+1. Add a second chart for **Generated Completion Tokens** (`GeneratedTokens`) on the same time range.
+1. Compare the two charts:
+
+   - If TTLT and generated tokens rise together, the latency change is explained by token volume. This pattern is expected behavior, not a regression.
+   - If TTLT rises without a token-count increase, check for capacity pressure. On PTU-managed deployments, chart **Provisioned-managed Utilization V2** (`AzureOpenAIProvisionedManagedUtilizationV2`). On pay-as-you-go deployments, check **Azure OpenAI Requests** (`AzureOpenAIRequests`) for 429 throttling and concurrent request volume.
+
+### Streaming workloads
+
+1. In the Azure portal, open your Azure OpenAI resource, and then select **Monitoring** > **Metrics**.
+1. Add **Time to Response** (`AzureOpenAITimeToResponse`) and split by `ModelDeploymentName` for first-token latency.
+1. Add **Time Between Tokens** (`AzureOpenAINormalizedTBTInMS`) for per-token generation throughput.
+1. Add **Processed Prompt Tokens** (`ProcessedPromptTokens`). Larger prompts increase TTFT.
+1. Compare the charts:
+
+   - If Time to Response rises while prompt size stays flat, check deployment utilization and concurrent request volume.
+   - If Time Between Tokens rises, the deployment is likely under load.
+
+If observed values look unexpected, plug them back into the [latency formula](#the-latency-formula) to sanity-check before you open a support case.
+
+## Improve performance
+Several factors can improve the per-call latency of your application.
+
+### Model selection
+
+Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+
+### Generation size and Max tokens
+
+When you send a completion request to the Azure OpenAI endpoint, the service converts your input text into tokens and sends them to your deployed model. The model receives the input tokens and then begins generating a response. It's an iterative sequential process, one token at a time. Another way to think of it is like a for loop with `n tokens = n iterations`. For most models, generating the response is the slowest step in the process.  
+
+At the time of the request, the requested generation size (`max_tokens` parameter) is used as an initial estimate of the generation size. The compute-time for generating the full size is reserved by the model as the request is processed. Once the generation is completed, the remaining quota is released. Ways to reduce the number of tokens:
+
+- Set the `max_tokens` parameter on each call as low as possible.
+- Include stop sequences to prevent generating extra content.
+- Generate fewer responses: Using the `n` parameter can increase latency because it produces multiple outputs per request. For the fastest response, don't set `n` (or set it to `1`).
+
+In summary, reducing the number of tokens generated per request reduces the latency of each request.
+
+> [!NOTE]
+> The `max_tokens` parameter only changes the length of a response and in some cases might truncate it. The parameter doesn't change the quality of the response.
+
+### Streaming
+Setting `stream: true` in a request makes the service return tokens as soon as they're available, instead of waiting for the full sequence of tokens to be generated. It doesn't change the time to get all the tokens, but it reduces the time for first response. This approach provides a better user experience since end-users can read the response as it is generated. 
+
+Streaming is also valuable for large calls that take a long time to process. Many clients and intermediary layers have timeouts on individual calls. Long generation calls might be canceled due to client-side timeouts. By streaming the data back, you can ensure incremental data is received.
+
+**Examples of when to use streaming**:
+
+Chat bots and conversational interfaces.
+
+Streaming impacts perceived latency. By enabling streaming, you receive tokens back in chunks as soon as they're available. For end users, this approach often feels like the model is responding faster even though the overall time to complete the request remains the same.
+
+**Examples of when streaming is less important**:
+
+Sentiment analysis, language translation, content generation.
+
+There are many use cases where you're performing some bulk task where you only care about the finished result, not the real-time response. If streaming is disabled, you don't receive any tokens until the model finishes the entire response.
+
+### Content filtering
+
+Azure OpenAI includes a [content filtering system](../../../foundry-classic/openai/how-to/content-filters.md) that works alongside the core models. This system runs both the prompt and completion through an ensemble of classification models aimed at detecting and preventing the output of harmful content.
+
+The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+
+The addition of content filtering comes with an increase in safety, but also latency. There are many applications where this tradeoff in performance is necessary, however there are certain lower risk use cases where disabling the content filters to improve performance might be worth exploring.
+
+Learn more about requesting modifications to the default, [content filtering policies](../../../foundry-classic/openai/how-to/content-filters.md).
+
+### Separation of workloads
+
+Mixing different workloads on the same endpoint can negatively affect latency. This is because (1) they're batched together during inference and short calls can be waiting for longer completions and (2) mixing the calls can reduce your cache hit rate as they're both competing for the same space. When possible, it's recommended to have separate deployments for each workload.
+
+### Prompt size
+
+While prompt size has less influence on latency than generation size, it affects the overall time, especially when the size grows large. 
+
+### Batching
+
+If you're sending multiple requests to the same endpoint, you can batch the requests into a single call. This reduces the number of requests you need to make and depending on the scenario it might improve overall response time. We recommend testing this method to see if it helps. 
+
+## How to measure your throughput
+
+We recommend measuring your overall throughput on a deployment with two measures:
+
+-	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
+-	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
+
+For the full list of monitoring metrics, dimensions, and resource logs, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md).
+
+## Summary
+
+- **Model latency**: If model latency is important to you, we recommend trying out the [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+- **Lower max tokens**: OpenAI has found that even in cases where the total number of tokens generated is similar the request with the higher value set for the max token parameter will have more latency.
+- **Lower total tokens generated**: The fewer tokens generated the faster the overall response will be. Remember this is like having a for loop with `n tokens = n iterations`. Lower the number of tokens generated and overall response time will improve accordingly.
+- **Streaming**: Enabling streaming can be useful in managing user expectations in certain situations by allowing the user to see the model response as it is being generated rather than having to wait until the last token is ready.
+- **Content Filtering** improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from [modified content filtering policies](../../../foundry-classic/openai/how-to/content-filters.md).

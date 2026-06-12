@@ -3,10 +3,10 @@ title: "Quickstart: Azure Translator client libraries (SDKs)"
 titleSuffix: Foundry Tools
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

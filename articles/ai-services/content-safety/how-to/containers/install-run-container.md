@@ -3,7 +3,7 @@ title: Install and run content safety containers with Docker - Content Safety se
 titleSuffix: Azure AI Foundry Tools
 description: Use the content safety containers with Docker to perform content safety check on-premises.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025
@@ -144,7 +144,7 @@ You can have this container and a different Azure AI container running on the ho
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#foundry-tools-container-security) in the Azure AI Foundry Tools documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context#foundry-tools-container-security) in the Azure AI Foundry Tools documentation.
 
 ## Troubleshooting
 
@@ -197,4 +197,4 @@ To run disconnected containers (not connected to the internet), you must submit 
 
 * Review [analyze text container](./text-container.md) for text container configuration settings.
 *  Review [analyze image container](./image-container.md) for image container configuration settings.
-* Use more [Azure AI containers](../../../cognitive-services-container-support.md).
+* Use more [Foundry Tools containers](../../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context).

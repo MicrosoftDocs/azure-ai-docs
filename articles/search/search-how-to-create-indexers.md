@@ -1,6 +1,5 @@
 ---
-title: Create an indexer
-titleSuffix: Azure AI Search
+title: Create an Indexer
 description: Configure an indexer to automate data import and indexing from Azure data sources into a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -160,11 +159,11 @@ When you're ready to create an indexer on a remote search service, you need a se
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Choose from the following options:
 
-   + [**Import wizards**](search-import-data-portal.md): The wizards are unique in that they create all of the required elements. Other approaches require a predefined data source and index.
+   + [**Import data**](search-import-data-portal.md): This wizard creates all of the required elements, including the indexer. Other approaches require a predefined data source and index.
 
        :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
 
@@ -251,7 +250,7 @@ Change detection logic is built into the data platforms. How an indexer supports
 
 Indexers keep track of the last document they processed from the data source through an internal *high water mark*. The marker is never exposed in the API, but internally the indexer tracks where it stopped. When indexing resumes, either through a scheduled run or an on-demand invocation, the indexer references the high water mark so that it can pick up where it left off.
 
-If you need to clear the high water mark to reindex in full, you can use [Reset Indexer](/rest/api/searchservice/indexers/reset). For more selective reindexing, use [Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2024-05-01-preview&preserve-view=true) or [Reset Documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2024-05-01-preview&preserve-view=true). Through the reset APIs, you can clear internal state, and also flush the cache if you enabled [incremental enrichment](enrichment-cache-how-to-configure.md). For more background and comparison of each reset option, see [Run or reset indexers, skills, and documents](search-howto-run-reset-indexers.md).
+If you need to clear the high water mark to reindex in full, you can use [Reset Indexer](/rest/api/searchservice/indexers/reset). For more selective reindexing, use [Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or [Reset Documents](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true). Through the reset APIs, you can clear internal state, and also flush the cache if you enabled [incremental enrichment](enrichment-cache-how-to-configure.md). For more background and comparison of each reset option, see [Run or reset indexers, skills, and documents](search-howto-run-reset-indexers.md).
 
 ## Related content
 

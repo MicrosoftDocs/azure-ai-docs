@@ -22,6 +22,8 @@ ms.custom:
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+[!INCLUDE [machine-learning-data-import-deprecation](includes/machine-learning-data-import-deprecation.md)]
+
 In this article, you learn how to connect to external data sources to make their data available to Azure Machine Learning. You also learn how to connect to several external nondata services. You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or Machine Learning studio to create these connections.
 
 An Azure Machine Learning connection securely stores usernames and passwords as secrets in a key vault. Azure connections serve as key vault proxies, and interactions with the connections are direct interactions with Azure Key Vault. Key Vault role-based access control (RBAC) manages access to the data resources. You don't need to deal directly with the credentials after they're stored in the key vault.

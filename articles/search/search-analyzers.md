@@ -1,6 +1,5 @@
 ---
-title: Analyzers for linguistic and text processing
-titleSuffix: Azure AI Search
+title: Analyzers for Linguistic and Text Processing
 description: Assign analyzers to searchable string fields in an index to replace default standard Lucene with custom, predefined or language-specific alternatives.
 ms.service: azure-ai-search
 ms.topic: concept-article

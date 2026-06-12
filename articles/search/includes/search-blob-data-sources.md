@@ -1,9 +1,8 @@
 ---
-author: mgottein
+ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 01/16/2026
-ms.author: magottei
 ---
 
 * CSV (see [Indexing CSV blobs](../search-how-to-index-azure-blob-csv.md))

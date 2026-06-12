@@ -2,14 +2,15 @@
 title: Create a batch transcription - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 03/30/2026
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
+ai-usage: ai-assisted
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
 ---
 
@@ -45,7 +46,7 @@ For more information, see [Request configuration options](#request-configuration
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
 
 - Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key.
-- Replace `YourServiceRegion` with your Microsoft Foundry resource region.
+- replace `YourResourceName` with your Speech resource name.
 - Set the request body properties as previously described.
 
 ```azurecli-interactive
@@ -67,20 +68,20 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
     },
     "timeToLiveHours": 48
   }
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35?api-version=2024-11-15",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35?api-version=2024-11-15",
   "displayName": "My Transcription 2",
   "locale": "en-US",
   "createdDateTime": "2025-05-24T03:20:39Z",
   "lastActionDateTime": "2025-05-24T03:20:39Z",
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35/files?api-version=2024-11-15"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions/788a1f24-f980-4809-8978-e5cf41f77b35/files?api-version=2024-11-15"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
@@ -137,12 +138,12 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0/files"
+    "files": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0/files"
   },
   "properties": {
     "diarizationEnabled": false,
@@ -179,24 +180,48 @@ spx help batch transcription
 
 Here are some property options to configure a transcription when you call the [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) operation. You can find more examples on the same page, such as [creating a transcription with language identification](/rest/api/speechtotext/transcriptions/submit/#create-a-transcription-with-language-identification).
 
-| Property | Description |
-|----------|-------------|
-|`channels`|An array of channel numbers to process. Channels `0` and `1` are transcribed by default. |
-|`contentContainerUrl`| You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information about Azure blob storage for batch transcription, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
-|`contentUrls`| You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
-|`destinationContainerUrl`|The result can be stored in an Azure container. If you don't specify a container, the Speech service stores the results in a container managed by Microsoft. When the transcription job is deleted, the transcription result data is also deleted. For more information, such as the supported security scenarios, see [Specify a destination container URL](#specify-a-destination-container-url).|
-|`diarization`|Indicates that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains multiple voices. The feature isn't available with stereo recordings.<br/><br/>Diarization is the process of separating speakers in audio data. The batch pipeline can recognize and separate multiple speakers on mono channel recordings.<br/><br/>Specify the minimum and maximum number of people who might be speaking. You must also set the `diarizationEnabled` property to `true`. The [transcription file](batch-transcription-get.md#transcription-result-file) contains a `speaker` entry for each transcribed phrase.<br/><br/>You need to use this property when you expect three or more speakers. For two speakers, setting `diarizationEnabled` property to `true` is enough. For an example of the property usage, see [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit).<br/><br/>The maximum number of speakers for diarization must be less than 36 and more or equal to the `minCount` property. For an example, see [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit).<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later. If you set this property with any previous version, such as version 3.0, it's ignored and only two speakers are identified.|
-|`diarizationEnabled`|Specifies that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains two voices. The default value is `false`.<br/><br/>For three or more voices you also need to use property `diarization`. Use only with Speech to text REST API version 3.1 and later.<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.|
-|`displayName`|The name of the batch transcription. Choose a name that you can refer to later. The display name doesn't have to be unique.<br/><br/>This property is required.|
-|`displayFormWordLevelTimestampsEnabled`|Specifies whether to include word-level timestamps on the display form of the transcription results. The results are returned in the `displayWords` property of the transcription file. The default value is `false`.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later.|
-|`languageIdentification`|Language identification is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md?tabs=language-identification).<br/><br/>If you set the `languageIdentification` property, then you must also set its enclosed `candidateLocales` property.|
-|`languageIdentification.candidateLocales`|The candidate locales for language identification, such as `"properties": { "languageIdentification": { "candidateLocales": ["en-US", "de-DE", "es-ES"]}}`. A minimum of two and a maximum of ten candidate locales, including the main locale for the transcription, is supported.|
-|`locale`|The locale of the batch transcription. This value should match the expected locale of the audio data to transcribe. The locale can't be changed later.<br/><br/>This property is required.|
-|`model`|You can set the `model` property to use a specific base model or [custom speech](how-to-custom-speech-train-model.md) model. If you don't specify the `model`, the default base model for the locale is used. For more information, see [Use a custom model](#use-a-custom-model) and [Use a Whisper model](#use-a-whisper-model).|
-|`profanityFilterMode`|Specifies how to handle profanity in recognition results. Accepted values are `None` to disable profanity filtering, `Masked` to replace profanity with asterisks, `Removed` to remove all profanity from the result, or `Tags` to add profanity tags. The default value is `Masked`. |
-|`punctuationMode`|Specifies how to handle punctuation in recognition results. Accepted values are `None` to disable punctuation, `Dictated` to imply explicit (spoken) punctuation, `Automatic` to let the decoder deal with punctuation, or `DictatedAndAutomatic` to use dictated and automatic punctuation. The default value is  `DictatedAndAutomatic`.<br/><br/>This property isn't applicable for Whisper models.|
-|`timeToLiveHours`|This required property specifies how long the transcription should be kept in the system after it completed.<br/><br/>Once the transcription reaches the time to live after completion (successful or failed) it's automatically deleted.<br/><br/>The shortest supported duration is 6 hours, the longest supported duration is 31 days. The recommended value is 48 hours (two days) when data is consumed directly.<br/><br/>As an alternative, you can call [Transcriptions - Delete](/rest/api/speechtotext/transcriptions/delete) regularly after you retrieve the transcription results.|
-|`wordLevelTimestampsEnabled`|Specifies if word level timestamps should be included in the output. The default value is `false`.<br/><br/>This property isn't applicable for Whisper models. Whisper is a display-only model, so the lexical field isn't populated in the transcription.|
+The request body has two distinct levels. Misplacing a property causes the service to silently ignore it or return a validation error.
+
+- **Root level**: Metadata that describes the transcription job itself (`displayName`, `locale`, `model`, `contentUrls`, `contentContainerUrl`).
+- **Inside `properties`**: Options that control transcription behavior. Wrap these in a `"properties": { }` object.
+
+> [!IMPORTANT]
+> `destinationContainerUrl` belongs inside the `properties` object, not at the root level of the request body. Placing it at the root causes the service to ignore it, and transcription results are silently written to the Microsoft-managed container instead.
+
+The following example shows the correct structure:
+
+```json
+{
+  "contentUrls": ["https://..."],
+  "locale": "en-US",
+  "displayName": "My Transcription",
+  "model": null,
+  "properties": {
+    "destinationContainerUrl": "https://<storage>.blob.core.windows.net/<container>?<SAS>",
+    "wordLevelTimestampsEnabled": true,
+    "timeToLiveHours": 48
+  }
+}
+```
+
+| Property | Location in request body | Description |
+|----------|--------------------------|-------------|
+|`contentContainerUrl`| Root level | You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information about Azure blob storage for batch transcription, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
+|`contentUrls`| Root level | You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
+|`displayName`| Root level | The name of the batch transcription. Choose a name that you can refer to later. The display name doesn't have to be unique.<br/><br/>This property is required.|
+|`locale`| Root level |The locale of the batch transcription. This value should match the expected locale of the audio data to transcribe. The locale can't be changed later.<br/><br/>This property is required.|
+|`model`| Root level |You can set the `model` property to use a specific base model or [custom speech](how-to-custom-speech-train-model.md) model. If you don't specify the `model`, the default base model for the locale is used. For more information, see [Use a custom model](#use-a-custom-model) and [Use a Whisper model](#use-a-whisper-model).|
+|`channels`| Inside `properties` |An array of channel numbers to process. Channels `0` and `1` are transcribed by default. |
+|`destinationContainerUrl`| Inside `properties` |The result can be stored in an Azure container. If you don't specify a container, the Speech service stores the results in a container managed by Microsoft. When the transcription job is deleted, the transcription result data is also deleted. For more information, such as the supported security scenarios, see [Specify a destination container URL](#specify-a-destination-container-url).|
+|`diarization`| Inside `properties` |Indicates that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains multiple voices. The feature isn't available with stereo recordings.<br/><br/>Diarization is the process of separating speakers in audio data. The batch pipeline can recognize and separate multiple speakers on mono channel recordings.<br/><br/>Specify the minimum and maximum number of people who might be speaking. You must also set the `diarizationEnabled` property to `true`. The [transcription file](batch-transcription-get.md#transcription-result-file) contains a `speaker` entry for each transcribed phrase.<br/><br/>You need to use this property when you expect three or more speakers. For two speakers, setting `diarizationEnabled` property to `true` is enough. For an example of the property usage, see [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit).<br/><br/>The maximum number of speakers for diarization must be less than 36 and more or equal to the `minCount` property. For an example, see [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit).<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later. If you set this property with any previous version, such as version 3.0, it's ignored and only two speakers are identified.|
+|`diarizationEnabled`| Inside `properties` |Specifies that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains two voices. The default value is `false`.<br/><br/>For three or more voices you also need to use property `diarization`. Use only with Speech to text REST API version 3.1 and later.<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.|
+|`displayFormWordLevelTimestampsEnabled`| Inside `properties` |Specifies whether to include word-level timestamps on the display form of the transcription results. The results are returned in the `displayWords` property of the transcription file. The default value is `false`.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later.|
+|`languageIdentification`| Inside `properties` |Language identification is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md?tabs=language-identification).<br/><br/>If you set the `languageIdentification` property, then you must also set its enclosed `candidateLocales` property.|
+|`languageIdentification.candidateLocales`| Inside `properties` |The candidate locales for language identification, such as `"properties": { "languageIdentification": { "candidateLocales": ["en-US", "de-DE", "es-ES"]}}`. A minimum of two and a maximum of ten candidate locales, including the main locale for the transcription, is supported.|
+|`profanityFilterMode`| Inside `properties` |Specifies how to handle profanity in recognition results. Accepted values are `None` to disable profanity filtering, `Masked` to replace profanity with asterisks, `Removed` to remove all profanity from the result, or `Tags` to add profanity tags. The default value is `Masked`. |
+|`punctuationMode`| Inside `properties` |Specifies how to handle punctuation in recognition results. Accepted values are `None` to disable punctuation, `Dictated` to imply explicit (spoken) punctuation, `Automatic` to let the decoder deal with punctuation, or `DictatedAndAutomatic` to use dictated and automatic punctuation. The default value is  `DictatedAndAutomatic`.<br/><br/>This property isn't applicable for Whisper models.|
+|`timeToLiveHours`| Inside `properties` |This required property specifies how long the transcription should be kept in the system after it completed.<br/><br/>Once the transcription reaches the time to live after completion (successful or failed) it's automatically deleted.<br/><br/>The shortest supported duration is 6 hours, the longest supported duration is 31 days. The recommended value is 48 hours (two days) when data is consumed directly.<br/><br/>As an alternative, you can call [Transcriptions - Delete](/rest/api/speechtotext/transcriptions/delete) regularly after you retrieve the transcription results.|
+|`wordLevelTimestampsEnabled`| Inside `properties` |Specifies if word level timestamps should be included in the output. The default value is `false`.<br/><br/>This property isn't applicable for Whisper models. Whisper is a display-only model, so the lexical field isn't populated in the transcription.|
 
 
 ::: zone-end
@@ -228,12 +253,12 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "locale": "en-US",
   "displayName": "My Transcription",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
   }
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 ::: zone-end
@@ -241,7 +266,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 ::: zone pivot="speech-cli"
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://YourResourceName.cognitiveservices.azure.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
 ```
 
 ::: zone-end
@@ -303,13 +328,13 @@ You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-ba
 Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 By default, only the 100 oldest base models are returned. Use the `skip` and `top` query parameters to page through the results. For example, the following request returns the next 100 base models after the first 100.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 ::: zone-end
@@ -330,7 +355,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
 ```json
 {
   "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00/manifest?api-version=2024-11-15"
+    "manifest": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00/manifest?api-version=2024-11-15"
   },
   "properties": {
     "deprecationDates": {
@@ -351,7 +376,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
     },
     "chargeForAdaptation": true
   },
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15",
+  "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15",
   "displayName": "20240228 Whisper Large V2",
   "description": "OpenAI Whisper Model in Azure Speech (Whisper v2-large)",
   "locale": "en-US",
@@ -374,12 +399,12 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "locale": "en-US",
   "displayName": "My Transcription",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15"
+    "self": "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
   },
-}'  "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
+}'  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:submit?api-version=2024-11-15"
 ```
 
 ::: zone-end
@@ -391,10 +416,107 @@ You set the full model URI as shown in this example for the `eastus` region. Rep
 Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb" --api-version v3.2
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://YourResourceName.cognitiveservices.azure.com/speechtotext/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb" --api-version v3.2
 ```
 
 ::: zone-end
+
+## Set up webhook notifications
+
+Instead of polling for transcription status, you can register a webhook to receive a notification when a transcription job completes (or reaches any other terminal state).
+
+Use the [Web hooks - Create](/rest/api/speechtotext/web-hooks/create) operation to register a webhook endpoint. The Speech service sends HTTP POST callbacks to your endpoint for `transcription.created`, `transcription.processing`, `transcription.succeeded`, `transcription.failed`, and `transcription.deleted` events.
+
+### Firewall requirements
+
+The Speech service initiates outbound HTTPS calls from its managed infrastructure to your webhook endpoint. To accept those calls, your endpoint's firewall or network security group must allow inbound traffic from the Azure service tag **`CognitiveServicesManagement`**.
+
+> [!IMPORTANT]
+> If inbound traffic from `CognitiveServicesManagement` is blocked, the Speech service can't reach your endpoint.  The webhook registration succeeds—because registration only involves an outbound call from your client to the Speech API—but all subsequent event callbacks silently fail.
+
+For Azure-hosted endpoints, add an inbound rule in your network security group:
+- **Source**: Service tag `CognitiveServicesManagement`
+- **Destination port**: `443` (HTTPS)
+- **Action**: Allow
+
+### Webhook validation handshake
+
+When you register a new webhook, the Speech service immediately sends a validation request to prove that your endpoint is reachable and under your control. Your endpoint **must** respond correctly or registration fails.
+
+The validation request looks like this:
+
+```http
+POST https://your-endpoint.example.com/?validationToken=<token>
+```
+
+Key details:
+
+- The token is delivered as a **query string parameter** (`validationToken`), not in the request body.
+- Your endpoint must respond with HTTP `200 OK` and return the **raw token string as plain text** (`Content-Type: text/plain`).
+- Returning JSON (for example, `{"validationToken": "..."}`) causes validation to fail.
+
+> [!IMPORTANT]
+> **Common mistake**: Echoing the token as a JSON object instead of plain text causes webhook registration to fail with no clear error from the service. Always return the token as a plain text string.
+
+### Python example: validation handler
+
+The following example shows a minimal Python webhook endpoint using [Flask](https://flask.palletsprojects.com/). It reads `validationToken` from the query string and returns it as plain text.
+
+```python
+import flask
+import json
+
+app = flask.Flask(__name__)
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    # Validation handshake: Speech sends the token as a query parameter.
+    # Return it as plain text—do NOT return JSON.
+    validation_token = flask.request.args.get("validationToken")
+    if validation_token:
+        return flask.Response(validation_token, status=200, mimetype="text/plain")
+
+    # Normal event callback: parse the JSON body.
+    event = flask.request.get_json(silent=True) or {}
+    event_type = event.get("events", [{}])[0].get("kind", "")
+
+    if event_type == "TranscriptionSucceeded":
+        transcription_url = event.get("self", "")
+        print(f"Transcription completed: {transcription_url}")
+        # TODO: fetch results from transcription_url
+
+    return flask.Response(status=200)
+
+if __name__ == "__main__":
+    app.run(port=5000)
+```
+
+- **Reference**: [`flask.Request.args`](https://flask.palletsprojects.com/en/stable/api/#flask.Request.args), [`flask.Response`](https://flask.palletsprojects.com/en/stable/api/#flask.Response)
+
+### Register the webhook
+
+After your endpoint passes validation, register it with the [Web hooks - Create](/rest/api/speechtotext/web-hooks/create) operation:
+
+```azurecli-interactive
+curl -X POST \
+  -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "displayName": "My Transcription Webhook",
+    "events": {
+      "transcriptionSucceeded": true,
+      "transcriptionFailed": true
+    },
+    "webUrl": "https://your-endpoint.example.com/webhook"
+  }' \
+  "https://YourResourceName.cognitiveservices.azure.com/speechtotext/webhooks?api-version=2024-11-15"
+```
+
+- Replace `YourSpeechResourceKey` with your Microsoft Foundry resource key.
+- Replace `YourResourceName` with your Speech resource name.
+- Replace the `webUrl` with your publicly reachable HTTPS endpoint URL.
+
+For the full list of supported event types, see the [Web hooks reference](/rest/api/speechtotext/web-hooks).
 
 ## Specify a destination container URL
 

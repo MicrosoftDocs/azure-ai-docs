@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Content Understanding."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-understanding
 ms.topic: concept-article
-ms.date: 11/17/2024
+ms.date: 03/31/2026
 ai-usage: ai-assisted
 ---
 

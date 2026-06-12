@@ -1,14 +1,14 @@
 ---
 title: "How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation (classic)"
 description: "Learn how to use stored completions & distillation with Azure OpenAI (classic)"
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 
@@ -36,7 +36,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -314,7 +314,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -427,7 +427,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -536,7 +536,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -627,7 +627,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = AzureOpenAI(
@@ -749,7 +749,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -813,7 +813,9 @@ Stored completions access is controlled via two DataActions:
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/read`
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/action`
 
-By default `Azure AI User` role has access to both these permissions:
+By default `Foundry User` role has access to both these permissions:
+
+[!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 
 :::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 

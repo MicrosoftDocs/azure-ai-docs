@@ -3,9 +3,9 @@ title: Copy an Azure Custom Translator model
 titleSuffix: Foundry Tools
 description: This article explains how to copy a custom model to another Custom Translator workspace.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.topic: how-to
 ---

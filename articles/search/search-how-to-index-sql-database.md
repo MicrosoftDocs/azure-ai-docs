@@ -1,6 +1,5 @@
 ---
-title: Azure SQL indexer
-titleSuffix: Azure AI Search
+title: Azure SQL Indexer
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -12,6 +11,13 @@ ms.custom:
 ---
 
 # Index data from Azure SQL Database
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure SQL Database or an Azure SQL managed instance and makes it searchable in Azure AI Search. 
 
@@ -133,9 +139,9 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
+1. Use the [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the **Overview** page, select **Import data** or **Import data (new)**.
+   1. On the **Overview** page, select **Import data**.
 
    1. Select the data source you just created.
 
@@ -156,7 +162,7 @@ The data source definition specifies the data to index, credentials, and policie
 1. [Create Data Source](/rest/api/searchservice/data-sources/create) or [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
    ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
+    POST https://myservice.search.windows.net/datasources?api-version=2026-04-01
     Content-Type: application/json
     api-key: admin-key
 
@@ -198,7 +204,7 @@ In a [search index](search-what-is-an-index.md), add fields that correspond to t
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store data:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes?api-version=2026-04-01
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -251,7 +257,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexers?api-version=2026-04-01
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -307,7 +313,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-04-01
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -381,7 +387,7 @@ Database requirements:
 Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
+POST https://myservice.search.windows.net/datasources?api-version=2026-04-01
 Content-Type: application/json
 api-key: admin-key
     {
@@ -416,7 +422,7 @@ The high water mark column must meet the following requirements:
 Change detection policies are added to data source definitions. To use this policy, create or update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
+POST https://myservice.search.windows.net/datasources?api-version=2026-04-01
 Content-Type: application/json
 api-key: admin-key
     {

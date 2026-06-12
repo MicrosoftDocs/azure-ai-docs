@@ -1,11 +1,11 @@
 ---
 title: "Consume serverless APIs from a different project or hub (classic)"
 description: "Learn how to consume serverless APIs from a different project or hub. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
-manager: nitinme
+ms.date: 03/31/2026
+manager: mcleans
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: fasantia
@@ -33,7 +33,7 @@ The need to consume a serverless APIs endpoint in a different project or hub tha
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - A [Microsoft Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-foundry.md#types-of-projects).
 

@@ -2,12 +2,12 @@
 title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation - REST
 titleSuffix: Azure OpenAI
 description:  Learn how to use evaluations with Azure OpenAI - REST
-author: mrbullwinkle
-ms.author: mbullwin
-manager: nitinme
+author: alvinashcraft
+ms.author: aashcraft
+manager: mcleans
 ms.date: 07/28/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ---
 

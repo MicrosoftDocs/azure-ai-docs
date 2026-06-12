@@ -1,9 +1,7 @@
 ---
 title: Azure Vision Multimodal Embeddings Skill
-titleSuffix: Azure AI Search
 description: Vectorize images or text using the Azure Vision multimodal embeddings API.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
@@ -15,7 +13,7 @@ ms.date: 01/16/2026
 # Azure Vision multimodal embeddings skill
 
 > [!IMPORTANT]
-> This skill is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) and newer preview APIs support this feature.
+> This skill is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update](/rest/api/searchservice/skillsets/create-or-update) (REST API) supports this feature.
 
 The **Azure Vision multimodal embeddings** skill uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for text or image input.
 
@@ -29,7 +27,7 @@ Supported regions vary by modality and how the skill connects to the Azure Visio
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | <ol><li>Find a [region that supports multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) in Azure Vision.</li><li>Verify the [region supports AI enrichment](search-region-support.md) in Azure AI Search.</li><li>Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in the same region. </li></ol> |
+| [**Import data** wizard](search-import-data-portal.md) | <ol><li>Find a [region that supports multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) in Azure Vision.</li><li>Verify the [region supports AI enrichment](search-region-support.md) in Azure AI Search.</li><li>Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in the same region. </li></ol> |
 | Programmatic, using a [key-based connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | <ol><li>Find a [region that supports multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) in Azure Vision.</li><li>Verify the [region supports AI enrichment](search-region-support.md) in Azure AI Search.</li><li>Create an Azure AI Search service and Microsoft Foundry resource in the same region. </li></ol> |
 | Programmatic, using a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
@@ -56,7 +54,7 @@ Parameters are case sensitive.
 
 ## Skill inputs
 
-Skill definition inputs include name, source, and inputs. The following table provides valid values for name of the input. You can also specify recursive inputs. For more information, see the [REST API reference](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview#inputfieldmappingentry&preserve-view=true) and [Create a skillset](cognitive-search-defining-skillset.md).
+Skill definition inputs include name, source, and inputs. The following table provides valid values for name of the input. You can also specify recursive inputs. For more information, see the [REST API reference](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-05-01-preview#inputfieldmappingentry&preserve-view=true) and [Create a skillset](cognitive-search-defining-skillset.md).
 
 | Input	 | Description |
 |--------|-------------|

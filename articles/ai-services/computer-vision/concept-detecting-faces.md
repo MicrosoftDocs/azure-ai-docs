@@ -3,9 +3,9 @@ title: Face detection - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn concepts related to the face detection feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 09/26/2025
 ms.author: pafarley
@@ -16,9 +16,9 @@ ms.author: pafarley
 Image Analysis 3.2 can detect human faces within an image and generate rectangle coordinates for each detected face.
 
 > [!NOTE]
-> This feature is also offered by the dedicated [Azure Face](./overview-identity.md) service. Use that alternative for more detailed face analysis, including face identification and head pose detection.
+> This feature is also offered by the dedicated [Azure Face](../face/overview-identity.md) service. Use that alternative for more detailed face analysis, including face identification and head pose detection.
 
-[!INCLUDE [Sensitive attributes notice](./includes/identity-sensitive-attributes.md)]
+[!INCLUDE [Sensitive attributes notice](../face/includes/identity-sensitive-attributes.md)]
 
 
 ## Face detection examples

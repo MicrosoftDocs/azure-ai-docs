@@ -2,8 +2,8 @@
 title: How to use Foundry Tools in Microsoft Foundry portal
 titleSuffix: Foundry Tools
 description: Learn how to use Foundry Tools in Microsoft Foundry portal. You can use existing Foundry Tools resources in Microsoft Foundry portal by creating a connection to the resource.
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.custom:
   - ignite-2023
   - build-2024

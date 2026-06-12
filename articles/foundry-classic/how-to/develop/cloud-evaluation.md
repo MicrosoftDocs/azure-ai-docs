@@ -1,7 +1,8 @@
 ---
 title: "Cloud Evaluation with the Microsoft Foundry SDK (classic)"
 description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ms.custom:
   - classic-and-new
   - references_regions
@@ -18,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/cloud-evaluation.md)
 
 [!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
@@ -32,7 +33,9 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 - A [Foundry project](../../how-to/create-projects.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
-- **Azure AI User** role on the Foundry project.
+- **Foundry User** role on the Foundry project.
+
+  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 > [!NOTE]
@@ -262,5 +265,5 @@ After you register your custom evaluator, you can view it in your [evaluator cat
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

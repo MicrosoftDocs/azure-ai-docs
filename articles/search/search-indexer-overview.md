@@ -1,7 +1,6 @@
 ---
-title: Indexer overview
-titleSuffix: Azure AI Search
-description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
+title: Indexer Overview
+description: Learn how indexers in Azure AI Search crawl Azure SQL, Cosmos DB, Blob Storage, and other data sources to extract and populate a search index automatically.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -21,6 +20,9 @@ Indexers target [supported data sources](#supported-data-sources). An indexer co
 You can run indexers on demand or on a recurring data refresh schedule that runs as often as every five minutes. More frequent updates preclude the use of indexers, requiring that you implement a ['push model'](search-what-is-data-import.md) that simultaneously pushes data to both Azure AI Search and your external data source for data synchronization.
 
 A search service runs one indexer job per search unit. If you need concurrent processing, make sure you have [sufficient replicas](/azure/search/search-capacity-planning#add-or-reduce-replicas-and-partitions). Indexers don't run in the background, so you might detect more query throttling than usual if the service is under pressure.
+
+> [!NOTE]
+> Indexer execution on Standard 3 High Density (S3 HD) search services and Serverless search services follows a different model that includes a service-level daily runtime quota. For more information, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
 
 ## Indexer scenarios and use cases
 
@@ -129,7 +131,7 @@ Indexers require a *data source* object that provides a connection string and po
 You can create a data source using any of these approaches:
 
 + Using the Azure portal, on the **Data sources** tab of your search service pages, select **Add data source** to specify the data source definition.
-+ Using the Azure portal, the [Import data wizard](search-import-data-portal.md) outputs a data source.
++ Using the Azure portal, the [**Import data** wizard](search-import-data-portal.md) outputs a data source.
 + Using the REST APIs, call [Create Data Source](/rest/api/searchservice/data-sources/create).
 + Using the Azure SDK for .NET, call [SearchIndexerDataSourceConnection class](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection)
 

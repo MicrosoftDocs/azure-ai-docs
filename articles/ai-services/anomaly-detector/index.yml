@@ -1,19 +1,19 @@
 ### YamlMime:Landing
 
 title: Anomaly Detector API Documentation 
-summary: Starting on the 20th of September, 2023 you won’t be able to create new Anomaly Detector resources. The Anomaly Detector service is being retired on the 1st of October, 2026.
+summary: Beginning September 20, 2023 you can't create new Anomaly Detector resources. The Anomaly Detector service will retire on October 1, 2026.
 
 
 metadata:
   title: Anomaly Detector API - Tutorials, quickstarts, API reference
   titleSuffix: Foundry Tools
   description: Use the Azure AI Anomaly Detector univariate and multivariate APIs to monitor data over time and detect anomalies with machine learning. Get insight into your data, regardless of volume, industry, or scenario. 
-  author: mrbullwinkle
-  manager: nitinme
+  author: alvinashcraft
+  manager: mcleans
   ms.service: azure-ai-anomaly-detector
   ms.topic: landing-page
-  ms.date: 06/12/2025
-  ms.author: mbullwin
+  ms.date: 03/17/2026
+  ms.author: aashcraft
 
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
@@ -30,7 +30,7 @@ landingContent:
           url: overview.md
     - linkListType: whats-new
       links:
-        - text: 🆕What's new in Anomaly Detector?
+        - text: What's new in Anomaly Detector?
           url: whats-new.md
     - linkListType: get-started
       links:
@@ -62,7 +62,7 @@ landingContent:
     - linkListType: overview
       links:
       - text: Introducing Multivariate Anomaly Detection
-        url: https://techcommunity.microsoft.com/t5/azure-ai-services-blog/introducing-multivariate-anomaly-detection/ba-p/2260679
+        url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-multivariate-anomaly-detection/2260679
     - linkListType: quickstart
       links:
         - text: Using C# (multivariate)
@@ -82,7 +82,7 @@ landingContent:
     - linkListType: overview
       links:
         - text: Introducing Azure AI Anomaly Detector API (univariate) 
-          url: https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Introducing-Azure-Anomaly-Detector-API/ba-p/490162
+          url: https://techcommunity.microsoft.com/blog/azuredevcommunityblog/introducing-azure-anomaly-detector-api/490162
     - linkListType: how-to-guide
       links:
         - text: Adjust anomaly detection modes and parameters for your data (univariate)
@@ -149,7 +149,7 @@ landingContent:
     - linkListType: reference
       links:
         - text: REST API (univariate)
-          url: https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector/operations/post-timeseries-entire-detect
+          url: /rest/api/aifoundry/
         - text: .NET SDK (univariate)
           url: /dotnet/api/azure.ai.anomalydetector
         - text: .Python SDK (univariate)
@@ -165,7 +165,7 @@ landingContent:
     - linkListType: reference
       links:
         - text: REST API (multivariate)
-          url: https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector-v1-1-preview/operations/DetectAnomaly
+          url: /rest/api/aifoundry/
         - text: .NET SDK (multivariate)
           url: /dotnet/api/azure.ai.anomalydetector
         - text: Python SDK (multivariate)

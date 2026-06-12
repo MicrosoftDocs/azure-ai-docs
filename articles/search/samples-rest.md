@@ -1,15 +1,12 @@
 ---
 title: REST Samples
-titleSuffix: Azure AI Search
-description: Find Azure AI Search demo REST code samples that use the Search or Management REST APIs.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+description: Find Azure AI Search demo REST code samples that use the Search Service or Search Management REST APIs.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 01/13/2026
+ai-usage: ai-assisted
 ---
 
 # REST samples for Azure AI Search
@@ -25,7 +22,7 @@ You can use any client that supports HTTP calls. To learn how to formulate the H
 Code samples from the Azure AI Search team demonstrate features and workflows. The following samples are referenced in tutorials, quickstarts, and how-to articles. You can find these samples in [Azure-Samples/azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-rest-samples) on GitHub.
 
 | Sample | Article | Description |
-|--|--|--|
+| --- | --- | --- |
 | [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
 | [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-keyword-search) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-semantic-ranking](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-ranking) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
@@ -43,7 +40,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 The following samples are also published by the Azure AI Search team but aren't referenced in documentation. Associated README files provide usage instructions.
 
 | Sample | Description |
-|--|--|
+| --- | --- |
 | [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts) | Single-shot RAG using the classic search engine as grounding data from Azure AI Search, with a chat completion model from Azure OpenAI. |
 
 > [!TIP]

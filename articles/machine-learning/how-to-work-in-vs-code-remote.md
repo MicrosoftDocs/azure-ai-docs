@@ -5,12 +5,13 @@ description: Details for working with Jupyter notebooks and services from a VS C
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.custom: build-2023
+ms.custom: dev-focus
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: lebaro
-ms.date: 08/05/2024
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 #Customer intent: As a data scientist, I want to use Jupyter notebooks and tools while working from a VS Code remote connection to my Azure Machine Learning compute instance.
 ---
 
@@ -25,13 +26,13 @@ In this article, learn specifics of working within a VS Code remote connection t
 
 ## Prerequisites
 
-Before you get started, you will need:
+Before you get started, you need:
 
 * [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
 
 ## Set up your remotely connected IDE
 
-VS Code has multiple extensions that can help you achieve your machine learning goals. Use the Azure extension to connect and work with your Azure subscription. Use the Azure Machine Learning extension to view, update and create workspace assets like computes, data, environments, jobs and more.
+VS Code has multiple extensions that can help you achieve your machine learning goals. Use the Azure extension to connect and work with your Azure subscription. Use the Azure Machine Learning extension to view, update, and create workspace assets like computes, data, environments, jobs, and more.
 
 When you use [VS Code for the Web](how-to-launch-vs-code-remote.md?tabs=vscode-web#use-vs-code-as-your-workspace-ide), the latest versions of these extensions are automatically available to you. If you use the [desktop application](how-to-launch-vs-code-remote.md?tabs=vscode-desktop#use-vs-code-as-your-workspace-ide), you might need to install them.
 
@@ -62,7 +63,9 @@ If you have already opened this notebook in Azure Machine Learning, we recommend
 
     :::image type="content" source="media/how-to-work-in-vs-code-remote/choose-kernel-source.png" alt-text="Screenshot shows kernel picker in VS Code.":::
 
-1. Choose the 'Azure Machine Learning compute instance' option, and then the 'Remote' if you've connected before
+1. Select **Select Another Kernel...** to see all kernel sources.
+
+1. Choose the **Azure Machine Learning compute instance** option, and then **Remote** if you've connected before
 
     :::image type="content" source="media/how-to-work-in-vs-code-remote/select-remote.png" alt-text="Screenshot shows selecting the compute instance in VS Code.":::
 
@@ -78,7 +81,7 @@ While there are a few ways to connect and manage kernels in VS Code, connecting 
 
 ## Transition between Azure Machine Learning and VS Code
 
-We recommend not trying to work on the same files in both applications at the same time as you might have conflicts you need to resolve. We'll save your current file in the studio before navigating to VS Code. You can execute many of the actions provided in the Azure Machine Learning studio in VS Code instead, using a YAML-first approach. You may find you prefer to do certain actions (for example, editing and debugging files) in VS Code, and other actions (for example, Creating a training job) in the Azure Machine Learning studio. You should find you can seamlessly navigate back and forth between the two.
+We recommend not trying to work on the same files in both applications at the same time as you might have conflicts you need to resolve. We save your current file in the studio before navigating to VS Code. You can execute many of the actions provided in the Azure Machine Learning studio in VS Code instead, using a YAML-first approach. You might find you prefer to do certain actions (for example, editing and debugging files) in VS Code, and other actions (for example, creating a training job) in the Azure Machine Learning studio. You should find you can seamlessly navigate back and forth between the two.
 
 ## Next step
 

@@ -1,14 +1,13 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure AI Search FAQ
-  titleSuffix: Azure AI Search
   description: Get answers to common questions about Azure AI Search, a cloud-hosted search service on Microsoft Azure.
-  manager: nitinme
+  manager: mcleans
   author: haileytap
   ms.author: haileytapia
   ms.service: azure-ai-search
   ms.topic: faq
-  ms.date: 11/20/2025
+  ms.date: 03/25/2026
 title: Azure AI Search Frequently Asked Questions
 summary:  Find answers to commonly asked questions about Azure AI Search.
 
@@ -52,7 +51,7 @@ sections:
         answer: |
           Services created before April 2024 in select regions can be [upgraded to higher-capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported.
 
-          To get more or less capacity, you can also [switch to a different pricing tier](search-capacity-planning.md#change-your-pricing-tier). Scaling is blocked if your current service configuration exceeds the [limits of the target tier](search-limits-quotas-capacity.md) or if your region has [capacity constraints on the target tier](search-region-support.md). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers.
+          To get more or less capacity, you can also [switch to a different pricing tier](search-capacity-planning.md). Scaling is blocked if your current service configuration exceeds the [limits of the target tier](search-limits-quotas-capacity.md) or if your region has [capacity constraints on the target tier](search-region-support.md). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers.
 
       - question: |
           Can I rename or move the service?
@@ -152,7 +151,7 @@ sections:
           
           * Add a "vectorSearch" section to the index schema specifying the configuration used by vector search fields, including the parameters of the ANN algorithm used, like HNSW.
           
-          * Use the latest stable version, [**2025-09-01**](/rest/api/searchservice), or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
+          * Use the latest stable REST API version or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
 
   - name: Queries
     questions:
@@ -217,7 +216,7 @@ sections:
       - question: |
           Can I use the Azure portal to view and manage search content if my search service is behind an IP firewall or private endpoint?
         answer: |
-          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
+          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#configure-network-access) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
 
 additionalContent: |
 

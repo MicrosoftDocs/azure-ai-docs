@@ -3,8 +3,8 @@ title: "Real-time diarization quickstart - Speech service"
 titleSuffix: Foundry Tools
 description: In this quickstart, you convert speech to text continuously from a file. The Speech service transcribes the speech and identifies one or more speakers.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
 ms.date: 01/30/2026
@@ -16,8 +16,24 @@ keywords: speech to text, speech to text software
 
 # Quickstart: Create real-time diarization
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/stt-diarization/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](includes/quickstarts/stt-diarization/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/stt-diarization/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/quickstarts/stt-diarization/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/quickstarts/stt-diarization/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -28,28 +44,12 @@ keywords: speech to text, speech to text software
 [!INCLUDE [Go include](includes/quickstarts/stt-diarization/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/quickstarts/stt-diarization/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/quickstarts/stt-diarization/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/quickstarts/stt-diarization/objectivec.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/stt-diarization/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](includes/quickstarts/stt-diarization/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/stt-diarization/rest.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"

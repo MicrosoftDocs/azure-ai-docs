@@ -1,12 +1,10 @@
 ---
 title: Connect to Azure SQL Managed Instance Using a Managed Identity
-titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search indexer connection to an Azure SQL Managed Instance using a managed identity.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 04/24/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -19,7 +17,7 @@ ms.custom:
 
 This article describes how to set up an Azure AI Search indexer connection to [SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview) using a managed identity instead of providing credentials in the connection string.
 
-You can use a system-assigned managed identity or a user-assigned managed identity (preview). Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.
+You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.
 
 Before you learn more about this feature, you should understand what an indexer is and how to set up an indexer for your data source. For more information, see [Indexers in Azure AI Search](search-indexer-overview.md) and [Index data from Azure SQL Database](search-how-to-index-sql-database.md).
 
@@ -98,7 +96,7 @@ When you connect by using a system-assigned managed identity, the only change to
 Here's an example of how to create a data source to index data from a SQL Managed Instance using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.  
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
+POST https://[service name].search.windows.net/datasources?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -121,7 +119,7 @@ The index specifies the fields in a document, attributes, and other constructs t
 Here's a [Create Index](/rest/api/searchservice/indexes/create) REST API call with a searchable `booktitle` field:
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -141,7 +139,7 @@ An indexer connects a data source with a target search index and provides a sche
 Here's a [Create Indexer](/rest/api/searchservice/indexers/create) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexers?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 

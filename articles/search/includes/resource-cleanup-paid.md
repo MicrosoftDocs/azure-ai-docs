@@ -1,8 +1,6 @@
 ---
 title: Include File
 description: Include file for cleaning up Azure AI Search resources on paid tiers.
-author: haileytap 
-ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026

@@ -3,8 +3,8 @@ title: Document layout analysis - Document Intelligence
 titleSuffix: Foundry Tools
 description: Extract text, tables, selections, titles, section headings, page headers, page footers, and more with the layout analysis model from Document Intelligence.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
@@ -1198,7 +1198,7 @@ For large multipage documents, use the `pages` query parameter to indicate speci
 
 ## The Get Analyze Layout Result operation
 
-The second step is to call the [Get Analyze Layout Result](https://westcentralus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-v2-1/operations/GetAnalyzeLayoutResult) operation. This operation takes as input the Result ID that the `Analyze Layout` operation created. It returns a JSON response that contains a **status** field with the following possible values.
+The second step is to call the `Get Analyze Layout Result` operation. This operation takes as input the Result ID that the `Analyze Layout` operation created. It returns a JSON response that contains a **status** field with the following possible values.
 
 |Field| Type | Possible values |
 |:-----|:----:|:----|

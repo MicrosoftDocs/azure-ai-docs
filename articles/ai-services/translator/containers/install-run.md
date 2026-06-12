@@ -3,7 +3,7 @@ title: Install and run Translator container using Docker API
 titleSuffix: Foundry Tools
 description: Use the Translator container and API to translate text and documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: how-to
 ms.date: 12/05/2025
@@ -25,9 +25,9 @@ In this article, learn how to install and run the Translator container online wi
 
 * **Text translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
 
-* **🆕 Text Transliteration**. Convert text from one language script or writing system to another language script or writing system in real time. For more information, *see* [Container: transliterate text](transliterate-text-parameters.md).
+* ** Text Transliteration**. Convert text from one language script or writing system to another language script or writing system in real time. For more information, *see* [Container: transliterate text](transliterate-text-parameters.md).
 
-* **🆕 Document translation**. Synchronously translate documents while preserving structure and format in real time. For more information, *see* [Container:translate documents](translate-document-parameters.md).
+* ** Document translation**. Synchronously translate documents while preserving structure and format in real time. For more information, *see* [Container:translate documents](translate-document-parameters.md).
 
 ## Prerequisites
 

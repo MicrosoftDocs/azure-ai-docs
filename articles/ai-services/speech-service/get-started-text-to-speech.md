@@ -3,8 +3,8 @@ title: "Text to speech quickstart - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to create an app that converts text to speech, and explore supported audio formats and custom configuration options.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 01/30/2026
 ms.author: pafarley
@@ -22,8 +22,24 @@ keywords: text to speech
 [!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/text-to-speech-basics/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/quickstarts/text-to-speech-basics/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/text-to-speech-basics/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/quickstarts/text-to-speech-basics/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/quickstarts/text-to-speech-basics/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -34,25 +50,8 @@ keywords: text to speech
 [!INCLUDE [Go include](includes/quickstarts/text-to-speech-basics/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/quickstarts/text-to-speech-basics/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/quickstarts/text-to-speech-basics/javascript.md)]
-::: zone-end
-
-
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/text-to-speech-basics/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/quickstarts/text-to-speech-basics/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/text-to-speech-basics/rest.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"

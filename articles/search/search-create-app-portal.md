@@ -1,10 +1,6 @@
 ---
-title: "Create a Demo App in the Azure portal"
-titleSuffix: Azure AI Search
+title: Create a Demo App in the Azure Portal
 description: Run the Create demo app wizard to generate HTML pages and script for a local web app. The page includes a search box, results area, sidebar, and typeahead support.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/05/2026
@@ -34,7 +30,7 @@ The **Create demo app** wizard is available for existing indexes. Choose an inde
 
 To start the wizard:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Search management** > **Indexes**.
 

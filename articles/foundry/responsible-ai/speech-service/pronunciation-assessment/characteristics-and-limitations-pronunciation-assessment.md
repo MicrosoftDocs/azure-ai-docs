@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: "This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 05/17/2021
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Characteristics and limitations of Pronunciation Assessment

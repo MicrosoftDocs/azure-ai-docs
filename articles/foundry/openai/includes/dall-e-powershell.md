@@ -2,12 +2,14 @@
 title: "Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models using PowerShell"
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation APIs with PowerShell.
@@ -51,7 +53,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     # Azure OpenAI metadata variables
     $openai = @{
         api_base    = $Env:AZURE_OPENAI_ENDPOINT 
-        api_version = '2023-06-01-preview' # This can change in the future.
+        deployment  = 'gpt-image-1' # set to the name of your model deployment
     }
     
     # Use the recommended keyless authentication via bearer token.
@@ -65,23 +67,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Adjust these values to fine-tune completions
     $body = [ordered]@{
+        model  = $openai.deployment  # required: the name of your model deployment
         prompt = $prompt
         size   = '1024x1024'
         n      = 1
+        quality = 'high'
+        output_format = 'png'
+        # background = 'transparent'  # 'auto' or 'transparent' (GPT-image-1 only; requires PNG output)
+        # output_compression = 100    # 0-100 compression level (JPEG output only)
     } | ConvertTo-Json
     
     # Call the API to generate the image and retrieve the response
-    $url = "$($openai.api_base)/openai/images/generations:submit?api-version=$($openai.api_version)"
+    $url = "$($openai.api_base)/openai/v1/images/generations?api-version=preview"
     
-    $submission = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json' -ResponseHeadersVariable submissionHeaders
-    
-    $operation_location = $submissionHeaders['operation-location'][0]
-    $status = ''
-    while ($status -ne 'succeeded') {
-        Start-Sleep -Seconds 1
-        $response = Invoke-RestMethod -Uri $operation_location -Headers $headers
-        $status   = $response.status
-    }
+    $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
     
     # Set the directory for the stored image
     $image_dir = Join-Path -Path $pwd -ChildPath 'images'
@@ -94,9 +93,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     # Initialize the image path (note the filetype should be png)
     $image_path = Join-Path -Path $image_dir -ChildPath 'generated_image.png'
     
-    # Retrieve the generated image
-    $image_url = $response.result.data[0].url  # extract image URL from response
-    $generated_image = Invoke-WebRequest -Uri $image_url -OutFile $image_path  # download the image
+    # Decode the base64 image and save to file
+    $image_bytes = [Convert]::FromBase64String($response.data[0].b64_json)
+    [IO.File]::WriteAllBytes($image_path, $image_bytes)
     return $image_path
    ```
 
@@ -109,7 +108,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
    ./quickstart.ps1
    ```
 
-   The script loops until the generated image is ready.
+   The script generates the image and saves it.
 
 ### Output
 

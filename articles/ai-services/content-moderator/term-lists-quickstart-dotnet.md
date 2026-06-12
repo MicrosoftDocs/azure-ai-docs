@@ -3,8 +3,8 @@ title: "Check text against a custom term list in C# - Content Moderator"
 titleSuffix: Azure AI services
 description: How to moderate text with custom term lists using the Content Moderator SDK for C#.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-content-moderator
+manager: mcleans
+ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: pafarley
@@ -132,7 +132,7 @@ private const double latencyDelay = 0.5;
 
 ## Create a term list
 
-You create a term list with **ContentModeratorClient.ListManagementTermLists.Create**. The first parameter to **Create** is a string that contains a MIME type, which should be "application/json". For more information, see the [API reference](https://westus2.dev.cognitive.microsoft.com/docs/services/57cf755e3f9b070c105bd2c2/operations/57cf755e3f9b070868a1f67f). The second parameter is a **Body** object that contains a name and description for the new term list.
+You create a term list with **ContentModeratorClient.ListManagementTermLists.Create**. The first parameter to **Create** is a string that contains a MIME type, which should be "application/json". For more information, see the [Content Moderator REST API reference](/rest/api/cognitiveservices/contentmoderator/operation-groups). The second parameter is a **Body** object that contains a name and description for the new term list.
 
 > [!NOTE]
 > There is a maximum limit of **5 term lists** with each list to **not exceed 10,000 terms**.
@@ -171,7 +171,7 @@ static string CreateTermList (ContentModeratorClient client)
 
 ## Update term list name and description
 
-You update the term list information with **ContentModeratorClient.ListManagementTermLists.Update**. The first parameter to **Update** is the term list ID. The second parameter is a MIME type, which should be "application/json". For more information, see the [API reference](https://westus2.dev.cognitive.microsoft.com/docs/services/57cf755e3f9b070c105bd2c2/operations/57cf755e3f9b070868a1f685). The third parameter is a **Body** object, which contains the new name and description.
+You update the term list information with **ContentModeratorClient.ListManagementTermLists.Update**. The first parameter to **Update** is the term list ID. The second parameter is a MIME type, which should be "application/json". For more information, see the [Content Moderator REST API reference](/rest/api/cognitiveservices/contentmoderator/operation-groups). The third parameter is a **Body** object, which contains the new name and description.
 
 Add the following method definition to namespace TermLists, class Program.
 
@@ -267,7 +267,7 @@ You screen text using a term list with **ContentModeratorClient.TextModeration.S
 - A boolean value. Set this field to **true** to detect personal data in the text.
 - The term list ID.
 
-For more information, see the [API reference](https://westus2.dev.cognitive.microsoft.com/docs/services/57cf753a3f9b070c105bd2c1/operations/57cf753a3f9b070868a1f66f).
+For more information, see the [Content Moderator REST API reference](/rest/api/cognitiveservices/contentmoderator/operation-groups).
 
 **ScreenText** returns a **Screen** object, which has a **Terms** property that lists any terms that Content Moderator detected in the screening. Note that if Content Moderator did not detect any terms during the screening, the **Terms** property has value **null**.
 

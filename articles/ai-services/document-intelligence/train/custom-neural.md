@@ -3,8 +3,8 @@ title: Custom neural document model - Document Intelligence
 titleSuffix: Foundry Tools
 description: Use the custom neural document model to train a model to extract data from structured, semi-structured, and unstructured documents.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
@@ -112,7 +112,7 @@ To use overlapping fields, label your dataset with the overlaps and train the mo
 
 ## Supported regions
 
-As of October 18, 2022, Document Intelligence custom neural model training will only be available in the following Azure regions until further notice:
+As of October 18, 2022, Document Intelligence custom neural model training is only available in the following Azure regions:
 
 * Australia East
 * Brazil South

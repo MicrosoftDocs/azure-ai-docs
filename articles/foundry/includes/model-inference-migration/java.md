@@ -3,11 +3,12 @@ title: Java file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 06/04/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Setup
@@ -72,7 +73,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     .credential(BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
             tokenCredential, 
-            "https://cognitiveservices.azure.com/.default"
+            "https://ai.azure.com/.default"
         )
     ))
     .build();
@@ -105,7 +106,7 @@ import com.openai.models.chat.completions.*;
 
 ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
     .addSystemMessage("You are a helpful assistant.")
-    .addUserMessage("What is Azure AI?")
+    .addUserMessage("How many languages are in the world?")
     .model("DeepSeek-V3.1") // Required: your deployment name
     .build();
 
@@ -121,7 +122,7 @@ import java.util.List;
 
 List<ChatRequestMessage> messages = List.of(
     new ChatRequestSystemMessage("You are a helpful assistant."),
-    new ChatRequestUserMessage("What is Azure AI?")
+    new ChatRequestUserMessage("How many languages are in the world?")
 );
 
 ChatCompletionsOptions options = new ChatCompletionsOptions(messages);
@@ -132,6 +133,7 @@ System.out.println(response.getChoices().get(0).getMessage().getContent());
 ```
 
 ---
+
 
 ### Streaming
 
@@ -185,6 +187,121 @@ response.forEach(update -> {
 ```
 
 ---
+
+## Responses
+
+The Responses API is OpenAI's stateful interface that returns a structured `output` array containing message, tool call, and reasoning items.
+
+# [OpenAI SDK](#tab/openai)
+
+```java
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+Response response = client.responses().create(
+    ResponseCreateParams.builder()
+        .model("DeepSeek-V3.1") // Required: your deployment name
+        .input("How many languages are in the world?")
+        .maxOutputTokens(2000)
+        .build()
+);
+
+System.out.println(response.outputText());
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK doesn't expose the Responses API. To call it, use the OpenAI SDK.
+
+---
+
+### Reasoning
+
+> [!NOTE]
+> This information on reasoning content doesn't apply to Azure OpenAI models. Azure OpenAI reasoning models use the [reasoning summaries feature](../../openai/how-to/reasoning.md#reasoning-summary).
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The Responses API surfaces this as a structured `reasoning` output item whose `summary[].text` contains the model's thinking, alongside the final answer.
+
+# [OpenAI SDK](#tab/openai)
+
+```java
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+Response response = client.responses().create(
+    ResponseCreateParams.builder()
+        .model("DeepSeek-R1-0528") // Required: your deployment name
+        .input("How many languages are in the world?")
+        .maxOutputTokens(2000)
+        .build()
+);
+
+// Walk response.output() for items of type "reasoning" and join summary[].text.
+StringBuilder sb = new StringBuilder();
+response.output().stream()
+    .flatMap(item -> item.reasoning().stream())
+    .flatMap(reasoning -> reasoning.summary().stream())
+    .forEach(summary -> {
+        String text = summary.text();
+        if (text != null && !text.isEmpty()) {
+            if (sb.length() > 0) sb.append("\n");
+            sb.append(text);
+        }
+    });
+
+System.out.println("Thinking: " + sb.toString().trim());
+```
+
+**Output is as follows:**
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
+```
+
+[!INCLUDE [reasoning-tokens-known-issue](reasoning-tokens-known-issue.md)]
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+The Azure AI Inference SDK doesn't expose the Responses API. To get reasoning content, call the chat completions API instead. The reasoning is included in the message content wrapped in `<think>` and `</think>` tags, which you can extract with a regex match.
+
+```java
+import com.azure.ai.inference.models.*;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+List<ChatRequestMessage> messages = List.of(
+    new ChatRequestSystemMessage("You are a helpful assistant."),
+    new ChatRequestUserMessage("How many languages are in the world?")
+);
+
+ChatCompletionsOptions options = new ChatCompletionsOptions(messages);
+options.setModel("DeepSeek-R1-0528"); // Optional for single-model endpoints
+
+ChatCompletions response = client.complete(options);
+String content = response.getChoices().get(0).getMessage().getContent();
+
+Pattern pattern = Pattern.compile("<think>(.*?)</think>(.*)", Pattern.DOTALL);
+Matcher matcher = pattern.matcher(content);
+
+if (matcher.find()) {
+    System.out.println("Thinking: " + matcher.group(1).trim());
+    System.out.println("Answer:   " + matcher.group(2).trim());
+} else {
+    System.out.println("Response: " + content);
+}
+```
+
+**Output is as follows:**
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
+Answer:   There are approximately 7,000 languages spoken around the world today.
+```
+
+---
+
+When you make multi-turn conversations, avoid sending the reasoning content in the chat history because reasoning tends to generate long explanations.
 
 ## Embeddings
 

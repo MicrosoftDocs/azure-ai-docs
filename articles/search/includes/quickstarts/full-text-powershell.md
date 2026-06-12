@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -104,7 +101,7 @@ Before you add content to Azure AI Search, you must create an index to define ho
 This quickstart first deletes any existing index with the same name, which is a common practice for test/demo code that runs repeatedly.
 
 ```powershell
-Send-Request DELETE "$baseUrl/indexes/hotels-quickstart?api-version=2025-09-01" $headers
+Send-Request DELETE "$baseUrl/indexes/hotels-quickstart?api-version=2026-04-01" $headers
 ```
 
 This quickstart then calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
@@ -122,7 +119,7 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes?api-version=2026-04-01" $headers $body
 ```
 
 Within the index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
@@ -159,7 +156,7 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/index?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/index?api-version=2026-04-01" $headers $body
 ```
 
 Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. This example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
@@ -184,7 +181,7 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2026-04-01" $headers $body
 ```
 
 The `select` parameter limits the fields returned in the response to `HotelName`, `Description`, and `Tags`.
@@ -202,7 +199,7 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2026-04-01" $headers $body
 ```
 
 The `search` parameter is set to `*`, which matches all documents. The `filter` parameter applies a Boolean condition to narrow the results.
@@ -220,7 +217,7 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2026-04-01" $headers $body
 ```
 
 #### Query example 4
@@ -236,5 +233,5 @@ $body = @"
 }
 "@
 
-Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2026-04-01" $headers $body
 ```

@@ -2,20 +2,22 @@
 title: "Use function calling with Microsoft Foundry agents"
 description: "Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
+ms.date: 04/30/2026
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-function-calling-new
 ---
 
 # Use function calling with Microsoft Foundry agents
-Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
+Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent's Foundry model can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
 
 > [!IMPORTANT]
 > Runs expire 10 minutes after creation. Submit your tool outputs before they expire.
@@ -24,11 +26,11 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -38,9 +40,9 @@ Before you start, make sure you have:
 - A Foundry project and a deployed model.
 - The SDK package for your language:
   - Python: `azure-ai-projects` (latest)
-  - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
+  - .NET: `Azure.AI.Extensions.OpenAI`
   - TypeScript: `@azure/ai-projects` (latest)
-  - Java: `azure-ai-agents` (prerelease)
+  - Java: `azure-ai-agents`
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -59,7 +61,9 @@ Function calling follows this pattern:
 
 :::zone pivot="python"
 
-Use the following code sample to create an agent, handle a function call, and return tool output back to the agent.
+Use the following code sample to create an agent, handle a function call, and return tool output back to the agent. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 import json
@@ -80,6 +84,9 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 openai = project.get_openai_client()
+
+# Create a conversation for multi-turn interaction
+conversation = openai.conversations.create()
 
 # Define a function tool for the model to use
 func_tool = FunctionTool(
@@ -104,7 +111,7 @@ tools: list[Tool] = [func_tool]
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can use function tools.",
         tools=tools,
     ),
@@ -113,6 +120,7 @@ agent = project.agents.create_version(
 # Prompt the model with tools defined
 response = openai.responses.create(
     input="What is my horoscope? I am an Aquarius.",
+    conversation=conversation.id,
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
@@ -136,7 +144,7 @@ for item in response.output:
 # Submit function results and get the final response
 response = openai.responses.create(
     input=input_list,
-    previous_response_id=response.id,
+    conversation=conversation.id,
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
@@ -144,6 +152,7 @@ print(f"Agent response: {response.output_text}")
 
 # Clean up resources
 project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+openai.conversations.delete(conversation_id=conversation.id)
 ```
 
 ### Expected output
@@ -154,17 +163,75 @@ The following example shows the expected output:
 Agent response: Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
 ```
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework with the `@tool` decorator. The framework handles tool discovery, the function-call request/response loop, and result formatting for you. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+from random import randint
+from typing import Annotated
+
+from agent_framework import Agent, tool
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+from pydantic import Field
+
+
+# Note: approval_mode="never_require" is used here for brevity.
+# Use "always_require" in production for human-in-the-loop approvals.
+@tool(approval_mode="never_require")
+def get_weather(
+    location: Annotated[str, Field(description="The location to get the weather for.")],
+) -> str:
+    """Get the weather for a given location."""
+    conditions = ["sunny", "cloudy", "rainy", "stormy"]
+    return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}\u00b0C."
+
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="You are a helpful assistant that can provide weather information.",
+        tools=[get_weather],
+    )
+
+    result = await agent.run("What's the weather like in Seattle?")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent invokes `get_weather` automatically and returns the model's natural-language answer:
+
+```console
+Agent: The weather in Seattle is cloudy with a high of 22°C.
+```
+
+You can also pass tools per-call via `agent.run(query, tools=[...])` to give different runs different tool sets. For the full sample including agent-level, run-level, and mixed patterns, see [foundry_chat_client_with_function_tools.py](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/providers/foundry/foundry_chat_client_with_function_tools.py).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Use agents with functions example
 
-In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
+In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 class FunctionCallingDemo
@@ -295,14 +362,14 @@ class FunctionCallingDemo
     {
         AIProjectClient projectClient = new(endpoint: new Uri(ProjectEndpoint), tokenProvider: new DefaultAzureCredential());
         // Create an agent version with the defined functions as tools.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
                     + "Customize your responses to the user's preferences as much as possible and use friendly "
                     + "nicknames for cities whenever possible.",
             Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -311,7 +378,7 @@ class FunctionCallingDemo
         // GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
         // To provide the right answer, supply all the response items to the CreateResponse call.
         // At the end, output the function's response.
-        ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
         ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
         var inputItems = new List<ResponseItem> { request };
@@ -340,7 +407,7 @@ class FunctionCallingDemo
         Console.WriteLine(response.GetOutputText());
 
         // Remove all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -355,6 +422,60 @@ Calling getCityNickname...
 Calling getCurrentWeatherAtLocation...
 Your favorite city, Seattle, WA, is also known as The Emerald City. The current weather there is 70f.
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `AIFunctionFactory.Create(...)` to expose local C# methods as function tools. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using System.ComponentModel;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
+[Description("Get the weather for a given location.")]
+static string GetWeather([Description("The location to get the weather for.")] string location)
+    => $"The weather in {location} is cloudy with a high of 15°C.";
+
+// Define the function tool.
+AITool tool = AIFunctionFactory.Create(GetWeather);
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+// Create an AIAgent with function tools.
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: "You are a helpful assistant that can get weather information.",
+    name: "WeatherAssistant",
+    tools: [tool]);
+
+// Non-streaming invocation.
+Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?"));
+
+// Streaming invocation.
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is the weather like in Amsterdam?"))
+{
+    Console.Write(update);
+}
+```
+
+### Expected output
+
+The Agent Framework runs the local `GetWeather` function automatically and prints the model's natural-language reply:
+
+```console
+The weather in Amsterdam is cloudy with a high of 15°C.
+```
+
+You can also pass tools per call via `agent.RunAsync(query, tools: [...])` to vary the tool set per invocation. For the full sample including approval workflows, see [Agent_Step03_UsingFunctionTools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step03_UsingFunctionTools) and [Agent_Step04_UsingFunctionToolsWithApprovals](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step04_UsingFunctionToolsWithApprovals).
+
+---
+
 :::zone-end
 
 :::zone pivot="rest"
@@ -532,10 +653,13 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openai = project.getOpenAIClient();
 
+  // Create a conversation for multi-turn interaction
+  const conversation = await openai.conversations.create();
+
   // Create agent with function tools
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant that can use function tools.",
     tools: [funcTool],
   });
@@ -550,6 +674,7 @@ export async function main(): Promise<void> {
           content: "What is my horoscope? I am an Aquarius.",
         },
       ],
+      conversation: conversation.id,
     },
     {
       body: { agent: { name: agent.name, type: "agent_reference" } },
@@ -587,7 +712,7 @@ export async function main(): Promise<void> {
   const finalResponse = await openai.responses.create(
     {
       input: inputList,
-      previous_response_id: response.id,
+      conversation: conversation.id,
     },
     {
       body: { agent: { name: agent.name, type: "agent_reference" } },
@@ -599,6 +724,7 @@ export async function main(): Promise<void> {
 
   // Clean up
   await project.agents.deleteVersion(agent.name, agent.version);
+  await openai.conversations.delete(conversation.id);
 }
 
 main().catch((err) => {
@@ -629,7 +755,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -641,6 +767,7 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.FunctionTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.BinaryData;
@@ -675,7 +802,7 @@ public class FunctionCallingExample {
         FunctionTool weatherFunction = new FunctionTool("get_weather", parameters, true);
 
         // Create agent with function tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a weather assistant. Use the get_weather function to retrieve weather information.")
             .setTools(Arrays.asList(weatherFunction));
 
@@ -686,8 +813,8 @@ public class FunctionCallingExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("What is the weather in Seattle?"));
 
@@ -725,9 +852,9 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
+| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and the `conversation` ID to continue. |
 | No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
-| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Arguments aren't valid JSON. | Schema mismatch or model generated incorrect information. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
 | Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
 | Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
 | Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |

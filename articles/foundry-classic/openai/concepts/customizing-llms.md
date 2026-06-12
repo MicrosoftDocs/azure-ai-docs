@@ -3,11 +3,11 @@ title: "Azure OpenAI in Microsoft Foundry Models getting started with customizin
 description: "Learn more about the concepts behind customizing an LLM with Azure OpenAI. (classic)"
 ms.topic: concept-article
 ms.date: 12/6/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
-manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
+manager: mcleans
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 

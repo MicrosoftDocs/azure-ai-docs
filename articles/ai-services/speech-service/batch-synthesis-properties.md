@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties for text to speech.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 02/25/2026
-ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.service: azure-speech-foundry-tools
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ai-usage: ai-assisted
@@ -130,7 +130,7 @@ Here's an example request that results in an HTTP 400 error, because the `inputs
 ```console
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechKey" -H "Content-Type: application/json" -d '{
     "inputKind": "SSML"
-}'  "https://YourSpeechRegion.api.cognitive.microsoft.com/texttospeech/batchsyntheses/YourSynthesisId?api-version=2024-04-01"
+}'  "https://YourResourceName.cognitiveservices.azure.com/texttospeech/batchsyntheses/YourSynthesisId?api-version=2024-04-01"
 ```
 
 In this case, the response headers include `HTTP/1.1 400 Bad Request`.

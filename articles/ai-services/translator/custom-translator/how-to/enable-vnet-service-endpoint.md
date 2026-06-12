@@ -3,9 +3,9 @@ title: Enable Virtual Network service endpoints with Custom Translator service
 titleSuffix: Foundry Tools
 description: This article describes how to use Custom Translator service with an Azure Virtual Network service endpoint.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: moelghaz
 ms.topic: how-to
 ---

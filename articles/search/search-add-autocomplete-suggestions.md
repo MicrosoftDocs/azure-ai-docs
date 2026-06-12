@@ -1,13 +1,13 @@
 ---
-title: Autocomplete or typeahead
-titleSuffix: Azure AI Search
+title: Autocomplete or Typeahead
 description: Enable search-as-you-type query actions in Azure AI Search by creating suggesters and queries that autocomplete a search string with finished terms or phrases. You can also return suggested matches.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 04/14/2025
-ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Add autocomplete and search suggestions in client apps
@@ -16,9 +16,9 @@ Search-as-you-type is a common technique for improving query productivity. In Az
 
 To implement these experiences in Azure AI Search:
 
-+ Add a `suggester` to an index schema.
-+ Build a query that calls the [Autocomplete API](/rest/api/searchservice/documents/autocomplete-post) or [Suggestions API](/rest/api/searchservice/documents/suggest-post) on the request.
-+ Add a UI control to handle search-as-you-type interactions in your client app. We recommend using an existing JavaScript library for this purpose.
+- Add a `suggester` to an index schema.
+- Build a query that calls the [Autocomplete API](/rest/api/searchservice/documents/autocomplete-post) or [Suggestions API](/rest/api/searchservice/documents/suggest-post) on the request.
+- Add a UI control to handle search-as-you-type interactions in your client app. We recommend using an existing JavaScript library for this purpose.
 
 In Azure AI Search, autocompleted queries and suggested results are retrieved from the search index, from selected fields that you register with a suggester. A suggester is part of the index, and it specifies which fields provide content that either completes a query, suggests a result, or does both. When the index is created and loaded, a suggester data structure is created internally to store prefixes used for matching on partial queries. For suggestions, choosing suitable fields that are unique, or at least not repetitive, is essential to the experience. For more information, see [Configure a suggester](index-add-suggesters.md).
 
@@ -29,7 +29,7 @@ The remainder of this article is focused on queries and client code. It uses Jav
 Elements of a request include one of the search-as-you-type APIs, a partial query, and a suggester. The following script illustrates components of a request, using the Autocomplete REST API as an example.
 
 ```http
-POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2025-09-01
+POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2026-04-01
 {
   "search": "minecraf",
   "suggesterName": "sg"
@@ -48,10 +48,10 @@ Matches are on the beginning of a term anywhere in the input string. Given *the 
 
 Follow these links for the REST and .NET SDK reference pages:
 
-+ [Suggestions REST API](/rest/api/searchservice/documents/suggest-post) 
-+ [Autocomplete REST API](/rest/api/searchservice/documents/autocomplete-post) 
-+ [SuggestAsync method](/dotnet/api/azure.search.documents.searchclient.suggestasync)
-+ [AutocompleteAsync method](/dotnet/api/azure.search.documents.searchclient.autocompleteasync)
+- [Suggestions REST API](/rest/api/searchservice/documents/suggest-post)
+- [Autocomplete REST API](/rest/api/searchservice/documents/autocomplete-post)
+- [SuggestAsync method](/dotnet/api/azure.search.documents.searchclient.suggestasync)
+- [AutocompleteAsync method](/dotnet/api/azure.search.documents.searchclient.autocompleteasync)
 
 ## Structure a response
 
@@ -59,29 +59,29 @@ Responses for autocomplete and suggestions are what you might expect for the pat
 
 Responses are shaped by the parameters on the request:
 
-+ For autocomplete, set the [autocompleteMode](/rest/api/searchservice/documents/autocomplete-post#autocompletemode) to determine whether text completion occurs on one or two terms. 
+- For autocomplete, set the [autocompleteMode](/rest/api/searchservice/documents/autocomplete-post#autocompletemode) to determine whether text completion occurs on one or two terms.
 
-+ For suggestions, set [$select](/rest/api/searchservice/documents/suggest-post#request-body) to return fields containing unique or differentiating values, such as names and description. Avoid fields that contain duplicate values (such as a category or city).
+- For suggestions, set [$select](/rest/api/searchservice/documents/suggest-post#request-body) to return fields containing unique or differentiating values, such as names and description. Avoid fields that contain duplicate values (such as a category or city).
 
 The following parameters apply to both autocomplete and suggestions, but are more applicable to suggestions, especially when a suggester includes multiple fields.
 
 | Parameter | Usage |
-|-----------|-------|
+| --- | --- |
 | searchFields | Constrain the query to specific fields. |
 | $filter | Apply match criteria on the result set (`$filter=Category eq 'ActionAdventure'`). |
-| $top | Limit the results to a specific number (`$top=5`).|
+| $top | Limit the results to a specific number (`$top=5`). |
 
 ## Add user interaction code
 
 Autofilling a query term or dropping down a list of matching links requires user interaction code, typically JavaScript, that can consume requests from external sources, such as autocomplete or suggestion queries against an Azure Search Cognitive index.
 
-Although you could write this code natively, it's easier to use functions from existing JavaScript library, such as one of the following. 
+Although you could write this code natively, it's easier to use functions from existing JavaScript library, such as one of the following.
 
-+ [Autocomplete widget (jQuery UI)](https://jqueryui.com/autocomplete/) appears in the suggestion code snippet. You can create a search box, and then reference it in a JavaScript function that uses the autocomplete widget. Properties on the widget set the source (an autocomplete or suggestions function), minimum length of input characters before action is taken, and positioning.
+- [Autocomplete widget (jQuery UI)](https://jqueryui.com/autocomplete/) appears in the suggestion code snippet. You can create a search box, and then reference it in a JavaScript function that uses the autocomplete widget. Properties on the widget set the source (an autocomplete or suggestions function), minimum length of input characters before action is taken, and positioning.
 
-+ [XDSoft Autocomplete plug-in](https://xdsoft.net/jqplugins/autocomplete/) appears in the autocomplete code snippet.
+- [XDSoft Autocomplete plug-in](https://xdsoft.net/jqplugins/autocomplete/) appears in the autocomplete code snippet.
 
-+ [Suggestions](https://www.npmjs.com/package/suggestions) appears in the [Add search to web sites tutorial](tutorial-csharp-overview.md) and code sample.
+- [Suggestions](https://www.npmjs.com/package/suggestions) appears in the [Add search to web sites tutorial](tutorial-csharp-overview.md) and code sample.
 
 Use these libraries in the client to create a search box that supports both suggestions and autocomplete. Inputs collected in the search box can then be paired with suggestions and autocomplete actions on the search service.
 
@@ -122,7 +122,7 @@ The `minLength: 3` ensures that recommendations are only shown when there are at
 
 ### Enable fuzzy matching
 
-Fuzzy search allows you to get results based on close matches even if the user misspells a word in the search box. The edit distance is 1, which means there can be a maximum discrepancy of one character between the user input and a match. 
+Fuzzy search allows you to get results based on close matches even if the user misspells a word in the search box. The edit distance is 1, which means there can be a maximum discrepancy of one character between the user input and a match.
 
 ```javascript
 source: "/home/suggest?highlights=false&fuzzy=true&",
@@ -140,9 +140,9 @@ source: "/home/suggest?highlights=true&fuzzy=true&",
 
 If you're using C# and an MVC application, the *HomeController.cs* file in the *Controllers* directory is where you might create a class for suggested results. In .NET, a `Suggest` function is based on the [SuggestAsync method](/dotnet/api/azure.search.documents.searchclient.suggestasync). For more information about the .NET SDK, see [How to use Azure AI Search from a .NET Application](search-howto-dotnet-sdk.md).
 
-The `InitSearch` method creates an authenticated HTTP index client to the Azure AI Search service. Properties on the [SuggestOptions](/dotnet/api/azure.search.documents.suggestoptions) class determine which fields are searched and returned in the results, the number of matches, and whether fuzzy matching is used. 
+The `InitSearch` method creates an authenticated HTTP index client to the Azure AI Search service. Properties on the [SuggestOptions](/dotnet/api/azure.search.documents.suggestoptions) class determine which fields are searched and returned in the results, the number of matches, and whether fuzzy matching is used.
 
-For autocomplete, fuzzy matching is limited to one edit distance (one omitted or misplaced character). Fuzzy matching in autocomplete queries can sometimes produce unexpected results depending on index size and [how it's sharded](index-similarity-and-scoring.md#sharding-effects-on-query-results). 
+For autocomplete, fuzzy matching is limited to one edit distance (one omitted or misplaced character). Fuzzy matching in autocomplete queries can sometimes produce unexpected results depending on index size and [how it's sharded](index-similarity-and-scoring.md#sharding-effects-on-query-results).
 
 ```csharp
 public async Task<ActionResult> SuggestAsync(bool highlights, bool fuzzy, string term)

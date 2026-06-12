@@ -2,14 +2,16 @@
 title: "Use the computer use tool for agents"
 description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, TypeScript, Java SDK, and REST API samples for Foundry Agent Service."
 services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+manager: mcleans
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
-author: alvinashcraft
-ms.author: aashcraft
-ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026
+ms.date: 03/30/2026
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
+ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
@@ -20,27 +22,27 @@ zone_pivot_groups: selection-computer-use
 > [!WARNING]
 > The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-Create agents that interpret screenshots and automate UI interactions like clicking, typing, and scrolling. The computer use tool uses the `computer-use-preview` model to propose actions based on visual content, enabling agents to interact with desktop and browser applications through their user interfaces.
+Create agents that interpret screenshots and automate UI interactions like clicking, typing, and scrolling. The computer use tool uses the `computer-use-preview` Foundry model to propose actions based on visual content, enabling agents to interact with desktop and browser applications through their user interfaces.
 
 This guide shows how to integrate the computer use tool into an application loop (screenshot → action → screenshot) by using the latest SDKs.
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - The latest SDK package:
   - **Python**: `azure-ai-projects`
-  - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
+  - **C#/.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects`
-  - **Java**: `azure-ai-agents` (prerelease)
+  - **Java**: `azure-ai-agents`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
@@ -68,12 +70,14 @@ After Microsoft grants access, you need to create a deployment for the model.
 > [!WARNING] 
 > Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-You need the latest SDK package. The .NET and Java SDKs are currently in preview.
+You need the latest SDK package. The .NET SDK is currently in preview.
 
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
 
-The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task.
+The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -245,18 +249,75 @@ Follow-up response received (ID: ...)
 OpenAI news - Latest Updates
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_computer_use_tool()` to attach the computer use preview tool. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` (point `FOUNDRY_MODEL` at a `computer-use-preview` deployment), and sign in with `az login`. The screenshot-capture loop is application-specific; see the upstream sample helper file referenced below.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions=(
+            "You are a computer automation assistant. Be direct and efficient. "
+            "When you reach the search results page, describe the actual result titles you can see."
+        ),
+        tools=[
+            FoundryChatClient.get_computer_use_tool(
+                environment="windows",
+                display_width=1026,
+                display_height=769,
+            )
+        ],
+    )
+
+    # Replace this with your screenshot capture + action handler loop.
+    # See the upstream samples folder for a reference implementation.
+    result = await agent.run(
+        "Help me search for 'OpenAI news'. Type the query and submit the search."
+    )
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent issues computer-use actions (clicks, keystrokes, screenshots) until the task completes, then describes the page it reached:
+
+```console
+Agent: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
+```
+
+For a full screenshot-loop implementation, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using System.Runtime.CompilerServices;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 class ComputerUseDemo
@@ -349,7 +410,7 @@ class ComputerUseDemo
         };
 
         // Create a PromptAgentDefinition with ComputerTool.
-        PromptAgentDefinition agentDefinition = new(model: "computer-use-preview")
+        DeclarativeAgentDefinition agentDefinition = new(model: "computer-use-preview")
         {
             Instructions = "You are a computer automation assistant.\n\n" +
                             "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
@@ -361,14 +422,14 @@ class ComputerUseDemo
                 ),
             }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition)
         );
         // Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
         // one with the image and another with the text. In the loop, request Agent
         // while it is continuing to browse web. Finally, print the tool output message.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             TruncationMode = ResponseTruncationMode.Auto,
@@ -406,7 +467,7 @@ class ComputerUseDemo
         Console.WriteLine(response.GetOutputText());
 
         // Clean up resources by deleting Agent.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -435,6 +496,90 @@ Follow-up response received (ID: ...)
 OpenAI news - Latest Updates
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateComputerTool(...)` from `Microsoft.Agents.AI.Foundry` to give the agent the computer use tool. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME` environment variables, and sign in with `az login`. This sample omits the screenshot helpers — see the full sample for the action loop and asset utilities.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+using Microsoft.Extensions.AI;
+using OpenAI.Responses;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_COMPUTER_USE_DEPLOYMENT_NAME") ?? "computer-use-preview";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+using IHostedFileClient fileClient = projectClient.GetProjectOpenAIClient().AsIHostedFileClient();
+
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    name: "ComputerAgent",
+    instructions: "You are a computer automation assistant.",
+    tools: [FoundryAITool.CreateComputerTool(ComputerToolEnvironment.Browser, 1026, 769)]);
+
+// Upload pre-captured screenshots that simulate browser state transitions.
+// (See the full sample for ComputerUseUtil implementation.)
+Dictionary<string, string> screenshots = await ComputerUseUtil.UploadScreenshotAssetsAsync(fileClient);
+
+ChatClientAgentRunOptions runOptions = new()
+{
+    ChatOptions = new ChatOptions
+    {
+        RawRepresentationFactory = (_) => new CreateResponseOptions { TruncationMode = ResponseTruncationMode.Auto },
+    }
+};
+
+ChatMessage message = new(ChatRole.User,
+[
+    new TextContent("Search for 'OpenAI news'. Type it and submit. Once you see results, the task is complete."),
+    new AIContent { RawRepresentation = ResponseContentPart.CreateInputImagePart(imageFileId: screenshots["browser_search"], imageDetailLevel: ResponseImageDetailLevel.High) }
+]);
+
+AgentSession session = await agent.CreateSessionAsync();
+AgentResponse response = await agent.RunAsync(message, session: session, options: runOptions);
+
+// Loop: parse computer call actions from response, simulate them, return new screenshots.
+for (int i = 0; i < 10; i++)
+{
+    ComputerCallResponseItem? computerCall = response.Messages
+        .SelectMany(m => m.Contents)
+        .Select(c => c.RawRepresentation as ComputerCallResponseItem)
+        .FirstOrDefault(item => item is not null);
+
+    if (computerCall is null) break;
+
+    (_, string fileId) = await ComputerUseUtil.GetScreenshotAsync(computerCall.Action, default, screenshots);
+
+    AIContent callOutput = new()
+    {
+        RawRepresentation = new ComputerCallOutputResponseItem(
+            computerCall.CallId,
+            output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageFileId: fileId))
+    };
+
+    response = await agent.RunAsync([new ChatMessage(ChatRole.User, [callOutput])], session: session, options: runOptions);
+}
+
+await ComputerUseUtil.EnsureDeleteScreenshotAssetsAsync(fileClient, screenshots);
+Console.WriteLine($"Response: {response.Text}");
+```
+
+### Expected output
+
+After the action loop completes, the final agent reply describes the page it reached:
+
+```console
+Response: I searched for "OpenAI news" in the address bar. The top results include articles from OpenAI's blog, TechCrunch, and The Verge ...
+```
+
+For the full screenshot helper implementation and end-to-end action loop, see [Agent_Step15_ComputerUse](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step15_ComputerUse).
+
+---
 
 :::zone-end
 
@@ -636,7 +781,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -685,8 +830,8 @@ public class ComputerUseExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Open the browser and navigate to microsoft.com"));
 
@@ -694,7 +839,7 @@ public class ComputerUseExample {
 
         // The response will contain computer_call items with actions
         // to execute. Process each action, take screenshots, and
-        // send results back using responsesClient.createWithAgent()
+        // send results back using responsesClient.createAzureResponse()
         // with the previousResponseId and computer call output.
 
         // Clean up

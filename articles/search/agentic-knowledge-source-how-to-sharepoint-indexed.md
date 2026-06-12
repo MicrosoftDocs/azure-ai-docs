@@ -1,29 +1,376 @@
 ---
 title: Create a SharePoint (Indexed) Knowledge Source
-titleSuffix: Azure AI Search
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 06/04/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
-# Create an indexed SharePoint knowledge source
+# Create an indexed SharePoint knowledge source (preview)
+
+[!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
+An *indexed SharePoint knowledge source* (preview) ingests SharePoint content into an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
+
+When you create an indexed SharePoint knowledge source, you specify a SharePoint connection string, models, and properties to automatically generate the following Azure AI Search objects:
+
++ A data source that points to SharePoint sites.
++ A skillset that chunks and optionally vectorizes multimodal content.
++ An index that stores enriched content and meets the criteria for agentic retrieval.
++ An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
+
+### Usage support
+
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
+|--|--|--|--|--|--|--|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
+
++ Completion of the [SharePoint indexer prerequisites](search-how-to-index-sharepoint-online.md#prerequisites).
+
++ Completion of the following SharePoint indexer configuration steps:
+
+  + [Step 1: Enable a managed identity for Azure AI Search](search-how-to-index-sharepoint-online.md#optional-step-1-enable-a-system-assigned-managed-identity) (required only for secretless authentication; skip if using a client secret)
+
+  + [Step 2: Choose either delegated or application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires)
+
+  + [Step 3: Create a Microsoft Entra application registration](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration) (for application permissions, you also configure a [client secret](search-how-to-index-sharepoint-online.md#using-client-secret) or [secretless authentication](search-how-to-index-sharepoint-online.md#using-secretless-authentication-to-obtain-application-tokens))
+
++ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
++ If the knowledge source specifies an Azure OpenAI model for embeddings or image verbalization, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-indexed-csharp.md)]
+
++ The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
 ::: zone-end
 
 ::: zone pivot="python"
-[!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-indexed-python.md)]
+
++ The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
+
 ::: zone-end
 
 ::: zone pivot="rest"
-[!INCLUDE [REST](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-indexed-rest.md)]
+
++ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
 ::: zone-end
+
+## Check for existing knowledge sources
+
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
+
+The following JSON is an example response for an indexed SharePoint knowledge source.
+
+```json
+{
+  "name": "my-indexed-sharepoint-ks",
+  "kind": "indexedSharePoint",
+  "description": "A sample indexed SharePoint knowledge source",
+  "encryptionKey": null,
+  "indexedSharePointParameters": {
+    "connectionString": "<redacted>",
+    "containerName": "defaultSiteLibrary",
+    "query": null,
+    "ingestionParameters": {
+      "disableImageVerbalization": false,
+      "ingestionPermissionOptions": [],
+      "contentExtractionMode": "minimal",
+      "identity": null,
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<redacted>",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "<redacted>",
+          "modelName": "text-embedding-3-large",
+          "authIdentity": null
+        }
+      },
+      "chatCompletionModel": null,
+      "ingestionSchedule": null,
+      "assetStore": null,
+      "aiServices": null
+    },
+    "createdResources": {
+      "datasource": "my-indexed-sharepoint-ks-datasource",
+      "indexer": "my-indexed-sharepoint-ks-indexer",
+      "skillset": "my-indexed-sharepoint-ks-skillset",
+      "index": "my-indexed-sharepoint-ks-index"
+    }
+  },
+  "indexedOneLakeParameters": null
+}
+```
+
+## Create a knowledge source
+
+Run the following code to create an indexed SharePoint knowledge source.
+
+::: zone pivot="csharp"
+
+```csharp
+// Create an IndexedSharePoint knowledge source
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.KnowledgeBases.Models;
+using Azure;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var chatCompletionParams = new AzureOpenAIVectorizerParameters
+{
+    ResourceUri = new Uri(aoaiEndpoint),
+    DeploymentName = aoaiGptDeployment,
+    ModelName = aoaiGptModel
+};
+
+var embeddingParams = new AzureOpenAIVectorizerParameters
+{
+    ResourceUri = new Uri(aoaiEndpoint),
+    DeploymentName = aoaiEmbeddingDeployment,
+    ModelName = aoaiEmbeddingModel
+};
+
+var ingestionParams = new KnowledgeSourceIngestionParameters
+{
+    DisableImageVerbalization = false,
+    ChatCompletionModel = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: chatCompletionParams),
+    EmbeddingModel = new KnowledgeSourceAzureOpenAIVectorizer
+    {
+        AzureOpenAIParameters = embeddingParams
+    }
+};
+
+var sharePointParams = new IndexedSharePointKnowledgeSourceParameters(
+    connectionString: sharePointConnectionString,
+    containerName: "defaultSiteLibrary")
+{
+    IngestionParameters = ingestionParams
+};
+
+var knowledgeSource = new IndexedSharePointKnowledgeSource(
+    name: "my-indexed-sharepoint-ks",
+    indexedSharePointParameters: sharePointParams)
+{
+    Description = "A sample indexed SharePoint knowledge source."
+};
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
+Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
+```
+
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [IndexedSharePointKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.indexedsharepointknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+# Create an indexed SharePoint knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import IndexedSharePointKnowledgeSource, IndexedSharePointKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceContentExtractionMode
+from azure.search.documents.knowledgebases.models import KnowledgeSourceIngestionParameters, KnowledgeSourceAzureOpenAIVectorizer
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = IndexedSharePointKnowledgeSource(
+    name = "my-indexed-sharepoint-ks",
+    description = "A sample indexed SharePoint knowledge source.",
+    encryption_key = None,
+    indexed_share_point_parameters = IndexedSharePointKnowledgeSourceParameters(
+        connection_string = "connection_string",
+        container_name = "defaultSiteLibrary",
+        query = None,
+        ingestion_parameters = KnowledgeSourceIngestionParameters(
+            identity = None,
+            disable_image_verbalization = False,
+            chat_completion_model = KnowledgeBaseAzureOpenAIModel(
+                azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
+                    resource_url = "aoai_endpoint",
+                    deployment_name = "aoai_gpt_deployment",
+                    model_name = "aoai_gpt_model",
+                    api_key = "aoai_api_key"
+                )
+            ),
+            embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
+                azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
+                    resource_url = "aoai_endpoint",
+                    deployment_name = "aoai_embedding_deployment",
+                    model_name = "aoai_embedding_model",
+                    api_key = "aoai_api_key"
+                )
+            ),
+            content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
+            ingestion_schedule = None,
+            ingestion_permission_options = None
+        )
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+### Create an indexed SharePoint knowledge source
+PUT {{search-url}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2026-05-01-preview
+api-key: {{api-key}}
+Content-Type: application/json
+
+{
+    "name": "my-indexed-sharepoint-ks",
+    "kind": "indexedSharePoint",
+    "description": "A sample indexed SharePoint knowledge source.",
+    "encryptionKey": null,
+    "indexedSharePointParameters": {
+        "connectionString": "{{sharepoint-connection-string}}",
+        "containerName": "defaultSiteLibrary",
+        "query": null,
+        "ingestionParameters": {
+            "identity": null,
+            "embeddingModel": {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "deploymentId": "text-embedding-3-large",
+                    "modelName": "text-embedding-3-large",
+                    "resourceUri": "{{aoai-endpoint}}",
+                    "apiKey": "{{aoai-key}}"
+                }
+            },
+            "chatCompletionModel": null,
+            "disableImageVerbalization": false,
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": [],
+            "contentExtractionMode": "minimal"
+        }
+    }
+}
+```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+
+::: zone-end
+
+### Source-specific properties
+
+The following properties apply to indexed SharePoint knowledge sources.
+
+::: zone pivot="csharp"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `Description` | A description of the knowledge source. | String | Yes | No |
+| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `IndexedSharePointKnowledgeSourceParameters` | Parameters specific to indexed SharePoint knowledge sources: `ConnectionString`, `ContainerName`, and `Query`. | Object | No | No |
+| `ConnectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
+| `ContainerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
+| `Query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
+
+::: zone-end
+
+::: zone pivot="python"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexed_share_point_parameters` | Parameters specific to indexed SharePoint knowledge sources: `connection_string`, `container_name`, and `query`. | Object | No | No |
+| `connection_string` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
+| `container_name` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
+| `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
+
+::: zone-end
+
+::: zone pivot="rest"
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `indexedSharePoint` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexedSharePointParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | Yes |
+| `connectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
+| `containerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
+| `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
+
+::: zone-end
+
+### Ingestion parameters properties
+
+[!INCLUDE [preview ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-preview.md)]
+
+## Check ingestion status
+
+[!INCLUDE [Check ingestion status](includes/how-tos/knowledge-source-status.md)]
+
+## Review the generated objects
+
+[!INCLUDE [Review the generated objects](includes/how-tos/knowledge-source-review-objects.md)]
+
+## Assign to a knowledge base
+
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+
+For any knowledge base that specifies an indexed SharePoint knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
+
+## Query a knowledge base
+
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query the knowledge source. This knowledge source supports optional configurations for document-level permissions enforcement and document-embedded image surfacing.
+
+### Enforce document-level permissions
+
+To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+
+### Surface document-embedded images
+
+To surface document-embedded images (such as diagrams or scans) in answer synthesis responses, configure `assetStore` on this knowledge source, and then enable image serving on the knowledge base. For more information, see [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md).
+
+## Delete a knowledge source
+
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
+
+## Known errors
+
+When you create this knowledge source with `contentExtractionMode` set to `standard`, you might get the following error.
+
+```json
+Failed to create custom analyzer 'azs_tmp': BadRequest - {"error":{"code":"InvalidRequest","message":"Invalid request.","innererror":{"code":"DefaultsNotSet","message":"Defaults have not yet been set. Call 'PATCH /contentunderstanding/defaults' first."}}}
+```
+
+To resolve the error, define the default values as instructed in the [Content Understanding prerequisites](/azure/ai-services/content-understanding/tutorial/create-custom-analyzer?tabs=portal%2Cdocument&pivots=programming-language-rest#prerequisites). Afterwards, you can proceed with creating the knowledge source.
 
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)

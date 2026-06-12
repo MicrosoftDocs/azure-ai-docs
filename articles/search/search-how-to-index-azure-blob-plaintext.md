@@ -1,14 +1,11 @@
 ---
-title: Search over plain text blobs
-titleSuffix: Azure AI Search
+title: Search Over Plain Text Blobs
 description: Configure a search indexer to extract plain text from Azure blobs for full text search in Azure AI Search.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 03/25/2026
 ms.update-cycle: 365-days
 ---
 
@@ -37,7 +34,7 @@ An alternative third option for breaking content into multiple parts requires ad
 To index plain text blobs, create or update an indexer definition with the `parsingMode` configuration property set to `text` on a [Create Indexer](/rest/api/searchservice/indexers/create) request:
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-09-01
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -61,7 +58,7 @@ By default, the `UTF-8` encoding is assumed. To specify a different encoding, us
 Parsing modes are specified in the indexer definition.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexers?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 

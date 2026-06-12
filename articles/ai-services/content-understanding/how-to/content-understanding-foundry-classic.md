@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Utilize the Foundry (classic) portal to create Content Understanding custom tasks
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 01/29/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.custom:
   - ignite-2024-understanding-release
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal (Preview)
+
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 Suppose you have files of different types—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
@@ -88,7 +90,7 @@ When you create a single-file Content Understanding task, you start by uploading
 
 1. Select **Create**.
 
-   :::image type="content" source="../media/quickstarts/invioce-template.png" alt-text="Screenshot of analyzer templates.":::
+   :::image type="content" source="../media/quickstarts/invoice-template.png" alt-text="Screenshot of analyzer templates.":::
 
 1. Next, add fields to your schema to reflect all of the outputs you want to generate. 
 
@@ -181,7 +183,7 @@ See [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md)
 
 To share the project you created and manage access, go to the Management Center. You can find it at the bottom of the navigation pane for your project:
 
-  :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of where to find management center.":::
+  :::image type="content" source="../media/quickstarts/content-understanding-landing-page.png" alt-text="Screenshot of where to find management center.":::
 
 In the Management Center, you can manage users and assign individual roles:
 

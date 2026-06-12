@@ -1,10 +1,9 @@
 ---
-author: KarlErickson
-ms.author: karler
+ms.reviewer: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java, dev-focus
 ms.topic: include
-ms.date: 02/05/2026
+ms.date: 04/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -14,7 +13,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-vector-search) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
@@ -22,11 +21,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-- [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
-
 - [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
-
-- [Visual Studio Code](https://code.visualstudio.com/download).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -48,11 +43,10 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
    git clone https://github.com/Azure-Samples/azure-search-java-samples
    ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
    ```bash
    cd azure-search-java-samples/quickstart-vector-search
-   code .
    ```
 
 1. In `src/main/resources/application.properties`, replace the placeholder value for `azure.search.endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

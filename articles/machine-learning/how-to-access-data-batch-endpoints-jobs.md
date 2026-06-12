@@ -84,7 +84,7 @@ az account get-access-token --resource https://ml.azure.com --query "accessToken
 ```
 
 > [!TIP]
-> When you work with REST requests, we recommend that you use a service principal to invoke batch endpoints. For more information, see [Running jobs using a service principal](how-to-authenticate-batch-endpoint.md?tabs=rest#running-jobs-using-a-service-principal).
+> When you work with REST requests, we recommend that you use a service principal to invoke batch endpoints. For more information, see [Running jobs using a service principal](how-to-authenticate-batch-endpoint.md#running-jobs-by-using-a-service-principal).
 
 ---
 

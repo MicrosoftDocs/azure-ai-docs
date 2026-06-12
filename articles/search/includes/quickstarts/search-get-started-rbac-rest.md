@@ -1,10 +1,7 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 03/25/2026
 ---
 
 In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use REST in Visual Studio Code to interact with your service.
@@ -81,7 +78,7 @@ To connect using REST:
    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
    ### List existing indexes
-   GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+   GET {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
    ```

@@ -5,12 +5,13 @@ description: Make data-driven decisions and policies with the Responsible AI das
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
-ms.topic:  how-to
+ms.topic:  concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki
-ms.date: 03/17/2025
-ms.custom: responsible-ml
+ms.date: 03/18/2026
+ms.custom: responsible-ml, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Make data-driven policies and influence decision-making
@@ -21,7 +22,7 @@ Practitioners have become increasingly focused on using historical data to infor
 
 The *causal inference* component of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md) addresses these questions by estimating the effect of a feature on an outcome of interest on average, across a population or a cohort, and on an individual level. It also helps construct promising interventions by simulating feature responses to various interventions and creating rules to determine which population cohorts would benefit from an intervention. Collectively, these functionalities allow decision-makers to apply new policies and drive real-world change.
 
-The capabilities of this component come from the [EconML](https://github.com/Microsoft/EconML) package. It estimates heterogeneous treatment effects from observational data via the [double machine learning](https://econml.azurewebsites.net/spec/estimation/dml.html) technique.
+The capabilities of this component come from the [EconML](https://github.com/py-why/EconML) package. It estimates heterogeneous treatment effects from observational data via the [double machine learning](https://www.pywhy.org/EconML/spec/estimation/dml.html) technique.
 
 Use causal inference when you need to:
 
@@ -39,7 +40,7 @@ Double machine learning is a method for estimating heterogeneous treatment effec
 - There are too many for classical statistical approaches to be applicable. That is, they're *high-dimensional*.
 - Their effect on the treatment and outcome can't be satisfactorily modeled by parametric functions. That is, they're *non-parametric*. 
 
-You can use machine learning techniques to address both problems. For an example, see [Chernozhukov2016](https://econml.azurewebsites.net/spec/references.html#chernozhukov2016).
+You can use machine learning techniques to address both problems. For an example, see [Chernozhukov2016](https://www.pywhy.org/EconML/spec/references.html#chernozhukov2016).
 
 Double machine learning reduces the problem by first estimating two predictive tasks:
 
@@ -50,11 +51,9 @@ Then the method combines these two predictive models in a final-stage estimation
 
 ## What other tools does Microsoft provide for causal inference?
 
-- [Project Azua](https://www.microsoft.com/research/project/project_azua/) provides a novel framework that focuses on end-to-end causal inference. 
+- [Project Causica](https://www.microsoft.com/research/project/project_azua/) (formerly Project Azua) focuses on decision optimization with causal machine learning. The open-source [Causica toolkit](https://github.com/microsoft/causica) provides an end-to-end framework for causal discovery and causal inference.
 
-  Azua's DECI (deep end-to-end causal inference) technology is a single model that can simultaneously do causal discovery and causal inference. The user provides data, and the model can output the causal relationships among all variables. 
-  
-  By itself, this approach can provide insights into the data. It enables the calculation of metrics such as individual treatment effect (ITE), average treatment effect (ATE), and conditional average treatment effect (CATE). You can then use these calculations to make optimal decisions. 
+  The project builds large-scale machine learning models that comprehend the effects of actions through intervention and counterfactual prediction, constructing veridical world models that mirror real-world dynamics. It enables the calculation of metrics such as individual treatment effect (ITE), average treatment effect (ATE), and conditional average treatment effect (CATE). You can then use these calculations to make optimal decisions.
 
   The framework is scalable for large data, in terms of both the number of variables and the number of data points. It can also handle missing data entries with mixed statistical types.
 
@@ -62,7 +61,7 @@ Then the method combines these two predictive models in a final-stage estimation
 
   The suite of estimation methods in EconML represents the latest advances in causal machine learning. By incorporating individual machine learning steps into interpretable causal models, these methods improve the reliability of what-if predictions and make causal analysis quicker and easier for a broad set of users.
 
-- [DoWhy](https://py-why.github.io/dowhy/) is a Python library that aims to spark causal thinking and analysis. DoWhy provides a principled four-step interface for causal inference that focuses on explicitly modeling causal assumptions and validating them as much as possible. 
+- [DoWhy](https://www.pywhy.org/dowhy/) is a Python library that aims to spark causal thinking and analysis. DoWhy provides a principled four-step interface for causal inference that focuses on explicitly modeling causal assumptions and validating them as much as possible. 
 
   The key feature of DoWhy is its state-of-the-art refutation API that can automatically test causal assumptions for any estimation method. It makes inference more robust and accessible to non-experts. 
 
@@ -70,6 +69,6 @@ Then the method combines these two predictive models in a final-stage estimation
 
 ## Next steps
 
-- Learn how to generate the Responsible AI dashboard via [CLI and SDK](how-to-responsible-ai-dashboard-sdk-cli.md) or [Azure Machine Learning studio UI](how-to-responsible-ai-dashboard-ui.md).
+- Learn how to generate the Responsible AI dashboard via [CLI and SDK](how-to-responsible-ai-insights-sdk-cli.md) or [Azure Machine Learning studio UI](how-to-responsible-ai-insights-ui.md).
 - Explore the [supported causal inference visualizations](how-to-responsible-ai-dashboard.md#causal-analysis) of the Responsible AI dashboard.
 - Learn how to generate a [Responsible AI scorecard](how-to-responsible-ai-scorecard.md) based on the insights observed in the Responsible AI dashboard.

@@ -13,6 +13,8 @@ ms.collection: ce-skilling-ai-copilot
 ms.custom: 
  - build-2024
  - serverless
+ - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Consume standard deployments from a different workspace
@@ -28,7 +30,7 @@ The need to consume a standard deployment in a different workspace than the one 
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to begin.
 
 - An [Azure Machine Learning workspace](quickstart-create-resources.md) where you want to consume the existing deployment.
 
@@ -73,7 +75,7 @@ The need to consume a standard deployment in a different workspace than the one 
 
     ```python
     from azure.ai.ml import MLClient
-    from azure.identity import InteractiveBrowserCredential
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
     from azure.ai.ml.entities import ServerlessEndpoint, ServerlessConnection
     ```
 
@@ -101,8 +103,14 @@ Follow these steps to create a connection:
     Create a client connected to your workspace:
 
     ```python
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
+
     client = MLClient(
-        credential=InteractiveBrowserCredential(tenant_id="<tenant-id>"),
+        credential=credential,
         subscription_id="<subscription-id>",
         resource_group_name="<resource-group>",
         workspace_name="<workspace-name>",

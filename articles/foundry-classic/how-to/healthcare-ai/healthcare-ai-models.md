@@ -1,14 +1,14 @@
 ---
 title: "Healthcare AI foundation models (classic)"
 description: "Explore healthcare AI foundation models in Microsoft Foundry for medical imaging, genomics, and clinical data analysis. Deploy multimodal AI models to build healthcare solutions. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-models
 ms.topic: concept-article
 ms.date: 01/23/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande
 
 #Customer intent: As a Data Scientist I want to learn what offerings are available within Health and Life Sciences AI Model offerings so that I can use them as the basis for my own AI solutions
@@ -18,15 +18,9 @@ author: msakande
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
+[!INCLUDE [health-ai-models-meddev-disclaimer](includes/health-ai-models-meddev-disclaimer.md)]
 
-This article introduces healthcare AI foundation models available in the Microsoft multimodal model catalog. Microsoft Research, strategic partners, and leading healthcare institutions jointly developed these models to help healthcare organizations rapidly build and deploy AI solutions for medical imaging, genomics, clinical records, and biomedical research. You can use these models to quickly build and deploy AI solutions tailored to your specific needs while minimizing the extensive compute and data requirements typically associated with building multimodal models from scratch. These models aren't designed to serve as standalone products. Instead, developers can use them as a foundation to build upon. With these healthcare AI models, you have the tools you need to harness the full potential of AI to enhance biomedical research, clinical workflows, and ultimately care delivery.
-
-The power of artificial intelligence (AI) is driving a revolutionary transformation in the healthcare industry. While existing large language models like GPT-4 show tremendous promise for clinical text-based tasks and general-purpose multimodal reasoning, they struggle to understand non-text multimodal healthcare data. For example, medical imaging (radiology, pathology, and ophthalmology information resources). This problem covers other specialized medical text resources. For example, longitudinal electronic medical records. It becomes challenging to process non-text modalities like signal data, genomic data, and protein data, much of which isn't publicly available.
-
-:::image type="content" source="../../media/how-to/healthcare-ai/connect-modalities.gif" alt-text="Animation showing healthcare AI models connecting different data modalities including imaging, genomics, and clinical records for discovery, development, and delivery.":::
-
-The Foundry model catalog, available in [Microsoft Foundry](../../concepts/foundry-models-overview.md) and [Azure Machine Learning studio](../../../machine-learning/concept-model-catalog.md), provides healthcare foundation models that let you analyze various medical data types with AI. These AI models expand well beyond medical text comprehension into multimodal reasoning about medical data. They can integrate and analyze data from diverse sources that come in various modalities. For example, medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields, including dermatology, ophthalmology, radiology, pathology, and more.
+[!INCLUDE [health-ai-models-intro](../../../foundry/how-to/healthcare-ai/includes/health-ai-models-intro.md)]
 
 ## Microsoft first-party models
 
@@ -43,7 +37,7 @@ These models are designed for precise image segmentation and cover different ima
 
 ## Partner models
 
-The model catalog also provides a curated collection of healthcare models from Microsoft partners with capabilities such as digital pathology slide analysis, biomedical research, and medical knowledge sharing. Partners like Paige.AI and Providence Healthcare provide these models. For a complete list of models, see the [model catalog page](https://aka.ms/healthcaremodelstudio).
+[!INCLUDE [health-ai-models-partners](../../../foundry/how-to/healthcare-ai/includes/health-ai-models-partners.md)]
 
 ## Related content
 

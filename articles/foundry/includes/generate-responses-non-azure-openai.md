@@ -3,11 +3,12 @@ title: Generate responses with a non-AOAI Foundry Model
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 03/09/2026
+ms.date: 06/04/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 > [!TIP]
@@ -35,18 +36,17 @@ ms.custom: include
     # Build the base URL: project_endpoint + /openai/v1 (no api-version needed)
     base_url = project_endpoint.rstrip("/") + "/openai/v1"
 
-    # get_bearer_token_provider returns a callable; call it to get automatic refresh of the token string
+    # Use get_bearer_token_provider for automatic token refresh
     credential = DefaultAzureCredential()
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
     client = OpenAI(
         base_url=base_url,
-        api_key=token_provider(),
-    )   
+        api_key=get_bearer_token_provider(credential, "https://ai.azure.com/.default"),
+    )
    
     response = client.responses.create(
         model="DeepSeek-R1-0528", # Replace with your deployment name, not the model ID 
         input="What are the top 3 benefits of cloud computing? Be concise.",
-        max_output_tokens=500,
+        max_output_tokens=2000,
     )
     
     print(f"Response: {response.output_text}")
@@ -66,6 +66,7 @@ ms.custom: include
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 
 
     ```csharp
+    using System.ClientModel;
     using Azure.Identity;
     using OpenAI;
     using OpenAI.Responses;
@@ -112,7 +113,7 @@ ms.custom: include
     import OpenAI from "openai";
     import { DefaultAzureCredential } from "@azure/identity";
     
-    async function getToken(): Promise<string> {
+    async function getToken() {
       const credential = new DefaultAzureCredential();
       const tokenResponse = await credential.getToken(
         "https://ai.azure.com/.default"
@@ -176,9 +177,22 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
     import com.azure.identity.DefaultAzureCredentialBuilder;
     import com.openai.client.OpenAIClient;
     import com.openai.client.okhttp.OpenAIOkHttpClient;
+    import com.openai.models.responses.Response;
     import com.openai.models.responses.ResponseCreateParams;
     
     public class Sample {
+
+        // Return the final assistant message text from a Responses API result.
+        static String getOutputText(Response response) {
+            var sb = new StringBuilder();
+            response.output().stream()
+                    .flatMap(item -> item.message().stream())
+                    .flatMap(message -> message.content().stream())
+                    .flatMap(content -> content.outputText().stream())
+                    .forEach(outputText -> sb.append(outputText.text()));
+            return sb.toString();
+        }
+
         public static void main(String[] args) {
             String endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
             String deploymentName = "DeepSeek-R1-0528"; // Replace with your deployment name, not the model ID
@@ -203,7 +217,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
                             .maxOutputTokens(500)
                             .build()
             );
-            System.out.printf("Response: %s%n", response.outputText());
+            System.out.printf("Response: %s%n", getOutputText(response));
             System.out.printf("Status:   %s%n", response.status());
             response.usage().ifPresent(u ->
                     System.out.printf("Output tokens: %d%n", u.outputTokens()));
@@ -216,9 +230,9 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
 1. Before running the sample, install the required Go modules.
 
     ```bash
-    go get github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.0
-    go get github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1
-    go get github.com/openai/openai-go/v3 v3.22.0
+    go get github.com/Azure/azure-sdk-for-go/sdk/azcore@v1.21.0
+    go get github.com/Azure/azure-sdk-for-go/sdk/azidentity@v1.13.1
+    go get github.com/openai/openai-go/v3@v3.22.0
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses.

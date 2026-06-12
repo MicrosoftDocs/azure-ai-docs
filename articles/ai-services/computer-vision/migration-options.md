@@ -5,13 +5,23 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/01/2025
 ms.topic: upgrade-and-migration-article
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.custom: ai-migration, vision
 ---
 
 # Migrate from Azure Vision in Foundry Tools - Image Analysis
 
 The Azure Vision in Foundry Tools - Image Analysis API will be retired on September 25, 2028. After that date, calls to the service fail. Microsoft supports all existing Image Analysis customers until the retirement date. To ensure business continuity and minimize disruption, start planning your migration to alternative solutions that best meet your scenario requirements. This article provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
+
+
+> [!IMPORTANT]
+> The term "Image Analysis API" used in this article refers specifically to the Azure Computer Vision Image Analysis REST API (the `/imageanalysis` endpoint) and supported versions (v3.2 and v4.0).
+>
+> This retirement applies to all deployment types, including:
+> - Cloud APIs
+> - Connected containers
+> - Disconnected containers
+
 
 ## Migration preparation checklist
 
@@ -39,8 +49,8 @@ Azure Document Intelligence  provides support for OCR text in images.
 The Face service offers face detection capabilities, as well as a more comprehensive portfolio of face-related features. 
 * **Features**: Full support for all face scenarios under the Image Analysis API, plus face recognition scenarios like person identification.
 * **Learn more** about the Face API:
-    * [What is the Azure Face Service?](./overview-identity.md)
-    * [Face detection, attributes, and input data](./concept-face-detection.md)
+    * [What is the Azure Face Service?](../face/overview-identity.md)
+    * [Face detection, attributes, and input data](../face/concept-face-detection.md)
 
 ### Image embeddings scenarios
 

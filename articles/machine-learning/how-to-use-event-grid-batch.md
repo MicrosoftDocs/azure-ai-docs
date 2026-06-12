@@ -8,12 +8,13 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 10/10/2022
+ms.date: 03/30/2026
 ms.reviewer: cacrest
 ms.custom:
   - devplatv2
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Run batch endpoints from Event Grid events in storage
@@ -46,7 +47,7 @@ The following steps describe the high-level steps in this solution:
 
 > [!IMPORTANT]
 >
-> When you use a logic app workflow that connects with Event Grid to invoke batch endpoint, you generate one job per *each blob file* created in the storage account. Keep in mind that batch endpoints distribute the work at the file level, so no parallelization happens. Instead, you use the batch endpoints's capability to execute multiple jobs on the same compute cluster. If you need to run jobs on entire folders in an automatic fashion, we recommend that you to switch to [Invoking batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
+> When you use a logic app workflow that connects with Event Grid to invoke batch endpoint, you generate one job per *each blob file* created in the storage account. Keep in mind that batch endpoints distribute the work at the file level, so no parallelization happens. Instead, you use the batch endpoint's capability to execute multiple jobs on the same compute cluster. If you need to run jobs on entire folders in an automatic fashion, switch to [Invoking batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
 
 ## Prerequisites
 
@@ -60,33 +61,41 @@ The following steps describe the high-level steps in this solution:
 
 ## Authenticate against batch endpoints
 
-Azure Logic Apps can invoke the REST APIs of batch endpoints by using the [HTTP](/azure/connectors/connectors-native-http) action. Batch endpoints support Microsoft Entra ID for authorization and hence the request made to the APIs require a proper authentication handling.
+Azure Logic Apps can invoke the REST APIs of batch endpoints by using the [HTTP](/azure/connectors/connectors-native-http) action. Batch endpoints support Microsoft Entra ID for authorization, so the request made to the APIs requires proper authentication handling.
 
 This tutorial uses a service principal for authentication and interaction with batch endpoints in this scenario.
 
-1. Create a service principal by following [Register an application with Microsoft Entra ID and create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal#register-an-application-with-azure-ad-and-create-a-service-principal).
+> [!TIP]
+>
+> If your scenario allows it, consider using [managed identities for Logic Apps](/azure/logic-apps/create-managed-service-identity) instead of a service principal. Managed identities don't require storing client secrets and simplify credential lifecycle management.
 
-1. Create a secret to use for authentication by following [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
+1. Create a service principal by following [Register an application with Microsoft Entra ID and create a service principal](/entra/identity-platform/howto-create-service-principal-portal#register-an-application-with-microsoft-entra-id-and-create-a-service-principal).
 
-1. Make sure to save the generated client secret **Value**, which appears only once.
+1. Create a secret to use for authentication by following [Option 3: Create a new client secret](/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 
-1. Make sure to save the `client ID` and the `tenant id` in the application's **Overview** pane.
+1. Save the generated client secret **Value**, which appears only once.
 
-1. Grant your service principal access to your workspace by following [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). For this example, the service principal requires the following:
+1. Save the `client ID` and the `tenant id` in the application's **Overview** pane.
+
+1. Grant your service principal access to your workspace by following [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). For this example, the service principal requires the following permissions:
 
    - Permission in the workspace to read batch deployments and perform actions over them.
-   - Permissions to read/write in data stores.
+   - Permissions to read and write in data stores.
 
 ## Enable data access
 
-To indicate the input data that you want to send to the deployment job, this tutorial uses cloud URIs provided by Event Grid. Batch endpoints use the identity of the compute to mount the data, while keeping the identity of the job to read the mounted data. So, you have to assign a user-assigned managed identity to the compute cluster, and make sure the cluster has access to mount the underlying data. To ensure data access, follow these steps:
+To indicate the input data that you want to send to the deployment job, this tutorial uses cloud URIs provided by Event Grid. Batch endpoints use the identity of the compute to mount the data, while keeping the identity of the job to read the mounted data. You need to assign a user-assigned managed identity to the compute cluster, and make sure the cluster has access to mount the underlying data. To ensure data access, follow these steps:
 
 1. Create a [managed identity resource](/azure/active-directory/managed-identities-azure-resources/overview):
 
    # [Azure CLI](#tab/cli)
 
    ```azurecli
-   IDENTITY=$(az identity create  -n azureml-cpu-cluster-idn  --query id -o tsv)
+   IDENTITY=$(az identity create \
+       --name azureml-cpu-cluster-idn \
+       --resource-group <your-resource-group> \
+       --query id \
+       --output tsv)
    ```
 
    # [Python](#tab/sdk)
@@ -96,32 +105,32 @@ To indicate the input data that you want to send to the deployment job, this tut
    identity="/subscriptions/<subscription>/resourcegroups/<resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/azureml-cpu-cluster-idn"
    ```
 
-1. Update the compute cluster to use the managed identity that we created:
+1. Update the compute cluster to use the managed identity that you created:
 
    > [!NOTE]
    >
-   > This examples assumes that you have a compute cluster created named `cpu-cluster` that is used for the default deployment in the endpoint.
+   > This example assumes that you have a compute cluster named `batch-cluster` that you use for the default deployment in the endpoint.
 
    # [Azure CLI](#tab/cli)
 
    ```azurecli
-   az ml compute update --name cpu-cluster --identity-type user_assigned --user-assigned-identities $IDENTITY
+   az ml compute update --name batch-cluster --identity-type UserAssigned --user-assigned-identities $IDENTITY
    ```
 
    # [Python](#tab/sdk)
 
    ```python
-   from azure.ai.ml import MLClient
-   from azure.ai.ml.entities import AmlCompute, ManagedIdentityConfiguration
-   from azure.ai.ml.constants import ManagedServiceIdentityType
+   from azure.ai.ml.entities import IdentityConfiguration, ManagedIdentityConfiguration
 
    compute_name = "batch-cluster"
    compute_cluster = ml_client.compute.get(name=compute_name)
 
-   compute_cluster.identity.type = ManagedServiceIdentityType.USER_ASSIGNED
-   compute_cluster.identity.user_assigned_identities = [
-       ManagedIdentityConfiguration(resource_id=identity)
-   ]
+   compute_cluster.identity = IdentityConfiguration(
+       type="UserAssigned",
+       user_assigned_identities=[
+           ManagedIdentityConfiguration(resource_id=identity)
+       ],
+   )
 
    ml_client.compute.begin_create_or_update(compute_cluster)
    ```
@@ -138,7 +147,7 @@ To indicate the input data that you want to send to the deployment job, this tut
 
    ![Screenshot that shows Azure Marketplace menu with selected options for Integration and Logic App.](~/reusable-content/ce-skilling/azure/media/logic-apps/create-new-logic-app-resource.png)
 
-1. On the **Create Logic App** pane, on the **Basics** tab, provide the following information about your logic app resource.
+1. On the **Create Logic App** pane, on the **Basics** tab, enter the following information about your logic app resource.
 
    | Property | Required | Value | Description |
    |----------|----------|-------|-------------|
@@ -186,7 +195,7 @@ This logic app workflow uses parameters to store specific pieces of information 
 
    > [!TIP]
    >
-   > Use the values configured at [Authenticating against batch endpoints](#authenticate-against-batch-endpoints).
+   > Use the values you configured at [Authenticating against batch endpoints](#authenticate-against-batch-endpoints).
 
    | Parameter name | Description | Sample value |
    |----------------|-------------|--------------|
@@ -203,7 +212,7 @@ This logic app workflow uses parameters to store specific pieces of information 
 
 ## Add the trigger
 
-We want to trigger the logic app workflow each time a new file is created in a specific folder (data asset) of a storage account. The logic app uses the information from the event to invoke the batch endpoint and pass the specific file to process.
+You want to trigger the logic app workflow each time a new file is created in a specific folder (data asset) of a storage account. The logic app uses the information from the event to invoke the batch endpoint and pass the specific file to process.
 
 1. On the workflow designer, [follow these general steps to add an **Event Grid** trigger named **When a resource event occurs**](/azure/logic-apps/create-workflow-with-trigger-or-action?tabs=consumption#add-trigger).
 
@@ -224,7 +233,7 @@ We want to trigger the logic app workflow each time a new file is created in a s
 
    > [!IMPORTANT]
    >
-   > The **Prefix Filter** property allows Event Grid to only notify the workflow when a blob is created in the specific path we indicated. In this case, we assume that files are created by some external process in the folder specified by **<*path-to-data-folder*>** inside the container **<*container-name*>**, which is in the selected storage account. Configure this parameter to match the location of your data. Otherwise, the event is fired for any file created at any location of the storage account. For more information, see [Event filtering for Event Grid](/azure/event-grid/event-filtering).
+   > The **Prefix Filter** property allows Event Grid to only notify the workflow when a blob is created in the specific path you indicate. In this case, assume that an external process creates files in the folder specified by **<*path-to-data-folder*>** inside the container **<*container-name*>**, which is in the selected storage account. Configure this parameter to match the location of your data. Otherwise, the event is fired for any file created at any location of the storage account. For more information, see [Event filtering for Event Grid](/azure/event-grid/event-filtering).
 
    The following example shows how the trigger appears:
 
@@ -239,9 +248,9 @@ We want to trigger the logic app workflow each time a new file is created in a s
    | Property | Value | Notes |
    |----------|-------|-------|
    | **Method** | `POST` | The HTTP method |
-   | **URI** | `concat('https://login.microsoftonline.com/', parameters('tenant_id'), '/oauth2/token')` | To enter this expression, select inside the **URI** box. From the options that appear, select the expression editor (formula icon). |
+   | **URI** | `concat('https://login.microsoftonline.com/', parameters('tenant_id'), '/oauth2/v2.0/token')` | To enter this expression, select inside the **URI** box. From the options that appear, select the expression editor (formula icon). |
    | **Headers** | `Content-Type` with value `application/x-www-form-urlencoded` | |
-   | **Body**    | `concat('grant_type=client_credentials&client_id=', parameters('client_id'), '&client_secret=', parameters('client_secret'), '&resource=https://ml.azure.com')` | To enter this expression, select inside the **Body** box. From the options that appear, select the expression editor (formula icon). |
+   | **Body**    | `concat('grant_type=client_credentials&client_id=', parameters('client_id'), '&client_secret=', parameters('client_secret'), '&scope=https://ml.azure.com/.default')` | To enter this expression, select inside the **Body** box. From the options that appear, select the expression editor (formula icon). |
 
    The following example shows a sample **Authorize** action:
 
@@ -283,7 +292,7 @@ We want to trigger the logic app workflow each time a new file is created in a s
 
    > [!NOTE]
    >
-   > The **Invoke** action triggers the batch job, but the action won't wait for its completion. By default, Azure Logic Apps isn't set up for long-running applications. If you need to wait for the job to complete, we recommend you to switch to [Run batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
+   > The **Invoke** action triggers the batch job, but the action doesn't wait for its completion. By default, Azure Logic Apps isn't set up for long-running applications. If you need to wait for the job to complete, switch to [Run batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
 
 1. When you're done, save your workflow.
 

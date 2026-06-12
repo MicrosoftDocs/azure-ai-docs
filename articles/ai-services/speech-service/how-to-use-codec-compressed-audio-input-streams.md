@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to use compressed input audio the Speech SDK and CLI. 
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python, linux-related-content
@@ -15,8 +15,24 @@ zone_pivot_groups: programming-languages-speech-services
 
 # How to use compressed input audio
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/how-to/compressed-audio-input/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/compressed-audio-input/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/compressed-audio-input/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/how-to/compressed-audio-input/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/compressed-audio-input/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -27,32 +43,16 @@ zone_pivot_groups: programming-languages-speech-services
 [!INCLUDE [Go include](includes/how-to/compressed-audio-input/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/how-to/compressed-audio-input/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/how-to/compressed-audio-input/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/how-to/compressed-audio-input/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/how-to/compressed-audio-input/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/how-to/compressed-audio-input/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/how-to/compressed-audio-input/rest.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](includes/how-to/compressed-audio-input/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/how-to/compressed-audio-input/swift.md)]
 ::: zone-end
 
 ## Next steps

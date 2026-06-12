@@ -1,7 +1,6 @@
----
-title: Relevance
-titleSuffix: Azure AI Search
-description: Describe strategies for producing relevant results  in Azure AI Search and explain how the scoring and ranking algorithms work and how to use them together.
+﻿---
+title: Relevance and Ranking Overview
+description: Learn how relevance and ranking work in Azure AI Search. Explore hybrid search, semantic reranking, agentic retrieval, and scoring profiles to improve results.
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 12/08/2025
@@ -103,7 +102,7 @@ The following diagram illustrates how the ranking algorithms work together.
 A query that generates the previous workflow might look like the following example. This hybrid semantic query is scored using RRF (based on L1 scores for text and vectors), and semantic ranking.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-11-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-05-01-preview
 
 {
   "search": "cloud formation over water",

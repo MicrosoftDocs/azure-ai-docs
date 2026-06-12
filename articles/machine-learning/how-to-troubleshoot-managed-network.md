@@ -9,8 +9,9 @@ ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.topic: troubleshooting
-ms.date: 04/01/2025
-ms.custom: build-2023
+ms.date: 03/19/2026
+ms.custom: build-2023, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Troubleshoot Azure Machine Learning managed virtual network
@@ -23,7 +24,7 @@ Yes, you can still use an Azure Virtual Network for network isolation. If you're
 
 To use an Azure Virtual Network when creating a workspace through the Azure portal, use the following steps:
 
-1. When creating a workspace, select the __Networking__ tag.
+1. When creating a workspace, select the __Networking__ tab.
 1. Select __Private with Internet Outbound__.
 1. In the __Workspace inbound access__ section, select __Add__ and add a private endpoint for the Azure Virtual Network to use for network isolation.
 1. In the __Workspace Outbound access__ section, select __Use my own virtual network__.
@@ -42,11 +43,11 @@ This error occurs when the Azure identity used to create the managed virtual net
 
 ## Troubleshoot configurations on connecting to storage
 
-When you create a workspace, required outbound rules to Azure storage are autocreated for data upload scenarios and artifact storage. Ensure your Azure storage is set up correct by checked with the following steps:
+When you create a workspace, required outbound rules to Azure storage are autocreated for data upload scenarios and artifact storage. Ensure your Azure storage is set up correctly by checking the following steps:
 
-1. In Azure portal, check the network settings of the storage account that is associated to your hub.
+1. In Azure portal, check the network settings of the storage account that is associated with your workspace.
   * If public network access is set to __Enabled from selected virtual networks and IP addresses__, ensure the correct IP address ranges are added to access your storage account.
-  * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target subresource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+  * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target subresource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles/general#reader) role for the storage account private endpoint to the managed identity.
 2. In Azure portal, navigate to your Azure Machine Learning workspace. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active.
 
 ## Next steps

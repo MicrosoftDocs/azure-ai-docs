@@ -3,7 +3,7 @@ title: What is Azure AI Content Safety?
 titleSuffix: Azure AI services
 description: Learn how to use Content Safety to track, flag, assess, and filter inappropriate material in user-generated content.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: overview
 ms.date: 09/16/2025
@@ -24,7 +24,7 @@ Content filtering software can help your app comply with regulations or maintain
 
 To use Azure AI Content Safety, you need:
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Content Safety resource created in a [supported region](#region-availability)
 
 

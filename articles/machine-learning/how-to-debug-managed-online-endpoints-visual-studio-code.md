@@ -12,6 +12,7 @@ ms.date: 03/20/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2
 ms.devlang: azurecli
+ai-usage: ai-assisted
 #Customer intent: As a machine learning engineer, I want to test and debug online endpoints locally using Visual Studio Code before deploying them Azure.
 ---
 
@@ -110,7 +111,7 @@ from azure.ai.ml.entities import (
     CodeConfiguration,
     Environment,
 )
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 ```
 
 Set up variables for the workspace and endpoint:
@@ -164,7 +165,11 @@ Azure Machine Learning local endpoints use Docker and Visual Studio Code develop
 Get a handle to the workspace:
 
 ```python
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = MLClient(
     credential,
     subscription_id=subscription_id,

@@ -2,12 +2,12 @@
 title: What is Anomaly Detector?
 titleSuffix: Azure AI services
 description: Use the Anomaly Detector API's algorithms to apply anomaly detection on your time series data.
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: overview
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 keywords: anomaly detection, machine learning, algorithms
 ---
 
@@ -58,16 +58,12 @@ The **Multivariate Anomaly Detection** APIs further enable developers by easily 
 
 Imagine 20 sensors from an auto engine generating 20 different signals like rotation, fuel pressure, bearing, etc. The readings of those signals individually may not tell you much about system level issues, but together they can represent the health of the engine. When the interaction of those signals deviates outside the usual range, the multivariate anomaly detection feature can sense the anomaly like a seasoned expert. The underlying AI models are trained and customized using your data such that it understands the unique needs of your business. With the new APIs in Anomaly Detector, developers can now easily integrate the multivariate time series anomaly detection capabilities into predictive maintenance solutions, AIOps monitoring solutions for complex enterprise software, or business intelligence tools.
 
-## Join the Anomaly Detector community
-
-Join the [Anomaly Detector Advisors group on Microsoft Teams](https://aka.ms/AdAdvisorsJoin) for better support and any updates!
-
 ## Algorithms
 
 * Blogs and papers:
-    * [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Introducing-Azure-Anomaly-Detector-API/ba-p/490162)
-    * [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/t5/AI-Customer-Engineering-Team/Overview-of-SR-CNN-algorithm-in-Azure-Anomaly-Detector/ba-p/982798)
-    * [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/t5/azure-ai/introducing-multivariate-anomaly-detection/ba-p/2260679)
+    * [Introducing Azure AI Anomaly Detector API](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/introducing-azure-anomaly-detector-api/490162)
+    * [Overview of SR-CNN algorithm in Azure AI Anomaly Detector](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/overview-of-sr-cnn-algorithm-in-azure-anomaly-detector/982798)
+    * [Introducing Multivariate Anomaly Detection](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-multivariate-anomaly-detection/2260679)
     * [Multivariate time series Anomaly Detection via Graph Attention Network](https://arxiv.org/abs/2009.02040)
     * [Time-Series Anomaly Detection Service at Microsoft](https://arxiv.org/abs/1906.03821) (accepted by KDD 2019)
 

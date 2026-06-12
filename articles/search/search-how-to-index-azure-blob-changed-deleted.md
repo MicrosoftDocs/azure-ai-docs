@@ -1,21 +1,27 @@
 ---
-title: Changed and deleted blobs
-titleSuffix: Azure AI Search
+title: Changed and Deleted Blobs
 description: Indexers that index from Azure Storage can pick up new and changed content automatically. This article describes the strategies.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/26/2025
+ms.date: 03/25/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
   - sfi-ropc-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Change and delete detection using indexers for Azure Storage in Azure AI Search
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 After an initial search index is created, you might want subsequent indexer jobs to only pick up new and changed documents. For indexed content that originates from Azure Storage, change detection occurs automatically because indexers keep track of the last update using the built-in timestamps on objects and files in Azure Storage.
 
@@ -26,7 +32,7 @@ There are two ways to implement a soft delete strategy:
 + [Native blob soft delete](#native-blob-soft-delete), applies to Blob Storage only
 + [Soft delete using custom metadata](#soft-delete-using-custom-metadata)
 
-The deletion detection strategy must be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented will remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it's suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
+The deletion detection strategy must be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it's suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
 
 ## Prerequisites
 
@@ -55,13 +61,13 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 ### Configure native soft delete
 
-In Blob storage, when enabling soft delete per the requirements, set the retention policy to a value that's much higher than your indexer interval schedule. If there's an issue running the indexer, or if you have a large number of documents to index, there's plenty of time for the indexer to eventually process the soft deleted blobs. Azure AI Search indexers will only delete a document from the index if it processes the blob while it's in a soft deleted state.
+In Blob Storage, when enabling soft delete per the requirements, set the retention policy to a value that's much higher than your indexer interval schedule. If there's an issue running the indexer, or if you have a large number of documents to index, there's plenty of time for the indexer to eventually process the soft deleted blobs. Azure AI Search indexers delete a document from the index only if they process the blob while it's in a soft deleted state.
 
 In Azure AI Search, set a native blob soft deletion detection policy on the data source. You can do this either from the Azure portal or by using the [REST API](/rest/api/searchservice/data-sources/create). The following instructions explain how to set the delete detection policy in Azure portal or through REST APIs.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the Azure AI Search service Overview page, go to **New Data Source**, a visual editor for specifying a data source definition. 
 
@@ -69,7 +75,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 
    :::image type="content" source="media/search-indexing-changed-deleted-blobs/new-data-source.png" alt-text="Screenshot of data source configuration in Import Data wizard." border="true":::
 
-1. On the **New Data Source** form, fill out the required fields, select the **Track deletions** checkbox and choose **Native blob soft delete**. Then hit **Save** to enable the feature on Data Source creation.
+1. On the **New Data Source** form, fill out the required fields, select the **Track deletions** checkbox and choose **Native blob soft delete**. Then select **Save** to enable the feature on Data Source creation.
 
    :::image type="content" source="media/search-indexing-changed-deleted-blobs/native-soft-delete.png" alt-text="Screenshot of portal data source native soft delete." border="true":::
 
@@ -78,7 +84,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 Set the soft deletion detection policy in the data source definition. Specify the API version when creating or updating the data source.
 
 ```http
-PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2025-09-01
+PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2026-04-01
 Content-Type: application/json
 api-key: [admin key]
 {
@@ -92,15 +98,17 @@ api-key: [admin key]
 }
 ```
 
-[Run the indexer](/rest/api/searchservice/indexers/run) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document will be removed from the index.
+**Reference:** [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) (REST API)
+
+[Run the indexer](/rest/api/searchservice/indexers/run) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document is removed from the index.
 
 ---
 
 ### Reindex undeleted blobs using native soft delete policies
 
-If you restore a soft deleted blob in Blob storage, the indexer won't always reindex it. This is because the indexer uses the blob's `LastModified` timestamp to determine whether indexing is needed. When a soft deleted blob is undeleted, its `LastModified` timestamp doesn't get updated, so if the indexer has already processed blobs with more recent `LastModified` timestamps, it won't reindex the undeleted blob. 
+If you restore a soft deleted blob in Blob Storage, the indexer won't always reindex it. This is because the indexer uses the blob's `LastModified` timestamp to determine whether indexing is needed. When a soft deleted blob is undeleted, its `LastModified` timestamp doesn't get updated, so if the indexer has already processed blobs with more recent `LastModified` timestamps, it won't reindex the undeleted blob. 
 
-To make sure that an undeleted blob is reindexed, you'll need to update the blob's `LastModified` timestamp. One way to do this is by resaving the metadata of that blob. You don't need to change the metadata, but resaving the metadata will update the blob's `LastModified` timestamp so that the indexer knows to pick it up.
+To make sure that an undeleted blob is reindexed, update the blob's `LastModified` timestamp. One way to do this is by resaving the metadata of that blob. You don't need to change the metadata, but resaving the metadata updates the blob's `LastModified` timestamp so that the indexer knows to pick it up.
 
 <a name="soft-delete-using-custom-metadata"></a>
 
@@ -117,7 +125,7 @@ There are steps to follow in both Azure Storage and Azure AI Search, but there a
 1. In Azure AI Search, edit the data source definition to include a "dataDeletionDetectionPolicy" property. For example, the following policy considers a file to be deleted if it has a metadata property `IsDeleted` with the value `true`:
 
     ```http
-    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2025-09-01
+    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2026-04-01
     {
         "name" : "file-datasource",
         "type" : "azurefile",
@@ -131,7 +139,7 @@ There are steps to follow in both Azure Storage and Azure AI Search, but there a
     }
     ```
 
-1. Run the indexer. Once the indexer has processed the file and deleted the document from the search index, you can then delete the physical file in Azure Storage.
+1. Run the indexer. After the indexer has processed the file and deleted the document from the search index, you can then delete the physical file in Azure Storage.
 
 ## Reindex undeleted blobs and files 
 

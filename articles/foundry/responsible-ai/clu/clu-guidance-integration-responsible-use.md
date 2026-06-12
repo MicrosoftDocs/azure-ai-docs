@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: "Guidance for how to deploy conversational language understanding responsibly, based on the knowledge and understanding from the team that created this product."
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 09/15/2021
+ms.date: 04/01/2026
 ---
 
 # Guidance for integration and responsible use with conversational language understanding

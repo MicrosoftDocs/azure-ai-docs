@@ -1,10 +1,6 @@
 ---
 title: Simple Query Syntax
-titleSuffix: Azure AI Search
 description: Reference for the simple query syntax used for full text search queries in Azure AI Search.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -28,7 +24,7 @@ Although the simple parser is based on the [Apache Lucene Simple Query Parser](h
 This example shows a simple query, distinguished by `"queryType": "simple"` and valid syntax. Although query type is set below, it's the default and can be omitted unless you're reverting from an alternative type. The following example is a search over independent terms, with a requirement that all matching documents include "pool".
 
 ```http
-POST https://{{service-name}}.search.windows.net/indexes/hotel-rooms-sample/docs/search?api-version=2025-09-01
+POST https://{{service-name}}.search.windows.net/indexes/hotel-rooms-sample/docs/search?api-version=2026-04-01
 {
   "queryType": "simple",
   "search": "budget hotel +pool",

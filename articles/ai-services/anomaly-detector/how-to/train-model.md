@@ -2,12 +2,12 @@
 title: Train a Multivariate Anomaly Detection model
 titleSuffix: Azure AI services
 description: Train a Multivariate Anomaly Detection model
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Train a Multivariate Anomaly Detection model
@@ -318,7 +318,7 @@ A response sample:
 
 ## List models
 
-You may refer to [this page](https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector-v1-1/operations/ListMultivariateModel) for information about the request URL and request headers. Notice that we only return 10 models ordered by update time, but you can visit other models by setting the `$skip` and the `$top` parameters in the request URL. For example, if your request URL is `https://{endpoint}/anomalydetector/v1.1/multivariate/models?$skip=10&$top=20`, then we'll skip the latest 10 models and return the next 20 models.
+Notice that we only return 10 models ordered by update time, but you can visit other models by setting the `$skip` and the `$top` parameters in the request URL. For example, if your request URL is `https://{endpoint}/anomalydetector/v1.1/multivariate/models?$skip=10&$top=20`, then we'll skip the latest 10 models and return the next 20 models.
 
 A sample response is 
 

@@ -1,33 +1,34 @@
 ---
 title: "What is Microsoft Foundry Control Plane?"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 05/06/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
 description: "Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise."
 ai-usage: ai-assisted
 #customer intent: As an enterprise administrator or AI developer, I want to understand what Foundry Control Plane is and how it provides unified visibility across my AI agent fleet so that I can determine if it meets my governance and operational needs.
+ms.custom: doc-kit-assisted
 ---
 
 # What is Microsoft Foundry Control Plane?
+
 Microsoft Foundry Control Plane is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Foundry Control Plane centralizes management for your AI agent fleet, from build to production.
 
-As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the visibility, governance, and control that you need to scale reliably.
+As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the centralized management that you need to scale reliably.
 
 This article is intended for enterprise administrators and AI developers who manage AI agents across multiple projects. You learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
-
-In this article, you learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
 
 ## Prerequisites
 
 To explore Foundry Control Plane, you need:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A Foundry project. For more information, see [Create a project](../how-to/create-projects.md).
+[!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
+
 - An [AI gateway configured](../configuration/enable-ai-api-management-gateway-portal.md) for advanced governance features.
-- Appropriate Azure role-based access control (RBAC) permissions for your subscription. <!-- TO VERIFY: Confirm required RBAC roles -->
+- Appropriate Azure role-based access control (RBAC) permissions for your subscription.
 
 ## When to use Foundry Control Plane
 
@@ -63,7 +64,7 @@ Foundry Control Plane supports the following tasks.
 
 - Correlate alerts, evaluation results, and trace data to identify problems quickly.
 
-- [Continuously evaluate](../../foundry-classic/how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
+- [Continuously evaluate](../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
 
 - Use the [AI Red Teaming Agent](../concepts/ai-red-teaming-agent.md) and [cluster analysis](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
@@ -85,7 +86,9 @@ Foundry Control Plane supports the following tasks.
 
 ## Key features
 
-The capabilities described previously are organized into panes that you access by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription.
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+The capabilities described previously are organized into panes that you access by selecting **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. These features are currently available through the Foundry portal only.
 
 Each pane within **Operate** is designed around a specific job. These panes help various roles, from builders to administrators, manage AI systems at scale.
 
@@ -112,7 +115,7 @@ Use the **Assets** pane to track, analyze, and manage every agent, model, and to
 This pane provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI resources efficiently. You can:
 
 - Filter and sort by key attributes such as version, tags, health score (percentage), cost, alerts, and token usage to locate assets quickly.
-- Drill down from any entry in the agent inventory table into the [Evaluation](../../foundry-classic/how-to/continuous-evaluation-agents.md) or [Monitoring](../../foundry-classic/how-to/monitor-applications.md) tab for pre-deployment and post-deployment insights.
+- Drill down from any entry in the agent inventory table into the [Evaluation](../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) or [Monitoring](../observability/how-to/how-to-monitor-agents-dashboard.md) tab for pre-deployment and post-deployment insights.
 - Surface inline recommendations to refine prompts, upgrade models, or optimize configurations based on performance and cost signals.
 - Correlate runtime logs with evaluation results to uncover root causes of errors or performance degradation.
 - Visualize drift, latency, and error clusters across runs or builds to detect emerging issues early.
@@ -141,6 +144,10 @@ Use the **Quota** pane to view, adjust, and request quotas.
 
 The **Quota** pane shows your model deployments and how much quota each deployment consumes. It gives insights into usage patterns and helps you manage resources effectively.
 
+By default, the quota view displays only models with active deployments. Turn on the **Show all** toggle to see the full list of available models and regions, including models you haven't deployed yet. Use **Show all** to explore available quota before you create a deployment, or to check which regions have capacity for a specific model.
+
+For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
+
 ### Admin
 
 Use the **Admin** pane to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
@@ -159,16 +166,17 @@ From **Admin**, administrators and power users can:
 
 ## Get started with Foundry Control Plane
 
-Foundry Control Plane is available in the Foundry portal. To start using Foundry Control Plane, explore these resources:
+Foundry Control Plane is available in the [Foundry portal](https://ai.azure.com). To start using Foundry Control Plane, explore these resources:
 
 - [Configure an AI gateway](../configuration/enable-ai-api-management-gateway-portal.md): Enable advanced governance features in your Foundry projects.
 - [Configure monitoring for your agent fleet](monitoring-across-fleet.md): Enable metrics and diagnostic information with observability features.
 - [Discover agents in your subscription](how-to-manage-agents.md): See which agents are available and manage them centrally.
 - [Register custom agents](register-custom-agent.md): Bring external agents into the Foundry Control Plane registry.
+- [Apply a guardrail policy for models](quickstart-create-guardrail-policy.md): Create and assign guardrail policies to enforce safety standards across model deployments.
 
 ## Related content
 
-- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
-- [Optimize model cost and performance](how-to-optimize-cost-performance.md): Analyze cost drivers, token usage, and resource consumption to maximize the return on investment from your agent fleet.
 - [Manage agents at scale](how-to-manage-agents.md): Track and manage agents from supported platforms in one unified view.
-- [Continuously evaluate your AI agents (preview)](../../foundry-classic/how-to/continuous-evaluation-agents.md): Monitor agent performance, quality, and risk dimensions automatically.
+- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
+- [Enforce token limits](how-to-enforce-limits-models.md): Set and manage token-based rate limits for model deployments.
+- [Govern agent infrastructure as a Microsoft Entra administrator](govern-agent-infrastructure-entra-admin.md): Manage agent identity and access from an Entra admin perspective.

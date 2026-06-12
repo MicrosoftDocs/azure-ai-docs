@@ -1,7 +1,6 @@
 ---
-title: Search index overview
-titleSuffix: Azure AI Search
-description: Explains index content, construction, physical expression, and schema.
+title: Search Index Overview
+description: Learn about search indexes in Azure AI Search, including schema design, field attributes, physical structure, and how indexes store searchable content.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -147,7 +146,7 @@ In Azure AI Search, you work with one index at a time. All index-related operati
 
 ### Continuously available
 
-An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). The physical index is managed internally. You manage the logical index.
+An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md). The physical index is managed internally. You manage the logical index.
 
 An index is continuously available and can't be paused or taken offline. Because it's designed for continuous operation, updates to its content and additions to the index itself happen in real time. If a request coincides with a document update, queries might temporarily return incomplete results.
 
@@ -161,7 +160,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
 | Endpoint | Connection and access control |
 |----------|-------------------------------|
-| `<your-service>.search.windows.net/indexes` | Targets the indexes collection. Used when creating, listing, or deleting an index. Admin rights are required for these operations and available through admin [API keys](search-security-api-keys.md) or a [Search Contributor role](search-security-rbac.md#built-in-roles-used-in-search). |
+| `<your-service>.search.windows.net/indexes` | Targets the indexes collection. Used when creating, listing, or deleting an index. Admin rights are required for these operations and available through admin [API keys](search-security-api-keys.md) or a [Search Contributor role](search-security-rbac.md#built-in-roles). |
 | `<your-service>.search.windows.net/indexes/<your-index>/docs` | Targets the documents collection of a single index. Used when querying an index or data refresh. For queries, read rights are sufficient and available through query API keys or a data reader role. For data refresh, admin rights are required. |
 
 #### How to connect to an index

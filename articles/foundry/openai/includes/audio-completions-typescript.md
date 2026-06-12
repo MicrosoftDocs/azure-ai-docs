@@ -1,11 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -17,7 +19,7 @@ ms.date: 1/21/2025
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
 - [TypeScript](https://www.typescriptlang.org/download/) installed globally.
-- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard).
 - Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md). 
 
 ## Microsoft Entra ID prerequisites
@@ -89,7 +91,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,
@@ -287,7 +289,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,
@@ -510,7 +512,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,

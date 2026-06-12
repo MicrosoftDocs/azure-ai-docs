@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: deeikele
 ms.custom: migration
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -18,7 +18,10 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 The workspace functionally remains unchanged with the V2 development platform. However, there are network-related changes to be aware of. For details, see [Network Isolation Change with Our New API Platform on Azure Resource Manager](how-to-configure-network-isolation-with-v2.md?tabs=python)
 
-This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
+This article gives a comparison of scenarios in SDK v1 and SDK v2.
+
+> [!IMPORTANT]
+> Azure Machine Learning SDK v1 was deprecated on March 31, 2025. Support ends on June 30, 2026. We recommend transitioning to SDK v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 ## Create a workspace
 
@@ -58,7 +61,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
         tags=dict(purpose="demo"),
     )
     
-    ml_client.workspaces.begin_create(ws)
+    ml_client.workspaces.begin_create(ws).result()
     ```
 
 ## Create a workspace for use with Azure Private Link endpoints
@@ -67,6 +70,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
 
     ```python
     from azureml.core import Workspace
+    from azureml.core import PrivateEndPointConfig
     
     ws = Workspace.create(
         name='my_workspace',
@@ -101,7 +105,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
     
     ws = Workspace(
-        name="private_link_endpoint_workspace,
+        name="private_link_endpoint_workspace",
         location="eastus",
         display_name="Private Link endpoint workspace",
         description="When using private link, you must set the image_build_compute property to a cluster name to use for Docker image environment building. You can also specify whether the workspace should be accessible over the internet.",
@@ -110,7 +114,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
         tags=dict(purpose="demonstration"),
     )
     
-    ml_client.workspaces.begin_create(ws)
+    ml_client.workspaces.begin_create(ws).result()
     ```
 
 ## Load/connect to workspace using parameters
@@ -145,7 +149,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     resource_group = "<RESOURCE_GROUP>"
     
     # get handle on the workspace
-    ws = MLClient(
+    ml_client = MLClient(
         DefaultAzureCredential(),
         subscription_id='<SUBSCRIPTION_ID>',
         resource_group_name='<RESOURCE_GROUP>',
@@ -171,7 +175,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     from azure.ai.ml.entities import Workspace
     from azure.identity import DefaultAzureCredential
     
-    ws = MLClient.from_config(
+    ml_client = MLClient.from_config(
         DefaultAzureCredential()
     )
     ```
@@ -180,7 +184,10 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
 
 |Functionality in SDK v1|Rough mapping in SDK v2|
 |-|-|
-|[Method/API in SDK v1 (use links to ref docs)](/python/api/azureml-core/azureml.core.workspace.workspace)|[Method/API in SDK v2 (use links to ref docs)](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace)|
+|[`Workspace.create()`](/python/api/azureml-core/azureml.core.workspace.workspace#azureml-core-workspace-workspace-create)|[`WorkspaceOperations.begin_create()`](/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-begin-create)|
+|[`Workspace.get()`](/python/api/azureml-core/azureml.core.workspace.workspace#azureml-core-workspace-workspace-get)|[`MLClient()`](/python/api/azure-ai-ml/azure.ai.ml.mlclient) with workspace parameters|
+|[`Workspace.from_config()`](/python/api/azureml-core/azureml.core.workspace.workspace#azureml-core-workspace-workspace-from-config)|[`MLClient.from_config()`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config)|
+|[`Workspace.add_private_endpoint()`](/python/api/azureml-core/azureml.core.workspace.workspace#azureml-core-workspace-workspace-add-private-endpoint)|[`Workspace(public_network_access="Disabled")`](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) via `begin_create()`|
 
 ## Related documents
 

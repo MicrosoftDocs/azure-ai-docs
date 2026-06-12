@@ -296,7 +296,7 @@ To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference 
 
 | Model  | Type | Capabilities | Inference API|
 | ------ | ---- | --- | ------------ |
-| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) |
+| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [The first foundation model for forecasting and anomaly detection](https://pypi.org/project/nixtla/) |
 
 #### Estimate the number of tokens needed
 
@@ -368,4 +368,4 @@ For examples of how to use Stability AI models, see the following examples:
 - [Deploy models as standard deployment](how-to-deploy-models-serverless.md)
 - [Model catalog and collections](concept-model-catalog.md)
 - [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md)
-- [Content safety for Models Sold Directly by Azure](../ai-foundry/concepts/model-catalog-content-safety.md)
+- [Content safety for Models sold by Azure](../ai-foundry/concepts/model-catalog-content-safety.md)

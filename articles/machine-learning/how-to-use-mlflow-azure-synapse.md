@@ -8,29 +8,32 @@ ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: fasantia
-ms.date: 07/06/2022
+ms.date: 03/26/2026
 ms.topic: how-to
-ms.custom: sdkv2
+ms.custom: sdkv2, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Track Azure Synapse Analytics ML experiments with MLflow and Azure Machine Learning
 
-In this article, learn how to enable MLflow to connect to Azure Machine Learning while working in an Azure Synapse Analytics workspace. You can leverage this configuration for tracking, model management and model deployment.
+In this article, you learn how to enable MLflow to connect to Azure Machine Learning while working in an Azure Synapse Analytics workspace. Use this configuration for tracking, model management, and model deployment.
 
-[MLflow](https://www.mlflow.org) is an open-source library for managing the life cycle of your machine learning experiments. MLFlow Tracking is a component of MLflow that logs and tracks your training run metrics and model artifacts. Learn more about [MLflow](concept-mlflow.md). 
+[MLflow](https://www.mlflow.org) is an open-source library for managing the life cycle of your machine learning experiments. MLflow Tracking is a component of MLflow that logs and tracks your training run metrics and model artifacts. For more information, see [MLflow](concept-mlflow.md).
 
-If you have an MLflow Project to train with Azure Machine Learning, see [Train ML models with MLflow Projects and Azure Machine Learning (preview)](how-to-train-mlflow-projects.md).
+> [!WARNING]
+> Support for MLflow Projects in Azure Machine Learning is retiring in September 2026. For code-based training jobs, use [Azure Machine Learning Jobs](how-to-use-mlflow-cli-runs.md) with MLflow tracking instead.
 
 ## Prerequisites
 
+* Python 3.10 or later installed in your Azure Synapse Analytics environment.
 * An [Azure Synapse Analytics workspace and cluster](/azure/synapse-analytics/quickstart-create-workspace).
 * An [Azure Machine Learning Workspace](quickstart-create-resources.md).
 
 ## Install libraries
 
-To install libraries on your dedicated cluster in Azure Synapse Analytics:
+To install libraries on your dedicated cluster in Azure Synapse Analytics, follow these steps:
 
-1. Create a `requirements.txt` file with the packages your experiments requires, but making sure it also includes the following packages:
+1. Create a `requirements.txt` file with the packages your experiments require, including the following packages:
 
     __requirements.txt__
 
@@ -40,27 +43,30 @@ To install libraries on your dedicated cluster in Azure Synapse Analytics:
     azure-ai-ml
     ```
 
-3. Navigate to Azure Analytics Workspace portal.
+    > [!TIP]
+    > Use [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md) instead of `mlflow`. It's a lightweight package without SQL storage, the server UI, or full data science dependencies. If you primarily need tracking and logging, use `mlflow-skinny`.
 
-4. Navigate to the **Manage** tab and select **Apache Spark Pools**.
+1. Go to the Azure Synapse Analytics workspace portal.
 
-5. Click the three dots next to the cluster name, and select **Packages**.
+1. Go to the **Manage** tab and select **Apache Spark Pools**.
+
+1. Select the **...** (ellipsis) next to the cluster name, and then select **Packages**.
 
     ![install mlflow packages in Azure Synapse Analytics](media/how-to-use-mlflow-azure/install-packages.png)
 
-6. On the **Requirements files** section, click on **Upload**.
+1. In the **Requirements files** section, select **Upload**.
 
-7. Upload the `requirements.txt` file.
+1. Upload the `requirements.txt` file.
 
-8. Wait for your cluster to restart.
+1. Wait for your cluster to restart.
 
 ## Track experiments with MLflow
 
-Azure Synapse Analytics can be configured to track experiments using MLflow to Azure Machine Learning workspace. Azure Machine Learning provides a centralized repository to manage the entire lifecycle of experiments, models and deployments. It also has the advantage of enabling easier path to deployment using Azure Machine Learning deployment options.
+You can configure Azure Synapse Analytics to track experiments by using MLflow to Azure Machine Learning workspace. Azure Machine Learning provides a centralized repository to manage the entire lifecycle of experiments, models, and deployments. It also has the advantage of enabling easier path to deployment by using Azure Machine Learning deployment options.
 
 ### Configuring your notebooks to use MLflow connected to Azure Machine Learning
 
-To use Azure Machine Learning as your centralized repository for experiments, you can leverage MLflow. On each notebook where you are working on, you have to configure the tracking URI to point to the workspace you will be using. The following example shows how it can be done:
+To use Azure Machine Learning as your centralized repository for experiments, you can use MLflow. On each notebook you're working on, configure the tracking URI to point to the workspace you're using. The following example shows how it can be done:
 
 __Configure tracking URI__
 
@@ -102,39 +108,42 @@ You can manage models registered in Azure Machine Learning using MLflow. View [M
 
 ## Deploying and consuming models registered in Azure Machine Learning
 
-Models registered in Azure Machine Learning Service using MLflow can be consumed as: 
+Models registered in Azure Machine Learning Service using MLflow can be consumed as:
 
-* An Azure Machine Learning endpoint (real-time and batch): This deployment allows you to leverage Azure Machine Learning deployment capabilities for both real-time and batch inference in Azure Container Instances (ACI), Azure Kubernetes (AKS) or our Managed Endpoints. 
+* An Azure Machine Learning online endpoint (real-time) or batch endpoint: This deployment uses Azure Machine Learning managed inferencing. See [Deploy MLflow models to online endpoints](how-to-deploy-mlflow-models-online-endpoints.md) for details.
 
-* MLFlow model objects or Pandas UDFs, which can be used in Azure Synapse Analytics notebooks in streaming or batch pipelines.
+* MLflow model objects or Pandas UDFs, which can be used in Azure Synapse Analytics notebooks in streaming or batch pipelines.
 
-### Deploy models to Azure Machine Learning endpoints 
-You can leverage the `azureml-mlflow` plugin to deploy a model to your Azure Machine Learning workspace. Check [How to deploy MLflow models](how-to-deploy-mlflow-models.md) page for a complete detail about how to deploy models to the different targets.
+### Deploy models to Azure Machine Learning endpoints
+
+You can use the `azureml-mlflow` plugin to deploy a model to your Azure Machine Learning workspace. See [How to deploy MLflow models](how-to-deploy-mlflow-models.md) for complete details about deploying models to different targets.
 
 > [!IMPORTANT]
 > Models need to be registered in Azure Machine Learning registry in order to deploy them. Deployment of unregistered models is not supported in Azure Machine Learning.
 
 ### Deploy models for batch scoring using UDFs
 
-You can choose Azure Synapse Analytics clusters for batch scoring. The MLFlow model is loaded and used as a Spark Pandas UDF to score new data. 
+You can choose Azure Synapse Analytics clusters for batch scoring. The MLflow model is loaded and used as a Spark Pandas UDF to score new data.
 
 ```python
-from pyspark.sql.types import ArrayType, FloatType 
+from pyspark.sql.types import ArrayType, FloatType
 
-model_uri = "runs:/"+last_run_id+ {model_path} 
+# Replace model_path with the relative path to your model artifact (for example, "model")
+model_uri = f"runs:/{last_run_id}/{model_path}"
 
-#Create a Spark UDF for the MLFlow model 
-pyfunc_udf = mlflow.pyfunc.spark_udf(spark, model_uri) 
+# Create a Spark UDF for the MLflow model
+pyfunc_udf = mlflow.pyfunc.spark_udf(spark, model_uri)
 
-#Load Scoring Data into Spark Dataframe 
-scoreDf = spark.table({table_name}).where({required_conditions}) 
+# Load scoring data into Spark DataFrame
+# Replace table_name and required_conditions with your values
+scoreDf = spark.table(table_name).where(required_conditions)
 
-#Make Prediction 
-preds = (scoreDf 
-           .withColumn('target_column_name', pyfunc_udf('Input_column1', 'Input_column2', ' Input_column3', …)) 
-        ) 
+# Make prediction
+preds = (scoreDf
+           .withColumn('target_column_name', pyfunc_udf('Input_column1', 'Input_column2', 'Input_column3'))
+        )
 
-display(preds) 
+display(preds)
 ```
 
 ## Clean up resources

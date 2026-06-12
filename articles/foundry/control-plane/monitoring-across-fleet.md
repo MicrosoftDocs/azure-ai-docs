@@ -4,15 +4,17 @@ description: "Track agent health, compliance, performance trends, and cost effic
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
-ms.date: 02/13/2026
+ms.date: 05/12/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.service: microsoft-foundry
+ms.subservice: foundry-control-plane
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.
 ---
 
 # Monitor agent health and performance across your fleet
+
 As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. Microsoft Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
 Fleet monitoring serves multiple roles:
@@ -68,17 +70,19 @@ Foundry Control Plane requires agents to log diagnostic information by following
 
 Follow these steps for each project where you want to configure monitoring:
 
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+
 1. On the toolbar, select **Operate**.
 
 1. On the left pane, select **Admin**.
 
-1. Under **All projects**, use the search box to look for your project.
+1. Under **All projects**, in the search box, enter your project name.
 
 1. Select the project.
 
 1. Select the **Connected resources** tab.
 
-1. Ensure that there's an associated resource for the category **AppInsights**.
+1. Verify that there's an associated resource for the category **AppInsights**.
 
     :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal that shows how to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
 
@@ -97,13 +101,13 @@ You can view aggregated metrics for all agents within a selected project by usin
 
 1. On the toolbar, select **Operate**.
 
-1. The **Overview** pane displays common metrics and insights for all discovered agents within the subscription by default.
+1. Review the metrics displayed on the **Overview** pane, which shows common metrics and insights for all discovered agents within the subscription by default.
 
     :::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Overview pane that displays trend-based health scores, alert summaries, and aggregated compliance metrics for a fleet." lightbox="media/overview/control-plane-overview.gif":::
 
-1. Use the project dropdown list to scope down the metrics to specific projects, if necessary.
+1. From the project dropdown list, select a project to scope the metrics, if necessary.
 
-1. Configure the date range by using the date selectors in the upper-right corner.
+1. Select a date range by using the date selectors in the upper-right corner.
 
 The **Overview** pane shows fleet-level health scores, alert summaries, active agent counts, error rates, and compliance metrics for the selected time range. Use this view to quickly assess the operational state of your fleet and identify areas that need attention.
 
@@ -121,9 +125,9 @@ You can view all your assets under a specific project, along with top-level metr
 
     :::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of the Agents tab that shows all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::
 
-   The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agent-inventory).
+    The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agent-inventory).
 
-1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. Use it to identify problems and take corrective actions.  
+1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. Use it to identify problems and take corrective actions.
 
     :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of the Foundry pane that shows details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
 

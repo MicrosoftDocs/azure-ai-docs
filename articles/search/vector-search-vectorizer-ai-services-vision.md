@@ -1,9 +1,7 @@
 ---
-title: Azure Vision vectorizer
-titleSuffix: Azure AI Search
+title: Azure Vision Vectorizer
 description: Connects to Azure Vision in Foundry Tools to generate embeddings at query time.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
@@ -15,7 +13,7 @@ ms.update-cycle: 365-days
 # Azure Vision vectorizer
 
 > [!IMPORTANT]
-> This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) and newer preview APIs support this feature.
+> This vectorizer is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) supports this feature.
 
 The **Azure Vision** vectorizer connects to Azure Vision in Foundry Tools via a [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). At query time, the vectorizer uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) to generate embeddings.
 

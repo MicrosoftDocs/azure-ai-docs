@@ -3,7 +3,7 @@ title: Azure Language in Foundry Tools - tools and agents
 titleSuffix: Foundry Tools
 description: Learn how Azure Language in Foundry Tools integrates with Microsoft Foundry, including Model Context Protocol (MCP) server endpoints, intent routing agents, and exact question answering agents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 02/06/2026
@@ -62,12 +62,12 @@ The MCP server exposes Azure Language features through an agent-friendly endpoin
 
 To use the Azure Language MCP server with agents:
 
-* An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A Foundry resource and project. You need Contributor or Owner role on the resource group.
 * An Azure Language resource.
 * A configured connection in your Foundry project so the agent can authenticate to the Azure Language endpoint.
 
-For connection setup details, see [Create a connection](../../../ai-foundry/how-to/connections-add.md?view=foundry&preserve-view=true).
+For connection setup details, see [Create a connection](../../../foundry/how-to/connections-add.md).
 
 ### Security considerations
 
@@ -92,7 +92,7 @@ The agent prioritizes deterministic behavior, making it suitable for enterprise 
 
 Before you set up the intent routing agent, make sure you have the following resources and configurations in place:
 
-* **Azure subscription**: [Create one for free](https://azure.microsoft.com/free/cognitive-services). You need Contributor or Owner role on the resource group.
+* **Azure subscription**: [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need Contributor or Owner role on the resource group.
 
 * **Foundry resource**: You need an active Foundry resource to host your agent.
 
@@ -136,13 +136,13 @@ The agent combines Foundry Agent Service capabilities with [**Custom Question An
 
 The agent works well for scenarios where answer accuracy is important, such as customer service, help desk operations, or compliance information delivery.
 
-In addition to creating the agent from the exact question answering agent template in Agent Catalog, you can also create the agent directly from your CQA project in the Foundry portal. For more information, see [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md).
+You can also create the agent directly from your CQA project in the Foundry portal. For more information, see [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md).
 
 ### Prerequisites
 
 Before you set up the exact question answering agent, make sure you have the following resources and configurations in place:
 
-* **Azure subscription**: [Create one for free](https://azure.microsoft.com/free/cognitive-services). You need Contributor or Owner role on the resource group.
+* **Azure subscription**: [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need Contributor or Owner role on the resource group.
 
 * **Foundry resource**: You need an active Foundry resource to host your agent.
 
@@ -189,7 +189,7 @@ Both the intent routing agent and the exact question answering agent require a c
 1. For Foundry and AI hub resources, find the resource key on the resource overview page in the Foundry portal management center.
 1. For any resource type, you can also find the key in the Azure portal.
 
-For detailed connection instructions, see [Create a connection](../../../ai-foundry/how-to/connections-add.md?view=foundry&preserve-view=true).
+For detailed connection instructions, see [Create a connection](../../../foundry/how-to/connections-add.md).
 
 To verify the connection is working, send a test message to the agent. If the agent returns a response from your CQA knowledge base, the connection is configured correctly.
 

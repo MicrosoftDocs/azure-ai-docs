@@ -2,8 +2,8 @@
 title: "Supported programming languages for models in Microsoft Foundry Models (classic)"
 description: "Learn how to choose the right programming languages and SDKs for deploying and using models in Microsoft Foundry Models. (classic)"
 author: msakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
 ms.date: 11/21/2025

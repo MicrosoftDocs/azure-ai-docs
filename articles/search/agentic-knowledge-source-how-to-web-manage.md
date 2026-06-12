@@ -1,15 +1,12 @@
 ---
 title: Enable or Disable Access to Web Knowledge Source
-titleSuffix: Azure AI Search
 description: Learn how to enable or disable the use of Web Knowledge Source in your Azure subscription. By default, access is enabled, but you can disable or re-enable access using the Azure CLI.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 04/30/2026
+ai-usage: ai-assisted
 ---
 
 # Manage access to Web Knowledge Source in your Azure subscription
@@ -19,9 +16,7 @@ ms.date: 11/19/2025
 >
 > + The [Microsoft Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) doesn't apply to data sent to Web Knowledge Source. When Customer uses Web Knowledge Source, Customer Data flows outside the Azure compliance and Geo boundary. This also means use of Web Knowledge Source waives all elevated Government Community Cloud security and compliance commitments to include data sovereignty and screened/citizenship-based support, as applicable.
 >
-> + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+> + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis).
 
 As an Azure admin, you can use the Azure CLI to enable or disable the use of [Web Knowledge Source](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all search services within the specified subscription.
 

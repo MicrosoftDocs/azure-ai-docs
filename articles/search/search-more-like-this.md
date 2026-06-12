@@ -1,9 +1,6 @@
 ---
 title: moreLikeThis Query Feature
-titleSuffix: Azure AI Search
 description: Describes the moreLikeThis feature, which is available in preview versions of the Azure AI Search REST API.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -15,7 +12,7 @@ ms.update-cycle: 365-days
 # moreLikeThis in Azure AI Search
 
 > [!IMPORTANT] 
-> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
+> This feature is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
 
 `moreLikeThis=[key]` is a query parameter in the [Search Documents API](/rest/api/searchservice/documents/search-post) that finds documents similar to the document specified by the document key. When a search request is made with `moreLikeThis`, a query is generated with search terms extracted from the given document that describe that document best. The generated query is then used to make the search request. The `moreLikeThis` parameter can't be used with the search parameter, `search=[string]`.
 
@@ -32,14 +29,14 @@ All following examples use the hotels sample from [Quickstart: Full-text search 
 The following query finds documents whose description fields are most similar to the field of the source document as specified by the `moreLikeThis` parameter:
 
 ```http
-GET /indexes/hotels-sample/docs?moreLikeThis=29&searchFields=Description&api-version=2024-05-01-preview
+GET /indexes/hotels-sample/docs?moreLikeThis=29&searchFields=Description&api-version=2026-05-01-preview
 ```
 
 In this example, the request searches for hotels similar to the one with `HotelId` 29.
 Rather than using HTTP GET, you can also invoke `MoreLikeThis` using HTTP POST:
 
 ```http
-POST /indexes/hotels-sample/docs/search?api-version=2024-05-01-preview
+POST /indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
     {
       "moreLikeThis": "29",
       "searchFields": "Description"
@@ -51,7 +48,7 @@ POST /indexes/hotels-sample/docs/search?api-version=2024-05-01-preview
 `MoreLikeThis` can be combined with other common query parameters like `$filter`. For instance, the query can be restricted to only hotels whose category is 'Budget' and where the rating is higher than 3.5:
 
 ```http
-GET /indexes/hotels-sample/docs?moreLikeThis=20&searchFields=Description&$filter=(Category eq 'Budget' and Rating gt 3.5)&api-version=2024-05-01-preview
+GET /indexes/hotels-sample/docs?moreLikeThis=20&searchFields=Description&$filter=(Category eq 'Budget' and Rating gt 3.5)&api-version=2026-05-01-preview
 ```
 
 ### Select fields and limit results
@@ -59,7 +56,7 @@ GET /indexes/hotels-sample/docs?moreLikeThis=20&searchFields=Description&$filter
 The `$top` selector can be used to limit how many results should be returned in a `MoreLikeThis` query. Also, fields can be selected with `$select`. Here the top three hotels are selected along with their ID, Name, and Rating: 
 
 ```http
-GET /indexes/hotels-sample/docs?moreLikeThis=20&searchFields=Description&$filter=(Category eq 'Budget' and Rating gt 3.5)&$top=3&$select=HotelId,HotelName,Rating&api-version=2024-05-01-preview
+GET /indexes/hotels-sample/docs?moreLikeThis=20&searchFields=Description&$filter=(Category eq 'Budget' and Rating gt 3.5)&$top=3&$select=HotelId,HotelName,Rating&api-version=2026-05-01-preview
 ```
 
 ## Next steps
