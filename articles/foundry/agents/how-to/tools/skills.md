@@ -33,12 +33,12 @@ In this article, you learn how to:
 
 | Feature | REST API | Python | .NET | JavaScript | Toolbox | Hosted agent |
 | ------- | -------- | ------ | ---- | ---------- | ------- | ------------ |
-| Create skill version (JSON inline content) | ?? | ?? | ?? | ?? | N/A | N/A |
-| Create skill version (ZIP file upload) | ?? | ?? | ?? | ?? | N/A | N/A |
-| List, get, and delete skills and versions | ?? | ?? | ?? | ?? | N/A | N/A |
-| Download skill content | ?? | ?? | ?? | ?? | N/A | N/A |
-| Update skill default version | ?? | ?? | ?? | ?? | N/A | N/A |
-| Attach skills to a toolbox | ?? | ?? | ?? | ?? | ?? | N/A |
+| Create skill version (JSON inline content) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Create skill version (ZIP file upload) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| List, get, and delete skills and versions | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Download skill content | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
 
 ## Prerequisites
 
@@ -252,7 +252,7 @@ $PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
 azd ai agent project set --endpoint $PE
 ```
 
-Endpoint resolution order: `-p` flag ? azd env `AZURE_AI_PROJECT_ENDPOINT` ? global config `extensions.ai-skills.project.context.endpoint` (falls back to `extensions.ai-agents.project.context.endpoint`) ? env var `FOUNDRY_PROJECT_ENDPOINT`.
+Endpoint resolution order: `-p` flag → azd env `AZURE_AI_PROJECT_ENDPOINT` → global config `extensions.ai-skills.project.context.endpoint` (falls back to `extensions.ai-agents.project.context.endpoint`) → env var `FOUNDRY_PROJECT_ENDPOINT`.
 
 **Create the first version** with inline metadata:
 
@@ -994,13 +994,13 @@ azd env set GITHUB_TOKEN="github_pat_..."
 The scaffolded project includes `main.py`, configuration files, and a sample `joke` skill:
 
 ```
-+-- main.py                  ? agent code that loads skills via CopilotClient
-+-- agent.yaml
-+-- agent.manifest.yaml
-+-- requirements.txt
-+-- skills/
-    +-- joke/
-        +-- SKILL.md         ? bundled sample skill
+├── main.py                  ← agent code that loads skills via CopilotClient
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    └── joke/
+        └── SKILL.md         ← bundled sample skill
 ```
 
 In `main.py`, the `skill_directories` parameter tells the Copilot SDK where to find skill files. Any `SKILL.md` in a subdirectory of `skills/` is loaded as extra instructions when a session starts.
@@ -1018,15 +1018,15 @@ If you haven't stored the greeting skill in Foundry yet, copy the skill content 
 The project now includes both skills:
 
 ```
-+-- main.py
-+-- agent.yaml
-+-- agent.manifest.yaml
-+-- requirements.txt
-+-- skills/
-    +-- greeting/
-    —   +-- SKILL.md         ? your greeting skill
-    +-- joke/
-        +-- SKILL.md
+├── main.py
+├── agent.yaml
+├── agent.manifest.yaml
+├── requirements.txt
+└── skills/
+    ├── greeting/
+    │   └── SKILL.md         ← your greeting skill
+    └── joke/
+        └── SKILL.md
 ```
 
 ### Step 3: Run and test locally
