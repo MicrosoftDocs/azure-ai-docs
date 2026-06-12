@@ -3219,6 +3219,9 @@ asyncio.run(list_skills())
 
 Skills appear as MCP resources with URIs in the format `skill://{name}`.
 
+### Consume toolbox skills in Microsoft Agent Framework
+
+To load attached skills at runtime instead of bundling `SKILL.md` files into your agent, connect to the toolbox MCP endpoint and discover skills as MCP resources. For a complete C# example, see the [Foundry Toolbox MCP skills sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/foundry-toolbox-mcp-skills). The sample hosts an agent with the Microsoft Agent Framework Responses hosting layer (`AddFoundryResponses` and `MapFoundryResponses`) and uses an `AgentSkillsProvider`, built with `AgentSkillsProviderBuilder.UseMcpSkills`, to apply the [Agent Skills](https://agentskills.io/) progressive-disclosure pattern. The agent advertises skill names and descriptions in the system prompt, then fetches the full skill body and any supplementary resources from the toolbox only when it needs them, which reduces token usage.
 
 ## Virtual network support
 

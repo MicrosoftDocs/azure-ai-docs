@@ -108,6 +108,16 @@ When agents connect to the toolbox MCP endpoint, skills are exposed as [MCP Reso
 
 For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article.
 
+### Consume toolbox skills in Microsoft Agent Framework
+
+After you attach skills to a toolbox, an agent can discover and load them from the toolbox MCP endpoint at runtime instead of bundling `SKILL.md` files locally. For a complete C# example, see the [Foundry Toolbox MCP skills sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework/foundry-toolbox-mcp-skills). The sample hosts an agent with the Microsoft Agent Framework Responses hosting layer and uses an `AgentSkillsProvider`, built with `AgentSkillsProviderBuilder.UseMcpSkills`, to apply the [Agent Skills](https://agentskills.io/) progressive-disclosure pattern:
+
+1. **Advertise**: Skill names and descriptions are injected into the system prompt so the agent knows which skills are available.
+1. **Load**: When the agent decides a skill is relevant, it retrieves the full skill body from the toolbox.
+1. **Read resources**: If a skill includes supplementary content, such as reference documents or assets, the agent reads them on demand.
+
+The agent fetches the full skill body and resources from the toolbox only when it needs them, which reduces token usage. The sample consumes skills from an existing toolbox; it doesn't create or provision them.
+
 ## Manage skills with the REST API
 
 The Skills API is versioned: creating a skill version auto-creates the skill if it doesn't exist yet. Each update creates a new immutable `SkillVersion`. The parent `Skill` object tracks `default_version` (the active version) and `latest_version`.
