@@ -72,6 +72,17 @@ To edit a control by overriding it:
 3. Select **Add control**.
 4. A pop-up asks for confirmation to override the existing control. Select **Confirm**.
 
+## Add a blocklist as control in a guardrail 
+
+You can use a blocklist as an additional filtering mechanism in your guardrail. For more information about blocklists, see [more about blocklist](../openai/how-to/use-blocklists.md).
+
+To add a blocklist control to your guardrail:
+
+1. In the control list, select 'Blocklists'
+2. From the dropdown menu, select the blocklist that you want to use. You can select either a custom blocklist or a built-in blocklist.
+3. If you have not created a blocklist yet, select the option to create one from the dropdown menu.
+4. Save your changes to apply the blocklist to the guardrail.
+
 ## Assign a guardrail to agents and models
 
 After adding, editing, and/or deleting controls as desired:
