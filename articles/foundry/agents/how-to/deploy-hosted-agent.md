@@ -237,6 +237,8 @@ Content-Type: application/json
 
 The Azure Developer CLI (`azd`) and VS Code extension automate the full deployment lifecycle. For a step-by-step walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md).
 
+To screen prompts and responses against a content safety policy, [add a content safety guardrail to your agent](add-hosted-agent-guardrails.md).
+
 ## Deploy using the Python SDK
 
 Use the SDK when you want to manage agent deployments directly from Python code.
@@ -341,6 +343,8 @@ Key parameters:
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
 | `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, `invocations_ws`, or any combination) |
+
+To apply a content safety policy, pass a `rai_config` to the definition. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
 
@@ -454,6 +458,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 ```
 
 Creating an agent also creates version `1` and triggers provisioning.
+
+To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
 
@@ -590,6 +596,7 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 ## Related content
 
 - [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
 <!-- - [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md) -->
