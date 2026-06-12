@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 04/14/2026
+ms.date: 06/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -155,7 +155,7 @@ Don't redeclare platform-injected variables in `agent.yaml`—they're set automa
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
 
 > [!IMPORTANT]
-> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights (pricing)[https://azure.microsoft.com/en-us/pricing/details/monitor/] might apply. (Learn more)[https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data#disable-tracing].
+> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights [pricing](https://azure.microsoft.com/en-us/pricing/details/monitor/) might apply. [Learn more](https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data#disable-tracing).
 
 ### Reference project connections in environment variables
 
