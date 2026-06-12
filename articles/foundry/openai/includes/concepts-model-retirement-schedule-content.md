@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/02/2026
+ms.date: 06/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -197,7 +197,7 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 |-------|---------|-----------|-----------------|-------------|
 | claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
 | claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
-| claude-opus-4-1 | — | Preview | 2026-10-19 | — |
+| claude-opus-4-1 | — | Preview | 2026-08-05 | claude-opus-4-8 |
 | claude-opus-4-5 | — | Preview | 2026-10-19 | — |
 | claude-opus-4-6 | — | Preview | 2027-02-02 | — |
 | claude-opus-4-7 | — | Preview | 2027-04-06 | — |
@@ -218,7 +218,8 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-V4-Flash | 1 | GA | — | — |
+| DeepSeek-V4-Flash | 2026-04-23 | GA | 2026-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | GA | 2026-08-20 | — |
 
 ### Fireworks
 
