@@ -33,7 +33,7 @@ The grounding process involves several key steps:
 >[!IMPORTANT]
 > - Grounding with Bing Search and Grounding with Bing Custom Search are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). 
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable.  
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for [details](https://www.microsoft.com/bing/apis/grounding-pricing). 
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for [details](https://www.microsoft.com/en-us/bing/apis). 
 > - See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
 
 >[!NOTE]
