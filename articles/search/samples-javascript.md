@@ -35,7 +35,7 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 | [dataSourceConnections (for indexers)](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v13/javascript/dataSourceConnectionOperations.js) | Create, update, get, list, and delete data source connections, which are required for indexer-based indexing of [supported data sources](search-indexer-overview.md#supported-data-sources). |
 | [skillsets](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, and delete [skillsets](cognitive-search-working-with-skillsets.md) that are attached to indexers and perform AI-based enrichment during indexing. |
 | [synonymMaps](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, and delete [synonym maps](search-synonyms.md). |
-| [vectorSearch](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v12-beta/javascript/vectorSearch.js) | Index vectors and send a [vector query](vector-search-how-to-query.md). |
+| [vectorSearch](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v13/javascript/vectorSearch.js) | Index vectors and send a [vector query](vector-search-how-to-query.md). |
 
 ### TypeScript samples
 
