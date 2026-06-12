@@ -204,8 +204,13 @@ items:
     displayName: MAI image models in Foundry
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Claude models
-    displayName: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    items:
+    - name: Claude models in Foundry
+      displayName: Overview of Claude models in Foundry
+      href: ../../foundry-models/concepts/claude-models.md
+    - name: Deploy and use Claude models
+      displayName: Deploy and use Claude models in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-claude.md
   - name: FLUX models
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
