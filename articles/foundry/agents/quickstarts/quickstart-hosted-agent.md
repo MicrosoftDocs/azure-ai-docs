@@ -83,21 +83,11 @@ azd provision
 
 ## Step 3: Test the agent locally
 
-1. Start the agent:
+```
+azd ai agent run --no-inspector
+```
 
-    ```
-    azd ai agent run --no-inspector
-    ```
-
-    This command creates a virtual environment, installs dependencies, and launches the agent using the `startupCommand` defined in `azure.yaml`. Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are nonblocking. The agent starts and responds correctly despite them.
-
-1. In a separate terminal, send a test prompt:
-
-    ```
-    azd ai agent invoke --protocol responses --local "Write a haiku about deploying cloud applications."
-    ```
-
-    You should see a haiku response from the agent.
+This command creates a virtual environment, installs dependencies, launches the agent using the `startupCommand` defined in `azure.yaml` and opens the agent inspector in your browser so you can chat with the agent.
 
 ## Step 4: Deploy to Foundry Agent Service
 
