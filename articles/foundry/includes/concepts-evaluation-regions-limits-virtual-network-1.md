@@ -52,11 +52,11 @@ The batch evaluations are supported in the following regions:
 
 The following safety evaluators and AI red teaming are supported in these regions: Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes, and AI red teaming.
 
-| Americas | Europe |
-|--|--|
-| East US 2 | France Central |
-| North Central US | Sweden Central |
-|  | Switzerland West |
+| Americas | Europe | Asia Pacific |
+|--|--|--|
+| East US 2 | France Central | Australia East |
+| North Central US | Sweden Central |  |
+|  | Switzerland West |  |
 
 Supported regions for Groundedness Pro:
 
