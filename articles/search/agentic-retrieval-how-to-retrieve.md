@@ -1,5 +1,5 @@
 ---
-title: Query Knowledge Base via APIs or MCP
+title: Query Knowledge Base via API or MCP
 description: Learn how to query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -339,7 +339,7 @@ Pass the following parameters to call the retrieve action.
 | `includeActivity` | When `true`, the response includes an `activity` array that describes the steps the pipeline ran, such as query planning, search index calls, and answer synthesis. Defaults to `false`. For a usage example, see [Inspect model names in activity logs](#inspect-model-names-in-activity-logs). | Boolean | Yes | No |
 | `maxOutputDocuments` | Caps the number of grounding documents returned by the retrieve call. Applies after per-source candidate selection. If `maxOutputSize` is also set, both constraints apply, and whichever limit is reached first wins. The service can return fewer documents than this parameter's value if fewer results survive ranking, thresholding, or deduplication. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
 | `maxOutputSize` | Limits the size, in tokens, of the grounded response payload. Documents that don't fit under the limit are omitted from the response. If `maxOutputDocuments` is also set, both constraints apply, and whichever limit is reached first wins. For a usage example and a table of setting combinations, see [Limit final grounding documents](#limit-final-grounding-documents). | Integer | Yes | No |
-| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
+| `retrievalReasoningEffort` | Sets the retrieval reasoning effort for the request and overrides the knowledge base default. For valid values and tradeoffs, see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | Yes | No |
 | `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 | `knowledgeSourceParams.knowledgeSourceName` | Name of the knowledge source the entry applies to. The knowledge source must already be attached to the knowledge base. | String | Yes | Yes |
 | `knowledgeSourceParams.kind` | Discriminator for the knowledge source type, such as `searchIndex`, `web`, `azureBlob`, or `sharepoint`. Must match the underlying knowledge source kind. | String | Yes | Yes |
