@@ -192,6 +192,8 @@ Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/r
 > [!NOTE]
 > For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 
+The registry must have the `azureADAuthenticationAsArmPolicy` policy set to `enabled`.
+
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
