@@ -11,7 +11,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: how-to
 ms.date: 05/13/2026
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 ---
 
@@ -51,6 +51,7 @@ ai-usage: ai-assisted
 * `gpt-5.4-nano` (`2026-03-17`)
 * `gpt-5.5` (`2026-04-24`)
 * `gpt-chat-latest` (`2026-05-05`)
+* `gpt-chat-latest` (`2026-05-28`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

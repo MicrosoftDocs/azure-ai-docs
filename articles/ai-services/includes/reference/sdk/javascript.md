@@ -3,8 +3,8 @@ title: Azure AI SDK for JavaScript
 titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries and packages for JavaScript.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: reference
 ms.date: 03/06/2024
 ms.author: lajanuar

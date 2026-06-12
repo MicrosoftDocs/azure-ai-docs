@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to get speech to text session ID and transcription ID
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: jagoerge

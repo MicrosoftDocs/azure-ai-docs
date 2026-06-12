@@ -4,7 +4,7 @@ description: "Learn how Microsoft Agent 365 provides governance, security, and l
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 05/04/2026
+ms.date: 06/05/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Foundry agents in Microsoft Agent 365 
 
-This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how AI teammates can be created, approved, and hired in Agent 365. 
+This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how autopilots can be created, approved, and hired in Agent 365. 
 
 ## What is Microsoft Agent 365?
 
@@ -32,9 +32,9 @@ This article describes how Foundry agents can be managed and governed in Microso
 
 **All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associated with an agent. Foundry agents are governed alongside agents from Copilot Studio and other ecosystem SaaS agents in a unified registry view. No extra configuration is required for Foundry-originated agents.
 
-## Create AI teammates
+## Create autopilots
 
-There's also a specific use case in which Foundry Hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
+There's also a specific use case in which Foundry Hosted agents can be pushed as autopilots to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
 
 
 The rest of this article walks through that process.
@@ -61,15 +61,15 @@ The sample provisions Azure resources and publishes a Hosted agent end-to-end. S
 
 - Creates or updates Azure resources required to run the sample.
 - Creates an agent version and configures endpoint traffic to always route to that version
-- Submits an AI teammate request that requires admin approval in the Microsoft 365 admin center.
+- Submits an autopilot request that requires admin approval in the Microsoft 365 admin center.
 
 ### Run the code sample
-Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/FoundryA365).
+Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/foundry-autopilot-agent).
 
 At a high level, you typically:
 
 1. Clone the `foundry-samples` repository.
-1. Change to the `samples/csharp/FoundryA365` directory.
+1. Change to the `samples/csharp/foundry-autopilot-agent` directory.
 1. Run the Azure Developer CLI (`azd`) workflow described in the README (for example, sign in, create resources, and deploy).
 1. Wait for provisioning, container build, and deployment to complete. The first run can take longer.
 
@@ -85,7 +85,7 @@ azd env get-values
 > [!NOTE]
 > Depending on your tenant settings, you might need to sign in with more Azure CLI scopes before provisioning (for example, for Foundry, Microsoft Graph, and Azure Resource Manager). Follow the exact commands in the sample README.
 
-When the sample completes successfully (for example, the `azd` commands finish without errors), you have a published agent application and a digital worker request ready for approval in the Microsoft 365 admin center. Once approved by an admin, you should see the agent in the Agent 365 registry. You might not see anything to approve yet until you complete the approval steps in the README.
+When the sample completes successfully (for example, the `azd` commands finish without errors), you have a published agent application and an autopilot request ready for approval in the Microsoft 365 admin center. Once approved by an admin, you should see the agent in the Agent 365 registry. You might not see anything to approve yet until you complete the approval steps in the README.
 
 ### Validate
 
@@ -102,7 +102,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
     1. Go to **Agents for your team**.
     1. Find your agent and create an instance.
     
-  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of a digital worker in Microsoft Teams." lightbox="../media/create-instance.png":::
+  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of an autopilot in Microsoft Teams." lightbox="../media/create-instance.png":::
 
 ### Troubleshooting
 

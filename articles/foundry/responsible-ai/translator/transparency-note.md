@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms"
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: concept-article
 ms.date: 04/01/2026

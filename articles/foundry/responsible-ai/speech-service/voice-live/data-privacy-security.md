@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: "This document details issues for data, privacy, and security for Voice live."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 09/29/2025
@@ -23,15 +23,7 @@ Voice Live API is a fully managed service designed to empower developers to secu
 Voice Live API stores and processes data to provide the service and to monitor for violations of the applicable [Product Terms](https://www.microsoft.com/licensing/terms/). See also [the Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by the Foundry Tools, including Voice Live API. Voice Live API is an Azure service;[ learn more about applicable Azure compliance offerings](/compliance/regulatory/offering-home). 
 
 > [!IMPORTANT]
-> Your prompts (inputs), completions (outputs), and your training data: 
->
-> - are NOT available to other customers. 
-> - are NOT available to OpenAI or other model providers. 
-> - are NOT used to improve OpenAI models or other model providers’ models. 
-> - are NOT used to train, retrain, or improve Azure OpenAI Service or Azure Speech in Foundry Tools foundation models. 
-> - are NOT used to improve any Microsoft or third-party products or services without your permission or instruction. 
->
-> With Voice Live API, your fine-tuned speech models are available exclusively for your use.
+> Voice Live supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 
 The language models provided with Voice Live API are operated by Microsoft as an Azure service. If you choose to bring your own agent created with [Agent Service](/azure/ai-foundry/agents/overview) or bring your deployed model in [Foundry Models](/azure/ai-foundry/concepts/foundry-models-overview) to Voice Live API, additional information on data, privacy, and security is available at [Data, privacy, and security for Agent Service](/azure/ai-foundry/responsible-ai/agents/data-privacy-security) and [Data, privacy, and security for use of models through the model catalog in Foundry](/azure/ai-foundry/how-to/concept-data-privacy).
 

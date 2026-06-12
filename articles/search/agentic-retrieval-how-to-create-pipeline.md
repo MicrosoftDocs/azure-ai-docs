@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 04/30/2026
+ms.date: 06/02/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -12,6 +12,17 @@ ai-usage: ai-assisted
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
 
 [!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for [agentic retrieval](agentic-retrieval-overview.md). You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
 
@@ -41,14 +52,16 @@ In this tutorial, you:
 
 + An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
++ Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
-+ The latest version of [Python](https://www.python.org/downloads/).
++ [Python 3.8](https://www.python.org/downloads/) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
 
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
 > [!IMPORTANT]
-> If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
+> If you disable public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
 
 ## Understand the solution
 
@@ -94,14 +107,14 @@ To configure access for this solution:
 
 1. Open the folder in Visual Studio Code.
 
-1. Select **View > Command Palette**, and then select **Python: Create Environment**. Follow the prompts to create a virtual environment.
+1. Select **View** > **Command Palette**, and then select **Python: Create Environment**. Follow the prompts to create a virtual environment.
 
-1. Select **Terminal > New Terminal**.
+1. Select **Terminal** > **New Terminal**.
 
 1. Install the required packages.
 
    ```console
-   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel dotenv azure-search-documents==11.7.0b2 requests openai
+   pip install azure-ai-projects==2.0.0b1 azure-mgmt-cognitiveservices azure-identity ipykernel python-dotenv azure-search-documents==11.7.0b2 requests openai
    ```
 
 1. Create a file named `.env` in the `tutorial-agentic-retrieval` folder.
@@ -285,7 +298,12 @@ ks = SearchIndexKnowledgeSource(
     description="Knowledge source for Earth at night data",
     search_index_parameters=SearchIndexKnowledgeSourceParameters(
         search_index_name=index_name,
-        source_data_fields=[SearchIndexFieldReference(name="id"), SearchIndexFieldReference(name="page_number")]
+        semantic_configuration_name="semantic_config",
+        source_data_fields=[
+            SearchIndexFieldReference(name="id"),
+            SearchIndexFieldReference(name="page_chunk"),
+            SearchIndexFieldReference(name="page_number")
+        ]
     ),
 )
 
@@ -308,10 +326,8 @@ For more information about this step, see [Create a knowledge base in Azure AI S
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    KnowledgeBase, KnowledgeRetrievalMinimalReasoningEffort,
-    KnowledgeRetrievalOutputMode, KnowledgeSourceReference
-)
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeSourceReference
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalMinimalReasoningEffort
 
 knowledge_base = KnowledgeBase(
     name=base_name,
@@ -320,7 +336,7 @@ knowledge_base = KnowledgeBase(
             name=knowledge_source_name
         )
     ],
-    output_mode=KnowledgeRetrievalOutputMode.EXTRACTIVE_DATA,
+    output_mode="extractiveData",
     retrieval_reasoning_effort=KnowledgeRetrievalMinimalReasoningEffort()
 )
 
@@ -329,12 +345,12 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint}/knowledgebases/{base_name}/mcp?api-version=2025-11-01-Preview"
+mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
 ```
 
 ### Set up a project client
 
-Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project. Your project might not contain any agents yet, but if you've already completed this tutorial, the agent is listed here.
+Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project. Your project might not contain any agents yet, but if you already completed this tutorial, the agent is listed here.
 
 ```python
 from azure.ai.projects import AIProjectClient
@@ -419,7 +435,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
@@ -554,15 +570,15 @@ index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
 print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
 
 # Delete the search index
-index_client.delete_index(index)
+index_client.delete_index(index_name)
 print(f"Index '{index_name}' deleted successfully")
 ```
 
 ## Improve data quality
 
-By default, search results from knowledge bases are consolidated into a large, unified string that can be passed to agents for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
+By default, search results from knowledge bases are consolidated into a large, unified string that you can pass to agents for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
 
-+ [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which is used by the retrieval engine when queries include fields associated with that profile.
++ [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which the retrieval engine uses when queries include fields associated with that profile.
 
 + [Semantic configuration](semantic-how-to-configure.md) is required, but you determine which fields are prioritized and used for ranking.
 

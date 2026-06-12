@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/25/2026
+ms.date: 06/03/2026
 ms.custom: include
 ---
 
@@ -125,15 +125,15 @@ The tables in this section list the throughput and deployment parameters for eac
 > [!NOTE]
 > gpt-5.4, gpt-4.1, gpt-4.1-mini, and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
-| Topic | **gpt-5.5** | **gpt-5.4** | **gpt-5.3-codex** | **gpt-5.2** | **gpt-5.2-codex** | **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 1,200 | 2,400 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Output-to-input ratio | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Topic | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Output-to-input ratio | 6 | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Latency target value<sup>1</sup> | 99% > 100 TPS | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
@@ -169,16 +169,16 @@ This section lists other Foundry Models sold by Azure, not including the Azure O
 
 <sup>2</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
-### Fireworks on Microsoft Foundry models (Preview)
+### Fireworks on Microsoft Foundry models
 
-The following Fireworks on Microsoft Foundry models currently support provisioned throughput.
+The following Fireworks on Microsoft Foundry models support provisioned throughput.
 
-|Topic|**gpt-oss-120b**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**DeepSeek v3.1**|**DeepSeek v3.2**|**Qwen3 14B**|**MiniMax 2.5**|**GLM-5**|**GLM-4.7**|
-|---|---|---|---|---|---|---|---|---|---|---|---|
-|Global provisioned minimum deployment|80|500|500|800|800|800|1200|80|400|700|800|
-|Global provisioned scale increment|40|275|275|400|400|400|600|40|200|350|400|
-|Input TPM per PTU|13,500|1,250|700|530|2,000|1,050|1,500|4,800|3,000|3,500|3,000|
-|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
+|Topic|**DeepSeek v3.1**|**DeepSeek V4 Flash**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM-5.1**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.6**|**Llama 3.1 8B Instruct**|**Ministral 3 3B Instruct 2512**|**Qwen 3.5 9B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Global provisioned minimum deployment|200|100|400|200|200|200|400|200|200|200|40|40|40|40|450|200|
+|Global provisioned scale increment|100|50|200|100|100|100|200|100|100|100|20|20|20|20|225|100|
+|Input TPM per PTU|2,100|2,800|200|5,400|2,200|6,000|900|2,500|1,400|4,000|57,800|25,400|10,700|17,800|37,253|4,032|
+|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 

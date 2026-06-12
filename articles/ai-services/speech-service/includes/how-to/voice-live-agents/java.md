@@ -1,10 +1,10 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 2/20/2026
 ai-usage: ai-assisted
@@ -50,7 +50,7 @@ Use Microsoft Entra ID credentials for agent mode. Agent invocation in this flow
 
 ### API version pinning
 
-Use a consistent SDK version (`azure-ai-voicelive:1.0.0-beta.5`) in the Maven POM to keep behavior predictable across preview updates. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
+Use a consistent SDK version (`azure-ai-voicelive:1.0.0`) in the Maven POM to keep behavior predictable. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
 
 ### Conversation and trace alignment
 

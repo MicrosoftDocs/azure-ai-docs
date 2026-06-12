@@ -3,8 +3,8 @@ title: "Text to speech avatar quickstart - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to create an app that converts text to avatar video, and explore supported functions and custom configuration options.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 1/29/2026
 ms.author: pafarley

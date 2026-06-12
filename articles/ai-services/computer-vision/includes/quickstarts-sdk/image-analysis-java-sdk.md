@@ -2,8 +2,8 @@
 title: "Quickstart: Image Analysis client library for Java"
 description: In this quickstart, get started with the Image Analysis client library for Java.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 12/30/2024
 ms.custom: devx-track-java
@@ -20,7 +20,7 @@ Use the Image Analysis client library for Java to analyze a remote image for tag
 > [!TIP]
 > The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
-[Reference documentation](/java/api/overview/azure/cognitiveservices/client/computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) |[Artifact (Maven)](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
+[Reference documentation](/java/api/overview/azure/cognitiveservices/client/computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) |[Artifact (Maven)](https://central.sonatype.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision?smo=true) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ Use the Image Analysis client library for Java to analyze a remote image for tag
 
 1. Install the client library.
 
-    This quickstart uses the Gradle dependency manager. You can find the client library and information for other dependency managers on the [Maven Central Repository](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision).
+    This quickstart uses the Gradle dependency manager. You can find the client library and information for other dependency managers on the [Maven Central Repository](https://central.sonatype.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision?smo=true).
 
     Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy and paste the following build configuration into the file. This configuration defines the project as a Java application whose entry point is the class `ImageAnalysisQuickstart`. It imports Azure Vision library.
 

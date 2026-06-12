@@ -2,7 +2,7 @@
 title: "Operate provisioned throughput deployments in production (classic)"
 description: "Manage PTU quota, create and scale deployments, purchase reservations, benchmark, monitor utilization, and handle high load for provisioned throughput in production. (classic)"
 ai-usage: ai-assisted
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.custom:

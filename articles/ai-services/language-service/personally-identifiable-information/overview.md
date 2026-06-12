@@ -3,10 +3,10 @@ title: What is the Personally Identifiable Information (PII) detection feature i
 titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 04/16/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -100,6 +100,9 @@ All feature types use predefined entity categories and return confidence-scored 
 > **Document-based PII** focuses on native-file redaction workflows. Some text-only options are not available in every document API version.
 
 ## GA and preview guidance
+
+> [!IMPORTANT]
+> Text PII API (2026-05-15-preview) and Conversation PII API (2026-11-15-preview) and **Conversation PII model** (2026-04-15-preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum ("DPA")](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 To avoid integration issues, use API versions and features that match your deployment target:
 

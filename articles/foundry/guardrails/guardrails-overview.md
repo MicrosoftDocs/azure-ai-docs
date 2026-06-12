@@ -1,7 +1,7 @@
 ---
 title: "Guardrails and controls overview in Microsoft Foundry"
 description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: concept-article
@@ -67,7 +67,7 @@ The following table summarizes which risks are applicable to models and agents:
 | [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
 | [Groundedness (Preview)](/azure/foundry/openai/concepts/content-filter-groundedness) | ✅ | ❌ |
 | [Personally identifiable information (Preview)](/azure/foundry/openai/concepts/content-filter-personal-information) | ✅ | ✅ |
-| [Task Adherence](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
+| [Task Adherence (Preview)](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 
 ### Severity levels
 
@@ -76,11 +76,13 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 | Severity level | Behavior |
 |---------------|----------|
 | **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-classic/foundry-models/how-to/configure-content-filters.md) |
-| **Low** | Flags content at low severity and above. Most restrictive. |
+| **Low** | Flags content at low severity and above. Least restrictive. |
 | **Medium** | Flags content at medium severity and above. |
-| **High** | Flags only the most severe content. Least restrictive. |
+| **High** | Flags only the most severe content. Most restrictive. |
 
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
+
+For Azure Direct Models, only customers who have been approved for modified Guardrails can turn them off. Apply for modified Guardrails via this form: [Limited Access Review: Modified Guardrails](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified Guardrails via this form: [Azure Government - Request Modified Content Filtering](https://aka.ms/AOAIGovModifyContentFilter).
 
 ### Intervention point applicability
 

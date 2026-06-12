@@ -45,6 +45,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/text-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/text-pii-playground.md  
       - name: How-to guides
         items:
         - name: Detect and redact PII in text
@@ -62,7 +64,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Recognized entity categories
         items:
         - name: Extended format
@@ -74,6 +76,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/conversation-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/conversation-pii-playground.md  
       - name: How-to guides
         items:
         - name: Detect and redact PII in conversations
@@ -89,6 +93,8 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/document-based-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/document-based-pii-playground.md
       - name: How-to guides
         items:
         - name: Detect and redact PII in native documents
@@ -145,7 +151,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
 
   - name: Named entity recognition
     items:
@@ -192,7 +198,7 @@ items:
           - name: Use container instances
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Concepts
         items:
           - name: Evaluation metrics
@@ -241,7 +247,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Concepts
         items:
         - name: Recognized entity categories
@@ -289,7 +295,7 @@ items:
         - name: Use container instances
           href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
     - name: Concepts
       items:
       - name: Recognized entity categories
@@ -348,7 +354,7 @@ items:
           - name: Use container instances
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
@@ -647,7 +653,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
     - name: Tutorials
       items:
       - name: Integrate Power BI
@@ -746,7 +752,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Tutorials
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
@@ -780,7 +786,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Responsible use of AI
         items:
         - name: Transparency note for summarization

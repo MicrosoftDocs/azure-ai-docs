@@ -4,15 +4,23 @@ description: Learn how to set up a blob indexer to automate indexing of Azure Bl
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 06/10/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - ignite-2024
   - sfi-ropc-nochange
+  - ai-assisted
 ---
 
 # Index data from Azure Blob Storage
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, you learn how to configure an [indexer](search-indexer-overview.md) that imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
 
@@ -42,10 +50,14 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 
 You can use this indexer for the following tasks:
 
-+ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from blob containers and folders. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
++ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from blob containers and folders. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand.
+
 + **Deletion detection:** The indexer can [detect deletions through native soft delete or through custom metadata](search-how-to-index-azure-blob-changed-deleted.md).
+
 + **Applied AI through skillsets:** The indexer fully supports [skillsets](cognitive-search-concept-intro.md). This support includes key features like [integrated vectorization](vector-search-integrated-vectorization.md), which adds data chunking and embedding.
+
 + **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
+
 + **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
@@ -60,7 +72,7 @@ The blob indexer can extract text from the following document formats:
 
 Before you set up indexing, review your source data to determine whether you need to make any changes. An indexer can index content from one container at a time. By default, the indexer processes all blobs in the container. You have several options for more selective processing:
 
-+ Place blobs in a virtual folder. An indexer [data source definition](#define-the-data-source)  includes a `query` parameter that can take a virtual folder. If you specify a virtual folder, the indexer indexes only those blobs in the folder.
++ Place blobs in a virtual folder. An indexer [data source definition](#define-the-data-source) includes a `query` parameter that can take a virtual folder. If you specify a virtual folder, the indexer indexes only those blobs in the folder.
 
 + Include or exclude blobs by file type. The [supported document formats list](#SupportedFormats) can help you determine which blobs to exclude. For example, you might want to exclude image or audio files that don't provide searchable text. You control this capability through [configuration settings](#configure-and-run-the-blob-indexer) in the indexer.
 
@@ -83,31 +95,42 @@ The indexer extracts the textual content of a document into a string field named
 
 ### Indexing blob metadata
 
-You can also index blob metadata. This feature is helpful if you think any of the standard or custom metadata properties are useful in filters and queries.
+You can index blob metadata alongside content. The indexer extracts metadata properties and stores them in index fields, which is useful for creating filters and queries.
 
-The indexer extracts user-specified metadata properties verbatim. To receive the values, you must define a field in the search index of type `Edm.String` with the same name as the metadata key of the blob. For example, if a blob has a metadata key of `Sensitivity` with value `High`, define a field named `Sensitivity` in your search index. The index field populates with the value `High`.
+Define fields in your search index for the metadata properties you want to capture. You don't need to define every available standard or custom metadata property. Just capture the properties you need for your application.
 
-You can extract standard blob metadata properties into similarly named and typed fields, as listed below. The blob indexer automatically creates internal field mappings for these blob metadata properties, converting the original hyphenated name (`metadata-storage-name`) to an underscored equivalent name (`metadata_storage_name`).
+Currently, this indexer doesn't support indexing [blob index tags](/azure/storage/blobs/storage-blob-index-how-to).
 
-You still have to add the underscored fields to the index definition, but you can omit field mappings because the indexer makes the association automatically.
+> [!IMPORTANT]
+> The indexer populates only metadata fields that are already defined in your search index. This requirement applies to both standard blob metadata and custom metadata. If a field isn't defined, the metadata value is extracted during indexing but silently discarded, so it doesn't appear in search results. This is the most common source of null metadata fields in search results. For more information, see [Metadata fields are null in search results](#metadata-fields-are-null-in-search-results).
+
+#### Standard blob metadata properties
+
+For standard blob metadata, define fields in your index using the same underscored names. For step-by-step field definition examples, see [Add search fields to an index](#add-search-fields-to-an-index).
+
+For indexer configuration, including the `dataToExtract` setting that controls which metadata to extract, see [Configure and run the blob indexer](#configure-and-run-the-blob-indexer).
+
+The indexer recognizes and can map these standard metadata properties if you define corresponding fields in your index:
 
 + **metadata_storage_name** (`Edm.String`) is the file name of the blob. For example, if you have a blob `/my-container/my-folder/subfolder/resume.pdf`, the value of this field is `resume.pdf`.
 
-+ **metadata_storage_path** (`Edm.String`) is the full URI of the blob, including the storage account. For example, `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`.
++ **metadata_storage_path** (`Edm.String`) is the full URI of the blob, including the storage account. For example, `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`. Use this property to include blob URLs in search results for navigation or source attribution.
 
 + **metadata_storage_content_type** (`Edm.String`) is the content type as specified by the code you used to upload the blob. For example, `application/octet-stream`.
-+ **metadata_storage_last_modified** (`Edm.DateTimeOffset`) is the last modified timestamp for the blob. Azure AI Search uses this timestamp to identify changed blobs, to avoid reindexing everything after the initial indexing.
+
++ **metadata_storage_last_modified** (`Edm.DateTimeOffset`) is the last modified timestamp for the blob. Azure AI Search uses this timestamp to identify changed blobs and avoid reindexing everything after the initial indexing.
 
 + **metadata_storage_size** (`Edm.Int64`) is the blob size in bytes.
 
 + **metadata_storage_content_md5** (`Edm.String`) is the MD5 hash of the blob content, if available.
+
 + **metadata_storage_sas_token** (`Edm.String`) is a temporary SAS token that [custom skills](cognitive-search-custom-skill-interface.md) can use to get access to the blob. Don't store this token for later use, as it might expire.
 
-Lastly, you can represent metadata properties specific to the document format of the blobs you're indexing in the index schema. For more information about content-specific metadata, see [Content metadata properties](search-blob-metadata-properties.md).
+#### Custom and content-specific metadata
 
-It's important to point out that you don't need to define fields for all of the above properties in your search index. Just capture the properties you need for your application.
+For custom or user-defined blob metadata, define a field with the exact same name as the blob's metadata key. For example, if your blobs have a metadata key `Sensitivity` with value `High`, define a field named `Sensitivity` of type `Edm.String` in your index.
 
-Currently, indexing [blob index tags](/azure/storage/blobs/storage-blob-index-how-to) isn't supported by this indexer. 
+You can also represent metadata properties specific to the document format of the blobs you're indexing. For more information, see [Content metadata properties](search-blob-metadata-properties.md).
 
 ## Define the data source
 
@@ -239,6 +262,8 @@ After you create the index and data source, create the indexer. Indexer configur
 
    + `allMetadata` specifies that the indexer extracts from the blob content and indexes standard blob properties and any [metadata for found content types](search-blob-metadata-properties.md).
 
+   + For a complete list of available standard metadata properties and their field types, see [Indexing blob metadata](#indexing-blob-metadata).
+
 1. Under `configuration`, set `parsingMode`. The default parsing mode is one search document per blob. If blobs are plain text, you can get better performance by switching to [plain text](search-how-to-index-azure-blob-plaintext.md) parsing. If you need more granular parsing that maps blobs to [multiple search documents](search-how-to-index-azure-blob-one-to-many.md), specify a different mode. One-to-many parsing is supported for blobs consisting of:
 
    + [JSON documents](search-how-to-index-azure-blob-json.md)
@@ -353,11 +378,35 @@ Execution history contains up to 50 of the most recently completed executions. T
 
 <a name="DealingWithErrors"></a>
 
-## Handle errors
+## Troubleshooting
 
-Errors that commonly occur during indexing include unsupported content types, missing content, or oversized blobs.
+Use this section to diagnose missing metadata values and common blob indexing failures.
 
-By default, the blob indexer stops as soon as it encounters a blob with an unsupported content type (for example, an audio file). You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might want indexing to proceed even if errors occur, and then debug individual documents later. For more information about indexer errors, see [Indexer troubleshooting guidance](search-indexer-troubleshooting.md) and [Indexer errors and warnings](cognitive-search-common-errors-warnings.md).
+### Metadata fields are null in search results
+
+If you're seeing null or empty values for metadata fields in your search results, use this checklist:
+
+1. **Verify the field exists in your index schema:** Check that you defined a field for each metadata property you want to capture. Run a GET request on your index to confirm the field is present.
+   
+2. **Use the correct field name:** For standard blob properties, use the underscored name, such as `metadata_storage_path` instead of `metadata-storage-path`. For custom metadata, the field name must exactly match the blob's metadata key.
+
+3. **Confirm the indexer has `dataToExtract` set correctly:**
+
+   - `contentAndMetadata` (default) extracts both content and standard/custom metadata.
+   - `storageMetadata` extracts only standard blob properties and custom metadata.
+   - `allMetadata` extracts standard properties plus content-type-specific metadata.
+   
+   Check your indexer configuration to ensure the setting matches your intent.
+
+4. **Re-run the indexer after schema updates:** If you added a new field to your index, run the indexer again so documents are processed against the updated schema. Existing documents might need to be reprocessed before the new field is populated.
+
+5. **Check the indexer execution history:** Go to your indexer in the Azure portal or use [Get Indexer Status](/rest/api/searchservice/indexers/get-status) (REST API) to view execution details and any error messages.
+
+### Indexer failures and unsupported content types
+
+By default, the blob indexer stops as soon as it encounters a blob with an unsupported content type, such as an audio file. You can use the `excludedFileNameExtensions` parameter to skip certain content types.
+
+If you want indexing to continue when some documents fail, adjust the following parameters and then investigate individual documents later. For more information, see [Indexer troubleshooting guidance](search-indexer-troubleshooting.md) and [Indexer errors and warnings](cognitive-search-common-errors-warnings.md).
 
 When errors occur, five indexer parameters control the indexer's response:
 
@@ -377,12 +426,12 @@ PUT /indexers/[indexer name]?api-version=2026-04-01
 ```
 
 | Parameter | Valid values | Description |
-|-----------|--------------|-------------|
+| --- | --- | --- |
 | `maxFailedItems` | -1, null, or 0, positive integer | Continue indexing if errors happen at any point of processing, either while parsing blobs or while adding documents to an index. Set this property to the number of acceptable failures. A value of `-1` allows processing no matter how many errors occur. Otherwise, the value is a positive integer. |
 | `maxFailedItemsPerBatch` | -1, null, or 0, positive integer | Same as above, but used for batch indexing. |
-| `failOnUnsupportedContentType` | true or false |  If the indexer can't determine the content type, specify whether to continue or fail the job. |
-| `failOnUnprocessableDocument` |  true or false | If the indexer can't process a document of an otherwise supported content type, specify whether to continue or fail the job. |
-| `indexStorageMetadataOnlyForOversizedDocuments`  | true or false |  Oversized blobs are treated as errors by default. If you set this parameter to true, the indexer tries to index its metadata even if the content can't be indexed. For limits on blob size, see [service Limits](search-limits-quotas-capacity.md). |
+| `failOnUnsupportedContentType` | true or false | If the indexer can't determine the content type, specify whether to continue or fail the job. |
+| `failOnUnprocessableDocument` | true or false | If the indexer can't process a document of an otherwise supported content type, specify whether to continue or fail the job. |
+| `indexStorageMetadataOnlyForOversizedDocuments` | true or false | Oversized blobs are treated as errors by default. If you set this parameter to true, the indexer tries to index its metadata even if the content can't be indexed. For limits on blob size, see [Service limits](search-limits-quotas-capacity.md). |
 
 ## Related content
 

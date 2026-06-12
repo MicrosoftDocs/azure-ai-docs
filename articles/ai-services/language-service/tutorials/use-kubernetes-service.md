@@ -3,7 +3,7 @@ title: Deploy a key phrase extraction container to Azure Kubernetes Service
 titleSuffix: Foundry Tools
 description: Deploy a key phrase extraction container image to Azure Kubernetes Service, and test it in a web browser.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: tutorial
 ms.date: 11/18/2025
@@ -261,5 +261,5 @@ We can now correlate the document `id` of the response payload's JSON data to th
 
 ## Next steps
 
-* Use more [Azure AI containers](../../cognitive-services-container-support.md)
+* Use more [Foundry Tools containers](../../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context)
 * [Key phrase extraction overview](../overview.md)

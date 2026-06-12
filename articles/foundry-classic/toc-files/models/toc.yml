@@ -75,8 +75,6 @@ items:
     items:
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
-    - name: Work with multimodal models
-      href: ../../foundry-models/how-to/use-chat-multi-modal.md
     - name: Use structured outputs
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models
@@ -88,10 +86,16 @@ items:
   - name: Work with image models
     href: ../../how-to/use-image-models.md
   - name: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+    items:
+    - name: Claude models overview
+      displayName: Overview of Claude models in Foundry
+      href: ../../foundry-models/concepts/claude-models.md
+    - name: Deploy and use Claude models
+      displayName: Deploy and use Claude models in Foundry
+      href: ../../foundry-models/how-to/use-foundry-models-claude.md
   - name: FLUX models in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
-  - name: Microsoft AI (MAI) in Foundry Models
+  - name: MAI image models in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md

@@ -4,7 +4,7 @@ description: "Deploy your containerized agent code to Foundry Agent Service usin
 author: aahill
 ms.author: aahi
 ms.date: 04/14/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -17,6 +17,9 @@ ai-usage: ai-assisted
 This article shows you how to deploy a containerized agent to Foundry Agent Service using the Python SDK or REST API. Use these approaches when you want to manage agent deployments directly from your own applications or services.
 
 If you're deploying for the first time or want the fastest path, use the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md) instead. The quickstart uses the **Azure Developer CLI (azd)** or **VS Code extension**, which handle building, pushing, versioning, and RBAC configuration automatically.
+
+> [!TIP]
+> Prefer a Docker-less inner loop? You can also [deploy a hosted agent directly from source code (preview)](deploy-hosted-agent-code.md) — upload a `.zip` of your Python or .NET code and the platform builds and hosts it for you.
 
 ## Deployment lifecycle
 
@@ -46,7 +49,7 @@ If you use `azd` or the VS Code extension, the tooling handles most RBAC assignm
 - **Foundry User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity—which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
+> * The platform creates a dedicated Entra agent identity for each Hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Foundry User** to that identity—which is why **Foundry Project Manager** is recommended over **Foundry User** alone.
 > * While `azd` and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
@@ -69,9 +72,18 @@ Hosted agents communicate with the Foundry gateway through protocol libraries. C
 | ---------- | --------------- | -------------- | ---------- | ---------- |
 | **Responses** | `azure-ai-agentserver-responses` | `Azure.AI.AgentServer.Responses` | `/responses` | Conversational chatbots, streaming, multi-turn with platform-managed history |
 | **Invocations** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations` | Webhook receivers, non-conversational processing, custom async workflows |
+| **Invocations (WebSocket)** | `azure-ai-agentserver-invocations` | `Azure.AI.AgentServer.Invocations` | `/invocations_ws` | Bidirectional streaming: real-time voice agents, interactive media |
 
-A single container can expose **both protocols simultaneously** by declaring both when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing both libraries. Use the protocol libraries within your existing framework, whether that's Microsoft Agent Framework, LangChain, or custom code.
+The WebSocket protocol uses the identifier `invocations_ws` and ships in the same `azure-ai-agentserver-invocations` package as the HTTP `/invocations` route, so one container can serve both. Use it when you need persistent, full-duplex streaming—for example, sending microphone PCM to the agent and receiving synthesized audio back. For voice scenarios, see [Build a voice agent with hosted agents](build-voice-agent.md).
 
+> [!IMPORTANT]
+> The `invocations_ws` WebSocket protocol is in preview and is currently available only in **North Central US**.
+
+A single container can expose **multiple protocols simultaneously** by declaring them when you create the agent — in the `agent.yaml` file, SDK call, or REST API request — and importing the required libraries. Use the protocol libraries within your existing framework, whether that’s Microsoft Agent Framework, LangChain, or custom code.
+<!--
+> [!TIP]
+> If you already have a Hosted agent that uses the **Responses** or **Invocations** protocol and you want to add real-time voice interaction without rewriting it as a WebSocket agent, see [Use Voice Live with hosted agents](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md).
+-->
 ### Responses protocol library
 
 The Python and .NET libraries for the Responses protocol implement the Azure AI Responses API. Import the package and implement the `IResponseHandler` interface. The library handles routing, streaming with server-sent events (SSE), background execution, cancellation, caching, and response lifecycle management.
@@ -142,6 +154,9 @@ Don't redeclare platform-injected variables in `agent.yaml`—they're set automa
 
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
 
+> [!IMPORTANT]
+> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights (pricing)[https://azure.microsoft.com/en-us/pricing/details/monitor/] might apply. (Learn more)[https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data#disable-tracing].
+
 ### Reference project connections in environment variables
 
 Instead of hard-coding secrets (API keys, tokens, endpoints) into `agent.yaml` or your image, pull them from a Foundry project connection at sandbox start. Any value in `environment_variables` can be a placeholder expression that the platform resolves before your container starts.
@@ -189,7 +204,7 @@ A GET on the agent version returns the literal `${{...}}` text—the resolved se
 - **Create the connection before you deploy the version.** If the connection or the referenced field is missing at sandbox start, the placeholder doesn't resolve and the variable is empty.
 - **Secrets are write-only.** GET on a connection returns `credentials: null`. Verify resolution by reading the env var from inside your running container, not by inspecting the connection.
 - **Record `CustomKeys` field names yourself.** The management API never echoes them back after creation. Keep them next to your agent source (for example, in IaC templates or alongside `agent.yaml`) so you can construct placeholders later without guessing.
-- **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses — you can't reference a pre-existing Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
+- **Foundry manages the backing secret name.** When you create the connection, Foundry stores the value in Key Vault under a name it chooses — you can't reference a preexisting Key Vault secret by name. To attach your own Key Vault as the backing store, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 
 ## Package and test your agent locally
 
@@ -222,6 +237,8 @@ Content-Type: application/json
 
 The Azure Developer CLI (`azd`) and VS Code extension automate the full deployment lifecycle. For a step-by-step walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md).
 
+To screen prompts and responses against a content safety policy, [add a content safety guardrail to your agent](add-hosted-agent-guardrails.md).
+
 ## Deploy using the Python SDK
 
 Use the SDK when you want to manage agent deployments directly from Python code.
@@ -245,7 +262,7 @@ Use the SDK when you want to manage agent deployments directly from Python code.
     docker build --platform linux/amd64 -t myagent:v1 .
     ```
 
-    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
+    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/csharp/getting-started-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
 
 1. Push to Azure Container Registry:
 
@@ -314,7 +331,8 @@ To expose both protocols, pass both in `protocol_versions`:
 ```python
 protocol_versions=[
     ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0")
+    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
 ],
 ```
 
@@ -442,6 +460,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
 ```
 
 Creating an agent also creates version `1` and triggers provisioning.
+
+To screen prompts and responses against a content safety policy, include a `rai_config` object in the `definition`. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
 
 ### Poll for version status
 
@@ -580,6 +600,8 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 ## Related content
 
 - [What are Hosted agents?](../concepts/hosted-agents.md)
+- [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
 - [Agent applications](agent-applications.md)
+<!-- - [Add voice to a Hosted agent with Voice Live](../../../ai-services/speech-service/how-to-voice-live-hosted-agent-integration.md) -->
 - [Azure Container Registry documentation](/azure/container-registry/)

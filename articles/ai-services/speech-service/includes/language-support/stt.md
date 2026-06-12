@@ -1,7 +1,7 @@
-﻿---
+---
 author: PatrickFarley
-ms.service: azure-ai-speech
-ms.date: 04/02/2026
+ms.service: azure-speech-foundry-tools
+ms.date: 06/03/2026
 ms.topic: include
 ms.author: pafarley
 ---
@@ -177,7 +177,7 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `ar-OM` | Arabic (Oman) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-PS` | Arabic (Palestinian Authority) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-QA` | Arabic (Qatar) | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-SA` | Arabic (Saudi Arabia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
+| `ar-SA` | Arabic (Saudi Arabia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `ar-SY` | Arabic (Syria) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | Audio + human-labeled transcript<br/><br/>Plain text |
@@ -191,24 +191,24 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `cy-GB` | Welsh (United Kingdom) | Plain text |
 | `da-DK` | Danish (Denmark) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `de-AT` | German (Austria) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `de-CH` | German (Switzerland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `de-DE` | German (Germany) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `de-CH` | German (Switzerland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Pronunciation |
+| `de-DE` | German (Germany) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `el-GR` | Greek (Greece) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
-| `en-AU` | English (Australia) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `en-CA` | English (Canada) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `en-GB` | English (United Kingdom) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `en-AU` | English (Australia) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `en-CA` | English (Canada) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `en-GB` | English (United Kingdom) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-GH` | English (Ghana) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `en-HK` | English (Hong Kong SAR) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
-| `en-IE` | English (Ireland) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `en-IN` | English (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `en-IE` | English (Ireland) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `en-IN` | English (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-KE` | English (Kenya) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `en-NG` | English (Nigeria) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-NZ` | English (New Zealand) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-PH` | English (Philippines) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-SG` | English (Singapore) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-TZ` | English (Tanzania) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `en-US` | English (United States) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `en-ZA` | English (South Africa) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `en-US` | English (United States) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `en-ZA` | English (South Africa) | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-AR` | Spanish (Argentina) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-BO` | Spanish (Bolivia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CL` | Spanish (Chile) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
@@ -217,18 +217,18 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `es-CU` | Spanish (Cuba) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-DO` | Spanish (Dominican Republic) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-EC` | Spanish (Ecuador) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-ES` | Spanish (Spain) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-ES` | Spanish (Spain) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `es-GQ` | Spanish (Equatorial Guinea) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `es-GT` | Spanish (Guatemala) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-HN` | Spanish (Honduras) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-MX` | Spanish (Mexico) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-MX` | Spanish (Mexico) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `es-NI` | Spanish (Nicaragua) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PA` | Spanish (Panama) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PE` | Spanish (Peru) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PR` | Spanish (Puerto Rico) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PY` | Spanish (Paraguay) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-SV` | Spanish (El Salvador) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-US` | Spanish (United States) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-US` | Spanish (United States) | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-UY` | Spanish (Uruguay) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-VE` | Spanish (Venezuela) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `et-EE` | Estonian (Estonia) | Plain text<br/><br/>Pronunciation |
@@ -237,28 +237,28 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `fi-FI` | Finnish (Finland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fil-PH` | Filipino (Philippines) | Plain text<br/><br/>Pronunciation |
 | `fr-BE` | French (Belgium) | Plain text |
-| `fr-CA` | French (Canada) | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `fr-CA` | French (Canada) | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fr-CH` | French (Switzerland) | Plain text<br/><br/>Pronunciation |
-| `fr-FR` | French (France) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `fr-FR` | French (France) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `ga-IE` | Irish (Ireland) | Plain text<br/><br/>Pronunciation |
 | `gl-ES` | Galician | Plain text |
 | `gu-IN` | Gujarati (India) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `he-IL` | Hebrew (Israel) | Audio + human-labeled transcript<br/><br/>Plain text |
-| `hi-IN` | Hindi (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `hi-IN` | Hindi (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `hr-HR` | Croatian (Croatia) | Plain text<br/><br/>Pronunciation |
 | `hu-HU` | Hungarian (Hungary) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `hy-AM` | Armenian (Armenia) | Plain text |
-| `id-ID` | Indonesian (Indonesia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `id-ID` | Indonesian (Indonesia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `is-IS` | Icelandic (Iceland) | Plain text |
 | `it-CH` | Italian (Switzerland) | Plain text |
-| `it-IT` | Italian (Italy) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `ja-JP` | Japanese (Japan) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `it-IT` | Italian (Italy) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `ja-JP` | Japanese (Japan) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `jv-ID` | Javanese (Latin, Indonesia) | Plain text |
 | `ka-GE` | Georgian (Georgia) | Plain text |
 | `kk-KZ` | Kazakh (Kazakhstan) | Plain text |
 | `km-KH` | Khmer (Cambodia) | Plain text |
 | `kn-IN` | Kannada (India) | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ko-KR` | Korean (Korea) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `ko-KR` | Korean (Korea) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `lo-LA` | Lao (Laos) | Plain text |
 | `lt-LT` | Lithuanian (Lithuania) | Plain text<br/><br/>Pronunciation |
 | `lv-LV` | Latvian (Latvia) | Plain text<br/><br/>Pronunciation |
@@ -272,15 +272,15 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `nb-NO` | Norwegian BokmÃ¥l (Norway) | Plain text<br/><br/>Output format |
 | `ne-NP` | Nepali (Nepal) | Plain text |
 | `nl-BE` | Dutch (Belgium) | Plain text |
-| `nl-NL` | Dutch (Netherlands) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `nl-NL` | Dutch (Netherlands) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `or-IN` | Odia (India) | Audio + human-labeled transcript |
 | `pa-IN` | Punjabi (India) | Audio + human-labeled transcript |
-| `pl-PL` | Polish (Poland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `pl-PL` | Polish (Poland) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `ps-AF` | Pashto (Afghanistan) | Plain text |
-| `pt-BR` | Portuguese (Brazil) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `pt-PT` | Portuguese (Portugal) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `pt-BR` | Portuguese (Brazil) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
+| `pt-PT` | Portuguese (Portugal) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `ro-RO` | Romanian (Romania) | Plain text<br/><br/>Pronunciation |
-| `ru-RU` | Russian (Russia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
+| `ru-RU` | Russian (Russia) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `si-LK` | Sinhala (Sri Lanka) | Plain text |
 | `sk-SK` | Slovak (Slovakia) | Plain text<br/><br/>Pronunciation |
 | `sl-SI` | Slovenian (Slovenia) | Plain text<br/><br/>Pronunciation |
@@ -289,26 +289,28 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `sr-ME` | Serbian (Montenegro) | Plain text |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | Plain text |
 | `sr-XK` | Serbian (Kosovo) | Plain text |
-| `sv-SE` | Swedish (Sweden) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `sv-SE` | Swedish (Sweden) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `sw-KE` | Kiswahili (Kenya) | Plain text |
 | `sw-TZ` | Kiswahili (Tanzania) | Plain text |
 | `ta-IN` | Tamil (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `te-IN` | Telugu (India) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
-| `th-TH` | Thai (Thailand) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `th-TH` | Thai (Thailand) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `tr-TR` | Turkish (TÃ¼rkiye) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `uk-UA` | Ukrainian (Ukraine) | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ur-IN` | Urdu (India) | Audio + human-labeled transcript |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | Plain text |
-| `vi-VN` | Vietnamese (Vietnam) | Plain text<br/><br/>Phrase list |
+| `vi-VN` | Vietnamese (Vietnam) | Plain text |
 | `wuu-CN` | Chinese (Wu, Simplified) | Plain text |
 | `yue-CN` | Chinese (Cantonese, Simplified) | Plain text |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `zh-CN` | Chinese (Mandarin, Simplified) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) | Plain text |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | Plain text |
-| `zh-HK` | Chinese (Cantonese, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
-| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `zh-HK` | Chinese (Cantonese, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
+| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `zu-ZA` | isiZulu (South Africa) | Plain text |
 
+> [!NOTE]
+> [Phrase list](../../improve-accuracy-phrase-list.md) is a runtime recognition feature, not a model customization capability. You can use phrase lists with real-time transcription and fast transcription on both base and custom speech endpoints, for locales where the feature is enabled. Phrase list doesn't require model training. For supported locales and usage details, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
 
 ### Custom speech display support
 

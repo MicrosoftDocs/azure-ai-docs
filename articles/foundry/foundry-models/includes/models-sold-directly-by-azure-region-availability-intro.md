@@ -2,7 +2,7 @@
 title: Region availability for Foundry Models sold by Azure (intro)
 author: msakande
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 ms.date: 05/11/2026
 ms.service: microsoft-foundry
 ms.topic: include

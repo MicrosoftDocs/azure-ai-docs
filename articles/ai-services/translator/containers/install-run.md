@@ -3,7 +3,7 @@ title: Install and run Translator container using Docker API
 titleSuffix: Foundry Tools
 description: Use the Translator container and API to translate text and documents.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: how-to
 ms.date: 12/05/2025

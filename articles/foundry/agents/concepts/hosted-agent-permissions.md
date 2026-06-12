@@ -1,7 +1,7 @@
 ---
 title: "Hosted agent permissions reference"
 description: "Reference for permissions required to create, deploy, and interact with hosted agents in Microsoft Foundry."
-manager: nitinme
+manager: mcleans
 author: mattchenderson
 ms.author: mahender
 ms.service: microsoft-foundry
@@ -63,7 +63,7 @@ This article references the following built-in roles. For information about cust
 Use these links to jump directly to sections that address common permission issues:
 
 - **Can't create agent**: See [Agent creation](#agent-creation)
-- **Agent can't access models**: See [Agent creation](#agent-creation) and [Optional account access](#optional-account-access)
+- **Agent can't access models**: See [Agent access beyond defaults](#agent-access-beyond-defaults)
 - **Deployment fails**: See [Hosted agent deployment](#hosted-agent-deployment) and [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent can't pull images at runtime**: See [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent interaction fails**: See [Agent interaction](#agent-interaction)
@@ -90,7 +90,6 @@ Separate Azure Resources:
 
 Role assignments:
 • Foundry Project → Foundry User role on Foundry Account
-• Hosted Agent → Foundry User role on Foundry Project  
 • Foundry Project → Container Registry Repository Reader role on Azure Container Registry
 • Foundry Project → Log Analytics Data Reader role on Log Analytics Workspace
 
@@ -109,8 +108,8 @@ Each Hosted agent deployment requires these Azure resources to be properly confi
 - **A model deployment (in the account)**
 - **A Foundry project (in the account)**
     - The project has a managed identity. The project also gets an agent blueprint and agent identity when its first agent is created.
-    - A role assignment allows the Hosted agent's agent identity to access the project for model access. `Foundry User` is the recommended built-in role.
     - Role assignments allow client users or principals to interact with agents in the project at runtime. `Foundry User` is the recommended built-in role.
+    - Some advanced scenarios might require explicit role assignments for the agent identity on the project. For more information, see [Explicit project-level access](#explicit-project-level-access).
 - **A Hosted agent (in the project)**
     - The agent automatically gets an agent blueprint and agent identity.
 - **An agent version (in the Hosted agent object)**
@@ -133,7 +132,7 @@ This list doesn't include networking resources. However, the user or service pri
 If you use [agent applications](../how-to/agent-applications.md), the list also includes:
 
 - **An agent application (in the project)**
-    - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the Hosted agent's agent identity with the agent application's agent identity.
+    - The agent application automatically gets an agent blueprint and agent identity. If you configure any explicit role assignments for the Hosted agent's agent identity (such as for [advanced scenarios](#explicit-project-level-access)), repeat those assignments for the agent application's agent identity.
 - **An agent deployment (in the agent application)**
 
 ## Azure resource setup
@@ -153,7 +152,7 @@ Creating a Foundry account requires the `Microsoft.CognitiveServices/accounts/wr
 
 The project's managed identity needs access to the Foundry account to perform model inference through the project endpoint. The project's access is covered by the `Foundry User` role at the scope of the Foundry account. This role assignment might be created automatically when the project is created, depending on the permissions of the user or service principal creating the project.
 
-More role assignments might be needed if your agent code accesses the account-level OpenAI endpoint directly or other account-level capabilities not proxied by the project endpoint. For more information, see [Optional account access](#optional-account-access).
+More role assignments might be needed if your agent code accesses the account-level OpenAI endpoint directly or other account-level capabilities not proxied by the project endpoint. For more information, see [Account-level access](#account-level-access).
 
 ### Model deployment
 
@@ -185,8 +184,6 @@ If the creator of the project has the ability to assign the `Foundry User` role 
 
 - The project creator is granted the Foundry User role at the scope of the Foundry account.
 - The project's managed identity is granted the Foundry User role at the scope of the Foundry account.
-
-A similar role assignment is needed for the agent identity over the project. For more information, see the [Agent creation](#agent-creation) section.
 
 ### Azure Container Registry setup
 
@@ -314,54 +311,7 @@ Agents are created through a data plane operation. Creating an agent requires th
 | Foundry Account Owner | Foundry project | ✗ No |
 | Foundry Owner | Foundry project | ✔ Yes |
 
-Because the agent identity might only be available after the agent is created, some role assignments can't be created until after this point. To perform model inferencing with the project endpoint, the agent identity requires the following permissions at the scope of the Foundry project:
-
-- `Microsoft.CognitiveServices/accounts/AIServices/responses/*`
-- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/read` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`)
-- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/write` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`)
-
-| Built-in role | Scope | Can assigned agent perform model inferencing? |
-| --- | --- | --- |
-| Owner | Foundry project | ✗ No |
-| Contributor | Foundry project | ✗ No |
-| Foundry User | Foundry project | ✔ Yes |
-| Foundry Project Manager | Foundry project | ✔ Yes |
-| Foundry Account Owner | Foundry project | ✗ No |
-| Foundry Owner | Foundry project | ✔ Yes |
-
-> [!TIP]
-> `Foundry User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`, `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`, and `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`.
-
-Creating that role assignment requires the `Microsoft.Authorization/roleAssignments/write` permission at the scope of the Foundry project.
-
-For details on assigning roles in Azure, see [Create Azure role assignments][create-role-assignment].
-
-| Built-in role | Scope | Can assignee create a role assignment? |
-| --- | --- | --- |
-| Owner | Foundry project | ✔ Yes |
-| Contributor | Foundry project | ✗ No |
-| Foundry User | Foundry project | ✗ No |
-| Foundry Project Manager | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
-| Foundry Account Owner | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
-| Foundry Owner | Foundry project | ✗ No |
-| Role Based Access Control Administrator | Foundry project | ✔ Yes |
-
-<sup>1</sup> Both `Foundry Project Manager` and `Foundry Account Owner` have a constraint that they can only assign the `Foundry User` role. If you plan to use a custom role definition for the agent to access the project, `Foundry Project Manager` and `Foundry Account Owner` won't be able to assign that custom role.
-
-> [!IMPORTANT]
-> Because a role assignment is needed after the agent is created, the user or principal that creates the agent also needs permission to create role assignments. [Foundry Project Manager][role-project-manager] at the project scope is the recommended role assignment for agent creators, as that role includes both the required data plane permissions and the ability to assign the `Foundry User` role.
-
-### Optional account access
-
-When you use the Foundry SDK and the project endpoint for model inference, the project proxies inference calls to the account-level deployment using its own managed identity. However, if your agent code bypasses the project endpoint and calls the account-level OpenAI endpoint directly (for example, `https://{account}.cognitiveservices.azure.com`), the agent's identity needs one of the following roles at account scope:
-
-- [Cognitive Services OpenAI User][role-openai-user] - covers only OpenAI data actions.
-- [Foundry User][role-ai-user] - covers all CognitiveServices data actions on the account.
-
-Account-level capabilities aren't proxied by the project endpoint. These capabilities include Speech, Content Safety, Computer Vision, Document Intelligence, Language, and Translator. They require a role assignment at account scope if your agent accesses them directly. For these capabilities, assign one of the following roles at account scope:
-
-- [Cognitive Services User][role-cog-services-user] - covers Speech, Vision, Language, and other non-OpenAI capabilities.
-- [Foundry User][role-ai-user] - covers all CognitiveServices data actions, including OpenAI and the capabilities listed previously, with a single grant.
+The agent has implicit access to core capabilities within its own project, such as model inferencing. No explicit role assignment is needed for the standard case. For advanced scenarios that require explicit access, see [Agent access beyond defaults](#agent-access-beyond-defaults).
 
 ## Hosted agent deployment
 
@@ -513,6 +463,68 @@ This permission is for portal display convenience and isn't required for Hosted 
 | Contributor | Subscription | ✔ Yes |
 | [Cost Management Reader](/azure/role-based-access-control/built-in-roles#cost-management-reader) | Subscription | ✔ Yes |
 | Foundry User | Subscription | ✗ No |
+
+## Agent access beyond defaults
+
+By default, an agent has implicit access to core capabilities within its own project. No explicit role assignment or additional configuration is needed for the standard case. Implicit access covers:
+
+- Model inferencing through the project endpoint
+- Session storage read and write
+
+Additional permissions might be needed when an agent uses connected tools that access external resources, references data outside its own project, or operates at account-level scope.
+
+### Explicit project-level access
+
+Some advanced scenarios might require explicit role assignments for the agent identity on the Foundry project. This section outlines the permission needs as if the agent didn't have its implicit access to the project.
+
+In the absence of implicit access, the agent identity would need the following permissions at the scope of the Foundry project to perform model inferencing with the project endpoint:
+
+- `Microsoft.CognitiveServices/accounts/AIServices/responses/*`
+- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/read` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`)
+- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/write` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`)
+
+| Built-in role | Scope | Can assigned agent perform model inferencing? |
+| --- | --- | --- |
+| Owner | Foundry project | ✗ No |
+| Contributor | Foundry project | ✗ No |
+| Foundry User | Foundry project | ✔ Yes |
+| Foundry Project Manager | Foundry project | ✔ Yes |
+| Foundry Account Owner | Foundry project | ✗ No |
+| Foundry Owner | Foundry project | ✔ Yes |
+
+> [!TIP]
+> `Foundry User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`, `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`, and `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`. Remember, the default case does not require a role assignment, so you only need to add this in advanced scenarios.
+
+Creating that role assignment requires the `Microsoft.Authorization/roleAssignments/write` permission at the scope of the Foundry project.
+
+For details on assigning roles in Azure, see [Create Azure role assignments][create-role-assignment].
+
+| Built-in role | Scope | Can assignee create a role assignment? |
+| --- | --- | --- |
+| Owner | Foundry project | ✔ Yes |
+| Contributor | Foundry project | ✗ No |
+| Foundry User | Foundry project | ✗ No |
+| Foundry Project Manager | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
+| Foundry Account Owner | Foundry project | ✔ Yes for `Foundry User` role<sup>1</sup> |
+| Foundry Owner | Foundry project | ✗ No |
+| Role Based Access Control Administrator | Foundry project | ✔ Yes |
+
+<sup>1</sup> Both `Foundry Project Manager` and `Foundry Account Owner` have a constraint that they can only assign the `Foundry User` role. If you plan to use a custom role definition for the agent to access the project, `Foundry Project Manager` and `Foundry Account Owner` won't be able to assign that custom role.
+
+> [!NOTE]
+> Because the role assignment is needed against the agent identity, it can't be created until after the agent is created. Therefore, the user or principal that creates the agent also needs permission to create role assignments. [Foundry Project Manager][role-project-manager] at the project scope is the recommended role assignment for agent creators in this scenario, as that role includes both the required data plane permissions and the ability to assign the `Foundry User` role.
+
+### Account-level access
+
+When you use the Foundry SDK and the project endpoint for model inference, the project proxies inference calls to the account-level deployment using its own managed identity. However, if your agent code bypasses the project endpoint and calls the account-level OpenAI endpoint directly (for example, `https://{account}.cognitiveservices.azure.com`), the agent's identity needs one of the following roles at account scope:
+
+- [Cognitive Services OpenAI User][role-openai-user] - covers only OpenAI data actions.
+- [Foundry User][role-ai-user] - covers all CognitiveServices data actions on the account.
+
+Account-level capabilities aren't proxied by the project endpoint. These capabilities include Speech, Content Safety, Computer Vision, Document Intelligence, Language, and Translator. They require a role assignment at account scope if your agent accesses them directly. For these capabilities, assign one of the following roles at account scope:
+
+- [Cognitive Services User][role-cog-services-user] - covers Speech, Vision, Language, and other non-OpenAI capabilities.
+- [Foundry User][role-ai-user] - covers all CognitiveServices data actions, including OpenAI and the capabilities listed previously, with a single grant.
 
 ## Related content
 

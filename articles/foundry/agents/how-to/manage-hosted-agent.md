@@ -4,7 +4,7 @@ description: "View, monitor, and manage hosted agents in Foundry Agent Service b
 author: aahill
 ms.author: aahi
 ms.date: 04/09/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

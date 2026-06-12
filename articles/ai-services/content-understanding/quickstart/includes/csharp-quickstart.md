@@ -1,9 +1,9 @@
 ---
 title: "Quickstart: Use the Content Understanding .NET SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Get started with the Content Understanding .NET SDK to extract structured data from documents, images, audio, and video files.
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: include
 ms.date: 03/06/2026
 ms.author: lahlouchu

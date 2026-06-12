@@ -2,12 +2,12 @@
 title: Get documents status
 titleSuffix: Foundry Tools
 description: The get documents status method returns the status for all documents in an asynchronous batch translation request.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ---
 
 # Get status for all documents

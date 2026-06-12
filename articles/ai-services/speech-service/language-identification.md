@@ -3,8 +3,8 @@ title: Implement language identification - Speech service
 titleSuffix: Foundry Tools
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 12/19/2025

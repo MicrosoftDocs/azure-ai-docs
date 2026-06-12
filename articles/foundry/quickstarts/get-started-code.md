@@ -36,14 +36,18 @@ In this quickstart you'll get started using models and agents in Foundry.
 ## Prerequisites
 
 * A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
-* The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
+    > [!TIP]
+    > Or, skip the deployment step and try an [instant model (preview)](../concepts/instant-models.md) instead. Create a project in **West US 3**, and substitute any instant model  for `gpt-5.1-mini` in all the code examples in this quickstart.
+
+* The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 [!INCLUDE [quickstart-v2-get-code](../includes/quickstart-v2-get-code.md)]
 
 ## Install and authenticate
 
 [!INCLUDE [quickstart-v2-install](../includes/quickstart-v2-install.md)]
+
 
 ## Chat with a model
 
@@ -66,6 +70,4 @@ In this quickstart you'll get started using models and agents in Foundry.
  
 > [!div class="nextstepaction"]
 > [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
-
-
 

@@ -33,12 +33,19 @@ To delete a knowledge source:
 
    An example response might look like the following:
 
-   ```md
-    Knowledge Bases:
-      - earth-knowledge-base
-      - hotels-sample-knowledge-base
-      - my-demo-knowledge-base
-    ```
+   ```json
+    {
+        "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
+        "value": [
+        {
+            "name": "my-kb"
+        },
+        {
+            "name": "my-kb-2"
+        }
+        ]
+    }
+   ```
 
 1. Get an individual knowledge base definition to check for knowledge source references.
 

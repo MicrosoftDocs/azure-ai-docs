@@ -3,8 +3,8 @@ title: "Text to speech quickstart - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to create an app that converts text to speech, and explore supported audio formats and custom configuration options.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 01/30/2026
 ms.author: pafarley

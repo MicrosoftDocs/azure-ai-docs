@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini (classic)"
 description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

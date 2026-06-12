@@ -4,8 +4,8 @@ metadata:
   titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about the text to speech service.
   author: PatrickFarley
-  manager: nitinme
-  ms.service: azure-ai-speech
+  manager: mcleans
+  ms.service: azure-speech-foundry-tools
   ms.topic: faq
   ms.date: 02/25/2026
   ms.author: pafarley
@@ -104,7 +104,7 @@ sections:
       - question: |
           Ca Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
-          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
+          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-the-watermark-algorithm-for-synthetic-voice-identification/3298548).
       - question: |
           Do you have any tips about contracts or negotiation with voice actors?
         answer: |

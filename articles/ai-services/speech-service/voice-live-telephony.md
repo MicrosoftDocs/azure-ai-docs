@@ -2,10 +2,10 @@
 title: Call Center Voice Agent Accelerator 
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API with telephony systems.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 03/31/2026
 ai-usage: ai-assisted
@@ -30,7 +30,7 @@ The Azure Communication Services Call Automation APIs provide the telephony inte
 Alternatively, telephony integration is supported through third-party providers, including [**Twilio**](https://www.twilio.com/docs/voice/media-streams) and [**Infobip**](https://www.infobip.com/docs/voice-and-video/calls). 
 
 
-:::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup.":::
+:::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::
 
 
 ## Related content 

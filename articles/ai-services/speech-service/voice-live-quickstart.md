@@ -2,7 +2,7 @@
 title: Get started with Voice Live for real-time voice agents
 titleSuffix: Foundry Tools
 description: Learn how to use Voice Live API for real-time voice agents with Azure Speech in Foundry Tools.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 9/26/2025
@@ -45,4 +45,4 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 - Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

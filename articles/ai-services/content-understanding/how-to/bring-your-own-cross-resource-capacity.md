@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Connect an Azure OpenAI or Foundry resource to Content Understanding and configure cross-resource model deployments for analyzer operations.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/04/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ai-usage: ai-assisted
 ---

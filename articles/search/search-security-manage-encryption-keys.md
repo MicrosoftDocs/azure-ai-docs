@@ -7,8 +7,8 @@ ms.date: 04/07/2026
 ms.update-cycle: 365-days
 ms.custom:
   - references_regions
-  - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Configure customer-managed keys for Azure AI Search encrypted data
@@ -29,6 +29,16 @@ This article explains how to configure CMK for additional protection of your enc
 
 > [!IMPORTANT]
 > + Adding a customer-managed key (CMK) applies to encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
+
+## Prerequisites
+
++ [Azure AI Search](search-create-service-portal.md) on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher, in any region).
+
++ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription and in a different tenant. These instructions assume a single tenant. For cross-tenant configuration, see [Configure customer-managed keys across different tenants](search-security-managed-encryption-cross-tenant.md).
+
++ Ability to set up permissions for key access and to assign roles. To create keys, you must be **Key Vault Crypto Officer** in Azure Key Vault or **Managed HSM Crypto Officer** in Azure Key Vault Managed HSM.
+
+  To assign roles, you must be subscription **Owner**, **User Access Administrator**, **Role-based Access Control Administrator**, or be assigned to a custom role with **Microsoft.Authorization/roleAssignments/write** permissions.
 
 ## Configure CMK on Azure AI Search objects
 
@@ -58,7 +68,7 @@ Adding a customer-managed key to an object must happen when the object is newly 
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Beginning in the 2026-03-01-preview release, you have the ability to configure a customer-managed key at the **service-level** on the Azure AI Search service itself. This feature makes it possible to configure the key once at the service level and have it apply to all newly created objects by default. This ensures all sensitive data in your search service is protected by a key you control, without having to specify key information each time an object is created.
+Beginning in the 2026-03-01-preview release, you have the ability to configure a customer-managed key at the **service-level** on the Azure AI Search service itself. This feature makes it possible to configure the key once at the service level and have it apply to all newly created objects by default. This ensures all sensitive data in your search service is protected by a key you control, without having to specify key information each time an object is created. In the data plane 2026-05-01-preview API, the `isServiceLevelKey` property on `encryptionKey` helps you determine whether an object inherits the service-level key or uses an explicit object-level key.
 
 Enabling CMK at the service level means:
 
@@ -68,15 +78,13 @@ Enabling CMK at the service level means:
 
 You can also rotate this default key by specifying a new key, specific to the object that you are creating. The object-level key that you specify will override the default service-level key for that object.
 
-## Prerequisites
+## Choose between service-level and object-level CMK
 
-+ [Azure AI Search](search-create-service-portal.md) on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher, in any region).
+Use service-level CMK by default to apply a single key across all objects. You configure the key once, and new objects inherit that protection automatically.
 
-+ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription and in a different tenant. These instructions assume a single tenant. For cross-tenant configuration, see [Configure customer-managed keys across different tenants](search-security-managed-encryption-cross-tenant.md).
+Use object-level CMK for workloads that require an independent key lifecycle. Existing object-level CMK configurations continue to function without changes. Service-level CMK simplifies key management but does not replace object-level CMK.
 
-+ Ability to set up permissions for key access and to assign roles. To create keys, you must be **Key Vault Crypto Officer** in Azure Key Vault or **Managed HSM Crypto Officer** in Azure Key Vault Managed HSM.
-
-  To assign roles, you must be subscription **Owner**, **User Access Administrator**, **Role-based Access Control Administrator**, or be assigned to a custom role with **Microsoft.Authorization/roleAssignments/write** permissions.
+A common enterprise pattern is to configure a service-level key for most objects (indexes, indexers, data sources, skillsets, vectorizers, and synonym maps). Workloads with stricter compliance requirements can configure an object-level key to manage access, rotation, and revocation independently.
 
 ## Step 1: Create an encryption key
 
@@ -176,6 +184,19 @@ Role-based access control is recommended over the Access Policy permission model
 1. Select **Review + Assign**.
 
 Wait a few minutes for the role assignment to become operational.
+
+### Key Vault firewall and virtual network access for CMK
+
+Azure AI Search must be able to access the encryption key in your Azure Key Vault.
+
+If your key vault uses a firewall or virtual network restrictions, configure one of the following options:
+
+- Allow access from selected networks that include your search service.
+- Enable [**Allow trusted Microsoft services to bypass this firewall**](/azure/key-vault/general/network-security#key-vault-firewall-enabled-trusted-services-only).
+
+When trusted services bypass is enabled, Azure AI Search can access the key as a trusted service by using managed identity, even when public network access is restricted.
+
+If the firewall blocks access and trusted services bypass isn't enabled, Azure AI Search can't retrieve the key and CMK-dependent operations fail.
 
 ## Step 4: Add encryption key information to Azure AI Search objects
 
@@ -502,6 +523,118 @@ Configuration of service-level CMK is supported in Azure SDK packages that targe
 
 ---
 
+### Check whether a search object inherits service-level CMK
+
+To check whether a search object is using a customer-managed key configured at the service-level as a default or a unique customer-managed key configured at the object-level, you can check the inherited encryption state using the `isServiceLevelKey` property.
+
+### [**Azure portal**](#tab/portal)
+
+Currently, the Azure portal doesn't support service-level encryption. Use the REST API directly.
+
+### [**REST APIs**](#tab/rest)
+
+In data plane API version `2026-05-01-preview`, use an object `GET` call to inspect `encryptionKey.isServiceLevelKey`.
+
+The code snippet below is an example. You will need to update it with the values specific to your use-case.
+
+```http
+GET https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+api-key: {{admin-api-key}}
+```
+
+```json
+{
+  "name": "hotels-cmk",
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false,
+      "retrievable": true
+    }
+  ],
+  "encryptionKey": {
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+    "isServiceLevelKey": true
+  }
+}
+```
+
+When `isServiceLevelKey` is `true`, the object inherits the service-level key and does not have an explicit object-level override.
+
+To decouple lifecycle for a specific object, set an explicit **object-level key** and set `isServiceLevelKey` to `false` in a create-or-update request.
+
+```http
+PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+api-key: {{admin-api-key}}
+Content-Type: application/json
+```
+
+```json
+{
+  "name": "regulated-index",
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false,
+      "retrievable": true
+    }
+  ],
+  "encryptionKey": {
+    "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+    "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+    "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+    "isServiceLevelKey": false
+  }
+}
+```
+
+With this override, object-level key lifecycle is decoupled from the service-level default. You can rotate the object-level key independently without changing the service-level key used by other objects.
+
+To return an object to service-level CMK inheritance, update the object with isServiceLevelKey set to true and omit the object-level key details.
+
+```http
+PUT https://{{search-service}}.search.windows.net/indexes/{{index-name}}?api-version=2026-05-01-preview
+api-key: {{admin-api-key}}
+Content-Type: application/json
+```
+
+```json
+{
+  "name": "regulated-index",
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false,
+      "retrievable": true
+    }
+  ],
+  "encryptionKey": {
+    "isServiceLevelKey": true
+  }
+}
+```
+
+After this update, the search object inherits the service-level key again. When you provide an explicit object-level key, setting `isServiceLevelKey` to `false` is optional because the explicit key definition overrides service-level inheritance.
+
+### [**Azure SDKs**](#tab/sdks)
+
+Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
+
+- .NET: [Azure.ResourceManager.Search changelog](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md)
+- Java: [azure-resourcemanager-search changelog](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md)
+- JavaScript: [@azure/arm-search changelog](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md)
+- Python: [azure-mgmt-search changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md)
+
+---
+
 ## Step 5: Test encryption
 
 To verify encryption is working, revoke the encryption key, query the index (it should be unusable), and then reinstate the encryption key.
@@ -658,6 +791,8 @@ For performance reasons, the search service caches the key for up to several hou
 + Use as many key vaults as you need. Managed keys can be in different key vaults. A search service can have multiple encrypted objects, each one encrypted with a different customer-managed encryption key, stored in different key vaults.
 
 + Use the same [Azure tenant](/entra/fundamentals/create-new-tenant) so that you can retrieve your managed key through role assignments and by connecting through a system or user-managed identity. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
+
++ If your Azure Key Vault is secured with a firewall, make sure to enable [**Allow trusted Microsoft services to bypass this firewall**](/azure/key-vault/general/network-security#key-vault-firewall-enabled-trusted-services-only) so that Azure AI Search can access the key.
 
 + [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for encryption with a CMK in Azure AI Search.
 

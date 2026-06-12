@@ -3,8 +3,8 @@ title: Language and locale support for Read and Layout document analysis - Docum
 titleSuffix: Foundry Tools
 description: Document Intelligence Read and Layout OCR document analysis model language extraction and detection support
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ---

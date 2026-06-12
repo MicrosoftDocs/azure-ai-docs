@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting for Azure OpenAI fine-tuning (classic)"
 description: "Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions

@@ -3,8 +3,8 @@ title: Document layout analysis - Document Intelligence
 titleSuffix: Foundry Tools
 description: Extract text, tables, selections, titles, section headings, page headers, page footers, and more with the layout analysis model from Document Intelligence.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar

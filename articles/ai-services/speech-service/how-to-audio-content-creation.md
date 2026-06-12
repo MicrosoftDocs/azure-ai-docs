@@ -3,8 +3,8 @@ title: Audio content creation tool
 titleSuffix: Foundry Tools
 description: Audio content creation is an online tool that allows you to run text to speech synthesis without writing any code.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley

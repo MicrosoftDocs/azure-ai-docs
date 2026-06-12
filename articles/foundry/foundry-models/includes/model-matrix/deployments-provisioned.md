@@ -2,13 +2,14 @@
 title: Model region availability for Provisioned deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Provisioned deployment options
-manager: nitinme
+manager: mcleans
 ms.date: 05/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
+ai-usage: ai-assisted
 ---
 
 ## Global Provisioned Managed
@@ -34,7 +35,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.2-codex | 2026-01-14 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.3-codex | 2026-02-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.4-mini | 2026-03-17 | - | - | - | - | - | - | - | - | - | ✅ |
+| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -139,7 +140,7 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 | gpt-5.1-codex | 2025-11-13 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.2 | 2025-12-11 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-5.4-mini | 2026-03-17 | - | - | - | - | - | ✅ |
+| gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.5 | 2026-04-24 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -221,7 +222,7 @@ For **Standard/Regional** deployments, prompts and responses are processed in th
 | gpt-5 | 2025-08-07 | - | - | - | - | - | - | - | - | ✅ | - |
 | gpt-5-mini | 2025-08-07 | - | - | - | - | - | ✅ | - | - | ✅ | - |
 | gpt-5.1 | 2025-11-13 | - | - | - | - | - | ✅ | ✅ | - | ✅ | - |
-| gpt-5.2 | 2025-12-11 | - | - | - | - | - | - | - | - | ✅ | - |
+| gpt-5.2 | 2025-12-11 | - | - | - | - | - | ✅ | - | - | ✅ | - |
 | gpt-5.3-codex | 2026-02-24 | - | - | - | - | - | - | - | - | ✅ | - |
 | gpt-5.4 | 2026-03-05 | - | - | - | - | - | - | - | - | ✅ | - |
 | o1 | 2024-12-17 | - | - | - | - | - | - | - | - | ✅ | - |

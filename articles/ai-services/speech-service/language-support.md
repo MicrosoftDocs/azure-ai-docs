@@ -3,8 +3,8 @@ title: Language and Voice Support for Azure Speech
 titleSuffix: Foundry Tools
 description: Learn about language and voice support in Azure Speech for speech to text, text to speech, speech translation, and more. Learn which features support each locale.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley
@@ -36,11 +36,25 @@ Choose a feature:
 
 The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
 
-[!INCLUDE [Language support include](includes/language-support/stt.md)]
-
+**In this section**
+- [Speech to text locales](#speech-to-text-locales)
+- [Custom speech](#custom-speech)
+- [Custom speech display support](#custom-speech-display-support)
+- [LLM speech translation](#llm-speech-translation)
+- [MAI Transcribe-1 supported languages](#mai-transcribe-1-supported-languages)
 
 > [!TIP]
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+
+### Speech to text locales
+
+[!INCLUDE [Language support include](includes/language-support/stt.md)]
+
+### MAI Transcribe-1 supported languages
+
+The following table summarizes the languages supported by [MAI Transcribe-1](mai-transcribe.md) for speech recognition.
+
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
 # [Text to speech](#tab/tts)
 
@@ -150,6 +164,10 @@ If you're interested in languages not listed in the following table, fill out [t
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
 # [Speech translation](#tab/speech-translation)
+
+**In this section**
+- [Real-time speech translation](#real-time-speech-translation)
+- [Video translation](#video-translation)
 
 > [!TIP]
 > To build and run samples on Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).

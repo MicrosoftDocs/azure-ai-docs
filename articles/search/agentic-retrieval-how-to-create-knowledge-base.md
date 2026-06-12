@@ -3,13 +3,23 @@ title: Create a Knowledge Base
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a knowledge base in Azure AI Search
 
 [!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+
+> [!IMPORTANT]
+> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
@@ -18,7 +28,9 @@ You can create a knowledge base in a [Foundry IQ](/azure/ai-foundry/agents/conce
 A knowledge base specifies:
 
 + One or more knowledge sources that point to searchable content.
+
 + An optional LLM for query planning, answer synthesis, or web content summarization. Supported tasks vary by API version and knowledge source type.
+
 + Custom properties that control routing, source selection, and object encryption.
 
 ### Usage support
@@ -29,19 +41,21 @@ A knowledge base specifies:
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic tier or higher.
 
-+ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). If you plan to use the 2026-04-01 API version to create your knowledge base, your knowledge sources must be generally available. Otherwise, you can use preview knowledge source types.
++ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). Use the 2026-05-01-preview API version to access preview knowledge sources or to use an LLM with non-web knowledge sources. Use the 2026-04-01 API version for generally available knowledge sources and minimal, extractive retrieval.
 
-+ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. For both the 2025-11-01-preview and 2026-04-01 API versions, the LLM is required if your knowledge base includes a web knowledge source. For the 2025-11-01-preview only, the LLM is optional for all other knowledge source types. 2026-04-01 doesn't support an LLM for non-web knowledge sources. 
++ (Conditional) Azure OpenAI with a [supported LLM](#supported-models) deployment. An LLM is required if your knowledge base includes a web knowledge source. For other knowledge sources, an LLM is optional in the 2026-05-01-preview API version and unsupported in the 2026-04-01 API version.
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
++ Permissions to create knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
++ If the knowledge base specifies an LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
 ::: zone pivot="csharp"
 
-+ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
++ Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
   + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
@@ -49,9 +63,9 @@ A knowledge base specifies:
 
 ::: zone pivot="python"
 
-+ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
++ Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
 
   + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
@@ -61,7 +75,7 @@ A knowledge base specifies:
 
 + Required REST API version:
 
-  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
   + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
@@ -69,21 +83,23 @@ A knowledge base specifies:
 
 ### Supported models
 
-Use one of the following LLMs from Azure OpenAI in Foundry Models. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
+Use one of the following LLMs from Azure OpenAI in Foundry Models. Azure OpenAI determines regional availability for the deployment you select. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
-+ `gpt-4o`
-+ `gpt-4o-mini`
-+ `gpt-4.1`
-+ `gpt-4.1-mini`
-+ `gpt-4.1-nano`
-+ `gpt-5`
-+ `gpt-5-mini`
-+ `gpt-5-nano`
-+ `gpt-5.1`
-+ `gpt-5.2`
-+ `gpt-5.4`
-+ `gpt-5.4-mini`
-+ `gpt-5.4-nano`
+| Model | Supported API versions |
+|--|--|
+| `gpt-4o` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4o-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-4.1-nano` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5-mini` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5-nano` | 2025-11-01-preview, 2026-05-01-preview |
+| `gpt-5.1` | 2026-05-01-preview |
+| `gpt-5.2` | 2026-05-01-preview |
+| `gpt-5.4` | 2026-05-01-preview |
+| `gpt-5.4-mini` | 2026-05-01-preview |
+| `gpt-5.4-nano` | 2026-05-01-preview |
 
 ## Configure access
 
@@ -331,9 +347,12 @@ The following JSON is an example response for a knowledge base.
 ```
 
 > [!NOTE]
-> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2025-11-01-preview. For more information about which properties each version supports, see the next section.
+> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API version returns a narrower definition than the 2026-05-01-preview. For more information about which properties each version supports, see the next section.
 
 ## Create a knowledge base
+
+> [!IMPORTANT]
+> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2026-05-01-preview.
 
 A knowledge base connects one or more knowledge sources (searchable content) to an optional LLM from Azure OpenAI in Foundry Models. The properties you set establish defaults for query execution and the retrieval response.
 
@@ -341,7 +360,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```csharp
 // Create a knowledge base
@@ -356,7 +375,8 @@ var aoaiParams = new AzureOpenAIVectorizerParameters
 {
     ResourceUri = new Uri(aoaiEndpoint),
     DeploymentName = aoaiGptDeployment,
-    ModelName = aoaiGptModel
+    ModelName = aoaiGptModel,
+    ApiKey = aoaiApiKey
 };
 
 var knowledgeBase = new KnowledgeBase(
@@ -370,7 +390,7 @@ var knowledgeBase = new KnowledgeBase(
 {
     Description = "This knowledge base handles questions directed at two unrelated sample indexes.",
     RetrievalInstructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
-    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+    AnswerInstructions = "Provide a two-sentence, concise, and informative answer based on the retrieved documents.",
     OutputMode = KnowledgeRetrievalOutputMode.AnswerSynthesis,
     Models = { new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: aoaiParams) },
     RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort()
@@ -416,13 +436,19 @@ Console.WriteLine($"Knowledge base '{knowledgeBase.Name}' created or updated suc
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```python
 # Create a knowledge base
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
+from azure.search.documents.indexes.models import (
+    AzureOpenAIVectorizerParameters,
+    KnowledgeBase,
+    KnowledgeBaseAzureOpenAIModel,
+    KnowledgeSourceReference,
+)
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalLowReasoningEffort
 
 index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
@@ -437,8 +463,8 @@ knowledge_base = KnowledgeBase(
     name = "my-kb",
     description = "This knowledge base handles questions directed at two unrelated sample indexes.",
     retrieval_instructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
-    answer_instructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
-    output_mode = KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    answer_instructions = "Provide a two-sentence, concise, and informative answer based on the retrieved documents.",
+    output_mode = "answerSynthesis",
     knowledge_sources = [
         KnowledgeSourceReference(name = "hotels-ks"),
         KnowledgeSourceReference(name = "earth-at-night-ks"),
@@ -486,11 +512,11 @@ print(f"Knowledge base '{knowledge_base.name}' created or updated successfully."
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 ```http
 # Create a knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{search-api-key}}
 
@@ -514,8 +540,8 @@ api-key: {{search-api-key}}
             "azureOpenAIParameters": {
                 "resourceUri": "{{model-provider-url}}",
                 "apiKey": "{{model-api-key}}",
-                "deploymentId": "gpt-4.1-mini",
-                "modelName": "gpt-4.1-mini"
+                "deploymentId": "gpt-5.4-mini",
+                "modelName": "gpt-5.4-mini"
             }
         }
     ],
@@ -526,7 +552,7 @@ api-key: {{search-api-key}}
 }
 ```
 
-**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -557,16 +583,13 @@ api-key: {{search-api-key}}
 
 ::: zone-end
 
-> [!IMPORTANT]
-> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
-
 ### Knowledge base properties
 
 Pass the following properties to create a knowledge base.
 
 ::: zone pivot="csharp"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
@@ -578,6 +601,7 @@ Pass the following properties to create a knowledge base.
 | `OutputMode` | Valid values are `AnswerSynthesis` for an LLM-formulated answer or `ExtractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
 | `Models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request, and then provide them by using the [KnowledgeBaseAzureOpenAIModel class](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel?view=azure-dotnet-preview&preserve-view=true). You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
 | `RetrievalReasoningEffort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
+| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -595,7 +619,7 @@ Pass the following properties to create a knowledge base.
 
 ::: zone pivot="python"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
@@ -603,7 +627,7 @@ Pass the following properties to create a knowledge base.
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
 | `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Pass instructions directly to the LLM. It's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | No |
 | `answer_instructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | No |
-| `output_mode` | Valid values are `answer_synthesis` for an LLM-formulated answer or `extracted_data` for full search results that you can pass to an LLM as a downstream step. | String | No |
+| `output_mode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | No |
 | `knowledge_sources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
 | `models` | Required for web knowledge sources. Optional for other knowledge source types. Specifies a [supported LLM](#supported-models) for query planning or answer synthesis. Get connection details from the Microsoft Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
 | `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
@@ -625,7 +649,7 @@ Pass the following properties to create a knowledge base.
 
 ::: zone pivot="rest"
 
-# [2025-11-01-preview](#tab/2025-11-01-preview)
+# [2026-05-01-preview](#tab/2026-05-01-preview)
 
 | Name | Description | Type | Required |
 |--|--|--|--|
@@ -653,9 +677,111 @@ Pass the following properties to create a knowledge base.
 
 ::: zone-end
 
+### Configure CORS for browser-based retrieve calls (preview)
+
+> [!IMPORTANT]
+> You can use the 2026-05-01-preview to enable cross-origin resource sharing (CORS), which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external web pages might be able to access or invoke the service and its data using the user's browser context, as well as create other security threats. Enabling CORS is at your own risk.
+
+In the 2026-05-01-preview API version, a knowledge base can define `corsOptions` for browser-based applications that call the retrieve action directly from JavaScript. The CORS policy identifies which browser origins can send retrieve requests to the knowledge base.
+
+When you omit `corsOptions`, the knowledge base has no CORS policy, and browsers block cross-origin retrieve requests.
+
+The following example creates a knowledge base that allows retrieve requests from one browser origin.
+
+::: zone pivot="csharp"
+
+```csharp
+using Azure;
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var knowledgeBase = new KnowledgeBase(
+    name: "browser-chat-kb",
+    knowledgeSources: new[] { new KnowledgeSourceReference("product-docs-ks") }
+)
+{
+    Description = "A knowledge base that allows one browser app origin.",
+    CorsOptions = new CorsOptions(new[] { "https://myapp.example.com" })
+    {
+        MaxAgeInSeconds = 300
+    }
+};
+
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+```
+
+**Reference:** [CorsOptions](/dotnet/api/azure.search.documents.indexes.models.corsoptions?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase?view=azure-dotnet-preview&preserve-view=true)
+
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    CorsOptions,
+    KnowledgeBase,
+    KnowledgeSourceReference,
+)
+
+index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+
+knowledge_base = KnowledgeBase(
+    name="browser-chat-kb",
+    description="A knowledge base that allows one browser app origin.",
+    knowledge_sources=[KnowledgeSourceReference(name="product-docs-ks")],
+    cors_options=CorsOptions(
+        allowed_origins=["https://myapp.example.com"],
+        max_age_in_seconds=300,
+    ),
+)
+
+index_client.create_or_update_knowledge_base(knowledge_base)
+```
+
+**Reference:** [CorsOptions](/python/api/azure-search-documents/azure.search.documents.indexes.models.corsoptions), [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
+
+::: zone-end
+
+::: zone pivot="rest"
+
+```http
+PUT {{search-url}}/knowledgebases/browser-chat-kb?api-version=2026-05-01-preview
+Content-Type: application/json
+api-key: {{search-api-key}}
+
+{
+  "name": "browser-chat-kb",
+  "description": "A knowledge base that allows one browser app origin.",
+  "knowledgeSources": [
+    {
+      "name": "product-docs-ks"
+    }
+  ],
+  "corsOptions": {
+    "allowedOrigins": [
+      "https://myapp.example.com"
+    ],
+    "maxAgeInSeconds": 300
+  }
+}
+```
+
+::: zone-end
+
+`corsOptions` accepts the following properties.
+
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `allowedOrigins` | Lists the origins that can call the knowledge base from a browser. For production applications, use an explicit list of origins. You can use `"*"` to allow all origins, but this setting isn't recommended for production. | Array | Yes |
+| `maxAgeInSeconds` | Controls how long browsers can cache the preflight response. When omitted, the preflight cache duration defaults to 300 seconds. | Integer | No |
+
 ## Query a knowledge base
 
-After you create a knowledge base, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query it and verify the LLM connection.
+After you create a knowledge base, call the [retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query it.
 
 ## Delete a knowledge base
 
@@ -707,5 +833,5 @@ api-key: {{search-api-key}}
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
++ [Migrate agentic retrieval code](agentic-retrieval-how-to-migrate.md)

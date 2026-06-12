@@ -2,7 +2,7 @@
 title: "Plan and manage costs for Microsoft Foundry hubs (classic)"
 description: "Learn how to plan for and manage costs for Microsoft Foundry hubs by using cost analysis in the Azure portal. (classic)"
 ms.author: mopeakande
-manager: nitinme
+manager: mcleans
 author: msakande 
 ms.reviewer: aashishb
 reviewer: aashishb

@@ -3,9 +3,9 @@ title: "Quickstart: Face recognition using Microsoft Foundry portal"
 titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Face service using the Microsoft Foundry portal.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 07/28/2025
 ms.author: pafarley

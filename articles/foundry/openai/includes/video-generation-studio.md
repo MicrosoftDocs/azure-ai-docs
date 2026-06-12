@@ -2,7 +2,7 @@
 title: 'Quickstart: Generate videos with Sora 2 in Microsoft Foundry Models and Microsoft Foundry'
 titleSuffix: Azure OpenAI
 description: Learn how to generate videos with Sora 2 in the video playground (preview) in Microsoft Foundry.
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

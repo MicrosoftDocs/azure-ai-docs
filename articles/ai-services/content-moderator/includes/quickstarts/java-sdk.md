@@ -3,8 +3,8 @@ title: "Content Moderator Java client library quickstart"
 titleSuffix: Azure AI services
 description: In this quickstart, learn how to get started with the Azure Content Moderator client library for Java. Build content filtering software into your app to comply with regulations or maintain the intended environment for your users.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-content-moderator
+manager: mcleans
+ms.service: azure-content-moderator
 ms.topic: include
 ms.date: 06/12/2025
 ms.custom: devx-track-java

@@ -1,5 +1,5 @@
 ---
-title: "Configure managed virtual network for Microsoft Foundry projects (preview)"
+title: "Configure managed virtual network for Microsoft Foundry"
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.date: 05/12/2026

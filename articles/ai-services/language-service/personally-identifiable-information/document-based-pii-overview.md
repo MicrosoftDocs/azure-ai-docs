@@ -3,7 +3,7 @@ title: Document-based PII overview
 titleSuffix: Foundry Tools
 description: Learn how document-based PII redaction in Azure Language detects and redacts sensitive data from native documents while preserving file structure.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 04/16/2026
@@ -65,7 +65,7 @@ Document-based PII uses an asynchronous workflow:
 1. Poll the job status by using the operation location.
 1. Retrieve output artifacts from your target storage location.
 
-:::image type="content" source="media/document-pii-workflow.png" alt-text="Diagram showing the asynchronous workflow for document-based PII detection.":::
+:::image type="content" source="media/document-pii-api-call.png" alt-text="Diagram showing the asynchronous workflow for document-based PII detection.":::
 
 For implementation details and request samples, see [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md).
 

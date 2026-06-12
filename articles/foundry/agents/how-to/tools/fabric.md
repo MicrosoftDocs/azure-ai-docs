@@ -5,7 +5,7 @@ author: jonburchel
 reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
-manager: nitinme
+manager: mcleans
 ms.date: 03/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -103,6 +103,10 @@ The following table shows SDK and setup support.
 
 :::zone pivot="python"
 
+Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -168,11 +172,64 @@ print("Agent deleted")
 - A line that starts with `Response output:` followed by the response text.
 
 For more details, see the [full Python sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py).
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_fabric_tool()` to attach a Microsoft Fabric data agent connection. It uses `AIProjectClient` to resolve the connection name to a connection ID. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+import os
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.ai.projects import AIProjectClient
+from azure.identity import AzureCliCredential
+
+FABRIC_CONNECTION_NAME = "my-fabric-connection"
+
+
+async def main() -> None:
+    credential = AzureCliCredential()
+    project = AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        credential=credential,
+    )
+    fabric_connection_id = project.connections.get(FABRIC_CONNECTION_NAME).id
+
+    agent = Agent(
+        client=FoundryChatClient(credential=credential),
+        instructions="You are a helpful assistant. Use Fabric to answer data questions.",
+        tools=[FoundryChatClient.get_fabric_tool(connection_id=fabric_connection_id)],
+    )
+
+    result = await agent.run("Tell me about sales records.")
+    print(f"Agent: {result.text}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Agent: Based on the sales records in the connected Fabric workspace ...
+```
+
+For more about Agent Framework Foundry tool factories, see the [Foundry provider samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/providers/foundry).
+
+---
+
 :::zone-end
 
 :::zone pivot="csharp"
 
-To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`.
+To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```csharp
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -220,6 +277,53 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 ### Expected output
 
 - The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateMicrosoftFabricTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `FABRIC_PROJECT_CONNECTION_ID` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+
+string fabricConnectionId = Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_ID")
+    ?? throw new InvalidOperationException("FABRIC_PROJECT_CONNECTION_ID is not set.");
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions =
+    "You are a helpful assistant with access to Microsoft Fabric data. Answer questions based on data available through your Fabric connection.";
+
+var fabricToolOptions = new FabricDataAgentToolOptions();
+fabricToolOptions.ProjectConnections.Add(new ToolProjectConnection(fabricConnectionId));
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AIAgent agent = aiProjectClient.AsAIAgent(deploymentName,
+    instructions: AgentInstructions,
+    name: "FabricAgent",
+    tools: [FoundryAITool.CreateMicrosoftFabricTool(fabricToolOptions)]);
+
+AgentResponse response = await agent.RunAsync("What data is available in the connected Fabric workspace?");
+Console.WriteLine($"Response: {response.Text}");
+```
+
+### Expected output
+
+The agent response text is printed to the console, grounded in the Fabric workspace your connection points to:
+
+```console
+Response: The connected Fabric workspace contains the following datasets ...
+```
+
+For the full sample, see [Agent_Step20_MicrosoftFabric](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step20_MicrosoftFabric).
+
+---
+
 :::zone-end
 
 :::zone pivot="typescript"

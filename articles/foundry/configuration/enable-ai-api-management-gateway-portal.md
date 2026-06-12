@@ -8,7 +8,7 @@ ms.reviewer: ankamene
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 03/16/2026
+ms.date: 06/01/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -40,7 +40,6 @@ When you select **Use existing APIM**, only API Management instances that meet a
 > * You have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
 > * The API Management instance is in a subscription that you can access from the Foundry portal.
 > * The API Management instance must be created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**.
-> * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
 
@@ -115,6 +114,16 @@ AI Gateway enables:
 - Compliance boundaries for regulated workloads (enforce predictable usage ceilings).
 - Registration of [custom agents for governance](../control-plane/register-custom-agent.md).
 
+## Use AI Gateway with multiple projects
+
+You enable AI Gateway at the Foundry resource level, and all projects in that resource share the same gateway and its underlying API Management instance. You don't assign a separate gateway to each project. Instead, you add individual projects to the gateway and give each one its own token limits and quotas:
+
+- New projects created in the resource have AI Gateway enabled by default.
+- Existing projects must be added manually. Select the AI Gateway name, locate the project, and select **Add project to gateway**.
+- Set per-project [token limits](../control-plane/how-to-enforce-limits-models.md) so that each project has an independent capacity ceiling on the shared gateway.
+
+If you need projects to route through completely separate gateways (for example, separate API Management instances for strict isolation or different networking requirements), place those projects in separate Foundry resources and enable an AI Gateway on each resource. An API Management instance can be associated with only one AI Gateway.
+
 ## Governance scenarios
 
 Once you configure AI Gateway for your resource and project, you can:
@@ -141,14 +150,33 @@ Once you configure AI Gateway for your resource and project, you can:
 
 For tools-specific troubleshooting, see [Tools governance with AI Gateway](/azure/ai-foundry/agents/how-to/tools/governance#troubleshooting).
 
+## Disable or delete an AI Gateway
+
+Disabling and deleting an AI Gateway are different operations:
+
+- **Disable** stops routing a single project's traffic through the gateway. The gateway and its API Management instance keep running and stay available for other projects.
+- **Delete** removes the gateway from the Foundry resource and, when you also delete the underlying API Management instance, fully removes the gateway and stops its charges.
+
+### Disable AI Gateway for a project
+
+1. Select **Operate** > **Admin console**, and then open the **AI Gateway** tab.
+1. Select the AI Gateway name to view its associated projects.
+1. Locate the project, and then select **Remove project from gateway**. The **Gateway status** column updates to **Disabled**.
+
+Disabling a project leaves the gateway in place, so other projects continue to route through it.
+
+### Delete an AI Gateway
+
+To completely delete an AI Gateway, you remove it from the Foundry resource and then delete the underlying API Management instance. Disabling a project alone doesn't delete the gateway or stop API Management charges.
+
+1. In the **AI Gateway** tab, disable the gateway for every project that's associated with it, as described in the previous section.
+1. Select the AI Gateway, and then select the option to delete it from the Foundry resource.
+1. In the [Azure portal](https://portal.azure.com), open the resource group that contains the API Management instance.
+1. Delete the API Management instance that has the same name as the AI Gateway, unless another workload still uses it. Deleting the instance stops the associated charges and completes the removal.
+
 ## Clean up resources
 
-If you created a dedicated APIM instance for this purpose:
-
-1. Confirm that no other workloads depend on it.
-1. Disable the AI Gateway for all projects in the Foundry resource it's associated with.
-1. Remove linked resources in Azure portal.
-1. Delete the APIM instance with the same name as the AI Gateway in Azure portal (if it isn't used for any other purpose).
+If you created a dedicated API Management instance for the AI Gateway and no longer need it, [delete the AI Gateway](#delete-an-ai-gateway) and the API Management instance. Before you delete the instance, confirm that no other workloads depend on it.
 
 ## Related content
 

@@ -3,8 +3,8 @@ title: "How to recognize speech - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to convert speech to text, including object construction, supported audio input formats, and configuration options for speech recognition.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 01/30/2026
 ms.author: pafarley

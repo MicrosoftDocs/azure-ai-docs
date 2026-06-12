@@ -2,7 +2,7 @@
 title: "Connect OpenAPI tools to Microsoft Foundry agents"
 description: "Connect OpenAPI 3.0 and 3.1 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -253,7 +253,11 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample of using Agents with OpenAPI tool
 
-This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
+This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
+This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -341,6 +345,91 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 - `FileNotFoundException`: OpenAPI specification file not found in Assets folder
 - `UnauthorizedAccessException`: Invalid credentials or insufficient RBAC permissions
 - **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` (in `components`) and `security` sections with matching scheme names
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `FoundryAITool.CreateOpenApiTool(...)` from `Microsoft.Agents.AI.Foundry`. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry;
+using Microsoft.Extensions.AI;
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+const string AgentInstructions = "You are a helpful assistant that can use the countries API to retrieve information about countries by their currency code.";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+AITool openApiTool = FoundryAITool.CreateOpenApiTool(CreateOpenAPIFunctionDefinition());
+
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: "OpenAPIToolsAgent",
+    tools: [openApiTool]);
+
+Console.WriteLine(await agent.RunAsync(
+    "What countries use the Euro (EUR) as their currency? Please list them."));
+
+static OpenApiFunctionDefinition CreateOpenAPIFunctionDefinition()
+{
+    const string CountriesOpenApiSpec = """
+    {
+      "openapi": "3.1.0",
+      "info": {
+        "title": "REST Countries API",
+        "description": "Retrieve information about countries by currency code",
+        "version": "v3.1"
+      },
+      "servers": [ { "url": "https://restcountries.com/v3.1" } ],
+      "paths": {
+        "/currency/{currency}": {
+          "get": {
+            "description": "Get countries that use a specific currency code (e.g., USD, EUR, GBP)",
+            "operationId": "GetCountriesByCurrency",
+            "parameters": [
+              {
+                "name": "currency", "in": "path", "required": true,
+                "schema": { "type": "string" }
+              }
+            ],
+            "responses": {
+              "200": { "description": "Successful response with list of countries" },
+              "404": { "description": "No countries found for the currency" }
+            }
+          }
+        }
+      }
+    }
+    """;
+
+    return new OpenApiFunctionDefinition(
+        "get_countries",
+        BinaryData.FromString(CountriesOpenApiSpec),
+        new OpenAPIAnonymousAuthenticationDetails())
+    {
+        Description = "Retrieve information about countries by currency code"
+    };
+}
+```
+
+### Expected output
+
+The agent calls the REST Countries API through the OpenAPI tool and lists the matching countries:
+
+```console
+Countries that use the Euro (EUR) as their currency include: Austria, Belgium, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain ...
+```
+
+For the full sample including authenticated API patterns, see [Agent_Step17_OpenAPITools](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry/Agent_Step17_OpenAPITools).
+
+---
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 

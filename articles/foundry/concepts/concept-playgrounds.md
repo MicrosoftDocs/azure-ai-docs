@@ -9,7 +9,7 @@ ms.date: 02/10/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: lebaro #amipatel
-manager: nitinme
+manager: mcleans
 reviewer: lebaro-msft #amibp
 ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026
@@ -296,6 +296,7 @@ By using the images playground, you can explore and validate the following aspec
 
 ## Related content
 
+- [Instant models in Microsoft Foundry (preview)](instant-models.md)
 - [Understanding the agent development lifecycle](../agents/concepts/development-lifecycle.md)
 - [Deploy models in Microsoft Foundry](../../foundry-classic/how-to/deploy-models-managed.md)
 - [Azure AI Content Safety overview](/azure/ai-services/content-safety/overview)

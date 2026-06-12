@@ -2,12 +2,12 @@
 title: Get translations status
 titleSuffix: Foundry Tools
 description: The get translations status method returns a list of batch requests submitted and the status for each request.
-manager: nitinme
+manager: mcleans
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ---
 
 # Get status for all translation jobs

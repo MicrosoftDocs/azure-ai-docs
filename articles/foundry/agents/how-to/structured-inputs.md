@@ -2,7 +2,7 @@
 title: "Customize Agent Behavior at Runtime with Structured Inputs"
 description: "Learn how to customize agent behavior at runtime using structured inputs. Define placeholders with handlebar templates, dynamically configure agent instructions and tools, and pass values at runtime to your agent."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Quickly start building an AI model to identify and apply labels (classify) unstructured text.
 #services: cognitive-services
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 12/15/2025
