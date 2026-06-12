@@ -192,7 +192,7 @@ Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/r
 > [!NOTE]
 > For Hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 
-The registry's `azureADAuthenticationAsArmPolicy` policy status must be set to `enabled`. To check or update the status, use [`az acr config authentication-as-arm`](/cli/azure/acr/config/authentication-as-arm).
+The registry's `azureADAuthenticationAsArmPolicy` policy status must be set to `enabled`. This setting allows ACR to accept Microsoft Entra tokens scoped to Azure Resource Manager. To check or update the status, use [`az acr config authentication-as-arm`](/cli/azure/acr/config/authentication-as-arm).
 
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |
