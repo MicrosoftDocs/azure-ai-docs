@@ -541,6 +541,8 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 > [!CAUTION]
 > Microsoft's testing of GPT-Realtime-2 identified that the model shows a lower propensity to block coaching, role-playing, or advising in certain inappropriate scenarios. Customers should consider (i) conducting their own evaluations in their production environments to validate safety performance for their specific use cases, (ii) using Azure AI Content Safety (or equivalent safeguards) in conjunction with this model, (iii) limited access/gating or preview deployment or other staggered roll-outs, (iv) implementing appropriate monitoring for safety performance in their production systems. Customers are encouraged to provide feedback to Microsoft.
 
+The same considerations apply to `gpt-realtime-2.1` and `gpt-realtime-2.1-mini`, which are minor updates over `gpt-realtime-2` focused on improved silence and noise handling.
+
 ### Risk and limitations of Computer Use (Preview) 
 
 > [!WARNING]

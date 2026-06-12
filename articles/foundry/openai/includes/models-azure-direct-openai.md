@@ -3,10 +3,11 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 05/28/2026
+ms.date: 06/11/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Azure OpenAI in Microsoft Foundry models
@@ -382,6 +383,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
 |`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
+|`gpt-realtime-2.1` (2026-06-11)<br>`gpt-realtime-2.1-mini` (2026-06-11) | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 ### Audio API
 

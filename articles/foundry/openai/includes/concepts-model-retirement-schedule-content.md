@@ -8,8 +8,9 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/02/2026
+ms.date: 06/11/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article lists the retirement schedule for Foundry Models — their current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
@@ -71,6 +72,8 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-realtime-2 | 2026-05-06 | GA | 2027-05-06 | — |
+| gpt-realtime-2.1 | 2026-06-11 | GA | 2027-06-11 | — |
+| gpt-realtime-2.1-mini | 2026-06-11 | GA | 2027-06-11 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-07-23 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
 | o1 | 2024-12-17 | Deprecated | 2026-07-15 | — |
