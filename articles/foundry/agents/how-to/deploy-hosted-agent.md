@@ -568,7 +568,7 @@ Provisioning errors surface on the version object's `error.code` and `error.mess
 
 | Error code | HTTP code | Solution |
 | ------------ | ----------- | ---------- |
-| `image_pull_failed` | 400 | Verify the image URI is correct and the project managed identity has **Container Registry Repository Reader** on the ACR |
+| `image_pull_failed` | 400 | Verify the image URI. Confirm that the project managed identity has **Container Registry Repository Reader** on the ACR and that the registry's `azureADAuthenticationAsArmPolicy` policy status is `enabled` |
 | `SubscriptionIsNotRegistered` | 400 | Register the subscription provider |
 | `InvalidAcrPullCredentials` | 401 | Fix managed identity or registry RBAC |
 | `UnauthorizedAcrPull` | 403 | Provide correct credentials or identity |
