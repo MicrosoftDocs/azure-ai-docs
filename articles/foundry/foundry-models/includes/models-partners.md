@@ -40,7 +40,7 @@ You can access Models from partners and community with pay-as-you-go billing onl
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
-To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
+For an overview of Claude models, see [Claude models in Microsoft Foundry (preview)](../concepts/claude-models.md), and to use them in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
 
 > [!NOTE]
 > [!INCLUDE [claude-mythos-preview-restriction](../includes/claude-mythos-preview-restriction.md)]
