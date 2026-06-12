@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 04/14/2026
+ms.date: 06/12/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -155,7 +155,7 @@ Don't redeclare platform-injected variables in `agent.yaml`—they're set automa
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
 
 > [!IMPORTANT]
-> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights (pricing)[https://azure.microsoft.com/en-us/pricing/details/monitor/] might apply. (Learn more)[https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data#disable-tracing].
+> When you deploy your hosted agent to Foundry Agent Service, the platform automatically injects an Application Insights connection string into your agent container as an environment variable, enabling OpenTelemetry tracing by default. To view distributed traces, requests, and dependencies, open the Application Insights resource provisioned during setup in the Azure portal and navigate to Investigate > Transaction search or Performance. Use `azd ai agent monitor` for live console logs.  When AppInsights is enabled, this project logs traces to help monitor and evaluate user level interactions with agents. Project members provided with Log Analytics Reader role in AppInsights will be able to view trace data, which may contain personal data and/or Customer Content. Review what trace data is collected and who may view and use this data.  Additional Azure Montior App Insights [pricing](https://azure.microsoft.com/pricing/details/monitor/) might apply. [Learn more](../../observability/concepts/trace-data.md#disable-tracing).
 
 ### Reference project connections in environment variables
 
@@ -291,7 +291,7 @@ Creating a version triggers the platform to provision the agent automatically. T
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol, ContainerConfiguration
 from azure.identity import DefaultAzureCredential
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
@@ -309,12 +309,14 @@ project = AIProjectClient(
 agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
-        container_protocol_versions=[
+        protocol_versions=[
             ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
         ],
         cpu="1",
         memory="2Gi",
-        image="your-registry.azurecr.io/your-image:tag",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-image:tag"
+        ),
         environment_variables={
             "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
         }
@@ -324,10 +326,10 @@ agent = project.agents.create_version(
 print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
-To expose multiple protocols, pass each in `container_protocol_versions`:
+To expose both protocols, pass both in `protocol_versions`:
 
 ```python
-container_protocol_versions=[
+protocol_versions=[
     ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0"),
     ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS, version="1.0.0"),
     ProtocolVersionRecord(protocol=AgentProtocol.INVOCATIONS_WS, version="1.0.0"),
@@ -339,12 +341,10 @@ Key parameters:
 | Parameter | Description |
 | ----------- | ------------- |
 | `agent_name` | Unique name (alphanumeric with hyphens, max 63 characters) |
-| `image` | Full Azure Container Registry image URL with tag |
+| `container_configuration.image` | Full Azure Container Registry image URL with tag |
 | `cpu` | CPU allocation (for example, `"1"`) |
 | `memory` | Memory allocation (for example, `"2Gi"`) |
-| `container_protocol_versions` | Protocols the container exposes (`responses`, `invocations`, `invocations_ws`, or any combination) |
-
-To apply a content safety policy, pass a `rai_config` to the definition. See [Add a content safety guardrail to a hosted agent](add-hosted-agent-guardrails.md).
+| `protocol_versions` | Protocols the container exposes (`responses`, `invocations`, or both) |
 
 ### Poll for version status
 
@@ -444,10 +444,12 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     "name": "my-agent",
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v1",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v1"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "environment_variables": {
@@ -515,10 +517,12 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
   -d '{
     "definition": {
       "kind": "hosted",
-      "image": "myacr.azurecr.io/my-agent:v2",
+      "container_configuration": {
+        "image": "myacr.azurecr.io/my-agent:v2"
+      },
       "cpu": "1",
       "memory": "2Gi",
-      "container_protocol_versions": [
+      "protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "environment_variables": {
