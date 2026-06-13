@@ -78,7 +78,7 @@ You can use a blocklist as an additional filtering mechanism in your guardrail. 
 
 To add a blocklist control to your guardrail:
 
-1. In the control list, select 'Blocklists'
+1. In the control list, select **Blocklists**.
 2. From the dropdown menu, select the blocklist that you want to use. You can select either a custom blocklist or a built-in blocklist.
 3. If you have not created a blocklist yet, select the option to create one from the dropdown menu.
 4. Save your changes to apply the blocklist to the guardrail.
