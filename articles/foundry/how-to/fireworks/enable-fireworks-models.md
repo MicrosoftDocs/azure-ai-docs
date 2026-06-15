@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 06/01/2026
+ms.date: 06/08/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -150,7 +150,6 @@ Custom models must be based on one of the following supported architectures:
 
 ### Limitations
 
-* **Full-weight models only**. LoRA and adapter-based models aren't supported.
 * **CLI-first workflow**. The import process uses the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`). The Foundry portal supports registering, viewing, and deploying models after upload.
 * **Fireworks Agents and Agent Builder workflows** aren't currently supported.
 
@@ -192,7 +191,7 @@ No, you need to create new deployments in Foundry. If you'd like to shift consum
 
 ### Can I deploy LoRA or adapter-based models?
 
-No, Fireworks on Foundry supports full-weight custom models only. LoRA and adapter-based models aren't supported at this time.
+LoRA support is in public preview. See [import custom Fireworks modesl](./import-custom-models.md) for details.
 
 ### How do I import and deploy a custom model?
 
