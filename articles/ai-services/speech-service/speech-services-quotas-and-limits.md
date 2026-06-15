@@ -39,7 +39,7 @@ The following table summarizes the quotas and limits for Voice Live per Azure Sp
 
 Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later in this article.
 
-### LLM speech (preview) quotas and limits per resource
+### LLM speech quotas and limits per resource
 
 The following table summarizes the quotas and limits for large language model (LLM) speech per Azure Speech resource. At this time, these limits aren't adjustable.
 
