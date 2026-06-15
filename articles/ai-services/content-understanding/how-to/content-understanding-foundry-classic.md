@@ -90,7 +90,7 @@ When you create a single-file Content Understanding task, you start by uploading
 
 1. Select **Create**.
 
-   :::image type="content" source="../media/quickstarts/invioce-template.png" alt-text="Screenshot of analyzer templates.":::
+   :::image type="content" source="../media/quickstarts/invoice-template.png" alt-text="Screenshot of analyzer templates.":::
 
 1. Next, add fields to your schema to reflect all of the outputs you want to generate. 
 
@@ -183,7 +183,7 @@ See [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md)
 
 To share the project you created and manage access, go to the Management Center. You can find it at the bottom of the navigation pane for your project:
 
-  :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of where to find management center.":::
+  :::image type="content" source="../media/quickstarts/content-understanding-landing-page.png" alt-text="Screenshot of where to find management center.":::
 
 In the Management Center, you can manage users and assign individual roles:
 

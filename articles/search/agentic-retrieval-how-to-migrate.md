@@ -595,7 +595,7 @@ The response includes the full definition of the new object. For more informatio
 
    + Update `knowledgeSources`:
 
-     + Delete `maxSubQueries` and replace it with `retrievalReasoningEffort` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+     + Delete `maxSubQueries` and replace with a retrievalReasoningEffort` (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
      + Move `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold` to the `knowledgeSourcesParams` section of a [retrieve action](agentic-retrieval-how-to-retrieve.md).
 
@@ -605,7 +605,7 @@ The response includes the full definition of the new object. For more informatio
 
      + Replace `outputConfiguration` with `outputMode`.
 
-     + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum  (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+     + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum  (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
      + If modality is set to `answerSynthesis`, make sure you set the retrieval reasoning effort to low (default) or medium.
 
@@ -658,11 +658,11 @@ The retrieval request is modified for the 2025-11-01-preview to support more sha
 
 1. Change the API version to `2025-11-01-preview`.
 
-1. No changes to `messages` are required if you're using a `low` or `medium` retrievalReasoningEffort. Replace messages with `intent` if you use `minimal` reasoning (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+1. No changes to `messages` are required if you're using a `low` or `medium` retrievalReasoningEffort. Replace messages with `intent` if you use `minimal `reasoning (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 1. Modify `knowledgeSourceParams` to include any properties that were removed from the agent: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`.
 
-1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, it no longer exists. Use the `retrievalReasoningEffort` setting to specify subquery processing (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, it no longer exists. Use the `retrievalReasoningEffort` setting to specify subquery processing (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
@@ -986,7 +986,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + The `searchIndex` knowledge source adds `sourceDataFields` and `searchDataFields` to specify which fields are used at query time and also returned in a response.
 
-+ Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing  (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
++ Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing  (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 + Knowledge agent (base) adds a new `intent` object for `minimal` retrieval reasoning effort, where `intent` replaces `messages` to the LLM. An `intent` is a query string passed directly to the search engine, with no intermediate LLM query planning step.
 
