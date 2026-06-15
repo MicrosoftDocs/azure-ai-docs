@@ -2,13 +2,13 @@
 title: Fine-Tuning Inactivity Guidance
 titleSuffix: Azure OpenAI
 description: Describes the fine-tuning guidance for a model deployment that's inactive for more than 15 days.
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: alvinashcraft 
+ms.author: aashcraft 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 
 ---

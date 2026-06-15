@@ -3,11 +3,12 @@ title: "Serverless API inference examples for Foundry Models (classic)"
 description: "Inference examples for Foundry Models that support deployment to serverless APIs in Microsoft Foundry. (classic)"
 author: ssalgadodev
 ms.author: ssalgado
-manager: nitinme
+manager: mcleans
 reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 12/09/2025
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
 ms.custom:
   - references_regions
@@ -217,5 +218,5 @@ Gretel Navigator employs a compound AI architecture specifically engineered for 
 - [Explore Foundry Models](foundry-models-overview.md)
 - [Foundry Models and their capabilities](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
-- [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
+- [Content safety for  Models sold by Azure ](model-catalog-content-safety.md)
 

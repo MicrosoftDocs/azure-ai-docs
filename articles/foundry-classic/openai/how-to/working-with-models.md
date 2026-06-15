@@ -8,9 +8,9 @@ ms.date: 02/12/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai, devx-track-azurepowershell
   - classic-and-new
-manager: nitinme
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+manager: mcleans
+author: alvinashcraft #ChrisHMSFT
+ms.author: aashcraft #chrhoder
 recommendations: false
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW

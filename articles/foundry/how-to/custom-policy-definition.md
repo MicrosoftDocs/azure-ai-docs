@@ -4,8 +4,9 @@ description: "Learn how to use custom Azure policies to enable self-service reso
 author: jonburchel
 ms.author: jburchel
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 05/12/2026
 ms.reviewer: deeikele
 ms.custom:
   - dev-focus

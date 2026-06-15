@@ -2,7 +2,7 @@
 title: "Manage and increase quotas for hub resources (classic)"
 description: "Manage and increase quotas for hub-level resources in Microsoft Foundry. Scale your deployments with detailed steps for quota requests and governance. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - ignite-2023
   - build-2024
@@ -14,7 +14,7 @@ ms.date: 01/16/2026
 ms.reviewer: haakar
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 # Hub-focused copy of quota article. Project (fdp) version remains in quota.md
 ---

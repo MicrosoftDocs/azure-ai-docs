@@ -2,13 +2,13 @@
 title: "How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to generate reproducible output (preview) with Azure OpenAI. (classic)"
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 
 ---

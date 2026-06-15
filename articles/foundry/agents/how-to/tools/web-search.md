@@ -2,13 +2,15 @@
 title: "Use web search tool in Foundry Agent Service"
 description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/07/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
     - azure-ai-agents
     - references_regions
@@ -21,12 +23,12 @@ zone_pivot_groups: selection-web-search
 
 # Web search tool
 
-The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
+The web search tool in Foundry Agent Service enables the agent's Foundry model to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
 
 > [!IMPORTANT]
 > - Web Search uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries.
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/en-us/bing/apis) for details.
 > - See the [management section](#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
 ### Usage support
@@ -52,7 +54,9 @@ The following table shows SDK and setup support.
 :::zone pivot="python"
 ### General Web Search
 
-The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -134,6 +138,56 @@ Follow-up completed!
 Full response: Based on current data ...
 Agent deleted
 ```
+
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and calls `get_web_search_tool()` to give the agent web search without any local implementation. Install the package with `pip install agent-framework-foundry aiohttp`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+
+async def main() -> None:
+    # Reads FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL from the environment.
+    agent = Agent(
+        client=FoundryChatClient(credential=AzureCliCredential()),
+        instructions="You are a research assistant. Use web search to find current information.",
+        tools=[FoundryChatClient.get_web_search_tool()],
+    )
+
+    result = await agent.run("What are the latest updates to Microsoft Foundry?")
+    print(f"Agent: {result.text}")
+
+    # Print any URL citations returned by the web search tool.
+    for message in result.messages:
+        for content in message.contents:
+            for annotation in getattr(content, "annotations", None) or []:
+                url = getattr(annotation, "url", None)
+                if url:
+                    title = getattr(annotation, "title", None) or ""
+                    print(f"URL Citation: [{title}]({url})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Agent: The latest updates to Microsoft Foundry include ...
+URL Citation: [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
+```
+
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries (for example, a `@tool`-decorated function) to the `tools` list. For more, see [Quickstart: Use the Foundry Responses API](../../quickstarts/responses-api.md).
+
+---
 
 ### Domain-Restricted Search with Bing Custom Search
 
@@ -303,6 +357,10 @@ print("Agent deleted")
 
 ### General Web Search
 
+The following example shows how to give an agent access to web search. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
+
+### [Prompt Agents](#tab/prompt-agents)
+
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
@@ -359,16 +417,75 @@ The London Underground currently has service disruptions on ...
 Agent deleted
 ```
 
+### [Hosted Agents](#tab/hosted-agents)
+
+This sample uses the Microsoft Agent Framework and calls `AsAIAgent(...)` on `AIProjectClient` together with `HostedWebSearchTool` to give the agent web search without any local implementation. Install the `Microsoft.Agents.AI.Foundry` and `Azure.AI.Projects` packages, set the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Responses;
+
+const string AgentInstructions = "You are a helpful assistant that can search the web to find current information and answer questions accurately.";
+const string AgentName = "WebSearchAgent";
+
+string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+
+AIProjectClient aiProjectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+// Create an AIAgent with HostedWebSearchTool.
+AIAgent agent = aiProjectClient.AsAIAgent(
+    deploymentName,
+    instructions: AgentInstructions,
+    name: AgentName,
+    tools: [new HostedWebSearchTool()]);
+
+AgentResponse response = await agent.RunAsync("What's the weather today in Seattle?");
+
+Console.WriteLine($"Response: {response.Text}");
+
+// Print any annotations/citations returned by the web search tool.
+foreach (AIAnnotation annotation in response.Messages
+    .SelectMany(m => m.Contents)
+    .SelectMany(c => c.Annotations ?? []))
+{
+    if (annotation.RawRepresentation is UriCitationMessageAnnotation urlCitation)
+    {
+        Console.WriteLine($"Title: {urlCitation.Title}");
+        Console.WriteLine($"URL: {urlCitation.Uri}");
+    }
+}
+```
+
+### Expected output
+
+The agent answers using fresh information from the web and prints any URL citations the tool returned. Output varies as content on the web changes:
+
+```console
+Response: Today in Seattle it is mostly cloudy with a high near 55°F ...
+Title: National Weather Service – Seattle
+URL: https://www.weather.gov/sew/
+```
+
+The web search tool executes server-side in the Foundry Responses API. You can combine it with local function tools by adding additional entries to the `tools` array. For more, see the [Agent Framework Foundry samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/02-agents/AgentsWithFoundry).
+
+---
+
 ### Domain restricted web search
 To enable your Agent to use Web Search with Grounding with Bing Custom Search instance.
 
-1. First, we need to create project client and read the environment variables, which will be used in the next steps.
+1. First, create the project client and define the values used in the next steps.
 
 ```C# Snippet:Sample_CreateAgentClient_WebSearchCustomStreaming
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var connectionName = System.Environment.GetEnvironmentVariable("CUSTOM_BING_CONNECTION_NAME");
-var customInstanceName = System.Environment.GetEnvironmentVariable("BING_CUSTOM_SEARCH_INSTANCE_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var modelDeploymentName = "gpt-4.1-mini";
+var connectionName = "your_custom_bing_connection_name";
+var customInstanceName = "your_bing_custom_search_instance_name";
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 ```
 
@@ -646,22 +763,21 @@ The following TypeScript example demonstrates how to create an agent with the we
 
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
   // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating agent with web search tool...");
 
   // Create Agent with web search tool
   const agent = await project.agents.createVersion("agent-web-search", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can search the web",
     tools: [
       {
@@ -678,12 +794,12 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Create a conversation for the agent interaction
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
   console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send a query to search the web
   console.log("\nSending web search query...");
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "Show me the latest London Underground service updates",
@@ -696,7 +812,7 @@ export async function main(): Promise<void> {
 
   // Clean up resources
   console.log("\nCleaning up resources...");
-  await openAIClient.conversations.delete(conversation.id);
+  await openai.conversations.delete(conversation.id);
   console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);

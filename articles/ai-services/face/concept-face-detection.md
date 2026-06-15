@@ -3,9 +3,9 @@ title: "Face detection, attributes, and input data - Face"
 titleSuffix: Foundry Tools
 description: Learn more about face detection; face detection is the action of locating human faces in an image and optionally returning different kinds of face-related data.
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 
-ms.service: azure-ai-vision
+ms.service: azure-vision-foundry-tools
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: concept-article

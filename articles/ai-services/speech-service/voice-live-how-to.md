@@ -2,14 +2,15 @@
 title: How to use the Voice Live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API for real-time voice agents.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 05/25/2026
+ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
 ---
@@ -19,6 +20,9 @@ ms.custom: references_regions
 The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
 Unless otherwise noted, the Voice Live API uses the [same events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context) as the Azure OpenAI Realtime API. This document provides a reference for the event message properties that are specific to the Voice Live API.
+
+> [!TIP] 
+> In most cases, use [Voice Live API with WebRTC](./voice-live-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming scenarios.
 
 ## Supported models and regions
 
@@ -34,10 +38,10 @@ A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech 
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01`.
+The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-04-10`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01&model=gpt-realtime`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&model=gpt-realtime`
 
 ### Credentials
 
@@ -50,7 +54,9 @@ The Voice Live API supports two authentication methods:
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
-- Assign the `Cognitive Services User` and `Azure AI User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- Assign the `Cognitive Services User` and `Foundry User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+  [!INCLUDE [role-rename-note](../../foundry/includes/role-rename-note.md)]
 - Generate a token using the Azure CLI or Azure SDKs. The token must be generated with the `https://ai.azure.com/.default` scope, or the legacy `https://cognitiveservices.azure.com/.default` scope.
 - Use the token in the `Authorization` header of the WebSocket connection request, with the format `Bearer <token>`.
 
@@ -99,7 +105,7 @@ You can use input audio properties to configure the input audio stream.
 | `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice without requiring any client-side echo cancellation.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation.<br/><br/>The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.  |
 | `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone.<br/><br/>You can set this property to `near_field` or `far_field` if you're using the [Azure OpenAI Realtime API](../../ai-foundry/openai/realtime-audio-reference.md#realtimeaudioinputaudionoisereductionsettings). |
 
-Here's an example of input audio properties is a session object:
+Here's an example of input audio properties in a session object:
 
 ```json
 {
@@ -131,7 +137,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 |----------|----------|----------|------------|
 | `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
 | `threshold` | float | Optional | Activation threshold (0.0–1.0). A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
-| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal (default: 300). |
+| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. Starting with API version `2026-04-10`, the default is 400 for `server_vad` and 420 for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. For earlier API versions, the default is 300 for all types. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio, measured in milliseconds, required to start detection. The default value is 200 ms for `server_vad` and 80 ms for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech (default: 500). |
 | `remove_filler_words` | boolean | Optional | Determines whether to remove filler words to reduce the false alarm rate of barge-in.<br/>To enable it the property must be set to `true`. The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/>The default value is `false`. |
@@ -141,11 +147,24 @@ Turn detection is the process of detecting when the end-user started or stopped 
 | `interrupt_response` | boolean | Optional | Enable or disable barge-in interruption (default: true). Only available with type `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `auto_truncate` | boolean | Optional | Auto-truncate on interruption (default: false). |
 
-## Audio input through Azure speech to text
+## Audio input transcription
 
-Azure speech to text is automatically active when you're using a non-multimodal model like gpt-4o.
+The Voice Live API supports multiple transcription models for input audio. Set the `model` field in `input_audio_transcription` to choose one. The available models depend on which chat model you're using:
 
-In order to explicitly configure it, you can set the `model` to `azure-speech` in `input_audio_transcription`. This can be useful to improve the recognition quality for specific language situations. See [How to customize Voice Live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
+| Transcription model | Compatible chat models | Description |
+|---|---|---|
+| `azure-speech` | All non-multimodal models and agents | Azure speech to text. Automatically active with non-multimodal models. Supports [phrase list and custom speech](./voice-live-how-to-customize.md). |
+| `mai-transcribe-1` | All non-multimodal models and agents | MAI Transcribe-1 speech recognition model (preview). |
+| `whisper-1` | `gpt-realtime`, `gpt-realtime-mini` | OpenAI Whisper transcription model. |
+| `gpt-4o-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o based transcription model. |
+| `gpt-4o-mini-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o mini based transcription model. |
+| `gpt-4o-transcribe-diarize` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o transcription with diarization. |
+
+For supported languages per model, see [Voice Live API supported languages](./voice-live-language-support.md?tabs=speechinput).
+
+### Azure speech to text
+
+Azure speech to text is automatically active when you're using a non-multimodal model. You can explicitly configure it by setting `model` to `azure-speech`:
 
 ```json
 {
@@ -153,6 +172,78 @@ In order to explicitly configure it, you can set the `model` to `azure-speech` i
         "input_audio_transcription": {
             "model": "azure-speech",
             "language": "en"
+        }
+    }
+}
+```
+
+For speech input customization options such as phrase list and custom speech, see [How to customize Voice Live input and output](./voice-live-how-to-customize.md).
+
+### MAI Transcribe-1 (preview)
+
+MAI Transcribe-1 is a transcription model that can be used as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe-1` in a `session.update` message:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "input_audio_transcription": {
+      "model": "mai-transcribe-1"
+    },
+    "modalities": ["text", "audio"],
+    "instructions": "You are a helpful assistant.",
+    "turn_detection": {
+      "type": "azure_semantic_vad_multilingual"
+    }
+  }
+}
+```
+
+The following example shows the same configuration with the Voice Live SDK for Python:
+
+```python
+from azure.ai.voicelive.aio import connect
+from azure.ai.voicelive.models import (
+    AudioInputTranscriptionOptions,
+    AzureSemanticVadMultilingual,
+    AzureStandardVoice,
+    Modality,
+    RequestSession,
+)
+from azure.identity.aio import DefaultAzureCredential
+
+async with connect(
+    endpoint="https://<your-resource>.services.ai.azure.com/",
+    credential=DefaultAzureCredential(),
+    model="gpt-4.1",
+) as conn:
+    await conn.session.update(
+        session=RequestSession(
+            input_audio_transcription=AudioInputTranscriptionOptions(
+                model="mai-transcribe-1",
+            ),
+            voice=AzureStandardVoice(name="en-US-AvaNeural"),
+            modalities=[Modality.TEXT, Modality.AUDIO],
+            instructions="You are a helpful assistant.",
+            turn_detection=AzureSemanticVadMultilingual(),
+        )
+    )
+```
+
+> [!NOTE]
+> For production applications, use `DefaultAzureCredential` from `azure.identity` for keyless authentication. You can also use `AzureKeyCredential` from `azure.core.credentials` with an API key. For complete SDK examples in C#, JavaScript, and Java, see the [Voice Live quickstart](./voice-live-quickstart.md).
+
+### OpenAI transcription models
+
+When using `gpt-realtime` or `gpt-realtime-mini`, you can use OpenAI transcription models (`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, or `gpt-4o-transcribe-diarize`). These models also support an optional `prompt` parameter to guide transcription:
+
+```json
+{
+    "session": {
+        "input_audio_transcription": {
+            "model": "gpt-4o-transcribe",
+            "language": "en",
+            "prompt": "Expected terminology: Azure, Foundry, WebSocket"
         }
     }
 }
@@ -326,6 +417,51 @@ And a `response.animation_viseme.done` message is sent when all viseme messages 
 }
 ```
 
+## azure-realtime model
+
+The `azure-realtime` model is a dedicated real-time model that uses a curated set of native voices designed for natural-sounding real-time speech output.
+
+> [!NOTE]
+> The `azure-realtime` model requires API version `2026-01-01-preview` or later.
+
+### Voice configuration
+
+Specify the voice as a structured object with `type` set to `azure-realtime-native` and `name` set to one of the supported voice names:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "voice": {
+      "type": "azure-realtime-native",
+      "name": "ava"
+    },
+    "modalities": ["text", "audio"],
+    "instructions": "You are a helpful assistant."
+  }
+}
+```
+
+### Supported voices
+
+The following `azure-realtime-native` voice names are supported:
+
+| Voice name | Description |
+|---|---|
+| `aarti` | Azure Speech native voice |
+| `andrew` | Azure Speech native voice |
+| `ava` | Azure Speech native voice (default) |
+| `denise` | Azure Speech native voice |
+| `elsa` | Azure Speech native voice |
+| `florian` | Azure Speech native voice |
+| `francisca` | Azure Speech native voice |
+| `meera` | Azure Speech native voice |
+| `ximena` | Azure Speech native voice |
+| `xiaoxiao` | Azure Speech native voice |
+| `yunxi` | Azure Speech native voice |
+
+If you don't specify a voice, `ava` is used by default. The default appears in both the `session.created` response and subsequent `session.updated` responses.
+
 ## Azure text to speech avatar
 
 [Text to speech avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice.
@@ -391,10 +527,64 @@ And the service responds with the server SDP.
 
 Then you can connect the avatar with the server SDP.
 
+Refer to this sample code [use avatar in Voice live API](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar) for more details.
+
+### Use a photo avatar
+
+A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (currently `vasa-1`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Talking heads](./text-to-speech-avatar/standard-avatars.md#talking-heads)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+
+Use the optional `scene` object to adjust the avatar's zoom, position, rotation, and movement amplitude. For the meaning and ranges of each scene field, see [Set avatar scene for photo avatar](./text-to-speech-avatar/real-time-synthesis-avatar.md#set-avatar-scene-for-photo-avatar).
+
+Here's an example `avatar` object for a standard photo avatar:
+
+```json
+{
+  "session": {
+    "avatar": {
+      "type": "photo-avatar",
+      "model": "vasa-1",
+      "character": "anika",
+      "video": {
+        "codec": "h264",
+        "resolution": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "scene": {
+        "zoom": 1.0,
+        "position_x": 0.0,
+        "position_y": 0.0,
+        "rotation_x": 0.0,
+        "rotation_y": 0.0,
+        "rotation_z": 0.0,
+        "amplitude": 0.6
+      }
+    }
+  }
+}
+```
+
+To use a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`:
+
+```json
+{
+  "session": {
+    "avatar": {
+      "type": "photo-avatar",
+      "model": "vasa-1",
+      "character": "your-custom-photo-avatar-name",
+      "customized": true
+    }
+  }
+}
+```
+
+
 > [!NOTE]
 > Azure text to speech avatar is currently supported in limited regions. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=ttsavatar).
 
 ## Related content
 
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2026-04-10.md)

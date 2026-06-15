@@ -2,13 +2,13 @@
 metadata:
   title: Foundry IQ FAQ
   titleSuffix: Microsoft Foundry
-  description: "Frequently asked questions about Foundry IQ, knowledge bases, knowledge sources, and agentic retrieval."
+  description: Frequently asked questions about Foundry IQ, knowledge bases, knowledge sources, and agentic retrieval.
   author: haileytap
   ms.author: haileytapia
-  manager: nitinme
+  manager: mcleans
   ms.service: microsoft-foundry
   ms.topic: faq
-  ms.date: 02/12/2026
+  ms.date: 05/13/2026
   ai-usage: ai-assisted
   ms.custom: doc-kit-assisted
 title: Foundry IQ frequently asked questions
@@ -26,7 +26,7 @@ sections:
       
       - question: "What is the difference between Foundry IQ and agentic retrieval?"
         answer: |
-          Foundry IQ consists of knowledge bases, knowledge sources, and native integrations with Azure OpenAI in Foundry Models and Foundry Agent Service. The Microsoft Foundry (new) portal offers a streamlined, end-to-end setup experience, but you can also create the Foundry IQ components programmatically.
+          Foundry IQ consists of knowledge bases, knowledge sources, and native integrations with Azure OpenAI in Foundry Models and Foundry Agent Service. The Microsoft Foundry portal offers a streamlined, end-to-end setup experience, but you can also create the Foundry IQ components programmatically.
 
           Agentic retrieval is the multi-query retrieval engine that powers Foundry IQ knowledge bases. For custom solutions, you can use agentic retrieval directly via the Azure AI Search APIs.
 
@@ -144,7 +144,7 @@ sections:
         answer: |
           For connections between Azure AI Search and other Azure services (such as Azure OpenAI or Azure Blob Storage), use managed identities with Microsoft Entra ID (recommended) or API keys. 
 
-          Remote SharePoint knowledge sources require end users to have a valid Copilot license.
+          Remote SharePoint knowledge sources require end users to have a valid Microsoft 365 Copilot license.
 
   - name: "Troubleshooting"
     questions:

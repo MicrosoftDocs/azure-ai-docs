@@ -1,5 +1,5 @@
 ---
-manager: nitinme
+manager: mcleans
 author: santiagxf
 ms.author: fasantia 
 ms.service: microsoft-foundry
@@ -22,7 +22,7 @@ To complete this article, you need:
 * A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../../how-to/create-projects.md).
 
 
-* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
 * Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Foundry Tools.
 

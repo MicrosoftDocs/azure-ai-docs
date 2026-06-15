@@ -2,13 +2,13 @@
 title: Metrics Advisor glossary
 titleSuffix: Azure AI services
 description: Key ideas and concepts for the Metrics Advisor service
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.custom: applied-ai-non-critical-metrics-advisor
 ms.topic: glossary
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 # Metrics Advisor glossary of common vocabulary and concepts

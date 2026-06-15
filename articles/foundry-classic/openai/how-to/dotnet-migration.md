@@ -1,14 +1,14 @@
 ---
 title: "How to migrate from Azure.AI.OpenAI 1.0 Beta to 2.0 (classic)"
 description: "Learn about migrating to the latest release of the Azure OpenAI package for .NET. (classic)"
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: alvinashcraft 
+ms.author: aashcraft 
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
 ms.date: 11/6/2025
-manager: nitinme
+manager: mcleans
 ---
 
 # Migrate from 1.0 beta to 2.0 (`Azure.AI.OpenAI`) (classic)
@@ -55,7 +55,7 @@ AzureOpenAIClient openAIClient = new(
 ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
-Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet) package is installed.
+Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) package is installed.
 
 ```csharp
 // 2.0: Microsoft Entra ID via Azure.Identity's DefaultAzureCredential

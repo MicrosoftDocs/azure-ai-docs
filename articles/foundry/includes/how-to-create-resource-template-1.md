@@ -61,10 +61,3 @@ Reference: [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azres
 
 ---
 
-## Related content
-
-- [Get started with the SDK](../quickstarts/get-started-code.md)
-- [Configure network isolation with private endpoints](../how-to/configure-private-link.md)
-- [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md)
-- [Configure role-based access control for Foundry](../concepts/rbac-foundry.md)
-- [Security configurations samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples) — See example Bicep template configurations for enterprise security configurations, including network isolation, customer-managed key encryption, advanced identity options, and Agents standard setup.

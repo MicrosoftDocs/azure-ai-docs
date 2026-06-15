@@ -12,10 +12,16 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Index data from Azure Files
+# Index data from Azure Files (preview)
 
-> [!IMPORTANT] 
-> Azure Files indexer is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Use a [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) to create the indexer data source.
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Files and makes it searchable in Azure AI Search. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
 
@@ -67,10 +73,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 You can use 2020-06-30-preview or later for "type": `"azurefile"`. We recommend the latest preview API.
 
-1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
+1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
 
     ```http
-    POST /datasources?api-version=2024-05-01-preview
+    POST /datasources?api-version=2026-05-01-preview
     {
         "name" : "my-file-datasource",
         "type" : "azurefile",
@@ -105,7 +111,7 @@ In the [search index](search-what-is-an-index.md), add fields to accept the cont
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store file content and metadata.
 
     ```http
-    POST /indexes?api-version=2025-09-01
+    POST /indexes?api-version=2026-04-01
     {
       "name" : "my-search-index",
       "fields": [
@@ -146,7 +152,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST /indexers?api-version=2025-09-01
+    POST /indexers?api-version=2026-04-01
     {
       "name" : "my-file-indexer",
       "dataSourceName" : "my-file-datasource",
@@ -182,7 +188,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-04-01
   Content-Type: application/json  
   api-key: [admin key]
 ```

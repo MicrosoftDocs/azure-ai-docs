@@ -1,11 +1,11 @@
 ---
-title: Fireworks models on Microsoft Foundry (preview)
+title: Fireworks models on Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
 author: ssalgadodev 
 ms.author: ssalgado
-manager: nitinme
-ms.date: 04/10/2026
+manager: mcleans
+ms.date: 06/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -14,9 +14,7 @@ ms.custom: doc-kit-assisted, references_regions
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Fireworks models on Microsoft Foundry (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Fireworks models on Microsoft Foundry
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
@@ -30,8 +28,10 @@ All of these capabilities are available directly within your Foundry project, wi
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
-* To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the feature.
+* To deploy models, you need the **Foundry Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 ## Region availability
 
@@ -55,7 +55,7 @@ Global provisioned throughput deployments of base and custom models are availabl
 >
 > Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
-While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
+While in preview, **Fireworks requires an administrator to enable the service** within your Azure subscription.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -115,17 +115,25 @@ The following Fireworks models are available in the Foundry model catalog:
 | Model provider | Model name | Model ID | Type | Supported offers | Description |
 | --- | --- | --- | --- | --- | --- |
 | **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
-| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Per-Token and PTU | Reasoning-optimized open-weight model for complex tasks. |
-| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | Per-Token and PTU | General-purpose model for conversational and instruction-following tasks. |
+| **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Per-Token and PTU | Flagship MoE model for frontier reasoning, coding, and long-context tasks. |
+| **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Instruction-tuned multimodal sparse model for efficient vision and language tasks. |
+| **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Instruction-tuned multimodal dense model for vision, chat, and reasoning tasks. |
+| **Meta** | Llama 3.1 8B Instruct | `FW-Llama-3.1-8B-Instruct` | Chat completions | PTU | Compact instruction-tuned model for cost-efficient chat workloads. |
+| **Mistral AI** | Ministral 3 3B Instruct 2512 | `FW-Ministral-3-3B-Instruct-2512` | Chat completions | PTU | Small efficient model for lightweight chat and instruction-following tasks. |
 | **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
-| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
-| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
-| **Qwen** | Qwen3 14B | `FW-Qwen3-14b` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Per-Token and PTU | Native multimodal agentic model for long-horizon coding and task orchestration. |
+| **Qwen** | Qwen 3.5 9B | `FW-Qwen3.5-9B` | Chat completions | PTU | Compact model for efficient chat and reasoning. |
+| **Qwen** | Qwen 3.5 35B A3B | `FW-Qwen3.5-35B-A3B` | Chat completions | PTU | Sparse mixture-of-experts model for efficient general-purpose tasks. |
+| **Qwen** | Qwen 3.5 112B A10B | `FW-Qwen3.5-112B-A10B` | Chat completions | PTU | Large sparse model for complex reasoning and generation tasks. |
+| **Qwen** | Qwen 3.5 397B | `FW-Qwen3.5-397B` | Chat completions | PTU | Large-scale model for advanced reasoning and generation. |
 | **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | Bilingual model for chat and reasoning tasks. |
-| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | Per-Token and PTU | High-performance bilingual model for chat and reasoning. |
+| **Zhipu AI** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | PTU | Advanced bilingual model for chat, reasoning, and code. |
 
-All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
+All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
+
+> [!IMPORTANT]
+> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
 
 ## Custom models (bring your own model)
 
@@ -135,17 +143,16 @@ In addition to the catalog models, Fireworks on Foundry supports importing and d
 
 Custom models must be based on one of the following supported architectures:
 
-* **DeepSeek** (V3.1, V3.2)
-* **Kimi** (K2, K2.5)
+* **Kimi** (K2, K2.5, K2.6)
 * **GLM** (4.7, 4.8)
-* **OpenAI** gpt-oss-120b
-* **Qwen** (qwen3-14b)
+* **OpenAI** (gpt-oss-120b)
+* **Qwen** (qwen3.5-9B, qwen3.5-35B-A3B, qwen3.5-112B-A10B, qwen3.5-397B)
 
 ### Limitations
 
 * **Full-weight models only**. LoRA and adapter-based models aren't supported.
 * **CLI-first workflow**. The import process uses the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`). The Foundry portal supports registering, viewing, and deploying models after upload.
-* **Fireworks Agents and Agent Builder workflows** are out of scope for this preview.
+* **Fireworks Agents and Agent Builder workflows** aren't currently supported.
 
 For step-by-step instructions, see [Import custom models into Foundry](import-custom-models.md).
 
@@ -185,11 +192,7 @@ No, you need to create new deployments in Foundry. If you'd like to shift consum
 
 ### Can I deploy LoRA or adapter-based models?
 
-No, the current preview supports full-weight custom models only. LoRA and adapter-based models aren't supported at this time.
-
-### Is the Fireworks preview suitable for production workloads?
-
-No. As a public preview, Fireworks on Foundry doesn't include a production service-level agreement (SLA). The preview is intended for early testing, experimentation, and validation.
+No, Fireworks on Foundry supports full-weight custom models only. LoRA and adapter-based models aren't supported at this time.
 
 ### How do I import and deploy a custom model?
 
@@ -202,6 +205,10 @@ Fireworks models deployed through Foundry support both [pay-per-token](https://a
 ### How do I disable Fireworks in my Foundry project?
 
 Fireworks can be disabled at the Azure subscription level. Follow the steps to [unregister preview features](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) in your Azure subscription.
+
+### How do I use the Responses API?
+
+The Responses API is supported via the Foundry Projects API and SDK. Make sure to point your client to your project's API endpoint or use the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk).
 
 ## Troubleshoot Fireworks on Foundry
 

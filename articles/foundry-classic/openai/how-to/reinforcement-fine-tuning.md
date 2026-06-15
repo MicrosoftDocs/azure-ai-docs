@@ -1,9 +1,9 @@
 ---
 title: "Reinforcement fine-tuning (classic)"
 description: "Learn how to use reinforcement fine-tuning with reasoning models (classic)"
-author: mrbullwinkle
-ms.author: mbullwin
-manager: nitinme
+author: alvinashcraft
+ms.author: aashcraft
+manager: mcleans
 ms.date: 02/12/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

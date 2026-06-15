@@ -43,7 +43,7 @@ A full text query is specified in a `search` parameter and consists of terms, qu
 The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -124,7 +124,7 @@ Use a REST client to set up a request. If you need help with getting started, se
 The following example calls the REST API for full text search:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2026-04-01
 {
     "search": "NY +view",
     "queryType": "simple",

@@ -5,7 +5,7 @@ author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 05/08/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -16,6 +16,8 @@ When you deploy a model in Microsoft Foundry, you choose a deployment type that 
 - **Performance characteristics** (latency variance, throughput limits)
 
 The service offers two main categories: *standard* (pay-per-token) and *provisioned* (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements.
+
+[!INCLUDE [try-instant-models](../../includes/try-instant-models.md)]
 
 :::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the deployment type selection box with Global Standard selected." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
@@ -31,6 +33,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 
 | Deployment type | SKU code | Data processing | Billing | Best for |
 | --------------- | -------- | --------------- | ------- | -------- |
+| [Instant (preview)](../../concepts/instant-models.md) | N/A — no deployment needed | Any Azure region | Pay-per-token (global quota) | Getting started, prototyping, trying new models |
 | [Global Standard](#global-standard) | `GlobalStandard` | Any Azure region | Pay-per-token | General workloads, highest quota |
 | [Global Provisioned](#global-provisioned) | `GlobalProvisionedManaged` | Any Azure region | Reserved PTU | Predictable high-throughput |
 | [Global Batch](#global-batch) | `GlobalBatch` | Any Azure region | 50% discount, 24-hr | Large async jobs |
@@ -42,7 +45,7 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 | [Developer](#developer-for-fine-tuned-models) | `DeveloperTier` | Any Azure region | Pay-per-token | Fine-tuned model evaluation only |
 
 > [!NOTE]
-> Not all models support all deployment types. Check [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) for model availability by deployment type and region.
+> Not all models support all deployment types. Check [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) for model availability by deployment type and region.
 
 > [!NOTE]
 > SLA guarantees vary by deployment type. Provisioned types provide guaranteed throughput and lower latency variance. Standard types offer best-effort service. Developer deployments don't include an SLA. For details, see the [Azure SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
@@ -63,6 +66,7 @@ Use the following criteria to select a deployment type:
 
 ### By workload pattern
 
+- **Quick start, prototyping, or trying a new model**: Use [instant models (preview)](../../concepts/instant-models.md) (no deployment needed)
 - **Variable, bursty traffic**: Use Standard or Global Standard (pay-per-token)
 - **Consistent high volume**: Use Provisioned types (reserved capacity)
 - **Large batch jobs (not time-sensitive)**: Use Global Batch or DataZone Batch (50% cost savings)
@@ -90,12 +94,14 @@ Global deployments receive new models and features first.
 For **Global** deployment types, prompts and responses might be processed in any geography where the model is deployed. For **DataZone** deployment types, prompts and responses are processed only within the specified data zone:
 
 - **United States**: Data processed anywhere within the US
-- **European Union**: Data processed within any EU member nation
+- **European Union**: Data processed within the [EU Data Boundary](/privacy/eudb/eu-data-boundary-learn)
 
-Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+The EU Data Zone processes data within regions located in countries covered by the [Azure EU Data Boundary](/privacy/eudb/eu-data-boundary-learn). As of May 2026, this includes regions in: France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, and Switzerland. Additional regions within the EU Data Boundary may be added without prior notice to improve capacity and availability.
+
+Learn more in the "Model region availability by deployment type" section of [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 > [!NOTE]
-> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md).
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [high availability and disaster recovery guide](../../../foundry-classic/how-to/high-availability-resiliency.md).
 
 ## Global Standard
 
@@ -218,11 +224,11 @@ Use the following policy to disable access to a specific Foundry deployment type
 
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../../foundry-classic/openai/how-to/create-resource.md)
-- [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Model region availability by deployment type](../concepts/models-sold-directly-by-azure.md)
 - [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Global Batch processing](../../openai/how-to/batch.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 - [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
-- [Business continuity and disaster recovery](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md)
+- [High availability and disaster recovery](../../../foundry-classic/how-to/high-availability-resiliency.md)

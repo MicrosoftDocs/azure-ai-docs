@@ -13,7 +13,7 @@ ms.custom:
 # Configure an enrichment cache
 
 > [!IMPORTANT] 
-> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). [Preview REST APIs](/rest/api/searchservice/index-preview) support this feature.
+> This feature is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). [Preview REST APIs](/rest/api/searchservice/index-preview) support this feature.
 
 This article explains how to add caching to a skillset pipeline so that you can modify downstream enrichment steps without a full rebuild every time. By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an *enrichment cache*, the indexer determines which parts of the document tree must be refreshed based on skillset or indexer definition changes. Existing processed output is preserved and reused where possible.
 
@@ -67,12 +67,12 @@ In the indexer definition, set `cache` with:
 
 ### [**REST**](#tab/rest)
 
-We recommend that you do a [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) if you're editing an existing indexer.
+We recommend that you do a [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true) if you're editing an existing indexer.
 
-1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
 
     ```http
-    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-11-01-preview
+    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2026-05-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
         {
@@ -95,7 +95,7 @@ We recommend that you do a [GET Indexer](/rest/api/searchservice/indexers/get?vi
 1. [Run the indexer](/rest/api/searchservice/indexers/run). This one-time full rebuild seeds the cache. After it's loaded, incremental reuse applies on subsequent runs.
 
     ```http
-    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2025-11-01-preview
+    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2026-05-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
     ```

@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: This article presents Speech service phonetic alphabet and International Phonetic Alphabet (IPA) examples.
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.reviewer: jiajzhan

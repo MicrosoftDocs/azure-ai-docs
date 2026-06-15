@@ -2,7 +2,7 @@
 title: "Manage and increase quotas for resources"
 description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations."
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -15,7 +15,7 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.author: mopeakande
 author: msakande 
-manager: nitinme
+manager: mcleans
 ai-usage: ai-assisted
 # Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
 ---
@@ -27,6 +27,14 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 This article walks through the process of managing quota for your Microsoft Foundry Models deployed in a Foundry project, including how to view current allocations and request increases.
 
 [!INCLUDE [quota 1](../includes/how-to-quota-1.md)]
+
+## Quota for instant models (preview)
+
+[Instant models](../concepts/instant-models.md) draw from a per-model **global quota** pool that is separate from the regional quota you manage for deployments. When you create a Global Standard deployment, it reserves a portion of your global quota. Instant models use whatever global quota remains unreserved.
+
+You don't need to allocate or partition global quota — it's shared automatically across all instant model usage in your subscription. If instant model requests are throttled, you can request a global quota increase or create a deployment with reserved capacity.
+
+For details on how global and regional quota interact, see [Instant models — Global quota](../concepts/instant-models.md#how-quota-is-consumed).
 
 ## View and request quotas in Foundry portal
 
@@ -56,6 +64,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ## Related content
 
+- [Instant models in Microsoft Foundry (preview)](../concepts/instant-models.md)
 - [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
 - [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
 - [Manage Azure OpenAI Service quota](../../foundry-classic/openai/how-to/quota.md)

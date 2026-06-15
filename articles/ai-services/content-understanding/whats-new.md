@@ -4,10 +4,10 @@ titleSuffix: Foundry Tools
 description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
-ms.date: 03/03/2026
+manager: mcleans
+ms.date: 05/04/2026
 ai-usage: ai-assisted
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
 ms.custom:
   - references_regions
@@ -21,11 +21,71 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## May 2026
+
+### MarkItDown integration
+
+Content Understanding is now integrated with [MarkItDown](https://github.com/microsoft/markitdown), Microsoft's open-source tool for converting documents and other file types to Markdown. Use the [Azure Content Understanding](https://github.com/microsoft/markitdown#azure-content-understanding) capability to convert images, audio, video, and documents into Markdown for use with language models and agent pipelines.
+
+### Built-in RBAC roles for Content Understanding
+
+Added RBAC built-in roles for **Cognitive Service Content Understanding Owner**, **Contributor**, and **Reader** to allow granular access control. For more information, see [Managed identities](concepts/secure-communications.md#managed-identities).
+
+### Content Understanding Studio new GPT-5.2 support regions
+
+Content Understanding Studio now supports GPT-5.2 beyond the original East US 2 region, enabling broader regional coverage for resource and deployment creation. The following regions are now supported:
+
+- East US 2
+- East US
+- Australia East
+- Japan East
+- North Europe
+- South Central US
+- Southeast Asia
+- Sweden Central
+- UK South
+- West Europe
+- West US
+- West US 3
+
+For the full list of supported models and regions, see the [Foundry Models region table](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure).
+
+## April 2026
+
+### GPT-5.2 model support and model deployment updates
+
+Content Understanding now supports the GPT-5.2 model as the recommended completion model. GPT-5.2 delivers improved quality and performance over previous generations. For the full list of supported models and deployment options, see [Model deployment options for Content Understanding analyzers](concepts/models-deployments.md).
+
+### LangChain integration
+
+The Content Understanding document loader for LangChain is now available in the [`langchain-azure-ai`](https://github.com/langchain-ai/langchain-azure/tree/main/libs/azure-ai/langchain_azure_ai/document_loaders) package. Use it to load and process documents through Content Understanding directly from your LangChain pipelines. See the [demo notebook](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-ai/docs/content_understanding_loader_demo.ipynb) for a usage walkthrough.
+
+### Azure AI Agent framework integration (preview)
+
+Content Understanding is now available as a package for the Azure AI Agent framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
+
+### SDK updates: `to_llm_input()` helper (preview)
+
+A new `to_llm_input()` helper function is available across SDK languages. It formats Content Understanding field extraction results into markdown with YAML frontmatter, making it easier to pass structured output directly to language models.
+
+| Language | Package version | Sample |
+|----------|----------------|--------|
+| Python | `azure-ai-contentunderstanding 1.2.0b1` | [sample_to_llm_input.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_to_llm_input.py) |
+| .NET | `Azure.AI.ContentUnderstanding 1.2.0-beta.1` | [samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) |
+| JavaScript/TypeScript | `@azure/ai-content-understanding 1.2.0-beta.1` | [JS](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1-beta/javascript) · [TS](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1-beta/typescript) |
+| Java | `azure-ai-contentunderstanding` | [samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample_Advanced_ToLlmInput.java) |
+
+### Foundry portal updates
+
+The Foundry portal now includes a prebuilt analyzers playground for exploring Content Understanding capabilities without writing any code. For a comparison of what's available in Foundry versus Content Understanding Studio, see [Compare Content Understanding in Foundry and Content Understanding Studio](/azure/ai-services/content-understanding/foundry-vs-content-understanding-studio).
+
 ## March 2026
 
 ### Content Understanding SDK client libraries are now Generally Available
 
-Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly-typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
+Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
 
 | Language | Package | SDK Samples | Install | SDK Repo |
 |----------|---------|-------------|---------|----------|

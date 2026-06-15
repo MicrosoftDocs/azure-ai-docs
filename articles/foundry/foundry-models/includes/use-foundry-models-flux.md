@@ -36,11 +36,11 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md). FLUX models are available for global standard deployment in all regions.
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
-- **For FLUX.2 \[flex\]**: Approved registration. Use the [registration form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu) before you attempt deployment.
+
 
 ## Deploy FLUX models
 
@@ -277,13 +277,13 @@ curl -X POST https://<resource-name>.api.cognitive.microsoft.com/providers/black
 `FLUX.1-Kontext-pro` and `FLUX-1.1-pro` are also available through the Image API, which uses the same endpoint format as the Azure OpenAI images API. The Image API endpoint has the following form:
 
 ```
-https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-name>/images/generations?api-version=preview
+https://<resource-name>.services.ai.azure.com/openai/v1/images/generations?api-version=preview
 ```
 
 For image editing (in-context generation), `FLUX.1-Kontext-pro` also supports:
 
 ```
-https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-name>/images/edits?api-version=preview
+https://<resource-name>.services.ai.azure.com/openai/v1/images/edits?api-version=preview
 ```
 
 ### Image generation (text to image)
@@ -338,10 +338,11 @@ export DEPLOYMENT_NAME="<your-deployment-name>"
 ```
 
 ```sh
-curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$DEPLOYMENT_NAME/images/generations?api-version=preview \
+curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/generations?api-version=preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_API_KEY" \
   -d '{
+      "model": "'"$DEPLOYMENT_NAME"'",
       "prompt": "A photograph of a red fox in an autumn forest",
       "n": 1,
       "size": "1024x1024"
@@ -389,8 +390,9 @@ print(result.data[0].url)
 # [REST API](#tab/rest-api)
 
 ```sh
-curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$DEPLOYMENT_NAME/images/edits?api-version=preview \
+curl -X POST https://<resource-name>.services.ai.azure.com/openai/v1/images/edits?api-version=preview \
   -H "api-key: $AZURE_API_KEY" \
+  -F "model=$DEPLOYMENT_NAME" \
   -F "prompt=Change the background to a sunset over the ocean" \
   -F "image=@reference.jpg" \
   -F "n=1" \
@@ -407,12 +409,9 @@ curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$D
 
 See [the Black Forest Labs model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs) for available models.
 
-For more details about model capabilities, see [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
+For more details about model capabilities, see [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md).
 
 ### FLUX.2 \[flex\]
-
-> [!IMPORTANT]
-> [Registration is required for access to FLUX.2 \[flex\]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 
 FLUX.2 \[flex\] (`FLUX.2-flex`) offers fine-grained control with more stable throughput — throughput degrades more gracefully as image size increases. It's best suited for text-heavy layouts and images that require text overlay or fine detail preservation. It accepts text and image input (32,000 tokens and up to 10 images) and outputs one image in PNG or JPG format. Maximum output resolution is **4 MP**.
 
@@ -498,6 +497,6 @@ See the [GitHub sample for image generation with FLUX models in Microsoft Foundr
 
 ## Related content
 
-- [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
+- [Models sold by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Configure Microsoft Entra ID authentication](../how-to/configure-entra-id.md)

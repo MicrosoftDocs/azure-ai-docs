@@ -23,7 +23,7 @@ To complete this article, you need the following:
 
 * Azure role-based access control (RBAC) permissions to create and manage deployments. You need the **Cognitive Services Contributor** role or equivalent permissions for the Foundry resource.
 
-* [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+* [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
 ::: zone pivot="programming-language-cli"
 
@@ -294,5 +294,6 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 - [Generate text responses with Foundry Models](../how-to/generate-responses.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
+- [Instant models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy Foundry Models to managed compute](../how-to/deploy-foundry-models.md)
 - [Quotas and limits for Foundry Models](../quotas-limits.md)

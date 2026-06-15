@@ -3,8 +3,8 @@ title: Embedded Speech - Speech service
 titleSuffix: Foundry Tools
 description: Embedded Speech is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java
 ms.topic: how-to
 ms.date: 12/30/2025
@@ -320,9 +320,9 @@ For embedded voices, it's essential to note that certain [Speech synthesis marku
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
 
-<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) style is supported only for the `en-US-JennyNeural` voice.
+<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles) style is supported only for the `en-US-JennyNeural` voice.
 
 ## Related content
 
-- [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
+- [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and-hybrid-scenarios/3716797)
 - [Limited Access to embedded Speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech)

@@ -8,7 +8,8 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 03/30/2026
+ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -19,8 +20,8 @@ Here are the most recent versions of the REST APIs:
 
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
-| Data plane | [`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) | Stable |
-| Data plane | [`2025-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Stable |
+| Data plane | [`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2026-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) | Preview |
 
@@ -37,7 +38,7 @@ We recommend upgrading API versions in succession, working through each version 
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-11-01-preview`](#breaking-changes-for-agentic-retrieval) for agentic retrieval, [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
++ Your code references a retired or unsupported API version and is subject to one or more [breaking changes](#breaking-changes).
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -61,15 +62,21 @@ The following breaking changes apply to data operations.
 
 ### Breaking changes for agentic retrieval
 
-The latest `2025-11-01-preview` refactors the APIs for knowledge agents (bases), knowledge sources, and the retrieve action. The latest `2025-11-01-preview` renames knowledge agents to knowledge bases and relocates several properties. Several properties are replaced or relocated to other objects. 
+`2026-04-01` is the first stable REST API version for agentic retrieval. It introduces the following breaking changes from `2025-11-01-preview`:
 
-For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
++ Answer synthesis, query planning, and configurable reasoning effort are removed. Retrieval only returns extractive, grounded content.
+
++ The retrieve request shape changes: `messages` is replaced by `intents`, and several parameters are renamed or removed.
+
++ Document-level permission filtering for blob and OneLake knowledge sources isn't supported.
+
+For the full list of property-level changes and migration steps, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for knowledge agents
 
-[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object and `defaultMaxDocsForReranker` was replaced with other APIs. More breaking changes are introduced in `2025-11-01-preview`.
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object, and `defaultMaxDocsForReranker` was replaced with other APIs. More breaking changes were introduced in `2025-11-01-preview`.
 
-For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+For the full list of property-level changes and migration steps, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -95,20 +102,43 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
 
+### Upgrade to 2026-05-01-preview
+
+[`2026-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) adds new knowledge source types, new parameters on the retrieve action, new SharePoint indexer content types and ACL options, and other capabilities.
+
+There are no wire-level breaking changes from `2025-11-01-preview`. However, if you use the Python or JavaScript SDK for agentic retrieval, the retrieve client is renamed to `KnowledgeBaseRetrievalClient`, and `retrieveKnowledge(...)` is replaced with `retrieve(...)`. For SDK migration guidance, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
+For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
+
+### Upgrade to 2026-04-01
+
+[`2026-04-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) is the latest stable REST API version. It promotes agentic retrieval, select knowledge sources, and several skills and features to general availability.
+
+Before you upgrade, check whether any of the following `2026-04-01` breaking changes apply to your code:
+
++ Six properties are removed from the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. Remove these properties before you upgrade. Definitions that still include these properties return a `400 Bad Request` error.
+
++ Agentic retrieval now requires its own billing consent. If you currently have `semanticSearch=standard`, you must explicitly set `knowledgeRetrieval=standard` before you upgrade. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
+
++ If your agentic retrieval code targets the `2025-11-01-preview`, `2026-04-01` removes several preview capabilities and standardizes retrieval around the intents input, extractive output, and minimal reasoning. For more information, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
+For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
+
 ### Upgrade to 2025-11-01-preview
 
 [`2025-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) introduces the following breaking changes to agentic retrieval as implemented in the `2025-08-01-preview`:
 
 + Replaces `agents` with `knowledgebases`. Several properties related to knowledge sources moved out of the knowledge base definition and to the retrieve action.
+
 + Knowledge source properties are refactored, implementing a new `ingestionParameters` object for knowledge sources that generate an indexer pipeline.
 
-For more information on changes and code migration, see [breaking changes in 2025-11-01-preview](agentic-retrieval-how-to-migrate.md#version-specific-changes) and [How to migrate](agentic-retrieval-how-to-migrate.md#how-to-migrate).
+For the full list of property-level changes and migration steps, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
-For all other existing APIs, there are no behavior changes. You can swap in the new API version and your code runs the same as before.
+For all other existing APIs, there are no behavior changes. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2025-09-01
 
-[`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
+[`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) is a stable REST API version that adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
 
 There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
 
@@ -119,21 +149,21 @@ There are no breaking changes if you're upgrading from `2024-07-01` and not usin
 + Replaces `targetIndexes` with `knowledgeSources`.
 + Removes `defaultMaxDocsForReranker` without replacement.
 
-Otherwise, there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+Otherwise, there are no behavior changes on existing APIs. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2025-05-01-preview
 
-[`2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+[`2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2025-03-01-preview
 
-[`2025-03-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+[`2025-03-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2024-11-01-preview
 
 [`2024-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
 
-If you're upgrading from `2024-09-01-preview`, you can swap in the new API version and your code runs the same as before.
+If you're upgrading from `2024-09-01-preview`, you can swap in the new API version, and your code runs the same as before.
 
 However, the new version introduces syntax changes to `vectorSearch.compressions`:
 
@@ -146,7 +176,7 @@ Backwards compatibility is preserved due to an internal API mapping, but we reco
 
 [`2024-09-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) adds Matryoshka Representation Learning (MRL) compression for text-embedding-3 models, targeted vector filtering for hybrid queries, vector subscore details for debugging, and token chunking for [Text Split skill](cognitive-search-skill-textsplit.md).
 
-If you're upgrading from `2024-05-01-preview`, you can swap in the new API version and your code runs the same as before.
+If you're upgrading from `2024-05-01-preview`, you can swap in the new API version, and your code runs the same as before.
 
 ### Upgrade to 2024-07-01
 

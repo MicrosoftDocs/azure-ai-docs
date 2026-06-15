@@ -17,6 +17,8 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 This article addresses frequently asked questions about prompt flow usage.
 
 ## Compute session-related issues

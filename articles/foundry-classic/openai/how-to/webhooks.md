@@ -2,9 +2,9 @@
 title: "Azure OpenAI in Foundry Models Webhooks (classic)"
 description: "Learn how to use webhooks with Azure OpenAI in Foundry Models. (classic)"
 ai-usage: ai-assisted
-author: mrbullwinkle
-ms.author: mbullwin
-manager: nitinme
+author: alvinashcraft
+ms.author: aashcraft
+manager: mcleans
 ms.date: 01/31/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

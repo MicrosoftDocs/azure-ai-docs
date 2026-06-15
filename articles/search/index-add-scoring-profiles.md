@@ -95,7 +95,7 @@ The following definition shows a simple profile named "geo". This example boosts
 To use this scoring profile, your query is formulated to specify `scoringProfile` parameter in the request. If you're using the REST API, queries are specified through GET and POST requests. In the following example, "currentLocation" has a delimiter of a single dash (`-`). It's followed by longitude and latitude coordinates, where longitude is a negative value.
 
 ```http
-POST /indexes/hotels/docs&api-version=2025-09-01
+POST /indexes/hotels/docs/search?api-version=2026-04-01
 {
     "search": "inn",
     "scoringProfile": "geo",
@@ -451,7 +451,7 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 ## Example: function aggregation
 
 > [!NOTE]
-> This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
+> This capability is currently in preview, available through the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
 
 Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
@@ -459,7 +459,7 @@ In this example, create a scoring profile that includes two boosting functions t
 
 ```http
 ### Create a new index
-PUT {{url}}/indexes/hotels-scoring?api-version=2025-11-01-preview
+PUT {{url}}/indexes/hotels-scoring?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 
@@ -522,7 +522,7 @@ This next request loads the index with searchable content that tests the profile
 
 ```http
 ### Upload documents to the index
-POST {{url}}/indexes/hotels-scoring/docs/index?api-version=2025-11-01-preview
+POST {{url}}/indexes/hotels-scoring/docs/index?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 
@@ -611,7 +611,7 @@ Run a query that uses the criteria in the scoring profile to boost results based
 
 ```http
 ### Search with boost
-POST {{url}}/indexes/hotels-scoring/docs/search?api-version=2025-11-01-preview
+POST {{url}}/indexes/hotels-scoring/docs/search?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: {{key}}
 

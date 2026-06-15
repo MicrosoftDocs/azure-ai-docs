@@ -1,12 +1,12 @@
 ---
 title: Metrics Advisor JavaScript quickstart
 titleSuffix: Azure AI services
-author: mrbullwinkle
-manager: nitinme
+author: alvinashcraft
+manager: mcleans
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: mbullwin
+ms.author: aashcraft
 ---
 
 [Reference documentation](/java/api/overview/azure/ai-metricsadvisor-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-metrics-advisor) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk)

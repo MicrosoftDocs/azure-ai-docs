@@ -3,7 +3,7 @@ title: How to train and evaluate models in Conversational Language Understanding
 titleSuffix: Foundry Tools
 description: Use this article to train a model and view its evaluation details to make improvements.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 01/11/2026
@@ -28,7 +28,9 @@ Model evaluation is triggered automatically after training is completed successf
 ## Prerequisites
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Foundry Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 * **A project created in the Microsoft Foundry**. For more information, *see* [Create a Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 * [**Your labeled utterances**](tag-utterances.md) tagged for your fine tuning task.
 

@@ -1,28 +1,34 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/dotnet/api/overview/azure/ai.speech.transcription-readme) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Speech.Transcription/1.0.0-beta.1) | [GitHub samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/transcription/Azure.AI.Speech.Transcription/samples)
+[!INCLUDE [Reference links](transcription-sdk-reference-csharp.md)]
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download) or later.
+
 - A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=stt).
+
 - A sample `.wav` audio file to transcribe.
 
 ### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
+
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+
 - Sign in with the Azure CLI by running `az login`.
-- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+- Assign the Cognitive Services User role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up the project
 
@@ -36,7 +42,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Install the required packages:
 
     ```dotnetcli
-    dotnet add package Azure.AI.Speech.Transcription --prerelease
+    dotnet add package Azure.AI.Speech.Transcription
     dotnet add package Azure.Identity
     ```
 
@@ -44,9 +50,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 You need to retrieve your resource endpoint for authentication.
 
-1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multi-service resource.
+1. Sign in to the [Foundry portal](https://ai.azure.com).
+
+1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multiservice resource.
+
 1. Select **Keys and Endpoint**.
+
 1. Copy the **Endpoint** value and set it as an environment variable:
 
     ```powershell
@@ -55,7 +64,7 @@ You need to retrieve your resource endpoint for authentication.
 
 ## Transcribe audio with LLM speech
 
-LLM speech uses the `EnhancedModeProperties` class to enable large-language-model-enhanced transcription. Enhanced mode is automatically enabled when you create an `EnhancedModeProperties` instance. The model automatically detects the language in your audio.
+LLM Speech uses the `EnhancedModeProperties` class to enable transcription that's enhanced by a large language model. When you create an `EnhancedModeProperties` instance, you automatically enable enhanced mode. The model automatically detects the language in your audio.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -79,7 +88,7 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode properties for LLM speech transcription
+// Create enhanced mode properties for LLM Speech transcription
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
     EnhancedMode = new EnhancedModeProperties
@@ -97,13 +106,10 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 }
 
 // Print detailed phrase information
-foreach (var channel in response.Value.PhrasesByChannel)
+Console.WriteLine("\nDetailed phrases:");
+foreach (var phrase in response.Value.Phrases)
 {
-    Console.WriteLine("\nDetailed phrases:");
-    foreach (var phrase in channel.Phrases)
-    {
-        Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
-    }
+    Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
 }
 ```
 
@@ -115,11 +121,11 @@ Run the application:
 dotnet run
 ```
 
-Reference: [`TranscriptionClient`](/dotnet/api/azure.ai.speech.transcription.transcriptionclient), [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
+For more information, see the following references: [`TranscriptionClient`](/dotnet/api/azure.ai.speech.transcription.transcriptionclient) and [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties).
 
-## Translate audio with LLM speech
+## Translate audio with LLM Speech
 
-You can also use LLM speech to translate audio into a target language. Set the `Task` to `translate` and specify the `TargetLanguage`:
+You can also use LLM Speech to translate audio into a target language. Set the `Task` to `translate`, and specify the `TargetLanguage`:
 
 ```csharp
 using System;
@@ -138,7 +144,7 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode properties for LLM speech translation
+// Create enhanced mode properties for LLM Speech translation
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
     EnhancedMode = new EnhancedModeProperties
@@ -159,7 +165,7 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 
 Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
-Reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
+For more information, see the following reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties).
 
 ## Use prompt-tuning
 
@@ -185,12 +191,15 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 
 ### Best practices for prompts
 
-- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts have a maximum length of 4,096 characters.
+
 - Prompts should preferably be written in English.
+
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
+
 - Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
 
-Reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
+For more information, see the following reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties).
 
 ## Clean up resources
 

@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document solutions.
 author: PatrickFarley 
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.date: 03/23/2026
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
   - build-2025
@@ -17,6 +17,13 @@ ai-usage: ai-assisted
 # Azure Content Understanding in Foundry Tools document solutions
 
 Content Understanding offers sophisticated document analysis capabilities. Organizations can use these capabilities to convert unstructured content into actionable and organized data. Content Understanding can use [customizable analyzers](../concepts/prebuilt-analyzers.md) to expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
+
+> [!NOTE]
+>
+> * As part of Azure Content Understanding capabilities, Azure Document Intelligence provides high-accuracy and reliable deterministic extraction from structured documents.
+> * Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content.
+> * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
+> * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../choosing-right-ai-tool.md).
 
 ## Business use cases
 

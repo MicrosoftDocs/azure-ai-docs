@@ -11,10 +11,16 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search
+# Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search (preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 > [!IMPORTANT]
-> The Azure Cosmos DB for Apache Gremlin indexer is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Currently, there is no SDK support.
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from [Azure Cosmos DB for Apache Gremlin](/azure/cosmos-db/gremlin/introduction) and makes it searchable in Azure AI Search.
 
@@ -40,10 +46,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 For this call, specify a [preview REST API version](search-api-preview.md) to create a data source that connects via an Azure Cosmos DB for Apache Gremlin. You can use 2021-04-01-preview or later. We recommend the latest preview API.
 
-1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -102,7 +108,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store data:
 
    ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -161,10 +167,10 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -196,7 +202,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-05-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -273,7 +279,7 @@ When graph data is deleted, you might want to delete its corresponding document 
 The following example creates a data source with a soft-deletion policy:
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
 Content-Type: application/json
 api-key: [Search service admin key]
 

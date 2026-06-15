@@ -2,10 +2,10 @@
 title: "Quickstart: Translator Text Python SDK"
 description: 'Text translation processing using the Python programming language'
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 06/02/2026
 ms.author: lajanuar
 recommendations: false
 ---

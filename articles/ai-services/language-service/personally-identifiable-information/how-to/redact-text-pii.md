@@ -1,19 +1,25 @@
 ---
-title: Identify and extract Personally Identifying Information (PII) from text
+title: Identify and extract Personally Identifiable Information (PII) from text
 titleSuffix: Foundry Tools
-description: This article shows you how to identify, extract, and redact Personally Identifying Information (PII) from text.
+description: This article shows you how to identify, extract, and redact Personally Identifiable Information (PII) from text.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.date: 06/02/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 <!-- markdownlint-disable MD025 -->
-# Detect and redact Personally Identifying Information in text
+# Detect and redact Personally Identifiable Information in text
 
 Azure Language in Foundry Tools is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).
+
+* [**Stable 2026-05-01: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
+* [**Preview: 2026-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP).
+
+   > [!IMPORTANT]
+   > **Text PII API** (2026-05-15-preview) is licensed to you as part of your Azure subscription and is subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA), as well as the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Development options
 
@@ -318,4 +324,4 @@ When you get results from PII detection, you can stream the results to an applic
 
 ## Next steps
 
-[Personally Identifying Information (PII) overview](../overview.md)
+[Personally Identifiable Information (PII) overview](../overview.md)

@@ -3,8 +3,8 @@ title: Recipes for Docker containers
 titleSuffix: Foundry Tools
 description: Learn how to build, test, and store containers with some or all of your configuration settings for deployment and reuse.
 author: aahill
-manager: nitinme
-ms.service: azure-ai-services
+manager: mcleans
+ms.service: foundry-tools
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: aahi

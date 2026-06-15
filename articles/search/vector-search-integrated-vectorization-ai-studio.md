@@ -2,17 +2,18 @@
 title: Integrated Vectorization with Models from Microsoft Foundry
 description: Learn how to vectorize content during indexing in Azure AI Search with a Microsoft Foundry model.
 ms.reviewer: gimondra
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
 ms.custom:
   - build-2024
-ms.topic: how-to
-ms.date: 01/28/2026
+ai-usage: ai-assisted
 ---
 
 # Use embedding models from the Microsoft Foundry model catalog for integrated vectorization
 
 > [!IMPORTANT]
-> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
+> This feature is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
 
 In this article, you learn how to access embedding models from the [Microsoft Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) for vector conversions during indexing and query execution in Azure AI Search.
 
@@ -25,17 +26,17 @@ After the model is deployed, you can use it with the [AML skill](cognitive-searc
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any region and on any pricing tier.
+- An [Azure AI Search service](search-create-service-portal.md) in any region and on any pricing tier.
 
-+ A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects).
+- A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects).
 
 ## Supported embedding models
 
 Supported embedding models from the model catalog vary by usage method:
 
-+ For the latest list of models supported programmatically, see the [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) references.
+- For the latest list of models supported programmatically, see the [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) references.
 
-+ For the latest list of models supported in the Azure portal, see [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md) and [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
+- For the latest list of models supported in the Azure portal, see [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md) and [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 
 ## Deploy an embedding model from the model catalog
 
@@ -43,13 +44,13 @@ Supported embedding models from the model catalog vary by usage method:
 
 1. Make a note of the target URI, key, and model name. You need these values for the vectorizer definition in a search index and for the skillset that calls the model endpoints during indexing.
 
-    If you prefer [token authentication](#connect-using-token-authentication) to key-based authentication, you only need to copy the model name. However, make a note of the region to which the model is deployed.
+   If you prefer [token authentication](#connect-using-token-authentication) to key-based authentication, you only need to copy the model name. However, make a note of the region to which the model is deployed.
 
 1. Configure a search index and indexer to use the deployed model.
 
-   + To use the model during indexing, see [How to use integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [AML skill](cognitive-search-aml-skill.md), not the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
+   - To use the model during indexing, see [How to use integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [AML skill](cognitive-search-aml-skill.md), not the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
 
-   + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
+   - To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
 
 <!--
 1. Open the [Foundry model catalog](https://ai.azure.com/explore/models). Create a project if you don't have one already.
@@ -87,58 +88,58 @@ To create a Cohere serverless deployment:
 
 1. Install the Azure CLI with the `ml` extension.
 
-    ```azurecli
-    az extension add -n ml
-    ```
+   ```azurecli
+   az extension add -n ml
+   ```
 
 1. Sign in to Azure and set your defaults.
 
-    ```azurecli
-    az login
-    az account set --subscription <subscription-id>
-    az configure --defaults workspace=<project-name> group=<resource-group>
-    ```
+   ```azurecli
+   az login
+   az account set --subscription <subscription-id>
+   az configure --defaults workspace=<project-name> group=<resource-group>
+   ```
 
 1. Create a `subscribe.yaml` file to subscribe to the marketplace subscription for the model.
 
-    ```yaml
-    name: cohere-embed-v3-english-subscription
-    model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
-    ```
+   ```yaml
+   name: cohere-embed-v3-english-subscription
+   model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
+   ```
 
-    For other supported models, replace the model ID with one of the following values.
-    
-    | Model | Model ID |
-    | ----- | -------- |
-    | Cohere-embed-v3-english | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-english` |
-    | Cohere-embed-v3-multilingual | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-multilingual` |
-    | Cohere-embed-v4 | `azureml://registries/azureml-cohere/models/Cohere-embed-v4` |
+   For other supported models, replace the model ID with one of the following values.
+
+   | Model | Model ID |
+   | ----- | -------- |
+   | Cohere-embed-v3-english | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-english` |
+   | Cohere-embed-v3-multilingual | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-multilingual` |
+   | Cohere-embed-v4 | `azureml://registries/azureml-cohere/models/Cohere-embed-v4` |
 
 1. Run the following command to create the subscription.
 
-    ```azurecli
-    az ml marketplace-subscription create --file subscribe.yaml
-    ```
+   ```azurecli
+   az ml marketplace-subscription create --file subscribe.yaml
+   ```
 
 1. Create an `endpoint.yaml` file to create the serverless endpoint.
 
-    ```yaml
-    name: cohere-embed-v3-english-endpoint
-    model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
-    ```
+   ```yaml
+   name: cohere-embed-v3-english-endpoint
+   model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
+   ```
 
 1. Run the following command to create the endpoint.
 
-    ```azurecli
-    az ml serverless-endpoint create --file endpoint.yaml
-    ```
+   ```azurecli
+   az ml serverless-endpoint create --file endpoint.yaml
+   ```
 
 1. For key-based authentication, get the endpoint URI and key for use in the skill or vectorizer.
 
-    ```azurecli
-    az ml serverless-endpoint show --name cohere-embed-v3-english-endpoint --query "scoring_uri"
-    az ml serverless-endpoint get-credentials --name cohere-embed-v3-english-endpoint
-    ```
+   ```azurecli
+   az ml serverless-endpoint show --name cohere-embed-v3-english-endpoint --query "scoring_uri"
+   az ml serverless-endpoint get-credentials --name cohere-embed-v3-english-endpoint
+   ```
 
 ## Sample AML skill payload
 
@@ -245,9 +246,9 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 
 This AML skill payload works with the following embedding models:
 
-+ Cohere-embed-v3-english
-+ Cohere-embed-v3-multilingual
-+ Cohere-embed-v4
+- Cohere-embed-v3-english
+- Cohere-embed-v3-multilingual
+- Cohere-embed-v4
 
 It assumes that you're chunking your content using the Text Split skill and therefore your text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
@@ -350,8 +351,8 @@ Your search service must have a [system or user-assigned managed identity](searc
 
 ## Related content
 
-+ [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
-+ [Configure index projections in a skillset](index-projections-concept-intro.md)
-+ [AML skill](cognitive-search-aml-skill.md)
-+ [Foundry vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md)
-+ [Skill context and input annotation language](cognitive-search-skill-annotation-language.md)
+- [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
+- [Configure index projections in a skillset](index-projections-concept-intro.md)
+- [AML skill](cognitive-search-aml-skill.md)
+- [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md)
+- [Skill context and input annotation language](cognitive-search-skill-annotation-language.md)

@@ -3,8 +3,8 @@ title: "Analyze video content for objectionable material in C# - Content Moderat
 titleSuffix: Azure AI services
 description: How to analyze video content for various objectionable material using the Content Moderator SDK for .NET
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-content-moderator
+manager: mcleans
+ms.service: azure-content-moderator
 ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: pafarley

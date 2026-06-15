@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Migrate from Azure Content Understanding in Foundry Tools Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: how-to
 ms.date: 01/29/2026
 ai-usage: ai-assisted
@@ -71,14 +71,11 @@ For example, the schema from step 1 is updated to:
   },
   "fieldSchema": {/*...*/},
   "models": {
-    "completion": "gpt-4.1",
+    "completion": "gpt-5.2",
     "embedding": "text-embedding-3-large"
   }
 }
 ```
-
-> [!TIP]
-> To more closely match preview behavior, use a GPT-4o `2024-08-06` generative deployment. For new analyzers, we recommend GPT-4.1 for Content Understanding.
 
 ### Step 3: Create a new analyzer
 

@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting for Azure OpenAI fine-tuning (classic)"
 description: "Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
@@ -17,7 +17,9 @@ ms.author: ssalgado
 
 ## How do I enable fine-tuning?
 
-In order to successfully access fine-tuning, you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
+In order to successfully access fine-tuning, you need **Foundry User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
+
+[!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 
 ## Why did my upload fail?
 

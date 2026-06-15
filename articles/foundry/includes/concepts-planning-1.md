@@ -1,6 +1,7 @@
 ---
 title: Include file
 description: Include file
+ai-usage: ai-assisted
 author: sdgilley
 ms.reviewer: deeikele
 ms.author: sgilley
@@ -10,182 +11,201 @@ ms.date: 04/06/2026
 ms.custom: include
 ---
 
-A structured rollout plan helps you avoid security gaps, cost overruns, and access sprawl when adopting Microsoft Foundry at scale. This guide outlines key decisions for rolling out Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles.
+A structured deployment plan helps you avoid security gaps, cost overruns, and
+access sprawl when you adopt Microsoft Foundry at scale. Use this guide to
+define workload boundaries, choose a resource topology, and establish
+governance for self-serve teams.
 
 ## Prerequisites
 
-Before you begin rollout planning, confirm that you have:
+Before you begin planning, confirm that you have:
 
-- A target Azure subscription and resource group strategy for development, test, and production environments.
-- Microsoft Entra ID groups (or equivalent identity groups) defined for admins, project managers, and project users.
-- An initial region plan based on model and feature availability. For details, see [Feature availability across cloud regions](../reference/region-support.md).
+- An understanding of your organization's baseline Azure subscription and
+  resource group organization.
+- Inputs on your organization's security requirements for networking,
+  encryption, and data isolation.
+- An initial region plan based on model and feature availability. For details, see [feature availability across cloud regions](../reference/region-support.md).
 - Agreement on security requirements for networking, encryption, and data isolation in your organization.
+- An inventory of the Foundry features and APIs your teams plan to use.
 
-## Baseline rollout checklist
+## Define isolation boundaries
 
-Use this checklist before your first production rollout:
+Start with Cloud Adoption Framework decision guidance for AI platform sharing,
+then apply those decisions to Foundry:
 
-1. Define environment boundaries across development, testing, and production.
-1. Assign ownership for each Foundry resource and project scope.
-1. Determine the Foundry features you plan to use. Not all feature APIs are available in the project context. If you plan to assign permissions at the lowest project scope for use case isolation, this might not be supported for classic Azure AI APIs such as Translator. Those require every user to have permissions on the parent Foundry resource level. For those cases, segregation by Foundry resource is recommended.
-1. Define RBAC assignments for admins, project managers, and project users.
-1. Define networking approach for each environment (public access, private endpoint, or hybrid).
-1. Decide whether customer-managed keys are required by policy.
-1. Define cost and monitoring ownership for each business group.
-1. Identify required shared connections and project-scoped connections.
+- [Define AI platform sharing boundaries](/azure/cloud-adoption-framework/ai/platform/ai-platform-sharing-isolation-colocation#1-define-ai-platform-sharing-boundaries)
 
-## Example organization
+While every situation is unique, for the common organization we recommend the following sequence:
+1. Define nonnegotiable sharing boundaries across business units, data domains,
+   product ownership, and environment tiers.
+1. Set a prod policy that defaults to isolation, unless a documented
+   exception allows colocation.
+1. Set an exploration policy that defaults to colocation for faster
+   experimentation, unless compliance or validation requires isolation.
+1. Assign ownership for each boundary, including security, cost, and incident
+   response ownership.
 
-Contoso is a global enterprise exploring GenAI adoption across five business groups, each with distinct needs and technical maturity.
+## Identify capability and access requirements
 
-To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims to enable a model with common shared resources including networking and centralized data management, while enabling self-serve access to Foundry for each team within a governed, secure environment to manage their use cases.
+Determine which Foundry features and APIs each workload requires before you
+finalize your topology.
 
-## Rollout considerations
+> [!NOTE]
+> Not all Foundry APIs support the full variety of authentication modes, storage encryption levels, and project-level isolation. Some of the Foundry Tools APIs can require
+> role assignments at the parent Foundry resource scope.
 
-The Foundry resource defines the scope for configuring, securing, and monitoring your team's environment. It's available in the Foundry portal and through Azure APIs. Projects are like folders to organize your work within this resource context. Projects also control access and permissions to Foundry developer APIs and tools.
+For co-located use cases that share one Foundry resource, use Foundry projects as isolated workspaces for each use case. For example, teams experimenting with an
+idea can create a project to organize coherent assets without repeating infrastructure
+setup for security, model deployments and tool access.
+
+Most newer, agent-centric Foundry APIs support project-scope permissioning. Some traditional Foundry Tools APIs (former Azure AI Services), such as speech-to-text, still require parent resource-scope access. Plan boundaries and RBAC so all required capabilities are accessible at your intended access-management scope.
+
+| Capability area | Organize by project | Project-level RBAC isolation | Bring your own storage | Networking / encryption support | Planning implication |
+|---|---|---|---|---|---|
+| Agent capabilities (agents, responses, evaluations, datasets, indexes, files, and playground assets) | Yes | Yes | Yes | Limited in basic setup (managed storage). For full coverage, use 'standard'. | Good fit for project-per-use-case segmentation in shared environments. |
+| Fine-tune training | No (default project only) | No | Partial (inputs only) | Yes |  If each team needs independent fine-tuning, use separate Foundry resources. Fine-tuned deployments are shared and consumable across projects within a resource. |
+| OpenAI image, video, batch | No | No | Partial (only Batch) | Yes | Use an isolated workload setup, and if managed storage is required, validate RBAC constraints early. |
+| Content Understanding | Yes | No | Yes | Yes | If strict per-use-case access isolation is required, prefer separate Foundry resources. |
+| Speech | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
+| Language | Yes (fine-tune) | No | Yes | Limited in basic setup (managed storage).|  For full CMK encryption coverage, use BYO Storage. |
+| Translator | No | No | No | Yes | Use separate Foundry resource if isolation is a must. |
 
 > [!IMPORTANT]
-> Projects provide a pre-configured sandbox environment optimized for agent creation and Foundry-native capabilities. However, because Foundry is built on a number of classic Azure AI services, not every classic API is available in the project context. Identify the features your teams plan to use and verify whether they support project-level access. For services like Translator that require permissions at the parent Foundry resource level, consider using separate Foundry resources for cost isolation and access control.
+> Confirm your exact capability mix before rollout. If a required API only works
+> at Foundry resource scope, assign roles at that scope or isolate workloads into
+> separate Foundry resources.
+
+## Choose Foundry resource topology
+
+After you define boundaries and capability needs, choose topology per
+environment.
+
+| Decision path | Recommended Foundry setup | Best fit | Main tradeoff |
+|---|---|---|---|
+| Co-located workloads | One Foundry resource with multiple projects (typically one project per use case) | Experimentation-heavy environments, early prototypes, and teams that benefit from shared deployments and shared connected data or tools | Shared blast radius for production incidents, quota exhaustion, and misconfiguration |
+| Fully isolated workloads | One Foundry resource per production workload boundary (often with one primary project per workload) | Production workloads that require strict operational containment, independent access control, and independent quota or cost boundaries | Self-serve enablement harder with more resources to manage and higher setup overhead |
+
+> [!TIP]
+> For production, treat isolation as the default. Use colocation as a deliberate
+> exception only when workload boundaries, data requirements, and risk acceptance
+> are aligned.
 
 :::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
-To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Foundry:
+## Plan your security baseline
 
-- **Establish distinct environments for development, testing, and production.** Use separate resource groups or subscriptions, and Foundry resources to isolate workflows, manage access, and support experimentation with controlled releases.
+Use this reference table as a checklist for security design decisions.
 
-- **Create a separate Foundry resource for each business group.** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking. Also consider separate Foundry resources when teams need classic Azure AI APIs that don't support project-scoped access.
-
-- **Associate projects with use cases.** Foundry projects represent specific use cases and provide containers to organize components such as agents or files for an application. While they inherit security settings from their parent resource, they can also implement their own access controls, data integration, and other governance controls. Before assigning project-scoped permissions, verify that the APIs your team plans to use support project-level access.
-
-## Securing the Foundry environment
-
-Foundry is built on the Azure platform, so you can customize security controls to meet your organization's needs.
-
-### Identity
-
-Use Microsoft Entra ID to manage user and service access. Foundry supports managed identities to allow secure, passwordless authentication to other Azure services. You can assign managed identities at the **Foundry resource level** and optionally at the **project level** for fine-grained control. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
-
-### Networking
-
-Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). For private connectivity scenarios, use private endpoints and validate DNS and endpoint approval status. For implementation details and limitations, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
-
-> [!IMPORTANT]
-> Some features, such as agents and evaluations, require additional network configuration for end-to-end isolation. For implementation details and current limitations, see [How to configure network isolation for Foundry](../how-to/configure-private-link.md).
-
-### Customer-managed keys
-
-Azure supports customer-managed keys (CMK) for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. For details, see [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md).
-
-### Authentication and authorization
-
-Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. API keys can simplify setup, but they don't provide the same role-based granularity as Microsoft Entra ID with RBAC. Azure enforces a clear separation between the [control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) (resource management operations like creating or configuring resources) and the **data plane** (runtime operations like calling models and accessing data). Start with built-in roles, and define custom roles as needed. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
-
-### Templates
-
-Use ARM templates or Bicep to automate secure deployments. Explore the [sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples).
-
-### Storage
-
-You might choose to use built-in storage capabilities in Foundry or use your own storage resources. For the Agent Service, threads and messages can optionally be stored in [resources managed by you](/azure/ai-foundry/agents/how-to/use-your-own-resources).
-
-## Example: Contoso's security approach
-
-Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke virtual network. They use built-in role-based access control (RBAC) to separate access:
-
-* **Admins** manage deployments, connections, and shared resources
-* **Project Managers** oversee specific projects
-* **Users** interact with GenAI tools
-
-For most use cases, Contoso relies on Microsoft-managed encryption by default and does **not use Customer-Managed Keys**.
-
-## Plan user access
-
-Effective access management is foundational to a secure and scalable Foundry setup.
-
-### Define access roles and responsibilities
-
-Identify which user groups require access to various aspects of the Foundry environment. Assign built-in or custom Azure RBAC roles based on responsibilities such as:
-
-- Account owner: Manage top-level configurations such as security and shared resource connections.
-- Project managers: Create and manage Foundry projects and their contributors.
-- Project users: Contribute to existing projects.
-
-Use this starter role-to-scope mapping for rollout planning:
-
-| Persona | Starter role | Recommended scope |
+| Area | What to decide | Start with |
 |---|---|---|
-| Admins | Owner or Azure AI Account Owner | Subscription or Foundry resource |
-| Project Managers | Azure AI Project Manager | Foundry resource |
-| Project Users | Azure AI User | Foundry project |
+| Identity and access | Define admin, project manager, and project user personas. Map each persona to least-privilege roles and Microsoft Entra ID groups. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
+| Networking | Choose the network model per environment. Use managed virtual network for a more secure, straightforward setup. Use bring-your-own (BYO) virtual network for advanced network control and custom routing requirements. Validate private DNS and endpoint approval flow before production. | [Configure managed virtual network](../how-to/managed-virtual-network.md), [Configure private link for Foundry](../how-to/configure-private-link.md), and [Network-secured setup (BYO virtual network)](../agents/how-to/virtual-networks.md) |
+| Data protection and keys | Decide whether Microsoft-managed keys meet policy requirements or whether customer-managed keys are required. | [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md) |
+| Authentication model | Prefer Microsoft Entra ID and RBAC for people and services. Use API keys only where role granularity isn't required. | [Role-based access control in Foundry](../concepts/rbac-foundry.md) |
 
-Adjust assignments based on least-privilege requirements and enterprise policies.
+## Plan model, region, and capacity strategy
 
-### Determine access scope
+For each workload, define:
 
-Choose the appropriate scope for access assignments:
+* Model families and deployment types required by the use case.
+* Data processing requirements (for example, global or regional constraints).
+* Throughput and latency targets for interactive and batch scenarios.
+* Quota and provisioned capacity requirements for steady-state and peak loads.
 
-- **Subscription level**: Broadest access, typically suitable for central IT or platform teams or smaller organizations.
-- **Resource group level**: Useful for grouping related resources with shared access policies. For example, an Azure Function that follows the same application lifecycle as your Foundry environment.
-- **Resource or project level**: Ideal for fine-grained control, especially when dealing with sensitive data or enabling self-service.
+Use these references:
 
-### Align identity strategy
+- [Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Models from partners](../foundry-models/concepts/models-from-partners.md)
+- [Quota in Foundry](../how-to/quota.md)
+- [Quotas and limits for Foundry models](../foundry-models/quotas-limits.md)
 
-For data sources and tools integrated with Foundry, determine whether users should authenticate by using:
+## Plan connectivity and data integration
 
-- **Managed identities or API key**: Suitable for automated services and shared access across users.
-- **User identities**: Preferred when user-level accountability or auditability is required.
+For each workload, identify external dependencies and connection patterns:
 
-Use Microsoft Entra ID groups to simplify access management and ensure consistency across environments.
+- Data sources and data stores.
+- Internal APIs and line-of-business systems.
+- Non-Azure SaaS tools required by agents or orchestration flows.
+- Networking requirements, including private endpoints, DNS resolution,
+  egress controls, and whether managed network or BYO virtual network is required.
 
-For least-privilege onboarding, start with the **Azure AI User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
+Use [Add connections in Foundry](../how-to/connections-add.md) to standardize
+connection setup.
 
-## Establish connectivity with other Azure services
-
-Foundry supports **connections**, which are reusable configurations that enable access to application components on Azure and non-Azure services. These connections also act as **identity brokers**, allowing Foundry to authenticate to external systems by using managed identities or service principals on behalf of project users.
-
-Create connections at the **Foundry resource level** for shared services like Azure Storage or Key Vault. Scope connections to a **specific project** for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in Foundry](../how-to/connections-add.md).
-
-Configure connection authentication to use either shared access tokens, such as Microsoft Entra ID managed identities or API keys, for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
+Connections can be created at both the parent Foundry resource-level and child project-level dependent on desired isolation scope. Connections configured at the parent level are available to all projects. 
 
 :::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
-### Example: Contoso's connectivity strategy
+## Plan automation and operations
 
-- Contoso creates a Foundry resource for every business group, ensuring projects with similar data needs share the same connected resources.
-- By default, connected resources use shared authentication tokens and are shared across all projects.
-- Projects that use sensitive data workloads connect to data sources with project-scoped connections and Microsoft Entra ID passthrough authentication.
+Define how teams create and manage resources consistently across environments.
 
-## Governance
+- Use infrastructure as code to provision core resources and policy defaults.
+- Standardize deployment pipelines for projects, connections, model deployments, and
+  configuration changes.
+- Define rollback and incident response procedures for model and policy changes.
 
-Effective governance in Foundry ensures secure, compliant, and cost-efficient operations across business groups.
+For automation patterns and starter implementations, use:
 
-- **Model Access Control with Azure Policy**
-  Azure Policy enforces rules across Azure resources. In Foundry, use policies to restrict which models or model families specific business groups can access.
-  *Example*: Contoso’s **Finance & Risk** group is restricted from using preview or noncompliant models by applying a policy at their business group’s subscription level.
-- **Cost Management by Business Group**
-  By deploying Foundry per business group, Contoso can track and manage costs independently. Use the Azure pricing calculator for predeployment estimates and Microsoft Cost Management for ongoing actual usage and trend tracking. Treat Foundry costs as one part of the total solution cost.
-- **Usage Tracking with Azure Monitor**
-  Azure Monitor provides metrics and dashboards to track usage patterns, performance, and health of Foundry resources.
-- **Verbose Logging with Azure Log Analytics**
-  Azure Log Analytics enables deep inspection of logs for operational insights. For example, log request usage, token usage, and latency to support auditing and optimization.
+- [Quickstart: Deploy a Microsoft Foundry resource by using a Bicep file](../how-to/create-resource-template.md)
+- [Terraform on Azure](/azure/developer/terraform/overview)
+- [Security configurations samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
 
-## Validate rollout decisions
+The sample templates include end-to-end patterns for common security scenarios,
+such as private networking, customer-managed keys, and role-based access
+control.
 
-After you define your rollout plan, validate the following outcomes:
+## Define self-serve guardrails
 
-- Identity and access: Role assignments map to approved personas and scopes.
-- Networking: Connectivity path and isolation model are documented for each environment.
-- Networking verification: Private endpoint connection status is **Approved**, and DNS resolves Foundry endpoints to private IP addresses from inside the virtual network.
-- Data protection: Encryption approach (Microsoft-managed keys or customer-managed keys) is documented and approved.
-- Operations: Cost and monitoring owners are assigned per business group.
-- Operations verification: Cost views and dashboards are defined in Microsoft Cost Management and monitoring is connected to Application Insights for each production project.
-- Model operations: Deployment strategy (standard or provisioned) is documented per use case.
-- Region readiness: Required models and services are confirmed in target regions before rollout.
+Enable self-serve only within clear constraints:
 
-## Configure and optimize model deployments
+* Define which roles can create projects, deploy models, and connect external
+   tools. 
+* Apply policy controls for model deployment and runtime behavior including which model providers, and which tool connections are allowed.
+* Set cost controls and budget alerts for shared and isolated environments.
+* Enforce trace logging into central observability across Microsoft Foundry, Microsoft Copilot Studio and Microsoft 365.
 
-When deploying models in Foundry, teams can choose between standard and provisioned [deployment types](../foundry-models/concepts/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
+Use these references:
 
-To support cross-region scenarios and let you access existing model deployments, Foundry allows [connections](../how-to/connections-add.md) to model deployments hosted in other Foundry or Azure OpenAI instances. By using connections, teams can centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider having use cases manage their own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+- [Model deployment policy in Foundry](../how-to/model-deployment-policy.md)
+- [Manage costs in Foundry](../concepts/manage-costs.md)
+- [Agent 365 integration](../agents/concepts/agent-365-integration.md)
 
-To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
+## Assign ownership and governance
+
+Treat this step as the transition from provisioned infrastructure to operational
+developer usage.
+
+Most organizations already manage access through precreated Microsoft Entra ID
+groups. Map those groups to Foundry roles at the required scope, then validate
+both management and development access paths.
+
+Foundry separates access across:
+
+- **Control plane RBAC actions** for resource management.
+- **Data plane RBAC actions** for development workloads.
+
+> [!IMPORTANT]
+> Management roles such as Owner or Contributor are not sufficient for all
+development scenarios. For example, a user can manage resources but still need
+data plane roles to chat with an agent in Foundry.
+
+For role mapping guidance and required role combinations, see
+[Role-based access control in Foundry](../concepts/rbac-foundry.md).
+
+After onboarding your user groups, consider establishing or expanding governance dashboards to track Foundry usage, reliability, lineage, and compliance:
+ 
+- [Monitoring across fleets in Foundry](../control-plane/monitoring-across-fleet.md)
+- [Agent 365 integration](../agents/concepts/agent-365-integration.md)
+- [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction)
+- [Azure Policy](/azure/governance/policy/overview)
+
+## Sample platform deployment
+
+The IT organization at Contoso needs to support multiple teams while balancing two priorities:
+* Rapid innovation, where developers can rigorously test the latest AI technologies using non-production data.
+* Fully isolated dev/test and prod environments for proven use cases that receive funding for operationalization.
+
+The diagram shows how Contoso co-locates a shared exploration Foundry instance for innovation, available to all teams, with limited capacity and pre-connected data and tools. The sample backlog reflects common enterprise functions such as customer support, employee helpdesk, finance operations, procurement, and sales. Historically, only a handful of use cases progress to proven feasibility or secure funding for a dev/test rollout. From those, an even smaller subset advances to prod. The sample also shows two related sales use cases that stay co-located through exploration and dev/test because they share the same CRM data, user personas, and connected systems. As use cases mature, teams are assigned environments with progressively stronger isolation, culminating in full prod-grade separation where needed.
+
+:::image type="content" source="../media/planning/sample-platform-deployment.svg" alt-text="Diagram showing Contoso use cases moving from a shared exploration Foundry environment into isolated or co-located dev/test environments, and then into isolated prod environments for a smaller number of workloads." lightbox="../media/planning/sample-platform-deployment.svg":::

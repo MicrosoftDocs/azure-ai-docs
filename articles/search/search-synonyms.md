@@ -1,17 +1,18 @@
 ---
 title: Add Synonyms to Expand Queries for Equivalent Terms
 description: Create a synonym map to expand the scope of a search query over an Azure AI Search index. The query can search on equivalent terms provided in the synonym map, even if the query doesn't explicitly include the term.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 04/14/2025
-ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Add synonyms in Azure AI Search
 
-On a search service, a synonym map associates equivalent terms, expanding the scope of a query without the user having to actually provide the term. For example, assuming *dog*, *canine*, and *puppy* are mapped synonyms, a query on *canine* matches on a document containing *dog*. You might create multiple synonym maps for different languages, such as English and French versions, or lexicons if your content includes technical jargon, slang, or obscure terminology. 
+On a search service, a synonym map associates equivalent terms, expanding the scope of a query without the user having to actually provide the term. For example, assuming *dog*, *canine*, and *puppy* are mapped synonyms, a query on *canine* matches on a document containing *dog*. You might create multiple synonym maps for different languages, such as English and French versions, or lexicons if your content includes technical jargon, slang, or obscure terminology.
 
 Some key points about synonym maps:
 
@@ -23,16 +24,16 @@ Some key points about synonym maps:
 
 ## Create a synonym map
 
-A synonym map consists of name, format, and rules that function as synonym map entries. The only format that's supported is `solr`, and the `solr` format determines rule construction.
+A synonym map consists of a name, a format, and rules that function as synonym map entries. The only supported format is `solr`, and the `solr` format determines rule construction.
 
-To create a synonym map, do so programmatically. the Azure portal doesn't support synonym map definitions.
+To create a synonym map, do so programmatically. The Azure portal doesn't support synonym map definitions.
 
 ### [REST](#tab/rest)
 
 Use the [Create Synonym Map (REST API)](/rest/api/searchservice/synonym-maps/create) to create a synonym map.
 
 ```http
-POST /synonymmaps?api-version=2025-09-01
+POST /synonymmaps?api-version=2026-04-01
 {
     "name": "geo-synonyms",
     "format": "solr",
@@ -68,13 +69,13 @@ Mapping rules adhere to the open-source synonym filter specification of Apache S
 
 - explicit mappings (where terms are mapped to one explicit term)
 
-Each rule is delimited by the new line character (`\n`). You can define up to 5,000 rules per synonym map in a free service and 20,000 rules per map in other tiers. Each rule can have up to 20 expansions, or items in a rule. For more information, see [Synonym limits](search-limits-quotas-capacity.md#synonym-limits).
+Each rule is delimited by the newline character (`\n`). You can define up to 5,000 rules per synonym map in a free service and 20,000 rules per map in other tiers. Each rule can have up to 20 expansions, or items in a rule. For more information, see [Synonym limits](search-limits-quotas-capacity.md#synonym-limits).
 
 Query parsers automatically lower-case any upper or mixed case terms. To preserve special characters in the string, such as a comma or dash, add the appropriate escape characters when creating the synonym map.
 
 ### Equivalency rules
 
-Rules for equivalent terms are comma-delimited within the same rule. In the first example, a query on *USA* expands to *USA* OR *"United States"* OR *"United States of America."* Notice that if you want to match on a phrase, the query itself must be a quote-enclosed phrase query.
+Rules for equivalent terms are comma-delimited within the same rule. In the first example, a query on *USA* expands to *USA* OR *"United States"* OR *"United States of America."* If you want to match on a phrase, the query itself must be a quote-enclosed phrase query.
 
 In the equivalence case, a query for *dog* expands the query to also include *puppy* and *canine*.
 
@@ -138,7 +139,7 @@ Creating, updating, and deleting a synonym map is always a whole-document operat
 
 ## Assign synonyms to fields
 
-After you create the synonym map, assign it to a field in your index. To assign synonym maps, do so programmatically. the Azure portal doesn't support synonym map field associations.
+After you create the synonym map, assign it to a field in your index. To assign synonym maps, do so programmatically. The Azure portal doesn't support synonym map field associations.
 
 - A field must be of type `Edm.String` or `Collection(Edm.String)`
 - A field must have `"searchable":true`
@@ -151,7 +152,7 @@ If the synonym map exists on the search service, it's used on the next query, wi
 Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to modify a field definition.
 
 ```http
-PUT /indexes?api-version=2025-09-01
+PUT /indexes?api-version=2026-04-01
 {
     "name":"hotels-sample",
     "fields":[
@@ -176,7 +177,7 @@ PUT /indexes?api-version=2025-09-01
 }
 ```
 
-### [**.NET SDK**](#tab/dotnet-assign)
+### [.NET SDK](#tab/dotnet-assign)
 
 Use the [**SearchIndexClient**](/dotnet/api/azure.search.documents.indexes.searchindexclient) to update an index. Provide the whole index definition and include the new parameters for synonym map assignments.
 
@@ -212,14 +213,14 @@ await indexClient.CreateIndexAsync(index);
 
 For more examples, see [azure-search-dotnet-samples/quickstart-keyword-search/v11](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart).
 
-### [**Other SDKs**](#tab/other-sdks-assign)
+### [Other SDKs](#tab/other-sdks-assign)
 
 You can use any supported SDK to update a search index. All of them provide a **SearchIndexClient** that has methods for updating indexes.
 
 | Azure SDK | Client | Examples |
-|-----------|--------|----------|
+| --- | --- | --- |
 | Java | [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) | [CreateIndexExample.java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/indexes/CreateIndexExample.java) |
-| JavaScript | [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) | [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) |
+| JavaScript | [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) | [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v13/javascript) |
 | Python | [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) | [sample_index_crud_operations.py](https://github.com/Azure/azure-sdk-for-python/blob/7cd31ac01fed9c790cec71de438af9c45cb45821/sdk/search/azure-search-documents/samples/sample_index_crud_operations.py) |
 
 ---

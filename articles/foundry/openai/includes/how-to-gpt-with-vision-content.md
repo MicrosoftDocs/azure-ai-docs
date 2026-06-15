@@ -80,7 +80,7 @@ The following is a sample request body. The format is the same as the chat compl
 > When uploading images, there's a limit of 10 images per chat request.
 
 > [!NOTE]
-> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
+> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP. Image URLs must be publicly accessible: private endpoints, VNet-restricted, and firewall-restricted URLs are not supported even if they are on a storage account within same or peered VNet. The Vision service fetches images from Microsoft's managed infrastructure, not from within VNet, so the request will be unaware of the Private Endpoint present in VNET.
 
 ```json
 {
@@ -304,5 +304,4 @@ Every response includes a `"finish_reason"` field. It has the following possible
 ## Related content
 
 * [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* [Vision chats frequently asked questions](../../../foundry-classic/openai/faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

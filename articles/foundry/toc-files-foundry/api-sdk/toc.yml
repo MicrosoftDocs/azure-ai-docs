@@ -1,21 +1,28 @@
 items:
+# Foundry API Reference
+- name: Foundry API Reference
+  href: https://ai.azure.com/api-reference/
+
 # SDK Overview
 - name: Microsoft Foundry SDKs
   href: ../../how-to/develop/sdk-overview.md
 - name: Endpoints for Foundry Models
   href: ../../foundry-models/concepts/endpoints.md
+- name: Auto and direct model routing
+  displayName: Auto and direct model routing with the Responses API
+  href: ../../openai/how-to/responses-model-routing.md
 
 # Azure AI Projects SDK
-- name: Azure AI Projects
+- name: Foundry SDK Reference
   items:
+  - name: Python
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
   - name: C#
     href: /dotnet/api/overview/azure/ai.projects-readme
   - name: JavaScript
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-latest&preserve-view=true
-  - name: Python
-    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
-  - name: REST API
-    href: /rest/api/aifoundry/aiproject
+  - name: Java
+    href: /java/api/overview/azure/ai-projects-readme?view=azure-java-latest&preserve-view=true
 
 # Azure OpenAI SDK and APIs
 - name: Azure OpenAI
@@ -65,7 +72,7 @@ items:
   items:
   - name: Azure OpenAI monitoring data reference
     href: ../../openai/monitor-openai-reference.md
-  - name: Audio events reference
+  - name: Realtime API reference
     href: ../../openai/realtime-audio-reference.md
 
 # Foundry Tools APIs and SDKs

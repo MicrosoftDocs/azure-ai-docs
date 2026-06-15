@@ -151,7 +151,7 @@ The following table explains the various per-document status codes that can be r
 | 404 | The document couldn't be merged because the given key doesn't exist in the index. | No | This error doesn't occur for uploads since they create new documents, and it doesn't occur for deletes because they're idempotent. |
 | 409 | A version conflict was detected when attempting to index a document.| Yes | This can happen when you're trying to index the same document more than once concurrently. |
 | 422 | The index is temporarily unavailable because it was updated with the 'allowIndexDowntime' flag set to 'true'. | Yes | |
-|429 | Too Many Requests | Yes | If you get this error code during indexing, it usually means that you're running low on storage. As you near [storage limits](search-limits-quotas-capacity.md), the service can enter a state where you can't add or update until you delete some documents. For more information, see [Plan and manage capacity](search-capacity-planning.md#how-to-upgrade-capacity) if you want more storage, or free up space by deleting documents. |  
+|429 | Too Many Requests | Yes | If you get this error code during indexing, it usually means that you're running low on storage. As you near [storage limits](search-limits-quotas-capacity.md), the service can enter a state where you can't add or update until you delete some documents. For more information, see [Plan and manage capacity](search-capacity-planning.md#how-to-manage-and-adjust-capacity) if you want more storage, or free up space by deleting documents. |  
 | 503 | Your search service is temporarily unavailable, possibly due to heavy load. | Yes | Your code should wait before retrying in this case or you risk prolonging the service unavailability.|
 
 If your client code frequently encounters a 207 response, one possible reason is that the system is under load. You can confirm this by checking the statusCode property for 503. If the statusCode is 503, we recommend throttling indexing requests. Otherwise, if indexing traffic doesn't subside, the system could start rejecting all requests with 503 errors.
@@ -179,12 +179,12 @@ Here's a [REST API example](search-get-started-text.md) demonstrating these tips
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
 ### Change the description, city, and tags for Stay-Kay City Hotel
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2026-04-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -203,7 +203,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
     }
        
 ### Retrieve the same document, confirm the overwrites and retention of all other values
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2026-04-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```
@@ -283,13 +283,13 @@ The index schema defines the physical data structures created on the search serv
 
 The following list enumerates the schema changes that can be introduced seamlessly into an existing index. Generally, the list includes new fields and functionality used during query execution.
 
-+ Add an [index description (preview)]()
++ Add an [index description](#add-an-index-description)
 + Add a new field
 + Set the `retrievable` attribute on an existing field
 + Update `searchAnalyzer` on a field having an existing `indexAnalyzer`
 + Add a new [analyzer definition](index-add-custom-analyzers.md) in an index (which can be applied to new fields)
 + Add, update, or delete [scoring profiles](index-add-scoring-profiles.md)
-+ Add, update, or delete [synonymMaps](search-synonyms.md)
++ Add, update, or delete [synonym maps](search-synonyms.md)
 + Add, update, or delete [semantic configurations](semantic-how-to-configure.md)
 + Add, update, or delete CORS settings
 
@@ -347,7 +347,7 @@ An index description is a schema update, and you can add it without having to re
 + String length is 4,000 characters maximum.
 + Content must be human-readable, in Unicode. Your use-case should determine which language to use.
 
-Support for an index description is provided in the preview REST API, the Azure portal, or in a prerelease Azure SDK package that provides the feature.
+You can add an index description through the Azure portal, the latest stable REST API, or an Azure SDK package that provides the feature.
 
 ### [**Azure portal**](#tab/portal)
 

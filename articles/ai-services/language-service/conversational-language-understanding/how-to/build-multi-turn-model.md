@@ -3,7 +3,7 @@ title: Build multi-turn conversational language understanding (CLU) models with 
 titleSuffix: Foundry Tools
 description: This article shows you how to create a CLU model for multi-turn interactions using slot-filling
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/05/2025
@@ -19,7 +19,9 @@ In this article, learn how to build a CLU model that implements entity slot fill
 
 * **Azure subscription** - If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* **Required permissions** - Ensure that the person establishing the account and project has the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
+* **Required permissions** - Ensure that the person establishing the account and project has the Foundry Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
+
+  [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
 
 * **Azure Language in Foundry Tools resource** - Create a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 

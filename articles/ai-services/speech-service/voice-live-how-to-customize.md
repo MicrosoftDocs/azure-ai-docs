@@ -2,10 +2,10 @@
 title: How to customize Voice Live input and output
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API with customized models.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 10/05/2025
 ms.custom: custom speech, custom voice, custom avatar, fine-tuning
@@ -25,6 +25,9 @@ Voice Live provides multiple options to optimize performance and quality by usin
     - Custom avatar: Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. See [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md) to learn more.
 
 ## Speech input customization
+
+> [!NOTE]
+> The speech input customization options in this section (phrase list and custom speech) are only available with the `azure-speech` transcription model. They aren't supported with `mai-transcribe-1`.
 
 ### Phrase list
 
@@ -69,6 +72,25 @@ Example session configuration with custom speech models. In this example when th
 > [!NOTE]
 > In order to use a custom speech model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice Live API.
 > You pay separately for custom speech training and model hosting.
+
+### MAI-Transcribe-1 model (preview)
+
+You can use the MAI-Transcribe-1 model for input audio transcription in Voice Live. MAI-Transcribe-1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a focus on high accuracy and high efficiency. For more information about the model, see [MAI-Transcribe-1 in Azure Speech](./mai-transcribe.md).
+
+To use MAI-Transcribe-1, set the `model` field to `mai-transcribe-1` in the `input_audio_transcription` configuration:
+
+```json
+{
+  "session": {
+    "input_audio_transcription": {
+      "model": "mai-transcribe-1"
+    }
+  }
+}
+```
+
+> [!NOTE]
+> When you use the MAI-Transcribe-1 model, some transcription features aren't supported. See the [Feature availability](./llm-speech.md#feature-availability) table.
 
 ## Speech output customization
 
@@ -145,8 +167,21 @@ The configuration for a custom avatar doesn't differ from the configuration of a
 > You pay separately for custom avatar training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=ttsavatar).
 
-> [!NOTE]
-> Custom photo avatar (PREVIEW) training isn't yet available as a self-service option and currently requires a manual offline process.
+#### Voice sync for custom avatar
+
+If you trained a custom video avatar together with [voice sync for avatar](./text-to-speech-avatar/voice-sync-for-avatar.md), you can use the voice as the synthesis voice. Set the `voice.type` to `avatar-voice-sync` and `voice.model` to the base model for the synced voice. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural`, and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). To learn more about custom avatars trained with voice sync, see [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md).
+
+```json
+{
+  "voice": {
+    "type": "avatar-voice-sync",
+    "model": "DragonHDOmniLatestNeural",
+    "temperature": 0.8  // optional, value range 0.0-1.0
+  }
+}
+```
+
+When `avatar-voice-sync` is used, the voice is tied to the custom avatar; the `name` property isn't required. Configure the custom avatar separately by using the `avatar` parameter, as shown in [Azure text to speech avatar](./voice-live-how-to.md#azure-text-to-speech-avatar).
 
 ## Related content
 

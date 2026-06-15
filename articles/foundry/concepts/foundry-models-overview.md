@@ -2,19 +2,19 @@
 title: Microsoft Foundry Models overview
 description: Discover and deploy AI models with Microsoft Foundry Models. Browse 1,900+ models from OpenAI, Meta, and more to build scalable AI solutions. Explore now.
 ms.service: microsoft-foundry
-ms.subservice: foundry-model-inference
+ms.subservice: foundry-models
 ai-usage: ai-assisted
 ms.custom:
   - build-2025
   - ai-learning-hub
   - classic-and-new
 ms.topic: concept-article
-ms.date: 03/04/2026
+ms.date: 04/20/2026
 ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
 author: msakande
-manager: nitinme
+manager: mcleans
 #customer intent: As a developer, I want to explore the Microsoft Foundry model catalog so that I can find and evaluate AI models for my application.
 ---
 
@@ -36,7 +36,7 @@ Foundry offers a comprehensive catalog of AI models. There are over 1,900 models
 
 The model catalog is organized into two main categories: 
 
-* [Models sold directly by Azure](#models-sold-directly-by-azure)
+* [Foundry Models sold by Azure](#models-sold-by-azure)
 * [Models from partners and community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models for your specific requirements and strategic goals. 
@@ -49,11 +49,11 @@ Understanding the distinction between these categories helps you choose the righ
 > - Selecting an appropriate model for their use case
 > - Implementing appropriate measures (including use of Azure AI Content Safety) to ensure customers' use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft's Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
-## Models sold directly by Azure 
+## Models sold by Azure 
  
 Also referred to as *Azure Direct models* or *Direct from Azure models*, these models are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models, and they're deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
  
-Characteristics of models sold directly by Azure: 
+Characteristics of Models sold by Azure: 
 
 - Support available from Microsoft.
 - High level of integration with Azure services and infrastructure. 
@@ -61,20 +61,20 @@ Characteristics of models sold directly by Azure:
 - Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
 - Enterprise-grade scalability, reliability, and security. 
 
-Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
+Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold by Azure, see [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 ## Models from partners and community
 
-These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of models from Partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
+These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of Models from partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
 
-Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md) and [Anthropic privacy policy](https://aka.ms/anthropic_privacy). For terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
+Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md). For terms that govern data processing, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
 Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../../foundry-classic/how-to/deploy-models-managed.md).
 
 > [!IMPORTANT]
 > To work with models that are deployable on managed computes, such as Hugging Face models, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
-Characteristics of models from partners and community:
+Characteristics of Models from partners and community:
 * Developed and supported by external partners and community contributors 
 * Diverse range of specialized models catering to niche or broad use cases 
 * Typically validated by providers themselves, with integration guidelines provided by Azure 
@@ -91,11 +91,11 @@ Request that we add a model to the model catalog right from the model catalog pa
 1. In the search bar, search for a model that doesn't exist in the catalog, such as *mymodel*.
 1. Select **Request a model** to share details about the model you want to request.
 
-## Choosing between models sold directly by Azure and models from partners and community
+## Choosing between Models sold by Azure and Models from partners and community
 
 When selecting which Foundry Models to use, consider the following: 
-* **Use case and requirements**: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from partners and community excel in specialized use cases and innovation-led scenarios. 
-* **Support expectations**: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. Partner and community models are supported by their providers, with varying levels of SLA and support structures. 
+* **Use case and requirements**: Models sold by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from partners and community excel in specialized use cases and innovation-led scenarios. 
+* **Support expectations**: Models sold by Azure come with robust Microsoft-provided support and maintenance. Partner and community models are supported by their providers, with varying levels of SLA and support structures. 
 * **Innovation and specialization**: Models from partners and community offer rapid access to specialized innovations and niche capabilities, often developed by leading research labs and emerging AI providers.
 
 ## Overview of model catalog capabilities
@@ -121,7 +121,7 @@ Some of the details available in the **model card** are:
 
 ## Model deployment options: managed compute and serverless deployments 
 
-The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
+The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold by Azure, see [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 ### Capabilities of model deployment options
 
@@ -198,7 +198,7 @@ The discovery, subscription, and consumption experience for models deployed as s
 
 Foundry Models from partners and community are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
-Foundry Models sold directly by Azure are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms. 
+Foundry Models sold by Azure are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms. 
 
 ### Fine-tuning models
 
@@ -247,6 +247,7 @@ AI models evolve fast, and when a new version or a new model with updated capabi
  
 ## Related content
 
-- [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
+- [Instant models in Microsoft Foundry (preview)](instant-models.md)
+- [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
 - [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
 

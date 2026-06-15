@@ -23,7 +23,7 @@ This article is a collection of tips and best practices for boosting query and i
 
 ## Index size and schema
 
-Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), or [switching to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
+Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md), or [switching to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
 
 Schema complexity can also adversely affect indexing and query performance. Excessive field attribution builds in limitations and processing requirements. [Complex types](search-howto-complex-data-types.md) take longer to index and query. The next few sections explore each condition.
 
@@ -46,7 +46,8 @@ Summarized, the ramifications of over-attribution include:
 + In many cases, over attribution limits the capabilities of the field. For example, if a field is facetable, filterable, and searchable, you can only store 16 KB of text within a field, whereas a searchable field can hold up to 16 MB of text.
 
 > [!NOTE]
-> Only unnecessary attribution should be avoided. Filters and facets are often essential to the search experience, and in cases where filters are used, you frequently need sorting so that you can order the results (filters by themselves return in an unordered set).
+> > [!NOTE]
+> Avoid unnecessary field attribution, but don’t remove capabilities that are essential to your search experience. Filters and facets are often core features, and when filtering is used, sorting is typically required to produce ordered results. Apply attributes deliberately, only where they support actual query or UI requirements.
 
 ### Tip: Consider alternatives to complex types
 
@@ -94,7 +95,7 @@ When query performance is slowing down in general, adding more replicas frequent
 
 One positive side-effect of adding partitions is that slower queries sometimes perform faster due to parallel computing. We've noted parallelization on low selectivity queries, such as queries that match many documents, or facets providing counts over a large number of documents. Since significant computation is required to score the relevancy of the documents, or to count the numbers of documents, adding extra partitions helps queries complete faster.  
 
-To add partitions, use the [Azure portal](search-capacity-planning.md#add-or-remove-partitions-and-replicas), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
+To add partitions, use the [Azure portal](search-capacity-planning.md), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
 
 ## Service capacity
 
@@ -148,4 +149,4 @@ Review these other articles related to service performance:
 + [Index large data sets in Azure AI Search](search-howto-large-index.md)
 + [Choose a service tier](search-sku-tier.md)
 + [Plan or add capacity](search-capacity-planning.md#add-or-remove-partitions-and-replicas)
-+ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/t5/azure-ai/case-study-effectively-using-cognitive-search-to-support-complex/ba-p/2804078)
++ [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/case-study-effectively-using-cognitive-search-to-support-complex-ai-scenarios/2804078)

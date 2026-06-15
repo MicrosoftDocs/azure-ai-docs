@@ -3,8 +3,8 @@ title: Create a custom keyword quickstart - Speech service
 titleSuffix: Foundry Tools
 description: When a user speaks the keyword, your device sends their dictation to the cloud, until the user stops speaking. Customizing your keyword is an effective way to differentiate your device and strengthen your branding.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
 ms.date: 02/25/2026
 ms.author: pafarley

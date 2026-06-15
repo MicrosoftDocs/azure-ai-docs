@@ -2,6 +2,7 @@
 title: "Get started with Microsoft Foundry SDKs and Endpoints"
 description: "This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them."
 ms.service: microsoft-foundry
+ms.subservice: foundry-sdk
 ms.custom:
   - classic-and-new
   - build-2024
@@ -24,11 +25,13 @@ zone_pivot_groups: foundry-sdk-overview-languages
 
 ## Foundry SDK
 
-The Foundry SDK connects to a single project endpoint that provides access to the most popular Foundry capabilities:
+The Foundry SDK is a thin-client SDK that gives you access to all of the Foundry project APIs through a single project endpoint:
 
 ```
 https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
 ```
+
+It's the foundation other Foundry-aware SDKs build on. For example, the Agent Framework `foundry` package takes a dependency on the Foundry SDK and uses it to access Foundry functionality — you don't need to wire up the project endpoint or OpenAI-compatible client yourself when you use `FoundryChatClient`.
 
 > [!NOTE]
 > If your organization uses a custom subdomain, replace `<resource-name>` with `<your-custom-subdomain>` in the endpoint URL.
@@ -43,7 +46,7 @@ This approach simplifies application configuration. Instead of managing multiple
 
 Run this command to install the packages for Foundry projects.
 ```bash
-pip install azure-ai-projects >=2.0.0
+pip install "azure-ai-projects>=2.0.0"
 ```
 ::: zone-end
 
@@ -121,7 +124,7 @@ dotnet add package Azure.Identity
 The SDK exposes two client types because Foundry and OpenAI have different API shapes:
 
 - **Project client** – Use for Foundry-native operations where OpenAI has no equivalent. Examples: listing connections, retrieving project properties, enabling tracing.
-- **OpenAI-compatible client** – Use for Foundry functionality that builds on OpenAI concepts. The Responses API, agents, evaluations, and fine-tuning all use OpenAI-style request/response patterns. This client also gives you access to Foundry direct models (non-Azure-OpenAI models hosted in Foundry). The project endpoint serves this traffic on the `/openai` route.
+- **OpenAI-compatible client** – Use for Foundry functionality that builds on OpenAI concepts. The Responses API, agents, evaluations, and fine-tuning all use OpenAI-style request/response patterns. This client targets the Responses API in your project endpoint, which gives you access to Foundry Models from the catalog (including non-Azure-OpenAI direct models) plus platform tools — standard OpenAI tools like file search, code interpreter, and web search, alongside Foundry-exclusive tools like memory, SharePoint, WorkIQ, Fabric IQ, and MCP servers. The project endpoint serves this traffic on the `/openai` route.
 
 Most apps use both clients. Use the project client for setup and configuration, then use the OpenAI-compatible client for running agents, evaluations, and calling models (including Foundry direct models).
 
@@ -225,7 +228,7 @@ Console.WriteLine(response.GetOutputText());
 ### What you can do with the Foundry SDK
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-- [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+- [Use the Foundry Agent Service](../../agents/quickstarts/prompt-agent.md)
 - [Run batch evaluations](cloud-evaluation.md)
 - [Enable app tracing](../../observability/how-to/trace-agent-setup.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
@@ -235,7 +238,10 @@ Console.WriteLine(response.GetOutputText());
 
 ## OpenAI SDK
 
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface, the best latency, and maximum compatibility with existing OpenAI clients. This endpoint exposes the Responses API on Azure OpenAI directly and provides access to Azure OpenAI models and Foundry direct models, including embeddings, chat completions, and image generation. It doesn't provide access to Foundry-specific features like agents, evaluations, or Foundry-exclusive platform tools — for those, use the Responses API in your project endpoint through the [Foundry SDK](#foundry-sdk).
+
+> [!TIP]
+> Use the OpenAI SDK endpoint for [generating embeddings](../../openai/how-to/embeddings.md). The project endpoint used by the Foundry SDK doesn't currently route embedding requests.
 
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
@@ -376,5 +382,160 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    ```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet)
 ::: zone-end
+
+## Anthropic SDK
+
+Use the Anthropic SDK to work with Anthropic Claude models deployed in Foundry. Claude models use a separate `/anthropic` endpoint and the Anthropic Messages API, not the OpenAI-compatible endpoint.
+
+The Anthropic endpoint appends `/anthropic` to your resource URL:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic
+```
+
+The Messages API is available at:
+
+```
+https://<resource-name>.services.ai.azure.com/anthropic/v1/messages
+```
+
+::: zone pivot="programming-language-python"
+
+```python
+from anthropic import AnthropicFoundry
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+client = AnthropicFoundry(
+    azure_ad_token_provider=token_provider,
+    base_url="https://<resource-name>.services.ai.azure.com/anthropic",
+)
+
+message = client.messages.create(
+    model="claude-sonnet-4-6",  # Replace with your deployment name
+    messages=[
+        {"role": "user", "content": "What are 3 things to visit in Seattle?"}
+    ],
+    max_tokens=1048,
+)
+
+print(message.content)
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+The Anthropic SDK doesn't provide a native C# client. Use the REST API with `HttpClient` to call Claude models.
+
+```csharp
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using Azure.Identity;
+
+string endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+string deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredential();
+var token = await credential.GetTokenAsync(
+    new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"]));
+
+using var httpClient = new HttpClient();
+httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token.Token);
+httpClient.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
+
+var requestBody = new
+{
+    model = deploymentName,
+    messages = new[] { new { role = "user", content = "What are 3 things to visit in Seattle?" } },
+    max_tokens = 1048
+};
+
+var response = await httpClient.PostAsync(
+    endpoint,
+    new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json"));
+
+string result = await response.Content.ReadAsStringAsync();
+Console.WriteLine(result);
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+```javascript
+import AnthropicFoundry from '@anthropic-ai/foundry-sdk';
+import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://ai.azure.com/.default');
+
+const client = new AnthropicFoundry({
+    azureADTokenProvider: tokenProvider,
+    baseURL: "https://<resource-name>.services.ai.azure.com/anthropic",
+    apiVersion: "2023-06-01"
+});
+
+const message = await client.messages.create({
+    model: "claude-sonnet-4-6", // Replace with your deployment name
+    messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+    max_tokens: 1048,
+});
+
+console.log(message);
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+The Anthropic SDK doesn't provide a native Java client. Use the REST API with `HttpClient` to call Claude models.
+
+```java
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.core.credential.TokenRequestContext;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+String endpoint = "https://<resource-name>.services.ai.azure.com/anthropic/v1/messages";
+String deploymentName = "claude-sonnet-4-6"; // Replace with your deployment name
+
+var credential = new DefaultAzureCredentialBuilder().build();
+var token = credential.getToken(
+    new TokenRequestContext().addScopes("https://ai.azure.com/.default")).block();
+
+String requestBody = """
+    {
+        "model": "%s",
+        "messages": [{"role": "user", "content": "What are 3 things to visit in Seattle?"}],
+        "max_tokens": 1048
+    }
+    """.formatted(deploymentName);
+
+HttpClient httpClient = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create(endpoint))
+    .header("Authorization", "Bearer " + token.getToken())
+    .header("Content-Type", "application/json")
+    .header("anthropic-version", "2023-06-01")
+    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+    .build();
+
+HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+```
+
+::: zone-end
+
+For more information, see [Use Anthropic Claude models in Microsoft Foundry](../../foundry-models/how-to/use-foundry-models-claude.md).
 
 [!INCLUDE [sdk-overview 3](../../includes/how-to-develop-sdk-overview-3.md)]

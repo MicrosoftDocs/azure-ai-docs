@@ -6,17 +6,17 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 10/21/2025
+ms.date: 05/21/2026
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure Speech in Foundry Tools.
 ---
 
-# High-Definition voices in Azure Speech
+# High-definition voices in Azure Speech
 
-Azure Speech in Foundry Tools continues to advance text to speech technology with neural high-definition (HD) voices. Our HD voices understand content, automatically detect emotions in input text, and adjust speaking tone in real-time to match sentiment. They maintain consistent voice personas while delivering enhanced expressiveness, naturalness, and control.
+Azure Speech in Foundry Tools continues to advance text-to-speech technology with neural high-definition (HD) voices. These HD voices understand content, automatically detect emotions in input text, and adjust speaking tone in real-time to match sentiment. They maintain consistent voice personas while delivering enhanced expressiveness, naturalness, and control.
 
 ## HD voice overview
 
@@ -24,19 +24,19 @@ Azure Speech offers two advanced HD voice models, each optimized for different u
 
 | Model | Voice Count | Key Characteristics | Best For |
 |-------|-------------|-------------------|----------|
-| **DragonHD** | 30+ fine-tuned voices | Professional quality, accurate pronunciation, multi talker support | Enterprise applications requiring high quality output |
+| **DragonHD** | 30+ fine-tuned voices | Professional quality, accurate pronunciation, multi-talker support | Enterprise applications requiring high-quality output |
 | **DragonHDOmni** | 700+ voices (all released voices + new AI-generated) | Styles support, multilingual, flexible to add new voices and styles.  | Diverse applications, content creation, broad persona variety |
 
 ### Key features of HD voices
 
-The following are the key features of Azure Speech HD voices:
+The following table describes the key features of Azure Speech HD voices:
 
 | Key features | Description |
 |--------------|-------------|
-| **Human-like speech generation** | Neural text to speech HD voices can generate highly natural and human-like speech. The model is trained on millions of hours of multilingual data, enabling it to accurately interpret input text and generate speech with the appropriate emotion, pace, and rhythm without manual adjustments. |
-| **Conversational** | Neural text to speech HD voices can replicate natural speech patterns, including spontaneous pauses and emphasis. When given conversational text, the model can reproduce common phonemes like pauses and filler words. The generated voice sounds as if someone is conversing directly with you. |
-| **Prosody variations** | Neural text to speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
-| **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
+| **Human-like speech generation** | Neural text-to-speech HD voices generate highly natural and human-like speech. The model is trained on millions of hours of multilingual data, enabling it to accurately interpret input text and generate speech with the appropriate emotion, pace, and rhythm without manual adjustments. |
+| **Conversational** | Neural text-to-speech HD voices replicate natural speech patterns, including spontaneous pauses and emphasis. When given conversational text, the model can reproduce common phonemes like pauses and filler words. The generated voice sounds as if someone is conversing directly with you. |
+| **Prosody variations** | Neural text-to-speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
+| **High fidelity** | The primary objective of neural text-to-speech HD voices is to generate high-fidelity audio. The synthetic speech produced by the system can closely mimic human speech in both quality and naturalness. |
 
 ## Comparison of Azure Speech HD voices to other Azure text to speech voices
 
@@ -61,11 +61,11 @@ Azure Speech provides two sets of HD voices with different model architectures:
 
 ### Dragon HD voices
 
-The Azure Speech HD voice values are in the format `voicename:DragonHD:version`. The name before the colon, such as `en-US-Ava`, is the voice persona name and its original locale.
+The Azure Speech HD voice values use the format `voicename:DragonHD:version`. The name before the colon, such as `en-US-Ava`, is the voice persona name and its original locale.
 
-To ensure that you're using the latest version of the base model that we provide, use the `LatestNeural` version.
+To make sure you use the latest version of the base model that Microsoft provides, use the `LatestNeural` version.
 
-For example, for the persona `en-US-Ava` you can specify:
+For example, for the persona `en-US-Ava`, you can specify:
 - `en-US-Ava:DragonHDLatestNeural`: Always uses the latest version of the DragonHD base model.
 
 The following table lists the available DragonHD voices:
@@ -101,7 +101,7 @@ The following table lists the available DragonHD voices:
 | `zh-cn-Xiaochen:DragonHDLatestNeural` | Female | GA | |
 | `zh-cn-Yunfan:DragonHDLatestNeural` | Male | GA | |
 
-The following Styles and Paralinguistic tags are supported in HD voices
+The following styles and paralinguistic tags are supported in HD voices:
 
 | Type                                | Tag | 
 |-------------------------------------------|--------|
@@ -109,23 +109,22 @@ The following Styles and Paralinguistic tags are supported in HD voices
 | Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`   |
 
 > [!NOTE]
-> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
-> Paralingsuitics are available on all voices with all languages.
+> Styles and paralinguistics are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text. See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Dragon HD Omni voices
 
-Dragon HD Omni is Azure Speech's unified next-generation model that combines prebuilt and AI-generated voices into a single, flexible platform. It features over 700 voices with enhanced expressiveness, multilingual support, advanced style control, and automatic style prediction.
+Dragon HD Omni is Azure Speech's unified next-generation model that combines prebuilt and AI-generated voices into a single, flexible platform. It features more than 700 voices with enhanced expressiveness, multilingual support, advanced style control, and automatic style prediction.
 
 #### Key capabilities of Dragon HD Omni
 
-- **700+ Voices**: Includes most of the previous voices with improved quality and 300+ AI-generated voices with diverse characteristics
-- **Advanced Style Control**: Automatic style prediction using natural language descriptions (initially available for `en-US-Ava` and `en-US-Andrew`)
-- **Multilingual Support**: All Dragon HD Omni voices support multiple languages with automatic language detection and SSML `<lang>` tag support
-- **Enhanced Prosody**: Improved naturalness with automatic contextual adaptation
-- **Word Boundary Event Support**: Enables precise word-level timing for synchronized applications
+- **700+ Voices**: Includes most of the previous voices with improved quality and more than 300 AI-generated voices with diverse characteristics.
+- **Advanced Style Control**: Automatic style prediction using natural language descriptions (initially available for `en-US-Ava` and `en-US-Andrew`).
+- **Multilingual Support**: All Dragon HD Omni voices support multiple languages with automatic language detection and SSML `<lang>` tag support.
+- **Enhanced Prosody**: Improved naturalness with automatic contextual adaptation.
+- **Word Boundary Event Support**: Enables precise word-level timing for synchronized applications.
 
 #### Supported styles for Dragon HD Omni
-The following Styles and Paralinguistic tags are supported in HDOmni voices
+The following styles and paralinguistic tags are supported in HDOmni voices:
 
 | Type                                | Tag | 
 |-------------------------------------------|--------|
@@ -134,11 +133,12 @@ The following Styles and Paralinguistic tags are supported in HDOmni voices
 
 > [!NOTE]
 > Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
-> Paralingsuitics are available on all voices with all languages.
+> Paralinguistics are available on all voices with all languages.
+> See the styles and paralinguistics [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 #### Dragon HD Omni voice naming convention
 
-Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`. You can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to find the Omni version quickly:
+Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`. To quickly find the Omni version, add the suffix `:DragonHDOmniLatestNeural` to the voice name format:
 
 Example:
 
@@ -153,7 +153,7 @@ Check out the full [Dragon HD Omni voice list](https://github.com/Azure-Samples/
 
 HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`).
 
-Below is the complete list of available HD Flash voices and supported Styles
+The following table lists all available HD Flash voices and supported styles.
 
 | **Voice name** | **Supported styles** |
 |---------------|----------------------|
@@ -180,16 +180,16 @@ Below is the complete list of available HD Flash voices and supported Styles
 
 ## How to use Azure Speech HD voices
 
-You can use HD voices with the same Speech SDK and REST APIs as the non HD voices. 
+Use the same Speech SDK and REST APIs for HD voices as you do for non-HD voices. 
 
-Here are some key points to consider when using Azure Speech HD voices:
+Consider these key points when using Azure Speech HD voices:
 
 - **Voice locale**: The locale in the voice name indicates its original language and region.
 - **Base models**:
-  - HD voices come with a base model that understands the input text and predicts the speaking pattern accordingly. You can specify the desired model (such as DragonHDLatestNeural) according to the availability of each voice.
+  - HD voices include a base model that understands the input text and predicts the speaking pattern accordingly. You can specify the desired model, such as `DragonHDLatestNeural`, based on the availability of each voice.
 - **SSML usage**: To reference a voice in SSML, use the format `voicename:basemodel:version`. The name before the colon, such as `de-DE-Seraphina`, is the voice persona name and its original locale. The base model is tracked by versions in subsequent updates.
 - **Temperature parameter**:
-  - The temperature value is a float ranging from 0 to 1, influencing the randomness of the output. You can also adjust the temperature parameter to control the variation of outputs. Less randomness yields more stable results, while more randomness offers variety but less consistency.
+  - The temperature value is a float ranging from 0 to 1, influencing the randomness of the output. You can adjust the temperature parameter to control the variation of outputs. Less randomness yields more stable results, while more randomness offers variety but less consistency.
   - Lower temperature results in less randomness, leading to more predictable outputs. Higher temperature increases randomness, allowing for more diverse outputs. The default temperature is set at 1.0.
 
 Here's an example of how to use Azure Speech HD voices in SSML:
@@ -204,37 +204,15 @@ Here's an example of how to use Azure Speech HD voices in SSML:
 
 ### Style control with Express-As
 
-Dragon HD Omni supports advanced style control using the `mstts:express-as` element with natural language descriptions. Here's an example:
-
-```ssml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
-       xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-us-ava:DragonHDOmniLatestNeural">
-    <mstts:express-as style="sick">
-      Ugh… I'm not feeling so great today. My head's pounding, and even my voice sounds like it's been through a blender. I think I need to lie down for a bit… maybe some soup would help.
-    </mstts:express-as>
-  </voice>
-</speak>
-```
+Dragon HD Omni supports advanced style control by using the `mstts:express-as` element with natural language descriptions. For more information, see [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Multilingual support
 
-All Dragon HD Omni voices support multiple languages with automatic language detection. You can also use the `<lang xml:lang>` tag to explicitly specify the speaking language and accent:
-
-```ssml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" 
-        xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-us-ava:DragonHDOmniLatestNeural">
-    <lang xml:lang="fr-FR">
-      Bonjour ! Ce matin, j'ai pris un café au jardin du Luxembourg. Il faisait frais, mais très agréable. Ensuite, j'ai acheté une baguette et quelques macarons. Paris est vraiment charmant.
-    </lang>
-  </voice>
-</speak>
-```
+All Dragon HD Omni voices support multiple languages with automatic language detection. You can also use the `<lang xml:lang>` tag to explicitly specify the speaking language and accent. For more information, see [SSML template](speech-synthesis-markup-voice.md#styles-and-paralinguistic-in-hd-voices).
 
 ### Word boundary events
 
-Dragon HD Omni supports word boundary events, allowing precise word-level timing for synchronized applications like karaoke, real-time captioning, and interactive voice experiences.
+Dragon HD Omni supports word boundary events, so you can get precise word-level timing for synchronized applications like karaoke, real-time captioning, and interactive voice experiences.
 
 When a word boundary event fires, it provides:
 - **Text**: The word spoken
@@ -293,14 +271,14 @@ Dragon HD Omni supports advanced parameter tuning to customize voice output for 
 #### Tuning strategies
 
 **For expressiveness vs. stability:**
-- Higher values for `temperature`, `top_p`, and `top_k` result in more expressive, emotionally varied speech
-- Lower values produce more stable and predictable output
-- Recommendation: Keep `top_p` equal to `temperature` for best results
+- Higher values for `temperature`, `top_p`, and `top_k` result in more expressive, emotionally varied speech.
+- Lower values produce more stable and predictable output.
+- Recommendation: Keep `top_p` equal to `temperature` for best results.
 
 **For speed and contextual relevance:**
-- `cfg_scale` affects how quickly the voice speaks and how well it aligns with context
-  - Higher values (1.8–2.0): Faster speech with stronger contextual relevance
-  - Lower values (1.0–1.2): Slower speech with less contextual alignment
+- `cfg_scale` affects how quickly the voice speaks and how well it aligns with context.
+  - Higher values (1.8–2.0): Faster speech with stronger contextual relevance.
+  - Lower values (1.0–1.2): Slower speech with less contextual alignment.
 
 #### Suggested tuning table
 
@@ -370,20 +348,29 @@ For detailed information on the supported and unsupported SSML elements for Azur
 > Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
 
 ## Parameter enhancePronunciation
-The enhancePronunciation parameter enables enhanced pronunciation handling during speech synthesis. When set to true, the NeuralHD voices apply additional pronunciation optimizations to improve the clarity and correctness of spoken output, particularly for complex, ambiguous, or non‑standard text.
+The `enhancePronunciation` parameter enables enhanced pronunciation handling during speech synthesis. When set to true, the NeuralHD voices apply extra pronunciation optimizations to improve the clarity and correctness of spoken output, particularly for complex, ambiguous, or nonstandard text.
 
-When enhancePronunciation is enabled, the service prioritizes pronunciation accuracy by applying enhanced linguistic processing during synthesis. This can help improve how the system reads:
+When you enable `enhancePronunciation`, the service prioritizes pronunciation accuracy by applying enhanced linguistic processing during synthesis. This improvement can help how the system reads:
 - Proper nouns, names, and uncommon words
-- Acronyms, abbreviations, and mixed‑case text
+- Acronyms, abbreviations, and mixed-case text
 - Words with multiple possible pronunciations depending on context
-This parameter is designed to complement existing pronunciation controls such as SSML‑based pronunciation tags and lexicons, and does not replace them. enhancePronunciation is off by default to preserve predictable, backward‑compatible speech output, and can be enabled when developers want the service to apply additional pronunciation optimizations for improved clarity and naturalness.
+This parameter complements existing pronunciation controls such as SSML-based pronunciation tags and lexicons, and doesn't replace them. The default value is false to preserve predictable, backward-compatible speech output. Enable it when you want the service to apply extra pronunciation optimizations for improved clarity and naturalness.
+
+```SSML
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-Ava:DragonHDLatestNeural" parameters="enhancePronunciation=true">
+    This is a pronunciation enhanced example for technical terms like
+    Kubernetes, Azure OpenAI, and multilingual content such as 今、何か軽く摘めそうなものある？
+  </voice>
+</speak>
+```
 
 ### Recommended use cases
-Enable enhancePronunciation in scenarios with structured or technical domain-specific content.
+Enable `enhancePronunciation` in scenarios with structured or technical domain-specific content.
 
 > [!NOTE]
-> The parameter affects pronunciation handling only; it does not change voice selection, speaking style, or prosody controls.
-> Results may vary depending on language, voice, and input text.
+> The parameter affects pronunciation handling only; it doesn't change voice selection, speaking style, or prosody controls.
+> Results might vary depending on language, voice, and input text.
 > For deterministic pronunciation control, SSML pronunciation elements remain the recommended approach.
 
 ## Choosing between DragonHD and Dragon HD Omni
@@ -392,22 +379,22 @@ Both HD voice models deliver high-quality synthesis, but they serve different us
 
 | Consideration | DragonHD | Dragon HD Omni |
 |---|---|---|
-| **Number of Voices** | 30+ fine tuned voices | 700+ voices (including previous voices & new AI-generated voices) |
+| **Number of Voices** | More than 30 fine tuned voices | More than 700 voices, including previous voices and new AI-generated voices |
 | **Voice Diversity** | Limited to predefined personas | Extensive variety with diverse characteristics from all library voices |
-| **Style Control** | Temperature and advanced parameters only | Automatic style prediction and 100+ styles control on Ava and Andrew |
+| **Style Control** | Temperature and advanced parameters only | Automatic style prediction and more than 100 styles control on Ava and Andrew |
 | **Use Cases** | Customer service, accessibility, consistency-focused applications | Content creation, audiobooks, podcasts, diverse persona requirements |
 
 ### When to use each model
 
 **Choose Dragon HD if you:**
 - Need a specific voice persona for specific languages to be high quality
-- Building enterprise customer service applications
-- Want fine-tuned control via temperature and advanced parameters
+- Are building enterprise customer service applications
+- Want fine-tuned control through temperature and advanced parameters
 
 **Choose Dragon HD Omni if you:**
 - Need flexibility with many voice options
 - Are creating diverse content (audiobooks, podcasts, storytelling)
-- Want to improve from current neural voices but the locales have no HD model supported yet
+- Want to improve on current neural voices but the locales don't have HD model support yet
 - Need broad persona variety for different use cases
 
 ## Related content

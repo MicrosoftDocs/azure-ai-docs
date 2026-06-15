@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI models and regions for Foundry Agent Service (classic)"
 description: "Find supported Azure OpenAI models and regions for Microsoft Foundry Agent Service. Compare gpt-5, gpt-4o, and gpt-4 availability across global and regional deployments. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry
@@ -128,7 +128,7 @@ Agents (classic) are deprecated. To use models later than gpt-5, see the [agents
 
 ## Non-OpenAI models
 
-In addition to Azure OpenAI models, you can use models sold directly by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
+In addition to Azure OpenAI models, you can use Foundry Models sold by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
 
 [!INCLUDE [agent-service-models-support-list](../../../foundry/agents/includes/agent-service-models-support-list.md)]
 

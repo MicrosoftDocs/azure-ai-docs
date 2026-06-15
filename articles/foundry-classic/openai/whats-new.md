@@ -1,9 +1,9 @@
 ---
-title: "What's new in Azure OpenAI in Azure AI Foundry Models? (classic)"
+title: "What's new in Azure OpenAI in Microsoft Foundry Models? (classic)"
 description: "Learn about the latest news and features updates for Azure OpenAI. (classic)"
-author: mrbullwinkle
-ms.author: mbullwin #
-manager: nitinme
+author: alvinashcraft
+ms.author: aashcraft #
+manager: mcleans
 ms.date: 12/30/2025
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -15,25 +15,40 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure OpenAI in Azure AI Foundry Models (classic)
+# What's new in Azure OpenAI in Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## May 2026
+
+### GPT Realtime 2.0 concept articles
+
+New concept articles describe the capabilities and key concepts for the latest realtime model:
+
+- [GPT Realtime 2.0 (preview) overview](./concepts/realtime-2.md) — covers reasoning support, response phases (preamble and final answer), and stricter instruction following.
+
+### GPT Realtime Translate and GPT Realtime Whisper
+
+New concept articles describe the capabilities and use cases for the latest real-time translation and transcription models:
+
+- [GPT Realtime Translate](./concepts/gpt-realtime-translate.md) — covers continuous stream-based audio translation for live multilingual events, customer support, and voice assistants.
+- [GPT Realtime Whisper](./concepts/gpt-realtime-whisper.md) — covers low-latency streaming transcription for live captions, monitoring, and archival workflows.
 
 ## February 2026
 
 ### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
 
 The `gpt-realtime-1.5` and `gpt-audio-1.5` models are now available.
-- These models were built upon last year’s GPT-Realtime and GPT-Audio with focused improvements in instruction following, multi-lingual support, and tool calling while preserving the low-latency, real-time interactions developers need for voice-first applications. 
-- Developers can try them out through the existing chat completion APIs in Microsoft Foundry. 
+- These models build on last year's GPT-Realtime and GPT-Audio with improvements in instruction following, multilingual support, and tool calling, while preserving the low-latency, real-time interactions developers need for voice-first applications.
+- Try them with the existing chat completion APIs in Microsoft Foundry.
 
 ## December 2025
 
 ### GPT-image-1.5 model is now available
 
-GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding or removing one aspect of the input image while retaining others.
 
 Request access: [limited access model application](https://aka.ms/oai/gptimage1.5access)
 
@@ -50,22 +65,22 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 ### Automatic speech recognition (ASR) model update
 
 `gpt-4o-mini-transcribe-2025-12-15`
-- Improved transcription accuracy and robustness for real-time scenarios. ~50% lower word error rate (WER) than previous gpt-4o-transcribe-mini on English benchmarks
-- Improves multilingual performance across Japanese, Indic, and other languages. 
-- Reduced hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams. 
+- Improved transcription accuracy and robustness for real-time scenarios, with approximately 50% lower word error rate (WER) than the previous `gpt-4o-transcribe-mini` model on English benchmarks.
+- Improves multilingual performance across Japanese, Indic, and other languages.
+- Reduces hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams.
 - Input remains audio, with text as output, and deployment is API-only.  
 
 ### Realtime-mini (speech-to-speech) model update
 
 `gpt-realtime-mini-2025-12-15`
 - Feature parity with full gpt-realtime model in instruction-following and function-calling.
-- Input and output are both audio, and is be API-only.  
+- Input and output are both audio, and deployment is API-only.
 
 ### Text to speech model update
 
 `gpt-4o-mini-tts-2025-12-15`
-- New benchmark for multilingual speech synthesis, 
-- More natural, human-like speech with fewer artifacts and improved speaker similarity. 
+- Sets a new benchmark for multilingual speech synthesis.
+- Produces more natural, human-like speech with fewer artifacts and improved speaker similarity.
 - Input is text, output is audio, and deployment is API-only.  
 
 ## October 2025
@@ -76,7 +91,7 @@ The Realtime API now supports SIP, enabling telephony connections to realtimeapi
 
 ### GPT-4o audio model released
 
-- The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
+- The `gpt-4o-transcribe-diarize` speech to text model is released. This model is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
 
 Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity, supporting automatic speech recognition. 
 
@@ -84,7 +99,7 @@ Use this model via the `/audio` and `/realtime` APIs.
 
 ### GPT-image-1-mini 
 
-The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+The `gpt-image-1-mini` model is now available for global deployments. It's a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
 
 Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
 
@@ -99,9 +114,9 @@ Personally identifiable information (PII) detection is now available as a built-
 ### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-codex` is designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
+- `gpt-5-codex` is designed for use with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
 
-- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you do not need to reapply and will automatically be granted access.
+- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you don't need to reapply and will automatically be granted access.
 
 ### Sora video-to-video support 
 
@@ -117,7 +132,7 @@ This Sora model is now available in the Sweden Central region and East US 2.
 
 ### Realtime API audio model GA
 
-OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
+OpenAI's GPT RealTime and Audio models are now generally available in Microsoft Foundry Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -129,14 +144,14 @@ Realtime API service improvements:
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
 
-We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
+We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Microsoft Foundry portal](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications.
 
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
 
 <!--
 ### gpt-audio Preview
 
-- Designed for audio content creation and analysis. It’s great for: 
+- Designed for audio content creation and analysis. It's great for: 
     - Spoken summaries and audio narration
     - Sentiment analysis from voice
     - Captioning and meeting summaries
@@ -161,7 +176,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - Model router now supports GPT-5 series models.
 
-- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+- Model router for Microsoft Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## July 2025 
 
@@ -194,7 +209,7 @@ Spotlighting is a sub-feature of prompt shields that enhances protection against
 
 ### Model router (preview)
 
-Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+Model router for Microsoft Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## April 2025
 
@@ -215,11 +230,11 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ### o4-mini and o3 models released
 
-`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+`o4-mini` and `o3` models are now available. These models are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
-GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series).
+GPT 4.1 and GPT 4.1-nano are now available. These models are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series).
 
 ### gpt-4o audio models released
 
@@ -289,7 +304,7 @@ For more information about available models, see the [models and versions docume
 
 ### GPT-4o audio completions
 
-The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
+The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). Use the `gpt-4o-audio-preview` model for audio generation.
 
 The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
@@ -298,7 +313,7 @@ The `gpt-4o-audio-preview` model introduces the audio modality into the existing
 
 ### GPT Realtime API 2024-12-17
 
-The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
+The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
@@ -324,7 +339,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 ### Preference fine-tuning (preview)
 
-[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
+[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We're excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
 
 For fine-tuning model region availability, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#fine-tuning-models).
 

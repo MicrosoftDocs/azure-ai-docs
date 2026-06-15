@@ -433,7 +433,7 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 * response.output_audio_transcript.done
 
 > [!TIP]
-> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md#server-events).
+> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md).
 
 When the connection succeeds, you should see these console messages:
 - `✅ RTCPeerConnection created`
@@ -1115,6 +1115,15 @@ The associated browser changes are shown here.
 
 **Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [Flask documentation](https://flask.palletsprojects.com/)
 
+###  Step 4 (optional): Configure Network Firewall
+
+If you use a Network Firewall, the Realtime API requires the following `Allow` rule on the client side.
+
+| Port | Protocols | Rule | IP Range |
+| --- | --- | --- | --- |
+| 3478 | UDP, TCP | Allow | All Subnets belonging to `AzureCloud.<Your_Microsoft_Foundry_Resource_Azure_Region>` [Service Tag](/azure/virtual-network/service-tags-overview). Example `AzureCloud.eastus2`. [See the complete list of Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). |
+
+
 ## Troubleshooting
 
 ### Authentication errors
@@ -1124,7 +1133,9 @@ The associated browser changes are shown here.
 
 ### Connection errors
 
-- **WebRTC connection failed**: Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+- **WebRTC connection failed**:
+  - Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+  - If you use Network Firewall, check [Firewall Settings](#step-4-optional-configure-network-firewall).
 - **Data channel not opening**: Check the browser console for ICE connection state errors. Verify the ephemeral token hasn't expired.
 - **SDP exchange failed**: Verify the WebRTC endpoint URL is correct and the ephemeral token is valid.
 

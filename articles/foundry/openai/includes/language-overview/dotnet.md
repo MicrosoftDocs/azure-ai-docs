@@ -2,7 +2,7 @@
 title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI C# support
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -26,13 +26,13 @@ dotnet add package OpenAI
 
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
-A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet ). To use the library:
+A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
 
 ```dotnetcli
 dotnet add package Azure.Identity
 ```
 
-Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet):
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true):
 
 ```csharp
 using Azure.Identity;

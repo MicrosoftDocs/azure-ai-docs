@@ -13,6 +13,13 @@ ms.custom:
 
 # Index data from Azure Table Storage
 
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Table Storage and makes it searchable in Azure AI Search. Inputs to the indexer are your entities, in a single table. Output is a search index with searchable content and metadata stored in individual fields.
 
 This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from Azure Table Storage. It uses the Azure portal and REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
@@ -82,7 +89,7 @@ The data source definition specifies the source data to index, credentials, and 
 1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition:
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2025-09-01 
+    POST https://[service name].search.windows.net/datasources?api-version=2026-04-01 
     {
         "name": "my-table-storage-ds",
         "description": null,
@@ -168,7 +175,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01 
+    POST https://[service name].search.windows.net/indexes?api-version=2026-04-01 
     {
       "name" : "my-search-index",
       "fields": [
@@ -208,7 +215,7 @@ Once you have an index and data source, you're ready to create the indexer. Inde
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexers?api-version=2026-04-01
     {
         "name" : "my-table-indexer",
         "dataSourceName" : "my-table-storage-ds",
@@ -257,7 +264,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-04-01
   Content-Type: application/json  
   api-key: [admin key]
 ```

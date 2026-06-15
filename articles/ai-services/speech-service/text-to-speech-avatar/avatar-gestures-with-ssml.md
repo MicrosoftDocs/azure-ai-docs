@@ -2,8 +2,8 @@
 title: Customize avatar gestures with SSML - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to edit text to speech avatar gestures with SSML.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley

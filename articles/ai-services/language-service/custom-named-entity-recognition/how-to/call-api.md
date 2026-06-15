@@ -3,7 +3,7 @@ title: Send a Named Entity Recognition (NER) request to your custom model
 description: Learn how to send requests for custom NER.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI on your Azure Cosmos DB data Python & REST API reference (classic)"
 description: "Learn how to use Azure OpenAI on your Azure Cosmos DB data Python & REST API. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference

@@ -1,11 +1,11 @@
 ---
-title: "Audio events reference"
-description: "Learn how to use events with the Realtime API and Voice Live API."
-manager: nitinme
+title: "Realtime API reference"
+description: "Reference for the Azure OpenAI Realtime API events, with notes on Azure-specific deviations from the OpenAI specification."
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: reference
-ms.date: 01/29/2026
+ms.date: 05/13/2026
 author: PatrickFarley
 ms.author: pafarley
 recommendations: false
@@ -15,6 +15,6 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Audio events reference
+# Realtime API reference
 
 [!INCLUDE [realtime-audio-reference content](includes/realtime-audio-reference-content.md)]

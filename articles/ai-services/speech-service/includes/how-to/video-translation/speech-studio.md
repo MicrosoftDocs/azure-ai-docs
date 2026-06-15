@@ -5,7 +5,7 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.author: pafarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 12/19/2025
 ms.custom: references_regions

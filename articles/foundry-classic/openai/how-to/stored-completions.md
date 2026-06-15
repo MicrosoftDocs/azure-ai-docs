@@ -1,14 +1,14 @@
 ---
 title: "How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation (classic)"
 description: "Learn how to use stored completions & distillation with Azure OpenAI (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: alvinashcraft
+ms.author: aashcraft
 recommendations: false
 ---
 
@@ -813,7 +813,9 @@ Stored completions access is controlled via two DataActions:
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/read`
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/action`
 
-By default `Azure AI User` role has access to both these permissions:
+By default `Foundry User` role has access to both these permissions:
+
+[!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 
 :::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 

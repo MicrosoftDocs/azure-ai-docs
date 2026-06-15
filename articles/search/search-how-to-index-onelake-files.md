@@ -4,7 +4,7 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/17/2026
+ms.date: 04/23/2026
 ms.custom:
   - build-2024
   - ignite-2024
@@ -13,7 +13,14 @@ ms.custom:
 ---
 
 # Index data from OneLake files and shortcuts
-  
+
+> [!IMPORTANT]
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+>
+> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+>
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+
 In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
@@ -58,9 +65,7 @@ This article uses the REST APIs to illustrate each step.
 
 + There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
 
-+ Microsoft Purview sensitivity labels [applied to Fabric items](/fabric/fundamentals/apply-sensitivity-labels) (such as lakehouses) will cause the indexer to fail if the search service doesn't have the required access. To prevent this behavior, you must either:
-    - Add the AI Search service’s Service Principal Name (SPN) to an existing organization group that grants access under the sensitivity label policy, or
-    - Request an exception from your organization’s IT team responsible for Purview sensitivity label policy configurations, and have them add the SPN directly to the policy.
++ Indexing files from [Fabric items with sensitivity labels](/fabric/fundamentals/apply-sensitivity-labels), for example, lakehouses, isn't supported. However, when sensitivity labels are applied directly to individual documents, ingestion of protected content and associated labels is supported. In these cases, Azure AI Search can extract and honor sensitivity labels and labeled documents' content through its [integration with Purview](search-indexer-sensitivity-labels.md). 
   
 + Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
 
@@ -324,7 +329,7 @@ There are steps to follow in both OneLake and Azure AI Search, but there are no 
 1. In Azure AI Search, edit the data source definition to include a "dataDeletionDetectionPolicy" property. For example, the following policy considers a file to be deleted if it has a metadata property "IsDeleted" with the value true:
 
     ```https
-    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2025-09-01
+    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2026-04-01
     {
         "name" : "onelake-datasource",
         "type" : "onelake",

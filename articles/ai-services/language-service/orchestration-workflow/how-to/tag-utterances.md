@@ -3,7 +3,7 @@ title: How to tag utterances in an orchestration workflow project
 titleSuffix: Foundry Tools
 description: Use this article to tag utterances
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/18/2025

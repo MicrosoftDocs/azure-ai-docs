@@ -3,7 +3,7 @@ title: Language service encryption of data at rest
 description: Learn how Azure Language service encrypts your data when persisted to the cloud.
 titleSuffix: Foundry Tools
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 11/18/2025

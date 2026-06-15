@@ -5,9 +5,10 @@ description: "Manage AI model deployment in Microsoft Foundry portal with built-
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 02/24/2026
+ms.date: 05/29/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.custom:
   - dev-focus
   - classic-and-new
@@ -20,6 +21,9 @@ ai-usage: ai-assisted
 [!INCLUDE [model-deployment-policy 1](../includes/how-to-model-deployment-policy-1.md)]
 
 ## Assign the policy
+
+> [!NOTE]
+> This policy was previously named *Cognitive Services Deployments should only use approved Registry Models*. The policy definition ID is unchanged, so existing assignments continue to work without any action.
 
 # [Azure CLI](#tab/cli)
 
@@ -36,7 +40,7 @@ Use Azure CLI to find the built-in policy definition and assign it at a scope.
 
     ```azurecli
     az policy definition list \
-       --query "[?displayName=='Cognitive Services Deployments should only use approved Registry Models'].{name:name, id:id}" \
+       --query "[?displayName=='Foundry model deployments should only use approved models'].{name:name, id:id}" \
        --output table
     ```
 
@@ -69,8 +73,8 @@ Use Azure CLI to find the built-in policy definition and assign it at a scope.
 
     ```azurecli
     az policy assignment create \
-       --name "allow-only-approved-registry-models" \
-       --display-name "Allow only approved registry models" \
+       --name "allow-only-approved-models" \
+       --display-name "Allow only approved models" \
        --scope "/subscriptions/<subscription-id>" \
        --policy "<policy-definition-id>" \
        --params @params.json
@@ -88,12 +92,12 @@ Reference:
 1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also
    search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Authoring** > **Definitions**. Then search for `Cognitive Services Deployments should only use approved Registry Models`.
+1. From the left side of the Azure Policy Dashboard, select **Authoring** > **Definitions**. Then search for `Foundry model deployments should only use approved models`.
 
 1. Select **Assign** to assign the policy:
 
    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-   - **Policy definition**: This section already has a value of `Cognitive Services Deployments should only use approved Registry Models`.
+   - **Policy definition**: This section already has a value of `Foundry model deployments should only use approved models`.
    - **Assignment name**: Enter a unique name for the assignment.
 
    You can keep the default values for the rest of the fields or customize them as needed for your organization.
@@ -105,7 +109,7 @@ Reference:
    - **Effect**: Set to [**Deny**](/azure/governance/policy/concepts/effect-deny).
 
      > [!NOTE]
-     > By using the [**audit**](/azure/governance/policy/concepts/effect-audit) option, you can configure the policy to log information to your own compliance dashboard.
+     > By using the [**audit**](/azure/governance/policy/concepts/effect-audit) option, you can configure the policy to log information to your own compliance dashboard before enforcing the policy.
 
    - **Allowed Models Publishers**: Enter a list of publisher names in quotes, separated by commas. Here's an example that shows where to find a publisher name:
 

@@ -2,7 +2,7 @@
 title: "Quickstart: Analyze image content with Python"
 description: In this quickstart, get started using the Content Azure AI Safety Python SDK to analyze image content for objectionable material.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: include

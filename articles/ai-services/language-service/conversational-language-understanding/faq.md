@@ -3,7 +3,7 @@ title: Frequently Asked Questions
 titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about conversational language understanding
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: faq
 ms.date: 11/18/2025

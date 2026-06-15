@@ -1,13 +1,13 @@
 ---
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/06/2025
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ---
 
 In this article, you learn how to use Voice Live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
@@ -410,7 +410,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             # Create turn detection configuration
             turn_detection_config = ServerVad(
                 threshold=0.5,
-                prefix_padding_ms=300,
+                prefix_padding_ms=400,
                 silence_duration_ms=500)
 
             # Create session configuration
