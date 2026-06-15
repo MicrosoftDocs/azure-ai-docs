@@ -55,7 +55,11 @@ items:
   - name: Azure AI Search
     href: ../../agents/how-to/tools/ai-search.md
   - name: Browser automation (preview)
-    href: ../../agents/how-to/tools/browser-automation.md
+    items:
+    - name: Browser automation overview
+      href: ../../agents/how-to/tools/browser-automation.md
+    - name: Quickstart - Deploy a Hosted agent with browser automation
+      href: ../../agents/how-to/tools/browser-automation-hosted-agent-quickstart.md
   - name: Code interpreter
     href: ../../agents/how-to/tools/code-interpreter.md
   - name: File search
