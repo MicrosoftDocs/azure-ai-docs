@@ -3108,6 +3108,8 @@ Guardrail configuration isn't yet available in the VS Code extension. Use the RE
 
 Attach [skills](skills.md) to a toolbox version to make them available to agents through the toolbox MCP endpoint. Each skill reference specifies the skill name and an optional version. Omit `version` to use the skill's `default_version`; pin a `version` string to use an immutable snapshot.
 
+A toolbox version can combine tools and skills in the same request. The following examples create a toolbox version that contains the tool search tool and a skill reference. To add skills to a toolbox that already has tools, include the same `tools` you used in [Step 1](#step-1-create-a-toolbox-version) along with the `skills` array.
+
 > [!IMPORTANT]
 > Skills attached to a toolbox must exist in the same Foundry project. Cross-project references aren't supported.
 
@@ -3123,8 +3125,12 @@ Accept: application/json
 Foundry-Features: Toolboxes=V1Preview
 
 {
-  "description": "Toolbox with a skill reference",
-  "tools": [],
+  "description": "Toolbox with tool search and a skill reference",
+  "tools": [
+    {
+      "type": "toolbox_search_preview"
+    }
+  ],
   "skills": [
     {
       "type": "skill_reference",
@@ -3153,12 +3159,12 @@ To pin a specific version:
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import ToolboxSkillReference
+from azure.ai.projects.models import ToolboxSearchPreviewTool, ToolboxSkillReference
 
 toolbox_version = project.beta.toolboxes.create_version(
     name="my-toolbox",
-    description="Toolbox with a skill reference",
-    tools=[],
+    description="Toolbox with tool search and a skill reference",
+    tools=[ToolboxSearchPreviewTool()],
     skills=[
         ToolboxSkillReference(name="greeting"),              # use default version
         # ToolboxSkillReference(name="greeting", version="v1"),  # pin to v1
@@ -3173,14 +3179,15 @@ print(f"Created toolbox version: {toolbox_version.id}")
 
 ```csharp
 #pragma warning disable AAIP001
-var skillRef = new ToolboxSkillReference("greeting");
-// To pin: new ToolboxSkillReference("greeting") { Version = "v1" }
+// Reuse the AgentToolboxes client (toolboxClient) from Step 1.
+ToolboxSkillReference skillRef = new("greeting");
+// To pin a version: new ToolboxSkillReference("greeting") { Version = "v1" }
 
-AgentsToolboxVersion toolboxVersion = toolboxesClient.CreateToolboxVersion(
-    toolboxName: "my-toolbox",
-    description: "Toolbox with a skill reference",
-    tools: [],
-    skills: [skillRef]
+ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+    name: "my-toolbox",
+    tools: [new ToolboxSearchPreviewTool()],
+    skills: [skillRef],
+    description: "Toolbox with tool search and a skill reference"
 );
 Console.WriteLine($"Created toolbox version: {toolboxVersion.Id}");
 ```
@@ -3192,9 +3199,9 @@ Console.WriteLine($"Created toolbox version: {toolboxVersion.Id}");
 ```javascript
 const toolboxVersion = await project.beta.toolboxes.createVersion(
   "my-toolbox",
-  [],
+  [{ type: "toolbox_search_preview" }],
   {
-    description: "Toolbox with a skill reference",
+    description: "Toolbox with tool search and a skill reference",
     skills: [
       { type: "skill_reference", name: "greeting" },
       // { type: "skill_reference", name: "greeting", version: "v1" },  // pin to v1
