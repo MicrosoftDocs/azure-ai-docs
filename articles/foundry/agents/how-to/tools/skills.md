@@ -185,7 +185,7 @@ skills:
   #   version: "1"              # pin to a specific skill version (string)
 ```
 
-```pwsh
+```bash
 azd ai toolbox create my-toolbox --from-file ./my-toolbox.yaml --no-prompt
 ```
 
