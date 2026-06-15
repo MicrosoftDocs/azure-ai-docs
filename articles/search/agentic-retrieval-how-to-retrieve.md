@@ -399,7 +399,9 @@ When you invoke the `knowledge_base_retrieve` tool at this endpoint, you authent
 + [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
 
 > [!TIP]
-> Each MCP client configures custom headers differently. For example, in [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+> Each MCP client configures custom headers differently.
+>
+> For example, in [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests. Other clients, such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), require header configuration in the MCP server JSON.
 
 ### Use a bearer token for MCP authentication
 
