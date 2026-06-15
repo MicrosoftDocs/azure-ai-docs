@@ -177,7 +177,7 @@ Learn more about deploying models:
 
 ### Building generative AI apps with managed compute
 
-The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://python.langchain.com/docs/integrations/chat/azureml_chat_endpoint/).  
+The *prompt flow* feature in Azure Machine Learning offers a great experience for prototyping. Use models deployed with managed compute in prompt flow with the [Open Model LLM tool](/azure/machine-learning/prompt-flow/tools-reference/open-model-llm-tool). You can also use the REST API exposed by managed compute in popular LLM tools like LangChain with the [Azure Machine Learning extension](https://docs.langchain.com/oss/python/integrations/providers/azure_ai).  
 
 ### Content safety for models deployed as managed compute
 
