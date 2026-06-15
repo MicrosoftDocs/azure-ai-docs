@@ -418,7 +418,6 @@ using OpenAI.Responses;
 using System;
 using System.Collections.Generic;
 using System.ClientModel;
-using System.ClientModel.Primitives;
 
 // Define the Azure OpenAI endpoint and MCP server URL
 string openAiEndpoint = "https://<your-resource-name>.openai.azure.com/openai/v1";
