@@ -1,6 +1,8 @@
 ---
 title: Troubleshoot Storage and Metric Discrepancies
 description: Learn why Azure AI Search storage metrics appear inconsistent across the Azure portal, REST APIs, and SDKs, and how to resolve discrepancies.
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: troubleshooting-general
 ms.date: 04/01/2026
