@@ -539,8 +539,6 @@ The following properties apply to indexed OneLake knowledge sources.
 
 [!INCLUDE [Review the generated objects](includes/how-tos/knowledge-source-review-objects.md)]
 
-[!INCLUDE [Private network indexer note](includes/how-tos/knowledge-source-private-network-note.md)]
-
 ## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
