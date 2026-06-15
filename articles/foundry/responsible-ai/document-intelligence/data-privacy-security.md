@@ -5,7 +5,7 @@ description: "This document details issues for data, privacy, and security for D
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-document-intelligence
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 10/15/2025
 ---

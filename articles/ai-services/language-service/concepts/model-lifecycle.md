@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 01/30/2026
+ms.date: 06/11/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
@@ -36,20 +36,27 @@ By default, API and SDK requests are processed using the latest Generally Availa
 
 ## Model versions
 
-The following table provides a comprehensive reference of supported model versions for each prebuilt feature, including Generally Available (GA), preview, and deprecated versions:
+The following tables provide a comprehensive reference of supported model versions for each prebuilt feature, organized by core and legacy capabilities, including Generally Available (GA), preview, and deprecated versions:
+
+### Core capabilities
 
 | Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported versions | Deprecated versions |
 | --- | --- | --- | --- | --- |
-| **Sentiment Analysis and opinion mining** | **latest** | | | |
 | **Language Detection** | **latest** | | | |
-| **Entity Linking** | **latest** | | | |
-| **Named Entity Recognition (NER)** | **2025-11-01** (latest) | **2025-11-15-preview** | &bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview**</br>&bullet; **2024-05-01** |
-| **Personally Identifiable Information (PII) detection** | **2025-11-01** (latest) | **2025-11-15-preview** | &bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview**</br>&bullet; **2024-05-01** |
-| **PII detection for conversations** | **2025-02-01** (latest) | **2025-11-01-preview** | &bullet; **2022-05-15**</br>&bullet; **2022-05-15-preview** | &bullet; **2024-11-01-preview**</br>&bullet; **2023-04-15-preview** |
-| **Question answering** | **latest** | | | |
+| **Named Entity Recognition (NER)** | **2026-05-01** (latest) | **2026-05-15-preview** | &bullet; **2026-04-15-preview**</br>&bullet; **2025-11-15-preview**</br>&bullet; **2025-11-01**</br>&bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview** |
+| **Personally Identifiable Information (PII) detection** | **2026-05-01** (latest) | **2026-05-15-preview** | &bullet; **2026-04-15-preview**</br>&bullet; **2025-11-15-preview**</br>&bullet; **2025-11-01**</br>&bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview** |
+| **PII detection for conversations** | **2026-06-01** (latest) | **2026-04-15-preview** | &bullet; **2025-11-01-preview**</br>&bullet; **2025-02-01**</br>&bullet; **2022-05-15** | |
 | **Text Analytics for health** | **latest** | **2023-04-15-preview** | | |
-| **Key phrase extraction** | **latest** | | | |
-| **Summarization** | **latest**. **Note**: **2025-06-10** is only available for **issue** and **resolution** aspects in conversation summarization. | | | |
+
+### Legacy capabilities
+
+| Feature | Only supported version (GA) |
+| --- | --- |
+| **Entity Linking** | **latest** |
+| **Key phrase extraction** | **latest** |
+| **Question answering** | **latest** |
+| **Sentiment Analysis and opinion mining** | **latest** |
+| **Summarization** | **latest**. **Note**: **2025-06-10** is only available for **issue** and **resolution** aspects in conversation summarization. |
 
 ## Custom features
 
@@ -61,10 +68,10 @@ The following table lists the supported training configuration versions and thei
 
 | Feature | Supported Training Config Versions | Training Config Expiration | Deployment Expiration |
 | --- | --- | --- | --- |
-| Conversational language understanding | **2022-09-01** (latest) | August 26, 2025 | August 26, 2026 |
-| Orchestration workflow | **2022-09-01** (latest) | October 22, 2025 | October 22, 2026 |
-| Custom named entity recognition | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
-| Custom text classification | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
+| **Conversational language understanding** | **2022-09-01** (latest) | March 31, 2028 | March 31, 2029 |
+| **Orchestration workflow** | **2022-09-01** (latest) | March 31, 2028 | March 31, 2029 |
+| **Custom named entity recognition** | **2022-05-01** (latest) | March 31, 2028 | March 31, 2029 |
+| **Custom text classification** | **2022-05-01** (latest) | March 31, 2028 | March 31, 2029 |
 
 ***For the latest training configuration versions, posted expiration dates are subject to the availability of a newer model version. If no newer model versions are released, the expiration date may be extended.***
 
@@ -85,17 +92,30 @@ For detailed information about request parameters and response schemas, see the 
 
 When making API calls to Azure Language features, you must specify the **API-VERSION** parameter in your request. We recommend using the latest available API version to access the most recent features and improvements.
 
-The following table lists the supported API versions for each feature:
+The following tables list the supported API versions for each feature, organized by core and legacy capabilities:
+
+### Core capabilities REST API
 
 | Feature | Supported versions | Latest Generally Available version | Latest preview version |
 | --- | --- | --- | --- |
-| Custom text </br>classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
-| Conversational language </br>understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
-| Custom named entity </br>recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
-| Orchestration </br>workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
-| Named Entity</br>Recognition | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| `PII` detection </br>for text | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| `PII` detection </br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| **Custom named entity </br>recognition** | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
+| **Language Detection** | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2022-05-01** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| **Named Entity</br>Recognition** | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| **`PII` detection </br>for text** | &bullet; **2026-05-01 (GA)**</br>&bullet; **2026-05-15-preview**</br>&bullet; **2025-11-15-preview** | **2026-05-01 (GA)** | **2026-05-15-preview** |
+| **`PII` detection </br>for conversations** | &bullet; **2025-11-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-11-15-preview** |
+
+### Legacy capabilities REST API
+
+| Feature | Supported versions | Latest Generally Available version | Latest preview version |
+| --- | --- | --- | --- |
+| **Conversational language </br>understanding** | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| **Custom text </br>classification** | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
+| **Entity linking** | &bullet; **2024-11-01**</br>&bullet; **2025-05-15-preview**| **2024-11-01** | **2025-05-15-preview** |
+| **Key phrase </br>extraction** | &bullet; **2024-11-01**</br>&bullet; **2025-05-15-preview**| **2024-11-01** | **2025-05-15-preview** |
+| **Orchestration </br>workflow** | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| **Question </br>answering** | &bullet; **2023-04-01**</br>&bullet; **2025-05-15-preview**| **2024-04-01** | **2025-05-15-preview** |
+| **Sentiment analysis </br>and opinion mining** | &bullet; **2024-11-01**</br>&bullet; **2025-05-15-preview**| **2024-11-01** | **2025-05-15-preview** |
+| **Summarization** | &bullet; **2024-11-01**</br>&bullet; **2025-05-15-preview**| **2024-11-01** | **2025-05-15-preview** |
 
 ### Model version and API version comparison
 
