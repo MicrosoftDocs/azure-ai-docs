@@ -407,57 +407,6 @@ For Azure AI Search authentication, use one of the following methods:
 
 The recommended method for MCP authentication is a bearer token, which avoids storing sensitive keys in configuration files. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
-:::zone pivot="python"
-
-```python
-import os
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import OpenAI
-
-# Set the MCP endpoint for your knowledge base
-mcp_server_url = (
-    "https://<your-search-service>.search.windows.net/"
-    "knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>"
-)
-
-# Create the Azure OpenAI client
-client = OpenAI(
-    base_url="https://<your-resource-name>.openai.azure.com/openai/v1/",
-    api_key=os.environ["AZURE_OPENAI_API_KEY"],
-)
-
-# Acquire a bearer token provider for Azure AI Search
-search_token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(),
-    "https://search.azure.com/.default",
-)
-
-# Call the Responses API and pass the MCP auth header
-response = client.responses.create(
-    model="MODEL_NAME",
-    input="What causes the strongest nighttime brightness patterns in this dataset?",
-    tools=[
-        {
-            "type": "mcp",
-            "server_label": "search_kb",
-            "server_url": mcp_server_url,
-            "allowed_tools": ["knowledge_base_retrieve"],
-            "headers": {
-                "Authorization": f"Bearer {search_token_provider()}"
-            },
-            "require_approval": "never",
-        }
-    ],
-)
-
-# Print the generated answer
-print(response.output_text)
-```
-
-**Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
-
-:::zone-end
-
 :::zone pivot="csharp"
 
 ```csharp
@@ -518,26 +467,15 @@ ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
 ```
 
-**Reference:** [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
 
 :::zone-end
-
-:::zone pivot="rest"
-
-```http
-// This code snippet is currently unavailable.
-```
-
-:::zone-end
-
-### Use an admin key for MCP authentication
-
-An admin key grants full read-write access to the search service, so you should only use it in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 :::zone pivot="python"
 
 ```python
 import os
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 
 # Set the MCP endpoint for your knowledge base
@@ -552,8 +490,11 @@ client = OpenAI(
     api_key=os.environ["AZURE_OPENAI_API_KEY"],
 )
 
-# Set the Azure AI Search admin key
-search_admin_key = os.environ["AZURE_SEARCH_ADMIN_KEY"]
+# Acquire a bearer token provider for Azure AI Search
+search_token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://search.azure.com/.default",
+)
 
 # Call the Responses API and pass the MCP auth header
 response = client.responses.create(
@@ -566,7 +507,7 @@ response = client.responses.create(
             "server_url": mcp_server_url,
             "allowed_tools": ["knowledge_base_retrieve"],
             "headers": {
-                "api-key": search_admin_key,
+                "Authorization": f"Bearer {search_token_provider()}"
             },
             "require_approval": "never",
         }
@@ -580,6 +521,18 @@ print(response.output_text)
 **Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
 
 :::zone-end
+
+:::zone pivot="rest"
+
+```http
+// This code snippet is currently unavailable.
+```
+
+:::zone-end
+
+### Use an admin key for MCP authentication
+
+An admin key grants full read-write access to the search service, so you should only use it in development environments or when a bearer token isn't available. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 :::zone pivot="csharp"
 
@@ -635,7 +588,54 @@ ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
 ```
 
-**Reference:** [ApiKeyCredential](/dotnet/api/system.clientmodel.apikeycredential)
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=csharp#authentication)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+import os
+from openai import OpenAI
+
+# Set the MCP endpoint for your knowledge base
+mcp_server_url = (
+    "https://<your-search-service>.search.windows.net/"
+    "knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>"
+)
+
+# Create the Azure OpenAI client
+client = OpenAI(
+    base_url="https://<your-resource-name>.openai.azure.com/openai/v1/",
+    api_key=os.environ["AZURE_OPENAI_API_KEY"],
+)
+
+# Set the Azure AI Search admin key
+search_admin_key = os.environ["AZURE_SEARCH_ADMIN_KEY"]
+
+# Call the Responses API and pass the MCP auth header
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="What causes the strongest nighttime brightness patterns in this dataset?",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "search_kb",
+            "server_url": mcp_server_url,
+            "allowed_tools": ["knowledge_base_retrieve"],
+            "headers": {
+                "api-key": search_admin_key,
+            },
+            "require_approval": "never",
+        }
+    ],
+)
+
+# Print the generated answer
+print(response.output_text)
+```
+
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
 
 :::zone-end
 
