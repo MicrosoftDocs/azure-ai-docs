@@ -193,7 +193,19 @@ items:
   - name: Run agent evaluations with the Azure Developer CLI
     displayName: azd cli
     href: ../../observability/how-to/azure-developer-cli-evaluation.md
-  - name: Optimize agent prompts 
+  - name: Optimize hosted agents (preview)
+    items:
+    - name: Agent optimization overview
+      href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: "Quickstart: Optimize a hosted agent"
+      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+    - name: Make your agent optimization-ready
+      href: ../../agents/how-to/make-agent-optimizer-ready.md
+    - name: Create a custom evaluation dataset
+      href: ../../agents/how-to/create-optimizer-dataset.md
+    - name: Optimize agent instructions and skills
+      href: ../../agents/how-to/optimize-agent-targets.md
+  - name: Optimize agent prompts
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md

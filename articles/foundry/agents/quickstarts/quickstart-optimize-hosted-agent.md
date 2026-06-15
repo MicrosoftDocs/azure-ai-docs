@@ -28,13 +28,27 @@ Your Azure subscription must be on the allow list for the agent optimizer. Conta
 
 ## Install the CLI extension
 
-Install the `azure.ai.agents` extension for the azd CLI:
+Install version 0.1.40-preview or later of the `azure.ai.agents`
+extension for the azd CLI:
 
 ```bash
 azd ext install azure.ai.agents
 ```
 
-Verify the installation:
+Verify the installed extension version:
+
+```bash
+azd ext list
+```
+
+If the installed version is earlier than 0.1.40-preview, upgrade the
+extension:
+
+```bash
+azd ext upgrade azure.ai.agents
+```
+
+Verify that the optimizer command is available:
 
 ```bash
 azd ai agent optimize --help
@@ -56,7 +70,7 @@ The interactive flow prompts for your Azure subscription, region, and model depl
 >
 > If you already have a Foundry project and model deployments, add `-p <project-resource-id>` to target existing resources:
 > ```bash
-> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+> azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/bring-your-own/responses/optimization-customer-support/agent.manifest.yaml -p "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project> ."
 > ```
 
 ## Authenticate
@@ -123,10 +137,19 @@ azd ai agent invoke "What is 2+2?"
 
 ## Generate custom dataset and evaluations
 
-For meaningful optimization with your own scenarios, generate a dataset with `eval init`:
+For meaningful optimization with your own scenarios, generate a dataset with
+`eval generate`. If you already have a baseline configuration in
+`.agent_configs/baseline/`, run:
 
 ```bash
-azd ai agent eval init --gen-instruction "You are a helpful customer support agent."
+azd ai agent eval generate
+```
+
+If you don't have a baseline configuration, include `--gen-instruction` so the
+CLI can generate a dataset for your agent's domain:
+
+```bash
+azd ai agent eval generate --gen-instruction "You are a helpful customer support agent."
 ```
 
 The command creates an `eval.yaml` with a dataset and evaluators tuned to your agent's domain.
@@ -141,20 +164,17 @@ Then run optimization with the generated configuration:
 azd ai agent optimize
 ```
 
-The CLI reads the `name` field from your `agent.yaml` file to determine which deployed agent to optimize. It'll also automatically detect and use the generated `eval.yaml` file to run optimization. If you have multiple agents or configurations or want to target a different one, use the `--agent` and `--config` flags:
+The CLI uses your current `azd` environment and the `name` field in your local
+`agent.yaml` file to determine which deployed agent to optimize. It also
+automatically detects and uses the generated `eval.yaml` file to run
+optimization. If you have multiple agents or configurations or want to target a
+different one, use the `--agent` and `--config` flags:
 
 ```bash
 azd ai agent optimize --agent <your-agent-name> --config <your-config-file>.yaml
 ```
 
-For more details on agent targeting, see [Which agent gets optimized](../how-to/optimize-agent-targets.md#which-agent-gets-optimized).
-
-The agent optimizer completes the following steps:
-
-1. Evaluates your baseline agent against a built-in dataset that contains 3 tasks and 12 criteria.
-1. Generates improved candidates (instructions, skills, tools, or model configurations depending on your target).
-1. Evaluates each candidate.
-1. Ranks the candidates by score.
+For more details on agent targeting, see [Which agent gets optimized](../how-to/optimize-agent-targets.md#which-agent-gets-optimized). For optimizer stages and model requirements, see [Agent optimizer overview](../concepts/agent-optimizer-overview.md).
 
 This process takes a few minutes. You see real-time progress:
 
@@ -162,7 +182,7 @@ This process takes a few minutes. You see real-time progress:
 Optimizing agent "customer-support-py"...
   Config: C:\Dev\my-agent\eval.yaml
   Baseline saved to .agent_configs\baseline\metadata.yaml
-  Job ID: opt_162bd0f09070432c9ca4a699a908abb0
+  Job ID: opt_162bd0f09....
   Status: pending
   Portal: <OPTIMIZATION-JOB-URL>
 ```
@@ -170,9 +190,6 @@ Optimizing agent "customer-support-py"...
 Use the URL provided in the CLI to view and monitor your job in the Foundry portal. 
 
 The *eval model* scores each response (any chat-completion model works). The *optimization model* generates improved candidates and must be from the [supported list](../concepts/agent-optimizer-overview.md#models) (gpt-5 family or DeepSeek).
-
-> [!WARNING]
-> If the eval model is not deployed, all scores are zero with no error message. Verify that your eval model exists before running optimization.
 
 ## Deploy the winner
 
@@ -238,13 +255,13 @@ azd down --force --purge
 
 | Problem | Cause | Fix |
 | --------- | ------- | ----- |
-| All scores are zero | Agent or eval model not deployed | Deploy the agent or eval model in your Foundry project, or use `--eval-model` to specify a deployed model |
+| Optimization score is lower than expected, such as `0` or `0.1` | Evaluation run has many errored rows | Open the **Eval** link in the optimization results and check whether many rows failed with agent response generation errors or evaluator errors. Fix the underlying errors, then rerun optimization. |
 | `azd provision` fails with quota error | Subscription lacks capacity | Try a different subscription or request a quota increase |
 
 ## Related content
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
-- [Create an evaluation dataset](../how-to/create-optimizer-dataset.md)
+- [Create an evaluation suite](../how-to/create-optimizer-dataset.md)
 - [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
 - [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
