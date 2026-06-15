@@ -89,7 +89,7 @@ After you create skill versions, attach them to a toolbox version so any MCP cli
 
 When an agent or MCP client connects to the toolbox endpoint, skills appear as [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources). Clients that support the MCP Resources protocol call `resources/list` once at startup to discover all attached skills, then `resources/read` to download the content. Any MCP client — GitHub Copilot, Claude Code, or your own agent harness — can consume skills this way without any Foundry SDK.
 
-Create a toolbox version that references the `greeting` skill you created earlier. A toolbox version can combine tools and skills; the following examples add the skill alongside the tool search tool. Omit `version` to follow the skill's `default_version`, or pin a `version` string to lock the reference to an immutable snapshot.
+Create a toolbox version that references the `greeting` skill you created earlier. Omit `version` to follow the skill's `default_version`, or pin a `version` string to lock the reference to an immutable snapshot.
 
 :::zone pivot="rest-api"
 
@@ -101,12 +101,8 @@ Accept: application/json
 Foundry-Features: Toolboxes=V1Preview
 
 {
-  "description": "Toolbox with tool search and a skill reference",
-  "tools": [
-    {
-      "type": "toolbox_search_preview"
-    }
-  ],
+  "description": "Toolbox with a skill reference",
+  "tools": [],
   "skills": [
     {
       "type": "skill_reference",
@@ -121,13 +117,13 @@ Foundry-Features: Toolboxes=V1Preview
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import ToolboxSearchPreviewTool, ToolboxSkillReference
+from azure.ai.projects.models import ToolboxSkillReference
 
 # Reuse the AIProjectClient (project) from the previous step.
 toolbox_version = project.beta.toolboxes.create_version(
     name="my-toolbox",
-    description="Toolbox with tool search and a skill reference",
-    tools=[ToolboxSearchPreviewTool()],
+    description="Toolbox with a skill reference",
+    tools=[],
     skills=[ToolboxSkillReference(name="greeting")],  # add version="v1" to pin
 )
 print(f"Created toolbox version: {toolbox_version.version}")
@@ -144,9 +140,9 @@ ToolboxSkillReference skillRef = new("greeting");  // add { Version = "v1" } to 
 
 ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
     name: "my-toolbox",
-    tools: [new ToolboxSearchPreviewTool()],
+    tools: [],
     skills: [skillRef],
-    description: "Toolbox with tool search and a skill reference"
+    description: "Toolbox with a skill reference"
 );
 Console.WriteLine($"Created toolbox version: {toolboxVersion.Version}");
 ```
@@ -159,9 +155,9 @@ Console.WriteLine($"Created toolbox version: {toolboxVersion.Version}");
 // Reuse the AIProjectClient (project) from the previous step.
 const toolboxVersion = await project.beta.toolboxes.createVersion(
   "my-toolbox",
-  [{ type: "toolbox_search_preview" }],
+  [],
   {
-    description: "Toolbox with tool search and a skill reference",
+    description: "Toolbox with a skill reference",
     skills: [{ type: "skill_reference", name: "greeting" }],  // add version: "v1" to pin
   },
 );
@@ -176,9 +172,7 @@ Declare skills in the `azd ai toolbox create --from-file` YAML, or attach them t
 
 ```yaml
 # my-toolbox.yaml
-description: Toolbox with tool search and a skill reference
-tools:
-  - type: toolbox_search_preview
+description: Toolbox with a skill reference
 skills:
   - name: greeting              # follows the skill's default version
   # - name: greeting
