@@ -340,7 +340,7 @@ Use the `azure.ai.skills` [Azure Developer CLI](/azure/developer/azure-developer
 **Prerequisites:**
 
 ```pwsh
-azd extension install azure.ai.foundry
+azd extension install microsoft.foundry
 azd extension install azure.ai.skills          # while in Preview, build from source if not in the public registry
 az login
 

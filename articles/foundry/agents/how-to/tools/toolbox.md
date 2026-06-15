@@ -92,11 +92,11 @@ For tool configuration syntax and authentication options for each tool type, see
 
   ```bash
   # If you previously installed individual extensions, uninstall them first.
-  azd ext uninstall azure.ai.foundry
+  azd ext uninstall microsoft.foundry
 
   # Install the unified bundle (provides azd ai agent, connection, inspector,
   # project, routine, skill, and toolbox).
-  azd ext install azure.ai.foundry
+  azd ext install microsoft.foundry
   ```
 
 > [!IMPORTANT]
@@ -331,7 +331,7 @@ Publishing a new toolbox creates its first version. That version becomes the def
 
 :::zone pivot="azd"
 
-With the unified `azure.ai.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
+With the unified `microsoft.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
 
 1. Use `azd ai connection create` to register each project connection that the toolbox references (one call per credential record).
 2. Use `azd ai toolbox create --from-file <toolbox.yaml>` to create the toolbox. The YAML references connections by name and never embeds credentials.
