@@ -393,17 +393,15 @@ Each knowledge base has an MCP endpoint at the following URL:
 https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
 ```
 
-When you invoke the `knowledge_base_retrieve` tool at this endpoint, you authenticate both the Azure OpenAI Responses API call and the MCP request to Azure AI Search. For the MCP request, use one of the following authentication methods:
+When you invoke the `knowledge_base_retrieve` tool at this endpoint, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. For the MCP request, use one of the following authentication methods:
 
 + [Pass a bearer token](#use-a-bearer-token-for-mcp-authentication) in the `Authorization` header (recommended)
 + [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
 
 > [!TIP]
-> Each MCP client configures custom headers differently. For example:
->
-> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
->
-> + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+> Each MCP client configures custom headers differently. For example, in [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+> 
+> For other clients, such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), you configure headers in the MCP server JSON.
 
 ### Use a bearer token for MCP authentication
 
@@ -456,7 +454,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-**Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [OpenAI Python API library](https://github.com/openai/openai-python)
+**Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 :::zone-end
 
@@ -520,7 +518,7 @@ ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
 ```
 
-**Reference:** [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential), [OpenAI .NET library](https://github.com/openai/openai-dotnet)
+**Reference:** [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
 
 :::zone-end
 
@@ -579,7 +577,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-**Reference:** [OpenAI Python API library](https://github.com/openai/openai-python), [ApiKeyCredential](/python/api/azure-core/azure.core.credentials.azurekeycredential)
+**Reference:** [ApiKeyCredential](/python/api/azure-core/azure.core.credentials.azurekeycredential)
 
 :::zone-end
 
@@ -637,7 +635,7 @@ ResponseResult response = await openAIClient.CreateResponseAsync(options);
 Console.WriteLine(response.GetOutputText());
 ```
 
-**Reference:** [OpenAI .NET library](https://github.com/openai/openai-dotnet), [ApiKeyCredential](/dotnet/api/system.clientmodel.apikeycredential)
+**Reference:** [ApiKeyCredential](/dotnet/api/system.clientmodel.apikeycredential)
 
 :::zone-end
 
