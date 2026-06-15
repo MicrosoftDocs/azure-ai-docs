@@ -393,15 +393,15 @@ Each knowledge base has an MCP endpoint at the following URL:
 https://<your-search-service>.search.windows.net/knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>
 ```
 
-When you invoke the `knowledge_base_retrieve` tool at this endpoint, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. For the MCP request, use one of the following authentication methods:
+How you authenticate depends on your MCP client. When you use the Azure OpenAI Responses API with the `knowledge_base_retrieve` MCP tool, you authenticate both the Responses API call to Azure OpenAI and the MCP request to Azure AI Search. If your MCP client calls this endpoint directly, you authenticate only to Azure AI Search.
+
+For Azure AI Search authentication, use one of the following methods:
 
 + [Pass a bearer token](#use-a-bearer-token-for-mcp-authentication) in the `Authorization` header (recommended)
 + [Pass an admin key](#use-an-admin-key-for-mcp-authentication) in the `api-key` header
 
 > [!TIP]
-> Each MCP client configures custom headers differently.
->
-> For example, in [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication through a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests. Other clients, such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), require header configuration in the MCP server JSON.
+> MCP clients configure custom headers differently. For example, [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect) injects headers through project connections, while clients such as [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp) require headers in MCP server JSON.
 
 ### Use a bearer token for MCP authentication
 
@@ -474,8 +474,8 @@ using System.ClientModel.Primitives;
 // Define the Azure OpenAI endpoint and MCP server URL
 string openAiEndpoint = "https://<your-resource-name>.openai.azure.com/openai/v1";
 string mcpServerUrl =
-    "https://<your-service-name>.search.windows.net/"
-    + "knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>";
+    "https://<your-search-service>.search.windows.net/"
+    + "knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>";
 
 // Create the Azure OpenAI Responses client
 ResponsesClient openAIClient = new(
@@ -577,7 +577,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-**Reference:** [ApiKeyCredential](/python/api/azure-core/azure.core.credentials.azurekeycredential)
+**Reference:** [Use the Azure OpenAI Responses API](/azure/foundry/openai/how-to/responses?tabs=python#authentication)
 
 :::zone-end
 
@@ -594,8 +594,8 @@ using OpenAI.Responses;
 // Define the Azure OpenAI endpoint and MCP server URL
 string openAiEndpoint = "https://<your-resource-name>.openai.azure.com/openai/v1";
 string mcpServerUrl =
-    "https://<your-service-name>.search.windows.net/"
-    + "knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>";
+    "https://<your-search-service>.search.windows.net/"
+    + "knowledgebases/<your-knowledge-base>/mcp?api-version=<api-version>";
 
 // Create the Azure OpenAI Responses client
 ResponsesClient openAIClient = new(
