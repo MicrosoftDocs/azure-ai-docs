@@ -346,4 +346,4 @@ await whisperModel.unload();
 References:
 
 - [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)
-- [Audio Transcription Sample (GitHub)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/audio-transcription-foundry-local)
+- [Audio Transcription Sample (GitHub)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/foundry-local/audio-transcription-foundry-local)

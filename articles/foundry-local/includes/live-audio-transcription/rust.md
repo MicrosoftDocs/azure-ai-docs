@@ -13,11 +13,11 @@ ms.date: 07/23/2025
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/rust/live-audio-transcription-example
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/rust/foundry-local/live-audio-transcription-example
 ```
 
 ## Install packages
@@ -32,7 +32,7 @@ The following code initializes the Foundry Local SDK, loads a streaming speech m
 
 Replace the contents of `src/main.rs` with the following code:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/live-audio-transcription/src/main.rs":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/live-audio-transcription/src/main.rs":::
 
 The `create_live_transcription_session` method returns a session that accepts raw Pulse-code modulation (PCM) audio and yields transcription results as an async stream. The cpal input stream captures microphone audio at 16-kHz mono, which is the format the session expects.
 

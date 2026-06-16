@@ -11,11 +11,11 @@ ms.date: 03/29/2026
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/rust/tutorial-voice-to-text
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/rust/foundry-local/tutorial-voice-to-text
 ```
 
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]
@@ -26,7 +26,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 - Open `src/main.rs` and replace its contents with the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="transcription":::
+    :::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-voice-to-text/src/main.rs" id="transcription":::
 
     The `create_audio_client` method returns a client for audio operations. The `transcribe` method accepts a file path and returns an object with a `text` field containing the transcribed content.
 
@@ -39,7 +39,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step, inside the `main` function:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="summarization":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-voice-to-text/src/main.rs" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -47,7 +47,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Replace the contents of `src/main.rs` with the following complete code that transcribes an audio file and summarizes the transcription:
 
-:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="complete_code":::
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local/tutorial-voice-to-text/src/main.rs" id="complete_code":::
 
 > [!NOTE]
 > Replace `"meeting-notes.wav"` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

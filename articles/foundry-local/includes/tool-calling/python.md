@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/python/tool-calling
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/foundry-local/tool-calling
 ```
 
 ## Install packages
@@ -50,7 +50,7 @@ Different models have different capabilities when it comes to tool calling, but 
 
 Copy and paste the following code into a Python file named `app.py`:
 
-:::code language="python" source="~/foundry-local-main/samples/python/tool-calling/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/tool-calling/src/app.py" id="complete_code":::
 
 To run the application, execute the following command in your terminal:
 

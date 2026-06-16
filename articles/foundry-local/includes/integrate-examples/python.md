@@ -19,11 +19,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/python/web-server
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/foundry-local/web-server
 ```
 
 ## Install packages
@@ -37,7 +37,7 @@ cd Foundry-Local/samples/python/web-server
 
 Copy-and-paste the following code into a Python file named `app.py`:
 
-:::code language="python" source="~/foundry-local-main/samples/python/web-server/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/web-server/src/app.py" id="complete_code":::
 
 Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
