@@ -34,10 +34,7 @@ To fine-tune a custom avatar, follow these steps:
 1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Build** from the top-right menu.
 1. Select **Fine-tune** from the left pane.
-1. Select **AI Services**, and then select **Fine-tune**.
-
-    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
- 
+1. Select **AI Services**, and then select **Fine-tune**. 
 1. In the **Fine-tune a model** wizard, select **Azure Speech - Text to Speech Avatar** as the model.
 1. Select **Custom avatar** as the type.
 1. Select **Next**.
