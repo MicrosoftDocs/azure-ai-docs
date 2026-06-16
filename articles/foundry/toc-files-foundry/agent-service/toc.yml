@@ -80,6 +80,20 @@ items:
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md
+  - name: Microsoft IQ
+    items:
+    - name: Foundry IQ
+      items:
+      - name: What is Foundry IQ?
+        href: ../../agents/concepts/what-is-foundry-iq.md
+      - name: FAQ
+        href: ../../agents/concepts/foundry-iq-faq.yml
+      - name: Connect knowledge base to agents
+        href: ../../agents/how-to/foundry-iq-connect.md
+    - name: Fabric IQ (preview)
+      href: ../../agents/how-to/tools/fabric-iq.md
+    - name: Work IQ (preview)
+      href: ../../agents/how-to/tools/work-iq.md
   - name: Model Context Protocol (MCP)
     items:
     - name: Connect to MCP server
@@ -104,18 +118,6 @@ items:
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
-    - name: Fabric IQ (preview)
-      href: ../../agents/how-to/tools/fabric-iq.md
-    - name: Work IQ (preview)
-      href: ../../agents/how-to/tools/work-iq.md
-    - name: Foundry IQ
-      items:
-      - name: What is Foundry IQ?
-        href: ../../agents/concepts/what-is-foundry-iq.md
-      - name: FAQ
-        href: ../../agents/concepts/foundry-iq-faq.yml
-      - name: Connect knowledge base to agents
-        href: ../../agents/how-to/foundry-iq-connect.md
     - name: Foundry Tools
       items:
       - name: Azure Speech in Foundry Tools

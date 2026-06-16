@@ -89,7 +89,103 @@ After you create skill versions, attach them to a toolbox version so any MCP cli
 
 When an agent or MCP client connects to the toolbox endpoint, skills appear as [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources). Clients that support the MCP Resources protocol call `resources/list` once at startup to discover all attached skills, then `resources/read` to download the content. Any MCP client — GitHub Copilot, Claude Code, or your own agent harness — can consume skills this way without any Foundry SDK.
 
-For REST, Python, .NET, JavaScript, and `azd` examples of adding skill references to a toolbox version, see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article. The Azure Developer CLI exposes skill references in two ways. Use a declarative `skills:` block in `azd ai toolbox create --from-file`, or use the imperative commands `azd ai toolbox skill add`, `azd ai toolbox skill list`, and `azd ai toolbox skill remove`. Changes don't take effect for MCP clients until you promote the new version with `azd ai toolbox publish`.
+Create a toolbox version that references the `greeting` skill you created earlier. Omit `version` to follow the skill's `default_version`, or pin a `version` string to lock the reference to an immutable snapshot.
+
+:::zone pivot="rest-api"
+
+```http
+POST {endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+Accept: application/json
+Foundry-Features: Toolboxes=V1Preview
+
+{
+  "description": "Toolbox with a skill reference",
+  "tools": [],
+  "skills": [
+    {
+      "type": "skill_reference",
+      "name": "greeting"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import ToolboxSkillReference
+
+# Reuse the AIProjectClient (project) from the previous step.
+toolbox_version = project.beta.toolboxes.create_version(
+    name="my-toolbox",
+    description="Toolbox with a skill reference",
+    tools=[],
+    skills=[ToolboxSkillReference(name="greeting")],  # add version="v1" to pin
+)
+print(f"Created toolbox version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+#pragma warning disable AAIP001
+// Reuse the AgentToolboxes client (toolboxClient) from the previous step.
+ToolboxSkillReference skillRef = new("greeting");  // add { Version = "v1" } to pin
+
+ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+    name: "my-toolbox",
+    tools: [],
+    skills: [skillRef],
+    description: "Toolbox with a skill reference"
+);
+Console.WriteLine($"Created toolbox version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+// Reuse the AIProjectClient (project) from the previous step.
+const toolboxVersion = await project.beta.toolboxes.createVersion(
+  "my-toolbox",
+  [],
+  {
+    description: "Toolbox with a skill reference",
+    skills: [{ type: "skill_reference", name: "greeting" }],  // add version: "v1" to pin
+  },
+);
+console.log(`Created toolbox version: ${toolboxVersion.version}`);
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Declare skills in the `azd ai toolbox create --from-file` YAML, or attach them to an existing toolbox with `azd ai toolbox skill add`.
+
+```yaml
+# my-toolbox.yaml
+description: Toolbox with a skill reference
+skills:
+  - name: greeting              # follows the skill's default version
+  # - name: greeting
+  #   version: "1"              # pin to a specific skill version (string)
+```
+
+```bash
+azd ai toolbox create my-toolbox --from-file ./my-toolbox.yaml --no-prompt
+```
+
+:::zone-end
+
+For the full toolbox workflow — including connections, versioning, and the `azd ai toolbox skill add`, `azd ai toolbox skill list`, and `azd ai toolbox skill remove` commands — see the [Attach skills to a toolbox](toolbox.md#attach-skills-to-a-toolbox) section in the toolbox article. Changes from the imperative `azd` skill commands don't take effect for MCP clients until you promote the new version with `azd ai toolbox publish`.
 
 ### Consume toolbox skills in Microsoft Agent Framework
 
@@ -244,7 +340,7 @@ Use the `azure.ai.skills` [Azure Developer CLI](/azure/developer/azure-developer
 **Prerequisites:**
 
 ```pwsh
-azd extension install azure.ai.foundry
+azd extension install microsoft.foundry
 azd extension install azure.ai.skills          # while in Preview, build from source if not in the public registry
 az login
 
