@@ -84,7 +84,7 @@ azd provision
 ## Step 3: Test the agent locally
 
 ```
-azd ai agent run --no-inspector
+azd ai agent run
 ```
 
 This command creates a virtual environment, installs dependencies, launches the agent using the `startupCommand` defined in `azure.yaml` and opens the agent inspector in your browser so you can chat with the agent.
