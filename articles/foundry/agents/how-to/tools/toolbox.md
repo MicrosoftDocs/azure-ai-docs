@@ -92,11 +92,11 @@ For tool configuration syntax and authentication options for each tool type, see
 
   ```bash
   # If you previously installed individual extensions, uninstall them first.
-  azd ext uninstall azure.ai.foundry
+  azd ext uninstall microsoft.foundry
 
   # Install the unified bundle (provides azd ai agent, connection, inspector,
   # project, routine, skill, and toolbox).
-  azd ext install azure.ai.foundry
+  azd ext install microsoft.foundry
   ```
 
 > [!IMPORTANT]
@@ -331,7 +331,7 @@ Publishing a new toolbox creates its first version. That version becomes the def
 
 :::zone pivot="azd"
 
-With the unified `azure.ai.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
+With the unified `microsoft.foundry` extension bundle (see [Prerequisites](#prerequisites)), create a toolbox in two steps:
 
 1. Use `azd ai connection create` to register each project connection that the toolbox references (one call per credential record).
 2. Use `azd ai toolbox create --from-file <toolbox.yaml>` to create the toolbox. The YAML references connections by name and never embeds credentials.
@@ -3108,6 +3108,8 @@ Guardrail configuration isn't yet available in the VS Code extension. Use the RE
 
 Attach [skills](skills.md) to a toolbox version to make them available to agents through the toolbox MCP endpoint. Each skill reference specifies the skill name and an optional version. Omit `version` to use the skill's `default_version`; pin a `version` string to use an immutable snapshot.
 
+A toolbox version can contain tools, skills, or both. The following examples create a toolbox version that contains a single skill reference. To add skills to a toolbox that already has tools, include the same `tools` you used in [Step 1](#step-1-create-a-toolbox-version) along with the `skills` array.
+
 > [!IMPORTANT]
 > Skills attached to a toolbox must exist in the same Foundry project. Cross-project references aren't supported.
 
@@ -3173,14 +3175,15 @@ print(f"Created toolbox version: {toolbox_version.id}")
 
 ```csharp
 #pragma warning disable AAIP001
-var skillRef = new ToolboxSkillReference("greeting");
-// To pin: new ToolboxSkillReference("greeting") { Version = "v1" }
+// Reuse the AgentToolboxes client (toolboxClient) from Step 1.
+ToolboxSkillReference skillRef = new("greeting");
+// To pin a version: new ToolboxSkillReference("greeting") { Version = "v1" }
 
-AgentsToolboxVersion toolboxVersion = toolboxesClient.CreateToolboxVersion(
-    toolboxName: "my-toolbox",
-    description: "Toolbox with a skill reference",
+ToolboxVersion toolboxVersion = toolboxClient.CreateToolboxVersion(
+    name: "my-toolbox",
     tools: [],
-    skills: [skillRef]
+    skills: [skillRef],
+    description: "Toolbox with a skill reference"
 );
 Console.WriteLine($"Created toolbox version: {toolboxVersion.Id}");
 ```
