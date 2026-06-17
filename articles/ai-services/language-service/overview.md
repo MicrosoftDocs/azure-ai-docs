@@ -3,7 +3,7 @@ title: What is Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/30/2026
@@ -16,7 +16,7 @@ ms.author: lajanuar
 Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
 ## Core capabilities
-
+<!-- markdownlint-disable MD036 -->
 **Recommended for new development**
 
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.

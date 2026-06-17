@@ -3,8 +3,8 @@ title: Image Analysis SDK Overview
 titleSuffix: Foundry Tools
 description: This page gives you an overview of the Azure AI Image Analysis SDK.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: overview
 ms.date: 09/26/2025
 ms.author: pafarley

@@ -3,7 +3,7 @@ title: Where and how to use - Personalizer
 description: Personalizer can be applied in any situation where your application can select the right item, action, or product to display - in order to make the experience better, achieve better business results, or improve productivity.
 author: jcodella
 ms.author: jacodel
-ms.manager: nitinme
+ms.manager: mcleans
 ms.service: azure-ai-personalizer
 ms.topic: concept-article
 ms.date: 01/19/2024

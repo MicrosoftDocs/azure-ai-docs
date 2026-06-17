@@ -21,11 +21,11 @@ Before starting this tutorial, you need:
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/python/langchain-integration
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/foundry-local/langchain-integration
 ```
 
 ## Install packages
@@ -42,7 +42,7 @@ pip install langchain[openai]
 
 Create a new Python file named `translation_app.py` in your favorite IDE and add the following code:
 
-:::code language="python" source="~/foundry-local-main/samples/python/langchain-integration/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/langchain-integration/src/app.py" id="complete_code":::
 
 #### References
 

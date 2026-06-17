@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: Learn how to use Sovereign Clouds
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 02/25/2026

@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Foundry fine-tuning considerations"
 description: "Learn more about what you should take into consideration before fine-tuning with Microsoft Foundry."
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article 

@@ -1,9 +1,10 @@
 ---
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/07/2025
+ai-usage: ai-assisted
 ---
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
@@ -31,12 +32,11 @@ You need video recordings of your avatar talent as training data. You upload the
 To fine-tune a custom avatar, follow these steps:
 
 1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning** > **+ Fine-tune**.
-
-    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
- 
-1. In the wizard, select **Custom avatar (text to speech avatar fine-tuning)**. 
+1. Select **Build** from the top-right menu.
+1. Select **Fine-tune** from the left pane.
+1. Select **AI Services**, and then select **Fine-tune**. 
+1. In the **Fine-tune a model** wizard, select **Azure Speech - Text to Speech Avatar** as the model.
+1. Select **Custom avatar** as the type.
 1. Select **Next**.
 1. Follow the instructions provided by the wizard to create your fine-tuning workspace. 
 
@@ -51,13 +51,17 @@ You must provide a video file with a recorded statement from your avatar talent,
 
 For more information about recording the consent video, see [How to record video samples](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md) and [Disclosure for avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
-To add an avatar talent profile and upload their consent statement in your project, follow these steps:
+If needed, return to your custom avatar fine-tuning job:
 
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
-1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
-1. Select **Set up avatar talent** > **Upload consent video**. 
+1. Select **Build** from the top-right menu.
+1. Select **Fine-tune** from the left pane.
+1. Select **AI Services**.
+1. Select the custom avatar fine-tuning job (by name) that you [started as described in Step 1](#step-1-start-fine-tuning).
 
+To add an avatar talent profile and upload their consent statement in your project, follow these steps:
+
+1. Select **Set up avatar talent** > **Upload consent video**. 
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
     - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
@@ -83,9 +87,6 @@ All data you upload must meet the requirements for the data type that you choose
 When you're ready to upload your data, go to the **Prepare training data** tab to add your data. 
 
 To upload training data, follow these steps:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
-1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Prepare training data** > **Upload data**. 
 1. In the **Upload data** wizard, choose a data type and then select **Next**. For more information about the data types (including **Naturally Speaking**, **Silent Status**, **Gesture**, and **Status 0 speaking**), see [what video clips to record](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md#what-video-clips-to-record).
 1. Select local files from your computer or enter the Azure Blob storage URL where your data is stored.
@@ -101,10 +102,7 @@ After you upload the data, you can check the data overview, which indicates whet
 > [!IMPORTANT]
 > All the training data in the project is included in the training. The model quality is highly dependent on the data you provided, and you're responsible for the video quality. Make sure you record the training videos according to the [how to record video samples guide](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md). 
 
-To create a custom avatar in the Microsoft Foundry portal, follow these steps for one of the following methods:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
-1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
+To create a custom avatar in the Microsoft Foundry portal, follow these steps:
 1. Select **Train model** > **+ Train model**. 
 1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and speech synthesis markup language (SSML) input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
 
@@ -136,9 +134,6 @@ Navigate to the project where you copied the model to deploy the model copy.
 After you successfully created and trained your avatar model, you deploy it to your endpoint.
 
 To deploy your avatar:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
-1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Deploy model** > **Deploy model**. 
 1. Select a model that you want to deploy.
 1. Select **Deploy** to start the deployment.
@@ -159,15 +154,12 @@ After you deploy your custom avatar, you can use it in the following ways:
 ### Use in Microsoft Foundry
 
 - If you open **Text to Speech Avatar** or **Voice Live** from the custom avatar fine-tuning job details page, your custom avatar should already be selected. Choose a voice, and then start using it.
-- If you open **Text to Speech Avatar** from the **Models** navigation, go to the **Avatar** section, select **More avatars**, and then select your custom avatar under the **Custom** tab.
-- If you open **Voice Live** from the **Models** navigation, turn on the **Avatar** toggle, select **More avatars**, and then select your custom avatar under the **Custom** tab.
+- If you open **Text to Speech Avatar** from **Discover** > **Models**, go to the **Avatar** section, select **More avatars**, and then select your custom avatar under the **Custom** tab.
+- If you open **Voice Live** from **Discover** > **Models**, turn on the **Avatar** toggle, select **More avatars**, and then select your custom avatar under the **Custom** tab.
  
 ### Remove a deployment 
 
 To remove your deployment, follow these steps:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
-1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select the deployment on the **Deploy model** page. The model is actively hosted if the status is "Succeeded".
 1. You can select the **Delete deployment** button and confirm the deletion to remove the hosting.
 

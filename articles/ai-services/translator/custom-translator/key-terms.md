@@ -3,7 +3,7 @@ title: Key terms - Custom Translator
 titleSuffix: Foundry Tools
 description: A list of key terms used in Custom translator articles.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

@@ -1,12 +1,13 @@
 ---
 title: Examples of Full Lucene Query Syntax
 description: Explore query examples that demonstrate the Lucene query syntax for fuzzy search, proximity search, term boosting, regular expression search, and wildcard searches in an Azure AI Search index.
+ms.date: 06/08/2026
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 04/14/2025
-ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Examples of *full* Lucene search syntax (advanced queries)
@@ -16,7 +17,7 @@ When constructing queries for Azure AI Search, you can replace the default [simp
 The Lucene parser supports complex query formats, such as field-scoped queries, fuzzy search, infix and suffix wildcard search, proximity search, term boosting, and regular expression search. The extra power comes with more processing requirements so you should expect a slightly longer execution time. In this article, you can step through examples that demonstrate query operations based on full syntax.
 
 > [!NOTE]
-> Many of the specialized query constructions enabled through the full Lucene query syntax are not [text-analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis), which can be surprising if you expect stemming or lemmatization. Lexical analysis is only performed on complete terms (a term query or phrase query). Query types with incomplete terms (prefix query, wildcard query, regex query, fuzzy query) are added directly to the query tree, bypassing the analysis stage. The only transformation performed on partial query terms is lowercasing. 
+> Many of the specialized query constructions enabled through the full Lucene query syntax aren't [text-analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis), which can be surprising if you expect stemming or lemmatization. Lexical analysis is only performed on complete terms (a term query or phrase query). Query types with incomplete terms (prefix query, wildcard query, regex query, fuzzy query) are added directly to the query tree, bypassing the analysis stage. The only transformation performed on partial query terms is lowercasing.
 
 ## Hotels sample index
 
@@ -27,9 +28,9 @@ Example queries are articulated using the REST API and POST requests. You can pa
 Request headers must have the following values:
 
 | Key | Value |
-|-----|-------|
-| Content-Type | application/json|
-| api-key  | `<your-search-service-api-key>`, either query or admin key |
+| --- | --- |
+| Content-Type | application/json |
+| api-key | `<your-search-service-api-key>`, either query or admin key |
 
 URI parameters must include your search service endpoint with the index name, docs collections, search command, and API version, similar to the following example:
 
@@ -48,13 +49,13 @@ The request body should be formed as valid JSON:
 }
 ```
 
-+ `search` set to * is an unspecified query, equivalent to null or empty search. It's not especially useful, but it's the simplest search you can do, and it shows all retrievable fields in the index, with all values.
+- `search` set to * is an unspecified query, equivalent to null or empty search. It's not especially useful, but it's the simplest search you can do, and it shows all retrievable fields in the index, with all values.
 
-+ `queryType` set to *full* invokes the full Lucene query parser and it's required for this syntax.
+- `queryType` set to *full* invokes the full Lucene query parser and it's required for this syntax.
 
-+ `select` set to a comma-delimited list of fields is used for search result composition, including only those fields that are useful in the context of search results.
+- `select` set to a comma-delimited list of fields is used for search result composition, including only those fields that are useful in the context of search results.
 
-+ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
+- `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
 
 ## Example 1: Fielded search
 
@@ -109,9 +110,9 @@ The response for this query should look similar to the following example, filter
 
 The search expression can be a single term or a phrase, or a more complex expression in parentheses, optionally with Boolean operators. Some examples include the following:
 
-+ `HotelName:(hotel NOT motel)`
-+ `Address/StateProvince:("WA" OR "CA")`
-+ `Tags:("free wifi" NOT "free parking") AND "coffee in lobby"`
+- `HotelName:(hotel NOT motel)`
+- `Address/StateProvince:("WA" OR "CA")`
+- `Tags:("free wifi" NOT "free parking") AND "coffee in lobby"`
 
 Be sure to put a phrase within quotation marks if you want both strings to be evaluated as a single entity, as in this case searching for two distinct locations in the `Address/StateProvince` field. Depending on the client, you might need to escape (`\`) the quotation marks.
 
@@ -175,9 +176,8 @@ The response for this query resolves to *concierge* in the matching documents, t
 
 Phrases aren't supported directly but you can specify a fuzzy match on each term of a multi-part phrase, such as `search=Tags:landy~ AND sevic~`. This query expression finds 15 matches on *laundry service*.
 
-> [!Note]
-> Fuzzy queries are not [analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis). Query types with incomplete terms (prefix query, wildcard query, regex query, fuzzy query) are added directly to the query tree, bypassing the analysis stage. The only transformation performed on partial query terms is lower casing.
->
+> [!NOTE]
+> Fuzzy queries aren't [analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis). Query types with incomplete terms (prefix query, wildcard query, regex query, fuzzy query) are added directly to the query tree, bypassing the analysis stage. The only transformation performed on partial query terms is lower casing.
 
 ## Example 3: Proximity search
 
@@ -277,7 +277,7 @@ In fact, only two documents match on *access*. The first instance is in second p
     {
       "@search.score": 0.83636594,
       "HotelName": "Happy Lake Resort & Restaurant",
-      "Description": "The largest year-round resort in the area offering more of everything for your vacation – at the best value! What can you enjoy while at the resort, aside from the mile-long sandy **beaches** of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named “Property of the Year” and a “Top Ten Resort” by top publications.",
+      "Description": "The largest year-round resort in the area offering more of everything for your vacation - at the best value! What can you enjoy while at the resort, aside from the mile-long sandy **beaches** of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named "Property of the Year" and a "Top Ten Resort" by top publications.",
       "Tags": [
         "pool",
         "bar",
@@ -350,7 +350,7 @@ After you boost the term *beach*, the match on Campus Commander Hotel moves down
     {
       "@search.score": 1.6727319,
       "HotelName": "Happy Lake Resort & Restaurant",
-      "Description": "The largest year-round resort in the area offering more of everything for your vacation – at the best value! What can you enjoy while at the resort, aside from the mile-long sandy beaches of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named “Property of the Year” and a “Top Ten Resort” by top publications.",
+      "Description": "The largest year-round resort in the area offering more of everything for your vacation - at the best value! What can you enjoy while at the resort, aside from the mile-long sandy beaches of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named "Property of the Year" and a "Top Ten Resort" by top publications.",
       "Tags": [
         "pool",
         "bar",
@@ -415,7 +415,7 @@ The response for this query should look similar to the following example (trimme
       "@search.score": 1,
       "HotelName": "Gastronomic Landscape Hotel"
     },
-    . . . 
+    . . .
     {
       "@search.score": 1,
       "HotelName": "Trails End Motel"
@@ -432,9 +432,8 @@ The response for this query should look similar to the following example (trimme
 }
 ```
 
-> [!Note]
-> Regex queries are not [analyzed](./search-lucene-query-architecture.md#stage-2-lexical-analysis). The only transformation performed on partial query terms is lower casing.
->
+> [!NOTE]
+> Regex queries aren't [analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis). The only transformation performed on partial query terms is lower casing.
 
 ## Example 6: Wildcard search
 
@@ -466,19 +465,13 @@ The response for this query should look similar to the following example:
 }
 ```
 
-> [!Note]
-> Wildcard queries are not [analyzed](./search-lucene-query-architecture.md#stage-2-lexical-analysis). The only transformation performed on partial query terms is lower casing.
->
+> [!NOTE]
+> Wildcard queries aren't [analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis). The only transformation performed on partial query terms is lower casing.
 
 ## Related content
 
-Try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
-
-+ [Quickstart: Full-text search](search-get-started-text.md)
-
-More syntax reference, query architecture, and examples can be found in the following articles:
-
-+ [Full text search in Azure AI Search](search-lucene-query-architecture.md)
-+ [Simple query syntax](query-simple-syntax.md)
-+ [Lucene query syntax in Azure AI Search](query-lucene-syntax.md)
-+ [OData $filter syntax in Azure AI Search](search-query-odata-filter.md)
+- [Quickstart: Full-text search](search-get-started-text.md)
+- [Full-text search in Azure AI Search](search-lucene-query-architecture.md)
+- [Simple query syntax in Azure AI Search](query-simple-syntax.md)
+- [Lucene query syntax in Azure AI Search](query-lucene-syntax.md)
+- [OData $filter syntax in Azure AI Search](search-query-odata-filter.md)

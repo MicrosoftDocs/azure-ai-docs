@@ -1,7 +1,7 @@
 ---
 title: "Azure OpenAI models and regions for Foundry Agent Service (classic)"
 description: "Find supported Azure OpenAI models and regions for Microsoft Foundry Agent Service. Compare gpt-5, gpt-4o, and gpt-4 availability across global and regional deployments. (classic)"
-manager: nitinme
+manager: mcleans
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry

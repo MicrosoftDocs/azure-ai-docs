@@ -3,8 +3,8 @@ title: Customize speech models with fine-tuning
 titleSuffix: Foundry Tools
 description: Learn about how to customize speech models with fine-tuning. 
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: pafarley

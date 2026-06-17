@@ -27,6 +27,8 @@ items:
     href: ../../how-to/develop/langchain-middleware.md
   - name: Use Foundry Agent Service
     href: ../../how-to/develop/langchain-agents.md
+  - name: Use Foundry Toolbox
+    href: ../../how-to/develop/langchain-toolbox.md
   - name: Host LangGraph agents as Foundry hosted agents
     href: ../../how-to/develop/langchain-hosted-agents.md
   - name: Use Foundry Memory
@@ -53,7 +55,7 @@ items:
     href: ../../mcp/available-tools.md
 
 # Fireworks
-- name: Fireworks on Foundry (preview)
+- name: Fireworks on Foundry 
   items:
   - name: Use Fireworks models
     href: ../../how-to/fireworks/enable-fireworks-models.md

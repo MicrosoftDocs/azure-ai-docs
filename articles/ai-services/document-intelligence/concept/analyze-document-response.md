@@ -3,8 +3,8 @@ title: Document Intelligence APIs analyze document response
 titleSuffix: Foundry Tools
 description: Description of the different objects returned as part of the AnalyzeDocument response and how to use the document analysis response in your applications.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: vikurpad

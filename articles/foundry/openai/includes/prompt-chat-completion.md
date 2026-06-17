@@ -8,7 +8,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
-manager: nitinme
+manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 

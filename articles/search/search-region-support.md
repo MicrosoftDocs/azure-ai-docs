@@ -3,9 +3,10 @@ title: Supported Regions
 description: Learn about the regions that offer Azure AI Search and the features available in each region.
 author: mattwojo
 ms.author: mattwoj
-ms.date: 03/25/2026
+ms.date: 06/05/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - build-2025
@@ -43,13 +44,13 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​<sup>1</sup> |  |  | ✅ |  | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| East US​ <sup>1, 2</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
+| East US​ <sup>1, 2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East US 2 <sup>1, 2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |  |
 | North Central US​ <sup>1</sup> ​| ✅ |  | ✅ |  | ✅ | ✅ |
 | South Central US​ <sup>1 </sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ <sup>1, 2</sup> | ✅ |  | ✅ |  | ✅ | ✅ |
-| West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US 2​ <sup>2,3</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ |  | ✅ |  | ✅ |  |
 
@@ -64,11 +65,11 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
 | France Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Germany West Central​ <sup>1</sup> ​| ✅ | ✅ | ✅ |  | ✅ |  |
-| Italy North​​ |  | ✅ | ✅ | ✅ | ✅ |  |
+| Germany West Central​ <sup>1</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| Italy North​​ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Norway East​​ | ✅ | ✅ |  | ✅ |  |  |
 | North Europe​ <sup>2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Poland Central​​ <sup>1</sup> |  |  | ✅ |  | ✅ |  |
+| Poland Central​​ <sup>1</sup> |  |  | ✅ |  | ✅ | ✅ |
 | Spain Central <sup>3</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
 | Sweden Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Switzerland North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -88,8 +89,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |  |
-| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ |  |
-| UAE North​​ <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ | ✅ |
+| UAE North​​ <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
@@ -99,7 +100,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| South Africa North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| South Africa North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
@@ -115,7 +116,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Jio India West​​ | ✅ |  | ✅ |  | ✅ | ✅ |
 | Jio India Central​​ |  |  |  |  |  |  |
 | Japan East <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Japan West​ | ✅ |  | ✅ |  | ✅ |  |
+| Japan West​ | ✅ |  | ✅ |  | ✅ | ✅ |
 | Korea Central <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ |  | ✅ |  |
 | Malaysia West |  | ✅ |  |  |  |  |

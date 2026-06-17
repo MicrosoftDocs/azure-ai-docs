@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use the Content Understanding REST API"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Get started with the Content Understanding REST API to extract structured data from documents, images, audio, and video files.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include

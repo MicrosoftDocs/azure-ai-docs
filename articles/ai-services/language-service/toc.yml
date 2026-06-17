@@ -64,7 +64,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Recognized entity categories
         items:
         - name: Extended format
@@ -151,7 +151,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
 
   - name: Named entity recognition
     items:
@@ -198,7 +198,7 @@ items:
           - name: Use container instances
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Concepts
         items:
           - name: Evaluation metrics
@@ -247,7 +247,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Concepts
         items:
         - name: Recognized entity categories
@@ -295,7 +295,7 @@ items:
         - name: Use container instances
           href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
     - name: Concepts
       items:
       - name: Recognized entity categories
@@ -354,7 +354,7 @@ items:
           - name: Use container instances
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
@@ -653,7 +653,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
     - name: Tutorials
       items:
       - name: Integrate Power BI
@@ -752,7 +752,7 @@ items:
           - name: Use containers in disconnected environments
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+            href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Tutorials
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
@@ -786,7 +786,7 @@ items:
         - name: Use containers in disconnected environments
           href: ../containers/disconnected-containers.md
         - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+          href: ../cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
       - name: Responsible use of AI
         items:
         - name: Transparency note for summarization

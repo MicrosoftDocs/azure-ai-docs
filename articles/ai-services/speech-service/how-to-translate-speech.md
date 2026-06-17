@@ -3,8 +3,8 @@ title: "How to translate speech - Speech service"
 titleSuffix: Foundry Tools
 description: Learn how to translate speech from one language to text in another language, including object construction and supported audio input formats.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 02/25/2026

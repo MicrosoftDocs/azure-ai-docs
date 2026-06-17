@@ -2,7 +2,7 @@
 title: "Quickstart: Document translation Python SDK"
 description: 'Document translation processing using the Python SDK'
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: include
 ms.date: 06/02/2026

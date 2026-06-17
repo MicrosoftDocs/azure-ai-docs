@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 06/02/2026
+ms.date: 06/12/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -98,14 +98,14 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Training retirement date | Deployment retirement date |
 |-------|---------|--------------------------|----------------------------|
-| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4o | 2024-08-06 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| o4-mini | 2025-04-16 | No earlier than 2027-04-16¹ | 2027-10-16 |
+| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4o | 2024-08-06 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16 |
 
-¹ For existing customers only. Otherwise, training retirement occurs at base model retirement.
+<sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
 ### Black Forest Labs
 
@@ -129,10 +129,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-R1 | 1 | GA | — | — |
-| DeepSeek-R1-0528 | 1 | GA | — | — |
-| DeepSeek-V3-0324 | 1 | GA | — | — |
-| DeepSeek-V3.1 | 1 | GA | — | — |
+| DeepSeek-R1 | 1 | Legacy | 2026-08-13 | — |
+| DeepSeek-R1-0528 | 1 | Legacy | 2026-07-13 | — |
+| DeepSeek-V3-0324 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash, DeepSeek-V4-Pro |
+| DeepSeek-V3.1 | 1 | Legacy | 2026-07-13 | DeepSeek-V4-Flash, DeepSeek-V4-Pro |
 | DeepSeek-V3.2 | 1 | GA | — | — |
 | DeepSeek-V3.2-Speciale | 1 | GA | — | — |
 
@@ -176,15 +176,15 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| grok-3 | 1 | Deprecated | 2026-05-01 | grok-4 |
-| grok-3-mini | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-reasoning |
+| grok-3 | 1 | Retired | 2026-05-01 | grok-4 |
+| grok-3-mini | 1 | Retired | 2026-05-01 | grok-4-1-fast-reasoning |
 | grok-4 | 1 | GA | — | — |
 | grok-4-1-fast-non-reasoning | 1 | GA | — | — |
 | grok-4-1-fast-reasoning | 1 | GA | — | — |
 | grok-4-20-non-reasoning | 1 | Preview | 2027-04-06 | — |
 | grok-4-20-reasoning | 1 | Preview | 2027-04-06 | — |
-| grok-4-fast-non-reasoning | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-non-reasoning |
-| grok-4-fast-reasoning | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-reasoning |
+| grok-4-fast-non-reasoning | 1 | Retired | 2026-05-01 | grok-4-1-fast-non-reasoning |
+| grok-4-fast-reasoning | 1 | Retired | 2026-05-01 | grok-4-1-fast-reasoning |
 | grok-code-fast-1 | 1 | GA | — | — |
 
 ## Foundry Models from partners and community
@@ -197,7 +197,7 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 |-------|---------|-----------|-----------------|-------------|
 | claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
 | claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
-| claude-opus-4-1 | — | Preview | 2026-10-19 | — |
+| claude-opus-4-1 | — | Preview | 2026-08-05 | claude-opus-4-8 |
 | claude-opus-4-5 | — | Preview | 2026-10-19 | — |
 | claude-opus-4-6 | — | Preview | 2027-02-02 | — |
 | claude-opus-4-7 | — | Preview | 2027-04-06 | — |
@@ -208,8 +208,8 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| Cohere-command-r-08-2024 | 1 | Deprecated | 2026-05-12 | — |
-| Cohere-command-r-plus-08-2024 | 1 | Deprecated | 2026-05-12 | — |
+| Cohere-command-r-08-2024 | 1 | Retired | 2026-05-12 | — |
+| Cohere-command-r-plus-08-2024 | 1 | Retired | 2026-05-12 | — |
 | Cohere-rerank-v3.5 | 1 | Deprecated | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
@@ -218,7 +218,8 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| DeepSeek-V4-Flash | 1 | GA | — | — |
+| DeepSeek-V4-Flash | 2026-04-23 | Preview | 2026-08-20 | — |
+| DeepSeek-V4-Pro | 2026-04-23 | Preview | 2026-08-20 | — |
 
 ### Fireworks
 
@@ -268,6 +269,20 @@ This section lists the retirement lifecycle for Foundry Models sold by partners 
 | Mistral-large | 1 | GA | — | — |
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
+
+### NTT Data
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| tsuzumi-7b | 2 | Legacy | 2026-08-31 | tsuzumi2 |
+
+### StabilityAI
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| Stable-Diffusion-3.5-Large | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Image-Core | 1 | Deprecated | 2026-07-31 | — |
+| Stable-Image-Ultra | 1 | Deprecated | 2026-07-31 | — |
 
 ## Related content
 

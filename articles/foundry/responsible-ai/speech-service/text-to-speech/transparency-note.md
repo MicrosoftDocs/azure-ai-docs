@@ -3,7 +3,7 @@ title: "Text to speech transparency note"
 titleSuffix: Foundry Tools
 description: "This Transparency Note discusses Text to speech and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article

@@ -2,7 +2,7 @@
 title: "Azure OpenAI in Microsoft Foundry Models v1 API"
 description: "Learn how to use the Azure OpenAI v1 API, which simplifies authentication, removes api-version parameters, and supports cross-provider model calls."
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

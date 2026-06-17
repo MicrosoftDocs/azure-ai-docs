@@ -1,6 +1,6 @@
 ---
 author: aahill
-ms.service: azure-ai-services
+ms.service: foundry-tools
 ms.topic: include
 ms.date: 06/24/2019
 ms.author: aahi

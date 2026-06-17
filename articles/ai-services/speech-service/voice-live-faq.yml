@@ -5,8 +5,8 @@ metadata:
   description: Get answers to frequently asked questions about the Voice Live API in Azure Speech in Foundry Tools.
   author: PatrickFarley
   reviewers: pafarley
-  manager: nitinme
-  ms.service: azure-ai-speech
+  manager: mcleans
+  ms.service: azure-speech-foundry-tools
   ms.topic: faq
   ms.date: 03/31/2026
   ms.author: pafarley

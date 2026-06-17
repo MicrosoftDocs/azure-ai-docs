@@ -73,7 +73,7 @@ items:
       href: search-sku-manage-costs.md
     - name: Optimize costs with Serverless pricing
       href: serverless-cost-optimization.md
-    - name: Service tiers for Dedicated pricing
+    - name: Pricing models and service tiers
       href: search-sku-tier.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
@@ -519,14 +519,14 @@ items:
     items:
     - name: Create a knowledge base
       href: agentic-retrieval-how-to-create-knowledge-base.md
+    - name: Query a knowledge base via API or MCP
+      href: agentic-retrieval-how-to-retrieve.md
     - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
     - name: Enable image serving (preview)
       href: agentic-retrieval-how-to-image-serving.md
     - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
-    - name: Query a knowledge base via APIs or MCP
-      href: agentic-retrieval-how-to-retrieve.md
     - name: Build an end-to-end retrieval solution
       href: agentic-retrieval-how-to-create-pipeline.md
   - name: Migrate agentic retrieval code

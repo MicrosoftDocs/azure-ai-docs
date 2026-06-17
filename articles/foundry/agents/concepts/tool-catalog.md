@@ -6,7 +6,7 @@ reviewer: lindazqli
 ms.author: jburchel
 ms.reviewer: zhuoqunli
 ms.date: 04/23/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

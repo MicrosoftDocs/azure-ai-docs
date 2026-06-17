@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Create a custom analyzer using the Content Understanding JavaScript SDK"
 author: PatrickFarley
-manager: nitinme
+manager: mcleans
 description: Learn to create a custom analyzer with Content Understanding using the JavaScript SDK.
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: include

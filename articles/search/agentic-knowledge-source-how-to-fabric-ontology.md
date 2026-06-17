@@ -19,9 +19,11 @@ zone_pivot_groups: search-csharp-python-rest
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-A *Fabric Ontology knowledge source* (preview) connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search, providing ontology-defined entities, relationships, and content as grounding data. Because ontologies capture how your business defines its data, agents can answer in business terms rather than reasoning over raw tables and columns.
+A *Fabric Ontology knowledge source* (preview) connects your [Microsoft Fabric ontology](/fabric/iq/ontology/overview) to an agentic retrieval pipeline in Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
-Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live data directly. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
+Ontologies capture how your business defines its data, entities, and relationships, allowing agents to answer in business terms rather than reasoning over raw tables and columns.
+
+Unlike indexed knowledge sources, Fabric Ontology knowledge sources query live data directly at retrieval time. No ingestion pipeline is needed. Queries require an end-user access token, which the retrieval engine uses to authenticate with Microsoft Fabric on the caller's behalf.
 
 ### Usage support
 
@@ -74,7 +76,7 @@ Fabric IQ inherits Microsoft Fabric's compliance certifications for the workspac
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-check.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a Fabric Ontology knowledge source.
 
@@ -190,14 +192,14 @@ The following properties apply to Fabric Ontology knowledge sources.
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, [add it to a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 > [!NOTE]
 > Fabric Ontology knowledge sources don't support the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Use `low` or `medium` instead.
 
 ## Query a knowledge base
 
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has unique query-time permissions enforcement and response characteristics.
+After the knowledge base is configured, [call the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md) to query Fabric Ontology content. This knowledge source has unique query-time permissions enforcement and response characteristics.
 
 ### Enforce permissions at query time
 
@@ -205,7 +207,7 @@ Fabric Ontology knowledge sources use an on-behalf-of (OBO) token flow. You pass
 
 Standard Azure AI Search authentication is also required on the retrieve request. The `x-ms-query-source-authorization` token is passed separately and doesn't replace service authentication.
 
-For instructions on passing the token, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+For instructions on passing the token, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 ### Fabric Ontology–specific response fields
 
@@ -261,7 +263,7 @@ The following example shows a retrieve response containing a Fabric Ontology kno
 
 ## Delete a knowledge source
 
-[!INCLUDE [](./includes/how-tos/knowledge-source-delete.md)]
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
 title: "Guardrails & controls for Models sold by Azure (classic)" 
 description: "Learn about content safety for models deployed using serverless API deployments, using Microsoft Foundry. (classic)"
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article

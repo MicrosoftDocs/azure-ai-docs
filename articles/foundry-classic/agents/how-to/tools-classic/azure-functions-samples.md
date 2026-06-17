@@ -2,7 +2,7 @@
 title: "How to use Azure Functions with Azure Storage Queues (classic)"
 description: "Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools. (classic)"
 services: azure-ai-agent-service
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to

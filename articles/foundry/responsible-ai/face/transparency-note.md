@@ -4,8 +4,8 @@ titleSuffix: Foundry Tools
 description: "Face Responsible AI Basics, use cases, terms"
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

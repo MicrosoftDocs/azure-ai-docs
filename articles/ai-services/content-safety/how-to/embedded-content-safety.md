@@ -3,7 +3,7 @@ title: Embedded content safety - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Embedded content safety is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: ssalgadodev
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025

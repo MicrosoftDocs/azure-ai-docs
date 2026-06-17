@@ -2,12 +2,12 @@
 title: How to use the Voice Live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice Live API for real-time voice agents.
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 05/25/2026
 ai-usage: ai-assisted
@@ -137,7 +137,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 |----------|----------|----------|------------|
 | `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
 | `threshold` | float | Optional | Activation threshold (0.0–1.0). A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
-| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal (default: 300). |
+| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. Starting with API version `2026-04-10`, the default is 400 for `server_vad` and 420 for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. For earlier API versions, the default is 300 for all types. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio, measured in milliseconds, required to start detection. The default value is 200 ms for `server_vad` and 80 ms for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech (default: 500). |
 | `remove_filler_words` | boolean | Optional | Determines whether to remove filler words to reduce the false alarm rate of barge-in.<br/>To enable it the property must be set to `true`. The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/>The default value is `false`. |

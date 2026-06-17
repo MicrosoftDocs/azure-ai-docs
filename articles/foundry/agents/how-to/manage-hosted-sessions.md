@@ -4,7 +4,7 @@ description: "Create, invoke, and manage sessions for hosted agents in Foundry A
 author: aahill
 ms.author: aahi
 ms.date: 04/14/2026
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

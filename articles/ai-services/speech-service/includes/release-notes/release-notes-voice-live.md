@@ -1,7 +1,7 @@
 ---
 author: PatrickFarley
 reviewer: patrickfarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 02/20/2026
 ms.author: pafarley

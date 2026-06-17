@@ -2,12 +2,12 @@
 title: Voice Live API with WebRTC
 titleSuffix: Foundry Tools
 description: Learn how to build real-time voice agents using the Voice Live API with a WebRTC endpoint
-manager: nitinme
+manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-speech
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 04/30/2026
 ms.custom: references_voice_live, references_regions

@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/cs/tool-calling-foundry-local-sdk
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/csharp/foundry-local/tool-calling-foundry-local-sdk
 ```
 
 ## Install packages
@@ -44,7 +44,7 @@ Different models have different capabilities when it comes to tool calling, but 
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/tool-calling-foundry-local-sdk/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/tool-calling-foundry-local-sdk/Program.cs" id="complete_code":::
 
 ## Run the native chat completions example
 
@@ -59,7 +59,7 @@ If you prefer to use the OpenAI SDKs to call the Foundry Local web service, use 
 > [!TIP]
 > Use `options.ToolChoice = ChatToolChoice.CreateAutoChoice();` (the default) for the most reliable behavior. Write clear tool names and descriptions so the model calls the correct tool on its own.
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/tool-calling-foundry-local-web-server/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/tool-calling-foundry-local-web-server/Program.cs" id="complete_code":::
 
 ## Run the OpenAI web service example
 

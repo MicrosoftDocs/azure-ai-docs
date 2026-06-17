@@ -2,16 +2,16 @@
 title: Cross-Tenant CMKs
 description: Set up CMK encryption in Azure AI Search that uses a key from an Azure Key Vault in another tenant.
 ms.reviewer: magottei
+ms.date: 06/08/2026
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ---
 
 # Configure customer-managed keys across different tenants
 
-This article describes a cross-tenant scenario where a service provider hosts Azure AI Search in their own tenant and enables [customer-managed key (CMK) encryption](search-security-manage-encryption-keys.md) using a multitenant Microsoft Entra application. 
+This article describes a cross-tenant scenario where a service provider hosts Azure AI Search in their own tenant and enables [customer-managed key (CMK) encryption](search-security-manage-encryption-keys.md) using a multitenant Microsoft Entra application.
 
 In this configuration, the customer uses Azure Key Vault in their own tenant to manage their encryption key. The service provider has no access to this key.
 
@@ -44,7 +44,7 @@ You can configure a multitenant Microsoft Entra application to use customer-mana
 
 ## Create a multitenant Microsoft Entra application in tenant A
 
-Use the Azure CLI to send requests. The service provider’s tenant that contains Azure AI Search will be referred to as *tenant A*.
+Use the Azure CLI to send requests. The service provider's tenant that contains Azure AI Search will be referred to as *tenant A*.
 
 1. Get the tenant ID: `az account show --query tenantId --output tsv`
 
@@ -75,9 +75,9 @@ To use federated identity to support a cross-tenant CMK scenario:
 
 1. The service provider configures the user-assigned managed identities as a federated identity credential on the app. For guidance on how to do this, see [Configure an app to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp)*.*
 
-1. Once the service provider shares the multitenant app ID, the customer grants the service provider’s app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp#az-ad-sp-create) command in Azure CLI.
+1. Once the service provider shares the multitenant app ID, the customer grants the service provider's app access to the Key Vault in their tenant (Tenant B). To install the app in Tenant B, a service principal must be created with the multitenant app ID. To create the service principal, construct an [admin-consent URL](/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent) and grant tenant-wide consent or use the [az ad sp](/cli/azure/ad/sp#az-ad-sp-create) command in Azure CLI.
 
-1. If the customer doesn’t already have a key vault to use, see [Quickstart - Create an Azure Key Vault with the Azure portal](/azure/key-vault/general/quick-create-portal) or [Quickstart - Create an Azure Key Vault with the Azure CLI](/azure/key-vault/general/quick-create-cli). The Key Vault will need the permission model set to “Azure role-based access control (RBAC)” with the service provider’s multitenant application granted permission by assigning it the [Key Vault Crypto Service Encryption User role](/azure/key-vault/general/rbac-guide?preserve-view=true&tabs=azure-cli#azure-built-in-roles-for-key-vault-data-plane-operations). The customer can then create an encryption key. For guidance on how to do this, see [Grant permission to applications to access an Azure key vault using Azure RBAC](/azure/key-vault/general/rbac-guide?tabs=azure-cli).
+1. If the customer doesn't already have a key vault to use, see [Quickstart - Create an Azure Key Vault with the Azure portal](/azure/key-vault/general/quick-create-portal) or [Quickstart - Create an Azure Key Vault with the Azure CLI](/azure/key-vault/general/quick-create-cli). The Key Vault will need the permission model set to "Azure role-based access control (RBAC)" with the service provider's multitenant application granted permission by assigning it the [Key Vault Crypto Service Encryption User role](/azure/key-vault/general/rbac-guide?preserve-view=true&tabs=azure-cli#azure-built-in-roles-for-key-vault-data-plane-operations). The customer can then create an encryption key. For guidance on how to do this, see [Grant permission to applications to access an Azure key vault using Azure RBAC](/azure/key-vault/general/rbac-guide?tabs=azure-cli).
 
 Once these steps are completed, the service provider now has:
 
@@ -89,43 +89,42 @@ Once these steps are completed, the service provider now has:
 
 With these three parameters, the service provider can now create Azure AI Search objects in *Tenant A* that can be encrypted with the customer-managed key stored in *Tenant B*. For guidance on how to configure customer-managed keys on new search objects, see [Configure customer-managed keys for Azure AI Search encrypted data](/azure/search/search-security-manage-encryption-keys?tabs=azure-key-vault%2Cmanaged-id-sys%2Cportal%2Cmgmt-rest-create%2Cmgmt-rest-update).
 
-
 ### Validate the federated identity cross-tenant CMK configuration
 
 After you configure the multitenant Microsoft Entra application and connect it to the customer's Key Vault, verify the setup by creating a test object in your search service (tenant A). This example creates an index to confirm that the search service can access the customer-managed key using federated identity authentication.
 
 1. See [Configure customer-managed keys for Azure AI Search encrypted data](search-security-manage-encryption-keys.md) for guidance on how to create a search service and a new index object with a customer-managed key.
 
-1. Once the index object is created, you will need to fill in the following:
+1. Once the index object is created, you'll need to fill in the following:
 
-    - `keyVaultUri`: The URI address from the customer.
-    - `keyVaultKeyName`: The key name from the customer.
-    - `keyVaultKeyVersion`: The key version from the customer.
-    - `userAssignedIdentity`: The `<subscription-id>` and `<resource-group>` from your tenant, and the `<identity-name>` is the user-assigned managed identity name.
-    - `federatedIdentityClientId`: This property value, `<application-client-id>`, will be the multitenant application (client) ID. 
+   - `keyVaultUri`: The URI address from the customer.
+   - `keyVaultKeyName`: The key name from the customer.
+   - `keyVaultKeyVersion`: The key version from the customer.
+   - `userAssignedIdentity`: The `<subscription-id>` and `<resource-group>` from your tenant, and the `<identity-name>` is the user-assigned managed identity name.
+   - `federatedIdentityClientId`: This property value, `<application-client-id>`, will be the multitenant application (client) ID.
 
-    ```json
-    {
-      "name": "cross-tenant-cmk-test",
-      "fields": [
-        {
-          "name": "id",
-          "type": "Edm.String",
-          "key": true
-        }
-      ],
-      "encryptionKey": {
-        "keyVaultUri": "https://<key-vault-name>.vault.azure.net/",
-        "keyVaultKeyName": "<key-name>",
-        "keyVaultKeyVersion": "<key-version>",
-        "identity": {
-          "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-          "userAssignedIdentity": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<identity-name>",
-          "federatedIdentityClientId": "<application-client-id>"
-        }
-      }
-    }
-    ```
+   ```json
+   {
+     "name": "cross-tenant-cmk-test",
+     "fields": [
+       {
+         "name": "id",
+         "type": "Edm.String",
+         "key": true
+       }
+     ],
+     "encryptionKey": {
+       "keyVaultUri": "https://<key-vault-name>.vault.azure.net/",
+       "keyVaultKeyName": "<key-name>",
+       "keyVaultKeyVersion": "<key-version>",
+       "identity": {
+         "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+         "userAssignedIdentity": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<identity-name>",
+         "federatedIdentityClientId": "<application-client-id>"
+       }
+     }
+   }
+   ```
 
 1. Verify the index by sending a `GET` request: `GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2026-05-01-preview`
 
@@ -137,8 +136,7 @@ If index creation fails with a key access error, verify that:
 - The federated identity credential is set on the app
 - The Key Vault access policy or RBAC role assignments are correct
 
-
-## Use a client secret (if using federated identity is not an option)
+## Use a client secret (if using federated identity isn't an option)
 
 If federated identity isn't an option, you can add a client secret to the multitenant application to support a cross-tenant CMK scenario:
 
@@ -164,7 +162,7 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
 1. Create the service principal using the multitenant app ID output from the first step:
 
-   `az ad sp create --id <multitenant-app-id>` 
+   `az ad sp create --id <multitenant-app-id>`
 
    This service principal is an instance of the multitenant application in tenant A. Roles assigned to this service principal in tenant B are also assigned to the multitenant application in tenant A.
 
@@ -186,7 +184,7 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
    An example of this assignment might look like this:
 
-   `az role assignment create --assignee 12345678-1234-1234-1234-123456789012 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
+   `az role assignment create --assignee 00001111-aaaa-2222-bbbb-3333cccc4444 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
 
 ### Validate the client secret cross-tenant CMK configuration
 
@@ -194,32 +192,32 @@ After you configure the multitenant Microsoft Entra application and connect it t
 
 1. See [Configure customer-managed keys for Azure AI Search encrypted data](search-security-manage-encryption-keys.md) for guidance on how to create a search service and a new index object with a customer-managed key.
 
-1. You can use the Azure portal to add an index and provide this JSON, or use a [REST client](search-get-started-text.md) to send a `Create Index` request. Once the index object is created, you will need to fill in the following:
+1. You can use the Azure portal to add an index and provide this JSON, or use a [REST client](search-get-started-text.md) to send a `Create Index` request. Once the index object is created, you'll need to fill in the following:
 
-    - `keyVaultUri`: The URI address from the customer.
-    - `keyVaultKeyName`: The key name from the customer.
-    - `keyVaultKeyVersion`: The key version from the customer.
-    - `accessCredentials`: The `applicationId` will look something like "12345678-1234-1234-1234-123456789012" and the `applicationSecret` that was just created.
+   - `keyVaultUri`: The URI address from the customer.
+   - `keyVaultKeyName`: The key name from the customer.
+   - `keyVaultKeyVersion`: The key version from the customer.
+   - `accessCredentials`: The `applicationId` will look something like "12345678-1234-1234-1234-123456789012" and the `applicationSecret` that was just created.
 
 ```json
 {
-  "name": "cross-tenant-cmk-test", 
-  "fields": [ 
-        { 
-            "name": "id", 
-            "type": "Edm.String", 
-            "key": true 
-        } 
-      ], 
+  "name": "cross-tenant-cmk-test",
+  "fields": [
+        {
+            "name": "id",
+            "type": "Edm.String",
+            "key": true
+        }
+      ],
  "encryptionKey": {
         "keyVaultUri": "https://<key-vault-name>.vault.azure.net/",
         "keyVaultKeyName": "<key-name>",
         "keyVaultKeyVersion": "<key-version>",
-    "accessCredentials": { 
-      "applicationId": "<application-client-id>", 
-      "applicationSecret": "<application-client-secret>" 
-    } 
-  } 
+    "accessCredentials": {
+      "applicationId": "<application-client-id>",
+      "applicationSecret": "<application-client-secret>"
+    }
+  }
 }
 ```
 

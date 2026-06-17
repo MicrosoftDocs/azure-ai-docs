@@ -3,7 +3,7 @@ title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the .NET SDK
 titleSuffix: Azure OpenAI
 description: Get started using the Azure OpenAI .NET SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include

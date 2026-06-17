@@ -13,8 +13,7 @@
           "**/obj/**",
           "**/*.graffle",
           "machine-learning/**",
-          "machine-learning/v1/**",
-          "ai-foundry/**"
+          "machine-learning/v1/**"
         ],
         "src": "articles",
         "dest": "."
@@ -77,36 +76,7 @@
           "**/obj/**"
         ]
       },
-      {
-        "group": "grp-foundry-classic",
-        "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "default/**",
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-default",
-        "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ],
-        "monikerRange": "foundry"
-      },
+      
       {
         "files": [
           "toc.yml"
@@ -206,42 +176,8 @@
           "**/_themes/**",
           "**/obj/**"
         ]
-      },
-      {
-        "group": "grp-foundry-classic",
-        "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "default/**",
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-default",
-        "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
-        "files": [
-          "**/*.gif",
-          "**/*.jpeg",
-          "**/*.jpg",
-          "**/*.png",
-          "**/*.svg"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
       }
+      
     ],
     "groups": {
       "grp-document-intelligence": {
@@ -346,20 +282,21 @@
     },
     "fileMetadata": {
       "author": {
-        "articles/ai-studio/**/*.md": "eric-urban",
-        "articles/ai-services/**/*.md": "eric-urban",
-        "articles/ai-services/anomaly-detector/**/*.md": "mrbullwinkle",
+        "articles/foundry/**/*.md": "sgilley",
+        "articles/foundry-classic/**/*.md": "sgilley",
+        "articles/ai-services/**/*.md": "mcleanbyron",
+        "articles/ai-services/anomaly-detector/**/*.md": "alvinashcraft",
         "articles/ai-services/computer-vision/**/*.md": "PatrickFarley",
         "articles/ai-services/content-moderator/**/*.md": "PatrickFarley",
         "articles/ai-services/custom-vision-service/**/*.md": "PatrickFarley",
         "articles/ai-services/document-intelligence/**/*.md": "laujan",
-        "articles/ai-services/luis/**/*.md": "aahill",
-        "articles/ai-services/metrics-advisor/**/*.md": "mrbullwinkle",
+        "articles/ai-services/luis/**/*.md": "laujan",
+        "articles/ai-services/metrics-advisor/**/*.md": "alvinashcraft",
         "articles/ai-services/personalizer/**/*.md": "jcodella",
         "articles/ai-services/qnamaker/**/*.md": "jboback",
-        "articles/ai-services/openai/**/*.md": "mrbullwinkle",
-        "articles/ai-services/speech-service/**/*.md": "eric-urban",
-        "articles/ai-services/language-service/**/*.md": "aahill",
+        "articles/ai-services/openai/**/*.md": "alvinashcraft",
+        "articles/ai-services/speech-service/**/*.md": "PatrickFarley",
+        "articles/ai-services/language-service/**/*.md": "laujan",
         "articles/ai-services/translator/**/*.md": "laujan",
         "articles/open-datasets/**/*.md": "shubhirajMsft",
         "articles/open-datasets/**/*.yml": "shubhirajMsft",
@@ -430,28 +367,27 @@
         ]
       },
       "manager": {
-        "articles/search/**/*.md": "nitinme",
-        "articles/ai-foundry/**/*.md": "mcleans ",
-        "articles/ai-foundry/openai/*.md": "nitinme ",
-        "articles/ai-foundry/agents/**/*.md": "nitinme ",
-        "articles/ai-foundry/foundry-models/**/*.md": "nitinme ",
-        "articles/ai-services/**/*.md": "nitinme",
+        "articles/search/**/*.md": "mcleans",
+        "articles/foundry/**/*.md": "mcleans",
+        "articles/foundry-classic/**/*.md": "mcleans",
+        "articles/ai-services/**/*.md": "mcleans",
         "articles/machine-learning/**/*.md": "mcleans ",
         "articles/opendatasets/**/*.yml": "mcleans "
       },
       "ms.author": {
-        "articles/ai-studio/**/*.md": "sgilley",
-        "articles/ai-services/**/*.md": "nitinme",
-        "articles/ai-services/anomaly-detector/**/*.md": "mbullwin",
+        "articles/foundry/**/*.md": "sgilley",
+        "articles/foundry-classic/**/*.md": "sgilley",
+        "articles/ai-services/**/*.md": "mcleans",
+        "articles/ai-services/anomaly-detector/**/*.md": "aashcraft",
         "articles/ai-services/computer-vision/**/*.md": "pafarley",
         "articles/ai-services/content-moderator/**/*.md": "pafarley",
         "articles/ai-services/custom-vision-service/**/*.md": "pafarley",
         "articles/ai-services/document-intelligence/**/*.md": "pafarley",
         "articles/ai-services/luis/**/*.md": "lajanuar",
-        "articles/ai-services/metrics-advisor/**/*.md": "mbullwin",
+        "articles/ai-services/metrics-advisor/**/*.md": "aashcraft",
         "articles/ai-services/personalizer/**/*.md": "jacodel",
         "articles/ai-services/qnamaker/**/*.md": "lajanuar",
-        "articles/ai-services/openai/**/*.md": "mbullwin",
+        "articles/ai-services/openai/**/*.md": "aashcraft",
         "articles/ai-services/speech-service/**/*.md": "pafarley",
         "articles/ai-services/language-service/**/*.md": "lajanuar",
         "articles/ai-services/translator/**/*.md": "lajanuar",
@@ -474,20 +410,29 @@
         "articles/ai-services/language-service/**/*.md": "180-days",
         "articles/ai-services/language-service/**/*.yml": "180-days",
         "articles/ai-services/language-service/key-phrase-extraction/*.md": "365-days",
+        "articles/ai-services/language-service/key-phrase-extraction/**/*.md": "365-days",
         "articles/ai-services/language-service/key-phrase-extraction/*.yml": "365-days",
         "articles/ai-services/language-service/sentiment-opinion-mining/*.md": "365-days",
+        "articles/ai-services/language-service/sentiment-opinion-mining/**/*.md": "365-days",
         "articles/ai-services/language-service/sentiment-opinion-mining/*.yml": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.md": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.yml": "365-days",
         "articles/ai-services/language-service/conversational-language-understanding/*.md": "365-days",
-        "articles/ai-services/language-service/conversational-language-understanding/*.yml": "365-days",
+        "articles/ai-services/language-service/conversational-language-understanding/**/*.md": "365-days",
+        "articles/ai-services/language-service/custom-text-classification/*.yml": "365-days",
+        "articles/ai-services/language-service/custom-text-classification/**/*.yml": "365-days",
+        "articles/ai-services/language-service/conversational-language-understanding/*.md": "365-days",
         "articles/ai-services/language-service/question-answering/*.md": "365-days",
+        "articles/ai-services/language-service/question-answering/**/*.md": "365-days",
         "articles/ai-services/language-service/question-answering/*.yml": "365-days",
         "articles/ai-services/language-service/orchestration-workflow/*.md": "365-days",
+        "articles/ai-services/language-service/orchestration-workflow/**/*.md": "365-days",
         "articles/ai-services/language-service/orchestration-workflow/*.yml": "365-days",
         "articles/ai-services/language-service/summarization/*.md": "365-days",
+        "articles/ai-services/language-service/summarization/**/*.md": "365-days",
         "articles/ai-services/language-service/summarization/*.yml": "365-days",
         "articles/ai-services/language-service/entity-linking/*.md": "365-days",
+        "articles/ai-services/language-service/entity-linking/**/*.md": "365-days",
         "articles/ai-services/language-service/entity-linking/*.yml": "365-days",
         "articles/ai-services/speech-service/**/*.md": "180-days",
         "articles/ai-services/speech-service/**/*.yml": "180-days",
@@ -544,37 +489,30 @@
       },
       "ms.service": {
         "articles/ai-studio/**/*.md": "microsoft-foundry",
-        "articles/ai-services/**/*.md": "azure-ai-services",
-        "articles/ai-services/speech-service/*.md": "azure-ai-speech",
-        "articles/ai-services/translator/**/*.md": "azure-ai-translator",
-        "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
-        "articles/ai-services/computer-vision/**/*.md": "azure-ai-vision",
-        "articles/ai-services/content-moderator/**/*.md": "azure-ai-content-moderator",
-        "articles/ai-services/language-service/**/*.md": "azure-ai-language",
+        "articles/ai-services/**/*.md": "foundry-tools",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
+        "articles/ai-services/computer-vision/**/*.md": "azure-vision-foundry-tools",
+        "articles/ai-services/content-moderator/**/*.md": "azure-content-moderator",
         "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
+        "articles/ai-services/language-service/**/*.md": "azure-ai-language",
+        "articles/ai-services/personalizer/**/*.md": "azure-ai-personalizer",
+        "articles/ai-services/speech-service/*.md": "azure-speech-foundry-tools",
+        "articles/ai-services/translator/**/*.md": "azure-ai-translator",
         "articles/foundry/**/*.md": "microsoft-foundry",
         "articles/foundry-classic/**/*.md": "microsoft-foundry"
       },
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/machine-learning/v1/**/*.md": "azureml-api-1",
-        "articles/ai-foundry/toc.yml": "foundry-classic",
-        "articles/ai-foundry/context/**/*.*": "foundry-classic",
-        "articles/ai-foundry/breadcrumb/**/*.*": "foundry-classic",
-        "articles/ai-foundry/**/*.*": "foundry-classic",
-        "articles/ai-foundry/default/**/*.*": "foundry"
+        "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
       "open_to_public_contributors": {
-        "articles/ai-foundry/responsible-ai/**.*": false
       },
       "recommendations": {
         "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
         "articles/ai-studio/**/*.md": "Microsoft Foundry",
-        "articles/ai-foundry/**/*.md": "Microsoft Foundry",
         "articles/ai-services/**/*.md": "Foundry Tools",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",

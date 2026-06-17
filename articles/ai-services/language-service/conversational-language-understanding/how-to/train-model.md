@@ -3,7 +3,7 @@ title: How to train and evaluate models in Conversational Language Understanding
 titleSuffix: Foundry Tools
 description: Use this article to train a model and view its evaluation details to make improvements.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 01/11/2026

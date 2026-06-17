@@ -3,7 +3,7 @@ title: "Use the Azure OpenAI Responses API (classic)"
 description: "Learn how to use the Azure OpenAI Responses API to create, retrieve, and delete stateful responses with Python or REST, including streaming and tools. (classic)"
 author: alvinashcraft
 ms.author: aashcraft
-manager: nitinme
+manager: mcleans
 ms.date: 01/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

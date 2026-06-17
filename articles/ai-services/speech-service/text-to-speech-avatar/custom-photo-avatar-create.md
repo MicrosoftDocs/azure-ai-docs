@@ -2,8 +2,8 @@
 title: How to create a custom photo avatar - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to create a custom photo avatar.
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 11/24/2025

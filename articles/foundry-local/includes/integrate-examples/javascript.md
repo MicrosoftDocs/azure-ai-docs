@@ -19,11 +19,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/js/web-server-example
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/javascript/foundry-local/web-server-example
 ```
 
 ## Install packages
@@ -34,7 +34,7 @@ cd Foundry-Local/samples/js/web-server-example
 
 Copy-and-paste the following code into a JavaScript file named `app.js`:
 
-:::code language="javascript" source="~/foundry-local-main/samples/js/web-server-example/app.js" id="complete_code":::
+:::code language="javascript" source="~/foundry-local-main/samples/javascript/foundry-local/web-server-example/app.js" id="complete_code":::
 
 Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
@@ -48,4 +48,4 @@ node app.js
 You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
 
 > [!TIP]
-> For a complete working sample that combines chat and audio transcription, see the [Chat + Audio sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/chat-and-audio-foundry-local) on GitHub.
+> For a complete working sample that combines chat and audio transcription, see the [Chat + Audio sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/foundry-local/chat-and-audio-foundry-local) on GitHub.

@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use this guide to create a CQA Microsoft Foundry agent.
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 11/18/2025

@@ -3,7 +3,7 @@ title: What's new in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: whats-new
 ms.date: 05/19/2026
@@ -15,6 +15,9 @@ ms.author: lajanuar
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## June 2026
+
+> [!NOTE]
+> For a deeper look at the PII detection updates announced at Microsoft Build, check out the [What's new in Azure Language in Foundry Tools](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/what%E2%80%99s-new-in-azure-language-in-foundry-tools/4521343) blog post.
 
 * **Text PII detection generally available (`2026-05-01`)**. The GA API delivers quality improvements across common entity types. The following capabilities, previously in preview, are now generally available:
 

@@ -77,6 +77,8 @@ items:
      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
    - name: Monitoring dashboard insights with Foundry agent
      href: ../../observability/how-to/optimization-dashboard.md
+   - name: Logging end user feedback
+     href: ../../observability/how-to/log-end-user-feedback.md
    - name: Monitor model deployments
      href: ../../foundry-models/how-to/monitor-models.md
 

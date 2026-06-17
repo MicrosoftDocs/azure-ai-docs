@@ -1,7 +1,7 @@
 ---
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include

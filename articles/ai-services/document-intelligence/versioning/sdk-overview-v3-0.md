@@ -3,8 +3,8 @@ title: Document Intelligence SDK target REST API 2022–08–31 (GA)
 titleSuffix: Foundry Tools
 description: Document Intelligence 2022–08–31 (GA) software development kits (SDKs) expose Document Intelligence models, features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
-manager: nitinme
-ms.service: azure-ai-document-intelligence
+manager: mcleans
+ms.service: azure-document-intelligence-foundry-tools
 ms.custom:
   - devx-track-python
 ms.topic: how-to

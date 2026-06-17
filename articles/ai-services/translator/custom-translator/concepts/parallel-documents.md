@@ -3,7 +3,7 @@ title: "What are parallel documents? - Custom Translator"
 titleSuffix: Foundry Tools
 description: Parallel documents are paired documents where one is the translation of the other. One document in the pair contains sentences in the source language and the other document contains these sentences translated into the target language.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.date: 06/02/2026
 ms.author: lajanuar

@@ -3,8 +3,8 @@ title: Pronunciation with Speech Synthesis Markup Language (SSML) - Speech servi
 titleSuffix: Foundry Tools
 description: Learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-speech
+manager: mcleans
+ms.service: azure-speech-foundry-tools
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.author: pafarley

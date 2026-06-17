@@ -9,7 +9,7 @@ metadata:
   titleSuffix: Foundry Tools
   description: Use the Azure AI Anomaly Detector univariate and multivariate APIs to monitor data over time and detect anomalies with machine learning. Get insight into your data, regardless of volume, industry, or scenario. 
   author: alvinashcraft
-  manager: nitinme
+  manager: mcleans
   ms.service: azure-ai-anomaly-detector
   ms.topic: landing-page
   ms.date: 03/17/2026

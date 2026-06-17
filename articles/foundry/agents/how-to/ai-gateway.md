@@ -308,7 +308,7 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 - Supported networking configurations:
     - Public networking is supported for both API Management and self-hosted gateways.
     - For full network isolation:
-      - **API Management as your AI gateway**: Deploy Foundry and API Management together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
+      - **API Management as your AI gateway**: Deploy Foundry and API Management together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup).
       - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
 
 ## Related content

@@ -3,7 +3,7 @@ title: Use named entity recognition Docker containers on-premises
 titleSuffix: Foundry Tools
 description: Use Docker containers for the Named Entity Recognition API to determine the language of written text, on-premises.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.custom:
   - ignite-2023

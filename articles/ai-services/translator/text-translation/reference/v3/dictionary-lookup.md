@@ -3,7 +3,7 @@ title: Translator Dictionary Lookup Method
 titleSuffix: Foundry Tools
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/02/2026

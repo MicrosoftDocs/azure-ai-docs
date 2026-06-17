@@ -3,7 +3,7 @@ title: Custom Named Entity Recognition (NER) FAQ
 titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
 author: laujan
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-language
 ms.topic: faq
 ms.date: 11/18/2025

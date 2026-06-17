@@ -4,7 +4,7 @@ ms.topic: include
 ms.date: 01/18/2026
 author: laujan
 ms.author: lajanuar
-manager: nitinme
+manager: mcleans
 ---
 ## Reference documentation and code samples
 

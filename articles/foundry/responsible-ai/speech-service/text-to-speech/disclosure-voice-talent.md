@@ -3,7 +3,7 @@ title: "Disclosure for voice and avatar talent"
 description: "Disclosure for voice and avatar talent which covers background as well as best patterns and practices for deployment of this technology."
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 03/31/2026

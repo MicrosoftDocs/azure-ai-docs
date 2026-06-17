@@ -41,6 +41,10 @@ New models become available through deployment types in this order:
 
 :::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
 
+> [!NOTE]
+> Although all models launch with availablility through global standard deployment, they aren't guaranteed to be available for deployment through the other deployment types.
+> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
+
 | Order | Deployment type | When available |
 |-------|----------------|---------------|
 | 1 | **Global Standard** | At launch—broadest availability and lowest latency across regions |
@@ -48,8 +52,6 @@ New models become available through deployment types in this order:
 | 3 | **Data Zone Standard** and **Data Zone Provisioned** | After Global Provisioned—data processing stays within a defined geographic boundary |
 | 4 | **Standard** and **Provisioned** | Last—regional-only, as older models retire and capacity is reallocated |
 
-> [!TIP]
-> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 ## Lifecycle and availability variations
 
@@ -216,7 +218,7 @@ At deployment retirement, inference and deployment return error responses.
 
 ## Related content
 
-- [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates for all current, deprecated, and retired models
+- [Model retirement schedule](../concepts/model-retirement-schedule.md) for specific dates for all current, deprecated, and retired models
 - [Models API reference](/rest/api/aiservices/accountmanagement/models) to programmatically query `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model
 - [Model versions in Microsoft Foundry Models](../../foundry-models/concepts/model-versions.md) for how version upgrades work
 - [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880)

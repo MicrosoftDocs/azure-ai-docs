@@ -2,8 +2,8 @@
 title: "Quickstart: Image Analysis client library for Java"
 description: In this quickstart, get started with the Image Analysis client library for Java.
 author: PatrickFarley
-manager: nitinme
-ms.service: azure-ai-vision
+manager: mcleans
+ms.service: azure-vision-foundry-tools
 ms.topic: include
 ms.date: 12/30/2024
 ms.custom: devx-track-java

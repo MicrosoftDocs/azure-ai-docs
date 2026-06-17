@@ -40,7 +40,6 @@ When you select **Use existing APIM**, only API Management instances that meet a
 > * You have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
 > * The API Management instance is in a subscription that you can access from the Foundry portal.
 > * The API Management instance must be created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**.
-> * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
 

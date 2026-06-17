@@ -3,7 +3,7 @@ title: Prepare your data and upload to Storage Account
 titleSuffix: Azure AI services
 description: Prepare your data and upload to Storage Account
 author: alvinashcraft
-manager: nitinme
+manager: mcleans
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025

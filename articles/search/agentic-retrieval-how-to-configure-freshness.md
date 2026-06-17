@@ -151,7 +151,7 @@ If ranking doesn't reflect freshness as expected, inspect the `last_modified` fi
 
 ## Related content
 
-+ [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md)
-+ [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
++ [What is a knowledge source?](agentic-knowledge-source-overview.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Query a knowledge base](agentic-retrieval-how-to-retrieve.md)
 + [Add scoring profiles to boost search scores](index-add-scoring-profiles.md)
-+ [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API)
