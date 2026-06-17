@@ -5,10 +5,10 @@ description: Build a document summarization application that reads text files an
 ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: tutorial
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-ms.date: 03/29/2026
-author: jonburchel
+ms.date: 06/15/2026
+author: laujan
 reviewer: samuel100
 zone_pivot_groups: foundry-local-sdk
 ai-usage: ai-assisted
