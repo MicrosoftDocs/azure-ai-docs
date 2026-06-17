@@ -40,7 +40,7 @@ Install Foundry Local by using the package manager for your operating system.
   brew tap microsoft/foundrylocal
   brew install foundrylocal
   ```
-  Alternatively, download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+  Alternatively, download the installer from the [foundry-samples GitHub repository](https://aka.ms/foundry-local-installer).
 
 Verify the installation:
 

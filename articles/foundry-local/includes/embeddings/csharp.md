@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/cs/embeddings
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/csharp/foundry-local/embeddings
 ```
 
 ## Install packages
@@ -31,7 +31,7 @@ cd Foundry-Local/samples/cs/embeddings
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/embeddings/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/embeddings/Program.cs" id="complete_code":::
 
 Run the code by using the following command:
 
