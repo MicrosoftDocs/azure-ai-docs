@@ -35,6 +35,8 @@ items:
     href: ../../agents/concepts/runtime-components.md
   - name: Configure an agent
     href: ../../agents/how-to/configure-agent.md
+  - name: Use connected Foundry models
+    href: ../../agents/how-to/connected-models.md
   - name: Agent tools
     items:
     - name: Tools overview
