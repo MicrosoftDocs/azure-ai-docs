@@ -62,9 +62,9 @@ Content Understanding now supports the GPT-5.2 model as the recommended completi
 
 The Content Understanding document loader for LangChain is now available in the [`langchain-azure-ai`](https://github.com/langchain-ai/langchain-azure/tree/main/libs/azure-ai/langchain_azure_ai/document_loaders) package. Use it to load and process documents through Content Understanding directly from your LangChain pipelines. See the [demo notebook](https://github.com/langchain-ai/langchain-azure/blob/main/libs/azure-ai/docs/content_understanding_loader_demo.ipynb) for a usage walkthrough.
 
-### Azure AI Agent framework integration (preview)
+### Microsoft Agent Framework integration (preview)
 
-Content Understanding is now available as a package for the Azure AI Agent framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
+Content Understanding is now available as a package for Microsoft Agent Framework. Install [`agent-framework-azure-contentunderstanding`](https://pypi.org/project/agent-framework-azure-contentunderstanding/) from PyPI to add Content Understanding capabilities to your agents. See the [samples](https://github.com/microsoft/agent-framework/tree/main/python/packages/azure-contentunderstanding) for example usage.
 
 ### SDK updates: `to_llm_input()` helper (preview)
 
