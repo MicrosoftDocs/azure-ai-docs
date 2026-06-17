@@ -7,7 +7,7 @@ ms.date: 05/18/2026
 ms.topic: overview
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: doc-kit-assisted
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -195,7 +195,7 @@ Optimized instructions are often longer and more detailed, which can increase re
 
 ## Limitations and availability
 
-- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability).
+- The agent optimizer is available in all regions where [hosted agents are available](hosted-agents.md#region-availability), except Norway East.
 - The agent optimizer is supported for hosted agents that use the [Responses protocol](hosted-agents.md#protocols-responses-invocations-and-invocations-websocket).
 
 

@@ -14,6 +14,7 @@ ms.topic: quickstart
 ms.date: 11/18/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
+ai-usage: ai-assisted
 ---
 
 
@@ -44,6 +45,10 @@ zone_pivot_groups: programming-languages-set-formre
 ::: moniker range="doc-intel-3.0.0"
 
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** **Newer version:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1](?view=doc-intel-3.1.0&preserve-view=true)   ![blue-checkmark](../media/blue-yes-icon.png) [v2.1](?view=doc-intel-2.1.0&preserve-view=true)
+
+> [!IMPORTANT]
+>
+> Azure Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before this date. For migration guidance, see the [Document Intelligence migration guide](../versioning/migration-guide-overview.md).
 
 * Get started with Azure Form Recognizer legacy GA version (`2022-08-31`).
 
@@ -108,6 +113,8 @@ In this quickstart, you used a document Intelligence model to analyze various fo
 * For an enhanced experience and advanced model quality, try [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com/studio)
 
 * For v3.1 to v4.0 migration, see [**Changelog Migration guides**](../changelog-release-history.md#march-2024-preview-release).
+
+* If you're using v3.0, migrate to v4.0 before **March 30, 2029**. See the [**Document Intelligence migration guide**](../versioning/migration-guide-overview.md) for migration steps.
 
 ::: moniker-end
 
