@@ -143,12 +143,12 @@ Microsoft Foundry serves three primary audiences:
 
 ## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) provides a consistent contract for building agentic applications across different model providers. [SDK client libraries](how-to/develop/sdk-overview.md) are available for:
+The [Microsoft Foundry API](https://ai.azure.com/api-reference/) provides a consistent contract for building agentic applications across different model providers. [SDK client libraries](how-to/develop/sdk-overview.md) are available for:
 
 - Python
 - C#
-- JavaScript/TypeScript (preview)
-- Java (preview)
+- JavaScript/TypeScript
+- Java
 
 The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
