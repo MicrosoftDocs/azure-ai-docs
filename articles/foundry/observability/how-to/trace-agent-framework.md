@@ -95,6 +95,30 @@ When you deploy an agent to Foundry using one of the hosted agent server package
 
 No additional configuration is required. Install the relevant `openinference-*` instrumentation package for your framework and traces appear in the Foundry portal automatically.
 
+### Microsoft Agent Framework agents hosted outside of Foundry
+
+If your Microsoft Agent Framework agent isn't deployed with a Foundry hosted agent server package, configure Azure Monitor export and agent framework instrumentation with the [Microsoft OpenTelemetry distro](https://pypi.org/project/microsoft-opentelemetry/). The distro can enable the Azure Monitor exporter and add agent identity attributes to spans:
+
+```python
+from microsoft.opentelemetry import use_microsoft_opentelemetry
+
+use_microsoft_opentelemetry(
+    enable_azure_monitor=True,
+    azure_monitor_connection_string="...",
+    sampling_ratio=1.0,
+    enable_sensitive_data=True,
+    instrumentation_options={
+        "agent-framework": {
+            "enabled": True,
+            "agent_id": "ms-imagination-agent",
+            "agent_name": "ms-imagination-agent",
+        },
+    },
+)
+```
+
+Set `azure_monitor_connection_string` to the Application Insights resource connected to your Foundry project. To capture prompt and completion content during development, set `enable_sensitive_data=True`.
+
 ### LangChain agents hosted outside of Foundry
 
 If your agent isn't deployed with a Foundry hosted agent server package, configure Azure Monitor export and LangChain instrumentation with the [Microsoft OpenTelemetry distro](https://pypi.org/project/microsoft-opentelemetry/). The distro can enable the Azure Monitor exporter and add agent identity attributes to LangChain spans:
