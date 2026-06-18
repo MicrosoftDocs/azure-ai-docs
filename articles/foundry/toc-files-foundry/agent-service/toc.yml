@@ -218,6 +218,8 @@ items:
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
     href: ../../agents/concepts/agent-365-integration.md
+  - name: Grant Agent 365 observability permissions
+    href: ../../agents/how-to/grant-agent-365-permissions.md
 - name: Migrate
   items:
   - name: Migrate prompt agents to the new agent service
