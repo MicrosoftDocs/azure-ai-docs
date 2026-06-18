@@ -266,19 +266,8 @@ In this quickstart, you:
 > [!div class="nextstepaction"]
 > [Manage hosted agent lifecycle](../how-to/manage-hosted-agent.md)
 
-Customize your agent with additional capabilities:
-
-- [Add web search](../how-to/tools/web-search.md) to ground responses in real-time public web results.
-- [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
-- [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
-- [Add file search](../how-to/tools/file-search.md) to search your documents
-- [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
-- See the [tool catalog](../concepts/tool-catalog.md) for the full list.
-
-Use the Microsoft Foundry Skill in your coding agent to standardize deployment,
-evaluation, and troubleshooting workflows.
-
-- [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md)
+- [Deploy your own code as a hosted agent](quickstart-deploy-own-code.md) to bring existing Python agent logic to Foundry Agent Service.
+- [Build a toolbox and use it with a hosted agent](../how-to/tools/toolbox.md) to combine tools behind one managed endpoint.
 
 ## Related content
 
