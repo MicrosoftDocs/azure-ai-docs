@@ -146,7 +146,7 @@ ms.author: pafarley
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | ✅ |
 | `vi-VN` | Vietnamese (Vietnam) | ✅ |
 | `wuu-CN` | Chinese (Wu, Simplified) | ✅ |
-| `yue-CN` | Chinese (Cantonese, Simplified) |   |
+| `yue-CN` | Chinese (Cantonese, Simplified) | ✅ |
 | `zh-CN` | Chinese (Mandarin, Simplified) | ✅ |
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) |   |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | ✅ |

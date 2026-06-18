@@ -9,6 +9,7 @@ ms.topic: overview
 ms.date: 06/04/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ai-usage: ai-assisted
 ---
 
 
@@ -46,7 +47,7 @@ Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](..
 >
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
 > * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, migrate now to **Azure Document Intelligence 2024-11-30 v4.0**. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
+> * To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before these retirement dates. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
 
 Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
@@ -553,10 +554,11 @@ Azure Document Intelligence is a cloud-based [Foundry Tools](../../ai-services/i
 
  >[!TIP]
  >
- > For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio):
+ > For an enhanced experience and advanced model quality, try the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for v4.0:
 
- >   * The v3.0 Studio supports any model trained with v2.1 labeled data.
- >   * For more information about migrating from v2.1 to v3.0, see the API migration guide.
+ >   * The Studio supports any model trained with v2.1 labeled data.
+ >   * For more information about migrating from v2.1 to v4.0, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
+ >   * **Note**: The v3.0 API (`2022-08-31`) reaches end of support on March 30, 2029. Migrate v3.0 workloads to v4.0 before that date.
 
 To learn more about each model and browse the API references, use the links in the following table.
 
@@ -574,6 +576,19 @@ To learn more about each model and browse the API references, use the links in t
 ## Data privacy and security
 
  As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
+
+## Version support and retirement
+
+The following table summarizes Document Intelligence API version support:
+
+| Version | Status | End of support |
+|---------|--------|---------------|
+| v4.0 (2024-11-30) | GA — current | No announced date |
+| v3.1 (2023-07-31) | GA — previous | No announced date |
+| v3.0 (2022-08-31) | GA — retiring | March 30, 2029 |
+| v2.1 | GA — retiring | September 15, 2027 |
+
+To avoid production disruption, migrate to v4.0 before the retirement dates above. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
 
 ## Related content
 

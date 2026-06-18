@@ -3,7 +3,7 @@ author: samuel100
 ms.author: samkemp
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 07/23/2025
+ms.date: 06/15/2026
 ---
 
 ## Prerequisites
@@ -13,11 +13,11 @@ ms.date: 07/23/2025
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/python/live-audio-transcription
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/foundry-local/live-audio-transcription
 ```
 
 ## Install packages
@@ -36,7 +36,7 @@ The following code initializes the Foundry Local SDK, loads a streaming speech m
 
 Copy and paste the following code into `app.py`:
 
-:::code language="python" source="~/foundry-local-main/samples/python/live-audio-transcription/src/app.py":::
+:::code language="python" source="~/foundry-local-main/samples/python/foundry-local/live-audio-transcription/src/app.py":::
 
 The `create_live_transcription_session` method returns a session that accepts raw PCM audio and yields transcription results as you stream chunks. PyAudio captures microphone audio at 16 kHz mono 16-bit — the format the session expects.
 

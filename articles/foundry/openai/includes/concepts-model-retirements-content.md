@@ -41,6 +41,10 @@ New models become available through deployment types in this order:
 
 :::image type="content" source="../media/concepts/lifecycle-availability-rollout.png" alt-text="Screenshot showing the order of deployment type availability for models." lightbox="../media/concepts/lifecycle-availability-rollout.png":::
 
+> [!NOTE]
+> Although all models launch with availablility through global standard deployment, they aren't guaranteed to be available for deployment through the other deployment types.
+> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
+
 | Order | Deployment type | When available |
 |-------|----------------|---------------|
 | 1 | **Global Standard** | At launch—broadest availability and lowest latency across regions |
@@ -48,8 +52,6 @@ New models become available through deployment types in this order:
 | 3 | **Data Zone Standard** and **Data Zone Provisioned** | After Global Provisioned—data processing stays within a defined geographic boundary |
 | 4 | **Standard** and **Provisioned** | Last—regional-only, as older models retire and capacity is reallocated |
 
-> [!TIP]
-> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 ## Lifecycle and availability variations
 

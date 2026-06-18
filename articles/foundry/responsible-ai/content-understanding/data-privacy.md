@@ -5,7 +5,7 @@ description: "This document details issues for data, privacy, and security for C
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.service: azure-ai-content-understanding
+ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
 ms.date: 03/31/2026
 ai-usage: ai-assisted

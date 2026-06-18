@@ -502,7 +502,7 @@ curl --request PUT \
     "name": "{{connection_name}}",
     "type": "Microsoft.MachineLearningServices/workspaces/connections",
     "properties": {
-      "authType": "AgenticIdentity",
+      "authType": "AgenticIdentityToken",
       "group": "ServicesAndApps",
       "category": "RemoteA2A",
       "expiryTime": null,

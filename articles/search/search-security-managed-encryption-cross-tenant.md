@@ -184,7 +184,7 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
    An example of this assignment might look like this:
 
-   `az role assignment create --assignee 12345678-1234-1234-1234-123456789012 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
+   `az role assignment create --assignee 00001111-aaaa-2222-bbbb-3333cccc4444 --role "Key Vault Crypto Service Encryption User" --scope /subscriptions/87654321-4321-4321-4321-210987654321/resourceGroups/myKeyVaultRG/providers/Microsoft.KeyVault/vaults/myCompanyKeyVault`
 
 ### Validate the client secret cross-tenant CMK configuration
 

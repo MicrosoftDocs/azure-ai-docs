@@ -113,7 +113,7 @@ Update the session's configuration. This event can be sent at any time to modify
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -709,7 +709,7 @@ Sent when a new session is successfully established. This is the first event rec
     "turn_detection": {
       "type": "azure_semantic_vad",
       "threshold": 0.5,
-      "prefix_padding_ms": 300,
+      "prefix_padding_ms": 420,
       "silence_duration_ms": 500
     },
     "temperature": 0.8,
@@ -2823,7 +2823,7 @@ Base VAD-based turn detection.
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
 | threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 400) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
@@ -2850,7 +2850,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
@@ -2868,7 +2868,7 @@ Azure semantic VAD (default variant).
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
 | threshold | float | Optional. Activation threshold (default: 0.5) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 420) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |

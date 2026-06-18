@@ -53,6 +53,10 @@ Send a prompt and get a response from a model in a few lines of code:
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
+
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
@@ -139,12 +143,12 @@ Microsoft Foundry serves three primary audiences:
 
 ## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) provides a consistent contract for building agentic applications across different model providers. [SDK client libraries](how-to/develop/sdk-overview.md) are available for:
+The [Microsoft Foundry API](https://ai.azure.com/api-reference/) provides a consistent contract for building agentic applications across different model providers. [SDK client libraries](how-to/develop/sdk-overview.md) are available for:
 
 - Python
 - C#
-- JavaScript/TypeScript (preview)
-- Java (preview)
+- JavaScript/TypeScript
+- Java
 
 The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 

@@ -5,11 +5,11 @@ description: Learn how to use the Foundry Local command-line interface to browse
 ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-author: jonburchel
+author: laujan
 reviewer: samuel100
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ai-usage: ai-assisted
 ---
 

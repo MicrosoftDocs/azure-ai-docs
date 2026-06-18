@@ -7,6 +7,7 @@ ms.topic: concept-article
 ms.custom:
   - references_regions
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # Agentic retrieval in Azure AI Search
@@ -26,78 +27,63 @@ In Azure AI Search, *agentic retrieval* is a multi-query pipeline designed for c
 
 Here's what it does:
 
-+ Uses a large language model (LLM) to break down a complex query into smaller, focused subqueries for better coverage over your indexed content. Subqueries can include chat history for extra context.
++ Can use a large language model (LLM) to break down a complex query into smaller, focused subqueries for better coverage over proprietary and external content. Subqueries can include chat history for extra context.
 
 + Runs subqueries in parallel. Each subquery is semantically reranked to promote the most relevant matches.
 
-+ Combines the best results into a unified response that an LLM can use to generate answers with your proprietary content.
++ Combines the best results into a unified response that an LLM can use to generate grounded answers.
 
-+ The response is modular yet comprehensive in how it also includes a query plan and source documents. You can choose to use just the search results as grounding data, or invoke the LLM to formulate an answer.
++ Can return source references and an activity log alongside the merged content, so you can use just the grounding data or pass it to an LLM for a full answer.
 
-This high-performance pipeline helps you generate high-quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
+This high-performance pipeline helps you generate high-quality grounding data or answers for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a [knowledge base object](/rest/api/searchservice/knowledge-bases) in the latest stable (2026-04-01) and preview (2026-05-01-preview) REST API versions, as well as the equivalent Azure SDK packages. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+## Why use agentic retrieval?
 
-## Why use agentic retrieval
+There are two use cases for agentic retrieval. First, it powers [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) in the Microsoft Foundry portal by providing the knowledge layer for agent solutions. Second, it's the basis for custom agentic solutions you build using the Azure AI Search APIs.
 
-There are two use cases for agentic retrieval. First, it's the basis of the [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) experience in the Microsoft Foundry (new) portal. It provides the knowledge layer for agent solutions in Microsoft Foundry. Second, it's the basis for custom agentic solutions that you create using the Azure AI Search APIs.
+Use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, drawing on chat context, your proprietary content, and external sources.
 
-You should use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, leveraging chat context and your proprietary content.
+Agentic retrieval adds latency compared to a single-query pipeline, but it handles query complexity that a single query can't. For example, it can handle:
 
-The *agentic* aspect is a reasoning step in query planning processing that's performed by a supported large language model (LLM) that you provide. The LLM analyzes the entire chat thread to identify the underlying information need. Instead of a single, catch-all query, the LLM breaks down compound questions into focused subqueries based on: user questions, chat history, and parameters on the request. The subqueries target your indexed documents (plain text and vectors) in Azure AI Search. This hybrid approach ensures you surface both keyword matches and semantic similarities at once, dramatically improving recall. 
++ Questions with multiple asks, such as "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants."
 
-The *retrieval* component is the ability to run subqueries simultaneously, merge results, semantically rank results, and return a three-part response that includes grounding data for the next conversation turn, reference data so that you can inspect the source content, and an activity plan that shows query execution steps.
++ Questions that depend on earlier context in the conversation.
 
-Query expansion and parallel execution, plus the retrieval response, are the key capabilities of agentic retrieval that make it the best choice for generative AI (RAG) applications.
++ Queries that benefit from rewriting, using synonym maps and LLM-generated paraphrasing to expand coverage across your content.
+
++ Spelling mistakes.
 
 :::image type="content" source="media/agentic-retrieval/agentric-retrieval-example.png" alt-text="Diagram of a complex query showing how agentic retrieval handles implied context and an intentional typo." lightbox="media/agentic-retrieval/agentric-retrieval-example.png" :::
 
-Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
-
-+ Reads in chat history as an input to the retrieval pipeline.
-+ Deconstructs a complex query that contains multiple "asks" into component parts. For example: "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants."
-+ Rewrites an original query into multiple subqueries using synonym maps (optional) and LLM-generated paraphrasing.
-+ Corrects spelling mistakes.
-+ Executes all subqueries simultaneously. 
-+ Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution. Metadata about query execution and reference data is included in the response.
-
-Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
-
-
 ## Architecture and workflow
-
-Agentic retrieval is designed for conversational search experiences that use an LLM to intelligently break down complex queries. The system coordinates multiple Azure services to deliver comprehensive search results.
-
-:::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
-
-### How it works
 
 The agentic retrieval process works as follows:
 
-1. **Workflow initiation**: Your application calls a knowledge base with retrieve action that provides a query and conversation history.
+1. **Workflow initiation:** Your application calls a knowledge base with a retrieve action that provides a query and conversation history.
 
-1. **Query planning**: A knowledge base sends your query and conversation history to an LLM, which analyzes the context and breaks down complex questions into focused subqueries. This step is automated and not customizable.
+1. **Query planning:** At `low` and `medium` retrieval reasoning effort, the knowledge base sends your query and conversation history to an LLM, which generates focused subqueries. At `minimal` effort, this step is skipped and queries are issued directly to knowledge sources. Reasoning effort defaults to `low` and is configured on the knowledge base.
 
-1. **Query execution**: The knowledge base sends the subqueries to your knowledge sources. All subqueries run simultaneously and can be keyword, vector, and hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
+1. **Query execution:** The knowledge base sends the subqueries to your knowledge sources. All subqueries run simultaneously and can be keyword, vector, or hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
 
-1. **Result synthesis**: The system combines all results into a unified response with three parts: merged content, source references, and execution details.
+1. **Result synthesis:** The system combines all results into a unified response. Merged content is always returned. Source references and an execution activity log are optional.
 
-Your search index determines query execution and any optimizations that occur during query execution. Specifically, if your index includes searchable text and vector fields, a hybrid query executes. If the only searchable field is a vector field, then only pure vector search is used. The index semantic configuration, plus optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters) are all used during query execution. You must have named defaults for a semantic configuration and a scoring profile.
+:::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
 
-### Required components
+### Components
+
+For all agentic retrieval scenarios, a knowledge base and at least one knowledge source are required. Other components are optional and depend on your configuration.
 
 | Component | Service | Role |
 |-----------|---------|------|
-| **LLM** | Azure OpenAI | Creates subqueries from conversation context and later uses grounding data for answer generation |
-| **Knowledge base** | Azure AI Search | Orchestrates the pipeline, connecting to your LLM and managing query parameters |
-| **Knowledge source** | Azure AI Search | Wraps the search index with properties pertaining to knowledge base usage |
-| **Search index** | Azure AI Search | Stores your searchable content (text and vectors) with semantic configuration |
-| **Semantic ranker** | Azure AI Search | Used internally by the agentic retrieval pipeline to rerank results for relevance (L2 reranking) |
+| Knowledge base | Azure AI Search | Orchestrates the pipeline, managing knowledge sources and query parameters. |
+| Knowledge source | Azure AI Search | Defines the content used in the pipeline. Can be indexed (backed by a search index on your service) or remote (content retrieved at query time from an external platform). |
+| Search index | Azure AI Search | Stores searchable content (text and vectors) with a semantic configuration. Determines which query types run and which optimizations apply. Required for indexed knowledge sources only. |
+| Semantic ranker | Azure AI Search | Used internally by the agentic retrieval pipeline to rerank results for relevance (L2 reranking). |
+| LLM | Azure OpenAI | Plans queries and selects knowledge sources. Used at `low` and `medium` retrieval reasoning effort only. Bypassed at `minimal` effort. |
 
 ### Integration requirements
 
-Your application drives the pipeline by calling the knowledge base and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
-
+Your application drives the pipeline by calling the knowledge base and handling the response. The pipeline returns grounding data that you can pass to an LLM for answer generation or use directly in your conversation interface. For implementation details, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
 ## Availability and pricing
 
@@ -164,12 +150,11 @@ Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI
 
 + Lower the reasoning effort to reduce LLM usage during query planning and query expansion (iterative search). 
 
-+ Organize content so the most relevant information can be found with fewer sources and documents (For example, curated summaries or tables).
-
++ Organize content so the most relevant information can be found with fewer sources and documents (for example, curated summaries or tables).
 
 ## How to get started
 
-To create an agentic retrieval solution, you can use the Azure portal, REST APIs, or an Azure SDK package that provides the functionality.
+To create an agentic retrieval solution, you can use the Azure portal, Microsoft Foundry (new) portal, REST APIs, or an equivalent Azure SDK package.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
@@ -178,16 +163,11 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
 
 ### [**How-to guides**](#tab/how-to-guides)
 
-+ Create a knowledge source:
-  + [Blob](agentic-knowledge-source-how-to-blob.md)
-  + [OneLake](agentic-knowledge-source-how-to-onelake.md)
-  + [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)
-  + [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)
-  + [Search index](agentic-knowledge-source-how-to-search-index.md)
-  + [Web](agentic-knowledge-source-how-to-web.md)
+The following articles cover core pipeline setup. For all how-to guides, see the table of contents.
+
++ [Create a search index for agentic retrieval](agentic-retrieval-how-to-create-index.md)
++ [Create a knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) (links to how-to guide for each knowledge source kind)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
-+ [Image serving in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md)
 + [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 
 ### [**Tutorials**](#tab/tutorials)
@@ -216,4 +196,4 @@ To create an agentic retrieval solution, you can use the Azure portal, REST APIs
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md)
+> [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md)

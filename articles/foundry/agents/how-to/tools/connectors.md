@@ -471,7 +471,7 @@ For full toolbox configuration and deployment, see [Create and use a Foundry Too
 
 :::zone pivot="azd"
 
-The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `azure.ai.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `microsoft.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
 
 > [!TIP]
 > If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same `azd` flows shown below so the agent can generate connector wiring commands for you.
@@ -483,13 +483,13 @@ azd auth login
 az login
 
 # Install the agents extension from the azd source
-azd extension install azure.ai.foundry
+azd extension install microsoft.foundry
 
 $PE = "https://<account>.services.ai.azure.com/api/projects/<project>"
 ```
 
 > [!NOTE]
-> The `azure.ai.foundry` extension is in preview. It bundles the top-level `azd ai` experience across `agent`, `connection`, `inspector`, `project`, `routine`, `skill`, and `toolbox`. Use `azd` version 1.25.2 or later.
+> The `microsoft.foundry` extension is in preview. It bundles the top-level `azd ai` experience across `agent`, `connection`, `inspector`, `project`, `routine`, `skill`, and `toolbox`. Use `azd` version 1.25.2 or later.
 
 ### Step 2: Create the OAuth2 connection
 

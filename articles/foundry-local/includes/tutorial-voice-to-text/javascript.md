@@ -1,9 +1,9 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ---
 
 ## Install packages
@@ -11,11 +11,11 @@ ms.date: 03/29/2026
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/js/tutorial-voice-to-text
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/javascript/foundry-local/tutorial-voice-to-text
 ```
 
 [!INCLUDE [JavaScript project setup](../javascript-project-setup.md)]
@@ -28,7 +28,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 1. Add the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="transcription":::
+    :::code language="javascript" source="~/foundry-local-main/samples/javascript/foundry-local/tutorial-voice-to-text/app.js" id="transcription":::
 
     The `createAudioClient` method returns a client for audio operations. The `transcribe` method accepts a file path and returns an object with a `text` property containing the transcribed content.
 
@@ -41,7 +41,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step:
 
-:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="summarization":::
+:::code language="javascript" source="~/foundry-local-main/samples/javascript/foundry-local/tutorial-voice-to-text/app.js" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -49,7 +49,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Create a file named `app.js` and add the following complete code that transcribes an audio file and summarizes the transcription:
 
-:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="complete_code":::
+:::code language="javascript" source="~/foundry-local-main/samples/javascript/foundry-local/tutorial-voice-to-text/app.js" id="complete_code":::
 
 > [!NOTE]
 > Replace `'./meeting-notes.wav'` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

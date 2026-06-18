@@ -37,7 +37,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set for the deployment. You can access these environment variables from your scoring scripts. | | |
 | `instance_count` | integer | **Required.** The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
 | `default_instance_type` | string | **Required.** The default instance type to use when deploying with this template. | | |
-| `allowed_instance_types` | string | The allowed instance type that can be used when deploying with this template. | | |
+| `allowed_instance_types` | list of strings | The instance types that consumers are allowed to set when they deploy a model that uses this template. Specify instance types as a list of strings. | | |
 | `model_mount_path` | string | The path to mount the model in the container. | | |
 | `scoring_path` | string | **Required.** The path for the scoring endpoint. | | |
 | `scoring_port` | integer | **Required.** The port for the scoring endpoint. | | |
@@ -122,7 +122,7 @@ request_settings:
   max_concurrent_requests_per_instance: 2
 ```
 
-## YAML: with allowed instance type
+## YAML: with allowed instance types
 
 ```yml
 $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
@@ -133,9 +133,11 @@ deployment_template_type: Managed
 environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
+allowed_instance_types:
+  - Standard_DS3_v2
+  - Standard_DS4_v2
 scoring_path: /score
 scoring_port: 5001
-allowed_instance_types: Standard_DS3_v2
 ```
 
 ## YAML: with model mount path

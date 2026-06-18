@@ -65,7 +65,7 @@ This article shows you how to enable image serving on a knowledge base, override
 
 + The retrieve response returns image references in the asset store, not inline Base64 image bytes. Inline image bytes in the response payload aren't supported because they increase payload size and can degrade latency and overall performance.
 
-+ Image serving doesn't bypass index-level security. To control who can see image references, use [document-level access control](search-document-level-access-overview.md) on the underlying knowledge source. Set `ingestionPermissionOptions` at ingestion time and pass the user's access token at query time. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
++ Image serving doesn't bypass index-level security. To control who can see image references, use [document-level access control](search-document-level-access-overview.md) on the underlying knowledge source. Set `ingestionPermissionOptions` at ingestion time and pass the user's access token at query time. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
 + Document-level permissions apply only to index content. They don't automatically propagate to the asset store. Any identity with read access to the asset store container can fetch images. If you need per-document authorization for image retrieval, place a service layer in front of blob access and validate caller permissions before returning the blob.
 

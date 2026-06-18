@@ -166,14 +166,16 @@ from azure.ai.agentserver.optimization import load_config
 config = load_config()
 ```
 
-The `load_config()` function reads from `.agent_configs/` and returns an `OptimizationConfig` object. When no optimization candidate is active, it returns your baseline configuration.
+The `load_config()` function reads from `.agent_configs/` and returns an
+`OptimizationConfig` object. When no optimization candidate is active, it
+returns your baseline configuration. If no config source is found, it returns
+`None`.
 
 **Parameters:**
 
 | Parameter | Description |
 |-----------|-------------|
 | `config_dir` | Custom config directory path (defaults to `.agent_configs/`) |
-| `required` | If `False`, returns `None` instead of raising when no config is found (default: `True`) |
 
 **`OptimizationConfig` fields:**
 
@@ -208,6 +210,8 @@ config.apply_tool_descriptions(tools)
 ```
 
 The `apply_tool_descriptions()` method patches each tool function's metadata with the improved descriptions from the optimization config. This improves the model's accuracy when deciding which tool to call.
+
+If your tools aren't compatible with `apply_tool_descriptions()`, read the optimized definitions from `config.tool_definitions` and apply them to your own tool objects. Each definition includes both the optimized function description and the parameter descriptions, so map both onto your tools by function and parameter name.
 
 ### Load skills from a directory
 
@@ -379,8 +383,9 @@ The `load_config()` function resolves configuration using a priority chain (firs
 | Priority | Source | Environment variables | Description |
 |----------|--------|----------------------|-------------|
 | 1 | Inline JSON | `OPTIMIZATION_CONFIG` | Full config as a JSON string |
-| 2 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
-| 3 | No config | — | Raises `ValueError` (or returns `None` if `required=False`) |
+| 2 | Resolver API | `OPTIMIZATION_CANDIDATE_ID`, `OPTIMIZATION_RESOLVE_ENDPOINT` | Fetches the candidate config from the optimization service and persists it to the local directory |
+| 3 | Local directory | `OPTIMIZATION_LOCAL_DIR` (defaults to `.agent_configs/`) | Reads `baseline/` or a specific candidate directory |
+| 4 | No config | — | Returns `None` |
 
 ## Verify
 
