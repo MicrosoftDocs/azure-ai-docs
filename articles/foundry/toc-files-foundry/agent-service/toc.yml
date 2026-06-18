@@ -5,10 +5,17 @@ items:
     href: ../../agents/overview.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
-  - name: 'Quickstart: Build agents using the Responses API'
+  - name: Quickstart - Build agents using the Responses API
     href: ../../agents/quickstarts/responses-api.md
   - name: Quickstart - Deploy a Hosted agent
     href: ../../agents/quickstarts/quickstart-hosted-agent.md
+  - name: Quickstart - Build a toolbox and use with a hosted agent
+    href: ../../agents/quickstarts/quickstart-toolbox-agent.md
+  - name: Quickstart - Deploy your own code as a hosted agent
+    href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+  - name: Quickstart - Evaluate a Hosted agent
+    href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+
 
 # Concepts
 - name: Concepts
@@ -218,6 +225,8 @@ items:
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
     href: ../../agents/concepts/agent-365-integration.md
+  - name: Grant Agent 365 observability permissions
+    href: ../../agents/how-to/grant-agent-365-permissions.md
 - name: Migrate
   items:
   - name: Migrate prompt agents to the new agent service

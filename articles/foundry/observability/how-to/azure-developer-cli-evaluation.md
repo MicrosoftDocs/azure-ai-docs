@@ -96,6 +96,10 @@ Set up an evaluation suite to measure quality and impact in one step with `azd a
 
 To evaluate a prompt-based agent, skip the hosted-agent creation and deployment commands. Continue to the next section after you confirm that the prompt-based agent exists in the Foundry project and is available as an evaluation target.
 
+> [!NOTE]
+> Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
+
+
 ## Initialize evaluation assets
 
 Run `eval generate` from the azd workspace or agent project folder:

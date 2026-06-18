@@ -11,3 +11,6 @@
   - name: Microsoft Foundry
     tocHref: /azure/foundry-models/
     topicHref: /azure/foundry/index
+  - name: Microsoft Foundry
+    tocHref: /azure/developer/ai/
+    topicHref: /azure/foundry/index
