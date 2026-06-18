@@ -1216,8 +1216,6 @@ The following example shows how to transcribe an audio file with diarization ena
 - replace `YourResourceName` with your Speech resource name.
 - Replace `YourAudioFile` with the path to your audio file.
 
-> [!NOTE]
-> When diarization is enabled, the audio file should be less than 2 hours long
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.

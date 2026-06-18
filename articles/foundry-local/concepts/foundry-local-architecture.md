@@ -6,11 +6,11 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: concept-article
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-author: jonburchel
+author: laujan
 reviewer: samuel100
-ms.date: 03/28/2026
+ms.date: 06/15/2026
 ai-usage: ai-assisted
 ---
 

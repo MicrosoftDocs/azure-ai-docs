@@ -1,9 +1,9 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 06/01/2026
+ms.date: 06/15/2026
 ---
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.

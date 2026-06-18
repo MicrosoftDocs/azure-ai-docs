@@ -5,12 +5,12 @@ description: "Complete reference guide for the Foundry Local command-line interf
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-author: jonburchel
+author: laujan
 reviewer: samuel100
 ms.topic: reference
-ms.date: 03/27/2026
+ms.date: 06/15/2026
 ai-usage: ai-assisted
 ---
 
