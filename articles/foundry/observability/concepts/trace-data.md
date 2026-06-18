@@ -74,7 +74,7 @@ After you disable tracing:
 - Trace data may be accessible to users with appropriate permissions on the connected telemetry resource.
 - Depending on the configuration, users within the same project or tenant might see data.
 - To view traces in the Foundry Tracing UI, users need access to the Foundry project and read permission on the connected Application Insights / Log Analytics workspace. For example, this can be granted through roles such as Log Analytics Reader, Monitoring Reader, or Reader at the Application Insights resource, Log Analytics workspace, or an appropriate parent scope.
-- For hosted agent related tracing information and considerations, see [Deploy a hosted agent](../..//agents/how-to/deploy-hosted-agent.md).
+- For additional considerations and important information specific to hosted agents, review [hosted agent's platform-injected environment variables](../..//agents/how-to/deploy-hosted-agent.md#platform-injected-environment-variables).
 
 Customers are responsible for configuring access controls and ensuring compliance with their organizational policies.
 
