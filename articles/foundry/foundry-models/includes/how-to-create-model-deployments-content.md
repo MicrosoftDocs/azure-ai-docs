@@ -294,6 +294,6 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 - [Generate text responses with Foundry Models](../how-to/generate-responses.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
-- [Instant models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
+- [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy Foundry Models to managed compute](../how-to/deploy-foundry-models.md)
 - [Quotas and limits for Foundry Models](../quotas-limits.md)
