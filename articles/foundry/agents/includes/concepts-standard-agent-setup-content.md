@@ -59,13 +59,11 @@ The **Standard setup** provisions **five containers**, each requiring **1000 RU/
 `thread-message-store`, `system-thread-message-store`, and `agent-entity-store` are part of the **Foundry Agent Service (Classic)** Standard Setup.
 
 **Foundry Agent Service (New)** uses **`agent-definitions-v1`** and **`run-state-v1`**.  
+
 The older containers belong to the **Classic** experience and are not used by the new runtime.
 
----
-
-## Information Warning
-
-The **Classic** and **New** Foundry Agent Service runtimes use **different Cosmos DB containers**.  
+>[!Warning]
+>The **Classic** and **New** Foundry Agent Service runtimes use **different Cosmos DB containers**.  
 
 ## Project-level data isolation
 
