@@ -13,6 +13,8 @@ items:
     href: ../../agents/quickstarts/quickstart-toolbox-agent.md
   - name: Quickstart - Deploy your own code as a hosted agent
     href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+  - name: Quickstart - Evaluate a Hosted agent
+    href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
 
 
 # Concepts
