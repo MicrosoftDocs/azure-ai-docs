@@ -4,8 +4,8 @@ ms.reviewer: samuelzhang
 description: "Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service."
 keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center, tool catalog, Foundry Agent Service
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
 ms.topic: how-to
