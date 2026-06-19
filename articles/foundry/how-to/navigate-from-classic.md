@@ -7,7 +7,7 @@ ms.reviewer: nbrady
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 03/10/2026
+ms.date: 06/19/2026
 ms.custom:
   - classic-and-new
   - build-2025
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Migrate from the Foundry (classic) portal
 
-Microsoft Foundry evolved through several naming and architectural changes. If you're moving from the classic portal experience, this article helps you plan and execute the transition with reference mappings for terminology, capabilities, SDKs, and portal navigation.
+Microsoft Foundry has evolved through several naming and architectural changes. If you're moving from the classic portal experience, this article helps you plan and execute the transition with reference mappings for terminology, capabilities, SDKs, and portal navigation.
 
 > [!NOTE]
 > **Product naming**: Microsoft's AI Platform has evolved from Azure AI Studio → Azure AI Foundry → to Microsoft Foundry (current). Similarly, our AI services portfolio evolved with the platform from Azure Cognitive Services → Azure AI Services → to Foundry Tools (current). Despite the platform evolution, the Azure resource type remains `Microsoft.CognitiveServices/accounts`. All names in this documentation refer to the same evolving platform.
