@@ -96,7 +96,7 @@ Use Azure role-based access control (RBAC) to limit access to control and data p
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Foundry User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Foundry User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 [!INCLUDE [role-rename-note](./role-rename-note.md)]
 
@@ -201,13 +201,13 @@ Conversation thread history durability depends on the underlying Standard mode s
 
 Store agent JSON definitions and knowledge source references in source control. Use the Foundry REST API to periodically export agent configurations:
 
-1. List your agents by calling the [Agents API](/rest/api/aifoundry/) to retrieve agent IDs, names, tool bindings, and knowledge source configurations.
+1. List your agents by calling the [Agents API](https://ai.azure.com/api-reference/) to retrieve agent IDs, names, tool bindings, and knowledge source configurations.
 1. Save each agent definition as a JSON file in your version control system.
 1. Include tool bindings, knowledge file references, and connection configurations alongside each agent definition.
 1. Automate this process in a CI/CD pipeline on a regular schedule (for example, daily or after each deployment).
 
 > [!TIP]
-> You can automate agent export by using the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) for Python or the [REST API](/rest/api/aifoundry/). The SDK provides methods to list agents, retrieve their configurations, and serialize them to JSON for version control.
+> You can automate agent export by using the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) for Python or the [REST API](https://ai.azure.com/api-reference/). The SDK provides methods to list agents, retrieve their configurations, and serialize them to JSON for version control.
 
 ### Restore from Cosmos DB point-in-time backup
 
