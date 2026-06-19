@@ -66,7 +66,7 @@ Use the following criteria to select a deployment type:
 
 ### By workload pattern
 
-- **Quick start, prototyping, or trying a new model**: Use [instant models (preview)](../../concepts/instant-models.md) (no deployment needed)
+- **Quick start, prototyping, or trying a new model**: Use [instant access (preview)](../../concepts/instant-models.md) (no deployment needed)
 - **Variable, bursty traffic**: Use Standard or Global Standard (pay-per-token)
 - **Consistent high volume**: Use Provisioned types (reserved capacity)
 - **Large batch jobs (not time-sensitive)**: Use Global Batch or DataZone Batch (50% cost savings)

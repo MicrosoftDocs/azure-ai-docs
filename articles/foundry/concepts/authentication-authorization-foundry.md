@@ -4,8 +4,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.date: 05/12/2026
 ms.reviewer: meerakurup
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 description: "Learn how to authenticate and authorize access in Microsoft Foundry using Microsoft Entra ID and API keys. Explore RBAC, identity types, and best practices."
 #customer intent: As an IT admin, I want to understand how to configure authentication and authorization in Microsoft Foundry so that I can secure access to resources and operations.
 ms.topic: concept-article
