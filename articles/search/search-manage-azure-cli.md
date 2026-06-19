@@ -11,6 +11,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 09/25/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Manage your Azure AI Search service using the Azure CLI
@@ -77,18 +78,17 @@ The response should look similar to the following output.
 
 ```bash
 Group
-    az search : Manage Azure Search services, admin keys and query keys.
-        WARNING: This command group is in preview and under development. Reference and support
-        levels: https://aka.ms/CLI_refstatus
-Subgroups:
-    admin-key                    : Manage Azure Search admin keys.
-    private-endpoint-connection  : Manage Azure Search private endpoint connections.
-    private-link-resource        : Manage Azure Search private link resources.
-    query-key                    : Manage Azure Search query keys.
-    service                      : Manage Azure Search services.
-    shared-private-link-resource : Manage Azure Search shared private link resources.
+    az search : Manage Azure AI Search.
 
-For more specific examples, use: az find "az search"
+Subgroups:
+    admin-key                    : Manage Azure AI Search admin keys.
+    offering                     : Manage Azure AI Search offerings.
+    private-endpoint-connection  : Manage Azure AI Search private endpoint connections.
+    private-link-resource        : Manage Azure AI Search private link resources.
+    query-key                    : Manage Azure AI Search query keys.
+    service                      : Manage Service.
+    shared-private-link-resource : Manage Azure AI Search shared private link resources.
+    usage                        : Manage Usage.
 ```
 
 Within each subgroup, multiple commands are available. You can see the available commands for the `service` subgroup by running the following line.
