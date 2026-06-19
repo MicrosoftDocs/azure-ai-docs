@@ -21,6 +21,8 @@ The Azure Content Understanding API has reached general availability (GA). It in
 
 This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
 
+For supported REST API versions and operations, use the [Content Understanding REST API reference](/rest/api/contentunderstanding/operation-groups). The version selector on Learn shows currently published reference versions.
+
 ## Prerequisites
 
 [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
