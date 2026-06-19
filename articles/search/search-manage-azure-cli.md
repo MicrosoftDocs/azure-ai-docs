@@ -9,7 +9,7 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/25/2025
+ms.date: 06/19/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
