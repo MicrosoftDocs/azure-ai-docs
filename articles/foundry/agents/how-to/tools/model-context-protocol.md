@@ -1116,7 +1116,7 @@ If your agent uses a model that isn't in this list, MCP tool calls run synchrono
 
 The following examples invoke an agent that's already configured with an MCP tool, set `background` to `true`, and poll until the response completes. Replace the placeholder values with your own.
 
-# [Python](#tab/lro-python)
+:::zone pivot="python"
 
 ```python
 from time import sleep
@@ -1152,37 +1152,9 @@ while response.status in ("queued", "in_progress"):
 print(response.output_text)
 ```
 
-# [JavaScript](#tab/lro-javascript)
+:::zone-end
 
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-
-const PROJECT_ENDPOINT = "your_project_endpoint";
-const AGENT_NAME = "your_mcp_agent_name";
-
-const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
-
-// Start a background response. It returns immediately with status "queued".
-let response = await openai.responses.create({
-  input: "Run the long-running task and summarize the result.",
-  background: true,
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
-
-// Poll the response ID until the MCP tool call completes.
-while (response.status === "queued" || response.status === "in_progress") {
-  await new Promise((r) => setTimeout(r, 5000));
-  response = await openai.responses.retrieve(response.id);
-}
-console.log(response.output_text);
-```
-
-# [C#](#tab/lro-csharp)
+:::zone pivot="csharp"
 
 ```csharp
 using Azure.Identity;
@@ -1216,7 +1188,79 @@ while (response.Status is "queued" or "in_progress")
 Console.WriteLine(response.GetOutputText());
 ```
 
-# [REST](#tab/lro-rest)
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_mcp_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = project.getOpenAIClient();
+
+// Start a background response. It returns immediately with status "queued".
+let response = await openai.responses.create({
+  input: "Run the long-running task and summarize the result.",
+  background: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status === "queued" || response.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, 5000));
+  response = await openai.responses.retrieve(response.id);
+}
+console.log(response.output_text);
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_mcp_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+AgentReference agentRef = new AgentReference(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef)
+        .setBackground(true),
+    ResponseCreateParams.builder()
+        .input("Run the long-running task and summarize the result."));
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status().equals("queued") || response.status().equals("in_progress")) {
+    Thread.sleep(5000);
+    response = responsesClient.getAzureResponse(response.id());
+}
+System.out.println(response.output());
+```
+
+:::zone-end
+
+:::zone pivot="rest"
 
 Create a background response. The request returns immediately with a response `id` and a `status` of `queued`:
 
@@ -1240,7 +1284,7 @@ curl "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses/$RESPONSE_ID" \
 
 When `status` is `completed`, the `output` array contains the MCP tool call result and the final assistant message.
 
----
+:::zone-end
 
 ## Known limitations
 
