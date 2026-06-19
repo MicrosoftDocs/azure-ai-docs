@@ -79,7 +79,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Home | All | GA |
 | Discover | Overview | GA |
 | Discover | Model | GA |
-| Discover | [Instant Models](instant-models.md) | Preview |
+| Discover | [Instant Access Models](instant-models.md) | Preview |
 | Discover | Tools | GA |
 | Discover | [Solution Templates](../how-to/develop/ai-template-get-started.md) | GA |
 | Discover | Search | GA |
