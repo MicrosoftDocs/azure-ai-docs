@@ -2,8 +2,8 @@
 title: "Govern model router deployments with Azure Policy"
 description: "Use Azure Policy to control which models developers can select when they deploy model router in Microsoft Foundry, across the portal, REST API, and CLI."
 #customer intent: As an IT admin, I want to govern which models developers can route to from a model router deployment so that my organization stays compliant with internal model approval policies.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sajagtap
 manager: mcleans
 ms.date: 05/13/2026

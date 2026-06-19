@@ -28,7 +28,7 @@ This article shows you how to create and run evaluations in the Foundry portal.
 - A Microsoft Foundry project. [Create a project](create-projects.md) if you don't have one.
 - One of the following, depending on your evaluation target:
   - **Agent evaluation**: An agent in your project.
-  - **Model evaluation**: A deployed model or access to instant models.
+  - **Model evaluation**: A deployed model or a model available with instant access.
   - **Dataset evaluation**: A test dataset in CSV or JSONL format containing preexisting model or agent outputs.
 - An Azure OpenAI connection with a deployed GPT model (for example, `gpt-4.1-mini`). Required for AI-assisted quality evaluations.
 - **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
@@ -74,7 +74,7 @@ When you create an evaluation, first choose the evaluation target. The target de
 | **Traces** | Evaluates agent interactions already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Select the agent and time range, and the portal retrieves the matching traces for evaluation. For the SDK equivalent, see [Trace evaluation](./develop/cloud-evaluation.md#trace-evaluation-preview). |
 
 > [!TIP]
-> **Instant models**: Instant models are deployment-less models that you can use immediately without creating a deployment. When creating an evaluation, you can select an instant model as either the evaluation target or the judge model directly from the model picker.
+> **Instant access**: Instant access are deployment-less models that you can use immediately without creating a deployment. When creating an evaluation, you can select an instant model as either the evaluation target or the judge model directly from the model picker.
 
 ### Step 2: Select evaluation scope
 
@@ -410,7 +410,7 @@ To view detailed results, select the evaluation name or see [View the evaluation
 ### For model evaluations
 
 - **Benchmark datasets**: Use standardized datasets to compare model performance across versions.
-- **Test both deployed and instant models**: Compare your fine-tuned deployments against base models.
+- **Test both deployed and instant access**: Compare your fine-tuned deployments against base models.
 
 ### For dataset evaluations
 

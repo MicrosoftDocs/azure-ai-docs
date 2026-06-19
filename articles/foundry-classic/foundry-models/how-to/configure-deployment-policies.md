@@ -6,8 +6,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to #Don't change
 ms.date: 01/05/2026
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.reviewer: aashishb
 reviewer: aashishb_microsoft
 ms.custom: [dev-focus]
