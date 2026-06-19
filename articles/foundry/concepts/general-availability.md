@@ -5,7 +5,7 @@ description: Learn what general availability means for Microsoft Foundry, includ
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 05/22/2026
+ms.date: 06/19/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # New Microsoft Foundry portal general availability overview
 
-The new Microsoft Foundry portal is now generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
+The new Microsoft Foundry portal is generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
 
 Foundry is designed for teams that need to build, deploy, and operate AI systems at scale, with governance, security, and operational controls integrated throughout the lifecycle. Foundry unifies the end-to-end lifecycle across **Discover**, **Build**, and **Operate** so teams can move faster without trading off reliability, compliance, or operational rigor.
 
@@ -79,7 +79,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Home | All | GA |
 | Discover | Overview | GA |
 | Discover | Model | GA |
-| Discover | [Instant Models](instant-models.md) | Preview |
+| Discover | [Instant Access Models](instant-models.md) | Preview |
 | Discover | Tools | GA |
 | Discover | [Solution Templates](../how-to/develop/ai-template-get-started.md) | GA |
 | Discover | Search | GA |

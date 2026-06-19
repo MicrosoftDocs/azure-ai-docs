@@ -32,7 +32,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/azure-ai-foundry-status-dashboard-documentation.md",
-      "redirect_url": "/azure/ai-foundry/foundry-status-dashboard-documentation",
+      "redirect_url": "https://azure.status.microsoft/en-us/status",
       "redirect_document_id": false
     },
     {
@@ -2657,8 +2657,13 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-status-dashboard-documentation.md",
-      "redirect_url": "/azure/foundry/foundry-status-dashboard-documentation",
-      "redirect_document_id": true
+      "redirect_url": "https://azure.status.microsoft/en-us/status",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/foundry-status-dashboard-documentation.md",
+      "redirect_url": "https://azure.status.microsoft/en-us/status",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/how-to/access-on-premises-resources.md",

@@ -5,10 +5,19 @@ items:
     href: ../../agents/overview.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
-  - name: 'Quickstart: Build agents using the Responses API'
+  - name: Quickstart - Build agents using the Responses API
     href: ../../agents/quickstarts/responses-api.md
   - name: Quickstart - Deploy a Hosted agent
     href: ../../agents/quickstarts/quickstart-hosted-agent.md
+  - name: Quickstart - Build a toolbox and use with a hosted agent
+    href: ../../agents/quickstarts/quickstart-toolbox-agent.md
+  - name: Quickstart - Deploy your own code as a hosted agent
+    href: ../../agents/quickstarts/quickstart-deploy-own-code.md
+  - name: Quickstart - Evaluate a Hosted agent
+    href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+  - name: "Quickstart: Trace your hosted agent"
+    href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
+
 
 # Concepts
 - name: Concepts
@@ -35,6 +44,8 @@ items:
     href: ../../agents/concepts/runtime-components.md
   - name: Configure an agent
     href: ../../agents/how-to/configure-agent.md
+  - name: Use connected Foundry models
+    href: ../../agents/how-to/connected-models.md
   - name: Agent tools
     items:
     - name: Tools overview
@@ -80,6 +91,20 @@ items:
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md
+  - name: Microsoft IQ
+    items:
+    - name: Foundry IQ
+      items:
+      - name: What is Foundry IQ?
+        href: ../../agents/concepts/what-is-foundry-iq.md
+      - name: FAQ
+        href: ../../agents/concepts/foundry-iq-faq.yml
+      - name: Connect knowledge base to agents
+        href: ../../agents/how-to/foundry-iq-connect.md
+    - name: Fabric IQ (preview)
+      href: ../../agents/how-to/tools/fabric-iq.md
+    - name: Work IQ (preview)
+      href: ../../agents/how-to/tools/work-iq.md
   - name: Model Context Protocol (MCP)
     items:
     - name: Connect to MCP server
@@ -104,18 +129,6 @@ items:
       href: ../../agents/how-to/tools/custom-code-interpreter.md
     - name: Fabric data agent (preview)
       href: ../../agents/how-to/tools/fabric.md
-    - name: Fabric IQ (preview)
-      href: ../../agents/how-to/tools/fabric-iq.md
-    - name: Work IQ (preview)
-      href: ../../agents/how-to/tools/work-iq.md
-    - name: Foundry IQ
-      items:
-      - name: What is Foundry IQ?
-        href: ../../agents/concepts/what-is-foundry-iq.md
-      - name: FAQ
-        href: ../../agents/concepts/foundry-iq-faq.yml
-      - name: Connect knowledge base to agents
-        href: ../../agents/how-to/foundry-iq-connect.md
     - name: Foundry Tools
       items:
       - name: Azure Speech in Foundry Tools
@@ -193,7 +206,19 @@ items:
   - name: Run agent evaluations with the Azure Developer CLI
     displayName: azd cli
     href: ../../observability/how-to/azure-developer-cli-evaluation.md
-  - name: Optimize agent prompts 
+  - name: Optimize hosted agents (preview)
+    items:
+    - name: Agent optimization overview
+      href: ../../agents/concepts/agent-optimizer-overview.md
+    - name: "Quickstart: Optimize a hosted agent"
+      href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
+    - name: Make your agent optimization-ready
+      href: ../../agents/how-to/make-agent-optimizer-ready.md
+    - name: Create a custom evaluation dataset
+      href: ../../agents/how-to/create-optimizer-dataset.md
+    - name: Optimize agent instructions and skills
+      href: ../../agents/how-to/optimize-agent-targets.md
+  - name: Optimize agent prompts
     href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
@@ -202,6 +227,8 @@ items:
     href: ../../observability/how-to/evaluate-agent.md
   - name: Microsoft Agent 365 integration
     href: ../../agents/concepts/agent-365-integration.md
+  - name: Grant Agent 365 observability permissions
+    href: ../../agents/how-to/grant-agent-365-permissions.md
 - name: Migrate
   items:
   - name: Migrate prompt agents to the new agent service

@@ -1,9 +1,9 @@
 ---
-author: jonburchel
-ms.author: jburchel
+author: laujan
+ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 03/29/2026
+ms.date: 06/15/2026
 ---
 
 ## Install packages
@@ -11,11 +11,11 @@ ms.date: 03/29/2026
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/cs/tutorial-voice-to-text
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/csharp/foundry-local/tutorial-voice-to-text
 ```
 
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]
@@ -26,7 +26,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 - Open `Program.cs` and replace its contents with the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    :::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-voice-to-text/Program.cs" id="transcription":::
+    :::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/tutorial-voice-to-text/Program.cs" id="transcription":::
 
     The `GetAudioClientAsync` method returns a client for audio operations. The `TranscribeAudioStreamingAsync` method streams transcription chunks as they become available. You accumulate the text so you can pass it to the chat model in the next step.
 
@@ -39,7 +39,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-voice-to-text/Program.cs" id="summarization":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/tutorial-voice-to-text/Program.cs" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -47,7 +47,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Replace the contents of `Program.cs` with the following complete code that transcribes an audio file and summarizes the transcription:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-voice-to-text/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/csharp/foundry-local/tutorial-voice-to-text/Program.cs" id="complete_code":::
 
 > [!NOTE]
 > Replace `"meeting-notes.wav"` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

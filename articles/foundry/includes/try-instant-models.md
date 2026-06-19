@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> You don't always need to create a deployment. With [instant models (preview)](../concepts/instant-models.md), you call supported models by name and start running inference immediately — no deployment required.
+> You don't always need to create a deployment. With [instant access (preview)](../concepts/instant-models.md), you call supported models by name and start running inference immediately — no deployment required.

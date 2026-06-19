@@ -3,7 +3,7 @@ title: Include file
 description: Include file
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 01/05/2026
+ms.date: 06/15/2026
 ms.author: samkemp
 author: samuel100
 ai-usage: ai-assisted
@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 The sample repositories include a `.csproj` file that handles platform detection automatically. If you're building a project from scratch, use this configuration as a reference:
 
-:::code language="xml" source="~/foundry-local-main/samples/cs/native-chat-completions/NativeChatCompletions.csproj":::
+:::code language="xml" source="~/foundry-local-main/samples/csharp/foundry-local/native-chat-completions/NativeChatCompletions.csproj":::
 
 The following table explains the key project settings:
 

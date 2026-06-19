@@ -1,6 +1,6 @@
 ---
-title: "Create an evaluation dataset for the agent optimizer (preview)"
-description: "Generate or manually define evaluation datasets used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
+title: "Create an evaluation dataset and evaluators for the agent optimizer (preview)"
+description: "Generate or manually define evaluation datasets and evaluators used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
 author: aahill
 ms.author: aahi
 ms.date: 05/18/2026
@@ -11,72 +11,28 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Create an evaluation dataset (preview)
+# Create an evaluation dataset and evaluators (preview)
 
 [!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
 
-The agent optimizer evaluates your agent against a *dataset* — a collection of tasks with evaluation criteria. You can generate a dataset automatically from the CLI or create one manually for full control.
+The agent optimizer evaluates your agent against a *dataset* — a collection of tasks with evaluation criteria — scored by *evaluators*. You can generate both automatically from the CLI or create a dataset manually for full control.
 
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with a deployed hosted agent
 - The `azure.ai.agents` CLI extension installed (see [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md))
 
-## Generate a dataset (recommended)
+## Generate a dataset and evaluators (recommended)
 
-The fastest way to create an evaluation dataset is with `azd ai agent eval init`. This command generates a dataset and adaptive evaluators tuned to your agent's domain:
-
-```bash
-azd ai agent eval init
-```
-
-The interactive wizard auto-detects your agent from `azure.yaml` and prompts for a generation instruction describing what your agent does and what scenarios to test.
-
-Example output:
-
-```text
-Detecting agent...
-  Found: my-support-agent (hosted)
-
-Generation prompt
-  Describe what this agent does and what scenarios to test.
-  > This agent handles customer support for electronics. Test returns, troubleshooting, and out-of-scope requests.
-
-Generating dataset and evaluators...
-  Dataset generation:    done  (registered: my-support-agent-eval-seed/v1)
-  Evaluator generation:  done  (registered: my-support-agent-quality/v1)
-
-Eval suite created
-  Config:     eval.yaml
-  Dataset:    .azure/.foundry/datasets/my-support-agent-eval-seed.v1.jsonl
-  Evaluator:  .azure/.foundry/evaluators/my-support-agent-quality.v1.yaml
-
-Review the generated assets, then run:
-  azd ai agent eval run
-```
-
-### Non-interactive mode
-
-For scripted workflows, pass the inputs directly:
+The fastest way to create evaluation assets is with `azd ai agent eval generate`. The command auto-detects your agent, then generates both a dataset and adaptive evaluators tuned to your agent's domain, and writes a runnable `eval.yaml`:
 
 ```bash
-azd ai agent eval init \
-  --gen-instruction "Customer support agent. Test refund handling, troubleshooting, and out-of-scope deflection." \
-  --eval-model gpt-4.1-mini \
-  --max-samples 50
+azd ai agent eval generate
 ```
 
-### Use your own data with generated evaluators
+For the interactive wizard, non-interactive flags, generated artifacts, and the full evaluation workflow, see [Initialize evaluation assets](../../observability/how-to/azure-developer-cli-evaluation.md#initialize-evaluation-assets).
 
-If you already have a golden dataset but want auto-generated evaluators:
-
-```bash
-azd ai agent eval init --dataset ./my-golden-dataset.jsonl
-```
-
-### Run optimization with the generated config
-
-After `eval init` completes, `azd ai agent optimize` auto-detects the generated `eval.yaml`:
+After `eval generate` completes, `azd ai agent optimize` auto-detects the generated `eval.yaml`:
 
 ```bash
 azd ai agent optimize
@@ -87,8 +43,6 @@ Or pass it explicitly:
 ```bash
 azd ai agent optimize --config eval.yaml
 ```
-
-For the full evaluation CLI workflow, see [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation).
 
 ## Create a custom dataset manually (advanced)
 
@@ -101,8 +55,8 @@ By default, `azd ai agent optimize` uses a built-in dataset with 3 general codin
 Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that represents a single evaluation *task*. A task is an individual scenario in the dataset. It contains a prompt and evaluation criteria.
 
 ```jsonl
-{"name": "task_1", "prompt": "Your prompt here", "criteria": [{"name": "criterion_name", "instruction": "What the evaluator checks for"}]}
-{"name": "task_2", "prompt": "Another prompt", "criteria": [{"name": "check_1", "instruction": "..."}, {"name": "check_2", "instruction": "..."}]}
+{"name": "task_1", "query": "Your prompt here", "criteria": [{"name": "criterion_name", "instruction": "What the evaluator checks for"}]}
+{"name": "task_2", "query": "Another prompt", "criteria": [{"name": "check_1", "instruction": "..."}, {"name": "check_2", "instruction": "..."}]}
 ```
 
 ### Field reference
@@ -110,25 +64,25 @@ Datasets use **JSONL** (JSON Lines) format. Each line is one JSON object that re
 | Field | Required | Description |
 | ------- | ---------- | ------------- |
 | `name` | Yes | Unique task identifier (for example, `"greeting"`, `"math_test"`) |
-| `prompt` | Yes | The message sent to the agent |
+| `query` | Yes | The message sent to the agent |
 | `criteria` | Yes | Array of evaluation *criteria* — rules that define what "good" looks like for the task |
 | `criteria[].name` | Yes | Short name for the criterion (for example, `"is_polite"`) |
 | `criteria[].instruction` | Yes | What the *evaluator* checks. Be specific and testable. The built-in evaluator (`builtin.task_adherence`) scores each criterion independently as a binary value (0 or 1). |
-| `groundTruth` | No | Expected answer (used by some evaluators for reference) |
+| `ground_truth` | No | Expected answer (used by some evaluators for reference) |
 
 ### Example: Customer support agent
 
 ```jsonl
-{"name": "refund_policy", "prompt": "What is your refund policy?", "criteria": [{"name": "mentions_30_days", "instruction": "Response must mention the 30-day refund window"}, {"name": "polite_tone", "instruction": "Response must be professional and empathetic"}]}
-{"name": "order_status", "prompt": "Where is my order #12345?", "criteria": [{"name": "asks_for_details", "instruction": "Agent should ask for email or order details to look up the order"}, {"name": "no_hallucination", "instruction": "Agent must NOT make up a fake order status"}]}
-{"name": "out_of_scope", "prompt": "Can you help me fix my car?", "criteria": [{"name": "polite_decline", "instruction": "Agent should politely explain this is outside its scope"}, {"name": "redirect", "instruction": "Agent should suggest contacting an appropriate service"}]}
+{"name": "refund_policy", "query": "What is your refund policy?", "criteria": [{"name": "mentions_30_days", "instruction": "Response must mention the 30-day refund window"}, {"name": "polite_tone", "instruction": "Response must be professional and empathetic"}]}
+{"name": "order_status", "query": "Where is my order #12345?", "criteria": [{"name": "asks_for_details", "instruction": "Agent should ask for email or order details to look up the order"}, {"name": "no_hallucination", "instruction": "Agent must NOT make up a fake order status"}]}
+{"name": "out_of_scope", "query": "Can you help me fix my car?", "criteria": [{"name": "polite_decline", "instruction": "Agent should politely explain this is outside its scope"}, {"name": "redirect", "instruction": "Agent should suggest contacting an appropriate service"}]}
 ```
 
 ### Example: Coding assistant
 
 ```jsonl
-{"name": "python_function", "prompt": "Write a Python function to reverse a linked list", "criteria": [{"name": "correct_algorithm", "instruction": "The function must correctly reverse a singly linked list"}, {"name": "handles_empty", "instruction": "The function must handle an empty list without errors"}, {"name": "includes_docstring", "instruction": "The function should include a descriptive docstring"}]}
-{"name": "explain_concept", "prompt": "Explain what a closure is in JavaScript", "criteria": [{"name": "accurate_definition", "instruction": "Must correctly define a closure as a function that captures variables from its enclosing scope"}, {"name": "includes_example", "instruction": "Must include at least one working code example"}]}
+{"name": "python_function", "query": "Write a Python function to reverse a linked list", "criteria": [{"name": "correct_algorithm", "instruction": "The function must correctly reverse a singly linked list"}, {"name": "handles_empty", "instruction": "The function must handle an empty list without errors"}, {"name": "includes_docstring", "instruction": "The function should include a descriptive docstring"}]}
+{"name": "explain_concept", "query": "Explain what a closure is in JavaScript", "criteria": [{"name": "accurate_definition", "instruction": "Must correctly define a closure as a function that captures variables from its enclosing scope"}, {"name": "includes_example", "instruction": "Must include at least one working code example"}]}
 ```
 
 ### Use a custom dataset
@@ -148,7 +102,7 @@ evaluators:
 options:
   eval_model: gpt-4.1-mini
   optimization_model: gpt-5.1
-  max_iterations: 10
+  max_iterations: 5
 ```
 
 Then run:
@@ -214,10 +168,10 @@ Each criterion gets a binary score (0 or 1). The task score is the average of it
 
 ### Ground truth is optional
 
-The `groundTruth` field provides a reference answer for evaluators that support it. This field isn't required. The `builtin.task_adherence` evaluator works entirely from criteria instructions.
+The `ground_truth` field provides a reference answer for evaluators that support it. This field isn't required. The `builtin.task_adherence` evaluator works entirely from criteria instructions.
 
 ```jsonl
-{"name": "geography_fact", "prompt": "What is the largest city in France by population?", "groundTruth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
+{"name": "geography_fact", "query": "What is the largest city in France by population?", "ground_truth": "Paris", "criteria": [{"name": "correct_answer", "instruction": "Response must state that Paris is the largest city in France by population"}]}
 ```
 
 ## Troubleshooting
@@ -230,7 +184,7 @@ The `groundTruth` field provides a reference answer for evaluators that support 
 
 ## Related content
 
-- [Run agent evaluations with the azd CLI](/azure/foundry/observability/how-to/azure-developer-cli-evaluation)
+- [Run agent evaluations with the azd CLI](../../observability/how-to/azure-developer-cli-evaluation.md)
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
 - [Optimize agent instructions, skills, tools, and models](optimize-agent-targets.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)

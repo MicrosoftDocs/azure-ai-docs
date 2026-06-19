@@ -2209,6 +2209,15 @@ groups:
   - id: azd
     title: azd
 # Owner: aahi
+- id: selection-toolbox-quickstart
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: vscode
+    title: VS Code
+# Owner: aahi
 - id: selection-foundry-skills
   title: Selections
   prompt: What would you like to see?

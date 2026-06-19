@@ -1,4 +1,4 @@
-﻿---
+---
 title: What is Azure Content Understanding in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.

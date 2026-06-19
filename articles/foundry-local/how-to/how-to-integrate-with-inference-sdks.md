@@ -6,11 +6,11 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
-ms.author: jburchel
+ms.author: lajanuar
 ms.reviewer: samkemp
-ms.date: 01/06/2026
+ms.date: 06/15/2026
 zone_pivot_groups: foundry-local-sdk
-author: jonburchel
+author: laujan
 reviewer: samuel100
 ai-usage: ai-assisted
 ---

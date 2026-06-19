@@ -2,8 +2,8 @@
 title: "Connect your own storage to Speech/Language (Preview)"
 description: "Configure customer-managed storage for Speech and Language capabilities in a Microsoft Foundry resource at creation time."
 #customer intent: As a developer, I want to use my own storage account for Speech and Language so I can apply security and compliance policies.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: andyaviles
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform

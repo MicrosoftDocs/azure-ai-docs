@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD004 -->
@@ -18,10 +19,10 @@ monikerRange: '<=doc-intel-4.0.0'
 > [!IMPORTANT]
 >
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
-> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence 2024-11-30 v4.0**.
+> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**. 
+> * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence 2024-11-30 v4.0** before these dates.
 
-## SDk migration guides
+## SDK migration guides
 
 For guidance on updating your application code to use the v4.0 SDKs, see the language-specific SDK migration guides in our GitHub repositories. These guides provide instructions for updating your code to call the new API methods and handle the updated response formats introduced in v4.0:
 
@@ -35,7 +36,7 @@ For guidance on updating your application code to use the v4.0 SDKs, see the lan
 
 ## Migrating from v3.1 to v4.0
 
-Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md).
+Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md). Earlier v3.x API versions will be retired on published schedules; v3.0 retires March 30, 2029.
 
 ### Analysis features
 
@@ -61,6 +62,10 @@ O - Optional
 Formulas/StyleFont/OCR High Resolution* - Premium features incur added costs
 
 ## Migrating from v3.0
+
+> [!IMPORTANT]
+>
+> Azure Document Intelligence v3.0 API (`2022-08-31`) reaches end of support on **March 30, 2029**. To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before this date. If you're on v3.0, you can move directly to v4.0 using the [current version of the language-specific SDK](sdk-overview-v4-0.md) and the `2024-11-30` REST API.
 
 Compared with v3.0, Document Intelligence v3.1 introduces several new features and capabilities:
 
@@ -122,7 +127,7 @@ Besides model quality improvement, you're highly recommended to update your appl
 
 ## Migrating from v2.1 or v2.0
 
-Document Intelligence v3.1 is the latest GA version with the richest features, most languages and document types coverage, and improved model quality. Refer to [model overview](../overview.md) for the features and capabilities available in v3.1.
+Document Intelligence v4.0 is the latest GA version with the richest features, most languages and document types coverage, and improved model quality. Refer to [model overview](../overview.md) for the features and capabilities available in v4.0.
 
 Starting from v3.0, [Document Intelligence REST API](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true) is redesigned for better usability. In this section, learn the differences between Document Intelligence v2.0, v2.1 and v3.1 and how to move to the newer version of the API.
 

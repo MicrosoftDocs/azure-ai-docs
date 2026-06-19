@@ -4,11 +4,11 @@ description: Include file
 ms.service: microsoft-foundry
 ms.custom: build-2025
 ms.topic: include
-ms.date: 05/02/2025
-ms.author: jburchel
+ms.date: 06/15/2026
+ms.author: lajanuar
 ms.reviewer: maanavd
 reviewer: maanavdalal
-author: jonburchel
+author: laujan
 ai-usage: ai-assisted
 ---
 
@@ -21,11 +21,11 @@ Before starting this tutorial, you need:
 
 ## Samples repository
 
-The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
+The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
 
 ```bash
-git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples/js/langchain-integration-example
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/javascript/foundry-local/langchain-integration-example
 ```
 
 ## Install packages
@@ -44,7 +44,7 @@ npm install @langchain/openai @langchain/core
 
 Create a new JavaScript file named `translation_app.js` in your favorite IDE and add the following code:
 
-:::code language="javascript" source="~/foundry-local-main/samples/js/langchain-integration-example/app.js" id="complete_code":::
+:::code language="javascript" source="~/foundry-local-main/samples/javascript/foundry-local/langchain-integration-example/app.js" id="complete_code":::
 
 #To run the application, open a terminal and navigate to the directory where you saved the `translation_app.js` file. Then, run the following command:
 
