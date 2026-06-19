@@ -1097,11 +1097,23 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 > [!TIP]
 > **Toolbox versioning**: Foundry Toolboxes support versioning, so you can iterate on a new version without affecting production agents. Use the **consumer endpoint** (`{project_endpoint}/toolboxes/{name}/mcp?api-version=v1`) for production agents - it always serves the promoted default version. Use the **version-specific endpoint** (`{project_endpoint}/toolboxes/{name}/versions/{version}/mcp?api-version=v1`) to test before promoting. Keep `server_label` unique per agent, even when switching Toolbox versions. For details, see [Promote a version to default](toolbox.md#promote-a-version-to-default).
 
-## Long-running operations
+## Long-running operations (preview)
 
 Some MCP servers expose tools that take longer than the standard synchronous timeout to return a result. To support these operations, run the agent in [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Background mode runs the response asynchronously, so the MCP tool call can continue without holding an open connection, and you poll for the response status until it completes. This approach lets MCP tool calls exceed the 100-second non-streaming timeout described in [Known limitations](#known-limitations).
 
-The MCP server must implement the long-running operation on the server side. The agent runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and processes the MCP tool call in the background. You poll the response `id` until `status` becomes `completed`, then read the final output.
+> [!NOTE]
+> Long-running MCP operations are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. Behavior and supported models can change.
+
+### Requirements for the MCP server
+
+The agent runtime relies on the MCP server to run the operation asynchronously and report progress. The server must:
+
+- Implement the [Model Context Protocol tasks capability](https://modelcontextprotocol.io/specification) so a tool call can return a task reference instead of blocking until the work finishes.
+- Return a related task identifier in the tool result metadata (the `io.modelcontextprotocol/related-task` field with a `taskId`) when it starts a long-running operation.
+- Expose a way for the runtime to poll the task status and retrieve the final result after the task completes.
+- Be reachable as a remote MCP endpoint, the same as any other MCP tool. Local MCP servers must be self-hosted to provide a remote endpoint. See [Host a local MCP server](#host-a-local-mcp-server).
+
+When the agent runtime calls a tool that starts a long-running operation, the server returns the task reference and the runtime keeps the response in the background. The runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and collects the result when the task finishes. You poll the response `id` until `status` becomes `completed`, then read the final output.
 
 Background mode for long-running MCP operations is supported only with the following models:
 
@@ -1288,7 +1300,7 @@ When `status` is `completed`, the `output` array contains the MCP tool call resu
 
 ## Known limitations
 
-- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, run the agent in [background mode](#long-running-operations) with a supported model, optimize the server-side logic, or break the operation into smaller steps.
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, run the agent in [background mode](#long-running-operations-preview) with a supported model, optimize the server-side logic, or break the operation into smaller steps.
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
 - **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but aren't internally validated.
 
