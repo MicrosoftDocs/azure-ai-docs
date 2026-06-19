@@ -1101,6 +1101,8 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 
 Some MCP servers expose tools that take longer than the standard synchronous timeout to return a result. To support these operations, run the agent in [background mode](../../concepts/runtime-components.md#run-an-agent-in-background-mode). Background mode runs the response asynchronously, so the MCP tool call can continue without holding an open connection, and you poll for the response status until it completes. This approach lets MCP tool calls exceed the 100-second non-streaming timeout described in [Known limitations](#known-limitations).
 
+The MCP server must implement the long-running operation on the server side. The agent runtime starts the response, returns immediately with a response `id` and a `status` of `queued`, and processes the MCP tool call in the background. You poll the response `id` until `status` becomes `completed`, then read the final output.
+
 Background mode for long-running MCP operations is supported only with the following models:
 
 - `gpt-5.5`
@@ -1111,6 +1113,134 @@ Background mode for long-running MCP operations is supported only with the follo
 - `gpt-5.4-nano`
 
 If your agent uses a model that isn't in this list, MCP tool calls run synchronously and are subject to the 100-second timeout.
+
+The following examples invoke an agent that's already configured with an MCP tool, set `background` to `true`, and poll until the response completes. Replace the placeholder values with your own.
+
+# [Python](#tab/lro-python)
+
+```python
+from time import sleep
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_mcp_agent_name"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Start a background response. It returns immediately with status "queued".
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="Run the long-running task and summarize the result.",
+    background=True,
+)
+
+# Poll the response ID until the MCP tool call completes.
+while response.status in ("queued", "in_progress"):
+    sleep(5)
+    response = openai.responses.retrieve(response.id)
+
+print(response.output_text)
+```
+
+# [JavaScript](#tab/lro-javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_mcp_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+// Start a background response. It returns immediately with status "queued".
+let response = await openai.responses.create({
+  input: "Run the long-running task and summarize the result.",
+  background: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Poll the response ID until the MCP tool call completes.
+while (response.status === "queued" || response.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, 5000));
+  response = await openai.responses.retrieve(response.id);
+}
+console.log(response.output_text);
+```
+
+# [C#](#tab/lro-csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_mcp_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
+
+// Start a background response. It returns immediately with status "queued".
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "Run the long-running task and summarize the result.") },
+        Background = true,
+    });
+
+// Poll the response ID until the MCP tool call completes.
+while (response.Status is "queued" or "in_progress")
+{
+    await Task.Delay(5000);
+    response = await responsesClient.RetrieveResponseAsync(response.Id);
+}
+Console.WriteLine(response.GetOutputText());
+```
+
+# [REST](#tab/lro-rest)
+
+Create a background response. The request returns immediately with a response `id` and a `status` of `queued`:
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-mcp"},
+    "input": "Run the long-running task and summarize the result.",
+    "background": true
+  }'
+```
+
+Copy the response `id` from the result, then poll it until `status` is `completed`:
+
+```bash
+curl "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses/$RESPONSE_ID" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+When `status` is `completed`, the `output` array contains the MCP tool call result and the final assistant message.
+
+---
 
 ## Known limitations
 
