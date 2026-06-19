@@ -6,9 +6,10 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 12/19/2025
+ms.date: 06/19/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the languages that Azure Speech supports so that I can decide how to use the features in my application.
 ---
 
@@ -83,6 +84,17 @@ Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or 
 `MultilingualNeural` voices represent an earlier generation of multilingual technology. They offer high naturalness but don't have the same level of contextual awareness as HD voices.
 
 The locale prefix indicates the voice's primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
+
+> [!TIP]
+> To synthesize text in a specific language, use a voice from that locale and match your SSML locale to the same language (for example, `es-ES-*` voice with `xml:lang="es-ES"`).
+>
+> If output doesn't match your target language, check these common causes:
+>
+> - The selected voice is for a different locale.
+> - The SSML `xml:lang` value conflicts with the selected voice locale.
+> - Your flow uses text to speech only, but you expected translation behavior.
+>
+> For implementation steps, see [Get started with text to speech](get-started-text-to-speech.md) and [Speech Synthesis Markup Language (SSML) overview](speech-synthesis-markup.md).
 
 
 

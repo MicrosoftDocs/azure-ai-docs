@@ -47,4 +47,4 @@ zone_pivot_groups: azure-ai-inference-samples
 ## Related content
 
 * [Use image embeddings models](./use-image-embeddings.md)
-* [Azure AI Model Inference API](/rest/api/aifoundry/modelinference)
+* [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference)
