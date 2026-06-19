@@ -182,7 +182,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/api-version-updates.md",
-      "redirect_url": "/rest/api/aifoundry/modelinference",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference",
       "redirect_document_id": false
     },
     {
@@ -1257,7 +1257,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-api.md",
-      "redirect_url": "/rest/api/aifoundry/modelinference",
+      "redirect_url": "/rest/api/microsoft-foundry/modelinference",
       "redirect_document_id": false
     },
     {
@@ -2302,17 +2302,17 @@
     },
        {
       "source_path_from_root": "/articles/foundry-classic/reference/foundry-project.md",
-      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_url": "https://ai.azure.com/api-reference",
       "redirect_document_id": false
     },
        {
       "source_path_from_root": "/articles/foundry/reference/foundry-project-rest-preview.md",
-      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_url": "https://ai.azure.com/api-reference",
       "redirect_document_id": false
     },
       {
       "source_path_from_root": "/articles/foundry/reference/foundry-project.md",
-      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_url": "https://ai.azure.com/api-reference",
       "redirect_document_id": false
     },
     {
