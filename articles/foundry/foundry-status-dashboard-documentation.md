@@ -2,8 +2,8 @@
 title: "Microsoft Foundry status dashboard (preview)"
 description: "Use the Microsoft Foundry status dashboard (preview) to monitor service health and incidents."
 ai-usage: ai-assisted
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: nisi
 ms.date: 05/12/2026
 ms.topic: concept-article

@@ -1,8 +1,8 @@
 ---
 title: "Customer-Managed Keys (CMKs) for Microsoft Foundry (classic)"
 description: "Learn how to use CMKs for enhanced encryption and data security in Microsoft Foundry. Configure Azure Key Vault integration and meet compliance requirements. (classic)"
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ms.reviewer: deeikele
 ms.date: 03/06/2026
 ms.service: foundry-tools
