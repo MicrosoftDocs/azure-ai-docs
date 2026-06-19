@@ -99,6 +99,8 @@ items:
      href: ../../agents/how-to/register-external-agent.md
    - name: Convert agent traces into evaluation datasets 
      href:  ../../observability/how-to/traces-to-dataset.md
+   - name: Trace annotations
+     href: ../../observability/how-to/trace-annotations.md  
    - name: Tracing and data handling
      href: ../../observability/concepts/trace-data.md
 # Troubleshooting
