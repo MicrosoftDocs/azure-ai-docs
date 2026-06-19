@@ -135,7 +135,7 @@ You need to delete the existing analyzer to reuse the name.
 - The field extraction method is optional. When the method isn't set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
-- For documents, classification and segmentation supports up to 200 distinct types.
+- For documents, classification and segmentation support up to 200 distinct types.
 
 ### Deprecated features
 
