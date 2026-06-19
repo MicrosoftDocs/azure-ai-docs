@@ -15,6 +15,8 @@ items:
     href: ../../agents/quickstarts/quickstart-deploy-own-code.md
   - name: Quickstart - Evaluate a Hosted agent
     href: ../../observability/quickstarts/quickstart-evaluate-hosted-agent.md
+  - name: "Quickstart: Trace your hosted agent"
+    href: ../../observability/quickstarts/quickstart-tracing-hosted-agent.md
 
 
 # Concepts

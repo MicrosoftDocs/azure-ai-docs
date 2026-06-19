@@ -284,6 +284,7 @@ evaluation, and troubleshooting workflows.
 ## Related content
 
 * [What are hosted agents?](../concepts/hosted-agents.md)
+* [Trace your hosted agent](../../observability/quickstarts/quickstart-tracing-hosted-agent.md)
 * [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 * [Agent development lifecycle](../concepts/development-lifecycle.md)
 * [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
