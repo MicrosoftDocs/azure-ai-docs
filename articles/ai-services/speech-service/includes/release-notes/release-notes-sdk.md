@@ -1214,7 +1214,7 @@ Stay healthy!
 - **C#**: Added support for asynchronous conversation transcription. See documentation [here](../../get-started-stt-diarization.md).
 - **JavaScript**: Added Speaker Recognition support for both [browser](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript/browser) and [Node.js](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript/node).
 - **JavaScript**: Added support for Language Identification/language ID. See documentation [here](../../language-identification.md?pivots=programming-language-javascript).
-- **Objective-C**: Added support for [multi-device conversation](../../multi-device-conversation.md) and conversation transcription.
+- **Objective-C**: Added support for **multi-device conversation** (this service has been deprecated) and conversation transcription.
 - **Python**: Added compressed audio support for Python on Windows and Linux. See documentation [here](../../how-to-use-codec-compressed-audio-input-streams.md).
 
 #### Bug fixes
@@ -1352,7 +1352,7 @@ Stay healthy!
 
 #### New features
 
-- Multi-device conversation: connect multiple devices to the same speech or text-based conversation, and optionally translate messages sent between them. Learn more in [this article](../../multi-device-conversation.md).
+- Multi-device conversation: connect multiple devices to the same speech or text-based conversation, and optionally translate messages sent between them.
 - Keyword recognition support added for Android `.aar` package and added support for x86 and x64 flavors.
 - Objective-C: `SendMessage` and `SetMessageProperty` methods added to `Connection` object. See documentation [here](/objectivec/cognitive-services/speech/spxconnection).
 - TTS C++ API now supports `std::wstring` as synthesis text input, removing the need to convert a wstring to string before passing it to the SDK. See details [here](/cpp/cognitive-services/speech/speechsynthesizer#speaktextasync).
@@ -1385,7 +1385,7 @@ Stay healthy!
 
 - Added keyword recognition sample for Android [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/sdkdemo).
 - Added TTS sample for the server scenario [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_synthesis_server_scenario_sample.cs).
-- Added Multi-device conversation quickstarts for C# and C++ [here](../../quickstarts/multi-device-conversation.md).
+- Added Multi-device conversation quickstarts for C# and C++ (this service has been deprecated).
 
 **Other changes**
 
