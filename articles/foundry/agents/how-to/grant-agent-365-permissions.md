@@ -56,7 +56,7 @@ Collect the three values you need before you assign the app role.
 
    ```bash
    az rest --method GET \
-     --uri "https://graph.microsoft.com/v1.0/servicePrincipals?\$filter=displayName eq 'Agent365Observability'" \
+     --uri "https://graph.microsoft.com/v1.0/servicePrincipals?\$filter=appId eq '9b975845-388f-4429-889e-eab1ef63949c'" \
      --query "value[0].id" \
      --output tsv
    ```
