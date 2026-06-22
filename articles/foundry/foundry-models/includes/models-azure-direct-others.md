@@ -97,6 +97,8 @@ To work with MAI image models in Foundry, see [Deploy and use MAI image models i
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
 | `mistral-document-ai-2512` | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br /> - Data zone standard (US and EU)  |
+| `mistral-ocr-4-0` <br> **Preview** | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br /> - Data zone standard (US and EU)  |
+| `mistral-medium-3-5` <br> **Preview** | chat-completion | - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON  |  |
 | `Mistral-Large-3` | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |- Global standard (all regions) <br> - Data zone standard (US and EU)   |
 
 Several Mistral models are also available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
