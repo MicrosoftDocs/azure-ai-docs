@@ -26,8 +26,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4.1 | 2025-04-14 | GA | 2026-10-14 | — |
 | gpt-4.1-mini | 2025-04-14 | GA | 2026-10-14 | — |
 | gpt-4.1-nano | 2025-04-14 | GA | 2026-10-14 | — |
+| gpt-4.1-test | 2025-04-14 | Deprecated | 2026-04-11 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | GA | 2026-10-01 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-10-15 | — |
@@ -38,7 +40,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-4o-transcribe-diarize | 2025-10-15 | GA | 2026-10-15 | — |
 | gpt-5 | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-chat | 2025-08-07 | Preview | 2026-06-29 | gpt-chat-latest |
-| gpt-5-chat | 2025-10-03 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5-chat | 2025-10-03 | Deprecated | 2026-05-13 | gpt-chat-latest |
 | gpt-5-codex | 2025-09-15 | GA | 2027-03-17 | — |
 | gpt-5-mini | 2025-08-07 | GA | 2027-02-06 | — |
 | gpt-5-nano | 2025-08-07 | GA | 2027-02-06 | — |
@@ -49,7 +51,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-5.1-codex-max | 2025-12-04 | GA | 2026-12-05 | — |
 | gpt-5.1-codex-mini | 2025-11-13 | GA | 2027-05-15 | — |
 | gpt-5.2 | 2025-12-11 | GA | 2026-12-12 | — |
-| gpt-5.2-chat | 2025-12-11 | Preview | 2026-06-29 | gpt-chat-latest |
+| gpt-5.2-chat | 2025-12-11 | Deprecated | 2026-05-13 | gpt-chat-latest |
 | gpt-5.2-chat | 2026-02-10 | Preview | 2026-06-29 | gpt-chat-latest |
 | gpt-5.2-codex | 2026-01-14 | GA | 2027-01-14 | — |
 | gpt-5.3-chat | 2026-03-03 | Preview | 2026-06-29 | gpt-chat-latest |
@@ -147,8 +149,8 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| model-router | 2025-05-19 | Preview | 2026-07-31 | — |
-| model-router | 2025-08-07 | Preview | 2026-07-31 | — |
+| model-router | 2025-05-19 | Deprecated | 2026-05-27 | — |
+| model-router | 2025-08-07 | Deprecated | 2026-05-27 | — |
 | model-router | 2025-11-18 | GA | 2027-05-20 | — |
 
 ### Mistral AI
