@@ -148,6 +148,9 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| model-router | 2025-05-19 | Preview | 2026-07-31 | — |
+| model-router | 2025-08-07 | Preview | 2026-07-31 | — |
+| model-router | 2025-11-18 | GA | 2027-05-20 | — |
 
 
 ### Mistral AI
