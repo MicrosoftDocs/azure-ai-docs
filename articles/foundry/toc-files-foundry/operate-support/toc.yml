@@ -10,6 +10,10 @@ items:
 # Regional and Feature Support
 - name: Feature availability by region
   href: ../../reference/region-support.md
+- name: Microsoft Foundry in Azure Government
+  href: ../../concepts/foundry-azure-government.md
+- name: Foundry Agent Service feature availability in Azure Government
+  href: ../../agents/concepts/azure-government.md
 - name: Region support
   href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/ 
 - name: Foundry Models lifecycle and support policy
