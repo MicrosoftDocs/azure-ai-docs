@@ -23,9 +23,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | GA | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | GA | 2026-10-14 | — |
-| gpt-4.1-mini | 2025-04-14 | GA | 2026-10-14 | — |
-| gpt-4.1-nano | 2025-04-14 | GA | 2026-10-14 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
@@ -148,9 +148,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| model-router | 2025-05-19 | Deprecated | 2026-05-27 | — |
-| model-router | 2025-08-07 | Deprecated | 2026-05-27 | — |
-| model-router | 2025-11-18 | GA | 2027-05-20 | — |
+
 
 ### Mistral AI
 
