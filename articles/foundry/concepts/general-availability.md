@@ -124,7 +124,6 @@ The following items are out of scope at GA for the new Foundry portal and requir
 - Content Understanding.
 - Prebuilt prompts in video playground.
 - Adding data directly from the Data tab (users can add data during agent creation workflows).
-- Private/Government cloud support for the new Foundry portal.
 
 ## FAQ
 

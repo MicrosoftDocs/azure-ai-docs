@@ -244,6 +244,9 @@ items:
   items:
   - name: Quotas, limits, and region support
     href: ../../agents/concepts/limits-quotas-regions.md
+  - name: Feature availability in Azure Government
+    href: ../../agents/concepts/azure-government.md
+    displayName: sovereign cloud, USGov, Azure Government, parity, Agent Service
   - name: Hosted agent permissions reference
     href: ../../agents/concepts/hosted-agent-permissions.md
   - name: FAQ
