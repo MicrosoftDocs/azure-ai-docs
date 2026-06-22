@@ -22,10 +22,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| codex-mini | 2025-05-16 | GA | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
-| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
-| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | gpt-5.1 |
+| codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
 | gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-08-06-ev3 | Deprecated | 2026-03-31 | gpt-5.1 |
@@ -80,7 +80,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
-| o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
+| o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-09-15 | — |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
