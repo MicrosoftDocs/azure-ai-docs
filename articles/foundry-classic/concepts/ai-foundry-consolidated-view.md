@@ -2,8 +2,8 @@
 title: "Consolidated view for Foundry Tools in the Azure portal (classic)"
 description: "Discover how the Foundry consolidated view in the Azure portal simplifies AI workload management with cost, usage, and quota insights in one place. (classic)"
 #customer intent: As an Azure user managing AI workloads, I want to monitor costs and resource usage in a single view so that I can optimize spending and performance.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: aashishb
 ms.date: 01/05/2026
 ms.topic: concept-article

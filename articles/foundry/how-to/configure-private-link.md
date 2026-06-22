@@ -11,8 +11,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 06/15/2026
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: scottpolly 
+author: s-polly 
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure Foundry. 
 ---

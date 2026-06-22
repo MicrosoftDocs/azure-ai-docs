@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Evaluate your hosted agent"
-description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Azure Developer CLI or the Microsoft Foundry portal to generate a test suite, run an evaluation, and review the results."
+description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Microsoft Foundry SDK for Python or the Microsoft Foundry portal to create a test suite, run an evaluation, and review the results."
 author: lgayhardt
 ms.author: lagayhar
 ms.date: 06/16/2026
@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 # Quickstart: Evaluate your hosted agent
 
 > [!NOTE]
-> Hosted agents and the Azure Developer CLI evaluation experience are currently in preview.
+> Hosted agents are currently in preview.
 
-In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows two ways to do the same task: the Azure Developer CLI (`azd`) and the Microsoft Foundry portal.
+In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows two ways to do the same task: the Python SDK and the Microsoft Foundry portal.
 
 Evaluation establishes a quality baseline for your agent and lets you set acceptance thresholds, such as a task adherence passing rate, before you release changes to users.
 
@@ -25,11 +25,11 @@ Evaluation establishes a quality baseline for your agent and lets you set accept
 
 Before you begin, you need:
 
-* A deployed, invokable hosted agent from [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md), and the `azd` project directory you created in that quickstart.
+* A deployed, invokable hosted agent from [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md).
 * The **Foundry User** role on the Foundry resource.
-* To use the UI path, access to the [Foundry portal](https://ai.azure.com). For the azd path, see the next requirements.
-* The `azd ai agent` extension (`azure.ai.agents`), version 0.1.40-preview or later, which provides the `azd ai agent eval` commands. This extension is included in the `microsoft.foundry` extension you installed in the previous quickstart. Verify the installed version with `azd ext list`. If you need to install or upgrade it, run `azd ext install microsoft.foundry` or `azd ext upgrade microsoft.foundry`.
-* An authenticated `azd` session. Check your status with `azd auth status`, and run `azd auth login` if you're not signed in.
+* To use the UI path, access to the [Foundry portal](https://ai.azure.com). For the SDK path, see the next requirements.
+* [Python 3.9 or later](https://www.python.org/downloads/).
+* The Azure CLI, signed in with `az login`, so that `DefaultAzureCredential` can authenticate. For installation, see [Install the Azure CLI](/cli/azure/install-azure-cli).
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
@@ -37,23 +37,39 @@ Before you begin, you need:
 
 ## Step 1: Confirm your deployed agent
 
-Evaluation runs against a deployed, invokable agent. Confirm your agent responds before you set up the evaluation.
+Evaluation runs against a deployed, invokable agent. Confirm your agent is deployed and available before you set up the evaluation.
 
-### [Azure Developer CLI](#tab/azd)
+### [Python SDK](#tab/python)
 
-From your `azd` project directory, verify the agent is deployed and invokable:
+Install the Foundry SDK:
 
-```
-azd ai agent show
-```
-
-Send a test prompt:
-
-```
-azd ai agent invoke "Write a haiku about deploying cloud applications."
+```bash
+pip install "azure-ai-projects>=2.0.0" azure-identity
 ```
 
-You should see a response within a few seconds.
+Set two environment variables, then create the project client. Set `AZURE_AI_PROJECT_ENDPOINT` to your project endpoint and `AZURE_AI_MODEL_DEPLOYMENT_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+model_deployment = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+
+credential = DefaultAzureCredential()
+project_client = AIProjectClient(endpoint=endpoint, credential=credential)
+client = project_client.get_openai_client()
+```
+
+Confirm your deployed agent is registered and available. Replace `<your-agent-name>` with your hosted agent's name:
+
+```python
+agent = project_client.agents.get("<your-agent-name>")
+print(f"Found agent: {agent.name}")
+```
+
+The call returns the agent if it exists, or raises an error if the name is wrong or the agent isn't deployed.
 
 ### [Foundry portal](#tab/portal)
 
@@ -63,52 +79,83 @@ You should see a response within a few seconds.
 
 You should see a response within a few seconds.
 
+:::image type="content" source="../../media/observability/agent-playground.png" alt-text="Screenshot of the agent Playground tab in the Foundry portal, showing the Setup panel with agent info on the left and a chat window for sending test prompts on the right." lightbox="../../media/observability/agent-playground.png":::
+
 ---
 
-## Step 2: Generate the evaluation suite
+## Step 2: Set up built-in evaluators
 
-Provide a test dataset and choose the built-in evaluators that define what to measure.
+Start with built-in evaluators to score your agent against a test dataset.
 
-### [Azure Developer CLI](#tab/azd)
+### [Python SDK](#tab/python)
 
-First, create a JSONL file of test queries for your agent. Each line is a JSON object with a `query` field. Save it as `tests/queries.jsonl` in your agent project folder:
+First, create a JSONL file of test queries for your agent. Each line is a JSON object with a `query` field. Save it as `queries.jsonl`:
 
 ```json
-{"query": "What's the weather in Seattle?"}
-{"query": "Book a flight to Paris"}
-{"query": "Tell me a joke"}
+{"query": "Write a haiku about deploying cloud applications."}
 ```
 
-Generate the evaluation suite from your dataset and a set of built-in evaluators:
+Upload the file as a dataset in your project:
 
-```
-azd ai agent eval generate \
-  --dataset ./tests/queries.jsonl \
-  --evaluator builtin.intent_resolution \
-  --evaluator builtin.task_adherence \
-  --eval-model <your-chat-completion-deployment>
-```
-
-Replace `<your-chat-completion-deployment>` with a chat-completion deployment in your project; you can reuse the one your agent already uses. The command creates `eval.yaml` in the agent project root and registers the dataset and evaluators in your project. The `--eval-model` value is the judge model that scores responses.
-
-Open `eval.yaml` to review the agent target, dataset reference, and evaluators that the run uses. It looks similar to this:
-
-```yaml
-name: <eval-suite-name>
-agent:
-  name: <your-agent-name>
-  kind: hosted
-dataset:
-  local_uri: tests/queries.jsonl
-evaluators:
-  - builtin.intent_resolution
-  - builtin.task_adherence
-options:
-  eval_model: <your-chat-completion-deployment>
-max_samples: 15
+```python
+dataset = project_client.datasets.upload_file(
+    name="agent-test-queries",
+    version="1",
+    file_path="./queries.jsonl",
+)
 ```
 
-The suite name and some values are generated. Your file might also include a generated evaluator in addition to the built-in ones you selected.
+Next, choose built-in evaluators and map their inputs. The `data_mapping` tells each evaluator where to find the query and the agent response. AI-assisted evaluators need a judge model in `initialization_parameters`; the value must be a chat-completion deployment in your project.
+
+```python
+from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
+
+testing_criteria = [
+    TestingCriterionAzureAIEvaluator(
+        type="azure_ai_evaluator",
+        name="Intent Resolution",
+        evaluator_name="builtin.intent_resolution",
+        initialization_parameters={"model": model_deployment},
+        data_mapping={
+            "query": "{{item.query}}",
+            "response": "{{sample.output_items}}",
+        },
+    ),
+    TestingCriterionAzureAIEvaluator(
+        type="azure_ai_evaluator",
+        name="Task Adherence",
+        evaluator_name="builtin.task_adherence",
+        initialization_parameters={"model": model_deployment},
+        data_mapping={
+            "query": "{{item.query}}",
+            "response": "{{sample.output_items}}",
+        },
+    ),
+]
+```
+
+Create the evaluation. It defines the test data schema and testing criteria, and serves as a container for one or more runs:
+
+```python
+from openai.types.eval_create_params import DataSourceConfigCustom
+
+data_source_config = DataSourceConfigCustom(
+    type="custom",
+    item_schema={
+        "type": "object",
+        "properties": {"query": {"type": "string"}},
+        "required": ["query"],
+    },
+    include_sample_schema=True,
+)
+
+evaluation = client.evals.create(
+    name="Agent Quality Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+print(f"Evaluation created: {evaluation.id}")
+```
 
 ### [Foundry portal](#tab/portal)
 
@@ -121,6 +168,8 @@ The suite name and some values are generated. Your file might also include a gen
 
 Keep the wizard open. You submit the evaluation in the next step.
 
+:::image type="content" source="../../media/observability/agent-evaluation-create.png" alt-text="Screenshot of the Create new evaluation wizard in the Foundry portal with the Criteria step expanded, showing the Intent Resolution and Task Adherence agent evaluators selected and the dataset field mapping on the right." lightbox="../../media/observability/agent-evaluation-create.png":::
+
 ---
 
 ## Step 3: Run the evaluation
@@ -130,27 +179,36 @@ Run the suite against your deployed agent. The service sends each test query to 
 > [!NOTE]
 > Target-based evaluation invokes your hosted agent directly. It works with agents that use the responses or invocations protocol with synchronous, non-streaming execution. To evaluate agents that use the A2A or Activity protocol, or other execution patterns such as long-running or streaming, evaluate the traces your agent emits instead. See [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview).
 
-### [Azure Developer CLI](#tab/azd)
+### [Python SDK](#tab/python)
 
-From the agent project folder, run the evaluation:
+Create a run that sends each test query to your agent and applies the evaluators. Replace `<your-agent-name>` with your hosted agent's name:
 
-```
-azd ai agent eval run
-```
+```python
+eval_run = client.evals.runs.create(
+    eval_id=evaluation.id,
+    name="Agent Evaluation Run",
+    data_source={
+        "type": "azure_ai_target_completions",
+        "source": {"type": "file_id", "id": dataset.id},
+        "input_messages": {
+            "type": "template",
+            "template": [
+                {
+                    "type": "message",
+                    "role": "user",
+                    "content": {"type": "input_text", "text": "{{item.query}}"},
+                }
+            ],
+        },
+        "target": {
+            "type": "azure_ai_agent",
+            "name": "<your-agent-name>",
+            # "version": "1",  # Optional; omit to use the latest version
+        },
+    },
+)
 
-The command runs `eval.yaml` from the agent project root, sends each query to your agent, scores the responses, and prints a summary when it finishes:
-
-```output
-Eval run started
-   Eval: eval_b36748dede424e4ba3f8e6c99ca2cf27
-   Run:  evalrun_5f72ef189ad24790a32128e6f230b131
-   (✓) Done  Eval run  (4m 9s)
-
-Results:    8 total, 8 passed, 0 failed, 0 errored
-
-Per-criteria results:
-  intent_resolution: 8 passed, 0 failed, 0 errored
-  task_adherence: 8 passed, 0 failed, 0 errored
+print(f"Evaluation run started: {eval_run.id}")
 ```
 
 ### [Foundry portal](#tab/portal)
@@ -159,72 +217,75 @@ Per-criteria results:
 1. Review the target, scope, data source, and selected evaluators.
 1. Select **Submit** to start the run.
 
+:::image type="content" source="../../media/observability/agent-evaluation-submit.png" alt-text="Screenshot of the Review step of the Create new evaluation wizard in the Foundry portal, showing the evaluation name field and a Summary panel with the agent target, scope, dataset, and evaluators, plus the Submit button." lightbox="../../media/observability/agent-evaluation-submit.png":::
+
 ---
 
 ## Step 4: Review the results
 
 Evaluations typically complete in a few minutes, depending on the number of queries.
 
-### [Azure Developer CLI](#tab/azd)
+### [Python SDK](#tab/python)
 
-List recent evaluations:
+Poll for completion, then print the status and the report URL that opens the results in the Foundry portal:
 
+```python
+import time
+
+while True:
+    run = client.evals.runs.retrieve(run_id=eval_run.id, eval_id=evaluation.id)
+    if run.status in ["completed", "failed"]:
+        break
+    time.sleep(5)
+
+print(f"Status: {run.status}")
+print(f"Report URL: {run.report_url}")
 ```
-azd ai agent eval list
+
+At the run level, you can see aggregated pass and fail counts for each evaluator:
+
+```python
+print(run.result_counts)
+for criteria in run.per_testing_criteria_results:
+    print(criteria.testing_criteria, "passed:", criteria.passed, "failed:", criteria.failed)
 ```
 
 ```output
-    Eval ID                                Name        Status of last run  Runs
-    -------                                ----        ------------------  ----
-*   eval_b36748dede424e4ba3f8e6c99ca2cf27  agent-core  Completed           1
-
-* = active eval in current environment
+ResultCounts(errored=0, failed=0, passed=1, total=1, skipped=0)
+Intent Resolution passed: 1 failed: 0
+Task Adherence passed: 1 failed: 0
 ```
 
-Show the most recent evaluation and its runs:
+For row-level detail, list the output items. Each result includes the evaluator name, pass or fail, and a score:
 
+```python
+for item in client.evals.runs.output_items.list(run_id=eval_run.id, eval_id=evaluation.id):
+    for result in item.results:
+        print(item.id, result.name, "passed:", result.passed, "score:", result.score)
 ```
-azd ai agent eval show
-```
-
-```output
-Eval:   eval_b36748dede424e4ba3f8e6c99ca2cf27
-Name:   agent-core
-Agent:  <your-agent-name>
-Runs:   1
-
-Recent runs:
-  Run ID                                    Status     Passed  Failed  Created
-  ------                                    ------     ------  ------  -------
-  evalrun_5f72ef189ad24790a32128e6f230b131  Completed  8/8     0       2026-06-17 14:52 UTC
-```
-
-Use the results to confirm which agent version was evaluated and which evaluator scores were produced. To see per-evaluator details and a link to the report in the Foundry portal, run `azd ai agent eval show <eval-id> --eval-run-id <run-id>`.
 
 ### [Foundry portal](#tab/portal)
 
-1. In the left pane, select **Evaluation**.
-1. Select your run from the list to open its details. The details page shows the target, dataset, status, token usage, and an aggregate score for each evaluator.
+1. The details page shows the target, dataset, status, token usage, and an aggregate score for each evaluator.
 1. Select the run name to view row-level results: each query, the agent response, the evaluator score, and the score explanation.
 
 ---
 
 ## Clean up resources
 
-The evaluation registers a dataset, evaluators, and run history in your Foundry project. These assets incur little or no ongoing cost. To remove everything you created across this and the previous quickstart, run `azd down` from your agent project directory.
+This quickstart registers a dataset, an evaluation, and run history in your Foundry project. These assets incur little or no ongoing cost.
 
-> [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, and the hosted agent.
+To remove the hosted agent and the Azure resources you created, follow the cleanup steps in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md#clean-up-resources).
 
 ## Troubleshooting
 
 | Issue | Solution |
 | ----- | -------- |
-| `azd ai agent eval` command not found or fails | Run `azd ext list` and verify the `azd ai agent` extension is 0.1.40-preview or later. Upgrade with `azd ext upgrade microsoft.foundry` |
-| Evaluation target not found or agent not invokable | Confirm the agent is deployed and invokable with `azd ai agent show`. Redeploy with `azd deploy` if needed. |
-| Many errored rows or unexpectedly low scores | Open the run report and check whether rows failed with agent response or evaluator errors. Fix the underlying errors, then rerun the evaluation. |
-| `AuthenticationError` or `DefaultAzureCredential` failure | Refresh credentials with `azd auth logout` and then `azd auth login`. |
-| Eval model deployment not found | Verify the chat-completion deployment name exists in your project under **Build** > **Deployments**. |
+| `ModuleNotFoundError` for `azure.ai.projects` or `azure.identity` | Install the SDK: `pip install "azure-ai-projects>=2.0.0" azure-identity`. |
+| `AuthenticationError` or `DefaultAzureCredential` failure | Sign in with `az login`, and confirm you have the **Foundry User** role on the project. |
+| Agent target not found | Verify the agent name and version with `project_client.agents.get("<your-agent-name>")` or `project_client.agents.list()`. |
+| Many errored rows or unexpectedly low scores | Open the report URL and check whether rows failed with agent response or evaluator errors. Fix the underlying errors, then rerun the evaluation. |
+| Eval model deployment not found | Verify that the deployment named in `AZURE_AI_MODEL_DEPLOYMENT_NAME` exists in your project under **Build** > **Deployments**. |
 
 ## What you learned
 
@@ -233,17 +294,23 @@ In this quickstart, you:
 * Created a test dataset and chose evaluators for your hosted agent.
 * Ran an evaluation against the deployed agent.
 * Reviewed aggregated and row-level results.
-* Completed each task with both the Azure Developer CLI and the Foundry portal.
+* Completed each task with both the Python SDK and the Foundry portal.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
 > [Optimize a hosted agent](../../agents/quickstarts/quickstart-optimize-hosted-agent.md)
 
+Continue improving your evaluation workflow:
+
+- [Set up continuous and scheduled evaluations](../how-to/how-to-monitor-agents-dashboard.md) to track your agent's quality in production.
+
+
 ## Related content
 
 * [Evaluate your AI agents](../how-to/evaluate-agent.md)
-* [Run agent evaluations with the azd CLI](../how-to/azure-developer-cli-evaluation.md)
+* [Run batch evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+* [Generate a synthetic evaluation dataset](../how-to/evaluation-dataset-synthetic.md) to create test queries and evaluators automatically.
 * [Troubleshoot evaluation and observability issues](../how-to/troubleshooting.md)
 * [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 * [What are hosted agents?](../../agents/concepts/hosted-agents.md)

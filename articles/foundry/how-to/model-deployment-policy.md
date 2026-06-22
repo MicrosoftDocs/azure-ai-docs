@@ -2,8 +2,8 @@
 title: "Built-in policies for model deployment"
 description: "Govern AI model deployment in Microsoft Foundry portal with built-in Azure Policy definitions. Approve specific models and enforce eligibility requirements such as source and lifecycle status."
 #customer intent: As an IT admin, I want to control the deployment of AI models in Microsoft Foundry portal so that I can ensure compliance with organizational policies.
-author: jonburchel
-ms.author: jburchel
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: aashishb
 ms.date: 05/29/2026
 ms.topic: how-to

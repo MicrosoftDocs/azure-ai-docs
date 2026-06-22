@@ -5,8 +5,8 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: tutorial
 ms.date: 03/31/2026
-ms.author: jburchel
-author: jonburchel
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: dantaylo
 ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.

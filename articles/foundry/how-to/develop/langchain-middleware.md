@@ -4,7 +4,7 @@ description: "Learn how to use Foundry Content Safety middleware in LangChain ag
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 06/19/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 # Use Foundry Content Safety middleware with LangChain
 
-Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools
-capabilities to your LangChain agents. You learn how to apply content
+Use the `langchain-azure-ai` package to add Azure Content Safety in Foundry Tools capabilities to your LangChain agents. You learn how to apply content
 moderation, prompt shielding, groundedness detection, and protected material
 scanning as middleware in your agent graphs.
 
