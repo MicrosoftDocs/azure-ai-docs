@@ -59,7 +59,7 @@ Before you run the examples in this article, confirm that your resource region s
 
 The Responses API supports the following models:
 
-- `gpt-chat-latest` (Versions: `2026-05-28`, `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-06-24`, `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
