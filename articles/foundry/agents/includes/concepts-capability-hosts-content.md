@@ -175,7 +175,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update)
+Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/operation-groups)
 
 ### Optional: account-level connections with project capability hosts
 
