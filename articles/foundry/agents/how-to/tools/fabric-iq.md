@@ -68,7 +68,7 @@ Fabric IQ exposes different MCP endpoint URLs depending on the type of Fabric it
 | Fabric item type | `server_url` pattern | Supported authentication |
 |---|---|---|
 | **Power BI semantic model** | `https://{host}/v1/mcp/fabricaihub/integrations/m365` | BYO Entra app, managed OAuth |
-| **Ontology** | `https://{host}/v1/mcp/dataPlane/workspaces/{workspaceId}/items/{itemId}/ontologyEndpoint` | BYO Entra app |
+| **Ontology** | `https://{host}/v1/mcp/dataPlane/workspaces/{workspaceId}/items/{itemId}/ontologyEndpoint` | BYO Entra app, managed OAuth |
 | **Data agent** | `https://{host}/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent` | BYO Entra app, managed OAuth |
 
 Replace the placeholders as follows:
@@ -223,7 +223,7 @@ Fabric IQ uses Microsoft Entra ID delegated authentication (On-Behalf-Of, OBO). 
 
 The authentication method available depends on the Fabric item type:
 
-- **Ontology** — BYO Entra app only. You must register a dedicated Entra application with Power BI delegated permissions.
+- **Ontology** — BYO Entra app or managed OAuth. To use BYO Entra app, register a dedicated Entra application with Power BI delegated permissions.
 - **Data agent** — BYO Entra app (with data agent scopes) or managed OAuth.
 - **Power BI semantic model** — BYO Entra app or managed OAuth.
 
