@@ -63,7 +63,7 @@ For general WebSocket setup guidance, see [WebSocket endpoint setup](voice-live-
 
 ### Step 2: Create WebRTC peer connection and SDP exchange
 
-In the browser, use standard WebRTC APIs to create a peer connection and exchange SDP with the Voice Live API over a WebSocket connection. Audio is streamed over WebRTC media tracks, while non-audio events are exchanged separately.
+In the browser, use standard WebRTC APIs to create a peer connection and exchange SDP with the Voice Live API over a WebSocket connection. Audio is streamed over WebRTC media tracks, while non-audio events are exchanged separately. 
 
 The following example demonstrates a minimal browser setup.
 
@@ -103,9 +103,21 @@ async function setupWebRTC(signalWs, model) {
   });
 
   // Send offer to server
+  // If migrating from websocket to webrtc, you can use the same session config used in websocket
   signalWs.send(JSON.stringify({
     type: 'rtc.call.sdp.create',
-    sdp_offer: pc.localDescription.sdp
+    sdp_offer: pc.localDescription.sdp,
+    session: {
+      modalities: ['text', 'audio'],
+      instructions: 'You are a helpful assistant. Respond concisely.',
+      voice: { type: 'azure-realtime-native', name: 'diya' },
+      turn_detection: {
+        type: 'server_vad',
+        threshold: 0.5,
+        prefix_padding_ms: 300,
+        silence_duration_ms: 500
+      }
+    }
   }));
 
   // Wait for answer from server
