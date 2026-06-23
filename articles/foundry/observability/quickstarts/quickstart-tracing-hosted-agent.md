@@ -102,12 +102,11 @@ Tracing data is stored in Application Insights and follows your workspace's data
 
 | Issue | Solution |
 | ----- | -------- |
-| Not using Foundry hosted agents and traces aren't showing | This quickstart covers hosted agents only. For tracing agents hosted outside of Foundry, see [Configure tracing for AI agent frameworks](../how-to/trace-agent-framework.md). |
-| No traces appear after invoking agent | Confirm Application Insights is connected to your project (see prerequisites). Verify the agent responded successfully with `azd ai agent invoke`. |
-| Traces don't appear and Application Insights isn't enabled | Connect an Application Insights resource to your Foundry project. See [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). |
-| Traces appear but spans are missing input/output data attributes | Enable content recording by setting the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` in your agent configuration. Content recording is disabled by default to protect sensitive data. |
+| Not using Foundry hosted agents and traces aren't showing | This quickstart covers hosted agents only. For tracing agents hosted outside of Foundry, see [Register an external agent](/azure/foundry/agents/how-to/register-external-agent). |
+| No traces appear after invoking agent | Confirm Application Insights is connected to your Foundry project. If it isn't enabled, see [Set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). Verify the agent responded successfully with `azd ai agent invoke`. |
+| Traces appear but spans are missing input/output data attributes | Enable content recording by setting the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` in your agent configuration. |
 | `AuthorizationFailed` when viewing traces | You need the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) on the Application Insights resource. |
-| Traces appear but are missing tool call spans | Ensure your agent uses tool-calling (not just text generation). Agents using Microsoft Agent Framework emit tool spans automatically. |
+| Traces appear but are missing tool call spans | Verify your agent defines tools and the model invokes them during the request. If using Microsoft Agent Framework, confirm tools are registered with the `Agent` constructor via the `tools` parameter. See [Add tools to your agent](https://learn.microsoft.com/agent-framework/get-started/add-tools). |
 | `AuthenticationError` or `DefaultAzureCredential` failure | Refresh credentials with `azd auth logout` and then `azd auth login`. |
 
 ## What you learned
