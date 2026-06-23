@@ -48,7 +48,7 @@ Tracing is enabled when a project is connected to an Azure Monitor Application I
 When you enable tracing:
 
 - Trace data begins to be collected and stored for all agents within the project.
-- To view traces in the Foundry Tracing UI, users need access to the Foundry project and read permission on the connected Application Insights / Log Analytics workspace. For example, this can be granted through roles such as Log Analytics Reader, Monitoring Reader, or Reader at the Application Insights resource, Log Analytics workspace, or an appropriate parent scope. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), assignees also need the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to read that data.
+- To view traces in the Foundry Tracing UI, users need access to the Foundry project and read permission on the connected Application Insights or Log Analytics workspace. For example, roles such as Log Analytics Reader, Monitoring Reader, or Reader at the Application Insights resource, Log Analytics workspace, or an appropriate parent scope can grant this access. If the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), assignees also need the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to read that data.
 
 ## Disable tracing
 
