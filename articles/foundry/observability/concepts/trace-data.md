@@ -94,7 +94,7 @@ Tracing can capture personal data including:
 ### Data protection controls
 
 - Personal data redaction: Redact personal data, such as email addresses and phone numbers.
-- Restrict access to trace data by carefully managing which users have been granted the RBAC “Log Analytics Reader” role. When the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also manage who has the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role, because it grants read access to protected tables.
+- Restrict access to trace data by carefully managing which users are granted the RBAC **Log Analytics Reader** role. When the underlying Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure), also manage who has the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role, because it grants read access to protected tables.
 - Configurable policies: Control what data is captured and visible.
 
 These controls help you manage risk and comply with privacy requirements.  
