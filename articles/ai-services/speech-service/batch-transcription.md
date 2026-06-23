@@ -50,7 +50,12 @@ To use the batch transcription REST API:
 
 ## Roughly estimate the latency
 
-The latency is the end-to-end time it takes to transcribe a batch of audio data, it is hard to estimate because a lot of users work on the same region. But we are confident that the 90th percentile latency will be less than 6 hours. We define a normalized latency calculation method as follows:
+The latency is the end-to-end time it takes to transcribe a batch of audio data, it is hard to estimate because it is determined by multiple factors: 
+- The total audio length included in the request.
+- Whether additional features are required, such as diarization and language identification.
+- The length of the job queue in the system at that time.
+- The system's hardware resource configuration.
+But we are confident that the 90th percentile latency will be less than 6 hours. We define a normalized latency calculation method as follows:
 
 **Normalized Latency = ProcessDuration - AudioLength/5**
 
