@@ -223,7 +223,7 @@ Fabric IQ uses Microsoft Entra ID delegated authentication (On-Behalf-Of, OBO). 
 
 The authentication method available depends on the Fabric item type:
 
-- **Ontology** — BYO Entra app or managed OAuth. To use BYO Entra app, register a dedicated Entra application with Power BI delegated permissions.
+- **Ontology** - BYO Entra app or managed OAuth. To use BYO Entra app, register a dedicated Entra application with Power BI delegated permissions.
 - **Data agent** — BYO Entra app (with data agent scopes) or managed OAuth.
 - **Power BI semantic model** — BYO Entra app or managed OAuth.
 
