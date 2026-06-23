@@ -42,7 +42,7 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe and gpt-4o-transcribe-diarize. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
+> Phrase list currently doesn't support whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe, and gpt-4o-transcribe-diarize. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ### Custom speech configuration
 
