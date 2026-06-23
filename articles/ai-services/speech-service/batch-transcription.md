@@ -48,6 +48,14 @@ To use the batch transcription REST API:
 
 **Load balancing**: To optimize throughput for large-scale batch transcription, consider distributing your jobs across multiple supported Azure regions. This approach can help balance load and reduce overall processing time, provided your data and compliance requirements allow for multiregion usage. Review [region availability](./regions.md) and ensure your storage and resources are accessible from each region you plan to use.
 
+## Roughly estimate the latency
+
+The latency is the end-to-end time it takes to transcribe a batch of audio data, it is hard to estimate because a lot of users work on the same region. But we are confident that the 90th percentile latency will be less than 6 hours. We define a normalized latency calculation method as follows:
+
+**Normalized Latency = ProcessDuration - AudioLength/5**
+
+For example, when the AudioLength is 120 minutes and the end-to-end ProcessDuration is 30 minutes: **30 - 120/5 = 6**, where the factor of 5 means the system processes audio at roughly 5x real-time speed. The 6 minutes represents the queue wait time under normal circumstances, which will not exceed 6 hours. In extreme cases, it may reach 24 hours or longer, as the pending queue might be very long, making the end-to-end ProcessDuration longer.
+
 
 ## Related content
 
