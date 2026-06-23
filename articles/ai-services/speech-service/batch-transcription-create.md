@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 With batch transcriptions, you submit [audio data](batch-transcription-audio-data.md) in a batch. The service transcribes the audio data and stores the results in a storage container. You can then [retrieve the results](batch-transcription-get.md) from the storage container.
 
-Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors. The service doesn't provide a way to estimate the time it takes to transcribe a batch of audio data.
+Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors.
 
 > [!TIP]
 > A transcription request can contain URIs for one or more audio files. It is best to separate short and long audio files into different requests, since long audio files require more processing time and may even be retried multiple times due to insufficient computing resources, which prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
